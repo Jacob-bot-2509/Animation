@@ -34,6 +34,20 @@ def git_head() -> str:
         return "<no-git>"
 
 
+def capture_env() -> dict:
+    import platform
+    import sys as _sys
+    env = {"python": _sys.version.split()[0], "platform": platform.platform()}
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=name,memory.total",
+                              "--format=csv,noheader"], capture_output=True,
+                             text=True, encoding="utf-8")
+        env["gpu"] = out.stdout.strip() if out.returncode == 0 else "查询失败"
+    except FileNotFoundError:
+        env["gpu"] = "无 nvidia-smi"
+    return env
+
+
 def file_sha256(p: Path) -> str:
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -54,6 +68,7 @@ def cmd_init(args) -> int:
                   summary={"command": args.command,
                            "created_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                            "manifest": args.manifest or ""},
+                  env=capture_env(),
                   metrics=json.loads(args.metrics) if args.metrics else {})
     out = ROOT / "runs" / args.run_id / "run_record.json"
     r.save(out)

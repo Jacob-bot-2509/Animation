@@ -65,5 +65,21 @@ class TestRunRecord(unittest.TestCase):
         self.assertTrue(any("manifest hash" in p for p in check_record(r, manifest_path=f)))
 
 
+class TestEnvAndFailure(unittest.TestCase):
+    def test_env_recorded(self):
+        r = _ok_record()
+        r.env = {"python": "3.14", "platform": "win", "gpu": "RTX"}
+        self.assertEqual(check_record(r), [])
+
+    def test_failure_without_analysis_flagged(self):
+        """msg_101-7:失败不留无因失败。"""
+        r = _ok_record()
+        r.kind = "baseline"
+        r.metrics = {}
+        self.assertTrue(any("failure_analysis" in p for p in check_record(r)))
+        r.failure_analysis = {"reason": "OOM", "fix": "降 batch", "rollback": "runs/r0"}
+        self.assertEqual(check_record(r), [])
+
+
 if __name__ == "__main__":
     unittest.main()

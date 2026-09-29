@@ -24,13 +24,16 @@ class RunRecord:
     manifest_hash: str
     summary: dict = field(default_factory=dict)   # 命令/时间/结论
     metrics: dict = field(default_factory=dict)   # 指标(loss/通过率/…)
-    version: int = 1
+    env: dict = field(default_factory=dict)       # 环境(python/平台/GPU)
+    failure_analysis: dict = field(default_factory=dict)  # 失败:原因/修复/回滚点
+    version: int = 2
 
     def to_dict(self) -> dict:
         return {"run_record_version": self.version, "run_id": self.run_id,
                 "kind": self.kind, "config": self.config,
                 "git_commit": self.git_commit, "manifest_hash": self.manifest_hash,
-                "summary": self.summary, "metrics": self.metrics}
+                "summary": self.summary, "metrics": self.metrics,
+                "env": self.env, "failure_analysis": self.failure_analysis}
 
     @classmethod
     def from_dict(cls, d: dict) -> "RunRecord":
@@ -38,6 +41,7 @@ class RunRecord:
                    config=d.get("config", {}), git_commit=d.get("git_commit", ""),
                    manifest_hash=d.get("manifest_hash", ""),
                    summary=d.get("summary", {}), metrics=d.get("metrics", {}),
+                   env=d.get("env", {}), failure_analysis=d.get("failure_analysis", {}),
                    version=d.get("run_record_version", 1))
 
     def save(self, path: Path) -> None:
@@ -69,4 +73,10 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
         if actual != r.manifest_hash:
             problems.append(f"manifest hash 不可复现(记录 {r.manifest_hash[:12]}…,"
                             f"实际 {actual[:12]}…)")
+    # msg_101-7:失败必须带失败分析(原因/修复/回滚点),不留无因失败
+    if not r.metrics and r.kind != "dry-run" and not r.failure_analysis:
+        problems.append("无指标且无 failure_analysis —— 失败必须留原因/修复/回滚点"
+                        "(msg_101-7,统一格式)")
+    if r.failure_analysis and not r.failure_analysis.get("reason"):
+        problems.append("failure_analysis 缺 reason(失败原因)")
     return problems
