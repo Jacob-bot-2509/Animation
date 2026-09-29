@@ -107,5 +107,9 @@ def validate_manifest(m: Manifest, root: Path) -> dict:
                         f"{sim:.3f} ≥ {NEAR_DUP_THRESHOLD},命中 {hit['path']}:"
                         f"{hit['line'] + 1})")
 
-    return {"ok": not problems, "n_entries": len(m.entries),
-            "problems": problems, "quarantines": quarantines}
+    # msg_101-1 数据合约:quarantine 不默认通过 —— 有任何 quarantine 即不通过,
+    # 但 exit code 与 problems 区分(problems=1 硬伤;quarantine=2 待补齐信息)
+    return {"ok": not problems and not quarantines,
+            "n_entries": len(m.entries),
+            "problems": problems, "quarantines": quarantines,
+            "exit_code": 1 if problems else (2 if quarantines else 0)}

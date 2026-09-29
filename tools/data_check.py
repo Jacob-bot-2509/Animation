@@ -73,8 +73,10 @@ def _print_report(report: dict) -> int:
         print(f"  [FAIL] {p}")
     for q in report["quarantines"]:
         print(f"  [QUARANTINE] {q}")
-    print("结论:", "通过" if report["ok"] else "**不通过**")
-    return 0 if report["ok"] else 1
+    verdict = "通过" if report["ok"] else "**不通过**"
+    print(f"结论: {verdict}(exit_code={report['exit_code']})")
+    # exit_code: 0=通过;1=硬伤(problems);2=待补齐(quarantine,不默认通过)
+    return report["exit_code"]
 
 
 if __name__ == "__main__":

@@ -60,6 +60,7 @@ class TestValidate(unittest.TestCase):
         self.assertTrue(any("SHA256 不一致" in p for p in r["problems"]), r["problems"])
 
     def test_missing_license_quarantined(self):
+        """msg_101-1 数据合约:quarantine 不默认通过。"""
         p = self.root / "train" / "a.jsonl"
         _write(p, '{"id": "t1"}\n')
         m = Manifest(name="t", entries=[
@@ -68,6 +69,8 @@ class TestValidate(unittest.TestCase):
         r = validate_manifest(m, self.root)
         self.assertTrue(any("许可证未标注" in q for q in r["quarantines"]),
                         r["quarantines"])
+        self.assertFalse(r["ok"], "quarantine 不得默认通过")
+        self.assertEqual(r["exit_code"], 2, "quarantine exit_code 应为 2(与硬伤 1 区分)")
 
     def test_bad_license_detected(self):
         p = self.root / "train" / "a.jsonl"
