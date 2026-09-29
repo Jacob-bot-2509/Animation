@@ -109,6 +109,57 @@ class TestValidate(unittest.TestCase):
         r = validate_manifest(m, self.root)
         self.assertTrue(any("精确重叠" in p for p in r["problems"]), r["problems"])
 
+    def test_id_overlap_detected(self):
+        """msg_101-2:样本 ID 字段重叠 = 0 —— 内容不同但 ID 相同也必须检出。"""
+        train = self.root / "train" / "a.jsonl"
+        ev = self.root / "eval" / "b.jsonl"
+        _write(train, '{"id": "q1", "problem": "训练版题干A"}\n')
+        _write(ev, '{"id": "q1", "problem": "评测版题干(内容不同)"}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+                  source="x", license="internal-generated", split="train"),
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+                  source="x", license="internal-generated", split="eval")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(any("ID 重叠" in p for p in r["problems"]), r["problems"])
+
+    def test_file_hash_overlap_detected(self):
+        """msg_101-2:文件 hash 重叠 = 0 —— 两个不同路径内容相同的文件必须检出。"""
+        p1 = self.root / "train" / "a.jsonl"
+        p2 = self.root / "train" / "b.jsonl"
+        _write(p1, '{"id": "t1"}\n')
+        _write(p2, '{"id": "t1"}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(p1), size=1,
+                  source="x", license="internal-generated", split="train"),
+            Entry(path="train/b.jsonl", sha256=sha256_file(p2), size=1,
+                  source="x", license="internal-generated", split="train")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(any("文件内容完全相同" in p for p in r["problems"]),
+                        r["problems"])
+
+    def test_near_dup_threshold_configurable(self):
+        """msg_101-2:近重复阈值可配置(当前 0.7 只是初始值)。"""
+        train = self.root / "train" / "a.jsonl"
+        ev = self.root / "eval" / "b.jsonl"
+        _write(train, '{"problem": "%s"}\n' % ("某工厂生产两种产品,甲每件利润3元,乙每件利润5元,"
+               "生产甲需A材料2千克和B材料1千克,生产乙需A材料1千克和B材料3千克,"
+               "现有A材料100千克、B材料120千克,问各生产多少件利润最大"))
+        _write(ev, '{"problem": "%s"}\n' % ("某工厂生产两种产品,甲每件利润3元,乙每件利润5元,"
+               "生产甲需A材料2千克和B材料1千克,生产乙需A材料1千克和B材料3千克,"
+               "现有A材料100千克、B材料120千克,如何安排生产使利润达到最大"))
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+                  source="x", license="internal-generated", split="train"),
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+                  source="x", license="internal-generated", split="eval")])
+        r_loose = validate_manifest(m, self.root, near_dup_threshold=0.5)
+        self.assertTrue(any("近重复" in p for p in r_loose["problems"]),
+                        "阈值 0.5 应检出")
+        r_strict = validate_manifest(m, self.root, near_dup_threshold=0.95)
+        self.assertFalse(any("近重复" in p for p in r_strict["problems"]),
+                         "阈值 0.95 不应检出")
+
     def test_bad_split_detected(self):
         p = self.root / "train" / "a.jsonl"
         _write(p, '{"id": "t1"}\n')
