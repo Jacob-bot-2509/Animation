@@ -42,6 +42,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--manifest", help="校验指定 manifest 文件")
     ap.add_argument("--scan", help="扫描目录并临时登记校验(目录路径)")
     ap.add_argument("--dry-run", action="store_true", help="骨架自检")
+    ap.add_argument("--near-dup-threshold", type=float, default=0.7,
+                     help="近重复 Jaccard 阈值(默认 0.7,初始值;真实数据就位后校准)")
     args = ap.parse_args(argv)
 
     if args.dry_run:
@@ -53,13 +55,13 @@ def main(argv: list[str]) -> int:
     if args.scan:
         d = Path(args.scan)
         m = scan_dir(d)
-        report = validate_manifest(m, d)
+        report = validate_manifest(m, d, near_dup_threshold=args.near_dup_threshold)
         return _print_report(report)
 
     if args.manifest:
         mp = Path(args.manifest)
         m = Manifest.load(mp)
-        report = validate_manifest(m, mp.parent)
+        report = validate_manifest(m, mp.parent, near_dup_threshold=args.near_dup_threshold)
         return _print_report(report)
 
     ap.print_help()
