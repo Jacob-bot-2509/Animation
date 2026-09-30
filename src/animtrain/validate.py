@@ -56,17 +56,45 @@ def _load_sample_ids(path: Path) -> set[str]:
 
 
 def _find_bad_json_lines(path: Path) -> list[tuple[int, str]]:
-    """JSONL 里解析失败的行号与错误(R3:坏样本可定位)。"""
+    """坏 JSON 检查,按扩展名区分格式(复审第三轮:合法 pretty JSON 不得误报)。
+
+    .jsonl: 逐行解析,报行号;
+    .json : 整文件解析一次(pretty JSON 多行是合法的),失败报 line 1。
+    """
     import json as _json
     bad: list[tuple[int, str]] = []
-    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
+    if path.suffix == ".jsonl":
+        for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if not line.strip():
+                continue
+            try:
+                _json.loads(line)
+            except _json.JSONDecodeError as exc:
+                bad.append((i, str(exc)))
+    elif path.suffix == ".json":
         try:
-            _json.loads(line)
+            _json.loads(path.read_text(encoding="utf-8"))
         except _json.JSONDecodeError as exc:
-            bad.append((i, str(exc)))
+            bad.append((1, str(exc)))
     return bad
+
+
+def _load_sample_ids(path: Path) -> set[str]:
+    """JSONL 样本的 ID 字段(id/sample_id)集合;解析失败的行记 <unparsable>。"""
+    import json as _json
+    ids: set[str] = set()
+    for l in _load_lines(path):
+        try:
+            obj = _json.loads(l)
+        except _json.JSONDecodeError:
+            ids.add("<unparsable>")
+            continue
+        if not isinstance(obj, dict):  # null / 数组 / 标量 → 非对象,结构化标记
+            ids.add("<non-object>")
+            continue
+        sid = obj.get("id") or obj.get("sample_id")
+        ids.add(sid if sid else "<no-id>")
+    return ids
 
 
 def validate_manifest(m: Manifest, root: Path,

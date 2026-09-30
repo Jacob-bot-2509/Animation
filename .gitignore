@@ -9,3 +9,29 @@ data/test/
 .env
 checkpoints/
 outputs/
+
+# Secrets and local configuration
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+# Real model/data assets (review fixtures remain tracked explicitly)
+/models/
+/.models/
+*.safetensors
+*.gguf
+pytorch_model*.bin
+checkpoint-*/
+/data/**/*.jsonl
+/data/**/*.parquet
+*.mp4
+*.mov
+*.webm
+# Local caches, environments, IDE and bridge scratch
+.pytest_cache/
+.cache/
+venv/
+.vscode/
+.idea/
+.bridge_tmp/

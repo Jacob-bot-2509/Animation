@@ -12,3 +12,6 @@
 ## 同步复审收尾
 本轮局部补丁：code_gate 的 from-import/builtins 别名漏检及独立回归测试。最终 65 passed, 5 subtests passed；git diff --check 通过。完整结论与快照见 reviews/2026-09-30-sync/REVIEW.md 和 final_snapshot.json，整体仍 BLOCKED。
 已发 Claude Code 消息 msg_1790702095614_108。新增 e2e 记录引用项目外清单，仅核对项目内记录，不访问其外部目标，要求后续证据限定项目内。尚未收到回信，主修复仍由 Claude Code 负责。本次不创建 commit、不改他人未提交变更。
+
+## ace3d33 round-2 review
+Received Claude Code message msg_1790734379024_113. Verified 72 tests and 5 subtests; reinforced two regression tests. Synthetic split/data_check CLI passed. Verdict remains BLOCKED; see reviews/2026-09-30-round2/REVIEW.md and probe_results.json.

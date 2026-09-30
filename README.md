@@ -1,57 +1,48 @@
-# Animation Model Training(动画模型训练项目)
+# Animation Model Training（动画模型训练项目）
 
-> 创建:2026-09-16;骨架:2026-09-30。用途:前动画模型项目(D:\manim-agent-lab)
-> 删除后,重启项目时的**新工作目录**。当前为最小可运行骨架(数据 manifest
-> 与校验管线),未实现模型训练,未下载大模型。
-> **与 MathGuide(D:\code)完全独立**:本项目的代码/数据/环境/Git/权重/记录
-> 全部独立维护,不读取、不引用、不复用 D:\code 的任何内容。
+当前为数学动画生成系统的实验基础设施：数据登记、分割、字段与静态代码检查、运行记录和 preflight。未实现真实模型训练。整体门禁仍在修补，测试通过不等于训练就绪。
 
-## 项目结构
+本项目仅使用 D:/Animation Model Training，与 MathGuide（D:/code）独立。Claude Code 主导实现；Codex 同步审查并处理必要的小问题。训练、模型下载、依赖安装需用户另行批准。
 
-```
-src/animtrain/        核心包(纯标准库,零依赖)
-  manifest.py         manifest schema(v1):Entry/Manifest/白名单/内容哈希
-  validate.py         校验:文件存在/SHA256/许可证/split/训练-评测精确重叠
-  scan.py             目录扫描 → 临时 manifest(按子目录推断 split)
-tools/
-  make_manifest.py    生成 manifest(扫目录、算 SHA256、登记)
-  data_check.py       校验 CLI(--manifest / --scan / --dry-run)
-configs/
-  data_check.example.json  检查约定与命令示例
-tests/
-  test_validate.py    校验器测试(unittest,8 项,含重叠检出)
-data/README.md        数据目录与 manifest 规范
-```
+## 当前入口
 
-## 快速验证
+| 入口 | 职责与通过范围 |
+|---|---|
+| tools/make_manifest.py | 扫描数据根并生成清单；输出必须位于该根目录，已有文件拒绝覆盖 |
+| tools/split_data.py | 按显式 ID 计划拆分；用它生成的 split_manifest.json 校验，不重新扫描猜测角色 |
+| tools/data_check.py | 检查清单/扫描目录；空输入失败；--dry-run 仅显示骨架说明 |
+| tools/check_fields.py | 校验指定核心字段；报告不得覆盖输入，即使 --force |
+| tools/check_code.py | 静态检查；默认白名单相对项目根；数学/渲染显示 UNVERIFIED |
+| tools/run_record.py | 运行记录创建/检查；完整可复现契约仍待补齐 |
+| tools/preflight.py | 模型/GPU/数据诊断；完整 L1–L5 聚合仍待实现，不能独立授权训练 |
 
-```bash
-python tools/data_check.py --dry-run            # 骨架自检(无数据时)
-python -m unittest discover tests               # 测试(8/8)
-python tools/make_manifest.py --dir data --out data/manifest.json \
-    --name animation-data-v1 --source <来源> --license <许可证>
-python tools/data_check.py --manifest data/manifest.json
+核心实现在 src/animtrain/；测试在 tests/；审查证据在 reviews/。验收标准见 [PIPELINE_PLAN.md](PIPELINE_PLAN.md)，最新整体复查见 [协调性报告](reviews/2026-09-30-coherence/REVIEW.md)。
+
+## 本地验证
+
+在项目根使用已有环境，不安装新依赖：
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider
+.\.venv\Scripts\python.exe tools/data_check.py --dry-run
 ```
 
-manifest 与数据同目录自包含:entry.path 相对 manifest 所在目录。
+--dry-run 仅打印当前 schema/检查项说明，没有执行数据验收。实际数据准备和许可要求见 [data/README.md](data/README.md)。命令传入的相对输入/输出路径默认相对启动目录；代码检查的内置白名单固定相对项目根，显式 --whitelist 仍相对启动目录。
 
-## 未实现/遗留(如实)
+数据检查退出码：0=当前检查通过；1=失败；2=quarantine 待补齐或参数错误。调用方必须同时记录命令、模式和输出，不能把 --dry-run 的 0 当数据验收通过。代码检查的 0 仅表示已实现的静态检查通过。
 
-- 未实现任何模型训练(等待规划文件与批准)
-- 未下载大模型
-- source/license 扫描时只能统一登记,须人工逐条复核真实性
-- 数据格式(JSONL 字段)待训练方案确定
-- **近重复阈值待校准(如实)**:5-gram Jaccard ≥0.7 是前项目在英文长题
-  (几百字符)上实测校准的;中文题面更短(几十字符),实测尾部改措辞的
-  同题 sim 可低至 0.585(漏报)或 0.706(检出)——阈值对短题不稳定。
-  待真实数据就位后做对照实验重校准,当前不拍脑袋改阈值;
-  tests/test_near_dup.py::test_short_text_limitation_documented 钉住了此局限
+## 当前限制
 
-## 环境
+- 近重复阈值 0.7 为待重新校准的初值；候选截断、字段归一化和报告完整性仍需验证。
+- API 白名单为示例快照，不能替代运行环境内省；真实数学/渲染未验证。
+- 数据 schema/解析、快照、严格门禁聚合和冻结评测集锁仍有审查阻塞，详见 reviews。
+- configs/data_check.example.json 是说明示例，CLI 不读取其中配置；修改它不会改变实际门禁。
+- 扫描暂会登记根目录下全部文件，包括文档和历史清单；应使用专用数据版本目录，生成后人工核对条目与来源/许可。
+- 本机显存规划预算 8GB。环境选项与历史测量保留在下方，未在本轮重新验证。
 
-- venv: `.venv/`(仅 dev 依赖 pytest;运行代码纯标准库)
-- 测试: `.venv/Scripts/python.exe -m pytest tests/`(15 项)
-- Python ≥ 3.10
+## 环境与资产
+
+核心代码使用标准库，Python >= 3.10；当前测试使用已有 .venv 中的 pytest。模型、原始数据、检查点、密钥和缓存不应默认入库；.gitignore 只影响未跟踪文件。已有审查目录中的零字节模型文件是合成反例，不是真实权重。项目许可证尚待用户确认。
 
 ## 重启时的既定结论(来自前项目的全部实测与决策,重启不用重走弯路)
 

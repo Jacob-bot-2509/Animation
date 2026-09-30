@@ -19,14 +19,19 @@ from animtrain.code_gate import check_code_all, load_whitelist  # noqa: E402
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--code", help="单个代码文件")
-    ap.add_argument("--dir", help="批量目录")
+    mode = ap.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--code", help="单个代码文件")
+    mode.add_argument("--dir", help="批量目录")
     ap.add_argument("--suffix", default=".py", help="批量后缀(默认 .py)")
-    ap.add_argument("--whitelist", default="configs/api_whitelist.json",
+    ap.add_argument("--whitelist", default=str(ROOT / "configs" / "api_whitelist.json"),
                     help="API 白名单 JSON(不存在则 API 检查如实跳过)")
     args = ap.parse_args(argv)
 
-    wl = load_whitelist(Path(args.whitelist))
+    try:
+        wl = load_whitelist(Path(args.whitelist))
+    except (OSError, ValueError) as exc:
+        print(f"[FAIL] 无法读取白名单: {exc}")
+        return 1
     files: list[Path] = []
     if args.code:
         files = [Path(args.code)]
@@ -36,17 +41,22 @@ def main(argv: list[str]) -> int:
         ap.print_help()
         return 2
 
+    if not files:
+        print("[FAIL] 未找到待检查代码文件；请核对目录和后缀")
+        return 1
     total_bad = 0
     for f in files:
         try:
             code = f.read_text(encoding="utf-8")
-        except OSError as exc:
+        except (OSError, UnicodeError) as exc:
             print(f"  [FAIL] {f.name}: 读取失败 {exc}")
             total_bad += 1
             continue
         r = check_code_all(code, wl)
+        if r.get("unverified"):
+            print(f"  [UNVERIFIED] {f.name}: {', '.join(r['unverified'])}")
         if r["ok"]:
-            print(f"  [PASS] {f.name}")
+            print(f"  [PASS:STATIC] {f.name}")
         else:
             total_bad += 1
             print(f"  [FAIL] {f.name}: {len(r['problems'])} 项")

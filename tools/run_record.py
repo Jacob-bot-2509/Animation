@@ -103,7 +103,18 @@ def cmd_check(args) -> int:
         print(f"记录不存在: {p}")
         return 1
     r = RunRecord.load(p)
-    mp = Path(args.manifest) if args.manifest else None
+    # manifest 路径语义:显式 --manifest 优先;否则用记录内的 summary.manifest
+    # (相对项目根);记录里有 hash 但既无显式路径也无记录路径 → 无法复验,报错
+    if args.manifest:
+        mp = Path(args.manifest)
+    elif r.summary.get("manifest"):
+        mp = ROOT / r.summary["manifest"]
+    else:
+        mp = None
+        if r.manifest_hash:
+            print("!! 记录 manifest_hash 非空但既无 --manifest 也无记录内路径,"
+                  "无法复验")
+            return 1
     problems = check_record(r, manifest_path=mp)
     if problems:
         print(f"记录 {args.run_id} 校验未过:")

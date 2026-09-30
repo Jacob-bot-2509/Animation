@@ -3,7 +3,7 @@
 用法:
   python tools/check_fields.py --jsonl pool.jsonl \
       --required problem,solution,answer
-退出码: 0 = 全部齐备;1 = 有缺失(缺失清单输出到 stderr 汇总 + 指定报告文件)。
+退出码: 0 = 全部齐备;1 = 有缺失(缺失清单输出到 stdout 汇总 + 指定报告文件)。
 """
 from __future__ import annotations
 
@@ -29,18 +29,35 @@ def main(argv: list[str]) -> int:
     args = ap.parse_args(argv)
 
     required = [f.strip() for f in args.required.split(",") if f.strip()]
-    bad = check_jsonl(Path(args.jsonl), required)
+    if not required:
+        ap.error("--required 至少需要一个字段名")
+    source = Path(args.jsonl)
+    report = Path(args.report) if args.report else None
+    try:
+        if report is not None:
+            if (report.resolve() == source.resolve()
+                    or (report.exists() and source.exists() and report.samefile(source))):
+                print("[FAIL] 报告路径指向输入文件；--force 也不能覆盖输入")
+                return 1
+            ensure_not_exists(report, force=args.force)
+        bad = check_jsonl(source, required)
+    except (OSError, UnicodeError, ValueError) as exc:
+        print(f"[FAIL] 输入或报告路径错误: {exc}")
+        return 1
     print(f"必填字段 {required} | 缺失 {len(bad)} 行")
     for b in bad[:20]:
         print(f"  {b['sample_id']} (line {b['line']}): {b['reason']}")
     if len(bad) > 20:
         print(f"  …共 {len(bad)} 行,其余见报告文件")
-    if args.report:
-        ensure_not_exists(Path(args.report), force=args.force)
-        Path(args.report).write_text(
-            json.dumps({"required": required, "bad": bad}, ensure_ascii=False, indent=2),
-            encoding="utf-8")
-        print(f"报告 → {args.report}")
+    if report is not None:
+        try:
+            with report.open("w" if args.force else "x", encoding="utf-8") as handle:
+                json.dump({"required": required, "bad": bad}, handle,
+                          ensure_ascii=False, indent=2)
+        except OSError as exc:
+            print(f"[FAIL] 无法写入报告 {report}: {exc}")
+            return 1
+        print(f"报告 → {report}")
     return 1 if bad else 0
 
 

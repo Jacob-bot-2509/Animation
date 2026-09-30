@@ -5,7 +5,7 @@
   python tools/data_check.py --scan data                      # 扫描目录临时登记并校验
   python tools/data_check.py --dry-run                        # 骨架自检(无数据时)
 
-退出码: 0 = 通过(或仅 quarantine);1 = 有问题。
+退出码: 0 = 数据检查通过或仅展示骨架说明;1 = 检查失败;2 = quarantine 或参数错误。
 
 独立项目:纯标准库,不依赖 D:\\code 任何内容。
 """
@@ -39,28 +39,44 @@ def dry_run() -> dict:
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--manifest", help="校验指定 manifest 文件")
-    ap.add_argument("--scan", help="扫描目录并临时登记校验(目录路径)")
-    ap.add_argument("--dry-run", action="store_true", help="骨架自检")
+    mode = ap.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--manifest", help="校验指定 manifest 文件")
+    mode.add_argument("--scan", help="扫描目录并临时登记校验(目录路径)")
+    mode.add_argument("--dry-run", action="store_true", help="显示骨架说明，不代表数据通过")
     ap.add_argument("--near-dup-threshold", type=float, default=0.7,
                      help="近重复 Jaccard 阈值(默认 0.7,初始值;真实数据就位后校准)")
     args = ap.parse_args(argv)
+    if not 0.0 <= args.near_dup_threshold <= 1.0:
+        ap.error("--near-dup-threshold 必须为 [0, 1] 内的有限数值")
 
     if args.dry_run:
-        print(dry_run()["skeleton"], "|", dry_run()["schema"])
+        print("[SCHEMA ONLY] 未执行数据门禁 |", dry_run()["schema"])
         for c in dry_run()["checks"]:
             print("  -", c)
         return 0
 
     if args.scan:
         d = Path(args.scan)
+        if not d.is_dir():
+            print(f"[FAIL] 扫描目录不存在: {d}")
+            return 1
         m = scan_dir(d)
+        if not m.entries:
+            print("[FAIL] 扫描目录为空，无法进行数据验收")
+            return 1
         report = validate_manifest(m, d, near_dup_threshold=args.near_dup_threshold)
         return _print_report(report)
 
     if args.manifest:
         mp = Path(args.manifest)
-        m = Manifest.load(mp)
+        try:
+            m = Manifest.load(mp)
+        except (OSError, ValueError, TypeError, KeyError, AttributeError) as exc:
+            print(f"[FAIL] 无法读取 manifest {mp}: {exc}")
+            return 1
+        if not m.entries:
+            print("[FAIL] manifest 没有数据条目，无法进行数据验收")
+            return 1
         report = validate_manifest(m, mp.parent, near_dup_threshold=args.near_dup_threshold)
         return _print_report(report)
 

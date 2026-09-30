@@ -37,26 +37,39 @@ class TestR3SecondRead(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_rejected_path_not_reread(self):
-        """复审 R3:被拒的越界路径不得在 split_sets/近重复阶段被再次读取。
+        """An existing rejected file must never reach any reader."""
+        from unittest import mock
+        import animtrain.validate as validation
 
-        证据:根外放一个坏 JSON,若被读取会报 JSON 错误或读它——必须只有
-        '越出根目录'一条问题,不得出现对 outside 文件的读取类问题。
-        """
-        _mk(self.root, "train/a.jsonl", '{"id": "t1"}\n')
-        outside = self.tmp.name + "_outside"
-        Path(outside).mkdir(exist_ok=True)
-        (Path(outside) / "outside.jsonl").write_text("{坏 json\n", encoding="utf-8")
+        allowed_root = self.root / "scope"
+        train = _mk(allowed_root, "train/a.jsonl", '{"id":"t1"}\n')
+        outside = _mk(self.root, "outside.jsonl", '{"id":"outside"}\n')
+        self.assertEqual((allowed_root / "../outside.jsonl").resolve(),
+                         outside.resolve())
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(self.root / "train/a.jsonl"),
-                  size=1, source="x", license="internal-generated", split="train"),
-            Entry(path="../outside/outside.jsonl", sha256="", size=1,
-                  source="x", license="internal-generated", split="eval")])
-        r = validate_manifest(m, self.root)
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size, source="test",
+                  license="internal-generated", split="train"),
+            Entry(path="../outside.jsonl", sha256=sha256_file(outside),
+                  size=outside.stat().st_size, source="test",
+                  license="internal-generated", split="eval")])
+        original_read = Path.read_text
+        original_open = Path.open
+
+        def guarded_read(path, *args, **kwargs):
+            self.assertNotEqual(path.resolve(), outside.resolve())
+            return original_read(path, *args, **kwargs)
+
+        def guarded_open(path, *args, **kwargs):
+            self.assertNotEqual(path.resolve(), outside.resolve())
+            return original_open(path, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", guarded_read), \
+             mock.patch.object(Path, "open", guarded_open):
+            r = validation.validate_manifest(m, allowed_root)
         self.assertFalse(r["ok"])
-        self.assertTrue(any("越出" in p for p in r["problems"]), r["problems"])
-        # 不得有对越界文件的读取类问题(如 JSON 解析/哈希不一致)
-        self.assertFalse(any("outside" in p and ("JSON" in p or "SHA" in p or "不一致" in p)
-                             for p in r["problems"]), r["problems"])
+        self.assertEqual(len(r["problems"]), 1)
+        self.assertIn("../outside.jsonl", r["problems"][0])
 
     def test_eval_bad_json_detected(self):
         """复审 R3:坏 JSON 检查必须覆盖全部数据 split,不只 train。"""
@@ -109,21 +122,22 @@ class TestR8MissingFile(unittest.TestCase):
 
 class TestR1InputProtection(unittest.TestCase):
     def test_force_cannot_overwrite_plan(self):
-        """复审 R1:--force 也不得覆盖任何输入文件(plan 位于输出路径时)。"""
-        pool = _mk(self.tmp if hasattr(self, "tmp") else Path(tempfile.mkdtemp()),
-                   "pool.jsonl", '{"id": "s1"}\n')
-        # plan 文件放在 --out 目录里且与输出同名
-        plan = _mk(pool.parent, "train.jsonl",
-                   json.dumps({"train": ["s1"], "eval": [], "test": []},
-                              ensure_ascii=False))
-        r = subprocess.run(
-            [str(PY), str(ROOT / "tools" / "split_data.py"),
-             "--pool", str(pool), "--plan", str(plan), "--out", str(pool.parent),
-             "--force"],
-            capture_output=True, text=True, encoding="utf-8")
-        self.assertNotEqual(r.returncode, 0, "--force 覆盖了输入 plan")
-        # plan 内容必须原样(还是 JSON plan,不是被 split 输出覆盖)
-        self.assertIn('"train"', plan.read_text(encoding="utf-8"))
+        """Use separate pool/out directories so only the input guard can stop it."""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            pool = _mk(root, "input/pool.jsonl", '{"id":"s1"}\n')
+            plan = _mk(root, "output/train.jsonl", json.dumps(
+                {"train": ["s1"], "eval": [], "test": []}))
+            before = plan.read_bytes()
+            self.assertNotEqual(pool.parent.resolve(), plan.parent.resolve())
+            r = subprocess.run(
+                [str(PY), str(ROOT / "tools" / "split_data.py"),
+                 "--pool", str(pool), "--plan", str(plan),
+                 "--out", str(plan.parent), "--force"],
+                capture_output=True, text=True, encoding="utf-8")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertEqual(plan.read_bytes(), before)
+            self.assertFalse((plan.parent / "split_manifest.json").exists())
 
 
 class TestR2LicenseInherit(unittest.TestCase):
