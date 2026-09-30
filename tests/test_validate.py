@@ -36,9 +36,11 @@ class TestValidate(unittest.TestCase):
         _write(train, '{"id": "t1"}\n{"id": "t2"}\n')
         _write(ev, '{"id": "e1"}\n')
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size,
                   source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
+                  size=ev.stat().st_size,
                   source="x", license="internal-generated", split="eval")])
         r = validate_manifest(m, self.root)
         self.assertTrue(r["ok"], r["problems"])
@@ -64,7 +66,8 @@ class TestValidate(unittest.TestCase):
         p = self.root / "train" / "a.jsonl"
         _write(p, '{"id": "t1"}\n')
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(p), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(p),
+                  size=p.stat().st_size,
                   source="x", license="", split="train")])
         r = validate_manifest(m, self.root)
         self.assertTrue(any("许可证未标注" in q for q in r["quarantines"]),
@@ -88,9 +91,11 @@ class TestValidate(unittest.TestCase):
         _write(train, '{"id": "t1"}\n{"id": "dup"}\n')
         _write(ev, '{"id": "e1"}\n{"id": "dup"}\n')
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size,
                   source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
+                  size=ev.stat().st_size,
                   source="x", license="internal-generated", split="eval")])
         r = validate_manifest(m, self.root)
         self.assertTrue(any("精确重叠" in p for p in r["problems"]), r["problems"])
@@ -102,9 +107,11 @@ class TestValidate(unittest.TestCase):
         _write(train, '{"id": "x", "v": 1}\n')
         _write(ev, '{"id": "x", "v": 1}\n')
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size,
                   source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
+                  size=ev.stat().st_size,
                   source="x", license="internal-generated", split="eval")])
         r = validate_manifest(m, self.root)
         self.assertTrue(any("精确重叠" in p for p in r["problems"]), r["problems"])
@@ -116,9 +123,11 @@ class TestValidate(unittest.TestCase):
         _write(train, '{"id": "q1", "problem": "训练版题干A"}\n')
         _write(ev, '{"id": "q1", "problem": "评测版题干(内容不同)"}\n')
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size,
                   source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
+                  size=ev.stat().st_size,
                   source="x", license="internal-generated", split="eval")])
         r = validate_manifest(m, self.root)
         self.assertTrue(any("ID 重叠" in p for p in r["problems"]), r["problems"])
@@ -149,9 +158,11 @@ class TestValidate(unittest.TestCase):
                "生产甲需A材料2千克和B材料1千克,生产乙需A材料1千克和B材料3千克,"
                "现有A材料100千克、B材料120千克,如何安排生产使利润达到最大"))
         m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train), size=1,
+            Entry(path="train/a.jsonl", sha256=sha256_file(train),
+                  size=train.stat().st_size,
                   source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev), size=1,
+            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
+                  size=ev.stat().st_size,
                   source="x", license="internal-generated", split="eval")])
         r_loose = validate_manifest(m, self.root, near_dup_threshold=0.5)
         self.assertTrue(any("近重复" in p for p in r_loose["problems"]),

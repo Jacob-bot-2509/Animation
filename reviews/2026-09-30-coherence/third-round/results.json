@@ -1,0 +1,40 @@
+{
+  "pretty_json": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "null_jsonl": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "empty_split_files_exist": {
+    "eval.jsonl": true,
+    "test.jsonl": true
+  },
+  "empty_split_gate": {
+    "ok": false,
+    "n_entries": 4,
+    "problems": [
+      "test.jsonl: 与 eval.jsonl 文件内容完全相同(文件 hash 重叠=0 要求)"
+    ],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "cli_default_manifest_check_exit": 1,
+  "duplicate_top_level_functions": [
+    "_load_sample_ids"
+  ],
+  "run_id_newline_after_fix": false
+}

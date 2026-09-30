@@ -14,10 +14,14 @@ DEFAULT_REQUIRED = ["problem", "solution", "answer"]
 
 
 def _is_missing(value) -> bool:
-    """R7:None 或空字符串才算缺失;0/False/空列表是合法值。"""
+    """R7:None 或空字符串算缺失;A1:空容器(list/dict/set/tuple)也算缺失。
+
+    0/False 是合法值,不算缺失。"""
     if value is None:
         return True
     if isinstance(value, str) and not value.strip():
+        return True
+    if isinstance(value, (list, dict, set, tuple)) and len(value) == 0:
         return True
     return False
 

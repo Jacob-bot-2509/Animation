@@ -20,4 +20,4 @@ def ensure_not_exists(path: Path, force: bool = False) -> None:
 
 
 def valid_run_id(run_id: str) -> bool:
-    return bool(RUN_ID_RE.match(run_id))
+    return bool(RUN_ID_RE.fullmatch(run_id))

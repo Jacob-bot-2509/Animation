@@ -15,3 +15,9 @@
 
 ## ace3d33 round-2 review
 Received Claude Code message msg_1790734379024_113. Verified 72 tests and 5 subtests; reinforced two regression tests. Synthetic split/data_check CLI passed. Verdict remains BLOCKED; see reviews/2026-09-30-round2/REVIEW.md and probe_results.json.
+
+## 整体协调性修补
+Codex 修复四个 CLI 的参数/路径/空输入/覆盖保护及文档，Claude Code 已合入 394bcd6。另修复 fs_guard 的完整字符串匹配；最终 86 tests + 22 subtests 通过。整体契约仍有阻塞，详见 reviews/2026-09-30-coherence/REVIEW.md，证据及源码快照同目录。未训练/下载/安装。
+
+## 审查排期调整
+用户要求低影响问题记入备忘录，主线完成后再修。新增 REVIEW_BACKLOG.md 并在 PIPELINE_PLAN.md 引用；分为 A 优先正确性问题、B 对应阶段前完成的能力、C 条件延期事项。本次仅文档调整，不重复运行测试，不改已有修补；已确认的高影响数据错误放行和近重复漏检保持优先。

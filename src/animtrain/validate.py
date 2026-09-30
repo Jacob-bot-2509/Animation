@@ -79,6 +79,24 @@ def _find_bad_json_lines(path: Path) -> list[tuple[int, str]]:
     return bad
 
 
+def _find_non_object_lines(path: Path) -> list[int]:
+    """数据行里解析成功但不是 JSON 对象的行号(A1:null/数组/标量结构非法)。"""
+    import json as _json
+    out: list[int] = []
+    if path.suffix != ".jsonl":
+        return out  # 整文件 JSON 的非对象结构由调用方语义决定,这里不误判
+    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            obj = _json.loads(line)
+        except _json.JSONDecodeError:
+            continue  # 由 _find_bad_json_lines 报
+        if not isinstance(obj, dict):
+            out.append(i)
+    return out
+
+
 def _load_sample_ids(path: Path) -> set[str]:
     """JSONL 样本的 ID 字段(id/sample_id)集合;解析失败的行记 <unparsable>。"""
     import json as _json
@@ -105,6 +123,9 @@ def validate_manifest(m: Manifest, root: Path,
     problems: list[str] = []
     quarantines: list[str] = []
     problems += schema_issues(m)
+    # A1: 空 manifest 无效(函数级直调也要拦住,不靠 CLI)
+    if not m.entries:
+        problems.append("manifest 没有任何条目,无法验收(空清单不得 ok=true)")
 
     train_hashes: set[str] = set()
     train_ids: set[str] = set()
@@ -145,15 +166,23 @@ def validate_manifest(m: Manifest, root: Path,
                                 "文件内容完全相同(文件 hash 重叠=0 要求)")
             else:
                 seen_file_hashes[actual] = e.path
-        # 3. 许可证与来源(空 → quarantine,数据文件不得默认通过)
-        if not e.license:
+        # 3. 许可证与来源(空/空白 → quarantine,数据文件不得默认通过)
+        if not str(e.license).strip():
             quarantines.append(f"{e.path}: 许可证未标注 → quarantine,禁入训练")
-        if not e.source:
-            quarantines.append(f"{e.path}: 来源未标注 → quarantine,不得默认通过")
-        # 4. 坏 JSON 检查覆盖全部数据 split(复审 R3:不只 train)
+        if not str(e.source).strip():
+            quarantines.append(f"{e.path}: 来源未标注(或仅空白) → quarantine,"
+                               "不得默认通过")
+        # 3b. A1: size 与实际不符(登记值必须与真实文件一致)
+        if is_data and e.size and e.size != p.stat().st_size:
+            problems.append(f"{e.path}: size 与实际不符(登记 {e.size},"
+                            f"实际 {p.stat().st_size})")
+        # 4. 坏 JSON 与非对象结构检查覆盖全部数据 split
         if is_data and p.suffix in _DATA_SUFFIXES:
             for ln, exc in _find_bad_json_lines(p):
                 problems.append(f"{e.path}:{ln} JSON 解析失败: {exc}")
+            for ln in _find_non_object_lines(p):
+                problems.append(f"{e.path}:{ln} 样本不是 JSON 对象(null/数组/"
+                                "标量),结构非法(A1)")
         # 5. 样本集合(供重叠检查);仅通过以上全部检查的 entry 进入
         if e.split == "train":
             train_hashes |= _load_sample_hashes(p, e)

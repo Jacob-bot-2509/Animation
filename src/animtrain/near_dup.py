@@ -62,8 +62,12 @@ class ShingleIndex:
         for g in s:
             for i in self.index.get(g, ()):
                 hits[i] += 1
+        # A2 修复:不得按 hit 计数的 top20 截断 —— tie 时第 21 个完全相同的
+        # 候选会被挤出(实测自身 max_sim=0.042 而非 1.0,实现漏检)。
+        # 正确性优先:对全部候选计算 Jaccard 取最大;池子大时再换
+        # 有正确性依据的剪枝(如 heap 维护 top-K 相似度),不许直接截断候选。
         best, best_i = 0.0, None
-        for i, _ in hits.most_common(20):
+        for i in hits:
             v = jaccard(s, self.sets[i])
             if v > best:
                 best, best_i = v, i
