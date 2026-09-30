@@ -125,8 +125,11 @@ def main(argv: list[str]) -> int:
                     meta = _json.loads(lk.read_text(encoding="utf-8")).get("meta", {})
                 except Exception:
                     meta = {}
-                if meta.get("manifest_sha256"):
-                    manifest_bound.append((str(lk), meta["manifest_sha256"]))
+                bound_sha = meta.get("manifest_sha256") if isinstance(meta, dict) else None
+                if not isinstance(bound_sha, str) or not bound_sha:
+                    f_problems.append(f"锁 {lk} 缺少有效 manifest_sha256 绑定，不能作为冻结证据")
+                else:
+                    manifest_bound.append((str(lk), bound_sha))
             uncovered = eval_test_files - frozen_all
             if uncovered:
                 f_problems.append(f"eval/test 部分未冻结({len(uncovered)} 个文件未被任何锁覆盖)")

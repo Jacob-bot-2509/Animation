@@ -1,48 +1,64 @@
 # Animation Model Training（动画模型训练项目）
 
-当前为数学动画生成系统的实验基础设施：数据登记、分割、字段与静态代码检查、运行记录和 preflight。未实现真实模型训练。整体门禁仍在修补，测试通过不等于训练就绪。
+**v0.2.0 · 基础设施预发布 · 2026-10-01**
 
-本项目仅使用 D:/Animation Model Training，与 MathGuide（D:/code）独立。Claude Code 主导实现；Codex 同步审查并处理必要的小问题。训练、模型下载、依赖安装需用户另行批准。
+当前交付数据登记/拆分/校验、运行快照、冻结评测保护、数学/渲染检查及 preflight。最新验证为 **144 tests + 29 subtests 通过**；真实数据验收与模型训练尚未开展。
+
+[发布说明](NEWRELEASE.md) · [当前进度](PROGRESS.md) · [审查备忘录](REVIEW_BACKLOG.md) · [下一周期](NEXT_CYCLE_PLAN.md)
+
+本地项目目录为 D:/Animation-Model-Training，与 MathGuide（D:/code）独立。Claude Code 主导实现，Codex 同步审查并处理必要小修。训练、模型下载、依赖安装需另行批准。
 
 ## 当前入口
 
 | 入口 | 职责与通过范围 |
 |---|---|
-| tools/make_manifest.py | 扫描数据根并生成清单；输出必须位于该根目录，已有文件拒绝覆盖 |
-| tools/split_data.py | 按显式 ID 计划拆分；用它生成的 split_manifest.json 校验，不重新扫描猜测角色 |
-| tools/data_check.py | 检查清单/扫描目录；空输入失败；--dry-run 仅显示骨架说明 |
-| tools/check_fields.py | 校验指定核心字段；报告不得覆盖输入，即使 --force |
-| tools/check_code.py | 静态检查；默认白名单相对项目根；数学/渲染显示 UNVERIFIED |
-| tools/run_record.py | 运行记录创建/检查；完整可复现契约仍待补齐 |
-| tools/preflight.py | 模型/GPU/数据诊断；完整 L1–L5 聚合仍待实现，不能独立授权训练 |
+| tools/make_manifest.py | 扫描数据根生成清单；输出必须位于该根，已有文件拒绝覆盖 |
+| tools/split_data.py | 按 ID 计划拆分；写入前自动发现约定冻结锁，坏锁拒绝，跨目录传显式锁 |
+| tools/data_check.py | 校验 manifest/目录；空输入失败；--dry-run 只说明检查项 |
+| tools/check_fields.py | 核心字段校验，报告不能覆盖输入 |
+| tools/check_code.py | 静态语法/API/中文 TeX 检查，静态通过不等于真实渲染通过 |
+| tools/freeze_data.py | 生成 *.lock.json；--manifest 写入绑定哈希，检查冻结文件一致性 |
+| tools/run_record.py | 记录配置、seed、环境、git 状态及数据版本 |
+| tools/preflight.py | GPU/模型/数据/快照/冻结覆盖聚合及固定样例执行；完整资产验收门禁尚未闭合 |
 
-核心实现在 src/animtrain/；测试在 tests/；审查证据在 reviews/。验收标准见 [PIPELINE_PLAN.md](PIPELINE_PLAN.md)，最新整体复查见 [协调性报告](reviews/2026-09-30-coherence/REVIEW.md)。
+核心代码在 src/animtrain/，测试在 tests/，审查证据在 reviews/。
+标准见 [PIPELINE_PLAN.md](PIPELINE_PLAN.md)，最新复验见 [第四轮报告](reviews/2026-10-01-br-recheck-round4/REVIEW.md)。
 
 ## 本地验证
 
-在项目根使用已有环境，不安装新依赖：
+使用已有环境，不自动安装依赖：
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider
+$env:PYTHONIOENCODING='utf-8'
+$env:PYTHONUTF8='1'
+$env:PYTHONDONTWRITEBYTECODE='1'
+.\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider
 .\.venv\Scripts\python.exe tools/data_check.py --dry-run
 ```
 
---dry-run 仅打印当前 schema/检查项说明，没有执行数据验收。实际数据准备和许可要求见 [data/README.md](data/README.md)。命令传入的相对输入/输出路径默认相对启动目录；代码检查的内置白名单固定相对项目根，显式 --whitelist 仍相对启动目录。
+完整测试包含真实固定 MathTex 渲染，需要已配置的 Manim、SymPy、FFmpeg 和 TeX 工具链。
+requirements.txt 记录已有 Python 环境包；不包含外部 FFmpeg/TeX 安装。
 
-数据检查退出码：0=当前检查通过；1=失败；2=quarantine 待补齐或参数错误。调用方必须同时记录命令、模式和输出，不能把 --dry-run 的 0 当数据验收通过。代码检查的 0 仅表示已实现的静态检查通过。
+--dry-run 的成功不代表数据验收成功。数据检查退出码：0=当前检查通过，1=失败，2=quarantine 或参数错误。
+相对输入/输出路径通常相对启动目录；代码检查内置白名单相对项目根。
+来源和许可证要求见 [data/README.md](data/README.md)。
 
 ## 当前限制
 
-- 近重复阈值 0.7 为待重新校准的初值；候选截断、字段归一化和报告完整性仍需验证。
-- API 白名单为示例快照，不能替代运行环境内省；真实数学/渲染未验证。
-- 数据 schema/解析、快照、严格门禁聚合和冻结评测集锁仍有审查阻塞，详见 reviews。
-- configs/data_check.example.json 是说明示例，CLI 不读取其中配置；修改它不会改变实际门禁。
-- 扫描暂会登记根目录下全部文件，包括文档和历史清单；应使用专用数据版本目录，生成后人工核对条目与来源/许可。
-- 本机显存规划预算 8GB。环境选项与历史测量保留在下方，未在本轮重新验证。
+- **正式 READY 尚缺当前资产验收证据缺失时的显式阻断**。固定 MathTex/数学样例是环境诊断，不能替代当前数据或产物验收；不能仅凭 CLI 的 READY 开始训练。
+- 近重复候选截断漏检已修；0.7 仍为未校准初值，需要真实分布对照实验。
+- 数学断言契约和可信固定样例渲染已验证；API 白名单仍不能代替实际资产验证。
+- 不可信渲染默认拒绝；trusted=True 仅供已审查固定样例。完整文件系统/网络/内存隔离尚未实施。
+- 冻结写保护限于约定锁发现范围和显式参数；单文件原子写不保证多文件发布事务。
+- 正式实验重放、评测指标和逐样本结果契约仍需阶段验收。
+- configs/data_check.example.json 是说明示例，CLI 不读取该配置。
+- C 类维护问题按 REVIEW_BACKLOG 延期。
 
 ## 环境与资产
 
-核心代码使用标准库，Python >= 3.10；当前测试使用已有 .venv 中的 pytest。模型、原始数据、检查点、密钥和缓存不应默认入库；.gitignore 只影响未跟踪文件。已有审查目录中的零字节模型文件是合成反例，不是真实权重。项目许可证尚待用户确认。
+数据处理核心主要使用标准库，数学/渲染功能依赖 SymPy/Manim 及外部工具链。
+当前完整验证使用 Python 3.13；pyproject 的 Python 下限不等同于整套渲染环境的兼容性承诺。
+模型、原始数据、检查点、密钥和缓存不默认入库。reviews 中数据和零字节模型文件均为合成审查夹具，不是真实权重。代码许可证尚待确定。
 
 ## 重启时的既定结论(来自前项目的全部实测与决策,重启不用重走弯路)
 

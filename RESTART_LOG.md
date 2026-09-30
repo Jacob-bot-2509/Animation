@@ -27,3 +27,11 @@ Codex 修复四个 CLI 的参数/路径/空输入/覆盖保护及文档，Claude
 
 ## A1 剩余复验：6aa4589
 96 tests + 22 subtests 通过。独立27条坏JSONL路径全部拦截、12条合法路径通过，确认此前A1反例修复；.json样本入口尚未覆盖非对象/非法ID，已反馈Claude Code，在使用该格式前限制或补齐。主线可继续JSONL路径，B/C排期不变。证据见 reviews/2026-09-30-a1-followup/。
+
+## 2026-10-01 v0.2.0 进度同步与发布准备
+
+用户授权 Codex 代替 Copilot 汇总当前进度并同步 GitHub Animation 仓库。
+发布快照沿用 cd9fff6 的主线，加上 Codex 缺失 manifest_sha256 强制绑定小修、七种 CLI 回归及最新复验记录。
+验证 144 tests + 29 subtests；BR5 已知反例及冻结覆盖/绑定已通过，正式 READY 的资产验收缺项阻断仍未闭合。
+版本统一为 0.2.0，按基础设施预发布标记；NEWRELEASE.md、PROGRESS.md、README 更新当前范围，历史证据保留。
+项目路径现为 D:/Animation-Model-Training。没有训练、下载模型或安装依赖。
