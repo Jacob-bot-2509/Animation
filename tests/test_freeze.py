@@ -204,3 +204,89 @@ class TestBR5OmittedLock(unittest.TestCase):
         self.assertNotEqual(r.returncode, 0, "漏传冻结锁仍改写了冻结数据")
         self.assertEqual(ev.read_text(encoding="utf-8"), '{"id": "frozen-e"}\n',
                          "冻结文件内容被改动")
+
+
+class TestBR5FailClosed(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_corrupt_lock_in_outdir_blocks(self):
+        """omitted_corrupt:输出目录的坏 JSON 冻结锁必须阻断写入。"""
+        import subprocess
+        import json as _json
+        pool = self.root / "pool.jsonl"
+        pool.write_text('{"id": "s1"}\n', encoding="utf-8")
+        plan = self.root / "plan.json"
+        plan.write_text(_json.dumps({"train": ["s1"], "eval": [], "test": []},
+                                    ensure_ascii=False), encoding="utf-8")
+        out = self.root / "o"
+        out.mkdir()
+        (out / "frozen.lock.json").write_text("{坏 json", encoding="utf-8")
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "split_data.py"),
+             "--pool", str(pool), "--plan", str(plan), "--out", str(out),
+             "--force"],
+            capture_output=True, text=True, encoding="utf-8")
+        self.assertNotEqual(r.returncode, 0, "坏锁被忽略仍写入")
+        self.assertFalse((out / "train.jsonl").exists(), "输出文件已写入")
+
+    def test_freeze_set_rejects_nonstandard_name(self):
+        """omitted_nonstandard:freeze.json 命名被冻结 API 拒绝。"""
+        from animtrain.freeze import freeze_set
+        p = self.root / "e.jsonl"
+        p.write_text('{"id": "e1"}\n', encoding="utf-8")
+        with self.assertRaises(ValueError):
+            freeze_set([p], self.root / "freeze.json")
+
+
+class TestBR4bFreezeEvidence(unittest.TestCase):
+    """BR4-b:冻结证据必须绑定当前 manifest 的 eval/test 集合。"""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def _lock_with(self, files, name="frozen.lock.json", meta=None):
+        from animtrain.freeze import freeze_set
+        return freeze_set(files, self.root / name, meta=meta)
+
+    def test_matching_lock_ok(self):
+        """matching lock:锁覆盖 manifest 的 eval 文件且绑定 hash 一致。"""
+        from animtrain.freeze import check_frozen
+        ev = self.root / "eval.jsonl"
+        ev.write_text('{"id": "e1"}\n', encoding="utf-8")
+        self._lock_with([ev], meta={"manifest_sha256": "abc"})
+        self.assertEqual(check_frozen(self.root / "frozen.lock.json"), [])
+
+    def test_unrelated_lock_detected(self):
+        """unrelated lock:锁覆盖的文件不在 eval/test 内 → 不得当证据。"""
+        from animtrain.freeze import frozen_paths
+        other = self.root / "unrelated.txt"
+        other.write_text("x", encoding="utf-8")
+        self._lock_with([other])
+        paths = frozen_paths(self.root / "frozen.lock.json")
+        self.assertNotIn(str(self.root / "eval.jsonl"), paths)
+
+    def test_partial_lock_detected(self):
+        """partial lock:只有 eval 被冻结、test 未覆盖 → 冻结不完整。"""
+        from animtrain.freeze import frozen_paths
+        ev = self.root / "eval.jsonl"
+        ev.write_text('{"id": "e1"}\n', encoding="utf-8")
+        self._lock_with([ev])
+        frozen = frozen_paths(self.root / "frozen.lock.json")
+        self.assertNotIn(str((self.root / "test.jsonl").resolve()), frozen)
+
+    def test_corrupt_lock_detected(self):
+        """corrupt lock:坏 JSON 锁必须可定位失败。"""
+        from animtrain.freeze import check_frozen
+        bad = self.root / "bad.lock.json"
+        bad.write_text("{坏", encoding="utf-8")
+        problems = check_frozen(bad)
+        self.assertTrue(any("不可读" in p for p in problems), problems)

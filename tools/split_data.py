@@ -97,9 +97,15 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
         check_frozen, discover_locks, frozen_paths)
     # BR5 复验(omitted_lock):自动发现冻结锁 —— 漏传 --frozen-lock
     # 也必须在写入前发现冻结标记;显式传入的锁用于跨目录场景
+    valid, suspicious = discover_locks([out, pool, plan])
+    # fail closed:发现无法识别的 *.lock.json(坏 JSON 等)必须拒绝写入,
+    # 不得忽略(omitted_corrupt 反例)
+    for sp in suspicious:
+        if sp not in [lk.resolve() for lk in (frozen_locks or [])]:
+            raise SystemExit(f"拒绝:发现无法识别的锁标记 {sp} —— 可能是损坏的"
+                             "冻结锁,必须 fail closed(BR5)")
     all_locks = list(frozen_locks or [])
-    all_locks += [lk for lk in discover_locks([out, pool, plan])
-                  if lk not in all_locks]
+    all_locks += [lk for lk in valid if lk not in all_locks]
     frozen: set[str] = set()
     for lk in all_locks:
         # fail closed:锁不存在/损坏时不得静默放行

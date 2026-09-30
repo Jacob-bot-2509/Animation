@@ -24,6 +24,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--files", nargs="+", help="要冻结的数据文件(空格分隔)")
     ap.add_argument("--lock", help="锁文件路径")
     ap.add_argument("--name", default="", help="冻结集名称")
+    ap.add_argument("--manifest", default="",
+                    help="绑定当前 manifest(BR4-b:manifest sha256 写入锁 meta)")
     ap.add_argument("--check", help="校验指定锁文件")
     args = ap.parse_args(argv)
 
@@ -39,9 +41,14 @@ def main(argv: list[str]) -> int:
 
     if not args.files or not args.lock:
         ap.error("--files 与 --lock 必填(或使用 --check)")
+    import hashlib as _h  # noqa: PLC0415
+    meta = {"name": args.name}
+    if args.manifest:
+        mp = Path(args.manifest)
+        meta["manifest_sha256"] = _h.sha256(mp.read_bytes()).hexdigest()
     try:
         lock = freeze_set([Path(f) for f in args.files], Path(args.lock),
-                          meta={"name": args.name})
+                          meta=meta)
     except ValueError as exc:
         print(f"[FAIL] {exc}")
         return 1

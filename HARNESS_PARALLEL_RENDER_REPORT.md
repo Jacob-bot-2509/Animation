@@ -22,10 +22,13 @@
 | **渲染失败** | **1**（**预期失败**：中文进 TeX） |
 | 8 路并行总墙钟 | **4.27 s** |
 
-**两句话结论**：
+**结论摘要**：
 
 1. **MiKTeX 修复已确认生效** —— 4 个此前必然失败的 `MathTex` / `Tex` 场景现在**全部渲染成功**（§3、§5.1）。
 2. **但 `src/animtrain` 里依然没有任何 Manim 场景文件**（§1），所以"对包含场景类的文件渲染"没有原生对象；本报告用一组验证场景覆盖了第 3 步真正要确认的问题。
+3. ⚠️ **发现一个 CWD 陷阱**：从**项目根目录**直接运行 `manim` 渲染含 `MathTex` 的场景会**失败**（`dvisvgm` 崩溃，manim 抛出误导性的 "does not support converting .dvi files to SVG"）；加 `cmd /c` 前缀或改用非项目根的工作目录即可。本报告 §3 的矩阵**不受影响**（其 CWD 是 D: **子目录**）。详见 §9.2、§11.1。
+4. **项目自带测试套件在当前代码状态 `edb7340` 上：137 passed / 0 failed**（§11.2）。
+5. ⚠️ 执行期间工作区有**另一个并发写入者**在提交与改动文件（§10、§11.3）。
 
 ---
 
@@ -241,7 +244,35 @@ ffmpeg -ss <t> -i <mp4> -frames:v 1 -y out.png
 
 ### 9.2 子智能体 A —— 独立复核 MiKTeX 修复与 `MathTex` 渲染
 
-（结果回传后补入；本报告 §2–§5 的全部数据均为主执行者**本人实测**，不依赖子智能体。）
+**结论：PARTIAL（部分修复）** —— 这是本次最有价值的独立发现。
+
+- `latex.exe` 崩溃**确已修复**：最小文档 `latex` 退出码由 `-1073740791` 变为 **0**。
+- `MathTex` / `Tex` **确实渲染出真实 LaTeX 字形**（A 抽帧目视确认：`f'(x) = 2x` 为 Computer Modern 斜体、`E = mc²` 上标正确）。
+- **但发现一个新的、位于下游的失败**：当工作目录是**项目根目录**时，`dvisvgm` 在写出 `.svg` 之前死亡，manim 随即抛出**误导性**的 `ValueError: Your installation does not support converting .dvi files to SVG`。
+
+A 给出的机制证据（`dvisvgm` 自己的日志）：
+
+```
+ERROR dvisvgm.core - Function: GetFileAttributesW   Result: 87   Data: path="."
+Source: Libraries\MiKTeX\Core\Directory\win\winDirectory.cpp:94
+INFO  dvisvgm - this process (NNNN) finishes with exit code -4
+```
+
+即：`latex.exe` 正常退出并写出 `.dvi`，随后 manim 调用 `dvisvgm`（`tex_file_writing.py:254` **忽略其退出码**），`dvisvgm` 以 **-4** 退出且未产出 `.svg`。
+
+**我对 A 结论的修正（重要）**：A 归纳为"**任何 D: 目录**且直接 spawn 时 100% 失败"。我据此自行做了 A/B 实测，**该归纳过宽**：
+
+| # | CWD | 启动方式 | 退出码 | 产出 mp4 |
+|---|---|---|---|---|
+| 1 | `D:\Animation Model Training`（项目根） | 直接 spawn | **1** | ❌ |
+| 2 | `D:\Animation Model Training` | `cmd /c` | **0** | ✅ |
+| 3 | `D:\Animation Model Training\.abtest_d`（**D: 子目录**） | 直接 spawn | **0** | ✅ |
+| 4 | C: 临时目录 | 直接 spawn | **0** | ✅ |
+| 5 | `D:\Animation Model Training`（重复试验） | 直接 spawn | **1** | ❌ |
+
+**触发条件是"项目根目录"这一个具体目录，而不是整个 D: 卷** —— 同为 D:、同样含空格的**子目录**（第 3 行）直接 spawn **完全正常**。
+
+A 自己也声明"无法在沙箱外验证"，并推测这更像**进程创建/沙箱产物**而非 MiKTeX 缺陷。这一点我同意。
 
 ---
 
@@ -275,3 +306,47 @@ ffmpeg -ss <t> -i <mp4> -frames:v 1 -y out.png
 - 并发写入者的 commit 信息则把根因归为"**`render_check` 的 cwd 含空格**导致转换崩溃"。
 
 两者**并不互斥**（可能先后存在两个不同故障），但**根因归属尚未统一**。本报告只声明我能直接证明的部分：**修复后 `MathTex` / `Tex` 确实能正常渲染**（§3–§5：7/8 成功，含 4 个 LaTeX 场景）。根因的最终归属建议由该项目主责实现者统一结论。
+
+---
+
+## 11. 补充验证：CWD 敏感性、项目测试套件与代码状态
+
+### 11.1 本报告 §3 矩阵为何不受该缺陷影响
+
+§3 的 8 路矩阵把每个场景的工作目录设为 `D:\Animation Model Training\.render_matrix\<场景名>` —— 一个 **D: 子目录**，而非项目根。§9.2 表格第 3 行证明该条件**正常**，因此 **§3 的 7/8 成功结果成立且可复现**。
+
+但务必注意：**从项目根目录直接运行 `manim` 渲染含 `MathTex` 的场景会失败**（§9.2 第 1/5 行，可重复复现）。可用的规避方式：
+
+- 加 `cmd /c` 前缀（§9.2 第 2 行，已验证 exit 0）；
+- 或让工作目录不在项目根（§9.2 第 3/4 行）。
+
+**对 §10.3 归因分歧的补充**：并发写入者的 commit 把根因归为"**cwd 含空格**"。但我的 A/B 实测否定了"空格"这一因素 —— `D:\Animation Model Training\.abtest_d` **同样含空格且同在 D: 卷**，直接 spawn **却成功**。真正的触发条件收窄为**项目根目录本身**。这一项建议由主责实现者据此修正结论。
+
+### 11.2 项目自带测试套件（在真实代码状态 `edb7340` 上）
+
+沙箱会用 `0o700` 建临时目录并**拒绝**之，这会污染测试结果（表现为大面积 `PermissionError`）。我用一个**位于项目之外**的 pytest 插件（`PYTHONPATH=<temp> -p tempfix`，把 `tempfile.mkdtemp` 改为默认模式建目录；**不改动项目任何文件**）消除该沙箱假象后运行：
+
+```powershell
+& '.\.venv\Scripts\python.exe' -m pytest tests -q -p no:cacheprovider -p tempfix
+```
+
+```
+137 passed, 12 warnings, 22 subtests passed in 7.28s
+```
+
+**137 通过 / 0 失败。** 其中包含新增的回归测试：
+
+```
+tests/test_render_gate.py::TestRenderGateRealMathTex::test_math_tex_real_render
+    """真实渲染:MathTex ASCII 场景通过(regression:dvisvgm cwd 空格崩溃)。"""
+```
+
+它**通过**，说明项目自身的渲染路径（`render_check` 以临时目录作为 CWD）在当前代码状态下**是好的**。
+
+> 不加该插件直接跑会大面积失败，根因是沙箱的 `0o700` 假象，**不是**项目缺陷（详见 `RENDER_GATE_VERIFICATION.md` §5）。
+
+### 11.3 代码状态说明（并发写入者仍在活动）
+
+- 执行期间 `git HEAD` 连续推进：`a81223ea` → `d90d13e` → **`edb7340`**。
+- **本报告文件已被并发写入者纳入提交 `edb7340`**（该 commit 同时提交了 `REVIEW_BACKLOG.md`、`freeze.py`、`test_freeze.py`、`preflight.py`、`split_data.py` 及 `reviews/2026-10-01-br-recheck-round2/`）。因此 `git status` 中本报告显示的 `M` 是**我在被提交之后继续补充 §9.2 / §11 造成的**，并非内容被他人改写。
+- 我**没有**主动修改任何既有源代码或文档。

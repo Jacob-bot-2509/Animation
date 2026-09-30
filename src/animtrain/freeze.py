@@ -26,6 +26,8 @@ def sha256_file(p: Path) -> str:
 
 def freeze_set(files: list[Path], lock_path: Path, meta: dict | None = None) -> dict:
     """把一组文件冻结进锁(锁与数据同目录约定;已存在锁拒绝覆盖)。"""
+    if not lock_path.name.endswith('.lock.json'):
+        raise ValueError(f"冻结锁必须命名为 *.lock.json(统一发现约定),实际: {lock_path.name}")
     if lock_path.exists():
         raise ValueError(f"锁已存在,拒绝覆盖: {lock_path}(冻结后不可重新生成)")
     if not files:
@@ -66,14 +68,18 @@ def _is_freeze_lock(p: Path) -> bool:
     return isinstance(d, dict) and "freeze_lock_version" in d
 
 
-def discover_locks(roots: list[Path], max_depth: int = 4) -> list[Path]:
+def discover_locks(roots: list[Path], max_depth: int = 4) -> tuple[list[Path], list[Path]]:
     """自动发现冻结锁:在 roots 各目录及向上 max_depth 层父目录里
-    找 *.lock.json 且带 freeze_lock_version 的文件。
+    找 *.lock.json。返回 (valid_locks, suspicious_locks):
+      valid       带 freeze_lock_version 的合法冻结锁
+      suspicious  范围内的 *.lock.json 但无法识别(坏 JSON/无冻结字段)
+                  —— fail closed:发现可疑锁标记必须拒绝写入,不得忽略
 
-    BR5 复验(omitted_lock):漏传 --frozen-lock 也能发现冻结标记 ——
-    写入保护不得靠调用方记得传参。
+    BR5 复验(omitted_corrupt / omitted_nonstandard):
+    写入保护不得靠调用方记得传参,也不得靠锁恰好可解析。
     """
-    found: set[Path] = set()
+    found_valid: set[Path] = set()
+    found_suspicious: set[Path] = set()
     for root in roots:
         cur = root if root.is_dir() else root.parent
         for _ in range(max_depth):
@@ -81,11 +87,13 @@ def discover_locks(roots: list[Path], max_depth: int = 4) -> list[Path]:
                 break
             for p in cur.glob("*.lock.json"):
                 if _is_freeze_lock(p):
-                    found.add(p.resolve())
+                    found_valid.add(p.resolve())
+                else:
+                    found_suspicious.add(p.resolve())
             if cur.parent == cur:
                 break
             cur = cur.parent
-    return sorted(found)
+    return sorted(found_valid), sorted(found_suspicious)
 
 
 def check_frozen(lock_path: Path) -> list[str]:

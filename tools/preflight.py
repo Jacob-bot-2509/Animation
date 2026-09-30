@@ -91,19 +91,53 @@ def main(argv: list[str]) -> int:
     mr = math_check("Eq(2 + 2, 4)")
     extra.append(("math_gate",
                   (mr["ok"], f"真实数学断言: {mr['status']} — {mr['detail'][:120]}")))
-    # freeze_gate: 发现并校验项目内的冻结锁;无冻结评测集时如实阻断
-    from animtrain.freeze import check_frozen, discover_locks  # noqa: E402
-    locks = discover_locks([ROOT / "data", ROOT], max_depth=2)
-    if locks:
-        problems = []
-        for lk in locks:
-            problems += check_frozen(lk)
-        extra.append(("freeze_gate",
-                      (not problems,
-                       f"冻结锁 {len(locks)} 个{'全过' if not problems else '未过: ' + problems[0][:120]}")))
+    # freeze_gate(BR4-b 复验):冻结证据必须绑定当前 manifest 的 eval/test
+    # 集合 —— 无锁/部分覆盖/无关锁/坏锁/锁与 manifest hash 不一致均 NOT READY
+    from animtrain.freeze import check_frozen, discover_locks, frozen_paths  # noqa: E402
+    import hashlib as _hashlib  # noqa: E402
+    import json as _json  # noqa: E402
+    eval_test_files: set[str] = set()
+    manifest_sha = ""
+    if mp is not None and mp.exists():
+        manifest_sha = _hashlib.sha256(mp.read_bytes()).hexdigest()
+        m2 = Manifest.load(mp)
+        for e in m2.entries:
+            if e.split in ("eval", "test"):
+                eval_test_files.add(str((mp.parent / e.path).resolve()))
+    f_problems: list[str] = []
+    f_ok = False
+    if not eval_test_files:
+        f_problems.append("当前 manifest 无 eval/test 条目 —— 无法验收冻结证据")
     else:
-        extra.append(("freeze_gate", (False,
-                      "无冻结评测集 —— 训练就绪前必须冻结 eval/test(BR4-b)")))
+        valid, suspicious = discover_locks([ROOT / "data", ROOT], max_depth=2)
+        if suspicious:
+            f_problems.append(f"发现无法识别的锁标记 {len(suspicious)} 个: {suspicious[0]}")
+        if not valid:
+            f_problems.append("无冻结锁 —— eval/test 必须先冻结(BR4-b)")
+        else:
+            for lk in valid:
+                f_problems += check_frozen(lk)
+            frozen_all: set[str] = set()
+            manifest_bound: list[tuple[str, str]] = []
+            for lk in valid:
+                frozen_all |= frozen_paths(lk)
+                try:
+                    meta = _json.loads(lk.read_text(encoding="utf-8")).get("meta", {})
+                except Exception:
+                    meta = {}
+                if meta.get("manifest_sha256"):
+                    manifest_bound.append((str(lk), meta["manifest_sha256"]))
+            uncovered = eval_test_files - frozen_all
+            if uncovered:
+                f_problems.append(f"eval/test 部分未冻结({len(uncovered)} 个文件未被任何锁覆盖)")
+            for lk_name, bound_sha in manifest_bound:
+                if bound_sha != manifest_sha:
+                    f_problems.append(f"锁 {lk_name} 绑定 manifest {bound_sha[:12]}…"
+                                      f" 与当前 {manifest_sha[:12]}… 不一致")
+            if not f_problems:
+                f_ok = True
+    extra.append(("freeze_gate", (f_ok, ("冻结证据绑定当前 manifest, eval/test 全量覆盖"
+                  if f_ok else "; ".join(f_problems)[:200]))))
     if args.ready and not args.run_id:
         print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
         return 1
