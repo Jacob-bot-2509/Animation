@@ -109,3 +109,44 @@ class TestA2NearDup(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestA1IdAndSource(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_source_none_quarantined(self):
+        """A1 补:source=None(JSON null)不得经 str() 蒙混为非空。"""
+        p = _mk(self.root, "train/a.jsonl", '{"id": "t1"}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(p),
+                  size=p.stat().st_size, source=None,
+                  license="internal-generated", split="train")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(any("来源" in q for q in r["quarantines"]), r)
+
+    def test_blank_id_reported(self):
+        """A1 补:id=' '(仅空白)必须形成问题报告。"""
+        p = _mk(self.root, "train/a.jsonl", '{"id": "  "}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(p),
+                  size=p.stat().st_size, source="x",
+                  license="internal-generated", split="train")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(any("ID 非法" in x for x in r["problems"]), r["problems"])
+
+    def test_nonscalar_id_no_typeerror(self):
+        """A1 补:id=['x'] 或 dict 不得抛 TypeError,须可定位报告。"""
+        p = _mk(self.root, "train/a.jsonl",
+                '{"id": ["x"]}\n{"sample_id": {"v": 1}}\n{"id": true}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.jsonl", sha256=sha256_file(p),
+                  size=p.stat().st_size, source="x",
+                  license="internal-generated", split="train")])
+        r = validate_manifest(m, self.root)  # 不抛异常
+        self.assertTrue(any("ID 非法" in x for x in r["problems"]), r["problems"])
+        self.assertTrue(any("bool" in x for x in r["problems"]), r["problems"])

@@ -98,7 +98,12 @@ def _find_non_object_lines(path: Path) -> list[int]:
 
 
 def _load_sample_ids(path: Path) -> set[str]:
-    """JSONL 样本的 ID 字段(id/sample_id)集合;解析失败的行记 <unparsable>。"""
+    """JSONL 样本的 ID 字段(id/sample_id)集合;异常行用可定位标记。
+
+    ID 合法性(A1):只允许 str/int(排除 bool);None/空串 → <no-id>;
+    非标量(list/dict)或 bool → <invalid-id:<type>>;解析失败 → <unparsable>。
+    不伪造占位字符串,标记必须能定位类型问题。
+    """
     import json as _json
     ids: set[str] = set()
     for l in _load_lines(path):
@@ -110,9 +115,39 @@ def _load_sample_ids(path: Path) -> set[str]:
         if not isinstance(obj, dict):  # null / 数组 / 标量 → 非对象,结构化标记
             ids.add("<non-object>")
             continue
-        sid = obj.get("id") or obj.get("sample_id")
-        ids.add(sid if sid else "<no-id>")
+        sid = obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+        if sid is None or (isinstance(sid, str) and not sid.strip()):
+            ids.add("<no-id>")
+        elif isinstance(sid, bool):
+            ids.add("<invalid-id:bool>")
+        elif isinstance(sid, (str, int)):
+            ids.add(str(sid))
+        else:  # list/dict/float/… 不可哈希或类型非法,不抛 TypeError
+            ids.add(f"<invalid-id:{type(sid).__name__}>")
     return ids
+
+
+def _find_invalid_id_lines(path: Path) -> list[tuple[int, str]]:
+    """数据行 ID 字段非法的行号与原因(A1:空白/非标量/bool ID 可定位报告)。"""
+    import json as _json
+    out: list[tuple[int, str]] = []
+    if path.suffix != ".jsonl":
+        return out
+    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            obj = _json.loads(line)
+        except _json.JSONDecodeError:
+            continue
+        if not isinstance(obj, dict):
+            continue
+        sid = obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+        if sid is None or (isinstance(sid, str) and not sid.strip()):
+            out.append((i, "缺 ID 或仅空白"))
+        elif isinstance(sid, bool) or not isinstance(sid, (str, int)):
+            out.append((i, f"ID 类型非法({type(sid).__name__})"))
+    return out
 
 
 def validate_manifest(m: Manifest, root: Path,
@@ -166,23 +201,26 @@ def validate_manifest(m: Manifest, root: Path,
                                 "文件内容完全相同(文件 hash 重叠=0 要求)")
             else:
                 seen_file_hashes[actual] = e.path
-        # 3. 许可证与来源(空/空白 → quarantine,数据文件不得默认通过)
-        if not str(e.license).strip():
+        # 3. 许可证与来源(空/None/仅空白 → quarantine,数据文件不得默认通过)
+        # 注意 None(JSON null)不能 str() 成 "None" 蒙混 —— not x 短路先判
+        if not e.license or not str(e.license).strip():
             quarantines.append(f"{e.path}: 许可证未标注 → quarantine,禁入训练")
-        if not str(e.source).strip():
+        if not e.source or not str(e.source).strip():
             quarantines.append(f"{e.path}: 来源未标注(或仅空白) → quarantine,"
                                "不得默认通过")
         # 3b. A1: size 与实际不符(登记值必须与真实文件一致)
         if is_data and e.size and e.size != p.stat().st_size:
             problems.append(f"{e.path}: size 与实际不符(登记 {e.size},"
                             f"实际 {p.stat().st_size})")
-        # 4. 坏 JSON 与非对象结构检查覆盖全部数据 split
+        # 4. 坏 JSON/非对象结构/非法 ID 检查覆盖全部数据 split
         if is_data and p.suffix in _DATA_SUFFIXES:
             for ln, exc in _find_bad_json_lines(p):
                 problems.append(f"{e.path}:{ln} JSON 解析失败: {exc}")
             for ln in _find_non_object_lines(p):
                 problems.append(f"{e.path}:{ln} 样本不是 JSON 对象(null/数组/"
                                 "标量),结构非法(A1)")
+            for ln, why in _find_invalid_id_lines(p):
+                problems.append(f"{e.path}:{ln} ID 非法: {why}(A1)")
         # 5. 样本集合(供重叠检查);仅通过以上全部检查的 entry 进入
         if e.split == "train":
             train_hashes |= _load_sample_hashes(p, e)
