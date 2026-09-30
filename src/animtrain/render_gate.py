@@ -76,7 +76,12 @@ def render_check(code: str, python: str | None = None,
                 [py, "-m", "manim", "-ql", "--media_dir", str(Path(d) / "out"),
                  str(scene), "ConceptScene"],
                 capture_output=True, text=True, encoding="utf-8",
-                errors="replace", timeout=RENDER_TIMEOUT_SEC, env=env)
+                errors="replace", timeout=RENDER_TIMEOUT_SEC, env=env,
+                # 实测定位(2026-10-01):dvisvgm 3.6 在 cwd 路径含空格时
+                # 崩溃(Windows API error 87,退出码 0xFFFFFFFC),manim 内部
+                # 调 dvisvgm 继承本进程 cwd。项目根路径带空格,故 cwd 必须
+                # 设为无空格的临时目录。scene/media 均在此目录内,不受影响。
+                cwd=d)
         except subprocess.TimeoutExpired:
             return {"ok": False, "status": "timeout",
                     "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": []}

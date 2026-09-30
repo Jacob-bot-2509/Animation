@@ -122,3 +122,37 @@ class TestBR2MathContract(unittest.TestCase):
                 r = math_check(bad)
                 self.assertFalse(r["ok"], bad)
                 self.assertEqual(r["status"], "invalid")
+
+
+class TestRenderGateRealMathTex(unittest.TestCase):
+    """msg_141:聚焦测试 —— 真实 MathTex 正常路径与非法失败路径。"""
+
+    def test_math_tex_real_render(self):
+        """真实渲染:MathTex ASCII 场景通过(regression:dvisvgm cwd 空格崩溃)。"""
+        from animtrain.render_gate import render_check
+        code = ('from manim import *\n\n\n'
+                'class ConceptScene(Scene):\n'
+                '    def construct(self):\n'
+                '        eq = MathTex(r"x^2")\n'
+                '        self.add(eq)\n'
+                '        self.wait(0.2)\n')
+        r = render_check(code, trusted=True)
+        self.assertTrue(r["ok"], r["detail"])
+        self.assertEqual(r["status"], "rendered")
+
+    def test_bad_api_fails(self):
+        """非法 API(不存在的类)必须 failed,不得渲染成功。"""
+        from animtrain.render_gate import render_check
+        code = ('from manim import *\n\n\n'
+                'class ConceptScene(Scene):\n'
+                '    def construct(self):\n'
+                '        t = Tree()\n')
+        r = render_check(code, trusted=True)
+        self.assertFalse(r["ok"])
+        self.assertEqual(r["status"], "failed")
+
+    def test_syntax_error_fails(self):
+        from animtrain.render_gate import render_check
+        r = render_check("def f(:\n    pass", trusted=True)
+        self.assertFalse(r["ok"])
+        self.assertEqual(r["status"], "failed")
