@@ -57,6 +57,13 @@ class TestFreeze(unittest.TestCase):
 
 
 class TestAtomicWrite(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
     def test_atomic_write_and_no_leftover(self):
         from animtrain.atomic_write import atomic_write_text
         p = self.root / "out" / "x.json"
