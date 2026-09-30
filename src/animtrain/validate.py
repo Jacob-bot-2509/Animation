@@ -40,21 +40,6 @@ def _load_sample_hashes(path: Path, entry) -> set[str]:
     return {sample_content_hash(l) for l in _load_lines(path)}
 
 
-def _load_sample_ids(path: Path) -> set[str]:
-    """JSONL 样本的 ID 字段(id/sample_id)集合;解析失败的行记 <unparsable>。"""
-    import json as _json
-    ids: set[str] = set()
-    for l in _load_lines(path):
-        try:
-            obj = _json.loads(l)
-        except _json.JSONDecodeError:
-            ids.add("<unparsable>")
-            continue
-        sid = obj.get("id") or obj.get("sample_id")
-        ids.add(sid if sid else "<no-id>")
-    return ids
-
-
 def _find_bad_json_lines(path: Path) -> list[tuple[int, str]]:
     """坏 JSON 检查,按扩展名区分格式(复审第三轮:合法 pretty JSON 不得误报)。
 
@@ -184,8 +169,17 @@ def validate_manifest(m: Manifest, root: Path,
         if not p.is_file():
             problems.append(f"{e.path}: 不是常规文件")
             continue
-        # 2. SHA256(数据文件必填;空 = 未校验,不得默认通过)
         is_data = e.split in ("train", "eval", "test")
+        # 1.5 A1 格式边界:数据 split 只允许 JSONL —— .json 整文件注册为
+        #     train/eval/test 一律拒绝(可定位问题);manifest/config 的 JSON
+        #     不是数据 split,不受影响。理由:.json 整文件无行级样本语义,
+        #     结构/ID 检查无法逐样本定位。
+        if is_data and p.suffix == ".json":
+            problems.append(f"{e.path}: 数据格式仅支持 JSONL(.jsonl);"
+                            f".json 注册为 {e.split} 不被接受 —— 请转 JSONL 或"
+                            "改 split 为 raw(A1 格式边界)")
+            continue
+        # 2. SHA256(数据文件必填;空 = 未校验,不得默认通过)
         if not e.sha256:
             if is_data:
                 quarantines.append(f"{e.path}: 数据文件缺少 SHA256 → quarantine,"

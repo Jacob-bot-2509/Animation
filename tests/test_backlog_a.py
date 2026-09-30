@@ -150,3 +150,33 @@ class TestA1IdAndSource(unittest.TestCase):
         r = validate_manifest(m, self.root)  # 不抛异常
         self.assertTrue(any("ID 非法" in x for x in r["problems"]), r["problems"])
         self.assertTrue(any("bool" in x for x in r["problems"]), r["problems"])
+
+
+class TestA1JsonBoundary(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_json_as_data_rejected(self):
+        """A1 格式边界:.json 注册为 train/eval/test 必须拒绝(可定位)。"""
+        p = _mk(self.root, "train/a.json", '{"id": "t1"}\n')
+        m = Manifest(name="t", entries=[
+            Entry(path="train/a.json", sha256=sha256_file(p),
+                  size=p.stat().st_size, source="x",
+                  license="internal-generated", split="train")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(any("仅支持 JSONL" in x for x in r["problems"]),
+                        r["problems"])
+
+    def test_json_as_raw_allowed(self):
+        """manifest/config 类 JSON 注册为 raw 不受影响。"""
+        p = _mk(self.root, "raw/meta.json", '{"a": 1}')
+        m = Manifest(name="t", entries=[
+            Entry(path="raw/meta.json", sha256=sha256_file(p),
+                  size=p.stat().st_size, source="x",
+                  license="internal-generated", split="raw")])
+        r = validate_manifest(m, self.root)
+        self.assertTrue(r["ok"], r["problems"])

@@ -24,3 +24,6 @@ Codex 修复四个 CLI 的参数/路径/空输入/覆盖保护及文档，Claude
 
 ## A 组同步监管：407426c
 93 tests + 22 subtests 通过；A2 原反例与暴力对照验证通过，关闭候选截断漏检。A1 部分通过，source=null、缺失/空白/容器 ID 仍需补齐，已用 msg_1790744441558_123 发 Claude Code。仅更新记录，不改其在途核心代码；B/C 延期不变。
+
+## A1 剩余复验：6aa4589
+96 tests + 22 subtests 通过。独立27条坏JSONL路径全部拦截、12条合法路径通过，确认此前A1反例修复；.json样本入口尚未覆盖非对象/非法ID，已反馈Claude Code，在使用该格式前限制或补齐。主线可继续JSONL路径，B/C排期不变。证据见 reviews/2026-09-30-a1-followup/。
