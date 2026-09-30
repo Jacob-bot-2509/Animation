@@ -34,8 +34,14 @@ def main(argv: list[str]) -> int:
                     help="--ready 时必填:运行快照 run_id(校验 runs/<id>/run_record.json)")
     args = ap.parse_args(argv)
 
+    from animtrain.fs_guard import valid_run_id  # noqa: E402
     extra: list[tuple[str, tuple[bool, str]]] = []
+    mp: Path | None = None
     if args.run_id:
+        # BR4: 先验证 run_id 再拼路径(与 run_record CLI 输入边界一致)
+        if not valid_run_id(args.run_id):
+            print(f"[FAIL] run_id 非法: {args.run_id!r}")
+            return 1
         from animtrain.run_record import RunRecord, check_record  # noqa: E402
         rp = ROOT / "runs" / args.run_id / "run_record.json"
         if rp.exists():
@@ -53,11 +59,28 @@ def main(argv: list[str]) -> int:
             rep = validate_manifest(m, mp.parent)
             extra.append(("data_manifest", (rep["ok"], f"{rep['n_entries']} 条目,"
                            f"问题 {len(rep['problems'])},quarantine {len(rep['quarantines'])}")))
+            # BR4: near_dup_calibrated 必须传播 —— UNCALIBRATED 的阈值
+            # 在 ready 模式下明确阻止(数据隔离验收未完成)
+            if not rep.get("near_dup_calibrated", False):
+                extra.append(("near_dup_calibrated", (False,
+                              "近重复阈值 UNCALIBRATED(真实数据对照实验未完成)"
+                              "—— ready 模式必须阻断")))
         else:
             extra.append(("data_manifest", (False, f"manifest 不存在: {mp}")))
+    # BR4: 挂 render/math 门禁(环境已就位,真实执行;未就位则 UNVERIFIED 阻断)
+    from animtrain.render_gate import check_manim_available, check_sympy_available  # noqa: E402
+    ok_manim, _ = check_manim_available()
+    ok_sympy, _ = check_sympy_available()
+    extra.append(("render_gate", (ok_manim, "渲染环境可用" if ok_manim
+                                  else "manim 未安装")))
+    extra.append(("math_gate", (ok_sympy, "SymPy 可用" if ok_sympy
+                                else "sympy 未安装")))
 
     if args.ready and not args.run_id:
         print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
+        return 1
+    if args.ready and not args.manifest:
+        print("[FAIL] --ready 需要 --manifest(数据门禁与哈希绑定是 ready 必需项)")
         return 1
     r = run_preflight(Path(args.model) if args.model else None, extra_checks=extra,
                       strict=args.strict, ready=args.ready)

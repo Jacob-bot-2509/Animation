@@ -126,3 +126,46 @@ class TestBR3StrictLock(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBR5FrozenWriteProtection(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_split_force_cannot_overwrite_frozen(self):
+        """BR5: 冻结文件即使 --force 也不得被 split 改写。"""
+        import subprocess
+        import json as _json
+        from animtrain.freeze import freeze_set
+        pool = self.root / "pool.jsonl"
+        pool.write_text('{"id": "s1"}\n', encoding="utf-8")
+        plan = self.root / "plan.json"
+        plan.write_text(_json.dumps({"train": ["s1"], "eval": [], "test": []},
+                                    ensure_ascii=False), encoding="utf-8")
+        out = self.root / "o"
+        out.mkdir()
+        ev = out / "eval.jsonl"
+        ev.write_text('{"id": "frozen-e"}\n', encoding="utf-8")
+        lock = self.root / "frozen.lock.json"
+        freeze_set([ev], lock)
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "split_data.py"),
+             "--pool", str(pool), "--plan", str(plan), "--out", str(out),
+             "--force", "--frozen-lock", str(lock)],
+            capture_output=True, text=True, encoding="utf-8")
+        self.assertNotEqual(r.returncode, 0, "--force 改写了冻结文件")
+        self.assertEqual(ev.read_text(encoding="utf-8"), '{"id": "frozen-e"}\n',
+                         "冻结文件内容被改动")
+
+    def test_frozen_paths_collected(self):
+        from animtrain.freeze import frozen_paths, freeze_set
+        p = self.root / "e.jsonl"
+        p.write_text('{"id": "e1"}\n', encoding="utf-8")
+        lock = self.root / "l.lock.json"
+        freeze_set([p], lock)
+        paths = frozen_paths(lock)
+        self.assertIn(str(p.resolve()), paths)

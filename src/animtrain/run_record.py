@@ -50,9 +50,8 @@ class RunRecord:
                    version=d.get("run_record_version", 1))
 
     def save(self, path: Path) -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2),
-                        encoding="utf-8")
+        from .atomic_write import atomic_write_text  # noqa: PLC0415
+        atomic_write_text(path, json.dumps(self.to_dict(), ensure_ascii=False, indent=2))
 
     @classmethod
     def load(cls, path: Path) -> "RunRecord":

@@ -42,9 +42,19 @@ def freeze_set(files: list[Path], lock_path: Path, meta: dict | None = None) -> 
             "meta": meta or {},
             "entries": entries,
             "policy": "冻结后文件不可修改;哈希不一致即拒绝使用该数据集"}
-    lock_path.write_text(json.dumps(lock, ensure_ascii=False, indent=2),
-                         encoding="utf-8")
+    from .atomic_write import atomic_write_text  # noqa: PLC0415 局部导入避免环
+    atomic_write_text(lock_path, json.dumps(lock, ensure_ascii=False, indent=2))
     return lock
+
+
+def frozen_paths(lock_path: Path) -> set[str]:
+    """锁内冻结文件路径集合(写入前保护用;锁损坏时返回空集+警告由 check_frozen 负责)。"""
+    try:
+        lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return set()
+    return {str(Path(e["path"]).resolve())
+            for e in lock.get("entries", []) if isinstance(e, dict) and "path" in e}
 
 
 def check_frozen(lock_path: Path) -> list[str]:

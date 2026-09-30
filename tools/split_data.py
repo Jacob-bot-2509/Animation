@@ -54,7 +54,8 @@ def load_pool(pool: Path) -> tuple[dict[str, str], list[dict]]:
 
 
 def split(pool: Path, plan: Path, out: Path, dry_run: bool,
-          force: bool = False, license_: str = "") -> dict:
+          force: bool = False, license_: str = "",
+          frozen_locks: list[Path] | None = None) -> dict:
     by_id, bad = load_pool(pool)
     plan_obj = json.loads(plan.read_text(encoding="utf-8"))
     rejects = list(bad)
@@ -92,21 +93,28 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
     inputs = {pool.resolve(), plan.resolve()}
     if out_res == pool.resolve().parent:
         raise SystemExit(f"拒绝:--out 与 pool 同目录({out}),会原地覆盖池子")
+    from animtrain.freeze import frozen_paths  # noqa: PLC0415 局部导入避免环
+    frozen: set[str] = set()
+    for lk in (frozen_locks or []):
+        frozen |= frozen_paths(lk)
     for f in ("train.jsonl", "eval.jsonl", "test.jsonl", "rejected.jsonl",
               "split_manifest.json"):
         target = (out / f).resolve()
         if target in inputs:
             raise SystemExit(f"拒绝:{target} 是输入文件(pool/plan),"
                              "无论是否 --force 都不得覆盖")
+        if str(target) in frozen:
+            raise SystemExit(f"拒绝:{target} 属于冻结数据集,"
+                             "无论是否 --force 都不得写入(BR5)")
         ensure_not_exists(out / f, force=force)
+    from animtrain.atomic_write import atomic_write_text  # noqa: PLC0415
     out.mkdir(parents=True, exist_ok=True)
     for split_name, lines in split_rows.items():
-        (out / f"{split_name}.jsonl").write_text(
-            "\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
+        atomic_write_text(out / f"{split_name}.jsonl",
+                          "\n".join(lines) + ("\n" if lines else ""))
     rejects.sort(key=lambda x: str(x.get("sample_id")))
-    (out / "rejected.jsonl").write_text(
-        "\n".join(json.dumps(x, ensure_ascii=False) for x in rejects) + "\n",
-        encoding="utf-8")
+    atomic_write_text(out / "rejected.jsonl",
+                      "\n".join(json.dumps(x, ensure_ascii=False) for x in rejects) + "\n")
     # R2: split manifest 用标准 Manifest v1 格式 —— Manifest.load 可直接读,
     # data_check 可直接校验;entries 登记输出文件并标正确 split。
     entries = []
@@ -126,8 +134,8 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
                 "policy": "split 产物清单;train/eval/test 与 rejected 分离;"
                           "输入 pool/plan 见各 entry.notes",
                 "entries": entries}
-    (out / "split_manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_text(out / "split_manifest.json",
+                      json.dumps(manifest, ensure_ascii=False, indent=2))
     return {**summary, "split_manifest": "标准 Manifest v1 格式" }
 
 
@@ -140,9 +148,12 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--force", action="store_true", help="允许覆盖已存在输出(默认拒绝)")
     ap.add_argument("--license", default="",
                     help="输出数据许可证(未提供则留空 → 校验报 quarantine,不硬写)")
+    ap.add_argument("--frozen-lock", action="append", default=[],
+                    help="冻结锁(可多次);输出命中冻结文件一律拒绝,force 也不绕过")
     args = ap.parse_args(argv)
     r = split(Path(args.pool), Path(args.plan), Path(args.out), args.dry_run,
-              force=args.force, license_=args.license)
+              force=args.force, license_=args.license,
+              frozen_locks=[Path(f) for f in args.frozen_lock])
     if r.get("dry_run"):
         print("dry-run:", json.dumps({k: v for k, v in r.items() if k != "dry_run"},
                                      ensure_ascii=False))
