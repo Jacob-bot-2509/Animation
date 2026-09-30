@@ -77,17 +77,45 @@ def render_check(code: str, python: str | None = None) -> dict:
             "detail": "渲染成功", "unverified": []}
 
 
+# BR2 数学断言契约:
+#   verified   化简后布尔值为真(断言成立)
+#   disproved  化简后布尔值为假(断言不成立 —— 假命题不得标 verified)
+#   unproven   含自由符号无法判定真假(如实,不冒充验证通过)
+#   invalid    非法表达式
+# 仅"能解析/能化简"不构成验证通过。
+MATH_EXPR_MAX_LEN = 200
+_MATH_FORBIDDEN = ("import", "__", "exec", "eval", "open", "compile",
+                   "globals", "locals", "vars", "getattr", "setattr",
+                   "delattr", "breakpoint", "input")
+
+
 def math_check(expr: str) -> dict:
     """数学断言检查(SymPy);环境缺失 → unverified。"""
     ok_sympy, msg = check_sympy_available()
     if not ok_sympy:
         return {"ok": False, "status": "unverified", "detail": msg,
                 "unverified": ["math"]}
+    # BR6 防护:sympify 内部走 eval,对输入做长度与敏感词限制(不替代完整隔离)
+    if len(expr) > MATH_EXPR_MAX_LEN:
+        return {"ok": False, "status": "invalid",
+                "detail": f"表达式超长(>{MATH_EXPR_MAX_LEN}),拒绝求值(BR6)", "unverified": []}
+    lowered = expr.lower()
+    if any(bad in lowered for bad in _MATH_FORBIDDEN):
+        return {"ok": False, "status": "invalid",
+                "detail": "表达式含受限模式,拒绝求值(BR6)", "unverified": []}
     import sympy  # noqa: PLC0415 环境可用才导入
     try:
-        result = sympy.simplify(sympy.sympify(expr))
-        return {"ok": True, "status": "verified",
-                "detail": f"SymPy 化简: {expr} = {result}", "unverified": []}
+        result = sympy.simplify(sympy.sympify(expr, rational=True))
     except Exception as exc:  # noqa: BLE001 表达式非法即失败,如实上报
         return {"ok": False, "status": "invalid",
                 "detail": f"数学断言非法: {exc}", "unverified": []}
+    try:
+        truth = bool(result)
+    except TypeError:  # 含自由符号无法判定
+        return {"ok": False, "status": "unproven",
+                "detail": f"无法判定真假(含自由符号): {expr} → {result}", "unverified": []}
+    if truth:
+        return {"ok": True, "status": "verified",
+                "detail": f"断言成立: {expr} → {result}", "unverified": []}
+    return {"ok": False, "status": "disproved",
+            "detail": f"断言不成立: {expr} → {result}(假命题)", "unverified": []}

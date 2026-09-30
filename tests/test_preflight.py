@@ -59,6 +59,37 @@ class TestPreflight(unittest.TestCase):
         self.assertEqual(r["exit_code"], 1)
         self.assertTrue(any(not c["ok"] for c in r["checks"]))
 
+    def _ready_with(self, extra):
+        with mock.patch("animtrain.preflight.check_gpu", return_value=(True, "mock")), \
+             mock.patch("animtrain.preflight.check_model_dir", return_value=(True, "mock")):
+            return run_preflight(
+                Path("."),
+                extra_checks=[("data_manifest", (True, "valid")),
+                              ("run_snapshot", (True, "valid"))] + extra,
+                ready=True)
+
+    def test_ready_blocks_failed_additional_gate(self):
+        r = self._ready_with([("render_gate", (False, "render failed"))])
+        self.assertFalse(r["ok"])
+        self.assertFalse(r["ready"])
+        self.assertEqual(r["exit_code"], 1)
+        self.assertIn("render_gate", r["checks"][-1]["detail"])
+
+    def test_ready_duplicate_name_cannot_hide_failure(self):
+        r = self._ready_with([("data_manifest", (False, "invalid")),
+                              ("data_manifest", (True, "later pass"))])
+        self.assertFalse(r["ready"])
+        self.assertEqual(r["exit_code"], 1)
+
+    def test_ready_duplicate_name_cannot_hide_unverified(self):
+        r = self._ready_with([
+            ("math_gate", (True, "pending", {"unverified": ["math"]})),
+            ("math_gate", (True, "later pass"))])
+        self.assertFalse(r["ready"])
+        self.assertEqual(r["exit_code"], 1)
+        self.assertIn("math_gate", r["checks"][-1]["detail"])
+
+
 
 if __name__ == "__main__":
     unittest.main()

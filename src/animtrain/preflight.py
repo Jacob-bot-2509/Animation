@@ -98,9 +98,13 @@ def run_preflight(model_dir: Path | None,
         by_name = {c["check"]: c for c in checks}
         missing = [n for n in READY_REQUIRED_CHECKS
                    if n not in by_name or not by_name[n]["ok"]]
-        unverified = [n for n, c in by_name.items()
-                      if c.get("unverified")]
-        if missing:
+        # Inspect every result: duplicate names must not hide an earlier failure.
+        failed = [c["check"] for c in checks if not c["ok"]]
+        unverified = [c["check"] for c in checks if c.get("unverified")]
+        if failed:
+            checks.append({"check": "ready", "ok": False,
+                           "detail": f"FAIL checks block ready: {failed}"})
+        elif missing:
             checks.append({"check": "ready", "ok": False,
                            "detail": f"ready 必需检查缺失或未过: {missing}"})
         elif unverified:

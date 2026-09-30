@@ -65,3 +65,43 @@ class TestRenderGate(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBR2MathContract(unittest.TestCase):
+    def test_true_proposition_verified(self):
+        from animtrain.render_gate import math_check
+        with mock.patch("animtrain.render_gate.check_sympy_available",
+                        return_value=(True, "ok")):
+            r = math_check("sin(x)**2 + cos(x)**2")
+        self.assertTrue(r["ok"])
+        self.assertEqual(r["status"], "verified")
+
+    def test_false_proposition_disproved(self):
+        """BR2: 假命题必须 disproved,不得标 verified。"""
+        from animtrain.render_gate import math_check
+        with mock.patch("animtrain.render_gate.check_sympy_available",
+                        return_value=(True, "ok")):
+            r1 = math_check("Eq(1, 2)")
+            r2 = math_check("False")
+        for r in (r1, r2):
+            self.assertFalse(r["ok"], r)
+            self.assertEqual(r["status"], "disproved")
+
+    def test_free_symbol_unproven(self):
+        """BR2: 含自由符号无法判定 → unproven,如实。"""
+        from animtrain.render_gate import math_check
+        with mock.patch("animtrain.render_gate.check_sympy_available",
+                        return_value=(True, "ok")):
+            r = math_check("x**2 >= 0")
+        self.assertFalse(r["ok"])
+        self.assertEqual(r["status"], "unproven")
+
+    def test_forbidden_patterns_rejected(self):
+        """BR6: sympify 走 eval,受限模式拒绝。"""
+        from animtrain.render_gate import math_check
+        with mock.patch("animtrain.render_gate.check_sympy_available",
+                        return_value=(True, "ok")):
+            for bad in ("__import__('os')", "eval('1')", "x" * 201):
+                r = math_check(bad)
+                self.assertFalse(r["ok"], bad)
+                self.assertEqual(r["status"], "invalid")

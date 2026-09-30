@@ -1,4 +1,4 @@
-"""冻结锁测试(B3:冻结后不可变,哈希变化大声失败)。"""
+"""冻结锁与原子写入测试(B3/B6/BR3/BR5)。"""
 from __future__ import annotations
 
 import sys
@@ -78,6 +78,50 @@ class TestAtomicWrite(unittest.TestCase):
         atomic_write_text(p, "old")
         atomic_write_text(p, "new" * 1000)
         self.assertEqual(len(p.read_text(encoding="utf-8")), 3000)
+
+
+class TestBR3StrictLock(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_empty_lock_rejected(self):
+        """BR3: entries=[] 的空锁必须可定位失败。"""
+        lock = self.root / "empty.lock.json"
+        lock.write_text('{"freeze_lock_version": 1, "locked": true, "entries": []}',
+                        encoding="utf-8")
+        problems = check_frozen(lock)
+        self.assertTrue(any("空" in p for p in problems), problems)
+
+    def test_unlocked_state_rejected(self):
+        """BR3: locked=False 的锁必须可定位失败。"""
+        lock = self.root / "unlocked.lock.json"
+        lock.write_text('{"freeze_lock_version": 1, "locked": false, "entries": []}',
+                        encoding="utf-8")
+        problems = check_frozen(lock)
+        self.assertTrue(any("locked" in p for p in problems), problems)
+
+    def test_n_files_mismatch_rejected(self):
+        """BR3: n_files 与条目数不一致必须可定位失败。"""
+        p = self.root / "e.jsonl"
+        p.write_text('{"id": "e1"}\n', encoding="utf-8")
+        from animtrain.freeze import sha256_file
+        import json as _json
+        lock = self.root / "mismatch.lock.json"
+        lock.write_text(_json.dumps({
+            "freeze_lock_version": 1, "locked": True, "n_files": 5,
+            "entries": [{"path": str(p), "sha256": sha256_file(p),
+                         "size": p.stat().st_size}]}), encoding="utf-8")
+        problems = check_frozen(lock)
+        self.assertTrue(any("n_files" in x for x in problems), problems)
+
+    def test_freeze_empty_list_rejected(self):
+        """BR3: freeze_set([]) 不得生成可通过的空锁。"""
+        with self.assertRaises(ValueError):
+            freeze_set([], self.root / "x.lock.json")
 
 
 if __name__ == "__main__":
