@@ -46,7 +46,14 @@ def main(argv: list[str]) -> int:
         rp = ROOT / "runs" / args.run_id / "run_record.json"
         if rp.exists():
             rec = RunRecord.load(rp)
-            problems = check_record(rec)
+            # BR4 复验:manifest 路径先确定,快照校验必须绑定它
+            # (否则 record_hash 与实际文件不符仍能 READY)
+            mp_here = None
+            if args.manifest:
+                mp_here = Path(args.manifest)
+            elif rec.summary.get("manifest"):
+                mp_here = ROOT / rec.summary["manifest"]
+            problems = check_record(rec, manifest_path=mp_here)
             extra.append(("run_snapshot",
                           (not problems,
                            f"run {args.run_id} 快照{'通过' if not problems else '未过: ' + '; '.join(problems[:3])}")))

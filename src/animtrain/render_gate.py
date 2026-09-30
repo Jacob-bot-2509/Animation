@@ -40,12 +40,22 @@ def check_sympy_available() -> tuple[bool, str]:
     return True, f"sympy 可用: {spec.origin}"
 
 
-def render_check(code: str, python: str | None = None) -> dict:
+def render_check(code: str, python: str | None = None,
+                 trusted: bool = False) -> dict:
     """执行隔离渲染:独立子进程跑 manim,超时/退出码/stderr 捕获。
 
     返回 {ok, status, detail, unverified};环境缺失 → unverified。
     不伪造成功:任何失败/超时都是失败。
+
+    BR6 复验:隔离不完整(fs/network/memory 未实施)时,默认拒绝执行
+    不可信代码 —— trusted=False 直接阻断;只有可信固定样例
+    (项目内审查过的模板)可以 trusted=True 执行。
     """
+    if not trusted:
+        return {"ok": False, "status": "unverified",
+                "detail": "隔离不完整(fs/network/memory 未实施),"
+                          "拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
+                "unverified": ["render_isolation"]}
     ok_manim, msg = check_manim_available()
     if not ok_manim:
         return {"ok": False, "status": "unverified", "detail": msg,
@@ -82,12 +92,12 @@ def render_check(code: str, python: str | None = None) -> dict:
             "detail": "渲染成功", "unverified": [], "isolation": _isolation_state()}
 
 
-# BR2 数学断言契约:
-#   verified   化简后布尔值为真(断言成立)
-#   disproved  化简后布尔值为假(断言不成立 —— 假命题不得标 verified)
-#   unproven   含自由符号无法判定真假(如实,不冒充验证通过)
-#   invalid    非法表达式
-# 仅"能解析/能化简"不构成验证通过。
+# BR2 数学断言契约(复验收紧):
+#   verified   化简结果为显式布尔真(Eq/Ne/Lt/.../True 化简成立)
+#   disproved  化简结果为显式布尔假(假命题不得标 verified)
+#   unproven   化简结果为含自由符号的布尔(无法判定真假,如实)
+#   invalid    非布尔断言 —— 数字/符号/裸表达式都不是数学断言
+#             (bool(result) 是 Python 真值,不是数学证明,禁止当判定依据)
 MATH_EXPR_MAX_LEN = 200
 _MATH_FORBIDDEN = ("import", "__", "exec", "eval", "open", "compile",
                    "globals", "locals", "vars", "getattr", "setattr",
@@ -124,13 +134,23 @@ def math_check(expr: str) -> dict:
     except Exception as exc:  # noqa: BLE001 表达式非法即失败,如实上报
         return {"ok": False, "status": "invalid",
                 "detail": f"数学断言非法: {exc}", "unverified": []}
-    try:
-        truth = bool(result)
-    except TypeError:  # 含自由符号无法判定
+    # 只有 sympy 布尔类型才是断言;数字/符号/裸表达式一律拒绝。
+    # 注意:含自由符号的 relational(如 x>y)的 .is_Boolean 是 None(未知),
+    # 不能用 not is_Boolean 判非布尔 —— 用类型判断。
+    from sympy.core.relational import Relational  # noqa: PLC0415
+    from sympy.logic.boolalg import Boolean as SymBoolean  # noqa: PLC0415
+    if result is sympy.S.true:
+        return {"ok": True, "status": "verified",
+                "detail": f"断言成立: {expr}", "unverified": []}
+    if result is sympy.S.false:
+        return {"ok": False, "status": "disproved",
+                "detail": f"断言不成立: {expr} → False(假命题)", "unverified": []}
+    if isinstance(result, (Relational, SymBoolean))             and not isinstance(result, sympy.Symbol):
+        # 化简后仍是含自由符号的布尔(如 x > y)。
+        # 注意:SymPy 的 Symbol 继承 Boolean(逻辑变量),但裸符号不是
+        # 数学断言,排除 —— 否则 'x' 会被当 unproven 而不是 invalid。
         return {"ok": False, "status": "unproven",
                 "detail": f"无法判定真假(含自由符号): {expr} → {result}", "unverified": []}
-    if truth:
-        return {"ok": True, "status": "verified",
-                "detail": f"断言成立: {expr} → {result}", "unverified": []}
-    return {"ok": False, "status": "disproved",
-            "detail": f"断言不成立: {expr} → {result}(假命题)", "unverified": []}
+    return {"ok": False, "status": "invalid",
+            "detail": f"非布尔断言: {expr} → {result}"
+                      "(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)", "unverified": []}

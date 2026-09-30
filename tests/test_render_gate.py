@@ -18,7 +18,7 @@ class TestRenderGate(unittest.TestCase):
         """B4: 环境缺失 → UNVERIFIED,不得伪装通过。"""
         with mock.patch("animtrain.render_gate.check_manim_available",
                         return_value=(False, "manim 未安装")):
-            r = render_check("code")
+            r = render_check("code", trusted=True)
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "unverified")
         self.assertEqual(r["unverified"], ["render"])
@@ -30,7 +30,7 @@ class TestRenderGate(unittest.TestCase):
              mock.patch("subprocess.run") as run:
             run.return_value.returncode = 0
             run.return_value.stderr = ""
-            r = render_check("x = 1")
+            r = render_check("x = 1", trusted=True)
         self.assertTrue(r["ok"])
         self.assertEqual(r["status"], "rendered")
         # 必须走隔离子进程(禁 shell 由列表参数保证,断言命令形如 python -m manim)
@@ -43,7 +43,7 @@ class TestRenderGate(unittest.TestCase):
              mock.patch("subprocess.run") as run:
             run.return_value.returncode = 1
             run.return_value.stderr = "AttributeError: no plot_curve"
-            r = render_check("bad code")
+            r = render_check("bad code", trusted=True)
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "failed")
         self.assertIn("plot_curve", r["detail"])
@@ -54,6 +54,13 @@ class TestRenderGate(unittest.TestCase):
             r = math_check("x**2")
         self.assertFalse(r["ok"])
         self.assertEqual(r["unverified"], ["math"])
+
+    def test_untrusted_code_blocked_by_default(self):
+        """BR6: 隔离不足时默认拒绝执行(trusted=False)。"""
+        r = render_check("任意代码", trusted=False)
+        self.assertFalse(r["ok"])
+        self.assertEqual(r["status"], "unverified")
+        self.assertEqual(r["unverified"], ["render_isolation"])
 
     def test_real_environment_detection(self):
         """真实环境探测:至少返回明确的 (bool, 说明),不抛异常。"""
@@ -72,7 +79,7 @@ class TestBR2MathContract(unittest.TestCase):
         from animtrain.render_gate import math_check
         with mock.patch("animtrain.render_gate.check_sympy_available",
                         return_value=(True, "ok")):
-            r = math_check("sin(x)**2 + cos(x)**2")
+            r = math_check("Eq(sin(x)**2 + cos(x)**2, 1)")
         self.assertTrue(r["ok"])
         self.assertEqual(r["status"], "verified")
 
@@ -87,12 +94,22 @@ class TestBR2MathContract(unittest.TestCase):
             self.assertFalse(r["ok"], r)
             self.assertEqual(r["status"], "disproved")
 
+    def test_non_boolean_rejected(self):
+        """BR2 复验:数字/裸表达式不是断言,不得 verified。"""
+        from animtrain.render_gate import math_check
+        with mock.patch("animtrain.render_gate.check_sympy_available",
+                        return_value=(True, "ok")):
+            for expr in ("x", "x + 1", "1", "2", "sin(x)**2 + cos(x)**2"):
+                r = math_check(expr)
+                self.assertFalse(r["ok"], expr)
+                self.assertEqual(r["status"], "invalid", expr)
+
     def test_free_symbol_unproven(self):
         """BR2: 含自由符号无法判定 → unproven,如实。"""
         from animtrain.render_gate import math_check
         with mock.patch("animtrain.render_gate.check_sympy_available",
                         return_value=(True, "ok")):
-            r = math_check("x**2 >= 0")
+            r = math_check("x > y")  # 两个自由符号,无法判定
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "unproven")
 

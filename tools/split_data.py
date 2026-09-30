@@ -93,9 +93,17 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
     inputs = {pool.resolve(), plan.resolve()}
     if out_res == pool.resolve().parent:
         raise SystemExit(f"拒绝:--out 与 pool 同目录({out}),会原地覆盖池子")
-    from animtrain.freeze import frozen_paths  # noqa: PLC0415 局部导入避免环
+    from animtrain.freeze import check_frozen, frozen_paths  # noqa: PLC0415
     frozen: set[str] = set()
     for lk in (frozen_locks or []):
+        # BR5 复验:fail closed —— 锁不存在/损坏时不得静默放行
+        if not lk.exists():
+            raise SystemExit(f"拒绝:冻结锁不存在 {lk}(fail closed,"
+                             "不可靠的锁视为写入阻断)")
+        problems = check_frozen(lk)
+        if problems:
+            raise SystemExit(f"拒绝:冻结锁校验未过 {lk}: {problems[0]}"
+                             "(fail closed)")
         frozen |= frozen_paths(lk)
     for f in ("train.jsonl", "eval.jsonl", "test.jsonl", "rejected.jsonl",
               "split_manifest.json"):
