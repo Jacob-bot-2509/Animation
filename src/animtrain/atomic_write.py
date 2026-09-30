@@ -12,8 +12,10 @@ from pathlib import Path
 def atomic_write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
     """写文本:同目录临时文件 → os.replace 原子落位;任何失败清理临时文件。"""
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = Path(tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp",
-                                dir=str(path.parent))[1])
+    fd, tmp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp",
+                                    dir=str(path.parent))
+    os.close(fd)  # Windows:句柄不关会导致 rename 失败且临时文件删不掉
+    tmp = Path(tmp_name)
     try:
         tmp.write_text(text, encoding=encoding)
         os.replace(tmp, path)
@@ -25,8 +27,10 @@ def atomic_write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
 def atomic_write_bytes(path: Path, data: bytes) -> None:
     """写字节:同目录临时文件 → os.replace 原子落位。"""
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = Path(tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp",
-                                dir=str(path.parent))[1])
+    fd, tmp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp",
+                                    dir=str(path.parent))
+    os.close(fd)  # Windows:句柄不关会导致 rename 失败且临时文件删不掉
+    tmp = Path(tmp_name)
     try:
         tmp.write_bytes(data)
         os.replace(tmp, path)
