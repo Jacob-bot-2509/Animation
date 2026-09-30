@@ -54,7 +54,7 @@ def load_pool(pool: Path) -> tuple[dict[str, str], list[dict]]:
 
 
 def split(pool: Path, plan: Path, out: Path, dry_run: bool,
-          force: bool = False) -> dict:
+          force: bool = False, license_: str = "") -> dict:
     by_id, bad = load_pool(pool)
     plan_obj = json.loads(plan.read_text(encoding="utf-8"))
     rejects = list(bad)
@@ -85,12 +85,19 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
     if dry_run:
         return {"dry_run": True, **summary}
 
-    # R1 写保护:输出目录不得与池子同目录(会原地覆盖 pool),已有输出默认拒绝
+    # R1 写保护:输出目录不得与池子同目录(会原地覆盖 pool),已有输出默认拒绝;
+    # 复审 R1:--force 也不得覆盖任何输入文件 —— 每个输出路径与 pool/plan
+    # 的 resolve 比对,相同即拒绝(输入文件永远只读)
     out_res = out.resolve()
+    inputs = {pool.resolve(), plan.resolve()}
     if out_res == pool.resolve().parent:
         raise SystemExit(f"拒绝:--out 与 pool 同目录({out}),会原地覆盖池子")
     for f in ("train.jsonl", "eval.jsonl", "test.jsonl", "rejected.jsonl",
               "split_manifest.json"):
+        target = (out / f).resolve()
+        if target in inputs:
+            raise SystemExit(f"拒绝:{target} 是输入文件(pool/plan),"
+                             "无论是否 --force 都不得覆盖")
         ensure_not_exists(out / f, force=force)
     out.mkdir(parents=True, exist_ok=True)
     for split_name, lines in split_rows.items():
@@ -111,7 +118,7 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
                         "sha256": hashlib.sha256(fp.read_bytes()).hexdigest(),
                         "size": fp.stat().st_size,
                         "source": f"split:pool={pool} plan={plan}",
-                        "license": "internal-generated",
+                        "license": license_,
                         "split": f.removesuffix(".jsonl") if f != "rejected.jsonl" else "raw",
                         "notes": f"由 split_data 生成: {f}"})
     manifest = {"name": f"split-{out.name}", "version": 1,
@@ -131,9 +138,11 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--out", required=True, help="输出目录")
     ap.add_argument("--dry-run", action="store_true", help="只算分配不写文件")
     ap.add_argument("--force", action="store_true", help="允许覆盖已存在输出(默认拒绝)")
+    ap.add_argument("--license", default="",
+                    help="输出数据许可证(未提供则留空 → 校验报 quarantine,不硬写)")
     args = ap.parse_args(argv)
     r = split(Path(args.pool), Path(args.plan), Path(args.out), args.dry_run,
-              force=args.force)
+              force=args.force, license_=args.license)
     if r.get("dry_run"):
         print("dry-run:", json.dumps({k: v for k, v in r.items() if k != "dry_run"},
                                      ensure_ascii=False))

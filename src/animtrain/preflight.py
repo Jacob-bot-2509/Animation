@@ -43,10 +43,10 @@ def check_model_dir(model_dir: Path, strict: bool = False) -> tuple[bool, str]:
         return False, f"模型目录缺关键文件: {', '.join(missing)}"
     if strict:
         weights = [p for p in model_dir.rglob("*")
-                   if p.is_file() and p.suffix in WEIGHT_SUFFIXES]
+                   if p.is_file() and p.suffix in WEIGHT_SUFFIXES and p.stat().st_size > 0]
         if not weights:
-            return False, (f"模型目录无权重文件({WEIGHT_SUFFIXES})——"
-                           "仅配置 JSON 不得宣称就绪")
+            return False, (f"模型目录无**非空**权重文件({WEIGHT_SUFFIXES})——"
+                           "仅配置 JSON/0 字节文件不得宣称就绪")
     return True, f"模型目录齐全: {model_dir}"
 
 
@@ -69,8 +69,12 @@ def run_preflight(model_dir: Path | None,
                        "detail": "严格模式必须提供 --model 模型目录"})
     for name, (ok3, detail3) in (extra_checks or []):
         checks.append({"check": name, "ok": ok3, "detail": detail3})
-    if strict and not extra_checks:
+    # 复审 R5:data_manifest 必须真实 —— 只有名为 data_manifest 且通过的检查
+    # 才算数,任何其他 extra_checks 不得冒充
+    dm = [c for c in checks if c["check"] == "data_manifest" and c["ok"]]
+    if strict and not dm:
         checks.append({"check": "data_manifest", "ok": False,
-                       "detail": "严格模式必须提供 --manifest 数据门禁"})
+                       "detail": "严格模式必须提供真实的数据门禁"
+                                 "(extra_checks 中名为 data_manifest 且通过)"})
     ok_all = all(c["ok"] for c in checks)
     return {"ok": ok_all, "exit_code": 0 if ok_all else 1, "checks": checks}

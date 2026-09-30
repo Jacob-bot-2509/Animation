@@ -76,23 +76,28 @@ def cmd_init(args) -> int:
                   env=capture_env(),
                   metrics=json.loads(args.metrics) if args.metrics else {})
     out = ROOT / "runs" / args.run_id / "run_record.json"
+    # 复审 R8:先校验后落盘 —— 校验未过不得占 run_id、不得留下记录
+    mp = Path(args.manifest) if args.manifest else None
+    problems = check_record(r, manifest_path=mp)
+    if problems:
+        print("!! fail-fast 校验未过(不落盘):")
+        for p in problems:
+            print(f"   - {p}")
+        return 1
     try:
         ensure_not_exists(out)  # R1: 已存在的记录拒绝覆盖(不可篡改)
     except ValueError as exc:
         print(f"拒绝: {exc}")
         return 1
     r.save(out)
-    problems = check_record(r)
     print(f"记录 → {out.relative_to(ROOT)}(git {r.git_commit[:8]})")
-    if problems:
-        print("!! fail-fast 校验未过(请补全后重跑):")
-        for p in problems:
-            print(f"   - {p}")
-        return 1
     return 0
 
 
 def cmd_check(args) -> int:
+    if not valid_run_id(args.run_id):
+        print(f"run_id 非法: {args.run_id!r}(只允许 [A-Za-z0-9_-])")
+        return 1
     p = ROOT / "runs" / args.run_id / "run_record.json"
     if not p.exists():
         print(f"记录不存在: {p}")

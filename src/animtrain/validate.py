@@ -82,6 +82,8 @@ def validate_manifest(m: Manifest, root: Path,
     train_ids: set[str] = set()
     eval_test_entries = []
     seen_file_hashes: dict[str, str] = {}  # sha256 → 先登记的 path
+    approved: list[tuple] = []  # (entry, path) —— 只有通过全部前置检查的
+                                # 才进入后续阶段;被拒路径绝不二次读取(复审 R3)
 
     for e in m.entries:
         # R3: entry.path 不得越出根目录(防 ../ 逃逸);resolve 后必须仍在 root 内
@@ -120,22 +122,24 @@ def validate_manifest(m: Manifest, root: Path,
             quarantines.append(f"{e.path}: 许可证未标注 → quarantine,禁入训练")
         if not e.source:
             quarantines.append(f"{e.path}: 来源未标注 → quarantine,不得默认通过")
-        # 4. 样本集合(供重叠检查);train 数据行的坏 JSON 也要检出
+        # 4. 坏 JSON 检查覆盖全部数据 split(复审 R3:不只 train)
+        if is_data and p.suffix in _DATA_SUFFIXES:
+            for ln, exc in _find_bad_json_lines(p):
+                problems.append(f"{e.path}:{ln} JSON 解析失败: {exc}")
+        # 5. 样本集合(供重叠检查);仅通过以上全部检查的 entry 进入
         if e.split == "train":
             train_hashes |= _load_sample_hashes(p, e)
             train_ids |= _load_sample_ids(p)
-            bad_lines = _find_bad_json_lines(p)
-            for ln, exc in bad_lines:
-                problems.append(f"{e.path}:{ln} JSON 解析失败: {exc}")
+            approved.append((e, p))
         elif e.split in ("eval", "test"):
             eval_test_entries.append((e, p))
+            approved.append((e, p))
 
     # 5. 精确重叠:三个集合两两检查(R4:不能只与 train 比,eval 与 test 之间
     #    同 ID/同内容同样必须检出)。内容哈希 + ID 字段双重。
     split_sets: dict[str, tuple[set[str], set[str]]] = {}  # split → (hashes, ids)
-    for e in m.entries:
-        p = (root / e.path).resolve()
-        if e.split not in ("train", "eval", "test") or not p.exists():
+    for e, p in approved:
+        if e.split not in ("train", "eval", "test"):
             continue
         if p.suffix not in _DATA_SUFFIXES:
             continue
@@ -156,11 +160,8 @@ def validate_manifest(m: Manifest, root: Path,
     #    训练样本的改措辞/换数字版本。前项目标准;仅精确重叠不够。
     if train_hashes:
         near_idx = ShingleIndex()
-        for e in m.entries:
+        for e, p in approved:
             if e.split != "train":
-                continue
-            p = (root / e.path).resolve()
-            if not p.exists():
                 continue
             for i, line in enumerate(_load_lines(p)):
                 near_idx.add(line, {"path": e.path, "line": i})

@@ -77,11 +77,15 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
         problems.append("manifest_hash 非空但 summary.manifest 路径缺失(fail-fast)")
     if not r.env:
         problems.append("env 快照为空(记录 python/平台/GPU,缺失 fail-fast)")
-    if manifest_path is not None and manifest_path.exists() and r.manifest_hash:
-        actual = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
-        if actual != r.manifest_hash:
-            problems.append(f"manifest hash 不可复现(记录 {r.manifest_hash[:12]}…,"
-                            f"实际 {actual[:12]}…)")
+    if manifest_path is not None:
+        if not manifest_path.exists():
+            problems.append(f"manifest_path 指向不存在的文件: {manifest_path}"
+                            "(复审 R8:缺实文件即失败)")
+        elif r.manifest_hash:
+            actual = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+            if actual != r.manifest_hash:
+                problems.append(f"manifest hash 不可复现(记录 {r.manifest_hash[:12]}…,"
+                                f"实际 {actual[:12]}…)")
     # msg_101-7:失败必须带失败分析(原因/修复/回滚点),不留无因失败
     if not r.metrics and r.kind != "dry-run" and not r.failure_analysis:
         problems.append("无指标且无 failure_analysis —— 失败必须留原因/修复/回滚点"
