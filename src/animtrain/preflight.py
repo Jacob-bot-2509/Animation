@@ -50,25 +50,40 @@ def check_model_dir(model_dir: Path, strict: bool = False) -> tuple[bool, str]:
     return True, f"模型目录齐全: {model_dir}"
 
 
+# B2: ready 模式必需的检查名(缺任一 = 不可生成可执行训练计划)
+READY_REQUIRED_CHECKS = ("gpu", "model_dir", "data_manifest", "run_snapshot")
+
+
 def run_preflight(model_dir: Path | None,
                   extra_checks: list[tuple[str, tuple[bool, str]]] | None = None,
-                  strict: bool = False) -> dict:
-    """执行全部检查。返回 {ok, exit_code, checks}。
+                  strict: bool = False,
+                  ready: bool = False) -> dict:
+    """执行全部检查。返回 {ok, ready, exit_code, checks}。
 
     strict=True(R5):模型目录与数据门禁必填,缺失即 FAIL —— 区分"诊断"与
     "训练就绪前严格门禁";任何 SKIPPED/缺失在严格模式下阻断。
+
+    ready=True(B2):训练就绪聚合 —— 只有 READY_REQUIRED_CHECKS 全部存在且
+    通过、无 UNVERIFIED 项才 ready;任一 FAIL/SKIPPED/缺失/UNVERIFIED
+    都阻止生成可执行训练计划。诊断/静态通过不等于 ready。
     """
     checks: list[dict] = []
     ok, detail = check_gpu()
     checks.append({"check": "gpu", "ok": ok, "detail": detail})
     if model_dir is not None:
-        ok2, detail2 = check_model_dir(model_dir, strict=strict)
+        ok2, detail2 = check_model_dir(model_dir, strict=strict or ready)
         checks.append({"check": "model_dir", "ok": ok2, "detail": detail2})
-    elif strict:
+    elif strict or ready:
         checks.append({"check": "model_dir", "ok": False,
-                       "detail": "严格模式必须提供 --model 模型目录"})
-    for name, (ok3, detail3) in (extra_checks or []):
-        checks.append({"check": name, "ok": ok3, "detail": detail3})
+                       "detail": "严格/ready 模式必须提供 --model 模型目录"})
+    for item in (extra_checks or []):
+        name, payload = item[0], item[1]
+        ok3, detail3 = payload[0], payload[1]
+        meta = payload[2] if len(payload) > 2 else {}
+        c = {"check": name, "ok": ok3, "detail": detail3}
+        if meta.get("unverified"):
+            c["unverified"] = meta["unverified"]
+        checks.append(c)
     # 复审 R5:data_manifest 必须真实 —— 只有名为 data_manifest 且通过的检查
     # 才算数,任何其他 extra_checks 不得冒充
     dm = [c for c in checks if c["check"] == "data_manifest" and c["ok"]]
@@ -77,4 +92,25 @@ def run_preflight(model_dir: Path | None,
                        "detail": "严格模式必须提供真实的数据门禁"
                                  "(extra_checks 中名为 data_manifest 且通过)"})
     ok_all = all(c["ok"] for c in checks)
-    return {"ok": ok_all, "exit_code": 0 if ok_all else 1, "checks": checks}
+
+    ready_ok = False
+    if ready:
+        by_name = {c["check"]: c for c in checks}
+        missing = [n for n in READY_REQUIRED_CHECKS
+                   if n not in by_name or not by_name[n]["ok"]]
+        unverified = [n for n, c in by_name.items()
+                      if c.get("unverified")]
+        if missing:
+            checks.append({"check": "ready", "ok": False,
+                           "detail": f"ready 必需检查缺失或未过: {missing}"})
+        elif unverified:
+            checks.append({"check": "ready", "ok": False,
+                           "detail": f"UNVERIFIED 项阻止 ready: {unverified}"
+                                     "(渲染/数学未验证不得装 PASS)"})
+        else:
+            checks.append({"check": "ready", "ok": True,
+                           "detail": "全部必需门禁通过,可生成可执行训练计划"})
+        ready_ok = checks[-1]["ok"]
+
+    return {"ok": ok_all, "ready": ready_ok, "exit_code":
+            0 if (ready_ok if ready else ok_all) else 1, "checks": checks}

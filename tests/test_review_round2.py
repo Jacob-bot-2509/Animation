@@ -162,3 +162,51 @@ class TestR2LicenseInherit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestB2Ready(unittest.TestCase):
+    def test_ready_missing_checks_rejected(self):
+        """B2: 缺任一必需检查(数据/快照/权重)都不 ready。"""
+        from unittest import mock
+        with mock.patch("animtrain.preflight.check_gpu",
+                        return_value=(True, "mock")):
+            r = run_preflight(None, extra_checks=[], ready=True)
+        self.assertFalse(r["ready"])
+        self.assertEqual(r["exit_code"], 1)
+
+    def test_ready_unverified_blocks(self):
+        """B2: UNVERIFIED 项必须阻止 ready,不得装 PASS。"""
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            for f in ("config.json", "tokenizer_config.json", "tokenizer.json"):
+                (p / f).write_text("{}", encoding="utf-8")
+            (p / "model.safetensors").write_bytes(b"weight")
+            with mock.patch("animtrain.preflight.check_gpu",
+                            return_value=(True, "real")):
+                r = run_preflight(p, extra_checks=[
+                    ("data_manifest", (True, "ok")),
+                    ("run_snapshot", (True, "ok")),
+                    ("code_gate", (True, "静态通过,unverified: math/render",
+                                   {"unverified": ["math", "render"]}))],
+                    ready=True)
+        self.assertFalse(r["ready"], "UNVERIFIED 项不得 ready")
+        self.assertTrue(any("UNVERIFIED" in c["detail"] for c in r["checks"]
+                            if c["check"] == "ready"))
+
+    def test_ready_only_full_gate_combo(self):
+        """B2: 唯一合成门禁组合(全通过+无 UNVERIFIED)才 ready。"""
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            for f in ("config.json", "tokenizer_config.json", "tokenizer.json"):
+                (p / f).write_text("{}", encoding="utf-8")
+            (p / "model.safetensors").write_bytes(b"weight")
+            with mock.patch("animtrain.preflight.check_gpu",
+                            return_value=(True, "real")):
+                r = run_preflight(p, extra_checks=[
+                    ("data_manifest", (True, "数据门禁通过")),
+                    ("run_snapshot", (True, "快照通过"))],
+                    ready=True)
+        self.assertTrue(r["ready"], r["checks"])
+        self.assertEqual(r["exit_code"], 0)

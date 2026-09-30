@@ -27,9 +27,25 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--manifest", default="", help="数据 manifest(附带数据门禁)")
     ap.add_argument("--strict", action="store_true",
                     help="严格模式:模型/数据门禁必填,缺失即 FAIL(训练前用)")
+    ap.add_argument("--ready", action="store_true",
+                    help="B2 训练就绪聚合:gpu/model_dir/data_manifest/run_snapshot"
+                         " 全部通过且无 UNVERIFIED 才 ready")
+    ap.add_argument("--run-id", default="",
+                    help="--ready 时必填:运行快照 run_id(校验 runs/<id>/run_record.json)")
     args = ap.parse_args(argv)
 
     extra: list[tuple[str, tuple[bool, str]]] = []
+    if args.run_id:
+        from animtrain.run_record import RunRecord, check_record  # noqa: E402
+        rp = ROOT / "runs" / args.run_id / "run_record.json"
+        if rp.exists():
+            rec = RunRecord.load(rp)
+            problems = check_record(rec)
+            extra.append(("run_snapshot",
+                          (not problems,
+                           f"run {args.run_id} 快照{'通过' if not problems else '未过: ' + '; '.join(problems[:3])}")))
+        else:
+            extra.append(("run_snapshot", (False, f"快照不存在: {rp}")))
     if args.manifest:
         mp = Path(args.manifest)
         if mp.exists():
@@ -40,12 +56,19 @@ def main(argv: list[str]) -> int:
         else:
             extra.append(("data_manifest", (False, f"manifest 不存在: {mp}")))
 
+    if args.ready and not args.run_id:
+        print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
+        return 1
     r = run_preflight(Path(args.model) if args.model else None, extra_checks=extra,
-                      strict=args.strict)
+                      strict=args.strict, ready=args.ready)
     for c in r["checks"]:
         print(f"[{'PASS' if c['ok'] else 'FAIL'}] {c['check']}: {c['detail']}")
-    print("结论:", "全部通过,可以进入后续动作" if r["ok"]
-          else "**存在 FAIL —— 禁止后续动作(训练/评测一律停止),先定位修复**")
+    if args.ready:
+        print("结论:", "READY: 可生成可执行训练计划" if r["ready"]
+              else "**NOT READY —— 禁止生成训练计划,先定位缺失项**")
+    else:
+        print("结论:", "全部通过,可以进入后续动作" if r["ok"]
+              else "**存在 FAIL —— 禁止后续动作(训练/评测一律停止),先定位修复**")
     return r["exit_code"]
 
 
