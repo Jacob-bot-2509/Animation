@@ -47,6 +47,13 @@ def render_check(code: str, python: str | None = None) -> dict:
         return {"ok": False, "status": "unverified", "detail": msg,
                 "unverified": ["render"]}
     py = python or sys.executable
+    # ffmpeg 位于项目约定目录 D:\Settings\ffmpeg\bin(用户 2026-09-30 指定)
+    ffmpeg_bin = Path(r"D:\Settings\ffmpeg\bin")
+    env = None
+    if ffmpeg_bin.is_dir():
+        import os
+        env = dict(os.environ)
+        env["PATH"] = str(ffmpeg_bin) + os.pathsep + env.get("PATH", "")
     with tempfile.TemporaryDirectory() as d:
         scene = Path(d) / "scene.py"
         scene.write_text(code, encoding="utf-8")
@@ -55,7 +62,7 @@ def render_check(code: str, python: str | None = None) -> dict:
                 [py, "-m", "manim", "-ql", "--media_dir", str(Path(d) / "out"),
                  str(scene), "ConceptScene"],
                 capture_output=True, text=True, encoding="utf-8",
-                errors="replace", timeout=RENDER_TIMEOUT_SEC)
+                errors="replace", timeout=RENDER_TIMEOUT_SEC, env=env)
         except subprocess.TimeoutExpired:
             return {"ok": False, "status": "timeout",
                     "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": []}
