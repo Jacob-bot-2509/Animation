@@ -57,6 +57,37 @@ def frozen_paths(lock_path: Path) -> set[str]:
             for e in lock.get("entries", []) if isinstance(e, dict) and "path" in e}
 
 
+def _is_freeze_lock(p: Path) -> bool:
+    """判断文件是否是冻结锁(有 freeze_lock_version 字段且 locked)。"""
+    try:
+        d = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    return isinstance(d, dict) and "freeze_lock_version" in d
+
+
+def discover_locks(roots: list[Path], max_depth: int = 4) -> list[Path]:
+    """自动发现冻结锁:在 roots 各目录及向上 max_depth 层父目录里
+    找 *.lock.json 且带 freeze_lock_version 的文件。
+
+    BR5 复验(omitted_lock):漏传 --frozen-lock 也能发现冻结标记 ——
+    写入保护不得靠调用方记得传参。
+    """
+    found: set[Path] = set()
+    for root in roots:
+        cur = root if root.is_dir() else root.parent
+        for _ in range(max_depth):
+            if cur is None or not cur.is_dir():
+                break
+            for p in cur.glob("*.lock.json"):
+                if _is_freeze_lock(p):
+                    found.add(p.resolve())
+            if cur.parent == cur:
+                break
+            cur = cur.parent
+    return sorted(found)
+
+
 def check_frozen(lock_path: Path) -> list[str]:
     """校验锁内每个文件与锁记录一致。返回问题清单(空 = 冻结完好)。
 

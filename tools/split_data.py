@@ -93,13 +93,18 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
     inputs = {pool.resolve(), plan.resolve()}
     if out_res == pool.resolve().parent:
         raise SystemExit(f"拒绝:--out 与 pool 同目录({out}),会原地覆盖池子")
-    from animtrain.freeze import check_frozen, frozen_paths  # noqa: PLC0415
+    from animtrain.freeze import (  # noqa: PLC0415 局部导入避免环
+        check_frozen, discover_locks, frozen_paths)
+    # BR5 复验(omitted_lock):自动发现冻结锁 —— 漏传 --frozen-lock
+    # 也必须在写入前发现冻结标记;显式传入的锁用于跨目录场景
+    all_locks = list(frozen_locks or [])
+    all_locks += [lk for lk in discover_locks([out, pool, plan])
+                  if lk not in all_locks]
     frozen: set[str] = set()
-    for lk in (frozen_locks or []):
-        # BR5 复验:fail closed —— 锁不存在/损坏时不得静默放行
+    for lk in all_locks:
+        # fail closed:锁不存在/损坏时不得静默放行
         if not lk.exists():
-            raise SystemExit(f"拒绝:冻结锁不存在 {lk}(fail closed,"
-                             "不可靠的锁视为写入阻断)")
+            raise SystemExit(f"拒绝:冻结锁不存在 {lk}(fail closed)")
         problems = check_frozen(lk)
         if problems:
             raise SystemExit(f"拒绝:冻结锁校验未过 {lk}: {problems[0]}"

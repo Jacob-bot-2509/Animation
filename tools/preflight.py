@@ -74,15 +74,36 @@ def main(argv: list[str]) -> int:
                               "—— ready 模式必须阻断")))
         else:
             extra.append(("data_manifest", (False, f"manifest 不存在: {mp}")))
-    # BR4: 挂 render/math 门禁(环境已就位,真实执行;未就位则 UNVERIFIED 阻断)
-    from animtrain.render_gate import check_manim_available, check_sympy_available  # noqa: E402
-    ok_manim, _ = check_manim_available()
-    ok_sympy, _ = check_sympy_available()
-    extra.append(("render_gate", (ok_manim, "渲染环境可用" if ok_manim
-                                  else "manim 未安装")))
-    extra.append(("math_gate", (ok_sympy, "SymPy 可用" if ok_sympy
-                                else "sympy 未安装")))
-
+    # BR4-b 复验:门禁必须提供**真实执行证据**,不能只查依赖存在。
+    # render_gate: 真实渲染项目内可信模板(trusted=True,已审查样例)
+    from animtrain.render_gate import render_check, math_check  # noqa: E402
+    _RENDER_SMOKE = (
+        "from manim import *\n\n\n"
+        "class ConceptScene(Scene):\n"
+        "    def construct(self):\n"
+        "        eq = MathTex(r\"x^2\")\n"
+        "        self.add(eq)\n"
+        "        self.wait(0.2)\n")
+    rr = render_check(_RENDER_SMOKE, trusted=True)
+    extra.append(("render_gate",
+                  (rr["ok"], f"真实渲染证据: {rr['status']} — {rr['detail'][:120]}")))
+    # math_gate: 真实数学断言(真命题)
+    mr = math_check("Eq(2 + 2, 4)")
+    extra.append(("math_gate",
+                  (mr["ok"], f"真实数学断言: {mr['status']} — {mr['detail'][:120]}")))
+    # freeze_gate: 发现并校验项目内的冻结锁;无冻结评测集时如实阻断
+    from animtrain.freeze import check_frozen, discover_locks  # noqa: E402
+    locks = discover_locks([ROOT / "data", ROOT], max_depth=2)
+    if locks:
+        problems = []
+        for lk in locks:
+            problems += check_frozen(lk)
+        extra.append(("freeze_gate",
+                      (not problems,
+                       f"冻结锁 {len(locks)} 个{'全过' if not problems else '未过: ' + problems[0][:120]}")))
+    else:
+        extra.append(("freeze_gate", (False,
+                      "无冻结评测集 —— 训练就绪前必须冻结 eval/test(BR4-b)")))
     if args.ready and not args.run_id:
         print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
         return 1

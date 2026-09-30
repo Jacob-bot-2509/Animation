@@ -169,3 +169,38 @@ class TestBR5FrozenWriteProtection(unittest.TestCase):
         freeze_set([p], lock)
         paths = frozen_paths(lock)
         self.assertIn(str(p.resolve()), paths)
+
+
+class TestBR5OmittedLock(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_omitted_frozen_lock_still_protected(self):
+        """BR5 复验:漏传 --frozen-lock,split 也必须自动发现冻结锁并拒绝。"""
+        import subprocess
+        import json as _json
+        from animtrain.freeze import freeze_set
+        pool = self.root / "pool.jsonl"
+        pool.write_text('{"id": "s1"}\n', encoding="utf-8")
+        plan = self.root / "plan.json"
+        plan.write_text(_json.dumps({"train": ["s1"], "eval": [], "test": []},
+                                    ensure_ascii=False), encoding="utf-8")
+        out = self.root / "o"
+        out.mkdir()
+        ev = out / "eval.jsonl"
+        ev.write_text('{"id": "frozen-e"}\n', encoding="utf-8")
+        # 锁放在 out 父目录(自动发现范围),且不传给 split
+        lock = self.root / "frozen.lock.json"
+        freeze_set([ev], lock)
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "split_data.py"),
+             "--pool", str(pool), "--plan", str(plan), "--out", str(out),
+             "--force"],  # 注意:不传 --frozen-lock
+            capture_output=True, text=True, encoding="utf-8")
+        self.assertNotEqual(r.returncode, 0, "漏传冻结锁仍改写了冻结数据")
+        self.assertEqual(ev.read_text(encoding="utf-8"), '{"id": "frozen-e"}\n',
+                         "冻结文件内容被改动")
