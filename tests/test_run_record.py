@@ -18,7 +18,8 @@ def _ok_record() -> RunRecord:
                      git_commit="abc1234", manifest_hash="f" * 64,
                      summary={"command": "test", "manifest": "data/manifest.json"},
                      metrics={"n": 0},
-                     env={"python": "3.14", "platform": "win", "gpu": "RTX"})
+                     env={"python": "3.14", "platform": "win", "gpu": "RTX"},
+                     dirty={"clean": True, "changed": []})
 
 
 class TestRunRecord(unittest.TestCase):
@@ -87,8 +88,33 @@ class TestEnvAndFailure(unittest.TestCase):
         r.metrics = {}
         self.assertTrue(any("failure_analysis" in p for p in check_record(r)))
         r.failure_analysis = {"reason": "OOM", "fix": "降 batch", "rollback": "runs/r0"}
+        r.seed = 42  # B1: baseline 必须有 seed
         self.assertEqual(check_record(r), [])
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestB1Snapshot(unittest.TestCase):
+    def test_training_kind_requires_seed(self):
+        """B1: baseline/improvement 必须有整数 seed。"""
+        r = _ok_record()
+        r.kind = "baseline"
+        self.assertTrue(any("seed" in p for p in check_record(r)))
+        r.seed = 42
+        self.assertEqual(check_record(r), [])
+
+    def test_dirty_must_be_recorded(self):
+        """B1: dirty 状态必须明确记录(clean 或变更清单)。"""
+        r = _ok_record()
+        r.dirty = {}
+        self.assertTrue(any("dirty" in p for p in check_record(r)))
+        r.dirty = {"clean": True, "changed": []}
+        self.assertEqual(check_record(r), [])
+
+    def test_dirty_with_changes_recorded(self):
+        """B1: dirty 变更清单明确记录也通过(不是拒绝,是可见)。"""
+        r = _ok_record()
+        r.dirty = {"clean": False, "changed": ["src/animtrain/validate.py"]}
+        self.assertEqual(check_record(r), [])

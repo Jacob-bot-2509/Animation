@@ -26,14 +26,18 @@ class RunRecord:
     metrics: dict = field(default_factory=dict)   # 指标(loss/通过率/…)
     env: dict = field(default_factory=dict)       # 环境(python/平台/GPU)
     failure_analysis: dict = field(default_factory=dict)  # 失败:原因/修复/回滚点
-    version: int = 2
+    seed: int | None = None                        # B1:随机种子(训练类必填)
+    dirty: dict = field(default_factory=dict)      # B1:git dirty 状态
+                                                   # {"clean": bool, "changed": [...]}
+    version: int = 3
 
     def to_dict(self) -> dict:
         return {"run_record_version": self.version, "run_id": self.run_id,
                 "kind": self.kind, "config": self.config,
                 "git_commit": self.git_commit, "manifest_hash": self.manifest_hash,
                 "summary": self.summary, "metrics": self.metrics,
-                "env": self.env, "failure_analysis": self.failure_analysis}
+                "env": self.env, "failure_analysis": self.failure_analysis,
+                "seed": self.seed, "dirty": self.dirty}
 
     @classmethod
     def from_dict(cls, d: dict) -> "RunRecord":
@@ -42,6 +46,7 @@ class RunRecord:
                    manifest_hash=d.get("manifest_hash", ""),
                    summary=d.get("summary", {}), metrics=d.get("metrics", {}),
                    env=d.get("env", {}), failure_analysis=d.get("failure_analysis", {}),
+                   seed=d.get("seed"), dirty=d.get("dirty", {}),
                    version=d.get("run_record_version", 1))
 
     def save(self, path: Path) -> None:
@@ -77,6 +82,11 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
         problems.append("manifest_hash 非空但 summary.manifest 路径缺失(fail-fast)")
     if not r.env:
         problems.append("env 快照为空(记录 python/平台/GPU,缺失 fail-fast)")
+    # B1: 训练类(baseline/improvement)必须有 seed;dirty 状态必须明确记录
+    if r.kind in ("baseline", "improvement") and not isinstance(r.seed, int):
+        problems.append(f"kind={r.kind} 必须有整数 seed(fail-fast,复现依据)")
+    if "clean" not in r.dirty:
+        problems.append("dirty 状态未记录 —— 必须明确 clean 或变更清单(B1)")
     if manifest_path is not None:
         if not manifest_path.exists():
             problems.append(f"manifest_path 指向不存在的文件: {manifest_path}"

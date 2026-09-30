@@ -49,6 +49,29 @@ def capture_env() -> dict:
     return env
 
 
+# B1: 项目目录内约定目录(虚拟环境/审查证据)不计入 dirty 变更
+_DIRTY_EXCLUDE = (".venv", ".git", "reviews")
+
+
+def git_dirty() -> dict:
+    """git dirty 状态:明确记录 clean 或变更清单(排除约定目录)。"""
+    try:
+        out = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=normal"],
+            capture_output=True, text=True, cwd=str(ROOT), encoding="utf-8")
+    except OSError:
+        return {"clean": None, "error": "git 不可用", "changed": []}
+    if out.returncode != 0:
+        return {"clean": None, "error": out.stderr.strip()[:200], "changed": []}
+    changed = []
+    for line in out.stdout.splitlines():
+        path = line[3:].strip().strip('"').replace("\\", "/")
+        if path.startswith(_DIRTY_EXCLUDE):
+            continue
+        changed.append(path)
+    return {"clean": not changed, "changed": changed}
+
+
 def file_sha256(p: Path) -> str:
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -74,7 +97,8 @@ def cmd_init(args) -> int:
                            "created_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                            "manifest": args.manifest or ""},
                   env=capture_env(),
-                  metrics=json.loads(args.metrics) if args.metrics else {})
+                  metrics=json.loads(args.metrics) if args.metrics else {},
+                  seed=args.seed, dirty=git_dirty())
     out = ROOT / "runs" / args.run_id / "run_record.json"
     # 复审 R8:先校验后落盘 —— 校验未过不得占 run_id、不得留下记录
     mp = Path(args.manifest) if args.manifest else None
@@ -137,6 +161,8 @@ def main(argv: list[str]) -> int:
     p1.add_argument("--manifest", default="")
     p1.add_argument("--command", default="", required=True)
     p1.add_argument("--metrics", default="")
+    p1.add_argument("--seed", type=int, default=None,
+                    help="随机种子(B1:baseline/improvement 必填)")
     p1.set_defaults(fn=cmd_init)
     p2 = sub.add_parser("check")
     p2.add_argument("--run-id", required=True)
