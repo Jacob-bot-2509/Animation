@@ -60,6 +60,10 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
     for k in REQUIRED_NONEMPTY:
         if not str(getattr(r, k, "")).strip():
             problems.append(f"缺少必填字段 {k}(fail-fast)")
+    from .fs_guard import valid_run_id  # 局部导入避免循环
+    if not valid_run_id(r.run_id):
+        problems.append(f"run_id 非法: {r.run_id!r}(只允许 [A-Za-z0-9_-] 1-64,"
+                        "防路径穿越)")
     if r.kind not in {"dry-run", "baseline", "improvement", "eval"}:
         problems.append(f"kind 非法: {r.kind}")
     if not r.config:
@@ -68,6 +72,11 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
         problems.append("summary.command 缺失(运行命令不可少,否则无法重放)")
     if len(r.manifest_hash) not in (0, 64):
         problems.append(f"manifest_hash 长度非法 {len(r.manifest_hash)}(应为 64 或空)")
+    # R8: hash 非空时必须带 manifest 路径;env 快照必填
+    if r.manifest_hash and not r.summary.get("manifest"):
+        problems.append("manifest_hash 非空但 summary.manifest 路径缺失(fail-fast)")
+    if not r.env:
+        problems.append("env 快照为空(记录 python/平台/GPU,缺失 fail-fast)")
     if manifest_path is not None and manifest_path.exists() and r.manifest_hash:
         actual = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
         if actual != r.manifest_hash:

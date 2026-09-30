@@ -22,6 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from animtrain.fs_guard import ensure_not_exists, valid_run_id  # noqa: E402
 from animtrain.run_record import RunRecord, check_record  # noqa: E402
 
 
@@ -57,6 +58,10 @@ def file_sha256(p: Path) -> str:
 
 
 def cmd_init(args) -> int:
+    if not valid_run_id(args.run_id):
+        print(f"run_id 非法: {args.run_id!r}(只允许 [A-Za-z0-9_-] 1-64 字符,"
+              "防路径穿越)")
+        return 1
     config = {}
     if args.config:
         cp = Path(args.config)
@@ -71,6 +76,11 @@ def cmd_init(args) -> int:
                   env=capture_env(),
                   metrics=json.loads(args.metrics) if args.metrics else {})
     out = ROOT / "runs" / args.run_id / "run_record.json"
+    try:
+        ensure_not_exists(out)  # R1: 已存在的记录拒绝覆盖(不可篡改)
+    except ValueError as exc:
+        print(f"拒绝: {exc}")
+        return 1
     r.save(out)
     problems = check_record(r)
     print(f"记录 → {out.relative_to(ROOT)}(git {r.git_commit[:8]})")

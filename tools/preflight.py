@@ -25,6 +25,8 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="", help="模型目录(存在性+关键文件)")
     ap.add_argument("--manifest", default="", help="数据 manifest(附带数据门禁)")
+    ap.add_argument("--strict", action="store_true",
+                    help="严格模式:模型/数据门禁必填,缺失即 FAIL(训练前用)")
     args = ap.parse_args(argv)
 
     extra: list[tuple[str, tuple[bool, str]]] = []
@@ -38,7 +40,8 @@ def main(argv: list[str]) -> int:
         else:
             extra.append(("data_manifest", (False, f"manifest 不存在: {mp}")))
 
-    r = run_preflight(Path(args.model) if args.model else None, extra_checks=extra)
+    r = run_preflight(Path(args.model) if args.model else None, extra_checks=extra,
+                      strict=args.strict)
     for c in r["checks"]:
         print(f"[{'PASS' if c['ok'] else 'FAIL'}] {c['check']}: {c['detail']}")
     print("结论:", "全部通过,可以进入后续动作" if r["ok"]

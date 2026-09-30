@@ -13,12 +13,25 @@ from pathlib import Path
 DEFAULT_REQUIRED = ["problem", "solution", "answer"]
 
 
-def check_fields(rows: list[dict], required: list[str] | None = None) -> list[dict]:
-    """逐行校验必填字段。返回 [{sample_id, line, missing, reason}]。"""
+def _is_missing(value) -> bool:
+    """R7:None 或空字符串才算缺失;0/False/空列表是合法值。"""
+    if value is None:
+        return True
+    if isinstance(value, str) and not value.strip():
+        return True
+    return False
+
+
+def check_fields(rows: list[dict], required: list[str] | None = None,
+                 start_line: int = 1) -> list[dict]:
+    """逐行校验必填字段。返回 [{sample_id, line, missing, reason}]。
+
+    start_line: 首行的真实源行号(R7:调用方须传真实行号,不得恒为 1)。
+    """
     required = required or DEFAULT_REQUIRED
     bad: list[dict] = []
-    for i, row in enumerate(rows, 1):
-        missing = [f for f in required if not str(row.get(f) or "").strip()]
+    for i, row in enumerate(rows, start_line):
+        missing = [f for f in required if _is_missing(row.get(f))]
         if missing:
             bad.append({"sample_id": row.get("id") or row.get("sample_id") or f"<line-{i}>",
                         "line": i, "missing": missing,
@@ -43,5 +56,5 @@ def check_jsonl(path: Path, required: list[str] | None = None) -> list[dict]:
             bad.append({"sample_id": f"<line-{i}>", "line": i, "missing": [],
                         "reason": "行不是 JSON 对象"})
             continue
-        bad += check_fields([row], required)
+        bad += check_fields([row], required, start_line=i)
     return bad

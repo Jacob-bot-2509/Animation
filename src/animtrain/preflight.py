@@ -27,26 +27,50 @@ def check_gpu() -> tuple[bool, str]:
     return True, "; ".join(lines[:2])
 
 
-def check_model_dir(model_dir: Path) -> tuple[bool, str]:
-    """模型目录存在且关键文件齐全(不下载,只检查)。"""
+WEIGHT_SUFFIXES = (".safetensors", ".bin", ".gguf", ".pt", ".pth")
+
+
+def check_model_dir(model_dir: Path, strict: bool = False) -> tuple[bool, str]:
+    """模型目录存在且关键文件齐全(不下载,只检查)。
+
+    strict=True: 还必须有实际权重文件 —— 只有空 JSON 无权重的目录
+    不得宣称就绪(审查 R5)。
+    """
     if not model_dir or not model_dir.is_dir():
         return False, f"模型目录不存在: {model_dir}"
     missing = [f for f in MODEL_KEY_FILES if not (model_dir / f).exists()]
     if missing:
         return False, f"模型目录缺关键文件: {', '.join(missing)}"
+    if strict:
+        weights = [p for p in model_dir.rglob("*")
+                   if p.is_file() and p.suffix in WEIGHT_SUFFIXES]
+        if not weights:
+            return False, (f"模型目录无权重文件({WEIGHT_SUFFIXES})——"
+                           "仅配置 JSON 不得宣称就绪")
     return True, f"模型目录齐全: {model_dir}"
 
 
 def run_preflight(model_dir: Path | None,
-                  extra_checks: list[tuple[str, tuple[bool, str]]] | None = None) -> dict:
-    """执行全部检查。返回 {ok, exit_code, checks}。"""
+                  extra_checks: list[tuple[str, tuple[bool, str]]] | None = None,
+                  strict: bool = False) -> dict:
+    """执行全部检查。返回 {ok, exit_code, checks}。
+
+    strict=True(R5):模型目录与数据门禁必填,缺失即 FAIL —— 区分"诊断"与
+    "训练就绪前严格门禁";任何 SKIPPED/缺失在严格模式下阻断。
+    """
     checks: list[dict] = []
     ok, detail = check_gpu()
     checks.append({"check": "gpu", "ok": ok, "detail": detail})
     if model_dir is not None:
-        ok2, detail2 = check_model_dir(model_dir)
+        ok2, detail2 = check_model_dir(model_dir, strict=strict)
         checks.append({"check": "model_dir", "ok": ok2, "detail": detail2})
+    elif strict:
+        checks.append({"check": "model_dir", "ok": False,
+                       "detail": "严格模式必须提供 --model 模型目录"})
     for name, (ok3, detail3) in (extra_checks or []):
         checks.append({"check": name, "ok": ok3, "detail": detail3})
+    if strict and not extra_checks:
+        checks.append({"check": "data_manifest", "ok": False,
+                       "detail": "严格模式必须提供 --manifest 数据门禁"})
     ok_all = all(c["ok"] for c in checks)
     return {"ok": ok_all, "exit_code": 0 if ok_all else 1, "checks": checks}

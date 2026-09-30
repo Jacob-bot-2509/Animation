@@ -1,0 +1,44 @@
+{
+  "name": "split-split-output",
+  "version": 1,
+  "generated_at": "2026-09-30 01:14:15",
+  "policy": "split 产物清单;train/eval/test 与 rejected 分离;输入 pool/plan 见各 entry.notes",
+  "entries": [
+    {
+      "path": "train.jsonl",
+      "sha256": "62a774ff71a7c1b4094249f03aeacd32337ab70023bbd1b45a61666118ef64b2",
+      "size": 12,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\plan.json",
+      "license": "internal-generated",
+      "split": "train",
+      "notes": "由 split_data 生成: train.jsonl"
+    },
+    {
+      "path": "eval.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\plan.json",
+      "license": "internal-generated",
+      "split": "eval",
+      "notes": "由 split_data 生成: eval.jsonl"
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\plan.json",
+      "license": "internal-generated",
+      "split": "test",
+      "notes": "由 split_data 生成: test.jsonl"
+    },
+    {
+      "path": "rejected.jsonl",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size": 2,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-sync\\fixtures\\plan.json",
+      "license": "internal-generated",
+      "split": "raw",
+      "notes": "由 split_data 生成: rejected.jsonl"
+    }
+  ]
+}

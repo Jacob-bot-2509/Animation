@@ -26,6 +26,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from animtrain.fs_guard import ensure_not_exists  # noqa: E402
+
 
 def load_pool(pool: Path) -> tuple[dict[str, str], list[dict]]:
     """返回 (id → 原始行, 重复/坏行记录)。"""
@@ -51,7 +53,8 @@ def load_pool(pool: Path) -> tuple[dict[str, str], list[dict]]:
     return by_id, bad
 
 
-def split(pool: Path, plan: Path, out: Path, dry_run: bool) -> dict:
+def split(pool: Path, plan: Path, out: Path, dry_run: bool,
+          force: bool = False) -> dict:
     by_id, bad = load_pool(pool)
     plan_obj = json.loads(plan.read_text(encoding="utf-8"))
     rejects = list(bad)
@@ -82,6 +85,13 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool) -> dict:
     if dry_run:
         return {"dry_run": True, **summary}
 
+    # R1 写保护:输出目录不得与池子同目录(会原地覆盖 pool),已有输出默认拒绝
+    out_res = out.resolve()
+    if out_res == pool.resolve().parent:
+        raise SystemExit(f"拒绝:--out 与 pool 同目录({out}),会原地覆盖池子")
+    for f in ("train.jsonl", "eval.jsonl", "test.jsonl", "rejected.jsonl",
+              "split_manifest.json"):
+        ensure_not_exists(out / f, force=force)
     out.mkdir(parents=True, exist_ok=True)
     for split_name, lines in split_rows.items():
         (out / f"{split_name}.jsonl").write_text(
@@ -90,16 +100,28 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool) -> dict:
     (out / "rejected.jsonl").write_text(
         "\n".join(json.dumps(x, ensure_ascii=False) for x in rejects) + "\n",
         encoding="utf-8")
-    # split manifest:输出清单含每个文件 sha256(可重放的依据)
-    manifest = {"split_manifest_version": 1, **summary, "files": {}}
+    # R2: split manifest 用标准 Manifest v1 格式 —— Manifest.load 可直接读,
+    # data_check 可直接校验;entries 登记输出文件并标正确 split。
+    entries = []
     for f in ("train.jsonl", "eval.jsonl", "test.jsonl", "rejected.jsonl"):
-        p = out / f
-        manifest["files"][f] = {
-            "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
-            "size": p.stat().st_size}
+        fp = out / f
+        if not fp.exists():
+            continue
+        entries.append({"path": f,
+                        "sha256": hashlib.sha256(fp.read_bytes()).hexdigest(),
+                        "size": fp.stat().st_size,
+                        "source": f"split:pool={pool} plan={plan}",
+                        "license": "internal-generated",
+                        "split": f.removesuffix(".jsonl") if f != "rejected.jsonl" else "raw",
+                        "notes": f"由 split_data 生成: {f}"})
+    manifest = {"name": f"split-{out.name}", "version": 1,
+                "generated_at": summary["generated_at"],
+                "policy": "split 产物清单;train/eval/test 与 rejected 分离;"
+                          "输入 pool/plan 见各 entry.notes",
+                "entries": entries}
     (out / "split_manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    return manifest
+    return {**summary, "split_manifest": "标准 Manifest v1 格式" }
 
 
 def main(argv: list[str]) -> int:
@@ -108,14 +130,17 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--plan", required=True, help="ID 清单 JSON")
     ap.add_argument("--out", required=True, help="输出目录")
     ap.add_argument("--dry-run", action="store_true", help="只算分配不写文件")
+    ap.add_argument("--force", action="store_true", help="允许覆盖已存在输出(默认拒绝)")
     args = ap.parse_args(argv)
-    r = split(Path(args.pool), Path(args.plan), Path(args.out), args.dry_run)
+    r = split(Path(args.pool), Path(args.plan), Path(args.out), args.dry_run,
+              force=args.force)
     if r.get("dry_run"):
         print("dry-run:", json.dumps({k: v for k, v in r.items() if k != "dry_run"},
                                      ensure_ascii=False))
     else:
         print(json.dumps({"counts": r["counts"], "rejected": r["rejected"],
-                          "files": list(r["files"])}, ensure_ascii=False))
+                          "split_manifest": r["split_manifest"]},
+                         ensure_ascii=False))
     return 0
 
 

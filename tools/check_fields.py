@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.fields import check_jsonl  # noqa: E402
+from animtrain.fs_guard import ensure_not_exists  # noqa: E402
 
 
 def main(argv: list[str]) -> int:
@@ -24,6 +25,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--required", default="problem,solution,answer",
                     help="必填字段(逗号分隔)")
     ap.add_argument("--report", default="", help="缺失报告输出路径(可选)")
+    ap.add_argument("--force", action="store_true", help="允许覆盖已存在报告")
     args = ap.parse_args(argv)
 
     required = [f.strip() for f in args.required.split(",") if f.strip()]
@@ -34,6 +36,7 @@ def main(argv: list[str]) -> int:
     if len(bad) > 20:
         print(f"  …共 {len(bad)} 行,其余见报告文件")
     if args.report:
+        ensure_not_exists(Path(args.report), force=args.force)
         Path(args.report).write_text(
             json.dumps({"required": required, "bad": bad}, ensure_ascii=False, indent=2),
             encoding="utf-8")

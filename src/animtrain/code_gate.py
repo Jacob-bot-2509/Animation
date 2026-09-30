@@ -28,6 +28,11 @@ DANGEROUS_ATTRS = {"os.system", "os.popen", "os.spawn", "os.remove", "os.rmdir",
 DANGEROUS_NAMES = {"eval", "exec", "__import__", "open", "input", "compile",
                    "globals", "locals", "breakpoint"}
 
+# Imported builtins and from-import aliases use the same deny list.
+DANGEROUS_QUALIFIED = DANGEROUS_ATTRS | {
+    f"builtins.{name}" for name in DANGEROUS_NAMES
+}
+
 # LaTeX 家族(中文进这些必失败);Text/MarkupText 走 Pango 支持中文
 LATEX_CALLS = {"MathTex", "Tex", "Title", "BulletedList", "DecimalNumber",
                "Integer", "Matrix", "Table"}
@@ -48,21 +53,46 @@ def check_dangerous(code: str) -> list[str]:
     except SyntaxError:
         return []  # 语法错误由 check_syntax 报,这里不重复
     out: list[str] = []
+    # R6: 收集 import 别名(import os as operating / from os import system as s),
+    # 别名调用必须与原名同等检出 —— 只查原名会被别名绕过。
+    alias: dict[str, str] = {}  # 局部名 → 完整名
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for a in node.names:
-                if a.name.split(".")[0] in DANGEROUS_IMPORTS:
-                    out.append(f"危险导入: import {a.name} (line {node.lineno})")
+                root = a.name.split(".")[0]
+                local = a.asname or root
+                alias[local] = a.name
+                if root in DANGEROUS_IMPORTS:
+                    out.append(f"危险导入: import {a.name}"
+                               f"{' as ' + a.asname if a.asname else ''}"
+                               f" (line {node.lineno})")
         elif isinstance(node, ast.ImportFrom):
-            if node.module and node.module.split(".")[0] in DANGEROUS_IMPORTS:
-                out.append(f"危险导入: from {node.module} import … (line {node.lineno})")
-        elif isinstance(node, ast.Call):
-            if isinstance(node.func, ast.Name) and node.func.id in DANGEROUS_NAMES:
-                out.append(f"危险调用: {node.func.id}() (line {node.lineno})")
+            mod = node.module or ""
+            root = mod.split(".")[0]
+            for a in node.names:
+                local = a.asname or a.name
+                alias[local] = f"{mod}.{a.name}"
+            if root in DANGEROUS_IMPORTS:
+                out.append(f"危险导入: from {mod} import … (line {node.lineno})")
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            if isinstance(node.func, ast.Name):
+                if node.func.id in DANGEROUS_NAMES:
+                    out.append(f"危险调用: {node.func.id}() (line {node.lineno})")
+                elif (alias.get(node.func.id, node.func.id) in DANGEROUS_QUALIFIED
+                      or alias.get(node.func.id, node.func.id).split(".")[0]
+                      in DANGEROUS_IMPORTS):
+                    out.append(f"危险调用: 别名 {node.func.id}() → "
+                               f"{alias[node.func.id]} (line {node.lineno})")
             elif isinstance(node.func, ast.Attribute):
                 chain = _attr_chain(node.func)
-                if chain in DANGEROUS_ATTRS:
-                    out.append(f"危险调用: {chain} (line {node.lineno})")
+                # 别名解析:operating.system → os.system
+                first = chain.split(".")[0]
+                resolved = alias.get(first, first) + chain[len(first):]
+                if resolved in DANGEROUS_QUALIFIED or chain in DANGEROUS_QUALIFIED:
+                    out.append(f"危险调用: {chain}"
+                               f"{' → ' + resolved if resolved != chain else ''}"
+                               f" (line {node.lineno})")
     return out
 
 
@@ -119,7 +149,11 @@ def check_api(code: str, whitelist: dict | None) -> list[str]:
 def check_code_all(code: str, whitelist: dict | None = None) -> dict:
     problems = (check_syntax(code) + check_dangerous(code)
                 + check_latex_cjk(code) + check_api(code, whitelist))
+    # R6: 数学正确性/真实渲染未在本环境验证 —— 如实标注,不得宣称通过
+    unverified = ["math_correctness", "render_success"]
     return {"ok": not problems, "problems": problems,
+            "unverified": unverified,
+            "note": "math/render 未验证(无渲染环境),宣称'通过'仅指语法/安全/白名单层",
             "exit_code": 1 if problems else 0}
 
 

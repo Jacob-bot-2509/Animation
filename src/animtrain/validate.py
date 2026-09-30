@@ -55,6 +55,20 @@ def _load_sample_ids(path: Path) -> set[str]:
     return ids
 
 
+def _find_bad_json_lines(path: Path) -> list[tuple[int, str]]:
+    """JSONL 里解析失败的行号与错误(R3:坏样本可定位)。"""
+    import json as _json
+    bad: list[tuple[int, str]] = []
+    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            _json.loads(line)
+        except _json.JSONDecodeError as exc:
+            bad.append((i, str(exc)))
+    return bad
+
+
 def validate_manifest(m: Manifest, root: Path,
                       near_dup_threshold: float = NEAR_DUP_THRESHOLD) -> dict:
     """对 manifest 与磁盘执行全部检查。返回 {ok, n_entries, problems,
@@ -70,7 +84,13 @@ def validate_manifest(m: Manifest, root: Path,
     seen_file_hashes: dict[str, str] = {}  # sha256 → 先登记的 path
 
     for e in m.entries:
+        # R3: entry.path 不得越出根目录(防 ../ 逃逸);resolve 后必须仍在 root 内
         p = (root / e.path).resolve()
+        try:
+            p.relative_to(root.resolve())
+        except ValueError:
+            problems.append(f"{e.path}: 路径越出根目录(../ 逃逸),拒绝读取")
+            continue
         # 1. 文件存在
         if not p.exists():
             problems.append(f"{e.path}: 文件不存在")
@@ -78,10 +98,13 @@ def validate_manifest(m: Manifest, root: Path,
         if not p.is_file():
             problems.append(f"{e.path}: 不是常规文件")
             continue
-        # 2. SHA256
-        if e.sha256 and p.suffix.lower() in {".jsonl", ".json", ".parquet", ".py",
-                                              ".txt", ".md", ".zip", ".html", ".js",
-                                              ".css", ".svg"}:
+        # 2. SHA256(数据文件必填;空 = 未校验,不得默认通过)
+        is_data = e.split in ("train", "eval", "test")
+        if not e.sha256:
+            if is_data:
+                quarantines.append(f"{e.path}: 数据文件缺少 SHA256 → quarantine,"
+                                   "不得默认通过")
+        else:
             actual = sha256_file(p)
             if actual != e.sha256:
                 problems.append(f"{e.path}: SHA256 不一致(登记 {e.sha256[:12]}…,"
@@ -92,28 +115,42 @@ def validate_manifest(m: Manifest, root: Path,
                                 "文件内容完全相同(文件 hash 重叠=0 要求)")
             else:
                 seen_file_hashes[actual] = e.path
-        # 3. 许可证(空 → quarantine)
+        # 3. 许可证与来源(空 → quarantine,数据文件不得默认通过)
         if not e.license:
             quarantines.append(f"{e.path}: 许可证未标注 → quarantine,禁入训练")
-        # 4. 样本集合(供重叠检查)
+        if not e.source:
+            quarantines.append(f"{e.path}: 来源未标注 → quarantine,不得默认通过")
+        # 4. 样本集合(供重叠检查);train 数据行的坏 JSON 也要检出
         if e.split == "train":
             train_hashes |= _load_sample_hashes(p, e)
             train_ids |= _load_sample_ids(p)
+            bad_lines = _find_bad_json_lines(p)
+            for ln, exc in bad_lines:
+                problems.append(f"{e.path}:{ln} JSON 解析失败: {exc}")
         elif e.split in ("eval", "test"):
             eval_test_entries.append((e, p))
 
-    # 5. 精确重叠:评测/测试样本不得出现在训练集(内容哈希 + ID 字段双重)
-    for e, p in eval_test_entries:
+    # 5. 精确重叠:三个集合两两检查(R4:不能只与 train 比,eval 与 test 之间
+    #    同 ID/同内容同样必须检出)。内容哈希 + ID 字段双重。
+    split_sets: dict[str, tuple[set[str], set[str]]] = {}  # split → (hashes, ids)
+    for e in m.entries:
+        p = (root / e.path).resolve()
+        if e.split not in ("train", "eval", "test") or not p.exists():
+            continue
         if p.suffix not in _DATA_SUFFIXES:
             continue
-        overlap = _load_sample_hashes(p, e) & train_hashes
-        if overlap:
-            problems.append(f"{e.path}: 与训练集精确重叠 {len(overlap)} 个样本"
+        h, ids = split_sets.setdefault(e.split, (set(), set()))
+        h |= _load_sample_hashes(p, e)
+        ids |= _load_sample_ids(p)
+    for a, b in (("train", "eval"), ("train", "test"), ("eval", "test")):
+        ha, ia = split_sets.get(a, (set(), set()))
+        hb, ib = split_sets.get(b, (set(), set()))
+        if ha & hb:
+            problems.append(f"{a} 与 {b} 精确重叠 {len(ha & hb)} 个样本"
                             "(零容忍,前项目 20/20 污染教训)")
-        id_overlap = _load_sample_ids(p) & train_ids
-        if id_overlap:
-            problems.append(f"{e.path}: 与训练集 ID 重叠 {len(id_overlap)} 个"
-                            f"({sorted(id_overlap)[:5]}) —— 内容不同但 ID 相同也不行")
+        if ia & ib:
+            problems.append(f"{a} 与 {b} ID 重叠 {len(ia & ib)} 个"
+                            f"({sorted(ia & ib)[:5]}) —— 内容不同但 ID 相同也不行")
 
     # 6. 近重复门禁(5-gram Jaccard ≥ 阈值,可配置):评测/测试样本不得是
     #    训练样本的改措辞/换数字版本。前项目标准;仅精确重叠不够。
@@ -143,4 +180,6 @@ def validate_manifest(m: Manifest, root: Path,
     return {"ok": not problems and not quarantines,
             "n_entries": len(m.entries),
             "problems": problems, "quarantines": quarantines,
+            "near_dup_threshold": near_dup_threshold,
+            "near_dup_calibrated": False,  # UNCALIBRATED:0.7 待真实数据对照实验
             "exit_code": 1 if problems else (2 if quarantines else 0)}

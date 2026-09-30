@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from animtrain.fs_guard import ensure_not_exists  # noqa: E402
 from animtrain.manifest import Manifest  # noqa: E402
 
 
@@ -42,6 +43,7 @@ def main(argv: list[str]) -> int:
         e.source = args.source
         e.license = args.license
     out = Path(args.out)
+    ensure_not_exists(out, force=args.force)
     out.parent.mkdir(parents=True, exist_ok=True)
     m.save(out)
     print(f"manifest → {out}({len(m.entries)} 条;source/license 为命令行统一值,"

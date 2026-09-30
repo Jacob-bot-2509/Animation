@@ -16,7 +16,9 @@ from animtrain.run_record import RunRecord, check_record  # noqa: E402
 def _ok_record() -> RunRecord:
     return RunRecord(run_id="r1", kind="dry-run", config={"a": 1},
                      git_commit="abc1234", manifest_hash="f" * 64,
-                     summary={"command": "test"}, metrics={"n": 0})
+                     summary={"command": "test", "manifest": "data/manifest.json"},
+                     metrics={"n": 0},
+                     env={"python": "3.14", "platform": "win", "gpu": "RTX"})
 
 
 class TestRunRecord(unittest.TestCase):
@@ -29,7 +31,7 @@ class TestRunRecord(unittest.TestCase):
 
     def test_missing_fields_fail_fast(self):
         """msg_101-5:缺 config/git_commit/manifest_hash → fail-fast。"""
-        for drop in ("config", "git_commit", "manifest_hash", "summary"):
+        for drop in ("config", "git_commit", "manifest_hash", "summary", "env"):
             r = _ok_record()
             if drop == "config":
                 r.config = {}
@@ -37,6 +39,8 @@ class TestRunRecord(unittest.TestCase):
                 r.git_commit = ""
             elif drop == "manifest_hash":
                 r.manifest_hash = ""
+            elif drop == "env":
+                r.env = {}
             else:
                 r.summary = {}
             problems = check_record(r)
@@ -68,8 +72,13 @@ class TestRunRecord(unittest.TestCase):
 class TestEnvAndFailure(unittest.TestCase):
     def test_env_recorded(self):
         r = _ok_record()
-        r.env = {"python": "3.14", "platform": "win", "gpu": "RTX"}
         self.assertEqual(check_record(r), [])
+
+    def test_empty_env_fails(self):
+        """R8: 空 env 必须 fail-fast。"""
+        r = _ok_record()
+        r.env = {}
+        self.assertTrue(any("env" in p for p in check_record(r)))
 
     def test_failure_without_analysis_flagged(self):
         """msg_101-7:失败不留无因失败。"""
