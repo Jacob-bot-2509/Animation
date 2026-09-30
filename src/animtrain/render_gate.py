@@ -18,7 +18,11 @@ import tempfile
 from pathlib import Path
 
 RENDER_TIMEOUT_SEC = 300
-RENDER_MEM_MB = 2048  # 尽力而为(Windows 下由系统管理,记录在案)
+RENDER_MEM_MB = 2048  # 目标值;当前未实施(Windows 下需 job objects,待接入)
+
+# BR6 隔离状态(如实,不宣称):
+#   shell=False ✓  超时 ✓  内存限制 ✗  文件系统隔离 ✗  网络隔离 ✗
+# 不可信生成代码的执行须等隔离就位;可信固定样例的渲染可先行。
 
 
 def check_manim_available() -> tuple[bool, str]:
@@ -72,9 +76,10 @@ def render_check(code: str, python: str | None = None) -> dict:
     if proc.returncode != 0:
         return {"ok": False, "status": "failed",
                 "detail": f"渲染失败(退出码 {proc.returncode}): "
-                          f"{(proc.stderr or '')[-500:]}", "unverified": []}
+                          f"{(proc.stderr or '')[-500:]}", "unverified": [],
+                "isolation": _isolation_state()}
     return {"ok": True, "status": "rendered",
-            "detail": "渲染成功", "unverified": []}
+            "detail": "渲染成功", "unverified": [], "isolation": _isolation_state()}
 
 
 # BR2 数学断言契约:
@@ -87,6 +92,16 @@ MATH_EXPR_MAX_LEN = 200
 _MATH_FORBIDDEN = ("import", "__", "exec", "eval", "open", "compile",
                    "globals", "locals", "vars", "getattr", "setattr",
                    "delattr", "breakpoint", "input")
+
+
+def _isolation_state() -> dict:
+    """BR6 隔离状态如实报告(调用方必须检查后再宣称安全执行)。"""
+    return {"shell": False, "timeout_sec": RENDER_TIMEOUT_SEC,
+            "memory_limit_mb": None,  # 未实施(Windows job objects 待接入)
+            "fs_isolation": False,    # 未实施
+            "network_isolation": False,  # 未实施
+            "note": "当前隔离不完整:仅禁 shell + 超时;不可信生成代码的"
+                    "执行须等 fs/network/memory 隔离就位(BR6)"}
 
 
 def math_check(expr: str) -> dict:
