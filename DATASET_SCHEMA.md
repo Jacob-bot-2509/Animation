@@ -36,9 +36,9 @@
 ## 4. license 语义(白名单 + 内部研究使用)
 
 - 白名单:apache-2.0 / mit / internal-generated / cc-by-sa-4.0。
-- `Internal-Research-Use-Only`(当前 64 条全部如此):**仅限内部研究使用,
-  不是公开再分发许可证**;白名单外一律 quarantine,证据由用户确认,
-  不得假装满足 Apache/MIT/CC。
+- `Internal-Research-Use-Only`(当前 63 条全部如此):**仅限内部研究使用,
+  不公开分发,后续转正**。用户已于 2026-10-02 确认该语义,故列入白名单;
+  它不代表满足 Apache/MIT/CC,数据公开前必须先转正为真实许可证。
 - 白名单外的其他值 → 硬伤(未声明语义)。
 
 ## 5. LaTeX 规则(只报告,不改写数学语义)

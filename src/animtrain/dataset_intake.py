@@ -26,8 +26,11 @@ from .atomic_write import atomic_write_text
 from .fields import _is_missing  # noqa: F401  (与字段校验同一缺失语义)
 from .fs_guard import ensure_not_exists
 
-# 许可证白名单(与 manifest/validate 契约一致);内部研究使用不是公开再分发许可
-LICENSE_WHITELIST = {"apache-2.0", "mit", "internal-generated", "cc-by-sa-4.0"}
+# 许可证白名单(与 manifest/validate 契约一致)。
+# Internal-Research-Use-Only:用户确认(2026-10-02)仅内部研究使用、不公开分发、
+# 后续转正 —— 见 DATASET_SCHEMA.md §4;不代表满足 Apache/MIT/CC。
+LICENSE_WHITELIST = {"apache-2.0", "mit", "internal-generated", "cc-by-sa-4.0",
+                     "Internal-Research-Use-Only"}
 INTERNAL_LICENSE = "Internal-Research-Use-Only"
 
 # 关键字段(缺失/空 → 硬伤);answer 是判分字段(缺失 → quarantine 候选语义)
@@ -116,17 +119,12 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
         quarantines.append(f"line {line}: 可选元数据缺/空: {', '.join(empty_meta)}"
                            f"(id={sid},candidate 语义)")
 
-    # 4. license:白名单外 → quarantine;Internal 值单独说明语义
+    # 4. license:白名单外且未声明语义 → 硬伤。白名单含用户已确认的
+    #    Internal-Research-Use-Only(见模块头注释与 DATASET_SCHEMA.md §4)。
     lic = record.get("license")
-    if not _is_missing(lic):
-        if str(lic).strip() not in LICENSE_WHITELIST:
-            if str(lic).strip() == INTERNAL_LICENSE:
-                quarantines.append(f"line {line}: license={INTERNAL_LICENSE} "
-                                   f"仅限内部研究使用,不是公开再分发许可证"
-                                   f"(id={sid},证据待用户确认)")
-            else:
-                problems.append(f"line {line}: license={lic!r} 不在白名单且"
-                                f"未声明语义(id={sid})")
+    if not _is_missing(lic) and str(lic).strip() not in LICENSE_WHITELIST:
+        problems.append(f"line {line}: license={lic!r} 不在白名单且"
+                        f"未声明语义(id={sid})")
 
     # 5. LaTeX:公式内中文(硬伤)+ 疑似漏反斜杠(quarantine,只报不改)
     def _check_text(text: str, field: str) -> None:

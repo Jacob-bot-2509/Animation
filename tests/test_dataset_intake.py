@@ -180,12 +180,14 @@ class TestFieldChecks(unittest.TestCase):
 
 
 class TestLicenseSemantics(unittest.TestCase):
-    def test_internal_license_is_quarantine(self):
-        """P0#4: Internal-Research-Use-Only 不是公开再分发许可证。"""
+    def test_internal_license_accepted_user_confirmed(self):
+        """P0#4: Internal-Research-Use-Only 用户已确认(2026-10-02)仅内部研究
+        使用、不公开分发、后续转正 → 列入白名单不再 quarantine;语义记录在
+        DATASET_SCHEMA.md §4,不代表满足 Apache/MIT/CC。"""
         rec = clean_record(license="Internal-Research-Use-Only")
-        _, quarantines = check_record(rec, 1)
-        self.assertTrue(any("不是公开再分发许可证" in q for q in quarantines),
-                        quarantines)
+        problems, quarantines = check_record(rec, 1)
+        self.assertEqual(problems, [])
+        self.assertEqual(quarantines, [])
 
     def test_unknown_license_is_problem(self):
         rec = clean_record(license="whatever-v1")

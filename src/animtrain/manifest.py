@@ -14,7 +14,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 MANIFEST_VERSION = 1
-ALLOWED_LICENSES = {"apache-2.0", "mit", "internal-generated", "cc-by-sa-4.0"}
+ALLOWED_LICENSES = {"apache-2.0", "mit", "internal-generated", "cc-by-sa-4.0",
+                    # 用户确认(2026-10-02):仅内部研究使用,不公开分发,后续转正。
+                    # 语义见 DATASET_SCHEMA.md §4;不是 Apache/MIT/CC 的替代品。
+                    "Internal-Research-Use-Only"}
 ALLOWED_SPLITS = {"raw", "train", "eval", "test"}
 
 # 可校验内容的文件类型;其余文件(如 README/配置)只登记不校验
