@@ -70,6 +70,8 @@ def convert_array_to_jsonl(src: Path, dst: Path, force: bool = False) -> dict:
     原文件只读不写;dst 已存在且未 --force → 拒绝覆盖。内容不做任何清洗。
     返回 {"n_records": int, "dst": str}。失败抛 ValueError/OSError。
     """
+    if src.resolve() == dst.resolve():
+        raise ValueError("拒绝覆盖转换输入文件，--force 不能绕过原文件只读保护")
     try:
         records = json.loads(src.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -108,6 +110,27 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     missing = [f for f in REQUIRED_INTAKE if _is_missing(record.get(f))]
     if missing:
         problems.append(f"line {line}: 缺关键字段 {', '.join(missing)}(id={sid})")
+
+    # 1.5 DI3 结构类型(A3 复审):id 只允许 str/int 标量;problem/solution/answer
+    #     必须为字符串;scene_spec 必须是含 objects/steps 两列表的对象
+    rid = record.get("id")
+    if not _is_missing(rid) and (isinstance(rid, bool)
+                                 or not isinstance(rid, (str, int))):
+        problems.append(f"line {line}: id 类型非法({type(rid).__name__}),"
+                        f"仅允许 str/int(id={rid!r})")
+    for f in ("problem", "solution"):
+        v = record.get(f)
+        if not _is_missing(v) and not isinstance(v, str):
+            problems.append(f"line {line}: {f} 不是字符串({type(v).__name__})")
+    ans = record.get("answer")
+    if not _is_missing(ans) and not isinstance(ans, str):
+        problems.append(f"line {line}: answer 不是字符串({type(ans).__name__})")
+    spec = record.get("scene_spec")
+    if not _is_missing(spec) and (not isinstance(spec, dict)
+                                  or not isinstance(spec.get("objects"), list)
+                                  or not isinstance(spec.get("steps"), list)):
+        problems.append(f"line {line}: scene_spec 结构非法"
+                        "(需 objects/steps 两列表)")
 
     # 2. answer(判分字段):缺 → quarantine,不得假绿
     if _is_missing(record.get("answer")):
@@ -194,13 +217,15 @@ def check_intake_file(path) -> dict:
     quarantines: list[str] = []
     records: list[tuple[int, dict]] = []
     categories: dict[str, int] = {}
+    id_lines: dict[str, list[int]] = {}  # DI2: 合法标量 id → 行号(供跨文件查重)
 
     def _finish() -> dict:
         ok = not problems and not quarantines
         status = "rejected" if problems else ("candidate" if quarantines else "clean")
         return {"file": str(p), "n_records": len(records),
                 "categories": categories, "problems": problems,
-                "quarantines": quarantines, "ok": ok, "status": status,
+                "quarantines": quarantines, "id_lines": id_lines,
+                "ok": ok, "status": status,
                 "exit_code": 1 if problems else (2 if quarantines else 0)}
 
     if not p.exists():
@@ -231,9 +256,16 @@ def check_intake_file(path) -> dict:
         cat = obj.get("category")
         if isinstance(cat, str) and cat.strip():
             categories[cat] = categories.get(cat, 0) + 1
+        sid = obj.get("id")
+        if (isinstance(sid, (str, int)) and not isinstance(sid, bool)
+                and not (isinstance(sid, str) and not sid.strip())):
+            id_lines.setdefault(str(sid), []).append(line_no)
         p2, q2 = check_record(obj, line_no)
         problems += p2
         quarantines += q2
+    # DI1: 空 JSONL/无有效样本行 → 硬伤(空样本入口不得 ok=true)
+    if not records:
+        problems.append(f"{p.name}: 没有有效样本行(空 JSONL/空输入不得 ok=true)")
     problems += check_duplicate_ids(records)
     return _finish()
 
@@ -251,7 +283,13 @@ def _group(messages: list[str]) -> dict[str, tuple[int, list[str]]]:
 
 def intake_report(paths) -> dict:
     """多文件汇总。返回 {n_records, categories, problems, quarantines,
-    problem_groups, quarantine_groups, ok, status, exit_code}。"""
+    problem_groups, quarantine_groups, ok, status, exit_code}。
+    DI1: 空输入列表 → 硬伤;DI2: 跨文件同 ID → 硬伤(全局 ID 唯一,零容忍)。"""
+    if not paths:
+        return {"n_records": 0, "categories": {}, "problems": ["未提供任何输入文件"],
+                "quarantines": [], "problem_groups": {},
+                "quarantine_groups": {}, "ok": False, "status": "rejected",
+                "exit_code": 1}
     reports = [check_intake_file(p) for p in paths]
     cats: dict[str, int] = {}
     for r in reports:
@@ -259,6 +297,18 @@ def intake_report(paths) -> dict:
             cats[c] = cats.get(c, 0) + n
     problems = [f"{Path(r['file']).name}: {x}" for r in reports for x in r["problems"]]
     quarantines = [f"{Path(r['file']).name}: {x}" for r in reports for x in r["quarantines"]]
+    # DI2: 跨文件同 ID(同文件内的重复/冲突由 check_duplicate_ids 报)
+    global_ids: dict[str, list[str]] = {}
+    for r in reports:
+        for sid, lines in r.get("id_lines", {}).items():
+            for ln in lines:
+                global_ids.setdefault(sid, []).append(
+                    f"{Path(r['file']).name}:{ln}")
+    for sid, locs in sorted(global_ids.items()):
+        files = {loc.split(":")[0] for loc in locs}
+        if len(files) > 1:
+            problems.append(f"id={sid} 跨文件重复({', '.join(locs)}):"
+                            "全局 ID 唯一性,跨文件零容忍")
     n = sum(r["n_records"] for r in reports)
     ok = not problems and not quarantines
     status = "rejected" if problems else ("candidate" if quarantines else "clean")

@@ -100,6 +100,8 @@ def cmd_report(args) -> int:
           f"quarantine {len(rep['quarantines'])} | status={rep['status']}")
     out = Path(args.out)
     try:
+        if out.resolve() in {Path(f).resolve() for f in args.files}:
+            raise ValueError("拒绝报告覆盖任一输入文件，--force 不能绕过输入保护")
         ensure_not_exists(out, force=args.force)
         out.write_text(_render_report(rep), encoding="utf-8")
     except (OSError, ValueError) as exc:

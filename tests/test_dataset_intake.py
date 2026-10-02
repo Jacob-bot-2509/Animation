@@ -263,5 +263,92 @@ class TestIntakeFileAndReport(unittest.TestCase):
             self.assertEqual(rep["status"], "clean")
 
 
+class TestDI1EmptyInput(unittest.TestCase):
+    """msg_159 A3-DI1:空 JSONL/空输入列表不得 clean(空清单不得 ok=true)。"""
+
+    def test_empty_jsonl_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "empty.jsonl"
+            p.write_text("", encoding="utf-8")
+            rep = check_intake_file(p)
+            self.assertEqual(rep["status"], "rejected")
+            self.assertEqual(rep["exit_code"], 1)
+            self.assertTrue(any("没有有效样本行" in x for x in rep["problems"]))
+
+    def test_blank_lines_only_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "blank.jsonl"
+            p.write_text("\n\n  \n", encoding="utf-8")
+            rep = check_intake_file(p)
+            self.assertEqual(rep["status"], "rejected")
+
+    def test_intake_report_empty_paths_rejected(self):
+        rep = intake_report([])
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["status"], "rejected")
+        self.assertEqual(rep["n_records"], 0)
+
+
+class TestDI2CrossFileIds(unittest.TestCase):
+    """msg_159 A3-DI2:跨文件同 ID → 硬伤(全局 ID 唯一,零容忍)。"""
+
+    def test_cross_file_duplicate_id_detected(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            write_jsonl(d / "a.jsonl", [clean_record(id="dup")])
+            write_jsonl(d / "b.jsonl", [clean_record(id="dup", problem="另一题")])
+            rep = intake_report([d / "a.jsonl", d / "b.jsonl"])
+            self.assertEqual(rep["status"], "rejected")
+            self.assertTrue(any("跨文件重复" in x for x in rep["problems"]), rep)
+
+    def test_same_id_same_file_not_cross_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            write_jsonl(d / "a.jsonl", [clean_record(id="x")])
+            write_jsonl(d / "b.jsonl", [clean_record(id="y")])
+            rep = intake_report([d / "a.jsonl", d / "b.jsonl"])
+            self.assertEqual(rep["status"], "clean")
+
+
+class TestDI3StructureTypes(unittest.TestCase):
+    """msg_159 A3-DI3:容器/结构类型非法必须报,不得 clean。"""
+
+    def test_id_container_rejected(self):
+        rec = clean_record()
+        rec["id"] = ["not-scalar"]
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("id 类型非法" in p for p in problems), problems)
+
+    def test_problem_container_rejected(self):
+        rec = clean_record()
+        rec["problem"] = ["不是字符串"]
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("problem 不是字符串" in p for p in problems), problems)
+
+    def test_solution_container_rejected(self):
+        rec = clean_record()
+        rec["solution"] = {"x": 1}
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("solution 不是字符串" in p for p in problems), problems)
+
+    def test_answer_container_rejected(self):
+        rec = clean_record()
+        rec["answer"] = [1, 2]
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("answer 不是字符串" in p for p in problems), problems)
+
+    def test_scene_spec_wrong_shape_rejected(self):
+        rec = clean_record()
+        rec["scene_spec"] = {"wrong": "shape"}
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("scene_spec 结构非法" in p for p in problems), problems)
+
+    def test_scene_spec_objects_steps_required(self):
+        rec = clean_record()
+        rec["scene_spec"] = {"objects": ["a"]}  # 缺 steps
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("scene_spec 结构非法" in p for p in problems), problems)
+
+
 if __name__ == "__main__":
     unittest.main()
