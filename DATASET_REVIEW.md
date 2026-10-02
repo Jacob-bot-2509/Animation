@@ -18,9 +18,6 @@
 ## 待补齐(quarantine,candidate 语义)
 
 - license=Internal-Research-Use-Only 仅限内部研究使用,不是公开再分发许可证(id=…)(×63)
-- scene_spec 疑似漏反斜杠(\arctan 等): $\left[arctan x \right]_0^b = \arctan b$(×1)
-- scene_spec 疑似漏反斜杠(\arctan 等): $lim_{b\to +\infty} \arctan b = arctan b = \frac{\pi}{2}$(×1)
-- solution 疑似漏反斜杠(\infty(应写作 +\infty)): $\lim_{b\to +infty}\arctan b = \frac{\pi}{2}$(×1)
 
 ## 仍需用户确认的项
 
