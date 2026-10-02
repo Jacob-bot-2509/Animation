@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.dataset_intake import (  # noqa: E402
-    check_intake_file, convert_array_to_jsonl, intake_report)
+    _assert_not_frozen, check_intake_file, convert_array_to_jsonl, intake_report)
 from animtrain.fs_guard import ensure_not_exists  # noqa: E402
 
 
@@ -99,6 +99,10 @@ def cmd_report(args) -> int:
     try:
         if out.resolve() in {Path(f).resolve() for f in args.files}:
             raise ValueError("拒绝报告覆盖任一输入文件，--force 不能绕过输入保护")
+        if out.name.endswith(".lock.json"):
+            raise ValueError("A7 冻结保护:拒绝覆盖冻结锁文件(*.lock.json),"
+                             "--force 不能绕过")
+        _assert_not_frozen(out)
         ensure_not_exists(out, force=args.force)
         out.write_text(_render_report(rep), encoding="utf-8")
     except (OSError, ValueError) as exc:

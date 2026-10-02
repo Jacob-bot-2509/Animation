@@ -341,13 +341,13 @@ class TestDI3StructureTypes(unittest.TestCase):
         rec = clean_record()
         rec["scene_spec"] = {"wrong": "shape"}
         problems, _ = check_record(rec, 1)
-        self.assertTrue(any("scene_spec 结构非法" in p for p in problems), problems)
+        self.assertTrue(any("非空字符串列表" in p for p in problems), problems)
 
     def test_scene_spec_objects_steps_required(self):
         rec = clean_record()
         rec["scene_spec"] = {"objects": ["a"]}  # 缺 steps
         problems, _ = check_record(rec, 1)
-        self.assertTrue(any("scene_spec 结构非法" in p for p in problems), problems)
+        self.assertTrue(any("非空字符串列表" in p for p in problems), problems)
 
 
 if __name__ == "__main__":

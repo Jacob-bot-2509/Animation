@@ -42,7 +42,8 @@ class TestR3SecondRead(unittest.TestCase):
         import animtrain.validate as validation
 
         allowed_root = self.root / "scope"
-        train = _mk(allowed_root, "train/a.jsonl", '{"id":"t1"}\n')
+        train = _mk(allowed_root, "train/a.jsonl",
+                    '{"id":"t1","problem":"p","solution":"s"}\n')
         outside = _mk(self.root, "outside.jsonl", '{"id":"outside"}\n')
         self.assertEqual((allowed_root / "../outside.jsonl").resolve(),
                          outside.resolve())

@@ -15,10 +15,14 @@
 """
 from __future__ import annotations
 
+import json as _json
 from pathlib import Path
 
-from .manifest import Manifest, sample_content_hash, schema_issues, sha256_file
+from .manifest import (Manifest, canonical_problem_hash, canonical_problem_text,
+                       sample_content_hash, schema_issues, sha256_file)
 from .near_dup import ShingleIndex, THRESHOLD as NEAR_DUP_THRESHOLD
+
+from .fields import _is_missing  # noqa: E402  A6:与入场检查同一缺失语义
 
 # 训练/评测数据按行读的样本集合;只对可哈希后缀生效
 _DATA_SUFFIXES = {".jsonl", ".json"}
@@ -36,8 +40,10 @@ def _load_lines(path: Path) -> list[str]:
 
 
 def _load_sample_hashes(path: Path, entry) -> set[str]:
-    """JSONL/JSON 文件的样本级内容哈希集合。非行格式返回空集(如实,不伪造)。"""
-    return {sample_content_hash(l) for l in _load_lines(path)}
+    """A8:样本级防泄漏身份哈希——只取核心正文(problem 优先,缺则 solution),
+    规范化后哈希;ID/来源/类别/风格等元数据不参与,同题不同解/不同 id 同哈希。
+    非行格式返回空集(如实,不伪造)。"""
+    return {canonical_problem_hash(l) for l in _load_lines(path)}
 
 
 def _find_bad_json_lines(path: Path) -> list[tuple[int, str]]:
@@ -151,6 +157,7 @@ def validate_manifest(m: Manifest, root: Path,
     train_ids: set[str] = set()
     eval_test_entries = []
     seen_file_hashes: dict[str, str] = {}  # sha256 → 先登记的 path
+    split_id_locs: dict[str, dict[str, list[str]]] = {}  # A6: split → id → 位置
     approved: list[tuple] = []  # (entry, path) —— 只有通过全部前置检查的
                                 # 才进入后续阶段;被拒路径绝不二次读取(复审 R3)
 
@@ -174,10 +181,10 @@ def validate_manifest(m: Manifest, root: Path,
         #     train/eval/test 一律拒绝(可定位问题);manifest/config 的 JSON
         #     不是数据 split,不受影响。理由:.json 整文件无行级样本语义,
         #     结构/ID 检查无法逐样本定位。
-        if is_data and p.suffix == ".json":
+        if is_data and p.suffix != ".jsonl":
             problems.append(f"{e.path}: 数据格式仅支持 JSONL(.jsonl);"
-                            f".json 注册为 {e.split} 不被接受 —— 请转 JSONL 或"
-                            "改 split 为 raw(A1 格式边界)")
+                            f"{p.suffix or '(无扩展名)'} 注册为 {e.split} 不被接受"
+                            " —— 请转 JSONL 或改 split 为 raw(A1 格式边界)")
             continue
         # 2. SHA256(数据文件必填;空 = 未校验,不得默认通过)
         if not e.sha256:
@@ -215,6 +222,25 @@ def validate_manifest(m: Manifest, root: Path,
                                 "标量),结构非法(A1)")
             for ln, why in _find_invalid_id_lines(p):
                 problems.append(f"{e.path}:{ln} ID 非法: {why}(A1)")
+            # A6:统一入口门禁——空样本入口、仅{id}缺核心正文、同 split 内重复 ID
+            lines = _load_lines(p)
+            if not lines:
+                problems.append(f"{e.path}: 数据文件为空(空样本入口不得 ok=true)")
+            for i, line in enumerate(lines, 1):
+                try:
+                    obj = _json.loads(line)
+                except _json.JSONDecodeError:
+                    continue
+                if not isinstance(obj, dict):
+                    continue
+                if _is_missing(obj.get("problem")) or _is_missing(obj.get("solution")):
+                    problems.append(f"{e.path}:{i} 样本缺核心正文字段 problem/solution"
+                                    "(A6:仅 id 的样本不得通过)")
+                sid = obj.get("id")
+                if (isinstance(sid, (str, int)) and not isinstance(sid, bool)
+                        and not (isinstance(sid, str) and not sid.strip())):
+                    split_id_locs.setdefault(e.split, {}).setdefault(
+                        str(sid), []).append(f"{e.path}:{i}")
         # 5. 样本集合(供重叠检查);仅通过以上全部检查的 entry 进入
         if e.split == "train":
             train_hashes |= _load_sample_hashes(p, e)
@@ -224,8 +250,15 @@ def validate_manifest(m: Manifest, root: Path,
             eval_test_entries.append((e, p))
             approved.append((e, p))
 
+    # 4.5 A6:同一 split 内 ID 必须唯一(同文件/跨文件都查,入口门禁统一)
+    for sp, by_id in split_id_locs.items():
+        for sid, locs in sorted(by_id.items()):
+            if len(locs) > 1:
+                problems.append(f"{sp} 内 ID 重复: id={sid}({', '.join(locs)})"
+                                "(A6:同集合样本 ID 必须唯一)")
+
     # 5. 精确重叠:三个集合两两检查(R4:不能只与 train 比,eval 与 test 之间
-    #    同 ID/同内容同样必须检出)。内容哈希 + ID 字段双重。
+    #    同 ID/同内容同样必须检出)。内容哈希(A8 核心正文身份) + ID 字段双重。
     split_sets: dict[str, tuple[set[str], set[str]]] = {}  # split → (hashes, ids)
     for e, p in approved:
         if e.split not in ("train", "eval", "test"):
@@ -253,12 +286,13 @@ def validate_manifest(m: Manifest, root: Path,
             if e.split != "train":
                 continue
             for i, line in enumerate(_load_lines(p)):
-                near_idx.add(line, {"path": e.path, "line": i})
+                # A8:对核心正文规范化文本做 shingle,元数据不参与相似度
+                near_idx.add(canonical_problem_text(line), {"path": e.path, "line": i})
         for e, p in eval_test_entries:
             if p.suffix not in _DATA_SUFFIXES:
                 continue
             for i, line in enumerate(_load_lines(p)):
-                sim, hit = near_idx.max_sim(line)
+                sim, hit = near_idx.max_sim(canonical_problem_text(line))
                 if sim >= near_dup_threshold:
                     problems.append(
                         f"{e.path}:{i + 1} 与训练样本近重复(5-gram Jaccard "

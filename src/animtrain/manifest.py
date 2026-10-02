@@ -97,6 +97,33 @@ def sample_content_hash(line: str) -> str:
     return sha256_text(line.strip())
 
 
+def canonical_problem_text(line: str) -> str:
+    """A8:防泄漏核心正文规范化——problem 优先(缺则 solution,再缺回退整行);
+    仅折叠空白,不改写数学语义。ID/来源/类别/风格等元数据不参与。"""
+    import re as _re
+
+    try:
+        obj = json.loads(line)
+    except json.JSONDecodeError:
+        return _re.sub(r"\s+", " ", line.strip())
+    text = None
+    if isinstance(obj, dict):
+        for key in ("problem", "solution"):
+            v = obj.get(key)
+            if isinstance(v, str) and v.strip():
+                text = v
+                break
+    if text is None:
+        return _re.sub(r"\s+", " ", line.strip())
+    return _re.sub(r"\s+", " ", text.strip())
+
+
+def canonical_problem_hash(line: str) -> str:
+    """A8:防泄漏身份哈希 = canonical_problem_text 的 SHA256。
+    同题不同解/不同 id/不同元数据 → 同哈希;不同题不同哈希。"""
+    return sha256_text(canonical_problem_text(line))
+
+
 def schema_issues(m: Manifest) -> list[str]:
     """schema 级检查:manifest 结构本身是否合法。"""
     out: list[str] = []

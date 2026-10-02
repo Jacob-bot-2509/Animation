@@ -33,8 +33,9 @@ class TestValidate(unittest.TestCase):
     def test_clean_manifest_passes(self):
         train = self.root / "train" / "a.jsonl"
         ev = self.root / "eval" / "b.jsonl"
-        _write(train, '{"id": "t1"}\n{"id": "t2"}\n')
-        _write(ev, '{"id": "e1"}\n')
+        _write(train, '{"id": "t1", "problem": "p1", "solution": "s1"}\n'
+                      '{"id": "t2", "problem": "p2", "solution": "s2"}\n')
+        _write(ev, '{"id": "e1", "problem": "p3", "solution": "s3"}\n')
         m = Manifest(name="t", entries=[
             Entry(path="train/a.jsonl", sha256=sha256_file(train),
                   size=train.stat().st_size,
@@ -64,7 +65,7 @@ class TestValidate(unittest.TestCase):
     def test_missing_license_quarantined(self):
         """msg_101-1 数据合约:quarantine 不默认通过。"""
         p = self.root / "train" / "a.jsonl"
-        _write(p, '{"id": "t1"}\n')
+        _write(p, '{"id": "t1", "problem": "p1", "solution": "s1"}\n')
         m = Manifest(name="t", entries=[
             Entry(path="train/a.jsonl", sha256=sha256_file(p),
                   size=p.stat().st_size,

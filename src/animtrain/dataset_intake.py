@@ -24,6 +24,7 @@ from pathlib import Path
 
 from .atomic_write import atomic_write_text
 from .fields import _is_missing  # noqa: F401  (与字段校验同一缺失语义)
+from .freeze import discover_locks, frozen_paths
 from .fs_guard import ensure_not_exists
 
 # 许可证白名单(与 manifest/validate 契约一致)。
@@ -50,6 +51,20 @@ _RENDER_RISK_PATTERNS = [
 ]
 
 
+def _assert_not_frozen(dst: Path) -> None:
+    """A7:写前冻结保护。目标被有效 *.lock.json 冻结 → 拒绝(--force 不绕过);
+    范围内发现可疑锁(坏 JSON/无冻结字段)→ fail-closed 拒绝写入。"""
+    valid, suspicious = discover_locks([dst.parent])
+    if suspicious:
+        raise ValueError("A7 冻结保护:范围内存在无法识别的 *.lock.json"
+                         f"({suspicious[0].name}),fail-closed 拒绝写入")
+    target = str(dst.resolve())
+    for lock in valid:
+        if target in frozen_paths(lock):
+            raise ValueError(f"A7 冻结保护:目标已被冻结锁 {lock.name} 覆盖,"
+                             "拒绝写入(--force 不能绕过)")
+
+
 def detect_json_array(path: Path) -> bool:
     """整文件是否为 JSON 数组(待转换格式)。解析失败/非数组返回 False。"""
     try:
@@ -72,6 +87,7 @@ def convert_array_to_jsonl(src: Path, dst: Path, force: bool = False) -> dict:
     """
     if src.resolve() == dst.resolve():
         raise ValueError("拒绝覆盖转换输入文件，--force 不能绕过原文件只读保护")
+    _assert_not_frozen(dst)
     try:
         records = json.loads(src.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -125,12 +141,27 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     ans = record.get("answer")
     if not _is_missing(ans) and not isinstance(ans, str):
         problems.append(f"line {line}: answer 不是字符串({type(ans).__name__})")
+    # G4 类型契约:category/sub_category/source 必须为字符串
+    for f in ("category", "sub_category", "source"):
+        v = record.get(f)
+        if not _is_missing(v) and not isinstance(v, str):
+            problems.append(f"line {line}: {f} 不是字符串({type(v).__name__})")
     spec = record.get("scene_spec")
-    if not _is_missing(spec) and (not isinstance(spec, dict)
-                                  or not isinstance(spec.get("objects"), list)
-                                  or not isinstance(spec.get("steps"), list)):
-        problems.append(f"line {line}: scene_spec 结构非法"
-                        "(需 objects/steps 两列表)")
+    if not _is_missing(spec):
+        if not isinstance(spec, dict):
+            problems.append(f"line {line}: scene_spec 结构非法"
+                            "(需含 objects/steps 的对象)")
+        else:
+            # G4:objects/steps 必须为非空字符串列表(空列表/[null]/[false] 不通过)
+            bad_keys = []
+            for k in ("objects", "steps"):
+                v = spec.get(k)
+                if (not isinstance(v, list) or not v
+                        or any(not isinstance(x, str) or not x.strip() for x in v)):
+                    bad_keys.append(k)
+            if bad_keys:
+                problems.append(f"line {line}: scene_spec.{'/'.join(bad_keys)} "
+                                "必须为非空字符串列表(G4 类型契约)")
 
     # 2. answer(判分字段):缺 → quarantine,不得假绿
     if _is_missing(record.get("answer")):
