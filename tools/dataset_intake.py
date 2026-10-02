@@ -36,20 +36,17 @@ def cmd_convert(args) -> int:
 
 
 def cmd_check(args) -> int:
-    worst = 0
-    for f in args.files:
-        r = check_intake_file(f)
-        print(f"{r['file']}: 条目 {r['n_records']} | "
-              f"problems {len(r['problems'])} | quarantine {len(r['quarantines'])}"
-              f" | status={r['status']}")
-        for p in r["problems"]:
-            print(f"  [FAIL] {p}")
-        for q in r["quarantines"][:10]:
-            print(f"  [QUARANTINE] {q}")
-        if len(r["quarantines"]) > 10:
-            print(f"  …quarantine 共 {len(r['quarantines'])} 条,汇总见 report")
-        worst = max(worst, r["exit_code"])
-    return worst
+    r = intake_report(args.files)
+    print(f"文件 {len(args.files)} | 条目 {r['n_records']} | "
+          f"problems {len(r['problems'])} | quarantine {len(r['quarantines'])}"
+          f" | status={r['status']}")
+    for p in r["problems"]:
+        print(f"  [FAIL] {p}")
+    for q in r["quarantines"][:10]:
+        print(f"  [QUARANTINE] {q}")
+    if len(r["quarantines"]) > 10:
+        print(f"  …quarantine 共 {len(r['quarantines'])} 条,汇总见 report")
+    return r["exit_code"]
 
 
 def _render_report(rep: dict) -> str:

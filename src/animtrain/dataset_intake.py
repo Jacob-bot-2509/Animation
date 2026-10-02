@@ -298,16 +298,17 @@ def intake_report(paths) -> dict:
     problems = [f"{Path(r['file']).name}: {x}" for r in reports for x in r["problems"]]
     quarantines = [f"{Path(r['file']).name}: {x}" for r in reports for x in r["quarantines"]]
     # DI2: 跨文件同 ID(同文件内的重复/冲突由 check_duplicate_ids 报)
-    global_ids: dict[str, list[str]] = {}
+    global_ids: dict[str, list[tuple[str, int]]] = {}
     for r in reports:
+        file_id = str(Path(r["file"]).resolve())
         for sid, lines in r.get("id_lines", {}).items():
             for ln in lines:
-                global_ids.setdefault(sid, []).append(
-                    f"{Path(r['file']).name}:{ln}")
+                global_ids.setdefault(sid, []).append((file_id, ln))
     for sid, locs in sorted(global_ids.items()):
-        files = {loc.split(":")[0] for loc in locs}
+        files = {file_id for file_id, _ in locs}
         if len(files) > 1:
-            problems.append(f"id={sid} 跨文件重复({', '.join(locs)}):"
+            locations = ", ".join(f"{file_id}:{ln}" for file_id, ln in locs)
+            problems.append(f"id={sid} 跨文件重复({locations}):"
                             "全局 ID 唯一性,跨文件零容忍")
     n = sum(r["n_records"] for r in reports)
     ok = not problems and not quarantines
