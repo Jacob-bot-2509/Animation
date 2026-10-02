@@ -73,6 +73,6 @@
 - **candidate ≠ 已验收训练集**:入场检查 clean 只说明数据契约通过,
   manifest 生成只登记事实,均不代表数据已验收。
 - 当前审查结果见 DATASET_REVIEW.md(63 条:数学分析 19、概率论 9、
-  解析几何 11、高等代数 23;入场检查 clean)。
+  解析几何 12、高等代数 23;入场检查 clean)。
 - 等待 Harness 对修正后 63 条跑出新结果后,再决定 split / freeze /
   preflight READY;在此之前保持 candidate/UNVERIFIED 语义。
