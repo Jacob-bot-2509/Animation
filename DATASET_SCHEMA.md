@@ -7,10 +7,11 @@
 
 ## 1. 样本入口:只接受 JSONL
 
-- 正式样本入口要求 **JSONL:一行一个 JSON 对象**(train/eval/test 的样本语义
-  按行定位)。
-- **JSON 数组整文件是"待转换"格式**,入场检查直接拒绝(硬伤),不得被误当
-  正式样本通过。
+- **正式样本入口只有 JSONL**:一行一个 JSON 对象(train/eval/test 的样本
+  语义按行定位)。当前正式输入为 `data/v1/raw/*.jsonl`(62 条)。
+- `dataset_*.json`(项目根目录)仅为**原始数组容器/待转换**,不得作为
+  train/eval/test 入口;入场检查对 JSON 数组直接拒绝(硬伤)。
+- **JSON 数组整文件是"待转换"格式**,不得被误当正式样本通过。
 - 转换路径:`tools/dataset_intake.py convert <数组.json> <输出.jsonl>`
   —— 内容零清洗、原文件只读、默认拒绝覆盖已有输出(显式 --force 才覆盖)。
 
@@ -36,7 +37,7 @@
 ## 4. license 语义(白名单 + 内部研究使用)
 
 - 白名单:apache-2.0 / mit / internal-generated / cc-by-sa-4.0。
-- `Internal-Research-Use-Only`(当前 63 条全部如此):**仅限内部研究使用,
+- `Internal-Research-Use-Only`(当前 62 条全部如此):**仅限内部研究使用,
   不公开分发,后续转正**。用户已于 2026-10-02 确认该语义,故列入白名单;
   它不代表满足 Apache/MIT/CC,数据公开前必须先转正为真实许可证。
 - 白名单外的其他值 → 硬伤(未声明语义)。
@@ -59,15 +60,19 @@
 
 ## 7. scene_spec 契约与动画验证状态(P1#7)
 
-- scene_spec 必须含 **objects / steps** 两列表(当前 64 条均齐备)。
+- scene_spec 必须含 **objects / steps** 两列表(当前 62 条均齐备),
+  但它只是**设计稿**,不是已验证动画。
 - `code` / `render_status` / `code_sha256` 缺失 = **动画未验证**;
-  状态如实标 **candidate(候选)**,不得宣称动画已验证、不得假绿。
+  状态如实标 **candidate/UNVERIFIED(候选)**,不得宣称动画已验证、不得假绿。
 - 验证后状态才可升级:code 过 render_gate、render_status=verified、
   code_sha256 登记。
 
 ## 8. 状态语义
 
 - 入场检查状态:clean(无问题)/ candidate(有 quarantine)/ rejected(有硬伤)。
-- **candidate ≠ 已验收**:进正式 manifest 前仍需用户确认(license 证据、
-  ID 修复、answer 补齐、元数据与 LaTeX 修正)。
-- 当前审查结果见 DATASET_REVIEW.md(状态:rejected,3 硬伤 + 87 待补齐)。
+- **candidate ≠ 已验收训练集**:入场检查 clean 只说明数据契约通过,
+  manifest 生成只登记事实,均不代表数据已验收。
+- 当前审查结果见 DATASET_REVIEW.md(62 条:数学分析 19、概率论 9、
+  解析几何 11、高等代数 23;入场检查 clean)。
+- 等待 Harness 对修正后 62 条跑出新结果后,再决定 split / freeze /
+  preflight READY;在此之前保持 candidate/UNVERIFIED 语义。
