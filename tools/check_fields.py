@@ -44,6 +44,15 @@ def main(argv: list[str]) -> int:
     except (OSError, UnicodeError, ValueError) as exc:
         print(f"[FAIL] 输入或报告路径错误: {exc}")
         return 1
+    # A6:空 JSONL(无任何样本行)不得通过——与 manifest/入场检查同口径
+    try:
+        n_lines = sum(1 for l in source.read_text(encoding="utf-8").splitlines()
+                      if l.strip())
+    except OSError:
+        n_lines = 0
+    if n_lines == 0:
+        print("[FAIL] 输入为空 JSONL(空样本入口不得通过)")
+        return 1
     print(f"必填字段 {required} | 缺失 {len(bad)} 行")
     for b in bad[:20]:
         print(f"  {b['sample_id']} (line {b['line']}): {b['reason']}")

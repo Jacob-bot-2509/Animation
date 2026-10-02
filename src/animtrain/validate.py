@@ -88,6 +88,12 @@ def _find_non_object_lines(path: Path) -> list[int]:
     return out
 
 
+def _record_id(obj: dict):
+    """A6:统一 ID 提取语义——优先 id,缺则 sample_id(legacy 别名)。
+    所有 ID 流程(重叠/去重/定位)必须用同一提取,避免别名冲突漏检。"""
+    return obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+
+
 def _load_sample_ids(path: Path) -> set[str]:
     """JSONL 样本的 ID 字段(id/sample_id)集合;异常行用可定位标记。
 
@@ -106,7 +112,7 @@ def _load_sample_ids(path: Path) -> set[str]:
         if not isinstance(obj, dict):  # null / 数组 / 标量 → 非对象,结构化标记
             ids.add("<non-object>")
             continue
-        sid = obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+        sid = _record_id(obj)
         if sid is None or (isinstance(sid, str) and not sid.strip()):
             ids.add("<no-id>")
         elif isinstance(sid, bool):
@@ -133,7 +139,7 @@ def _find_invalid_id_lines(path: Path) -> list[tuple[int, str]]:
             continue
         if not isinstance(obj, dict):
             continue
-        sid = obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+        sid = _record_id(obj)
         if sid is None or (isinstance(sid, str) and not sid.strip()):
             out.append((i, "缺 ID 或仅空白"))
         elif isinstance(sid, bool) or not isinstance(sid, (str, int)):
@@ -236,7 +242,14 @@ def validate_manifest(m: Manifest, root: Path,
                 if _is_missing(obj.get("problem")) or _is_missing(obj.get("solution")):
                     problems.append(f"{e.path}:{i} 样本缺核心正文字段 problem/solution"
                                     "(A6:仅 id 的样本不得通过)")
-                sid = obj.get("id")
+                elif not isinstance(obj.get("problem"), str) \
+                        or not isinstance(obj.get("solution"), str):
+                    problems.append(f"{e.path}:{i} 核心正文字段类型非法"
+                                    "(A6:problem/solution 必须为字符串)")
+                if _is_missing(obj.get("answer")):
+                    quarantines.append(f"{e.path}:{i} 缺 answer"
+                                       "(A6:与入场检查同口径,候选数据待补齐)")
+                sid = _record_id(obj)
                 if (isinstance(sid, (str, int)) and not isinstance(sid, bool)
                         and not (isinstance(sid, str) and not sid.strip())):
                     split_id_locs.setdefault(e.split, {}).setdefault(

@@ -24,7 +24,7 @@ from pathlib import Path
 
 from .atomic_write import atomic_write_text
 from .fields import _is_missing  # noqa: F401  (与字段校验同一缺失语义)
-from .freeze import discover_locks, frozen_paths
+from .freeze import check_frozen, discover_locks, frozen_paths
 from .fs_guard import ensure_not_exists
 
 # 许可证白名单(与 manifest/validate 契约一致)。
@@ -52,15 +52,26 @@ _RENDER_RISK_PATTERNS = [
 
 
 def _assert_not_frozen(dst: Path) -> None:
-    """A7:写前冻结保护。目标被有效 *.lock.json 冻结 → 拒绝(--force 不绕过);
-    范围内发现可疑锁(坏 JSON/无冻结字段)→ fail-closed 拒绝写入。"""
+    """写前保护锁本身与冻结目标；坏锁拒绝写入，force 不绕过。"""
+    resolved = dst.resolve()
+    if any(p.name.lower().endswith(".lock.json") for p in (dst, resolved)):
+        raise ValueError("A7 冻结保护:拒绝写入冻结锁路径(*.lock.json)，--force 不能绕过")
     valid, suspicious = discover_locks([dst.parent])
     if suspicious:
         raise ValueError("A7 冻结保护:范围内存在无法识别的 *.lock.json"
                          f"({suspicious[0].name}),fail-closed 拒绝写入")
-    target = str(dst.resolve())
+    target = str(resolved)
     for lock in valid:
-        if target in frozen_paths(lock):
+        try:
+            problems = check_frozen(lock)
+            if problems:
+                raise ValueError(f"A7 冻结保护:锁 {lock.name} 无效或已变化，"
+                                 f"fail-closed 拒绝写入: {problems[0]}")
+            covered = frozen_paths(lock)
+        except (OSError, UnicodeError, KeyError, TypeError, AttributeError) as exc:
+            raise ValueError(f"A7 冻结保护:锁 {lock.name} 结构无效，"
+                             "fail-closed 拒绝写入") from exc
+        if target in covered:
             raise ValueError(f"A7 冻结保护:目标已被冻结锁 {lock.name} 覆盖,"
                              "拒绝写入(--force 不能绕过)")
 
@@ -172,6 +183,17 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     if empty_meta:
         quarantines.append(f"line {line}: 可选元数据缺/空: {', '.join(empty_meta)}"
                            f"(id={sid},candidate 语义)")
+    # 3.5 B7 类型契约:可选元数据存在时必须是正确类型
+    for f in ("function_family", "visual_style"):
+        v = record.get(f)
+        if not _is_missing(v) and not isinstance(v, str):
+            problems.append(f"line {line}: {f} 不是字符串({type(v).__name__})")
+    et = record.get("efficiency_tags")
+    if not _is_missing(et) and (not isinstance(et, list)
+                                or any(not isinstance(x, str) or not x.strip()
+                                       for x in et)):
+        problems.append(f"line {line}: efficiency_tags 必须为非空字符串列表"
+                        "(B7 类型契约)")
 
     # 4. license:白名单外且未声明语义 → 硬伤。白名单含用户已确认的
     #    Internal-Research-Use-Only(见模块头注释与 DATASET_SCHEMA.md §4)。

@@ -131,6 +131,38 @@ class TestA6UnifiedEntryGate(unittest.TestCase):
             r = validate_manifest(make_manifest(root, [("a.jsonl", "train")]), root)
             self.assertTrue(any("ID 重复" in p for p in r["problems"]), r)
 
+    def test_problem_wrong_type_rejected(self):
+        """A6 残余反例:非空但类型错误的核心正文必须拒绝。"""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "a.jsonl").write_text(
+                '{"id": "a", "problem": ["p"], "solution": "s", "answer": "1"}\n',
+                encoding="utf-8")
+            r = validate_manifest(make_manifest(root, [("a.jsonl", "train")]), root)
+            self.assertTrue(any("类型非法" in p for p in r["problems"]), r)
+
+    def test_answer_missing_quarantined_at_manifest(self):
+        """A6 残余反例:answer=null 在 manifest 层与入场检查同口径 → quarantine。"""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "a.jsonl").write_text(
+                '{"id": "a", "problem": "p", "solution": "s"}\n', encoding="utf-8")
+            r = validate_manifest(make_manifest(root, [("a.jsonl", "train")]), root)
+            self.assertTrue(any("缺 answer" in q for q in r["quarantines"]), r)
+            self.assertFalse(r["ok"])
+            self.assertEqual(r["exit_code"], 2)
+
+    def test_sample_id_alias_duplicate_rejected(self):
+        """A6 残余反例:仅 sample_id(legacy 别名)的重复也必须检出。"""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "a.jsonl").write_text(
+                '{"sample_id": "dup", "problem": "p1", "solution": "s1", "answer": "1"}\n'
+                '{"sample_id": "dup", "problem": "p2", "solution": "s2", "answer": "2"}\n',
+                encoding="utf-8")
+            r = validate_manifest(make_manifest(root, [("a.jsonl", "train")]), root)
+            self.assertTrue(any("ID 重复" in p for p in r["problems"]), r)
+
 
 class TestA8CanonicalHash(unittest.TestCase):
     """G3:防泄漏身份哈希只看核心正文,元数据不参与。"""
@@ -182,6 +214,37 @@ class TestG4TypeContract(unittest.TestCase):
         rec = clean_record(source={"x": 1})
         problems, _ = check_record(rec, 1)
         self.assertTrue(any("source 不是字符串" in p for p in problems), problems)
+
+
+class TestB7OptionalMetaTypes(unittest.TestCase):
+    def test_function_family_container_rejected(self):
+        rec = clean_record(function_family=["多项式"])
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("function_family 不是字符串" in p for p in problems),
+                        problems)
+
+    def test_visual_style_container_rejected(self):
+        rec = clean_record(visual_style={"x": 1})
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("visual_style 不是字符串" in p for p in problems),
+                        problems)
+
+    def test_efficiency_tags_bad_item_rejected(self):
+        rec = clean_record(efficiency_tags=["ok", None])
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("efficiency_tags" in p for p in problems), problems)
+
+    def test_check_fields_cli_empty_jsonl_fails(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "empty.jsonl").write_text("", encoding="utf-8")
+            out = subprocess.run(
+                [sys.executable, "-X", "utf8",
+                 str(ROOT / "tools" / "check_fields.py"), "--jsonl",
+                 str(d / "empty.jsonl")],
+                capture_output=True, encoding="utf-8", errors="replace")
+            self.assertEqual(out.returncode, 1, out.stdout + out.stderr)
+            self.assertIn("空", out.stdout)
 
 
 if __name__ == "__main__":

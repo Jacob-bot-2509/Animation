@@ -31,7 +31,8 @@ class TestCliContracts(unittest.TestCase):
             env={**os.environ, "PYTHONIOENCODING":"utf-8", "PYTHONDONTWRITEBYTECODE":"1"})
 
     def test_make_manifest_main_uses_supplied_argv(self):
-        self.write("data/train/a.jsonl", '{"id":"a","problem":"p","solution":"s"}\n')
+        self.write("data/train/a.jsonl",
+                   '{"id":"a","problem":"p","solution":"s","answer":"1"}\n')
         out = self.root / "data/manifest.json"
         with patch.object(sys, "argv", ["unrelated-program"]):
             result = make_manifest.main(["--dir",str(out.parent),"--out",str(out),
