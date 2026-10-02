@@ -18,7 +18,6 @@
 ## 硬伤(problems,必须修复)
 
 - **dataset_calc.jsonl: line 6: scene_spec 数学公式内出现中文(TeX 无 CJK,渲染必失败): $S_{\triangle OAB} < S_{扇形 OAB} < S_{\tri$**
-- **dataset_calc.jsonl: id=calc-series-018 在行 17, 18 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名**
 - **dataset_geom.jsonl: id=geom-024 在行 5, 6 整条重复(内容完全相同);真实数据由用户确认后去重,不得静默改名**
 
 ## 待补齐(quarantine,candidate 语义)
@@ -27,15 +26,9 @@
 - scene_spec 疑似漏反斜杠(\arctan 等): $\left[arctan x \right]_0^b = \arctan b$(×1)
 - scene_spec 疑似漏反斜杠(\arctan 等): $lim_{b\to +\infty} \arctan b = arctan b = \frac{\pi}{2}$(×1)
 - solution 疑似漏反斜杠(\infty(应写作 +\infty)): $\lim_{b\to +infty}\arctan b = \frac{\pi}{2}$(×1)
-- 可选元数据缺/空: function_family(id=…)(×1)
-- 可选元数据缺/空: function_family, visual_style, efficiency_tags(id=…)(×14)
-- 可选元数据缺/空: visual_style, efficiency_tags(id=…)(×4)
-- 缺 answer(id=…)(×1)
 
 ## 仍需用户确认的项
 
 1. license=Internal-Research-Use-Only 的使用授权证据(非公开再分发许可证)
-2. 重复/冲突 ID 的修改方案(calc-series-018、geom-024 等,以报告为准)
-3. 缺 answer 的样本补写判分字段
-4. 可选元数据(function_family/visual_style/efficiency_tags)是否补齐
-5. LaTeX 疑似漏反斜杠处是否由用户修正(工具只报告,不改写数学语义)
+2. 重复/冲突 ID 的修改方案(以报告硬伤清单为准)
+3. LaTeX 问题(公式内中文、疑似漏反斜杠)是否由用户修正(工具只报告,不改写数学语义)

@@ -81,10 +81,9 @@ def _render_report(rep: dict) -> str:
         lines.append("")
     lines += ["## 仍需用户确认的项", "",
               "1. license=Internal-Research-Use-Only 的使用授权证据(非公开再分发许可证)",
-              "2. 重复/冲突 ID 的修改方案(calc-series-018、geom-024 等,以报告为准)",
-              "3. 缺 answer 的样本补写判分字段",
-              "4. 可选元数据(function_family/visual_style/efficiency_tags)是否补齐",
-              "5. LaTeX 疑似漏反斜杠处是否由用户修正(工具只报告,不改写数学语义)",
+              "2. 重复/冲突 ID 的修改方案(以报告硬伤清单为准)",
+              "3. LaTeX 问题(公式内中文、疑似漏反斜杠)是否由用户修正"
+              "(工具只报告,不改写数学语义)",
               ""]
     return "\n".join(lines)
 
