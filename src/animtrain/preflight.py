@@ -93,15 +93,21 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
 
 
 def check_exec_isolation() -> tuple[bool, str]:
-    """B4:执行隔离验收——memory/network 隔离未实施前,不可执行生成代码,
+    """B4:执行隔离验收——network 隔离未实施前,不可执行生成代码,
     ready 必须阻断(与 render_gate._isolation_state 同一口径,不假绿)。"""
     from .render_gate import _isolation_state  # noqa: PLC0415
 
     st = _isolation_state()
-    if st["memory_limit_mb"] is None or st["network_isolation"] is False:
-        return False, ("执行隔离未验收:memory/network 隔离未实施"
-                       "(仅 cwd 基础隔离+环境脱敏+禁 shell+超时)——"
-                       "B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready")
+    missing = []
+    if st["memory_limit_mb"] is None:
+        missing.append("memory")
+    if st["network_isolation"] is False:
+        missing.append("network")
+    if missing:
+        return False, ("执行隔离未验收:{} 隔离未实施(现有:cwd 基础隔离+"
+                       "环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得"
+                       "执行生成代码,UNVERIFIED 阻断 ready"
+                       ).format("/".join(missing))
     return True, f"执行隔离已验收: {st}"
 
 

@@ -27,22 +27,28 @@ class TestRenderGate(unittest.TestCase):
         """B4: 环境可用时真实执行(用假 python 输出验证执行路径)。"""
         with mock.patch("animtrain.render_gate.check_manim_available",
                         return_value=(True, "manim 可用")), \
-             mock.patch("subprocess.run") as run:
-            run.return_value.returncode = 0
-            run.return_value.stderr = ""
+             mock.patch.object(sys, "platform", "linux"), \
+             mock.patch("subprocess.Popen") as popen:
+            proc = mock.MagicMock()
+            proc.communicate.return_value = ("", "")
+            proc.returncode = 0
+            popen.return_value = proc
             r = render_check("x = 1", trusted=True)
         self.assertTrue(r["ok"])
         self.assertEqual(r["status"], "rendered")
         # 必须走隔离子进程(禁 shell 由列表参数保证,断言命令形如 python -m manim)
-        args = run.call_args.args[0]
+        args = popen.call_args.args[0]
         self.assertIn("-m", args) and self.assertIn("manim", args)
 
     def test_render_failure_reported(self):
         with mock.patch("animtrain.render_gate.check_manim_available",
                         return_value=(True, "ok")), \
-             mock.patch("subprocess.run") as run:
-            run.return_value.returncode = 1
-            run.return_value.stderr = "AttributeError: no plot_curve"
+             mock.patch.object(sys, "platform", "linux"), \
+             mock.patch("subprocess.Popen") as popen:
+            proc = mock.MagicMock()
+            proc.communicate.return_value = ("", "AttributeError: no plot_curve")
+            proc.returncode = 1
+            popen.return_value = proc
             r = render_check("bad code", trusted=True)
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "failed")
@@ -207,7 +213,11 @@ class TestB4Hardening(unittest.TestCase):
     def test_isolation_state_honest(self):
         from animtrain.render_gate import _isolation_state
         st = _isolation_state()
-        self.assertIsNone(st["memory_limit_mb"])
+        # Windows 下 job object 可用时内存上限已实施;不可用则如实 None
+        if sys.platform == "win32":
+            self.assertIn(st["memory_limit_mb"], (None, 2048))
+        else:
+            self.assertIsNone(st["memory_limit_mb"])
         self.assertFalse(st["network_isolation"])
         self.assertEqual(st["fs_isolation"], "cwd_only")
 
@@ -215,4 +225,4 @@ class TestB4Hardening(unittest.TestCase):
         from animtrain.preflight import check_exec_isolation
         ok, detail = check_exec_isolation()
         self.assertFalse(ok)
-        self.assertIn("memory/network", detail)
+        self.assertIn("隔离未实施", detail)

@@ -64,30 +64,55 @@ def render_check(code: str, python: str | None = None,
     # ffmpeg 位于项目约定目录 D:\Settings\ffmpeg\bin(用户 2026-09-30 指定)
     ffmpeg_bin = Path(r"D:\Settings\ffmpeg\bin")
     env = _sanitized_env(str(ffmpeg_bin) if ffmpeg_bin.is_dir() else None)
+    # B4:Windows 下把子进程挂入带内存上限的 job(整树受限:latex/dvisvgm 同受);
+    # job 不可用 → job=None,如实保持"内存隔离未实施"
+    job = None
+    if sys.platform == "win32":
+        try:
+            from .win_job import WindowsJob  # noqa: PLC0415
+            job = WindowsJob(RENDER_MEM_MB)
+        except OSError:
+            job = None
     with tempfile.TemporaryDirectory() as d:
         scene = Path(d) / "scene.py"
         scene.write_text(code, encoding="utf-8")
         try:
-            proc = subprocess.run(
+            proc = subprocess.Popen(
                 [py, "-m", "manim", "-ql", "--media_dir", str(Path(d) / "out"),
                  str(scene), "ConceptScene"],
-                capture_output=True, text=True, encoding="utf-8",
-                errors="replace", timeout=RENDER_TIMEOUT_SEC, env=env,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                text=True, encoding="utf-8", errors="replace", env=env,
                 # 实测定位(2026-10-01):dvisvgm 3.6 在 cwd 路径含空格时
                 # 崩溃(Windows API error 87,退出码 0xFFFFFFFC),manim 内部
                 # 调 dvisvgm 继承本进程 cwd。项目根路径带空格,故 cwd 必须
                 # 设为无空格的临时目录。scene/media 均在此目录内,不受影响。
                 cwd=d)
+            if job is not None:
+                job.assign(proc)
+            try:
+                out, err = proc.communicate(timeout=RENDER_TIMEOUT_SEC)
+            except subprocess.TimeoutExpired:
+                if job is not None:
+                    job.terminate()  # 整树终止,不留孤儿 latex/dvisvgm
+                proc.kill()
+                proc.communicate()
+                raise
         except subprocess.TimeoutExpired:
+            if job is not None:
+                job.close()
             return {"ok": False, "status": "timeout",
                     "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": []}
         except OSError as exc:
+            if job is not None:
+                job.close()
             return {"ok": False, "status": "exec_error",
                     "detail": f"无法启动渲染进程: {exc}", "unverified": []}
+    if job is not None:
+        job.close()
     if proc.returncode != 0:
         return {"ok": False, "status": "failed",
                 "detail": f"渲染失败(退出码 {proc.returncode}): "
-                          f"{(proc.stderr or '')[-500:]}", "unverified": [],
+                          f"{(err or '')[-500:]}", "unverified": [],
                 "isolation": _isolation_state()}
     return {"ok": True, "status": "rendered",
             "detail": "渲染成功", "unverified": [], "isolation": _isolation_state()}
@@ -161,13 +186,23 @@ def _sanitized_env(extra_path: str | None = None) -> dict:
 
 def _isolation_state() -> dict:
     """BR6/B4 隔离状态如实报告(调用方必须检查后再宣称安全执行)。"""
+    mem: int | None = None
+    if sys.platform == "win32":
+        try:
+            from .win_job import WindowsJob  # noqa: PLC0415
+            probe = WindowsJob(16)  # 轻量探针:能建 job 才宣称内存隔离
+            probe.close()
+            mem = RENDER_MEM_MB
+        except OSError:
+            mem = None
     return {"shell": False, "timeout_sec": RENDER_TIMEOUT_SEC,
             "env_sanitized": True,      # 密钥类变量剔除(尽力,非完整隔离)
             "fs_isolation": "cwd_only",  # cwd=无空格临时目录(基础文件系统隔离)
-            "memory_limit_mb": None,    # 未实施(Windows job objects 待接入)
+            "memory_limit_mb": mem,     # Windows job object(可用时);否则 None
             "network_isolation": False,  # 未实施
-            "note": "当前隔离不完整:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时;"
-                    "memory/network 隔离未实施,不可信生成代码的执行仍被拒绝(B4)"}
+            "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时"
+                    f" + 内存上限 {mem or '未实施'};network 隔离未实施,"
+                    "不可信生成代码的执行仍被拒绝(B4)"}
 
 
 def math_check(expr: str) -> dict:
