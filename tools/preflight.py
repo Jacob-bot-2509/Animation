@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.manifest import Manifest  # noqa: E402
-from animtrain.preflight import run_preflight  # noqa: E402
+from animtrain.preflight import check_asset_evidence, run_preflight  # noqa: E402
 from animtrain.validate import validate_manifest  # noqa: E402
 
 
@@ -86,11 +86,13 @@ def main(argv: list[str]) -> int:
         "        self.wait(0.2)\n")
     rr = render_check(_RENDER_SMOKE, trusted=True)
     extra.append(("render_gate",
-                  (rr["ok"], f"真实渲染证据: {rr['status']} — {rr['detail'][:120]}")))
+                  (rr["ok"], f"环境诊断(固定可信 smoke,**非资产验收证据**): "
+                             f"{rr['status']} — {rr['detail'][:100]}")))
     # math_gate: 真实数学断言(真命题)
     mr = math_check("Eq(2 + 2, 4)")
     extra.append(("math_gate",
-                  (mr["ok"], f"真实数学断言: {mr['status']} — {mr['detail'][:120]}")))
+                  (mr["ok"], f"环境诊断(固定数学 smoke,**非资产验收证据**): "
+                             f"{mr['status']} — {mr['detail'][:100]}")))
     # freeze_gate(BR4-b 复验):冻结证据必须绑定当前 manifest 的 eval/test
     # 集合 —— 无锁/部分覆盖/无关锁/坏锁/锁与 manifest hash 不一致均 NOT READY
     from animtrain.freeze import check_frozen, discover_locks, frozen_paths  # noqa: E402
@@ -141,6 +143,11 @@ def main(argv: list[str]) -> int:
                 f_ok = True
     extra.append(("freeze_gate", (f_ok, ("冻结证据绑定当前 manifest, eval/test 全量覆盖"
                   if f_ok else "; ".join(f_problems)[:200]))))
+    # B2(BR4-b 剩余):资产验收证据——固定 smoke 只证明环境能运行,不能替代
+    # 当前资产验收;证据必须绑定当前 manifest 且全量覆盖,缺失即 UNVERIFIED 阻断
+    if mp is not None and mp.exists():
+        ae_ok, ae_detail = check_asset_evidence(mp)
+        extra.append(("asset_evidence", (ae_ok, ae_detail)))
     if args.ready and not args.run_id:
         print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
         return 1

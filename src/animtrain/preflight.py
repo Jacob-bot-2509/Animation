@@ -54,6 +54,42 @@ def check_model_dir(model_dir: Path, strict: bool = False) -> tuple[bool, str]:
 READY_REQUIRED_CHECKS = ("gpu", "model_dir", "data_manifest", "run_snapshot")
 
 
+def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
+    """B2(BR4-b 剩余):资产验收证据检查。
+
+    证据文件 asset_evidence.json 必须与 manifest 同目录、绑定当前
+    manifest_sha256、且覆盖全部记录(n_verified_assets >= n_total_records)。
+    缺失/损坏/未绑定/覆盖不足 → (False, 原因)——固定 smoke 是环境诊断,
+    不能替代当前资产的真实验收,ready 模式必须阻断。
+    """
+    import hashlib as _h
+    import json as _j
+
+    mp = Path(manifest_path)
+    manifest_sha = _h.sha256(mp.read_bytes()).hexdigest()
+    ep = mp.parent / "asset_evidence.json"
+    if not ep.exists():
+        return False, ("资产验收证据缺失(asset_evidence.json 不存在)——"
+                       "当前资产未经真实渲染/数学验收,UNVERIFIED 阻断 ready")
+    try:
+        ev = _j.loads(ep.read_text(encoding="utf-8"))
+    except (OSError, _j.JSONDecodeError):
+        return False, "资产验收证据文件损坏(非合法 JSON)—— 不得作为验收依据"
+    if not isinstance(ev, dict):
+        return False, "资产验收证据结构非法(非对象)—— 不得作为验收依据"
+    bound = ev.get("manifest_sha256")
+    if not isinstance(bound, str) or bound != manifest_sha:
+        return False, ("资产验收证据未绑定当前 manifest(哈希不一致)—— "
+                       "不得作为验收依据")
+    n_verified = ev.get("n_verified_assets")
+    n_total = ev.get("n_total_records")
+    if not isinstance(n_verified, int) or not isinstance(n_total, int) \
+            or n_total <= 0 or n_verified < n_total:
+        return False, (f"资产验收证据覆盖不足({n_verified}/{n_total})—— "
+                       "资产未全量验收")
+    return True, f"资产验收证据绑定当前 manifest,覆盖 {n_verified}/{n_total} 条"
+
+
 def run_preflight(model_dir: Path | None,
                   extra_checks: list[tuple[str, tuple[bool, str]]] | None = None,
                   strict: bool = False,

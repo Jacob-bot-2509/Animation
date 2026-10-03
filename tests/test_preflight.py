@@ -93,3 +93,84 @@ class TestPreflight(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAssetEvidence(unittest.TestCase):
+    """B2(BR4-b 剩余):资产验收证据——缺失/损坏/未绑定/覆盖不足必须阻断。"""
+
+    def _mk(self, d: Path, evidence: dict | None, bad_json: bool = False):
+        from animtrain.manifest import Manifest
+        mp = d / "manifest.json"
+        Manifest(name="t", entries=[]).to_dict()
+        mp.write_text('{"name": "t", "version": 1, "entries": []}',
+                      encoding="utf-8")
+        ep = d / "asset_evidence.json"
+        if bad_json:
+            ep.write_text("not json", encoding="utf-8")
+        elif evidence is not None:
+            import json
+            ep.write_text(json.dumps(evidence, ensure_ascii=False),
+                          encoding="utf-8")
+        return mp
+
+    def _sha(self, mp: Path) -> str:
+        import hashlib
+        return hashlib.sha256(mp.read_bytes()).hexdigest()
+
+    def test_missing_evidence_blocks(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp = self._mk(d, None)
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("缺失", detail)
+
+    def test_corrupt_evidence_blocks(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp = self._mk(d, None, bad_json=True)
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("损坏", detail)
+
+    def test_unbound_evidence_blocks(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp = self._mk(d, {"manifest_sha256": "f" * 64,
+                              "n_verified_assets": 10, "n_total_records": 10})
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("未绑定", detail)
+
+    def test_insufficient_coverage_blocks(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp = self._mk(d, None)
+            import json
+            ep = d / "asset_evidence.json"
+            ep.write_text(json.dumps({"manifest_sha256": self._sha(mp),
+                                      "n_verified_assets": 2,
+                                      "n_total_records": 10}, ensure_ascii=False),
+                          encoding="utf-8")
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("覆盖不足", detail)
+
+    def test_bound_full_coverage_passes(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp = self._mk(d, None)
+            import json
+            ep = d / "asset_evidence.json"
+            ep.write_text(json.dumps({"manifest_sha256": self._sha(mp),
+                                      "n_verified_assets": 10,
+                                      "n_total_records": 10}, ensure_ascii=False),
+                          encoding="utf-8")
+            ok, detail = check_asset_evidence(mp)
+            self.assertTrue(ok, detail)
+            self.assertIn("覆盖 10/10", detail)
