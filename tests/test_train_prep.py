@@ -38,8 +38,8 @@ class TestTrainConfigTemplate(unittest.TestCase):
                   "gradient_accumulation_steps", "epochs", "eval_strategy"]:
             self.assertTrue(str(self.tpl[f]).startswith("TBD"),
                             f"{f} 必须为 TBD(允许带括号说明)")
-        self.assertIn("Qwen2.5-7B-Instruct", self.tpl["model"]["name"])
-        self.assertIn("待下载/实测/批准", self.tpl["model"]["name"])
+        self.assertIn("Qwen3-4B", self.tpl["model"]["name"])
+        self.assertIn("baseline", self.tpl["model"]["name"])
 
     def test_no_credentials(self):
         def walk(o):
