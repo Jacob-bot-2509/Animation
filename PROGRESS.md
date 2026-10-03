@@ -5,6 +5,11 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 
 ## 当前阶段
 
+- **底座模型筛选完成(2026-10-03):baseline = Qwen3-4B(用户拍板)**;
+  三方对照证据见 reviews/2026-10-03-model-screening/,临时实验组已按计划撤走;
+  落选模型(2.5-7B/3-8B)保留在 .models/ 作对照。
+- 训练任务继续挂起:等 eval/test 独立制作与冻结、preflight 八项门禁、用户训练批准。
+
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;
   审计记录级 hard=0,63 条全部 **candidate**(code/render_status 缺失,不假绿)。
