@@ -51,7 +51,7 @@ class TestEvalTestPrep(unittest.TestCase):
                 '"scene_spec": {"objects": ["o"], "steps": ["t"]}, '
                 '"source": "self-authored", "license": "Internal-Research-Use-Only"}\n',
                 encoding="utf-8")
-            (base / "eval-broken.lock.json").write_text("{not valid json",
+            (ev / "eval-broken.lock.json").write_text("{not valid json",
                                                         encoding="utf-8")
             out = run("status", "--dir", base)
             self.assertEqual(out.returncode, 0)
