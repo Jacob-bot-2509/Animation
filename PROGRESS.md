@@ -9,6 +9,13 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
   三方对照证据见 reviews/2026-10-03-model-screening/,临时实验组已按计划撤走;
   落选模型(2.5-7B/3-8B)保留在 .models/ 作对照。
 - 训练任务继续挂起:等 eval/test 独立制作与冻结、preflight 八项门禁、用户训练批准。
+- **eval/test 审阅稿已出(2026-10-03,用户指示由我方起草)**:
+  dataset-eval.md 100 题(同题多解+思路展开:数学分析 30/解析几何 20/概率论 15/高等代数 35),
+  data-test.md 150 题(泛化综合:分析 45/几何 25/概率 25/代数 40/跨学科 15);
+  全部确切值、计算题与证明题兼备、无过程省略;与 train 63 条题目族不同、ID 前缀 eval-*/test-*。
+  渲染 PDF 供用户审阅:outputs/review/{dataset-eval,data-test}.pdf(公式零残留,已验证);
+  渲染工具 tools/render_review.py + tools/assets/mathjax-tex-svg.js(本地渲染器)。
+  状态:待用户审阅题目与解答;定稿后再转正式 markdown→JSON→JSONL(契约见 EVAL_TEST_PREP.md §3.5)。
 
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;
