@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.fs_guard import ensure_not_exists, valid_run_id  # noqa: E402
-from animtrain.run_record import RunRecord, check_record  # noqa: E402
+from animtrain.run_record import RunRecord, check_record, verify_replay  # noqa: E402
 
 
 def git_head() -> str:
@@ -150,6 +150,40 @@ def cmd_check(args) -> int:
     return 0
 
 
+def cmd_verify(args) -> int:
+    """B1:完整重放校验 —— git commit/dirty/config 哈希/manifest 哈希对照当前状态。"""
+    if not valid_run_id(args.run_id):
+        print(f"run_id 非法: {args.run_id!r}(只允许 [A-Za-z0-9_-])")
+        return 1
+    p = ROOT / "runs" / args.run_id / "run_record.json"
+    if not p.exists():
+        print(f"记录不存在: {p}")
+        return 1
+    r = RunRecord.load(p)
+    if args.manifest:
+        mp = Path(args.manifest)
+    elif r.summary.get("manifest"):
+        mp = ROOT / r.summary["manifest"]
+    else:
+        mp = None
+    cp = None
+    if args.config:
+        cp = Path(args.config)
+    elif isinstance(r.config, dict) and r.config.get("file"):
+        cp = Path(r.config["file"])
+    problems = verify_replay(r, manifest_path=mp,
+                             git_commit_now=git_head(), dirty_now=git_dirty(),
+                             config_path=cp)
+    if problems:
+        print(f"记录 {args.run_id} 不可重放:")
+        for x in problems:
+            print(f"   - {x}")
+        return 1
+    print(f"记录 {args.run_id} 完整可重放(git={r.git_commit[:8]},"
+          f"config_hash={ (r.config or {}).get('sha256', '')[:12] if isinstance(r.config, dict) else ''}…)")
+    return 0
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -168,6 +202,11 @@ def main(argv: list[str]) -> int:
     p2.add_argument("--run-id", required=True)
     p2.add_argument("--manifest", default="")
     p2.set_defaults(fn=cmd_check)
+    p3 = sub.add_parser("verify", help="B1:完整重放校验(git/config/manifest 对照)")
+    p3.add_argument("--run-id", required=True)
+    p3.add_argument("--manifest", default="")
+    p3.add_argument("--config", default="", help="配置文件(缺省用记录内 file)")
+    p3.set_defaults(fn=cmd_verify)
     args = ap.parse_args(argv)
     return args.fn(args)
 

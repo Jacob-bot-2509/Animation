@@ -118,3 +118,70 @@ class TestB1Snapshot(unittest.TestCase):
         r = _ok_record()
         r.dirty = {"clean": False, "changed": ["src/animtrain/validate.py"]}
         self.assertEqual(check_record(r), [])
+
+
+class TestVerifyReplay(unittest.TestCase):
+    """B1:完整重放校验 —— git/config/manifest 任一不一致即不可重放。"""
+
+    def _rec(self, **over) -> dict:
+        import json
+        from animtrain.run_record import RunRecord
+        r = RunRecord(run_id="replay-001", kind="dry-run",
+                      config={"file": "configs/x.json", "sha256": "a" * 64,
+                              "content": {"lr": 0.001}},
+                      git_commit="c" * 40, manifest_hash="m" * 64,
+                      summary={"command": "python x.py",
+                               "manifest": "data/v1/manifest.json"},
+                      metrics={}, env={"python": "3.13"},
+                      seed=None, dirty={"clean": True, "changed": []})
+        return r
+
+    def test_matching_state_replayable(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": True})
+        self.assertEqual(problems, [])
+
+    def test_git_commit_mismatch_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="d" * 40,
+                                 dirty_now={"clean": True})
+        self.assertTrue(any("代码状态与记录不一致" in p for p in problems))
+
+    def test_dirty_mismatch_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False})
+        self.assertTrue(any("dirty 状态与记录不一致" in p for p in problems))
+
+    def test_config_hash_mismatch_blocks(self):
+        from animtrain.run_record import verify_replay
+        import tempfile
+        from pathlib import Path
+        r = self._rec()
+        with tempfile.TemporaryDirectory() as d:
+            cp = Path(d) / "config.json"
+            cp.write_text('{"lr": 0.01}', encoding="utf-8")
+            problems = verify_replay(r, git_commit_now="c" * 40,
+                                     dirty_now={"clean": True}, config_path=cp)
+            self.assertTrue(any("config 文件与记录不一致" in p for p in problems))
+
+    def test_config_unbound_blocks(self):
+        from animtrain.run_record import verify_replay
+        import tempfile
+        from pathlib import Path
+        from animtrain.run_record import RunRecord
+        r = RunRecord(run_id="replay-002", kind="baseline",
+                      config={}, git_commit="c" * 40, manifest_hash="m" * 64,
+                      summary={"command": "x", "manifest": "data/v1/manifest.json"},
+                      metrics={}, env={"python": "3.13"},
+                      seed=42, dirty={"clean": True, "changed": []})
+        with tempfile.TemporaryDirectory() as d:
+            cp = Path(d) / "config.json"
+            cp.write_text("{}", encoding="utf-8")
+            problems = verify_replay(r, git_commit_now="c" * 40,
+                                     dirty_now={"clean": True}, config_path=cp)
+            self.assertTrue(any("未绑定实际文件哈希" in p for p in problems))

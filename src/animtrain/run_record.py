@@ -102,3 +102,40 @@ def check_record(r: RunRecord, manifest_path: Path | None = None) -> list[str]:
     if r.failure_analysis and not r.failure_analysis.get("reason"):
         problems.append("failure_analysis 缺 reason(失败原因)")
     return problems
+
+
+def verify_replay(r: RunRecord, manifest_path: Path | None = None,
+                  git_commit_now: str = "", dirty_now: dict | None = None,
+                  config_path: Path | None = None) -> list[str]:
+    """B1:完整重放校验 —— 记录 vs 当前实际状态逐项对照。
+
+    代码状态(git commit/dirty)、config 文件哈希、manifest 哈希任一不一致
+    即不可重放。git_commit_now/dirty_now 由调用方从真实仓库捕获,
+    不凭示例/占位声称可复现。
+    """
+    problems = check_record(r, manifest_path=manifest_path)
+    # 1. 代码状态:git commit 必须与记录一致
+    if git_commit_now and r.git_commit and git_commit_now != r.git_commit:
+        problems.append(f"代码状态与记录不一致(记录 {r.git_commit[:12]}…,"
+                        f"当前 {git_commit_now[:12]}…)—— 不可重放(B1)")
+    # 2. 工作区状态:dirty 的 clean 标志必须与记录一致
+    if (dirty_now is not None and isinstance(dirty_now, dict)
+            and "clean" in r.dirty and dirty_now.get("clean") is not None
+            and bool(dirty_now["clean"]) != bool(r.dirty["clean"])):
+        problems.append(f"工作区 dirty 状态与记录不一致(记录 clean="
+                        f"{r.dirty['clean']},当前 {dirty_now['clean']})"
+                        "—— 不可重放(B1)")
+    # 3. 配置:训练类记录的 config 必须绑定实际文件哈希,且当前文件一致
+    if config_path is not None:
+        import hashlib
+        actual = (hashlib.sha256(config_path.read_bytes()).hexdigest()
+                  if config_path.exists() else "")
+        recorded = (r.config or {}).get("sha256", "") \
+            if isinstance(r.config, dict) else ""
+        if not recorded:
+            problems.append("config 未绑定实际文件哈希 —— 不可重放(B1)"
+                            "(训练类记录必须来自实际配置文件)")
+        elif actual != recorded:
+            problems.append(f"config 文件与记录不一致(记录 {recorded[:12]}…,"
+                            f"实际 {actual[:12]}…)—— 不可重放(B1)")
+    return problems
