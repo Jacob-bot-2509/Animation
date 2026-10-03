@@ -57,7 +57,7 @@
 ### test-calc-007 数学分析 · 中值定理×极限
 **题目** 设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\displaystyle\lim_{x\to 0}\frac{f(x)}{x^2}$。
 **涉及知识点** 洛必达法则、二阶导数、函数极限
-**解答** 由 $f(0)=0$ 与 $f'(0)=0$，$\dfrac{f(x)}{x^2}$ 为 $\dfrac{0}{0}$ 型。洛必达一次：$\lim_{x\to 0}\dfrac{f'(x)}{2x}$；因 $f'(0)=0$ 仍为 $\dfrac{0}{0}$ 型，再用一次：$\lim_{x\to 0}\dfrac{f''(x)}{2}=\dfrac{f''(0)}{2}$（$f''$ 连续）。
+**解答** 由 $f(0)=0$ 与 $f'(0)=0$，$\dfrac{f(x)}{x^2}$ 为 $\dfrac{0}{0}$ 型。洛必达一次：$\lim_{x\to 0}\dfrac{f'(x)}{2x}$。不假设 $f''$ 连续，直接由二阶导数定义（$f'(0)=0$）：$\lim_{x\to 0}\dfrac{f'(x)}{2x}=\dfrac{1}{2}\lim_{x\to 0}\dfrac{f'(x)-f'(0)}{x}=\dfrac{f''(0)}{2}$。
 **答案** $\dfrac{f''(0)}{2}$
 **动画要点** - 洛必达两步的分子分母比值 - $f$ 在原点附近的二阶接触
 
@@ -85,7 +85,7 @@
 ### test-calc-011 数学分析 · 旋转体×壳层法
 **题目** 求由 $y=x^2$ 与 $y=4$ 围成的区域绕 $y$ 轴旋转所得旋转体的体积。
 **涉及知识点** 壳层法、多项式积分、旋转体体积
-**解答** 区域为 $0\le x\le 2,\ x^2\le y\le 4$。在 $x$ 处取高 $4-x^2$、厚 $dx$ 的竖直壳层，$dV=2\pi x(4-x^2)dx$。$V=\displaystyle\int_0^2 2\pi x(4-x^2)dx=2\pi\int_0^2(4x-x^3)dx=2\pi\left[2x^2-\dfrac{x^4}{4}\right]_0^2=2\pi(8-4)=8\pi$。
+**解答** 区域为 $-2\le x\le 2,\ x^2\le y\le 4$（关于 $y$ 轴对称）。绕 $y$ 轴旋转时左右两半生成同一个旋转体，只需取右半 $0\le x\le 2$。在 $x$ 处取高 $4-x^2$、厚 $dx$ 的竖直壳层，$dV=2\pi x(4-x^2)dx$。$V=\displaystyle\int_0^2 2\pi x(4-x^2)dx=2\pi\int_0^2(4x-x^3)dx=2\pi\left[2x^2-\dfrac{x^4}{4}\right]_0^2=2\pi(8-4)=8\pi$。
 **答案** $8\pi$
 **动画要点** - 壳层展开成薄板的扫掠动画 - 抛物线、直线与旋转轴
 
@@ -106,14 +106,14 @@
 ### test-calc-014 数学分析 · 幂级数×微分方程
 **题目** 验证幂级数 $y=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。
 **涉及知识点** 幂级数逐项求导、微分方程、指数函数
-**解答** 该级数收敛半径为 $+\infty$（比值判别法：$\dfrac{1/(n+1)!}{1/n!}=\dfrac{1}{n+1}\to 0$），可逐项求导：$y'=\displaystyle\sum_{n=1}^{\infty}\dfrac{nx^{n-1}}{n!}=\sum_{n=1}^{\infty}\dfrac{x^{n-1}}{(n-1)!}=\sum_{m=0}^{\infty}\dfrac{x^m}{m!}=y$。且 $y(0)=\dfrac{0^0}{0!}+\dfrac{0}{1!}+\cdots=1$。由解的唯一性，$y=e^x$。
+**解答** 该级数收敛半径为 $+\infty$（比值判别法：$\dfrac{1/(n+1)!}{1/n!}=\dfrac{1}{n+1}\to 0$），可逐项求导：$y'=\displaystyle\sum_{n=1}^{\infty}\dfrac{nx^{n-1}}{n!}=\sum_{n=1}^{\infty}\dfrac{x^{n-1}}{(n-1)!}=\sum_{m=0}^{\infty}\dfrac{x^m}{m!}=y$。且 $y(0)=\dfrac{1}{0!}+\displaystyle\sum_{n=1}^{\infty}\dfrac{0^n}{n!}=1+0=1$。由解的唯一性，$y=e^x$。
 **答案** $y'=y$、$y(0)=1$，故 $y=e^x$
 **动画要点** - 部分和多项式随项数增长逼近 $e^x$ - 逐项求导的系数错位对应
 
 ### test-calc-015 数学分析 · 幂级数×定积分
 **题目** 利用幂级数展开求 $\displaystyle\int_0^1\frac{\ln(1+x)}{x}\,dx$ 的精确值。
 **涉及知识点** 幂级数逐项积分、交错级数、$\zeta(2)$
-**解答** $\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$，且该级数在 $[0,1]$ 上一致收敛（余项 $\left|\sum_{k>n}\right|\le\dfrac{1}{n+1}\to 0$，由交错级数估计），故可逐项积分：$\displaystyle\int_0^1\dfrac{\ln(1+x)}{x}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}\int_0^1x^{n-1}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\zeta(2)$ 的关系：$\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}=\eta(2)=\left(1-2^{1-2}\right)\zeta(2)=\dfrac{1}{2}\cdot\dfrac{\pi^2}{6}=\dfrac{\pi^2}{12}$（其中 $\zeta(2)=\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。
+**解答** $\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\dfrac{\ln(1+x)}{x}=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\left|\displaystyle\sum_{k>N}\dfrac{(-1)^{k-1}x^{k-1}}{k}\right|\le\dfrac{x^N}{N+1}\le\dfrac{1}{N+1}\to 0$（交错级数估计，对 $x\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\lim_{x\to 0}\dfrac{\ln(1+x)}{x}=1$）。故可逐项积分：$\displaystyle\int_0^1\dfrac{\ln(1+x)}{x}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}\int_0^1x^{n-1}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\zeta(2)$ 的关系：$\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}=\eta(2)=\left(1-2^{1-2}\right)\zeta(2)=\dfrac{1}{2}\cdot\dfrac{\pi^2}{6}=\dfrac{\pi^2}{12}$（其中 $\zeta(2)=\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。
 **答案** $\dfrac{\pi^2}{12}$
 **动画要点** - 级数部分和逐项逼近 - $\dfrac{\pi^2}{12}$ 与积分数值对照
 
@@ -134,7 +134,7 @@
 ### test-calc-018 数学分析 · 条件极值×拉格朗日乘数
 **题目** 求 $f(x,y)=xy$ 在约束 $x+y=4$ 下的最大值。
 **涉及知识点** 拉格朗日乘数法、约束优化、消元验证
-**解答** 拉格朗日函数 $L=xy+\lambda(x+y-4)$。$L_x=y+\lambda=0$，$L_y=x+\lambda=0$，故 $x=y=-\lambda$。代入约束 $2x=4$，$x=y=2$，$\lambda=-2$。$f(2,2)=4$。验证（消元法）：$y=4-x$，$f=x(4-x)=4x-x^2$，最大值为 $\dfrac{16}{4}\cdot\ldots$ 配方 $-(x-2)^2+4\le 4$，等号在 $x=2$ 取得，最大值 $4$。
+**解答** 拉格朗日函数 $L=xy+\lambda(x+y-4)$。$L_x=y+\lambda=0$，$L_y=x+\lambda=0$，故 $x=y=-\lambda$。代入约束 $2x=4$，$x=y=2$，$\lambda=-2$。$f(2,2)=4$。验证（消元法）：$y=4-x$，$f=x(4-x)=4x-x^2=-(x-2)^2+4\le 4$，等号在 $x=2$ 取得，最大值 $4$。
 **答案** 最大值 $4$（在 $(2,2)$ 处取得）
 **动画要点** - 约束直线与等高线（双曲线族）相切 - 拉格朗日乘数的几何意义
 
@@ -146,7 +146,7 @@
 **动画要点** - 三角形区域的两种扫描方向 - 交换次序前后的对照
 
 ### test-calc-020 数学分析 · 格林公式×参数方程
-**题目** 用格林公式（或曲线积分）求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 的面积。
+**题目** 用格林公式（或曲线积分）求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$（$a,b>0$）的面积。
 **涉及知识点** 格林公式、参数方程、定积分
 **解答** 参数化 $x=a\cos t$、$y=b\sin t$（$t:0\to 2\pi$）。由格林公式，面积 $S=\dfrac{1}{2}\displaystyle\oint(x\,dy-y\,dx)=\dfrac{1}{2}\int_0^{2\pi}\left[a\cos t\cdot b\cos t-b\sin t\cdot(-a\sin t)\right]dt=\dfrac{1}{2}\int_0^{2\pi}ab(\cos^2t+\sin^2t)dt=\dfrac{1}{2}ab\cdot 2\pi=\pi ab$。
 **答案** $\pi ab$
@@ -155,7 +155,7 @@
 ### test-calc-021 数学分析 · 曲线积分×路径无关
 **题目** 求曲线积分 $\displaystyle\int_L(2xy\,dx+x^2\,dy)$，其中 $L$ 为从 $(0,0)$ 到 $(1,1)$ 的任意光滑曲线段，并说明结果与路径无关的原因。
 **涉及知识点** 全微分、势函数、曲线积分
-**解答** $d(x^2y)=2xy\,dx+x^2\,dy$，故被积表达式是全微分，势函数 $\varphi(x,y)=x^2y$。由微积分基本定理，$\displaystyle\int_L d\varphi=\varphi(1,1)-\varphi(0,0)=1-0=1$，与路径无关（因为 $\dfrac{\partial}{\partial y}(2xy)=2x=\dfrac{\partial}{\partial x}(x^2)$ 成立，积分与路径无关的充要条件）。
+**解答** $d(x^2y)=2xy\,dx+x^2\,dy$，故被积表达式是全微分，势函数 $\varphi(x,y)=x^2y$。由微积分基本定理，$\displaystyle\int_L d\varphi=\varphi(1,1)-\varphi(0,0)=1-0=1$，与路径无关（本题已直接构造出 $\mathbb R^2$ 上的全局势函数，故无需再讨论充要条件；一般结论"$\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ 等价于积分与路径无关"只在单连通区域上对 $C^1$ 向量场成立）。
 **答案** $1$
 **动画要点** - 不同路径的曲线积分同一结果 - 势函数的等高线
 
@@ -176,7 +176,7 @@
 ### test-calc-024 数学分析 · 数列极限×定积分
 **题目** 求 $\displaystyle\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}$。
 **涉及知识点** 对数化、黎曼和、对数积分
-**解答** 取对数：$\ln\dfrac{\sqrt[n]{n!}}{n}=\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\ln k-\ln n=\dfrac{1}{n}\sum_{k=1}^{n}\ln\dfrac{k}{n}$。这是 $f(x)=\ln x$ 在 $[0,1]$ 上的黎曼和（左端点），$\displaystyle\int_0^1\ln x\,dx=\left[x\ln x-x\right]_0^1=-1$（$\lim_{x\to 0^+}x\ln x=0$）。故原极限 $=e^{-1}=\dfrac{1}{e}$。
+**解答** 记 $S_n=\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\ln\dfrac{k}{n}$，其中 $\dfrac{k}{n}$ 是小区间 $\left[\dfrac{k-1}{n},\dfrac{k}{n}\right]$ 的右端点。因 $\ln x$ 单调递增，在每个小区间上 $\ln x\le\ln\dfrac{k}{n}$，故 $\displaystyle\int_0^1\ln x\,dx=\sum_{k=1}^{n}\int_{(k-1)/n}^{k/n}\ln x\,dx\le S_n$；又对 $k\le n-1$，在 $\left[\dfrac{k}{n},\dfrac{k+1}{n}\right]$ 上 $\ln x\ge\ln\dfrac{k}{n}$，故 $S_n\le\displaystyle\sum_{k=1}^{n-1}\int_{k/n}^{(k+1)/n}\ln x\,dx+\dfrac{1}{n}\ln 1=\int_{1/n}^1\ln x\,dx$。于是 $-1=\displaystyle\int_0^1\ln x\,dx\le S_n\le\int_{1/n}^1\ln x\,dx=\left[x\ln x-x\right]_{1/n}^1=-1+\dfrac{\ln n+1}{n}$（其中 $\lim_{x\to 0^+}x\ln x=0$ 保证左端积分为 $-1$）。两端都趋于 $-1$，由夹逼准则 $S_n\to-1$。故原极限 $=\lim e^{S_n}=e^{-1}=\dfrac{1}{e}$。
 **答案** $\dfrac{1}{e}$
 **动画要点** - 对数函数的黎曼矩形 - 极限值 $1/e$ 的收敛示意
 
@@ -253,15 +253,15 @@
 ### test-calc-035 数学分析 · 幂级数×收敛半径
 **题目** 求幂级数 $\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 与 $\displaystyle\sum_{n=0}^{\infty}n!\,x^n$ 的收敛半径，并对比说明。
 **涉及知识点** 收敛半径、比值判别法、阶乘增长
-**解答** 对 $\sum\dfrac{x^n}{n!}$：$\left|\dfrac{a_{n+1}}{a_n}\right|=\dfrac{1}{n+1}\to 0$，收敛半径 $R=+\infty$。对 $\sum n!\,x^n$（$x\ne 0$）：$\left|\dfrac{a_{n+1}}{a_n}\right|=n+1\to+\infty$，故 $x\ne 0$ 时级数发散（通项 $n!x^n\not\to 0$），收敛半径 $R=0$。
+**解答** 用系数比值 $\left|\dfrac{a_{n+1}}{a_n}\right|$（$a_n$ 为幂级数系数，不含 $x$）。对 $\sum\dfrac{x^n}{n!}$：$a_n=\dfrac{1}{n!}$，$\left|\dfrac{a_{n+1}}{a_n}\right|=\dfrac{1}{n+1}\to 0$，收敛半径 $R=\dfrac{1}{0}=+\infty$。对 $\sum n!\,x^n$：$a_n=n!$，$\left|\dfrac{a_{n+1}}{a_n}\right|=n+1\to+\infty$，$R=0$；且 $x\ne 0$ 时通项 $n!x^n\not\to 0$，级数发散，与 $R=0$ 一致。
 **答案** $R=+\infty$ 与 $R=0$
 **动画要点** - 两系数序列的增长对比（$1/n!$ 与 $n!$） - 数轴上收敛域标注
 
 ### test-calc-036 数学分析 · 多元链式法则×拉普拉斯算子
-**题目** 设 $u=f(r)$，其中 $r=\sqrt{x^2+y^2}$，$f$ 二阶可导。证明 $u_{xx}+u_{yy}=f''(r)+\dfrac{f'(r)}{r}$，并验证 $u=\ln r$ 满足 $u_{xx}+u_{yy}=0$。
+**题目** 设 $u=f(r)$，其中 $r=\sqrt{x^2+y^2}$（$(x,y)\ne(0,0)$），$f$ 二阶可导。证明在 $\mathbb R^2\setminus\{(0,0)\}$ 上 $u_{xx}+u_{yy}=f''(r)+\dfrac{f'(r)}{r}$，并验证 $u=\ln r$ 满足 $u_{xx}+u_{yy}=0$。
 **涉及知识点** 多元链式法则、拉普拉斯算子、调和函数
 **解答** $r_x=\dfrac{x}{r}$，$r_y=\dfrac{y}{r}$。$u_x=f'(r)\dfrac{x}{r}$，$u_{xx}=f''(r)\dfrac{x^2}{r^2}+f'(r)\left(\dfrac{1}{r}-\dfrac{x^2}{r^3}\right)$。同理 $u_{yy}=f''(r)\dfrac{y^2}{r^2}+f'(r)\left(\dfrac{1}{r}-\dfrac{y^2}{r^3}\right)$。相加：$u_{xx}+u_{yy}=f''(r)\dfrac{x^2+y^2}{r^2}+f'(r)\left(\dfrac{2}{r}-\dfrac{x^2+y^2}{r^3}\right)=f''(r)+f'(r)\left(\dfrac{2}{r}-\dfrac{1}{r}\right)=f''(r)+\dfrac{f'(r)}{r}$。取 $f(r)=\ln r$：$f'(r)=\dfrac{1}{r}$，$f''(r)=-\dfrac{1}{r^2}$，代入得 $u_{xx}+u_{yy}=-\dfrac{1}{r^2}+\dfrac{1}{r^2}=0$，即 $\ln r$ 在去掉原点的平面上调和。
-**答案** 证毕；$u=\ln r$ 满足 $u_{xx}+u_{yy}=0$
+**答案** 证毕（在 $\mathbb R^2\setminus\{(0,0)\}$ 上）；$u=\ln r$ 在 $\mathbb R^2\setminus\{(0,0)\}$ 上满足 $u_{xx}+u_{yy}=0$
 **动画要点** - 径向函数与极坐标拉普拉斯 - $\ln r$ 的等值线（同心圆）
 
 ### test-calc-037 数学分析 · 隐函数×导数
@@ -295,7 +295,7 @@
 ### test-calc-041 数学分析 · 定积分×对称性
 **题目** 求 $\displaystyle\int_0^{\pi}\sin^2x\,dx$ 与 $\displaystyle\int_0^{\pi}\cos^2x\,dx$，并说明两者相等的几何原因。
 **涉及知识点** 倍角公式、平移对称、定积分
-**解答** $\displaystyle\int_0^{\pi}\sin^2x\,dx=\int_0^{\pi}\dfrac{1-\cos 2x}{2}dx=\left[\dfrac{x}{2}-\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。$\displaystyle\int_0^{\pi}\cos^2x\,dx=\int_0^{\pi}\dfrac{1+\cos 2x}{2}dx=\left[\dfrac{x}{2}+\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。几何原因：$\cos^2x=\sin^2\left(x+\dfrac{\pi}{2}\right)$，两者图像相差 $\dfrac{\pi}{2}$ 平移，在一个周期长度 $\pi$ 上的积分相等；或由 $\sin^2x+\cos^2x=1$ 及两者图像关于 $x=\dfrac{\pi}{2}$ 的对称关系。
+**解答** $\displaystyle\int_0^{\pi}\sin^2x\,dx=\int_0^{\pi}\dfrac{1-\cos 2x}{2}dx=\left[\dfrac{x}{2}-\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。$\displaystyle\int_0^{\pi}\cos^2x\,dx=\int_0^{\pi}\dfrac{1+\cos 2x}{2}dx=\left[\dfrac{x}{2}+\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。几何原因：$\cos^2x=\sin^2\left(x+\dfrac{\pi}{2}\right)$，故 $\displaystyle\int_0^{\pi}\cos^2x\,dx=\int_0^{\pi}\sin^2\left(x+\dfrac{\pi}{2}\right)dx=\int_{\pi/2}^{3\pi/2}\sin^2u\,du$（换元 $u=x+\dfrac{\pi}{2}$）$=\displaystyle\int_0^{\pi}\sin^2u\,du$（$\sin^2$ 以 $\pi$ 为周期）。
 **答案** 均为 $\dfrac{\pi}{2}$
 **动画要点** - 两曲线的平移关系 - 面积相等的对照
 
@@ -314,7 +314,7 @@
 **动画要点** - 钟形曲面与体积 - 四分之一圆的极坐标扫描
 
 ### test-calc-044 数学分析 · 参数方程×面积
-**题目** 用参数方程 $x=a\cos t,\ y=b\sin t$（$0\le t\le 2\pi$）求椭圆所围面积。
+**题目** 用参数方程 $x=a\cos t,\ y=b\sin t$（$0\le t\le 2\pi$，$a,b>0$）求椭圆所围面积。
 **涉及知识点** 参数方程面积公式、倍角积分
 **解答** $S=\left|\displaystyle\int_0^{2\pi}y\,dx\right|=\left|\int_0^{2\pi}b\sin t\cdot(-a\sin t)dt\right|=ab\displaystyle\int_0^{2\pi}\sin^2t\,dt=ab\cdot\pi=\pi ab$（$\int_0^{2\pi}\sin^2t\,dt=\pi$，与 test-calc-041 同法）。
 **答案** $\pi ab$
@@ -395,7 +395,7 @@
 ### test-geom-010 解析几何 · 二次曲线×面积
 **题目** 求椭圆 $\dfrac{x^2}{9}+\dfrac{y^2}{16}=1$ 的面积。
 **涉及知识点** 椭圆面积公式、仿射变换、积分
-**解答** 椭圆是半径为 3 的圆沿 $y$ 轴拉伸 $\dfrac{4}{3}$ 倍的像：$S=\pi\cdot 3\cdot 4=12\pi$。或用定积分：$S=4\displaystyle\int_0^3 4\sqrt{1-\dfrac{x^2}{9}}\,dx=\dfrac{16}{3}\cdot 3\displaystyle\int_0^{\pi/2}\cos^2t\,dt=16\cdot\dfrac{\pi}{4}=4\pi\cdot\ldots$（换元 $x=3\sin t$：$S=4\cdot\dfrac{4}{3}\cdot 3\cdot\dfrac{\pi}{4}\cdot 3=12\pi$）。直接公式 $S=\pi ab=\pi\cdot 3\cdot 4=12\pi$。
+**解答** 椭圆是半径为 3 的圆沿 $y$ 轴拉伸 $\dfrac{4}{3}$ 倍的像：$S=\pi\cdot 3\cdot 4=12\pi$。或用定积分：$S=4\displaystyle\int_0^3 4\sqrt{1-\dfrac{x^2}{9}}\,dx=16\int_0^3\sqrt{1-\dfrac{x^2}{9}}\,dx$。换元 $x=3\sin t$（$dx=3\cos t\,dt$，$t:0\to\dfrac{\pi}{2}$）：$S=16\cdot 3\displaystyle\int_0^{\pi/2}\cos^2t\,dt=48\cdot\dfrac{\pi}{4}=12\pi$（$\int_0^{\pi/2}\cos^2t\,dt=\dfrac{\pi}{4}$）。直接公式 $S=\pi ab=\pi\cdot 3\cdot 4=12\pi$。
 **答案** $12\pi$
 **动画要点** - 圆到椭圆的拉伸 - 面积公式标注
 
@@ -484,9 +484,9 @@
 **动画要点** - 绕 $y$ 轴旋转动画 - 列向量标准正交标注
 
 ### test-geom-023 解析几何 · 曲面×单位法向量
-**题目** 求球面 $x^2+y^2+z^2=4$ 在点 $(1,1,\sqrt2)$ 处的单位法向量。
+**题目** 求球面 $x^2+y^2+z^2=4$ 在点 $(1,1,\sqrt2)$ 处的单位外法向量。
 **涉及知识点** 梯度、法向量、球面
-**解答** $F=x^2+y^2+z^2-4$，$\nabla F=(2x,2y,2z)$。在 $(1,1,\sqrt2)$ 处 $\nabla F=(2,2,2\sqrt2)$，模 $=\sqrt{4+4+8}=4$。单位法向量 $\vec n=\dfrac{\nabla F}{|\nabla F|}=\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$（球面外向）。
+**解答** $F=x^2+y^2+z^2-4$，$\nabla F=(2x,2y,2z)$。在 $(1,1,\sqrt2)$ 处 $\nabla F=(2,2,2\sqrt2)$，模 $=\sqrt{4+4+8}=4$。单位外法向量 $\vec n=\dfrac{\nabla F}{|\nabla F|}=\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$（若问全部单位法向量则为 $\pm\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$）。
 **答案** $\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$
 **动画要点** - 球面与径向法向量 - 梯度方向标注
 
@@ -500,7 +500,7 @@
 ### test-geom-025 解析几何 · 轨迹×二次曲面
 **题目** 求到两定点 $A(1,0,0)$、$B(-1,0,0)$ 距离之和等于 $4$ 的点的轨迹方程，并说明曲面类型。
 **涉及知识点** 距离公式、椭球面、轨迹
-**解答** 设动点 $P(x,y,z)$，记 $r_1=\sqrt{(x-1)^2+y^2+z^2}$、$r_2=\sqrt{(x+1)^2+y^2+z^2}$，条件为 $r_1+r_2=4$。由 $r_2=4-r_1$ 两边平方：$r_2^2=16-8r_1+r_1^2$。又 $r_2^2-r_1^2=\left[(x+1)^2+y^2+z^2\right]-\left[(x-1)^2+y^2+z^2\right]=(x+1)^2-(x-1)^2=4x$。代入上式：$4x=16-8r_1$，即 $2r_1=4-x$。再平方：$4\left[(x-1)^2+y^2+z^2\right]=(4-x)^2$。展开：$4(x^2-2x+1)+4y^2+4z^2=16-8x+x^2$，整理得 $3x^2+4y^2+4z^2=12$，即 $\dfrac{x^2}{4}+\dfrac{y^2+z^2}{3}=1$（第一步平方要求 $4-x\ge 0$，而满足原条件的点必有 $x\le 4$，故可逆推，两条件等价）。该方程表示绕 $x$ 轴的旋转椭球面：两焦点 $(\pm 1,0,0)$（$c=1$）、长半轴 $a=2$、短半轴 $b=\sqrt{a^2-c^2}=\sqrt3$。
+**解答** 设动点 $P(x,y,z)$，记 $r_1=\sqrt{(x-1)^2+y^2+z^2}$、$r_2=\sqrt{(x+1)^2+y^2+z^2}$，条件为 $r_1+r_2=4$。由 $r_2=4-r_1$ 两边平方：$r_2^2=16-8r_1+r_1^2$。又 $r_2^2-r_1^2=\left[(x+1)^2+y^2+z^2\right]-\left[(x-1)^2+y^2+z^2\right]=(x+1)^2-(x-1)^2=4x$。代入上式：$4x=16-8r_1$，即 $2r_1=4-x$。再平方：$4\left[(x-1)^2+y^2+z^2\right]=(4-x)^2$。展开：$4(x^2-2x+1)+4y^2+4z^2=16-8x+x^2$，整理得 $3x^2+4y^2+4z^2=12$，即 $\dfrac{x^2}{4}+\dfrac{y^2+z^2}{3}=1$。反向验证：由椭球方程得 $3x^2\le 12$，即 $|x|\le 2$，于是 $r_1=\dfrac{4-x}{2}\ge 1$、$r_2=\dfrac{4+x}{2}\ge 1$ 均非负（第二次平方得到的正是 $2r_1=4-x$，故 $r_1=\dfrac{4-x}{2}$ 代入平方前的方程成立，$r_2=4-r_1=\dfrac{4+x}{2}$ 同理），且 $r_1+r_2=4$——椭球上每点都满足原距离和条件，两方程等价。该方程表示绕 $x$ 轴的旋转椭球面：两焦点 $(\pm 1,0,0)$（$c=1$）、长半轴 $a=2$、短半轴 $b=\sqrt{a^2-c^2}=\sqrt3$。
 **答案** $\dfrac{x^2}{4}+\dfrac{y^2+z^2}{3}=1$，旋转椭球面
 **动画要点** - 两定点与"绳长固定"的椭球生成 - 截面椭圆族
 
@@ -516,8 +516,8 @@
 ### test-prob-002 概率论 · 二项分布×组合计数
 **题目** 设 $X\sim B\!\left(10,\dfrac{3}{10}\right)$。求 $P(X=3)$ 与 $P(X\le 1)$ 的精确值。
 **涉及知识点** 二项分布、组合数、概率质量函数
-**解答** $P(X=k)=\binom{10}{k}\left(\dfrac{3}{10}\right)^k\left(\dfrac{7}{10}\right)^{10-k}$。$P(X=3)=\binom{10}{3}\cdot 0.3^3\cdot 0.7^7=120\times 0.027\times 0.0823543=0.266827932$。$P(X\le 1)=P(X=0)+P(X=1)=0.7^{10}+10\times 0.3\times 0.7^9=0.0282475249+3\times 0.040353607=0.0282475249+0.121060821=0.149308346$。
-**答案** $P(X=3)=0.266827932$；$P(X\le 1)=0.149308346$
+**解答** $P(X=k)=\binom{10}{k}\left(\dfrac{3}{10}\right)^k\left(\dfrac{7}{10}\right)^{10-k}$。$P(X=3)=\binom{10}{3}\cdot 0.3^3\cdot 0.7^7=120\times 0.027\times 0.0823543=0.266827932$。$P(X\le 1)=P(X=0)+P(X=1)=0.7^{10}+10\times 0.3\times 0.7^9=0.0282475249+3\times 0.040353607=0.0282475249+0.121060821=0.1493083459=\dfrac{1493083459}{10^{10}}$。
+**答案** $P(X=3)=0.266827932$；$P(X\le 1)=0.1493083459$
 **动画要点** - 二项分布柱状图 - 目标柱高亮
 
 ### test-prob-003 概率论 · 期望×方差×指示变量
@@ -531,7 +531,7 @@
 **题目** 设 $X$ 的密度为 $f(x)=3x^2$（$0<x<1$）。求 $X$ 的分布函数、$P\!\left(X>\dfrac{1}{2}\right)$ 与 $E[X]$。
 **涉及知识点** 连续型随机变量、分布函数、分段函数积分
 **解答** 分布函数 $F(x)=\displaystyle\int_0^x3t^2dt=x^3$（$0<x<1$；$x\le 0$ 时为 0，$x\ge 1$ 时为 1）。$P\!\left(X>\dfrac{1}{2}\right)=1-F\!\left(\dfrac{1}{2}\right)=1-\dfrac{1}{8}=\dfrac{7}{8}$。$E[X]=\displaystyle\int_0^1x\cdot 3x^2dx=3\int_0^1x^3dx=\dfrac{3}{4}$。
-**答案** $F(x)=x^3$；$P\!\left(X>\dfrac12\right)=\dfrac{7}{8}$；$E[X]=\dfrac{3}{4}$
+**答案** $F(x)=\begin{cases}0,&x\le 0\\x^3,&0<x<1\\1,&x\ge 1\end{cases}$；$P\!\left(X>\dfrac12\right)=\dfrac{7}{8}$；$E[X]=\dfrac{3}{4}$
 **动画要点** - 密度与分布函数曲线对照 - 概率面积高亮
 
 ### test-prob-005 概率论 · 卷积×三角分布
@@ -558,8 +558,8 @@
 ### test-prob-008 概率论 · 切比雪夫×大数定律
 **题目** 掷均匀骰子 $n$ 次，设 $\bar X_n$ 为平均点数。用切比雪夫不等式给出 $P\!\left(|\bar X_n-3.5|\ge 0.1\right)$ 的上界，并说明 $n\to\infty$ 时该概率趋于 $0$（弱大数定律）。
 **涉及知识点** 切比雪夫不等式、弱大数定律、均匀分布数字特征
-**解答** 单次点数 $X$：$E[X]=\dfrac{7}{2}$，$\operatorname{Var}(X)=\dfrac{35}{12}$。$\bar X_n$ 的方差 $=\dfrac{35}{12n}$。由切比雪夫不等式 $P\!\left(|\bar X_n-E[\bar X_n]|\ge\varepsilon\right)\le\dfrac{\operatorname{Var}(\bar X_n)}{\varepsilon^2}$，取 $\varepsilon=0.1$：$P\!\left(|\bar X_n-3.5|\ge 0.1\right)\le\dfrac{35/12n}{0.01}=\dfrac{35}{0.12n}=\dfrac{291.67}{n}$。当 $n\to\infty$ 时上界趋于 $0$，故概率趋于 $0$（弱大数定律：样本均值依概率收敛于期望）。
-**答案** 上界 $\dfrac{35}{0.12n}=\dfrac{875}{3n}$；$n\to\infty$ 时趋于 $0$
+**解答** 单次点数 $X$：$E[X]=\dfrac{7}{2}$，$\operatorname{Var}(X)=\dfrac{35}{12}$。$\bar X_n$ 的方差 $=\dfrac{35}{12n}$。由切比雪夫不等式 $P\!\left(|\bar X_n-E[\bar X_n]|\ge\varepsilon\right)\le\dfrac{\operatorname{Var}(\bar X_n)}{\varepsilon^2}$，取 $\varepsilon=0.1$：$P\!\left(|\bar X_n-3.5|\ge 0.1\right)\le\dfrac{35/12n}{0.01}=\dfrac{35}{0.12n}=\dfrac{875}{3n}$（$\approx\dfrac{291.67}{n}$）。概率不超过 1，完整上界为 $\min\left\{1,\dfrac{875}{3n}\right\}$。当 $n\to\infty$ 时上界趋于 $0$，故概率趋于 $0$（弱大数定律：样本均值依概率收敛于期望）。
+**答案** 上界 $\min\left\{1,\dfrac{875}{3n}\right\}$；$n\to\infty$ 时趋于 $0$
 **动画要点** - 样本均值轨迹收敛于 3.5 - 上界随 $n$ 衰减曲线
 
 ### test-prob-009 概率论 · 正态分布×线性变换
@@ -580,7 +580,7 @@
 **题目** $(X,Y)$ 在三角形 $D=\{(x,y):x\ge 0,\ y\ge 0,\ x+y\le 2\}$ 上均匀分布。求条件密度 $f_{Y|X}(y|x)$ 与 $E[Y|X=x]$，并求 $E[Y]$。
 **涉及知识点** 二维均匀、条件分布、条件期望
 **解答** $D$ 面积为 $\dfrac{1}{2}\cdot 2\cdot 2=2$，联合密度 $f(x,y)=\dfrac{1}{2}$（$(x,y)\in D$）。边缘密度 $f_X(x)=\displaystyle\int_0^{2-x}\dfrac{1}{2}dy=\dfrac{2-x}{2}$（$0<x<2$）。条件密度 $f_{Y|X}(y|x)=\dfrac{f(x,y)}{f_X(x)}=\dfrac{1}{2-x}$（$0<y<2-x$，即在 $(0,2-x)$ 上均匀）。$E[Y|X=x]=\dfrac{2-x}{2}$。$E[Y]=\displaystyle\int_0^2E[Y|X=x]f_X(x)dx=\int_0^2\dfrac{2-x}{2}\cdot\dfrac{2-x}{2}dx=\dfrac{1}{4}\int_0^2(2-x)^2dx=\dfrac{1}{4}\cdot\dfrac{8}{3}=\dfrac{2}{3}$。
-**答案** $f_{Y|X}(y|x)=\dfrac{1}{2-x}$；$E[Y|X=x]=\dfrac{2-x}{2}$；$E[Y]=\dfrac{2}{3}$
+**答案** $0<x<2$ 时，$f_{Y|X}(y|x)=\dfrac{1}{2-x}$（$0<y<2-x$，其余 $y$ 处为 0）；$E[Y|X=x]=\dfrac{2-x}{2}$；$E[Y]=\dfrac{2}{3}$
 **动画要点** - 三角形区域与条件切片 - 条件期望随 $x$ 变化的直线
 
 ### test-prob-012 概率论 · 超几何分布×组合
@@ -622,7 +622,7 @@
 **题目** 设 $X,Y$ 独立同分布于 $U(0,1)$。求 $M=\max(X,Y)$ 的分布函数，并求 $E[M]$。
 **涉及知识点** 次序统计量、二维均匀、分布函数
 **解答** $F_M(t)=P(\max(X,Y)\le t)=P(X\le t)P(Y\le t)=t^2$（$0<t<1$，$t\le 0$ 为 0、$t\ge 1$ 为 1）。密度 $f_M(t)=2t$（$0<t<1$）。$E[M]=\displaystyle\int_0^1t\cdot 2t\,dt=\dfrac{2}{3}$。
-**答案** $F_M(t)=t^2$；$E[M]=\dfrac{2}{3}$
+**答案** $F_M(t)=\begin{cases}0,&t\le 0\\t^2,&0<t<1\\1,&t\ge 1\end{cases}$；$E[M]=\dfrac{2}{3}$
 **动画要点** - 单位正方形中 $\max\le t$ 的小正方形 - 密度 $2t$ 曲线
 
 ### test-prob-018 概率论 · 矩母函数×反常积分
@@ -763,12 +763,12 @@
 ### test-linalg-012 高等代数 · 特征值×递推数列
 **题目** 用矩阵方法求斐波那契数列 $F_1=F_2=1$，$F_{n+2}=F_{n+1}+F_n$ 中 $F_{10}$ 的值，并说明增长比趋于黄金比。
 **涉及知识点** 矩阵幂、特征值、斐波那契数列
-**解答** 状态矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 满足 $\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=A\begin{pmatrix}F_n\\F_{n-1}\end{pmatrix}$，故 $\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=A^{n-1}\begin{pmatrix}F_1\\F_0\end{pmatrix}$（$F_0=0$）。归纳得 $A^n=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}$：$A^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}=\begin{pmatrix}F_3&F_2\\F_2&F_1\end{pmatrix}$。故 $A^{10}=\begin{pmatrix}F_{11}&F_{10}\\F_{10}&F_9\end{pmatrix}$。直接递推：$1,1,2,3,5,8,13,21,34,55$，$F_{10}=55$。特征值：$\chi(\lambda)=\lambda^2-\lambda-1=0$，$\lambda_1=\dfrac{1+\sqrt5}{2}=\varphi\approx 1.618$，$\lambda_2=\dfrac{1-\sqrt5}{2}$，故 $F_n\sim\dfrac{\varphi^n}{\sqrt5}$，$\dfrac{F_{n+1}}{F_n}\to\varphi$。
+**解答** 状态矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 满足 $\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=A\begin{pmatrix}F_n\\F_{n-1}\end{pmatrix}$，故 $\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=A^{n-1}\begin{pmatrix}F_2\\F_1\end{pmatrix}=A^{n}\begin{pmatrix}F_1\\F_0\end{pmatrix}$（$F_0=0$）。归纳得 $A^n=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}$：$A^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}=\begin{pmatrix}F_3&F_2\\F_2&F_1\end{pmatrix}$。故 $A^{10}=\begin{pmatrix}F_{11}&F_{10}\\F_{10}&F_9\end{pmatrix}$。直接递推：$1,1,2,3,5,8,13,21,34,55$，$F_{10}=55$。特征值：$\chi(\lambda)=\lambda^2-\lambda-1=0$，$\lambda_1=\dfrac{1+\sqrt5}{2}=\varphi\approx 1.618$，$\lambda_2=\dfrac{1-\sqrt5}{2}$，故 $F_n\sim\dfrac{\varphi^n}{\sqrt5}$，$\dfrac{F_{n+1}}{F_n}\to\varphi$。
 **答案** $F_{10}=55$；增长比趋于 $\dfrac{1+\sqrt5}{2}$
 **动画要点** - 斐波那契递推与矩阵幂 - 比值逼近黄金比
 
 ### test-linalg-013 高等代数 · 三对角行列式×周期性
-**题目** 求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}1&1&0&\cdots&0\\1&1&1&\cdots&0\\0&1&1&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&0&\cdots&1\end{vmatrix}$（主对角线全为 1）的前 6 项，并发现其周期规律。
+**题目** 求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}1&1&0&\cdots&0\\1&1&1&\cdots&0\\0&1&1&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&\cdots&1&1\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。
 **涉及知识点** 三对角行列式、递推、周期性
 **解答** 按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\cdot D_{n-1}-1\cdot\begin{vmatrix}1&1&0&\cdots\\0&1&1&\cdots\\\vdots\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\begin{vmatrix}1&1\\1&1\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\cdots=D_n$ 由递推的线性性质）。
 **答案** $D_1,\dots,D_6=1,0,-1,-1,0,1$，周期为 6
@@ -805,7 +805,7 @@
 ### test-linalg-018 高等代数 · 幂等矩阵×秩与迹
 **题目** 设 $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$。验证 $A^2=A$，求 $A$ 的特征值，并说明幂等矩阵满足 $\operatorname{rank}A=\operatorname{tr}A$。
 **涉及知识点** 幂等矩阵、特征值、秩与迹
-**解答** $A^2=\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix}1&0\\0&0\end{pmatrix}=A$。特征值：$|\lambda I-A|=\lambda(\lambda-1)$，特征值 $1,0$。$\operatorname{rank}A=1$，$\operatorname{tr}A=1$，相等。一般地，幂等矩阵 $A^2=A$ 的特征值满足 $\lambda^2=\lambda$，即 $\lambda\in\{0,1\}$，且 $A$ 可对角化（最小多项式 $\lambda(\lambda-1)$ 无重根），非零特征值个数 $=$ 秩，特征值之和 $=$ 迹，故 $\operatorname{rank}A=\operatorname{tr}A$。
+**解答** $A^2=\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix}1&0\\0&0\end{pmatrix}=A$。特征值：$|\lambda I-A|=\lambda(\lambda-1)$，特征值 $1,0$。$\operatorname{rank}A=1$，$\operatorname{tr}A=1$，相等。一般地，幂等矩阵 $A^2=A$ 的特征值满足 $\lambda^2=\lambda$，即 $\lambda\in\{0,1\}$，且 $A$ 可对角化（最小多项式整除 $\lambda(\lambda-1)$，无重根；本题给定矩阵的最小多项式恰为 $\lambda(\lambda-1)$），非零特征值个数 $=$ 秩，特征值之和 $=$ 迹，故 $\operatorname{rank}A=\operatorname{tr}A$。
 **答案** 证毕；特征值 $1,0$；$\operatorname{rank}A=\operatorname{tr}A=1$
 **动画要点** - 投影变换的几何 - 特征值 $\{0,1\}$ 标注
 
@@ -826,8 +826,8 @@
 ### test-linalg-021 高等代数 · 正交矩阵×反射
 **题目** 设 $A=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$。证明 $A$ 是正交矩阵，求其特征值，并说明其几何意义。
 **涉及知识点** 正交矩阵、反射、特征值
-**解答** $A^TA=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}=\begin{pmatrix}\cos^2\theta+\sin^2\theta&\cos\theta\sin\theta-\sin\theta\cos\theta\\\sin\theta\cos\theta-\cos\theta\sin\theta&\sin^2\theta+\cos^2\theta\end{pmatrix}=I$，故 $A$ 正交，且 $\det A=-\cos^2\theta-\sin^2\theta=-1$。特征方程 $\lambda^2-1=0$（迹为 0），特征值 $\pm 1$。特征值 $1$ 的特征方向为 $(\cos\frac{\theta}{2},\sin\frac{\theta}{2})$（关于此方向的直线反射），$-1$ 的特征方向与之垂直。几何上 $A$ 是关于直线 $y=x\tan\dfrac{\theta}{2}$ 的镜面反射。
-**答案** 证毕；特征值 $\pm 1$；关于 $y=x\tan\dfrac{\theta}{2}$ 的反射
+**解答** $A^TA=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}=\begin{pmatrix}\cos^2\theta+\sin^2\theta&\cos\theta\sin\theta-\sin\theta\cos\theta\\\sin\theta\cos\theta-\cos\theta\sin\theta&\sin^2\theta+\cos^2\theta\end{pmatrix}=I$，故 $A$ 正交，且 $\det A=-\cos^2\theta-\sin^2\theta=-1$。特征方程 $\lambda^2-1=0$（迹为 0），特征值 $\pm 1$。特征值 $1$ 的特征方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$（关于此方向的直线反射），$-1$ 的特征方向与之垂直。几何上 $A$ 是关于过原点、方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的镜面反射；该参数化覆盖所有轴方向，包括 $\theta=(2k+1)\pi$ 时的竖直轴 $x=0$（此时 $\tan\dfrac{\theta}{2}$ 不存在，不能用斜截式表示）。
+**答案** 证毕；特征值 $\pm 1$；关于过原点、方向 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的反射（$\theta=(2k+1)\pi$ 时为竖直轴 $x=0$）
 **动画要点** - 关于斜直线的反射 - 两个特征方向（不动/反向）
 
 ### test-linalg-022 高等代数 · Cholesky 分解×正定矩阵
@@ -840,7 +840,7 @@
 ### test-linalg-023 高等代数 · 特征值×微分方程组
 **题目** 用矩阵方法解微分方程组 $\begin{cases}x'=3x+y\\y'=x+3y\end{cases}$ 的通解。
 **涉及知识点** 特征值分解、线性微分方程组、矩阵指数
-**解答** 系数矩阵 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$。特征方程 $(\lambda-3)^2-1=0$，$\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\begin{pmatrix}x\\y\end{pmatrix}=c_1e^{4t}\begin{pmatrix}1\\1\end{pmatrix}+c_2e^{2t}\begin{pmatrix}1&-1\end{pmatrix}$ 的组合，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。
+**解答** 系数矩阵 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$。特征方程 $(\lambda-3)^2-1=0$，$\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\begin{pmatrix}x\\y\end{pmatrix}=c_1e^{4t}\begin{pmatrix}1\\1\end{pmatrix}+c_2e^{2t}\begin{pmatrix}1\\-1\end{pmatrix}$，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。
 **答案** $x=c_1e^{4t}+c_2e^{2t}$；$y=c_1e^{4t}-c_2e^{2t}$
 **动画要点** - 相图与特征方向 - 解的轨道
 
@@ -868,7 +868,7 @@
 ### test-linalg-027 高等代数 · 若尔当形×微分方程组
 **题目** 解微分方程组 $\begin{cases}x'=2x+y\\y'=2y\end{cases}$ 的通解。
 **涉及知识点** 若尔当块、广义特征向量、线性微分方程
-**解答** 系数矩阵 $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}=J_2(2)$。先解 $y'=2y$：$y=c_2e^{2t}$。代入 $x'=2x+c_2e^{2t}$：$x=e^{2t}\left(c_1+c_2t\right)$（常数变易或观察特解 $x=\dfrac{c_2}{2}te^{2t}$ 的倍数形式）。验证：$x'=2e^{2t}(c_1+c_2t)+c_2e^{2t}=2x+y$。
+**解答** 系数矩阵 $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}=J_2(2)$。先解 $y'=2y$：$y=c_2e^{2t}$。代入 $x'=2x+c_2e^{2t}$：$x=e^{2t}\left(c_1+c_2t\right)$（常数变易，或观察特解 $x_p=c_2te^{2t}$：$x_p'-2x_p=c_2e^{2t}(1+2t)-2c_2te^{2t}=c_2e^{2t}$ 恰为强迫项）。验证：$x'=2e^{2t}(c_1+c_2t)+c_2e^{2t}=2x+y$。
 **答案** $x=e^{2t}(c_1+c_2t)$；$y=c_2e^{2t}$
 **动画要点** - 相图的退化结点 - 广义特征方向
 
@@ -929,7 +929,7 @@
 **动画要点** - 行列式随 $x$ 变化的曲线 - 两个零点
 
 ### test-linalg-036 高等代数 · 初等矩阵×行列式
-**题目** 求三类初等矩阵的行列式：交换两行、某行乘以 $k$、某行加到另一行。
+**题目** 求三类初等矩阵的行列式：交换两行、某行乘以 $k$（$k\ne 0$）、某行加到另一行（三类变换均涉及两不同行）。
 **涉及知识点** 初等矩阵、行列式性质
 **解答** 交换两行的初等矩阵 $P_{ij}$：由单位矩阵交换两行得到，$\det P_{ij}=-1$（一次对换改变符号）。第 $i$ 行乘 $k$ 的初等矩阵 $D_i(k)$：对角线第 $i$ 元为 $k$，$\det D_i(k)=k$。第 $i$ 行加到第 $j$ 行的初等矩阵 $E_{ij}$：下（上）三角且对角线全 1，$\det E_{ij}=1$。相应地对任意方阵 $B$：$\det(P_{ij}B)=-\det B$，$\det(D_i(k)B)=k\det B$，$\det(E_{ij}B)=\det B$。
 **答案** $-1$；$k$；$1$
@@ -950,17 +950,17 @@
 **动画要点** - 幂零变换的逐步退化 - 秩的变化链
 
 ### test-linalg-039 高等代数 · 二次型×惯性指数
-**题目** 求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断对应二次曲面的类型。
+**题目** 求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。
 **涉及知识点** 惯性指数、特征值、二次曲面分类
-**解答** 矩阵 $A=\begin{pmatrix}3&2&0\\2&-2&0\\0&0&-1\end{pmatrix}$。$2\times 2$ 块 $\begin{pmatrix}3&2\\2&-2\end{pmatrix}$：迹 $1$、行列式 $-10$，特征方程 $\lambda^2-\lambda-10=0$，特征值 $\dfrac{1\pm\sqrt{41}}{2}$，即一正一负；第三个特征值 $-1$。故正惯性指数 $1$、负惯性指数 $2$（符号差 $-1$）。曲面 $f=1$ 为双叶双曲面（一个正方向、两个负方向）。
-**答案** 正惯性指数 $1$、负惯性指数 $2$；双叶双曲面
+**解答** 矩阵 $A=\begin{pmatrix}3&2&0\\2&-2&0\\0&0&-1\end{pmatrix}$。$2\times 2$ 块 $\begin{pmatrix}3&2\\2&-2\end{pmatrix}$：迹 $1$、行列式 $-10$，特征方程 $\lambda^2-\lambda-10=0$，特征值 $\dfrac{1\pm\sqrt{41}}{2}$，即一正一负；第三个特征值 $-1$。故正惯性指数 $1$、负惯性指数 $2$（符号差 $-1$）。等值曲面 $f=1$ 为双叶双曲面（一个正方向、两个负方向）。
+**答案** 正惯性指数 $1$、负惯性指数 $2$；$f=1$ 为双叶双曲面（$f=-1$ 为单叶双曲面，$f=0$ 为锥面）
 **动画要点** - 双叶双曲面的三维图 - 惯性指数标注
 
 ### test-linalg-040 高等代数 · 图论×特征值
 **题目** 求四顶点圈 $C_4$ 的邻接矩阵及其特征值。
 **涉及知识点** 邻接矩阵、图的谱、对称矩阵
-**解答** $C_4$ 的邻接矩阵 $A=\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}$。求特征值：注意到 $A=J'\otimes\ldots$ 更直接的是解方程 $Av=\lambda v$：由对称性，特征向量可取 $(1,1,1,1)^T$（特征值 $2$）、$(1,-1,1,-1)^T$（特征值 $-2$，因每行点积为 $-2$）、$(1,0,-1,0)^T$（每行点积 $0$）、$(0,1,0,-1)^T$（每行点积 $0$）。故特征值为 $2,0,0,-2$（图是二部图，谱关于 0 对称）。
-**答案** 特征值 $2,0,0,-2$
+**解答** $C_4$ 的邻接矩阵 $A=\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}$。解方程 $Av=\lambda v$：由对称性，特征向量可取 $(1,1,1,1)^T$（$A(1,1,1,1)^T=(2,2,2,2)^T=2(1,1,1,1)^T$，特征值 $2$）、$(1,-1,1,-1)^T$（验证 $A(1,-1,1,-1)^T=(-2,2,-2,2)^T=-2(1,-1,1,-1)^T$，特征值 $-2$）、$(1,0,-1,0)^T$（$A(1,0,-1,0)^T=(0,0,0,0)^T$，特征值 $0$）、$(0,1,0,-1)^T$（同样为 $0$）。故特征值为 $2,0,0,-2$（图是二部图，谱关于 0 对称）。
+**答案** 邻接矩阵 $A=\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}$；特征值 $2,0,0,-2$
 **动画要点** - 圈图与邻接矩阵 - 四个特征向量的模式
 
 # 五、跨学科综合（15 题）
@@ -1003,7 +1003,7 @@
 ### test-x-006 概率论×解析几何
 **题目** Bertrand 悖论：在单位圆中"随机取一条弦"，求弦长大于 $\sqrt3$ 的概率，分别按三种取法计算（随机端点、随机半径中点、随机中点）。
 **涉及知识点** 几何概型、概率空间定义、建模
-**解答** 弦长 $>\sqrt3\iff$ 弦到圆心的距离 $<\dfrac{1}{2}$（半弦长 $\sqrt{1-d^2}>\dfrac{\sqrt3}{2}\iff d<\dfrac{1}{2}$）。（1）随机端点：两端点在圆周上均匀独立，等价于固定一端后另一端随机；圆心角 $>\dfrac{2\pi}{3}$ 时弦长 $>\sqrt3$（$2\sin\dfrac{\theta}{2}>\sqrt3\iff\theta>\dfrac{2\pi}{3}$），有利角长 $\dfrac{2\pi}{3}$，概率 $=\dfrac{2\pi/3}{2\pi}=\dfrac{1}{3}$。（2）随机半径中点：在一条半径上均匀取中点再作垂直弦，弦到圆心距离 $<\dfrac{1}{2}$ 的概率 $=\dfrac{1}{2}$。（3）随机中点：中点在圆内均匀分布，$d<\dfrac{1}{2}$ 对应半径为 $\dfrac{1}{2}$ 的小圆，面积比 $=\dfrac{\pi/4}{\pi}=\dfrac{1}{4}$。三种取法给出三个不同答案，说明"随机"必须先明确概率空间。
+**解答** 弦长 $>\sqrt3\iff$ 弦到圆心的距离 $<\dfrac{1}{2}$（半弦长 $\sqrt{1-d^2}>\dfrac{\sqrt3}{2}\iff d<\dfrac{1}{2}$）。（1）随机端点：两端点在圆周上均匀独立，等价于固定一端后另一端随机，另一端点对应的圆心角 $\theta\in[0,2\pi)$ 均匀。弦长为 $2\sin\dfrac{\theta}{2}$（$\theta\in[0,\pi]$ 时递增、$[\pi,2\pi]$ 时递减），故 $2\sin\dfrac{\theta}{2}>\sqrt3\iff\dfrac{\theta}{2}\in\left(\dfrac{\pi}{3},\dfrac{2\pi}{3}\right)\iff\theta\in\left(\dfrac{2\pi}{3},\dfrac{4\pi}{3}\right)$，有利角长 $\dfrac{4\pi}{3}-\dfrac{2\pi}{3}=\dfrac{2\pi}{3}$，概率 $=\dfrac{2\pi/3}{2\pi}=\dfrac{1}{3}$。（2）随机半径中点：在一条半径上均匀取中点再作垂直弦，弦到圆心距离 $<\dfrac{1}{2}$ 的概率 $=\dfrac{1}{2}$。（3）随机中点：中点在圆内均匀分布，$d<\dfrac{1}{2}$ 对应半径为 $\dfrac{1}{2}$ 的小圆，面积比 $=\dfrac{\pi/4}{\pi}=\dfrac{1}{4}$。三种取法给出三个不同答案，说明"随机"必须先明确概率空间。
 **答案** $\dfrac{1}{3}$、$\dfrac{1}{2}$、$\dfrac{1}{4}$（取决于取法）
 **动画要点** - 三种取弦方式并排演示 - 有利区域高亮
 
@@ -1024,21 +1024,21 @@
 ### test-x-009 概率论×微积分
 **题目** 设 $X\sim\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。
 **涉及知识点** 指数分布、Γ 函数、分部积分
-**解答** $E[X^n]=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。记 $I_n=\displaystyle\int_0^{\infty}x^ne^{-x}dx$，分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\left[-x^ne^{-x}\right]_0^{\infty}+n\displaystyle\int_0^{\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（边界项为 0）。$I_0=\displaystyle\int_0^{\infty}e^{-x}dx=1$。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\Gamma(n+1)$）。
+**解答** 设 $n\in\{0,1,2,\dots\}$。$E[X^n]=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。记 $I_n=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。$I_0=\displaystyle\int_0^{\infty}e^{-x}dx=1$ 单独计算；$n\ge 1$ 时用分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\left[-x^ne^{-x}\right]_0^{\infty}+n\displaystyle\int_0^{\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（$n\ge 1$ 时边界项 $x^ne^{-x}\big|_0^\infty$ 为 0）。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\Gamma(n+1)$）。
 **答案** 证毕；$E[X^n]=n!$
 **动画要点** - 分部积分的递推链 - 矩的阶乘增长
 
 ### test-x-010 线性代数×概率论
-**题目** 证明协方差矩阵 $\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\end{pmatrix}$ 正定当且仅当 $|\rho|<1$。
+**题目** 设两随机变量的方差有限且严格为正（$\sigma_1,\sigma_2>0$）。证明协方差矩阵 $\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\end{pmatrix}$ 正定当且仅当 $|\rho|<1$。
 **涉及知识点** 协方差矩阵、正定性、行列式
-**解答** 顺序主子式：$\sigma_1^2>0$；行列式 $\sigma_1^2\sigma_2^2(1-\rho^2)$。矩阵正定 $\iff$ 两顺序主子式均为正 $\iff 1-\rho^2>0\iff|\rho|<1$。概率解释：相关系数 $|\rho|<1$ 恰是"两个随机变量不几乎必然线性相关"的充要条件，此时协方差矩阵非退化。
-**答案** 证毕（$|\rho|<1$）
+**解答** 顺序主子式：$\sigma_1^2>0$；行列式 $\sigma_1^2\sigma_2^2(1-\rho^2)$。矩阵正定 $\iff$ 两顺序主子式均为正 $\iff 1-\rho^2>0\iff|\rho|<1$。概率解释：相关系数 $|\rho|<1$ 恰是"两个随机变量不几乎必然线性相关"的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。
+**答案** 证毕（在 $\sigma_1,\sigma_2>0$ 的前提下，正定 $\iff|\rho|<1$）
 **动画要点** - 相关系数滑块与散布图 - 退化情形 $\rho=\pm 1$
 
 ### test-x-011 解析几何×线性代数
-**题目** 证明：两个反射的复合是旋转。以关于 $x$ 轴和关于直线 $y=x$ 的两次反射为例，求复合变换矩阵并识别其几何意义。
+**题目** 证明：平面上关于两条过原点直线的（线性）反射的复合是旋转。以关于 $x$ 轴和关于直线 $y=x$ 的两次反射为例，求复合变换矩阵并识别其几何意义。
 **涉及知识点** 反射矩阵、矩阵乘法、旋转
-**解答** 关于 $x$ 轴的反射 $R_1=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，关于 $y=x$ 的反射 $R_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。复合（先 $R_1$ 后 $R_2$）$R_2R_1=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$，这是逆时针旋转 $90^\circ$ 的矩阵（$\det=1$）。一般地，两个反射矩阵（正交、$\det=-1$）之积是正交矩阵且 $\det=1$，即旋转。
+**解答** 关于 $x$ 轴的反射 $R_1=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，关于 $y=x$ 的反射 $R_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。复合（先 $R_1$ 后 $R_2$）$R_2R_1=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$，这是逆时针旋转 $90^\circ$ 的矩阵（$\det=1$）。一般地，两个线性反射矩阵（正交、$\det=-1$）之积是正交矩阵且 $\det=1$，即旋转。注意：对一般的平面镜面反射，两轴相交时复合为绕交点旋转 $2\varphi$（$\varphi$ 为两轴夹角），两轴平行时复合为平移——本题限定线性反射（轴过原点）才恒得旋转。
 **答案** 复合矩阵 $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$（逆时针旋转 $90^\circ$）
 **动画要点** - 两次反射的连续动画 - 合成出旋转
 
@@ -1067,5 +1067,5 @@
 **题目** 设马尔可夫链的转移矩阵 $P=\begin{pmatrix}0.5&0.5\\0.25&0.75\end{pmatrix}$。用对角化求 $P^n$，并求 $n\to\infty$ 时的极限矩阵。
 **涉及知识点** 对角化、矩阵极限、稳态分布
 **解答** 特征方程 $|\lambda I-P|=(\lambda-0.5)(\lambda-0.75)-0.125=\lambda^2-1.25\lambda+0.25=0$，判别式 $1.5625-1=0.5625=\left(\dfrac{3}{4}\right)^2$，特征值 $\lambda=\dfrac{1.25\pm 0.75}{2}$，即 $\lambda_1=1$、$\lambda_2=\dfrac{1}{4}$。$\lambda_1=1$ 的特征向量：解 $(P-I)v=0$，即 $\begin{pmatrix}-0.5&0.5\\0.25&-0.25\end{pmatrix}v=0$，得 $v_1=(1,1)^T$。$\lambda_2=\dfrac{1}{4}$ 的特征向量：解 $\left(P-\dfrac{1}{4}I\right)v=0$，即 $\begin{pmatrix}0.25&0.5\\0.25&0.5\end{pmatrix}v=0$，得 $v_2=(2,-1)^T$（验证 $Pv_2=(0.5,-0.25)=\dfrac{1}{4}v_2$）。取 $Q=\begin{pmatrix}1&2\\1&-1\end{pmatrix}$，$\det Q=-3$，$Q^{-1}=-\dfrac{1}{3}\begin{pmatrix}-1&-2\\-1&1\end{pmatrix}=\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}$。则 $P=Q\begin{pmatrix}1&0\\0&\frac{1}{4}\end{pmatrix}Q^{-1}$，$P^n=Q\begin{pmatrix}1&0\\0&4^{-n}\end{pmatrix}Q^{-1}$。令 $n\to\infty$：$4^{-n}\to 0$，故 $P^n\to Q\begin{pmatrix}1&0\\0&0\end{pmatrix}Q^{-1}=\begin{pmatrix}1&2\\1&-1\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}=\begin{pmatrix}1&0\\1&0\end{pmatrix}\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}=\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&\frac{2}{3}\end{pmatrix}$。极限矩阵每行均为稳态分布 $\left(\dfrac{1}{3},\dfrac{2}{3}\right)$（与 $\pi=\pi P$ 直接解 $0.5\pi_1=0.25\pi_2$ 即 $\pi_2=2\pi_1$ 的结果一致）。
-**答案** $P^n\to\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&\frac{2}{3}\end{pmatrix}$
+**答案** $P^n=\dfrac{1}{3}\begin{pmatrix}1+2\cdot4^{-n}&2-2\cdot4^{-n}\\1-4^{-n}&2+4^{-n}\end{pmatrix}$；$\lim_{n\to\infty}P^n=\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&\frac{2}{3}\end{pmatrix}$
 **动画要点** - $P^n$ 随 $n$ 收敛的动画 - 稳态分布行重复结构

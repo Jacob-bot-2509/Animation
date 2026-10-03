@@ -73,8 +73,12 @@ def protect_math(text: str) -> tuple[str, list[tuple[str, bool]]]:
 
 
 def _texify(tok: str) -> str:
-    """数学文本中的裸 < > & 转 TeX 宏,防止被 HTML 解析/误解。"""
-    return tok.replace("<", r"\lt").replace(">", r"\gt").replace("&", r"\&")
+    """数学文本中的裸 < > 转 TeX 宏(带空格终止,防与后随字母连写成新命令)。
+
+    & 是 LaTeX 矩阵/分段环境的合法列分隔符,必须原样保留;
+    源码中不存在 &xxx; 形式的 HTML 实体序列,原样输出安全。
+    """
+    return tok.replace("<", r"\lt ").replace(">", r"\gt ")
 
 
 def restore_math(rendered: str, tokens: list[tuple[str, bool]]) -> str:

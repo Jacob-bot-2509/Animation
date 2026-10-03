@@ -16,6 +16,12 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
   渲染 PDF 供用户审阅:outputs/review/{dataset-eval,data-test}.pdf(公式零残留,已验证);
   渲染工具 tools/render_review.py + tools/assets/mathjax-tex-svg.js(本地渲染器)。
   状态:待用户审阅题目与解答;定稿后再转正式 markdown→JSON→JSONL(契约见 EVAL_TEST_PREP.md §3.5)。
+- **数学复查一轮已整改(2026-10-03)**:Codex 逐题复查报告已迁移至
+  reviews/2026-10-03-math-review/review-math.md(250 题全查,A/B/C 分级)。
+  A 级 5 项、B/C 级 55 项全部按报告修复(精确值、反函数、直纹族、反射轴、
+  部分和奇偶子列、分部积分第二解析解、草稿残留清除等);全局排版两类问题
+  (矩阵列分隔符 & 被误转义、\lt/\gt 连写)在渲染器中修复;PDF 已重渲染
+  (公式 4903 条零残留、无 LaTeX 泄漏)。
 
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;

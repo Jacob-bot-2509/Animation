@@ -59,7 +59,7 @@
 
 ### eval-calc-006 数学分析 · 导数
 **题目** 求函数 $y=\ln(x+\sqrt{x^2+a^2})$（$a>0$）的导数，并说明其反函数。
-**答案** $y'=\dfrac{1}{\sqrt{x^2+a^2}}$；反函数为 $x=a\sinh y$
+**答案** $y'=\dfrac{1}{\sqrt{x^2+a^2}}$；反函数为 $x=a\sinh(y-\ln a)=\dfrac{e^y-a^2e^{-y}}{2}$
 **解法一（直接链式法则）** $y'=\dfrac{1+\dfrac{x}{\sqrt{x^2+a^2}}}{x+\sqrt{x^2+a^2}}=\dfrac{\sqrt{x^2+a^2}+x}{\sqrt{x^2+a^2}\cdot(x+\sqrt{x^2+a^2})}=\dfrac{1}{\sqrt{x^2+a^2}}$。
 **解法二（双曲函数观点）** 令 $x=a\sinh t$，则 $x+\sqrt{x^2+a^2}=a(\sinh t+\cosh t)=a e^t$，故 $y=\ln(ae^t)=t+\ln a$，即 $y=\operatorname{arsinh}\dfrac{x}{a}+\ln a$。由反双曲函数求导公式 $(\operatorname{arsinh} u)'=\dfrac{u'}{\sqrt{1+u^2}}$，得 $y'=\dfrac{1/a}{\sqrt{1+x^2/a^2}}=\dfrac{1}{\sqrt{x^2+a^2}}$。
 **解法三（反函数求导）** 由 $y=\ln(x+\sqrt{x^2+a^2})$ 解出 $x$：$e^y=x+\sqrt{x^2+a^2}$，移项平方得 $e^{2y}-2xe^y=a^2$，故 $x=\dfrac{e^y-a^2e^{-y}}{2}=a\sinh(y-\ln a)$。于是 $\dfrac{dx}{dy}=a\cosh(y-\ln a)=\sqrt{x^2+a^2}$，故 $\dfrac{dy}{dx}=\dfrac{1}{\sqrt{x^2+a^2}}$。
@@ -68,7 +68,7 @@
 
 ### eval-calc-007 数学分析 · 导数
 **题目** 设星形线参数方程为 $x=a\cos^3 t$，$y=a\sin^3 t$（$a>0$，$0\le t\le 2\pi$），求 $\dfrac{dy}{dx}$ 与 $\dfrac{d^2y}{dx^2}$。
-**答案** $\dfrac{dy}{dx}=-\tan t$；$\dfrac{d^2y}{dx^2}=\dfrac{1}{3a\cos^4 t\sin t}$
+**答案** $\dfrac{dy}{dx}=-\tan t$；$\dfrac{d^2y}{dx^2}=\dfrac{1}{3a\cos^4 t\sin t}$（两式仅在光滑分支上成立，即 $\sin t\cos t\ne 0$；在尖点 $t=k\dfrac{\pi}{2}$ 处切线竖直或水平、二阶导不存在，需单独作单侧讨论）
 **解法一（参数方程求导公式）** $\dfrac{dx}{dt}=-3a\cos^2 t\sin t$，$\dfrac{dy}{dt}=3a\sin^2 t\cos t$，故 $\dfrac{dy}{dx}=\dfrac{3a\sin^2t\cos t}{-3a\cos^2t\sin t}=-\tan t$。二阶导：$\dfrac{d^2y}{dx^2}=\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)\Big/\dfrac{dx}{dt}=\dfrac{-\sec^2 t}{-3a\cos^2 t\sin t}=\dfrac{1}{3a\cos^4 t\sin t}$。
 **解法二（消参后隐函数求导）** 消去参数：$x^{2/3}+y^{2/3}=a^{2/3}$。两边对 $x$ 求导：$\dfrac{2}{3}x^{-1/3}+\dfrac{2}{3}y^{-1/3}y'=0$，故 $y'=-\left(\dfrac{y}{x}\right)^{1/3}=-\tan t$。再对 $x$ 求导：$y''=-\dfrac{1}{3}\left(\dfrac{y}{x}\right)^{-2/3}\cdot\dfrac{y'x-y}{x^2}$。代入 $x=a\cos^3 t$、$y=a\sin^3 t$、$y'=-\tan t$：$\left(\dfrac{y}{x}\right)^{2/3}=\tan^2 t$，且 $y'x-y=-\tan t\cdot a\cos^3 t-a\sin^3 t=-a\sin t(\cos^2 t+\sin^2 t)=-a\sin t$。故 $y''=-\dfrac{1}{3}\cot^2 t\cdot\dfrac{-a\sin t}{a^2\cos^6 t}=\dfrac{1}{3a\cos^4 t\sin t}$，与解法一一致。
 **解法三（几何切线性质）** 在参数点 $(a\cos^3 t, a\sin^3 t)$ 处，切线方程为 $y-a\sin^3 t=-\tan t\,(x-a\cos^3 t)$。令 $y=0$ 求 $x$ 截距：$\tan t\,x=a\sin^3 t+\tan t\cdot a\cos^3 t=a\sin t(\sin^2 t+\cos^2 t)=a\sin t$，故 $x=a\cos t$；令 $x=0$ 得 $y$ 截距 $y=a\sin^3 t+\tan t\cdot a\cos^3 t=a\sin t$。于是切线与两坐标轴交点间的线段长恒为 $\sqrt{a^2\cos^2 t+a^2\sin^2 t}=a$，且切线斜率恰为 $\dfrac{-a\sin t}{a\cos t}=-\tan t$，与解法一一致。二阶导 $y''$ 则描述这条定长切线随 $t$ 转动的速率（解法一已算出 $\dfrac{1}{3a\cos^4 t\sin t}$）。
@@ -105,7 +105,7 @@
 ### eval-calc-011 数学分析 · 幂级数
 **题目** 用多种方法求级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$ 的和。
 **答案** $\ln 2$
-**解法一（代入对数展开式）** 由 $-x-\dfrac{x^2}{2}-\dfrac{x^3}{3}-\cdots=-\ln(1-x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{x^n}{n}$（$|x|<1$），取 $x=\dfrac{1}{2}$，得 $\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n\cdot 2^n}=-\ln\left(1-\dfrac{1}{2}\right)=-\ln\dfrac{1}{2}=\ln 2$。
+**解法一（代入对数展开式）** 由 $-\ln(1-x)=\displaystyle\int_0^x\dfrac{dt}{1-t}=\int_0^x\sum_{n=0}^{\infty}t^n\,dt=\sum_{n=1}^{\infty}\dfrac{x^n}{n}=x+\dfrac{x^2}{2}+\dfrac{x^3}{3}+\cdots$（$|x|<1$），取 $x=\dfrac{1}{2}$，得 $\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n\cdot 2^n}=-\ln\left(1-\dfrac{1}{2}\right)=-\ln\dfrac{1}{2}=\ln 2$。
 **解法二（积分表示求和）** 由 $\dfrac{1}{n\cdot 2^n}=\displaystyle\int_0^{1/2}x^{n-1}\,dx$（把 $\dfrac{1}{2^n}$ 看作幂的积分），故 $S=\displaystyle\sum_{n=1}^{\infty}\int_0^{1/2}x^{n-1}dx=\int_0^{1/2}\sum_{n=1}^{\infty}x^{n-1}dx=\int_0^{1/2}\dfrac{dx}{1-x}=\left[-\ln(1-x)\right]_0^{1/2}=\ln 2$（求和与积分可交换由正项级数单调收敛保证）。
 **解法三（由导数重建展开式）** 设 $f(x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{x^n}{n}$，逐项求导得 $f'(x)=\displaystyle\sum_{n=1}^{\infty}x^{n-1}=\dfrac{1}{1-x}$（$|x|<1$），且 $f(0)=0$，故 $f(x)=-\ln(1-x)$，取 $x=\dfrac{1}{2}$ 得 $\ln 2$。
 **思路展开** 解法一直接调用已知展开式，解法二把"求和"翻译成"积分"（把分母 $2^n$ 藏进积分号里），解法三从头重建展开式——三种方法分别对应"引用结论""构造表示""推导结论"三个层次。动画可展示 $\int_0^{1/2}\dfrac{dx}{1-x}$ 的曲边梯形面积被宽为 $2^{-n}$ 的矩形条带剖分，级数各项正是这些条带的面积。
@@ -116,7 +116,7 @@
 **答案** $2-\sqrt{3}$
 **解法一（和角公式）** $\tan 15^\circ=\tan(45^\circ-30^\circ)=\dfrac{\tan 45^\circ-\tan 30^\circ}{1+\tan 45^\circ\tan 30^\circ}=\dfrac{1-\frac{\sqrt{3}}{3}}{1+\frac{\sqrt{3}}{3}}=\dfrac{3-\sqrt{3}}{3+\sqrt{3}}$。分子分母同乘 $3-\sqrt{3}$：$\dfrac{(3-\sqrt{3})^2}{9-3}=\dfrac{12-6\sqrt{3}}{6}=2-\sqrt{3}$。
 **解法二（半角公式）** $\tan 15^\circ=\tan\dfrac{30^\circ}{2}=\dfrac{1-\cos 30^\circ}{\sin 30^\circ}=\dfrac{1-\frac{\sqrt{3}}{2}}{\frac{1}{2}}=2-\sqrt{3}$。
-**解法三（几何构造）** 构造直角三角形：作 $30^\circ$-$60^\circ$-$90^\circ$ 三角形（短直角边 $1$、长直角边 $\sqrt{3}$、斜边 $2$），在长直角边方向向外延长拼出等腰三角形，使 $15^\circ$ 角的对边为 $1$、邻边为 $2+\sqrt{3}$。于是 $\tan 15^\circ=\dfrac{1}{2+\sqrt{3}}$，分母有理化得 $2-\sqrt{3}$。
+**解法三（几何构造）** 用 $30^\circ$-$60^\circ$-$90^\circ$ 三角形（边长 $1:\sqrt3:2$）拼出宽 $1$、长 $2+\sqrt3$ 的矩形：长边由"长直角边 $\sqrt3$ 与斜边 $2$ 首尾相接"构成，宽取短直角边 $1$。该矩形的对角线与长边的夹角 $\alpha$ 满足 $\tan\alpha=\dfrac{1}{2+\sqrt3}$。分母有理化：$\dfrac{1}{2+\sqrt3}=\dfrac{2-\sqrt3}{(2+\sqrt3)(2-\sqrt3)}=2-\sqrt3$。由解法一 $\tan 15^\circ=2-\sqrt3$，且 $0<\alpha<90^\circ$ 内正切一一对应，故 $\alpha=15^\circ$。此构造同时给出 $\tan 75^\circ=2+\sqrt3$。
 **思路展开** 三种方法都给出同一精确值：和角公式走代数分解，半角公式走倍角逆向，几何构造走图形拼合。还可顺带指出 $\tan 75^\circ=2+\sqrt{3}$，两者互为倒数（$\tan 15^\circ\cdot\tan 75^\circ=1$ 来自 $15^\circ+75^\circ=90^\circ$）。动画可在单位圆中同时标出 $15^\circ$、$30^\circ$、$45^\circ$ 角，展示和角分解与半角关系的几何来源。
 **动画要点** - 单位圆中 $15^\circ$ 角与 $45^\circ-30^\circ$ 分解 - 半角三角形的角平分线构造 - 几何拼合图（对边 1、邻边 $2+\sqrt{3}$）
 
@@ -152,7 +152,7 @@
 **答案** $\dfrac{x}{2a^2(x^2+a^2)}+\dfrac{1}{2a^3}\arctan\dfrac{x}{a}+C$
 **解法一（三角换元）** 令 $x=a\tan t$，则 $dx=a\sec^2 t\,dt$，$x^2+a^2=a^2\sec^2 t$。原式 $=\displaystyle\int\dfrac{a\sec^2 t}{a^4\sec^4 t}dt=\dfrac{1}{a^3}\int\cos^2 t\,dt=\dfrac{1}{a^3}\left(\dfrac{t}{2}+\dfrac{\sin 2t}{4}\right)+C=\dfrac{1}{a^3}\left(\dfrac{t}{2}+\dfrac{\sin t\cos t}{2}\right)+C$。由直角三角形得 $\sin t=\dfrac{x}{\sqrt{x^2+a^2}}$、$\cos t=\dfrac{a}{\sqrt{x^2+a^2}}$，故原式 $=\dfrac{1}{2a^3}\arctan\dfrac{x}{a}+\dfrac{x}{2a^2(x^2+a^2)}+C$。
 **解法二（递推公式）** 记 $I_n=\displaystyle\int\dfrac{dx}{(x^2+a^2)^n}$。对 $I_n$ 分部积分（取 $u=\dfrac{1}{(x^2+a^2)^n}$、$dv=dx$）：$I_n=\dfrac{x}{(x^2+a^2)^n}+2n\displaystyle\int\dfrac{x^2}{(x^2+a^2)^{n+1}}dx=\dfrac{x}{(x^2+a^2)^n}+2n\int\dfrac{(x^2+a^2)-a^2}{(x^2+a^2)^{n+1}}dx=\dfrac{x}{(x^2+a^2)^n}+2n(I_n-a^2I_{n+1})$。整理得递推式 $I_{n+1}=\dfrac{1}{2na^2}\left[\dfrac{x}{(x^2+a^2)^n}+(2n-1)I_n\right]$。取 $n=1$ 并以 $I_1=\dfrac{1}{a}\arctan\dfrac{x}{a}$ 代入：$I_2=\dfrac{1}{2a^2}\left[\dfrac{x}{x^2+a^2}+I_1\right]=\dfrac{x}{2a^2(x^2+a^2)}+\dfrac{1}{2a^3}\arctan\dfrac{x}{a}+C$。
-**解法三（复数部分分式）** 在复数域 $f(z)=\dfrac{1}{(z^2+a^2)^2}=\dfrac{1}{(z-ai)^2(z+ai)^2}$，实系数保证共轭对称。求系数：$C=\lim_{z\to ai}(z-ai)^2f(z)=\dfrac{1}{(2ai)^2}=-\dfrac{1}{4a^2}$；$D=\lim_{z\to ai}\dfrac{d}{dz}\dfrac{1}{(z+ai)^2}=\dfrac{-2}{(2ai)^3}=\dfrac{1}{4a^3i}=-\dfrac{i}{4a^3}$，共轭 $\bar D=\dfrac{i}{4a^3}$。故 $\dfrac{1}{(x^2+a^2)^2}=-\dfrac{1}{4a^2}\left[\dfrac{1}{(x-ai)^2}+\dfrac{1}{(x+ai)^2}\right]-\dfrac{i}{4a^3}\cdot\dfrac{1}{x-ai}+\dfrac{i}{4a^3}\cdot\dfrac{1}{x+ai}$。逐项积分：第一组 $=\dfrac{1}{4a^2}\left[\dfrac{1}{x-ai}+\dfrac{1}{x+ai}\right]=\dfrac{x}{2a^2(x^2+a^2)}$；第二组 $=\dfrac{i}{4a^3}\left[\ln(x+ai)-\ln(x-ai)\right]=\dfrac{i}{4a^3}\ln\dfrac{x+ai}{x-ai}$。对实数 $x$，$|x+ai|=|x-ai|$，且 $\arg\dfrac{x+ai}{x-ai}=2\arg(x+ai)=2\left(\dfrac{\pi}{2}-\arctan\dfrac{x}{a}\right)=\pi-2\arctan\dfrac{x}{a}$，故 $\ln\dfrac{x+ai}{x-ai}=i\left(\pi-2\arctan\dfrac{x}{a}\right)$，第二组 $=\dfrac{i}{4a^3}\cdot i\left(\pi-2\arctan\dfrac{x}{a}\right)=\dfrac{1}{2a^3}\arctan\dfrac{x}{a}-\dfrac{\pi}{4a^3}$（常数并入 $C$）。合并得 $\dfrac{x}{2a^2(x^2+a^2)}+\dfrac{1}{2a^3}\arctan\dfrac{x}{a}+C$，三法一致。
+**解法三（复数部分分式）** 在复数域 $f(z)=\dfrac{1}{(z^2+a^2)^2}=\dfrac{1}{(z-ai)^2(z+ai)^2}$，实系数保证共轭对称。求系数：$C=\lim_{z\to ai}(z-ai)^2f(z)=\dfrac{1}{(2ai)^2}=-\dfrac{1}{4a^2}$；$D=\lim_{z\to ai}\dfrac{d}{dz}\dfrac{1}{(z+ai)^2}=\dfrac{-2}{(2ai)^3}=\dfrac{1}{4a^3i}=-\dfrac{i}{4a^3}$，共轭 $\bar D=\dfrac{i}{4a^3}$。故 $\dfrac{1}{(x^2+a^2)^2}=-\dfrac{1}{4a^2}\left[\dfrac{1}{(x-ai)^2}+\dfrac{1}{(x+ai)^2}\right]-\dfrac{i}{4a^3}\cdot\dfrac{1}{x-ai}+\dfrac{i}{4a^3}\cdot\dfrac{1}{x+ai}$。逐项积分：第一组 $=\dfrac{1}{4a^2}\left[\dfrac{1}{x-ai}+\dfrac{1}{x+ai}\right]=\dfrac{x}{2a^2(x^2+a^2)}$；第二组 $=\dfrac{i}{4a^3}\left[\ln(x+ai)-\ln(x-ai)\right]=\dfrac{i}{4a^3}\ln\dfrac{x+ai}{x-ai}$。对实数 $x>0$，$|x+ai|=|x-ai|$，且 $\arg\dfrac{x+ai}{x-ai}=2\arg(x+ai)=2\left(\dfrac{\pi}{2}-\arctan\dfrac{x}{a}\right)=\pi-2\arctan\dfrac{x}{a}$，故第二组 $=\dfrac{i}{4a^3}\cdot i\left(\pi-2\arctan\dfrac{x}{a}\right)=\dfrac{1}{2a^3}\arctan\dfrac{x}{a}-\dfrac{\pi}{4a^3}$（常数并入 $C$）；当 $x<0$ 时上述辐角公式超出主值范围，需沿实轴选取连续对数分支，分支差异为常数、并入 $C$ 后不影响原函数（也可分 $x>0$ 与 $x<0$ 两区间分别计算）。合并得 $\dfrac{x}{2a^2(x^2+a^2)}+\dfrac{1}{2a^3}\arctan\dfrac{x}{a}+C$，三法一致。
 **思路展开** 三角换元是几何直觉最直接的（正切替换把平方和变成 $\sec^2$），递推公式把这类积分纳入 $I_n$ 家族、适合系统化处理任意次幂，复数部分分式则展示代数封闭性——三种方法从几何、递推、复分析三个入口到达同一结果。动画可展示三角替换的直角三角形边长对应关系，以及递推链 $I_1\to I_2\to I_3$ 的传递。
 **动画要点** - 直角三角形替换 $x=a\tan t$ 的边长标注 - 递推链 $I_1\to I_2\to\cdots$ 流程图 - 复数平面两极点 $z=\pm ai$ 示意
 
@@ -196,7 +196,7 @@
 **题目** 求级数 $\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$ 的和。
 **答案** $2$
 **解法一（错位相减）** 写 $S=\dfrac{1}{2}+\dfrac{2}{4}+\dfrac{3}{8}+\dfrac{4}{16}+\cdots$，则 $\dfrac{S}{2}=\dfrac{1}{4}+\dfrac{2}{8}+\dfrac{3}{16}+\cdots$。两式相减：$S-\dfrac{S}{2}=\dfrac{1}{2}+\left(\dfrac{2}{4}-\dfrac{1}{4}\right)+\left(\dfrac{3}{8}-\dfrac{2}{8}\right)+\left(\dfrac{4}{16}-\dfrac{3}{16}\right)+\cdots=\dfrac{1}{2}+\dfrac{1}{4}+\dfrac{1}{8}+\dfrac{1}{16}+\cdots=1$（几何级数）。故 $\dfrac{S}{2}=1$，$S=2$。
-**解法二（幂级数求和）** 由等比级数 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}=\dfrac{1}{1-x}$（$|x|<1$）逐项求导：$\displaystyle\sum_{n=1}^{\infty}nx^{n-1}=\dfrac{1}{(1-x)^2}$，故 $\displaystyle\sum_{n=1}^{\infty}nx^n=\dfrac{x}{(1-x)^2}$。取 $x=\dfrac{1}{2}$，得 $S=\dfrac{1/2}{(1-1/2)^2}=\dfrac{1/2}{1/4}=2$。
+**解法二（幂级数求和）** 由等比级数 $\displaystyle\sum_{n=0}^{\infty}x^{n}=\dfrac{1}{1-x}$（$|x|<1$）逐项求导：$\displaystyle\sum_{n=1}^{\infty}nx^{n-1}=\dfrac{1}{(1-x)^2}$，故 $\displaystyle\sum_{n=1}^{\infty}nx^n=\dfrac{x}{(1-x)^2}$。取 $x=\dfrac{1}{2}$，得 $S=\dfrac{1/2}{(1-1/2)^2}=\dfrac{1/2}{1/4}=2$。
 **解法三（概率论：几何分布期望）** 设 $X$ 服从参数 $p=\dfrac{1}{2}$ 的几何分布（抛硬币直到首次正面所需次数），则 $P(X=n)=q^{n-1}p=\left(\dfrac{1}{2}\right)^n$，$E[X]=\displaystyle\sum_{n=1}^{\infty}nq^{n-1}p=p\sum_{n=1}^{\infty}nq^{n-1}=p\cdot\dfrac{1}{(1-q)^2}=\dfrac{1}{p}=2$（其中用到 $\sum nq^{n-1}=\dfrac{1}{(1-q)^2}$）。而 $E[X]=\displaystyle\sum_{n=1}^{\infty}n\left(\dfrac{1}{2}\right)^n=S$，故 $S=2$。
 **思路展开** 三个解法分属三种语言：错位相减是等差乘等比求和的经典技巧，幂级数是生成函数思想（求和转求导），几何分布则给级数一个概率语义。动画可以三屏并列：左屏数字竖式错位相减，中屏 $y=\dfrac{x}{(1-x)^2}$ 曲线在 $x=\dfrac{1}{2}$ 处的取值，右屏抛硬币试验中"首次正面次数"的频数直方图。
 **动画要点** - 竖式错位相减逐行对齐 - 幂级数曲线取点 $x=1/2$ - 几何分布直方图均值收敛于 2
@@ -224,7 +224,7 @@
 **答案** $\arctan x=\displaystyle\sum_{n=0}^{\infty}\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\le 1$）；$x=1$ 时即莱布尼茨级数
 **解法一（逐项积分）** 由等比级数 $\dfrac{1}{1+t}=\displaystyle\sum_{n=0}^{\infty}(-1)^nt^{n}$（$|t|<1$），以 $t=x^2$ 代入得 $\dfrac{1}{1+x^2}=\displaystyle\sum_{n=0}^{\infty}(-1)^nx^{2n}$。逐项积分：$\arctan x=\displaystyle\int_0^x\dfrac{dt}{1+t^2}=\sum_{n=0}^{\infty}(-1)^n\int_0^xt^{2n}dt=\sum_{n=0}^{\infty}\dfrac{(-1)^nx^{2n+1}}{2n+1}$（$|x|<1$）。
 **解法二（端点取值的 Abel 定理）** $x=1$ 处级数 $\displaystyle\sum_{n=0}^{\infty}\dfrac{(-1)^n}{2n+1}$ 为交错级数（$a_n=\dfrac{1}{2n+1}\searrow 0$），由莱布尼茨判别法收敛；由 Abel 定理，和函数在 $x=1$ 左连续，故 $\arctan 1=\dfrac{\pi}{4}=1-\dfrac{1}{3}+\dfrac{1}{5}-\dfrac{1}{7}+\cdots$。$x=-1$ 同理（或由奇偶性）。
-**解法三（泰勒公式余项验证）** 对 $f(x)=\arctan x$ 用带拉格朗日余项的麦克劳林公式：$f^{(n)}(0)$ 由递推 $f'(x)=\dfrac{1}{1+x^2}$ 逐阶求导给出，余项 $R_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}$ 在 $|x|\le 1$ 上一致趋于 0（各阶导在 $[-1,1]$ 上有界），故展开式在 $|x|\le 1$ 成立，端点处即莱布尼茨级数。
+**解法三（泰勒公式余项验证）** 对 $f(x)=\arctan x$ 用带拉格朗日余项的麦克劳林公式：$f^{(n)}(0)$ 由递推 $f'(x)=\dfrac{1}{1+x^2}$ 逐阶求导给出。对 $\arctan$ 可归纳证明 $|f^{(m)}(t)|\le(m-1)!$（$m\ge 1$，对一切实数 $t$），于是余项 $|R_N(x)|=\dfrac{|f^{(N+1)}(\xi)|}{(N+1)!}|x|^{N+1}\le\dfrac{N!}{(N+1)!}\cdot 1=\dfrac{1}{N+1}\to 0$，对 $|x|\le 1$ 一致成立。故展开式在 $|x|\le 1$ 成立，端点处即莱布尼茨级数。
 **思路展开** 本题示范"先求导展开、再积分还原"的幂级数标准路线，以及级数端点取值的精细处理（$x=1$ 处需要 Abel 定理，不是简单代入）。动画可展示 $\arctan x$ 的部分和多项式在 $[-1,1]$ 上逐阶逼近，并在 $x=1$ 处展示级数项交替抵消逼近 $\pi/4$ 的过程。
 **动画要点** - 部分和多项式逐阶逼近 $\arctan x$ - $x=1$ 处交错级数逐项加减逼近 $\pi/4$ - 收敛半径与端点标注
 
@@ -232,7 +232,7 @@
 **题目** 讨论级数 $\displaystyle\sum_{n=2}^{\infty}\frac{(-1)^n}{\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。
 **答案** 条件收敛
 **解法一（莱布尼茨判别法+绝对收敛检验）** $a_n=\dfrac{1}{\ln n}$ 单调递减且 $\lim_{n\to\infty}a_n=0$，由莱布尼茨判别法，交错级数 $\displaystyle\sum_{n=2}^{\infty}(-1)^na_n$ 收敛。考察绝对级数 $\displaystyle\sum_{n=2}^{\infty}\dfrac{1}{\ln n}$：当 $n\ge 3$ 时 $\dfrac{1}{\ln n}>\dfrac{1}{n}$（因 $\ln n<n$），而调和级数 $\sum\dfrac{1}{n}$ 发散，由比较判别法绝对级数发散。因此原级数条件收敛。
-**解法二（部分和分组估计）** 记 $S_n=\displaystyle\sum_{k=2}^{n}\dfrac{(-1)^k}{\ln k}$。相邻两项配对：$S_{2m}=\displaystyle\sum_{j=1}^{m}\left[\dfrac{1}{\ln(2j)}-\dfrac{1}{\ln(2j+1)}\right]$，每对为正，故偶子列 $S_{2m}$ 单调递增。又 $\dfrac{1}{\ln(2j)}-\dfrac{1}{\ln(2j+1)}<\dfrac{1}{\ln(2j)}-\dfrac{1}{\ln(2j+2)}$，故 $S_{2m}<\displaystyle\sum_{j=1}^{m}\left[\dfrac{1}{\ln(2j)}-\dfrac{1}{\ln(2j+2)}\right]=\dfrac{1}{\ln 2}-\dfrac{1}{\ln(2m+2)}<\dfrac{1}{\ln 2}$，即 $S_{2m}$ 有上界。由单调有界准则 $S_{2m}$ 收敛；而 $S_{2m+1}=S_{2m}-\dfrac{1}{\ln(2m+1)}$ 与偶子列之差趋于 0，故 $S_n$ 收敛。绝对发散仍由解法一的比较法给出。
+**解法二（部分和分组估计）** 记 $a_n=\dfrac{1}{\ln n}$，$S_n=\displaystyle\sum_{k=2}^{n}(-1)^ka_k$。配对求和：$S_{2m+1}=\displaystyle\sum_{j=1}^{m}(a_{2j}-a_{2j+1})$，每项为正，故奇子列 $S_{2m+1}$ 随 $m$ 递增；又 $a_{2j}-a_{2j+1}<a_{2j}-a_{2j+2}$，故 $S_{2m+1}<\displaystyle\sum_{j=1}^{m}(a_{2j}-a_{2j+2})=\dfrac{1}{\ln 2}-\dfrac{1}{\ln(2m+2)}<\dfrac{1}{\ln 2}$，奇子列有上界，收敛。偶子列 $S_{2m}=S_{2m+1}+a_{2m+1}$，与奇子列之差 $a_{2m+1}\to 0$，故 $S_n$ 收敛。绝对发散仍由解法一的比较法给出。
 **解法三（与调和级数对比的收敛速度观察）** 数值观察：$\displaystyle\sum_{k=2}^{n}\dfrac{1}{\ln k}$ 约为 $\dfrac{n}{\ln n}$ 量级（发散），而交错后正负相消使部分和在极限值附近振荡——用图形展示振荡收敛与无条件发散的反差。严格结论仍由解法一给出，本解法用于建立几何直觉。
 **思路展开** 本题强调"收敛"与"绝对收敛"的差别：$\dfrac{1}{\ln n}$ 下降得比 $\dfrac{1}{n}$ 还慢（因为 $\ln n<n$），所以绝对级数发散，但交错结构仍能压出条件收敛。动画可并排展示原级数部分和的振荡收敛曲线与绝对级数部分和的单调发散曲线。
 **动画要点** - 交错部分和振荡收敛折线 - 绝对级数部分和单调发散对比 - 配对相消的放大细节
@@ -250,9 +250,9 @@
 **题目** 求二重积分 $\displaystyle I=\int_0^1\!\!\int_x^1 e^{y^2}\,dy\,dx$。
 **答案** $\dfrac{e-1}{2}$
 **解法一（交换积分次序）** 积分区域为 $D=\{(x,y):0\le x\le 1,\ x\le y\le 1\}=\{(x,y):0\le y\le 1,\ 0\le x\le y\}$。交换次序：$I=\displaystyle\int_0^1\!\!\int_0^y e^{y^2}\,dx\,dy=\int_0^1 y\,e^{y^2}\,dy$。令 $u=y^2$（$du=2y\,dy$）：$I=\dfrac{1}{2}\displaystyle\int_0^1 e^u\,du=\dfrac{1}{2}(e-1)$。
-**解法二（直接积分受阻分析）** 若按原次序先积 $y$，需要 $\int e^{y^2}dy$ 的原函数。由刘维尔定理，$e^{y^2}$ 没有初等原函数，直接路线注定失败——这正是必须交换积分次序的信号。交换后（解法一）先对 $x$ 积分把 $y$ 乘出来，立刻化为基本积分。
-**解法三（数值验证）** 用二重黎曼和（如 $1000\times 1000$ 网格）估算 $I\approx 0.85914$，与解析值 $\dfrac{e-1}{2}=0.859141\cdots$ 吻合，作为解析解独立校验。
-**思路展开** 本题是"交换积分次序"动机的最佳素材：被积函数 $e^{y^2}$ 无初等原函数，但换序后先对 $x$ 积分把 $y$ 乘出来，立刻化为基本积分。动画可先展示区域 $D$（三角形）按竖条扫描时的受阻，再切换为横条扫描的一气呵成。
+**解法二（分部积分）** 记 $F(x)=\displaystyle\int_x^1e^{y^2}dy$，则 $I=\displaystyle\int_0^1F(x)dx$，且 $F(1)=0$、$F'(x)=-e^{x^2}$。分部积分：$I=\left[xF(x)\right]_0^1-\displaystyle\int_0^1xF'(x)dx=0-\int_0^1x\left(-e^{x^2}\right)dx=\int_0^1xe^{x^2}dx=\left[\dfrac{e^{x^2}}{2}\right]_0^1=\dfrac{e-1}{2}$。
+**解法三（数值验证，辅助校验）** 若按原次序先积 $y$，需要 $\int e^{y^2}dy$ 的原函数，而由刘维尔定理 $e^{y^2}$ 没有初等原函数，直接路线注定失败——这正是必须交换次序（或改用解法二）的信号。作为辅助校验，用二重黎曼和（如 $1000\times 1000$ 网格）估算 $I\approx 0.85914$，与解析值 $\dfrac{e-1}{2}=0.859141\cdots$ 吻合。
+**思路展开** 本题是"交换积分次序"动机的最佳素材：被积函数 $e^{y^2}$ 无初等原函数，但换序后先对 $x$ 积分把 $y$ 乘出来，立刻化为基本积分；解法二分部积分则完全绕开换序，给出第二条独立解析路径。动画可先展示区域 $D$（三角形）按竖条扫描时的受阻，再切换为横条扫描的一气呵成。
 **动画要点** - 积分区域 $D$ 竖条/横条两种扫描动画 - $e^{y^2}$ 无初等原函数提示 - 换序前后对照
 
 ### eval-calc-028 数学分析 · 重积分
@@ -343,7 +343,7 @@
 **答案** 单叶双曲面（以 $y$ 轴为对称轴）
 **解法一（标准型判断）** 方程化为 $\dfrac{x^2}{1/4}+\dfrac{z^2}{1}-\dfrac{y^2}{1}=1$，形如 $\dfrac{x^2}{a^2}+\dfrac{z^2}{b^2}-\dfrac{y^2}{c^2}=1$（一个负号项），是单叶双曲面，对称轴为 $y$ 轴。
 **解法二（截面法）** 用 $y=k$ 截：$4x^2+z^2=1+k^2$，即 $\dfrac{x^2}{(1+k^2)/4}+\dfrac{z^2}{1+k^2}=1$，恒为椭圆，且随 $|k|$ 增大而变大（"中间细、两头粗"）。用 $z=k$ 截：$4x^2-y^2=1-k^2$，$|k|<1$ 时为双曲线，$|k|=1$ 时为两相交直线 $y=\pm 2x$，$|k|>1$ 时仍为双曲线（开口换向）。用 $x=k$ 截：$z^2-y^2=1-4k^2$，同为双曲线族。三类截面共同刻画单叶双曲面的"马鞍+束腰"形态。
-**解法三（直纹性验证）** 由 $4x^2+z^2=1+y^2$ 得 $(2x+z)(2x-z)=(1+y)(1-y)$。取参数 $\lambda\ne 0$，直线族 $\begin{cases}2x+z=\lambda(1+y)\\2x-z=\dfrac{1-y}{\lambda}\end{cases}$ 完全落在曲面上（两式相乘即曲面方程）；同理有第二族直线。直母线族的存在是单叶双曲面的特征性质（双叶双曲面无此性质）。
+**解法三（直纹性验证）** 构造两族直线（参数 $s$）：$\begin{cases}x=\dfrac{\cos\theta+s\sin\theta}{2}\\y=s\\z=\sin\theta-s\cos\theta\end{cases}$ 与 $\begin{cases}x=\dfrac{\cos\theta-s\sin\theta}{2}\\y=s\\z=\sin\theta+s\cos\theta\end{cases}$。代入验证：$4x^2+z^2-y^2=(\cos\theta\pm s\sin\theta)^2+(\sin\theta\mp s\cos\theta)^2-s^2=\cos^2\theta+\sin^2\theta\pm 2s\sin\theta\cos\theta\mp 2s\sin\theta\cos\theta+s^2(\sin^2\theta+\cos^2\theta)-s^2=1$，整条直线都落在曲面上。直母线族的存在是单叶双曲面的特征性质（双叶双曲面无此性质）。
 **思路展开** 二次曲面分类的标准工具是"看标准型符号"，截面法给出几何直观，直纹性验证则展示单叶双曲面最独特的性质。动画可用水平截面 $y=k$ 扫描展示椭圆截面从小到大再变大的过程，并叠加一族直母线。
 **动画要点** - 水平截面扫描与截面椭圆族 - 双曲线截面族（两族方向） - 直母线在曲面上的滑动
 
@@ -361,7 +361,7 @@
 **答案** 椭圆：$\dfrac{y^2}{27/4}+\dfrac{z^2}{3/4}=1$（$x=1$），半轴 $\dfrac{3\sqrt{3}}{2}$ 与 $\dfrac{\sqrt{3}}{2}$
 **解法一（代入法）** 将 $x=1$ 代入椭球面方程：$\dfrac{1}{4}+\dfrac{y^2}{9}+z^2=1$，即 $\dfrac{y^2}{9}+z^2=\dfrac{3}{4}$。化为标准形 $\dfrac{y^2}{9\cdot\frac{3}{4}}+\dfrac{z^2}{\frac{3}{4}}=1$，即 $\dfrac{y^2}{27/4}+\dfrac{z^2}{3/4}=1$。这是平面 $x=1$ 内的椭圆，半轴分别为 $\sqrt{\dfrac{27}{4}}=\dfrac{3\sqrt{3}}{2}$ 与 $\sqrt{\dfrac{3}{4}}=\dfrac{\sqrt{3}}{2}$，中心 $(1,0,0)$。
 **解法二（参数化）** 由标准形直接参数化：$x=1$，$y=\dfrac{3\sqrt{3}}{2}\cos t$，$z=\dfrac{\sqrt{3}}{2}\sin t$，$t\in[0,2\pi]$。代回验证：$\dfrac{1}{4}+\dfrac{27\cos^2 t}{4\cdot 9}+\dfrac{3\sin^2 t}{4}=\dfrac{1}{4}+\dfrac{3}{4}(\cos^2 t+\sin^2 t)=1$。
-**解法三（平行截面族）** 一般截面 $x=k$（$|k|\le 2$）：$\dfrac{y^2}{9\left(1-\frac{k^2}{4}\right)}+\dfrac{z^2}{1-\frac{k^2}{4}}=1$，为椭圆族，半轴 $3\sqrt{1-\dfrac{k^2}{4}}$ 与 $\sqrt{1-\dfrac{k^2}{4}}$（比值恒为 $3$，故所有截面椭圆相似）。取 $k=1$：半轴 $3\cdot\dfrac{\sqrt{3}}{2}=\dfrac{3\sqrt{3}}{2}$ 与 $\dfrac{\sqrt{3}}{2}$，与解法一一致。
+**解法三（平行截面族）** 一般截面 $x=k$：$|k|<2$ 时为椭圆 $\dfrac{y^2}{9\left(1-\frac{k^2}{4}\right)}+\dfrac{z^2}{1-\frac{k^2}{4}}=1$，半轴 $3\sqrt{1-\dfrac{k^2}{4}}$ 与 $\sqrt{1-\dfrac{k^2}{4}}$（比值恒为 $3$，故所有截面椭圆相似）；$k=\pm 2$ 时 $1-\dfrac{k^2}{4}=0$，方程仅剩 $y=z=0$，截面退化为单点 $(\pm 2,0,0)$；$|k|>2$ 时无交点。取 $k=1$：半轴 $3\cdot\dfrac{\sqrt{3}}{2}=\dfrac{3\sqrt{3}}{2}$ 与 $\dfrac{\sqrt{3}}{2}$，与解法一一致。
 **思路展开** 代入法最直接；参数化法为后续弧长、曲率计算铺路；截面族法揭示椭球面的生成机制（同心相似椭圆族随 $k$ 缩放）。动画可从 $x=-2$ 扫描到 $x=2$，展示截面椭圆从小到大再到小的连续变化。
 **动画要点** - 椭球面与截平面 $x=1$ 相交 - 截面椭圆族扫描动画 - 半轴长度随 $k$ 变化的曲线
 
@@ -370,7 +370,7 @@
 **答案** 双曲抛物面（马鞍面），直纹面
 **解法一（旋转化标准形）** 作正交变换 $u=\dfrac{x+y}{\sqrt{2}}$、$v=\dfrac{x-y}{\sqrt{2}}$，则 $x=\dfrac{u+v}{\sqrt{2}}$、$y=\dfrac{u-v}{\sqrt{2}}$，$xy=\dfrac{u^2-v^2}{2}$。曲面方程化为 $z=\dfrac{u^2}{2}-\dfrac{v^2}{2}$，即 $2z=u^2-v^2$，是双曲抛物面（马鞍面）。
 **解法二（直母线族）** 固定 $y=c$：截面 $z=cx$ 是直线；固定 $x=c$：截面 $z=cy$ 也是直线。即曲面上存在两族平行于坐标平面的直线族 $\{z=cx,\ y=c\}$ 与 $\{z=cy,\ x=c\}$，故 $z=xy$ 是直纹面，且每一点处恰有两条直母线通过（交叉直线构成马鞍网格）。
-**解法三（截面法）** 用 $y=k$ 截：$z=kx$，抛物线（$k\ne 0$）或直线（$k=0$）；用 $x=k$ 截：$z=ky$，同理；用 $z=k$ 截：$xy=k$，等轴双曲线（$k\ne 0$）或两坐标轴（$k=0$）。三种截面（抛物线、抛物线、双曲线）正是双曲抛物面的截面特征。
+**解法三（截面法）** 用 $y=k$ 截：$z=kx$，对任意 $k$ 都是直线（竖直截面均为直线，直纹性的又一体现）；用 $z=k$ 截：$xy=k$，等轴双曲线（$k\ne 0$）或两坐标轴（$k=0$）；若要抛物线截面，取斜截面 $x=y$（得 $z=x^2$）与 $x=-y$（得 $z=-x^2$）。直线截面与双曲线截面正是双曲抛物面的截面特征。
 **思路展开** 双曲抛物面与单叶双曲面一样是直纹面，但直母线结构不同（这里两族直线都平行于坐标平面）。解法一的正交变换揭示"马鞍"的对称轴方向，解法二、三分别从直纹与截面两个角度刻画。动画可画马鞍面的网格状直母线，展示"负曲率点沿两条交叉直线方向"。
 **动画要点** - 马鞍面三维渲染与 $45^\circ$ 旋转 - 两族直母线网格动画 - 三类截面（抛物/抛物/双曲）扫描
 
@@ -387,7 +387,7 @@
 **题目** 求圆柱螺线 $x=a\cos t,\ y=a\sin t,\ z=bt$（$a,b>0$）的曲率与挠率。
 **答案** 曲率 $\kappa=\dfrac{a}{a^2+b^2}$，挠率 $\tau=\dfrac{b}{a^2+b^2}$
 **解法一（Frenet 公式直接计算）** 记 $c=\sqrt{a^2+b^2}$。$\vec r'=(-a\sin t,a\cos t,b)$，$|\vec r'|=c$；$\vec r''=(-a\cos t,-a\sin t,0)$；$\vec r'\times\vec r''=(ab\sin t,-ab\cos t,a^2)$，模 $\sqrt{a^2b^2+a^4}=ac$。曲率 $\kappa=\dfrac{|\vec r'\times\vec r''|}{|\vec r'|^3}=\dfrac{ac}{c^3}=\dfrac{a}{c^2}=\dfrac{a}{a^2+b^2}$。又 $\vec r'''=(a\sin t,-a\cos t,0)$，挠率 $\tau=\dfrac{(\vec r',\vec r'',\vec r''')}{|\vec r'\times\vec r''|^2}=\dfrac{a^2b\sin^2 t+a^2b\cos^2 t}{a^2c^2}=\dfrac{b}{c^2}=\dfrac{b}{a^2+b^2}$。
-**解法二（物理分解）** 速度 $\vec v=\vec r'$，模 $|\vec v|=c$ 恒定，故切向加速度为 $0$；加速度 $\vec a=\vec r''=(-a\cos t,-a\sin t,0)$，模 $|\vec a|=a$。由 $|\vec a|=\kappa|\vec v|^2$ 得 $\kappa=\dfrac{a}{c^2}=\dfrac{a}{a^2+b^2}$。副法向量 $\vec B=\dfrac{\vec r'\times\vec r''}{|\vec r'\times\vec r''|}=\dfrac{1}{c}(b\sin t,-b\cos t,a)$，$\dfrac{d\vec B}{dt}=\dfrac{1}{c}(b\cos t,b\sin t,0)$，模 $\dfrac{b}{c}$。由 $|\dfrac{d\vec B}{ds}|=\tau$ 且 $\dfrac{ds}{dt}=c$，得 $\tau=\dfrac{b/c}{c}=\dfrac{b}{a^2+b^2}$。
+**解法二（物理分解）** 速度 $\vec v=\vec r'$，模 $|\vec v|=c$ 恒定，故切向加速度为 $0$；加速度 $\vec a=\vec r''=(-a\cos t,-a\sin t,0)$，模 $|\vec a|=a$。由 $|\vec a|=\kappa|\vec v|^2$ 得 $\kappa=\dfrac{a}{c^2}=\dfrac{a}{a^2+b^2}$。副法向量 $\vec B=\dfrac{\vec r'\times\vec r''}{|\vec r'\times\vec r''|}=\dfrac{1}{c}(b\sin t,-b\cos t,a)$，$\dfrac{d\vec B}{dt}=\dfrac{1}{c}(b\cos t,b\sin t,0)$，模 $\dfrac{b}{c}$。由 Frenet 公式 $\dfrac{d\vec B}{ds}=-\tau\vec N$ 核对方向（本题 $\dfrac{d\vec B}{ds}$ 与 $-\vec N$ 同向，故 $\tau>0$），且 $\left|\dfrac{d\vec B}{ds}\right|=\tau$、$\dfrac{ds}{dt}=c$，得 $\tau=\dfrac{b/c}{c}=\dfrac{b}{a^2+b^2}$。
 **解法三（展开法）** 把圆柱面沿一条母线剪开展平，螺线变成一条直线，其与水平方向的夹角 $\alpha$ 满足 $\tan\alpha=\dfrac{b}{a}$（螺距 $2\pi b$ 与周长 $2\pi a$ 之比），故 $\cos^2\alpha=\dfrac{a^2}{a^2+b^2}$。螺线的曲率完全来自柱面弯曲：$\kappa=\dfrac{\cos^2\alpha}{a}=\dfrac{a}{a^2+b^2}$；挠率来自螺线"扭转"：$\tau=\dfrac{\sin\alpha\cos\alpha}{a}=\dfrac{b}{a^2+b^2}$。$\dfrac{\tau}{\kappa}=\dfrac{b}{a}$ 为常数，说明圆柱螺线是常曲率常挠率曲线。
 **思路展开** 三种方法分别代表微分几何公式、力学分解、几何展开。展开法最具启发性：曲率与挠率分别由"柱面弯曲"与"螺旋扭转"贡献，$\kappa:\tau=a:b$ 的比值揭示了螺线的本质参数。动画可把圆柱面展开，展示螺线变成直线的瞬间。
 **动画要点** - 圆柱螺线与密切圆、副法线 - 圆柱展开成平面、螺线变直线 - $\kappa,\tau$ 随 $a,b$ 变化的滑块
@@ -442,9 +442,9 @@
 **答案** $4$
 **解法一（混合积）** $V=\dfrac{1}{6}\left|\det(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC})\right|=\dfrac{1}{6}\left|\begin{vmatrix}2&0&0\\0&3&0\\0&0&4\end{vmatrix}\right|=\dfrac{24}{6}=4$。
 **解法二（底面积×高）** 取底面 $OAB$：面积 $S=\dfrac{1}{2}\cdot 2\cdot 3=3$。顶点 $C$ 到平面 $xOy$ 的距离即高 $h=4$。故 $V=\dfrac{1}{3}Sh=\dfrac{1}{3}\cdot 3\cdot 4=4$。
-**解法三（长方体切割）** 以 $OA,OB,OC$ 为棱作长方体，体积 $2\cdot 3\cdot 4=24$。该长方体被三个坐标平面相关的对角面切成 6 个全等的四面体，目标四面体是其中之一，故 $V=\dfrac{24}{6}=4$。
-**思路展开** 混合积是体积的代数表示（其绝对值=平行六面体体积），底×高是几何定义，长方体切割展示了 $V_{\text{四面体}}=\dfrac{1}{6}V_{\text{平行六面体}}$ 的来源。动画可展示长方体被切成六块的分解过程。
-**动画要点** - 四面体与对应平行六面体 - 长方体六等分切割动画 - 底面积与高的标注
+**解法三（三重积分）** 四面体区域为 $\dfrac{x}{2}+\dfrac{y}{3}+\dfrac{z}{4}\le 1$、$x,y,z\ge 0$。作线性替换 $u=\dfrac{x}{2}$、$v=\dfrac{y}{3}$、$w=\dfrac{z}{4}$（雅可比行列式 $\dfrac{\partial(x,y,z)}{\partial(u,v,w)}=2\cdot 3\cdot 4=24$），区域变为 $u+v+w\le 1$、$u,v,w\ge 0$。$V=\displaystyle\iiint dx\,dy\,dz=24\iiint du\,dv\,dw=24\cdot\dfrac{1}{6}=4$（单位单纯形 $u+v+w\le 1,\ u,v,w\ge 0$ 的体积为 $\dfrac{1}{6}$）。
+**思路展开** 混合积是体积的代数表示（其绝对值=平行六面体体积），底×高是几何定义，三重积分把四面体区域化成标准单纯形（$V_{\text{单纯形}}=\dfrac{1}{6}V_{\text{立方体}}$ 的来源）。动画可展示线性替换把斜四面体"拉正"为标准单纯形的过程。
+**动画要点** - 四面体与对应平行六面体 - 线性替换拉正为标准单纯形 - 底面积与高的标注
 
 ### eval-geom-019 解析几何 · 直线与平面
 **题目** 求两平面 $\pi_1:x+y+z=1$ 与 $\pi_2:x+2y+3z=6$ 的交线方程。
@@ -470,7 +470,7 @@
 **题目** 三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。
 **答案** 换门获胜概率为 $\dfrac{2}{3}$，不换为 $\dfrac{1}{3}$
 **解法一（树状图/直接分析）** 参赛者初始选中山羊的概率为 $\dfrac{2}{3}$，此时主持人必须打开另一扇山羊门（他不能开车门），剩下的未开门必然是汽车，换门必赢。初始选中汽车的概率为 $\dfrac{1}{3}$，此时换门必输。故换门获胜概率 $=\dfrac{2}{3}\times 1+\dfrac{1}{3}\times 0=\dfrac{2}{3}$。
-**解法二（贝叶斯公式）** 不妨设车在 1 号门、参赛者选 1 号门、主持人打开 2 号门（其余情形由对称性同理）。记 $C_i$=车在 $i$ 号门，$H_2$=主持人开 2 号门。则 $P(H_2|C_3)=1$（车在 3 号门时主持人只能开 2 号门），$P(H_2|C_1)=\dfrac{1}{2}$（车在 1 号门时主持人可在 2、3 号门中任选其一），$P(C_i)=\dfrac{1}{3}$。由贝叶斯公式：$P(C_3|H_2)=\dfrac{P(H_2|C_3)P(C_3)}{P(H_2|C_3)P(C_3)+P(H_2|C_1)P(C_1)}=\dfrac{1\cdot\frac{1}{3}}{1\cdot\frac{1}{3}+\frac{1}{2}\cdot\frac{1}{3}}=\dfrac{2}{3}$。即主持人开 2 号门后，车在 3 号门（换门目标）的概率为 $\dfrac{2}{3}$。
+**解法二（贝叶斯公式）** 设参赛者选 1 号门、主持人打开 2 号门，并假设主持人在有两扇羊门可选时等概率选择（其余情形由对称性同理）。记 $C_i$=车在 $i$ 号门，$H_2$=主持人开 2 号门。则 $P(H_2|C_3)=1$（车在 3 号门时主持人只能开 2 号门），$P(H_2|C_1)=\dfrac{1}{2}$（车在 1 号门时主持人可在 2、3 号门中等概率选择），$P(H_2|C_2)=0$（主持人不能开有车的门），$P(C_i)=\dfrac{1}{3}$。由贝叶斯公式：$P(C_3|H_2)=\dfrac{P(H_2|C_3)P(C_3)}{P(H_2|C_3)P(C_3)+P(H_2|C_1)P(C_1)+P(H_2|C_2)P(C_2)}=\dfrac{1\cdot\frac{1}{3}}{1\cdot\frac{1}{3}+\frac{1}{2}\cdot\frac{1}{3}+0}=\dfrac{1/3}{1/2}=\dfrac{2}{3}$。即主持人开 2 号门后，车在 3 号门（换门目标）的概率为 $\dfrac{2}{3}$。注意"总是换门"的获胜率 $\dfrac{2}{3}$ 其实不依赖主持人的等概率规则（见解法一）。
 **解法三（枚举等可能样本点）** 车的位置（3 种）×参赛者初选（3 种）=9 种等可能情形。逐项枚举：参赛者初选=车门（3 种情形），换门必输；参赛者初选=山羊门（6 种情形），换门必赢。故换门获胜概率 $=\dfrac{6}{9}=\dfrac{2}{3}$。
 **思路展开** 本题的核心是"主持人的行为携带信息"：他永远开山羊门，这一选择把 $\dfrac{2}{3}$ 的概率质量集中到未开的另一扇门上。解法一从信息角度直击本质，解法二是严格的贝叶斯形式化，解法三用枚举消除直觉误区。动画可用三扇门 + 概率条带的流动展示"主持人开门的条件作用"。
 **动画要点** - 三扇门与车、羊的随机放置 - 主持人开门后概率条带转移动画 - 换/不换两种策略的胜率对照
@@ -524,7 +524,7 @@
 **题目** 房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。
 **答案** $1-\dfrac{365\cdot 364\cdots 336}{365^{30}}\approx 0.7063$
 **解法一（对立事件）** 记 $A$=至少两人生日相同。$\bar A$=30 人生日全不同。依次安排生日：第 1 人 $365$ 种，第 2 人 $364$ 种，$\dots$，第 30 人 $336$ 种。$P(\bar A)=\dfrac{365\cdot 364\cdots 336}{365^{30}}$。故 $P(A)=1-\dfrac{365\cdot 364\cdots 336}{365^{30}}=1-0.29368\cdots\approx 0.7063$。
-**解法二（递推计算）** 记 $p_k$=前 $k$ 人生日全不同的概率。$p_1=1$，$p_k=p_{k-1}\cdot\dfrac{365-(k-1)}{365}$。依次计算：$p_{10}=0.88305$，$p_{20}=0.58856$，$p_{23}=0.49270$（第 23 人时首次低于 $\dfrac{1}{2}$），$p_{30}=0.29368$。故 $P(A)=1-p_{30}=0.70632$。
+**解法二（递推计算）** 记 $p_k$=前 $k$ 人生日全不同的概率。$p_1=1$，$p_k=p_{k-1}\cdot\dfrac{365-(k-1)}{365}$。依次计算：$p_{10}\approx 0.88305$，$p_{20}\approx 0.58856$，$p_{23}\approx 0.49270$（第 23 人时首次低于 $\dfrac{1}{2}$），$p_{30}\approx 0.29368$。故 $P(A)=1-p_{30}\approx 0.70632$。
 **解法三（配对计数的精确期望视角）** 30 人两两配对共 $C_{30}^2=435$ 对，每对生日相同的概率恰为 $\dfrac{1}{365}$，由期望线性性，"生日相同对数"的期望精确等于 $\dfrac{435}{365}=\dfrac{87}{73}\approx 1.19$。期望已大于 1，从侧面印证 $P(A)$ 较大；精确概率仍由解法一的对立事件公式给出。
 **思路展开** 本题展示"小概率事件的碰撞效应"：每人只需避开前人生日，$p_k$ 逐项衰减，第 23 人即跌破 $\dfrac{1}{2}$。解法二的递推表是计算途径，解法三用期望线性性给出直觉支撑（精确期望 1.19 对，不是估计）。动画可画 365 个格子被随机占位的模拟，以及 $p_k$ 随 $k$ 下降的曲线。
 **动画要点** - 365 格生日占位动画 - $p_k$ 下降曲线与 $k=23$ 临界点 - 相同生日对的高亮计数
@@ -551,7 +551,7 @@
 **答案** $1$（与 $n$ 无关）
 **解法一（指示变量+期望线性性）** 设 $I_i$ 为"第 $i$ 人取到自己帽子"的指示变量。由对称性，第 $i$ 人取到自己帽子的概率 $P(I_i=1)=\dfrac{1}{n}$（$n$ 顶帽子中恰有一顶属于他，均匀排列下等可能）。总正确人数 $X=I_1+\cdots+I_n$，由期望线性性（**不要求独立性**）：$E[X]=\displaystyle\sum_{i=1}^{n}E[I_i]=\sum_{i=1}^{n}P(I_i=1)=n\cdot\dfrac{1}{n}=1$。
 **解法二（分布与生成函数）** 恰有 $k$ 人取对的概率 $P(X=k)=\dfrac{\binom{n}{k}D(n-k)}{n!}$，其中 $D(m)=m!\displaystyle\sum_{j=0}^{m}\dfrac{(-1)^j}{j!}$ 为错排数。生成函数 $G(z)=\displaystyle\sum_{k=0}^{n}\dfrac{\binom{n}{k}D(n-k)}{n!}z^k$。$E[X]=G'(1)=\dfrac{1}{n!}\displaystyle\sum_{k=1}^{n}k\binom{n}{k}D(n-k)=\dfrac{n}{n!}\sum_{k=1}^{n}\binom{n-1}{k-1}D(n-k)=\dfrac{1}{(n-1)!}\sum_{j=0}^{n-1}\binom{n-1}{j}D(n-1-j)$。而 $\displaystyle\sum_{j=0}^{n-1}\binom{n-1}{j}D(n-1-j)=(n-1)!$（对 $n-1$ 个元素的所有排列按"不动点个数 $j$"分类计数），故 $E[X]=1$。
-**解法三（递推与不变性）** 记 $E_n$ 为 $n$ 人时的期望正确数。对第 1 人的帽子归属条件：他取到自己帽子的概率为 $\dfrac{1}{n}$。更精细的递推：$E_n=\dfrac{1}{n}(1+E_{n-1})+\dfrac{n-1}{n}\cdot\dfrac{n-2}{n-1}E_{n-2}+\cdots$ 计算繁琐；而解法一的对称性论证已直接给出 $E_n=\dfrac{n}{n}=1$ 对一切 $n$ 成立——期望值不随 $n$ 变化的本质是"每顶帽子命中率恒为 $\dfrac{1}{n}$、恰好 $n$ 顶"。
+**解法三（双重计数）** 对全部 $n!$ 种排列统计"拿对帽子"的总人次：对任意固定的第 $i$ 人，其帽子被自己拿到的排列数为 $(n-1)!$（其余 $n-1$ 顶帽子任意排列），故总固定点数 $=\displaystyle\sum_{i=1}^{n}(n-1)!=n\cdot(n-1)!=n!$。除以排列总数 $n!$，得期望 $=\dfrac{n!}{n!}=1$。期望不随 $n$ 变化的本质是"每顶帽子命中率恒为 $\dfrac{1}{n}$、恰好 $n$ 顶"。
 **思路展开** 本题是"期望线性性无视相关性"的经典证明题：$I_1,\dots,I_n$ 高度相关（两人可能互换帽子），但线性性照常成立。解法二走完整分布+生成函数的路线并给出严格恒等式，解法一一步到位。动画可模拟 $n$ 人交换帽子的过程并统计正确人数。
 **动画要点** - $n$ 人帽子随机交换动画 - 正确人数计数器期望趋于 1 - 指示变量高亮
 
@@ -606,8 +606,8 @@
 **题目** 计算范德蒙德行列式 $\begin{vmatrix}1&1&1\\a&b&c\\a^2&b^2&c^2\end{vmatrix}$，并求 $a=1,b=2,c=3$ 时的值。
 **答案** $(b-a)(c-a)(c-b)$；取值 $2$
 **解法一（行变换降阶）** 第二行减第一行的 $a$ 倍、第三行减第一行的 $a^2$ 倍：$D=\begin{vmatrix}1&1&1\\0&b-a&c-a\\0&b^2-a^2&c^2-a^2\end{vmatrix}$。按第一列展开：$D=\begin{vmatrix}b-a&c-a\\b^2-a^2&c^2-a^2\end{vmatrix}=(b-a)(c-a)\begin{vmatrix}1&1\\b+a&c+a\end{vmatrix}=(b-a)(c-a)\left[(c+a)-(b+a)\right]=(b-a)(c-a)(c-b)$。代入 $a=1,b=2,c=3$：$D=(1)(2)(1)=2$。
-**解法二（多项式观点）** 把 $D$ 看成关于 $c$ 的多项式 $f(c)$。按第三列展开，$c^2$ 的系数为 $\begin{vmatrix}1&1\\a&b\end{vmatrix}=b-a$，故 $f$ 是二次多项式。当 $c=a$ 或 $c=b$ 时，第三列与第一列（或第二列）相同，$f=0$，故 $f(c)=k(c-a)(c-b)$。取 $k=b-a$（最高次系数），得 $D=(b-a)(c-a)(c-b)$。
-**解法三（归纳验证）** $n$ 阶范德蒙德行列式 $D_n=\prod_{1\le i<j\le n}(x_j-x_i)$ 可用数学归纳法证明（第 $n$ 列减第 $n-1$ 列的 $x_1$ 倍、再按行提取公因子后降阶）。$n=3$ 时即 $(b-a)(c-a)(c-b)$，代入得 $2$。
+**解法二（多项式观点）** 把 $D$ 看成关于 $c$ 的多项式 $f(c)$。按第三列展开，$c^2$ 的系数为 $\begin{vmatrix}1&1\\a&b\end{vmatrix}=b-a$，故 $f$ 至多是二次多项式。当 $c=a$ 或 $c=b$ 时，第三列与第一列（或第二列）相同，$f=0$，故 $f(c)=k(c-a)(c-b)$。取 $k=b-a$（最高次系数），得 $D=(b-a)(c-a)(c-b)$。（$a=b$ 时 $k=0$ 且 $D=0$，公式两端均为 0，仍成立。）
+**解法三（归纳验证）** $n$ 阶范德蒙德行列式 $D_n=\prod_{1\le i<j\le n}(x_j-x_i)$ 可用数学归纳法证明：自下而上做行变换 $R_k\leftarrow R_k-x_1R_{k-1}$（$k=n,n-1,\dots,2$），再按第一列展开、各列提取公因子 $x_j-x_1$，即降阶为 $n-1$ 阶范德蒙德行列式，归纳即得。$n=3$ 时即 $(b-a)(c-a)(c-b)$，代入得 $2$。
 **思路展开** 范德蒙德行列式是行列式计算的"基本积木"，三种解法分别代表行变换、多项式插值思想、归纳降阶。解法二的多项式观点最具启发性：行列式关于某一列参数是多项式，根的定位（列相同则为零）直接给出因子分解。动画可展示列向量随 $c$ 变化时平行六面体体积的变化与零点。
 **动画要点** - 行变换消元的逐步动画 - 多项式 $f(c)$ 与根 $a,b$ 的标注 - 三维列向量与体积
 
@@ -616,15 +616,15 @@
 **答案** $6$
 **解法一（行变换三角化）** 第二、三、四行分别减去第一行：$D=\begin{vmatrix}1&1&1&1\\0&1&0&0\\0&0&2&0\\0&0&0&3\end{vmatrix}$。上三角行列式等于对角线元素之积：$D=1\cdot 1\cdot 2\cdot 3=6$。
 **解法二（加边法）** 加边升阶：$D=\begin{vmatrix}1&1&1&1&1\\0&1&1&1&1\\0&1&2&1&1\\0&1&1&3&1\\0&1&1&1&4\end{vmatrix}$（按第一列展开即原行列式）。新行列式中，第三、四、五行分别减去第二行：$=\begin{vmatrix}1&1&1&1&1\\0&1&1&1&1\\0&0&1&0&0\\0&0&0&2&0\\0&0&0&0&3\end{vmatrix}=1\cdot 1\cdot 1\cdot 2\cdot 3=6$。
-**解法三（展开降阶）** 第四行减第一行后按第一列展开（或直接对原式用行展开）：$D=\begin{vmatrix}1&1&1\\1&3&1\\1&1&4\end{vmatrix}-\begin{vmatrix}1&1&1\\1&3&1\\1&1&4\end{vmatrix}$ 不便于直接展开，改用"每行减末行"：$\begin{vmatrix}0&0&0&-3\\0&1&0&-3\\0&0&2&-3\\1&1&1&4\end{vmatrix}$，按第一列展开：$D=(-1)^{4+1}\cdot 1\cdot\begin{vmatrix}0&0&-3\\1&0&-3\\0&2&-3\end{vmatrix}=-\left[0-0+(-3)\begin{vmatrix}1&0\\0&2\end{vmatrix}\right]=-(-3\cdot 2)=6$。
+**解法三（展开降阶）** 每行减末行：$\begin{vmatrix}0&0&0&-3\\0&1&0&-3\\0&0&2&-3\\1&1&1&4\end{vmatrix}$，按第一列展开：$D=(-1)^{4+1}\cdot 1\cdot\begin{vmatrix}0&0&-3\\1&0&-3\\0&2&-3\end{vmatrix}=-\left[0-0+(-3)\begin{vmatrix}1&0\\0&2\end{vmatrix}\right]=-(-3\cdot 2)=6$。
 **思路展开** 行变换（化为上三角）、加边法（升一阶后一次消元）、展开降阶（按行列展开+三阶余子式）是行列式计算的三大套路。加边法的妙处在于"增加一维换来对角化"。动画可展示矩阵元素逐步清零的消元过程。
 **动画要点** - 消元三角化的逐步动画 - 加边升阶的结构示意 - 按列展开的余子式高亮
 
 ### eval-linalg-003 高等代数 · 行列式
-**题目** 求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}2&1&0&\cdots&0\\1&2&1&\cdots&0\\0&1&2&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&0&\cdots&2\end{vmatrix}$ 的值。
+**题目** 求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}2&1&0&\cdots&0\\1&2&1&\cdots&0\\0&1&2&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&0&\cdots&2\end{vmatrix}$ 的值（矩阵元素满足 $a_{ii}=2$，$a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。
 **答案** $D_n=n+1$
 **解法一（递推公式）** 按第一行展开：$D_n=2D_{n-1}-1\cdot\begin{vmatrix}1&1&0&\cdots\\0&2&1&\cdots\\\vdots&&&\ddots\end{vmatrix}=2D_{n-1}-D_{n-2}$（第二项按第一列展开后恰为 $D_{n-2}$）。初始值 $D_1=2$，$D_2=\begin{vmatrix}2&1\\1&2\end{vmatrix}=3$。由递推 $D_n-D_{n-1}=D_{n-1}-D_{n-2}=\cdots=D_2-D_1=1$，故 $D_n=D_1+(n-1)=n+1$。
-**解法二（特征值乘积）** 该矩阵 $A=2I+B$，其中 $B$ 是 $n$ 阶路的邻接矩阵，其特征值为 $2\cos\dfrac{k\pi}{n+1}$（$k=1,\dots,n$）。故 $D_n=\det(2I+B)=\displaystyle\prod_{k=1}^{n}\left(2+2\cos\dfrac{k\pi}{n+1}\right)=2^n\prod_{k=1}^{n}\left(1+\cos\dfrac{k\pi}{n+1}\right)$。利用恒等式 $\displaystyle\prod_{k=1}^{n}\left(2+2\cos\dfrac{k\pi}{n+1}\right)=n+1$（由 $x^{2n+2}-1$ 的因式分解代入 $x=-1$ 得到），得 $D_n=n+1$。
+**解法二（特征值乘积）** 该矩阵 $A=2I+B$，其中 $B$ 是 $n$ 阶路的邻接矩阵，其特征值为 $2\cos\dfrac{k\pi}{n+1}$（$k=1,\dots,n$）。故 $D_n=\det(2I+B)=\displaystyle\prod_{k=1}^{n}\left(2+2\cos\dfrac{k\pi}{n+1}\right)=2^n\prod_{k=1}^{n}\left(1+\cos\dfrac{k\pi}{n+1}\right)$。利用恒等式 $\displaystyle\prod_{k=1}^{n}\left(2+2\cos\dfrac{k\pi}{n+1}\right)=n+1$，证明如下：由 $x^{2n+2}-1=(x^2-1)\displaystyle\prod_{k=1}^{n}\left(x^2-2x\cos\dfrac{k\pi}{n+1}+1\right)$，两边同除 $x^2-1$ 得 $\dfrac{x^{2n+2}-1}{x^2-1}=\displaystyle\sum_{j=0}^{n}x^{2j}=\prod_{k=1}^{n}\left(x^2-2x\cos\dfrac{k\pi}{n+1}+1\right)$；令 $x\to-1$：左端 $\to n+1$，右端 $\to\displaystyle\prod_{k=1}^{n}\left(2+2\cos\dfrac{k\pi}{n+1}\right)$。得 $D_n=n+1$。
 **解法三（数学归纳法）** 由解法一的递推式，归纳证明 $D_n=n+1$：$n=1,2$ 已验证；设 $D_{n-1}=n$、$D_{n-2}=n-1$，则 $D_n=2D_{n-1}-D_{n-2}=2n-(n-1)=n+1$。
 **思路展开** 三对角行列式是递推法的主战场（按首行展开得到二阶线性递推）；特征值法把它与图的谱联系起来（路图邻接矩阵）；归纳法给出严谨闭环。动画可展示递推链 $D_1\to D_2\to\cdots$ 的展开树。
 **动画要点** - 首行展开的递推树 - 递推序列 $2,3,4,\dots$ 的点列 - 三对角矩阵结构高亮
@@ -724,7 +724,7 @@
 **答案** 特征值 $\lambda_1=1$（特征向量 $(1,1)^T$），$\lambda_2=-1$（特征向量 $(1,-1)^T$）；$A$ 是关于直线 $y=x$ 的反射
 **解法一（特征方程）** $|\lambda I-A|=\begin{vmatrix}\lambda&-1\\-1&\lambda\end{vmatrix}=\lambda^2-1=0$，$\lambda=\pm 1$。$\lambda=1$：解 $(I-A)v=0$，即 $\begin{pmatrix}1&-1\\-1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=y$，特征向量 $(1,1)^T$。$\lambda=-1$：解 $(-I-A)v=0$，即 $\begin{pmatrix}-1&-1\\-1&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=-y$，特征向量 $(1,-1)^T$。
 **解法二（几何反射）** $A$ 把 $(x,y)$ 映到 $(y,x)$，正是关于直线 $y=x$ 的镜面反射。反射轴上（$y=x$）的向量不动（特征值 1），垂直于轴的方向（$y=-x$）反向（特征值 $-1$）。
-**解法三（幂等性）** $A^2=I$（两次交换复原）。若 $Av=\lambda v$，则 $v=A^2v=\lambda^2v$，故 $\lambda^2=1$，$\lambda=\pm 1$，与解法一一致。再由 $(A-I)$ 与 $(A+I)$ 的秩均为 1，两特征值各对应一维特征空间。
+**解法三（对合性）** $A^2=I$（两次交换复原，即 $A$ 是对合矩阵）。若 $Av=\lambda v$，则 $v=A^2v=\lambda^2v$，故 $\lambda^2=1$，$\lambda=\pm 1$，与解法一一致。再由 $(A-I)$ 与 $(A+I)$ 的秩均为 1，两特征值各对应一维特征空间。
 **思路展开** 反射矩阵是正交矩阵的典型代表：特征值 $\pm 1$、特征向量正交。三种方法分别从特征方程、几何直觉、代数结构（幂等）入手。动画可展示向量关于 $y=x$ 的镜像翻转，以及两特征方向上"不动/反向"的对照。
 **动画要点** - 关于 $y=x$ 的反射动画 - 特征方向上的伸缩（$1$ 与 $-1$） - $A^2=I$ 的往返示意
 
@@ -742,14 +742,14 @@
 **答案** 特征值为 $2$ 与 $3$；$A^2-5A+6I=0$ 成立
 **解法一（迹与行列式）** 特征多项式 $|\lambda I-A|=\lambda^2-(\operatorname{tr}A)\lambda+\det A=\lambda^2-5\lambda+6=(\lambda-2)(\lambda-3)$，特征值为 $2,3$。
 **解法二（Cayley–Hamilton 定理）** 由特征多项式 $p(\lambda)=\lambda^2-5\lambda+6$，Cayley–Hamilton 定理给出 $p(A)=A^2-5A+6I=0$。验证特例 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$（$\operatorname{tr}=5$、$\det=6$）：$A^2=\begin{pmatrix}4&5\\0&9\end{pmatrix}$，$A^2-5A+6I=\begin{pmatrix}4-10+6&5-5\\0&9-15+6\end{pmatrix}=0$。
-**解法三（相似不变量）** 迹与行列式是相似不变量：任何与 $A$ 相似的矩阵都有相同的特征多项式。构造 $B=\begin{pmatrix}5&-1\\1&0\end{pmatrix}$（$\operatorname{tr}B=5$、$\det B=1$ 不满足 $\det=6$），改取 $B=\begin{pmatrix}2&0\\0&3\end{pmatrix}$：$\operatorname{tr}B=5$、$\det B=6$，其特征值显然为 $2,3$。$A$ 与 $B$ 是否相似由若尔当形决定，但特征值由迹与行列式唯一确定为 $2,3$。
+**解法三（对角化验证 C–H）** 迹与行列式是相似不变量，特征值由迹与行列式唯一确定为 $2,3$。由两个不同特征值知 $A$ 可对角化（最小多项式 $(\lambda-2)(\lambda-3)$ 无重根），即 $A=P\operatorname{diag}(2,3)P^{-1}$。于是 $A^2-5A+6I=P\left(\operatorname{diag}(4,9)-5\operatorname{diag}(2,3)+6I\right)P^{-1}=P\cdot 0\cdot P^{-1}=0$，与解法二一致。
 **思路展开** 二阶方阵的特征值完全由迹与行列式决定（特征多项式系数），Cayley–Hamilton 定理进一步把"特征值满足的方程"提升为"矩阵自身满足的方程"。动画可展示 $A^2-5A+6I$ 的逐项计算归零。
 **动画要点** - 特征多项式系数与迹、行列式的对应 - $A^2-5A+6I=0$ 的矩阵运算动画 - 相似矩阵共享谱的示意
 
 ### eval-linalg-017 高等代数 · 特征值与特征向量
 **题目** 求矩阵 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 的特征值与特征向量，并判断其是否可对角化。
-**答案** 特征值 $\lambda=1$（二重），特征向量 $(t,0)^T$（一维）；不可对角化，若尔当标准形为 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$
-**解法一（特征方程+特征空间维数）** $|\lambda I-A|=(\lambda-1)^2=0$，$\lambda=1$（二重）。解 $(I-A)v=0$：$\begin{pmatrix}0&1\\0&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$ 得 $y=0$，特征空间 $\operatorname{span}\{(1,0)^T\}$ 仅一维。特征空间维数 $1<$ 代数重数 $2$，故不可对角化。
+**答案** 特征值 $\lambda=1$（二重），非零特征向量 $t(1,0)^T$（$t\ne 0$，特征空间连同零向量为一维）；不可对角化，若尔当标准形为 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$
+**解法一（特征方程+特征空间维数）** $|\lambda I-A|=(\lambda-1)^2=0$，$\lambda=1$（二重）。解 $(I-A)v=0$：$I-A=\begin{pmatrix}0&-1\\0&0\end{pmatrix}$，$\begin{pmatrix}0&-1\\0&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$ 得 $y=0$，特征空间 $\operatorname{span}\{(1,0)^T\}$ 仅一维（非零特征向量为 $t(1,0)^T$，$t\ne 0$）。特征空间维数 $1<$ 代数重数 $2$，故不可对角化。
 **解法二（几何剪切）** $A$ 是水平剪切变换：$(x,y)\mapsto(x+y,y)$。所有向量的 $y$ 分量不变，仅 $(t,0)^T$（水平方向）方向不变，其余向量方向都被"推斜"。剪切没有第二个不变方向，故只有一个特征方向，不可对角化。
 **解法三（最小多项式）** $A-I=\begin{pmatrix}0&1\\0&0\end{pmatrix}\ne 0$，$(A-I)^2=0$，故最小多项式为 $m(\lambda)=(\lambda-1)^2$，含有重因子 $(\lambda-1)^2$。矩阵可对角化 $\iff$ 最小多项式无重根，故 $A$ 不可对角化；其若尔当标准形为单个二阶块 $J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$。
 **思路展开** 本题是"重特征值未必可对角化"的标准反例：可对角化的判据有三（特征空间维数=重数、几何剪切直觉、最小多项式无重根）。三种判据一一对应。动画可展示剪切变换下网格变形，只有水平线方向保持。
@@ -758,9 +758,9 @@
 ### eval-linalg-018 高等代数 · 特征值与特征向量
 **题目** 设 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$，求 $A^{100}$。
 **答案** $A^{100}=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$
-**解法一（对角化）** 由 eval-linalg-015 的结论，$A=P\begin{pmatrix}3&0\\0&1\end{pmatrix}P^{-1}$，其中 $P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$、$P^{-1}=\dfrac{1}{2}P$（因 $P^2=2I$）。故 $A^{100}=P\begin{pmatrix}3^{100}&0\\0&1\end{pmatrix}P^{-1}=\dfrac{1}{2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}3^{100}&0\\0&1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}&1\\3^{100}&-1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
-**解法二（二项式展开）** $A=I+B$，其中 $B=\begin{pmatrix}1&1\\1&1\end{pmatrix}$，且 $B^2=2B$（验证：$B^2=\begin{pmatrix}2&2\\2&2\end{pmatrix}=2B$）。于是 $B^k=2^{k-1}B$（$k\ge 1$）。$A^{100}=(I+B)^{100}=I+\displaystyle\sum_{k=1}^{100}\binom{100}{k}2^{k-1}B=I+\dfrac{3^{100}-1}{2}B$（由 $\sum\binom{100}{k}2^{k}=\dfrac{3^{100}-1}{2}$）。代入 $B$：$A^{100}=\begin{pmatrix}1+\frac{3^{100}-1}{2}&\frac{3^{100}-1}{2}\\\frac{3^{100}-1}{2}&1+\frac{3^{100}-1}{2}\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
-**解法三（Cayley–Hamilton 递推）** 特征多项式 $\lambda^2-4\lambda+3$，由 C–H 定理 $A^2=4A-3I$。设 $A^n=u_nA+v_nI$，则 $u_{n+1}=4u_n$、$v_{n+1}=-3u_n+v_n$，且 $u_1=1,v_1=0$。解得 $u_n=\dfrac{3^n-1}{2}$（由 $u_{n+1}=4u_n$ 得 $u_n=4^{n-1}$，检验 $A^2=4A-3I$ 得 $u_2=4$：但 $A^2=\begin{pmatrix}5&4\\4&5\end{pmatrix}=4A-3I$，故 $u_n=4^{n-1}$ 不满足……正确递推：$A^{n+1}=A^nA=(u_nA+v_nI)A=u_nA^2+v_nA=u_n(4A-3I)+v_nA=(4u_n+v_n)A-3u_nI$，故 $u_{n+1}=4u_n+v_n$、$v_{n+1}=-3u_n$，$u_1=1,v_1=0$。由 $v_{n+1}=-3u_n$ 与 $u_{n+1}=4u_n-3u_{n-1}$（$n\ge2$）且 $u_2=4$，解得 $u_n=\dfrac{3^n-1}{2}$，$v_n=-\dfrac{3^n-3}{2}$。$A^{100}=\dfrac{3^{100}-1}{2}A-\dfrac{3^{100}-3}{2}I=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
+**解法一（对角化）** 特征方程 $(\lambda-2)^2-1=0$，特征值 $3,1$；对应特征向量 $(1,1)^T$、$(1,-1)^T$。取 $P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$（即 eval-linalg-015 的结论），则 $P^{-1}AP=\begin{pmatrix}3&0\\0&1\end{pmatrix}$，且 $P^{-1}=\dfrac{1}{2}P$（因 $P^2=2I$）。故 $A^{100}=P\begin{pmatrix}3^{100}&0\\0&1\end{pmatrix}P^{-1}=\dfrac{1}{2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}3^{100}&0\\0&1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}&1\\3^{100}&-1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
+**解法二（二项式展开）** $A=I+B$，其中 $B=\begin{pmatrix}1&1\\1&1\end{pmatrix}$，且 $B^2=2B$（验证：$B^2=\begin{pmatrix}2&2\\2&2\end{pmatrix}=2B$）。于是 $B^k=2^{k-1}B$（$k\ge 1$）。$A^{100}=(I+B)^{100}=I+\displaystyle\sum_{k=1}^{100}\binom{100}{k}2^{k-1}B=I+\dfrac{3^{100}-1}{2}B$（其中 $\displaystyle\sum_{k=1}^{100}\binom{100}{k}2^{k}=3^{100}-1$，除以 $2$ 即得）。代入 $B$：$A^{100}=\begin{pmatrix}1+\frac{3^{100}-1}{2}&\frac{3^{100}-1}{2}\\\frac{3^{100}-1}{2}&1+\frac{3^{100}-1}{2}\end{pmatrix}=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
+**解法三（Cayley–Hamilton 递推）** 特征多项式 $\lambda^2-4\lambda+3$，由 C–H 定理 $A^2=4A-3I$。设 $A^n=u_nA+v_nI$，则 $A^{n+1}=A^nA=(u_nA+v_nI)A=u_nA^2+v_nA=u_n(4A-3I)+v_nA=(4u_n+v_n)A-3u_nI$，故 $u_{n+1}=4u_n+v_n$、$v_{n+1}=-3u_n$，初值 $u_1=1$、$v_1=0$。由 $v_n=-3u_{n-1}$（$n\ge 2$）代入第一式得 $u_{n+1}=4u_n-3u_{n-1}$，即 $u_{n+1}-u_n=3(u_n-u_{n-1})$；又 $u_2-u_1=3$，故 $u_n-u_{n-1}=3^{n-1}$，$u_n=1+\displaystyle\sum_{k=2}^{n}3^{k-1}=1+3\cdot\dfrac{3^{n-1}-1}{2}=\dfrac{3^n-1}{2}$，$v_n=-3u_{n-1}=-\dfrac{3^n-3}{2}$。$A^{100}=\dfrac{3^{100}-1}{2}A-\dfrac{3^{100}-3}{2}I=\dfrac{1}{2}\begin{pmatrix}3^{100}+1&3^{100}-1\\3^{100}-1&3^{100}+1\end{pmatrix}$。
 **思路展开** 对角化法是通法；二项式法利用 $B^2=2B$ 的特殊结构把 100 次幂压缩成一次线性组合；C–H 递推把矩阵幂化为标量递推。三种方法给出同一结果，互相印证。动画可展示特征方向上拉伸 $3^{100}$ 倍与保持不变的分解。
 **动画要点** - 特征方向分解：$3^{100}$ 倍拉伸与 $1$ 倍保持 - $B^2=2B$ 的结构示意 - 三种方法的同框结果验证
 
@@ -769,7 +769,7 @@
 **答案** 配方法标准形 $2u^2+\dfrac{5}{2}v^2$（$u=x+\dfrac{y}{2}$，$v=y$）；正交标准形 $\dfrac{5+\sqrt5}{2}\xi^2+\dfrac{5-\sqrt5}{2}\eta^2$；正定
 **解法一（配方法）** $f=2\left(x^2+xy\right)+3y^2=2\left(x+\dfrac{y}{2}\right)^2-\dfrac{y^2}{2}+3y^2=2\left(x+\dfrac{y}{2}\right)^2+\dfrac{5}{2}y^2$。令 $u=x+\dfrac{y}{2}$、$v=y$，得标准形 $2u^2+\dfrac{5}{2}v^2$，两系数均为正，正惯性指数 2，二次型正定。
 **解法二（正交变换法）** 矩阵 $A=\begin{pmatrix}2&1\\1&3\end{pmatrix}$。特征方程 $|\lambda I-A|=(\lambda-2)(\lambda-3)-1=\lambda^2-5\lambda+5=0$，特征值 $\lambda_1=\dfrac{5+\sqrt5}{2}$、$\lambda_2=\dfrac{5-\sqrt5}{2}$（均正）。沿对应特征方向做正交变换，得标准形 $\dfrac{5+\sqrt5}{2}\xi^2+\dfrac{5-\sqrt5}{2}\eta^2$。特征值全正故正定。
-**解法三（顺序主子式判据）** $A$ 的一阶顺序主子式 $2>0$；二阶顺序主子式 $\det A=2\cdot 3-1=5>0$。由 Sylvester 判据，全部顺序主子式为正 $\iff$ 二次型正定，正惯性指数为 $(2,0)$。
+**解法三（顺序主子式判据）** $A$ 的一阶顺序主子式 $2>0$；二阶顺序主子式 $\det A=2\cdot 3-1=5>0$。由 Sylvester 判据，全部顺序主子式为正 $\iff$ 二次型正定，正惯性指数为 $2$、负惯性指数为 $0$。
 **思路展开** 配方法（合同变换）与正交变换都能化标准形：配方结果系数简单（$2$ 与 $\dfrac{5}{2}$）但变换非正交，正交结果系数是特征值但带根号。顺序主子式判据则直接回答正定性而不必化标准形。动画可展示椭圆等值线族的旋转（正交变换）与挤压（配方法）。
 **动画要点** - 椭圆等值线族 - 主轴旋转到特征方向的动画 - 两种标准形系数对照
 
@@ -787,7 +787,7 @@
 **答案** 正定
 **解法一（顺序主子式）** 矩阵 $A=\begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$。顺序主子式：$\Delta_1=1>0$；$\Delta_2=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1>0$；$\Delta_3=\det A=1\cdot(2\cdot 3-2\cdot 2)-1\cdot(1\cdot 3-2\cdot 1)+1\cdot(1\cdot 2-2\cdot 1)=2-1+0=1>0$。全为正，由 Sylvester 判据，$f$ 正定。
 **解法二（配方为平方和）** $f=(x+y+z)^2+(y+z)^2+z^2$。展开验证：$(x+y+z)^2=x^2+y^2+z^2+2xy+2xz+2yz$，$(y+z)^2=y^2+z^2+2yz$，三项相加得 $x^2+2y^2+3z^2+2xy+2xz+4yz$。三个平方项线性无关的变量替换（$u=x+y+z$、$v=y+z$、$w=z$，变换矩阵 $\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}$ 可逆），故 $f=u^2+v^2+w^2$ 正定。
-**解法三（合同变换化对角）** 对 $A$ 做同步行列变换（合同变换）：第二行减第一行、第二列减第一列：$\begin{pmatrix}1&0&0\\0&1&1\\0&1&2\end{pmatrix}$；第三行减第二行、第三列减第二列：$\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I$。即存在可逆矩阵 $C$ 使 $C^TAC=I$，故 $A$ 正定。
+**解法三（合同变换化对角）** 对 $A$ 做同步行列变换（合同变换）。第一步：$R_2\leftarrow R_2-R_1$、$R_3\leftarrow R_3-R_1$、$C_2\leftarrow C_2-C_1$、$C_3\leftarrow C_3-C_1$，得 $\begin{pmatrix}1&0&0\\0&1&1\\0&1&2\end{pmatrix}$；第二步：$R_3\leftarrow R_3-R_2$、$C_3\leftarrow C_3-C_2$，得 $\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I$。即存在可逆矩阵 $C$ 使 $C^TAC=I$，故 $A$ 正定。
 **思路展开** 正定判别的三条路：Sylvester 顺序主子式（最快捷）、配方平方和（给出显式的变量替换）、合同变换（机械流程）。三者在本例中给出同一个"三个平方项"的结构。动画可展示椭球面 $f=1$ 与坐标轴的斜交关系及化正后的对齐。
 **动画要点** - 椭球面 $f=1$ 的三维图 - 配方平方和的逐步展开 - 合同变换的对角化流程
 
@@ -802,9 +802,9 @@
 
 ### eval-linalg-023 高等代数 · 多项式
 **题目** 分别在复数域与实数域上分解 $x^8-1$。
-**答案** 复数域：$\displaystyle\prod_{k=0}^{7}\left(x-e^{2\pi ik/8}\right)$；实数域：$(x-1)(x+1)(x^2+1)(x^4+1)$
+**答案** 复数域：$\displaystyle\prod_{k=0}^{7}\left(x-e^{2\pi ik/8}\right)$；实数域（完整实不可约分解）：$(x-1)(x+1)(x^2+1)(x^2-\sqrt2x+1)(x^2+\sqrt2x+1)$
 **解法一（单位根）** $x^8-1=0$ 的根是 8 次单位根 $e^{2\pi ik/8}$（$k=0,1,\dots,7$），在复平面上构成正八边形的顶点。复数域上 $x^8-1=\displaystyle\prod_{k=0}^{7}\left(x-e^{2\pi ik/8}\right)$。实数域上把共轭根配对：$k=0,4$ 对应实根 $\pm 1$；$k=1,7$ 配对得 $\left(x-e^{i\pi/4}\right)\left(x-e^{-i\pi/4}\right)=x^2-2x\cos\dfrac{\pi}{4}+1=x^2-\sqrt2x+1$；$k=2,6$ 配对得 $x^2+1$；$k=3,5$ 配对得 $x^2+\sqrt2x+1$。故实数域分解为 $(x-1)(x+1)(x^2-\sqrt2x+1)(x^2+1)(x^2+\sqrt2x+1)$。
-**解法二（平方差递推）** $x^8-1=(x^4-1)(x^4+1)=(x^2-1)(x^2+1)(x^4+1)=(x-1)(x+1)(x^2+1)(x^4+1)$。此即实数域分解（$x^4+1$ 在实数域不可约，因它无实根且二次因子无实数系数分解）。
+**解法二（平方差递推）** $x^8-1=(x^4-1)(x^4+1)=(x^2-1)(x^2+1)(x^4+1)=(x-1)(x+1)(x^2+1)(x^4+1)$。再对 $x^4+1$ 作实分解（见解法三的恒等式）：$x^4+1=(x^2-\sqrt2x+1)(x^2+\sqrt2x+1)$，合并得完整实不可约分解 $(x-1)(x+1)(x^2+1)(x^2-\sqrt2x+1)(x^2+\sqrt2x+1)$。
 **解法三（两种实数分解的联系）** 解法一与解法二给出实数域分解的两种形式，由 $(x^2-\sqrt2x+1)(x^2+\sqrt2x+1)=x^4+1$（平方差：$(x^2+1)^2-(\sqrt2x)^2=x^4+2x^2+1-2x^2=x^4+1$）连接起来。两形式一致。
 **思路展开** 单位根分解展示代数基本定理的几何画面（正八边形），平方差递推是初等快速路径，配对法给出"不可约实因子"的一般程序。动画可在复平面上画 8 个单位根及其共轭配对。
 **动画要点** - 复平面正八边形单位根 - 共轭根配对动画 - 平方差递推的分解树
@@ -865,17 +865,17 @@
 
 ### eval-linalg-030 高等代数 · 线性空间
 **题目** 用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。
-**答案** $u_1=(1,1,0)$，$u_2=(1,-1,2)$，$u_3=(-1,1,1)$（可各乘常数）
-**解法一（标准 Gram–Schmidt 过程）** 取 $u_1=(1,1,0)$。$u_2=(1,0,1)-\dfrac{(1,0,1)\cdot u_1}{\|u_1\|^2}u_1=(1,0,1)-\dfrac{1}{2}(1,1,0)=\left(\dfrac{1}{2},-\dfrac{1}{2},1\right)$，乘 2 取 $u_2=(1,-1,2)$。$u_3=(0,1,1)-\dfrac{(0,1,1)\cdot u_1}{\|u_1\|^2}u_1-\dfrac{(0,1,1)\cdot u_2}{\|u_2\|^2}u_2=(0,1,1)-\dfrac{1}{2}(1,1,0)-\dfrac{1}{6}(1,-1,2)=\left(-\dfrac{2}{3},\dfrac{2}{3},\dfrac{2}{3}\right)$，乘 $-\dfrac{3}{2}$ 取 $u_3=(-1,1,1)$。验证：$u_1\cdot u_2=0$，$u_1\cdot u_3=0$，$u_2\cdot u_3=-1-1+2=0$，两两正交。
-**解法二（对称性构造）** 三个向量关于坐标轮换对称。取和向量 $v_1=(1,1,1)$（在张成空间内，因 $v_1=\dfrac{(1,1,0)+(1,0,1)+(0,1,1)}{2}$ 验证：$\dfrac{(2,2,2)}{2}=(1,1,1)$）；取差向量 $v_2=(1,0,-1)$：$v_1\cdot v_2=0$；取 $v_3=v_1\times v_2=(1,1,1)\times(1,0,-1)=(1\cdot(-1)-1\cdot 0,\ 1\cdot 1-1\cdot(-1),\ 1\cdot 0-1\cdot 1)=(-1,2,-1)$。验证 $v_3$ 在张成空间内：$(1,1,0)-2(1,0,1)+(0,1,1)=(-1,2,-1)$；且 $v_3\cdot v_1=0$、$v_3\cdot v_2=0$。故 $\{(1,1,1),(1,0,-1),(-1,2,-1)\}$ 亦为正交基（与解法一结果等价，因张成空间相同）。
-**解法三（验算还原）** 验证解法一的三向量线性无关：行列式 $\begin{vmatrix}1&1&0\\1&-1&2\\-1&1&1\end{vmatrix}=1\cdot(-1-2)-1\cdot(1+2)+0=-3-3=-6\ne 0$。且三者张成的空间与原组相同（原组行列式 $\begin{vmatrix}1&1&0\\1&0&1\\0&1&1\end{vmatrix}=-2\ne 0$，两组都张成 $\mathbb R^3$），故正交化合法。
+**答案** $u_1=(1,1,0)$，$u_2=(1,-1,2)$，$u_3=(1,-1,-1)$（可各乘常数）
+**解法一（标准 Gram–Schmidt 过程）** 取 $u_1=(1,1,0)$。$u_2=(1,0,1)-\dfrac{(1,0,1)\cdot u_1}{\|u_1\|^2}u_1=(1,0,1)-\dfrac{1}{2}(1,1,0)=\left(\dfrac{1}{2},-\dfrac{1}{2},1\right)$，乘 2 取 $u_2=(1,-1,2)$。$u_3=(0,1,1)-\dfrac{(0,1,1)\cdot u_1}{\|u_1\|^2}u_1-\dfrac{(0,1,1)\cdot u_2}{\|u_2\|^2}u_2=(0,1,1)-\dfrac{1}{2}(1,1,0)-\dfrac{1}{6}(1,-1,2)=\left(-\dfrac{2}{3},\dfrac{2}{3},\dfrac{2}{3}\right)$，乘 $-\dfrac{3}{2}$ 取 $u_3=(1,-1,-1)$。验证：$u_1\cdot u_2=0$，$u_1\cdot u_3=1-1+0=0$，$u_2\cdot u_3=1+1-2=0$，两两正交。
+**解法二（对称性构造）** 三个向量关于坐标轮换对称。取和向量 $v_1=(1,1,1)$（在张成空间内，因 $v_1=\dfrac{(1,1,0)+(1,0,1)+(0,1,1)}{2}$ 验证：$\dfrac{(2,2,2)}{2}=(1,1,1)$）；取差向量 $v_2=(1,0,-1)$：$v_1\cdot v_2=0$；取 $v_3=v_1\times v_2=(1,1,1)\times(1,0,-1)=(1\cdot(-1)-1\cdot 0,\ 1\cdot 1-1\cdot(-1),\ 1\cdot 0-1\cdot 1)=(-1,2,-1)$。验证 $v_3$ 在张成空间内：$(1,1,0)-2(1,0,1)+(0,1,1)=(-1,2,-1)$；且 $v_3\cdot v_1=0$、$v_3\cdot v_2=0$。故 $\{(1,1,1),(1,0,-1),(-1,2,-1)\}$ 亦为正交基（这是利用对称性的替代正交基构造，与按原顺序做 Gram–Schmidt 的输出不必相同）。
+**解法三（验算还原）** 验证解法一的三向量线性无关：行列式 $\begin{vmatrix}1&1&0\\1&-1&2\\1&-1&-1\end{vmatrix}=1\cdot(1+2)-1\cdot(-1-2)+0=3+3=6\ne 0$。且三者张成的空间与原组相同（原组行列式 $\begin{vmatrix}1&1&0\\1&0&1\\0&1&1\end{vmatrix}=-2\ne 0$，两组都张成 $\mathbb R^3$），故正交化合法。
 **思路展开** Gram–Schmidt 是"逐步减去投影"的机械过程；对称性构造利用轮换结构一步到位；验算法保证结果的正确性。动画可展示投影减去的几何步骤（每次减掉已得方向上的分量）。
 **动画要点** - 投影减去的逐步动画 - 三个正交向量的两两垂直标注 - 轮换对称结构的利用
 
 ### eval-linalg-031 高等代数 · λ-矩阵
 **题目** 求矩阵 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 的最小多项式与若尔当标准形。
 **答案** 最小多项式 $(\lambda-2)^3$；若尔当标准形为 $A$ 本身（单个三阶块 $J_3(2)$）
-**解法一（特征多项式+最小多项式）** 特征多项式 $|\lambda I-A|=(\lambda-2)^3$。$A-2I=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}=:N$，$N\ne 0$ 且 $N^2=\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}\ne 0$，$N^3=0$。故最小多项式为 $(\lambda-2)^3$（能被 $(\lambda-2)$ 与 $(\lambda-2)^2$ 整除均不成立）。
+**解法一（特征多项式+最小多项式）** 特征多项式 $|\lambda I-A|=(\lambda-2)^3$。$A-2I=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}=:N$，$N\ne 0$ 且 $N^2=\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}\ne 0$，$N^3=0$。因 $(A-2I)\ne 0$、$(A-2I)^2\ne 0$，低次多项式 $\lambda-2$ 与 $(\lambda-2)^2$ 都不能使 $A$ 消去，故最小多项式为 $(\lambda-2)^3$。
 **解法二（秩法判块结构）** $\operatorname{rank}(A-2I)=\operatorname{rank}N=2$，$\operatorname{rank}(A-2I)^2=\operatorname{rank}N^2=1$，$\operatorname{rank}(A-2I)^3=0$。特征值 $2$ 的若尔当块个数 $=3-\operatorname{rank}(A-2I)=3-2=1$，即只有一个块，大小为 3，故标准形为 $J_3(2)$，最小多项式 $(\lambda-2)^3$。
 **解法三（广义特征向量链）** 解 $(A-2I)^2v\ne 0$ 而 $(A-2I)^3v=0$：取 $e_1=(1,0,0)^T$，则 $(A-2I)e_1=(0,0,0)$ 不满足；取 $e_3=(0,0,1)^T$：$(A-2I)e_3=(0,1,0)^T$，$(A-2I)^2e_3=(1,0,0)^T\ne 0$，$(A-2I)^3e_3=0$。链 $e_3\to Ne_3\to N^2e_3$ 长度为 3，故若尔当块为 $J_3(2)$。
 **思路展开** 若尔当标准形的三种判别：最小多项式（重数）、秩序列（块数递推）、广义特征向量链（几何结构）。三法一致给出"单个三阶块"。动画可展示幂零部分 $N$ 的三步归零链。
@@ -903,8 +903,8 @@
 **题目** 证明 Cauchy–Schwarz 不等式：对任意向量 $\vec a,\vec b$，$|\vec a\cdot\vec b|\le|\vec a||\vec b|$。
 **答案** 证毕（三种证法）
 **解法一（判别式法）** 若 $\vec b=\vec 0$ 不等式平凡成立。设 $\vec b\ne\vec 0$，对任意实数 $t$，$0\le|\vec a+t\vec b|^2=|\vec a|^2+2t(\vec a\cdot\vec b)+t^2|\vec b|^2$。该二次函数恒非负，故判别式 $\Delta=4(\vec a\cdot\vec b)^2-4|\vec a|^2|\vec b|^2\le 0$，即 $(\vec a\cdot\vec b)^2\le|\vec a|^2|\vec b|^2$，开方得 $|\vec a\cdot\vec b|\le|\vec a||\vec b|$。等号成立当且仅当 $\vec a+t\vec b=\vec 0$（$\vec a$ 与 $\vec b$ 线性相关）。
-**解法二（正交投影）** 把 $\vec a$ 分解为 $\vec a=\vec a_\parallel+\vec a_\perp$，其中 $\vec a_\parallel=\dfrac{\vec a\cdot\vec b}{|\vec b|^2}\vec b$ 与 $\vec b$ 平行，$\vec a_\perp\perp\vec b$。由勾股定理 $|\vec a|^2=|\vec a_\parallel|^2+|\vec a_\perp|^2\ge|\vec a_\parallel|^2=\dfrac{(\vec a\cdot\vec b)^2}{|\vec b|^2}$，移项即得。等号成立当且仅当 $\vec a_\perp=\vec 0$。
-**解法三（协方差半正定）** 对随机变量 $X,Y$ 有 $E[(tX+Y)^2]\ge 0$ 对任意 $t$，故协方差矩阵 $\begin{pmatrix}E[X^2]&E[XY]\\E[XY]&E[Y^2]\end{pmatrix}$ 半正定，行列式 $E[X^2]E[Y^2]-(E[XY])^2\ge 0$，即 $(E[XY])^2\le E[X^2]E[Y^2]$。取有限样本空间上的随机变量与内积 $\langle X,Y\rangle=E[XY]$ 对应，即得向量形式的 Cauchy–Schwarz。
+**解法二（正交投影）** 若 $\vec b=\vec 0$ 不等式平凡成立。以下设 $\vec b\ne\vec 0$，把 $\vec a$ 分解为 $\vec a=\vec a_\parallel+\vec a_\perp$，其中 $\vec a_\parallel=\dfrac{\vec a\cdot\vec b}{|\vec b|^2}\vec b$ 与 $\vec b$ 平行，$\vec a_\perp\perp\vec b$。由勾股定理 $|\vec a|^2=|\vec a_\parallel|^2+|\vec a_\perp|^2\ge|\vec a_\parallel|^2=\dfrac{(\vec a\cdot\vec b)^2}{|\vec b|^2}$，移项即得。等号成立当且仅当 $\vec a_\perp=\vec 0$。
+**解法三（Gram 矩阵半正定）** 对随机变量 $X,Y$ 有 $E[(tX+Y)^2]\ge 0$ 对任意 $t$，故二阶矩矩阵（当 $E[X]=E[Y]=0$ 时即协方差矩阵，一般情形称 Gram 矩阵）$\begin{pmatrix}E[X^2]&E[XY]\\E[XY]&E[Y^2]\end{pmatrix}$ 半正定，行列式 $E[X^2]E[Y^2]-(E[XY])^2\ge 0$，即 $(E[XY])^2\le E[X^2]E[Y^2]$。取有限样本空间上的随机变量与内积 $\langle X,Y\rangle=E[XY]$ 对应（必要时先中心化），即得向量形式的 Cauchy–Schwarz。
 **思路展开** 三种证法分别来自二次函数判别式（代换 $t$）、正交分解（勾股定理）、协方差矩阵半正定（概率内积）。它们共同展示"内积空间公理 ⇒ 不等式"的推理链。动画可展示投影分解与判别式抛物线的非负性。
 **动画要点** - 正交投影分解动画 - 判别式抛物线恒非负 - 等号条件（共线）标注
 
