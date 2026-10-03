@@ -259,6 +259,38 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     return problems, quarantines
 
 
+def check_multi_solution_groups(records: list[tuple[int, dict]]) -> list[str]:
+    """GS3(msg_221) 多解组约束:同 problem_id 必须同题干(稳定题干);
+    method 必须存在;同一 problem_id 内 method 唯一(顺带 solution_id 唯一由
+    复合身份查重保证)。"""
+    by_pid: dict[str, list[tuple[int, dict]]] = {}
+    for line, rec in records:
+        pid = rec.get("problem_id")
+        if not _is_missing(pid):
+            by_pid.setdefault(str(pid), []).append((line, rec))
+    problems: list[str] = []
+    for pid, items in sorted(by_pid.items()):
+        texts = {str(rec.get("problem")) for _, rec in items}
+        if len(texts) > 1:
+            problems.append(f"problem_id={pid} 对应不同题干"
+                            f"(行 {', '.join(str(l) for l, _ in items)})"
+                            "—— 同 problem_id 必须同题干(GS3)")
+        methods = [rec.get("method") for _, rec in items]
+        if any(_is_missing(m) for m in methods):
+            problems.append(f"problem_id={pid} 存在缺 method 的多解样本(GS3)")
+        seen: dict[str, int] = {}
+        for line, rec in items:
+            m = rec.get("method")
+            if not _is_missing(m):
+                if str(m) in seen:
+                    problems.append(f"problem_id={pid} 的 method={m!r} 重复"
+                                    f"(行 {seen[str(m)]},{line})"
+                                    "—— 方法必须唯一(GS3)")
+                else:
+                    seen[str(m)] = line
+    return problems
+
+
 def check_duplicate_ids(records: list[tuple[int, dict]]) -> list[str]:
     """全局 ID 唯一性。同 ID 同内容 = 整条重复;同 ID 不同内容 = ID 冲突。
 
@@ -345,6 +377,7 @@ def check_intake_file(path) -> dict:
     if not records:
         problems.append(f"{p.name}: 没有有效样本行(空 JSONL/空输入不得 ok=true)")
     problems += check_duplicate_ids(records)
+    problems += check_multi_solution_groups(records)
     return _finish()
 
 

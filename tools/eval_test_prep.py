@@ -58,11 +58,15 @@ def cmd_status(args) -> int:
 
 
 def cmd_check(args) -> int:
-    dirs = [Path(x) for x in args.dirs]
-    files: list[Path] = []
-    for d in dirs:
-        files += _jsonl_files(d)
-    files = sorted(set(files))
+    # GS3(msg_221):按逻辑角色聚合 —— eval 组 / test 组;物理文件不是逻辑 split。
+    # 未给角色时位置参数整体视为单一候选组(向后兼容)。
+    eval_dirs = [Path(x) for x in (args.eval or [])]
+    test_dirs = [Path(x) for x in (args.test or [])]
+    if not eval_dirs and not test_dirs and getattr(args, "dirs", None):
+        eval_dirs = [Path(x) for x in args.dirs]
+    eval_files = sorted({f for d in eval_dirs for f in _jsonl_files(d)})
+    test_files = sorted({f for d in test_dirs for f in _jsonl_files(d)})
+    files = sorted(set(eval_files + test_files))
     if not files:
         print(f"[OK] {args.dirs}: 未生成任何样本 —— 如实报告,不视为检查通过")
         return 0
@@ -105,35 +109,44 @@ def cmd_check(args) -> int:
                 problems.append(f"{f.name}:{i} 与 train 近重复(5-gram Jaccard "
                                 f"{sim:.3f} ≥ {NEAR_DUP_THRESHOLD},"
                                 f"命中 train 行 {hit['line'] + 1})")
-    # GS3:候选集之间隔离(eval↔test 等)——跨文件同题/同 ID 必须检出
-    if len(files) > 1:
-        from animtrain.dataset_intake import record_identity  # noqa: PLC0415
-        per_file: dict[Path, tuple[set, set]] = {}
-        for f in files:
-            hs: set[str] = set()
-            ids: set[str] = set()
+    # GS3:多解组约束(候选组内,跨文件聚合)——同 problem_id 同题干/method 唯一/必填
+    from animtrain.dataset_intake import (  # noqa: PLC0415
+        check_multi_solution_groups, record_identity)
+    group_records: list[tuple[int, dict]] = []
+    for f in files:
+        for i, l in enumerate(_load_lines(f), 1):
+            try:
+                group_records.append((i, json.loads(l)))
+            except json.JSONDecodeError:
+                continue
+    for gp in check_multi_solution_groups(group_records):
+        problems.append(f"多解组约束: {gp}")
+
+    def _group_sets(flist: list[Path]) -> tuple[set, set]:
+        hs: set[str] = set()
+        ids: set[str] = set()
+        for f in flist:
             for l in _load_lines(f):
                 hs.add(canonical_problem_hash(l))
                 try:
                     ids.add(record_identity(json.loads(l)))
                 except json.JSONDecodeError:
                     continue
-            per_file[f] = (hs, ids)
-        flist = sorted(files)
-        for i in range(len(flist)):
-            for j in range(i + 1, len(flist)):
-                a, b = flist[i], flist[j]
-                ha, ia = per_file[a]
-                hb, ib = per_file[b]
-                overlap = ha & hb
-                if overlap:
-                    problems.append(f"{a.name} 与 {b.name} 跨集合同题重叠 "
-                                    f"{len(overlap)} 条(核心正文哈希)—— 评测题目族"
-                                    "必须独立(GS3)")
-                shared = {x for x in ia & ib if x}
-                if shared:
-                    problems.append(f"{a.name} 与 {b.name} 跨集合 ID 重叠: "
-                                    f"{sorted(shared)[:5]}(GS3)")
+        return hs, ids
+
+    # GS3(msg_221):跨角色隔离 —— 只按逻辑角色(eval 组 vs test 组)隔离,
+    # 同组内多文件/多解不算跨集合
+    if eval_files and test_files:
+        he, ie = _group_sets(eval_files)
+        ht, it = _group_sets(test_files)
+        overlap = he & ht
+        if overlap:
+            problems.append(f"eval 组与 test 组跨集合同题重叠 {len(overlap)} 条"
+                            "(核心正文哈希)—— 评测题目族必须独立(GS3)")
+        shared = {x for x in ie & it if x}
+        if shared:
+            problems.append(f"eval 组与 test 组跨集合 ID 重叠: "
+                            f"{sorted(shared)[:5]}(GS3)")
     if problems:
         for p in problems:
             print(f"  [FAIL] {p}")
@@ -156,8 +169,10 @@ def main(argv: list[str]) -> int:
     ps = sub.add_parser("status", help="报告 eval/test 生成/冻结状态")
     ps.add_argument("--dir", default=str(ROOT / "data/v1"))
     ps.set_defaults(fn=cmd_status)
-    pc = sub.add_parser("check", help="已生成样本时:入场检查 + 与 train/候选集间隔离检查")
-    pc.add_argument("dirs", nargs="+", help="一个或多个 eval/test 文件或目录")
+    pc = sub.add_parser("check", help="已生成样本时:入场检查 + 与 train 隔离 + 组约束/跨角色隔离")
+    pc.add_argument("dirs", nargs="*", help="候选文件/目录(未给 --eval/--test 时整体视为一组)")
+    pc.add_argument("--eval", nargs="*", default=None, help="eval 组(逻辑角色)")
+    pc.add_argument("--test", nargs="*", default=None, help="test 组(逻辑角色)")
     pc.add_argument("--train-dir", default=str(ROOT / "data/v1/raw"))
     pc.set_defaults(fn=cmd_check)
     pf = sub.add_parser("freeze", help="未授权:一律拒绝")

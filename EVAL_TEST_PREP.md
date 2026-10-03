@@ -44,6 +44,7 @@ eval(同题多解)单行:
 
 ```json
 {"problem_id": "eval-p001", "solution_id": "eval-p001-s1", "method": "方法名",
+ "category": "数学分析", "sub_category": "极限",
  "problem": "题干", "solution": "该解法的完整解答", "answer": "可判分终答",
  "scene_spec": {"objects": ["..."], "steps": ["..."]},
  "source": "待用户提供", "license": "Internal-Research-Use-Only"}

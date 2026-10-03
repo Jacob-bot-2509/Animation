@@ -89,9 +89,16 @@ def _find_non_object_lines(path: Path) -> list[int]:
 
 
 def _record_id(obj: dict):
-    """A6:统一 ID 提取语义——优先 id,缺则 sample_id(legacy 别名)。
-    所有 ID 流程(重叠/去重/定位)必须用同一提取,避免别名冲突漏检。"""
-    return obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+    """A6/GS3:统一 ID 提取语义——优先 id,缺则 sample_id(legacy 别名),
+    再缺则多解复合身份 problem_id::solution_id。所有 ID 流程
+    (重叠/去重/定位)必须用同一提取,避免别名冲突漏检。"""
+    sid = obj.get("id") if obj.get("id") is not None else obj.get("sample_id")
+    if sid is None:
+        pid = obj.get("problem_id")
+        s2 = obj.get("solution_id")
+        if pid is not None and s2 is not None:
+            return f"{pid}::{s2}"
+    return sid
 
 
 def _load_sample_ids(path: Path) -> set[str]:

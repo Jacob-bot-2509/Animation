@@ -363,7 +363,64 @@ class TestGS3MultiSolution(unittest.TestCase):
             out = subprocess.run(
                 [sys.executable, "-X", "utf8",
                  str(ROOT / "tools" / "eval_test_prep.py"), "check",
-                 str(eval_dir), str(test_dir), "--train-dir", str(train_dir)],
+                 "--eval", str(eval_dir), "--test", str(test_dir),
+                 "--train-dir", str(train_dir)],
                 capture_output=True, encoding="utf-8", errors="replace")
             self.assertEqual(out.returncode, 1, out.stdout + out.stderr)
             self.assertIn("跨集合同题重叠", out.stdout)
+
+    def test_same_group_multi_solution_not_cross_set(self):
+        """msg_221:同一 eval 组的两个解法文件不得误报跨集合。"""
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            train_dir = d / "train"
+            train_dir.mkdir()
+            (train_dir / "t.jsonl").write_text(
+                (FIX_EVAL / "train_synthetic.jsonl").read_text(encoding="utf-8"),
+                encoding="utf-8")
+            eval_dir = d / "eval"
+            eval_dir.mkdir()
+            (eval_dir / "e.jsonl").write_text(
+                '{"problem_id": "p1", "solution_id": "p1-s1", "method": "方法A", '
+                '"category": "合成", "sub_category": "合成", '
+                '"problem": "独立题目X：求 1+2。", "solution": "解A", "answer": "3", '
+                '"scene_spec": {"objects": ["x"], "steps": ["y"]}, '
+                '"source": "synthetic", "license": "internal-generated"}\n'
+                '{"problem_id": "p1", "solution_id": "p1-s2", "method": "方法B", '
+                '"category": "合成", "sub_category": "合成", '
+                '"problem": "独立题目X：求 1+2。", "solution": "解B", "answer": "3", '
+                '"scene_spec": {"objects": ["x"], "steps": ["y"]}, '
+                '"source": "synthetic", "license": "internal-generated"}\n',
+                encoding="utf-8")
+            out = subprocess.run(
+                [sys.executable, "-X", "utf8",
+                 str(ROOT / "tools" / "eval_test_prep.py"), "check",
+                 "--eval", str(eval_dir), "--train-dir", str(train_dir)],
+                capture_output=True, encoding="utf-8", errors="replace")
+            self.assertNotIn("跨集合", out.stdout, out.stdout)
+
+    def test_group_constraints_same_pid_different_problem(self):
+        """msg_221:同 problem_id 不同题干 → 组约束硬伤。"""
+        recs = [self._multi(problem="题干一"),
+                self._multi(solution_id="eval-p1-s2", method="方法B",
+                            problem="题干二")]
+        from animtrain.dataset_intake import check_multi_solution_groups
+        problems = check_multi_solution_groups([(1, recs[0]), (2, recs[1])])
+        self.assertTrue(any("不同题干" in p for p in problems), problems)
+
+    def test_group_constraints_duplicate_method(self):
+        """msg_221:同 problem_id 重复 method → 硬伤。"""
+        recs = [self._multi(),
+                self._multi(solution_id="eval-p1-s2", method="方法A")]
+        from animtrain.dataset_intake import check_multi_solution_groups
+        problems = check_multi_solution_groups([(1, recs[0]), (2, recs[1])])
+        self.assertTrue(any("method=" in p and "重复" in p for p in problems),
+                        problems)
+
+    def test_group_constraints_missing_method(self):
+        recs = [self._multi()]
+        del recs[0]["method"]
+        from animtrain.dataset_intake import check_multi_solution_groups
+        problems = check_multi_solution_groups([(1, recs[0])])
+        self.assertTrue(any("缺 method" in p for p in problems), problems)
