@@ -189,6 +189,10 @@ class TestB2Ready(unittest.TestCase):
                 r = run_preflight(p, extra_checks=[
                     ("data_manifest", (True, "ok")),
                     ("run_snapshot", (True, "ok")),
+                    ("asset_evidence", (True, "ok")),
+                    ("freeze_gate", (True, "ok")),
+                    ("near_dup_calibrated", (True, "ok")),
+                    ("exec_isolation", (True, "ok")),
                     ("code_gate", (True, "静态通过,unverified: math/render",
                                    {"unverified": ["math", "render"]}))],
                     ready=True)
@@ -208,7 +212,11 @@ class TestB2Ready(unittest.TestCase):
                             return_value=(True, "real")):
                 r = run_preflight(p, extra_checks=[
                     ("data_manifest", (True, "数据门禁通过")),
-                    ("run_snapshot", (True, "快照通过"))],
+                    ("run_snapshot", (True, "快照通过")),
+                    ("asset_evidence", (True, "逐条覆盖")),
+                    ("freeze_gate", (True, "冻结绑定")),
+                    ("near_dup_calibrated", (True, "已校准")),
+                    ("exec_isolation", (True, "隔离已验收"))],
                     ready=True)
         self.assertTrue(r["ready"], r["checks"])
         self.assertEqual(r["exit_code"], 0)

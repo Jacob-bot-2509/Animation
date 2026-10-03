@@ -96,22 +96,32 @@ if __name__ == "__main__":
 
 
 class TestAssetEvidence(unittest.TestCase):
-    """B2(BR4-b 剩余):资产验收证据——缺失/损坏/未绑定/覆盖不足必须阻断。"""
+    """B2(GS2 复修):资产验收证据必须以当前 manifest 实际样本逐条验证,
+    自报数字/自报覆盖不可作为验收依据。"""
 
-    def _mk(self, d: Path, evidence: dict | None, bad_json: bool = False):
-        from animtrain.manifest import Manifest
+    def _mk(self, d: Path, evidence: dict | None, bad_json: bool = False,
+            with_sample: bool = False):
+        import json
+        from animtrain.manifest import canonical_problem_hash
         mp = d / "manifest.json"
-        Manifest(name="t", entries=[]).to_dict()
-        mp.write_text('{"name": "t", "version": 1, "entries": []}',
-                      encoding="utf-8")
+        line = ('{"id": "s1", "problem": "求 1+1 的值。", "solution": "2。", '
+                '"answer": "2", "scene_spec": {"objects": ["x"], "steps": ["y"]}, '
+                '"source": "x", "license": "Internal-Research-Use-Only"}')
+        if with_sample:
+            (d / "raw").mkdir(exist_ok=True)
+            (d / "raw" / "d.jsonl").write_text(line + "\n", encoding="utf-8")
+        entries = ([{"path": "raw/d.jsonl", "sha256": "", "size": len(line) + 1,
+                     "source": "x", "license": "Internal-Research-Use-Only",
+                     "split": "raw"}] if with_sample else [])
+        mp.write_text(json.dumps({"name": "t", "version": 1, "entries": entries},
+                                 ensure_ascii=False), encoding="utf-8")
         ep = d / "asset_evidence.json"
         if bad_json:
             ep.write_text("not json", encoding="utf-8")
         elif evidence is not None:
-            import json
             ep.write_text(json.dumps(evidence, ensure_ascii=False),
                           encoding="utf-8")
-        return mp
+        return mp, line
 
     def _sha(self, mp: Path) -> str:
         import hashlib
@@ -121,7 +131,7 @@ class TestAssetEvidence(unittest.TestCase):
         from animtrain.preflight import check_asset_evidence
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            mp = self._mk(d, None)
+            mp, _ = self._mk(d, None, with_sample=True)
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
             self.assertIn("缺失", detail)
@@ -130,7 +140,7 @@ class TestAssetEvidence(unittest.TestCase):
         from animtrain.preflight import check_asset_evidence
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            mp = self._mk(d, None, bad_json=True)
+            mp, _ = self._mk(d, None, bad_json=True, with_sample=True)
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
             self.assertIn("损坏", detail)
@@ -139,38 +149,79 @@ class TestAssetEvidence(unittest.TestCase):
         from animtrain.preflight import check_asset_evidence
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            mp = self._mk(d, {"manifest_sha256": "f" * 64,
-                              "n_verified_assets": 10, "n_total_records": 10})
+            mp, _ = self._mk(d, {"manifest_sha256": "f" * 64,
+                                 "records": {}, "n_verified_assets": 0,
+                                 "n_total_records": 0}, with_sample=True)
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
             self.assertIn("未绑定", detail)
 
-    def test_insufficient_coverage_blocks(self):
+    def test_self_reported_numbers_alone_rejected(self):
+        """GS2:自报 1/1 无逐条证据 → 拒绝。"""
         from animtrain.preflight import check_asset_evidence
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            mp = self._mk(d, None)
+            mp, _ = self._mk(d, None, with_sample=True)
             import json
-            ep = d / "asset_evidence.json"
-            ep.write_text(json.dumps({"manifest_sha256": self._sha(mp),
-                                      "n_verified_assets": 2,
-                                      "n_total_records": 10}, ensure_ascii=False),
-                          encoding="utf-8")
+            (d / "asset_evidence.json").write_text(json.dumps(
+                {"manifest_sha256": self._sha(mp),
+                 "n_verified_assets": 1, "n_total_records": 1},
+                ensure_ascii=False), encoding="utf-8")
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
-            self.assertIn("覆盖不足", detail)
+            self.assertIn("逐条记录", detail)
 
-    def test_bound_full_coverage_passes(self):
+    def test_per_record_evidence_passes(self):
+        from animtrain.preflight import check_asset_evidence
+        from animtrain.manifest import canonical_problem_hash
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp, line = self._mk(d, None, with_sample=True)
+            import json
+            (d / "asset_evidence.json").write_text(json.dumps(
+                {"manifest_sha256": self._sha(mp),
+                 "n_total_records": 1, "n_verified_assets": 1,
+                 "records": {"s1": {"input_sha256": canonical_problem_hash(line),
+                                    "output_sha256": "o" * 64,
+                                    "math": "verified",
+                                    "render": "rendered"}}},
+                ensure_ascii=False), encoding="utf-8")
+            ok, detail = check_asset_evidence(mp)
+            self.assertTrue(ok, detail)
+            self.assertIn("1/1", detail)
+
+    def test_record_input_hash_mismatch_rejected(self):
         from animtrain.preflight import check_asset_evidence
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
-            mp = self._mk(d, None)
+            mp, _line = self._mk(d, None, with_sample=True)
             import json
-            ep = d / "asset_evidence.json"
-            ep.write_text(json.dumps({"manifest_sha256": self._sha(mp),
-                                      "n_verified_assets": 10,
-                                      "n_total_records": 10}, ensure_ascii=False),
-                          encoding="utf-8")
+            (d / "asset_evidence.json").write_text(json.dumps(
+                {"manifest_sha256": self._sha(mp),
+                 "n_total_records": 1, "n_verified_assets": 1,
+                 "records": {"s1": {"input_sha256": "f" * 64,
+                                    "output_sha256": "o" * 64,
+                                    "math": "verified",
+                                    "render": "rendered"}}},
+                ensure_ascii=False), encoding="utf-8")
             ok, detail = check_asset_evidence(mp)
-            self.assertTrue(ok, detail)
-            self.assertIn("覆盖 10/10", detail)
+            self.assertFalse(ok)
+            self.assertIn("不一致", detail)
+
+    def test_missing_per_record_evidence_rejected(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp, _line = self._mk(d, None, with_sample=True)
+            import json
+            (d / "asset_evidence.json").write_text(json.dumps(
+                {"manifest_sha256": self._sha(mp),
+                 "n_total_records": 1, "n_verified_assets": 1,
+                 "records": {"s2": {"input_sha256": "f" * 64,
+                                    "output_sha256": "o" * 64,
+                                    "math": "verified",
+                                    "render": "rendered"}}},
+                ensure_ascii=False), encoding="utf-8")
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("s1", detail)

@@ -52,17 +52,24 @@ def check_model_dir(model_dir: Path, strict: bool = False) -> tuple[bool, str]:
     return True, f"模型目录齐全: {model_dir}"
 
 
-# B2: ready 模式必需的检查名(缺任一 = 不可生成可执行训练计划)
-READY_REQUIRED_CHECKS = ("gpu", "model_dir", "data_manifest", "run_snapshot")
+# B2: ready 模式必需的检查名(缺任一 = 不可生成可执行训练计划)。
+# GS2:核心必需门禁统一 —— 库调用方只传部分 extra_checks 也不得绕过
+# 资产证据/冻结/校准/执行隔离;缺名即 not ready。
+READY_REQUIRED_CHECKS = ("gpu", "model_dir", "data_manifest", "run_snapshot",
+                         "asset_evidence", "freeze_gate",
+                         "near_dup_calibrated", "exec_isolation")
 
 
 def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
-    """B2(BR4-b 剩余):资产验收证据检查。
+    """B2(GS2 复修):资产验收证据检查 —— 以当前 manifest 的实际样本为准
+    逐条验证,自报数字不可作为验收依据。
 
-    证据文件 asset_evidence.json 必须与 manifest 同目录、绑定当前
-    manifest_sha256、且覆盖全部记录(n_verified_assets >= n_total_records)。
-    缺失/损坏/未绑定/覆盖不足 → (False, 原因)——固定 smoke 是环境诊断,
-    不能替代当前资产的真实验收,ready 模式必须阻断。
+    证据 asset_evidence.json 必须与 manifest 同目录,含:
+      manifest_sha256(绑定当前文件)、n_total_records/n_verified_assets、
+      records: {sample_id: {input_sha256(该行核心正文哈希),
+                            output_sha256(产物哈希),
+                            math: "verified", render: "rendered"}}
+    每个实际样本必须有逐条匹配证据;缺失/损坏/未绑定/自报不符 → (False, 原因)。
     """
     import hashlib as _h
     import json as _j
@@ -83,13 +90,51 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
     if not isinstance(bound, str) or bound != manifest_sha:
         return False, ("资产验收证据未绑定当前 manifest(哈希不一致)—— "
                        "不得作为验收依据")
-    n_verified = ev.get("n_verified_assets")
+    records = ev.get("records")
+    if not isinstance(records, dict) or not records:
+        return False, ("资产验收证据无逐条记录(records 缺失/空)—— "
+                       "自报数字不可作为验收依据(GS2)")
+    # 以当前 manifest 的实际样本为准
+    from .manifest import Manifest, canonical_problem_hash  # noqa: PLC0415
+    try:
+        m = Manifest.load(mp)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"manifest 无法解析: {exc}"
+    actual: dict[str, str] = {}
+    for e in m.entries:
+        p = mp.parent / e.path
+        if p.suffix != ".jsonl" or not p.exists():
+            continue
+        for line in p.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                obj = _j.loads(line)
+            except _j.JSONDecodeError:
+                continue
+            sid = obj.get("id") if isinstance(obj, dict) else None
+            if sid is not None:
+                actual[str(sid)] = canonical_problem_hash(line)
     n_total = ev.get("n_total_records")
-    if not isinstance(n_verified, int) or not isinstance(n_total, int) \
-            or n_total <= 0 or n_verified < n_total:
-        return False, (f"资产验收证据覆盖不足({n_verified}/{n_total})—— "
-                       "资产未全量验收")
-    return True, f"资产验收证据绑定当前 manifest,覆盖 {n_verified}/{n_total} 条"
+    if not isinstance(n_total, int) or n_total != len(actual):
+        return False, (f"自报总量 {n_total!r} 与实际样本数 {len(actual)} 不符"
+                       "—— 不得作为验收依据(GS2)")
+    for sid, ih in sorted(actual.items()):
+        rec = records.get(sid)
+        if not isinstance(rec, dict):
+            return False, f"样本 {sid} 缺逐条验收证据(GS2)"
+        if rec.get("input_sha256") != ih:
+            return False, f"样本 {sid} 输入哈希与证据不一致(GS2)"
+        if not rec.get("output_sha256") or not str(rec["output_sha256"]).strip():
+            return False, f"样本 {sid} 缺产物哈希(GS2)"
+        if rec.get("math") != "verified" or rec.get("render") != "rendered":
+            return False, f"样本 {sid} 数学/渲染证据未验证(GS2)"
+    if len(records) != len(actual):
+        return False, f"证据条数 {len(records)} 与实际样本数 {len(actual)} 不符(GS2)"
+    n_verified = ev.get("n_verified_assets")
+    if not isinstance(n_verified, int) or n_verified != len(actual):
+        return False, f"自报验收数 {n_verified!r} 与实际 {len(actual)} 不符(GS2)"
+    return True, f"资产验收证据绑定当前 manifest,逐条覆盖 {len(actual)}/{len(actual)} 条"
 
 
 def check_exec_isolation() -> tuple[bool, str]:
