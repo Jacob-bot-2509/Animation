@@ -55,6 +55,11 @@ else:
     _JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000
     _JobObjectExtendedLimitInformation = 9
 
+    def _assign_process(job_handle: int, proc_handle: int) -> int:
+        """模块级间接调用(便于测试注入失败);返回 0 = 失败。"""
+        return _kernel32.AssignProcessToJobObject(
+            wintypes.HANDLE(job_handle), wintypes.HANDLE(proc_handle))
+
     class WindowsJob:
         """带内存上限的 Windows job;子进程挂入后整树受控。"""
 
@@ -90,16 +95,18 @@ else:
             self.assigned: list[int] = []
 
         def assign(self, popen: subprocess.Popen) -> None:
-            """把子进程挂入 job(其后续派生的 latex/dvisvgm 同受限制)。"""
+            """把子进程挂入 job(其后续派生的 latex/dvisvgm 同受限制)。
+
+            GS5:任何失败(含 ERROR_ACCESS_DENIED=5)一律抛 OSError——
+            错误码 5 绝不意味着"新 job 已接管",吞错即假隔离。
+            """
             handle = getattr(popen, "_handle", None)
             if not handle:
                 raise OSError("无法取得子进程句柄,不能挂入 job")
-            ok = _kernel32.AssignProcessToJobObject(
-                wintypes.HANDLE(self._handle), wintypes.HANDLE(handle))
+            ok = _assign_process(self._handle, handle)
             if not ok:
-                err = ctypes.get_last_error()
-                if err != 5:  # ERROR_ACCESS_DENIED:父进程已在其他 job 内
-                    raise OSError(f"AssignProcessToJobObject 失败: {err}")
+                raise OSError("AssignProcessToJobObject 失败: "
+                              f"{ctypes.get_last_error()}(fail-closed)")
             self.assigned.append(handle)
 
         def terminate(self) -> None:

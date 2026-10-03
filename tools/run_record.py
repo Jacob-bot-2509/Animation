@@ -54,22 +54,29 @@ _DIRTY_EXCLUDE = (".venv", ".git", "reviews")
 
 
 def git_dirty() -> dict:
-    """git dirty 状态:明确记录 clean 或变更清单(排除约定目录)。"""
+    """git dirty 状态:明确记录 clean 或变更清单 + 变更文件内容哈希
+    (B1/GS4:可重放必须绑定 dirty 内容,不能只记文件名)。"""
     try:
         out = subprocess.run(
             ["git", "status", "--porcelain", "--untracked-files=normal"],
             capture_output=True, text=True, cwd=str(ROOT), encoding="utf-8")
     except OSError:
-        return {"clean": None, "error": "git 不可用", "changed": []}
+        return {"clean": None, "error": "git 不可用", "changed": [], "hashes": {}}
     if out.returncode != 0:
-        return {"clean": None, "error": out.stderr.strip()[:200], "changed": []}
+        return {"clean": None, "error": out.stderr.strip()[:200],
+                "changed": [], "hashes": {}}
     changed = []
     for line in out.stdout.splitlines():
         path = line[3:].strip().strip('"').replace("\\", "/")
         if path.startswith(_DIRTY_EXCLUDE):
             continue
         changed.append(path)
-    return {"clean": not changed, "changed": changed}
+    hashes = {}
+    for path in changed[:200]:  # 上限保护:超大工作区不无限记录
+        p = ROOT / path
+        if p.is_file():
+            hashes[path] = file_sha256(p)
+    return {"clean": not changed, "changed": changed, "hashes": hashes}
 
 
 def file_sha256(p: Path) -> str:

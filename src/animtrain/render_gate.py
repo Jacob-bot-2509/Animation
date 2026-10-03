@@ -18,7 +18,12 @@ import tempfile
 from pathlib import Path
 
 RENDER_TIMEOUT_SEC = 300
-RENDER_MEM_MB = 2048  # 目标值;当前未实施(Windows 下需 job objects,待接入)
+RENDER_MEM_MB = 2048  # 目标值;Windows job objects 实现,不可用则如实 None
+
+try:
+    from .win_job import WindowsJob  # noqa: F401 B4 内存隔离
+except (ImportError, OSError):  # 非 Windows/接口不可用 → 如实不可用
+    WindowsJob = None  # type: ignore[assignment]
 
 # BR6 隔离状态(如实,不宣称):
 #   shell=False ✓  超时 ✓  内存限制 ✗  文件系统隔离 ✗  网络隔离 ✗
@@ -67,12 +72,12 @@ def render_check(code: str, python: str | None = None,
     # B4:Windows 下把子进程挂入带内存上限的 job(整树受限:latex/dvisvgm 同受);
     # job 不可用 → job=None,如实保持"内存隔离未实施"
     job = None
-    if sys.platform == "win32":
+    if sys.platform == "win32" and WindowsJob is not None:
         try:
-            from .win_job import WindowsJob  # noqa: PLC0415
             job = WindowsJob(RENDER_MEM_MB)
         except OSError:
             job = None
+    job_assigned = False
     with tempfile.TemporaryDirectory() as d:
         scene = Path(d) / "scene.py"
         scene.write_text(code, encoding="utf-8")
@@ -88,7 +93,20 @@ def render_check(code: str, python: str | None = None,
                 # 设为无空格的临时目录。scene/media 均在此目录内,不受影响。
                 cwd=d)
             if job is not None:
-                job.assign(proc)
+                # GS5:挂入失败必须 fail-closed —— kill/wait 已启动进程,
+                # 绝不带着"未受限"的子进程继续渲染
+                try:
+                    job.assign(proc)
+                    job_assigned = True
+                except OSError as exc:
+                    proc.kill()
+                    proc.wait()
+                    job.close()
+                    return {"ok": False, "status": "exec_error",
+                            "detail": f"内存隔离 job 挂入失败(fail-closed): {exc}",
+                            "unverified": ["render_isolation"],
+                            "isolation": {**_isolation_state(),
+                                          "job_assigned": False}}
             try:
                 out, err = proc.communicate(timeout=RENDER_TIMEOUT_SEC)
             except subprocess.TimeoutExpired:
@@ -101,7 +119,9 @@ def render_check(code: str, python: str | None = None,
             if job is not None:
                 job.close()
             return {"ok": False, "status": "timeout",
-                    "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": []}
+                    "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": [],
+                    "isolation": {**_isolation_state(),
+                                  "job_assigned": job_assigned}}
         except OSError as exc:
             if job is not None:
                 job.close()
@@ -109,13 +129,14 @@ def render_check(code: str, python: str | None = None,
                     "detail": f"无法启动渲染进程: {exc}", "unverified": []}
     if job is not None:
         job.close()
+    iso = {**_isolation_state(), "job_assigned": job_assigned}
     if proc.returncode != 0:
         return {"ok": False, "status": "failed",
                 "detail": f"渲染失败(退出码 {proc.returncode}): "
                           f"{(err or '')[-500:]}", "unverified": [],
-                "isolation": _isolation_state()}
+                "isolation": iso}
     return {"ok": True, "status": "rendered",
-            "detail": "渲染成功", "unverified": [], "isolation": _isolation_state()}
+            "detail": "渲染成功", "unverified": [], "isolation": iso}
 
 
 # BR2 数学断言契约(复验收紧):
@@ -187,9 +208,8 @@ def _sanitized_env(extra_path: str | None = None) -> dict:
 def _isolation_state() -> dict:
     """BR6/B4 隔离状态如实报告(调用方必须检查后再宣称安全执行)。"""
     mem: int | None = None
-    if sys.platform == "win32":
+    if sys.platform == "win32" and WindowsJob is not None:
         try:
-            from .win_job import WindowsJob  # noqa: PLC0415
             probe = WindowsJob(16)  # 轻量探针:能建 job 才宣称内存隔离
             probe.close()
             mem = RENDER_MEM_MB

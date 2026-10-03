@@ -185,3 +185,49 @@ class TestVerifyReplay(unittest.TestCase):
             problems = verify_replay(r, git_commit_now="c" * 40,
                                      dirty_now={"clean": True}, config_path=cp)
             self.assertTrue(any("未绑定实际文件哈希" in p for p in problems))
+
+
+class TestVerifyReplayGS4(unittest.TestCase):
+    """GS4:dirty 内容哈希绑定 + config fail-closed。"""
+
+    def _rec(self):
+        from animtrain.run_record import RunRecord
+        return RunRecord(run_id="gs4-001", kind="baseline",
+                         config={"file": "configs/x.json", "sha256": "a" * 64,
+                                 "content": {"lr": 0.001}},
+                         git_commit="c" * 40, manifest_hash="m" * 64,
+                         summary={"command": "python x.py",
+                                  "manifest": "data/v1/manifest.json"},
+                         metrics={}, env={"python": "3.13"},
+                         seed=42, dirty={"clean": False,
+                                         "changed": ["src/a.py"],
+                                         "hashes": {"src/a.py": "h" * 64}})
+
+    def test_dirty_hash_mismatch_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False,
+                                            "changed": ["src/a.py"],
+                                            "hashes": {"src/a.py": "x" * 64}})
+        self.assertTrue(any("dirty 文件内容与记录不一致" in p for p in problems))
+
+    def test_dirty_file_set_mismatch_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False,
+                                            "changed": ["src/b.py"],
+                                            "hashes": {"src/b.py": "h" * 64}})
+        self.assertTrue(any("变更清单与记录不一致" in p for p in problems))
+
+    def test_training_kind_config_unbound_failclosed(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec()
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False,
+                                            "changed": ["src/a.py"],
+                                            "hashes": {"src/a.py": "h" * 64}},
+                                 config_path=None)
+        self.assertTrue(any("config 未绑定实际文件" in p for p in problems),
+                        problems)
