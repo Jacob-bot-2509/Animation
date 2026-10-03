@@ -17,7 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.manifest import Manifest  # noqa: E402
-from animtrain.preflight import check_asset_evidence, run_preflight  # noqa: E402
+from animtrain.preflight import (  # noqa: E402
+    check_asset_evidence, check_exec_isolation, run_preflight)
 from animtrain.validate import validate_manifest  # noqa: E402
 
 
@@ -148,6 +149,9 @@ def main(argv: list[str]) -> int:
     if mp is not None and mp.exists():
         ae_ok, ae_detail = check_asset_evidence(mp)
         extra.append(("asset_evidence", (ae_ok, ae_detail)))
+    # B4:执行隔离——隔离未验收前不得执行生成代码(资产验收依赖它)
+    iso_ok, iso_detail = check_exec_isolation()
+    extra.append(("exec_isolation", (iso_ok, iso_detail)))
     if args.ready and not args.run_id:
         print("[FAIL] --ready 需要 --run-id(运行快照是 ready 必需项)")
         return 1

@@ -156,3 +156,63 @@ class TestRenderGateRealMathTex(unittest.TestCase):
         r = render_check("def f(:\n    pass", trusted=True)
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "failed")
+
+
+class TestB4Hardening(unittest.TestCase):
+    """B4:不可信数学输入受限解析 + 环境脱敏 + 隔离状态如实。"""
+
+    def test_safe_parse_valid_assertion(self):
+        from animtrain.render_gate import _safe_parse
+        import sympy
+        r = _safe_parse("Eq(2 + 2, 4)")
+        self.assertTrue(sympy.simplify(r) is sympy.S.true)
+
+    def test_safe_parse_whitelisted_function(self):
+        from animtrain.render_gate import _safe_parse
+        _safe_parse("sin(0) < 1")  # 白名单函数可用,不抛
+
+    def test_exploit_dunder_rejected(self):
+        from animtrain.render_gate import _safe_parse
+        with self.assertRaises(ValueError):
+            _safe_parse("__import__('os').system('dir')")
+
+    def test_exploit_attribute_rejected(self):
+        from animtrain.render_gate import _safe_parse
+        with self.assertRaises(ValueError):
+            _safe_parse("os.system('dir')")
+
+    def test_exploit_import_rejected(self):
+        from animtrain.render_gate import _safe_parse
+        with self.assertRaises(ValueError):
+            _safe_parse("import os")
+
+    def test_math_check_exploit_invalid(self):
+        from animtrain.render_gate import math_check
+        r = math_check("__import__('os').system('dir')")
+        self.assertEqual(r["status"], "invalid")
+        self.assertFalse(r["ok"])
+
+    def test_env_sanitized_keeps_path(self):
+        import os
+        from unittest import mock
+        from animtrain.render_gate import _sanitized_env
+        fake = {"PATH": "C:/x", "SYSTEMROOT": "C:/Windows",
+                "GITHUB_TOKEN": "secret", "MY_API_KEY": "sk-123"}
+        with mock.patch.dict(os.environ, fake, clear=True):
+            env = _sanitized_env()
+        self.assertIn("PATH", env)
+        self.assertNotIn("GITHUB_TOKEN", env)
+        self.assertNotIn("MY_API_KEY", env)
+
+    def test_isolation_state_honest(self):
+        from animtrain.render_gate import _isolation_state
+        st = _isolation_state()
+        self.assertIsNone(st["memory_limit_mb"])
+        self.assertFalse(st["network_isolation"])
+        self.assertEqual(st["fs_isolation"], "cwd_only")
+
+    def test_check_exec_isolation_blocks(self):
+        from animtrain.preflight import check_exec_isolation
+        ok, detail = check_exec_isolation()
+        self.assertFalse(ok)
+        self.assertIn("memory/network", detail)
