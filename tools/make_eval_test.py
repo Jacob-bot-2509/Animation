@@ -4,17 +4,22 @@
 - eval:每道题每个解法一行,problem_id/solution_id/method 复合身份
   (GS3:同 problem_id 同题干、method 唯一);
 - test:每题一行,id 全局唯一;
-- scene_spec 由已复查的"动画要点"展开生成(objects=要点条目,
-  steps=方法/知识点开场→要点逐步→结论),candidate 语义,后续可精修;
+- scene_spec 由"动画要点"展开生成(objects=要点条目,
+  steps=方法/知识点开场→要点逐步→结论);
+  v2(2026-10-03 用户批准):eval 采用**逐解法动画要点**
+  ("**解法k动画要点**"行),solution→scene_spec 一一对应;
+  test 沿用问题级"**动画要点**"。
 - source=self-authored(用户可改),license=Internal-Research-Use-Only;
 - 涉及知识点/思路展开 不在正式字段契约内,仅保留于 md,不写入 JSON。
 
-用法: python tools/make_eval_test.py
-输出: data/v1/eval/dataset_eval.json、data/v1/test/dataset_test.json
+用法: python tools/make_eval_test.py [--out data/v2]
+输出: <out>/eval/dataset_eval.json、<out>/test/dataset_test.json
 (JSONL 由 tools/dataset_intake.py convert 生成,本脚本不直接写入口)
+v1 目录与冻结数据只读,绝不覆盖。
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -23,8 +28,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MD_EVAL = ROOT / "dataset-eval.md"
 MD_TEST = ROOT / "data-test.md"
-OUT_EVAL = ROOT / "data" / "v1" / "eval"
-OUT_TEST = ROOT / "data" / "v1" / "test"
+OUT_EVAL = ROOT / "data" / "v2" / "eval"   # v2 默认输出到 data/v2(独立目录)
+OUT_TEST = ROOT / "data" / "v2" / "test"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from meta_eval_test import META_EVAL, META_TEST  # noqa: E402
@@ -35,6 +40,7 @@ CN_REV = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
 
 FIELD_RE = re.compile(r"^\*\*(.+?)\*\*\s?(.*)$")
 SOL_RE = re.compile(r"^解法([一二三四五六七八九十]+)（(.+)）$")
+SOL_ANIM_RE = re.compile(r"^解法([一二三四五六七八九十]+)动画要点$")
 
 
 def parse_blocks(md_path: Path, prefix: str) -> list[dict]:
@@ -52,7 +58,7 @@ def parse_blocks(md_path: Path, prefix: str) -> list[dict]:
             category, _, sub = catpart.partition("·")
             cur = {"head": line, "pid": pid.strip(),
                    "category": category.strip(), "sub_category": sub.strip(),
-                   "fields": {}, "solutions": [], "anim": []}
+                   "fields": {}, "solutions": [], "anim": [], "sol_anim": {}}
             blocks.append(cur)
             continue
         if cur is None or not line.startswith("**"):
@@ -62,12 +68,19 @@ def parse_blocks(md_path: Path, prefix: str) -> list[dict]:
             continue
         label, content = m.group(1), m.group(2).strip()
         sol = SOL_RE.match(label)
+        sol_anim = SOL_ANIM_RE.match(label)
         if sol:
             k = CN.get(sol.group(1))
             if k is None:
                 print(f"[WARN] {cur['pid']}: 无法解析解法序号 {sol.group(1)}")
                 continue
             cur["solutions"].append((k, sol.group(2).strip(), content))
+        elif sol_anim:
+            k = CN.get(sol_anim.group(1))
+            pts = [p.strip() for p in content.split(" - ") if p.strip()]
+            pts = [p[2:].strip() if p.startswith("- ") else p for p in pts]
+            if k is not None:
+                cur["sol_anim"][k] = pts
         elif label == "题目":
             cur["fields"]["problem"] = content
         elif label == "答案":
@@ -91,9 +104,18 @@ def anim_points(block: dict) -> list[str]:
     return pts
 
 
-def eval_spec(block: dict, method: str) -> dict:
-    pts = anim_points(block)
-    objects = [f"{method}核心图形"] + list(pts)
+def sol_anim_points(block: dict, k: int) -> list[str]:
+    """v2:逐解法动画要点;缺失则该解法不生成(硬性自检,防回退 v1 共享场景)。"""
+    pts = block.get("sol_anim", {}).get(k)
+    if not pts:
+        print(f"[FAIL] {block['pid']}-s{k}: 缺逐解法动画要点(v2 要求逐解法对应)")
+        raise SystemExit(1)
+    return pts
+
+
+def eval_spec(block: dict, method: str, k: int) -> dict:
+    pts = sol_anim_points(block, k)   # 逐解法要点(solution→scene_spec 对应)
+    objects = list(pts)
     steps = [f"第一步：以{method}为主线，建立{block['category']}·"
              f"{block['sub_category']}场景并呈现该解法的关键图形。"]
     for i, pt in enumerate(pts):
@@ -129,7 +151,6 @@ def build_eval(blocks: list[dict]) -> list[dict]:
         if len(sols) < 2:
             print(f"[WARN] {b['pid']}: 解法数 {len(sols)} < 2(同题多解要求)")
         fam, style = _meta(META_EVAL, b["pid"])
-        tags = anim_points(b)   # efficiency_tags = 已复查的动画要点
         for k, method, text in sols:
             records.append({
                 "id": f"{b['pid']}-s{k}",   # 全局唯一 id(下游按 §2 校验不受影响)
@@ -141,10 +162,10 @@ def build_eval(blocks: list[dict]) -> list[dict]:
                 "problem": b["fields"].get("problem", ""),
                 "solution": text,
                 "answer": b["fields"].get("answer", ""),
-                "scene_spec": eval_spec(b, method),
+                "scene_spec": eval_spec(b, method, k),
                 "function_family": fam,
                 "visual_style": style,
-                "efficiency_tags": tags,
+                "efficiency_tags": sol_anim_points(b, k),
                 "source": "self-authored",
                 "license": "Internal-Research-Use-Only",
             })
@@ -173,6 +194,16 @@ def build_test(blocks: list[dict]) -> list[dict]:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(ROOT / "data" / "v2"),
+                    help="输出根目录(默认 data/v2;绝不写 data/v1)")
+    args = ap.parse_args()
+    global OUT_EVAL, OUT_TEST
+    OUT_EVAL = Path(args.out) / "eval"
+    OUT_TEST = Path(args.out) / "test"
+    if "v1" in Path(args.out).parts:
+        print("[FAIL] 拒绝写入 data/v1(v1 冻结数据只读)")
+        return 1
     eval_blocks = parse_blocks(MD_EVAL, "eval")
     test_blocks = parse_blocks(MD_TEST, "test")
     eval_recs = build_eval(eval_blocks)
