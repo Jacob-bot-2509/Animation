@@ -1,7 +1,9 @@
 # 当前任务进度
 
 更新日期：2026-10-03。**协作角色：Claude Code 同时承担统筹(copilot 职责)与执行职责;
-Codex 独立复审。** 未训练、未下载模型、未安装依赖。
+Codex 独立复审(用户指示监管)。** 未训练;三款模型已下载(用户批准 2026-10-03,
+筛选完成,baseline=Qwen3-4B 已拍板);依赖栈已装(审查快照
+reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
 
 ## 当前阶段
 
@@ -37,9 +39,10 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;
   审计记录级 hard=0,63 条全部 **candidate**(code/render_status 缺失,不假绿)。
-- 训练前准备就绪：manifest-train(provisional)、train_config.template(TBD 契约)、
-  backend 适配器契约、BASE_MODEL_SHORTLIST(baseline=Qwen2.5-7B-Instruct 待批准)、
-  eval/test 接口与目录占位(未生成未冻结)。
+- 训练前准备就绪：manifest-train(provisional,63 条 split=train 用户拍板)、
+  train_config.template(TBD 契约)、backend 适配器契约(仍是注册表占位)、
+  BASE_MODEL_SHORTLIST(baseline=Qwen3-4B 已拍板)、
+  eval/test 已生成已冻结(300/150 条,锁 data/{eval,test}-v1.lock.json)。
 - preflight --ready 实测 **NOT READY**(model_dir/run_snapshot/near_dup_calibrated/
   freeze_gate/asset_evidence 阻断),fail-closed 生效。
 
@@ -59,10 +62,13 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 
 ## 最新验证
 
-- **301 passed + 29 subtests**(2026-10-03);真实 63 条入场 clean、data_check 通过;
-  审计 v7 记录级 hard=0;GS1-GS6 反例已修待 Codex 复验。
-- manifest sha256: data/v1/manifest.json `297c0373…`(raw 口径);
-  data/v1/manifest-train.json `8f1c9b98…`(provisional train,4 条目 split=train)。
+- **354 passed + 29 subtests**(2026-10-03,全量);eval/test 入场 clean
+  (450 条 problems=0/quarantine=0);data_check 主清单 6 条目通过;
+  eval/test 双锁 check 通过;train/eval/test 隔离通过(近重复最大 0.6667<0.7,
+  阈值仍 UNCALIBRATED);harness 预跑终版
+  dataset_audit_2026-10-03-eval-test-r7(hard=0)。
+- manifest: data/v1/manifest.json(6 条目:63 条 split=train+eval+test);
+  data/v1/manifest-train.json(provisional train,4 条目 split=train,用户拍板)。
 
 ## 下一步顺序(统筹视角)
 
@@ -72,10 +78,11 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 3. C 类清理(C2 空 split 误报、C5 配置示例、C12 效率整理)。
 
 需要用户批准/提供的门：
-1. eval/test 样本制作(数量/来源/许可证,EVAL_TEST_PREP.md §4);
-2. Qwen2.5-7B-Instruct 下载与量化方案批准;
-3. B5 校准的真实标注数据;
-4. 训练超参数(base 选择后的实测值)。
+1. ~~eval/test 样本制作~~(已完成:100/150 题,300/150 条,已冻结);
+2. ~~模型下载~~(已完成,Qwen3-4B baseline 已拍板;量化方案 4bit NF4+BF16 候选待正式训练批准);
+3. B5 校准的真实标注数据(阈值 0.7 仍 UNCALIBRATED);
+4. 训练超参数(seq=1024 候选,审查报告 §建议;lr/epochs/LoRA 参数待定);
+5. 正式训练批准(训练后端仍是占位注册表,未实现)。
 
 完整规划见 [PIPELINE_PLAN](PIPELINE_PLAN.md)、[训练前准备](TRAIN_PREP_PLAN.md)、
 [eval/test 接口](EVAL_TEST_PREP.md)、[审查备忘录](REVIEW_BACKLOG.md)。
