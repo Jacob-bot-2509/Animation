@@ -23,7 +23,13 @@
   (objects/steps 设计稿),**不要求生成 Manim code**;
 - 固定 prompt 模板与生成参数(seed=0,temperature 一致),每模型每样本生成 1 次。
 
-## 3. 评测指标(全部实测,不引用外部榜单)
+## 3. 评测指标(全部实测,不引用外部榜单;口径已按 msg_225 修正)
+
+**同口径冻结**:显式 set_seed(0);显式 GenerationConfig(三模型一致,含
+repetition_penalty=1.0);thinking/final 按 token 分离解析(未闭合/截断不计
+成功);严格 JSON 合规与宽松提取分开计;CUDA 同步计时、冷/热分计;
+allocated/reserved 峰值与 device_map 如实记录,CPU 回退不冒充 GPU 结果;
+每样本失败单独留记录;provenance 区分模型载荷与克隆存储。
 
 公开评测已覆盖:数学榜单(AIME/MATH500/AMC23/Minerva)、RL 方法(GRPO/PIPO 等)、
 token 预算推理、投机解码加速。**以下维度公开未见、且正是我们的配置与任务**:
@@ -44,6 +50,13 @@ token 预算推理、投机解码加速。**以下维度公开未见、且正是
 9. **训练稳定性**:loss 峰值、checkpoint 体积、断点恢复(小样本 dry-run 实测)。
 
 数学正确率沿用:规则检查 + 人工抽样复核(不把 LLM 判分当唯一真值)。
+
+## 3.6 实测状态矩阵(未实测必须标 NOT_MEASURED,PDF 不得假绿)
+
+- 已实现:JSON 严格/宽松可解析率、加载/推理/训练峰值显存、延迟(冷/热)、
+  步时、adapter checkpoint 体积、Windows+bnb 兼容性、thinking token 分离;
+- **NOT_MEASURED(如实标注)**:FP16-vs-4bit 退化对照、TTFT 细分、
+  梯度累积吞吐、断点恢复验证、数学/内容人工复核、seq_len 曲线全档。
 
 ## 4. 前置条件(需用户批准后执行)
 
@@ -70,6 +83,15 @@ token 预算推理、投机解码加速。**以下维度公开未见、且正是
 - 不把对照结果写成"已验收";candidate/UNVERIFIED 语义保持;
 - eval/test 独立制作与冻结、B5 校准不受本方案影响;
 - 所有输出产物记录哈希与命令(可重放)。
+
+## 6.5 样本冻结与授权边界(msg_225)
+
+- 20 条样本按**子类分层**抽样(每 category 覆盖 distinct sub_category,
+  不足配额拒绝),ID+输入哈希冻结到 sample_manifest,复跑不一致即拒绝;
+- QLoRA 探针执行 backward+optimizer.step —— **用户已批准为筛选期测量**,
+  固定合成输入、临时实验组、不构成正式训练(dry-run 标签不等于训练授权);
+- 撤走临时组前归档**完整证据**(每样本 prompt/think/final/输出哈希/
+  model provenance/环境/命令),不只 PDF 与删除哈希清单。
 
 ## 7. 临时实验组(用户指示 2026-10-03)
 
