@@ -1,7 +1,8 @@
 # eval/test 准备接口(EVAL_TEST_PREP)
 
-> 2026-10-03,msg_197。**只准备 schema/目录/验收脚本接口**;
-> eval/test 尚未生成、尚未冻结——本文档不把未生成的内容写成已冻结。
+> 2026-10-03,msg_197 初版;**2026-10-03 用户指示已生成** eval/test
+> (data/v1/eval/、data/v1/test/,共 450 条),尚未冻结——已生成≠已冻结,
+> 冻结需用户批准后经 freeze_data 执行。
 
 ## 1. 设计
 
@@ -20,23 +21,23 @@
 ```
 data/v1/
   raw/       63 条 provisional train(现有,不动)
-  eval/      README 占位——未生成任何 eval 样本
-  test/      README 占位——未生成任何 test 样本
+  eval/      dataset_eval.{json,jsonl}(300 行,100 题×3 解)+ manifest.json —— 已生成未冻结
+  test/      dataset_test.{json,jsonl}(150 行)+ manifest.json —— 已生成未冻结
 ```
 
 - eval/test 样本生成时必须写**新文件**,绝不覆盖 raw 或原始 JSON;
-- 生成后走:make_manifest → data_check → freeze(锁绑定 manifest)→
-  preflight --ready。
+- 已生成(2026-10-03,用户指示);下一步:make_manifest 已完成(顶层与各目录),
+  data_check → freeze(锁绑定 manifest,需用户批准)→ preflight --ready。
 
 ## 3. 验收脚本接口(tools/eval_test_prep.py,已实现只读部分)
 
-- `status` — 报告 eval/test 是否已生成/已冻结(当前恒为"未生成/未冻结");
+- `status` — 报告 eval/test 是否已生成/已冻结(当前:均已生成、未冻结);
 - `check <dir> [--train-dir]` — 已生成样本时:入场检查 + 与 train 的
   精确重叠(核心正文哈希)与近重复(5-gram Jaccard,阈值 0.7 UNCALIBRATED)隔离检查;
-  未生成时如实报"未生成"(exit 0,不视为检查通过);
+  若某目录确无样本,如实报告目录无样本(exit 0,不视为检查通过);
 - `freeze <dir>` — **未授权:一律拒绝(exit 2)**;正式 freeze 在用户批准后
   经 freeze_data 执行。
-- 报告契约:0 = 未生成(如实)或检查通过;1 = 硬伤(泄漏/坏样本);2 = 未授权。
+- 报告契约:0 = 目录无样本(如实)或检查通过;1 = 硬伤(泄漏/坏样本);2 = 未授权。
 
 ## 3.5 JSONL schema(eval/test 样本契约)
 
@@ -66,8 +67,11 @@ eval(同题多解)单行:
 
 ## 5. 当前状态(如实)
 
-- eval:未生成、未冻结;
-- test:未生成、未冻结;
+- eval:已生成(300 行,100 题×3 解法,复合身份)、未冻结;harness 预跑
+  dataset_audit_2026-10-03-eval-test-r2:hard=0,隔离通过(近重复最大 0.6667);
+- test:已生成(150 行,id 唯一)、未冻结;
+- 预跑剩余项:冻结锁(待用户批准)、可选元数据补齐(F010)、动画验证(A008)、
+  许可证转正(P002),以及 manifest-train 的 raw/train 标签冲突(MF005/MF008,训练侧遗留);
 - 合成夹具仅在 reviews/fixtures-eval-test/(标 synthetic,不混入正式数据);
 - preflight --ready 在无 eval/test 冻结时必为 NOT READY(fail-closed),
   不生成可执行训练计划。

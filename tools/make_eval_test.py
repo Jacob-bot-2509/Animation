@@ -117,6 +117,7 @@ def build_eval(blocks: list[dict]) -> list[dict]:
             print(f"[WARN] {b['pid']}: 解法数 {len(sols)} < 2(同题多解要求)")
         for k, method, text in sols:
             records.append({
+                "id": f"{b['pid']}-s{k}",   # 全局唯一 id(下游按 §2 校验不受影响)
                 "problem_id": b["pid"],
                 "solution_id": f"{b['pid']}-s{k}",
                 "method": method,

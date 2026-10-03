@@ -1,5 +1,5 @@
-# eval 占位目录
+# eval 目录(已生成,未冻结)
 
-未生成任何 eval 样本(生成前保持空目录;样本生成写新文件,不覆盖 raw)。
+2026-10-03 用户指示生成:dataset_eval.jsonl = 300 行(100 题×3 解法,problem_id/solution_id/method 复合身份);同题多解与 train 严格隔离(harness 预跑通过)。
 
-schema 与制作清单见 EVAL_TEST_PREP.md §3.5/§4:同题多解(problem_id/solution_id/method),题目族与 train 严格隔离。
+冻结前仅 candidate 语义,不得作为正式评测数据。

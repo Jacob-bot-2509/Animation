@@ -19,7 +19,7 @@
 
 | 字段 | 语义 | 缺失处理 |
 |---|---|---|
-| id | 全局唯一样本 ID(str/int) | 硬伤 |
+| id | 全局唯一样本 ID(str/int)；**eval 同题多解样本例外**：以 problem_id+solution_id 复合身份入场时 id 可缺省(实现与 EVAL_TEST_PREP.md §3.5 一致,同 problem_id 须同题干、method 唯一) | 硬伤(复合身份情形除外) |
 | category / sub_category | 模块分类(如 数学分析/极限) | 硬伤 |
 | problem / solution | 题干与解答(可含 $...$ LaTeX) | 硬伤 |
 | answer | 可判分终答(缺失 → quarantine 候选) | quarantine |
@@ -57,13 +57,14 @@
   (render_risk)**,报告区分"语法/渲染风险"与实际渲染失败;
   工具绝不自动改写公式内容。
 
-## 6. 同题多解设计(P1#6,预留契约)
+## 6. 同题多解设计(P1#6,已启用)
 
-- 预留字段:**problem_id**(定位题目)、**solution_id**(定位一种解法)、
+- 字段:**problem_id**(定位题目)、**solution_id**(定位一种解法)、
   **method**(解法命名,如 squeeze_theorem / polar)。
 - 同一 problem_id 多条记录 = 同题多解;动画与 solution_id 一一对应。
-- 当前不要求自动制造多解;schema 预留只为后续同题多解数据可直接入场,
-  不破坏现有 id 唯一性契约。
+- **eval 数据集已按此入场(2026-10-03)**:100 题×3 解法共 300 行,id 缺省、
+  以 problem_id::solution_id 为复合身份;同 problem_id 必须同题干、method 唯一。
+  test 与 train 仍使用全局唯一 id。
 
 ## 7. scene_spec 契约与动画验证状态(P1#7)
 

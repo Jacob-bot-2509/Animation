@@ -1,6 +1,6 @@
 # data-test（泛化综合运用）· 审阅稿 v1
 
-> 状态：**草稿，供用户审阅题目与解答**；未冻结、未转 JSON/JSONL。
+> 状态：**已转 JSON/JSONL**（data/v1/test/dataset_test.{json,jsonl}，150 行，2026-10-03 用户指示）；**未冻结**。内容经复查整改（reviews/2026-10-03-math-review/）。
 > 规模：150 题（数学分析综合 45 / 解析几何综合 25 / 概率论综合 25 / 高等代数综合 40 / 跨学科综合 15），每题跨 ≥2 个知识点。
 > 转 JSONL 的字段映射（内容定稿后执行）：
 > - 标题行 `### <id>  <category> · <知识点A>×<知识点B>` → id / category / sub_category（取 × 组合）；
@@ -697,12 +697,12 @@
 **答案** $X=\begin{pmatrix}1\\1\end{pmatrix}$
 **动画要点** - 矩阵乘法的行列运算 - 验证回代
 
-### test-linalg-003 高等代数 · 分块结构×矩阵幂
-**题目** 设 $A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$，求 $A^n$（$n$ 为正整数）。
-**涉及知识点** 幂零矩阵、二项式定理、矩阵幂
-**解答** $A=I+N$，其中 $N=\begin{pmatrix}0&2\\0&0\end{pmatrix}$ 满足 $N^2=0$。$I$ 与 $N$ 可交换，由二项式定理 $A^n=(I+N)^n=I+nN=\begin{pmatrix}1&2n\\0&1\end{pmatrix}$。
-**答案** $\begin{pmatrix}1&2n\\0&1\end{pmatrix}$
-**动画要点** - 剪切变换重复作用 - 二项式展开只留两项
+### test-linalg-003 高等代数 · 矩阵方程×幂零分解
+**题目** 求所有满足 $B^2=A$ 的二阶实矩阵 $B$，其中 $A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$。
+**涉及知识点** 矩阵平方根、可交换矩阵族、幂零分解
+**解答** 设 $B=\begin{pmatrix}a&b\\c&d\end{pmatrix}$。由 $B^2=A$ 得 $B$ 与 $A$ 可交换（$BA=B^3=AB$）。与 $A=I+2N$（$N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，$N^2=0$）可交换的矩阵族为 $\{aI+bN\}$（解 $XA=AX$：$\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}1&2\\0&1\end{pmatrix}=\begin{pmatrix}a&2a+b\\c&2c+d\end{pmatrix}$，$\begin{pmatrix}1&2\\0&1\end{pmatrix}\begin{pmatrix}a&b\\c&d\end{pmatrix}=\begin{pmatrix}a+2c&b+2d\\c&d\end{pmatrix}$，逐项相等得 $c=0$、$a=d$，即 test-linalg-019 的结论）。故 $B=aI+bN$。代入 $B^2=(aI+bN)^2=a^2I+2abN$（$N^2=0$ 且 $IN=NI$），要求 $a^2I+2abN=I+2N$。比较系数：$a^2=1$、$2ab=2$。由 $a^2=1$ 得 $a=\pm 1$；代入 $2ab=2$ 得 $b=a$，故 $(a,b)=(1,1)$ 或 $(-1,-1)$。于是 $B=\pm(I+N)=\pm\begin{pmatrix}1&1\\0&1\end{pmatrix}$。验证：$\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}=A$；$(-B)^2=A$ 同理。
+**答案** $B=\pm\begin{pmatrix}1&1\\0&1\end{pmatrix}$
+**动画要点** - 可交换矩阵族 $aI+bN$ 的参数平面 - 平方根的正负两支 - 平方回代验证
 
 ### test-linalg-004 高等代数 · 秩×零度
 **题目** 设线性变换 $T:\mathbb R^4\to\mathbb R^3$ 的矩阵为 $\begin{pmatrix}1&0&1&0\\0&1&1&0\\1&1&2&0\end{pmatrix}$。求 $\operatorname{rank}T$ 与 $\dim\ker T$。
