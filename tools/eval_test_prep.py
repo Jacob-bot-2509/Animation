@@ -48,12 +48,11 @@ def cmd_status(args) -> int:
         if not files:
             print(f"[OK] {name}: 未生成任何样本(如实,非失败)")
         else:
-            print(f"[OK] {name}: 已生成 {len(files)} 个 JSONL —— "
-                  f"但未冻结(仅占位目录不允许生成;如需检查请用 check)")
+            print(f"[OK] {name}: 已生成 {len(files)} 个 JSONL")
         if locks:
             print(f"[OK] {name}: 冻结锁 {len(locks)} 个(冻结状态以锁为准)")
         else:
-            print(f"[OK] {name}: 未冻结")
+            print(f"[OK] {name}: 未冻结(已生成未冻结;正式 freeze 需用户批准)")
     return 0
 
 

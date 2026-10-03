@@ -60,6 +60,8 @@ class TestTrainConfigTemplate(unittest.TestCase):
 
 class TestManifestTrain(unittest.TestCase):
     def test_all_entries_train_and_sha256_match(self):
+        """用户拍板(2026-10-03):63 条候选按角色标 split=train(provisional,
+        candidate 语义在 notes 注明);eval/test 各归其位。"""
         p = ROOT / "data/v1/manifest-train.json"
         m = json.loads(p.read_text(encoding="utf-8"))
         self.assertEqual(len(m["entries"]), 4)
@@ -69,13 +71,20 @@ class TestManifestTrain(unittest.TestCase):
             self.assertEqual(e["sha256"], sha256_file(f),
                              f"{e['path']} 哈希与登记不一致")
             self.assertIn("provisional", e.get("notes", ""),
-                          "train-only 条目必须标注 provisional/candidate 语义")
+                          "train 条目必须标注 provisional/candidate 语义")
 
     def test_raw_manifest_kept_intact(self):
-        """原始 manifest(raw 口径)与 train-only 清单并存,不互相覆盖。"""
+        """manifest.json 现登记 6 条目:63 条候选 split=train(用户拍板)+
+        eval + test 各归其位;provisional 语义在 notes。"""
         raw = json.loads((ROOT / "data/v1/manifest.json")
                          .read_text(encoding="utf-8"))
-        self.assertTrue(all(e["split"] == "raw" for e in raw["entries"]))
+        self.assertEqual(len(raw["entries"]), 6)
+        splits = {e["split"] for e in raw["entries"]}
+        self.assertEqual(splits, {"train", "eval", "test"})
+        for e in raw["entries"]:
+            f = ROOT / "data/v1" / e["path"]
+            self.assertEqual(e["sha256"], sha256_file(f),
+                             f"{e['path']} 哈希与登记不一致")
 
 
 class TestPrepDocs(unittest.TestCase):

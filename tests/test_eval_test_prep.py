@@ -18,16 +18,25 @@ def run(*args) -> subprocess.CompletedProcess:
 
 
 class TestEvalTestPrep(unittest.TestCase):
-    def test_status_reports_not_generated(self):
+    def test_status_reports_generated_and_frozen(self):
+        """2026-10-03 起 eval/test 已生成并冻结:status 如实报告。"""
         out = run("status")
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
-        self.assertIn("未生成", out.stdout)
-        self.assertIn("未冻结", out.stdout)
+        self.assertIn("已生成", out.stdout)
+        self.assertIn("冻结锁", out.stdout)
 
     def test_check_empty_dir_reports_truthfully(self):
-        out = run("check", ROOT / "data/v1/eval")
-        self.assertEqual(out.returncode, 0)
-        self.assertIn("未生成任何样本", out.stdout)
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            empty = Path(d)
+            out = run("check", empty)
+            self.assertEqual(out.returncode, 0)
+            self.assertIn("未生成任何样本", out.stdout)
+
+    def test_check_generated_eval_passes(self):
+        out = run("check", ROOT / "data/v1/eval", "--train-dir", ROOT / "data/v1/raw")
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        self.assertIn("通过", out.stdout)
 
     def test_check_flags_train_leak(self):
         import tempfile

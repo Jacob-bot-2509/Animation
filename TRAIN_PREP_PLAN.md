@@ -23,8 +23,9 @@
 | 高等代数 | 23 |
 
 - 正式入口:`data/v1/raw/*.jsonl`(原始 JSON 数组保留,不做样本入口)。
-- train-only 清单:`data/v1/manifest-train.json`(4 条目全部 split=train,
-  SHA256/size/source/license/notes 已登记)。
+- train-only 清单:`data/v1/manifest-train.json`(4 条目,用户拍板 2026-10-03:
+  63 条候选按角色标 split=train,manifest.json 同口径;provisional/candidate
+  语义在 notes 与 policy 注明,未验收、动画未验证,不得视为已验收训练集)。
 - **candidate/UNVERIFIED 语义保留**:63 条是候选训练数据,不是已验收训练集;
   动画未验证(缺 code/render_status/code_sha256)。
 - 许可证:`Internal-Research-Use-Only`(用户确认:仅内部研究、不公开分发、公开前转正)。

@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-10-03T10:52:13+00:00",
+  "tool": "tools/eval_test_audit.py (只读)",
+  "scope": {
+    "entry_jsonl": {
+      "eval": [
+        "data/v1/eval/dataset_eval.jsonl"
+      ],
+      "test": [
+        "data/v1/test/dataset_test.jsonl"
+      ]
+    },
+    "mirrors": {
+      "eval": "data/v1/eval/dataset_eval.json",
+      "test": "data/v1/test/dataset_test.json"
+    },
+    "source_docs": {
+      "eval": "dataset-eval.md",
+      "test": "data-test.md"
+    },
+    "train_pool": [
+      "data/v1/raw/dataset_calc.jsonl",
+      "data/v1/raw/dataset_geom.jsonl",
+      "data/v1/raw/dataset_linalg.jsonl",
+      "data/v1/raw/dataset_prob.jsonl"
+    ]
+  },
+  "totals": {
+    "eval_records": 300,
+    "test_records": 150,
+    "all_records": 450,
+    "train_records": 63
+  },
+  "severity_counts": {
+    "info": 830,
+    "quarantine": 901
+  },
+  "issue_code_counts": {
+    "S002": 2,
+    "P002": 450,
+    "P003": 450,
+    "A008": 450,
+    "C007": 274,
+    "L007": 86,
+    "L006": 7,
+    "L009": 3,
+    "C008": 1,
+    "X002": 3,
+    "M002": 2,
+    "MF008": 1,
+    "G002": 1,
+    "R001": 1
+  },
+  "record_status_counts": {
+    "quarantine": 450
+  },
+  "per_split": {
+    "eval": {
+      "records": 300,
+      "identities": 300,
+      "problem_ids": 100,
+      "status": {
+        "quarantine": 300
+      },
+      "categories": {
+        "数学分析": 90,
+        "解析几何": 60,
+        "概率论": 45,
+        "高等代数": 105
+      },
+      "sub_categories": 41,
+      "objects": 1200,
+      "steps": 1500,
+      "animation_verified": 0,
+      "methods": 263
+    },
+    "test": {
+      "records": 150,
+      "identities": 150,
+      "problem_ids": 0,
+      "status": {
+        "quarantine": 150
+      },
+      "categories": {
+        "数学分析": 45,
+        "解析几何": 25,
+        "概率论": 25,
+        "高等代数": 40,
+        "跨学科": 15
+      },
+      "sub_categories": 144,
+      "objects": 303,
+      "steps": 603,
+      "animation_verified": 0,
+      "methods": 0
+    }
+  },
+  "isolation": {
+    "exact_cross_pool_overlaps": 0,
+    "near_dup_pairs_ge_threshold": [],
+    "max_cross_pool_similarity_set": 0.6667,
+    "threshold": 0.7,
+    "threshold_status": "UNCALIBRATED"
+  },
+  "mirror_identical": {
+    "eval": true,
+    "test": true
+  },
+  "prior_review": {
+    "n": 64,
+    "A": 5,
+    "B": 31,
+    "C": 28,
+    "eval": 30,
+    "test": 34,
+    "a_ids": [
+      "test-prob-002",
+      "test-linalg-021",
+      "test-x-011",
+      "eval-calc-006",
+      "eval-linalg-023"
+    ]
+  },
+  "freeze_locks": [
+    "data/v1/eval/dataset_eval.lock.json",
+    "data/v1/test/dataset_test.lock.json"
+  ]
+}

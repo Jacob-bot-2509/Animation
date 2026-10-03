@@ -26,6 +26,9 @@ MD_TEST = ROOT / "data-test.md"
 OUT_EVAL = ROOT / "data" / "v1" / "eval"
 OUT_TEST = ROOT / "data" / "v1" / "test"
 
+sys.path.insert(0, str(ROOT / "tools"))
+from meta_eval_test import META_EVAL, META_TEST  # noqa: E402
+
 CN = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
       "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
 CN_REV = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
@@ -109,12 +112,21 @@ def test_spec(block: dict) -> dict:
     return {"objects": objects, "steps": steps}
 
 
+def _meta(pool: dict, pid: str) -> tuple[str, str]:
+    if pid not in pool:
+        print(f"[FAIL] {pid}: 缺元数据(META)")
+        raise SystemExit(1)
+    return pool[pid]
+
+
 def build_eval(blocks: list[dict]) -> list[dict]:
     records: list[dict] = []
     for b in blocks:
         sols = sorted(b["solutions"], key=lambda t: t[0])
         if len(sols) < 2:
             print(f"[WARN] {b['pid']}: 解法数 {len(sols)} < 2(同题多解要求)")
+        fam, style = _meta(META_EVAL, b["pid"])
+        tags = anim_points(b)   # efficiency_tags = 已复查的动画要点
         for k, method, text in sols:
             records.append({
                 "id": f"{b['pid']}-s{k}",   # 全局唯一 id(下游按 §2 校验不受影响)
@@ -127,6 +139,9 @@ def build_eval(blocks: list[dict]) -> list[dict]:
                 "solution": text,
                 "answer": b["fields"].get("answer", ""),
                 "scene_spec": eval_spec(b, method),
+                "function_family": fam,
+                "visual_style": style,
+                "efficiency_tags": tags,
                 "source": "self-authored",
                 "license": "Internal-Research-Use-Only",
             })
@@ -136,6 +151,7 @@ def build_eval(blocks: list[dict]) -> list[dict]:
 def build_test(blocks: list[dict]) -> list[dict]:
     records: list[dict] = []
     for b in blocks:
+        fam, style = _meta(META_TEST, b["pid"])
         records.append({
             "id": b["pid"],
             "category": b["category"],
@@ -144,6 +160,9 @@ def build_test(blocks: list[dict]) -> list[dict]:
             "solution": b["fields"].get("solution", ""),
             "answer": b["fields"].get("answer", ""),
             "scene_spec": test_spec(b),
+            "function_family": fam,
+            "visual_style": style,
+            "efficiency_tags": anim_points(b),
             "source": "self-authored",
             "license": "Internal-Research-Use-Only",
         })
