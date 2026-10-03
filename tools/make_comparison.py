@@ -25,25 +25,29 @@ def load_latest(pattern: str) -> dict | None:
     return json.loads((dirs[-1] / "summary.json").read_text(encoding="utf-8"))
 
 
+def load_by_mode(pattern: str, thinking: bool) -> dict | None:
+    """按模式取最新 run:thinking=True/False 精确匹配,避免互相串行。"""
+    runs = sorted(Path(OUT_DIR / pattern).glob("run-*"))
+    matched = []
+    for d in runs:
+        try:
+            s = json.loads((d / "summary.json").read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if bool(s.get("thinking")) is thinking:
+            matched.append(s)
+    return matched[-1] if matched else None
+
+
 def collect() -> dict:
     """汇总全部已跑 run;缺失的标 None(渲染为 NOT_MEASURED)。"""
     return {
         "inference": {
-            "qwen2.5-7b": load_latest("inference/qwen2.5-7b"),
-            "qwen3-4b": load_latest("inference/qwen3-4b"),
-            "qwen3-4b-thinking": next(
-                (json.loads((d / "summary.json").read_text(encoding="utf-8"))
-                 for d in sorted(Path(OUT_DIR / "inference/qwen3-4b")
-                                 .glob("run-*")) if json.loads(
-                     (d / "summary.json").read_text(encoding="utf-8"))
-                 .get("thinking")), None),
-            "qwen3-8b": load_latest("inference/qwen3-8b"),
-            "qwen3-8b-thinking": next(
-                (json.loads((d / "summary.json").read_text(encoding="utf-8"))
-                 for d in sorted(Path(OUT_DIR / "inference/qwen3-8b")
-                                 .glob("run-*")) if json.loads(
-                     (d / "summary.json").read_text(encoding="utf-8"))
-                 .get("thinking")), None),
+            "qwen2.5-7b": load_by_mode("inference/qwen2.5-7b", False),
+            "qwen3-4b": load_by_mode("inference/qwen3-4b", False),
+            "qwen3-4b-thinking": load_by_mode("inference/qwen3-4b", True),
+            "qwen3-8b": load_by_mode("inference/qwen3-8b", False),
+            "qwen3-8b-thinking": load_by_mode("inference/qwen3-8b", True),
         },
         "qlora": {
             "qwen2.5-7b": load_latest("qlora-probes/qwen2.5-7b/seq-1024"),
