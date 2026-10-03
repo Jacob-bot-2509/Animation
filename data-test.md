@@ -538,7 +538,7 @@
 **题目** 设 $X,Y$ 独立同分布于 $U(0,1)$，求 $Z=X+Y$ 的密度与 $P(Z>1.5)$。
 **涉及知识点** 卷积、三角分布、分段积分
 **解答** $f_Z(z)=\displaystyle\int_0^1 f_X(x)f_Y(z-x)dx=\int_0^1\mathbf 1_{[0,1]}(z-x)dx$。当 $0<z<1$：$f_Z(z)=\displaystyle\int_0^z dx=z$；当 $1\le z<2$：$f_Z(z)=\displaystyle\int_{z-1}^1 dx=2-z$；其余为 0（三角分布）。$P(Z>1.5)=\displaystyle\int_{1.5}^{2}(2-z)dz=\left[2z-\dfrac{z^2}{2}\right]_{1.5}^{2}=\left(4-2\right)-\left(3-\dfrac{2.25}{2}\right)=2-(3-1.125)=0.125=\dfrac{1}{8}$。
-**答案** $f_Z(z)=\begin{cases}z,&0<z<1\\2-z,&1\le z<2\\0,&\text{其余}\end{cases}$；$P(Z>1.5)=\dfrac{1}{8}$
+**答案** $f_Z(z)=z$（$0<z<1$），$f_Z(z)=2-z$（$1\le z<2$），其余 $z$ 处为 $0$；$P(Z>1.5)=\dfrac{1}{8}$
 **动画要点** - 卷积滑动的矩形面积 - 三角密度与尾部高亮
 
 ### test-prob-006 概率论 · 泊松分布×级数
@@ -965,105 +965,105 @@
 
 # 五、跨学科综合（15 题）
 
-### test-x-001 概率论×级数
-**题目** 设 $X$ 服从参数 $p=\dfrac{1}{2}$ 的几何分布（抛硬币直到正面）。求 $P(X\text{ 为偶数})$ 的精确值。
+### test-x-001 跨学科 · 概率论×级数
+**题目** 设 $X$ 服从参数 $p=\dfrac{1}{2}$ 的几何分布（抛硬币直到正面）。求 $P(X$ 为偶数$)$ 的精确值。
 **涉及知识点** 几何分布、几何级数、奇偶分类
-**解答** $P(X=k)=\left(\dfrac{1}{2}\right)^k$。$P(X\text{ 为偶数})=\displaystyle\sum_{k=1}^{\infty}P(X=2k)=\sum_{k=1}^{\infty}\left(\dfrac{1}{2}\right)^{2k}=\sum_{k=1}^{\infty}\left(\dfrac{1}{4}\right)^k=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$。
+**解答** $P(X=k)=\left(\dfrac{1}{2}\right)^k$。$P(X$ 为偶数$)=\displaystyle\sum_{k=1}^{\infty}P(X=2k)=\sum_{k=1}^{\infty}\left(\dfrac{1}{2}\right)^{2k}=\sum_{k=1}^{\infty}\left(\dfrac{1}{4}\right)^k=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$。
 **答案** $\dfrac{1}{3}$
 **动画要点** - 奇偶分支的概率条 - 几何级数求和示意
 
-### test-x-002 概率论×微积分
+### test-x-002 跨学科 · 概率论×微积分
 **题目** 设 $X\sim U(0,1)$，求 $Y=\sqrt{X}$ 的密度与 $E[Y]$。
 **涉及知识点** 密度变换、均匀分布、定积分
 **解答** $y=\sqrt{x}$ 严格递增，反函数 $x=y^2$（$0<y<1$），$\left|\dfrac{dx}{dy}\right|=2y$。$f_Y(y)=f_X(y^2)\cdot 2y=2y$（$0<y<1$）。$E[Y]=\displaystyle\int_0^1y\cdot 2y\,dy=\dfrac{2}{3}$。验证：$E[\sqrt{X}]=\displaystyle\int_0^1\sqrt{x}\,dx=\left[\dfrac{2}{3}x^{3/2}\right]_0^1=\dfrac{2}{3}$，一致。
 **答案** $f_Y(y)=2y$（$0<y<1$）；$E[Y]=\dfrac{2}{3}$
 **动画要点** - $y=\sqrt{x}$ 的映射 - 密度曲线 $2y$
 
-### test-x-003 线性代数×微积分
+### test-x-003 跨学科 · 线性代数×微积分
 **题目** 设 $A$ 为常矩阵。证明 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$。
 **涉及知识点** 矩阵指数、级数逐项求导、矩阵运算
 **解答** $e^{tA}=\displaystyle\sum_{k=0}^{\infty}\dfrac{t^kA^k}{k!}$（对任意 $t$ 收敛）。逐项求导：$\dfrac{d}{dt}e^{tA}=\displaystyle\sum_{k=1}^{\infty}\dfrac{kt^{k-1}A^k}{k!}=\sum_{k=1}^{\infty}\dfrac{t^{k-1}A^k}{(k-1)!}=A\sum_{m=0}^{\infty}\dfrac{t^mA^m}{m!}=Ae^{tA}$（$A$ 为常数矩阵，可提出求和号外）。故 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$，即矩阵指数是矩阵微分方程 $X'=AX$、$X(0)=I$ 的解。
 **答案** 证毕
 **动画要点** - 级数逐项求导 - 与标量情形的类比
 
-### test-x-004 概率论×线性代数
+### test-x-004 跨学科 · 概率论×线性代数
 **题目** 转移矩阵为 $P$ 的马尔可夫链，稳态分布 $\pi$ 满足 $\pi=\pi P$。说明稳态分布是 $P^T$ 的特征值 $1$ 对应的特征向量，并求 $P=\begin{pmatrix}0.5&0.5\\0.25&0.75\end{pmatrix}$ 的稳态分布。
 **涉及知识点** 马尔可夫链、特征向量、随机矩阵
 **解答** $\pi=\pi P$ 转置得 $P^T\pi^T=\pi^T$，即稳态分布（转置后）是 $P^T$ 的特征值 $1$ 的特征向量（随机矩阵行和为 1，恒有特征值 1）。对给定 $P$：解 $\pi_1=0.5\pi_1+0.25\pi_2$（即 $0.5\pi_1=0.25\pi_2$，$\pi_1=\dfrac{\pi_2}{2}$）与 $\pi_1+\pi_2=1$，得 $\pi=\left(\dfrac{1}{3},\dfrac{2}{3}\right)$。验证：$\left(\dfrac{1}{3},\dfrac{2}{3}\right)P=\left(\dfrac{1}{3},\dfrac{2}{3}\right)$。
 **答案** 稳态分布 $\left(\dfrac{1}{3},\dfrac{2}{3}\right)$；$\pi^T$ 是 $P^T$ 特征值 $1$ 的特征向量
 **动画要点** - 状态转移图 - 特征值 1 与稳态的对应
 
-### test-x-005 解析几何×微积分
+### test-x-005 跨学科 · 解析几何×微积分
 **题目** 用长为 $l$ 的围栏围一个矩形区域（一边靠墙不需围栏），求最大面积。
 **涉及知识点** 二次函数最值、几何建模、导数
 **解答** 设垂直墙的边长为 $x$，则平行墙的边长为 $l-2x$（$0<x<\dfrac{l}{2}$）。面积 $A=x(l-2x)=lx-2x^2$。$A'=l-4x=0$，$x=\dfrac{l}{4}$；$A''=-4<0$，为最大值。$A_{\max}=\dfrac{l}{4}\cdot\left(l-\dfrac{l}{2}\right)=\dfrac{l^2}{8}$。
 **答案** $\dfrac{l^2}{8}$（$x=\dfrac{l}{4}$ 时）
 **动画要点** - 矩形随 $x$ 变形 - 面积抛物线与顶点
 
-### test-x-006 概率论×解析几何
+### test-x-006 跨学科 · 概率论×解析几何
 **题目** Bertrand 悖论：在单位圆中"随机取一条弦"，求弦长大于 $\sqrt3$ 的概率，分别按三种取法计算（随机端点、随机半径中点、随机中点）。
 **涉及知识点** 几何概型、概率空间定义、建模
 **解答** 弦长 $>\sqrt3\iff$ 弦到圆心的距离 $<\dfrac{1}{2}$（半弦长 $\sqrt{1-d^2}>\dfrac{\sqrt3}{2}\iff d<\dfrac{1}{2}$）。（1）随机端点：两端点在圆周上均匀独立，等价于固定一端后另一端随机，另一端点对应的圆心角 $\theta\in[0,2\pi)$ 均匀。弦长为 $2\sin\dfrac{\theta}{2}$（$\theta\in[0,\pi]$ 时递增、$[\pi,2\pi]$ 时递减），故 $2\sin\dfrac{\theta}{2}>\sqrt3\iff\dfrac{\theta}{2}\in\left(\dfrac{\pi}{3},\dfrac{2\pi}{3}\right)\iff\theta\in\left(\dfrac{2\pi}{3},\dfrac{4\pi}{3}\right)$，有利角长 $\dfrac{4\pi}{3}-\dfrac{2\pi}{3}=\dfrac{2\pi}{3}$，概率 $=\dfrac{2\pi/3}{2\pi}=\dfrac{1}{3}$。（2）随机半径中点：在一条半径上均匀取中点再作垂直弦，弦到圆心距离 $<\dfrac{1}{2}$ 的概率 $=\dfrac{1}{2}$。（3）随机中点：中点在圆内均匀分布，$d<\dfrac{1}{2}$ 对应半径为 $\dfrac{1}{2}$ 的小圆，面积比 $=\dfrac{\pi/4}{\pi}=\dfrac{1}{4}$。三种取法给出三个不同答案，说明"随机"必须先明确概率空间。
 **答案** $\dfrac{1}{3}$、$\dfrac{1}{2}$、$\dfrac{1}{4}$（取决于取法）
 **动画要点** - 三种取弦方式并排演示 - 有利区域高亮
 
-### test-x-007 线性代数×解析几何
+### test-x-007 跨学科 · 线性代数×解析几何
 **题目** 用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。
 **涉及知识点** 二次曲线分类、特征值、主轴
 **解答** 矩阵 $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$。特征方程 $(\lambda-1)^2-4=0$，特征值 $\lambda_1=3$、$\lambda_2=-1$（一正一负），故曲线为双曲线。特征向量：$\lambda=3$ 对应 $(1,1)^T$（主轴），$\lambda=-1$ 对应 $(1,-1)^T$。正交变换 $u=\dfrac{x+y}{\sqrt2}$、$v=\dfrac{x-y}{\sqrt2}$ 后方程为 $3u^2-v^2=1$，即 $\dfrac{u^2}{1/3}-v^2=1$，是双曲线，实轴沿 $y=x$ 方向。
 **答案** 双曲线；主轴沿 $y=x$ 与 $y=-x$ 方向，标准形 $3u^2-v^2=1$
 **动画要点** - 双曲线与两主轴 - 旋转到标准位置
 
-### test-x-008 解析几何×微积分
+### test-x-008 跨学科 · 解析几何×微积分
 **题目** 求由 $y=x^2$ 与 $y=\sqrt{x}$ 围成的区域的面积。
 **涉及知识点** 定积分、曲线交点、面积
 **解答** 交点：$x^2=\sqrt{x}$，即 $x^4=x$，$x(x^3-1)=0$，$x=0$ 或 $x=1$。在 $[0,1]$ 上 $\sqrt{x}\ge x^2$。面积 $S=\displaystyle\int_0^1(\sqrt{x}-x^2)dx=\left[\dfrac{2}{3}x^{3/2}-\dfrac{x^3}{3}\right]_0^1=\dfrac{2}{3}-\dfrac{1}{3}=\dfrac{1}{3}$。
 **答案** $\dfrac{1}{3}$
 **动画要点** - 两曲线围成的叶片形区域 - 微元扫掠
 
-### test-x-009 概率论×微积分
+### test-x-009 跨学科 · 概率论×微积分
 **题目** 设 $X\sim\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。
 **涉及知识点** 指数分布、Γ 函数、分部积分
 **解答** 设 $n\in\{0,1,2,\dots\}$。$E[X^n]=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。记 $I_n=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。$I_0=\displaystyle\int_0^{\infty}e^{-x}dx=1$ 单独计算；$n\ge 1$ 时用分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\left[-x^ne^{-x}\right]_0^{\infty}+n\displaystyle\int_0^{\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（$n\ge 1$ 时边界项 $x^ne^{-x}\big|_0^\infty$ 为 0）。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\Gamma(n+1)$）。
 **答案** 证毕；$E[X^n]=n!$
 **动画要点** - 分部积分的递推链 - 矩的阶乘增长
 
-### test-x-010 线性代数×概率论
+### test-x-010 跨学科 · 线性代数×概率论
 **题目** 设两随机变量的方差有限且严格为正（$\sigma_1,\sigma_2>0$）。证明协方差矩阵 $\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\end{pmatrix}$ 正定当且仅当 $|\rho|<1$。
 **涉及知识点** 协方差矩阵、正定性、行列式
 **解答** 顺序主子式：$\sigma_1^2>0$；行列式 $\sigma_1^2\sigma_2^2(1-\rho^2)$。矩阵正定 $\iff$ 两顺序主子式均为正 $\iff 1-\rho^2>0\iff|\rho|<1$。概率解释：相关系数 $|\rho|<1$ 恰是"两个随机变量不几乎必然线性相关"的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。
 **答案** 证毕（在 $\sigma_1,\sigma_2>0$ 的前提下，正定 $\iff|\rho|<1$）
 **动画要点** - 相关系数滑块与散布图 - 退化情形 $\rho=\pm 1$
 
-### test-x-011 解析几何×线性代数
+### test-x-011 跨学科 · 解析几何×线性代数
 **题目** 证明：平面上关于两条过原点直线的（线性）反射的复合是旋转。以关于 $x$ 轴和关于直线 $y=x$ 的两次反射为例，求复合变换矩阵并识别其几何意义。
 **涉及知识点** 反射矩阵、矩阵乘法、旋转
 **解答** 关于 $x$ 轴的反射 $R_1=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，关于 $y=x$ 的反射 $R_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。复合（先 $R_1$ 后 $R_2$）$R_2R_1=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$，这是逆时针旋转 $90^\circ$ 的矩阵（$\det=1$）。一般地，两个线性反射矩阵（正交、$\det=-1$）之积是正交矩阵且 $\det=1$，即旋转。注意：对一般的平面镜面反射，两轴相交时复合为绕交点旋转 $2\varphi$（$\varphi$ 为两轴夹角），两轴平行时复合为平移——本题限定线性反射（轴过原点）才恒得旋转。
 **答案** 复合矩阵 $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$（逆时针旋转 $90^\circ$）
 **动画要点** - 两次反射的连续动画 - 合成出旋转
 
-### test-x-012 线性代数×微积分
+### test-x-012 跨学科 · 线性代数×微积分
 **题目** 用级数定义计算矩阵指数 $e^{A}$，其中 $A=\begin{pmatrix}0&\pi\\-\pi&0\end{pmatrix}$。
 **涉及知识点** 矩阵指数、级数、旋转矩阵
 **解答** 记 $J=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$，则 $A=\pi J$，且 $J^2=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I$。故 $A^2=-\pi^2I$，$A^3=-\pi^3J$，$A^4=\pi^4I$，一般地 $A^{2k}=(-1)^k\pi^{2k}I$，$A^{2k+1}=(-1)^k\pi^{2k+1}J$。$e^{A}=\displaystyle\sum_{k=0}^{\infty}\left[\dfrac{(-1)^k\pi^{2k}}{(2k)!}I+\dfrac{(-1)^k\pi^{2k+1}}{(2k+1)!}J\right]=\cos\pi\cdot I+\sin\pi\cdot J=-I+0\cdot J=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}$（$\cos\pi=-1$，$\sin\pi=0$）。即 $e^{A}=-I$，对应旋转 $\pi$ 角（欧拉公式的矩阵版 $e^{i\pi}=-1$）。
 **答案** $e^{A}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I$
 **动画要点** - 旋转 $\pi$ 的动画 - 矩阵版欧拉公式
 
-### test-x-013 概率论×数论
+### test-x-013 跨学科 · 概率论×数论
 **题目** 随机取一个正整数（在 $1$ 到 $N$ 中等可能，$N\to\infty$ 取极限），求它能被 2 或 3 整除的概率。
 **涉及知识点** 容斥原理、整除性、极限
 **解答** 在 $\{1,\dots,N\}$ 中，能被 2 整除的约有 $\dfrac{N}{2}$ 个、能被 3 整除的约 $\dfrac{N}{3}$ 个、能被 6 整除的约 $\dfrac{N}{6}$ 个。由容斥原理，能被 2 或 3 整除的个数约 $\dfrac{N}{2}+\dfrac{N}{3}-\dfrac{N}{6}=\dfrac{2N}{3}$。概率 $=\dfrac{2N/3}{N}=\dfrac{2}{3}$（令 $N\to\infty$，即自然密度）。
 **答案** $\dfrac{2}{3}$
 **动画要点** - 数轴上 2、3 的倍数标记 - 容斥的双色重叠
 
-### test-x-014 解析几何×微积分
+### test-x-014 跨学科 · 解析几何×微积分
 **题目** 求悬链线 $y=a\cosh\dfrac{x}{a}$（$0\le x\le b$）的弧长，其中 $a,b>0$。
 **涉及知识点** 双曲函数、弧长公式、导数
 **解答** $y'=\sinh\dfrac{x}{a}$。弧长 $L=\displaystyle\int_0^b\sqrt{1+\sinh^2\dfrac{x}{a}}\,dx=\int_0^b\cosh\dfrac{x}{a}\,dx=\left[a\sinh\dfrac{x}{a}\right]_0^b=a\sinh\dfrac{b}{a}$（用到 $1+\sinh^2u=\cosh^2u$）。
 **答案** $a\sinh\dfrac{b}{a}$
 **动画要点** - 悬链线与其弧长 - $\cosh$ 与 $\sinh$ 的关系
 
-### test-x-015 概率论×线性代数×级数
+### test-x-015 跨学科 · 概率论×线性代数×级数
 **题目** 设马尔可夫链的转移矩阵 $P=\begin{pmatrix}0.5&0.5\\0.25&0.75\end{pmatrix}$。用对角化求 $P^n$，并求 $n\to\infty$ 时的极限矩阵。
 **涉及知识点** 对角化、矩阵极限、稳态分布
 **解答** 特征方程 $|\lambda I-P|=(\lambda-0.5)(\lambda-0.75)-0.125=\lambda^2-1.25\lambda+0.25=0$，判别式 $1.5625-1=0.5625=\left(\dfrac{3}{4}\right)^2$，特征值 $\lambda=\dfrac{1.25\pm 0.75}{2}$，即 $\lambda_1=1$、$\lambda_2=\dfrac{1}{4}$。$\lambda_1=1$ 的特征向量：解 $(P-I)v=0$，即 $\begin{pmatrix}-0.5&0.5\\0.25&-0.25\end{pmatrix}v=0$，得 $v_1=(1,1)^T$。$\lambda_2=\dfrac{1}{4}$ 的特征向量：解 $\left(P-\dfrac{1}{4}I\right)v=0$，即 $\begin{pmatrix}0.25&0.5\\0.25&0.5\end{pmatrix}v=0$，得 $v_2=(2,-1)^T$（验证 $Pv_2=(0.5,-0.25)=\dfrac{1}{4}v_2$）。取 $Q=\begin{pmatrix}1&2\\1&-1\end{pmatrix}$，$\det Q=-3$，$Q^{-1}=-\dfrac{1}{3}\begin{pmatrix}-1&-2\\-1&1\end{pmatrix}=\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}$。则 $P=Q\begin{pmatrix}1&0\\0&\frac{1}{4}\end{pmatrix}Q^{-1}$，$P^n=Q\begin{pmatrix}1&0\\0&4^{-n}\end{pmatrix}Q^{-1}$。令 $n\to\infty$：$4^{-n}\to 0$，故 $P^n\to Q\begin{pmatrix}1&0\\0&0\end{pmatrix}Q^{-1}=\begin{pmatrix}1&2\\1&-1\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}=\begin{pmatrix}1&0\\1&0\end{pmatrix}\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&-\frac{1}{3}\end{pmatrix}=\begin{pmatrix}\frac{1}{3}&\frac{2}{3}\\\frac{1}{3}&\frac{2}{3}\end{pmatrix}$。极限矩阵每行均为稳态分布 $\left(\dfrac{1}{3},\dfrac{2}{3}\right)$（与 $\pi=\pi P$ 直接解 $0.5\pi_1=0.25\pi_2$ 即 $\pi_2=2\pi_1$ 的结果一致）。

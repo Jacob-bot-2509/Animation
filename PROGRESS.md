@@ -22,6 +22,17 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
   部分和奇偶子列、分部积分第二解析解、草稿残留清除等);全局排版两类问题
   (矩阵列分隔符 & 被误转义、\lt/\gt 连写)在渲染器中修复;PDF 已重渲染
   (公式 4903 条零残留、无 LaTeX 泄漏)。
+- **eval/test JSON+JSONL 已生成(2026-10-03,用户指示,harness 预跑)**:
+  data/v1/eval/dataset_eval.{json,jsonl} = 300 行(100 题×3 解法,
+  problem_id/solution_id/method 复合身份,GS3 同题同题干/method 唯一已自检);
+  data/v1/test/dataset_test.{json,jsonl} = 150 行(id 全局唯一)。
+  入场检查:problems=0,quarantine=450(仅"可选元数据缺/空"一项,
+  function_family/visual_style/efficiency_tags 待补→candidate 语义);
+  eval_test_prep check 通过:与 train 精确重叠/近重复隔离 OK。
+  scene_spec 由已复查动画要点按模板展开(candidate,后续精修);
+  source=self-authored,license=Internal-Research-Use-Only;
+  涉及知识点/思路展开保留在 md(契约无对应字段)。
+  报告:reports/2026-10-03-eval-test-intake.md。
 
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;
