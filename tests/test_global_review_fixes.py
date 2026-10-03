@@ -297,7 +297,7 @@ class TestC2EmptySplit(unittest.TestCase):
             (root / "a.jsonl").write_text("", encoding="utf-8")
             (root / "b.jsonl").write_text("", encoding="utf-8")
             r = validate_manifest(make_manifest(
-                root, [("a.jsonl", "raw"), ("b.jsonl", "raw")]), root)
+                root, [("a.jsonl", "train"), ("b.jsonl", "train")]), root)
             self.assertTrue(any("数据文件为空" in p for p in r["problems"]))
             self.assertFalse(any("文件内容完全相同" in p for p in r["problems"]),
                              "空文件不得误报哈希重叠(C2)")

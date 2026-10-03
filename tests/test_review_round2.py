@@ -152,7 +152,8 @@ class TestR2LicenseInherit(unittest.TestCase):
             out = root / "o"
             r = subprocess.run(
                 [str(PY), str(ROOT / "tools" / "split_data.py"),
-                 "--pool", str(pool), "--plan", str(plan), "--out", str(out)],
+                 "--pool", str(pool), "--plan", str(plan), "--out", str(out),
+                 "--allow-empty"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, r.stderr)
             m = Manifest.load(out / "split_manifest.json")
