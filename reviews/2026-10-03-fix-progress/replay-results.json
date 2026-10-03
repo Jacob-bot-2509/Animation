@@ -1,0 +1,44 @@
+{
+  "source_hashes": {
+    "src/animtrain/run_record.py": "c2bae1123a20c1cb545de5d9ac608d13be70e3cdfe535b5dc489a046fac8f77c",
+    "tools/run_record.py": "b8fe5bb6ee16af429b4710ce90d05a153ed10ae5a7659acb7cc691608082aeb8"
+  },
+  "results": [
+    {
+      "case": "dirty_different_deletions",
+      "expected": "different deleted paths must block replay",
+      "problems": []
+    },
+    {
+      "case": "untracked_directory_content_not_hashed",
+      "expected": "changed untracked code must block replay",
+      "recorded_dirty": {
+        "clean": false,
+        "changed": [
+          "new_package/"
+        ],
+        "hashes": {}
+      },
+      "current_dirty": {
+        "clean": false,
+        "changed": [
+          "new_package/"
+        ],
+        "hashes": {}
+      },
+      "problems": []
+    },
+    {
+      "case": "missing_current_code_evidence",
+      "expected": "missing current git/dirty evidence cannot prove replay",
+      "problems": []
+    },
+    {
+      "case": "baseline_missing_config_now_blocked",
+      "expected": "missing config binding must block baseline",
+      "problems": [
+        "\u8bad\u7ec3\u7c7b\u8bb0\u5f55 config \u672a\u7ed1\u5b9a\u5b9e\u9645\u6587\u4ef6\u2014\u2014 \u4e0d\u53ef\u91cd\u653e(B1 fail-closed,\u4e0d\u5f97\u53ef\u9009\u7565\u8fc7)"
+      ]
+    }
+  ]
+}
