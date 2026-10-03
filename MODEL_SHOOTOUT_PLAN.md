@@ -25,11 +25,25 @@
 
 ## 3. 评测指标(全部实测,不引用外部榜单)
 
-1. **scene_spec JSON 可解析率**(primary):输出按 {objects, steps} 解析成功率;
-2. **数学正确率**:场景规划与 problem/solution 的语义一致性,
-   规则检查 + 人工抽样复核(不把 LLM 判分当唯一真值);
-3. **显存**:4bit 量化加载峰值、QLoRA 前向/训练步峰值(8GB 本机实测);
-4. **延迟**:单条生成耗时、首 token 延迟。
+公开评测已覆盖:数学榜单(AIME/MATH500/AMC23/Minerva)、RL 方法(GRPO/PIPO 等)、
+token 预算推理、投机解码加速。**以下维度公开未见、且正是我们的配置与任务**:
+
+1. **8GB 上 QLoRA 训练实际峰值显存**(重点:8B;4B 与 2.5-7B 同测作对照)——
+   公开数据没有 Windows+8GB+bitsandbytes 4bit 的真实训练显存曲线;
+2. **Windows + bitsandbytes 兼容性**:4bit 加载/训练在 Windows 上能否跑通
+   本身就是未测维度(加载成功率、警告与回退行为);
+3. **中文数学 → scene_spec 结构化 JSON 可解析率**(primary,公开零覆盖):
+   按 {objects, steps} 解析成功率、字段类型合规率;
+4. **seq_len 显存曲线**:2048/4096 下激活显存增长(我们输出长,必须实测);
+5. **batch=1 + 梯度累积的训练吞吐**(8GB 约束下的真实步时);
+6. **thinking 模式开销**(Qwen3 特有):思考 token 数、首 token 延迟、
+   non-thinking 对比;我们的 pipeline 大概率选 non-thinking,需实测依据;
+7. **RTX 5060 Laptop(Blackwell)推理延迟/吞吐**:新卡公开数据少;
+8. **4bit 量化在我们任务上的格式/内容退化**:官方指标均满精度,
+   量化后 JSON 合规率与数学一致性无公开数据;
+9. **训练稳定性**:loss 峰值、checkpoint 体积、断点恢复(小样本 dry-run 实测)。
+
+数学正确率沿用:规则检查 + 人工抽样复核(不把 LLM 判分当唯一真值)。
 
 ## 4. 前置条件(需用户批准后执行)
 
