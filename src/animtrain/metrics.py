@@ -89,14 +89,20 @@ def aggregate(results: list[SampleResult], math_review: dict | None = None) -> d
     if math_review and n:
         mr_n = sum(1 for v in math_review.values() if v is True)
         mr = round(mr_n / n, 4)
+    if lat:
+        mid = len(lat) // 2
+        median = (lat[mid - 1] + lat[mid]) / 2 if len(lat) % 2 == 0 else lat[mid]
+        p95 = lat[min(len(lat) - 1, int(len(lat) * 0.95))]
+    else:
+        median, p95 = None, None
     return {"n_samples": n, "ok": ok, "ok_rate": round(ok / n, 4),
             "strict_parse_rate": round(strict / n, 4),
             "lenient_parse_rate": round(lenient / n, 4),
             "spec_field_compliance_rate": round(ok / n, 4),  # ok=字段合规(当前口径)
             "math_review_pass_rate": mr,
             "math_review_n": mr_n,
-            "median_latency_sec": lat[len(lat) // 2] if lat else None,
-            "p95_latency_sec": lat[int(len(lat) * 0.95)] if lat else None,
+            "median_latency_sec": median,
+            "p95_latency_sec": p95,
             "failure_counts": failure_counts}
 
 

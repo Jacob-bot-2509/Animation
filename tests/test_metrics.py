@@ -50,7 +50,7 @@ class TestMetricsContract(unittest.TestCase):
 
     def test_latency_median_and_p95(self):
         res = aggregate([self._ok("a", i + 1.0) for i in range(10)])
-        self.assertEqual(res["median_latency_sec"], 5.0)
+        self.assertEqual(res["median_latency_sec"], 5.5)  # (5+6)/2
         self.assertEqual(res["p95_latency_sec"], 10.0)
 
     def test_sample_hash_deterministic_and_sensitive(self):
