@@ -19,19 +19,19 @@ Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 | 项 | 状态 |
 |---|---|
 | A1-A8 数据与入场可信度 | 全部关闭(JSONL 口径、近重复实现、入场边界、A4/A5 语义、A6 类型/别名、A7 冻结写保护、A8 防泄漏哈希) |
-| B1 运行快照 | 字段框架/seed/dirty/env/manifest 哈希绑定已实现;完整参数与代码状态重放待真实训练前验收 |
-| B2 严格 preflight | **已收口**:asset_evidence 检查(绑定当前 manifest + 全量覆盖),smoke 重标环境诊断,UNVERIFIED 阻断 ready |
+| B1 运行快照 | GS4 反例已修(dirty 内容哈希绑定、config fail-closed、CLI verify);待 Codex 独立复验 |
+| B2 严格 preflight | GS2 反例已修(逐条资产证据 + 8 项核心门禁);待 Codex 独立复验 |
 | B3 冻结评测与指标 | 空锁/覆盖/绑定已过;固定指标、逐样本结果与失败分类待 eval/test 冻结后验收 |
-| B4 执行隔离 | 不可信渲染默认拒绝、可信 smoke 通过;完整 fs/network/memory 隔离与不可信数学输入保护**待实现(下一个代码项)** |
+| B4 执行隔离 | GS5 反例已修(assign fail-closed、kill+wait、job_assigned 如实);memory 已实施、network 仍 UNVERIFIED;待独立复验 |
 | B5 阈值校准 | UNCALIBRATED 传播并阻断;分语言/长度校准待真实标注数据(用户侧) |
-| B6 产物写入 | **已收口**:publish_files 多文件发布事务(journal+备份+回滚+中断恢复+冻结保护) |
+| B6 产物写入 | GS1 反例已修(碰撞拒绝/阶段持久化/清理失败不回滚/恢复冻结保护);待独立复验 |
 | B7 类型契约 | 已关闭(分类/来源/正文/答案/场景元素/可选元数据类型) |
 | C1-C12 | 延期清理,主线收尾集中处理 |
 
 ## 最新验证
 
-- **246 passed + 29 subtests**(2026-10-03);真实 63 条入场 clean、data_check 通过;
-  审计 v7 记录级 hard=0。
+- **301 passed + 29 subtests**(2026-10-03);真实 63 条入场 clean、data_check 通过;
+  审计 v7 记录级 hard=0;GS1-GS6 反例已修待 Codex 复验。
 - manifest sha256: data/v1/manifest.json `297c0373…`(raw 口径);
   data/v1/manifest-train.json `8f1c9b98…`(provisional train,4 条目 split=train)。
 
