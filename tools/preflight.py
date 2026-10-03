@@ -118,15 +118,23 @@ def main(argv: list[str]) -> int:
         if not valid:
             f_problems.append("无冻结锁 —— eval/test 必须先冻结(BR4-b)")
         else:
-            for lk in valid:
-                f_problems += check_frozen(lk)
             frozen_all: set[str] = set()
             manifest_bound: list[tuple[str, str]] = []
             for lk in valid:
-                frozen_lk = frozen_paths(lk)
-                if not (frozen_lk & eval_test_files):
+                try:
+                    frozen_lk = frozen_paths(lk)
+                except (OSError, ValueError, TypeError, KeyError, AttributeError):
+                    frozen_lk = set()
+                if frozen_lk and not (frozen_lk & eval_test_files):
                     # msg_261:其他版本的锁(如 data/v2)不参与当前 manifest 门禁,
                     # 不得因 v1/v2 锁并存而互相误阻断
+                    continue
+                # Scope before hash validation; unscopable locks stay fail-closed.
+                try:
+                    f_problems += check_frozen(lk)
+                except (OSError, ValueError, TypeError, KeyError, AttributeError) as exc:
+                    f_problems.append(f"锁 {lk} 结构损坏: {exc}")
+                if not frozen_lk:
                     continue
                 frozen_all |= frozen_lk
                 try:

@@ -1,18 +1,13 @@
-"""B4 OS 级网络隔离尝试:Windows AppContainer 沙箱(无管理员、全 D 盘路径)。
+"""B4 AppContainer mechanism; not yet enabled in the render gate.
 
-**状态(2026-10-03):本机被系统拒绝,机制未启用。**
-实测:CreateProcessW 携带 PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES
-(固定低盒 SID 与哈希派生 SID 均测)返回错误 4250
-"此操作仅在应用容器上下文有效"——本机(Windows 11 Home)在无管理员
-条件下不允许创建 AppContainer 进程。证据:
-reviews/2026-10-03-sandbox-attempt/ATTEMPT.md。
+The previous attempt misread HRESULT S_OK=0 as failure and used an invalid
+fallback SID; it does not establish an OS/admin restriction. Keep the gate
+blocked until process, network and render integration are verified.
 
-结论:OS 级网络隔离在本机需管理员路线(防火墙规则/AppContainer
-profile),保持 network_isolation=False、exec_isolation 阻断;
-本模块保留作为管理员授权后的现成机制层。
-
-机制说明(管理员路线启用后):
-  - DeriveAppContainerSidFromAppContainerName(或哈希派生回退)取 SID;
+Mechanism:
+  - DeriveAppContainerSidFromAppContainerName supplies the SID;
+  - A provisioned AppContainer profile is required; SID derivation does not
+    create a profile. This module never creates user profile storage implicitly.
   - SetEntriesInAclW 在自有 D 盘目录追加 ACE(TRUSTEE_IS_SID 需二进制
     SID 指针,实测修正);
   - STARTUPINFOEX + SECURITY_CAPABILITIES 启动,AppContainer 令牌无
@@ -94,15 +89,24 @@ class _SECURITY_ATTRIBUTES(ctypes.Structure):
                 ("bInheritHandle", wintypes.BOOL)]
 
 
-_k32 = ctypes.windll.kernel32
-_a32 = ctypes.windll.advapi32
-_u32 = ctypes.windll.userenv
+_k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+_a32 = ctypes.WinDLL("advapi32", use_last_error=True)
+_u32 = ctypes.WinDLL("userenv", use_last_error=True)
+_ole32 = ctypes.WinDLL("ole32", use_last_error=True)
 
 # ---- 显式原型声明(宽字符 API 必须 LPCWSTR,否则 str 被 ANSI 转换) ----
 _LPV = wintypes.LPVOID
 _PV = ctypes.POINTER(_LPV)
 _u32.DeriveAppContainerSidFromAppContainerName.argtypes = [wintypes.LPCWSTR, _PV]
-_u32.DeriveAppContainerSidFromAppContainerName.restype = wintypes.BOOL
+_u32.DeriveAppContainerSidFromAppContainerName.restype = ctypes.c_long  # HRESULT
+_a32.IsValidSid.argtypes = [_LPV]
+_a32.IsValidSid.restype = wintypes.BOOL
+_a32.FreeSid.argtypes = [_LPV]
+_a32.FreeSid.restype = _LPV
+_u32.GetAppContainerFolderPath.argtypes = [wintypes.LPCWSTR, ctypes.POINTER(wintypes.LPWSTR)]
+_u32.GetAppContainerFolderPath.restype = ctypes.c_long
+_ole32.CoTaskMemFree.argtypes = [_LPV]
+_ole32.CoTaskMemFree.restype = None
 _a32.ConvertSidToStringSidW.argtypes = [_LPV, ctypes.POINTER(wintypes.LPWSTR)]
 _a32.ConvertSidToStringSidW.restype = wintypes.BOOL
 _a32.GetLengthSid.argtypes = [_LPV]
@@ -129,6 +133,7 @@ _k32.UpdateProcThreadAttribute.argtypes = [
     _LPV, wintypes.DWORD, ctypes.c_size_t, _LPV, ctypes.c_size_t, _LPV, _LPV]
 _k32.UpdateProcThreadAttribute.restype = wintypes.BOOL
 _k32.DeleteProcThreadAttributeList.argtypes = [_LPV]
+_k32.DeleteProcThreadAttributeList.restype = None
 _k32.CreateProcessW.argtypes = [
     wintypes.LPCWSTR, wintypes.LPWSTR, _LPV, _LPV, wintypes.BOOL,
     wintypes.DWORD, _LPV, wintypes.LPCWSTR, _LPV, _LPV]
@@ -154,26 +159,23 @@ def _sid_sddl(sid: bytes) -> str:
 
 
 def appcontainer_sid() -> bytes:
-    """派生确定性的 AppContainer SID(与名称一一对应,幂等,无需管理员)。
-
-    优先系统 API DeriveAppContainerSidFromAppContainerName;
-    本机实测其导出但返回 FALSE 且不设错误(Home 版 stub),故回退到
-    哈希派生:S-1-15-2-{SHA256(名称 UTF-16LE) 前 16 字节拆 4 个小端
-    DWORD}。SID 仅在本代码内自洽使用(ACL 授权 + CreateProcess 属性),
-    落于 AppContainer 命名空间(SECURITY_APP_PACKAGE_AUTHORITY)即可。
-    """
+    """Copy the system-derived SID and release its allocation with FreeSid."""
     sid = wintypes.LPVOID()
-    if _u32.DeriveAppContainerSidFromAppContainerName(
-            APPCONTAINER_NAME, ctypes.byref(sid)):
+    hr = _u32.DeriveAppContainerSidFromAppContainerName(
+        APPCONTAINER_NAME, ctypes.byref(sid))
+    if hr < 0:
+        raise OSError(hr, f"DeriveAppContainerSid failed: HRESULT 0x{hr & 0xffffffff:08X}")
+    if not sid.value:
+        raise OSError("DeriveAppContainerSid succeeded without a SID")
+    try:
+        if not _a32.IsValidSid(sid):
+            raise OSError("DeriveAppContainerSid returned an invalid SID")
         length = _a32.GetLengthSid(sid)
+        if not length:
+            raise ctypes.WinError(ctypes.get_last_error())
         return ctypes.string_at(sid, length)
-    import hashlib
-    import struct
-    digest = hashlib.sha256(APPCONTAINER_NAME.encode("utf-16le")).digest()
-    subs = [int.from_bytes(digest[i:i + 4], "little") for i in range(0, 16, 4)]
-    # Revision=1, SubAuthorityCount=5(=1+4), authority=S-1-15(六字节大端 0F),
-    # 子权限:2(SECURITY_APP_PACKAGE_BASE_RID) + 4 个哈希 DWORD
-    return struct.pack("<BB6s5I", 1, 5, b"\x00\x00\x00\x00\x00\x0f", 2, *subs)
+    finally:
+        _a32.FreeSid(sid)
 
 
 def grant_dir_access(path: Path, sid: bytes, write: bool = False) -> None:
@@ -212,6 +214,24 @@ def grant_dir_access(path: Path, sid: bytes, write: bool = False) -> None:
         raise OSError(rc, f"SetNamedSecurityInfo 失败: {path}")
 
 
+def appcontainer_profile_path(sid: bytes) -> Path:
+    """Read the provisioned profile location without creating storage or ACLs."""
+    folder = wintypes.LPWSTR()
+    hr = _u32.GetAppContainerFolderPath(_sid_sddl(sid), ctypes.byref(folder))
+    if hr < 0:
+        raise OSError(hr, f"AppContainer profile unavailable: HRESULT 0x{hr & 0xffffffff:08X}; "
+                      "provision the profile explicitly before sandbox startup")
+    if not folder.value:
+        raise OSError("AppContainer profile lookup succeeded without a folder")
+    try:
+        path = Path(folder.value)
+    finally:
+        _ole32.CoTaskMemFree(ctypes.cast(folder, _LPV))
+    if not path.is_dir():
+        raise FileNotFoundError("AppContainer profile directory is missing; provision the profile explicitly")
+    return path
+
+
 def run_appcontainer(args: list[str], *, cwd: Path, env: dict,
                      allowed_dirs: list[tuple[Path, bool]],
                      timeout_ms: int = 300_000) -> subprocess.CompletedProcess:
@@ -222,8 +242,9 @@ def run_appcontainer(args: list[str], *, cwd: Path, env: dict,
     """
     if sys.platform != "win32":
         raise OSError("AppContainer 仅 Windows 可用")
-    cwd.mkdir(parents=True, exist_ok=True)
     sid = appcontainer_sid()
+    appcontainer_profile_path(sid)  # Fail before modifying any directory ACLs.
+    cwd.mkdir(parents=True, exist_ok=True)
     for path, write in allowed_dirs:
         grant_dir_access(path, sid, write)
     # 输出重定向文件(可继承句柄)
@@ -275,10 +296,10 @@ def run_appcontainer(args: list[str], *, cwd: Path, env: dict,
             _EXTENDED_STARTUPINFO_PRESENT | _CREATE_UNICODE_ENVIRONMENT,
             ctypes.cast(env_block, wintypes.LPVOID), str(cwd),
             ctypes.byref(si), ctypes.byref(pi))
+        create_error = ctypes.get_last_error() if not ok else 0
         _k32.DeleteProcThreadAttributeList(attr_list)
         if not ok:
-            raise OSError(ctypes.get_last_error(),
-                          "AppContainer CreateProcess 失败")
+            raise ctypes.WinError(create_error)
         _k32.CloseHandle(h_out)
         _k32.CloseHandle(h_err)
         rc_wait = _k32.WaitForSingleObject(pi.hProcess, timeout_ms)

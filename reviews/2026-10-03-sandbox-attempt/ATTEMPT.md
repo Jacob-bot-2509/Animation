@@ -1,3 +1,15 @@
+## 2026-10-04 独立复验更正
+
+原文的“HRESULT 返回 FALSE → Home stub／必须管理员”结论已撤回。Codex 复验并修复了 HRESULT 误判和无依据的 SID 回退；同一机器系统 API 实际返回 S_OK（0）及合法的 40 字节 SID。
+
+合法 SID 的启动失败现为 WinError 2；GetAppContainerFolderPath 返回 HRESULT 0x80070002，说明容器配置尚不存在。新容器需要先完成 profile 配置，单独派生 SID 并不会创建配置；不能据此宣称系统或管理员权限限制。启动代码已在 mkdir/ACL 修改前检查配置可用性。
+
+当前完整测试 376 passed + 29 subtests passed，无跳过项；这些只验证已有功能及 SID/配置契约，实际 OS 网络隔离和渲染集成仍未验收，门禁继续阻断。详情和原生对照证据见 D:/code/output/claude-supervision/fix-2026-10-04/FIX_REPORT.md。
+
+以下保留原始尝试过程，涉及失败归因的旧结论以本更正为准。
+
+---
+
 # OS 级网络隔离(AppContainer)尝试记录
 
 > 2026-10-03。结论:**本机被系统拒绝,机制未启用**;网络隔离保持

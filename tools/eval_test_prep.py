@@ -43,20 +43,29 @@ def cmd_status(args) -> int:
     base = Path(args.dir)
     import hashlib  # noqa: PLC0415
     from animtrain.freeze import check_frozen, frozen_paths  # noqa: PLC0415
-    # msg_261:候选 manifest 集 = 顶层 v1 主清单 + 当前 base 下各目录清单;
-    # 锁绑定与其中任一一致即视为绑定有效(版本入口明确,不误报)
+    from animtrain.manifest import Manifest  # noqa: PLC0415
+    # Accept active/archive bindings only when they cover the selected files.
     manifests: list[Path] = []
-    top_manifest = ROOT / "data" / "v1" / "manifest.json"
-    if top_manifest.exists():
-        manifests.append(top_manifest)
+    for top_manifest in (ROOT / "data" / "manifest.json",
+                         ROOT / "data" / "v1" / "manifest.json",
+                         base.parent / "manifest.json"):
+        if top_manifest.exists() and top_manifest not in manifests:
+            manifests.append(top_manifest)
     for name in ("eval", "test"):
         for cand in ((base / name / "manifest.json"),
                      (base / "manifest.json"),
                      (base / "manifest-v1.json")):   # v1 归档清单(v2 切换后)
             if cand.exists() and cand not in manifests:
                 manifests.append(cand)
-    manifest_shas = {hashlib.sha256(m.read_bytes()).hexdigest(): m
-                     for m in manifests}
+    manifest_shas: dict[str, tuple[Path, set[str]]] = {}
+    for mp in manifests:
+        try:
+            manifest = Manifest.load(mp)
+            paths = {str((mp.parent / entry.path).resolve())
+                     for entry in manifest.entries}
+            manifest_shas[hashlib.sha256(mp.read_bytes()).hexdigest()] = (mp, paths)
+        except (OSError, ValueError, TypeError, KeyError, AttributeError):
+            continue  # A damaged manifest cannot validate a binding.
     for name in ("eval", "test"):
         d = base / name
         files = _jsonl_files(d)
@@ -91,7 +100,9 @@ def cmd_status(args) -> int:
                     .get("meta", {}).get("manifest_sha256")
             except (OSError, ValueError):
                 bound = None
-            if bound not in manifest_shas:
+            current_paths = {str(f.resolve()) for f in files}
+            binding = manifest_shas.get(bound) if isinstance(bound, str) else None
+            if binding is None or not current_paths.issubset(binding[1]):
                 problems.append(f"manifest 绑定不一致(锁绑定 {str(bound)[:12]}…,"
                                 f"候选清单 {[m.name for m in manifests]})")
             if problems:
