@@ -129,7 +129,10 @@ def render_check(code: str, python: str | None = None,
                     "detail": f"无法启动渲染进程: {exc}", "unverified": []}
     if job is not None:
         job.close()
-    iso = {**_isolation_state(), "job_assigned": job_assigned}
+    iso = {**_isolation_state(), "job_assigned": job_assigned,
+           # msg_218:能力(probe 可用)与本轮实际限额分开 —— 本轮未挂 job 时
+           # memory_limit_mb 如实为 None,不得把能力探针当本轮内存证据
+           "memory_limit_mb": RENDER_MEM_MB if job_assigned else None}
     if proc.returncode != 0:
         return {"ok": False, "status": "failed",
                 "detail": f"渲染失败(退出码 {proc.returncode}): "
