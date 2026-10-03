@@ -55,8 +55,13 @@ seed、Python 版本、GPU 型号与显存、git commit 与 dirty 状态、
 - **后端适配器契约**:src/animtrain/backend.py(load_model/train/save_checkpoint/
   evaluate 四入口;未批准阶段一律 NOT_APPROVED 抛 BackendNotApproved;
   LLaMAFactory/Unsloth 等未来后端经注册表接入,当前不绑定实现)。
-- **底座候选短名单**:BASE_MODEL_SHORTLIST.md(Qwen2.5-7B-Instruct、
-  DeepSeek-R1-Distill-Qwen-7B 两候选,八维评估全部待实测,待用户确认)。
+- **底座候选短名单**:BASE_MODEL_SHORTLIST.md。**第一版 baseline =
+  Qwen2.5-7B-Instruct(用户已确认 2026-10-03,Apache-2.0)**;
+  DeepSeek-R1-Distill-Qwen-7B 为后续对照候选;八维评估全部待实测,
+  权重未下载,本地路径不填。
+- **eval/test 准备接口**:EVAL_TEST_PREP.md(eval=同题多解 problem_id/
+  solution_id/method;test=综合泛化;题目族/近重复/train 严格隔离;
+  目录占位 data/v1/{eval,test}/,未生成未冻结)。
 
 ## 6. 后续 eval/test 接口与隔离规则(现在不生成、不冻结)
 

@@ -21,8 +21,11 @@
 
 | 候选 | 规模 | 许可证 | 入选理由(定性,待实测) | 待确认项 |
 |---|---|---|---|---|
-| Qwen2.5-7B-Instruct | 7B | Apache-2.0 | 中文/数学基础好,JSON 输出与工具调用生态成熟,QLoRA 生态支持广,8GB 显存可 QLoRA | 中文数学实测、scene_spec JSON 可解析率实测、量化方案批准 |
-| DeepSeek-R1-Distill-Qwen-7B | 7B | MIT | 数学推理蒸馏强化,同为 Qwen 底座便于工具链复用 | 指令跟随/JSON 输出实测、与 Instruct 版对比后二选一 |
+| **Qwen2.5-7B-Instruct(第一版 baseline,用户已确认 2026-10-03)** | 7B | Apache-2.0 | 中文/数学基础好,JSON 输出与工具调用生态成熟,QLoRA 生态支持广,8GB 显存可 QLoRA | 下载/实测/批准后启用;中文数学实测、scene_spec JSON 可解析率实测、量化方案批准 |
+| DeepSeek-R1-Distill-Qwen-7B(后续对照候选) | 7B | MIT | 数学推理蒸馏强化,同为 Qwen 底座便于工具链复用 | 指令跟随/JSON 输出实测、与 baseline 对比后决定 |
+
+> 说明:baseline 标记只表示"第一版默认选择",**不代表任何维度已实测通过**;
+> 八维评估全部保持待实测,权重未下载,本地路径不填。
 
 ## 明确不做
 
