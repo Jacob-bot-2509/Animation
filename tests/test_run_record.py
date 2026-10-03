@@ -231,3 +231,57 @@ class TestVerifyReplayGS4(unittest.TestCase):
                                  config_path=None)
         self.assertTrue(any("config 未绑定实际文件" in p for p in problems),
                         problems)
+
+
+class TestVerifyReplayMsg217(unittest.TestCase):
+    """msg_217:dirty 清单直接比较(删除/目录内文件)、截断与缺现状 fail-closed。"""
+
+    def _rec(self, changed, hashes=None, truncated=False):
+        from animtrain.run_record import RunRecord
+        return RunRecord(run_id="m217-001", kind="baseline",
+                         config={"file": "configs/x.json", "sha256": "a" * 64,
+                                 "content": {"lr": 0.001}},
+                         git_commit="c" * 40, manifest_hash="m" * 64,
+                         summary={"command": "python x.py",
+                                  "manifest": "data/v1/manifest.json"},
+                         metrics={}, env={"python": "3.13"},
+                         seed=42, dirty={"clean": bool(not changed),
+                                         "changed": changed,
+                                         "hashes": hashes or {},
+                                         "truncated": truncated})
+
+    def test_changed_list_difference_blocks_even_same_hashes(self):
+        """记录 changed=[deleted_a.py] 当前 [deleted_b.py],哈希都空 → 必须拦。"""
+        from animtrain.run_record import verify_replay
+        r = self._rec(["src/deleted_a.py"], {})
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False,
+                                            "changed": ["src/deleted_b.py"],
+                                            "hashes": {},
+                                            "truncated": False})
+        self.assertTrue(any("变更清单与记录不一致" in p for p in problems),
+                        problems)
+
+    def test_truncated_dirty_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec(["src/a.py"], {"src/a.py": "h" * 64}, truncated=True)
+        problems = verify_replay(r, git_commit_now="c" * 40,
+                                 dirty_now={"clean": False,
+                                            "changed": ["src/a.py"],
+                                            "hashes": {"src/a.py": "h" * 64},
+                                            "truncated": False})
+        self.assertTrue(any("截断" in p for p in problems), problems)
+
+    def test_missing_dirty_now_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec(["src/a.py"], {"src/a.py": "h" * 64})
+        problems = verify_replay(r, git_commit_now="c" * 40, dirty_now=None)
+        self.assertTrue(any("dirty 现状快照" in p for p in problems), problems)
+
+    def test_missing_git_commit_now_blocks(self):
+        from animtrain.run_record import verify_replay
+        r = self._rec([], {})
+        problems = verify_replay(r, git_commit_now="",
+                                 dirty_now={"clean": True, "changed": [],
+                                            "hashes": {}, "truncated": False})
+        self.assertTrue(any("git 现状" in p for p in problems), problems)

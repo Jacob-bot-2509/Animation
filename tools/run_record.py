@@ -55,28 +55,45 @@ _DIRTY_EXCLUDE = (".venv", ".git", "reviews")
 
 def git_dirty() -> dict:
     """git dirty 状态:明确记录 clean 或变更清单 + 变更文件内容哈希
-    (B1/GS4:可重放必须绑定 dirty 内容,不能只记文件名)。"""
+    (B1/GS4/msg_217:-z 逐文件解析含删除/重命名与未跟踪目录内文件;
+    超上限截断必须显式标记,不得当完整快照)。"""
     try:
         out = subprocess.run(
-            ["git", "status", "--porcelain", "--untracked-files=normal"],
-            capture_output=True, text=True, cwd=str(ROOT), encoding="utf-8")
+            ["git", "status", "--porcelain", "-z", "--untracked-files=all"],
+            capture_output=True, cwd=str(ROOT), encoding="utf-8")
     except OSError:
-        return {"clean": None, "error": "git 不可用", "changed": [], "hashes": {}}
+        return {"clean": None, "error": "git 不可用", "changed": [],
+                "hashes": {}, "truncated": False}
     if out.returncode != 0:
-        return {"clean": None, "error": out.stderr.strip()[:200],
-                "changed": [], "hashes": {}}
-    changed = []
-    for line in out.stdout.splitlines():
-        path = line[3:].strip().strip('"').replace("\\", "/")
-        if path.startswith(_DIRTY_EXCLUDE):
-            continue
-        changed.append(path)
+        return {"clean": None, "error": out.stderr.decode("utf-8",
+                errors="replace").strip()[:200], "changed": [], "hashes": {},
+                "truncated": False}
+    # -z:XY path\0(重命名/复制为 XY 两条记录)
+    entries = [e for e in out.stdout.split("\x00") if e]
+    changed: list[str] = []
+    i = 0
+    while i < len(entries):
+        e = entries[i]
+        status = e[:2]
+        path = e[3:]
+        if status[0] in ("R", "C"):
+            # 重命名/复制:下一条是原路径,一起记录
+            if i + 1 < len(entries):
+                path = entries[i + 1]
+                i += 1
+        if path and not path.startswith(_DIRTY_EXCLUDE):
+            changed.append(path.replace("\\", "/"))
+        i += 1
+    MAX_DIRTY = 500  # 上限保护;超限必须截断标记(不默认 complete)
+    truncated = len(changed) > MAX_DIRTY
+    kept = changed[:MAX_DIRTY]
     hashes = {}
-    for path in changed[:200]:  # 上限保护:超大工作区不无限记录
+    for path in kept:
         p = ROOT / path
         if p.is_file():
             hashes[path] = file_sha256(p)
-    return {"clean": not changed, "changed": changed, "hashes": hashes}
+    return {"clean": not changed, "changed": kept, "hashes": hashes,
+            "truncated": truncated}
 
 
 def file_sha256(p: Path) -> str:

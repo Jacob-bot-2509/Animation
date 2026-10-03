@@ -118,7 +118,7 @@ def verify_replay(r: RunRecord, manifest_path: Path | None = None,
     if git_commit_now and r.git_commit and git_commit_now != r.git_commit:
         problems.append(f"代码状态与记录不一致(记录 {r.git_commit[:12]}…,"
                         f"当前 {git_commit_now[:12]}…)—— 不可重放(B1)")
-    # 2. 工作区状态:clean 标志、变更清单与内容哈希必须一致(GS4)
+    # 2. 工作区状态:clean 标志、变更清单与内容哈希必须一致(GS4/msg_217)
     if (dirty_now is not None and isinstance(dirty_now, dict)
             and "clean" in r.dirty and dirty_now.get("clean") is not None):
         if bool(dirty_now["clean"]) != bool(r.dirty["clean"]):
@@ -126,14 +126,31 @@ def verify_replay(r: RunRecord, manifest_path: Path | None = None,
                             f"{r.dirty['clean']},当前 {dirty_now['clean']})"
                             "—— 不可重放(B1)")
         else:
-            rec_hashes = r.dirty.get("hashes", {}) or {}
-            now_hashes = dirty_now.get("hashes", {}) or {}
-            if set(rec_hashes) != set(now_hashes):
+            # msg_217:直接比较变更清单本身(删除/重命名/新增文件都要一致),
+            # 不能只看哈希键;截断的清单不得当作完整快照
+            rec_changed = r.dirty.get("changed", []) or []
+            now_changed = dirty_now.get("changed", []) or []
+            if set(rec_changed) != set(now_changed):
                 problems.append("dirty 变更清单与记录不一致(文件集不同)"
                                 "—— 不可重放(B1)")
-            elif any(rec_hashes[k] != now_hashes[k] for k in rec_hashes):
-                problems.append("dirty 文件内容与记录不一致(哈希变化)"
-                                "—— 不可重放(B1)")
+            elif r.dirty.get("truncated") or dirty_now.get("truncated"):
+                problems.append("dirty 清单被截断 —— 不是完整快照,不可重放(B1)")
+            else:
+                rec_hashes = r.dirty.get("hashes", {}) or {}
+                now_hashes = dirty_now.get("hashes", {}) or {}
+                if set(rec_hashes) != set(now_hashes):
+                    problems.append("dirty 文件哈希集与记录不一致"
+                                    "—— 不可重放(B1)")
+                elif any(rec_hashes[k] != now_hashes[k] for k in rec_hashes):
+                    problems.append("dirty 文件内容与记录不一致(哈希变化)"
+                                    "—— 不可重放(B1)")
+    else:
+        # msg_217:缺可信现状快照不得略过 —— 任何 kind 都需要现状才能重放
+        problems.append("缺少可信 dirty 现状快照(dirty_now 缺失)"
+                        "—— 不可重放(B1 fail-closed)")
+    if not git_commit_now:
+        problems.append("缺少可信 git 现状(git_commit_now 为空)"
+                        "—— 不可重放(B1 fail-closed)")
     # 3. 配置:训练类记录必须绑定实际文件哈希且当前文件一致(GS4 fail-closed)
     if config_path is None:
         if r.kind in ("baseline", "improvement"):
