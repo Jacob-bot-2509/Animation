@@ -54,7 +54,7 @@ reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
 | B1 运行快照 | GS4 反例已修(dirty 内容哈希绑定、config fail-closed、CLI verify);待 Codex 独立复验 |
 | B2 严格 preflight | GS2 反例已修(逐条资产证据 + 8 项核心门禁);待 Codex 独立复验 |
 | B3 冻结评测与指标 | 空锁/覆盖/绑定已过;固定指标、逐样本结果与失败分类待 eval/test 冻结后验收 |
-| B4 执行隔离 | GS5 反例已修(assign fail-closed、kill+wait、job_assigned 如实);memory 已实施、network 仍 UNVERIFIED;待独立复验 |
+| B4 执行隔离 | GS5 反例已修;memory(job object)+ network(socket shim 封堵 connect/connect_ex/sendto/getaddrinfo+死代理,OS 级边界如实标注)已实施;exec_isolation 门禁 PASS(2026-10-03);待 Codex 独立复验 |
 | B5 阈值校准 | UNCALIBRATED 传播并阻断;分语言/长度校准待真实标注数据(用户侧) |
 | B6 产物写入 | GS1 反例已修(碰撞拒绝/阶段持久化/清理失败不回滚/恢复冻结保护);待独立复验 |
 | B7 类型契约 | 已关闭(分类/来源/正文/答案/场景元素/可选元数据类型) |

@@ -25,8 +25,11 @@ try:
 except (ImportError, OSError):  # 非 Windows/接口不可用 → 如实不可用
     WindowsJob = None  # type: ignore[assignment]
 
+from . import net_guard  # B4 网络隔离(socket shim + 死代理环境)
+
 # BR6 隔离状态(如实,不宣称):
-#   shell=False ✓  超时 ✓  内存限制 ✗  文件系统隔离 ✗  网络隔离 ✗
+#   shell=False ✓  超时 ✓  内存限制(job)✓  网络隔离(shim)✓
+#   文件系统隔离:cwd_only 基础隔离(非完整,如实标注)
 # 不可信生成代码的执行须等隔离就位;可信固定样例的渲染可先行。
 
 
@@ -58,7 +61,7 @@ def render_check(code: str, python: str | None = None,
     """
     if not trusted:
         return {"ok": False, "status": "unverified",
-                "detail": "隔离不完整(fs/network/memory 未实施),"
+                "detail": "隔离不完整(fs 完整隔离未实施,现有 cwd_only 基础隔离),"
                           "拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
                 "unverified": ["render_isolation"]}
     ok_manim, msg = check_manim_available()
@@ -78,9 +81,24 @@ def render_check(code: str, python: str | None = None,
         except OSError:
             job = None
     job_assigned = False
+    network_isolated = False
     with tempfile.TemporaryDirectory() as d:
         scene = Path(d) / "scene.py"
         scene.write_text(code, encoding="utf-8")
+        # B4:网络隔离 shim(封堵 Python socket 出口)+ 死代理环境。
+        # shim 写入失败必须 fail-closed(与 job 挂入失败同口径)。
+        try:
+            shim_dir = net_guard.write_network_shim(Path(d) / "netshim")
+            env = net_guard.network_isolation_env(env, shim_dir)
+            network_isolated = True
+        except OSError as exc:
+            if job is not None:
+                job.close()
+            return {"ok": False, "status": "exec_error",
+                    "detail": f"网络隔离 shim 写入失败(fail-closed): {exc}",
+                    "unverified": ["render_isolation"],
+                    "isolation": {**_isolation_state(),
+                                  "network_isolated": False}}
         try:
             proc = subprocess.Popen(
                 [py, "-m", "manim", "-ql", "--media_dir", str(Path(d) / "out"),
@@ -130,6 +148,7 @@ def render_check(code: str, python: str | None = None,
     if job is not None:
         job.close()
     iso = {**_isolation_state(), "job_assigned": job_assigned,
+           "network_isolated": network_isolated,
            # msg_218:能力(probe 可用)与本轮实际限额分开 —— 本轮未挂 job 时
            # memory_limit_mb 如实为 None,不得把能力探针当本轮内存证据
            "memory_limit_mb": RENDER_MEM_MB if job_assigned else None}
@@ -222,10 +241,12 @@ def _isolation_state() -> dict:
             "env_sanitized": True,      # 密钥类变量剔除(尽力,非完整隔离)
             "fs_isolation": "cwd_only",  # cwd=无空格临时目录(基础文件系统隔离)
             "memory_limit_mb": mem,     # Windows job object(可用时);否则 None
-            "network_isolation": False,  # 未实施
+            "network_isolation": True,  # B4:socket shim+死代理(渲染子进程实际应用)
             "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时"
-                    f" + 内存上限 {mem or '未实施'};network 隔离未实施,"
-                    "不可信生成代码的执行仍被拒绝(B4)"}
+                    f" + 内存上限 {mem or '未实施'} + 网络隔离(Python socket "
+                    "出口封堵 connect/connect_ex/sendto/getaddrinfo + 死代理,"
+                    "仅约束本进程族;OS 级沙箱需管理员权限,不在范围);"
+                    "fs 完整隔离未实施(仅 cwd_only),不可信生成代码仍被拒绝(B4)"}
 
 
 def math_check(expr: str) -> dict:
