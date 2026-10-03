@@ -1,0 +1,37 @@
+{
+  "_说明": "训练配置契约模板(msg_190/191)。未知超参数一律 TBD,不得伪造已验证数值;不含真实模型名/凭据。",
+  "task": "problem + solution -> scene_spec(动画规划);第一轮不默认训练 Manim code",
+  "dataset_manifest": "data/v1/manifest-train.json",
+  "split": "train",
+  "seed": "TBD",
+  "model": {
+    "name": "TBD(未批准,禁止下载)",
+    "quantization": "TBD(4bit/8bit 待定)"
+  },
+  "method": "TBD(lora/qlora 候选,待批准)",
+  "lora": {
+    "r": "TBD",
+    "alpha": "TBD",
+    "dropout": "TBD",
+    "target_modules": "TBD"
+  },
+  "max_seq_length": "TBD",
+  "learning_rate": "TBD",
+  "batch_size": "TBD",
+  "gradient_accumulation_steps": "TBD",
+  "epochs": "TBD",
+  "eval_strategy": "TBD(eval/test 独立生成并冻结后方可配置)",
+  "output_dir": "outputs/TBD",
+  "b1_snapshot_required": [
+    "模型名称/版本",
+    "tokenizer 版本",
+    "量化配置",
+    "LoRA 参数(r/alpha/dropout/target_modules)",
+    "seed",
+    "Python 版本",
+    "GPU 型号与显存",
+    "git commit 与 dirty 状态",
+    "数据 manifest SHA256",
+    "完整训练命令"
+  ]
+}

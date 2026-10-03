@@ -249,6 +249,9 @@ def validate_manifest(m: Manifest, root: Path,
                 if _is_missing(obj.get("answer")):
                     quarantines.append(f"{e.path}:{i} 缺 answer"
                                        "(A6:与入场检查同口径,候选数据待补齐)")
+                elif not isinstance(obj.get("answer"), str):
+                    problems.append(f"{e.path}:{i} answer 类型非法"
+                                    "(A6:answer 必须为字符串，与入场检查一致)")
                 sid = _record_id(obj)
                 if (isinstance(sid, (str, int)) and not isinstance(sid, bool)
                         and not (isinstance(sid, str) and not sid.strip())):
