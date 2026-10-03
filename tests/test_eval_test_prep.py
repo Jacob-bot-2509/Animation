@@ -33,13 +33,15 @@ class TestEvalTestPrep(unittest.TestCase):
         import tempfile
         with tempfile.TemporaryDirectory() as d:
             td = Path(d)
-            (td / "train.jsonl").write_text(
+            train_dir = td / "train"
+            train_dir.mkdir()
+            (train_dir / "train.jsonl").write_text(
                 (FIX / "train_synthetic.jsonl").read_text(encoding="utf-8"),
                 encoding="utf-8")
             leak = td / "eval.jsonl"
             leak.write_text((FIX / "eval_leak.jsonl").read_text(encoding="utf-8"),
                             encoding="utf-8")
-            out = run("check", leak, "--train-dir", td)
+            out = run("check", leak, "--train-dir", train_dir)
         self.assertEqual(out.returncode, 1, out.stdout + out.stderr)
         self.assertIn("精确重叠", out.stdout)
 
@@ -47,13 +49,15 @@ class TestEvalTestPrep(unittest.TestCase):
         import tempfile
         with tempfile.TemporaryDirectory() as d:
             td = Path(d)
-            (td / "train.jsonl").write_text(
+            train_dir = td / "train"
+            train_dir.mkdir()
+            (train_dir / "train.jsonl").write_text(
                 (FIX / "train_synthetic.jsonl").read_text(encoding="utf-8"),
                 encoding="utf-8")
             ok = td / "eval.jsonl"
             ok.write_text((FIX / "eval_ok.jsonl").read_text(encoding="utf-8"),
                           encoding="utf-8")
-            out = run("check", ok, "--train-dir", td)
+            out = run("check", ok, "--train-dir", train_dir)
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         self.assertIn("隔离检查通过", out.stdout)
 

@@ -68,9 +68,11 @@ def cmd_check(args) -> int:
         rep = check_intake_file(f)
         for p in rep["problems"]:
             problems.append(f"{f.name}: {p}")
-        if rep["status"] != "clean":
-            print(f"[FAIL] {f}: 入场检查 {rep['status']} "
-                  f"(problems {len(rep['problems'])})")
+        if rep["status"] == "rejected":
+            print(f"[FAIL] {f}: 入场检查 rejected(problems {len(rep['problems'])})")
+        elif rep["status"] == "candidate":
+            print(f"[WARN] {f}: 入场检查 candidate(quarantine "
+                  f"{len(rep['quarantines'])},不阻断隔离检查)")
     # 与 train 的隔离检查(精确重叠 + 近重复)
     train_dir = Path(args.train_dir)
     train_lines: list[str] = []
