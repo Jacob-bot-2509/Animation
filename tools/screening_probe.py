@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from animtrain.fs_guard import valid_run_id  # noqa: E402
+from animtrain.fs_guard import valid_run_id  # noqa: E402  (保留供 run_id)
 
 SAMPLES = {"数学分析": 6, "概率论": 5, "解析几何": 4, "高等代数": 5}
 SAMPLE_MANIFEST = ROOT / "outputs/screening-tmp/sample_manifest.json"
@@ -135,8 +135,10 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--max-new-tokens", type=int, default=1024)
     ap.add_argument("--thinking", action="store_true")
     args = ap.parse_args(argv)
-    if not valid_run_id(args.tag):
-        print(f"[FAIL] tag 非法: {args.tag!r}(只允许 [A-Za-z0-9_-] 1-64)")
+    if (not args.tag or len(args.tag) > 64 or args.tag in (".", "..")
+            or "/" in args.tag or "\\" in args.tag or ":" in args.tag
+            or any(ord(c) < 32 for c in args.tag)):
+        print(f"[FAIL] tag 非法: {args.tag!r}(禁止路径分隔/.. /控制字符,≤64 字符)")
         return 1
 
     samples = select_samples()
@@ -160,7 +162,7 @@ def main(argv: list[str]) -> int:
         torch_dtype=torch.bfloat16, trust_remote_code=False)
     load_sec = time.time() - load_start
     device_map = getattr(model, "hf_device_map", None) or {}
-    on_gpu = gpu_ok and any("cuda" in str(v) for v in device_map.values())
+    on_gpu = gpu_ok and str(next(model.parameters()).device).startswith("cuda")
     load_vram = (torch.cuda.max_memory_allocated() / 1e9) if gpu_ok else 0.0
     # 显式冻结生成口径:三模型一致(覆盖各自本地 generation_config 差异)
     gen_cfg = GenerationConfig(max_new_tokens=args.max_new_tokens,
@@ -196,8 +198,8 @@ def main(argv: list[str]) -> int:
                     gen = model.generate(**inputs, generation_config=gen_cfg,
                                          enable_thinking=args.thinking)
                     thinking_mode = "kwarg"
-                except TypeError:
-                    # 模型不支持 enable_thinking 参数 → 回退软开关并如实记录
+                except (TypeError, ValueError):
+                    # 模型不支持 enable_thinking 参数(如 Qwen2.5)→ 回退软开关
                     gen = model.generate(**inputs, generation_config=gen_cfg)
                     thinking_mode = "soft_switch_only"
             if gpu_ok:

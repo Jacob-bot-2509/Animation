@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from animtrain.fs_guard import valid_run_id  # noqa: E402
+from animtrain.fs_guard import valid_run_id  # noqa: E402  (保留供 run_id)
 
 
 def main(argv: list[str]) -> int:
@@ -30,8 +30,10 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--steps", type=int, default=3)
     ap.add_argument("--seq-len", type=int, default=1024)
     args = ap.parse_args(argv)
-    if not valid_run_id(args.tag):
-        print(f"[FAIL] tag 非法: {args.tag!r}(只允许 [A-Za-z0-9_-])")
+    if (not args.tag or len(args.tag) > 64 or args.tag in (".", "..")
+            or "/" in args.tag or "\\" in args.tag or ":" in args.tag
+            or any(ord(c) < 32 for c in args.tag)):
+        print(f"[FAIL] tag 非法: {args.tag!r}(禁止路径分隔/.. /控制字符,≤64 字符)")
         return 1
 
     import torch  # noqa: PLC0415
