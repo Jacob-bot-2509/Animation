@@ -85,7 +85,8 @@ def render_check(code: str, python: str | None = None,
     with tempfile.TemporaryDirectory() as d:
         scene = Path(d) / "scene.py"
         scene.write_text(code, encoding="utf-8")
-        # B4:网络隔离 shim(封堵 Python socket 出口)+ 死代理环境。
+        # B4:网络 best-effort guard(封堵高层 Python socket API + 死代理环境)。
+        # 如实:非不可绕过边界(OS 级网络隔离未实施),仅作为纵深防御;
         # shim 写入失败必须 fail-closed(与 job 挂入失败同口径)。
         try:
             shim_dir = net_guard.write_network_shim(Path(d) / "netshim")
@@ -95,7 +96,7 @@ def render_check(code: str, python: str | None = None,
             if job is not None:
                 job.close()
             return {"ok": False, "status": "exec_error",
-                    "detail": f"网络隔离 shim 写入失败(fail-closed): {exc}",
+                    "detail": f"网络 guard shim 写入失败(fail-closed): {exc}",
                     "unverified": ["render_isolation"],
                     "isolation": {**_isolation_state(),
                                   "network_isolated": False}}
@@ -241,12 +242,15 @@ def _isolation_state() -> dict:
             "env_sanitized": True,      # 密钥类变量剔除(尽力,非完整隔离)
             "fs_isolation": "cwd_only",  # cwd=无空格临时目录(基础文件系统隔离)
             "memory_limit_mb": mem,     # Windows job object(可用时);否则 None
-            "network_isolation": True,  # B4:socket shim+死代理(渲染子进程实际应用)
+            "network_isolation": False,  # OS 级网络边界未实施(msg_259 实测:
+            #                               _socket 可绕过 shim,不可宣称验收)
+            "python_socket_guard": True,  # best-effort:shim 封堵高层 socket API,
+            #                               非不可绕过边界,不构成 B4 网络隔离验收
             "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时"
-                    f" + 内存上限 {mem or '未实施'} + 网络隔离(Python socket "
-                    "出口封堵 connect/connect_ex/sendto/getaddrinfo + 死代理,"
-                    "仅约束本进程族;OS 级沙箱需管理员权限,不在范围);"
-                    "fs 完整隔离未实施(仅 cwd_only),不可信生成代码仍被拒绝(B4)"}
+                    f" + 内存上限 {mem or '未实施'} + Python socket 出口 guard"
+                    "(best-effort,可被 _socket 等底层接口绕过,已实测;"
+                    "不作为网络隔离验收证据);OS 级网络边界未实施,"
+                    "不可信生成代码的执行仍被拒绝(B4)"}
 
 
 def math_check(expr: str) -> dict:

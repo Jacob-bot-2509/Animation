@@ -43,10 +43,19 @@ def cmd_status(args) -> int:
     base = Path(args.dir)
     import hashlib  # noqa: PLC0415
     from animtrain.freeze import check_frozen, frozen_paths  # noqa: PLC0415
+    # msg_261:候选 manifest 集 = 顶层 v1 主清单 + 当前 base 下各目录清单;
+    # 锁绑定与其中任一一致即视为绑定有效(版本入口明确,不误报)
+    manifests: list[Path] = []
     top_manifest = ROOT / "data" / "v1" / "manifest.json"
-    manifest_sha = ""
     if top_manifest.exists():
-        manifest_sha = hashlib.sha256(top_manifest.read_bytes()).hexdigest()
+        manifests.append(top_manifest)
+    for name in ("eval", "test"):
+        for cand in ((base / name / "manifest.json"),
+                     (base / "manifest.json")):
+            if cand.exists() and cand not in manifests:
+                manifests.append(cand)
+    manifest_shas = {hashlib.sha256(m.read_bytes()).hexdigest(): m
+                     for m in manifests}
     for name in ("eval", "test"):
         d = base / name
         files = _jsonl_files(d)
@@ -64,21 +73,26 @@ def cmd_status(args) -> int:
         # msg_256:发现锁 ≠ 冻结有效 —— 逐锁校验结构/覆盖/manifest 绑定,
         # 坏锁/无关锁不得冒充有效冻结
         for lk in locks:
-            problems = check_frozen(lk)
+            problems = check_frozen(lk)   # 结构/数据哈希:坏锁必须 WARN
             frozen = frozen_paths(lk)
+            if not problems and frozen and not any(
+                    str(f.resolve()) in frozen for f in files):
+                # 结构完好但只覆盖其他版本文件(v1/v2 并存):如实 INFO,不参与判定
+                print(f"[INFO] {name}: 锁 {lk.name} 覆盖其他版本文件,不参与本次判定")
+                continue
             uncovered = [str(f.resolve()) for f in files
                          if str(f.resolve()) not in frozen]
             if uncovered:
                 problems.append(f"锁未覆盖当前 JSONL: {uncovered}")
-            if manifest_sha:
-                try:
-                    bound = json.loads(lk.read_text(encoding="utf-8")) \
-                        .get("meta", {}).get("manifest_sha256")
-                except (OSError, ValueError):
-                    bound = None
-                if bound != manifest_sha:
-                    problems.append(f"manifest 绑定不一致(锁绑定 {str(bound)[:12]}…,"
-                                    f"当前 {manifest_sha[:12]}…)")
+            bound = None
+            try:
+                bound = json.loads(lk.read_text(encoding="utf-8")) \
+                    .get("meta", {}).get("manifest_sha256")
+            except (OSError, ValueError):
+                bound = None
+            if bound not in manifest_shas:
+                problems.append(f"manifest 绑定不一致(锁绑定 {str(bound)[:12]}…,"
+                                f"候选清单 {[m.name for m in manifests]})")
             if problems:
                 print(f"[WARN] {name}: 冻结锁 {lk.name} 校验未过"
                       f"({len(problems)} 项,不视为已冻结):")

@@ -1,4 +1,7 @@
-"""B4 网络隔离(纯标准库,无需管理员权限):不可信渲染子进程的网络出口封堵。
+"""B4 网络 best-effort guard(纯标准库,无需管理员权限):不可信渲染子进程的
+Python 层网络出口封堵。**不是不可绕过的网络边界**:底层 _socket、不经
+sitecustomize 的子 Python 均可绕过(msg_259 已实测)——network_isolation
+必须保持 False/UNVERIFIED,本 guard 仅作纵深防御。
 
 机制(两层,如实文档化,不宣称超出能力):
   1. sitecustomize shim(经 PYTHONPATH 注入子进程):封堵 Python 层 socket

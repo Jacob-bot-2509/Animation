@@ -72,10 +72,13 @@ class TestNetShim(unittest.TestCase):
         self.assertIn(str(self.shim_dir), env["PYTHONPATH"])
         self.assertEqual(env["PATH"], "x")  # 原键保留
 
-    def test_isolation_state_network_true(self):
+    def test_isolation_state_network_honest(self):
+        """msg_259:_socket 可绕过 shim → network_isolation 必须为 False,
+        python_socket_guard 只标 best-effort,不得冒充 B4 验收。"""
         st = _isolation_state()
-        self.assertIs(st["network_isolation"], True)
-        self.assertIn("网络隔离", st["note"])
+        self.assertIs(st["network_isolation"], False)
+        self.assertIs(st["python_socket_guard"], True)
+        self.assertIn("best-effort", st["note"])
 
 
 if __name__ == "__main__":

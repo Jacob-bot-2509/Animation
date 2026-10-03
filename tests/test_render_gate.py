@@ -218,21 +218,14 @@ class TestB4Hardening(unittest.TestCase):
             self.assertIn(st["memory_limit_mb"], (None, 2048))
         else:
             self.assertIsNone(st["memory_limit_mb"])
-        # B4(2026-10-03):网络隔离已实施(socket shim+死代理,如实标注 OS 级边界)
-        self.assertTrue(st["network_isolation"])
+        # msg_259:网络隔离未验收(_socket 可绕过 shim),shim 仅 best-effort guard
+        self.assertFalse(st["network_isolation"])
+        self.assertTrue(st["python_socket_guard"])
         self.assertEqual(st["fs_isolation"], "cwd_only")  # fs 仍未完整隔离
 
     def test_check_exec_isolation_blocks(self):
         from animtrain.preflight import check_exec_isolation
         ok, detail = check_exec_isolation()
-        if sys.platform == "win32":
-            # Windows 下 job+网络隔离齐备 → 验收通过;反之如实阻断
-            from animtrain.render_gate import _isolation_state
-            mem_ok = _isolation_state()["memory_limit_mb"] is not None
-            self.assertEqual(ok, mem_ok)
-            if not ok:
-                self.assertIn("隔离未实施", detail)
-        else:
-            # 非 Windows:内存 job 不可用 → 必须阻断
-            self.assertFalse(ok)
-            self.assertIn("隔离未实施", detail)
+        # 网络 OS 级边界未实施 → 任何平台都必须阻断(如实,不假绿)
+        self.assertFalse(ok)
+        self.assertIn("隔离未实施", detail)

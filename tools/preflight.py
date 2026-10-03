@@ -123,7 +123,12 @@ def main(argv: list[str]) -> int:
             frozen_all: set[str] = set()
             manifest_bound: list[tuple[str, str]] = []
             for lk in valid:
-                frozen_all |= frozen_paths(lk)
+                frozen_lk = frozen_paths(lk)
+                if not (frozen_lk & eval_test_files):
+                    # msg_261:其他版本的锁(如 data/v2)不参与当前 manifest 门禁,
+                    # 不得因 v1/v2 锁并存而互相误阻断
+                    continue
+                frozen_all |= frozen_lk
                 try:
                     meta = _json.loads(lk.read_text(encoding="utf-8")).get("meta", {})
                 except Exception:

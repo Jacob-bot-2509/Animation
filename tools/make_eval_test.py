@@ -38,6 +38,44 @@ CN = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
       "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
 CN_REV = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
 
+# 复查方 4 条逐解法 scene_spec 验收示例(msg_262,reviewer_example,逐字采纳):
+# reviews/2026-10-03-claude-supervision/evidence/scene-spec-review-examples.json
+REVIEWER_OVERRIDES: dict[str, dict] = {
+    "eval-calc-023-s1": {
+        "objects": ["坐标系与曲线 $f(x)=1/x^2$（$x\\ge1$）",
+                    "积分区域 $1\\le x\\le R$ 及面积 $1-1/R$",
+                    "正项级数 $\\sum_{n=1}^{\\infty}1/n^2$ 与积分判别法条件"],
+        "steps": ["画出正值递减曲线 $f(x)=1/x^2$，明确连续、非负、递减三项条件。",
+                  "用参数 $R>1$ 高亮曲线下从 $1$ 到 $R$ 的区域，展示 $\\int_1^R x^{-2}\\,dx=1-1/R$。",
+                  "令 $R\\to\\infty$，面积趋于 $1$，说明反常积分收敛。",
+                  "逐项对应 $a_n=f(n)$，应用积分判别法得到 $\\sum1/n^2$ 收敛"]},
+    "eval-calc-023-s2": {
+        "objects": ["项 $1/n^2$ 与比较项 $1/[n(n-1)]$（$n\\ge2$）",
+                    "裂项恒等式 $1/[n(n-1)]=1/(n-1)-1/n$",
+                    "部分和 $S_N$ 与上界 $2-1/N$"],
+        "steps": ["从 $n\\ge2$ 开始，展示 $1/n^2<1/[n(n-1)]$；首项 $1$ 单独保留。",
+                  "把比较项拆成 $1/(n-1)-1/n$，按相邻项逐项抵消。",
+                  "给出 $S_N<1+\\sum_{n=2}^{N}(1/(n-1)-1/n)=2-1/N<2$（$N\\ge2$）。",
+                  "展示 $S_N$ 递增且有上界，应用单调有界原则证明收敛"]},
+    "eval-calc-023-s3": {
+        "objects": ["数列 $a_n=1/n^2$ 及按 $2^k$ 标记的分块",
+                    "凝聚项 $2^k a_{2^k}=2^{-k}$",
+                    "几何级数 $\\sum_{k=1}^{\\infty}2^{-k}$"],
+        "steps": ["确认 $a_n$ 正且递减，说明 Cauchy 凝聚判别法的适用条件。",
+                  "高亮 $2^k$ 对应的样本位置和权重，建立 $2^k/(2^k)^2=2^{-k}$。",
+                  "把凝聚级数映射到公比 $1/2$ 的几何级数，其和为 $1$；有限初始项不影响收敛性。",
+                  "应用凝聚判别法回到原级数，结论是收敛"]},
+    "eval-prob-010-s2": {
+        "objects": ["固定点人数 $X$ 的分布柱状图 $P(X=k)=\\binom{n}{k}D(n-k)/n!$",
+                    "错排数 $D(m)$ 与生成函数 $G(z)=\\sum_{k=0}^{n}P(X=k)z^k$",
+                    "导数求和 $G^{\\prime}(1)=\\sum_{k=1}^{n}kP(X=k)$",
+                    "按固定点个数分类的 $n-1$ 元素排列示意"],
+        "steps": ["固定 $n$，按 $k$ 展示分布柱状图与组合表达式。",
+                  "写出生成函数 $G(z)$ 并逐项求导得 $G^{\\prime}(1)$ 的求和式。",
+                  "用 $k\\binom{n}{k}=n\\binom{n-1}{k-1}$ 把求和化为按固定点分类计数。",
+                  "由 $\\sum_j\\binom{n-1}{j}D(n-1-j)=(n-1)!$ 得 $E[X]=1$"]},
+}
+
 FIELD_RE = re.compile(r"^\*\*(.+?)\*\*\s?(.*)$")
 SOL_RE = re.compile(r"^解法([一二三四五六七八九十]+)（(.+)）$")
 SOL_ANIM_RE = re.compile(r"^解法([一二三四五六七八九十]+)动画要点$")
@@ -114,6 +152,9 @@ def sol_anim_points(block: dict, k: int) -> list[str]:
 
 
 def eval_spec(block: dict, method: str, k: int) -> dict:
+    rid = f"{block['pid']}-s{k}"
+    if rid in REVIEWER_OVERRIDES:   # 复查方验收示例逐字采纳(msg_262)
+        return REVIEWER_OVERRIDES[rid]
     pts = sol_anim_points(block, k)   # 逐解法要点(solution→scene_spec 对应)
     objects = list(pts)
     steps = [f"第一步：以{method}为主线，建立{block['category']}·"
@@ -201,8 +242,10 @@ def main() -> int:
     global OUT_EVAL, OUT_TEST
     OUT_EVAL = Path(args.out) / "eval"
     OUT_TEST = Path(args.out) / "test"
-    if "v1" in Path(args.out).parts:
-        print("[FAIL] 拒绝写入 data/v1(v1 冻结数据只读)")
+    # msg_264:大小写不敏感 + 解析路径后再判断,防 Windows --out data/V1 绕过
+    out_resolved = Path(args.out).resolve()
+    if any(p.lower() == "v1" for p in out_resolved.parts):
+        print("[FAIL] 拒绝写入 data/v1 任何大小写形式(v1 冻结数据只读)")
         return 1
     eval_blocks = parse_blocks(MD_EVAL, "eval")
     test_blocks = parse_blocks(MD_TEST, "test")
