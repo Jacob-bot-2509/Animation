@@ -65,7 +65,11 @@ class TestPreflight(unittest.TestCase):
             return run_preflight(
                 Path("."),
                 extra_checks=[("data_manifest", (True, "valid")),
-                              ("run_snapshot", (True, "valid"))] + extra,
+                              ("run_snapshot", (True, "valid")),
+                              ("asset_evidence", (True, "valid")),
+                              ("freeze_gate", (True, "valid")),
+                              ("near_dup_calibrated", (True, "valid")),
+                              ("exec_isolation", (True, "valid"))] + extra,
                 ready=True)
 
     def test_ready_blocks_failed_additional_gate(self):
