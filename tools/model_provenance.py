@@ -112,7 +112,12 @@ def main(argv: list[str]) -> int:
     if index.exists() and weight_files:
         try:
             idx = json.loads(index.read_text(encoding="utf-8"))
-            listed = {w["file"] for w in idx.get("weight_map", {}).values()}
+            listed = set()
+            for v in idx.get("weight_map", {}).values():
+                if isinstance(v, str):
+                    listed.add(v)
+                elif isinstance(v, dict) and "file" in v:
+                    listed.add(v["file"])
             on_disk = {w["file"] for w in weight_files}
             missing = listed - on_disk
             extra = on_disk - listed
