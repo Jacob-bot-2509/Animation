@@ -76,6 +76,9 @@ def parse_blocks(md_path: Path, prefix: str) -> list[dict]:
             cur["fields"]["solution"] = content
         elif label == "动画要点":
             cur["anim"] = [p.strip() for p in content.split(" - ") if p.strip()]
+            # F011:剔除残留的 Markdown 项目符号前缀(首个条目带 "- ")
+            cur["anim"] = [p[2:].strip() if p.startswith("- ") else p
+                           for p in cur["anim"]]
         elif label == "涉及知识点":
             cur["fields"]["knowledge"] = content
     return blocks
@@ -196,7 +199,7 @@ def main() -> int:
     for path, recs in [(OUT_EVAL / "dataset_eval.json", eval_recs),
                        (OUT_TEST / "dataset_test.json", test_recs)]:
         path.write_text(json.dumps(recs, ensure_ascii=False, indent=2) + "\n",
-                        encoding="utf-8")
+                        encoding="utf-8", newline="\n")  # LF 落盘
         print(f"{path} ← {len(recs)} 条")
     print("下一步: tools/dataset_intake.py convert <json> <jsonl> 生成正式入口")
     return 0

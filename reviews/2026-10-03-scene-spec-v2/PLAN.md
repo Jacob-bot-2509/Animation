@@ -31,15 +31,22 @@
   逐条抽查场景与解答对应性（重点：新换题的 test-linalg-003、
   含多知识点推导的题），不一致的同步重写。
 
-### 2.2 版本流程（冻结合规，不绕过锁）
+### 2.2 版本流程（v1 不可变，v2 独立目录；不删除旧锁）
+
+> 应复查方 msg_252：**v1 文件/manifest/锁与历史证据全部保留不动**；
+> v2 在独立目录制作，正式切换引用是最后一步、需用户批准。
 
 1. 修改 md（dataset-eval.md / data-test.md）——md 不在冻结范围，可改；
-2. 重新生成 data/v1/{eval,test}/dataset_{eval,test}.{json,jsonl}（新字节）；
-3. 更新顶层 manifest.json 与子清单哈希，**记录旧/新 SHA256 对照**
-   （复查方要求，见 reviews/2026-10-03-scene-spec-v2/hash-delta.md）；
-4. 旧锁 data/{eval,test}-v1.lock.json 按流程作废（记录旧锁 SHA 后删除重建）；
-5. 重冻 v2 锁（绑定新清单）；
-6. 全量测试 + harness（eval_test_audit.py）复验。
+2. 生成 v2 候选至 **data/v2/{eval,test}/**（新目录，不覆盖 data/v1 任何文件）；
+3. 生成 v2 独立清单 data/v2/{eval,test}/manifest.json，
+   **记录 v1→v2 新旧 SHA256 对照与逐 ID 差异表**
+   （reviews/2026-10-03-scene-spec-v2/hash-delta.md）；
+4. 冻结 v2 独立锁 data/{eval,test}-v2.lock.json（绑定 v2 清单）；
+5. v2 候选经全量测试 + harness（eval_test_audit.py）复验后，
+   **由用户批准切换引用**（manifest/锁指针从 v1 指向 v2），
+   v1 数据与锁仍保留归档、不作废；
+6. 制作期间可先行产出可审查的候选数据与差异表（不覆盖冻结文件、
+   不产批量动画），切换前不触碰 v1。
 
 ### 2.3 逐 ID 清单
 

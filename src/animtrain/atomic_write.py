@@ -17,7 +17,9 @@ def atomic_write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
     os.close(fd)  # Windows:句柄不关会导致 rename 失败且临时文件删不掉
     tmp = Path(tmp_name)
     try:
-        tmp.write_text(text, encoding=encoding)
+        # newline="\n":统一 LF 落盘(Windows 默认会转 CRLF,破坏清单/锁的
+        # 字节可复现性 —— msg_254 根因)
+        tmp.write_text(text, encoding=encoding, newline="\n")
         os.replace(tmp, path)
     except BaseException:
         tmp.unlink(missing_ok=True)

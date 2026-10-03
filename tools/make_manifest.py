@@ -52,7 +52,7 @@ def main(argv: list[str]) -> int:
         e.source = args.source
         e.license = args.license
     try:
-        with out.open("x", encoding="utf-8") as handle:
+        with out.open("x", encoding="utf-8", newline="\n") as handle:  # LF 落盘
             json.dump(m.to_dict(), handle, ensure_ascii=False, indent=2)
     except OSError as exc:
         print(f"[FAIL] 无法写入清单 {out}: {exc}")

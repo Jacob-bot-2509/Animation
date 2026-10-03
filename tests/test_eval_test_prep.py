@@ -38,6 +38,26 @@ class TestEvalTestPrep(unittest.TestCase):
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         self.assertIn("通过", out.stdout)
 
+    def test_status_bad_lock_not_reported_as_frozen(self):
+        """msg_256 探针:坏 JSON 锁不得冒充有效冻结(status 须校验而非只看存在)。"""
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            ev = base / "eval"
+            ev.mkdir()
+            (ev / "dataset_eval.jsonl").write_text(
+                '{"id": "x", "category": "c", "sub_category": "s", "problem": "p", '
+                '"solution": "s", "answer": "a", '
+                '"scene_spec": {"objects": ["o"], "steps": ["t"]}, '
+                '"source": "self-authored", "license": "Internal-Research-Use-Only"}\n',
+                encoding="utf-8")
+            (base / "eval-broken.lock.json").write_text("{not valid json",
+                                                        encoding="utf-8")
+            out = run("status", "--dir", base)
+            self.assertEqual(out.returncode, 0)
+            self.assertIn("校验未过", out.stdout)
+            self.assertNotIn("校验通过", out.stdout)
+
     def test_check_flags_train_leak(self):
         import tempfile
         with tempfile.TemporaryDirectory() as d:

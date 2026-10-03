@@ -31,6 +31,23 @@ def main(argv: list[str]) -> int:
 
     if args.check:
         problems = check_frozen(Path(args.check))
+        if not problems and args.manifest:
+            # msg_253:--check 增加 manifest 绑定校验(此前只核验样本数据)
+            import hashlib as _h2  # noqa: PLC0415
+            import json as _j2  # noqa: PLC0415
+            mp = Path(args.manifest)
+            if mp.exists():
+                actual = _h2.sha256(mp.read_bytes()).hexdigest()
+                bound = None
+                try:
+                    bound = (_j2.loads(Path(args.check).read_text(encoding="utf-8"))
+                             .get("meta", {}).get("manifest_sha256"))
+                except (OSError, ValueError):
+                    bound = None
+                if bound != actual:
+                    problems.append(
+                        f"manifest 绑定不一致:锁绑定 {str(bound)[:12]}…,"
+                        f"当前 manifest {actual[:12]}…")
         if problems:
             print(f"冻结校验未过({len(problems)} 项):")
             for p in problems:

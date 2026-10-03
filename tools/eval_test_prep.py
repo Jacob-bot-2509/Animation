@@ -41,20 +41,52 @@ def _load_lines(p: Path) -> list[str]:
 
 def cmd_status(args) -> int:
     base = Path(args.dir)
+    import hashlib  # noqa: PLC0415
+    from animtrain.freeze import check_frozen, frozen_paths  # noqa: PLC0415
+    top_manifest = ROOT / "data" / "v1" / "manifest.json"
+    manifest_sha = ""
+    if top_manifest.exists():
+        manifest_sha = hashlib.sha256(top_manifest.read_bytes()).hexdigest()
     for name in ("eval", "test"):
         d = base / name
         files = _jsonl_files(d)
         locks = sorted(d.rglob("*.lock.json")) if d.is_dir() else []
         # 锁亦可位于 data/ 层(preflight discover_locks 口径:向上扫描到 data/)
         locks += sorted(base.parent.glob(f"{name}*.lock.json"))
+        locks = sorted({p.resolve(): p for p in locks}.values())
         if not files:
             print(f"[OK] {name}: 未生成任何样本(如实,非失败)")
         else:
             print(f"[OK] {name}: 已生成 {len(files)} 个 JSONL")
-        if locks:
-            print(f"[OK] {name}: 冻结锁 {len(locks)} 个(冻结状态以锁为准)")
-        else:
+        if not locks:
             print(f"[OK] {name}: 未冻结(已生成未冻结;正式 freeze 需用户批准)")
+            continue
+        # msg_256:发现锁 ≠ 冻结有效 —— 逐锁校验结构/覆盖/manifest 绑定,
+        # 坏锁/无关锁不得冒充有效冻结
+        for lk in locks:
+            problems = check_frozen(lk)
+            frozen = frozen_paths(lk)
+            uncovered = [str(f.resolve()) for f in files
+                         if str(f.resolve()) not in frozen]
+            if uncovered:
+                problems.append(f"锁未覆盖当前 JSONL: {uncovered}")
+            if manifest_sha:
+                try:
+                    bound = json.loads(lk.read_text(encoding="utf-8")) \
+                        .get("meta", {}).get("manifest_sha256")
+                except (OSError, ValueError):
+                    bound = None
+                if bound != manifest_sha:
+                    problems.append(f"manifest 绑定不一致(锁绑定 {str(bound)[:12]}…,"
+                                    f"当前 {manifest_sha[:12]}…)")
+            if problems:
+                print(f"[WARN] {name}: 冻结锁 {lk.name} 校验未过"
+                      f"({len(problems)} 项,不视为已冻结):")
+                for p in problems[:3]:
+                    print(f"       - {p}")
+            else:
+                print(f"[OK] {name}: 冻结锁 {lk.name} 校验通过"
+                      f"(结构/覆盖/manifest 绑定一致)")
     return 0
 
 

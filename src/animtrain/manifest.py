@@ -77,7 +77,7 @@ class Manifest:
 
     def save(self, path: Path) -> None:
         path.write_text(json.dumps(self.to_dict(), ensure_ascii=False, indent=2),
-                        encoding="utf-8")
+                        encoding="utf-8", newline="\n")  # LF 落盘(字节可复现)
 
 
 def sha256_file(p: Path) -> str:
