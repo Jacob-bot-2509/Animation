@@ -38,6 +38,21 @@ INTERNAL_LICENSE = "Internal-Research-Use-Only"
 REQUIRED_INTAKE = ["id", "category", "sub_category", "problem", "solution",
                    "scene_spec", "source", "license"]
 OPTIONAL_META = ["function_family", "visual_style", "efficiency_tags"]
+# GS3 多解身份:eval 同题多解样本用 problem_id/solution_id/method,id 可缺省
+MULTI_SOLUTION_FIELDS = ["problem_id", "solution_id", "method"]
+
+
+def record_identity(record: dict) -> str:
+    """GS3:统一身份提取 —— id 优先;缺省且 problem_id+solution_id 齐备时
+    用复合身份 'problem_id::solution_id'。所有去重/定位流程共用。"""
+    sid = record.get("id")
+    if not _is_missing(sid):
+        return str(sid)
+    pid = record.get("problem_id")
+    sid2 = record.get("solution_id")
+    if not _is_missing(pid) and not _is_missing(sid2):
+        return f"{pid}::{sid2}"
+    return ""
 
 CJK_RE = re.compile(r"[一-鿿]")          # TeX 无 CJK,中文进公式必编译失败
 MATH_SPAN_RE = re.compile(r"\$([^$]*)\$")        # $...$ 行内公式(数据无 \$ 转义)
@@ -137,8 +152,13 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     quarantines: list[str] = []
     sid = str(record.get("id") or "<no-id>")
 
-    # 1. 关键字段(硬伤)
+    # 1. 关键字段(硬伤)。GS3:同题多解样本 id 缺省但 problem_id+solution_id
+    #    齐备 → 合法(复合身份),不按缺 id 硬伤处理
     missing = [f for f in REQUIRED_INTAKE if _is_missing(record.get(f))]
+    alt = not _is_missing(record.get("problem_id")) \
+        and not _is_missing(record.get("solution_id"))
+    if "id" in missing and alt:
+        missing.remove("id")
     if missing:
         problems.append(f"line {line}: 缺关键字段 {', '.join(missing)}(id={sid})")
 
@@ -156,8 +176,9 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
     ans = record.get("answer")
     if not _is_missing(ans) and not isinstance(ans, str):
         problems.append(f"line {line}: answer 不是字符串({type(ans).__name__})")
-    # G4 类型契约:category/sub_category/source 必须为字符串
-    for f in ("category", "sub_category", "source"):
+    # G4 类型契约:category/sub_category/source 及多解字段必须为字符串
+    for f in ("category", "sub_category", "source",
+              "problem_id", "solution_id", "method"):
         v = record.get(f)
         if not _is_missing(v) and not isinstance(v, str):
             problems.append(f"line {line}: {f} 不是字符串({type(v).__name__})")
@@ -228,7 +249,8 @@ def check_record(record: dict, line: int) -> tuple[list[str], list[str]]:
         _walk_strings(spec, lambda s: _check_text(s, "scene_spec"))
 
     # 6. 正式字段只认契约内字段;出现其他键 → quarantine(提示查 DATASET_SCHEMA)
-    formal = set(REQUIRED_INTAKE) | {"answer"} | set(OPTIONAL_META)
+    formal = set(REQUIRED_INTAKE) | {"answer"} | set(OPTIONAL_META) \
+        | set(MULTI_SOLUTION_FIELDS)
     extra = [k for k in record if k not in formal]
     if extra:
         quarantines.append(f"line {line}: 非正式字段 {extra}"
@@ -244,10 +266,10 @@ def check_duplicate_ids(records: list[tuple[int, dict]]) -> list[str]:
     """
     by_id: dict[str, list[tuple[int, dict]]] = {}
     for line, rec in records:
-        sid = rec.get("id")
-        if _is_missing(sid):
-            continue  # 缺 ID 由 check_record 报
-        by_id.setdefault(str(sid), []).append((line, rec))
+        sid = record_identity(rec)
+        if not sid:
+            continue  # 缺 ID/复合身份由 check_record 报
+        by_id.setdefault(sid, []).append((line, rec))
     problems: list[str] = []
     for sid, items in sorted(by_id.items()):
         if len(items) < 2:
@@ -313,10 +335,9 @@ def check_intake_file(path) -> dict:
         cat = obj.get("category")
         if isinstance(cat, str) and cat.strip():
             categories[cat] = categories.get(cat, 0) + 1
-        sid = obj.get("id")
-        if (isinstance(sid, (str, int)) and not isinstance(sid, bool)
-                and not (isinstance(sid, str) and not sid.strip())):
-            id_lines.setdefault(str(sid), []).append(line_no)
+        sid = record_identity(obj)
+        if sid:
+            id_lines.setdefault(sid, []).append(line_no)
         p2, q2 = check_record(obj, line_no)
         problems += p2
         quarantines += q2

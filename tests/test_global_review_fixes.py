@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.dataset_intake import (  # noqa: E402
-    check_record, convert_array_to_jsonl)
+    check_duplicate_ids, check_record, convert_array_to_jsonl)
 from animtrain.manifest import (  # noqa: E402
     Entry, Manifest, canonical_problem_hash, canonical_problem_text,
     sample_content_hash, sha256_file)
@@ -301,3 +301,69 @@ class TestC2EmptySplit(unittest.TestCase):
             self.assertTrue(any("数据文件为空" in p for p in r["problems"]))
             self.assertFalse(any("文件内容完全相同" in p for p in r["problems"]),
                              "空文件不得误报哈希重叠(C2)")
+
+
+FIX_EVAL = ROOT / "reviews" / "fixtures-eval-test"
+
+
+class TestGS3MultiSolution(unittest.TestCase):
+    """GS3:同题多解 schema(problem_id/solution_id/method,id 缺省合法)与
+    候选集间隔离。"""
+
+    def _multi(self, **over):
+        rec = clean_record(id="eval-p1-s1")
+        del rec["id"]
+        rec["problem_id"] = "eval-p1"
+        rec["solution_id"] = "eval-p1-s1"
+        rec["method"] = "方法A"
+        rec.update(over)
+        return rec
+
+    def test_multi_solution_record_accepted(self):
+        problems, _ = check_record(self._multi(), 1)
+        self.assertFalse(any("缺关键字段" in p and "id" in p for p in problems),
+                         problems)
+
+    def test_multi_solution_missing_solution_id_rejected(self):
+        rec = self._multi()
+        del rec["solution_id"]
+        problems, _ = check_record(rec, 1)
+        self.assertTrue(any("缺关键字段" in p and "id" in p for p in problems),
+                        problems)
+
+    def test_multi_solution_duplicate_identity_detected(self):
+        recs = [self._multi(), self._multi(solution="另一种解法")]
+        problems = check_duplicate_ids([(1, recs[0]), (2, recs[1])])
+        self.assertTrue(any("eval-p1::eval-p1-s1" in p for p in problems),
+                        problems)
+
+    def test_cross_set_overlap_detected(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            train_dir = d / "train"
+            train_dir.mkdir()
+            (train_dir / "t.jsonl").write_text(
+                (FIX_EVAL / "train_synthetic.jsonl").read_text(encoding="utf-8"),
+                encoding="utf-8")
+            eval_dir = d / "eval"
+            eval_dir.mkdir()
+            (eval_dir / "e.jsonl").write_text(
+                (FIX_EVAL / "eval_leak.jsonl").read_text(encoding="utf-8"),
+                encoding="utf-8")
+            test_dir = d / "test"
+            test_dir.mkdir()
+            # test 与 eval 同题(换 id)→ 跨集合必须检出
+            (test_dir / "t.jsonl").write_text(
+                '{"id": "syn-test-x", "category": "合成", "sub_category": "合成", '
+                '"problem": "合成训练题目A：求 1+1 的值。", "solution": "第三个解法", '
+                '"answer": "2", "scene_spec": {"objects": ["x"], "steps": ["y"]}, '
+                '"source": "synthetic", "license": "internal-generated"}\n',
+                encoding="utf-8")
+            out = subprocess.run(
+                [sys.executable, "-X", "utf8",
+                 str(ROOT / "tools" / "eval_test_prep.py"), "check",
+                 str(eval_dir), str(test_dir), "--train-dir", str(train_dir)],
+                capture_output=True, encoding="utf-8", errors="replace")
+            self.assertEqual(out.returncode, 1, out.stdout + out.stderr)
+            self.assertIn("跨集合同题重叠", out.stdout)

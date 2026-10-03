@@ -58,10 +58,13 @@ def cmd_status(args) -> int:
 
 
 def cmd_check(args) -> int:
-    d = Path(args.dir)
-    files = _jsonl_files(d)
+    dirs = [Path(x) for x in args.dirs]
+    files: list[Path] = []
+    for d in dirs:
+        files += _jsonl_files(d)
+    files = sorted(set(files))
     if not files:
-        print(f"[OK] {d}: 未生成任何样本 —— 如实报告,不视为检查通过")
+        print(f"[OK] {args.dirs}: 未生成任何样本 —— 如实报告,不视为检查通过")
         return 0
     # A9: reference availability and schema are part of isolation evidence.
     train_dir = Path(args.train_dir)
@@ -102,13 +105,42 @@ def cmd_check(args) -> int:
                 problems.append(f"{f.name}:{i} 与 train 近重复(5-gram Jaccard "
                                 f"{sim:.3f} ≥ {NEAR_DUP_THRESHOLD},"
                                 f"命中 train 行 {hit['line'] + 1})")
+    # GS3:候选集之间隔离(eval↔test 等)——跨文件同题/同 ID 必须检出
+    if len(files) > 1:
+        from animtrain.dataset_intake import record_identity  # noqa: PLC0415
+        per_file: dict[Path, tuple[set, set]] = {}
+        for f in files:
+            hs: set[str] = set()
+            ids: set[str] = set()
+            for l in _load_lines(f):
+                hs.add(canonical_problem_hash(l))
+                try:
+                    ids.add(record_identity(json.loads(l)))
+                except json.JSONDecodeError:
+                    continue
+            per_file[f] = (hs, ids)
+        flist = sorted(files)
+        for i in range(len(flist)):
+            for j in range(i + 1, len(flist)):
+                a, b = flist[i], flist[j]
+                ha, ia = per_file[a]
+                hb, ib = per_file[b]
+                overlap = ha & hb
+                if overlap:
+                    problems.append(f"{a.name} 与 {b.name} 跨集合同题重叠 "
+                                    f"{len(overlap)} 条(核心正文哈希)—— 评测题目族"
+                                    "必须独立(GS3)")
+                shared = {x for x in ia & ib if x}
+                if shared:
+                    problems.append(f"{a.name} 与 {b.name} 跨集合 ID 重叠: "
+                                    f"{sorted(shared)[:5]}(GS3)")
     if problems:
         for p in problems:
             print(f"  [FAIL] {p}")
         print(f"结论: 隔离检查不通过,{len(problems)} 个问题")
         return 1
-    print(f"[OK] {d}: 入场检查与 train 隔离检查通过(近重复阈值 "
-          f"{NEAR_DUP_THRESHOLD} UNCALIBRATED)")
+    print(f"[OK] {args.dirs}: 入场检查、train 隔离与候选集间隔离检查通过"
+          f"(近重复阈值 {NEAR_DUP_THRESHOLD} UNCALIBRATED)")
     return 0
 
 
@@ -124,8 +156,8 @@ def main(argv: list[str]) -> int:
     ps = sub.add_parser("status", help="报告 eval/test 生成/冻结状态")
     ps.add_argument("--dir", default=str(ROOT / "data/v1"))
     ps.set_defaults(fn=cmd_status)
-    pc = sub.add_parser("check", help="已生成样本时:入场检查 + 与 train 隔离检查")
-    pc.add_argument("dir")
+    pc = sub.add_parser("check", help="已生成样本时:入场检查 + 与 train/候选集间隔离检查")
+    pc.add_argument("dirs", nargs="+", help="一个或多个 eval/test 文件或目录")
     pc.add_argument("--train-dir", default=str(ROOT / "data/v1/raw"))
     pc.set_defaults(fn=cmd_check)
     pf = sub.add_parser("freeze", help="未授权:一律拒绝")
