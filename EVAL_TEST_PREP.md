@@ -28,16 +28,45 @@ data/v1/
 - 生成后走:make_manifest → data_check → freeze(锁绑定 manifest)→
   preflight --ready。
 
-## 3. 验收脚本接口(占位,未生成样本前不可执行)
+## 3. 验收脚本接口(tools/eval_test_prep.py,已实现只读部分)
 
-- `tools/eval_test_prep.py`(接口预留):
-  - `check` — 对 eval/test JSONL 跑入场检查 + 与 train 的精确重叠/近重复隔离检查;
-  - `freeze` — 生成 *.lock.json 并绑定当前 manifest(冻结后哈希变化大声失败);
-  - `status` — 报告 eval/test 是否已生成/已冻结(现在应恒为"未生成/未冻结")。
+- `status` — 报告 eval/test 是否已生成/已冻结(当前恒为"未生成/未冻结");
+- `check <dir> [--train-dir]` — 已生成样本时:入场检查 + 与 train 的
+  精确重叠(核心正文哈希)与近重复(5-gram Jaccard,阈值 0.7 UNCALIBRATED)隔离检查;
+  未生成时如实报"未生成"(exit 0,不视为检查通过);
+- `freeze <dir>` — **未授权:一律拒绝(exit 2)**;正式 freeze 在用户批准后
+  经 freeze_data 执行。
+- 报告契约:0 = 未生成(如实)或检查通过;1 = 硬伤(泄漏/坏样本);2 = 未授权。
 
-## 4. 当前状态(如实)
+## 3.5 JSONL schema(eval/test 样本契约)
+
+eval(同题多解)单行:
+
+```json
+{"problem_id": "eval-p001", "solution_id": "eval-p001-s1", "method": "方法名",
+ "problem": "题干", "solution": "该解法的完整解答", "answer": "可判分终答",
+ "scene_spec": {"objects": ["..."], "steps": ["..."]},
+ "source": "待用户提供", "license": "Internal-Research-Use-Only"}
+```
+
+- 同一 problem_id 多条记录 = 同题多解,method 互不相同;
+- test(综合泛化)单行:与 train/eval 相同的正式字段 + 全局唯一 id,
+  题目族全新;
+- 隔离检查对 problem 核心正文做哈希与 shingle,id/source/风格不参与(A8)。
+
+## 4. 制作清单(下一步需用户提供)
+
+| 项 | 内容 | 待用户决定 |
+|---|---|---|
+| eval 题目数 | 同题多解:每题 ≥2 个 method 解法 | 数量(建议 ≥20 题) |
+| test 题目数 | 综合泛化:全新题目族 | 数量(建议 ≥20 题) |
+| 来源 | 自撰或授权来源 | 逐题 source 与 license 证据 |
+| 制作方式 | 用户自撰 / 授权后由我按 schema 起草 | 确认 |
+
+## 5. 当前状态(如实)
 
 - eval:未生成、未冻结;
 - test:未生成、未冻结;
+- 合成夹具仅在 reviews/fixtures-eval-test/(标 synthetic,不混入正式数据);
 - preflight --ready 在无 eval/test 冻结时必为 NOT READY(fail-closed),
   不生成可执行训练计划。
