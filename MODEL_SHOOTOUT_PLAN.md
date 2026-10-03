@@ -62,3 +62,15 @@ token 预算推理、投机解码加速。**以下维度公开未见、且正是
 - 不把对照结果写成"已验收";candidate/UNVERIFIED 语义保持;
 - eval/test 独立制作与冻结、B5 校准不受本方案影响;
 - 所有输出产物记录哈希与命令(可重放)。
+
+## 7. 临时实验组(用户指示 2026-10-03)
+
+- 筛选期的全部探针产物写入 **outputs/screening-tmp/**(git 忽略,不污染仓库):
+  推理对照结果、QLoRA 显存/吞吐/稳定性探针;run_id 一律 screening-* 前缀,
+  kind=dry-run;
+- **正式训练产物不得写入该目录**;正式实验仍按 runs/<run_id>/ 与
+  artifacts 规范;
+- 撤走流程(筛选完成后执行):
+  1. 三方对比结论归档到正式文档(本文件 §5 判定表 + REVIEW_BACKLOG);
+  2. 生成 screening-cleanup-manifest.json(文件清单+SHA256+删除时间);
+  3. 整体删除 outputs/screening-tmp/,回归正式实验结构。
