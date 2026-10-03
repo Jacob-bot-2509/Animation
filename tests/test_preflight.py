@@ -99,7 +99,8 @@ if __name__ == "__main__":
     unittest.main()
 
 
-class TestAssetEvidence(unittest.TestCase):
+class _AssetEvidenceHelpers(unittest.TestCase):
+    """共享夹具:manifest+样本+证据构造。"""
     """B2(GS2 复修):资产验收证据必须以当前 manifest 实际样本逐条验证,
     自报数字/自报覆盖不可作为验收依据。"""
 
@@ -175,21 +176,31 @@ class TestAssetEvidence(unittest.TestCase):
             self.assertFalse(ok)
             self.assertIn("逐条记录", detail)
 
+    def _evidence(self, mp: Path, line: str, output=None):
+        import hashlib
+        return {"manifest_sha256": self._sha(mp),
+                "n_total_records": 1, "n_verified_assets": 1,
+                "records": {"s1": {
+                    "input_sha256": hashlib.sha256(
+                        line.strip().encode("utf-8")).hexdigest(),
+                    "output": output or {},
+                    "math": "verified", "render": "rendered"}}}
+
     def test_per_record_evidence_passes(self):
         from animtrain.preflight import check_asset_evidence
-        from animtrain.manifest import canonical_problem_hash
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
             mp, line = self._mk(d, None, with_sample=True)
+            import hashlib
+            artifact = d / "render-out.svg"
+            artifact.write_text("<svg/>", encoding="utf-8")
+            out = {"path": str(artifact.relative_to(d)),
+                   "sha256": hashlib.sha256(b"<svg/>").hexdigest(),
+                   "size": len(b"<svg/>")}
             import json
             (d / "asset_evidence.json").write_text(json.dumps(
-                {"manifest_sha256": self._sha(mp),
-                 "n_total_records": 1, "n_verified_assets": 1,
-                 "records": {"s1": {"input_sha256": canonical_problem_hash(line),
-                                    "output_sha256": "o" * 64,
-                                    "math": "verified",
-                                    "render": "rendered"}}},
-                ensure_ascii=False), encoding="utf-8")
+                self._evidence(mp, line, output=out), ensure_ascii=False),
+                encoding="utf-8")
             ok, detail = check_asset_evidence(mp)
             self.assertTrue(ok, detail)
             self.assertIn("1/1", detail)
@@ -200,14 +211,9 @@ class TestAssetEvidence(unittest.TestCase):
             d = Path(d)
             mp, _line = self._mk(d, None, with_sample=True)
             import json
-            (d / "asset_evidence.json").write_text(json.dumps(
-                {"manifest_sha256": self._sha(mp),
-                 "n_total_records": 1, "n_verified_assets": 1,
-                 "records": {"s1": {"input_sha256": "f" * 64,
-                                    "output_sha256": "o" * 64,
-                                    "math": "verified",
-                                    "render": "rendered"}}},
-                ensure_ascii=False), encoding="utf-8")
+            ev = self._evidence(mp, _line)
+            ev["records"]["s1"]["input_sha256"] = "f" * 64
+            (d / "asset_evidence.json").write_text(json.dumps(ev, ensure_ascii=False))
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
             self.assertIn("不一致", detail)
@@ -218,14 +224,53 @@ class TestAssetEvidence(unittest.TestCase):
             d = Path(d)
             mp, _line = self._mk(d, None, with_sample=True)
             import json
-            (d / "asset_evidence.json").write_text(json.dumps(
-                {"manifest_sha256": self._sha(mp),
-                 "n_total_records": 1, "n_verified_assets": 1,
-                 "records": {"s2": {"input_sha256": "f" * 64,
-                                    "output_sha256": "o" * 64,
-                                    "math": "verified",
-                                    "render": "rendered"}}},
-                ensure_ascii=False), encoding="utf-8")
+            ev = self._evidence(mp, _line)
+            ev["records"] = {"s2": ev["records"]["s1"]}
+            (d / "asset_evidence.json").write_text(json.dumps(ev, ensure_ascii=False))
             ok, detail = check_asset_evidence(mp)
             self.assertFalse(ok)
             self.assertIn("s1", detail)
+
+
+class TestAssetEvidenceMsg216(_AssetEvidenceHelpers):
+    """msg_216:产物必须绑定真实 artifact 文件;占位字符串不得通过。"""
+
+    def test_no_artifact_placeholder_rejected(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp, _line = self._mk(d, None, with_sample=True)
+            ev = self._evidence(mp, _line, output={})
+            import json
+            (d / "asset_evidence.json").write_text(json.dumps(ev, ensure_ascii=False))
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("产物记录", detail)
+
+    def test_artifact_file_missing_rejected(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp, _line = self._mk(d, None, with_sample=True)
+            ev = self._evidence(mp, _line, output={
+                "path": "nonexistent.svg", "sha256": "f" * 64, "size": 1})
+            import json
+            (d / "asset_evidence.json").write_text(json.dumps(ev, ensure_ascii=False))
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("不存在", detail)
+
+    def test_artifact_hash_mismatch_rejected(self):
+        from animtrain.preflight import check_asset_evidence
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            mp, _line = self._mk(d, None, with_sample=True)
+            artifact = d / "out.svg"
+            artifact.write_text("<svg/>", encoding="utf-8")
+            ev = self._evidence(mp, _line, output={
+                "path": "out.svg", "sha256": "f" * 64, "size": len(b"<svg/>")})
+            import json
+            (d / "asset_evidence.json").write_text(json.dumps(ev, ensure_ascii=False))
+            ok, detail = check_asset_evidence(mp)
+            self.assertFalse(ok)
+            self.assertIn("不一致", detail)

@@ -94,8 +94,9 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
     if not isinstance(records, dict) or not records:
         return False, ("资产验收证据无逐条记录(records 缺失/空)—— "
                        "自报数字不可作为验收依据(GS2)")
-    # 以当前 manifest 的实际样本为准
-    from .manifest import Manifest, canonical_problem_hash  # noqa: PLC0415
+    # 以当前 manifest 的实际样本为准(msg_216:资产输入绑定完整样本行,
+    # 不只是题目哈希;产物必须绑定真实 artifact 文件 path/hash/size)
+    from .manifest import Manifest  # noqa: PLC0415
     try:
         m = Manifest.load(mp)
     except Exception as exc:  # noqa: BLE001
@@ -114,19 +115,37 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
                 continue
             sid = obj.get("id") if isinstance(obj, dict) else None
             if sid is not None:
-                actual[str(sid)] = canonical_problem_hash(line)
+                actual[str(sid)] = _h.sha256(
+                    line.strip().encode("utf-8")).hexdigest()
     n_total = ev.get("n_total_records")
     if not isinstance(n_total, int) or n_total != len(actual):
         return False, (f"自报总量 {n_total!r} 与实际样本数 {len(actual)} 不符"
                        "—— 不得作为验收依据(GS2)")
-    for sid, ih in sorted(actual.items()):
+    for sid, full_hash in sorted(actual.items()):
         rec = records.get(sid)
         if not isinstance(rec, dict):
             return False, f"样本 {sid} 缺逐条验收证据(GS2)"
-        if rec.get("input_sha256") != ih:
-            return False, f"样本 {sid} 输入哈希与证据不一致(GS2)"
-        if not rec.get("output_sha256") or not str(rec["output_sha256"]).strip():
-            return False, f"样本 {sid} 缺产物哈希(GS2)"
+        if rec.get("input_sha256") != full_hash:
+            return False, f"样本 {sid} 输入哈希与证据不一致(须绑定完整样本行)(GS2)"
+        out = rec.get("output")
+        if not isinstance(out, dict):
+            return False, f"样本 {sid} 缺产物记录(output 对象)(GS2)"
+        opath = out.get("path")
+        osha = out.get("sha256")
+        osize = out.get("size")
+        if not isinstance(opath, str) or not opath.strip() \
+                or not isinstance(osha, str) or len(osha) != 64 \
+                or not isinstance(osize, int) or osize < 0:
+            return False, f"样本 {sid} 产物记录非法(需真实 path/64位 sha256/size)(GS2)"
+        fp = mp.parent / opath
+        if not fp.exists() or not fp.is_file():
+            return False, f"样本 {sid} 产物文件不存在: {opath}(GS2)"
+        try:
+            fsha = _h.sha256(fp.read_bytes()).hexdigest()
+        except OSError as exc:
+            return False, f"样本 {sid} 产物文件不可读: {exc}(GS2)"
+        if fsha != osha or fp.stat().st_size != osize:
+            return False, f"样本 {sid} 产物文件哈希/大小与证据不一致(GS2)"
         if rec.get("math") != "verified" or rec.get("render") != "rendered":
             return False, f"样本 {sid} 数学/渲染证据未验证(GS2)"
     if len(records) != len(actual):
