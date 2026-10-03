@@ -1,39 +1,52 @@
 # 当前任务进度
 
-更新日期：2026-10-01；发布版本：v0.2.0（基础设施预发布）。
-本轮由 Codex 接替 Copilot 汇总发布；Claude Code 仍主导实现，Codex 负责审查和必要小修。
+更新日期：2026-10-03。**协作角色：Claude Code 同时承担统筹(copilot 职责)与执行职责;
+Codex 独立复审。** 未训练、未下载模型、未安装依赖。
 
 ## 当前阶段
 
-处于基础设施与合成验证阶段，准备真实数据验收。没有开展真实模型训练或 baseline/消融实验。
-同步基线为 cd9fff6，加上本次缺失冻结绑定哈希小修及发布文档；版本 tag 对应完整发布快照。
+- 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
+  dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;
+  审计记录级 hard=0,63 条全部 **candidate**(code/render_status 缺失,不假绿)。
+- 训练前准备就绪：manifest-train(provisional)、train_config.template(TBD 契约)、
+  backend 适配器契约、BASE_MODEL_SHORTLIST(baseline=Qwen2.5-7B-Instruct 待批准)、
+  eval/test 接口与目录占位(未生成未冻结)。
+- preflight --ready 实测 **NOT READY**(model_dir/run_snapshot/near_dup_calibrated/
+  freeze_gate/asset_evidence 阻断),fail-closed 生效。
 
-| 工作项 | 当前结果 |
+## 审查台账状态
+
+| 项 | 状态 |
 |---|---|
-| A1 数据入口校验 | 已在 JSONL 支持范围关闭；整文件 JSON 数据 split 明确拒绝 |
-| A2 近重复实现漏检 | 候选截断反例已修；真实分布阈值校准仍未完成 |
-| B1 运行快照 | seed/环境/git 状态/当前 manifest 哈希检查已实现；完整实验重放待验收 |
-| B2 严格门禁 | 失败聚合、快照哈希、冻结覆盖和强制绑定通过；资产验收证据缺失阻断仍待修 |
-| B3 冻结评测 | 空锁拒绝、文件哈希及当前集合覆盖通过；固定指标/逐样本结果待正式阶段 |
-| B4 数学与渲染 | 断言误判已修；可信 MathTex 回归通过；不可信渲染默认拒绝；完整隔离待实现 |
-| B5 阈值校准 | 方法框架与 UNCALIBRATED 传播已实现；等待真实标注对照数据 |
-| B6 产物写入 | 单文件原子写与约定锁保护通过；多文件恢复仍待验收 |
-| C 类维护项 | 按备忘录延期；影响当前正确性时提前处理 |
+| A1-A8 数据与入场可信度 | 全部关闭(JSONL 口径、近重复实现、入场边界、A4/A5 语义、A6 类型/别名、A7 冻结写保护、A8 防泄漏哈希) |
+| B1 运行快照 | 字段框架/seed/dirty/env/manifest 哈希绑定已实现;完整参数与代码状态重放待真实训练前验收 |
+| B2 严格 preflight | **已收口**:asset_evidence 检查(绑定当前 manifest + 全量覆盖),smoke 重标环境诊断,UNVERIFIED 阻断 ready |
+| B3 冻结评测与指标 | 空锁/覆盖/绑定已过;固定指标、逐样本结果与失败分类待 eval/test 冻结后验收 |
+| B4 执行隔离 | 不可信渲染默认拒绝、可信 smoke 通过;完整 fs/network/memory 隔离与不可信数学输入保护**待实现(下一个代码项)** |
+| B5 阈值校准 | UNCALIBRATED 传播并阻断;分语言/长度校准待真实标注数据(用户侧) |
+| B6 产物写入 | **已收口**:publish_files 多文件发布事务(journal+备份+回滚+中断恢复+冻结保护) |
+| B7 类型契约 | 已关闭(分类/来源/正文/答案/场景元素/可选元数据类型) |
+| C1-C12 | 延期清理,主线收尾集中处理 |
 
 ## 最新验证
 
-- 144 tests + 29 subtests 通过，包含已有真实可信样例渲染。
-- 新增七种 CLI 冻结证据回归场景，确认缺失/错误绑定、无关锁、部分覆盖、坏锁和无锁均失败。
-- 冻结写保护探针拒绝前保留原输出字节。
-- 依据：[第四轮复验](reviews/2026-10-01-br-recheck-round4/REVIEW.md)及同目录 results.json；历史报告按原提交保留，当前状态以本页和 REVIEW_BACKLOG 为准。
+- **246 passed + 29 subtests**(2026-10-03);真实 63 条入场 clean、data_check 通过;
+  审计 v7 记录级 hard=0。
+- manifest sha256: data/v1/manifest.json `297c0373…`(raw 口径);
+  data/v1/manifest-train.json `8f1c9b98…`(provisional train,4 条目 split=train)。
 
-## 下一步顺序
+## 下一步顺序(统筹视角)
 
-1. Claude Code 补正式 READY 的当前资产验收证据缺失阻断；环境样例仅标环境诊断。
-2. 完成真实数据来源/许可证证据、规模与划分计划；形成自包含数据 manifest 和冻结评测集合。
-3. 执行真实数据近重复校准，补齐当前资产对应的验证报告。
-4. 在生成代码执行/正式实验之前完成相关隔离、重放、指标与恢复验收。
-5. C 类低影响清理留到主线收尾。
+代码侧可继续推进(不需用户批准)：
+1. **B4 完整执行隔离**(fs/network/memory)与不可信数学输入保护;
+2. **B1 快照补全**(训练配置参数入快照、完整重放);
+3. C 类清理(C2 空 split 误报、C5 配置示例、C12 效率整理)。
 
-完整规划见 [PIPELINE_PLAN](PIPELINE_PLAN.md)、[下一周期计划](NEXT_CYCLE_PLAN.md)和[审查备忘录](REVIEW_BACKLOG.md)。
-这次 GitHub 同步与发布不代表批准训练、下载模型、安装依赖或上传真实数据。
+需要用户批准/提供的门：
+1. eval/test 样本制作(数量/来源/许可证,EVAL_TEST_PREP.md §4);
+2. Qwen2.5-7B-Instruct 下载与量化方案批准;
+3. B5 校准的真实标注数据;
+4. 训练超参数(base 选择后的实测值)。
+
+完整规划见 [PIPELINE_PLAN](PIPELINE_PLAN.md)、[训练前准备](TRAIN_PREP_PLAN.md)、
+[eval/test 接口](EVAL_TEST_PREP.md)、[审查备忘录](REVIEW_BACKLOG.md)。
