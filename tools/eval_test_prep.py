@@ -51,7 +51,8 @@ def cmd_status(args) -> int:
         manifests.append(top_manifest)
     for name in ("eval", "test"):
         for cand in ((base / name / "manifest.json"),
-                     (base / "manifest.json")):
+                     (base / "manifest.json"),
+                     (base / "manifest-v1.json")):   # v1 归档清单(v2 切换后)
             if cand.exists() and cand not in manifests:
                 manifests.append(cand)
     manifest_shas = {hashlib.sha256(m.read_bytes()).hexdigest(): m

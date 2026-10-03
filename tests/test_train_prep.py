@@ -74,15 +74,16 @@ class TestManifestTrain(unittest.TestCase):
                           "train 条目必须标注 provisional/candidate 语义")
 
     def test_raw_manifest_kept_intact(self):
-        """manifest.json 现登记 6 条目:63 条候选 split=train(用户拍板)+
-        eval + test 各归其位;provisional 语义在 notes。"""
-        raw = json.loads((ROOT / "data/v1/manifest.json")
+        """活动清单 data/manifest.json 登记 6 条目:63 条候选 split=train
+        (v1\\raw,用户拍板)+ eval/test 指向 v2(2026-10-03 已切换);
+        v1 归档清单保留于 data/v1/manifest.json。"""
+        raw = json.loads((ROOT / "data/manifest.json")
                          .read_text(encoding="utf-8"))
         self.assertEqual(len(raw["entries"]), 6)
         splits = {e["split"] for e in raw["entries"]}
         self.assertEqual(splits, {"train", "eval", "test"})
         for e in raw["entries"]:
-            f = ROOT / "data/v1" / e["path"]
+            f = ROOT / "data" / e["path"]
             self.assertEqual(e["sha256"], sha256_file(f),
                              f"{e['path']} 哈希与登记不一致")
 
