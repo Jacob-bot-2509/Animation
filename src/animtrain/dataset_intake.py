@@ -68,10 +68,14 @@ def _assert_not_frozen(dst: Path) -> None:
                 raise ValueError(f"A7 冻结保护:锁 {lock.name} 无效或已变化，"
                                  f"fail-closed 拒绝写入: {problems[0]}")
             covered = frozen_paths(lock)
+            # Existing hard links share file bytes despite different resolved paths.
+            is_frozen = target in covered or (
+                resolved.exists()
+                and any(resolved.samefile(p) for p in [lock, *covered]))
         except (OSError, UnicodeError, KeyError, TypeError, AttributeError) as exc:
             raise ValueError(f"A7 冻结保护:锁 {lock.name} 结构无效，"
                              "fail-closed 拒绝写入") from exc
-        if target in covered:
+        if is_frozen:
             raise ValueError(f"A7 冻结保护:目标已被冻结锁 {lock.name} 覆盖,"
                              "拒绝写入(--force 不能绕过)")
 

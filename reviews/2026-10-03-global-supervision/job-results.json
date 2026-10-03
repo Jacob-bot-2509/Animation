@@ -1,0 +1,31 @@
+{
+  "source_hashes": {
+    "src/animtrain/win_job.py": "1c5e83fe7abeae77be43aaead335bd03cf0fe37b26976ce6342e3d346e5aa5bd",
+    "src/animtrain/render_gate.py": "b2ee9b499aa30456df96f16243f63da3193ad152872caf0677e60040688fde25",
+    "src/animtrain/preflight.py": "616f824dbc173d831d042cb9297eb9c1f39ef5a45a32bfe3ac2bc74f1593f2cf"
+  },
+  "results": [
+    {
+      "case": "assign_error_5",
+      "expected": "any job assignment failure must raise",
+      "raised": false,
+      "assigned_count": 1
+    },
+    {
+      "case": "render_assignment_failure_cleanup",
+      "expected": "launched process terminated and waited before returning",
+      "status": "exec_error",
+      "kill_called": false,
+      "wait_called": false,
+      "communicate_called": false,
+      "job_terminate_called": false,
+      "job_close_called": true
+    },
+    {
+      "case": "render_without_job_reports_memory",
+      "expected": "this render must report no actual memory limit",
+      "status": "rendered",
+      "memory_limit_mb": 2048
+    }
+  ]
+}

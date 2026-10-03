@@ -1,0 +1,478 @@
+{
+  "head": "0123c931d3512ea6b7e0bbb15df7c69dfa2cd412",
+  "real_input_hashes": {
+    "data/v1/raw/dataset_calc.jsonl": "65d9c9255cd6ac1ee6200917b630882a7d974e787829f46a159c2dc16af75def",
+    "data/v1/raw/dataset_geom.jsonl": "109d993d8dfd8ed347911a996074ae2b75b38fcf300417e9a06bb8a557cf5ddb",
+    "data/v1/raw/dataset_linalg.jsonl": "f5065a536130cf055708a9911d43089ed38e0da6a5f5d363210e20ae1a2a4616",
+    "data/v1/raw/dataset_prob.jsonl": "9af0e647c5ae8a732232cb081a08f3ed8747ff11c331b619ff510c0086abc556"
+  },
+  "source_hashes": {
+    "src/animtrain/__init__.py": "49cff126acefffb5c90647fa30c5cca10ede76d004e404d28fa71900163967d3",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd",
+    "src/animtrain/calibrate.py": "e2fde0c49b7ec747370ae6577f659a8b1f078595bb90856be0f7756a221f55dc",
+    "src/animtrain/code_gate.py": "58d80f2246218e35202786026f1cdcd2571bf961575e8034a1c3d25836d58a65",
+    "src/animtrain/dataset_intake.py": "82b97ac01457988877b2dc4d535979910c3c0772e9356e522d286643d9985405",
+    "src/animtrain/fields.py": "0427ee7765b44f5b32c1c326f84cbfab0fdde9a3aec17bad27bdccfa013f74b3",
+    "src/animtrain/freeze.py": "80234f07f86246323e29a472e359d74ce5e48406d4bde98df07a16b9501d99a3",
+    "src/animtrain/fs_guard.py": "cd8eecdf472b1fca7c36c8aa1201b4b1a24636fecd67dc6fe1dd0842b88c248e",
+    "src/animtrain/manifest.py": "9f0062f75ae923e8b9579620d946dbf83f46889a65eb4532d24a04b1f9cdb816",
+    "src/animtrain/near_dup.py": "b888f1a9eaea6631fd3892256940c59387b38b53beae6f6ee2ce7aa8e5314df4",
+    "src/animtrain/preflight.py": "94808a072c1e11f8da074066a59d8d28953f3323ca0a3c6ee21860b8cb5e2d92",
+    "src/animtrain/render_gate.py": "04b07c10f82b10bd91a814de28f72196e9bbdd5002be4d9b1a30ecf8c19a91fc",
+    "src/animtrain/run_record.py": "cf0a0d8ce355cb84990ddb1b308f3a05387ccf96aa6099431252f5ca048afa2c",
+    "src/animtrain/scan.py": "040dc867f7370eb6d20832aedb1253b90779aa93857e50542cf8b47bfb051828",
+    "src/animtrain/validate.py": "6b24d557f748cb45061db5aa35ffde3450e7e91a30da8c9c8ee17e095017d808",
+    "tools/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/check_code.py": "fdf06346ba127778a2e6756424497852bacaa63f6a049cfb4a2e9413e1a1ffe2",
+    "tools/check_fields.py": "e2c43fff16b2164c470a09215c618257dd8ea43885b6539b9a4f41672f4c1a4f",
+    "tools/data_check.py": "14c59dc31387fe915eab6084c0d57af860d638258519a3d0348e3d98265de12f",
+    "tools/dataset_intake.py": "ebc81e786909f4c71929a8a45453b694476bdda8947dd45453a4e76c03f507ac",
+    "tools/freeze_data.py": "fa10b23faee33d042304cf076af553b387834a99c8b42d26791153bb86e9506b",
+    "tools/make_manifest.py": "a04e881928f141417fee1517127bb2c81c165eb3f0f414a10cce68158e3de1bd",
+    "tools/preflight.py": "08955f0c9bdd15e9dcf235024ac85e04b09b073ab79d64c8216e0d5dcb31fb44",
+    "tools/run_record.py": "76f27fdc1a4f6f72db3e9d316b27bd41fdafa63212380f1b8732d50cc18ede3d",
+    "tools/split_data.py": "435d7ed974907c7cdfc91a2571f2e5e2e8192097571f33f79681e6a3c6078c53"
+  },
+  "G1_entry_disagreement": {
+    "train.txt": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\train.txt",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "train.txt: 非 .jsonl 文件不能作为样本入口(JSONL 一行一对象);请先 convert 转换"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": null
+    },
+    "empty.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "empty.jsonl: 数据文件为空(空样本入口不得 ok=true)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] empty.jsonl: 数据文件为空(空样本入口不得 ok=true)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\empty.jsonl",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "empty.jsonl: 没有有效样本行(空 JSONL/空输入不得 ok=true)"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [],
+      "fields_cli": {
+        "exit_code": 0,
+        "stdout": "必填字段 ['problem', 'solution', 'answer'] | 缺失 0 行\n"
+      }
+    },
+    "idonly.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\idonly.jsonl",
+        "n_records": 1,
+        "categories": {},
+        "problems": [
+          "line 1: 缺关键字段 category, sub_category, problem, solution, scene_spec, source, license(id=one)"
+        ],
+        "quarantines": [
+          "line 1: 缺 answer(id=one,候选数据:判分字段待补齐)",
+          "line 1: 可选元数据缺/空: function_family, visual_style, efficiency_tags(id=one,candidate 语义)"
+        ],
+        "id_lines": {
+          "one": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [
+        {
+          "sample_id": "one",
+          "line": 1,
+          "missing": [
+            "problem",
+            "solution",
+            "answer"
+          ],
+          "reason": "缺失必填字段: problem, solution, answer"
+        }
+      ]
+    },
+    "duplicate.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\duplicate.jsonl",
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=one 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "one": [
+            1,
+            2
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": []
+    },
+    "same_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=dup(one.jsonl:1, one.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名": [
+            1,
+            [
+              "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "same_split_cross_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 2,
+        "problems": [
+          "train 内 ID 重复: id=dup(left.jsonl:1, right.jsonl:1)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍": [
+            1,
+            [
+              "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    }
+  },
+  "G2_frozen_overwrite": {
+    "convert": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_data": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\report_data\\eval.jsonl: A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_lock": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-akzlvz29\\report_lock\\eval.lock.json: A7 冻结保护:拒绝覆盖冻结锁文件(*.lock.json),--force 不能绕过\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    }
+  },
+  "G3_same_task_different_metadata": {
+    "same_task_fields": [
+      "problem",
+      "solution",
+      "answer",
+      "scene_spec"
+    ],
+    "different_fields": [
+      "id",
+      "function_family"
+    ],
+    "core_manifest": {
+      "ok": false,
+      "n_entries": 2,
+      "problems": [
+        "train 与 eval 精确重叠 1 个样本(零容忍,前项目 20/20 污染教训)",
+        "same_task_eval.jsonl:1 与训练样本近重复(5-gram Jaccard 1.000 ≥ 0.7,命中 same_task_train.jsonl:1)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    },
+    "intake": {
+      "n_records": 2,
+      "categories": {
+        "数学分析": 2
+      },
+      "problems": [],
+      "quarantines": [],
+      "problem_groups": {},
+      "quarantine_groups": {},
+      "ok": true,
+      "status": "clean",
+      "exit_code": 0
+    },
+    "whole_json_jaccard": 0.04743833017077799
+  },
+  "G4_field_shapes": [
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [],
+          "steps": []
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [
+            null
+          ],
+          "steps": [
+            false
+          ]
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "category": [
+          "wrong"
+        ],
+        "sub_category": {
+          "x": 1
+        },
+        "source": {
+          "bad": 1
+        },
+        "function_family": true,
+        "visual_style": 17,
+        "efficiency_tags": "not-a-list"
+      },
+      "problems": [
+        "line 1: category 不是字符串(list)",
+        "line 1: sub_category 不是字符串(dict)",
+        "line 1: source 不是字符串(dict)"
+      ],
+      "quarantines": []
+    }
+  ],
+  "known_B2_core_ready_missing_assets": {
+    "ok": true,
+    "ready": true,
+    "exit_code": 0,
+    "checks": [
+      {
+        "check": "gpu",
+        "ok": true,
+        "detail": "synthetic GPU"
+      },
+      {
+        "check": "model_dir",
+        "ok": true,
+        "detail": "synthetic model"
+      },
+      {
+        "check": "data_manifest",
+        "ok": true,
+        "detail": "synthetic data"
+      },
+      {
+        "check": "run_snapshot",
+        "ok": true,
+        "detail": "synthetic record"
+      },
+      {
+        "check": "ready",
+        "ok": true,
+        "detail": "全部必需门禁通过,可生成可执行训练计划"
+      }
+    ]
+  },
+  "current_real_intake": {
+    "n_records": 63,
+    "categories": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "problems": [],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": true,
+    "status": "clean",
+    "exit_code": 0
+  },
+  "current_real_manifest": {
+    "ok": true,
+    "n_entries": 4,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "real_inputs_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  },
+  "source_unchanged": {
+    "src/animtrain/__init__.py": true,
+    "src/animtrain/atomic_write.py": true,
+    "src/animtrain/calibrate.py": true,
+    "src/animtrain/code_gate.py": true,
+    "src/animtrain/dataset_intake.py": true,
+    "src/animtrain/fields.py": true,
+    "src/animtrain/freeze.py": true,
+    "src/animtrain/fs_guard.py": true,
+    "src/animtrain/manifest.py": true,
+    "src/animtrain/near_dup.py": true,
+    "src/animtrain/preflight.py": true,
+    "src/animtrain/render_gate.py": true,
+    "src/animtrain/run_record.py": true,
+    "src/animtrain/scan.py": true,
+    "src/animtrain/validate.py": true,
+    "tools/__init__.py": true,
+    "tools/check_code.py": true,
+    "tools/check_fields.py": true,
+    "tools/data_check.py": true,
+    "tools/dataset_intake.py": true,
+    "tools/freeze_data.py": true,
+    "tools/make_manifest.py": true,
+    "tools/preflight.py": true,
+    "tools/run_record.py": true,
+    "tools/split_data.py": true
+  },
+  "baseline_tests": {
+    "passed": 186,
+    "subtests": 29,
+    "seconds": 6.35
+  }
+}

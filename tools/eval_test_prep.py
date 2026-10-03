@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from animtrain.dataset_intake import check_intake_file  # noqa: E402
+from animtrain.dataset_intake import intake_report  # noqa: E402
 from animtrain.manifest import canonical_problem_hash, canonical_problem_text  # noqa: E402
 from animtrain.near_dup import ShingleIndex  # noqa: E402
 
@@ -63,20 +63,28 @@ def cmd_check(args) -> int:
     if not files:
         print(f"[OK] {d}: 未生成任何样本 —— 如实报告,不视为检查通过")
         return 0
-    problems: list[str] = []
-    for f in files:
-        rep = check_intake_file(f)
-        for p in rep["problems"]:
-            problems.append(f"{f.name}: {p}")
-        if rep["status"] == "rejected":
-            print(f"[FAIL] {f}: 入场检查 rejected(problems {len(rep['problems'])})")
-        elif rep["status"] == "candidate":
-            print(f"[WARN] {f}: 入场检查 candidate(quarantine "
-                  f"{len(rep['quarantines'])},不阻断隔离检查)")
-    # 与 train 的隔离检查(精确重叠 + 近重复)
+    # A9: reference availability and schema are part of isolation evidence.
     train_dir = Path(args.train_dir)
+    train_files = _jsonl_files(train_dir)
+    if not train_files:
+        print(f"[FAIL] train {train_dir}: 训练参考集不存在或没有 JSONL，"
+              "无法验证隔离；不得报告通过")
+        return 1
+    # One aggregate preserves intake rules across candidate/reference files:
+    # malformed/empty references and global duplicate IDs are hard failures.
+    rep = intake_report(files + train_files)
+    problems: list[str] = list(rep["problems"])
+    if rep["quarantines"]:
+        print(f"[WARN] 候选/训练参考集存在 {len(rep['quarantines'])} 项 quarantine；"
+              "仅继续隔离预检，不表示入场完整验收")
+    if problems:
+        for p in problems:
+            print(f"  [FAIL] {p}")
+        print(f"结论: 入场或参考集检查不通过,{len(problems)} 个问题")
+        return 1
+    # 与 train 的隔离检查(精确重叠 + 近重复)
     train_lines: list[str] = []
-    for f in _jsonl_files(train_dir):
+    for f in train_files:
         train_lines += _load_lines(f)
     train_hashes = {canonical_problem_hash(l) for l in train_lines}
     near_idx = ShingleIndex()

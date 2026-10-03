@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from animtrain.dataset_intake import _assert_not_frozen  # noqa: E402
 from animtrain.fields import check_jsonl  # noqa: E402
 from animtrain.fs_guard import ensure_not_exists  # noqa: E402
 
@@ -39,6 +40,7 @@ def main(argv: list[str]) -> int:
                     or (report.exists() and source.exists() and report.samefile(source))):
                 print("[FAIL] 报告路径指向输入文件；--force 也不能覆盖输入")
                 return 1
+            _assert_not_frozen(report)
             ensure_not_exists(report, force=args.force)
         bad = check_jsonl(source, required)
     except (OSError, UnicodeError, ValueError) as exc:

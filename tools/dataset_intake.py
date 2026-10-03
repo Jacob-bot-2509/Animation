@@ -97,7 +97,10 @@ def cmd_report(args) -> int:
           f"quarantine {len(rep['quarantines'])} | status={rep['status']}")
     out = Path(args.out)
     try:
-        if out.resolve() in {Path(f).resolve() for f in args.files}:
+        inputs = [Path(f) for f in args.files]
+        if (out.resolve() in {f.resolve() for f in inputs}
+                or (out.exists()
+                    and any(f.exists() and out.samefile(f) for f in inputs))):
             raise ValueError("拒绝报告覆盖任一输入文件，--force 不能绕过输入保护")
         if out.name.endswith(".lock.json"):
             raise ValueError("A7 冻结保护:拒绝覆盖冻结锁文件(*.lock.json),"
