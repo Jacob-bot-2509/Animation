@@ -249,3 +249,55 @@ class TestB7OptionalMetaTypes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestC2EmptySplit(unittest.TestCase):
+    """C2:空 split 默认拒绝(不写空文件不伪造样本);空文件不误报哈希重叠。"""
+
+    def test_split_refuses_empty_split(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            pool = d / "pool.jsonl"
+            pool.write_text('{"id": "a", "problem": "p", "solution": "s"}\n',
+                            encoding="utf-8")
+            plan = d / "plan.json"
+            plan.write_text('{"train": ["a"], "eval": [], "test": []}',
+                            encoding="utf-8")
+            out = subprocess.run(
+                [sys.executable, "-X", "utf8",
+                 str(ROOT / "tools" / "split_data.py"), "--pool", str(pool),
+                 "--plan", str(plan), "--out", str(d / "out")],
+                capture_output=True, encoding="utf-8", errors="replace")
+            self.assertNotEqual(out.returncode, 0, out.stdout + out.stderr)
+            self.assertIn("为空", out.stdout + out.stderr)
+
+    def test_split_allow_empty_flag(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            pool = d / "pool.jsonl"
+            pool.write_text('{"id": "a", "problem": "p", "solution": "s"}\n',
+                            encoding="utf-8")
+            plan = d / "plan.json"
+            plan.write_text('{"train": ["a"], "eval": [], "test": []}',
+                            encoding="utf-8")
+            out = subprocess.run(
+                [sys.executable, "-X", "utf8",
+                 str(ROOT / "tools" / "split_data.py"), "--pool", str(pool),
+                 "--plan", str(plan), "--out", str(d / "out"),
+                 "--allow-empty"],
+                capture_output=True, encoding="utf-8", errors="replace")
+            self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+
+    def test_empty_files_no_hash_overlap_false_positive(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "a.jsonl").write_text("", encoding="utf-8")
+            (root / "b.jsonl").write_text("", encoding="utf-8")
+            r = validate_manifest(make_manifest(
+                root, [("a.jsonl", "raw"), ("b.jsonl", "raw")]), root)
+            self.assertTrue(any("数据文件为空" in p for p in r["problems"]))
+            self.assertFalse(any("文件内容完全相同" in p for p in r["problems"]),
+                             "空文件不得误报哈希重叠(C2)")

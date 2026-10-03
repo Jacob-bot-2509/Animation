@@ -15,7 +15,8 @@ PY = sys.executable
 def _run_split(pool: Path, plan: Path, out: Path, extra: list[str] | None = None):
     r = subprocess.run(
         [str(PY), str(ROOT / "tools" / "split_data.py"),
-         "--pool", str(pool), "--plan", str(plan), "--out", str(out)]
+         "--pool", str(pool), "--plan", str(plan), "--out", str(out),
+         "--allow-empty"]  # 既有用例专注分配语义;C2 空集合拒绝单独测试
         + (extra or []),
         capture_output=True, text=True, encoding="utf-8")
     return r

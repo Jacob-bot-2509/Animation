@@ -202,12 +202,15 @@ def validate_manifest(m: Manifest, root: Path,
             if actual != e.sha256:
                 problems.append(f"{e.path}: SHA256 不一致(登记 {e.sha256[:12]}…,"
                                 f"实际 {actual[:12]}…)")
-            # 2b. 文件 hash 重叠(msg_101-2):不同路径内容完全相同 → 检出
-            if actual in seen_file_hashes:
-                problems.append(f"{e.path}: 与 {seen_file_hashes[actual]} "
-                                "文件内容完全相同(文件 hash 重叠=0 要求)")
-            else:
-                seen_file_hashes[actual] = e.path
+            # 2b. 文件 hash 重叠(msg_101-2):不同路径内容完全相同 → 检出。
+            #     C2:空文件(size=0)不参与重叠判定 —— 两个空文件同哈希是
+            #     空集合误报,不是内容重复;空文件本身由"数据文件为空"硬伤拦住。
+            if p.stat().st_size > 0:
+                if actual in seen_file_hashes:
+                    problems.append(f"{e.path}: 与 {seen_file_hashes[actual]} "
+                                    "文件内容完全相同(文件 hash 重叠=0 要求)")
+                else:
+                    seen_file_hashes[actual] = e.path
         # 3. 许可证与来源(空/None/仅空白 → quarantine,数据文件不得默认通过)
         # 注意 None(JSON null)不能 str() 成 "None" 蒙混 —— not x 短路先判
         if not e.license or not str(e.license).strip():

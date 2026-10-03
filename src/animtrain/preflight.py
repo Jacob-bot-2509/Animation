@@ -12,13 +12,15 @@ MODEL_KEY_FILES = ("config.json", "tokenizer_config.json", "tokenizer.json")
 
 
 def check_gpu() -> tuple[bool, str]:
-    """nvidia-smi 可用且至少一块 GPU。"""
+    """nvidia-smi 可用且至少一块 GPU(C12:查询带超时,挂起即如实失败)。"""
     try:
         out = subprocess.run(["nvidia-smi", "--query-gpu=name,memory.total",
                               "--format=csv,noheader"], capture_output=True,
-                             text=True, encoding="utf-8")
+                             text=True, encoding="utf-8", timeout=10)
     except FileNotFoundError:
         return False, "nvidia-smi 不存在:未安装 NVIDIA 驱动或不在 PATH"
+    except subprocess.TimeoutExpired:
+        return False, "nvidia-smi 查询超时(>10s)—— GPU 状态未知,如实失败(C12)"
     if out.returncode != 0:
         return False, f"nvidia-smi 失败: {out.stderr.strip()[:200]}"
     lines = [l for l in out.stdout.splitlines() if l.strip()]

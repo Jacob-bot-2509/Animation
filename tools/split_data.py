@@ -55,7 +55,8 @@ def load_pool(pool: Path) -> tuple[dict[str, str], list[dict]]:
 
 def split(pool: Path, plan: Path, out: Path, dry_run: bool,
           force: bool = False, license_: str = "",
-          frozen_locks: list[Path] | None = None) -> dict:
+          frozen_locks: list[Path] | None = None,
+          allow_empty: bool = False) -> dict:
     by_id, bad = load_pool(pool)
     plan_obj = json.loads(plan.read_text(encoding="utf-8"))
     rejects = list(bad)
@@ -75,6 +76,12 @@ def split(pool: Path, plan: Path, out: Path, dry_run: bool,
     for sid, line in by_id.items():
         if sid not in assigned:
             rejects.append({"sample_id": sid, "reason": "未分配"})
+
+    # C2:空 split 默认拒绝 —— 不写空文件、不伪造样本;确需空集合显式 --allow-empty
+    for name in ("train", "eval", "test"):
+        if not split_rows[name] and not allow_empty:
+            raise SystemExit(f"拒绝:{name} split 为空 —— 不写空文件也不伪造样本"
+                             "(C2);确需空集合请显式 --allow-empty")
 
     summary = {"pool": str(pool), "plan": str(plan),
                "pool_n": len(by_id), "assigned": len(assigned),
@@ -169,10 +176,13 @@ def main(argv: list[str]) -> int:
                     help="输出数据许可证(未提供则留空 → 校验报 quarantine,不硬写)")
     ap.add_argument("--frozen-lock", action="append", default=[],
                     help="冻结锁(可多次);输出命中冻结文件一律拒绝,force 也不绕过")
+    ap.add_argument("--allow-empty", action="store_true",
+                    help="允许空 split 写出空文件(C2 默认拒绝空集合)")
     args = ap.parse_args(argv)
     r = split(Path(args.pool), Path(args.plan), Path(args.out), args.dry_run,
               force=args.force, license_=args.license,
-              frozen_locks=[Path(f) for f in args.frozen_lock])
+              frozen_locks=[Path(f) for f in args.frozen_lock],
+              allow_empty=args.allow_empty)
     if r.get("dry_run"):
         print("dry-run:", json.dumps({k: v for k, v in r.items() if k != "dry_run"},
                                      ensure_ascii=False))
