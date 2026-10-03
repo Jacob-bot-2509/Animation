@@ -28,6 +28,13 @@
 | license | 许可证,白名单见 §4 | 硬伤 |
 | function_family / visual_style / efficiency_tags | 可选元数据(缺失/空 → quarantine,候选语义) | quarantine |
 
+### 当前入场类型约束（2026-10-03）
+
+- category、sub_category、source、problem、solution、answer 为字符串；必需字段空白按缺失处理，answer 缺失仍为 quarantine。
+- scene_spec 为对象，objects / steps 为非空字符串列表，列表元素不能是空白或非文本值。
+- function_family / visual_style 若提供则为字符串；efficiency_tags 若提供则为非空字符串列表。可选元数据缺失或空仍是 quarantine，非空但类型错误为硬伤。
+- 正式入场 ID 使用 id；manifest 校验保留 sample_id 兼容口径，并在合法性、同集合查重及集合重叠中使用相同的 ID 提取规则。这不表示旧格式已通过完整动画入场契约。
+
 ## 3. ID 唯一性
 
 - 同 ID 同内容 = **整条重复**(硬伤);同 ID 不同内容 = **ID 冲突**(硬伤)。

@@ -52,6 +52,11 @@ seed、Python 版本、GPU 型号与显存、git commit 与 dirty 状态、
 - **小样本过拟合先行**:先在极小样本上验证管线能学、资源峰值可控。
 - **LoRA/QLoRA 作为候选**:适配器训练,量化候选待批准。
 - 不下载模型、不安装依赖;具体底座模型与量化方案由用户批准后确定。
+- **后端适配器契约**:src/animtrain/backend.py(load_model/train/save_checkpoint/
+  evaluate 四入口;未批准阶段一律 NOT_APPROVED 抛 BackendNotApproved;
+  LLaMAFactory/Unsloth 等未来后端经注册表接入,当前不绑定实现)。
+- **底座候选短名单**:BASE_MODEL_SHORTLIST.md(Qwen2.5-7B-Instruct、
+  DeepSeek-R1-Distill-Qwen-7B 两候选,八维评估全部待实测,待用户确认)。
 
 ## 6. 后续 eval/test 接口与隔离规则(现在不生成、不冻结)
 
