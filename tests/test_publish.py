@@ -56,9 +56,11 @@ class TestPublish(unittest.TestCase):
             backup.write_text("原始内容", encoding="utf-8")
             jp = journal_path(d, "g4")
             jp.write_text(json.dumps(
-                {"group": "g4", "items": [{"path": str(a.resolve()),
-                                           "backup": str(backup.resolve()),
-                                           "existed_before": True}]},
+                {"group": "g4", "stage": "writing", "committed": [], "restored": [],
+                 "items": [{"path": str(a.resolve()),
+                            "backup": str(backup.resolve()),
+                            "existed_before": True,
+                            "hash_old": "oldhash", "hash_new": "newhash"}]},
                 ensure_ascii=False), encoding="utf-8")
             result = recover_publish(d, "g4", rollback=True)
             self.assertTrue(result["recovered"])
@@ -145,9 +147,11 @@ class TestPublishGS1(unittest.TestCase):
             a.write_text("残留新文件", encoding="utf-8")
             jp = journal_path(d, "g10")
             jp.write_text(json.dumps(
-                {"group": "g10", "items": [{"path": str(a.resolve()),
-                                            "backup": str(a.resolve()) + BACKUP_SUFFIX,
-                                            "existed_before": False}]},
+                {"group": "g10", "stage": "writing", "committed": [], "restored": [],
+                 "items": [{"path": str(a.resolve()),
+                            "backup": str(a.resolve()) + BACKUP_SUFFIX,
+                            "existed_before": False,
+                            "hash_old": "", "hash_new": "nh"}]},
                 ensure_ascii=False), encoding="utf-8")
             result = recover_publish(d, "g10", rollback=True)
             self.assertTrue(result["recovered"])
@@ -166,9 +170,11 @@ class TestPublishGS1(unittest.TestCase):
             (d / "f.lock.json").write_text(json.dumps(lock), encoding="utf-8")
             jp = journal_path(d, "g11")
             jp.write_text(json.dumps(
-                {"group": "g11", "items": [{"path": str(a.resolve()),
-                                            "backup": str(backup.resolve()),
-                                            "existed_before": True}]},
+                {"group": "g11", "stage": "writing", "committed": [], "restored": [],
+                 "items": [{"path": str(a.resolve()),
+                            "backup": str(backup.resolve()),
+                            "existed_before": True,
+                            "hash_old": "oh", "hash_new": "nh"}]},
                 ensure_ascii=False), encoding="utf-8")
             result = recover_publish(d, "g11", rollback=True)
             self.assertFalse(result["recovered"])
@@ -184,3 +190,99 @@ class TestPublishGS1(unittest.TestCase):
             self.assertFalse(result["recovered"])
             self.assertIn("损坏", result.get("error", ""))
             self.assertTrue(jp.exists())  # 不删除
+
+
+class TestPublishMsg216(unittest.TestCase):
+    """msg_216 反例:命名空间互斥/阶段感知/幂等回滚/冻结新文件/严格 schema。"""
+
+    def _journal(self, d: Path, name: str, stage: str, items: list[dict]):
+        jp = journal_path(d, name)
+        jp.write_text(json.dumps({"group": name, "stage": stage,
+                                  "committed": [], "restored": [], "items": items},
+                                 ensure_ascii=False), encoding="utf-8")
+        return jp
+
+    def test_target_backup_namespace_overlap_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            a = d / "a.txt"
+            with self.assertRaises(ValueError) as ctx:
+                publish_files(d, "g13", [(a, "x"), (Path(str(a) + BACKUP_SUFFIX), "y")],
+                              force=True)
+            self.assertIn("备份路径与", str(ctx.exception))
+            self.assertFalse(a.exists())  # 预验失败,未写任何文件
+
+    def test_target_journal_overlap_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            jp = journal_path(d, "g14")
+            with self.assertRaises(ValueError) as ctx:
+                publish_files(d, "g14", [(jp, "x")], force=True)
+            self.assertIn("journal", str(ctx.exception))
+
+    def test_cleanup_stage_forward_only(self):
+        """已提交组(stage=cleanup)绝不回滚,只清理备份。"""
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            a = d / "a.txt"
+            a.write_text("newA", encoding="utf-8")  # 已提交的新内容
+            backup = Path(str(a) + BACKUP_SUFFIX)
+            backup.write_text("oldA", encoding="utf-8")
+            self._journal(d, "g15", "cleanup",
+                          [{"path": str(a.resolve()),
+                            "backup": str(backup.resolve()),
+                            "existed_before": True,
+                            "hash_old": "oh", "hash_new": "nh"}])
+            result = recover_publish(d, "g15", rollback=True)
+            self.assertTrue(result["recovered"])
+            self.assertEqual(a.read_text(encoding="utf-8"), "newA")  # 未回滚
+            self.assertFalse(backup.exists())  # 备份已清理
+
+    def test_rollback_idempotent(self):
+        """目标已是原内容(hash 匹配)→ 幂等跳过,不重复恢复不报错。"""
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            a = d / "a.txt"
+            a.write_text("oldA", encoding="utf-8")
+            import hashlib
+            old_hash = hashlib.sha256(b"oldA").hexdigest()
+            backup = Path(str(a) + BACKUP_SUFFIX)
+            backup.write_text("oldA", encoding="utf-8")
+            self._journal(d, "g16", "writing",
+                          [{"path": str(a.resolve()),
+                            "backup": str(backup.resolve()),
+                            "existed_before": True,
+                            "hash_old": old_hash, "hash_new": "nh"}])
+            result = recover_publish(d, "g16", rollback=True)
+            self.assertTrue(result["recovered"], result)
+            self.assertEqual(a.read_text(encoding="utf-8"), "oldA")
+            self.assertFalse(journal_path(d, "g16").exists())
+
+    def test_frozen_new_file_not_deleted(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            a = d / "new.jsonl"
+            a.write_text("残留新文件", encoding="utf-8")
+            lock = {"freeze_lock_version": 1, "locked": True,
+                    "entries": [{"path": str(a.resolve()), "sha256": "x" * 64,
+                                 "size": 0}], "n_files": 1}
+            (d / "f.lock.json").write_text(json.dumps(lock), encoding="utf-8")
+            self._journal(d, "g17", "writing",
+                          [{"path": str(a.resolve()),
+                            "backup": str(a.resolve()) + BACKUP_SUFFIX,
+                            "existed_before": False,
+                            "hash_old": "", "hash_new": "nh"}])
+            result = recover_publish(d, "g17", rollback=True)
+            self.assertFalse(result["recovered"])
+            self.assertIn("冻结", result.get("error", ""))
+            self.assertTrue(a.exists())  # 冻结新文件未被删除
+
+    def test_empty_object_journal_failclosed(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            jp = journal_path(d, "g18")
+            jp.write_text("{}", encoding="utf-8")
+            result = recover_publish(d, "g18", rollback=True)
+            self.assertFalse(result["recovered"])
+            self.assertIn("缺", result.get("error", ""))
+            self.assertTrue(jp.exists())
