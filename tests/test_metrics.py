@@ -49,13 +49,30 @@ class TestMetricsContract(unittest.TestCase):
         self.assertEqual(res["math_review_pass_rate"], "NOT_MEASURED")
 
     def test_latency_median_and_p95(self):
-        res = aggregate([self._ok("a", i + 1.0) for i in range(10)])
+        res = aggregate([self._ok(str(i), i + 1.0) for i in range(10)])
         self.assertEqual(res["median_latency_sec"], 5.5)  # (5+6)/2
         self.assertEqual(res["p95_latency_sec"], 10.0)
 
     def test_sample_hash_deterministic_and_sensitive(self):
         self.assertEqual(sample_hash("p", "s"), sample_hash("p", "s"))
         self.assertNotEqual(sample_hash("p", "s"), sample_hash("p", "t"))
+
+    def test_non_bool_parse_flags_rejected(self):
+        """msg_264:parsed_strict/parsed_lenient 非 bool(如 2/2)必须拒绝,
+        否则 strict/lenient rate 会算出 200%。"""
+        r1 = SampleResult(sample_id="x", input_hash=sample_hash("p", "s"))
+        r1.parsed_strict = 2  # type: ignore[assignment]
+        with self.assertRaises(ValueError):
+            finalize_result(r1)
+        r2 = SampleResult(sample_id="y", input_hash=sample_hash("p", "s"))
+        r2.parsed_lenient = 2  # type: ignore[assignment]
+        with self.assertRaises(ValueError):
+            finalize_result(r2)
+        r3 = SampleResult(sample_id="z", input_hash=sample_hash("p", "s"))
+        r3.parsed_strict = True
+        r3.parsed_lenient = 2  # type: ignore[assignment]
+        with self.assertRaises(ValueError):
+            aggregate([r3])
 
 
 if __name__ == "__main__":

@@ -6,7 +6,8 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import dataclass, field
+import math
+from dataclasses import dataclass, field, replace
 
 # 失败分类(固定口径,逐样本必须落一类)
 FAILURE_TAXONOMY = (
@@ -28,6 +29,9 @@ FIXED_METRICS = (
     "median_latency_sec",         # 中位延迟
     "p95_latency_sec",
 )
+
+
+METRIC_CONTRACT_VERSION = 1
 
 
 @dataclass
@@ -56,54 +60,88 @@ class SampleResult:
 
 
 def finalize_result(r: SampleResult) -> SampleResult:
-    """按解析与失败状态定稿:失败必须落分类;分母固定为样本总数。"""
-    if r.parsed_lenient and not r.spec_problems:
+    """Preserve explicit failures even when the JSON and its fields are valid."""
+    if r.status not in ("pending", "ok", "failed"):
+        raise ValueError(f"status invalid: {r.status!r}")
+    if r.failure_class and r.failure_class not in FAILURE_TAXONOMY:
+        raise ValueError(f"failure_class invalid: {r.failure_class!r}")
+    for flag in ("parsed_strict", "parsed_lenient"):
+        if type(getattr(r, flag)) is not bool:
+            raise ValueError(f"{flag} must be bool, got {getattr(r, flag)!r}")
+    if r.parsed_strict and not r.parsed_lenient:
+        raise ValueError("Strict parsing success requires lenient parsing success")
+    field_ok = r.parsed_lenient and not r.spec_problems
+    if field_ok and not r.failure_class and r.status != "failed":
         r.status = "ok"
     else:
         r.status = "failed"
         if not r.failure_class:
             r.failure_class = "schema_violation" if r.parsed_lenient else "other"
-        if r.failure_class not in FAILURE_TAXONOMY:
-            raise ValueError(f"failure_class 非法: {r.failure_class!r}")
         if not r.failure_detail:
-            r.failure_detail = "未提供失败原因(契约要求必须附原因)"
+            r.failure_detail = "Failure reason was not provided"
     return r
 
 
 def aggregate(results: list[SampleResult], math_review: dict | None = None) -> dict:
-    """固定口径汇总:分母 = 样本总数,失败不缩小分母;未标注项 NOT_MEASURED。"""
+    """All rates use the full sample count. Partial math review remains unmeasured.
+
+    Field compliance is independent of semantic/runtime success. Latencies use
+    measured samples only, with nearest-rank p95; latency_n records coverage.
+    Copies are finalized so aggregation never rewrites the caller's records.
+    """
     n = len(results)
     if n == 0:
-        return {"n_samples": 0, "error": "空结果集不可汇总"}
-    ok = sum(1 for r in results if r.status == "ok")
-    strict = sum(1 for r in results if r.parsed_strict)
-    lenient = sum(1 for r in results if r.parsed_lenient)
-    lat = sorted(r.metrics.get("latency_sec", 0.0) for r in results
-                 if r.metrics.get("latency_sec") is not None)
+        return {"n_samples": 0, "error": "Empty result set cannot be aggregated"}
+    sample_ids = [r.sample_id for r in results]
+    if len(set(sample_ids)) != n:
+        raise ValueError("Duplicate sample_id in result set")
+    review = math_review if math_review is not None else {}
+    if not isinstance(review, dict):
+        raise ValueError("math_review must be a sample_id mapping")
+    foreign = set(review) - set(sample_ids)
+    if foreign:
+        raise ValueError("math_review contains sample IDs outside this result set")
+    if any(v is not None and type(v) is not bool for v in review.values()):
+        raise ValueError("math_review values must be bool or None")
+
+    normalized = [finalize_result(replace(r)) for r in results]
+    ok = sum(r.status == "ok" for r in normalized)
+    strict = sum(r.parsed_strict for r in normalized)
+    lenient = sum(r.parsed_lenient for r in normalized)
+    field_ok = sum(r.parsed_lenient and not r.spec_problems for r in normalized)
+    lat = []
+    for r in normalized:
+        value = r.metrics.get("latency_sec")
+        if value is None:
+            continue
+        if isinstance(value, bool) or not isinstance(value, (int, float)) \
+                or not math.isfinite(value) or value < 0:
+            raise ValueError(f"Invalid latency_sec for {r.sample_id!r}")
+        lat.append(value)
+    lat.sort()
     failure_counts: dict[str, int] = {}
-    for r in results:
+    for r in normalized:
         if r.status == "failed":
             failure_counts[r.failure_class] = failure_counts.get(r.failure_class, 0) + 1
-    mr = "NOT_MEASURED"
-    mr_n = 0
-    if math_review and n:
-        mr_n = sum(1 for v in math_review.values() if v is True)
-        mr = round(mr_n / n, 4)
+
+    mr_n = sum(review.get(sid) is True for sid in sample_ids)
+    reviewed_n = sum(type(review.get(sid)) is bool for sid in sample_ids)
+    mr = round(mr_n / n, 4) if reviewed_n == n else "NOT_MEASURED"
     if lat:
         mid = len(lat) // 2
         median = (lat[mid - 1] + lat[mid]) / 2 if len(lat) % 2 == 0 else lat[mid]
-        p95 = lat[min(len(lat) - 1, int(len(lat) * 0.95))]
+        p95 = lat[math.ceil(len(lat) * 0.95) - 1]
     else:
         median, p95 = None, None
-    return {"n_samples": n, "ok": ok, "ok_rate": round(ok / n, 4),
+    return {"metric_contract_version": METRIC_CONTRACT_VERSION,
+            "n_samples": n, "ok": ok, "ok_rate": round(ok / n, 4),
             "strict_parse_rate": round(strict / n, 4),
             "lenient_parse_rate": round(lenient / n, 4),
-            "spec_field_compliance_rate": round(ok / n, 4),  # ok=字段合规(当前口径)
+            "spec_field_compliance_rate": round(field_ok / n, 4),
             "math_review_pass_rate": mr,
-            "math_review_n": mr_n,
-            "median_latency_sec": median,
-            "p95_latency_sec": p95,
-            "failure_counts": failure_counts}
+            "math_review_n": mr_n, "math_reviewed_n": reviewed_n,
+            "median_latency_sec": median, "p95_latency_sec": p95,
+            "latency_n": len(lat), "failure_counts": failure_counts}
 
 
 def sample_hash(problem: str, solution: str) -> str:
