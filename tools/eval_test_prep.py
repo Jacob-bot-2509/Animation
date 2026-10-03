@@ -45,6 +45,8 @@ def cmd_status(args) -> int:
         d = base / name
         files = _jsonl_files(d)
         locks = sorted(d.rglob("*.lock.json")) if d.is_dir() else []
+        # 锁亦可位于 data/ 层(preflight discover_locks 口径:向上扫描到 data/)
+        locks += sorted(base.parent.glob(f"{name}*.lock.json"))
         if not files:
             print(f"[OK] {name}: 未生成任何样本(如实,非失败)")
         else:

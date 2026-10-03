@@ -1,6 +1,6 @@
 # dataset-eval（同题多解 · 思路展开）· 审阅稿 v1
 
-> 状态：**已转 JSON/JSONL**（data/v1/eval/dataset_eval.{json,jsonl}，300 行 = 100 题×3 解法，2026-10-03 用户指示）；**未冻结**。内容经复查整改（reviews/2026-10-03-math-review/）。
+> 状态：**已转 JSON/JSONL**（data/v1/eval/dataset_eval.{json,jsonl}，300 行 = 100 题×3 解法，2026-10-03 用户指示）；**已冻结**（data/{eval,test}-v1.lock.json，绑定顶层 manifest）。内容经复查整改（reviews/2026-10-03-math-review/）。
 > 规模：100 题（数学分析 30 / 解析几何 20 / 概率论 15 / 高等代数 35），每题 ≥2 种解法。
 > 转 JSONL 的字段映射（内容定稿后执行，契约见 EVAL_TEST_PREP.md §3.5）：
 > - 标题行 `### <problem_id>  <category> · <sub_category>` → problem_id / category / sub_category；

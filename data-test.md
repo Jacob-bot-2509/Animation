@@ -1,6 +1,6 @@
 # data-test（泛化综合运用）· 审阅稿 v1
 
-> 状态：**已转 JSON/JSONL**（data/v1/test/dataset_test.{json,jsonl}，150 行，2026-10-03 用户指示）；**未冻结**。内容经复查整改（reviews/2026-10-03-math-review/）。
+> 状态：**已转 JSON/JSONL**（data/v1/test/dataset_test.{json,jsonl}，150 行，2026-10-03 用户指示）；**已冻结**（data/{eval,test}-v1.lock.json，绑定顶层 manifest）。内容经复查整改（reviews/2026-10-03-math-review/）。
 > 规模：150 题（数学分析综合 45 / 解析几何综合 25 / 概率论综合 25 / 高等代数综合 40 / 跨学科综合 15），每题跨 ≥2 个知识点。
 > 转 JSONL 的字段映射（内容定稿后执行）：
 > - 标题行 `### <id>  <category> · <知识点A>×<知识点B>` → id / category / sub_category（取 × 组合）；
