@@ -1,347 +1,1372 @@
 {
+  "schema": 3,
+  "rule": {
+    "criterion": "本质考点 = (category, 题型)",
+    "taxonomy": "题型由题文动词分类,sub_category 兜底",
+    "approved_by_user": "2026-10-04"
+  },
+  "label_revision": {
+    "rule": "本质考点 = (category, 题型);题型由题文动词分类",
+    "approved_by_user": "2026-10-04",
+    "changed_pairs": [
+      {
+        "a": "eval-calc-023",
+        "b": "test-calc-013",
+        "from": "重复",
+        "to": "不重复",
+        "reason": "敛散判别×级数求和,规则→不重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "test-calc-013",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "级数求和×级数求和,规则→重复"
+      },
+      {
+        "a": "eval-calc-022",
+        "b": "test-calc-013",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "级数求和×级数求和,规则→重复"
+      },
+      {
+        "a": "test-calc-013",
+        "b": "test-calc-042",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "级数求和×级数求和(求值),规则→重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "eval-calc-021",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "级数求和×级数求和,规则→重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "eval-calc-022",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "级数求和×级数求和,规则→重复"
+      },
+      {
+        "a": "test-linalg-023",
+        "b": "test-linalg-027",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "微分方程组×微分方程组,规则→重复"
+      },
+      {
+        "a": "eval-calc-010",
+        "b": "test-calc-007",
+        "from": "不重复",
+        "to": "重复",
+        "reason": "极限计算×极限计算,规则→重复"
+      }
+    ],
+    "note": "规则冲突对由用户逐对确认后按规则改判;label_prev 保留原标注"
+  },
   "annotated_pairs": 48,
-  "pos_pairs": 11,
-  "neg_pairs": 37,
+  "pos_pairs": 17,
+  "neg_pairs": 31,
   "uncertain_pairs": 2,
-  "evaluation": "pairwise(每对以其自身 Jaccard 对阈值判定,无 query-vs-pool 自污染)",
+  "evaluation": "pairwise 考点签名相等判定(无自污染);5-gram 网格仅对照不参与结论",
+  "targets": {
+    "min_recall": "19/20",
+    "max_fpr": "1/100"
+  },
+  "sample_scope": "仅评估当前标注样本;分层采样不构成总体性能保证",
   "calibration": {
-    "threshold": 0.0,
-    "calibrated": false,
-    "tp": 0,
+    "calibrated": true,
+    "note": "考点网格选定阈值 1(考点签名完全一致),召回率=1,误报率=0",
+    "threshold": "1",
+    "tp": 17,
     "fp": 0,
     "fn": 0,
-    "tn": 0,
-    "note": "网格内无阈值同时满足 recall≥0.95 且 fpr≤0.01——对照集或方法需检查,当前阈值仍 UNCALIBRATED"
+    "tn": 31,
+    "precision": "1",
+    "recall": "1",
+    "fpr": "0",
+    "fnr": "0"
   },
-  "grid": [
+  "grid_kp": [
     {
-      "threshold": 0.3,
-      "tp": 11,
-      "fp": 15,
+      "threshold": "0",
+      "tp": 17,
+      "fp": 31,
       "fn": 0,
-      "tn": 22,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.4231,
-      "recall": 1.0,
-      "fpr": 0.4054,
-      "fnr": 0.0
+      "tn": 0,
+      "pos": 17,
+      "neg": 31,
+      "precision": "17/48",
+      "recall": "1",
+      "fpr": "1",
+      "fnr": "0",
+      "metric_counts": {
+        "precision": {
+          "numerator": 17,
+          "denominator": 48
+        },
+        "recall": {
+          "numerator": 17,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 31,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 0,
+          "denominator": 17
+        }
+      }
     },
     {
-      "threshold": 0.35,
-      "tp": 11,
-      "fp": 14,
+      "threshold": "1/3",
+      "tp": 17,
+      "fp": 18,
       "fn": 0,
-      "tn": 23,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.44,
-      "recall": 1.0,
-      "fpr": 0.3784,
-      "fnr": 0.0
+      "tn": 13,
+      "pos": 17,
+      "neg": 31,
+      "precision": "17/35",
+      "recall": "1",
+      "fpr": "18/31",
+      "fnr": "0",
+      "metric_counts": {
+        "precision": {
+          "numerator": 17,
+          "denominator": 35
+        },
+        "recall": {
+          "numerator": 17,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 18,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 0,
+          "denominator": 17
+        }
+      }
     },
     {
-      "threshold": 0.4,
-      "tp": 11,
-      "fp": 14,
+      "threshold": "1",
+      "tp": 17,
+      "fp": 0,
       "fn": 0,
-      "tn": 23,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.44,
-      "recall": 1.0,
-      "fpr": 0.3784,
-      "fnr": 0.0
-    },
-    {
-      "threshold": 0.45,
-      "tp": 11,
-      "fp": 14,
-      "fn": 0,
-      "tn": 23,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.44,
-      "recall": 1.0,
-      "fpr": 0.3784,
-      "fnr": 0.0
-    },
-    {
-      "threshold": 0.5,
-      "tp": 9,
-      "fp": 3,
-      "fn": 2,
-      "tn": 34,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.75,
-      "recall": 0.8182,
-      "fpr": 0.0811,
-      "fnr": 0.1818
-    },
-    {
-      "threshold": 0.55,
-      "tp": 3,
-      "fp": 2,
-      "fn": 8,
-      "tn": 35,
-      "pos": 11,
-      "neg": 37,
-      "precision": 0.6,
-      "recall": 0.2727,
-      "fpr": 0.0541,
-      "fnr": 0.7273
-    },
-    {
-      "threshold": 0.6,
-      "tp": 2,
-      "fp": 0,
-      "fn": 9,
-      "tn": 37,
-      "pos": 11,
-      "neg": 37,
-      "precision": 1.0,
-      "recall": 0.1818,
-      "fpr": 0.0,
-      "fnr": 0.8182
-    },
-    {
-      "threshold": 0.65,
-      "tp": 2,
-      "fp": 0,
-      "fn": 9,
-      "tn": 37,
-      "pos": 11,
-      "neg": 37,
-      "precision": 1.0,
-      "recall": 0.1818,
-      "fpr": 0.0,
-      "fnr": 0.8182
-    },
-    {
-      "threshold": 0.7,
-      "tp": 1,
-      "fp": 0,
-      "fn": 10,
-      "tn": 37,
-      "pos": 11,
-      "neg": 37,
-      "precision": 1.0,
-      "recall": 0.0909,
-      "fpr": 0.0,
-      "fnr": 0.9091
-    },
-    {
-      "threshold": 0.75,
-      "tp": 1,
-      "fp": 0,
-      "fn": 10,
-      "tn": 37,
-      "pos": 11,
-      "neg": 37,
-      "precision": 1.0,
-      "recall": 0.0909,
-      "fpr": 0.0,
-      "fnr": 0.9091
-    },
-    {
-      "threshold": 0.8,
-      "tp": 0,
-      "fp": 0,
-      "fn": 11,
-      "tn": 37,
-      "pos": 11,
-      "neg": 37,
-      "precision": null,
-      "recall": 0.0,
-      "fpr": 0.0,
-      "fnr": 1.0
+      "tn": 31,
+      "pos": 17,
+      "neg": 31,
+      "precision": "1",
+      "recall": "1",
+      "fpr": "0",
+      "fnr": "0",
+      "metric_counts": {
+        "precision": {
+          "numerator": 17,
+          "denominator": 17
+        },
+        "recall": {
+          "numerator": 17,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 0,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 0,
+          "denominator": 17
+        }
+      }
     }
   ],
-  "interleave_zone": [
+  "grid_5gram_contrast": [
     {
-      "jaccard": 0.4615,
-      "label": "不重复",
-      "a": "eval-calc-022",
-      "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
+      "threshold": "3/10",
+      "tp": 17,
+      "fp": 9,
+      "fn": 0,
+      "tn": 22,
+      "pos": 17,
+      "neg": 31,
+      "precision": "17/26",
+      "recall": "1",
+      "fpr": "9/31",
+      "fnr": "0",
+      "metric_counts": {
+        "precision": {
+          "numerator": 17,
+          "denominator": 26
+        },
+        "recall": {
+          "numerator": 17,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 9,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 0,
+          "denominator": 17
+        }
+      }
     },
     {
-      "jaccard": 0.4615,
-      "label": "不重复",
-      "a": "test-calc-034",
-      "b": "test-calc-042",
-      "text_a": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
+      "threshold": "7/20",
+      "tp": 16,
+      "fp": 9,
+      "fn": 1,
+      "tn": 22,
+      "pos": 17,
+      "neg": 31,
+      "precision": "16/25",
+      "recall": "16/17",
+      "fpr": "9/31",
+      "fnr": "1/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 16,
+          "denominator": 25
+        },
+        "recall": {
+          "numerator": 16,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 9,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 1,
+          "denominator": 17
+        }
+      }
     },
     {
-      "jaccard": 0.4643,
-      "label": "不重复",
-      "a": "eval-calc-011",
+      "threshold": "2/5",
+      "tp": 16,
+      "fp": 9,
+      "fn": 1,
+      "tn": 22,
+      "pos": 17,
+      "neg": 31,
+      "precision": "16/25",
+      "recall": "16/17",
+      "fpr": "9/31",
+      "fnr": "1/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 16,
+          "denominator": 25
+        },
+        "recall": {
+          "numerator": 16,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 9,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 1,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "9/20",
+      "tp": 16,
+      "fp": 9,
+      "fn": 1,
+      "tn": 22,
+      "pos": 17,
+      "neg": 31,
+      "precision": "16/25",
+      "recall": "16/17",
+      "fpr": "9/31",
+      "fnr": "1/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 16,
+          "denominator": 25
+        },
+        "recall": {
+          "numerator": 16,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 9,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 1,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "1/2",
+      "tp": 9,
+      "fp": 3,
+      "fn": 8,
+      "tn": 28,
+      "pos": 17,
+      "neg": 31,
+      "precision": "3/4",
+      "recall": "9/17",
+      "fpr": "3/31",
+      "fnr": "8/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 9,
+          "denominator": 12
+        },
+        "recall": {
+          "numerator": 9,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 3,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 8,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "11/20",
+      "tp": 3,
+      "fp": 2,
+      "fn": 14,
+      "tn": 29,
+      "pos": 17,
+      "neg": 31,
+      "precision": "3/5",
+      "recall": "3/17",
+      "fpr": "2/31",
+      "fnr": "14/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 3,
+          "denominator": 5
+        },
+        "recall": {
+          "numerator": 3,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 2,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 14,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "3/5",
+      "tp": 1,
+      "fp": 1,
+      "fn": 16,
+      "tn": 30,
+      "pos": 17,
+      "neg": 31,
+      "precision": "1/2",
+      "recall": "1/17",
+      "fpr": "1/31",
+      "fnr": "16/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "recall": {
+          "numerator": 1,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 1,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 16,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "13/20",
+      "tp": 1,
+      "fp": 1,
+      "fn": 16,
+      "tn": 30,
+      "pos": 17,
+      "neg": 31,
+      "precision": "1/2",
+      "recall": "1/17",
+      "fpr": "1/31",
+      "fnr": "16/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 1,
+          "denominator": 2
+        },
+        "recall": {
+          "numerator": 1,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 1,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 16,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "7/10",
+      "tp": 1,
+      "fp": 0,
+      "fn": 16,
+      "tn": 31,
+      "pos": 17,
+      "neg": 31,
+      "precision": "1",
+      "recall": "1/17",
+      "fpr": "0",
+      "fnr": "16/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "recall": {
+          "numerator": 1,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 0,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 16,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "3/4",
+      "tp": 1,
+      "fp": 0,
+      "fn": 16,
+      "tn": 31,
+      "pos": 17,
+      "neg": 31,
+      "precision": "1",
+      "recall": "1/17",
+      "fpr": "0",
+      "fnr": "16/17",
+      "metric_counts": {
+        "precision": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "recall": {
+          "numerator": 1,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 0,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 16,
+          "denominator": 17
+        }
+      }
+    },
+    {
+      "threshold": "4/5",
+      "tp": 0,
+      "fp": 0,
+      "fn": 17,
+      "tn": 31,
+      "pos": 17,
+      "neg": 31,
+      "precision": null,
+      "recall": "0",
+      "fpr": "0",
+      "fnr": "1",
+      "metric_counts": {
+        "precision": {
+          "numerator": 0,
+          "denominator": 0
+        },
+        "recall": {
+          "numerator": 0,
+          "denominator": 17
+        },
+        "fpr": {
+          "numerator": 0,
+          "denominator": 31
+        },
+        "fnr": {
+          "numerator": 17,
+          "denominator": 17
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "a": "eval-calc-021",
       "b": "eval-calc-022",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "j5": "16/21",
+      "similarity_counts": {
+        "intersection": 32,
+        "union": 42
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
       "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。"
     },
     {
-      "jaccard": 0.4643,
+      "a": "eval-calc-023",
+      "b": "test-calc-013",
+      "j5": "2/3",
+      "similarity_counts": {
+        "intersection": 28,
+        "union": 42
+      },
+      "kp_a": "数学分析 级数敛散",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1/3",
       "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
+    },
+    {
       "a": "eval-calc-011",
-      "b": "test-calc-034",
+      "b": "test-calc-013",
+      "j5": "29/50",
+      "similarity_counts": {
+        "intersection": 29,
+        "union": 50
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
+    },
+    {
+      "a": "eval-calc-023",
+      "b": "test-calc-034",
+      "j5": "26/47",
+      "similarity_counts": {
+        "intersection": 26,
+        "union": 47
+      },
+      "kp_a": "数学分析 级数敛散",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
       "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
-      "jaccard": 0.4737,
-      "label": "重复",
-      "a": "eval-calc-001",
-      "b": "eval-calc-002",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
-      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。"
+      "a": "test-calc-013",
+      "b": "test-calc-034",
+      "j5": "26/47",
+      "similarity_counts": {
+        "intersection": 26,
+        "union": 47
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
-      "jaccard": 0.4792,
-      "label": "不重复",
-      "a": "eval-calc-021",
+      "a": "eval-calc-011",
       "b": "eval-calc-023",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "j5": "28/51",
+      "similarity_counts": {
+        "intersection": 28,
+        "union": 51
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
       "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。"
     },
     {
-      "jaccard": 0.48,
-      "label": "不重复",
-      "a": "eval-calc-021",
-      "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
-    },
-    {
-      "jaccard": 0.4808,
-      "label": "不重复",
-      "a": "test-linalg-023",
-      "b": "test-linalg-027",
-      "text_a": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{cases}$ 的通解。",
-      "text_b": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。"
-    },
-    {
-      "jaccard": 0.4815,
-      "label": "不重复",
-      "a": "eval-calc-011",
-      "b": "eval-calc-021",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
-      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。"
-    },
-    {
-      "jaccard": 0.4889,
-      "label": "重复",
-      "a": "eval-calc-001",
-      "b": "eval-calc-004",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
-      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。"
-    },
-    {
-      "jaccard": 0.4898,
-      "label": "不重复",
-      "a": "eval-calc-022",
-      "b": "test-calc-013",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
-    },
-    {
-      "jaccard": 0.4898,
-      "label": "不重复",
-      "a": "eval-calc-023",
-      "b": "test-calc-042",
-      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
-    },
-    {
-      "jaccard": 0.4898,
-      "label": "不重复",
-      "a": "test-calc-013",
-      "b": "test-calc-042",
-      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
-    },
-    {
-      "jaccard": 0.5,
-      "label": "重复",
-      "a": "eval-calc-013",
-      "b": "eval-calc-018",
-      "text_a": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
-      "text_b": "求不定积分 $\\displaystyle\\int x\\arctan x\\,dx$。"
-    },
-    {
-      "jaccard": 0.5106,
-      "label": "重复",
-      "a": "eval-calc-021",
-      "b": "test-calc-013",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
-    },
-    {
-      "jaccard": 0.5246,
-      "label": "重复",
-      "a": "test-calc-012",
-      "b": "test-calc-029",
-      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
-      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。"
-    },
-    {
-      "jaccard": 0.5254,
-      "label": "重复",
-      "a": "eval-linalg-015",
-      "b": "eval-linalg-017",
-      "text_a": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
-      "text_b": "求矩阵 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的特征值与特征向量，并判断其是否可对角化。"
-    },
-    {
-      "jaccard": 0.5435,
-      "label": "重复",
-      "a": "eval-calc-001",
-      "b": "test-calc-040",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
-      "text_b": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\frac{x^2}{2}}{x^4}$。"
-    },
-    {
-      "jaccard": 0.5478,
-      "label": "重复",
       "a": "eval-linalg-003",
       "b": "test-linalg-013",
+      "j5": "86/157",
+      "similarity_counts": {
+        "intersection": 86,
+        "union": 157
+      },
+      "kp_a": "高等代数 三对角行列式",
+      "kp_b": "高等代数 三对角行列式",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
       "text_a": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}2&1&0&\\cdots&0\\\\1&2&1&\\cdots&0\\\\0&1&2&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&0&\\cdots&2\\end{vmatrix}$ 的值（矩阵元素满足 $a_{ii}=2$，$a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
       "text_b": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。"
     },
     {
-      "jaccard": 0.549,
+      "a": "eval-calc-001",
+      "b": "test-calc-040",
+      "j5": "25/46",
+      "similarity_counts": {
+        "intersection": 25,
+        "union": 46
+      },
+      "kp_a": "数学分析 极限计算",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+      "text_b": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\frac{x^2}{2}}{x^4}$。"
+    },
+    {
+      "a": "eval-linalg-015",
+      "b": "eval-linalg-017",
+      "j5": "31/59",
+      "similarity_counts": {
+        "intersection": 31,
+        "union": 59
+      },
+      "kp_a": "高等代数 特征值对角化",
+      "kp_b": "高等代数 特征值对角化",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "text_b": "求矩阵 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的特征值与特征向量，并判断其是否可对角化。"
+    },
+    {
+      "a": "test-calc-012",
+      "b": "test-calc-029",
+      "j5": "32/61",
+      "similarity_counts": {
+        "intersection": 32,
+        "union": 61
+      },
+      "kp_a": "数学分析 反常积分",
+      "kp_b": "数学分析 反常积分",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
+      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。"
+    },
+    {
+      "a": "eval-calc-021",
+      "b": "test-calc-013",
+      "j5": "24/47",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 47
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
+    },
+    {
+      "a": "eval-calc-013",
+      "b": "eval-calc-018",
+      "j5": "1/2",
+      "similarity_counts": {
+        "intersection": 18,
+        "union": 36
+      },
+      "kp_a": "数学分析 不定积分",
+      "kp_b": "数学分析 不定积分",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+      "text_b": "求不定积分 $\\displaystyle\\int x\\arctan x\\,dx$。"
+    },
+    {
+      "a": "eval-calc-022",
+      "b": "test-calc-013",
+      "j5": "24/49",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 49
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
+    },
+    {
+      "a": "eval-calc-023",
+      "b": "test-calc-042",
+      "j5": "24/49",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 49
+      },
+      "kp_a": "数学分析 级数敛散",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1/3",
       "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
+    },
+    {
+      "a": "test-calc-013",
+      "b": "test-calc-042",
+      "j5": "24/49",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 49
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
+    },
+    {
+      "a": "eval-calc-001",
+      "b": "eval-calc-004",
+      "j5": "22/45",
+      "similarity_counts": {
+        "intersection": 22,
+        "union": 45
+      },
+      "kp_a": "数学分析 极限计算",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。"
+    },
+    {
       "a": "eval-calc-011",
-      "b": "eval-calc-023",
+      "b": "eval-calc-021",
+      "j5": "13/27",
+      "similarity_counts": {
+        "intersection": 26,
+        "union": 54
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。"
+    },
+    {
+      "a": "test-linalg-023",
+      "b": "test-linalg-027",
+      "j5": "25/52",
+      "similarity_counts": {
+        "intersection": 25,
+        "union": 52
+      },
+      "kp_a": "高等代数 微分方程组",
+      "kp_b": "高等代数 微分方程组",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{cases}$ 的通解。",
+      "text_b": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。"
+    },
+    {
+      "a": "eval-calc-021",
+      "b": "test-calc-034",
+      "j5": "12/25",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 50
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
+    },
+    {
+      "a": "eval-calc-021",
+      "b": "eval-calc-023",
+      "j5": "23/48",
+      "similarity_counts": {
+        "intersection": 23,
+        "union": 48
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
       "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。"
     },
     {
-      "jaccard": 0.5532,
+      "a": "eval-calc-001",
+      "b": "eval-calc-002",
+      "j5": "9/19",
+      "similarity_counts": {
+        "intersection": 18,
+        "union": 38
+      },
+      "kp_a": "数学分析 极限计算",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "1",
       "label": "重复",
-      "a": "eval-calc-023",
-      "b": "test-calc-034",
-      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。"
     },
     {
-      "jaccard": 0.5532,
-      "label": "不重复",
-      "a": "test-calc-013",
-      "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
-    },
-    {
-      "jaccard": 0.58,
-      "label": "不重复",
       "a": "eval-calc-011",
-      "b": "test-calc-013",
+      "b": "eval-calc-022",
+      "j5": "13/28",
+      "similarity_counts": {
+        "intersection": 26,
+        "union": 56
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
+      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。"
+    },
+    {
+      "a": "eval-calc-011",
+      "b": "test-calc-034",
+      "j5": "13/28",
+      "similarity_counts": {
+        "intersection": 26,
+        "union": 56
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
+    },
+    {
+      "a": "eval-calc-022",
+      "b": "test-calc-034",
+      "j5": "6/13",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 52
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 级数敛散",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
+    },
+    {
+      "a": "test-calc-034",
+      "b": "test-calc-042",
+      "j5": "6/13",
+      "similarity_counts": {
+        "intersection": 24,
+        "union": 52
+      },
+      "kp_a": "数学分析 级数敛散",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
+    },
+    {
+      "a": "eval-calc-020",
+      "b": "eval-calc-021",
+      "j5": "13/76",
+      "similarity_counts": {
+        "intersection": 13,
+        "union": 76
+      },
+      "kp_a": "数学分析 反常积分",
+      "kp_b": "数学分析 级数求和",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。"
+    },
+    {
+      "a": "eval-calc-010",
+      "b": "test-calc-007",
+      "j5": "19/62",
+      "similarity_counts": {
+        "intersection": 19,
+        "union": 62
+      },
+      "kp_a": "数学分析 极限计算",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "1",
+      "label": "重复",
+      "prediction": "重复",
+      "match": true,
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+      "text_b": "设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\\displaystyle\\lim_{x\\to 0}\\frac{f(x)}{x^2}$。"
+    },
+    {
+      "a": "eval-linalg-007",
+      "b": "test-x-012",
+      "j5": "13/80",
+      "similarity_counts": {
+        "intersection": 13,
+        "union": 80
+      },
+      "kp_a": "高等代数 其他[矩阵]",
+      "kp_b": "跨学科 级数求和",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。",
+      "text_b": "用级数定义计算矩阵指数 $e^{A}$，其中 $A=\\begin{pmatrix}0&\\pi\\\\-\\pi&0\\end{pmatrix}$。"
+    },
+    {
+      "a": "eval-linalg-006",
+      "b": "test-linalg-002",
+      "j5": "14/71",
+      "similarity_counts": {
+        "intersection": 14,
+        "union": 71
+      },
+      "kp_a": "高等代数 其他[矩阵]",
+      "kp_b": "高等代数 其他[矩阵方程×逆矩阵]",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "设 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，求 $A^n$（$n$ 为正整数）。",
+      "text_b": "解矩阵方程 $AX=B$，其中 $A=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$，$B=\\begin{pmatrix}3\\\\3\\end{pmatrix}$。"
+    },
+    {
+      "a": "test-calc-012",
+      "b": "test-calc-024",
+      "j5": "13/67",
+      "similarity_counts": {
+        "intersection": 13,
+        "union": 67
+      },
+      "kp_a": "数学分析 反常积分",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
+      "text_b": "求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{\\sqrt[n]{n!}}{n}$。"
+    },
+    {
+      "a": "eval-calc-021",
+      "b": "test-calc-029",
+      "j5": "13/69",
+      "similarity_counts": {
+        "intersection": 13,
+        "union": 69
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "数学分析 反常积分",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。"
+    },
+    {
+      "a": "test-linalg-025",
+      "b": "test-linalg-028",
+      "j5": "15/88",
+      "similarity_counts": {
+        "intersection": 15,
+        "union": 88
+      },
+      "kp_a": "高等代数 其他[谱分解×对称矩阵]",
+      "kp_b": "高等代数 特征值对角化",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+      "text_b": "求 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ 的特征值，并说明它没有实特征向量的几何原因。"
+    },
+    {
+      "a": "eval-calc-016",
+      "b": "test-calc-029",
+      "j5": "11/72",
+      "similarity_counts": {
+        "intersection": 11,
+        "union": 72
+      },
+      "kp_a": "数学分析 不定积分",
+      "kp_b": "数学分析 反常积分",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。"
+    },
+    {
+      "a": "eval-calc-021",
+      "b": "test-linalg-029",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 81
+      },
+      "kp_a": "数学分析 级数求和",
+      "kp_b": "高等代数 其他[最小多项式×若尔当形]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "求 $A=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$ 的最小多项式与若尔当标准形。"
+    },
+    {
+      "a": "eval-linalg-011",
+      "b": "test-linalg-033",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 84
+      },
+      "kp_a": "高等代数 其他[线性方程组]",
+      "kp_b": "高等代数 特征值对角化",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+      "text_b": "证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。"
+    },
+    {
+      "a": "test-calc-002",
+      "b": "test-calc-019",
+      "j5": "1/10",
+      "similarity_counts": {
+        "intersection": 8,
+        "union": 80
+      },
+      "kp_a": "数学分析 极限计算",
+      "kp_b": "数学分析 其他[重积分×交换次序]",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求极限 $\\displaystyle\\lim_{n\\to\\infty}n^2\\left(1-\\cos\\frac{1}{n}\\right)$。",
+      "text_b": "求 $\\displaystyle I=\\int_0^1\\!\\!\\int_y^1\\frac{x}{1+x^2}\\,dx\\,dy$。"
+    },
+    {
+      "a": "eval-linalg-005",
+      "b": "test-calc-014",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 85
+      },
+      "kp_a": "高等代数 其他[矩阵]",
+      "kp_b": "数学分析 微分方程组",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+      "text_b": "验证幂级数 $y=\\displaystyle\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。"
+    },
+    {
+      "a": "eval-geom-001",
+      "b": "eval-linalg-031",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 73
+      },
+      "kp_a": "解析几何 其他[直线与平面]",
+      "kp_b": "高等代数 其他[λ-矩阵]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "text_b": "求矩阵 $A=\\begin{pmatrix}2&1&0\\\\0&2&1\\\\0&0&2\\end{pmatrix}$ 的最小多项式与若尔当标准形。"
+    },
+    {
+      "a": "eval-geom-002",
+      "b": "eval-linalg-007",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 105
+      },
+      "kp_a": "解析几何 其他[直线与平面]",
+      "kp_b": "高等代数 其他[矩阵]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+      "text_b": "设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。"
+    },
+    {
+      "a": "eval-calc-014",
+      "b": "eval-linalg-021",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 75
+      },
+      "kp_a": "数学分析 不定积分",
+      "kp_b": "高等代数 其他[二次型]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+      "text_b": "判断二次型 $f=x^2+2y^2+3z^2+2xy+2xz+4yz$ 是否正定。"
+    },
+    {
+      "a": "eval-geom-007",
+      "b": "test-calc-027",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 62
+      },
+      "kp_a": "解析几何 其他[二次曲面分类]",
+      "kp_b": "数学分析 其他[零点定理×中值定理]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+      "text_b": "证明方程 $e^x=2x+1$ 恰有两个实根，并给出两个根所在的区间。"
+    },
+    {
+      "a": "eval-calc-026",
+      "b": "test-prob-025",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 55
+      },
+      "kp_a": "数学分析 其他[多元函数微分]",
+      "kp_b": "概率论 其他[期望×博弈模型]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+      "text_b": "掷一枚均匀骰子得 $X$ 分；若 $X=6$ 则可再掷一次并将点数累加。求总得分的期望。"
+    },
+    {
+      "a": "eval-geom-010",
+      "b": "eval-prob-008",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 74
+      },
+      "kp_a": "解析几何 其他[曲面与曲线]",
+      "kp_b": "概率论 其他[大数定律]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+      "text_b": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。"
+    },
+    {
+      "a": "eval-linalg-012",
+      "b": "test-geom-002",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 99
+      },
+      "kp_a": "高等代数 其他[线性方程组]",
+      "kp_b": "解析几何 其他[点到直线×投影]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求参数 $a$ 使齐次线性方程组 $\\begin{cases}ax+y+z=0\\\\x+ay+z=0\\\\x+y+az=0\\end{cases}$ 有非零解，并求各情形下的解空间。",
+      "text_b": "求点 $P(1,2,3)$ 到直线 $l:x=1+t,\\ y=1+2t,\\ z=1+3t$ 的距离与垂足坐标。"
+    },
+    {
+      "a": "eval-geom-009",
+      "b": "test-calc-002",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 89
+      },
+      "kp_a": "解析几何 其他[曲面与曲线]",
+      "kp_b": "数学分析 极限计算",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+      "text_b": "求极限 $\\displaystyle\\lim_{n\\to\\infty}n^2\\left(1-\\cos\\frac{1}{n}\\right)$。"
+    },
+    {
+      "a": "eval-calc-028",
+      "b": "test-calc-032",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 78
+      },
+      "kp_a": "数学分析 其他[重积分]",
+      "kp_b": "数学分析 其他[曲率×导数]",
+      "kp_j": "1/3",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "求二重积分 $\\displaystyle I=\\iint_D(x^2+y^2)\\,dA$，其中 $D=\\{(x,y):x^2+y^2\\le 2y\\}$。",
+      "text_b": "求曲线 $y=x^2$ 在原点处的曲率，以及曲线 $y=\\ln x$ 在 $(1,0)$ 处的曲率。"
+    },
+    {
+      "a": "eval-calc-023",
+      "b": "eval-prob-008",
+      "j5": "1/91",
+      "similarity_counts": {
+        "intersection": 1,
+        "union": 91
+      },
+      "kp_a": "数学分析 级数敛散",
+      "kp_b": "概率论 其他[大数定律]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+      "text_b": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。"
+    },
+    {
+      "a": "test-calc-012",
+      "b": "test-linalg-019",
+      "j5": "0",
+      "similarity_counts": {
+        "intersection": 0,
+        "union": 90
+      },
+      "kp_a": "数学分析 反常积分",
+      "kp_b": "高等代数 其他[矩阵交换×待定系数]",
+      "kp_j": "0",
+      "label": "不重复",
+      "prediction": "不重复",
+      "match": true,
+      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
+      "text_b": "求所有与 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的 $2\\times 2$ 实矩阵 $X$。"
     }
-  ]
+  ],
+  "uncertain": [
+    {
+      "a": "eval-linalg-015",
+      "b": "test-linalg-019",
+      "kp_a": "高等代数 特征值对角化",
+      "kp_b": "高等代数 其他[矩阵交换×待定系数]",
+      "prediction": "不重复",
+      "text_a": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "text_b": "求所有与 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的 $2\\times 2$ 实矩阵 $X$。"
+    },
+    {
+      "a": "eval-prob-006",
+      "b": "test-x-009",
+      "kp_a": "概率论 其他[数字特征]",
+      "kp_b": "跨学科 其他[概率论×微积分]",
+      "prediction": "不重复",
+      "text_a": "设 $X\\sim\\operatorname{Poisson}(\\lambda)$，求 $E[X^2]$，并由此求 $\\operatorname{Var}(X)$。",
+      "text_b": "设 $X\\sim\\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。"
+    }
+  ],
+  "mismatches": [],
+  "annotation_sha256": "e61329f92e280070cc8b0ba508aed89669e86721f6b91e823c43897426ee32da"
 }
