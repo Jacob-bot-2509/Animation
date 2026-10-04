@@ -13,6 +13,13 @@ v3 修改清单(应 msg_341 六缺口):
      不覆盖早先已确证的 FAIL/原始记录;
   6. 错误证据=完整部分结果(非仅 keys),统一 _write_json 原子写入+兜底
      落 SUPPORT;EVIDENCE 目录在 try 外前置就绪。
+v3.2(应 msg_347 B/C/D/E):
+  7. 文件系统事实先收集:denied_write 目标存在→FAIL 判定独立于客户端解析
+     (解析崩溃不丢击穿);
+  8. granted_write 沙箱目标前置已存在→直接拒绝执行该操作(不跑任何客户端);
+  9. EVIDENCE.mkdir 不可写→stdout 结构化证据+受控退出 2,不裸崩;
+  10. 后核验覆盖三个核心模块(appcontainer/win_job/network_isolation),
+      前后哈希快照双双落证据供与已验收基线绑定。
 
 契约与范围:仅本支持目录内具名工作区 file-work-<run_id>/(授 rw ACE)与
 file-denied-<run_id>/(不授);复用既有生产 profile;仅合成数据;不改核心四
@@ -367,6 +374,13 @@ def _run_granted_write(work: Path, runtime: Path, env: dict, expected_sid: str,
     n_ctrl, n_sb = uuid.uuid4().hex, uuid.uuid4().hex
     tgt_c, tgt_s = work / f"gw-ctrl-{n_ctrl}.bin", work / f"gw-sb-{n_sb}.bin"
     sb_pre_exists = tgt_s.exists()
+    if sb_pre_exists:
+        # 前置状态失败即阻止该操作(不执行任何客户端)
+        return ({"verdict": "UNVERIFIED",
+                 "reasons": ["沙箱写入目标前置已存在,拒绝执行该操作"],
+                 "contract": CONTRACT},
+                {"sb_pre_exists": sb_pre_exists, "sb_target": str(tgt_s),
+                 "skipped": True})
     c1 = _run_client([str(runtime), "-X", "utf8", str(client), "write",
                       str(tgt_c), n_ctrl], False, work, env)
     s1 = _run_client([str(runtime), "-X", "utf8", str(client), "write",
@@ -446,6 +460,17 @@ def _run_denied_write(denied_dir: Path, work: Path, runtime: Path, env: dict,
     tgt3c.unlink(missing_ok=True)
     s3 = _run_client([str(runtime), "-X", "utf8", str(client), "write",
                       str(tgt3s), n3], True, work, env)
+    # 文件系统事实先收集:击穿判定独立于客户端解析(解析崩溃也不丢 FAIL)
+    target_created = tgt3s.exists()
+    sb_target_sha = _sha_file(tgt3s)
+    if target_created:
+        return ({"verdict": "FAIL",
+                 "reasons": ["沙箱写入未授权目标成功(隔离击穿)"],
+                 "contract": CONTRACT},
+                {"control": c3, "sandbox": s3, "ctrl_target": str(tgt3c),
+                 "ctrl_sha256": h3, "ctrl_expected_sha256": h3_exp,
+                 "sb_target": str(tgt3s), "target_created": True,
+                 "sb_target_sha256": sb_target_sha})
     tok3 = s3["data"].get("token") or {}
     verdict = _judge_case(
         "denied_write",
@@ -462,7 +487,8 @@ def _run_denied_write(denied_dir: Path, work: Path, runtime: Path, env: dict,
          "target_created": tgt3s.exists(), "content_leaked": None})
     raw = {"control": c3, "sandbox": s3, "ctrl_target": str(tgt3c),
            "ctrl_sha256": h3, "ctrl_expected_sha256": h3_exp,
-           "sb_target": str(tgt3s)}
+           "sb_target": str(tgt3s), "target_created": False,
+           "sb_target_sha256": None}
     return verdict, raw
 
 
@@ -537,9 +563,14 @@ def _case(work: Path, denied_dir: Path, runtime: Path, env: dict,
     return rec
 
 
+CORE_MODULES = ["src/animtrain/appcontainer.py", "src/animtrain/win_job.py",
+                "src/animtrain/network_isolation.py"]
+
+
 def _post_verify(cfg: dict, manifest: dict, pth_before: str,
-                 script_sha_before: str) -> dict:
-    """场景执行后重验:runtime 关键文件/._pth/客户端/本脚本前后一致。"""
+                 script_sha_before: str, core_before: dict) -> dict:
+    """场景执行后重验:runtime 关键文件/._pth/客户端/本脚本/三个核心模块
+    前后一致(核心模块基线快照同时落证据,供与已验收基线绑定)。"""
     checks: dict = {}
     for rel, sha in manifest.items():
         cur = _sha_file(NET_RUNTIME / rel)
@@ -553,14 +584,29 @@ def _post_verify(cfg: dict, manifest: dict, pth_before: str,
     checks["script"] = (_script_now is not None
                         and script_sha_before is not None
                         and _script_now == script_sha_before)
-    return {"all_unchanged": all(checks.values()), "checks": checks}
+    core_now = {}
+    for rel, sha_before in core_before.items():
+        cur = _sha_file(ROOT / rel)
+        core_now[rel] = cur
+        checks["core:" + rel] = (sha_before is not None and cur == sha_before)
+    return {"all_unchanged": all(checks.values()), "checks": checks,
+            "core_modules_before": core_before, "core_modules_after": core_now}
 
 
 def main() -> int:
     run_id = uuid.uuid4().hex[:12]
     work = SUPPORT / f"file-work-{run_id}"
     denied_dir = SUPPORT / f"file-denied-{run_id}"
-    EVIDENCE.mkdir(exist_ok=True)  # 错误路径依赖,置于 try 外
+    try:
+        EVIDENCE.mkdir(exist_ok=True)  # 错误路径依赖,置于 try 外
+    except OSError as e:
+        # 证据目录不可写:stdout 结构化原始证据 + 受控退出 2,不裸崩
+        print(json.dumps({"state": "ERROR", "overall": "UNVERIFIED",
+                          "production_gate": "CLOSED", "contract": CONTRACT,
+                          "run_id": run_id, "error": repr(e),
+                          "note": "证据目录不可写,仅 stdout 输出,无落盘证据"},
+                         ensure_ascii=False, indent=2))
+        return 2
     results: dict = {"schema": 3, "run_id": run_id, "contract": CONTRACT,
                      "scope": "仅本次具名目录/操作的本地文件读写隔离;"
                               "不构成整体文件隔离或生产放行结论",
@@ -598,6 +644,9 @@ def main() -> int:
         script_sha_before = _sha_file(Path(__file__))
         if script_sha_before is None:
             raise OSError("无法读取本脚本哈希,失败关闭(后核验基线不可为 None)")
+        core_before = {rel: _sha_file(ROOT / rel) for rel in CORE_MODULES}
+        if any(v is None for v in core_before.values()):
+            raise OSError("无法读取核心模块哈希,失败关闭(基线不可为 None)")
         work.mkdir()
         denied_dir.mkdir()
         profile = ac.appcontainer_profile_path(ac.appcontainer_sid())
@@ -643,7 +692,7 @@ def main() -> int:
         results["case"] = _case(work, denied_dir, runtime, env, expected_sid,
                                 client, cfg)
         results["post_verify"] = _post_verify(cfg, manifest, pth,
-                                              script_sha_before)
+                                              script_sha_before, core_before)
         # 总体:已确证 FAIL 不被后核验覆盖;后核验失败只降 PASS/UNVERIFIED
         case_overall = results["case"]["overall"]
         if case_overall == "FAIL":

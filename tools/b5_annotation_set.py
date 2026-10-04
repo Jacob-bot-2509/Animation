@@ -83,10 +83,14 @@ def main(argv=None) -> int:
                 "> 相似度=5-gram Jaccard。请在最后一列标注:重复 / 不重复 / 不确定。\n",
                 "| # | Jaccard | 题目A(id) | 题目B(id) | 标注 |",
                 "|---|---|---|---|---|"]
+    def _md_escape(s: str) -> str:
+        # 表格单元格内 | 转义为 \|,防公式中的 | 破坏列结构;JSON 保留原文
+        return s.replace("|", "\\|")
+
     for i, p in enumerate(pairs, 1):
         md_lines.append(
-            f"| {i} | {p['jaccard']} | {p['text_a']} ({p['a']}) "
-            f"| {p['text_b']} ({p['b']}) |  |")
+            f"| {i} | {p['jaccard']} | {_md_escape(p['text_a'])} ({p['a']}) "
+            f"| {_md_escape(p['text_b'])} ({p['b']}) |  |")
     (args.out / "b5-annotation-set.md").write_text(
         "\n".join(md_lines), encoding="utf-8")
     print(f"标注集已生成:{json_out}({len(pairs)} 对:高{args.top}/中{args.mid}/低{args.low})")

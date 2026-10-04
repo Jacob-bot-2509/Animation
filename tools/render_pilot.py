@@ -75,10 +75,36 @@ def _media_info(base: Path) -> list[dict]:
     return out
 
 
-def _has_artifact(media: list[dict], fmt: str) -> bool:
-    """格式对应的最终产物必须非空可验证:png→至少一个 .png;mp4→至少一个 .mp4。"""
-    ext = "." + fmt
-    return any(m["path"].endswith(ext) and m["size"] > 0 for m in media)
+_PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+
+
+def _has_artifact(base: Path, media: list[dict], fmt: str) -> bool:
+    """格式对应的**最终**产物必须非空且魔数可验证:
+    mp4→最终输出(排除 partial_movie_files 中间片段)且含 ftyp 盒;
+    png→images/ 下最终帧且 PNG 魔数。伪扩展文件不算。"""
+    if fmt == "mp4":
+        for m in media:
+            p = m["path"].replace("\\", "/")
+            if (p.endswith(".mp4") and "partial_movie_files" not in p
+                    and m["size"] > 0):
+                try:
+                    head = (base / m["path"]).read_bytes()[:12]
+                except OSError:
+                    continue
+                if len(head) >= 12 and head[4:8] == b"ftyp":
+                    return True
+        return False
+    for m in media:
+        p = m["path"].replace("\\", "/")
+        if (p.endswith(".png") and "images/" in p and "partial" not in p
+                and m["size"] > 0):
+            try:
+                head = (base / m["path"]).read_bytes()[:8]
+            except OSError:
+                continue
+            if head == _PNG_MAGIC:
+                return True
+    return False
 
 
 def _render_one(rec: dict, scene_dir: Path, media_base: Path, fmt: str,
@@ -103,8 +129,8 @@ def _render_one(rec: dict, scene_dir: Path, media_base: Path, fmt: str,
                 scene_path.read_bytes()).hexdigest(),  # 绑定实际落盘场景文件
             "rc": rc, "out_tail": out_tail,
             "media": media,
-            "artifact_ok": _has_artifact(media, fmt),
-            "ok": rc == 0 and _has_artifact(media, fmt),
+            "artifact_ok": _has_artifact(media_base, media, fmt),
+            "ok": rc == 0 and _has_artifact(media_base, media, fmt),
             "command": cmd}
 
 

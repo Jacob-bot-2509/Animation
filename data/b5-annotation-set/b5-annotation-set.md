@@ -49,9 +49,9 @@
 | 42 | 0.0 | 求不定积分 $\displaystyle\int\dfrac{dx}{\sin x}$，并说明不同形式答案的等价性。 (eval-calc-014) | 判断二次型 $f=x^2+2y^2+3z^2+2xy+2xz+4yz$ 是否正定。 (eval-linalg-021) |  |
 | 43 | 0.0 | 指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。 (eval-geom-007) | 证明方程 $e^x=2x+1$ 恰有两个实根，并给出两个根所在的区间。 (test-calc-027) |  |
 | 44 | 0.0 | 设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。 (eval-calc-026) | 掷一枚均匀骰子得 $X$ 分；若 $X=6$ 则可再掷一次并将点数累加。求总得分的期望。 (test-prob-025) |  |
-| 45 | 0.0 | 说明曲面 $z=xy$ 的类型，并验证它是直纹面。 (eval-geom-010) | 设 $X\sim B\!\left(100,\dfrac{1}{2}\right)$。用切比雪夫不等式给出 $P(|X-50|\ge 10)$ 的上界，并与精确值比较。 (eval-prob-008) |  |
+| 45 | 0.0 | 说明曲面 $z=xy$ 的类型，并验证它是直纹面。 (eval-geom-010) | 设 $X\sim B\!\left(100,\dfrac{1}{2}\right)$。用切比雪夫不等式给出 $P(\|X-50\|\ge 10)$ 的上界，并与精确值比较。 (eval-prob-008) |  |
 | 46 | 0.0 | 求参数 $a$ 使齐次线性方程组 $\begin{cases}ax+y+z=0\\x+ay+z=0\\x+y+az=0\end{cases}$ 有非零解，并求各情形下的解空间。 (eval-linalg-012) | 求点 $P(1,2,3)$ 到直线 $l:x=1+t,\ y=1+2t,\ z=1+3t$ 的距离与垂足坐标。 (test-geom-002) |  |
 | 47 | 0.0 | 求椭球面 $\dfrac{x^2}{4}+\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。 (eval-geom-009) | 求极限 $\displaystyle\lim_{n\to\infty}n^2\left(1-\cos\frac{1}{n}\right)$。 (test-calc-002) |  |
 | 48 | 0.0 | 求二重积分 $\displaystyle I=\iint_D(x^2+y^2)\,dA$，其中 $D=\{(x,y):x^2+y^2\le 2y\}$。 (eval-calc-028) | 求曲线 $y=x^2$ 在原点处的曲率，以及曲线 $y=\ln x$ 在 $(1,0)$ 处的曲率。 (test-calc-032) |  |
-| 49 | 0.011 | 证明级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$ 收敛。 (eval-calc-023) | 设 $X\sim B\!\left(100,\dfrac{1}{2}\right)$。用切比雪夫不等式给出 $P(|X-50|\ge 10)$ 的上界，并与精确值比较。 (eval-prob-008) |  |
+| 49 | 0.011 | 证明级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$ 收敛。 (eval-calc-023) | 设 $X\sim B\!\left(100,\dfrac{1}{2}\right)$。用切比雪夫不等式给出 $P(\|X-50\|\ge 10)$ 的上界，并与精确值比较。 (eval-prob-008) |  |
 | 50 | 0.0 | 判断反常积分 $\displaystyle\int_1^{+\infty}\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。 (test-calc-012) | 求所有与 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 可交换的 $2\times 2$ 实矩阵 $X$。 (test-linalg-019) |  |
