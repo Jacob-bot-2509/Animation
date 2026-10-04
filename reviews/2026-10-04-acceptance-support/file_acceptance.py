@@ -4,8 +4,9 @@ v3 修改清单(应 msg_341 六缺口):
   1. granted_read/denied_read 目标稳定性入判定(hash_before==hash_after==期望,
      测试期间文件被改 → UNVERIFIED,不再仅记录);
   2. granted_write 沙箱目标前置不存在(sb_pre_exists is False)入判定;
-  3. 自检(negative_regressions.all_hold)前置于一切副作用之前失败关闭:
-     ACL 授予/目录创建/场景执行均不发生,JSON 与退出码同步 UNVERIFIED/2;
+  3. 自检(negative_regressions.all_hold)前置于一切验收副作用之前失败关闭
+     (除 EVIDENCE 证据目录前置就绪外,ACL 授予/具名工作目录创建/场景执行
+     均不发生),JSON 与退出码同步 UNVERIFIED/2;
   4. 后核验:场景执行后重验 runtime 关键文件/._pth/客户端/本脚本哈希前后
      一致,任一变化 → 不得 PASS(已确证 FAIL 保留);
   5. 逐步骤增量:_case 每类独立 try/except,异常记录为该类 UNVERIFIED,
@@ -88,19 +89,29 @@ def _assert_json_safe(obj, where: str) -> None:
             _assert_json_safe(v, f"{where}[{i}]")
 
 
-def _write_json(path: Path, obj) -> Path:
-    """统一原子写入;目标不可写时兜底落 SUPPORT 并返回实际路径。"""
+def _write_json(path: Path, obj) -> Path | None:
+    """统一原子写入;失败逐级兜底(SUPPORT fallback → stderr),返回实际路径;
+    任何失败都不得吞掉调用方的退出码语义(证据缺失由调用方如实处理)。"""
+    try:
+        text = json.dumps(obj, ensure_ascii=False, indent=2)
+    except (TypeError, ValueError) as e:
+        print("Evidence serialization failed: " + repr(e),
+              file=sys.stderr, flush=True)
+        return None
     try:
         tmp = path.with_suffix(path.suffix + ".tmp")
-        tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=2),
-                       encoding="utf-8")
+        tmp.write_text(text, encoding="utf-8")
         tmp.replace(path)
         return path
     except OSError:
-        fb = SUPPORT / ("fallback-" + path.name)
-        fb.write_text(json.dumps(obj, ensure_ascii=False, indent=2),
-                      encoding="utf-8")
-        return fb
+        try:
+            fb = SUPPORT / ("fallback-" + path.name)
+            fb.write_text(text, encoding="utf-8")
+            return fb
+        except OSError as e2:
+            print("Evidence write failed (primary+fallback): " + repr(e2),
+                  file=sys.stderr, flush=True)
+            return None
 
 
 # ---------------------------------------------------------------- 纯判定谓词
@@ -538,7 +549,10 @@ def _post_verify(cfg: dict, manifest: dict, pth_before: str,
     checks["pth"] = pth_now == pth_before
     client = Path(cfg["client_path"])
     checks["client_file"] = _sha_file(client) == cfg["client_sha256"]
-    checks["script"] = _sha_file(Path(__file__)) == script_sha_before
+    _script_now = _sha_file(Path(__file__))
+    checks["script"] = (_script_now is not None
+                        and script_sha_before is not None
+                        and _script_now == script_sha_before)
     return {"all_unchanged": all(checks.values()), "checks": checks}
 
 
@@ -582,6 +596,8 @@ def main() -> int:
         if not _pth_ok(pth):
             raise OSError("net-runtime ._pth 隔离配置核验失败")
         script_sha_before = _sha_file(Path(__file__))
+        if script_sha_before is None:
+            raise OSError("无法读取本脚本哈希,失败关闭(后核验基线不可为 None)")
         work.mkdir()
         denied_dir.mkdir()
         profile = ac.appcontainer_profile_path(ac.appcontainer_sid())
@@ -642,6 +658,13 @@ def main() -> int:
         ok = (all_hold and results["overall"] == "PASS_LOCAL_FILE_ACL"
               and results["state"] == "COMPLETE")
     except Exception as e:  # noqa: BLE001 完整部分证据,不裸崩溃
+        # 已确证 FAIL(隔离击穿)不得被任何后置异常降级为 UNVERIFIED
+        if results.get("case", {}).get("overall") == "FAIL":
+            results.update(state="ERROR", overall="FAIL",
+                           error=repr(e), traceback=traceback.format_exc())
+            _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+            print(json.dumps(results, ensure_ascii=False, indent=2))
+            return 1
         results.update(state="ERROR", overall="UNVERIFIED",
                        error=repr(e), traceback=traceback.format_exc())
         _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
