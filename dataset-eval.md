@@ -876,15 +876,16 @@
 **解法三动画要点** - 三维投影中的超平面 - 通解的线性组合扫出平面
 
 ### eval-linalg-014 高等代数 · 特征值与特征向量
-**题目** 求矩阵 $A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ 的特征值与特征向量，并说明其几何意义。
-**答案** 特征值 $\lambda_1=1$（特征向量 $(1,1)^T$），$\lambda_2=-1$（特征向量 $(1,-1)^T$）；$A$ 是关于直线 $y=x$ 的反射
-**解法一（特征方程）** $|\lambda I-A|=\begin{vmatrix}\lambda&-1\\-1&\lambda\end{vmatrix}=\lambda^2-1=0$，$\lambda=\pm 1$。$\lambda=1$：解 $(I-A)v=0$，即 $\begin{pmatrix}1&-1\\-1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=y$，特征向量 $(1,1)^T$。$\lambda=-1$：解 $(-I-A)v=0$，即 $\begin{pmatrix}-1&-1\\-1&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=-y$，特征向量 $(1,-1)^T$。
-**解法二（几何反射）** $A$ 把 $(x,y)$ 映到 $(y,x)$，正是关于直线 $y=x$ 的镜面反射。反射轴上（$y=x$）的向量不动（特征值 1），垂直于轴的方向（$y=-x$）反向（特征值 $-1$）。
-**解法三（对合性）** $A^2=I$（两次交换复原，即 $A$ 是对合矩阵）。若 $Av=\lambda v$，则 $v=A^2v=\lambda^2v$，故 $\lambda^2=1$，$\lambda=\pm 1$，与解法一一致。再由 $(A-I)$ 与 $(A+I)$ 的秩均为 1，两特征值各对应一维特征空间。
-**思路展开** 反射矩阵是正交矩阵的典型代表：特征值 $\pm 1$、特征向量正交。三种方法分别从特征方程、几何直觉、代数结构（幂等）入手。动画可展示向量关于 $y=x$ 的镜像翻转，以及两特征方向上"不动/反向"的对照。
-**解法一动画要点** - 特征方程 $\lambda^2-1=0$ 的求解 - 两特征方向上的伸缩（$1$ 与 $-1$）
-**解法二动画要点** - 关于 $y=x$ 的反射动画 - 轴上的点不动、垂直方向反向
-**解法三动画要点** - $A^2=I$ 的往返示意 - $\lambda^2=1$ 的代数推导
+
+**题目** 设 $a\in\mathbb R\setminus\{0\}$ 为参数,求矩阵 $A=\begin{pmatrix}1&a&0\\a&1&a\\0&a&1\end{pmatrix}$ 的特征值与特征向量,并求正交矩阵 $Q$,使 $Q^TAQ$ 为对角矩阵。
+**答案** 特征值 $1,\ 1+\sqrt{2}a,\ 1-\sqrt{2}a$;对应单位特征向量 $\dfrac{1}{\sqrt{2}}(1,0,-1)^T,\ \dfrac{1}{2}(1,\sqrt{2},1)^T,\ \dfrac{1}{2}(1,-\sqrt{2},1)^T$;$Q=\begin{pmatrix}1/\sqrt{2}&1/2&1/2\\0&\sqrt{2}/2&-\sqrt{2}/2\\-1/\sqrt{2}&1/2&1/2\end{pmatrix}$,$Q^TAQ=\operatorname{diag}(1,\,1+\sqrt{2}a,\,1-\sqrt{2}a)$
+**解法一（特征方程）** $|\lambda I-A|=\begin{vmatrix}\lambda-1&-a&0\\-a&\lambda-1&-a\\0&-a&\lambda-1\end{vmatrix}=(\lambda-1)\bigl[(\lambda-1)^2-2a^2\bigr]$,得特征值 $1,\ 1\pm\sqrt{2}a$($a\neq 0$ 时互异)。$\lambda=1$:解 $(A-I)v=0$,即 $\begin{pmatrix}0&a&0\\a&0&a\\0&a&0\end{pmatrix}v=0$,得 $y=0,\ x=-z$,取 $v_1=(1,0,-1)^T$。$\lambda=1+\sqrt{2}a$:由 $(A-(1+\sqrt{2}a)I)v=0$,第一行给 $y=\sqrt{2}x$,第二行给 $x-\sqrt{2}y+z=0$,故 $z=x$,取 $v_2=(1,\sqrt{2},1)^T$。$\lambda=1-\sqrt{2}a$:同理 $y=-\sqrt{2}x,\ z=x$,取 $v_3=(1,-\sqrt{2},1)^T$。三个特征向量两两正交,范数分别为 $\sqrt{2},\ 2,\ 2$;单位化后按列排成 $Q=\begin{pmatrix}1/\sqrt{2}&1/2&1/2\\0&\sqrt{2}/2&-\sqrt{2}/2\\-1/\sqrt{2}&1/2&1/2\end{pmatrix}$。直接验证:$AQ=Q\operatorname{diag}(1,1+\sqrt{2}a,1-\sqrt{2}a)$(逐列即 $Av_i=\lambda_i v_i$),故 $Q^TAQ=\operatorname{diag}(1,\,1+\sqrt{2}a,\,1-\sqrt{2}a)$。
+**解法二（对称结构分解）** 先看反对称方向:$A(1,0,-1)^T=(1,0,-1)^T$,故 $v_1=(1,0,-1)^T$ 是特征值 1 的特征向量。其余特征向量在 $v_1$ 的正交补 $\operatorname{span}\{r,s\}$ 内,其中 $r=\dfrac{1}{\sqrt{2}}(1,0,1)^T,\ s=(0,1,0)^T$ 为单位正交基。计算 $A$ 在 $(r,s)$ 上的限制:$Ar=\dfrac{1}{\sqrt{2}}A(1,0,1)^T=\dfrac{1}{\sqrt{2}}(1,2a,1)^T=r+\sqrt{2}a\,s$;$As=A(0,1,0)^T=(a,1,a)^T=\sqrt{2}a\,r+s$。故限制矩阵为 $\begin{pmatrix}1&\sqrt{2}a\\\sqrt{2}a&1\end{pmatrix}$,其特征值为 $1\pm\sqrt{2}a$,对应特征向量 $r\pm s$,即 $v_2=\dfrac{1}{2}(1,\sqrt{2},1)^T$,$v_3=\dfrac{1}{2}(1,-\sqrt{2},1)^T$。三向量两两正交,单位化后按列排成 $Q=\begin{pmatrix}1/\sqrt{2}&1/2&1/2\\0&\sqrt{2}/2&-\sqrt{2}/2\\-1/\sqrt{2}&1/2&1/2\end{pmatrix}$,$Q^TAQ=\operatorname{diag}(1,\,1+\sqrt{2}a,\,1-\sqrt{2}a)$。
+**解法三（直接主轴配方）** 二次型 $f(x,y,z)=x^2+y^2+z^2+2a(xy+yz)$。令 $u=\dfrac{x-z}{\sqrt{2}},\ p=\dfrac{x+z}{\sqrt{2}}$,则 $x^2+z^2=u^2+p^2$,$xy+yz=y(x+z)=\sqrt{2}py$,故 $f=u^2+p^2+y^2+2\sqrt{2}a\,py$。再令 $v=\dfrac{p+y}{\sqrt{2}},\ w=\dfrac{p-y}{\sqrt{2}}$,则 $p^2+y^2=v^2+w^2$,$2py=v^2-w^2$,故 $f=u^2+(1+\sqrt{2}a)v^2+(1-\sqrt{2}a)w^2$——三项系数即特征值。由 $(u,v,w)^T=P(x,y,z)^T$ 解出 $P=\begin{pmatrix}1/\sqrt{2}&0&-1/\sqrt{2}\\1/2&\sqrt{2}/2&1/2\\1/2&-\sqrt{2}/2&1/2\end{pmatrix}$,$Q=P^T$ 即为所求正交矩阵。参数分类($f=1$ 等值面):$|a|<\dfrac{\sqrt{2}}{2}$ 时三系数全正,为椭球面;$a=\pm\dfrac{\sqrt{2}}{2}$ 时一个系数为 0,退化为椭圆柱面;$|a|>\dfrac{\sqrt{2}}{2}$ 时一个系数为负,为单叶双曲面。
+**思路展开** 按用户难度要求,本题升为**三阶含参**对称矩阵:特征多项式是一元三次式的因式分解,特征向量带 $\sqrt{2}$ 系数——难度中等偏上(二阶留给简单题)。三条解法各自独立:特征方程(代数)、对称结构分解(把 3 阶问题约化为 2 阶限制矩阵)、主轴配方(几何平方和)。$a$ 变化时三个特征值以 1 为中心对称分开,动画可做"$a$ 滑杆"驱动 $f=1$ 等值面在椭球面/椭圆柱面/单叶双曲面之间切换。
+**解法一动画要点** - 三阶特征多项式按第一列展开与因式分解 - 三个特征方向上伸缩率 $1,\ 1\pm\sqrt{2}a$ 的标注
+**解法二动画要点** - 反对称方向 $v_1$ 先分离、正交补 $r,s$ 上的 2 阶限制 - $r\pm s$ 生成另两个特征方向的动画
+**解法三动画要点** - 两次正交替换 $u,p\to v,w$ 的配方动画 - $f=1$ 等值面随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)
 
 ### eval-linalg-015 高等代数 · 特征值与特征向量
 **题目** 求矩阵 $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$ 的特征值与特征向量，并将其对角化。
@@ -931,15 +932,16 @@
 **解法三动画要点** - C–H 递推 $u_{n+1}=4u_n-3u_{n-1}$ 的点列 - 三种方法的同框结果验证
 
 ### eval-linalg-019 高等代数 · 二次型
-**题目** 将二次型 $f(x,y)=2x^2+2xy+3y^2$ 化为标准形，并说明其正定性。
-**答案** 配方法标准形 $2u^2+\dfrac{5}{2}v^2$（$u=x+\dfrac{y}{2}$，$v=y$）；正交标准形 $\dfrac{5+\sqrt5}{2}\xi^2+\dfrac{5-\sqrt5}{2}\eta^2$；正定
-**解法一（配方法）** $f=2\left(x^2+xy\right)+3y^2=2\left(x+\dfrac{y}{2}\right)^2-\dfrac{y^2}{2}+3y^2=2\left(x+\dfrac{y}{2}\right)^2+\dfrac{5}{2}y^2$。令 $u=x+\dfrac{y}{2}$、$v=y$，得标准形 $2u^2+\dfrac{5}{2}v^2$，两系数均为正，正惯性指数 2，二次型正定。
-**解法二（正交变换法）** 矩阵 $A=\begin{pmatrix}2&1\\1&3\end{pmatrix}$。特征方程 $|\lambda I-A|=(\lambda-2)(\lambda-3)-1=\lambda^2-5\lambda+5=0$，特征值 $\lambda_1=\dfrac{5+\sqrt5}{2}$、$\lambda_2=\dfrac{5-\sqrt5}{2}$（均正）。沿对应特征方向做正交变换，得标准形 $\dfrac{5+\sqrt5}{2}\xi^2+\dfrac{5-\sqrt5}{2}\eta^2$。特征值全正故正定。
-**解法三（顺序主子式判据）** $A$ 的一阶顺序主子式 $2>0$；二阶顺序主子式 $\det A=2\cdot 3-1=5>0$。由 Sylvester 判据，全部顺序主子式为正 $\iff$ 二次型正定，正惯性指数为 $2$、负惯性指数为 $0$。
-**思路展开** 配方法（合同变换）与正交变换都能化标准形：配方结果系数简单（$2$ 与 $\dfrac{5}{2}$）但变换非正交，正交结果系数是特征值但带根号。顺序主子式判据则直接回答正定性而不必化标准形。动画可展示椭圆等值线族的旋转（正交变换）与挤压（配方法）。
-**解法一动画要点** - 配方 $2\left(x+\dfrac{y}{2}\right)^2+\dfrac{5}{2}y^2$ 的逐步动画 - 两种标准形系数对照
-**解法二动画要点** - 特征值 $\dfrac{5\pm\sqrt5}{2}$ 的谱标注 - 主轴旋转到特征方向的动画
-**解法三动画要点** - 顺序主子式 $2>0$、$5>0$ 的高亮 - Sylvester 判据的标注
+
+**题目** 设 $a\in\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。
+**答案** $f=(x+y+z)^2+(y-z)^2+(a-2)z^2$;$f$ 正定当且仅当 $a>2$
+**解法一（配方法）** 先按含 $x$ 的项配方:$(x+y+z)^2=x^2+y^2+z^2+2xy+2xz+2yz$,故 $f=(x+y+z)^2+(y^2-2yz+(a-1)z^2)$。再对 $y$ 配方:$(y-z)^2=y^2-2yz+z^2$,得 $f=(x+y+z)^2+(y-z)^2+(a-2)z^2$。若 $a>2$,三项系数全正,且 $(x+y+z,y-z,z)=(0,0,0)$ 推出 $x=y=z=0$,故 $f>0$($(x,y,z)\neq(0,0,0)$)。若 $a\le 2$,取 $x+y+z=0,\ y=z$ 的非零解(如 $(x,y,z)=(-2,1,1)$),此时前两项为 0、第三项 $\le 0$,$f$ 不正定。
+**解法二（合同变换）** $f$ 的矩阵 $A=\begin{pmatrix}1&1&1\\1&2&0\\1&0&a\end{pmatrix}$。作合同变换(行列同步):第一步,第二、三行分别减去第一行,第二、三列分别减去第一列,得 $\begin{pmatrix}1&0&0\\0&1&-1\\0&-1&a-1\end{pmatrix}$;第二步,第三行加上第二行、第三列加上第二列,得 $\operatorname{diag}(1,1,a-2)$。两步对应的列变换矩阵累计为 $C=\begin{pmatrix}1&-1&-2\\0&1&1\\0&0&1\end{pmatrix}$,满足 $C^TAC=\operatorname{diag}(1,1,a-2)$。对应新变量 $u=x+y+z,\ v=y-z,\ w=z$(即 $(x,y,z)^T=C(u,v,w)^T$),标准形为 $u^2+v^2+(a-2)w^2$。合同保持正定性,故 $f$ 正定 $\iff$ 对角元全正 $\iff a>2$。
+**解法三（LDLᵀ 分解）** $f$ 的矩阵 $A$ 可作 $LDL^T$ 分解: $$A=L\operatorname{diag}(1,1,a-2)L^T,\qquad L=\begin{pmatrix}1&0&0\\1&1&0\\1&-1&1\end{pmatrix}.$$ (直接乘开验证:行列为 $1,2,0$ 与 $1,0,a$ 的交叉项分别由 $L$ 的第 2、3 行生成。)令 $(u,v,w)^T=L^T(x,y,z)^T$,得新变量 $u=x+y+z,\ v=y-z,\ w=z$,于是 $$f=(x,y,z)A(x,y,z)^T=(L^T(x,y,z)^T)^T\operatorname{diag}(1,1,a-2)(L^T(x,y,z)^T)=u^2+v^2+(a-2)w^2,$$ 即标准形为 $u^2+v^2+(a-2)w^2$。再由顺序主子式($\Delta_1=1,\Delta_2=1,\Delta_3=|A|=a-2$),$f$ 正定 $\iff\Delta_3>0\iff a>2$——本条解法独立完成"化标准形+判正定"两问。边界 $a=2$ 时标准形第三项系数为 0,$f=u^2+v^2$ 半正定,零空间为 $u=v=0$,即 $x+y+z=0,\ y=z$,也就是 $t(-2,1,1)$。
+**思路展开** 原题 019(二元二次型配标准形)与 train 仅差一个系数,本题升维为**三元含参**:参数只出现在标准形第三项系数 $a-2$,正定边界 $a=2$ 是一个清晰的教学阈值。三解法给出三种判正定的语言——配方(显式平方和)、合同(矩阵语言,含变换矩阵累计)、主子式(行列式语言);动画可展示 $a$ 滑杆下 $z^2$ 系数由负转正、$a=2$ 处 $f=1$ 等值面由双曲类退化为椭圆柱面的临界切换。
+**解法一动画要点** - 配方过程逐项高亮:先 $(x+y+z)^2$ 再 $(y-z)^2$ - $a$ 滑杆下 $z^2$ 系数由负转正(a=2 为临界)
+**解法二动画要点** - 合同初等变换的行列同步消去两步动画 - 变换矩阵 $C$ 的累计与 $C^TAC=\operatorname{diag}(1,1,a-2)$ 验证
+**解法三动画要点** - $LDL^T$ 分解的三角因子展示 - 主子式 $\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注
 
 ### eval-linalg-020 高等代数 · 二次型
 **题目** 判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。
@@ -953,15 +955,16 @@
 **解法三动画要点** - 平行直线对等值线族 - 退化椭圆的极限示意
 
 ### eval-linalg-021 高等代数 · 二次型
-**题目** 判断二次型 $f=x^2+2y^2+3z^2+2xy+2xz+4yz$ 是否正定。
-**答案** 正定
-**解法一（顺序主子式）** 矩阵 $A=\begin{pmatrix}1&1&1\\1&2&2\\1&2&3\end{pmatrix}$。顺序主子式：$\Delta_1=1>0$；$\Delta_2=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1>0$；$\Delta_3=\det A=1\cdot(2\cdot 3-2\cdot 2)-1\cdot(1\cdot 3-2\cdot 1)+1\cdot(1\cdot 2-2\cdot 1)=2-1+0=1>0$。全为正，由 Sylvester 判据，$f$ 正定。
-**解法二（配方为平方和）** $f=(x+y+z)^2+(y+z)^2+z^2$。展开验证：$(x+y+z)^2=x^2+y^2+z^2+2xy+2xz+2yz$，$(y+z)^2=y^2+z^2+2yz$，三项相加得 $x^2+2y^2+3z^2+2xy+2xz+4yz$。三个平方项线性无关的变量替换（$u=x+y+z$、$v=y+z$、$w=z$，变换矩阵 $\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}$ 可逆），故 $f=u^2+v^2+w^2$ 正定。
-**解法三（合同变换化对角）** 对 $A$ 做同步行列变换（合同变换）。第一步：$R_2\leftarrow R_2-R_1$、$R_3\leftarrow R_3-R_1$、$C_2\leftarrow C_2-C_1$、$C_3\leftarrow C_3-C_1$，得 $\begin{pmatrix}1&0&0\\0&1&1\\0&1&2\end{pmatrix}$；第二步：$R_3\leftarrow R_3-R_2$、$C_3\leftarrow C_3-C_2$，得 $\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I$。即存在可逆矩阵 $C$ 使 $C^TAC=I$，故 $A$ 正定。
-**思路展开** 正定判别的三条路：Sylvester 顺序主子式（最快捷）、配方平方和（给出显式的变量替换）、合同变换（机械流程）。三者在本例中给出同一个"三个平方项"的结构。动画可展示椭球面 $f=1$ 与坐标轴的斜交关系及化正后的对齐。
-**解法一动画要点** - 三个顺序主子式 $1,1,1$ 的逐步高亮 - Sylvester 判据的标注
-**解法二动画要点** - 配方平方和 $(x+y+z)^2+(y+z)^2+z^2$ 的逐步展开 - 可逆替换矩阵的标注
-**解法三动画要点** - 合同变换 $R_2\leftarrow R_2-R_1$ 等四步同步消元 - 对角化到 $I$ 的流程
+
+**题目** 设 $a\in\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。
+**答案** $-\sqrt{2}<a<\sqrt{2}$
+**解法一（顺序主子式）** $f$ 的矩阵 $A=\begin{pmatrix}2&1&a\\1&1&0\\a&0&2\end{pmatrix}$。顺序主子式:$\Delta_1=2>0$,$\Delta_2=\begin{vmatrix}2&1\\1&1\end{vmatrix}=1>0$,$\Delta_3=|A|=2\cdot\begin{vmatrix}1&0\\0&2\end{vmatrix}-1\cdot\begin{vmatrix}1&0\\a&2\end{vmatrix}+a\cdot\begin{vmatrix}1&1\\a&0\end{vmatrix}=4-2-a^2=2-a^2$。$f$ 正定 $\iff\Delta_3>0\iff 2-a^2>0\iff -\sqrt{2}<a<\sqrt{2}$。
+**解法二（配方）** $2\left(x+\dfrac{y}{2}+\dfrac{az}{2}\right)^2=2x^2+\dfrac{y^2}{2}+\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\left(x+\frac{y}{2}+\frac{az}{2}\right)^2+\left[\frac{y^2}{2}-ayz+\left(2-\frac{a^2}{2}\right)z^2\right]=2\left(x+\frac{y}{2}+\frac{az}{2}\right)^2+\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\ \dfrac{1}{2},\ 2-a^2$ 全正 $\iff 2-a^2>0\iff |a|<\sqrt{2}$,与解法一一致。
+**解法三（Schur 补）** 把 $A$ 分块为 $\begin{pmatrix}B&c\\c^T&2\end{pmatrix}$,其中 $B=\begin{pmatrix}2&1\\1&1\end{pmatrix}$,$c=(a,0)^T$。$B$ 正定($2>0$ 且 $|B|=1>0$),由 Schur 补判据,$A$ 正定 $\iff$ $B$ 正定且 $S=2-c^TB^{-1}c>0$。$B^{-1}=\begin{pmatrix}1&-1\\-1&2\end{pmatrix}$,$c^TB^{-1}c=(a,0)\begin{pmatrix}1&-1\\-1&2\end{pmatrix}\begin{pmatrix}a\\0\end{pmatrix}=a^2$,故 $S=2-a^2$。于是 $f$ 正定 $\iff 2-a^2>0\iff -\sqrt{2}<a<\sqrt{2}$,与前两法独立得到同一范围。
+**思路展开** 原题 021(固定系数正定判断)与 train 仅差一个 $4yz$ 项,本题整体改系数并去掉 $yz$ 交叉项,改成**参数范围问题**:答案是对称区间 $(-\sqrt{2},\sqrt{2})$,三方法(主子式、配方、Schur 补)互相独立、殊途同归。临界曲面说明:固定等值面 $f=1$,当 $|a|<\sqrt{2}$ 时为椭球面,$|a|=\sqrt{2}$ 时退化为**椭圆柱面**(沿零方向 $(-a,a,1)^T$ 不变,覆盖 $a=\pm\sqrt{2}$ 两个端点),$|a|>\sqrt{2}$ 时为单叶双曲面。端点处零方向验证:$(x,y,z)=(-a,a,1)$ 时 $y-az=a-a=0$,且 $x+\dfrac{y}{2}+\dfrac{az}{2}=-a+\dfrac{a}{2}+\dfrac{a}{2}=0$,两项同时为零;当 $a=\pm\sqrt{2}$ 时 $2-a^2=0$,故 $f=0$。
+**解法一动画要点** - $\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\sqrt2,\sqrt2)$ 标注 - 主子式序列随 $a$ 变化
+**解法二动画要点** - 含参配方逐步展开 - 系数 $2-a^2$ 的符号区间
+**解法三动画要点** - $2\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注 - 等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)
 
 ### eval-linalg-022 高等代数 · 多项式
 **题目** 将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。
@@ -1063,27 +1066,28 @@
 **解法三动画要点** - 两两垂直的验证标注 - 行列式 $6\ne0$ 的线性无关验证
 
 ### eval-linalg-031 高等代数 · λ-矩阵
-**题目** 求矩阵 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 的最小多项式与若尔当标准形。
-**答案** 最小多项式 $(\lambda-2)^3$；若尔当标准形为 $A$ 本身（单个三阶块 $J_3(2)$）
-**解法一（特征多项式+最小多项式）** 特征多项式 $|\lambda I-A|=(\lambda-2)^3$。$A-2I=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}=:N$，$N\ne 0$ 且 $N^2=\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}\ne 0$，$N^3=0$。因 $(A-2I)\ne 0$、$(A-2I)^2\ne 0$，低次多项式 $\lambda-2$ 与 $(\lambda-2)^2$ 都不能使 $A$ 消去，故最小多项式为 $(\lambda-2)^3$。
-**解法二（秩法判块结构）** $\operatorname{rank}(A-2I)=\operatorname{rank}N=2$，$\operatorname{rank}(A-2I)^2=\operatorname{rank}N^2=1$，$\operatorname{rank}(A-2I)^3=0$。特征值 $2$ 的若尔当块个数 $=3-\operatorname{rank}(A-2I)=3-2=1$，即只有一个块，大小为 3，故标准形为 $J_3(2)$，最小多项式 $(\lambda-2)^3$。
-**解法三（广义特征向量链）** 解 $(A-2I)^2v\ne 0$ 而 $(A-2I)^3v=0$：取 $e_1=(1,0,0)^T$，则 $(A-2I)e_1=(0,0,0)$ 不满足；取 $e_3=(0,0,1)^T$：$(A-2I)e_3=(0,1,0)^T$，$(A-2I)^2e_3=(1,0,0)^T\ne 0$，$(A-2I)^3e_3=0$。链 $e_3\to Ne_3\to N^2e_3$ 长度为 3，故若尔当块为 $J_3(2)$。
-**思路展开** 若尔当标准形的三种判别：最小多项式（重数）、秩序列（块数递推）、广义特征向量链（几何结构）。三法一致给出"单个三阶块"。动画可展示幂零部分 $N$ 的三步归零链。
-**解法一动画要点** - 幂零矩阵 $N$、$N^2$ 的非零标注 - 最小多项式 $(\lambda-2)^3$ 的判定
-**解法二动画要点** - 秩序列 $2,1,0$ 的下降 - 块数 $3-\operatorname{rank}(A-2I)=1$ 的标注
-**解法三动画要点** - 幂零链 $e_3\to Ne_3\to N^2e_3\to 0$ - 广义特征向量链长度 3 的标注
+
+**题目** 设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\lambda)=(\lambda-2)^2(\lambda-3)$,且 $\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。
+**答案** 唯一:$\operatorname{diag}\!\bigl(J_2(2),\,2,\,3\bigr)=\begin{pmatrix}2&1&0&0\\0&2&0&0\\0&0&2&0\\0&0&0&3\end{pmatrix}$,其中 $J_2(2)=\begin{pmatrix}2&1\\0&2\end{pmatrix}$
+**解法一（最小多项式定最大块阶）** $m_A$ 的根为 $2,3$,故 $A$ 的谱为 $\{2,3\}$。因子 $(\lambda-2)^2$ 表明 2 对应若尔当块的最大阶数为 2(且恰有一块取到 2 阶);因子 $(\lambda-3)$ 无平方,表明 3 对应块全为 1 阶。$n=4$ 且 3 的重数至少为 1,故 2 的重数为 2 或 3。若 2 重数为 2:块为 $J_2(2)\oplus J_1(3)\oplus J_1(3)$,迹 $=2+2+3+3=10\neq 9$,排除。若 2 重数为 3:块为 $J_2(2)\oplus J_1(2)\oplus J_1(3)$,共 $2+1+1=4$ 阶,迹 $=2+2+2+3=9$,符合。故唯一。
+**解法二（特征多项式与迹联立）** 特征多项式 $f_A$ 与 $m_A$ 有相同根,$f_A=(\lambda-2)^{r_2}(\lambda-3)^{r_3}$,$r_2+r_3=4$,$r_2\ge 2$,$r_3\ge 1$,故 $(r_2,r_3)=(3,1)$ 或 $(2,2)$。迹 $=2r_2+3r_3$:$(3,1)$ 给 $6+3=9$;$(2,2)$ 给 $4+6=10$。故 $r_2=3,r_3=1$。2 的块:最大块阶为 2(由 $(\lambda-2)^2$ 整除 $m_A$)且总维数为 3,故块大小拆分为 $2+1$,即 $J_2(2)\oplus J_1(2)$;3 的块为 $J_1(3)$。故唯一:$\operatorname{diag}\!\bigl(J_2(2),2,3\bigr)$。
+**解法三（主分解）** $m_A$ 的两个互素因子给出主分解 $V=\ker(A-2I)^2\oplus\ker(A-3I)$。$\ker(A-3I)$ 的维数等于 3 的重数 $r_3$;$\ker(A-2I)^2$ 的维数等于 2 的重数 $r_2$。由 $r_2+r_3=4$、$r_2\ge 2$、$r_3\ge 1$ 与迹 $2r_2+3r_3=9$ 得 $r_2=3,\ r_3=1$。在 $V_2=\ker(A-2I)^2$ 上,幂零部分 $N=A-2I$ 满足 $N^2=0$ 且 $N\neq 0$($N=0$ 会给 $m_A$ 带来因子 $(\lambda-2)$ 而非 $(\lambda-2)^2$),故 $N$ 的幂零指数恰为 2,$V_2$ 上的块为 $J_2(2)\oplus J_1(2)$;$V_3$ 一维,块为 $J_1(3)$。故唯一:$\operatorname{diag}\!\bigl(J_2(2),2,3\bigr)$。
+**思路展开** 原题 031(给定矩阵求最小多项式与若尔当形)与 train 仅差一个矩阵元,本题**反其道而行**:从最小多项式与迹反推若尔当形——训练"结构信息如何唯一确定标准形"的逆向思维。三解法分别用最小多项式(块阶上界)、特征多项式+迹(重数分配)、主分解+幂零指数(子空间结构)三条独立路径;动画可展示"块拼图":$2\times2$ 块与 $1\times1$ 块的组合如何在迹约束下唯一化。
+**解法一动画要点** - 若尔当块按 $(\lambda-2)^2$、$(\lambda-3)$ 的阶数约束拼图 - 迹 9 排除 $10$ 的组合
+**解法二动画要点** - 重数分配 $(3,1)$ 与 $(2,2)$ 的分支图 - 迹公式 $2r_2+3r_3$ 的对照表
+**解法三动画要点** - 主分解 $V_2\oplus V_3$ 的子空间示意 - 幂零指数 2(块阶上限)与维数 3 定出 $2+1$ 拆分
 
 ### eval-linalg-032 高等代数 · λ-矩阵
-**题目** 求 λ-矩阵 $A(\lambda)=\begin{pmatrix}\lambda-1&1\\0&\lambda-1\end{pmatrix}$ 的不变因子与初等因子。
-**答案** 不变因子 $1,(\lambda-1)^2$；初等因子 $(\lambda-1)^2$
-**解法一（行列式因子）** 一阶行列式因子 $D_1(\lambda)=\gcd(\lambda-1,\ 1,\ 0,\ \lambda-1)=1$（含元素 1，故为 1）。二阶行列式因子 $D_2(\lambda)=\det A(\lambda)=(\lambda-1)^2$。不变因子 $d_1=D_1=1$，$d_2=\dfrac{D_2}{D_1}=(\lambda-1)^2$。初等因子为不变因子的不可约因式幂：$(\lambda-1)^2$。
-**解法二（初等变换化标准形）** 交换两列：$\begin{pmatrix}1&\lambda-1\\\lambda-1&0\end{pmatrix}$；第二列减第一列的 $(\lambda-1)$ 倍：$\begin{pmatrix}1&0\\\lambda-1&-(\lambda-1)^2\end{pmatrix}$；第二行减第一行的 $(\lambda-1)$ 倍：$\begin{pmatrix}1&0\\0&-(\lambda-1)^2\end{pmatrix}$。Smith 标准形为 $\operatorname{diag}(1,(\lambda-1)^2)$（$-1$ 为单位因子可吸收），不变因子即 $1,(\lambda-1)^2$。
-**解法三（与若尔当块的对应）** $A(\lambda)=\lambda I-\begin{pmatrix}1&-1\\0&1\end{pmatrix}$（因 $-\begin{pmatrix}1&-1\\0&1\end{pmatrix}=\begin{pmatrix}-1&1\\0&-1\end{pmatrix}$，而 $\lambda I-\begin{pmatrix}1&-1\\0&1\end{pmatrix}=\begin{pmatrix}\lambda-1&1\\0&\lambda-1\end{pmatrix}$）。矩阵 $\begin{pmatrix}1&-1\\0&1\end{pmatrix}$ 相似于 $J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$（相似变换：令 $P=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，$P^{-1}\begin{pmatrix}1&-1\\0&1\end{pmatrix}P=\begin{pmatrix}1&1\\0&1\end{pmatrix}$）。$J_2(1)$ 的初等因子为 $(\lambda-1)^2$，故原 λ-矩阵初等因子 $(\lambda-1)^2$。
-**思路展开** 行列式因子法最通用，初等变换给出 Smith 标准形，解法三把 λ-矩阵与若尔当理论连接（初等因子=若尔当块）。动画可展示初等变换的逐步过程与若尔当块的对应。
-**解法一动画要点** - 行列式因子 $D_1=1$、$D_2=(\lambda-1)^2$ 的计算 - 不变因子的商式标注
-**解法二动画要点** - 初等变换化为 $\operatorname{diag}(1,(\lambda-1)^2)$ 的逐步动画 - Smith 标准形标注
-**解法三动画要点** - 相似变换 $P^{-1}\begin{pmatrix}1&-1\\0&1\end{pmatrix}P=J_2(1)$ 的验证 - 与若尔当块的对应关系
 
+**题目** 设 $a\in\mathbb R$ 为参数,$\lambda$-矩阵 $A(\lambda)=\begin{pmatrix}\lambda-a&1&0\\0&\lambda-1&1\\0&0&\lambda-1\end{pmatrix}$。求 $A(\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时两个不同根的初等因子合并、重数如何变化)。
+**答案** 不变因子:$1,\ 1,\ (\lambda-a)(\lambda-1)^2$;初等因子:$a\neq 1$ 时为 $\lambda-a$ 与 $(\lambda-1)^2$;$a=1$ 时为 $(\lambda-1)^3$
+**解法一（行列式因子）** 一阶行列式因子 $D_1=1$。二阶子式中含 $\begin{vmatrix}1&0\\\lambda-1&1\end{vmatrix}=1$,故二阶行列式因子 $D_2=\gcd(\cdots,1,\cdots)=1$。三阶行列式因子 $D_3=|A(\lambda)|=(\lambda-a)(\lambda-1)^2$。不变因子 $d_1=D_1=1$,$d_2=\dfrac{D_2}{D_1}=1$,$d_3=\dfrac{D_3}{D_2}=(\lambda-a)(\lambda-1)^2$。初等因子即不变因子分解出的互异幂因子:$a\neq 1$ 时 $d_3$ 给出 $\lambda-a$ 与 $(\lambda-1)^2$ 两个初等因子;$a=1$ 时 $\lambda-a$ 与 $(\lambda-1)^2$ 的根重合,$d_3=(\lambda-1)^3$ 成为一个三重初等因子。
+**解法二（初等变换化标准形）** 交换第 1、2 列得 $\begin{pmatrix}1&\lambda-a&0\\\lambda-1&0&1\\0&0&\lambda-1\end{pmatrix}$;第 2 行减去第 1 行的 $(\lambda-1)$ 倍、第 2 列减去第 1 列的 $(\lambda-a)$ 倍,得 $\begin{pmatrix}1&0&0\\0&-(\lambda-a)(\lambda-1)&1\\0&0&\lambda-1\end{pmatrix}$;再交换第 2、3 列,第 3 行减去第 2 行的 $(\lambda-1)$ 倍,第 3 列加回第 2 列的 $(\lambda-a)(\lambda-1)$ 倍,得标准形 $\operatorname{diag}\!\bigl(1,\,1,\,(\lambda-a)(\lambda-1)^2\bigr)$。不变因子读出 $1,\ 1,\ (\lambda-a)(\lambda-1)^2$。末项分解得初等因子:$a\neq 1$ 时为 $\lambda-a$ 与 $(\lambda-1)^2$ 两个;$a=1$ 时两者根重合,合并为 $(\lambda-1)^3$ 一个。
+**解法三（循环向量独立推导）** 令 $B(a)=\begin{pmatrix}a&-1&0\\0&1&-1\\0&0&1\end{pmatrix}$,则 $A(\lambda)=\lambda I-B(a)$。取 $e_3=(0,0,1)^T$,直接计算: $$(e_3,\ B e_3,\ B^2 e_3)=\begin{pmatrix}0&0&1\\0&-1&-2\\1&1&1\end{pmatrix},\qquad \det=1\neq 0,$$ 故 $\{e_3,Be_3,B^2e_3\}$ 构成基,$e_3$ 对所有 $a$ 都是 $B$ 的循环向量,因此 $m_B$ 的次数为 3,与特征多项式 $\chi_B(\lambda)=(\lambda-a)(\lambda-1)^2$ 相同,即 $m_B=\chi_B$。于是 $A(\lambda)$ 的不变因子为 $1,\ 1,\ (\lambda-a)(\lambda-1)^2$(唯一非平凡不变因子等于特征多项式)。初等因子:$a\neq 1$ 时为 $\lambda-a$ 与 $(\lambda-1)^2$,对应块 $\operatorname{diag}\!\bigl(a,\,J_2(1)\bigr)$,其中 $J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$;$a=1$ 时合并为 $(\lambda-1)^3$,对应块 $J_3(1)=\begin{pmatrix}1&1&0\\0&1&1\\0&0&1\end{pmatrix}$。**所有参数取值下均不可对角化**($a\neq 1$ 时已含 $J_2(1)$ 块);$a$ 从 $\neq 1$ 变到 1 时,变化是初等因子合并、最大若尔当块由二阶升为三阶。
+**思路展开** 按用户难度要求升为**三阶**含参 λ-矩阵:不变因子链 $1\mid 1\mid(\lambda-a)(\lambda-1)^2$ 展示"中间不变因子为 1"的典型情形;$(\lambda-1)^2$ 对所有 $a$ 都是重因子,参数退化 $a=1$ 使 $\lambda-a$ 与它合并为 $(\lambda-1)^3$,块结构 $J_1(a)\oplus J_2(1)$ 突变为 $J_3(1)$。三解法分别用行列式因子(定义)、初等变换(算法)、循环向量(结构)三视角。
+**解法一动画要点** - 全部二阶子式 $\gcd=1$ 的逐一检验 - $a$ 滑杆下 $(\lambda-a)$ 与 $(\lambda-1)$ 的根逐渐重合
+**解法二动画要点** - 行、列初等变换分别逐步动画(Smith 形) - 标准形 $\operatorname{diag}(1,1,(\lambda-a)(\lambda-1)^2)$ 的生成
+**解法三动画要点** - 在原参数矩阵上展示特征值合并、特征方向趋于重合 - 块结构 $J_1(a)\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)
 ### eval-linalg-033 高等代数 · 矩阵函数
 **题目** 设 $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，求矩阵指数 $e^{tA}$（$t$ 为参数）。
 **答案** $e^{tA}=\begin{pmatrix}1&t\\0&1\end{pmatrix}$

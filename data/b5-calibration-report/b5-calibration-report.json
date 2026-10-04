@@ -94,14 +94,15 @@
   "leakage_screen_calibration": {
     "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
     "threshold": "2/5",
-    "calibrated": true,
+    "calibrated": false,
+    "meets_original_pair_targets": false,
+    "sample_scope": "原考点标签上的诊断;尚无独立泄漏标签",
     "tp": 16,
     "fp": 0,
     "fn": 1,
     "tn": 31,
     "precision": "1",
     "recall_all_labels": "16/17",
-    "domain_recall": "1",
     "fpr": "0",
     "fnr": "1/17",
     "excluded_variants": [
@@ -109,10 +110,10 @@
         "a": "eval-calc-010",
         "b": "test-calc-007",
         "j5": "19/62",
-        "reason": "同考点但文字差异大(J5<2/5),按用户裁决保留为变体"
+        "reason": "当前组合屏未命中;保留原考点重复标签,仍计入 FN"
       }
     ],
-    "note": "同 48 对标注样本评估:屏作用域(签名一致 AND J5≥2/5)内查全 16/16、全域误报 0/31;1 对同考点文字差异大的变体按用户裁决不拦;文字分量阈值 2/5 取自 train-vs-eval/test 同考点对 J5 分布的自然断档(0.4 以下为不同任务要求)"
+    "note": "当前 48 对原考点标注上的召回率 16/17,误报率 0;未达到原目标召回率≥19/20且误报率≤1/100。组合屏的独立泄漏标注与匹配验收尚未完成,保持 UNCALIBRATED;TP/(TP+FP) 是精确率,不得写成作用域召回率,不得按预测条件排除 FN。"
   },
   "grid_kp": [
     {
@@ -1188,7 +1189,7 @@
       "j5": "0",
       "similarity_counts": {
         "intersection": 0,
-        "union": 73
+        "union": 111
       },
       "kp_a": "解析几何 其他[直线与平面]",
       "kp_b": "高等代数 其他[λ-矩阵]",
@@ -1197,7 +1198,7 @@
       "prediction": "不重复",
       "match": true,
       "text_a": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
-      "text_b": "求矩阵 $A=\\begin{pmatrix}2&1&0\\\\0&2&1\\\\0&0&2\\end{pmatrix}$ 的最小多项式与若尔当标准形。"
+      "text_b": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。"
     },
     {
       "a": "eval-geom-002",
@@ -1222,7 +1223,7 @@
       "j5": "0",
       "similarity_counts": {
         "intersection": 0,
-        "union": 75
+        "union": 97
       },
       "kp_a": "数学分析 不定积分",
       "kp_b": "高等代数 其他[二次型]",
@@ -1231,7 +1232,7 @@
       "prediction": "不重复",
       "match": true,
       "text_a": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
-      "text_b": "判断二次型 $f=x^2+2y^2+3z^2+2xy+2xz+4yz$ 是否正定。"
+      "text_b": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。"
     },
     {
       "a": "eval-geom-007",
@@ -1391,5 +1392,5 @@
     }
   ],
   "mismatches": [],
-  "annotation_sha256": "e61329f92e280070cc8b0ba508aed89669e86721f6b91e823c43897426ee32da"
+  "annotation_sha256": "3cf74c43ad734017787c305605ac00d96f983ddc794c0f4c0fa8c42390ef3560"
 }
