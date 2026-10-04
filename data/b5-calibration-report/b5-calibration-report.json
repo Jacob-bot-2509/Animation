@@ -1,8 +1,9 @@
 {
   "annotated_pairs": 48,
+  "pos_pairs": 11,
+  "neg_pairs": 37,
   "uncertain_pairs": 2,
-  "pos_queries": 22,
-  "neg_queries": 74,
+  "evaluation": "pairwise(每对以其自身 Jaccard 对阈值判定,无 query-vs-pool 自污染)",
   "calibration": {
     "threshold": 0.0,
     "calibrated": false,
@@ -10,186 +11,192 @@
     "fp": 0,
     "fn": 0,
     "tn": 0,
-    "precision": 0.0,
-    "recall": 0.0,
-    "fpr": 0.0,
-    "fnr": 0.0,
-    "note": "网格内无阈值同时满足 recall≥0.95 且 fpr≤0.01—— 对照集或方法需检查,当前阈值仍 UNCALIBRATED"
+    "note": "网格内无阈值同时满足 recall≥0.95 且 fpr≤0.01——对照集或方法需检查,当前阈值仍 UNCALIBRATED"
   },
-  "tradeoff": [
+  "grid": [
     {
       "threshold": 0.3,
-      "tp": 22,
-      "fp": 74,
+      "tp": 11,
+      "fp": 15,
       "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
+      "tn": 22,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.4231,
       "recall": 1.0,
-      "fpr": 1.0,
+      "fpr": 0.4054,
       "fnr": 0.0
     },
     {
       "threshold": 0.35,
-      "tp": 22,
-      "fp": 74,
+      "tp": 11,
+      "fp": 14,
       "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
+      "tn": 23,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.44,
       "recall": 1.0,
-      "fpr": 1.0,
+      "fpr": 0.3784,
       "fnr": 0.0
     },
     {
       "threshold": 0.4,
-      "tp": 22,
-      "fp": 74,
+      "tp": 11,
+      "fp": 14,
       "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
+      "tn": 23,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.44,
       "recall": 1.0,
-      "fpr": 1.0,
+      "fpr": 0.3784,
       "fnr": 0.0
     },
     {
       "threshold": 0.45,
-      "tp": 22,
-      "fp": 74,
+      "tp": 11,
+      "fp": 14,
       "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
+      "tn": 23,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.44,
       "recall": 1.0,
-      "fpr": 1.0,
+      "fpr": 0.3784,
       "fnr": 0.0
     },
     {
       "threshold": 0.5,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 9,
+      "fp": 3,
+      "fn": 2,
+      "tn": 34,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.75,
+      "recall": 0.8182,
+      "fpr": 0.0811,
+      "fnr": 0.1818
     },
     {
       "threshold": 0.55,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 3,
+      "fp": 2,
+      "fn": 8,
+      "tn": 35,
+      "pos": 11,
+      "neg": 37,
+      "precision": 0.6,
+      "recall": 0.2727,
+      "fpr": 0.0541,
+      "fnr": 0.7273
     },
     {
       "threshold": 0.6,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 2,
+      "fp": 0,
+      "fn": 9,
+      "tn": 37,
+      "pos": 11,
+      "neg": 37,
+      "precision": 1.0,
+      "recall": 0.1818,
+      "fpr": 0.0,
+      "fnr": 0.8182
     },
     {
       "threshold": 0.65,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 2,
+      "fp": 0,
+      "fn": 9,
+      "tn": 37,
+      "pos": 11,
+      "neg": 37,
+      "precision": 1.0,
+      "recall": 0.1818,
+      "fpr": 0.0,
+      "fnr": 0.8182
     },
     {
       "threshold": 0.7,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 1,
+      "fp": 0,
+      "fn": 10,
+      "tn": 37,
+      "pos": 11,
+      "neg": 37,
+      "precision": 1.0,
+      "recall": 0.0909,
+      "fpr": 0.0,
+      "fnr": 0.9091
     },
     {
       "threshold": 0.75,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 1,
+      "fp": 0,
+      "fn": 10,
+      "tn": 37,
+      "pos": 11,
+      "neg": 37,
+      "precision": 1.0,
+      "recall": 0.0909,
+      "fpr": 0.0,
+      "fnr": 0.9091
     },
     {
       "threshold": 0.8,
-      "tp": 22,
-      "fp": 74,
-      "fn": 0,
-      "tn": 0,
-      "precision": 0.2292,
-      "recall": 1.0,
-      "fpr": 1.0,
-      "fnr": 0.0
+      "tp": 0,
+      "fp": 0,
+      "fn": 11,
+      "tn": 37,
+      "pos": 11,
+      "neg": 37,
+      "precision": null,
+      "recall": 0.0,
+      "fpr": 0.0,
+      "fnr": 1.0
     }
   ],
-  "best_f1_tradeoff": {
-    "threshold": 0.3,
-    "tp": 22,
-    "fp": 74,
-    "fn": 0,
-    "tn": 0,
-    "precision": 0.2292,
-    "recall": 1.0,
-    "fpr": 1.0,
-    "fnr": 0.0,
-    "f1": 0.3729
-  },
   "interleave_zone": [
     {
       "jaccard": 0.4615,
       "label": "不重复",
       "a": "eval-calc-022",
       "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{"
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
       "jaccard": 0.4615,
       "label": "不重复",
       "a": "test-calc-034",
       "b": "test-calc-042",
-      "text_a": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{"
+      "text_a": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
     },
     {
       "jaccard": 0.4643,
       "label": "不重复",
       "a": "eval-calc-011",
       "b": "eval-calc-022",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{",
-      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^"
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。"
     },
     {
       "jaccard": 0.4643,
       "label": "不重复",
       "a": "eval-calc-011",
       "b": "test-calc-034",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{"
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
       "jaccard": 0.4737,
       "label": "重复",
       "a": "eval-calc-001",
       "b": "eval-calc-002",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x",
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
       "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。"
     },
     {
@@ -197,64 +204,64 @@
       "label": "不重复",
       "a": "eval-calc-021",
       "b": "eval-calc-023",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}",
-      "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n"
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。"
     },
     {
       "jaccard": 0.48,
       "label": "不重复",
       "a": "eval-calc-021",
       "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{"
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
       "jaccard": 0.4808,
       "label": "不重复",
       "a": "test-linalg-023",
       "b": "test-linalg-027",
-      "text_a": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{c",
-      "text_b": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ "
+      "text_a": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{cases}$ 的通解。",
+      "text_b": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。"
     },
     {
       "jaccard": 0.4815,
       "label": "不重复",
       "a": "eval-calc-011",
       "b": "eval-calc-021",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{",
-      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}"
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。"
     },
     {
       "jaccard": 0.4889,
       "label": "重复",
       "a": "eval-calc-001",
       "b": "eval-calc-004",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x",
-      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan"
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+      "text_b": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。"
     },
     {
       "jaccard": 0.4898,
       "label": "不重复",
       "a": "eval-calc-022",
       "b": "test-calc-013",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n("
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
     },
     {
       "jaccard": 0.4898,
       "label": "不重复",
       "a": "eval-calc-023",
       "b": "test-calc-042",
-      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{"
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
     },
     {
       "jaccard": 0.4898,
       "label": "不重复",
       "a": "test-calc-013",
       "b": "test-calc-042",
-      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(",
-      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{"
+      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。"
     },
     {
       "jaccard": 0.5,
@@ -269,72 +276,72 @@
       "label": "重复",
       "a": "eval-calc-021",
       "b": "test-calc-013",
-      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n("
+      "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
     },
     {
       "jaccard": 0.5246,
       "label": "重复",
       "a": "test-calc-012",
       "b": "test-calc-029",
-      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x",
-      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^"
+      "text_a": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
+      "text_b": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。"
     },
     {
       "jaccard": 0.5254,
       "label": "重复",
       "a": "eval-linalg-015",
       "b": "eval-linalg-017",
-      "text_a": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征",
-      "text_b": "求矩阵 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的特征"
+      "text_a": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "text_b": "求矩阵 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的特征值与特征向量，并判断其是否可对角化。"
     },
     {
       "jaccard": 0.5435,
       "label": "重复",
       "a": "eval-calc-001",
       "b": "test-calc-040",
-      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x",
-      "text_b": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\fra"
+      "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+      "text_b": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\frac{x^2}{2}}{x^4}$。"
     },
     {
       "jaccard": 0.5478,
       "label": "重复",
       "a": "eval-linalg-003",
       "b": "test-linalg-013",
-      "text_a": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}2&1&0&\\cdots&0",
-      "text_b": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0"
+      "text_a": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}2&1&0&\\cdots&0\\\\1&2&1&\\cdots&0\\\\0&1&2&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&0&\\cdots&2\\end{vmatrix}$ 的值（矩阵元素满足 $a_{ii}=2$，$a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+      "text_b": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。"
     },
     {
       "jaccard": 0.549,
       "label": "不重复",
       "a": "eval-calc-011",
       "b": "eval-calc-023",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{",
-      "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n"
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。"
     },
     {
       "jaccard": 0.5532,
       "label": "重复",
       "a": "eval-calc-023",
       "b": "test-calc-034",
-      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{"
+      "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
       "jaccard": 0.5532,
       "label": "不重复",
       "a": "test-calc-013",
       "b": "test-calc-034",
-      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(",
-      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{"
+      "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "text_b": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。"
     },
     {
       "jaccard": 0.58,
       "label": "不重复",
       "a": "eval-calc-011",
       "b": "test-calc-013",
-      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{",
-      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n("
+      "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。"
     }
   ]
 }
