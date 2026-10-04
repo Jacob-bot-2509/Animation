@@ -36,6 +36,13 @@ v2.1(应内部对抗复核 12 项确认发现):
     (沙箱/控制);main 整体异常兜底写错误证据 JSON,不再裸崩溃;
   - 重跑时 net-runtime 副本与授权源比对 python.exe 哈希+._pth 内容,
     不一致即刷新副本并记录两侧哈希。
+v2.2(应 msg_312,授权受限原生执行前的收尾):
+  - 运行时副本核验扩为关键文件哈希清单:python.exe/python313.dll/
+    Lib/socket.py/DLLs/_socket.pyd + ._pth 内容,源与副本逐项比对,
+    任何不一致即刷新副本并记录完整清单;
+  - 沙箱 env 补普通 Windows 变量(SystemDrive/windir/USERNAME/USERDOMAIN)
+    防 203 错误;TEMP/TMP/profile/PATH 仍绑定副本,不授权源工具链;
+  - 每次运行证据写入带 run_id 后缀的新文件,绝不覆盖旧证据。
 """
 from __future__ import annotations
 
@@ -661,33 +668,59 @@ def _attempt(transport: str, host: str, client_file: Path, rt_py: Path,
 
 
 def main() -> int:
-    work = SUPPORT / f"net-work-{uuid.uuid4().hex[:8]}"
+    run_id = uuid.uuid4().hex[:12]
+    work = SUPPORT / f"net-work-{run_id}"
     _check_paths(work)
     EVIDENCE.mkdir(exist_ok=True)
     results: dict = {}
     try:
         # runtime 独立副本(只读复制复查方授权运行时;不授权原 D:\Python/.venv);
-        # 重跑时与授权源比对 python.exe 哈希与 ._pth 内容,不一致即刷新
-        src_exe = CODEX_RUNTIME / "python.exe"
+        # 核验=关键文件哈希清单,源与副本逐项比对,任何不一致即刷新副本
+        RUNTIME_KEY_FILES = ["python.exe", "python313.dll", "Lib/socket.py",
+                             "DLLs/_socket.pyd"]
+        src_manifest = {}
+        for rel in RUNTIME_KEY_FILES:
+            f = CODEX_RUNTIME / rel
+            if not f.exists():
+                raise FileNotFoundError(f"授权运行时源缺失文件: {f}")
+            src_manifest[rel] = hashlib.sha256(f.read_bytes()).hexdigest()
         src_pth_file = CODEX_RUNTIME / "python313._pth"
-        if not src_exe.exists() or not src_pth_file.exists():
-            raise FileNotFoundError(f"授权运行时源缺失: {CODEX_RUNTIME}")
-        src_exe_sha = hashlib.sha256(src_exe.read_bytes()).hexdigest()
+        if not src_pth_file.exists():
+            raise FileNotFoundError(f"授权运行时源缺失: {src_pth_file}")
         src_pth = src_pth_file.read_text(encoding="utf-8", errors="replace")
-        dst_exe = NET_RUNTIME / "python.exe"
+        need_copy = False
+        dst_manifest = {}
+        for rel in RUNTIME_KEY_FILES:
+            f = NET_RUNTIME / rel
+            if not f.exists():
+                need_copy = True
+                break
+            dst_manifest[rel] = hashlib.sha256(f.read_bytes()).hexdigest()
+            if dst_manifest[rel] != src_manifest[rel]:
+                need_copy = True
+                break
         dst_pth_file = NET_RUNTIME / "python313._pth"
-        need_copy = True
-        if dst_exe.exists() and dst_pth_file.exists():
-            dst_exe_sha = hashlib.sha256(dst_exe.read_bytes()).hexdigest()
+        if not need_copy and dst_pth_file.exists():
             dst_pth = dst_pth_file.read_text(encoding="utf-8",
                                              errors="replace")
-            need_copy = (dst_exe_sha != src_exe_sha or dst_pth != src_pth)
+            if dst_pth != src_pth:
+                need_copy = True
+        elif not dst_pth_file.exists():
+            need_copy = True
         if need_copy:
             shutil.copytree(CODEX_RUNTIME, NET_RUNTIME, dirs_exist_ok=True)
+            dst_manifest = {rel: hashlib.sha256(
+                (NET_RUNTIME / rel).read_bytes()).hexdigest()
+                for rel in RUNTIME_KEY_FILES}
         rt_py = NET_RUNTIME / "python.exe"
         runtime_pth = (NET_RUNTIME / "python313._pth").read_text(
             encoding="utf-8", errors="replace")
         runtime_pth_ok = _pth_ok(runtime_pth)
+        # 刷新后逐项复核,确保前后一致(不放过旧副本模块改动)
+        for rel in RUNTIME_KEY_FILES:
+            if hashlib.sha256((NET_RUNTIME / rel).read_bytes()).hexdigest() \
+                    != src_manifest[rel]:
+                raise OSError(f"运行时副本核验失败(刷新后仍不一致): {rel}")
         client_file = work / "net_client.py"
         client_file.write_text(_CLIENT, encoding="utf-8")
         hashes = {
@@ -711,6 +744,10 @@ def main() -> int:
         ac.grant_dir_access(NET_RUNTIME, sid, write=False)
         ac.grant_dir_access(work, sid, write=True)
         sandbox_env = {"SYSTEMROOT": r"C:\Windows",
+                       "SystemDrive": os.environ.get("SystemDrive", "C:"),
+                       "windir": os.environ.get("windir", r"C:\Windows"),
+                       "USERNAME": os.environ.get("USERNAME", ""),
+                       "USERDOMAIN": os.environ.get("USERDOMAIN", ""),
                        "PATH": ";".join([str(NET_RUNTIME),
                                          r"C:\Windows\System32"]),
                        "TEMP": str(work), "TMP": str(work),
@@ -720,9 +757,9 @@ def main() -> int:
         results = {"source_hashes": hashes,
                    "runtime_pth": runtime_pth,
                    "runtime_pth_ok": runtime_pth_ok,
-                   "runtime_copy": {"src_exe_sha256": src_exe_sha,
-                                    "dst_exe_sha256": hashes[
-                                        "runtime_python_sha256"],
+                   "runtime_copy": {"src_manifest": dict(src_manifest),
+                                    "dst_manifest": dict(dst_manifest),
+                                    "src_pth": src_pth,
                                     "refreshed": need_copy},
                    "command": [sys.executable] + sys.argv,
                    "work": str(work), "runtime": str(rt_py),
@@ -750,7 +787,8 @@ def main() -> int:
         results["overall"] = {"verdict": overall, "per_attempt": verdicts,
                               "scope_note": "仅本机回环 TCP/UDP/IPv6 网络隔离;"
                                             "不构成完整网络隔离结论,"
-                                            "外网 TCP 待补证"}
+                                            "外网 TCP 待补证",
+                              "run_id": run_id}
         _assert_json_safe(results, "results")
         ok = (results["negative_regressions"]["all_hold"]
               and results["json_roundtrip"]["ok"] and overall == "PASS")
@@ -758,12 +796,14 @@ def main() -> int:
         import traceback
         err_rec = {"error": repr(e), "traceback": traceback.format_exc(),
                    "command": [sys.executable] + sys.argv,
-                   "partial_results_keys": list(results.keys())}
-        (EVIDENCE / "network-accept-error.json").write_text(
+                   "partial_results_keys": list(results.keys()),
+                   "run_id": run_id}
+        (EVIDENCE / f"network-accept-error-{run_id}.json").write_text(
             json.dumps(err_rec, ensure_ascii=False, indent=2), encoding="utf-8")
         print(json.dumps(err_rec, ensure_ascii=False, indent=2))
         return 1
-    out = EVIDENCE / "network-accept-results.json"
+    # 每次运行独立证据文件,绝不覆盖旧证据
+    out = EVIDENCE / f"network-accept-results-{run_id}.json"
     out.write_text(json.dumps(results, ensure_ascii=False, indent=2),
                    encoding="utf-8")
     print(json.dumps(results, ensure_ascii=False, indent=2))
