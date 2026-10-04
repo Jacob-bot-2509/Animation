@@ -45,6 +45,12 @@ v3.7(应 msg_362):
       主失败降级 fallback 时以 fallback 路径字段重建内容,二次写入失败/
       路径漂移不再造成落盘与 stdout 不一致,残余不一致保守回退
       stdout_only=True。
+v3.9(应 msg_375,拒绝类明确错误归因):
+  19. 客户端 OSError 补录 errno/异常类型/异常消息,并做独立 Win32
+      CreateFileW 探针(同路径同操作,ctypes use_last_error=True)确认拒绝、
+      取真实 GetLastError;判定不再接受 outcome=denied+无写入/未泄漏
+      作明确归因:须探针确认拒绝、Python 层或 Win32 层出现
+      5=ACCESS_DENIED 且互不矛盾、errno/类型/消息齐全。
 
 契约与范围:仅本支持目录内具名工作区 file-work-<run_id>/(授 rw ACE)与
 file-denied-<run_id>/(不授);复用既有生产 profile;仅合成数据;不改核心四
@@ -178,6 +184,32 @@ def _write_json(path: Path, obj) -> Path | None:
 
 # ---------------------------------------------------------------- 纯判定谓词
 
+def _denied_attribution_reasons(sb: dict, reasons: list[str]) -> None:
+    """拒绝类明确归因(应 msg_375):独立 CreateFileW 探针须确认拒绝,
+    Python 层或 Win32 层须出现 5=ACCESS_DENIED 且互不矛盾,
+    errno/异常类型/消息须齐全;任一缺失或矛盾追加 UNVERIFIED 理由。"""
+    if sb.get("probe_denied") is not True:
+        reasons.append("独立 CreateFileW 探针(同路径同操作)未确认拒绝")
+    if sb.get("probe_denied") is True and type(sb.get("gle")) is not int:
+        reasons.append("探针确认拒绝但 GetLastError 缺失/非整数")
+    py, gle = sb.get("winerror"), sb.get("gle")
+    if py is None and gle is None:
+        reasons.append("无 5=ACCESS_DENIED 归因(Python winerror 与 "
+                       "Win32 GetLastError 均缺失)")
+    if py is not None and py != ACCESS_DENIED:
+        reasons.append(f"Python winerror={py} 非 5=ACCESS_DENIED")
+    if gle is not None and gle != ACCESS_DENIED:
+        reasons.append(f"Win32 GetLastError={gle} 非 5=ACCESS_DENIED")
+    if py is not None and gle is not None and py != gle:
+        reasons.append(f"归因矛盾:winerror={py} vs GetLastError={gle}")
+    if type(sb.get("errno")) is not int:
+        reasons.append("缺少 Python errno 记录(非整数)")
+    if not (isinstance(sb.get("exc_type"), str) and sb.get("exc_type")):
+        reasons.append("缺少异常类型记录(非字符串/为空)")
+    if not (isinstance(sb.get("exc_msg"), str) and sb.get("exc_msg")):
+        reasons.append("缺少异常消息记录(非字符串/为空)")
+
+
 def _judge_case(kind: str, control: dict, sandbox: dict) -> dict:
     """单例判定(纯谓词,只吃观测值)。FAIL 最高优先级,未知一律 UNVERIFIED,
     所有布尔字段严格 is True / is False。"""
@@ -221,17 +253,13 @@ def _judge_case(kind: str, control: dict, sandbox: dict) -> dict:
     if kind == "denied_write":
         if sandbox.get("outcome") != "denied":
             reasons.append("拒绝写结果无法解释")
-        if sandbox.get("winerror") != ACCESS_DENIED:
-            reasons.append(f"非明确拒绝 winerror={sandbox.get('winerror')}"
-                           f"(仅接受 5=ACCESS_DENIED)")
+        _denied_attribution_reasons(sandbox, reasons)
         if sandbox.get("target_created") is not False:
             reasons.append("拒绝写目标状态未知/非明确未创建")
     if kind == "denied_read":
         if sandbox.get("outcome") != "denied":
             reasons.append("拒绝读结果无法解释")
-        if sandbox.get("winerror") != ACCESS_DENIED:
-            reasons.append(f"非明确拒绝 winerror={sandbox.get('winerror')}"
-                           f"(仅接受 5=ACCESS_DENIED)")
+        _denied_attribution_reasons(sandbox, reasons)
         if sandbox.get("content_leaked") is not False:
             reasons.append("拒绝读泄漏状态未知/非明确未泄漏")
     if reasons:
@@ -243,7 +271,9 @@ def _negative_regressions() -> dict:
     base_control = {"spawned": True, "rc": 0, "timed_out": False, "succeeded": True}
     base_sandbox = {"spawned": True, "rc": 0, "timed_out": False, "token29": True,
                     "sid_ok": True, "client_ok": True, "outcome": None,
-                    "winerror": None, "succeeded": None, "hash_ok": None,
+                    "winerror": None, "errno": None, "exc_type": None,
+                    "exc_msg": None, "probe_denied": None, "gle": None,
+                    "succeeded": None, "hash_ok": None,
                     "sb_pre_exists": None, "target_stable": None,
                     "target_created": None, "content_leaked": None}
     cases = []
@@ -280,10 +310,11 @@ def _negative_regressions() -> dict:
         "UNVERIFIED")
     _rec("N7 授予类无记录", _judge_case(
         "granted_write", base_control, _sb())["verdict"], "UNVERIFIED")
-    _rec("N8 拒绝类 winerror 非 5", _judge_case(
+    _rec("N8 拒绝类归因非 5", _judge_case(
         "denied_write", base_control, _sb(
-            outcome="denied", winerror=3, target_created=False))["verdict"],
-        "UNVERIFIED")
+            outcome="denied", winerror=3, gle=3, probe_denied=True,
+            errno=13, exc_type="PermissionError", exc_msg="[Errno 13]",
+            target_created=False))["verdict"], "UNVERIFIED")
     _rec("N9 拒绝类结果无法解释", _judge_case(
         "denied_read", base_control, _sb(
             outcome="sent", winerror=None, content_leaked=False,
@@ -292,12 +323,15 @@ def _negative_regressions() -> dict:
         "granted_write", base_control, _sb(spawned=False))["verdict"], "UNVERIFIED")
     _rec("N11 拒写目标状态未知", _judge_case(
         "denied_write", base_control, _sb(
-            outcome="denied", winerror=ACCESS_DENIED,
-            target_created=None))["verdict"], "UNVERIFIED")
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=None))["verdict"], "UNVERIFIED")
     _rec("N12 拒读泄漏状态未知", _judge_case(
         "denied_read", base_control, _sb(
-            outcome="denied", winerror=ACCESS_DENIED,
-            content_leaked=None, target_stable=True))["verdict"], "UNVERIFIED")
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", content_leaked=None,
+            target_stable=True))["verdict"], "UNVERIFIED")
     _rec("N13 沙箱超时状态未知", _judge_case(
         "granted_write", base_control, _sb(
             succeeded=True, hash_ok=True, sb_pre_exists=False,
@@ -326,21 +360,68 @@ def _negative_regressions() -> dict:
         "UNVERIFIED")
     _rec("N20 拒读哨兵被改动", _judge_case(
         "denied_read", base_control, _sb(
-            outcome="denied", winerror=ACCESS_DENIED, content_leaked=False,
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", content_leaked=False,
             target_stable=False))["verdict"], "UNVERIFIED")
+    _rec("N21 拒写探针未确认拒绝", _judge_case(
+        "denied_write", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, probe_denied=False,
+            gle=None, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=False))["verdict"], "UNVERIFIED")
+    _rec("N22 拒读 GetLastError 缺失", _judge_case(
+        "denied_read", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, probe_denied=True,
+            gle=None, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", content_leaked=False,
+            target_stable=True))["verdict"], "UNVERIFIED")
+    _rec("N23 拒写缺 errno 记录", _judge_case(
+        "denied_write", base_control, _sb(
+            outcome="denied", winerror=None, gle=ACCESS_DENIED,
+            probe_denied=True, errno=None, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=False))["verdict"], "UNVERIFIED")
+    _rec("N24 拒读缺异常类型/消息", _judge_case(
+        "denied_read", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="", exc_msg="",
+            content_leaked=False, target_stable=True))["verdict"], "UNVERIFIED")
+    _rec("N25 归因矛盾", _judge_case(
+        "denied_write", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, gle=3,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=False))["verdict"], "UNVERIFIED")
+    _rec("N26 无任何 5 归因", _judge_case(
+        "denied_write", base_control, _sb(
+            outcome="denied", winerror=None, gle=None, probe_denied=False,
+            errno=13, exc_type="PermissionError", exc_msg="[Errno 13]",
+            target_created=False))["verdict"], "UNVERIFIED")
     _rec("P1 granted_write 基线", _judge_case(
         "granted_write", base_control, _sb(
             succeeded=True, hash_ok=True, sb_pre_exists=False))["verdict"], "PASS")
     _rec("P2 denied_write 基线", _judge_case(
         "denied_write", base_control, _sb(
-            outcome="denied", winerror=ACCESS_DENIED,
-            target_created=False))["verdict"], "PASS")
+            outcome="denied", winerror=None, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=False))["verdict"], "PASS")
     _rec("P3 granted_read 基线", _judge_case(
         "granted_read", base_control, _sb(
             succeeded=True, hash_ok=True, target_stable=True))["verdict"], "PASS")
     _rec("P4 denied_read 基线", _judge_case(
         "denied_read", base_control, _sb(
-            outcome="denied", winerror=ACCESS_DENIED, content_leaked=False,
+            outcome="denied", winerror=None, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", content_leaked=False,
+            target_stable=True))["verdict"], "PASS")
+    _rec("P5 denied_write winerror=5 归因", _judge_case(
+        "denied_write", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", target_created=False))["verdict"], "PASS")
+    _rec("P6 denied_read winerror=5 归因", _judge_case(
+        "denied_read", base_control, _sb(
+            outcome="denied", winerror=ACCESS_DENIED, gle=ACCESS_DENIED,
+            probe_denied=True, errno=13, exc_type="PermissionError",
+            exc_msg="[Errno 13]", content_leaked=False,
             target_stable=True))["verdict"], "PASS")
     return {"cases": cases, "all_hold": all(c["holds"] for c in cases)}
 
@@ -348,12 +429,48 @@ def _negative_regressions() -> dict:
 # ---------------------------------------------------------------- 客户端代码
 
 _CLIENT = inspect.getsource(net.token_identity) + '''
-import hashlib, json, sys, time
+import ctypes, hashlib, json, sys, time
 mode, target, content = sys.argv[1], sys.argv[2], sys.argv[3]
 t0 = time.time()
 outcome = None
 winerror = None
+errno_rec = None
+exc_type = None
+exc_msg = None
+probe_denied = None
+gle = None
 content_hash = None
+
+GENERIC_WRITE = 0x40000000
+GENERIC_READ = 0x80000000
+CREATE_ALWAYS = 2
+OPEN_EXISTING = 3
+FILE_ATTRIBUTE_NORMAL = 0x80
+
+
+def _probe(mode, target):
+    """独立 Win32 诊断(应 msg_375):同路径同操作 CreateFileW,
+    不依赖 Python 异常映射,拒绝时取真实 GetLastError。"""
+    try:
+        k32 = ctypes.WinDLL('kernel32', use_last_error=True)
+        k32.CreateFileW.argtypes = [ctypes.c_wchar_p, ctypes.c_uint32,
+                                    ctypes.c_uint32, ctypes.c_void_p,
+                                    ctypes.c_uint32, ctypes.c_uint32,
+                                    ctypes.c_void_p]
+        k32.CreateFileW.restype = ctypes.c_void_p
+        want = GENERIC_WRITE if mode == 'write' else GENERIC_READ
+        creation = CREATE_ALWAYS if mode == 'write' else OPEN_EXISTING
+        h = k32.CreateFileW(target, want, 0, None, creation,
+                            FILE_ATTRIBUTE_NORMAL, None)
+        # restype c_void_p 把 INVALID_HANDLE_VALUE(-1) 回包为 2**64-1,
+        # NULL(0) 回来是 None;两者都是失败,其余才是有效句柄
+        if h is not None and h != ctypes.c_void_p(-1).value:
+            k32.CloseHandle(ctypes.c_void_p(h))
+            return (False, None)
+        return (True, ctypes.get_last_error())
+    except Exception:
+        return (None, None)
+
 try:
     if mode == 'write':
         with open(target, 'wb') as f:
@@ -368,6 +485,10 @@ try:
 except OSError as e:
     outcome = 'denied'
     winerror = getattr(e, 'winerror', None)
+    errno_rec = getattr(e, 'errno', None)
+    exc_type = type(e).__name__
+    exc_msg = str(e)
+    probe_denied, gle = _probe(mode, target)
 
 def _sha(p):
     try:
@@ -377,7 +498,10 @@ def _sha(p):
         return None
 
 print(json.dumps({'token': token_identity(), 'mode': mode, 'outcome': outcome,
-                  'winerror': winerror, 'content_hash': content_hash,
+                  'winerror': winerror, 'errno': errno_rec,
+                  'exc_type': exc_type, 'exc_msg': exc_msg,
+                  'probe_denied': probe_denied, 'gle': gle,
+                  'content_hash': content_hash,
                   'client_sha256': _sha(sys.argv[0]), 'exe_sha256': _sha(sys.executable),
                   'site_absent': 'site' not in sys.modules and 'sitecustomize' not in sys.modules,
                   'executable': sys.executable,
@@ -555,6 +679,11 @@ def _run_denied_write(denied_dir: Path, work: Path, runtime: Path, env: dict,
          "client_ok": _client_ok(s3["data"], cfg),
          "outcome": s3["data"].get("outcome"),
          "winerror": s3["data"].get("winerror"),
+         "errno": s3["data"].get("errno"),
+         "exc_type": s3["data"].get("exc_type"),
+         "exc_msg": s3["data"].get("exc_msg"),
+         "probe_denied": s3["data"].get("probe_denied"),
+         "gle": s3["data"].get("gle"),
          "succeeded": None, "hash_ok": None,
          "target_created": target_created, "content_leaked": None})
     raw = {"control": c3, "sandbox": s3, "ctrl_target": str(tgt3c),
@@ -606,6 +735,11 @@ def _run_denied_read(denied_dir: Path, work: Path, runtime: Path, env: dict,
          "client_ok": _client_ok(s4["data"], cfg),
          "outcome": s4["data"].get("outcome"),
          "winerror": s4["data"].get("winerror"),
+         "errno": s4["data"].get("errno"),
+         "exc_type": s4["data"].get("exc_type"),
+         "exc_msg": s4["data"].get("exc_msg"),
+         "probe_denied": s4["data"].get("probe_denied"),
+         "gle": s4["data"].get("gle"),
          "succeeded": None, "hash_ok": None,
          "target_created": None,
          "content_leaked": s4["data"].get("content_hash") == h4,
