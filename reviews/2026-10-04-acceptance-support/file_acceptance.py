@@ -20,6 +20,22 @@ v3.2(应 msg_347 B/C/D/E):
   9. EVIDENCE.mkdir 不可写→stdout 结构化证据+受控退出 2,不裸崩;
   10. 后核验覆盖三个核心模块(appcontainer/win_job/network_isolation),
       前后哈希快照双双落证据供与已验收基线绑定。
+v3.3(应 msg_352/353):
+  11. denied_read 泄漏事实先行:原始输出中与哨兵一致的哈希即 FAIL,
+      不等待令牌/解析成功(坏 token 不掩盖击穿);
+  12. 证据写入状态显式化 evidence_written/stdout_only,持久证据不可写时
+      PASS 降 UNK、已确证 FAIL 保留;
+  13. runtime_manifest/core_manifest_before 直接落证据。
+v3.4(应 msg_356/357/358):
+  14. 泄漏扫描类型无关化:re.findall 全量扫描原始输出所有 64 位 hex 哈希
+      (坏 data 非 dict/content_hash 非 str/前导非匹配哈希均不掩盖);
+      _parse_client 非 dict 一律空 dict;
+  15. 证据落盘与 stdout 字段一致:_write_evidence_record 先占位落盘、
+      成功后设真实路径并重序列化。
+v3.5(应对抗复核确认项):
+  16. denied_write 判定与 raw 统一使用一次采样的事实快照(修判定输入处
+      重复采样 tgt3s.exists() 的 TOCTOU),raw 另记 target_created_resample
+      作观察补充。
 
 契约与范围:仅本支持目录内具名工作区 file-work-<run_id>/(授 rw ACE)与
 file-denied-<run_id>/(不授);复用既有生产 profile;仅合成数据;不改核心四
@@ -512,11 +528,12 @@ def _run_denied_write(denied_dir: Path, work: Path, runtime: Path, env: dict,
          "outcome": s3["data"].get("outcome"),
          "winerror": s3["data"].get("winerror"),
          "succeeded": None, "hash_ok": None,
-         "target_created": tgt3s.exists(), "content_leaked": None})
+         "target_created": target_created, "content_leaked": None})
     raw = {"control": c3, "sandbox": s3, "ctrl_target": str(tgt3c),
            "ctrl_sha256": h3, "ctrl_expected_sha256": h3_exp,
-           "sb_target": str(tgt3s), "target_created": False,
-           "sb_target_sha256": None}
+           "sb_target": str(tgt3s), "target_created": target_created,
+           "sb_target_sha256": sb_target_sha,
+           "target_created_resample": tgt3s.exists()}
     return verdict, raw
 
 
