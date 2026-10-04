@@ -65,8 +65,8 @@ def main(argv=None) -> int:
     parser.add_argument("--low", type=int, default=15)
     parser.add_argument("--seed", type=int, default=20261004)
     parser.add_argument("--records", nargs="*", type=Path,
-                        default=[ROOT / "data/v2/eval/dataset_eval.json",
-                                 ROOT / "data/v2/test/dataset_test.json"])
+                        default=[ROOT / "data/v2/raw/dataset_eval.json",
+                                 ROOT / "data/v2/raw/dataset_test.json"])
     parser.add_argument("--out", type=Path,
                         default=ROOT / "data" / "b5-annotation-set")
     args = parser.parse_args(argv)

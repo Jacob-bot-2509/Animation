@@ -826,8 +826,11 @@ def main(argv: list[str]) -> int:
     POOLS.update({"eval": [f"{base}/eval/dataset_eval.jsonl"],
                   "test": [f"{base}/test/dataset_test.jsonl"]})
     MIRRORS.clear()
-    MIRRORS.update({"eval": f"{base}/eval/dataset_eval.json",
-                    "test": f"{base}/test/dataset_test.json"})
+    for name in ("eval", "test"):
+        cand = f"{base}/{name}/dataset_{name}.json"
+        if not (ROOT / cand).exists():  # v2 起数组容器在 raw/,与正式入口分离
+            cand = f"{base}/raw/dataset_{name}.json"
+        MIRRORS[name] = cand
     MANIFESTS.clear()
     MANIFESTS.extend([m for m in (f"{base}/manifest.json",
                                   f"{base}/manifest-train.json",

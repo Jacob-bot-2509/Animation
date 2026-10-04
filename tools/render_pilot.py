@@ -6,7 +6,7 @@
 
 用法:
   .venv/Scripts/python.exe -X utf8 tools/render_pilot.py \
-      --limit 8 --format png [--records data/v2/eval/dataset_eval.json ...]
+      --limit 8 --format png [--records data/v2/raw/dataset_eval.json ...]
 """
 from __future__ import annotations
 
@@ -145,8 +145,8 @@ def main(argv=None) -> int:
     parser.add_argument("--limit", type=int, default=8)
     parser.add_argument("--format", choices=["png", "mp4"], default="png")
     parser.add_argument("--records", nargs="*", type=Path,
-                        default=[ROOT / "data/v2/eval/dataset_eval.json",
-                                 ROOT / "data/v2/test/dataset_test.json"])
+                        default=[ROOT / "data/v2/raw/dataset_eval.json",
+                                 ROOT / "data/v2/raw/dataset_test.json"])
     args = parser.parse_args(argv)
     recs = _load_records(args.records)
     picks = _picks(recs, args.limit)

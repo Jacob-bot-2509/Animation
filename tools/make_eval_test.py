@@ -30,6 +30,7 @@ MD_EVAL = ROOT / "dataset-eval.md"
 MD_TEST = ROOT / "data-test.md"
 OUT_EVAL = ROOT / "data" / "v2" / "eval"   # v2 默认输出到 data/v2(独立目录)
 OUT_TEST = ROOT / "data" / "v2" / "test"
+OUT_RAW = ROOT / "data" / "v2" / "raw"    # 待转换数组容器,与正式入口(JSONL)分离
 
 sys.path.insert(0, str(ROOT / "tools"))
 from meta_eval_test import META_EVAL, META_TEST  # noqa: E402
@@ -239,9 +240,10 @@ def main() -> int:
     ap.add_argument("--out", default=str(ROOT / "data" / "v2"),
                     help="输出根目录(默认 data/v2;绝不写 data/v1)")
     args = ap.parse_args()
-    global OUT_EVAL, OUT_TEST
+    global OUT_EVAL, OUT_TEST, OUT_RAW
     OUT_EVAL = Path(args.out) / "eval"
     OUT_TEST = Path(args.out) / "test"
+    OUT_RAW = Path(args.out) / "raw"  # 待转换数组容器,与正式入口(JSONL)分离
     # msg_264:大小写不敏感 + 解析路径后再判断,防 Windows --out data/V1 绕过
     out_resolved = Path(args.out).resolve()
     if any(p.lower() == "v1" for p in out_resolved.parts):
@@ -270,12 +272,13 @@ def main() -> int:
             return 1
     OUT_EVAL.mkdir(parents=True, exist_ok=True)
     OUT_TEST.mkdir(parents=True, exist_ok=True)
-    for path, recs in [(OUT_EVAL / "dataset_eval.json", eval_recs),
-                       (OUT_TEST / "dataset_test.json", test_recs)]:
+    OUT_RAW.mkdir(parents=True, exist_ok=True)
+    for path, recs in [(OUT_RAW / "dataset_eval.json", eval_recs),
+                       (OUT_RAW / "dataset_test.json", test_recs)]:
         path.write_text(json.dumps(recs, ensure_ascii=False, indent=2) + "\n",
                         encoding="utf-8", newline="\n")  # LF 落盘
         print(f"{path} ← {len(recs)} 条")
-    print("下一步: tools/dataset_intake.py convert <json> <jsonl> 生成正式入口")
+    print("下一步: tools/dataset_intake.py convert <raw json> <jsonl> 生成正式入口")
     return 0
 
 
