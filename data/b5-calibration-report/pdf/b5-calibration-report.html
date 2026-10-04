@@ -85,6 +85,9 @@ tr { break-inside: avoid; page-break-inside: avoid; }
 .uncertain td { overflow-wrap: anywhere; }
 .uncertain td:last-child { white-space: nowrap; }
 mjx-container { font-size: 100% !important; max-width: 100%; }
+/* Fit the SVG itself; constraining the MathJax wrapper alone does not scale it. */
+td mjx-container { display: inline-block; max-width: 100%; }
+td mjx-container > svg { max-width: 100%; height: auto; }
 </style><style id="MJX-SVG-styles">
 mjx-container[jax="SVG"] {
   direction: ltr;

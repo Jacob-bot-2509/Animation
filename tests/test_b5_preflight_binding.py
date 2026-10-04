@@ -76,22 +76,53 @@ class TestB5PreflightBinding(unittest.TestCase):
         p.write_text("{", encoding="utf-8")
         self.assertFalse(validate_manifest(self.manifest, self.root)["near_dup_calibrated"])
 
-    def test_current_real_report_certifies_matching_screen(self):
-        """真实报告含 leakage_screen_calibration(规则/阈值与执行配置匹配)
-        → 组合屏认证;仅签名证据(无 screen 证据)仍不认证。"""
+    def test_current_real_report_cannot_certify_combined_detector(self):
         report = json.loads((ROOT / "data/b5-calibration-report/b5-calibration-report.json").read_text(encoding="utf-8"))
-        self.assertTrue(report.get("leakage_screen_calibration", {}).get("calibrated"))
         self.write_evidence(report)
-        rep = validate_manifest(self.manifest, self.root)
-        self.assertTrue(rep["near_dup_calibrated"])
-        self.assertEqual(rep["near_dup_calibration"]["rule"],
-                         report["leakage_screen_calibration"]["rule"])
-        # 阈值不匹配的配置不认证
-        self.write_evidence({"calibration": report["calibration"],
-                             "leakage_screen_calibration": dict(
-                                 report["leakage_screen_calibration"],
-                                 threshold="7/10")})
         self.assertFalse(validate_manifest(self.manifest, self.root)["near_dup_calibrated"])
+
+    def test_matching_self_report_cannot_certify_combined_detector(self):
+        self.report["leakage_screen_calibration"] = {
+            "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+            "threshold": str(Fraction(str(NEAR_DUP_TEXT_THRESHOLD))),
+            "calibrated": True}
+        self.write_evidence(self.report)
+        rep = validate_manifest(self.manifest, self.root)
+        self.assertFalse(rep["near_dup_calibrated"])
+        self.assertTrue(rep["leakage_screen_report"]["reported_calibrated"])
+
+    def test_excluding_false_negative_does_not_satisfy_recall_goal(self):
+        self.report["leakage_screen_calibration"] = {
+            "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+            "threshold": str(Fraction(str(NEAR_DUP_TEXT_THRESHOLD))),
+            "calibrated": True, "tp": 16, "fp": 0, "fn": 1, "tn": 31,
+            "recall_all_labels": "16/17", "domain_recall": "1"}
+        self.assertLess(Fraction(16, 17), Fraction(19, 20))
+        self.write_evidence(self.report)
+        self.assertFalse(validate_manifest(self.manifest, self.root)["near_dup_calibrated"])
+
+    def test_perfect_self_report_without_input_bindings_stays_blocked(self):
+        self.report["leakage_screen_calibration"] = {
+            "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+            "threshold": "7/10", "calibrated": True,
+            "tp": 17, "fp": 0, "fn": 0, "tn": 31,
+            "recall_all_labels": "1", "domain_recall": "1"}
+        self.write_evidence(self.report)
+        self.assertFalse(validate_manifest(self.manifest, self.root, near_dup_threshold=7/10)["near_dup_calibrated"])
+
+    def test_generator_reports_real_recall_and_no_fake_domain_recall(self):
+        spec = importlib.util.spec_from_file_location("b5_combined_review", ROOT / "tools/b5_calibrate.py")
+        b5 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(b5)
+        annotation = json.loads((ROOT / "data/b5-annotation-set/b5-annotation-set.json").read_text(encoding="utf-8"))
+        rep = b5.build_report(annotation)
+        screen = rep["leakage_screen_calibration"]
+        self.assertEqual((screen["tp"], screen["fp"], screen["fn"], screen["tn"]), (16, 0, 1, 31))
+        self.assertEqual(screen["recall_all_labels"], "16/17")
+        self.assertFalse(screen["meets_original_pair_targets"])
+        self.assertFalse(screen["calibrated"])
+        self.assertNotIn("domain_recall", screen)
+        self.assertIn("UNCALIBRATED", b5.render_markdown(rep))
 
     def test_ready_blocked_with_all_other_checks_passing(self):
         self.write_evidence(self.report)

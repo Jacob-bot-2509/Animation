@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import html as html_module
 import json
 import re
 import subprocess
@@ -28,8 +29,40 @@ tr { break-inside: avoid; page-break-inside: avoid; }
 .pairs th:nth-child(n+3) { width: 37.5%; }
 .pairs td:nth-child(-n+2) { white-space: nowrap; text-align: center; }
 .pairs td { overflow-wrap: anywhere; padding: 5pt 4pt; }
+.revision th:nth-child(1) { width: 34%; }
+.revision th:nth-child(2), .revision th:nth-child(3) { width: 13%; }
+.revision th:nth-child(4) { width: 40%; }
+.revision td { overflow-wrap: anywhere; }
+.uncertain th:nth-child(1), .uncertain th:nth-child(2) { width: 44%; }
+.uncertain th:nth-child(3) { width: 12%; }
+.uncertain td { overflow-wrap: anywhere; }
+.uncertain td:last-child { white-space: nowrap; }
 mjx-container { font-size: 100% !important; max-width: 100%; }
+/* Fit the SVG itself; constraining the MathJax wrapper alone does not scale it. */
+td mjx-container { display: inline-block; max-width: 100%; }
+td mjx-container > svg { max-width: 100%; height: auto; }
 """
+
+
+def style_tables(html: str) -> str:
+    """根据表头识别各类证据表，不能依赖表格出现次序。"""
+    def replace(match):
+        body = match.group(1)
+        cells = re.findall(r"<th\b[^>]*>(.*?)</th>", body, re.S)
+        headers = [html_module.unescape(re.sub(r"<[^>]*>", "", cell)).strip()
+                   for cell in cells]
+        if len(headers) == 8 and {"TP", "FP", "FN", "TN"}.issubset(headers):
+            kind = "grid"
+        elif len(headers) == 4 and any("题目A" in h for h in headers) and any("题目B" in h for h in headers):
+            kind = "pairs"
+        elif len(headers) == 4 and "原标注" in headers and "改判" in headers:
+            kind = "revision"
+        elif len(headers) == 3 and "规则预测" in headers:
+            kind = "uncertain"
+        else:
+            kind = "generic"
+        return f'<table class="{kind}">{body}</table>'
+    return re.sub(r"<table>(.*?)</table>", replace, html, flags=re.S)
 
 
 class _ErrorNodes(HTMLParser):
@@ -63,8 +96,7 @@ def render(md: Path, destination: Path, evidence: Path) -> dict:
         "document.title='MJDONE';",
         "document.documentElement.dataset.mathjaxReady='true';")
     html = html.replace("</head>", f"<style>{STYLE}</style></head>")
-    html = html.replace("<table>", '<table class="grid">', 1)
-    html = html.replace("<table>", '<table class="pairs">', 1)
+    html = style_tables(html)
     source = evidence / "b5-mathjax-source.html"
     source.write_text(html, encoding="utf-8")
     cp = subprocess.run(command + ["--dump-dom", "--virtual-time-budget=10000",

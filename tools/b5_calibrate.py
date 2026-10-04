@@ -154,49 +154,41 @@ def build_report(annotation: dict, records: dict[str, dict] | None = None) -> di
                    **{key: best[key] if best else None
                       for key in ("threshold", "tp", "fp", "fn", "tn",
                                   "precision", "recall", "fpr", "fnr")}}
-    # 防泄漏屏(validate 第 6 节执行的规则):考点签名一致 AND 5-gram ≥ 2/5。
-    # 在同一 48 对标注样本上评估,作为该执行规则的**匹配**校准证据。
-    # 作用域=屏能拦的候选对(签名一致 AND J5≥阈值);文字差异大的同考点
-    # 变体按用户裁决保留(不拦),不计入作用域漏报。
+    # 组合屏只在现有考点标签上作诊断。考点重复和泄漏候选不是同一
+    # 标注任务,独立泄漏标签缺失时不得宣称已经校准。
     screen_t = Fraction(2, 5)
     for pair in labeled:
         pair["screen_prediction"] = (
             "重复" if pair["kp_j"] == "1" and Fraction(pair["jaccard"]) >= screen_t
             else "不重复")
-    lk_tp = sum(1 for p in labeled
-                if p["label"] == "重复" and p["screen_prediction"] == "重复")
-    lk_fn = sum(1 for p in labeled
-                if p["label"] == "重复" and p["screen_prediction"] != "重复")
-    lk_fp = sum(1 for p in labeled
-                if p["label"] == "不重复" and p["screen_prediction"] == "重复")
-    lk_tn = sum(1 for p in labeled
-                if p["label"] == "不重复" and p["screen_prediction"] != "重复")
+    lk_tp = sum(p["label"] == "重复" and p["screen_prediction"] == "重复" for p in labeled)
+    lk_fn = sum(p["label"] == "重复" and p["screen_prediction"] != "重复" for p in labeled)
+    lk_fp = sum(p["label"] == "不重复" and p["screen_prediction"] == "重复" for p in labeled)
+    lk_tn = sum(p["label"] == "不重复" and p["screen_prediction"] != "重复" for p in labeled)
     lk_pos, lk_neg = lk_tp + lk_fn, lk_fp + lk_tn
-    domain_pos = lk_tp + lk_fp  # 屏判"重复"的候选数
+    recall = Fraction(lk_tp, lk_pos) if lk_pos else None
+    fpr = Fraction(lk_fp, lk_neg) if lk_neg else None
+    meets_targets = (recall is not None and fpr is not None
+                     and recall >= MIN_RECALL and fpr <= MAX_FPR)
     excluded = [{"a": p["a"], "b": p["b"], "j5": p["jaccard"],
-                 "reason": "同考点但文字差异大(J5<2/5),按用户裁决保留为变体"}
+                 "reason": "当前组合屏未命中;保留原考点重复标签,仍计入 FN"}
                 for p in labeled
                 if p["label"] == "重复" and p["screen_prediction"] != "重复"]
-    domain_recall = Fraction(lk_tp, domain_pos) if domain_pos else None
-    domain_fpr = Fraction(lk_fp, lk_neg) if lk_neg else None
-    lk_calibrated = bool(
-        domain_recall is not None and domain_fpr is not None
-        and domain_recall >= MIN_RECALL and domain_fpr <= MAX_FPR)
     leakage_screen_calibration = {
         "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
-        "threshold": "2/5", "calibrated": lk_calibrated,
+        "threshold": str(screen_t), "calibrated": False,
+        "meets_original_pair_targets": meets_targets,
+        "sample_scope": "原考点标签上的诊断;尚无独立泄漏标签",
         "tp": lk_tp, "fp": lk_fp, "fn": lk_fn, "tn": lk_tn,
         "precision": _ratio(lk_tp, lk_tp + lk_fp),
         "recall_all_labels": _ratio(lk_tp, lk_pos),
-        "domain_recall": str(domain_recall) if domain_recall is not None else "未定义",
-        "fpr": str(domain_fpr) if domain_fpr is not None else "未定义",
-        "fnr": _ratio(lk_fn, lk_pos),
+        "fpr": _ratio(lk_fp, lk_neg), "fnr": _ratio(lk_fn, lk_pos),
         "excluded_variants": excluded,
-        "note": (f"同 48 对标注样本评估:屏作用域(签名一致 AND J5≥2/5)内查全 "
-                 f"{lk_tp}/{domain_pos}、全域误报 {lk_fp}/{lk_neg};"
-                 f"{len(excluded)} 对同考点文字差异大的变体按用户裁决不拦;"
-                 "文字分量阈值 2/5 取自 train-vs-eval/test 同考点对 J5 分布的"
-                 "自然断档(0.4 以下为不同任务要求)")}
+        "note": (f"当前 {len(labeled)} 对原考点标注上的召回率 "
+                 f"{_ratio(lk_tp, lk_pos)},误报率 {_ratio(lk_fp, lk_neg)};"
+                 f"{'达到' if meets_targets else '未达到'}原目标召回率≥19/20且误报率≤1/100。"
+                 "组合屏的独立泄漏标注与匹配验收尚未完成,保持 UNCALIBRATED;"
+                 "TP/(TP+FP) 是精确率,不得写成作用域召回率,不得按预测条件排除 FN。")}
     return {"schema": 3,
             "rule": {"criterion": "本质考点 = (category, 题型)",
                      "taxonomy": "题型由题文动词分类,sub_category 兜底",
@@ -253,21 +245,18 @@ def render_markdown(report: dict) -> str:
                       "precision", "recall", "fpr")) + " |")
     lines += ["", "精确率=TP/(TP+FP),召回率=TP/(TP+FN),"
               "误报率=FP/(FP+TN)。分母为零时显示“未定义”。",
-              "", "## 防泄漏屏校准(validate 第 6 节执行的规则)", "",
-              "| 规则 | 阈值 | TP | FP | FN | TN | 精确率 | 召回率 | 误报率 |",
-              "|---|---|---|---|---|---|---|---|---|"]
+              "", "## 防泄漏屏诊断(尚未校准)", ""]
     lk = report.get("leakage_screen_calibration", {})
     if lk:
-        lines.append(f"| {lk.get('rule', '')} | {lk.get('threshold', '')} "
-                     f"| {display(lk.get('tp'))} | {display(lk.get('fp'))} "
-                     f"| {display(lk.get('fn'))} | {display(lk.get('tn'))} "
-                     f"| {display(lk.get('precision'))} "
-                     f"| {display(lk.get('domain_recall'))}(全域 {display(lk.get('recall_all_labels'))}) "
-                     f"| {display(lk.get('fpr'))} |")
-        if lk.get("note"):
-            lines.append(f"- {lk['note']}")
+        lines += [f"- 执行规则:{lk.get('rule', '')};文字阈值 {lk.get('threshold', '')}。",
+                  "- 状态:**UNCALIBRATED**,不能解除训练就绪门禁。",
+                  f"- 原考点标注对照:TP {display(lk.get('tp'))},FP {display(lk.get('fp'))},"
+                  f"FN {display(lk.get('fn'))},TN {display(lk.get('tn'))};"
+                  f"精确率 {display(lk.get('precision'))},召回率 {display(lk.get('recall_all_labels'))},"
+                  f"误报率 {display(lk.get('fpr'))},漏报率 {display(lk.get('fnr'))}。",
+                  f"- {lk.get('note', '')}"]
         for ex in lk.get("excluded_variants", []):
-            lines.append(f"- 不拦变体:{ex['a']} × {ex['b']}(J5={ex['j5']})——{ex['reason']}")
+            lines.append(f"- 未命中正例:{ex['a']} × {ex['b']}(J5={ex['j5']})——{ex['reason']}")
     lines += ["", "## 全对证据(48 对;J5 为文字 5-gram Jaccard,仅对照)", "",
               "| J5(文字) | 标注 | 题目A(考点) | 题目B(考点) |",
               "|---|---|---|---|"]
