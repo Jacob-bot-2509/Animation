@@ -64,27 +64,34 @@ def classify_kp(rec: dict) -> str:
     if "反常积分" in text or "反常积分" in sub:
         return "反常积分"
     if "行列式" in text:
-        return "三对角行列式"
+        return "三对角行列式" if "三对角" in text else "行列式计算"
     if "特征值" in text or "对角化" in text:
         return "特征值对角化"
     if "微分方程" in text:
-        return "微分方程组"
+        return "微分方程组" if "微分方程组" in text else "常微分方程"
     if "级数" in text or "级数" in sub:
         if "收敛" in text or "敛散" in text or "敛散" in sub or "判别" in sub:
             return "级数敛散"
         return "级数求和"
+    if not isinstance(sub, str) or not sub.strip():
+        raise ValueError("题型无法识别且缺少 sub_category，不能把缺失值当成共同考点")
     return f"其他[{sub}]"
 
 
 def kp_signature(rec: dict) -> tuple[str, str]:
-    return (rec.get("category", ""), classify_kp(rec))
+    if not isinstance(rec.get("category"), str) or not rec["category"].strip():
+        raise ValueError("结构化题目缺少模块 category")
+    if not isinstance(rec.get("problem"), str) or not rec["problem"].strip():
+        raise ValueError("结构化题目缺少完整题文 problem")
+    return (rec["category"], classify_kp(rec))
 
 
-def kp_tokens(rec: dict) -> set[str]:
-    return set(kp_signature(rec))
+def kp_tokens(rec: dict) -> set[tuple[str, str]]:
+    category, kind = kp_signature(rec)
+    return {("category", category), ("kind", kind)}
 
 
-def kp_jaccard(a: set[str], b: set[str]) -> Fraction:
+def kp_jaccard(a: set[tuple[str, str]], b: set[tuple[str, str]]) -> Fraction:
     union = a | b
     return Fraction(len(a & b), len(union)) if union else Fraction(0)
 
@@ -94,6 +101,8 @@ def _prepare_pair(pair: dict) -> dict:
         raise ValueError("每个标注对必须标为重复、不重复或不确定")
     if not all(isinstance(pair.get(key), str) for key in ("text_a", "text_b")):
         raise ValueError("标注对必须包含完整题文 text_a/text_b")
+    if not all(isinstance(pair.get(key), str) and pair[key] for key in ("a", "b")):
+        raise ValueError("标注对必须包含非空题目 id a/b")
     a, b = shingles(pair["text_a"]), shingles(pair["text_b"])
     intersection, union = len(a & b), len(a | b)
     score = Fraction(intersection, union) if a and b else Fraction(0)
@@ -124,17 +133,22 @@ def _evaluate(pairs: list[dict], threshold: Fraction, key: str) -> dict:
                               for name, (n, d) in counts.items()}}
 
 
-def build_report(annotation: dict) -> dict:
+def build_report(annotation: dict, records: dict[str, dict] | None = None) -> dict:
     prepared = [_prepare_pair(pair) for pair in annotation["pairs"]]
     labeled = [pair for pair in prepared if pair["label"] != "不确定"]
     uncertain = [pair for pair in prepared if pair["label"] == "不确定"]
-    records = _load_records()
-    missing = sorted({q for pair in labeled for q in (pair["a"], pair["b"])
+    records = _load_records() if records is None else records
+    missing = sorted({q for pair in prepared for q in (pair["a"], pair["b"])
                       if q not in records})
     if missing:
         raise ValueError(f"标注对引用的问题无结构化记录: {missing}")
-    # 每对附考点签名与精确 Jaccard(考点 token 集 {category, 题型})
+    # 每对附字段带名的考点token，模块和题型不得互相混淆。
     for pair in labeled + uncertain:
+        for side in ("a", "b"):
+            rec = records[pair[side]]
+            kp_signature(rec)
+            if pair["text_" + side] != rec["problem"]:
+                raise ValueError(f"标注题文与结构化记录不一致: {pair[side]}")
         ta, tb = kp_tokens(records[pair["a"]]), kp_tokens(records[pair["b"]])
         pair["kp_a"] = " ".join(kp_signature(records[pair["a"]]))
         pair["kp_b"] = " ".join(kp_signature(records[pair["b"]]))
@@ -160,13 +174,16 @@ def build_report(annotation: dict) -> dict:
     # 考点网格:离散取值 0 / 1/3 / 1,升序取首个达标阈值
     grid_kp = [_evaluate(labeled, t, "kp_j")
                for t in (Fraction(0), Fraction(1, 3), Fraction(1))]
+    # 主规则固定为签名相等(kp_j=1)。其他网格行仅作诊断，
+    # 不能选低阈值来宣称不同题型的同模块题也满足签名相等。
     best = next((row for row in grid_kp
-                 if row["recall"] is not None and row["fpr"] is not None
+                 if row["threshold"] == "1"
+                 and row["recall"] is not None and row["fpr"] is not None
                  and Fraction(row["recall"]) >= MIN_RECALL
                  and Fraction(row["fpr"]) <= MAX_FPR), None)
     note = (f"考点网格选定阈值 {best['threshold']}(考点签名完全一致),"
             f"召回率={best['recall']},误报率={best['fpr']}" if best else
-            "考点网格内无阈值同时满足召回率≥19/20且误报率≤1/100;"
+            "签名相等主规则未同时满足召回率≥19/20且误报率≤1/100;"
             "没有选定阈值,仍为 UNCALIBRATED")
     calibration = {"calibrated": best is not None, "note": note,
                    **{key: best[key] if best else None

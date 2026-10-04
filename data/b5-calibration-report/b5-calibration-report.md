@@ -57,7 +57,7 @@
 | 0 | 不重复 | 求级数 $\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$ 的和。 (eval-calc-021;考点:数学分析 级数求和) | 求 $A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$ 的最小多项式与若尔当标准形。 (test-linalg-029;考点:高等代数 其他[最小多项式×若尔当形]) |
 | 0 | 不重复 | 讨论含参数线性方程组 $\begin{cases}\lambda x+y+z=1\\x+\lambda y+z=\lambda\\x+y+\lambda z=\lambda^2\end{cases}$ 的解的情况。 (eval-linalg-011;考点:高等代数 其他[线性方程组]) | 证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。 (test-linalg-033;考点:高等代数 特征值对角化) |
 | 1/10 | 不重复 | 求极限 $\displaystyle\lim_{n\to\infty}n^2\left(1-\cos\frac{1}{n}\right)$。 (test-calc-002;考点:数学分析 极限计算) | 求 $\displaystyle I=\int_0^1\!\!\int_y^1\frac{x}{1+x^2}\,dx\,dy$。 (test-calc-019;考点:数学分析 其他[重积分×交换次序]) |
-| 0 | 不重复 | 求矩阵 $A=\begin{pmatrix}3&2\\4&3\end{pmatrix}$ 的逆矩阵。 (eval-linalg-005;考点:高等代数 其他[矩阵]) | 验证幂级数 $y=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。 (test-calc-014;考点:数学分析 微分方程组) |
+| 0 | 不重复 | 求矩阵 $A=\begin{pmatrix}3&2\\4&3\end{pmatrix}$ 的逆矩阵。 (eval-linalg-005;考点:高等代数 其他[矩阵]) | 验证幂级数 $y=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。 (test-calc-014;考点:数学分析 常微分方程) |
 | 0 | 不重复 | 求点 $P(1,2,-1)$ 到平面 $\pi:2x-y+2z=3$ 的距离。 (eval-geom-001;考点:解析几何 其他[直线与平面]) | 求矩阵 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 的最小多项式与若尔当标准形。 (eval-linalg-031;考点:高等代数 其他[λ-矩阵]) |
 | 0 | 不重复 | 判断两条直线 $l_1:\dfrac{x-1}{2}=\dfrac{y+1}{1}=\dfrac{z-2}{-1}$ 与 $l_2:\dfrac{x+1}{1}=\dfrac{y-2}{2}=\dfrac{z}{1}$ 的位置关系。 (eval-geom-002;考点:解析几何 其他[直线与平面]) | 设 $A=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$，求 $A^n$。 (eval-linalg-007;考点:高等代数 其他[矩阵]) |
 | 0 | 不重复 | 求不定积分 $\displaystyle\int\dfrac{dx}{\sin x}$，并说明不同形式答案的等价性。 (eval-calc-014;考点:数学分析 不定积分) | 判断二次型 $f=x^2+2y^2+3z^2+2xy+2xz+4yz$ 是否正定。 (eval-linalg-021;考点:高等代数 其他[二次型]) |
