@@ -16,7 +16,9 @@
       "jaccard": 0.6667,
       "text_a": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
       "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
-      "label": "重复"
+      "label": "不重复",
+      "label_prev": "重复",
+      "revise_reason": "敛散判别×级数求和,规则→不重复"
     },
     {
       "a": "eval-calc-011",
@@ -24,7 +26,9 @@
       "jaccard": 0.58,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
       "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "级数求和×级数求和,规则→重复"
     },
     {
       "a": "eval-calc-023",
@@ -104,7 +108,9 @@
       "jaccard": 0.4898,
       "text_a": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
       "text_b": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "级数求和×级数求和,规则→重复"
     },
     {
       "a": "eval-calc-023",
@@ -120,7 +126,9 @@
       "jaccard": 0.4898,
       "text_a": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
       "text_b": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "级数求和×级数求和(求值),规则→重复"
     },
     {
       "a": "eval-calc-001",
@@ -136,7 +144,9 @@
       "jaccard": 0.4815,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
       "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "级数求和×级数求和,规则→重复"
     },
     {
       "a": "test-linalg-023",
@@ -144,7 +154,9 @@
       "jaccard": 0.4808,
       "text_a": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{cases}$ 的通解。",
       "text_b": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "微分方程组×微分方程组,规则→重复"
     },
     {
       "a": "eval-calc-021",
@@ -176,7 +188,9 @@
       "jaccard": 0.4643,
       "text_a": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
       "text_b": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "级数求和×级数求和,规则→重复"
     },
     {
       "a": "eval-calc-011",
@@ -216,7 +230,9 @@
       "jaccard": 0.3065,
       "text_a": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
       "text_b": "设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\\displaystyle\\lim_{x\\to 0}\\frac{f(x)}{x^2}$。",
-      "label": "不重复"
+      "label": "重复",
+      "label_prev": "不重复",
+      "revise_reason": "极限计算×极限计算,规则→重复"
     },
     {
       "a": "eval-linalg-007",
@@ -402,5 +418,60 @@
       "text_b": "求所有与 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的 $2\\times 2$ 实矩阵 $X$。",
       "label": "不重复"
     }
-  ]
+  ],
+  "label_revision": {
+    "rule": "本质考点 = (category, 题型);题型由题文动词分类",
+    "approved_by_user": "2026-10-04",
+    "changed_pairs": [
+      {
+        "a": "eval-calc-023",
+        "b": "test-calc-013",
+        "from": "重复",
+        "to": "不重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "test-calc-013",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "eval-calc-022",
+        "b": "test-calc-013",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "test-calc-013",
+        "b": "test-calc-042",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "eval-calc-021",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "eval-calc-011",
+        "b": "eval-calc-022",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "test-linalg-023",
+        "b": "test-linalg-027",
+        "from": "不重复",
+        "to": "重复"
+      },
+      {
+        "a": "eval-calc-010",
+        "b": "test-calc-007",
+        "from": "不重复",
+        "to": "重复"
+      }
+    ],
+    "note": "规则冲突对由用户逐对确认后按规则改判;label_prev 保留原标注"
+  }
 }
