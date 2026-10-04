@@ -32,6 +32,7 @@ import hashlib
 import inspect
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -504,6 +505,24 @@ def _run_denied_read(denied_dir: Path, work: Path, runtime: Path, env: dict,
     s4 = _run_client([str(runtime), "-X", "utf8", str(client), "read",
                       str(sentinel), "x" * 32], True, work, env)
     h4_after = _sha_file(sentinel)
+    # 泄漏事实先行(FAIL 最高优先,不等待令牌/解析全部成功):
+    # 哨兵内容不进沙箱命令行,客户端能报出与哨兵一致的哈希即构成泄漏证据
+    leak = False
+    ch = (s4.get("data") or {}).get("content_hash")
+    if ch is None:
+        m = re.search(r'"content_hash"\s*:\s*"([0-9a-fA-F]{64})"',
+                      s4.get("raw_out", ""))
+        ch = m.group(1) if m else None
+    if ch is not None and ch.lower() == h4:
+        leak = True
+    if leak:
+        return ({"verdict": "FAIL",
+                 "reasons": ["沙箱读到未授权哨兵内容(隔离击穿)"],
+                 "contract": CONTRACT},
+                {"control": c4, "sandbox": s4, "target": str(sentinel),
+                 "expected_sha256": h4, "hash_before": h4_before,
+                 "hash_after": h4_after, "content_leaked": True,
+                 "leak_source": "client_reported_hash_match"})
     tok4 = s4["data"].get("token") or {}
     verdict = _judge_case(
         "denied_read",
@@ -523,7 +542,7 @@ def _run_denied_read(denied_dir: Path, work: Path, runtime: Path, env: dict,
          "target_stable": h4_before == h4 and h4_after == h4})
     raw = {"control": c4, "sandbox": s4, "target": str(sentinel),
            "expected_sha256": h4, "hash_before": h4_before,
-           "hash_after": h4_after}
+           "hash_after": h4_after, "content_leaked": False}
     return verdict, raw
 
 
@@ -620,7 +639,9 @@ def main() -> int:
     if not neg["all_hold"]:
         results.update(state="ERROR", overall="UNVERIFIED",
                        error="内置负例自检未全持,拒绝执行")
-        _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+        ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+        results["evidence_written"] = str(ev) if ev is not None else None
+        results["stdout_only"] = ev is None
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return 2
     try:
@@ -675,6 +696,8 @@ def main() -> int:
             pre_granted_acl=[[str(NET_RUNTIME), "read"],
                              [str(work), "read_write"]],
             allowed_dirs=[], sandbox_env=dict(env),
+            runtime_manifest=dict(manifest),  # 关键文件清单直接落证据
+            core_manifest_before=dict(core_before),  # 核心模块基线直接落证据
             runtime_pth=pth, runtime_pth_ok=True,
             source_hashes={
                 "script_sha256": script_sha_before,
@@ -711,16 +734,36 @@ def main() -> int:
         if results.get("case", {}).get("overall") == "FAIL":
             results.update(state="ERROR", overall="FAIL",
                            error=repr(e), traceback=traceback.format_exc())
-            _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+            ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json",
+                             results)
+            results["evidence_written"] = str(ev) if ev is not None else None
+            results["stdout_only"] = ev is None
             print(json.dumps(results, ensure_ascii=False, indent=2))
             return 1
         results.update(state="ERROR", overall="UNVERIFIED",
                        error=repr(e), traceback=traceback.format_exc())
-        _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+        ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
+        results["evidence_written"] = str(ev) if ev is not None else None
+        results["stdout_only"] = ev is None
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return 2
-    out = _write_json(EVIDENCE / f"file-accept-results-{run_id}.json", results)
+    ev_path = _write_json(EVIDENCE / f"file-accept-results-{run_id}.json",
+                          results)
+    if ev_path is None:
+        # 持久证据不可写:stdout_only 显式标记;契约要求持久证据,
+        # PASS 降 UNK;已确证 FAIL 保留(击穿信号不得被落盘失败掩盖)
+        results["evidence_written"] = None
+        results["stdout_only"] = True
+        if results["overall"] == "PASS_LOCAL_FILE_ACL":
+            results["overall"] = "UNVERIFIED"
+        print(json.dumps(results, ensure_ascii=False, indent=2))
+        return 1 if results["overall"] == "FAIL" else 2
+    results["evidence_written"] = str(ev_path)
+    results["stdout_only"] = False
     print(json.dumps(results, ensure_ascii=False, indent=2))
+    all_hold = results["negative_regressions"]["all_hold"]
+    ok = (all_hold and results["overall"] == "PASS_LOCAL_FILE_ACL"
+          and results["state"] == "COMPLETE")
     if results["overall"] == "FAIL":
         return 1
     return 0 if ok else 2

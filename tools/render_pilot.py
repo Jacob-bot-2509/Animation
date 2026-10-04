@@ -85,7 +85,9 @@ def _has_artifact(base: Path, media: list[dict], fmt: str) -> bool:
     if fmt == "mp4":
         for m in media:
             p = m["path"].replace("\\", "/")
+            # 仅认本场景最终输出(排除 partial_movie_files 与其他场景名)
             if (p.endswith(".mp4") and "partial_movie_files" not in p
+                    and p.rsplit("/", 1)[-1] == "PilotScene.mp4"
                     and m["size"] > 0):
                 try:
                     head = (base / m["path"]).read_bytes()[:12]
@@ -97,6 +99,7 @@ def _has_artifact(base: Path, media: list[dict], fmt: str) -> bool:
     for m in media:
         p = m["path"].replace("\\", "/")
         if (p.endswith(".png") and "images/" in p and "partial" not in p
+                and p.rsplit("/", 1)[-1].startswith("PilotScene")
                 and m["size"] > 0):
             try:
                 head = (base / m["path"]).read_bytes()[:8]
@@ -131,6 +134,9 @@ def _render_one(rec: dict, scene_dir: Path, media_base: Path, fmt: str,
             "media": media,
             "artifact_ok": _has_artifact(media_base, media, fmt),
             "ok": rc == 0 and _has_artifact(media_base, media, fmt),
+            # 核验口径如实标注:路径+魔数(header_only),未做完整解码
+            "media_verification": "header_only(最终输出路径+魔数核验,"
+                                  "未做完整解码验证)",
             "command": cmd}
 
 
