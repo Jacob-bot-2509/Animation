@@ -123,34 +123,32 @@ def _assert_json_safe(obj, where: str) -> None:
 
 
 def _write_evidence_record(results: dict, path: Path) -> None:
-    """证据落盘+状态字段一致化(单次原子写,无占位+追写双阶段):
-    每步先预设与该候选路径一致的字段再原子写,落盘内容与实际位置
-    始终一致;主路径失败降级 fallback 时用 fallback 路径字段重建内容;
-    任何不一致残余一律保守回退占位状态(stdout_only=True)。"""
-    # 候选 1:主路径
-    results["evidence_written"] = str(path)
-    results["stdout_only"] = False
-    ev = _write_json(path, results)
-    if ev is not None and str(ev) == str(path):
+    """逐候选显式原子写(采纳复查方参考实现,64 组故障矩阵 0 缺陷):
+    每个候选路径先声明该候选的字段再 tmp+replace 单次提交,无隐藏
+    fallback 嵌套;失败清 tmp 并仅再试显式 fallback;全部失败才
+    stdout_only=True。落盘内容与实际位置/字段始终一致。"""
+    candidates = (path, SUPPORT / ("fallback-" + path.name))
+    for candidate in candidates:
+        record = dict(results, evidence_written=str(candidate),
+                      stdout_only=False)
+        temporary = candidate.with_suffix(candidate.suffix + ".tmp")
+        try:
+            serialized = json.dumps(record, ensure_ascii=False, indent=2)
+            temporary.write_text(serialized, encoding="utf-8")
+            temporary.replace(candidate)
+        except (OSError, TypeError, ValueError) as error:
+            try:
+                temporary.unlink(missing_ok=True)
+            except OSError:
+                pass
+            print("Evidence candidate failed: " + repr(error),
+                  file=sys.stderr, flush=True)
+            continue
+        results["evidence_written"] = str(candidate)
+        results["stdout_only"] = False
         return
-    # 候选 2:fallback 路径(主路径失败或落点漂移),字段与内容以 fallback 为准
-    fb = SUPPORT / ("fallback-" + path.name)
-    results["evidence_written"] = str(fb)
-    ev2 = _write_json(path, results)
-    if ev2 is None:
-        # 主+fallback 均失败:如实回退占位状态
-        results["evidence_written"] = None
-        results["stdout_only"] = True
-        return
-    if str(ev2) == str(fb):
-        return  # fallback 文件内容声明 fallback,一致
-    # ev2 落在主路径但内容声明 fallback:在 ev2 上重写声明 ev2
-    results["evidence_written"] = str(ev2)
-    ev3 = _write_json(path, results)
-    if ev3 is None or str(ev3) != str(ev2):
-        # 保守:宁 stdout_only 也不给不一致证据
-        results["evidence_written"] = None
-        results["stdout_only"] = True
+    results["evidence_written"] = None
+    results["stdout_only"] = True
 
 
 def _write_json(path: Path, obj) -> Path | None:
