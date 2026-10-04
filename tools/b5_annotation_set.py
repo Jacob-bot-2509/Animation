@@ -42,9 +42,10 @@ def _build_pairs(problems: dict[str, dict], top: int, mid: int,
     for i in range(len(ids)):
         for j in range(i + 1, len(ids)):
             sim = jaccard(sets[ids[i]], sets[ids[j]])
+            # 完整题文入库供人工判重;展示层可另行截断,数据层不得截
             pair = {"a": ids[i], "b": ids[j], "jaccard": round(sim, 4),
-                    "text_a": problems[ids[i]]["problem"][:80],
-                    "text_b": problems[ids[j]]["problem"][:80]}
+                    "text_a": problems[ids[i]]["problem"],
+                    "text_b": problems[ids[j]]["problem"]}
             if 0.35 <= sim < 1.0:
                 high.append(pair)
             elif 0.15 <= sim < 0.35:

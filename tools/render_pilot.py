@@ -35,12 +35,25 @@ def _load_records(paths: list[Path]) -> list[dict]:
     return recs
 
 
-def _stratify(recs: list[dict], limit: int) -> list[dict]:
-    """按 category 分组轮转抽样,保证试点覆盖各模块。"""
-    by_cat: dict[str, list[dict]] = {}
+def _picks(recs: list[dict], limit: int) -> list[dict]:
+    """先按模板全覆盖选样(每种模板至少一条),再按 category 轮转补足。
+    保证试点覆盖全部模板,不遗漏 derivative/fallback。"""
+    by_tpl: dict[str, list[dict]] = {}
     for rec in recs:
-        by_cat.setdefault(rec.get("category", "未知"), []).append(rec)
+        by_tpl.setdefault(rt.route(rec), []).append(rec)
+    order = list(rt._ROUTES)  # 保持模板优先级
+    order_tpls = [name for name, _ in order] + ["fallback"]
     picks: list[dict] = []
+    for name in order_tpls:
+        if len(picks) >= limit:
+            break
+        if by_tpl.get(name):
+            picks.append(by_tpl[name].pop(0))
+    # 补足:category 轮转
+    rest = [r for lst in by_tpl.values() for r in lst]
+    by_cat: dict[str, list[dict]] = {}
+    for rec in rest:
+        by_cat.setdefault(rec.get("category", "未知"), []).append(rec)
     while len(picks) < limit and by_cat:
         for cat in list(by_cat.keys()):
             if by_cat[cat]:
@@ -62,6 +75,12 @@ def _media_info(base: Path) -> list[dict]:
     return out
 
 
+def _has_artifact(media: list[dict], fmt: str) -> bool:
+    """格式对应的最终产物必须非空可验证:png→至少一个 .png;mp4→至少一个 .mp4。"""
+    ext = "." + fmt
+    return any(m["path"].endswith(ext) and m["size"] > 0 for m in media)
+
+
 def _render_one(rec: dict, scene_dir: Path, media_base: Path, fmt: str,
                 py: str) -> dict:
     scene_src = rt.build_scene(rec)
@@ -78,10 +97,14 @@ def _render_one(rec: dict, scene_dir: Path, media_base: Path, fmt: str,
     except subprocess.TimeoutExpired as e:
         rc = None
         out_tail = "TIMEOUT: " + repr(e)
+    media = _media_info(media_base)
     return {"template": rt.route(rec),
-            "scene_sha256": hashlib.sha256(scene_src.encode("utf-8")).hexdigest(),
+            "scene_sha256": hashlib.sha256(
+                scene_path.read_bytes()).hexdigest(),  # 绑定实际落盘场景文件
             "rc": rc, "out_tail": out_tail,
-            "media": _media_info(media_base),
+            "media": media,
+            "artifact_ok": _has_artifact(media, fmt),
+            "ok": rc == 0 and _has_artifact(media, fmt),
             "command": cmd}
 
 
@@ -94,7 +117,7 @@ def main(argv=None) -> int:
                                  ROOT / "data/v2/test/dataset_test.json"])
     args = parser.parse_args(argv)
     recs = _load_records(args.records)
-    picks = _stratify(recs, args.limit)
+    picks = _picks(recs, args.limit)
     run_id = uuid.uuid4().hex[:10]
     base = OUT / run_id
     py = str(ROOT / ".venv" / "Scripts" / "python.exe")
@@ -112,12 +135,13 @@ def main(argv=None) -> int:
         item.update(_render_one(rec, scene_dir, media_base, args.format, py))
         results["records"].append(item)
         print(json.dumps({"id": item["id"], "template": item["template"],
-                          "rc": item["rc"],
+                          "rc": item["rc"], "artifact_ok": item["artifact_ok"],
                           "media_count": len(item["media"])},
                          ensure_ascii=False), flush=True)
     results["summary"] = {
-        "ok": sum(1 for r in results["records"] if r["rc"] == 0),
-        "fail": sum(1 for r in results["records"] if r["rc"] != 0),
+        # ok 口径:rc0 且格式对应最终产物非空可验证(rc0 单独不足)
+        "ok": sum(1 for r in results["records"] if r["ok"]),
+        "fail": sum(1 for r in results["records"] if not r["ok"]),
         "templates": {t: sum(1 for r in results["records"]
                              if r["template"] == t)
                       for t in sorted({r["template"] for r in results["records"]})}}
