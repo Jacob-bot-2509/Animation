@@ -2,8 +2,9 @@
 
 v2 判定漏洞(复查方纯 AST 反例,predicate-counterexamples.json/SUPERVISION_REPORT.md):
   1. A1 正对照启动失败或 rc0 无精确哨兵证据,blocked 仍 True;
-  2. A1 任意 OSError 都记 INVALID_HANDLE,未保存真实 winerror(v2 实测 lasterr=0
-     系读错实例:应读同实例 k.get_last_error(),而非模块级 ctypes.get_last_error());
+  2. A1 任意 OSError 都记 INVALID_HANDLE,未保存真实 winerror(v2 实测
+     lasterr=0 系错误读取方式不当;正确做法:直接调 GetLastError API
+     立即捕获,或 WinDLL(use_last_error=True)+ctypes.get_last_error() 立即捕获);
   3. A2 超时分支兜底清理后重赋值 signaled_at_return → 假通过;
   4. A2 passed 未要求 timed_out=True、正常退出 rc0、令牌成功、线程结束、
      握手身份核验、监督端 ACK。
@@ -14,6 +15,26 @@ v3:
   - 正常退出场景根进程须看到监督端 ACK 才退出(ACK_SEEN=True);
   - 四项失败回归 N1-N4(合成输入断言必须 FAIL)随主流程执行;
   - 结果绑定本脚本+appcontainer.py+win_job.py 三份 sha256。
+v3.1(应 msg_302):
+  - 存活判定只认 WAIT_TIMEOUT;WaitForSingleObject=WAIT_FAILED(0xFFFFFFFF)
+    记录错误并 FAIL,新增 N5;
+  - _judge_a1 增加 sandbox_rc==0 要求与正对照 Wait=WAIT_OBJECT_0/
+    GetExitCodeProcess API 成功要求,新增 N6;
+  - 握手时即持有 SYNCHRONIZE|QUERY|PROCESS_TERMINATE 并核验映像,
+    cleanup 只用已持有句柄 Terminate/Wait,不按 PID 重开,失败错误如实保存;
+  - 更正 v2 last_error 归因:子进程 ReadFile 失败后直接调用 GetLastError
+    API 立即捕获(或 WinDLL(use_last_error=True)+ctypes.get_last_error())。
+v3.2(应 msg_303):
+  - k32.get_last_error 不存在(kernel32 WinDLL 无此导出,复查方实测
+    hasattr=False),5 处调用全部改为模块级 ctypes.get_last_error(),
+    并在 os.close/CloseHandle 等清理前立即缓存真实错误;
+  - _cleanup:Terminate 成功只是发起终止,须用同一 held 句柄再 Wait(5000)
+    确认退出,分别保存 terminate_ok/exit_confirmed/wait_error;
+    任一 wait 出现 WAIT_FAILED/未知结果即记录错误并停止(不再
+    Terminate、不算清理完成);原始 signaled 不改写;
+  - 新增负例:N5b 完整 _handshake WAIT_FAILED 故障注入(verified=False+
+    正确错误+句柄已关闭)、N7 清理成功(终止后确认退出)、
+    N8 清理等待失败(不虚报完成)。
 范围:仅支持目录随机子目录,零新增原工具链 ACL,不改四个核心/测试文件。
 """
 from __future__ import annotations
@@ -67,6 +88,8 @@ SYNCHRONIZE = 0x00100000
 PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
 PROCESS_TERMINATE = 0x0001
 WAIT_OBJECT_0 = 0
+WAIT_TIMEOUT = 0x102
+WAIT_FAILED = 0xFFFFFFFF
 CREATE_UNICODE_ENVIRONMENT = 0x400
 STARTF_USESTDHANDLES = 0x100
 
@@ -130,8 +153,9 @@ def _token_probe() -> str:
     )
 
 
-# 读句柄子进程代码(正对照与沙箱共用):ReadFile 失败后立即取真实 winerror,
-# 用同实例 k.GetLastError()(不用模块级 ctypes.get_last_error(),v2 由此得 0)。
+# 读句柄子进程代码(正对照与沙箱共用):ReadFile 失败后立即直接调用
+# GetLastError API 捕获真实 winerror(v2 得 0 系错误来源读错;正确做法即
+# 直接调 GetLastError,或 WinDLL(use_last_error=True)+ctypes.get_last_error() 立即捕获)。
 _READ_CODE = (
     "import ctypes,os\n"
     "from ctypes import wintypes\n"
@@ -155,15 +179,25 @@ _READ_CODE = (
 
 # ---------------------------------------------------------------- 纯判定谓词
 
-def _judge_a1(*, control_spawned: bool, control_rc: int | None,
-              control_read: str | None, sandbox_winerror: int | None,
-              token_ok: bool, sandbox_out: str) -> dict:
-    """A1 通过条件:正对照必须真的读到精确哨兵;沙箱必须令牌确认+
-    确认类句柄错误,且绝无哨兵内容。所有输入为观测值,无副作用。"""
-    control_good = bool(control_spawned and control_rc == 0
-                        and control_read == SENTINEL)
+def _is_alive_wait(wait_result: int) -> bool:
+    """存活判定(应 msg_302):只有 WAIT_TIMEOUT(0x102)表示存活;
+    WAIT_OBJECT_0=已结束;WAIT_FAILED(0xFFFFFFFF)是错误,绝不判活。"""
+    return wait_result == WAIT_TIMEOUT
+
+
+def _judge_a1(*, control_spawned: bool, control_waited: bool,
+              control_rc_read: bool, control_rc: int | None,
+              control_read: str | None, sandbox_rc: int | None,
+              sandbox_winerror: int | None, token_ok: bool,
+              sandbox_out: str) -> dict:
+    """A1 通过条件:正对照 Wait=WAIT_OBJECT_0、GetExitCodeProcess API 成功、
+    rc0 且读到精确哨兵;沙箱必须 rc0、令牌确认、确认类句柄错误,
+    且绝无哨兵内容。所有输入为观测值,无副作用。"""
+    control_good = bool(control_spawned and control_waited and control_rc_read
+                        and control_rc == 0 and control_read == SENTINEL)
     sandbox_blocked = bool("SENTINEL_READ" not in sandbox_out
                            and token_ok
+                           and sandbox_rc == 0
                            and sandbox_winerror in _CONFIRMED_HANDLE_ERRORS)
     return {"blocked": control_good and sandbox_blocked,
             "control_good": control_good,
@@ -188,8 +222,9 @@ def _judge_a2(timeout_sc: dict, exit_sc: dict) -> dict:
     return {"passed": t_ok and e_ok, "timeout_ok": t_ok, "exit_ok": e_ok}
 
 
-def _negative_regressions() -> dict:
-    """四项失败回归(应 msg_296/297):合成输入断言必须 FAIL。"""
+def _negative_regressions(work: Path) -> dict:
+    """失败回归(应 msg_296/297/302/303):N1-N8 合成输入/模拟 API 断言,
+    缺陷存在时对应负例必须 FAIL(actual_pass=False 才算 holds)。"""
     cases = []
 
     def _rec(name: str, actual: bool) -> None:
@@ -197,13 +232,15 @@ def _negative_regressions() -> dict:
                       "actual_pass": actual, "holds": actual is False})
 
     # N1 正对照启动失败:沙箱侧哪怕输出确认类错误也必须 FAIL
-    r = _judge_a1(control_spawned=False, control_rc=0, control_read=SENTINEL,
-                  sandbox_winerror=6, token_ok=True,
+    r = _judge_a1(control_spawned=False, control_waited=True,
+                  control_rc_read=True, control_rc=0, control_read=SENTINEL,
+                  sandbox_rc=0, sandbox_winerror=6, token_ok=True,
                   sandbox_out="READ_ERROR winerror=6")
     _rec("N1 正对照启动失败", r["blocked"])
     # N2 正对照 rc0 但哨兵不匹配/缺失
-    r = _judge_a1(control_spawned=True, control_rc=0, control_read="WRONG-BYTES",
-                  sandbox_winerror=6, token_ok=True,
+    r = _judge_a1(control_spawned=True, control_waited=True,
+                  control_rc_read=True, control_rc=0, control_read="WRONG-BYTES",
+                  sandbox_rc=0, sandbox_winerror=6, token_ok=True,
                   sandbox_out="READ_ERROR winerror=6")
     _rec("N2 哨兵不匹配", r["blocked"])
     # N3 未真正超时(正常 rc 返回)但两状态 True → 必须 FAIL
@@ -224,6 +261,99 @@ def _negative_regressions() -> dict:
          "thread_finished": True, "ack_received": True,
          "cleanup": {"terminate_attempted": True, "terminate_ok": True}}
     _rec("N4 返回时未清理(人工清理后退出)", _judge_a2(t, e)["passed"])
+    # N5(应 msg_302):WaitForSingleObject=WAIT_FAILED 是错误,不得判活;
+    # WAIT_OBJECT_0 也不得判活;WAIT_TIMEOUT 才判活
+    _rec("N5 WAIT_FAILED 不得判活(仅 WAIT_TIMEOUT 判活)",
+         _is_alive_wait(WAIT_FAILED) or _is_alive_wait(WAIT_OBJECT_0)
+         or not _is_alive_wait(WAIT_TIMEOUT))
+    # N6(应 msg_302):令牌+拒绝输出齐但沙箱子进程异常退出(rc!=0)→ 必须 FAIL
+    r = _judge_a1(control_spawned=True, control_waited=True,
+                  control_rc_read=True, control_rc=0, control_read=SENTINEL,
+                  sandbox_rc=1, sandbox_winerror=6, token_ok=True,
+                  sandbox_out="READ_ERROR winerror=6")
+    _rec("N6 沙箱子进程异常退出(rc!=0)", r["blocked"])
+    # N5b(应 msg_303):完整 _handshake 故障注入——模拟 WaitForSingleObject
+    # 返回 WAIT_FAILED:必须 verified=False、记录真实错误、关闭已打开句柄
+    marker_n5 = work / "alive-n5b"
+    marker_n5.write_text("424242", encoding="utf-8")
+    orig5 = (k32.OpenProcess, k32.WaitForSingleObject, k32.CloseHandle)
+    closed_n5: list[int] = []
+    fake_err = 999
+
+    def _fake_open(*a, **k):
+        return wintypes.HANDLE(0x1234)
+
+    def _fake_wait(*a, **k):
+        ctypes.set_last_error(fake_err)
+        return WAIT_FAILED
+
+    def _fake_close(h, *a, **k):
+        # Python 3.13 中 int(c_void_p) 会走 bytes 路径报错,取 .value
+        closed_n5.append(int(h.value) if h else 0)
+        return True
+    try:
+        k32.OpenProcess = _fake_open
+        k32.WaitForSingleObject = _fake_wait
+        k32.CloseHandle = _fake_close
+        r5b = _handshake(marker_n5, work, "n5b", need_ack=False)
+    finally:
+        (k32.OpenProcess, k32.WaitForSingleObject, k32.CloseHandle) = orig5
+    n5b_ok = (r5b["verified"] is False and r5b["wait_error"] == fake_err
+              and r5b["held"] is None and closed_n5 == [0x1234])
+    cases.append({"name": "N5b 完整_handshake WAIT_FAILED 故障注入",
+                  "expect_pass": False, "actual_pass": not n5b_ok,
+                  "holds": n5b_ok})
+    # N7(应 msg_303):清理成功路径——Terminate 发起后必须用同一 held
+    # 句柄再 Wait 确认退出(exit_confirmed=True),否则"成功"证据不成立
+    seq_n7: list[int] = []
+
+    def _wait_n7(h, ms):
+        seq_n7.append(ms)
+        if ms == 0:
+            return WAIT_TIMEOUT
+        return WAIT_TIMEOUT if len(seq_n7) == 2 else WAIT_OBJECT_0
+
+    def _term_n7(h, code):
+        return True
+    orig7 = (k32.WaitForSingleObject, k32.TerminateProcess)
+    try:
+        k32.WaitForSingleObject = _wait_n7
+        k32.TerminateProcess = _term_n7
+        r7 = _cleanup(wintypes.HANDLE(0x1234))
+    finally:
+        (k32.WaitForSingleObject, k32.TerminateProcess) = orig7
+    n7_ok = (r7["terminate_attempted"] is True and r7["terminate_ok"] is True
+             and r7["exit_confirmed"] is True and r7["wait_lasterr"] is None)
+    cases.append({"name": "N7 清理成功(终止后用同一句柄确认退出)",
+                  "expect_pass": False, "actual_pass": not n7_ok,
+                  "holds": n7_ok})
+    # N8(应 msg_303):清理等待失败路径——Terminate 后确认 Wait 返回
+    # WAIT_FAILED:不得算清理完成(exit_confirmed 非 True),错误如实记录
+    seq_n8: list[int] = []
+
+    def _wait_n8(h, ms):
+        seq_n8.append(ms)
+        if ms == 0:
+            return WAIT_TIMEOUT
+        if len(seq_n8) == 2:
+            return WAIT_TIMEOUT
+        ctypes.set_last_error(777)
+        return WAIT_FAILED
+
+    def _term_n8(h, code):
+        return True
+    orig8 = (k32.WaitForSingleObject, k32.TerminateProcess)
+    try:
+        k32.WaitForSingleObject = _wait_n8
+        k32.TerminateProcess = _term_n8
+        r8 = _cleanup(wintypes.HANDLE(0x1234))
+    finally:
+        (k32.WaitForSingleObject, k32.TerminateProcess) = orig8
+    n8_ok = (r8["terminate_attempted"] is True and r8["terminate_ok"] is True
+             and r8["exit_confirmed"] is not True and r8["wait_lasterr"] == 777)
+    cases.append({"name": "N8 清理等待失败(不虚报完成)",
+                  "expect_pass": False, "actual_pass": not n8_ok,
+                  "holds": n8_ok})
     return {"cases": cases, "all_hold": all(c["holds"] for c in cases)}
 
 
@@ -236,8 +366,9 @@ def a1(work: Path) -> dict:
     fd = os.open(str(sentinel), os.O_RDONLY | os.O_BINARY)
     h = msvcrt.get_osfhandle(fd)
     if not k32.SetHandleInformation(h, HANDLE_FLAG_INHERIT, HANDLE_FLAG_INHERIT):
+        err = ctypes.get_last_error()  # 清理前立即缓存真实错误
         os.close(fd)
-        return {"error": f"SetHandleInformation 失败 {k32.get_last_error()}"}
+        return {"error": f"SetHandleInformation 失败 {err}"}
     # 正对照:原生 CreateProcessW(bInheritHandles=True,无 HANDLE_LIST),
     # 子进程按同句柄号读 → 必须读到精确哨兵;stdout/stderr 落盘供逐字节核验。
     control_child = work / "control_child.py"
@@ -279,15 +410,19 @@ def a1(work: Path) -> dict:
                                       ctypes.cast(env_block, wintypes.LPVOID),
                                       str(work), ctypes.byref(si), ctypes.byref(pi)))
     control_rc = None
+    control_waited = False
+    control_rc_read = False
     if spawned:
-        k32.WaitForSingleObject(pi.hProcess, 30000)
+        control_waited = (k32.WaitForSingleObject(pi.hProcess, 30000)
+                          == WAIT_OBJECT_0)
         code = wintypes.DWORD()
-        k32.GetExitCodeProcess(pi.hProcess, ctypes.byref(code))
-        control_rc = code.value
+        control_rc_read = bool(k32.GetExitCodeProcess(pi.hProcess,
+                                                      ctypes.byref(code)))
+        control_rc = code.value if control_rc_read else None
         k32.CloseHandle(pi.hProcess)
         k32.CloseHandle(pi.hThread)
     else:
-        control_lasterr = k32.get_last_error()
+        control_lasterr = ctypes.get_last_error()
     os.close(out_fd)
     control_out = control_out_path.read_text(encoding="utf-8", errors="replace") \
         if control_out_path.exists() else ""
@@ -302,12 +437,14 @@ def a1(work: Path) -> dict:
     m_err = re.search(r"READ_ERROR winerror=(\d+)", sandbox_out)
     sandbox_winerror = int(m_err.group(1)) if m_err else None
     token_ok = bool(_TOKEN_RE.search(sandbox_out))
-    verdict = _judge_a1(control_spawned=spawned, control_rc=control_rc,
-                        control_read=control_read,
+    verdict = _judge_a1(control_spawned=spawned, control_waited=control_waited,
+                        control_rc_read=control_rc_read, control_rc=control_rc,
+                        control_read=control_read, sandbox_rc=r.returncode,
                         sandbox_winerror=sandbox_winerror,
                         token_ok=token_ok, sandbox_out=sandbox_out)
     return {**verdict,
-            "control": {"spawned": spawned, "rc": control_rc,
+            "control": {"spawned": spawned, "waited": control_waited,
+                        "rc_read": control_rc_read, "rc": control_rc,
                         "lasterr": control_lasterr if not spawned else None,
                         "out": control_out},
             "sandbox": {"rc": r.returncode, "winerror": sandbox_winerror,
@@ -366,10 +503,14 @@ def _image_path(h: wintypes.HANDLE) -> str | None:
     return None
 
 
-def _handshake(marker: Path, work: Path, token: str,
-               need_ack: bool) -> tuple[wintypes.HANDLE | None, int, str | None, bool]:
-    """握手:打开进程句柄,确认打开时仍存活,并核验映像路径=SANDBOX_PY。
-    核验通过(且需要时)写监督端 ACK。任一环节失败即 verified=False。"""
+_HANDSHAKE_ACCESS = (SYNCHRONIZE | PROCESS_QUERY_LIMITED_INFORMATION
+                     | PROCESS_TERMINATE)
+
+
+def _handshake(marker: Path, work: Path, token: str, need_ack: bool) -> dict:
+    """握手:打开进程句柄(含 PROCESS_TERMINATE,cleanup 只用此句柄,
+    不按 PID 重开);存活判定只认 WAIT_TIMEOUT,WAIT_FAILED 记录错误并失败;
+    并核验映像路径=SANDBOX_PY。核验通过(且需要时)写监督端 ACK。"""
     deadline = time.time() + 30
     while time.time() < deadline:
         if marker.exists():
@@ -378,40 +519,71 @@ def _handshake(marker: Path, work: Path, token: str,
             except ValueError:
                 pid = 0
             if pid:
-                h = k32.OpenProcess(SYNCHRONIZE | PROCESS_QUERY_LIMITED_INFORMATION,
-                                    False, pid)
+                h = k32.OpenProcess(_HANDSHAKE_ACCESS, False, pid)
                 if h:
-                    if k32.WaitForSingleObject(h, 0) != WAIT_OBJECT_0:  # 打开时存活
+                    w = k32.WaitForSingleObject(h, 0)
+                    if _is_alive_wait(w):  # 仅 WAIT_TIMEOUT=打开时存活
                         img = _image_path(h)
                         if img and img.lower() == str(SANDBOX_PY.resolve()).lower():
                             if need_ack:
                                 (work / f"ack-{token}").write_text("1")
-                            return h, pid, img, True
+                            return {"held": h, "pid": pid, "image": img,
+                                    "verified": True, "wait_error": None}
                         k32.CloseHandle(h)
-                        return None, pid, img, False  # 映像不符:身份核验失败
-                    k32.CloseHandle(h)  # 打开瞬间已死:重试
+                        return {"held": None, "pid": pid, "image": img,
+                                "verified": False, "wait_error": None}  # 映像不符
+                    if w == WAIT_FAILED:
+                        err = ctypes.get_last_error()  # CloseHandle 前立即缓存
+                        k32.CloseHandle(h)
+                        return {"held": None, "pid": pid, "image": None,
+                                "verified": False, "wait_error": err}
+                    k32.CloseHandle(h)  # WAIT_OBJECT_0:打开瞬间已死,重试
         time.sleep(0.05)
-    return None, 0, None, False
+    return {"held": None, "pid": 0, "image": None, "verified": False,
+            "wait_error": None}
 
 
-def _cleanup(held: wintypes.HANDLE | None, pid: int) -> dict:
-    """兜底清理(绝不进判定):仅用已持有句柄等待,终止须另开
-    PROCESS_TERMINATE 句柄并核验返回值。"""
+def _cleanup(held: wintypes.HANDLE | None) -> dict:
+    """兜底清理(绝不进判定):只用握手时已持有并核验身份的句柄
+    Terminate/Wait,不按 PID 重开。Terminate 成功只是发起终止,
+    必须用同一 held 句柄再 Wait 确认退出;任一 wait 出现 WAIT_FAILED/
+    未知结果即记录错误并停止(不再 Terminate、不算清理完成)。"""
     out = {"terminate_attempted": False, "terminate_ok": None,
-           "alive_before_cleanup": None}
-    if held is None or not pid:
+           "terminate_lasterr": None, "exit_confirmed": None,
+           "wait_lasterr": None, "alive_before_cleanup": None}
+    if held is None:
         return out
-    out["alive_before_cleanup"] = k32.WaitForSingleObject(held, 0) != WAIT_OBJECT_0
-    if not out["alive_before_cleanup"]:
+
+    def _wait(ms: int) -> int:
+        return int(k32.WaitForSingleObject(held, ms))
+    w0 = _wait(0)
+    if w0 == WAIT_TIMEOUT:
+        out["alive_before_cleanup"] = True
+    elif w0 == WAIT_OBJECT_0:
+        out["alive_before_cleanup"] = False
         return out
-    k32.WaitForSingleObject(held, 5000)
-    if k32.WaitForSingleObject(held, 0) == WAIT_OBJECT_0:
+    else:  # WAIT_FAILED/未知:错误,停止,不 Terminate
+        out["wait_lasterr"] = ctypes.get_last_error()
+        return out
+    w1 = _wait(5000)
+    if w1 == WAIT_OBJECT_0:
+        return out  # 等待期间已退出
+    if w1 != WAIT_TIMEOUT:  # WAIT_FAILED/未知:错误,停止,不 Terminate
+        out["wait_lasterr"] = ctypes.get_last_error()
         return out
     out["terminate_attempted"] = True
-    th_ = k32.OpenProcess(PROCESS_TERMINATE, False, pid)
-    if th_:
-        out["terminate_ok"] = bool(k32.TerminateProcess(th_, 1))
-        k32.CloseHandle(th_)
+    out["terminate_ok"] = bool(k32.TerminateProcess(held, 1))
+    if not out["terminate_ok"]:
+        out["terminate_lasterr"] = ctypes.get_last_error()
+        return out
+    w2 = _wait(5000)  # Terminate 后用同一 held 确认退出
+    if w2 == WAIT_OBJECT_0:
+        out["exit_confirmed"] = True
+    elif w2 == WAIT_TIMEOUT:
+        out["exit_confirmed"] = False  # 终止已发起但未退出,不算完成
+    else:  # WAIT_FAILED/未知:错误,不算清理完成
+        out["exit_confirmed"] = None
+        out["wait_lasterr"] = ctypes.get_last_error()
     return out
 
 
@@ -421,7 +593,8 @@ def _run_scenario(code: str, work: Path, timeout_ms: int, token: str,
     extra = {"GRAND_TOKEN": token, "GRAND_DIR": str(work),
              "GRAND_CODE": _GRAND_CODE}
     th, box = _run_async((code, work, timeout_ms, extra))
-    held, pid, img, verified = _handshake(marker, work, token, need_ack)
+    hs = _handshake(marker, work, token, need_ack)
+    held, pid, img, verified = hs["held"], hs["pid"], hs["image"], hs["verified"]
     th.join(60)
     thread_finished = not th.is_alive()
     out = ""
@@ -440,12 +613,13 @@ def _run_scenario(code: str, work: Path, timeout_ms: int, token: str,
     # 返回瞬间观测:只赋值一次;兜底清理只记录,绝不改写(防假通过)
     signaled_at_return = (held is not None
                           and k32.WaitForSingleObject(held, 0) == WAIT_OBJECT_0)
-    cleanup = _cleanup(held, pid)
+    cleanup = _cleanup(held)
     if held:
         k32.CloseHandle(held)
     return {"timed_out": timed_out, "rc": rc,
             "signaled_at_return": signaled_at_return,
-            "handshake": {"verified": verified, "pid": pid, "image": img},
+            "handshake": {"verified": verified, "pid": pid, "image": img,
+                          "wait_error": hs["wait_error"]},
             "token_ok": bool(_TOKEN_RE.search(out)),
             "thread_finished": thread_finished,
             "ack_received": "ACK_SEEN=True" in out,
@@ -475,7 +649,7 @@ def main() -> int:
     results = {"source_hashes": hashes,
                "command": [sys.executable] + sys.argv,
                "work": str(work)}
-    results["negative_regressions"] = _negative_regressions()
+    results["negative_regressions"] = _negative_regressions(work)
     results["A1_inherited_handle"] = a1(work)
     results["A2_tree_termination"] = a2(work)
     out = SUPPORT / "replay-v3-results.json"
