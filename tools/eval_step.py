@@ -155,28 +155,46 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--work", type=Path, required=True)
     ap.add_argument("--adapter", type=Path, required=True)
     ap.add_argument("--run-id", required=True)
+    ap.add_argument("--subset", type=Path, default=None,
+                    help="可选:只评测 JSON 列表中的 problem_id(扫参用固定子集)")
     args = ap.parse_args(argv)
-    config = json.loads(args.config.read_text(encoding="utf-8"))
+    return run(args.config, args.work, args.adapter, args.run_id, args.subset)
+
+
+def run(config_path: Path, work: Path, adapter: Path, run_id: str,
+        subset: Path | None = None) -> int:
+    """可复用入口:扫参器直接调用;subset 只过滤评测行,不进入训练。"""
+    config = json.loads(config_path.read_text(encoding="utf-8"))
     hp = config.get("hyperparameters") or {}
     if hp.get("quantization") is None:
         print("[FAIL] 量化方案未定案,评测步拒绝执行(fail-closed)")
         return 2
-    args.work.mkdir(parents=True, exist_ok=True)
+    work.mkdir(parents=True, exist_ok=True)
     manifest = Path(config.get("dataset_manifest",
                                str(ROOT / "data/manifest.json")))
     model_dir = Path(config.get("model_path", str(ROOT / ".models/qwen3-4b")))
     rows = load_eval_rows(manifest)
-    results = generate(args.adapter, model_dir, rows, args.work, hp)
-    (args.work / "generated-specs.json").write_text(
+    if subset is not None:
+        keep = json.loads(subset.read_text(encoding="utf-8"))
+        if not isinstance(keep, list):
+            print("[FAIL] --subset 必须为 problem_id 列表")
+            return 2
+        rows = [r for r in rows
+                if (r.get("problem_id") or r.get("id")) in set(keep)]
+        if not rows:
+            print("[FAIL] 子集过滤后为空")
+            return 2
+    results = generate(adapter, model_dir, rows, work, hp)
+    (work / "generated-specs.json").write_text(
         json.dumps([{"problem_id": r["problem_id"], "split": r["split"],
                      "spec": r["spec"], "schema_ok": r["schema_ok"],
                      "raw_len": r["raw_len"]} for r in results],
                    ensure_ascii=False, indent=2), encoding="utf-8")
-    render = render_check(config, args.work, results)
-    judge = judge(config, args.work, results)
+    render = render_check(config, work, results)
+    judge = judge(config, work, results)
     summary = aggregate(results, render, judge)
-    summary["run_id"] = args.run_id
-    (args.work / "eval-report.json").write_text(
+    summary["run_id"] = run_id
+    (work / "eval-report.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return 0
