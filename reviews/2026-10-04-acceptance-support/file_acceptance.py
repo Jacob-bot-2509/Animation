@@ -97,6 +97,21 @@ def _assert_json_safe(obj, where: str) -> None:
             _assert_json_safe(v, f"{where}[{i}]")
 
 
+def _write_evidence_record(results: dict, path: Path) -> None:
+    """证据落盘+状态字段一致化:先以占位字段落盘,成功后设真实路径并
+    重序列化,保证持久 JSON 与 stdout 字段一致;失败则 stdout_only=True,
+    由调用方按 FAIL 优先规则决定退出码。"""
+    results["evidence_written"] = None
+    results["stdout_only"] = True
+    ev = _write_json(path, results)
+    if ev is not None:
+        results["evidence_written"] = str(ev)
+        results["stdout_only"] = False
+        ev2 = _write_json(path, results)  # 重序列化:落盘 JSON 含真实路径
+        if ev2 is not None:
+            results["evidence_written"] = str(ev2)
+
+
 def _write_json(path: Path, obj) -> Path | None:
     """统一原子写入;失败逐级兜底(SUPPORT fallback → stderr),返回实际路径;
     任何失败都不得吞掉调用方的退出码语义(证据缺失由调用方如实处理)。"""
@@ -333,9 +348,21 @@ print(json.dumps({'token': token_identity(), 'mode': mode, 'outcome': outcome,
 
 def _parse_client(out: str) -> dict:
     try:
-        return json.loads(out.strip().splitlines()[-1]) if out.strip() else {}
+        parsed = json.loads(out.strip().splitlines()[-1]) if out.strip() else {}
     except (ValueError, TypeError):
         return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def _scan_leak(raw_out: str, expected_sha: str) -> bool:
+    """泄漏扫描(类型无关):扫描原始输出中**所有** 64 位 hex 哈希,
+    任一与哨兵哈希一致即泄漏。不依赖结构化解析(坏 data/坏 token 不掩盖),
+    也不被前面出现的非匹配哈希骗过(re.findall 全量扫描)。"""
+    if not isinstance(raw_out, str):
+        raw_out = repr(raw_out)
+    expected = expected_sha.lower()
+    return any(c.lower() == expected
+               for c in re.findall(r"[0-9a-fA-F]{64}", raw_out))
 
 
 def _run_client(cmd: list[str], sandbox: bool, work: Path, env: dict) -> dict:
@@ -506,16 +533,9 @@ def _run_denied_read(denied_dir: Path, work: Path, runtime: Path, env: dict,
                       str(sentinel), "x" * 32], True, work, env)
     h4_after = _sha_file(sentinel)
     # 泄漏事实先行(FAIL 最高优先,不等待令牌/解析全部成功):
-    # 哨兵内容不进沙箱命令行,客户端能报出与哨兵一致的哈希即构成泄漏证据
-    leak = False
-    ch = (s4.get("data") or {}).get("content_hash")
-    if ch is None:
-        m = re.search(r'"content_hash"\s*:\s*"([0-9a-fA-F]{64})"',
-                      s4.get("raw_out", ""))
-        ch = m.group(1) if m else None
-    if ch is not None and ch.lower() == h4:
-        leak = True
-    if leak:
+    # 哨兵内容不进沙箱命令行,原始输出中出现与哨兵一致的哈希即泄漏证据;
+    # 全量扫描所有 hex 哈希,坏 data/坏 token/前导非匹配哈希均不掩盖
+    if _scan_leak(s4.get("raw_out", ""), h4):
         return ({"verdict": "FAIL",
                  "reasons": ["沙箱读到未授权哨兵内容(隔离击穿)"],
                  "contract": CONTRACT},
@@ -639,9 +659,8 @@ def main() -> int:
     if not neg["all_hold"]:
         results.update(state="ERROR", overall="UNVERIFIED",
                        error="内置负例自检未全持,拒绝执行")
-        ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
-        results["evidence_written"] = str(ev) if ev is not None else None
-        results["stdout_only"] = ev is None
+        _write_evidence_record(
+            results, EVIDENCE / f"file-accept-error-{run_id}.json")
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return 2
     try:
@@ -734,32 +753,25 @@ def main() -> int:
         if results.get("case", {}).get("overall") == "FAIL":
             results.update(state="ERROR", overall="FAIL",
                            error=repr(e), traceback=traceback.format_exc())
-            ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json",
-                             results)
-            results["evidence_written"] = str(ev) if ev is not None else None
-            results["stdout_only"] = ev is None
+            _write_evidence_record(
+                results, EVIDENCE / f"file-accept-error-{run_id}.json")
             print(json.dumps(results, ensure_ascii=False, indent=2))
             return 1
         results.update(state="ERROR", overall="UNVERIFIED",
                        error=repr(e), traceback=traceback.format_exc())
-        ev = _write_json(EVIDENCE / f"file-accept-error-{run_id}.json", results)
-        results["evidence_written"] = str(ev) if ev is not None else None
-        results["stdout_only"] = ev is None
+        _write_evidence_record(
+            results, EVIDENCE / f"file-accept-error-{run_id}.json")
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return 2
-    ev_path = _write_json(EVIDENCE / f"file-accept-results-{run_id}.json",
-                          results)
-    if ev_path is None:
-        # 持久证据不可写:stdout_only 显式标记;契约要求持久证据,
-        # PASS 降 UNK;已确证 FAIL 保留(击穿信号不得被落盘失败掩盖)
-        results["evidence_written"] = None
-        results["stdout_only"] = True
+    _write_evidence_record(
+        results, EVIDENCE / f"file-accept-results-{run_id}.json")
+    if results["stdout_only"]:
+        # 持久证据不可写:契约要求持久证据,PASS 降 UNK;
+        # 已确证 FAIL 保留(击穿信号不得被落盘失败掩盖)
         if results["overall"] == "PASS_LOCAL_FILE_ACL":
             results["overall"] = "UNVERIFIED"
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return 1 if results["overall"] == "FAIL" else 2
-    results["evidence_written"] = str(ev_path)
-    results["stdout_only"] = False
     print(json.dumps(results, ensure_ascii=False, indent=2))
     all_hold = results["negative_regressions"]["all_hold"]
     ok = (all_hold and results["overall"] == "PASS_LOCAL_FILE_ACL"
