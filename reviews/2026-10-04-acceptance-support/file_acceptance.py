@@ -786,8 +786,19 @@ def _case(work: Path, denied_dir: Path, runtime: Path, env: dict,
     return rec
 
 
-CORE_MODULES = ["src/animtrain/appcontainer.py", "src/animtrain/win_job.py",
-                "src/animtrain/network_isolation.py"]
+CORE_MODULES = [
+    "src/animtrain/network_isolation.py",
+    "tools/network_acceptance.py",
+    "tests/test_network_isolation.py",
+    "tests/test_network_acceptance.py",
+    "src/animtrain/appcontainer.py",
+    "src/animtrain/win_job.py",
+    "tests/test_appcontainer_lifecycle.py",
+    "tests/test_win_job_cleanup.py",
+    "src/animtrain/render_gate.py",
+    "tools/isolation_acceptance.py",
+    "reviews/2026-10-04-acceptance-support/network_acceptance.py"
+]
 
 
 def _post_verify(cfg: dict, manifest: dict, pth_before: str,
