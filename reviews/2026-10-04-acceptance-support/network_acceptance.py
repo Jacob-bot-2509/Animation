@@ -762,6 +762,7 @@ def main() -> int:
                                     "src_pth": src_pth,
                                     "refreshed": need_copy},
                    "command": [sys.executable] + sys.argv,
+                   "sandbox_env": dict(sandbox_env),
                    "work": str(work), "runtime": str(rt_py),
                    "profile": str(profile),
                    "pre_granted_acl": [[str(NET_RUNTIME), "read"],
