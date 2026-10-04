@@ -1,11 +1,6 @@
-"""固定入口:执行项目内的临时/一次性 Python 代码文件(替代 python -c)。
+"""执行项目内代码文件，并保留目标脚本的参数和退出语义。
 
-用法(唯一调用方式,杜绝 shell 转义事故):
-  <venv>/Scripts/python.exe -X utf8 tools/runpy.py <code_file.py>
-
-- 代码用 Write 工具落到项目内文件后执行,绝不内联传 Windows 路径/反斜杠;
-- 自动注入 sys.path(项目根 / src / tools);
-- 执行失败如实回传退出码。
+用法: <venv>/Scripts/python.exe -X utf8 tools/runpy.py <code_file.py>
 """
 from __future__ import annotations
 
@@ -29,14 +24,23 @@ def main(argv: list[str]) -> int:
     if not code.is_file():
         print(f"代码文件不存在: {code}", file=sys.stderr)
         return 2
+    previous_argv = sys.argv
+    sys.argv = [str(code)]
     try:
         runpy.run_path(str(code), run_name="__main__")
-    except SystemExit as e:  # 透传被跑代码的退出码
-        return int(e.code or 0)
-    except Exception as e:  # noqa: BLE001
+    except SystemExit as error:
+        if error.code is None:
+            return 0
+        if isinstance(error.code, int):
+            return error.code
+        print(error.code, file=sys.stderr)
+        return 1
+    except Exception:
         import traceback
         traceback.print_exc()
         return 1
+    finally:
+        sys.argv = previous_argv
     return 0
 
 
