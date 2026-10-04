@@ -67,12 +67,17 @@ def main(argv: list[str]) -> int:
             rep = validate_manifest(m, mp.parent)
             extra.append(("data_manifest", (rep["ok"], f"{rep['n_entries']} 条目,"
                            f"问题 {len(rep['problems'])},quarantine {len(rep['quarantines'])}")))
-            # BR4: near_dup_calibrated 必须传播 —— UNCALIBRATED 的阈值
-            # 在 ready 模式下明确阻止(数据隔离验收未完成)
+            # BR4: near_dup_calibrated 必须传播 —— UNCALIBRATED 的判定规则
+            # 在 ready 模式下明确阻止(B5 校准证据缺失/未校准)
             if not rep.get("near_dup_calibrated", False):
                 extra.append(("near_dup_calibrated", (False,
-                              "近重复阈值 UNCALIBRATED(真实数据对照实验未完成)"
+                              "近重复判定规则未校准(B5 校准证据缺失/UNCALIBRATED)"
                               "—— ready 模式必须阻断")))
+            else:
+                cal = rep.get("near_dup_calibration", {})
+                extra.append(("near_dup_calibrated", (True,
+                              f"B5 v3 已校准:考点签名一致(模块+题型),阈值 {cal.get('threshold')}"
+                              f",TP {cal.get('tp')}/FP {cal.get('fp')}")))
         else:
             extra.append(("data_manifest", (False, f"manifest 不存在: {mp}")))
     # BR4-b 复验:门禁必须提供**真实执行证据**,不能只查依赖存在。

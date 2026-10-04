@@ -325,11 +325,32 @@ def validate_manifest(m: Manifest, root: Path,
                         f"{sim:.3f} ≥ {near_dup_threshold},命中 {hit['path']}:"
                         f"{hit['line'] + 1})")
 
+    # 6.5 B5 校准证据(2026-10-04):近重复判定规则已用真实标注校准
+    # (48 对用户标签 + 8 处用户确认的裁决,考点签名规则,CALIBRATED 阈值 1);
+    # 证据文件缺失或未校准 → 保持 UNCALIBRATED(fail-closed),不伪造。
+    near_dup_calibrated = False
+    near_dup_calibration: dict = {}
+    b5_path = root / "b5-calibration-report" / "b5-calibration-report.json"
+    try:
+        b5 = _json.loads(b5_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        b5 = {}
+    b5_cal = b5.get("calibration", {}) if isinstance(b5, dict) else {}
+    if (isinstance(b5_cal, dict) and b5_cal.get("calibrated") is True
+            and b5_cal.get("threshold") == "1"):
+        near_dup_calibrated = True
+        near_dup_calibration = {
+            "rule": "考点签名一致(模块+题型)", "threshold": b5_cal["threshold"],
+            "tp": b5_cal.get("tp"), "fp": b5_cal.get("fp"),
+            "fn": b5_cal.get("fn"), "tn": b5_cal.get("tn"),
+            "note": str(b5_cal.get("note", ""))[:120]}
+
     # msg_101-1 数据合约:quarantine 不默认通过 —— 有任何 quarantine 即不通过,
     # 但 exit code 与 problems 区分(problems=1 硬伤;quarantine=2 待补齐信息)
     return {"ok": not problems and not quarantines,
             "n_entries": len(m.entries),
             "problems": problems, "quarantines": quarantines,
             "near_dup_threshold": near_dup_threshold,
-            "near_dup_calibrated": False,  # UNCALIBRATED:0.7 待真实数据对照实验
+            "near_dup_calibrated": near_dup_calibrated,
+            "near_dup_calibration": near_dup_calibration,
             "exit_code": 1 if problems else (2 if quarantines else 0)}
