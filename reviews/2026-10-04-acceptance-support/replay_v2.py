@@ -299,20 +299,22 @@ def a2(work: Path) -> dict:
                 k32.CloseHandle(held2); held2 = None
         time.sleep(0.05)
     th2.join(60)
-    if held2:
+    # 正常退出场景:与超时场景同口径——返回瞬间判定,兜底杀不算通过(防假通过)
+    signaled_at_return2 = (held2 is not None
+                           and k32.WaitForSingleObject(held2, 0) == WAIT_OBJECT_0)
+    if held2 and not signaled_at_return2:
+        # 兜底仅清理(用已持有句柄),但结果如实记录:返回瞬间未清理 = FAIL
         k32.WaitForSingleObject(held2, 5000)
         if _alive(held2):
             ctypes.windll.kernel32.TerminateProcess(held2, 1)
-        sig2 = k32.WaitForSingleObject(held2, 0) == WAIT_OBJECT_0
+    if held2:
         k32.CloseHandle(held2)
-    else:
-        sig2 = False
     return {"timeout": {"timed_out": t1.get("timed_out"),
                         "grand_pid": pid,
                         "signaled_at_return": signaled_at_return},
             "normal_exit": {"grand_pid": pid2,
-                            "signaled_after_exit": sig2},
-            "passed": signaled_at_return and sig2}
+                            "signaled_at_return": signaled_at_return2},
+            "passed": signaled_at_return and signaled_at_return2}
 
 
 def main() -> int:
