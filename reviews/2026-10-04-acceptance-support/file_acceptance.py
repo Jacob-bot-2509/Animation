@@ -47,7 +47,7 @@ SUPPORT = Path(__file__).resolve().parent
 NET_RUNTIME = SUPPORT / "net-runtime"
 EVIDENCE = SUPPORT / "file-evidence"
 CODEX_RUNTIME = Path(
-    r"D:\code\output\claude-supervision\fix-2026-10-04"
+    r"D:\Animation-Model-Training\reviews\codex-supervision\history-from-code\fix-2026-10-04"
     r"\appcontainer-probe-wenbjyjh\runtime")
 RUNTIME_KEY_FILES = ["python.exe", "python313.dll", "Lib/socket.py",
                      "DLLs/_socket.pyd"]
@@ -455,10 +455,10 @@ def main() -> int:
     work = SUPPORT / f"file-work-{run_id}"
     denied_dir = SUPPORT / f"file-denied-{run_id}"
     results: dict = {}
+    EVIDENCE.mkdir(exist_ok=True)  # 错误处理器依赖该目录,必须在 try 之前就绪
     try:
         _named_dir(work, "work")
         _named_dir(denied_dir, "denied_dir")
-        EVIDENCE.mkdir(exist_ok=True)
         # runtime 基线核验(与授权源逐项比对;不符即失败关闭,不复制)
         manifest = {}
         for rel in RUNTIME_KEY_FILES:
@@ -481,7 +481,10 @@ def main() -> int:
         profile = ac.appcontainer_profile_path(ac.appcontainer_sid())
         sid = ac.appcontainer_sid()
         expected_sid = ac._sid_sddl(sid)
-        ac.grant_dir_access(work, sid, write=True)  # 仅具名工作区
+        # 显式授予:work 读写 + net-runtime 只读(沙箱须能加载解释器/自哈希;
+        # 不再静默依赖兄弟脚本遗留的环境 ACE,证据与结论自持)
+        ac.grant_dir_access(NET_RUNTIME, sid, write=False)
+        ac.grant_dir_access(work, sid, write=True)
         env = {"SYSTEMROOT": r"C:\Windows",
                "SystemDrive": os.environ.get("SystemDrive", "C:"),
                "windir": os.environ.get("windir", r"C:\Windows"),
@@ -506,7 +509,8 @@ def main() -> int:
                    "work": str(work), "denied_dir": str(denied_dir),
                    "runtime": str(runtime), "profile": str(profile),
                    "expected_sid": expected_sid,
-                   "pre_granted_acl": [[str(work), "read_write"]],
+                   "pre_granted_acl": [[str(NET_RUNTIME), "read"],
+                                       [str(work), "read_write"]],
                    "allowed_dirs": [], "sandbox_env": dict(env),
                    "negative_regressions": _negative_regressions(),
                    "runtime_pth": pth, "runtime_pth_ok": pth_ok,
