@@ -9,8 +9,9 @@
 2. **MiKTeX 真副本**(读+执行):当前 D:\Settings\miktex 为空,
    需重新完整复制(robocopy 需校验退出码并核对 latex.exe/dvisvgm.exe 存在),
    或改用项目自有 LaTeX 部署方案;
-3. **ffmpeg**(D:\Settings\ffmpeg\bin,读+执行)且**显式加入沙箱 PATH**
-   (ENV_ONLY 实测:普通环境 PATH 无 ffmpeg → 无 MP4 产物);
+3. **视频后端 PyAV(venv 内 av 19.0.0,已实测产出 MP4)**;外部 ffmpeg.exe
+   是否必需未证实(manim 0.21 scene_file_writer 用 PyAV av.open);
+   ffmpeg/ffprobe 仅作产物核验工具;
 4. 写目录:.render-tmp(渲染 media/scene)+ MPLCONFIGDIR 目录;
 5. 沙箱 env 要点(复查方实测配方):LOCALAPPDATA/APPDATA/USERPROFILE → profile,
    TEMP/TMP → D 盘写目录,SYSTEMROOT,PATH,PATHEXT。
