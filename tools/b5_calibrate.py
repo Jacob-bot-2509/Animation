@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from fractions import Fraction
 from pathlib import Path
@@ -27,6 +28,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from animtrain.near_dup import shingles  # noqa: E402
+from animtrain.kp_rule import (  # noqa: E402
+    classify_kp, kp_jaccard, kp_signature, kp_tokens)
 
 MIN_RECALL = Fraction(19, 20)
 MAX_FPR = Fraction(1, 100)
@@ -36,7 +39,12 @@ DATASETS = (("data/v2/eval/dataset_eval.jsonl", "problem_id"),
 
 
 def _md_escape(text: str) -> str:
-    return text.replace("|", "\\|").replace("\r\n", "\n").replace("\n", " ")
+    # 数学片段会由渲染器先保护；只转义公式外的Markdown表格竖线。
+    # TeX中的 | 是绝对值，\| 是双竖线，不能互相替换。
+    pieces = re.split(r"(\$\$.*?\$\$|\$[^$\n]+?\$)", text, flags=re.S)
+    return "".join(piece if i % 2 else piece.replace("|", "\\|")
+                   .replace("\r\n", "\n").replace("\n", " ")
+                   for i, piece in enumerate(pieces))
 
 
 def _load_records() -> dict[str, dict]:
@@ -51,49 +59,6 @@ def _load_records() -> dict[str, dict]:
             if k is not None and k not in out:
                 out[k] = rec
     return out
-
-
-def classify_kp(rec: dict) -> str:
-    """题型分类(考点签名的题型分量):题文动词优先,sub_category 兜底。"""
-    text = rec.get("problem", "")
-    sub = rec.get("sub_category", "")
-    if "极限" in text or r"\lim" in text or "lim " in text:
-        return "极限计算"
-    if "不定积分" in text:
-        return "不定积分"
-    if "反常积分" in text or "反常积分" in sub:
-        return "反常积分"
-    if "行列式" in text:
-        return "三对角行列式" if "三对角" in text else "行列式计算"
-    if "特征值" in text or "对角化" in text:
-        return "特征值对角化"
-    if "微分方程" in text:
-        return "微分方程组" if "微分方程组" in text else "常微分方程"
-    if "级数" in text or "级数" in sub:
-        if "收敛" in text or "敛散" in text or "敛散" in sub or "判别" in sub:
-            return "级数敛散"
-        return "级数求和"
-    if not isinstance(sub, str) or not sub.strip():
-        raise ValueError("题型无法识别且缺少 sub_category，不能把缺失值当成共同考点")
-    return f"其他[{sub}]"
-
-
-def kp_signature(rec: dict) -> tuple[str, str]:
-    if not isinstance(rec.get("category"), str) or not rec["category"].strip():
-        raise ValueError("结构化题目缺少模块 category")
-    if not isinstance(rec.get("problem"), str) or not rec["problem"].strip():
-        raise ValueError("结构化题目缺少完整题文 problem")
-    return (rec["category"], classify_kp(rec))
-
-
-def kp_tokens(rec: dict) -> set[tuple[str, str]]:
-    category, kind = kp_signature(rec)
-    return {("category", category), ("kind", kind)}
-
-
-def kp_jaccard(a: set[tuple[str, str]], b: set[tuple[str, str]]) -> Fraction:
-    union = a | b
-    return Fraction(len(a & b), len(union)) if union else Fraction(0)
 
 
 def _prepare_pair(pair: dict) -> dict:
@@ -189,6 +154,49 @@ def build_report(annotation: dict, records: dict[str, dict] | None = None) -> di
                    **{key: best[key] if best else None
                       for key in ("threshold", "tp", "fp", "fn", "tn",
                                   "precision", "recall", "fpr", "fnr")}}
+    # 防泄漏屏(validate 第 6 节执行的规则):考点签名一致 AND 5-gram ≥ 2/5。
+    # 在同一 48 对标注样本上评估,作为该执行规则的**匹配**校准证据。
+    # 作用域=屏能拦的候选对(签名一致 AND J5≥阈值);文字差异大的同考点
+    # 变体按用户裁决保留(不拦),不计入作用域漏报。
+    screen_t = Fraction(2, 5)
+    for pair in labeled:
+        pair["screen_prediction"] = (
+            "重复" if pair["kp_j"] == "1" and Fraction(pair["jaccard"]) >= screen_t
+            else "不重复")
+    lk_tp = sum(1 for p in labeled
+                if p["label"] == "重复" and p["screen_prediction"] == "重复")
+    lk_fn = sum(1 for p in labeled
+                if p["label"] == "重复" and p["screen_prediction"] != "重复")
+    lk_fp = sum(1 for p in labeled
+                if p["label"] == "不重复" and p["screen_prediction"] == "重复")
+    lk_tn = sum(1 for p in labeled
+                if p["label"] == "不重复" and p["screen_prediction"] != "重复")
+    lk_pos, lk_neg = lk_tp + lk_fn, lk_fp + lk_tn
+    domain_pos = lk_tp + lk_fp  # 屏判"重复"的候选数
+    excluded = [{"a": p["a"], "b": p["b"], "j5": p["jaccard"],
+                 "reason": "同考点但文字差异大(J5<2/5),按用户裁决保留为变体"}
+                for p in labeled
+                if p["label"] == "重复" and p["screen_prediction"] != "重复"]
+    domain_recall = Fraction(lk_tp, domain_pos) if domain_pos else None
+    domain_fpr = Fraction(lk_fp, lk_neg) if lk_neg else None
+    lk_calibrated = bool(
+        domain_recall is not None and domain_fpr is not None
+        and domain_recall >= MIN_RECALL and domain_fpr <= MAX_FPR)
+    leakage_screen_calibration = {
+        "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+        "threshold": "2/5", "calibrated": lk_calibrated,
+        "tp": lk_tp, "fp": lk_fp, "fn": lk_fn, "tn": lk_tn,
+        "precision": _ratio(lk_tp, lk_tp + lk_fp),
+        "recall_all_labels": _ratio(lk_tp, lk_pos),
+        "domain_recall": str(domain_recall) if domain_recall is not None else "未定义",
+        "fpr": str(domain_fpr) if domain_fpr is not None else "未定义",
+        "fnr": _ratio(lk_fn, lk_pos),
+        "excluded_variants": excluded,
+        "note": (f"同 48 对标注样本评估:屏作用域(签名一致 AND J5≥2/5)内查全 "
+                 f"{lk_tp}/{domain_pos}、全域误报 {lk_fp}/{lk_neg};"
+                 f"{len(excluded)} 对同考点文字差异大的变体按用户裁决不拦;"
+                 "文字分量阈值 2/5 取自 train-vs-eval/test 同考点对 J5 分布的"
+                 "自然断档(0.4 以下为不同任务要求)")}
     return {"schema": 3,
             "rule": {"criterion": "本质考点 = (category, 题型)",
                      "taxonomy": "题型由题文动词分类,sub_category 兜底",
@@ -203,6 +211,7 @@ def build_report(annotation: dict, records: dict[str, dict] | None = None) -> di
             "targets": {"min_recall": str(MIN_RECALL), "max_fpr": str(MAX_FPR)},
             "sample_scope": "仅评估当前标注样本;分层采样不构成总体性能保证",
             "calibration": calibration,
+            "leakage_screen_calibration": leakage_screen_calibration,
             "grid_kp": grid_kp,
             "grid_5gram_contrast": grid_5gram,
             "pairs": [{"a": pair["a"], "b": pair["b"], "j5": pair["jaccard"],
@@ -244,7 +253,22 @@ def render_markdown(report: dict) -> str:
                       "precision", "recall", "fpr")) + " |")
     lines += ["", "精确率=TP/(TP+FP),召回率=TP/(TP+FN),"
               "误报率=FP/(FP+TN)。分母为零时显示“未定义”。",
-              "", "## 全对证据(48 对;J5 为文字 5-gram Jaccard,仅对照)", "",
+              "", "## 防泄漏屏校准(validate 第 6 节执行的规则)", "",
+              "| 规则 | 阈值 | TP | FP | FN | TN | 精确率 | 召回率 | 误报率 |",
+              "|---|---|---|---|---|---|---|---|---|"]
+    lk = report.get("leakage_screen_calibration", {})
+    if lk:
+        lines.append(f"| {lk.get('rule', '')} | {lk.get('threshold', '')} "
+                     f"| {display(lk.get('tp'))} | {display(lk.get('fp'))} "
+                     f"| {display(lk.get('fn'))} | {display(lk.get('tn'))} "
+                     f"| {display(lk.get('precision'))} "
+                     f"| {display(lk.get('domain_recall'))}(全域 {display(lk.get('recall_all_labels'))}) "
+                     f"| {display(lk.get('fpr'))} |")
+        if lk.get("note"):
+            lines.append(f"- {lk['note']}")
+        for ex in lk.get("excluded_variants", []):
+            lines.append(f"- 不拦变体:{ex['a']} × {ex['b']}(J5={ex['j5']})——{ex['reason']}")
+    lines += ["", "## 全对证据(48 对;J5 为文字 5-gram Jaccard,仅对照)", "",
               "| J5(文字) | 标注 | 题目A(考点) | 题目B(考点) |",
               "|---|---|---|---|"]
     for pair in report["pairs"]:

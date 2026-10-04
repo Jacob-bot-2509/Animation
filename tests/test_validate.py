@@ -5,6 +5,7 @@
 """
 from __future__ import annotations
 
+import json
 import sys
 import tempfile
 import unittest
@@ -148,29 +149,41 @@ class TestValidate(unittest.TestCase):
         self.assertTrue(any("文件内容完全相同" in p for p in r["problems"]),
                         r["problems"])
 
+    def _signature_manifest(self, train_text, eval_text):
+        entries = []
+        for split, sid, text in [("train", "t1", train_text), ("eval", "e1", eval_text)]:
+            p = self.root / split / "sample.jsonl"
+            record = {"id": sid, "category": "数学分析", "sub_category": "测试题型",
+                      "problem": text, "solution": "测试解答", "answer": "1"}
+            # TeX 须由 JSON 库转义;手工拼接会把反斜杠误作 JSON 转义。
+            _write(p, json.dumps(record, ensure_ascii=False) + "\n")
+            entries.append(Entry(path=str(p.relative_to(self.root)), sha256=sha256_file(p),
+                                 size=p.stat().st_size, source="synthetic",
+                                 license="internal-generated", split=split))
+        return Manifest(name="signature-screen-fixture", entries=entries)
+
     def test_near_dup_threshold_configurable(self):
-        """msg_101-2:近重复阈值可配置(当前 0.7 只是初始值)。"""
-        train = self.root / "train" / "a.jsonl"
-        ev = self.root / "eval" / "b.jsonl"
-        _write(train, '{"problem": "%s"}\n' % ("某工厂生产两种产品,甲每件利润3元,乙每件利润5元,"
-               "生产甲需A材料2千克和B材料1千克,生产乙需A材料1千克和B材料3千克,"
-               "现有A材料100千克、B材料120千克,问各生产多少件利润最大"))
-        _write(ev, '{"problem": "%s"}\n' % ("某工厂生产两种产品,甲每件利润3元,乙每件利润5元,"
-               "生产甲需A材料2千克和B材料1千克,生产乙需A材料1千克和B材料3千克,"
-               "现有A材料100千克、B材料120千克,如何安排生产使利润达到最大"))
-        m = Manifest(name="t", entries=[
-            Entry(path="train/a.jsonl", sha256=sha256_file(train),
-                  size=train.stat().st_size,
-                  source="x", license="internal-generated", split="train"),
-            Entry(path="eval/b.jsonl", sha256=sha256_file(ev),
-                  size=ev.stat().st_size,
-                  source="x", license="internal-generated", split="eval")])
-        r_loose = validate_manifest(m, self.root, near_dup_threshold=0.5)
-        self.assertTrue(any("近重复" in p for p in r_loose["problems"]),
-                        "阈值 0.5 应检出")
-        r_strict = validate_manifest(m, self.root, near_dup_threshold=0.95)
-        self.assertFalse(any("近重复" in p for p in r_strict["problems"]),
-                         "阈值 0.95 不应检出")
+        """组合规则的阈值可配置:本夹具的精确 J5 为 22/45。"""
+        m = self._signature_manifest(
+            r"求极限 $\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^2}$。",
+            r"求极限 $\displaystyle\lim_{x\to 0}\frac{\sin x-\tan x}{x^3}$。")
+        r_loose = validate_manifest(m, self.root, near_dup_threshold=2/5)
+        self.assertEqual(len(r_loose["problems"]), 1, r_loose["problems"])
+        self.assertIn("近重复", r_loose["problems"][0])
+        self.assertIn("22/45", r_loose["problems"][0])
+        self.assertFalse(r_loose["quarantines"])
+        r_strict = validate_manifest(m, self.root, near_dup_threshold=19/20)
+        self.assertTrue(r_strict["ok"], r_strict)
+
+    def test_near_dup_screen_requires_signature(self):
+        """敛散×求和签名不同,本夹具 J5=8/15 超过 2/5 也不得拦。"""
+        m = self._signature_manifest(
+            r"证明级数 $\sum_{n=1}^{\infty}\frac{1}{n^2}$ 收敛。",
+            r"求级数 $\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$ 的和。")
+        r = validate_manifest(m, self.root, near_dup_threshold=2/5)
+        self.assertTrue(r["ok"], r)
+        self.assertFalse(r["problems"])
+        self.assertFalse(r["quarantines"])
 
     def test_bad_split_detected(self):
         p = self.root / "train" / "a.jsonl"

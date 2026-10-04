@@ -16,11 +16,18 @@
 from __future__ import annotations
 
 import json as _json
+from fractions import Fraction
 from pathlib import Path
 
 from .manifest import (Manifest, canonical_problem_hash, canonical_problem_text,
                        sample_content_hash, schema_issues, sha256_file)
-from .near_dup import ShingleIndex, THRESHOLD as NEAR_DUP_THRESHOLD
+from .near_dup import ShingleIndex, shingles
+from .kp_rule import kp_signature
+
+# B5 v3 + 用户裁决(2026-10-04):防泄漏屏文字分量阈值 2/5(签名一致 AND
+# J5 ≥ 2/5 才拦);0.7 是旧 5-gram-only 屏的未校准初始值,已废弃
+NEAR_DUP_TEXT_THRESHOLD = 2 / 5
+NEAR_DUP_RULE = "考点签名一致 AND 5-gram Jaccard达阈值"
 
 from .fields import _is_missing  # noqa: E402  A6:与入场检查同一缺失语义
 
@@ -155,10 +162,10 @@ def _find_invalid_id_lines(path: Path) -> list[tuple[int, str]]:
 
 
 def validate_manifest(m: Manifest, root: Path,
-                      near_dup_threshold: float = NEAR_DUP_THRESHOLD) -> dict:
+                      near_dup_threshold: float = NEAR_DUP_TEXT_THRESHOLD) -> dict:
     """对 manifest 与磁盘执行全部检查。返回 {ok, n_entries, problems,
-    quarantines, exit_code}。near_dup_threshold 可配置(msg_101-2:当前默认
-    0.7 只是初始值,真实数据就位后须对照实验校准)。"""
+    quarantines, exit_code}。near_dup_threshold 为防泄漏屏的文字分量阈值
+    (仅在与训练样本考点签名一致时生效,默认 2/5,应 B5 v3)。"""
     problems: list[str] = []
     quarantines: list[str] = []
     problems += schema_issues(m)
@@ -304,32 +311,65 @@ def validate_manifest(m: Manifest, root: Path,
             problems.append(f"{a} 与 {b} ID 重叠 {len(ia & ib)} 个"
                             f"({sorted(ia & ib)[:5]}) —— 内容不同但 ID 相同也不行")
 
-    # 6. 近重复门禁(5-gram Jaccard ≥ 阈值,可配置):评测/测试样本不得是
-    #    训练样本的改措辞/换数字版本。前项目标准;仅精确重叠不够。
+    # 6. 近重复门禁(应 B5 v3 + 用户裁决"保留变体,防泄漏屏拦同考点+文字
+    #    高度相似"):评测/测试样本与训练样本**考点签名一致** AND
+    #    5-gram Jaccard ≥ 阈值 → 视为换数字/换系数版本的泄漏候选,拦;
+    #    同考点但文字差异大(不同函数族/任务要求的变体)按用户裁决保留。
+    #    文字分量阈值默认 2/5:实测同考点 train-vs-eval/test 的 J5 在 0.4
+    #    处有自然断档(0.4 以下为不同任务要求,0.4~0.6 为换数字版本)。
+    #    无法提取考点签名(缺 category/problem 或不可归类)→ 不参与屏,
+    #    不得把缺失值当成共同考点(与入场契约的硬伤语义一致)。
     if train_hashes:
-        near_idx = ShingleIndex()
+        near_indexes: dict[tuple[str, str], ShingleIndex] = {}
         for e, p in approved:
             if e.split != "train":
                 continue
             for i, line in enumerate(_load_lines(p)):
-                # A8:对核心正文规范化文本做 shingle,元数据不参与相似度
-                near_idx.add(canonical_problem_text(line), {"path": e.path, "line": i})
+                # A8:对核心正文规范化文本做 shingle,元数据不参与相似度;
+                # 签名随命中记录携带,判定时无需回查行内容
+                try:
+                    sig = kp_signature(_json.loads(line))
+                except (ValueError, TypeError, KeyError, _json.JSONDecodeError):
+                    sig = None
+                if sig is None:
+                    continue
+                # 先按签名筛选候选,避免全池最大命中来自其他签名,
+                # 遮住相似度略低但真正满足组合规则的训练题。
+                near_idx = near_indexes.setdefault(sig, ShingleIndex())
+                text = canonical_problem_text(line)
+                near_idx.add(text, {"path": e.path, "line": i, "text": text})
         for e, p in eval_test_entries:
             if p.suffix not in _DATA_SUFFIXES:
                 continue
             for i, line in enumerate(_load_lines(p)):
-                sim, hit = near_idx.max_sim(canonical_problem_text(line))
-                if sim >= near_dup_threshold:
+                try:
+                    sig = kp_signature(_json.loads(line))
+                except (ValueError, TypeError, KeyError, _json.JSONDecodeError):
+                    sig = None
+                if sig is None or sig not in near_indexes:
+                    continue
+                text = canonical_problem_text(line)
+                sim, hit = near_indexes[sig].max_sim(text)
+                if hit is not None and sim >= near_dup_threshold:
+                    # 显示精确集合比值,不把浮点近似误写成数学结论。
+                    a, b = shingles(text), shingles(hit["text"])
+                    ratio = Fraction(len(a & b), len(a | b))
                     problems.append(
-                        f"{e.path}:{i + 1} 与训练样本近重复(5-gram Jaccard "
-                        f"{sim:.3f} ≥ {near_dup_threshold},命中 {hit['path']}:"
+                        f"{e.path}:{i + 1} 与训练样本近重复(考点 {sig[0]}/"
+                        f"{sig[1]} 一致,5-gram Jaccard {ratio} ≥ "
+                        f"{Fraction(str(near_dup_threshold))},命中 {hit['path']}:"
                         f"{hit['line'] + 1})")
 
-    # 6.5 B5 校准证据(2026-10-04):近重复判定规则已用真实标注校准
-    # (48 对用户标签 + 8 处用户确认的裁决,考点签名规则,CALIBRATED 阈值 1);
-    # 证据文件缺失或未校准 → 保持 UNCALIBRATED(fail-closed),不伪造。
+    # 6.5 B5 签名规则和组合屏诊断均不自动解除 ready。
+    # 组合屏尚缺独立定义的泄漏标签及与输入/实现/目标绑定的复算证据。
+    # 按检测条件筛掉 FN 后的 domain_recall 不能替代原标注召回率。
     near_dup_calibrated = False
-    near_dup_calibration: dict = {}
+    near_dup_calibration = {
+        "rule": NEAR_DUP_RULE,
+        "threshold": str(Fraction(str(near_dup_threshold))),
+        "note": "组合规则缺少独立标签和匹配校准证据(UNCALIBRATED)"}
+    b5_signature_calibration: dict = {}
+    leakage_screen_report: dict = {}
     b5_path = root / "b5-calibration-report" / "b5-calibration-report.json"
     try:
         b5 = _json.loads(b5_path.read_text(encoding="utf-8"))
@@ -338,19 +378,37 @@ def validate_manifest(m: Manifest, root: Path,
     b5_cal = b5.get("calibration", {}) if isinstance(b5, dict) else {}
     if (isinstance(b5_cal, dict) and b5_cal.get("calibrated") is True
             and b5_cal.get("threshold") == "1"):
-        near_dup_calibrated = True
-        near_dup_calibration = {
+        # 仅记录报告自报状态供审查,不是门禁校准证明。
+        b5_signature_calibration = {
+            "reported_calibrated": True,
             "rule": "考点签名一致(模块+题型)", "threshold": b5_cal["threshold"],
             "tp": b5_cal.get("tp"), "fp": b5_cal.get("fp"),
             "fn": b5_cal.get("fn"), "tn": b5_cal.get("tn"),
             "note": str(b5_cal.get("note", ""))[:120]}
+        near_dup_calibration["note"] += (
+            ";B5 模块+题型签名与执行规则不同,不能解除 ready 阻断")
+    lk = b5.get("leakage_screen_calibration", {}) if isinstance(b5, dict) else {}
+    if isinstance(lk, dict) and lk:
+        leakage_screen_report = {
+            "reported_calibrated": lk.get("calibrated") is True,
+            "rule": lk.get("rule"), "threshold": lk.get("threshold"),
+            "tp": lk.get("tp"), "fp": lk.get("fp"),
+            "fn": lk.get("fn"), "tn": lk.get("tn"),
+            "recall_all_labels": lk.get("recall_all_labels"),
+            "domain_recall": lk.get("domain_recall"),
+            "note": "报告自报诊断未验证;不得作为 ready 校准证明"}
+        near_dup_calibration["note"] += (
+            ";组合屏报告自报 calibrated 不能替代独立验收")
 
     # msg_101-1 数据合约:quarantine 不默认通过 —— 有任何 quarantine 即不通过,
     # 但 exit code 与 problems 区分(problems=1 硬伤;quarantine=2 待补齐信息)
     return {"ok": not problems and not quarantines,
             "n_entries": len(m.entries),
             "problems": problems, "quarantines": quarantines,
+            "near_dup_rule": NEAR_DUP_RULE,
             "near_dup_threshold": near_dup_threshold,
             "near_dup_calibrated": near_dup_calibrated,
             "near_dup_calibration": near_dup_calibration,
+            "b5_signature_calibration": b5_signature_calibration,
+            "leakage_screen_report": leakage_screen_report,
             "exit_code": 1 if problems else (2 if quarantines else 0)}

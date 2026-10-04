@@ -91,6 +91,29 @@
     "fpr": "0",
     "fnr": "0"
   },
+  "leakage_screen_calibration": {
+    "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+    "threshold": "2/5",
+    "calibrated": true,
+    "tp": 16,
+    "fp": 0,
+    "fn": 1,
+    "tn": 31,
+    "precision": "1",
+    "recall_all_labels": "16/17",
+    "domain_recall": "1",
+    "fpr": "0",
+    "fnr": "1/17",
+    "excluded_variants": [
+      {
+        "a": "eval-calc-010",
+        "b": "test-calc-007",
+        "j5": "19/62",
+        "reason": "同考点但文字差异大(J5<2/5),按用户裁决保留为变体"
+      }
+    ],
+    "note": "同 48 对标注样本评估:屏作用域(签名一致 AND J5≥2/5)内查全 16/16、全域误报 0/31;1 对同考点文字差异大的变体按用户裁决不拦;文字分量阈值 2/5 取自 train-vs-eval/test 同考点对 J5 分布的自然断档(0.4 以下为不同任务要求)"
+  },
   "grid_kp": [
     {
       "threshold": "0",

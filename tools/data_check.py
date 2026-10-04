@@ -43,8 +43,9 @@ def main(argv: list[str]) -> int:
     mode.add_argument("--manifest", help="校验指定 manifest 文件")
     mode.add_argument("--scan", help="扫描目录并临时登记校验(目录路径)")
     mode.add_argument("--dry-run", action="store_true", help="显示骨架说明，不代表数据通过")
-    ap.add_argument("--near-dup-threshold", type=float, default=0.7,
-                     help="近重复 Jaccard 阈值(默认 0.7,初始值;真实数据就位后校准)")
+    ap.add_argument("--near-dup-threshold", type=float, default=0.4,
+                     help="防泄漏屏文字分量阈值(仅在与训练样本考点签名一致时"
+                          "生效;默认 2/5,应 B5 v3 校准)")
     args = ap.parse_args(argv)
     if not 0.0 <= args.near_dup_threshold <= 1.0:
         ap.error("--near-dup-threshold 必须为 [0, 1] 内的有限数值")
