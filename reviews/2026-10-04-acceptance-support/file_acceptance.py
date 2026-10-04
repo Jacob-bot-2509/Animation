@@ -36,6 +36,15 @@ v3.5(应对抗复核确认项):
   16. denied_write 判定与 raw 统一使用一次采样的事实快照(修判定输入处
       重复采样 tgt3s.exists() 的 TOCTOU),raw 另记 target_created_resample
       作观察补充。
+v3.6(应对抗复核 major):
+  17. 异常类逃逸封堵:_parse_client 捕获 Exception(含 RecursionError),
+      denied_write/denied_read 沙箱执行包兜底 try/except,任何异常不得
+      跳过击穿事实收集与泄漏扫描。
+v3.7(应 msg_362):
+  18. _write_evidence_record 改单次原子写:每候选路径先预设一致字段再写,
+      主失败降级 fallback 时以 fallback 路径字段重建内容,二次写入失败/
+      路径漂移不再造成落盘与 stdout 不一致,残余不一致保守回退
+      stdout_only=True。
 
 契约与范围:仅本支持目录内具名工作区 file-work-<run_id>/(授 rw ACE)与
 file-denied-<run_id>/(不授);复用既有生产 profile;仅合成数据;不改核心四
@@ -114,18 +123,34 @@ def _assert_json_safe(obj, where: str) -> None:
 
 
 def _write_evidence_record(results: dict, path: Path) -> None:
-    """证据落盘+状态字段一致化:先以占位字段落盘,成功后设真实路径并
-    重序列化,保证持久 JSON 与 stdout 字段一致;失败则 stdout_only=True,
-    由调用方按 FAIL 优先规则决定退出码。"""
-    results["evidence_written"] = None
-    results["stdout_only"] = True
+    """证据落盘+状态字段一致化(单次原子写,无占位+追写双阶段):
+    每步先预设与该候选路径一致的字段再原子写,落盘内容与实际位置
+    始终一致;主路径失败降级 fallback 时用 fallback 路径字段重建内容;
+    任何不一致残余一律保守回退占位状态(stdout_only=True)。"""
+    # 候选 1:主路径
+    results["evidence_written"] = str(path)
+    results["stdout_only"] = False
     ev = _write_json(path, results)
-    if ev is not None:
-        results["evidence_written"] = str(ev)
-        results["stdout_only"] = False
-        ev2 = _write_json(path, results)  # 重序列化:落盘 JSON 含真实路径
-        if ev2 is not None:
-            results["evidence_written"] = str(ev2)
+    if ev is not None and str(ev) == str(path):
+        return
+    # 候选 2:fallback 路径(主路径失败或落点漂移),字段与内容以 fallback 为准
+    fb = SUPPORT / ("fallback-" + path.name)
+    results["evidence_written"] = str(fb)
+    ev2 = _write_json(path, results)
+    if ev2 is None:
+        # 主+fallback 均失败:如实回退占位状态
+        results["evidence_written"] = None
+        results["stdout_only"] = True
+        return
+    if str(ev2) == str(fb):
+        return  # fallback 文件内容声明 fallback,一致
+    # ev2 落在主路径但内容声明 fallback:在 ev2 上重写声明 ev2
+    results["evidence_written"] = str(ev2)
+    ev3 = _write_json(path, results)
+    if ev3 is None or str(ev3) != str(ev2):
+        # 保守:宁 stdout_only 也不给不一致证据
+        results["evidence_written"] = None
+        results["stdout_only"] = True
 
 
 def _write_json(path: Path, obj) -> Path | None:
