@@ -1,21 +1,23 @@
-# eval 换题草稿 v1(防泄漏屏拦截 5 题替换)· 待用户审查
+# eval 换题草稿 v2(防泄漏屏拦截 5 题替换)· 待用户审查
 
 > 2026-10-04。替换 eval-linalg-014 / 019 / 021 / 031 / 032。
 > 约束:考点签名与原题一致;任务形式/结构与 train 题不同(与同考点 train 题的
 > 5-gram Jaccard < 2/5,已逐题核验);每题 3 解法、method 唯一;
 > 格式与原出题稿(dataset-eval.md)一致,定稿后转 JSONL。
+> v2 难度要求(用户):矩阵题尽量三/四阶(中上难度),二阶只作简单题;
+> 014'、032' 已升三阶,031' 保持四阶,019'/021' 为三元二次型(隐含三阶)。
 
-## eval-linalg-014' 高等代数 · 特征值与特征向量(替换:含参数对称矩阵的正交对角化)
+## eval-linalg-014' 高等代数 · 特征值与特征向量(替换:三阶含参对称矩阵的正交对角化)
 
-**题目** 设 $a\neq 0$ 为参数,求矩阵 $A=\begin{pmatrix}1&a\\a&1\end{pmatrix}$ 的特征值与特征向量,并求正交矩阵 $Q$,使 $Q^TAQ$ 为对角矩阵。
-**答案** 特征值 $\lambda_1=1+a$($\vec{v}_1=(1,1)^T$)、$\lambda_2=1-a$($\vec{v}_2=(1,-1)^T$);$Q=\dfrac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$,且 $Q^TAQ=\operatorname{diag}(1+a,\,1-a)$
-**解法一（特征方程）** $|\lambda I-A|=\begin{vmatrix}\lambda-1&-a\\-a&\lambda-1\end{vmatrix}=(\lambda-1)^2-a^2=0$，得 $\lambda=1\pm a$。$\lambda=1+a$ 时解 $(A-(1+a)I)v=0$，即 $\begin{pmatrix}-a&a\\a&-a\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=y$，取 $\vec{v}_1=(1,1)^T$；$\lambda=1-a$ 时解 $(A-(1-a)I)v=0$，即 $\begin{pmatrix}a&a\\a&a\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=0$，得 $x=-y$，取 $\vec{v}_2=(1,-1)^T$。
-**解法二（对称矩阵正交对角化）** $A$ 是实对称矩阵，不同特征值的特征向量自动正交：$\vec{v}_1\cdot\vec{v}_2=1-1=0$。将 $\vec{v}_1,\vec{v}_2$ 单位化得 $Q=\dfrac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$（正交矩阵）。由 $AQ=Q\operatorname{diag}(1+a,1-a)$ 得 $Q^TAQ=\operatorname{diag}(1+a,\,1-a)$。特别地，$a\to 0$ 时两特征值趋于重合，$A\to I$ 为标量矩阵。
-**解法三（二次型主轴）** $A$ 对应二次型 $f(x,y)=x^2+2axy+y^2$。作主轴旋转 $\begin{pmatrix}x\\y\end{pmatrix}=Q\begin{pmatrix}u\\v\end{pmatrix}$，即 $u=\dfrac{x+y}{\sqrt{2}},\ v=\dfrac{x-y}{\sqrt{2}}$，则 $f=(1+a)u^2+(1-a)v^2$——系数恰为特征值，主轴方向恰为特征方向，旋转角 $45^\circ$ 与 $a$ 无关。
-**思路展开** 原题 014（固定反射矩阵）与 train 的换数字重叠被防泄漏屏拦截，本题改为**含参数**版本：参数 $a$ 让"特征值→特征向量→正交对角化"三个环节都带上符号讨论，且 $a\to0$ 的退化（特征值重合）是原题没有的教学点。三种解法分别从特征方程（代数）、对称结构（正交性）、几何（主轴旋转）切入；动画上可以做一个"$a$ 滑杆"：拖动 $a$ 观察两个特征值分开/重合、椭圆主轴保持 $45^\circ$。
-**解法一动画要点** - 特征多项式 $(\lambda-1)^2-a^2=0$ 随 $a$ 变化的零点动画 - 两特征方向 $(1,1)$ 与 $(1,-1)$ 的伸缩率 $1+a$、$1-a$
-**解法二动画要点** - 正交化:两个正交向量单位化生成 $Q$ - $Q^TAQ$ 对角化的矩阵乘法逐步展开
-**解法三动画要点** - 二次型等值线(椭圆)与主轴 $45^\circ$ 旋转 - $a$ 滑杆驱动椭圆离心率变化
+**题目** 设 $a\neq 0$ 为参数,求矩阵 $A=\begin{pmatrix}1&a&0\\a&1&a\\0&a&1\end{pmatrix}$ 的特征值与特征向量,并求正交矩阵 $Q$,使 $Q^TAQ$ 为对角矩阵。
+**答案** 特征值 $1,\ 1+\sqrt{2}a,\ 1-\sqrt{2}a$;对应单位特征向量 $\dfrac{1}{\sqrt{2}}(1,0,-1)^T,\ \dfrac{1}{2}(1,\sqrt{2},1)^T,\ \dfrac{1}{2}(1,-\sqrt{2},1)^T$;$Q=\begin{pmatrix}1/\sqrt{2}&1/2&1/2\\0&\sqrt{2}/2&-\sqrt{2}/2\\-1/\sqrt{2}&1/2&1/2\end{pmatrix}$,$Q^TAQ=\operatorname{diag}(1,\,1+\sqrt{2}a,\,1-\sqrt{2}a)$
+**解法一（特征方程）** $|\lambda I-A|=\begin{vmatrix}\lambda-1&-a&0\\-a&\lambda-1&-a\\0&-a&\lambda-1\end{vmatrix}=(\lambda-1)\bigl[(\lambda-1)^2-2a^2\bigr]$,得特征值 $1,\ 1\pm\sqrt{2}a$。$\lambda=1$:解 $(A-I)v=0$,即 $\begin{pmatrix}0&a&0\\a&0&a\\0&a&0\end{pmatrix}v=0$,得 $y=0,\ x=-z$,取 $v_1=(1,0,-1)^T$。$\lambda=1+\sqrt{2}a$:由 $(A-(1+\sqrt{2}a)I)v=0$ 得 $y=\sqrt{2}x,\ z=x$,取 $v_2=(1,\sqrt{2},1)^T$。$\lambda=1-\sqrt{2}a$:同理得 $y=-\sqrt{2}x,\ z=x$,取 $v_3=(1,-\sqrt{2},1)^T$。
+**解法二（对称矩阵正交对角化）** $A$ 实对称,不同特征值($a\neq 0$)的特征向量自动正交:$v_1\cdot v_2=1+0-1=0$,$v_1\cdot v_3=0$,$v_2\cdot v_3=1-2+1=0$。单位化得 $q_1=\dfrac{1}{\sqrt{2}}(1,0,-1)^T$,$q_2=\dfrac{1}{2}(1,\sqrt{2},1)^T$,$q_3=\dfrac{1}{2}(1,-\sqrt{2},1)^T$。令 $Q=(q_1,q_2,q_3)$,则 $Q$ 为正交矩阵且 $AQ=Q\operatorname{diag}(1,1+\sqrt{2}a,1-\sqrt{2}a)$,故 $Q^TAQ=\operatorname{diag}(1,\,1+\sqrt{2}a,\,1-\sqrt{2}a)$。$a\to0$ 时三特征值重合于 1,$A\to I$ 为标量矩阵。
+**解法三（主轴定理）** $A$ 对应二次型 $f(x,y,z)=x^2+y^2+z^2+2a(xy+yz)$。由主轴定理,存在正交变换 $(x,y,z)^T=Q(u,v,w)^T$ 使 $f=\lambda_1u^2+\lambda_2v^2+\lambda_3w^2$,主轴方向即特征方向:$q_1$ 在 $xz$ 平面内($y=0$),$q_2,q_3$ 关于 $xz$ 平面对称。当 $|a|<\dfrac{\sqrt{2}}{2}$ 时三特征值全正,$f$ 正定;当 $a>\dfrac{\sqrt{2}}{2}$ 时 $1-\sqrt{2}a<0$,$f$ 不定——参数穿越临界值时二次曲面的类型发生改变。
+**思路展开** 按用户难度要求,本题升为**三阶含参**对称矩阵:特征多项式是一元三次式的因式分解,特征向量带 $\sqrt{2}$ 系数,三个特征方向两两正交——难度中等偏上(二阶留给简单题)。三解法分别从特征方程(代数)、对称结构(正交性)、主轴(几何)切入;$a$ 变化时三个特征值以 1 为中心对称分开,动画可做"$a$ 滑杆"驱动椭球/双曲面的主轴伸缩与类型切换。
+**解法一动画要点** - 三阶特征多项式按第一列展开与因式分解 - 三个特征方向上伸缩率 $1,\ 1\pm\sqrt{2}a$ 的标注
+**解法二动画要点** - 三个特征向量两两正交的验证动画 - $Q^TAQ$ 逐列验证对角化
+**解法三动画要点** - 二次型等值面(椭球/双曲面)随 $a$ 的形变 - 主轴方向 $q_1,q_2,q_3$ 的三维标注
 
 ## eval-linalg-019' 高等代数 · 二次型(替换:三元含参二次型的配方与正定讨论)
 
@@ -55,14 +57,14 @@ $$f=2\left(x+\frac{y}{2}+\frac{az}{2}\right)^2+\left[\frac{y^2}{2}-ayz+\left(2-\
 **解法二动画要点** - 重数分配 $(3,1)$ 与 $(2,2)$ 的分支图 - 迹公式 $2r_2+3r_3$ 的对照表
 **解法三动画要点** - $m_A$ 重根 $\leftrightarrow$ 不可对角化的标注 - 各候选块组合的逐一排除动画
 
-## eval-linalg-032' 高等代数 · λ-矩阵(替换:含参 λ-矩阵的不变因子与初等因子)
+## eval-linalg-032' 高等代数 · λ-矩阵(替换:三阶含参 λ-矩阵的不变因子与初等因子)
 
-**题目** 设 $a$ 为参数,$\lambda$-矩阵 $A(\lambda)=\begin{pmatrix}\lambda-a&1\\0&\lambda-1\end{pmatrix}$。求 $A(\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时出现重因子)。
-**答案** 不变因子:$1,\ (\lambda-a)(\lambda-1)$;初等因子:$a\neq 1$ 时为 $\lambda-a,\ \lambda-1$;$a=1$ 时为 $(\lambda-1)^2$
-**解法一（行列式因子）** 一阶行列式因子 $D_1=\gcd(\lambda-a,\,1,\,0,\,\lambda-1)=1$;二阶行列式因子 $D_2=|A(\lambda)|=(\lambda-a)(\lambda-1)$。不变因子 $d_1=D_1=1$,$d_2=\dfrac{D_2}{D_1}=(\lambda-a)(\lambda-1)$。初等因子即不变因子分解出的互异幂因子:$a\neq 1$ 时 $(\lambda-a)(\lambda-1)$ 给出 $\lambda-a$ 与 $\lambda-1$ 两个一次初等因子;$a=1$ 时 $d_2=(\lambda-1)^2$ 是一个二阶初等因子(重因子)。
-**解法二（初等变换化标准形）** 交换两列:$\begin{pmatrix}1&\lambda-a\\\lambda-1&0\end{pmatrix}$;第二行减去第一行的 $(\lambda-1)$ 倍:$\begin{pmatrix}1&\lambda-a\\0&-(\lambda-1)(\lambda-a)\end{pmatrix}$;第二列减去第一列的 $(\lambda-a)$ 倍,并把第二行乘以 $-1$:$\operatorname{diag}\!\bigl(1,(\lambda-a)(\lambda-1)\bigr)$。此即标准形,不变因子读出 $1$ 与 $(\lambda-a)(\lambda-1)$。
-**解法三（与若尔当块对应）** 初等因子决定若尔当块:$a\neq 1$ 时初等因子 $\lambda-a,\ \lambda-1$ 对应两个 1 阶块,$A$ 可对角化为 $\operatorname{diag}(a,1)$;$a=1$ 时初等因子 $(\lambda-1)^2$ 对应块 $J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$,不可对角化。参数 $a$ 从 $\neq 1$ 连续变到 $1$,结构在 $a=1$ 处突变(两个 1 阶块"合并"为一块),展示含参 λ-矩阵的典型退化现象。
-**思路展开** 原题 032(固定 λ-矩阵求因子)与 train 同为"不变/初等因子"模板,本题引入**参数 $a$**:当 $a=1$ 时 $(\lambda-a)$ 与 $(\lambda-1)$ 重合,初等因子发生合并,是 λ-矩阵理论中"参数退化改变若尔当结构"的最小非平凡例子。三解法分别用行列式因子(定义)、初等变换(算法)、若尔当对应(几何)三视角;动画可做 $a\to1$ 的极限演示:两个特征方向逐渐重合、对角矩阵退化为若尔当块。
-**解法一动画要点** - 行列式因子 $D_1,D_2$ 的 gcd 计算 - $a$ 滑杆下 $(\lambda-a)$ 与 $(\lambda-1)$ 的根逐渐重合
-**解法二动画要点** - 初等变换逐步行列同步动画 - 标准形 diag(1,(λ-a)(λ-1)) 的生成
-**解法三动画要点** - 两个 1 阶块在 $a\to1$ 时合并为 $J_2(1)$ 的动画 - 可对角化→不可对角化的临界切换
+**题目** 设 $a$ 为参数,$\lambda$-矩阵 $A(\lambda)=\begin{pmatrix}\lambda-a&1&0\\0&\lambda-1&1\\0&0&\lambda-1\end{pmatrix}$。求 $A(\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时出现重因子)。
+**答案** 不变因子:$1,\ 1,\ (\lambda-a)(\lambda-1)^2$;初等因子:$a\neq 1$ 时为 $\lambda-a$ 与 $(\lambda-1)^2$;$a=1$ 时为 $(\lambda-1)^3$
+**解法一（行列式因子）** 一阶行列式因子 $D_1=1$。二阶子式中含 $\begin{vmatrix}1&0\\\lambda-1&1\end{vmatrix}=1$,故二阶行列式因子 $D_2=\gcd(\cdots,1,\cdots)=1$。三阶行列式因子 $D_3=|A(\lambda)|=(\lambda-a)(\lambda-1)^2$。不变因子 $d_1=D_1=1$,$d_2=\dfrac{D_2}{D_1}=1$,$d_3=\dfrac{D_3}{D_2}=(\lambda-a)(\lambda-1)^2$。初等因子即不变因子分解出的互异幂因子:$a\neq 1$ 时 $d_3$ 给出 $\lambda-a$ 与 $(\lambda-1)^2$ 两个初等因子;$a=1$ 时 $d_3=(\lambda-1)^3$ 是一个三重初等因子。
+**解法二（初等变换化标准形）** 交换第 1、2 列得 $\begin{pmatrix}1&\lambda-a&0\\\lambda-1&0&1\\0&0&\lambda-1\end{pmatrix}$;第 2 行减去第 1 行的 $(\lambda-1)$ 倍、第 2 列减去第 1 列的 $(\lambda-a)$ 倍,得 $\begin{pmatrix}1&0&0\\0&-(\lambda-a)(\lambda-1)&1\\0&0&\lambda-1\end{pmatrix}$;再交换第 2、3 列,第 3 行减去第 2 行的 $(\lambda-1)$ 倍,第 3 列加回第 2 列的 $(\lambda-a)(\lambda-1)$ 倍,得标准形 $\operatorname{diag}\!\bigl(1,\,1,\,(\lambda-a)(\lambda-1)^2\bigr)$。不变因子读出 $1,\ 1,\ (\lambda-a)(\lambda-1)^2$。
+**解法三（与若尔当块对应）** 初等因子决定若尔当块:$a\neq 1$ 时初等因子 $\lambda-a$ 与 $(\lambda-1)^2$ 对应块 $\operatorname{diag}\!\bigl(a,\,J_2(1)\bigr)$,其中 $J_2(1)=\begin{pmatrix}1&1\\0&1\end{pmatrix}$;$a=1$ 时初等因子 $(\lambda-1)^3$ 对应块 $J_3(1)=\begin{pmatrix}1&1&0\\0&1&1\\0&0&1\end{pmatrix}$。参数从 $a\neq 1$ 变到 $a=1$ 时,一个 1 阶块与一个 2 阶块"合并"为一个 3 阶块——比二阶情形多一层退化结构。
+**思路展开** 按用户难度要求升为**三阶**含参 λ-矩阵:不变因子链 $1\mid 1\mid(\lambda-a)(\lambda-1)^2$ 展示"中间不变因子为 1"的典型情形;参数退化 $a=1$ 使初等因子 $(\lambda-a)$ 与 $(\lambda-1)^2$ 合并为 $(\lambda-1)^3$,对应 $J_2(1)\oplus J_1(1)\to J_3(1)$ 的结构突变。三解法分别用行列式因子(定义)、初等变换(算法)、若尔当对应(几何)三视角;动画可做 $a\to1$ 的极限演示:两个特征方向逐渐重合、$J_2\oplus J_1$ 合并为 $J_3$。
+**解法一动画要点** - 全部二阶子式 $\gcd=1$ 的逐一检验 - $a$ 滑杆下 $(\lambda-a)$ 与 $(\lambda-1)$ 的根逐渐重合
+**解法二动画要点** - 行列同步初等变换逐步动画 - 标准形 $\operatorname{diag}(1,1,(\lambda-a)(\lambda-1)^2)$ 的生成
+**解法三动画要点** - $J_2(1)\oplus J_1(1)$ 在 $a\to1$ 时合并为 $J_3(1)$ 的动画 - 可对角化→不可对角化的临界切换
