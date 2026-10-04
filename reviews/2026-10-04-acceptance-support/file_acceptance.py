@@ -365,7 +365,8 @@ print(json.dumps({'token': token_identity(), 'mode': mode, 'outcome': outcome,
 def _parse_client(out: str) -> dict:
     try:
         parsed = json.loads(out.strip().splitlines()[-1]) if out.strip() else {}
-    except (ValueError, TypeError):
+    except Exception:  # noqa: BLE001 任何解析异常类(含 RecursionError)都不得
+        # 逃逸并跳过击穿事实收集;解析失败一律视为无结构化数据
         return {}
     return parsed if isinstance(parsed, dict) else {}
 
@@ -502,8 +503,12 @@ def _run_denied_write(denied_dir: Path, work: Path, runtime: Path, env: dict,
     h3_exp = hashlib.sha256(n3.encode("ascii")).hexdigest()
     ctrl3_ok = c3["data"].get("outcome") == "wrote" and h3 == h3_exp
     tgt3c.unlink(missing_ok=True)
-    s3 = _run_client([str(runtime), "-X", "utf8", str(client), "write",
-                      str(tgt3s), n3], True, work, env)
+    cmd3 = [str(runtime), "-X", "utf8", str(client), "write", str(tgt3s), n3]
+    try:
+        s3 = _run_client(cmd3, True, work, env)
+    except Exception as e:  # noqa: BLE001 任何异常都不得跳过击穿事实收集
+        s3 = {"command": cmd3, "spawned": False, "rc": None, "timed_out": False,
+              "data": {}, "raw_out": "", "error": repr(e)}
     # 文件系统事实先收集:击穿判定独立于客户端解析(解析崩溃也不丢 FAIL)
     target_created = tgt3s.exists()
     sb_target_sha = _sha_file(tgt3s)
@@ -546,8 +551,13 @@ def _run_denied_read(denied_dir: Path, work: Path, runtime: Path, env: dict,
     h4_before = _sha_file(sentinel)
     c4 = _run_client([str(runtime), "-X", "utf8", str(client), "read",
                       str(sentinel), "x" * 32], False, work, env)
-    s4 = _run_client([str(runtime), "-X", "utf8", str(client), "read",
-                      str(sentinel), "x" * 32], True, work, env)
+    cmd4 = [str(runtime), "-X", "utf8", str(client), "read", str(sentinel),
+            "x" * 32]
+    try:
+        s4 = _run_client(cmd4, True, work, env)
+    except Exception as e:  # noqa: BLE001 任何异常都不得跳过泄漏扫描
+        s4 = {"command": cmd4, "spawned": False, "rc": None, "timed_out": False,
+              "data": {}, "raw_out": "", "error": repr(e)}
     h4_after = _sha_file(sentinel)
     # 泄漏事实先行(FAIL 最高优先,不等待令牌/解析全部成功):
     # 哨兵内容不进沙箱命令行,原始输出中出现与哨兵一致的哈希即泄漏证据;
