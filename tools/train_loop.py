@@ -48,28 +48,34 @@ def gate_ready(run_id: str) -> tuple[bool, str]:
     return cp.returncode == 0, out.strip()[-200:]
 
 
-def train_step(config: dict, work: Path) -> dict:
-    """训练步:超参未定案前拒绝执行(fail-closed)。"""
-    hp = config.get("hyperparameters") or {}
-    required = ("learning_rate", "batch_size", "epochs", "lora_r",
-                "lora_alpha", "quantization")
-    missing = [k for k in required if not hp.get(k)]
-    if missing or config.get("train_script") is None:
-        return {"status": "REFUSED",
-                "reason": f"训练步未定案(缺 {missing + ['train_script']})——"
-                          "超参/训练脚本定案前拒绝执行,不伪造训练结果"}
-    return {"status": "PENDING_IMPLEMENTATION",
-            "reason": "训练脚本实现待接线(超参已齐,训练执行器待实现)"}
+def train_step(config: dict, work: Path, run_id: str) -> dict:
+    """训练步:执行 tools/train_step.py;超参未定案由该脚本 fail-closed。"""
+    script = config.get("train_script") or "tools/train_step.py"
+    cp = subprocess.run(
+        [sys.executable, "-X", "utf8", str(ROOT / script),
+         "--config", config["_config_path"], "--work", str(work),
+         "--run-id", run_id],
+        capture_output=True, timeout=3600 * 8,
+        creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    return {"status": "TRAINED" if cp.returncode == 0 else "FAILED",
+            "rc": cp.returncode,
+            "detail": ((cp.stdout or b"") + (cp.stderr or b"")).decode(
+                "utf-8", "replace")[-400:]}
 
 
-def eval_step(config: dict, work: Path) -> dict:
-    """评测步:评测协议未定案前拒绝执行(fail-closed)。"""
-    if config.get("eval_script") is None:
-        return {"status": "REFUSED",
-                "reason": "评测脚本未定案——四指标验收器待实现,"
-                          "拒绝伪造指标"}
-    return {"status": "PENDING_IMPLEMENTATION",
-            "reason": "评测脚本实现待接线"}
+def eval_step(config: dict, work: Path, adapter: Path, run_id: str) -> dict:
+    """评测步:执行 tools/eval_step.py;四指标中未接线的判定器如实 UNVERIFIED。"""
+    script = config.get("eval_script") or "tools/eval_step.py"
+    cp = subprocess.run(
+        [sys.executable, "-X", "utf8", str(ROOT / script),
+         "--config", config["_config_path"], "--work", str(work),
+         "--adapter", str(adapter), "--run-id", run_id],
+        capture_output=True, timeout=3600 * 8,
+        creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    return {"status": "OK" if cp.returncode == 0 else "FAILED",
+            "rc": cp.returncode,
+            "detail": ((cp.stdout or b"") + (cp.stderr or b"")).decode(
+                "utf-8", "replace")[-400:]}
 
 
 def metrics_met(m: dict) -> bool:
@@ -127,30 +133,43 @@ def run_loop(config: dict) -> int:
                 json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"[loop] 轮次 {round_no}:门禁未 ready,循环停止(不绕过)")
             return 2
-        # 3. 训练步(超参未定案 → REFUSED,循环停止)
-        train = train_step(config, work)
-        if train["status"] != "PENDING_IMPLEMENTATION":
+        # 3. 训练步(超参未定案 → 由 train_step.py fail-closed)
+        train = train_step(config, work / f"round-{round_no}", run_id)
+        if train["status"] != "TRAINED":
             rec.update(event="train_blocked", detail=train)
             (work / f"round-{round_no}.json").write_text(
                 json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
-            print(f"[loop] 轮次 {round_no}:{train['reason']}")
+            print(f"[loop] 轮次 {round_no}:训练步未完成({train['detail'][-120:]})")
             return 2
-        # 4-5. 生成+验收(评测脚本未定案 → REFUSED,循环停止)
-        ev = eval_step(config, work)
-        if ev["status"] != "PENDING_IMPLEMENTATION":
+        adapter = work / f"round-{round_no}" / "adapter"
+        # 4-5. 生成+验收(四指标;未接线判定器如实 UNVERIFIED)
+        ev = eval_step(config, work / f"round-{round_no}", adapter, run_id)
+        if ev["status"] != "OK":
             rec.update(event="eval_blocked", detail=ev)
             (work / f"round-{round_no}.json").write_text(
                 json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
-            print(f"[loop] 轮次 {round_no}:{ev['reason']}")
+            print(f"[loop] 轮次 {round_no}:评测步未完成({ev['detail'][-120:]})")
             return 2
-        rec.update(event="round_complete",
-                   metrics={"render": None, "executable": None,
-                            "math": None, "fidelity": None},
-                   note="训练/评测执行器未接线,本轮回退(占位,不伪造指标)")
+        report_path = work / f"round-{round_no}" / "eval-report.json"
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            report = {}
+        m = {k: report.get(k, {}).get("rate") if isinstance(
+            report.get(k), dict) else None for k in METRICS}
+        rec.update(event="round_complete", metrics=m,
+                   report=report_path.name)
         (work / f"round-{round_no}.json").write_text(
             json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
-        print(f"[loop] 轮次 {round_no} 占位完成(执行器未接线),循环停止")
-        return 2
+        history.append({"round": round_no, "metrics": m})
+        print(f"[loop] 轮次 {round_no} 完成,指标: {m}")
+        verdict = decide(round_no, m, history)
+        if verdict != "continue":
+            rec.update(final_verdict=verdict)
+            (work / f"round-{round_no}.json").write_text(
+                json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
+            print(f"[loop] 决策:{verdict},循环结束")
+            return 0
     return 0
 
 
