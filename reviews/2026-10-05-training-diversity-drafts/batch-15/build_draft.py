@@ -1,0 +1,451 @@
+"""batch-15 生成器:三个单条考点各 5 题
+(C40 λ矩阵不变因子 / C41 若尔当标准形 / C42 正交变换)。
+全部数学结论由作者逐题手工验算(见 DRAFT_REPORT.md 核算说明);
+起草过程未读 eval/test 题文或答案作提示;凡有理数一律分数。
+"""
+from __future__ import annotations
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE / "draft.jsonl"
+
+DATA = [
+# ===================== C40 λ矩阵不变因子 =====================
+{
+ "id": "draft-c40-01", "category": "高等代数", "sub_category": "λ矩阵",
+ "concept": "λ矩阵不变因子", "concept_id": "C40",
+ "parent_training_ids": ["linalg-065"],
+ "problem": r"求 λ-矩阵 $A(\lambda)=\mathrm{diag}(\lambda-1,\,(\lambda-1)^2)$ 的行列式因子、不变因子与初等因子。",
+ "solution": r"行列式因子:$D_1(\lambda)=\gcd(\lambda-1,(\lambda-1)^2)=\lambda-1$;$D_2(\lambda)=\det A(\lambda)=(\lambda-1)^3$。不变因子:$d_1=D_1=\lambda-1$;$d_2=\frac{D_2}{D_1}=\frac{(\lambda-1)^3}{\lambda-1}=(\lambda-1)^2$。初等因子:把各不变因子分解为互不相同的不可约因式的幂:$d_1$ 给出 $(\lambda-1)$,$d_2$ 给出 $(\lambda-1)^2$。故初等因子为 $\lambda-1$ 与 $(\lambda-1)^2$。",
+ "answer": r"行列式因子:$D_1=\lambda-1$,$D_2=(\lambda-1)^3$;不变因子:$d_1=\lambda-1$,$d_2=(\lambda-1)^2$;初等因子:$\lambda-1$ 与 $(\lambda-1)^2$。",
+ "method": "行列式因子链求不变因子",
+ "difficulty": "基础",
+ "variant_kind": "数值结构变化:同因式幂次组合的对角 λ 矩阵(与父题不同)",
+ "scene_spec": {
+  "objects": [
+   "板书:$A(\\lambda)=\\mathrm{diag}(\\lambda-1,(\\lambda-1)^2)$",
+   "板书:两个行列式因子的计算",
+   "板书:不变因子的除法链",
+   "高亮框:初等因子 $\\lambda-1$ 与 $(\\lambda-1)^2$"
+  ],
+  "steps": [
+   "第一步:写出 λ 矩阵。",
+   "第二步:计算各阶行列式因子。",
+   "第三步:由除法得不变因子。",
+   "第四步:分解出初等因子。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c40-02", "category": "高等代数", "sub_category": "λ矩阵",
+ "concept": "λ矩阵不变因子", "concept_id": "C40",
+ "parent_training_ids": ["linalg-065"],
+ "problem": r"求 λ-矩阵 $A(\lambda)=\begin{pmatrix}\lambda&1\\0&\lambda\end{pmatrix}$ 的行列式因子、不变因子与初等因子。",
+ "solution": r"$A(\lambda)$ 的全部一阶子式为 $\lambda,1,0,\lambda$,其最大公因式 $D_1(\lambda)=1$。二阶行列式因子 $D_2(\lambda)=\det A(\lambda)=\lambda^2$。不变因子:$d_1=D_1=1$,$d_2=\frac{D_2}{D_1}=\lambda^2$。初等因子:$\lambda^2$(由 $d_2$ 给出)。",
+ "answer": r"$D_1=1$,$D_2=\lambda^2$;不变因子 $d_1=1$,$d_2=\lambda^2$;初等因子 $\lambda^2$。",
+ "method": "非对角 λ 矩阵的行列式因子",
+ "difficulty": "基础",
+ "variant_kind": "非对角项:含非对角项的 λ 矩阵(D₁=1 的情形)",
+ "scene_spec": {
+  "objects": [
+   "板书:$A(\\lambda)=\\begin{pmatrix}\\lambda&1\\\\0&\\lambda\\end{pmatrix}$",
+   "板书:四个一阶子式与最大公因式 $1$",
+   "板书:行列式 $\\lambda^2$",
+   "高亮框:不变因子 $1,\\lambda^2$;初等因子 $\\lambda^2$"
+  ],
+  "steps": [
+   "第一步:写出 λ 矩阵。",
+   "第二步:枚举一阶子式并求公因式。",
+   "第三步:计算二阶行列式因子。",
+   "第四步:求不变因子与初等因子。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c40-03", "category": "高等代数", "sub_category": "λ矩阵",
+ "concept": "λ矩阵不变因子", "concept_id": "C40",
+ "parent_training_ids": ["linalg-065"],
+ "problem": r"分别求 $A(\lambda)=\mathrm{diag}(\lambda,\lambda-1)$ 与 $B(\lambda)=\mathrm{diag}(\lambda,\lambda)$ 的不变因子与初等因子，并说明两者结构差异的原因。",
+ "solution": r"$A(\lambda)$:$D_1=\gcd(\lambda,\lambda-1)=1$,$D_2=\lambda(\lambda-1)$;不变因子 $d_1=1$,$d_2=\lambda(\lambda-1)$;初等因子 $\lambda$ 与 $\lambda-1$(均由 $d_2$ 分解得到)。$B(\lambda)$:$D_1=\lambda$,$D_2=\lambda^2$;不变因子 $d_1=\lambda$,$d_2=\lambda$;初等因子 $\lambda$ 与 $\lambda$($\lambda$ 出现两次)。差异原因:不变因子满足整除链 $d_1\mid d_2$。$A$ 的两个对角元互素,公因子为 $1$,$d_2$ 必须吞下全部两个因子;而 $B$ 的两个对角元有公因子 $\lambda$,可分摊到 $d_1$ 与 $d_2$。",
+ "answer": r"$A$:不变因子 $1,\lambda(\lambda-1)$,初等因子 $\lambda,\lambda-1$;$B$:不变因子 $\lambda,\lambda$,初等因子 $\lambda,\lambda$。差异源于互素与否影响整除链分配。",
+ "method": "互素与非互素分支对照",
+ "difficulty": "中等",
+ "variant_kind": "互素与非互素:对角元互素性决定不变因子分配的分支对照",
+ "scene_spec": {
+  "objects": [
+   "两个并排板书:$A(\\lambda)$ 与 $B(\\lambda)$",
+   "板书:$A$ 的行列式因子链与不变因子",
+   "板书:$B$ 的行列式因子链与不变因子",
+   "高亮框:两例的初等因子对照"
+  ],
+  "steps": [
+   "第一步:并列写出两个 λ 矩阵。",
+   "第二步:分别计算 $A$ 的行列式因子与不变因子。",
+   "第三步:分别计算 $B$ 的。",
+   "第四步:对照初等因子。",
+   "第五步:说明互素性与整除链分配的关系,汇总结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c40-04", "category": "高等代数", "sub_category": "λ矩阵",
+ "concept": "λ矩阵不变因子", "concept_id": "C40",
+ "parent_training_ids": ["linalg-065"],
+ "problem": r"求 λ-矩阵 $A(\lambda)=\mathrm{diag}(\lambda+1,\,\lambda(\lambda+1),\,(\lambda+1)^2(\lambda-2))$ 的行列式因子、不变因子与初等因子。",
+ "solution": r"一阶行列式因子:$D_1=\gcd(\lambda+1,\lambda(\lambda+1),(\lambda+1)^2(\lambda-2))=\lambda+1$。二阶行列式因子:各二阶子式(对角情形即两两乘积)为 $\lambda(\lambda+1)^2$、$(\lambda+1)^3(\lambda-2)$、$\lambda(\lambda+1)^3(\lambda-2)$,最大公因式 $D_2=(\lambda+1)^2$。$D_3=\det=\lambda(\lambda+1)^4(\lambda-2)$。不变因子:$d_1=D_1=\lambda+1$;$d_2=\frac{D_2}{D_1}=\lambda+1$;$d_3=\frac{D_3}{D_2}=\lambda(\lambda+1)^2(\lambda-2)$。初等因子:$\lambda+1$、$\lambda+1$、$\lambda$、$(\lambda+1)^2$、$\lambda-2$。",
+ "answer": r"$D_1=\lambda+1$,$D_2=(\lambda+1)^2$,$D_3=\lambda(\lambda+1)^4(\lambda-2)$;不变因子 $\lambda+1,\lambda+1,\lambda(\lambda+1)^2(\lambda-2)$;初等因子 $\lambda+1,\lambda+1,\lambda,(\lambda+1)^2,\lambda-2$。",
+ "method": "三阶行列式因子链",
+ "difficulty": "中等",
+ "variant_kind": "维数变化:三阶对角 λ 矩阵的完整因子链计算",
+ "scene_spec": {
+  "objects": [
+   "板书:三阶 λ 矩阵",
+   "板书:三个行列式因子的逐步计算",
+   "板书:不变因子的除法链",
+   "高亮框:五个初等因子"
+  ],
+  "steps": [
+   "第一步:写出三阶 λ 矩阵。",
+   "第二步:计算一阶行列式因子。",
+   "第三步:计算二阶与三阶行列式因子。",
+   "第四步:除法得三个不变因子。",
+   "第五步:分解出全部初等因子,高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c40-05", "category": "高等代数", "sub_category": "λ矩阵",
+ "concept": "λ矩阵不变因子", "concept_id": "C40",
+ "parent_training_ids": ["linalg-065"],
+ "problem": r"用初等变换把 λ-矩阵 $A(\lambda)=\begin{pmatrix}\lambda&1\\0&\lambda\end{pmatrix}$ 化为等价标准形 $\mathrm{diag}(1,\lambda^2)$，并说明初等变换为何不改变行列式因子。",
+ "solution": r"初等变换:先交换第一、二列,得 $\begin{pmatrix}1&\lambda\\\lambda&0\end{pmatrix}$;再用第一列消去第一行的 $\lambda$(第二列减 $\lambda$ 倍第一列),得 $\begin{pmatrix}1&0\\\lambda&-\lambda^2\end{pmatrix}$;再用第一行消去第二行首项(第二行减 $\lambda$ 倍第一行),得 $\begin{pmatrix}1&0\\0&-\lambda^2\end{pmatrix}$;第二行乘 $-1$ 得 $\begin{pmatrix}1&0\\0&\lambda^2\end{pmatrix}=\mathrm{diag}(1,\lambda^2)$。不变性:三类初等变换(交换、数乘、倍加)对每个 $k$ 阶子式只产生非零常数倍或不变(倍加只把某子式变成自身与其他子式的非零倍之和),故全体 $k$ 阶子式的最大公因式(行列式因子)在等价变换下不变,从而不变因子与初等因子不变。",
+ "answer": r"等价标准形为 $\mathrm{diag}(1,\lambda^2)$(变换步骤见解法);行列式因子在初等变换下不变。",
+ "method": "初等变换化标准形+不变性论证",
+ "difficulty": "进阶",
+ "variant_kind": "进阶:初等变换化标准形的完整步骤与不变性理由",
+ "scene_spec": {
+  "objects": [
+   "板书:每一步初等变换的矩阵变化链",
+   "动画:列交换、倍加消元、行倍加、数乘四步高亮",
+   "板书:标准形 $\\mathrm{diag}(1,\\lambda^2)$",
+   "板书:三类初等变换对子式公因式的影响分析"
+  ],
+  "steps": [
+   "第一步:写出 λ 矩阵。",
+   "第二步:逐步展示四次初等变换。",
+   "第三步:得到等价标准形。",
+   "第四步:说明三类变换下行列式因子不变。",
+   "第五步:汇总结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+# ===================== C41 若尔当标准形 =====================
+{
+ "id": "draft-c41-01", "category": "高等代数", "sub_category": "矩阵标准形",
+ "concept": "若尔当标准形", "concept_id": "C41",
+ "parent_training_ids": ["linalg-066"],
+ "problem": r"求矩阵 $A=\begin{pmatrix}1&2\\0&3\end{pmatrix}$ 的若尔当标准形。",
+ "solution": r"$A$ 为上三角矩阵,特征值为 $1$ 与 $3$(互异)。特征值互异时每个特征值的几何重数等于代数重数 $1$,故若尔当标准形为对角矩阵 $J=\begin{pmatrix}1&0\\0&3\end{pmatrix}$。",
+ "answer": r"$J=\begin{pmatrix}1&0\\0&3\end{pmatrix}$(特征值互异,对角形)。",
+ "method": "互异特征值判对角",
+ "difficulty": "基础",
+ "variant_kind": "对角情形:互异特征值的若尔当形(与重根父题不同)",
+ "scene_spec": {
+  "objects": [
+   "板书:$A$ 与特征值 $1,3$",
+   "板书:互异特征值 ⟹ 几何重数 = 代数重数",
+   "高亮框:$J=\\mathrm{diag}(1,3)$",
+   "标签「对角形」"
+  ],
+  "steps": [
+   "第一步:读出特征值。",
+   "第二步:说明互异时各特征子空间一维。",
+   "第三步:写出对角若尔当形。",
+   "第四步:高亮结论。",
+   "第五步:汇总结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c41-02", "category": "高等代数", "sub_category": "矩阵标准形",
+ "concept": "若尔当标准形", "concept_id": "C41",
+ "parent_training_ids": ["linalg-066"],
+ "problem": r"求矩阵 $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}$ 的若尔当标准形，并说明为什么它不可对角化。",
+ "solution": r"特征值为 $2$(二重)。特征子空间:解 $(A-2I)v=0$,即 $\begin{pmatrix}0&1\\0&0\end{pmatrix}v=0$,得 $v_2=0$,特征子空间 $\mathrm{span}\{(1,0)\}$,维数 $1$。几何重数 $1<$ 代数重数 $2$,不可对角化。若尔当标准形含一个二阶若尔当块:$J=\begin{pmatrix}2&1\\0&2\end{pmatrix}=J_2(2)$($A$ 本身已是若尔当标准形)。",
+ "answer": r"$J=J_2(2)=\begin{pmatrix}2&1\\0&2\end{pmatrix}$;特征子空间维数 $1$,不可对角化。",
+ "method": "重根块判定(几何重数)",
+ "difficulty": "基础",
+ "variant_kind": "重根分块:二阶若尔当块的判定与不可对角化说明",
+ "scene_spec": {
+  "objects": [
+   "板书:$A$ 与特征方程",
+   "板书:特征子空间求解(维数 1)",
+   "高亮框:$J=J_2(2)$",
+   "红色标签「不可对角化」"
+  ],
+  "steps": [
+   "第一步:求特征值。",
+   "第二步:求特征子空间,得维数 $1$。",
+   "第三步:比较几何与代数重数。",
+   "第四步:写出二阶若尔当块。",
+   "第五步:汇总结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c41-03", "category": "高等代数", "sub_category": "矩阵标准形",
+ "concept": "若尔当标准形", "concept_id": "C41",
+ "parent_training_ids": ["linalg-066"],
+ "problem": r"设四阶矩阵 $A$ 的特征值全为 $2$，且 $\dim\ker(A-2I)=2$，$\dim\ker(A-2I)^2=3$，$\dim\ker(A-2I)^3=4$。求 $A$ 的若尔当标准形。",
+ "solution": r"若尔当块数 $=$ 特征子空间维数 $=\dim\ker(A-2I)=2$。各阶块数由核维数差给出:大小至少为 $2$ 的块数 $=\dim\ker(A-2I)^2-\dim\ker(A-2I)=3-2=1$;大小至少为 $3$ 的块数 $=\dim\ker(A-2I)^3-\dim\ker(A-2I)^2=4-3=1$。故块为:一个三阶块与一个一阶块($3+1=4$)。若尔当标准形为 $J_3(2)\oplus J_1(2)=\begin{pmatrix}2&1&0&0\\0&2&1&0\\0&0&2&0\\0&0&0&2\end{pmatrix}$。",
+ "answer": r"$J=J_3(2)\oplus J_1(2)$,即一个三阶块与一个一阶块。",
+ "method": "核维数序列定块结构",
+ "difficulty": "中等",
+ "variant_kind": "核维数序列:由 dim ker(A−λI)^k 的序列反推块结构",
+ "scene_spec": {
+  "objects": [
+   "板书:核维数序列 $2,3,4$",
+   "板书:块数公式(差分解读)",
+   "高亮框:$J_3(2)\\oplus J_1(2)$",
+   "标签「块结构由核维数序列确定」"
+  ],
+  "steps": [
+   "第一步:写出核维数序列。",
+   "第二步:由首项得块数。",
+   "第三步:由相邻差得各阶块数。",
+   "第四步:拼出若尔当形。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c41-04", "category": "高等代数", "sub_category": "矩阵标准形",
+ "concept": "若尔当标准形", "concept_id": "C41",
+ "parent_training_ids": ["linalg-066"],
+ "problem": r"求矩阵 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 的若尔当标准形，并求一组广义特征向量构成的变换矩阵 $P$。",
+ "solution": r"特征值全为 $2$。令 $N=A-2I=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}$,$N^2=\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}$,$N^3=0$。特征子空间 $\ker N=\mathrm{span}\{(1,0,0)\}$,维数 $1$,故只有一个块,即 $J=J_3(2)=A$ 本身。广义特征向量链:取 $v_3=(0,0,1)$(满足 $N^3v_3=0$ 且 $N^2v_3=(1,0,0)\neq0$),则 $v_2=Nv_3=(0,1,0)$,$v_1=N^2v_3=(1,0,0)$。取 $P=(v_1,v_2,v_3)=I$,则 $P^{-1}AP=A=J_3(2)$。",
+ "answer": r"$J=J_3(2)=A$;广义链 $v_3=(0,0,1),v_2=(0,1,0),v_1=(1,0,0)$,$P=I$。",
+ "method": "广义特征向量链构造",
+ "difficulty": "中等",
+ "variant_kind": "广义链:三阶单块的链构造与变换矩阵",
+ "scene_spec": {
+  "objects": [
+   "板书:$N=A-2I$ 与 $N^2,N^3$",
+   "板书:广义链的递推构造($v_3\\to v_2\\to v_1$)",
+   "高亮框:$J_3(2)$ 与 $P$",
+   "标签「广义特征向量」"
+  ],
+  "steps": [
+   "第一步:写出幂零部分 $N$。",
+   "第二步:求特征子空间,判定单块。",
+   "第三步:取链尾 $v_3$,递推构造整条链。",
+   "第四步:拼出变换矩阵 $P$。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c41-05", "category": "高等代数", "sub_category": "矩阵标准形",
+ "concept": "若尔当标准形", "concept_id": "C41",
+ "parent_training_ids": ["linalg-066"],
+ "problem": r"证明:若尔当块 $J_m(\lambda)$ 的幂零部分 $N=J_m(0)$ 满足 $\dim\ker N^k=\min(k,m)$；并说明这一公式如何由核维数序列唯一确定若尔当块的个数与大小。",
+ "solution": r"$N=J_m(0)$ 是把基向量向前推一位的位移算子:$Ne_1=0$,$Ne_i=e_{i-1}$($i\ge2$)。于是 $N^k$ 把 $e_i$ 映为 $e_{i-k}$($i>k$)或 $0$($i\le k$),即 $N^k$ 的像由 $e_1,\dots,e_{m-k}$ 张成(当 $k<m$),秩为 $m-k$;当 $k\ge m$ 时 $N^k=0$,秩为 $0$。由秩-零度,$\dim\ker N^k=m-(m-k)=k$($k<m$),$\dim\ker N^k=m$($k\ge m$),即 $\min(k,m)$。块结构:对一般矩阵,设 $r_k=\dim\ker(A-\lambda I)^k$,则大小至少为 $k$ 的 $\lambda$ 块数为 $r_k-r_{k-1}$(每个 $m$ 阶块对 $r_k$ 贡献 $\min(k,m)$,相邻差即 $\min(k,m)-\min(k-1,m)$,恰好是大小为 $\ge k$ 的块数贡献的 $1$)。故核维数序列 $r_0=0,r_1,r_2,\dots$ 的差分解唯一确定各阶块数。",
+ "answer": r"证明见解法(位移算子的核维数 $\\min(k,m)$;块数 $=r_k-r_{k-1}$ 的差分解唯一确定块结构)。",
+ "method": "核维数序列公式证明",
+ "difficulty": "进阶",
+ "variant_kind": "证明型:若尔当块核维数序列公式与块结构唯一性的严格证明",
+ "scene_spec": {
+  "objects": [
+   "板书:$N$ 的位移作用($e_i\\mapsto e_{i-1}$)示意图",
+   "板书:$N^k$ 的像与秩($m-k$)",
+   "板书:核维数 $\\min(k,m)$ 的推导",
+   "高亮框:块数 $=r_k-r_{k-1}$ 的差分解读"
+  ],
+  "steps": [
+   "第一步:展示位移算子的作用。",
+   "第二步:计算 $N^k$ 的像与秩。",
+   "第三步:由秩零度得核维数公式。",
+   "第四步:推导块数的差分公式。",
+   "第五步:说明唯一性,完成证明。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+# ===================== C42 正交变换 =====================
+{
+ "id": "draft-c42-01", "category": "高等代数", "sub_category": "正交变换",
+ "concept": "正交变换", "concept_id": "C42",
+ "parent_training_ids": ["linalg-067"],
+ "problem": r"设 $n$ 为单位向量。证明反射矩阵 $S=I-2nn^{\mathsf T}$ 是正交矩阵，并求其特征值与行列式。",
+ "solution": r"正交性:$S^{\mathsf T}S=(I-2nn^{\mathsf T})(I-2nn^{\mathsf T})=I-4nn^{\mathsf T}+4nn^{\mathsf T}nn^{\mathsf T}=I-4nn^{\mathsf T}+4n(n^{\mathsf T}n)n^{\mathsf T}=I$(用到 $n^{\mathsf T}n=\|n\|^2=1$)。特征值:对 $n$ 本身,$Sn=n-2n=-n$,特征值 $-1$;对任意 $v\perp n$,$Sv=v$,特征值 $1$(重数 $n-1$)。故特征值为 $-1$(一重)与 $1$($n-1$ 重),行列式 $\det S=(-1)\cdot1^{n-1}=-1$。",
+ "answer": r"$S$ 是正交矩阵(证明见解法);特征值 $-1$(一重)、$1$($n-1$ 重),$\det S=-1$。",
+ "method": "Householder 反射的正交性证明",
+ "difficulty": "基础",
+ "variant_kind": "反射与旋转:反射矩阵的正交性、谱结构与行列式",
+ "scene_spec": {
+  "objects": [
+   "三维示意图:超平面 $n^\\perp$ 与法向量 $n$",
+   "动画:点关于超平面的镜像反射",
+   "板书:$S^{\\mathsf T}S=I$ 的展开验证",
+   "板书:特征值 $-1$ 与 $1$ 的分析"
+  ],
+  "steps": [
+   "第一步:画出超平面与法向量。",
+   "第二步:动画展示镜像反射。",
+   "第三步:验证 $S^{\\mathsf T}S=I$。",
+   "第四步:分析特征值与行列式。",
+   "第五步:汇总结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c42-02", "category": "高等代数", "sub_category": "正交变换",
+ "concept": "正交变换", "concept_id": "C42",
+ "parent_training_ids": ["linalg-067"],
+ "problem": r"设 $R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$。验证 $R(\theta_1)R(\theta_2)=R(\theta_1+\theta_2)$，并说明其几何含义。",
+ "solution": r"$R(\theta_1)R(\theta_2)=\begin{pmatrix}\cos\theta_1&-\sin\theta_1\\\sin\theta_1&\cos\theta_1\end{pmatrix}\begin{pmatrix}\cos\theta_2&-\sin\theta_2\\\sin\theta_2&\cos\theta_2\end{pmatrix}$。第一行第一列:$\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2=\cos(\theta_1+\theta_2)$;第一行第二列:$-\cos\theta_1\sin\theta_2-\sin\theta_1\cos\theta_2=-\sin(\theta_1+\theta_2)$;第二行第一列:$\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2=\sin(\theta_1+\theta_2)$;第二行第二列:$-\sin\theta_1\sin\theta_2+\cos\theta_1\cos\theta_2=\cos(\theta_1+\theta_2)$。故 $R(\theta_1)R(\theta_2)=R(\theta_1+\theta_2)$。几何含义:先旋转 $\theta_2$ 再旋转 $\theta_1$ 等于一次旋转 $\theta_1+\theta_2$(旋转的合成仍是旋转,且角度相加)。",
+ "answer": r"验证见解法(由和角公式逐项核对);几何上旋转的合成角度相加。",
+ "method": "旋转合成的和角公式验证",
+ "difficulty": "基础",
+ "variant_kind": "合成:两个旋转的合成与角度相加(与单旋转验证父题不同)",
+ "scene_spec": {
+  "objects": [
+   "平面坐标系:向量先旋转 $\\theta_2$ 再旋转 $\\theta_1$ 的两步动画",
+   "动画:直接一次旋转 $\\theta_1+\\theta_2$ 的对照",
+   "板书:矩阵乘法的四元素计算",
+   "高亮框:$R(\\theta_1)R(\\theta_2)=R(\\theta_1+\\theta_2)$"
+  ],
+  "steps": [
+   "第一步:动画展示两步旋转的合成。",
+   "第二步:对照一次旋转。",
+   "第三步:逐元素计算矩阵乘积。",
+   "第四步:用和角公式化简。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c42-03", "category": "高等代数", "sub_category": "正交变换",
+ "concept": "正交变换", "concept_id": "C42",
+ "parent_training_ids": ["linalg-067"],
+ "problem": r"判断矩阵 $A=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ 是否为正交矩阵；若是，判断它对应的正交变换是旋转还是反射。",
+ "solution": r"$A^{\mathsf T}A=\frac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\frac12\begin{pmatrix}2&0\\0&2\end{pmatrix}=I$,故 $A$ 是正交矩阵。$\det A=\frac12((-1)-1)=-1$,故对应的正交变换是反射(二维正交变换中,行列式为 $+1$ 的是旋转,$-1$ 的是关于过原点直线的反射)。$A$ 的特征值:$\det(A-\lambda I)=(\frac{1}{\sqrt2}-\lambda)(-\frac{1}{\sqrt2}-\lambda)-\frac12=\lambda^2-1$,特征值为 $\pm1$;反射轴为特征值 $1$ 的特征方向,解 $(A-I)v=0$ 得 $v_2=(\sqrt2-1)v_1$,即直线 $y=(\sqrt2-1)x$。",
+ "answer": r"$A$ 是正交矩阵;$\det A=-1$,对应关于直线 $y=(\sqrt2-1)x$ 的反射。",
+ "method": "正交性验证+行列式符号判型",
+ "difficulty": "中等",
+ "variant_kind": "旋转/反射判定:行列式符号区分二维正交变换的类型",
+ "scene_spec": {
+  "objects": [
+   "平面坐标系:反射轴直线 $y=(\\sqrt2-1)x$(虚线)",
+   "动画:点关于轴的镜像反射",
+   "板书:$A^{\\mathsf T}A=I$ 与 $\\det A=-1$",
+   "高亮框:「反射」"
+  ],
+  "steps": [
+   "第一步:验证 $A^{\\mathsf T}A=I$。",
+   "第二步:计算行列式得 $-1$。",
+   "第三步:求特征值 $1$ 的特征方向为反射轴。",
+   "第四步:动画展示镜像反射。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c42-04", "category": "高等代数", "sub_category": "正交变换",
+ "concept": "正交变换", "concept_id": "C42",
+ "parent_training_ids": ["linalg-067"],
+ "problem": r"判断矩阵 $A=\begin{pmatrix}\frac12&\frac{\sqrt3}{2}&0\\-\frac{\sqrt3}{2}&\frac12&0\\0&0&-1\end{pmatrix}$ 是否为正交矩阵；若是，说明其对应的几何变换。",
+ "solution": r"各列(行)两两正交且模长为 $1$,故 $A^{\mathsf T}A=I$,$A$ 是正交矩阵。$\det A=\left(\frac14+\frac34\right)\times(-1)=-1$。几何结构:前两行前两列构成旋转块 $\begin{pmatrix}\frac12&\frac{\sqrt3}{2}\\-\frac{\sqrt3}{2}&\frac12\end{pmatrix}=R(-60^\circ)$($\cos60^\circ=\frac12$,$\sin(-60^\circ)=-\frac{\sqrt3}{2}$,即绕 $z$ 轴顺时针旋转 $60^\circ$),第三分量为 $-1$(关于 $xy$ 平面的反射)。特征值:旋转块的特征值为 $e^{\pm i\pi/3}=\frac12\pm i\frac{\sqrt3}{2}$,第三分量给 $-1$(特征向量 $(0,0,1)$);$A$ 没有特征值 $1$,不存在 $xy$ 平面内的旋转轴。故 $A$ 是「绕 $z$ 轴旋转 $-60^\circ$」与「关于 $xy$ 平面反射」的复合(旋转反射,二者可交换,$\det=-1$)。",
+ "answer": r"正交,$\det=-1$;对应绕 $z$ 轴旋转 $-60^\circ$(顺时针)与关于 $xy$ 平面反射的复合(旋转反射,可交换)。",
+ "method": "分块结构判型(旋转块+反射块)",
+ "difficulty": "中等",
+ "variant_kind": "三维分类:旋转反射(det=−1 且含旋转面与反射方向)的结构分析",
+ "scene_spec": {
+  "objects": [
+   "三维坐标系(带刻度)",
+   "动画:点先绕 $z$ 轴顺时针旋转 $60^\\circ$ 再关于 $xy$ 平面镜像",
+   "旋转轴 $z$ 轴(虚线)与反射面 $xy$ 平面(半透明)高亮",
+   "板书:旋转块 $R(-60^\\circ)$ 与第三分量 $-1$",
+   "高亮框:「旋转反射」"
+  ],
+  "steps": [
+   "第一步:验证正交性(行列规范)。",
+   "第二步:识别旋转块 $R(-60^\\circ)$ 与 $z$ 方向取反。",
+   "第三步:说明旋转轴为 $z$ 轴(垂直于反射面,两变换可交换)。",
+   "第四步:动画展示复合变换。",
+   "第五步:高亮结论。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c42-05", "category": "高等代数", "sub_category": "正交变换",
+ "concept": "正交变换", "concept_id": "C42",
+ "parent_training_ids": ["linalg-067"],
+ "problem": r"证明:实正交矩阵的特征值的模长为 $1$(实特征值只能为 $\pm1$),且 $\det A=\pm1$;由此说明三维正交变换的分类:行列式为 $+1$ 时是旋转(绕特征值 $1$ 的轴),行列式为 $-1$ 时是旋转与反射的复合。",
+ "solution": r"模长:设 $Av=\lambda v$($v$ 为复特征向量)。取共轭转置:$v^{\mathsf H}A^{\mathsf T}Av=\bar\lambda\lambda v^{\mathsf H}v$,而 $A^{\mathsf T}A=I$,故 $v^{\mathsf H}v=|\lambda|^2v^{\mathsf H}v$,得 $|\lambda|=1$。实特征值只能为 $\pm1$。行列式:特征值之积,每个模长为 $1$,而 $\det A$ 为实数,故 $\det A=\pm1$(实矩阵的复特征值共轭成对,乘积为正实数)。三维分类:奇数维实矩阵至少有一个实特征值(实系数特征多项式次数为 $3$,必有实根),即 $\pm1$。若 $\det A=1$:特征值组合(计重数)为 $(1,1,1)$、$(1,-1,-1)$ 或 $(1,e^{i\theta},e^{-i\theta})$,特征值 $1$ 必出现;其对应的特征方向为不动轴,$A$ 在其正交补平面上的限制是行列式为 $+1$ 的二维正交矩阵,即旋转(含 $-I$,即 $180^\circ$ 旋转的情形),故 $A$ 是绕该轴的旋转。若 $\det A=-1$:特征值 $-1$ 必出现(类似枚举),设其单位特征向量为 $v$;在 $v^\perp$ 上,$\det(A|_{v^\perp})=\det A/(-1)=+1$,故 $A|_{v^\perp}$ 是旋转。于是 $A$ 是关于平面 $v^\perp$ 的反射与绕轴 $v$ 旋转的复合。",
+ "answer": r"证明见解法(模长 $1$ 由 $A^{\mathsf T}A=I$ 得;分类由实特征值存在性与行列式符号得)。",
+ "method": "谱结构证明+三维分类",
+ "difficulty": "进阶",
+ "variant_kind": "证明型:正交矩阵谱结构与三维正交变换分类的完整论证",
+ "scene_spec": {
+  "objects": [
+   "板书:模长论证($v^{\\mathsf H}A^{\\mathsf T}Av=|\\lambda|^2v^{\\mathsf H}v$)",
+   "板书:实特征值 ±1 与 det=±1",
+   "三维示意图:绕轴旋转(det=+1)与旋转+反射(det=−1)对照",
+   "高亮框:三维分类表"
+  ],
+  "steps": [
+   "第一步:证明特征值模长为 $1$。",
+   "第二步:说明实特征值只能为 $\\pm1$ 与行列式符号。",
+   "第三步:由奇数次特征多项式必有实根得特征值 $\\pm1$。",
+   "第四步:分别分析 det=+1 与 det=−1 的情形。",
+   "第五步:高亮三维分类结论,完成证明。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+]
+
+def main() -> int:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    with OUT.open("w", encoding="utf-8", newline="\n") as f:
+        for row in DATA:
+            f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":"))
+                    + "\n")
+    print(f"写入 {len(DATA)} 行 -> {OUT}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
