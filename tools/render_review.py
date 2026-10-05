@@ -118,123 +118,71 @@ def build_html(md_text: str, title: str) -> str:
 
 
 def run_edge(args: list[str], timeout: int = 240) -> subprocess.CompletedProcess:
-    import tempfile  # noqa: PLC0415
-    profile = Path(tempfile.mkdtemp(prefix="edge-headless-"))
-    return subprocess.run(
-        [EDGE, "--headless=new", "--disable-gpu", "--no-first-run",
-         "--allow-file-access-from-files",
-         "--user-data-dir=" + str(profile)] + args,
-        capture_output=True, timeout=timeout)
+    import tempfile
+    with tempfile.TemporaryDirectory(prefix='edge-headless-') as profile:
+        return subprocess.run([EDGE,'--headless=new','--disable-gpu','--no-first-run',
+            '--disable-extensions','--allow-file-access-from-files','--user-data-dir='+profile]+args,
+            capture_output=True,timeout=timeout,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+
+sys.path.insert(0,str(ROOT/'tools'))
+from review_guard import verify_dom, validate_pdf
 
 
-def _no_style(dom: str) -> str:
-    return re.sub(r"<style\b[^>]*>.*?</style>", "", dom, flags=re.S | re.I)
+def checked_dom(html_path,expected_inline,expected_display):
+    cp=run_edge(['--dump-dom','--virtual-time-budget=240000',html_path.resolve().as_uri()])
+    dom=cp.stdout.decode('utf-8','strict')
+    verify_dom(dom,expected_inline,expected_display)
+    return dom
 
 
-def check_render(html_path: Path) -> tuple[int, int, int]:
-    """dump DOM 检查:未排版公式数、已排版数与 MathJax 错误节点数。"""
-    r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
-                  html_path.resolve().as_uri()])
-    dom = r.stdout.decode("utf-8", "replace") + r.stderr.decode("utf-8", "replace")
-    body = _no_style(dom)
-    spans = re.findall(r'<span class="math">(.*?)</span>', body, re.S)
-    rendered = sum(1 for s in spans if "<mjx-container" in s)
-    unrendered = len(spans) - rendered
-    done = "MJDONE" in dom
-    errors = (body.count('data-mjx-error') + body.count("<mjx-merror")
-              + body.count('data-mml-node="merror"'))
-    print(f"[check-diag] rc={r.returncode} dom_len={len(dom)} "
-          f"raw_spans={dom.count('class=\"math\"')} MJDONE={done} "
-          f"errors={errors}")
-    return unrendered, rendered, errors
+def check_render(html_path):
+    from review_guard import MathDom
+    source=MathDom(); source.feed(html_path.read_text(encoding='utf-8'))
+    inline=sum(w['kind']=='inline' for w in source.wrappers); display=len(source.wrappers)-inline
+    dom=checked_dom(html_path,inline,display)
+    return verify_dom(dom,inline,display)
 
 
-def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("md", type=Path)
-    ap.add_argument("--out-dir", type=Path, default=ROOT / "outputs" / "review")
-    ap.add_argument("--check", action="store_true",
-                    help="渲染后 dump DOM 自查公式残留")
-    ap.add_argument("--skip-pdf", action="store_true", help="只生成 HTML")
-    args = ap.parse_args(argv)
-
-    md_path = args.md.resolve()
-    if not md_path.exists():
-        print(f"[FAIL] 找不到 {md_path}")
-        return 1
-    md_text = md_path.read_text(encoding="utf-8")
-    tokens = protect_math(md_text)[1]
-    expected_inline = sum(1 for _, disp in tokens if not disp)
-    expected_display = sum(1 for _, disp in tokens if disp)
-    title = f"{md_path.stem} 审阅稿"
-    args.out_dir.mkdir(parents=True, exist_ok=True)
-
-    html_path = args.out_dir / f"{md_path.stem}.html"
-    html_path.write_text(build_html(md_text, title), encoding="utf-8")
-    print(f"HTML → {html_path} 期望 inline={expected_inline} "
-          f"display={expected_display}")
-
-    # 唯一新 PDF 目标:已存在则拒绝(不允许旧文件冒充新产物)
-    pdf_path = args.out_dir / f"{md_path.stem}.pdf"
-    if not args.skip_pdf and pdf_path.exists():
-        print(f"[FAIL] PDF 目标已存在,拒绝覆盖: {pdf_path}")
-        return 1
-
-    if args.check:
-        unrendered, rendered, errors = check_render(html_path)
-        print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条,"
-              f"错误节点 {errors} 个")
-        if unrendered or errors:
-            print("[FAIL] 存在未排版公式或 MathJax 错误(check 不通过)")
-            return 2
-    if args.skip_pdf:
-        return 0
-    # 两段式:先 dump-dom 等 MathJax 排版完成,保存静态 HTML(去掉脚本),
-    # 再对静态页打印(避免打印阶段重新运行脚本的竞态)。
-    dom_r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
-                      html_path.resolve().as_uri()])
-    dom = dom_r.stdout.decode("utf-8", "replace")
-    tm = re.search(r"<title>(.*?)</title>", dom, re.S)
-    if tm is None or html_module.unescape(tm.group(1)).strip() != "MJDONE":
-        print("[FAIL] 真实 title 未达到 MJDONE,拒绝打印")
-        return 1
-    dom_body = _no_style(dom)
-    inline_ok = sum(1 for s in re.findall(
-        r'<span class="math">(.*?)</span>', dom_body, re.S)
-        if "<mjx-container" in s)
-    display_ok = sum(1 for s in re.findall(
-        r'<div class="math-block">(.*?)</div>', dom_body, re.S)
-        if "<mjx-container" in s)
-    dom_errors = (dom_body.count('data-mjx-error') + dom_body.count("<mjx-merror")
-                  + dom_body.count('data-mml-node="merror"')
-                  + dom_body.count("Undefined control sequence"))
-    if (inline_ok != expected_inline or display_ok != expected_display
-            or dom_errors):
-        print(f"[FAIL] 排版不完整或存在错误: inline={inline_ok}/{expected_inline} "
-              f"display={display_ok}/{expected_display} errors={dom_errors}")
-        return 2
-    static = re.sub(r"<script\b[^>]*>.*?</script>", "", dom,
-                    flags=re.S | re.I)
-    static_path = args.out_dir / f"{md_path.stem}.static.html"
-    static_path.write_text(static, encoding="utf-8", newline="\n")
-    r = None
-    for attempt in (1, 2):
-        r = run_edge([f"--print-to-pdf={pdf_path}",
-                      "--virtual-time-budget=120000",
-                      static_path.resolve().as_uri()])
-        if pdf_path.exists() and pdf_path.stat().st_size > 0:
-            break
-    if (not pdf_path.exists() or pdf_path.stat().st_size == 0):
-        print(f"[FAIL] PDF 生成失败 rc={r.returncode} static={static_path.exists()} "
-              f"{r.stderr.decode('utf-8', 'replace')[:200]}")
-        return 1
-    data = pdf_path.read_bytes()
-    if data[:4] != b"%PDF" or b"%%EOF" not in data[-2048:]:
-        print(f"[FAIL] PDF 结构校验失败(头/尾标记缺失)")
-        return 1
-    print(f"PDF → {pdf_path} ({pdf_path.stat().st_size} bytes)")
-    return 0
+def main(argv):
+    import uuid,hashlib,json,tempfile
+    ap=argparse.ArgumentParser()
+    ap.add_argument('md',type=Path); ap.add_argument('--out-dir',type=Path,default=ROOT/'outputs/review')
+    ap.add_argument('--check',action='store_true'); ap.add_argument('--skip-pdf',action='store_true')
+    args=ap.parse_args(argv)
+    try:
+        source=args.md.resolve().read_bytes(); md=source.decode('utf-8-sig'); tokens=protect_math(md)[1]
+        inline=sum(not display for _,display in tokens); display=len(tokens)-inline
+        args.out_dir.mkdir(parents=True,exist_ok=True)
+        html_path=args.out_dir/f'{args.md.stem}.html'; static_path=args.out_dir/f'{args.md.stem}.static.html'
+        pdf_path=args.out_dir/f'{args.md.stem}.pdf'; receipt=args.out_dir/f'{args.md.stem}.render.json'
+        if any(p.exists() for p in (html_path,static_path,pdf_path,receipt)): raise ValueError('output exists: use a new directory/version')
+        with html_path.open('x',encoding='utf-8',newline='\n') as f: f.write(build_html(md,args.md.stem+' 审阅稿'))
+        print(f'HTML → {html_path}')
+        dom=checked_dom(html_path,inline,display) if args.check or not args.skip_pdf else None
+        if dom is None: return 0  # HTML only, no validation or PDF claim.
+        print(f'[check] verified inline={inline}, display={display}')
+        if args.skip_pdf: return 0
+        static=re.sub(r'<script\b[^>]*>.*?</script>','',dom,flags=re.S|re.I)
+        with static_path.open('x',encoding='utf-8',newline='\n') as f: f.write(static)
+        last=''
+        for attempt in (1,2):
+            # 本机 Edge 无头打印拒绝写 D: 盘目标(实测),先在 C: 临时目录打印再拷贝
+            fresh=Path(tempfile.gettempdir())/f'.{args.md.stem}-{uuid.uuid4().hex}.pdf'
+            try:
+                cp=run_edge([f'--print-to-pdf={fresh}','--no-pdf-header-footer','--virtual-time-budget=1000',static_path.resolve().as_uri()])
+                pages=validate_pdf(fresh)
+                with pdf_path.open('xb') as f: f.write(fresh.read_bytes())
+                payload={'source_md_sha256':hashlib.sha256(source).hexdigest(),'static_html_sha256':hashlib.sha256(static_path.read_bytes()).hexdigest(),
+                    'pdf_sha256':hashlib.sha256(pdf_path.read_bytes()).hexdigest(),'formula_count':len(tokens),'pages':pages,
+                    'print_returncode':cp.returncode,'fresh_target':fresh.name}
+                with receipt.open('x',encoding='utf-8',newline='\n') as f: f.write(json.dumps(payload,ensure_ascii=False,indent=2)+'\n')
+                print(f'PDF → {pdf_path} ({pages} pages)'); return 0
+            except (OSError,ValueError,subprocess.SubprocessError) as exc: last=str(exc)
+            finally:
+                if fresh.exists(): fresh.unlink()
+        raise ValueError('no validated new PDF: '+last)
+    except (OSError,ValueError,UnicodeError,subprocess.SubprocessError) as exc:
+        print('[FAIL] '+str(exc)); return 1
 
 
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+if __name__=='__main__': sys.exit(main(sys.argv[1:]))
