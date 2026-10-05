@@ -118,21 +118,26 @@ def build_html(md_text: str, title: str) -> str:
 
 
 def run_edge(args: list[str], timeout: int = 240) -> subprocess.CompletedProcess:
+    import tempfile  # noqa: PLC0415
+    profile = Path(tempfile.mkdtemp(prefix="edge-headless-"))
     return subprocess.run(
         [EDGE, "--headless", "--disable-gpu", "--no-first-run",
-         "--user-data-dir=" + str(Path.home() / ".edge-headless-render")] + args,
+         "--allow-file-access-from-files",
+         "--user-data-dir=" + str(profile)] + args,
         capture_output=True, timeout=timeout)
 
 
 def check_render(html_path: Path) -> tuple[int, int]:
     """dump DOM 检查:未排版公式数与已排版公式数(应为 0 未排版)。"""
     r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
-                  str(html_path)])
+                  html_path.resolve().as_uri()])
     dom = r.stdout.decode("utf-8", "replace") + r.stderr.decode("utf-8", "replace")
     spans = re.findall(r'<span class="math">(.*?)</span>', dom, re.S)
     rendered = sum(1 for s in spans if "<mjx-container" in s)
     unrendered = len(spans) - rendered
     done = "MJDONE" in dom
+    print(f"[check-diag] rc={r.returncode} dom_len={len(dom)} "
+          f"raw_spans={dom.count('class=\"math\"')} MJDONE={done}")
     return unrendered, rendered
 
 
@@ -162,14 +167,27 @@ def main(argv: list[str]) -> int:
         print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条")
         if unrendered:
             print("[WARN] 存在未排版公式,请检查!")
-
     if args.skip_pdf:
         return 0
+    # 两段式:先 dump-dom 等 MathJax 排版完成,保存静态 HTML(去掉脚本),
+    # 再对静态页打印(避免打印阶段重新运行脚本的竞态)。
+    dom_r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
+                      html_path.resolve().as_uri()])
+    dom = dom_r.stdout.decode("utf-8", "replace")
+    if "MJDONE" not in dom:
+        print("[FAIL] MathJax 排版未完成,拒绝打印")
+        return 1
+    static = re.sub(r"<script\b[^>]*>.*?</script>", "", dom,
+                    flags=re.S | re.I)
+    static_path = args.out_dir / f"{md_path.stem}.static.html"
+    static_path.write_text(static, encoding="utf-8", newline="\n")
     pdf_path = args.out_dir / f"{md_path.stem}.pdf"
     r = run_edge([f"--print-to-pdf={pdf_path}",
-                  "--virtual-time-budget=180000", str(html_path)])
-    if r.returncode != 0 or not pdf_path.exists():
-        print(f"[FAIL] PDF 生成失败: {r.stderr.decode('utf-8', 'replace')[:300]}")
+                  "--virtual-time-budget=1000",
+                  static_path.resolve().as_uri()])
+    if not pdf_path.exists() or pdf_path.stat().st_size == 0:
+        print(f"[FAIL] PDF 生成失败 rc={r.returncode} static={static_path.exists()} "
+              f"{r.stderr.decode('utf-8', 'replace')[:200]}")
         return 1
     print(f"PDF → {pdf_path} ({pdf_path.stat().st_size} bytes)")
     return 0
