@@ -19,11 +19,11 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path[:0]=[str(ROOT),str(ROOT/"src")]
 
 PROMPT_TMPL = (
     "你是数学动画规划师。根据题目与解法,输出动画规划 JSON(scene_spec),"
-    "格式:{\"objects\": [\"...\"], \"steps\": [\"...\"]}。\n"
+    "格式:{{\"objects\": [\"...\"], \"steps\": [\"...\"]}}。\n"
     "要求:objects/steps 均为非空字符串列表;公式用 $...$ 包裹;"
     "steps 覆盖解法全部关键推理步骤;只输出 JSON,不要解释。\n"
     "题目:{problem}\n解法({method}):{solution}\n")
@@ -49,6 +49,48 @@ def load_train_rows(manifest: Path) -> list[dict]:
     return rows
 
 
+
+def training_example(tokenizer,row,max_length):
+    """Supervise the complete assistant scene_spec, never prompt-only text.
+    Reject truncation or a non-prefix chat template instead of silently losing labels.
+    """
+    spec=row.get('scene_spec')
+    if not isinstance(spec,dict) or any(not isinstance(spec.get(k),list) or not spec[k]
+        or any(not isinstance(v,str) or not v.strip() for v in spec[k]) for k in ('objects','steps')):
+        raise ValueError('Training row has no valid scene_spec target')
+    prompt=PROMPT_TMPL.format(problem=row.get('problem',''),solution=row.get('solution',''),
+                            method=row.get('method','常规解法'))
+    target=json.dumps(spec,ensure_ascii=False,separators=(',',':'))
+    user=[{'role':'user','content':prompt}]
+    # transformers 4.51:tokenize=True 返回 BatchEncoding,必须取 ["input_ids"]
+    prefix=tokenizer.apply_chat_template(user,tokenize=True,add_generation_prompt=True,
+                                         enable_thinking=False)["input_ids"]
+    full=tokenizer.apply_chat_template(user+[{'role':'assistant','content':target}],
+                                       tokenize=True,add_generation_prompt=False,
+                                       enable_thinking=False)["input_ids"]
+    if not isinstance(prefix,list) or not isinstance(full,list) or full[:len(prefix)]!=prefix:
+        raise ValueError('Chat template has no reproducible assistant boundary')
+    if len(full)>max_length:raise ValueError('Complete supervised scene_spec exceeds max_seq_length')
+    if len(full)<=len(prefix):raise ValueError('No assistant tokens to supervise')
+    return {'input_ids':full,'attention_mask':[1]*len(full),
+            'labels':[-100]*len(prefix)+full[len(prefix):]}
+
+
+def training_collator(tokenizer):
+    """Pad independently of pad/eos identity; preserve assistant/EOS labels."""
+    def collate(examples):
+        import torch
+        padded=tokenizer.pad([{k:e[k] for k in ('input_ids','attention_mask')}
+                              for e in examples],padding=True,return_tensors='pt')
+        width=padded['input_ids'].shape[1];labels=[]
+        for example in examples:
+            pad=[-100]*(width-len(example['labels']))
+            labels.append(pad+example['labels'] if tokenizer.padding_side=='left' else example['labels']+pad)
+        padded['labels']=torch.tensor(labels,dtype=torch.long)
+        return padded
+    return collate
+
+
 def check_hyperparameters(config: dict) -> list[str]:
     hp = config.get("hyperparameters") or {}
     required = ("learning_rate", "batch_size", "gradient_accumulation_steps",
@@ -58,6 +100,11 @@ def check_hyperparameters(config: dict) -> list[str]:
 
 
 def train(config: dict, work: Path, run_id: str) -> dict:
+    from tools.train_loop import gate_ready
+    ready,detail=gate_ready(run_id,config)
+    if not ready:return {"status":"REFUSED","reason":"Training gate closed: "+detail}
+    missing=check_hyperparameters(config)
+    if missing:return {"status":"REFUSED","reason":"Missing hyperparameters: "+str(missing)}
     hp = config["hyperparameters"]
     manifest = Path(config.get("dataset_manifest",
                                str(ROOT / "data/manifest.json")))
@@ -74,8 +121,7 @@ def train(config: dict, work: Path, run_id: str) -> dict:
     try:
         import torch  # noqa: PLC0415
         from transformers import (  # noqa: PLC0415
-            AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer,
-            DataCollatorForLanguageModeling)
+            AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer)
         from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training  # noqa: PLC0415
         import bitsandbytes as bnb  # noqa: PLC0415
         from transformers import BitsAndBytesConfig  # noqa: PLC0415
@@ -85,17 +131,11 @@ def train(config: dict, work: Path, run_id: str) -> dict:
 
     tok = AutoTokenizer.from_pretrained(str(model_dir))
     tok.pad_token = tok.pad_token or tok.eos_token
-    texts = [PROMPT_TMPL.format(problem=r.get("problem", ""),
-                                solution=r.get("solution", ""),
-                                method=r.get("method", "常规解法"))
-             for r in rows]
-    enc = tok(texts, max_length=int(hp["max_seq_length"]), truncation=True,
-              padding=True)
-    truncated = sum(1 for t in texts
-                    if len(tok(t)["input_ids"]) > int(hp["max_seq_length"]))
-    if truncated:
-        print(f"[train] 注意:{truncated} 条样本被截断到 "
-              f"{hp['max_seq_length']} token(如实记录,不伪造)")
+    try:
+        examples=[training_example(tok,row,int(hp['max_seq_length'])) for row in rows]
+    except (ValueError,KeyError) as exc:
+        return {'status':'REFUSED','reason':str(exc)}
+    truncated=0  # Complete targets are required; overlength rows fail before model loading.
 
     quant = hp["quantization"].lower()
     bnb_cfg = BitsAndBytesConfig(load_in_4bit=quant in ("4bit", "nf4", "4-bit"),
@@ -118,19 +158,16 @@ def train(config: dict, work: Path, run_id: str) -> dict:
     from torch.utils.data import Dataset  # noqa: PLC0415
 
     class _LMDataset(Dataset):
-        def __init__(self, input_ids, attention_mask):
-            self.input_ids = input_ids
-            self.attention_mask = attention_mask
+        def __init__(self, examples):
+            self.examples = examples
 
         def __len__(self):
-            return len(self.input_ids)
+            return len(self.examples)
 
         def __getitem__(self, i):
-            return {"input_ids": self.input_ids[i],
-                    "attention_mask": self.attention_mask[i]}
+            return self.examples[i]
 
-    ds = _LMDataset(torch.tensor(enc["input_ids"], dtype=torch.long),
-                    torch.tensor(enc["attention_mask"], dtype=torch.long))
+    ds = _LMDataset(examples)
     args = TrainingArguments(
         output_dir=str(work / "ckpt"),
         num_train_epochs=int(hp["epochs"]),
@@ -142,8 +179,7 @@ def train(config: dict, work: Path, run_id: str) -> dict:
         report_to=[], seed=int(hp["seed"]),
         run_name=f"loop-train-{run_id}")
     trainer = Trainer(model=model, args=args, train_dataset=ds,
-                      data_collator=DataCollatorForLanguageModeling(
-                          tokenizer=tok, mlm=False))
+                      data_collator=training_collator(tok))
     t0 = time.time()
     result = trainer.train()
     model.save_pretrained(str(adapter_out))
@@ -170,6 +206,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--run-id", required=True)
     args = ap.parse_args(argv)
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    config["_config_path"]=str(args.config.resolve())
     missing = check_hyperparameters(config)
     if missing:
         print(f"[FAIL] 超参未定案({missing}),训练步拒绝执行(fail-closed)")
