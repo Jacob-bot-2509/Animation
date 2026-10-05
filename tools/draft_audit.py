@@ -124,6 +124,31 @@ def check_record(audit: Audit, row: dict) -> None:
                   f"versioned_id 未包含原 id({vid} vs {rid})", rid=rid, field="versioned_id")
 
 
+def check_encoding(audit: Audit, info: dict, r: dict, rid: str) -> None:
+    """递归检测编码损坏:U+FFFD、连续问号、控制字符(Codex msg_487 要求)。"""
+    def walk(v, path):
+        if isinstance(v, str):
+            if "�" in v:
+                audit.add("quarantine", "E001", info["path"], r["locator"],
+                          f"{path} 含替换字符 U+FFFD(id={rid})", rid=rid)
+            if "??" in v:
+                audit.add("quarantine", "E002", info["path"], r["locator"],
+                          f"{path} 含连续问号(id={rid})", rid=rid)
+            for ch in v:
+                if ord(ch) < 0x20 or ord(ch) == 0x7f:
+                    audit.add("quarantine", "E003", info["path"], r["locator"],
+                              f"{path} 含控制字符 U+{ord(ch):04X}(id={rid})",
+                              rid=rid)
+                    break
+        elif isinstance(v, dict):
+            for k, vv in v.items():
+                walk(vv, f"{path}.{k}")
+        elif isinstance(v, list):
+            for i, vv in enumerate(v):
+                walk(vv, f"{path}[{i}]")
+    walk(r["record"], "record")
+
+
 def refine_issues(audit: Audit) -> None:
     """误报修正(与 eval_test_audit 同口径):\\frac 单 token、\\leftarrow 均合法。"""
     for it in audit.issues:
@@ -141,10 +166,11 @@ def refine_issues(audit: Audit) -> None:
         if it["code"] == "C008" and re.search(r"[0-9]/[0-9],\s*[a-zA-Z]=|[0-9],\s*[a-zA-Z]=", blob):
             it["severity"] = "info"
             it["message"] += "(Lead 复核:该处为逗号并列的多条直线/点枚举,非重复等式)"
-        # L008 误报:\sin^23\theta 等“单字符上标+系数”写法合法
-        if it["code"] == "L008" and re.search(r"\^2\d", blob.replace("\\", "")):
+        # L008 误报(仅限确认的 sin 函数参数写法):\sin^23\theta 单字符上标后接系数合法
+        if it["code"] == "L008" and re.search(r"\\sin\^2\d", blob):
             it["severity"] = "info"
-            it["message"] += "(Lead 复核:\\sin^23\\theta 之类单字符上标后接系数为合法 TeX)"
+            it["message"] += "(Lead 复核:\\sin^2 后接系数为 sin 函数参数写法,合法 TeX;"
+            "其余 \\^2\\d 不自动降级)"
 
 
 def attribute_to_repair(audit: Audit, rows: list[dict], orig_rows: list[dict]) -> dict:
@@ -217,6 +243,7 @@ def main(argv: list[str]) -> int:
         info = {"path": row["file"], "format": "jsonl"}
         r = {"locator": f"line {row['line']}", "record": row["record"]}
         check_record(audit, row)
+        check_encoding(audit, info, r, rid)
         check_source_license(audit, info, r, rid)
         check_consistency(audit, info, r, rid)
         check_latex(audit, info, r, rid)
