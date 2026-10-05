@@ -1,0 +1,35 @@
+{
+  "id": "draft-c23-02",
+  "category": "解析几何",
+  "sub_category": "空间变换",
+  "concept": "等距变换",
+  "concept_id": "C23",
+  "parent_training_ids": [
+    "geom-029"
+  ],
+  "problem": "证明:若 $A$ 为正交矩阵,则等距变换 $T(x)=Ax+b$ 保持任意两点间的距离,即 $\\|T(x)-T(y)\\|=\\|x-y\\|$。",
+  "solution": "$\\|T(x)-T(y)\\|=\\|(Ax+b)-(Ay+b)\\|=\\|A(x-y)\\|$。由正交矩阵的性质 $\\|Au\\|^2=(Au)^{\\mathsf T}(Au)=u^{\\mathsf T}A^{\\mathsf T}Au=u^{\\mathsf T}u=\\|u\\|^2$,故 $\\|A(x-y)\\|=\\|x-y\\|$,距离保持不变。",
+  "answer": "证明见解法(核心:$\\|Au\\|^2=u^{\\mathsf T}A^{\\mathsf T}Au=u^{\\mathsf T}u$)。",
+  "method": "正交矩阵保范数证明",
+  "difficulty": "基础",
+  "variant_kind": "保持量:等距变换保距离的证明",
+  "scene_spec": {
+    "objects": [
+      "三维示意图:两点与其像,连线长度标注不变",
+      "板书:$\\|A(x-y)\\|^2=(x-y)^{\\mathsf T}A^{\\mathsf T}A(x-y)$ 的推导",
+      "板书:$A^{\\mathsf T}A=I$ 的代入",
+      "高亮框:$\\|T(x)-T(y)\\|=\\|x-y\\|$",
+      "标签「等距变换保距离」"
+    ],
+    "steps": [
+      "第一步:画出两点及其在 $T$ 下的像,标注连线。",
+      "第二步:写出范数平方并展开。",
+      "第三步:用 $A^{\\mathsf T}A=I$ 化简。",
+      "第四步:得距离不变。",
+      "第五步:高亮结论。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "draft-v1-待用户审阅"
+}
