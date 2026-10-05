@@ -374,8 +374,11 @@ def main(argv: list[str]) -> int:
                 audit.add("quarantine", "V006", SELECTION, "document",
                           f"draft-selection.json 未登记 {batch}")
                 continue
+            # 账本 path 相对草稿目录;统一转成相对项目根的 posix 再比较
             rel = p.relative_to(ROOT).as_posix()
-            if e.get("path") != rel:
+            expected = (Path(DRAFT_GLOB.split("/batch-")[0])
+                        / e.get("path", "")).as_posix()
+            if e.get("path") and expected != rel:
                 audit.add("info", "V011", SELECTION, batch,
                           f"被审文件 {rel} 不是账本选中版本({e.get('path')}),跳过哈希核对")
                 continue
