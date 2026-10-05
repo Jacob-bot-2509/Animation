@@ -10,7 +10,7 @@
 from __future__ import annotations
 
 import argparse
-import html
+import html as html_module
 import re
 import subprocess
 import sys
@@ -111,7 +111,7 @@ def build_html(md_text: str, title: str) -> str:
     )
     src = MATHJAX_LOCAL.as_uri() if MATHJAX_LOCAL.exists() else MATHJAX_CDN
     return (f"<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'>"
-            f"<title>{html.escape(title)}</title>"
+            f"<title>{html_module.escape(title)}</title>"
             f"<style>{CSS}</style>{mathjax_cfg}"
             f"<script src='{src}'></script>"
             f"</head><body>{body}</body></html>")
@@ -163,19 +163,30 @@ def main(argv: list[str]) -> int:
         print(f"[FAIL] 找不到 {md_path}")
         return 1
     md_text = md_path.read_text(encoding="utf-8")
+    tokens = protect_math(md_text)[1]
+    expected_inline = sum(1 for _, disp in tokens if not disp)
+    expected_display = sum(1 for _, disp in tokens if disp)
     title = f"{md_path.stem} 审阅稿"
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     html_path = args.out_dir / f"{md_path.stem}.html"
     html_path.write_text(build_html(md_text, title), encoding="utf-8")
-    print(f"HTML → {html_path}")
+    print(f"HTML → {html_path} 期望 inline={expected_inline} "
+          f"display={expected_display}")
+
+    # 唯一新 PDF 目标:已存在则拒绝(不允许旧文件冒充新产物)
+    pdf_path = args.out_dir / f"{md_path.stem}.pdf"
+    if not args.skip_pdf and pdf_path.exists():
+        print(f"[FAIL] PDF 目标已存在,拒绝覆盖: {pdf_path}")
+        return 1
 
     if args.check:
         unrendered, rendered, errors = check_render(html_path)
         print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条,"
               f"错误节点 {errors} 个")
         if unrendered or errors:
-            print("[WARN] 存在未排版公式或 MathJax 错误,请检查!")
+            print("[FAIL] 存在未排版公式或 MathJax 错误(check 不通过)")
+            return 2
     if args.skip_pdf:
         return 0
     # 两段式:先 dump-dom 等 MathJax 排版完成,保存静态 HTML(去掉脚本),
@@ -183,31 +194,43 @@ def main(argv: list[str]) -> int:
     dom_r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
                       html_path.resolve().as_uri()])
     dom = dom_r.stdout.decode("utf-8", "replace")
-    if "MJDONE" not in dom:
-        print("[FAIL] MathJax 排版未完成,拒绝打印")
+    tm = re.search(r"<title>(.*?)</title>", dom, re.S)
+    if tm is None or html_module.unescape(tm.group(1)).strip() != "MJDONE":
+        print("[FAIL] 真实 title 未达到 MJDONE,拒绝打印")
         return 1
     dom_body = _no_style(dom)
+    inline_ok = sum(1 for s in re.findall(
+        r'<span class="math">(.*?)</span>', dom_body, re.S)
+        if "<mjx-container" in s)
+    display_ok = sum(1 for s in re.findall(
+        r'<div class="math-block">(.*?)</div>', dom_body, re.S)
+        if "<mjx-container" in s)
     dom_errors = (dom_body.count('data-mjx-error') + dom_body.count("<mjx-merror")
-                  + dom_body.count('data-mml-node="merror"'))
-    if dom_errors:
-        print(f"[FAIL] 存在 {dom_errors} 个 MathJax 错误节点,拒绝打印")
-        return 1
+                  + dom_body.count('data-mml-node="merror"')
+                  + dom_body.count("Undefined control sequence"))
+    if (inline_ok != expected_inline or display_ok != expected_display
+            or dom_errors):
+        print(f"[FAIL] 排版不完整或存在错误: inline={inline_ok}/{expected_inline} "
+              f"display={display_ok}/{expected_display} errors={dom_errors}")
+        return 2
     static = re.sub(r"<script\b[^>]*>.*?</script>", "", dom,
                     flags=re.S | re.I)
     static_path = args.out_dir / f"{md_path.stem}.static.html"
     static_path.write_text(static, encoding="utf-8", newline="\n")
-    pdf_path = args.out_dir / f"{md_path.stem}.pdf"
+    r = None
     for attempt in (1, 2):
         r = run_edge([f"--print-to-pdf={pdf_path}",
                       "--virtual-time-budget=120000",
                       static_path.resolve().as_uri()])
-        if (pdf_path.exists() and pdf_path.stat().st_size > 0
-                and pdf_path.read_bytes()[:4] == b"%PDF"):
+        if pdf_path.exists() and pdf_path.stat().st_size > 0:
             break
-    if (not pdf_path.exists() or pdf_path.stat().st_size == 0
-            or pdf_path.read_bytes()[:4] != b"%PDF"):
+    if (not pdf_path.exists() or pdf_path.stat().st_size == 0):
         print(f"[FAIL] PDF 生成失败 rc={r.returncode} static={static_path.exists()} "
               f"{r.stderr.decode('utf-8', 'replace')[:200]}")
+        return 1
+    data = pdf_path.read_bytes()
+    if data[:4] != b"%PDF" or b"%%EOF" not in data[-2048:]:
+        print(f"[FAIL] PDF 结构校验失败(头/尾标记缺失)")
         return 1
     print(f"PDF → {pdf_path} ({pdf_path.stat().st_size} bytes)")
     return 0
