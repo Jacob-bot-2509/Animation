@@ -121,24 +121,32 @@ def run_edge(args: list[str], timeout: int = 240) -> subprocess.CompletedProcess
     import tempfile  # noqa: PLC0415
     profile = Path(tempfile.mkdtemp(prefix="edge-headless-"))
     return subprocess.run(
-        [EDGE, "--headless", "--disable-gpu", "--no-first-run",
+        [EDGE, "--headless=new", "--disable-gpu", "--no-first-run",
          "--allow-file-access-from-files",
          "--user-data-dir=" + str(profile)] + args,
         capture_output=True, timeout=timeout)
 
 
-def check_render(html_path: Path) -> tuple[int, int]:
-    """dump DOM 检查:未排版公式数与已排版公式数(应为 0 未排版)。"""
+def _no_style(dom: str) -> str:
+    return re.sub(r"<style\b[^>]*>.*?</style>", "", dom, flags=re.S | re.I)
+
+
+def check_render(html_path: Path) -> tuple[int, int, int]:
+    """dump DOM 检查:未排版公式数、已排版数与 MathJax 错误节点数。"""
     r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
                   html_path.resolve().as_uri()])
     dom = r.stdout.decode("utf-8", "replace") + r.stderr.decode("utf-8", "replace")
-    spans = re.findall(r'<span class="math">(.*?)</span>', dom, re.S)
+    body = _no_style(dom)
+    spans = re.findall(r'<span class="math">(.*?)</span>', body, re.S)
     rendered = sum(1 for s in spans if "<mjx-container" in s)
     unrendered = len(spans) - rendered
     done = "MJDONE" in dom
+    errors = (body.count('data-mjx-error') + body.count("<mjx-merror")
+              + body.count('data-mml-node="merror"'))
     print(f"[check-diag] rc={r.returncode} dom_len={len(dom)} "
-          f"raw_spans={dom.count('class=\"math\"')} MJDONE={done}")
-    return unrendered, rendered
+          f"raw_spans={dom.count('class=\"math\"')} MJDONE={done} "
+          f"errors={errors}")
+    return unrendered, rendered, errors
 
 
 def main(argv: list[str]) -> int:
@@ -163,10 +171,11 @@ def main(argv: list[str]) -> int:
     print(f"HTML → {html_path}")
 
     if args.check:
-        unrendered, rendered = check_render(html_path)
-        print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条")
-        if unrendered:
-            print("[WARN] 存在未排版公式,请检查!")
+        unrendered, rendered, errors = check_render(html_path)
+        print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条,"
+              f"错误节点 {errors} 个")
+        if unrendered or errors:
+            print("[WARN] 存在未排版公式或 MathJax 错误,请检查!")
     if args.skip_pdf:
         return 0
     # 两段式:先 dump-dom 等 MathJax 排版完成,保存静态 HTML(去掉脚本),
@@ -177,15 +186,26 @@ def main(argv: list[str]) -> int:
     if "MJDONE" not in dom:
         print("[FAIL] MathJax 排版未完成,拒绝打印")
         return 1
+    dom_body = _no_style(dom)
+    dom_errors = (dom_body.count('data-mjx-error') + dom_body.count("<mjx-merror")
+                  + dom_body.count('data-mml-node="merror"'))
+    if dom_errors:
+        print(f"[FAIL] 存在 {dom_errors} 个 MathJax 错误节点,拒绝打印")
+        return 1
     static = re.sub(r"<script\b[^>]*>.*?</script>", "", dom,
                     flags=re.S | re.I)
     static_path = args.out_dir / f"{md_path.stem}.static.html"
     static_path.write_text(static, encoding="utf-8", newline="\n")
     pdf_path = args.out_dir / f"{md_path.stem}.pdf"
-    r = run_edge([f"--print-to-pdf={pdf_path}",
-                  "--virtual-time-budget=1000",
-                  static_path.resolve().as_uri()])
-    if not pdf_path.exists() or pdf_path.stat().st_size == 0:
+    for attempt in (1, 2):
+        r = run_edge([f"--print-to-pdf={pdf_path}",
+                      "--virtual-time-budget=120000",
+                      static_path.resolve().as_uri()])
+        if (pdf_path.exists() and pdf_path.stat().st_size > 0
+                and pdf_path.read_bytes()[:4] == b"%PDF"):
+            break
+    if (not pdf_path.exists() or pdf_path.stat().st_size == 0
+            or pdf_path.read_bytes()[:4] != b"%PDF"):
         print(f"[FAIL] PDF 生成失败 rc={r.returncode} static={static_path.exists()} "
               f"{r.stderr.decode('utf-8', 'replace')[:200]}")
         return 1
