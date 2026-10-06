@@ -1,0 +1,833 @@
+{
+ "remaining": [
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c47-01",
+   "deficiencies": [
+    "第二步只给出卷积和整体公式,未逐项展示 j=0,1,2,3 四项分别由第一组、第二组哪一项相乘得到(哪一行乘哪一列的对应关系缺失)",
+    "第三步点概率极限 e^{-1}/j! 与 e^{-2}2^{3-j}/(3-j)! 直接给出,未展示 (1-1/n)^n→e^{-1} 的放缩推导,也未标注有限和可交换极限的依据",
+    "第四步求和 e^{-3}∑_{j=0}^3 2^{3-j}/[j!(3-j)!]=(9/2)e^{-3} 未展开为四项逐一计算(如 3!∑C(3,j)2^{3-j}=(2+1)^3 的展开过程未展示)",
+    "第五步仅口头提醒'不能写成等号',未配具体错误写法与正确写法的对照演示"
+   ],
+   "record": {
+    "id": "draft-c47-01",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "二项到泊松近似",
+    "concept_id": "C47",
+    "parent_training_ids": [
+     "prob-040"
+    ],
+    "problem": "购买两组彩票，全部彩票是否中奖相互独立：第一组$1000$张，单张中奖率$1/1000$；第二组$1000$张，单张中奖率$1/500$。求总中奖次数恰为$3$的精确概率；再将两组张数均改为$n$、中奖率改为$1/n,2/n$，求对应概率的极限。",
+    "solution": "第一组$X\\sim B(1000,1/1000)$，第二组$Y\\sim B(1000,1/500)$且独立。卷积给精确概率$\\sum_{j=0}^3\\binom{1000}{j}(1/1000)^j(999/1000)^{1000-j}\\binom{1000}{3-j}(1/500)^{3-j}(499/500)^{997+j}$。极限族取$n\\ge3$；对固定$j$，两组点概率分别趋于$e^{-1}/j!$与$e^{-2}2^{3-j}/(3-j)!$，有限求和可交换极限。二项式定理给极限$e^{-3}\\sum_{j=0}^3 2^{3-j}/[j!(3-j)!]=(9/2)e^{-3}$。有限精确概率与极限值是不同对象，不能写成等号。",
+    "answer": "精确概率为四项卷积和；稀有事件族的极限$(9/2)e^{-3}$。",
+    "method": "非同参数二项卷积与稀有极限",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：非同参数二项卷积与稀有极限",
+    "scene_spec": {
+     "objects": [
+      "购买两组彩票，全部彩票是否中奖相互独立：第一组$1000$张，单张中奖率$1/1000$；第二组$1000$张，单张中奖率$1/500$。求总中奖次数恰为$3$的精确概率；再将两组张数均改为$n$、中奖率改为$1/n,2/n$，求对应概率的极限。",
+      "精确概率为四项卷积和；稀有事件族的极限$(9/2)e^{-3}$。"
+     ],
+     "steps": [
+      "第一步:第一组$X\\sim B(1000,1/1000)$，第二组$Y\\sim B(1000,1/500)$且独立。",
+      "第二步:卷积给精确概率$\\sum_{j=0}^3\\binom{1000}{j}(1/1000)^j(999/1000)^{1000-j}\\binom{1000}{3-j}(1/500)^{3-j}(499/500)^{997+j}$。",
+      "第三步:极限族取$n\\ge3$；对固定$j$，两组点概率分别趋于$e^{-1}/j!$与$e^{-2}2^{3-j}/(3-j)!$，有限求和可交换极限。",
+      "第四步:二项式定理给极限$e^{-3}\\sum_{j=0}^3 2^{3-j}/[j!(3-j)!]=(9/2)e^{-3}$。",
+      "第五步:有限精确概率与极限值是不同对象，不能写成等号。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c47-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "3c38d503a8f9361e295a7ab6550e21494dd1b8327a8c1abd93759286b87384e0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c47-01",
+     "prior_parent_training_ids": [
+      "prob-040"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "加入不等中奖率的两组卷积，去掉无误差证明的小数泊松替代值。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c47-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c47-02",
+   "deficiencies": [
+    "第二步双侧不等式 x<-ln(1-x)<x/(1-x) 只陈述不推导,未展示放缩依据(被积函数 1≤1/(1-t)≤1/(1-x) 的逐点比较)",
+    "第三步代入 x=1/100 并乘 100 的中间运算(100·(1/100)=1、100·(1/100)/(99/100)=100/99)未展示,直接给出 -100/99<ln P<-1 的结果链",
+    "第四步误差上界的变形未展示:e^{-100/99}=e^{-1}·e^{-1/99} 从而 e^{-1}-P<e^{-1}(1-e^{-1/99}) 的运算过程缺失"
+   ],
+   "record": {
+    "id": "draft-c47-02",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "二项到泊松近似",
+    "concept_id": "C47",
+    "parent_training_ids": [
+     "prob-040"
+    ],
+    "problem": "设$X\\sim B(100,1/100)$。给出$P(X=0)$的精确值，严格比较它与$e^{-1}$，给指数形式的精确误差上界，不作小数计算。",
+    "solution": "$P(X=0)=(99/100)^{100}$。对$0<x<1$，积分$-\\ln(1-x)=\\int_0^x(1-t)^{-1}dt$，给$x<-\\ln(1-x)<x/(1-x)$。代入$x=1/100$并乘$100$得$-100/99<\\ln P(X=0)<-1$，所以$e^{-100/99}<P(X=0)<e^{-1}$。因此$0<e^{-1}-P(X=0)<e^{-1}(1-e^{-1/99})$。这些均为严格界，未把极限分布的点概率冒充有限样本真值。",
+    "answer": "$(99/100)^{100}$；$e^{-100/99}<P<e^{-1}$，误差严格小于$e^{-1}(1-e^{-1/99})$。",
+    "method": "有限零事件概率的严格对数界",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：有限零事件概率的严格对数界",
+    "scene_spec": {
+     "objects": [
+      "设$X\\sim B(100,1/100)$。给出$P(X=0)$的精确值，严格比较它与$e^{-1}$，给指数形式的精确误差上界，不作小数计算。",
+      "$(99/100)^{100}$；$e^{-100/99}<P<e^{-1}$，误差严格小于$e^{-1}(1-e^{-1/99})$。"
+     ],
+     "steps": [
+      "第一步:$P(X=0)=(99/100)^{100}$。",
+      "第二步:对$0<x<1$，积分$-\\ln(1-x)=\\int_0^x(1-t)^{-1}dt$，给$x<-\\ln(1-x)<x/(1-x)$。",
+      "第三步:代入$x=1/100$并乘$100$得$-100/99<\\ln P(X=0)<-1$，所以$e^{-100/99}<P(X=0)<e^{-1}$。",
+      "第四步:因此$0<e^{-1}-P(X=0)<e^{-1}(1-e^{-1/99})$。",
+      "第五步:这些均为严格界，未把极限分布的点概率冒充有限样本真值。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c47-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e4227c83e7a6437c19859c8acb728790a220319d3898e38bbc09213fdf71dedf",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c47-02",
+     "prior_parent_training_ids": [
+      "prob-040"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "用精确对数积分界替代小数比较及未经证明的相对误差。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c47-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c47-03",
+   "deficiencies": [
+    "第四步前两因子分别趋于 λ^k/k! 与 1 未标注依据((np_n)^k→λ^k 来自 np_n→λ;∏(1-j/n)→1 需逐因子收敛说明)",
+    "第五步关键夹逼不等式 -p_n/(1-p_n)≤ln(1-p_n)≤-p_n 只陈述不推导,放缩依据未标注(如由 ln(1+t)≤t 与 ln(1-t)≥-t/(1-t) 导出)",
+    "第五步乘 n 后的夹逼运算未逐步展示:n·(-p_n/(1-p_n))=-np_n/(1-p_n)→-λ 与 n·(-p_n)=-np_n→-λ 的极限各自如何得到;且 k·ln(1-p_n)→0 的依据(p_n→0)未标注"
+   ],
+   "record": {
+    "id": "draft-c47-03",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "二项到泊松近似",
+    "concept_id": "C47",
+    "parent_training_ids": [
+     "prob-040"
+    ],
+    "problem": "证明:当 $n\\to\\infty$、$p\\to0$ 且 $np\\to\\lambda>0$ 时，对固定的 $k$，$B(n,p)$ 在 $k$ 处的概率趋于 $\\frac{\\lambda^k}{k!}e^{-\\lambda}$。",
+    "solution": "设$k\\in\\mathbb Z_{\\ge0}$固定，$p_n\\in[0,1]$且$np_n\\to\\lambda>0$。则$p_n\\to0$，最终$0<p_n<1$。点概率写成$(np_n)^k/k!\\cdot\\prod_{j=0}^{k-1}(1-j/n)\\cdot(1-p_n)^{n-k}$，空乘积为$1$。前两因子分别趋于$\\lambda^k/k!$与$1$。由$-p_n/(1-p_n)\\le\\ln(1-p_n)\\le-p_n$，乘$n$并夹逼得$n\\ln(1-p_n)\\to-\\lambda$，又$k\\ln(1-p_n)\\to0$，故第三因子趋于$e^{-\\lambda}$。因此固定$k$的极限为$e^{-\\lambda}\\lambda^k/k!$，这是极限恒等式，不是每个有限$n$的概率等式。",
+    "answer": "证明见解法(三因子分别取极限:$\\lambda^k/k!$、$1$、$e^{-\\lambda}$)。",
+    "method": "极限推导(泊松定理证明)",
+    "difficulty": "中等",
+    "variant_kind": "稀有事件极限条件:泊松定理的极限推导证明",
+    "scene_spec": {
+     "objects": [
+      "证明:当 $n\\to\\infty$、$p\\to0$ 且 $np\\to\\lambda>0$ 时，对固定的 $k$，$B(n,p)$ 在 $k$ 处的概率趋于 $\\frac{\\lambda^k}{k!}e^{-\\lambda}$。",
+      "证明见解法(三因子分别取极限:$\\lambda^k/k!$、$1$、$e^{-\\lambda}$)。"
+     ],
+     "steps": [
+      "第一步:设$k\\in\\mathbb Z_{\\ge0}$固定，$p_n\\in[0,1]$且$np_n\\to\\lambda>0$。",
+      "第二步:则$p_n\\to0$，最终$0<p_n<1$。",
+      "第三步:点概率写成$(np_n)^k/k!\\cdot\\prod_{j=0}^{k-1}(1-j/n)\\cdot(1-p_n)^{n-k}$，空乘积为$1$。",
+      "第四步:前两因子分别趋于$\\lambda^k/k!$与$1$。",
+      "第五步:由$-p_n/(1-p_n)\\le\\ln(1-p_n)\\le-p_n$，乘$n$并夹逼得$n\\ln(1-p_n)\\to-\\lambda$，又$k\\ln(1-p_n)\\to0$，故第三因子趋于$e^{-\\lambda}$。",
+      "第六步:因此固定$k$的极限为$e^{-\\lambda}\\lambda^k/k!$，这是极限恒等式，不是每个有限$n$的概率等式。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c47-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "0b0f1fd12df60904efe189ea82502040fc533a2429153596c4b35a098bee8ac6",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c47-03",
+     "prior_parent_training_ids": [
+      "prob-040"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "补全变参数对数极限与固定非负整数条件。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c47-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c47-04",
+   "deficiencies": [
+    "第二步由 2<e<3 推出各点概率大小比较(e^{-1}>1/4 即 e<4、1/2>e^{-1} 即 e>2、1/4>1/(2e) 即 e>2)的推导未展示",
+    "第三步全变差求和未逐项展开(k=0,1,2 及 k≥3 各贡献多少、k≥3 项如何与前三项合并),且'总正差等于总负差'的原因(两分布总质量均为 1)未标注",
+    "第四步 2<e<3 的证明(e=∑1/j! 与 j!≥2^{j-1} 的放缩)仅一句话提及,未展开证明过程"
+   ],
+   "record": {
+    "id": "draft-c47-04",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "二项到泊松近似",
+    "concept_id": "C47",
+    "parent_training_ids": [
+     "prob-040"
+    ],
+    "problem": "令$X\\sim B(2,1/2)$、$Y\\sim\\operatorname{Pois}(1)$。精确求两离散分布的全变差距离$d_{TV}=\\frac12\\sum_{k\\ge0}|P(X=k)-P(Y=k)|$，说明相同均值不足以保证同分布。",
+    "solution": "两者均值为$1$，方差分别$1/2$与$1$。由$2<e<3$，在$k=0$有$e^{-1}>1/4$，在$k=1$有$1/2>e^{-1}$，在$k=2$有$1/4>1/(2e)$；$k\\ge3$仅泊松分布有正质量。总正差等于总负差，故全变差为$[1/2-e^{-1}]+[1/4-1/(2e)]=3/4-3/(2e)>0$。$2<e<3$可由$e=\\sum1/j!$与$j!\\ge2^{j-1}$（$j\\ge2$且部分严格）证明。均值相同不能消除分布差异；也不能把“泊松参数大”当作独立的禁用判据。",
+    "answer": "$d_{TV}=3/4-3/(2e)>0$；同均值但方差及分布不同。",
+    "method": "精确全变差与均值不足性",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：精确全变差与均值不足性",
+    "scene_spec": {
+     "objects": [
+      "令$X\\sim B(2,1/2)$、$Y\\sim\\operatorname{Pois}(1)$。精确求两离散分布的全变差距离$d_{TV}=\\frac12\\sum_{k\\ge0}|P(X=k)-P(Y=k)|$，说明相同均值不足以保证同分布。",
+      "$d_{TV}=3/4-3/(2e)>0$；同均值但方差及分布不同。"
+     ],
+     "steps": [
+      "第一步:两者均值为$1$，方差分别$1/2$与$1$。",
+      "第二步:由$2<e<3$，在$k=0$有$e^{-1}>1/4$，在$k=1$有$1/2>e^{-1}$，在$k=2$有$1/4>1/(2e)$；$k\\ge3$仅泊松分布有正质量。",
+      "第三步:总正差等于总负差，故全变差为$[1/2-e^{-1}]+[1/4-1/(2e)]=3/4-3/(2e)>0$。",
+      "第四步:$2<e<3$可由$e=\\sum1/j!$与$j!\\ge2^{j-1}$（$j\\ge2$且部分严格）证明。",
+      "第五步:均值相同不能消除分布差异；也不能把“泊松参数大”当作独立的禁用判据。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c47-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e668d7f9449fde4a25c31bcf080adca5d924187281d2cc444aac67f9adb613ba",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c47-04",
+     "prior_parent_training_ids": [
+      "prob-040"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "修正“参数大必失效”的笼统结论，替换为可完整证明的有限全变差反例。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c47-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c47-05",
+   "deficiencies": [
+    "第一步'直接相加三项'未把 k=0,1,2 三项具体写出(每项的系数与指数),括号内相加得 1519/625 的通分运算未展示",
+    "第二步泊松值 5/(2e) 未展示三项求和过程(e^{-1}+e^{-1}+e^{-1}/2)",
+    "第三步比值化简为 e(49/50)^{48}(3038/3125) 的代数过程(除以 5/(2e) 后的整理)未展示",
+    "第四步两条对数不等式 ln(1-x)≥-x-x²/[2(1-x)] 与 ln(1-y)>-y/(1-y) 只陈述不推导,放缩依据未标注",
+    "第五步各项 24/25、12/1225、87/3038 分别由哪条不等式代入哪个 x,y 得出未标注,等于号处 1-24/25-12/1225-87/3038=17/10850 的通分运算未展示"
+   ],
+   "record": {
+    "id": "draft-c47-05",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "二项到泊松近似",
+    "concept_id": "C47",
+    "parent_training_ids": [
+     "prob-040"
+    ],
+    "problem": "对$X\\sim B(50,1/50)$，精确求$P(X\\le2)$并证明它严格大于$P(Y\\le2)$，其中$Y\\sim\\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。",
+    "solution": "直接相加三项得$P(X\\le2)=(49/50)^{48}[(49/50)^2+49/50+49/100]=(1519/625)(49/50)^{48}$。泊松值为$5/(2e)$。两者比值为$e(49/50)^{48}(3038/3125)$。对$0<x<1$，级数或积分给$\\ln(1-x)\\ge-x-x^2/[2(1-x)]$；又$\\ln(1-y)>-y/(1-y)$。取$x=1/50,y=87/3125$，比值的对数严格大于$1-24/25-12/1225-87/3038=17/10850>0$。故二项概率严格较大；差的精确表达式为$(1519/625)(49/50)^{48}-5/(2e)$。",
+    "answer": "$P(X\\le2)=(1519/625)(49/50)^{48}>5/(2e)$，差如上。",
+    "method": "有限尾概率的精确比较",
+    "difficulty": "进阶",
+    "variant_kind": "结构改写：有限尾概率的精确比较",
+    "scene_spec": {
+     "objects": [
+      "对$X\\sim B(50,1/50)$，精确求$P(X\\le2)$并证明它严格大于$P(Y\\le2)$，其中$Y\\sim\\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。",
+      "$P(X\\le2)=(1519/625)(49/50)^{48}>5/(2e)$，差如上。"
+     ],
+     "steps": [
+      "第一步:直接相加三项得$P(X\\le2)=(49/50)^{48}[(49/50)^2+49/50+49/100]=(1519/625)(49/50)^{48}$。",
+      "第二步:泊松值为$5/(2e)$。",
+      "第三步:两者比值为$e(49/50)^{48}(3038/3125)$。",
+      "第四步:对$0<x<1$，级数或积分给$\\ln(1-x)\\ge-x-x^2/[2(1-x)]$；又$\\ln(1-y)>-y/(1-y)$。",
+      "第五步:取$x=1/50,y=87/3125$，比值的对数严格大于$1-24/25-12/1225-87/3038=17/10850>0$。",
+      "第六步:故二项概率严格较大；差的精确表达式为$(1519/625)(49/50)^{48}-5/(2e)$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c47-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "87a1ce2bf843e6d6844ae42526fcdd63a96ee93947474d7bdc01f04d961a7029",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c47-05",
+     "prior_parent_training_ids": [
+      "prob-040"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "用有限精确求和及严格对数界替代三项小数累加和相对误差估算。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c47-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c48-02",
+   "deficiencies": [
+    "第三步'后项严格小于 I/k²'未标注放缩依据(积分区间上 t>k ⟹ t²>k² ⟹ 1/t²<1/k²)",
+    "第三步由 I>φ(k)/k-I/k² 解出 I>kφ(k)/(k²+1) 的代数步骤(移项合并 I(1+1/k²)>φ(k)/k)未展示"
+   ],
+   "record": {
+    "id": "draft-c48-02",
+    "category": "概率论",
+    "sub_category": "正态分布",
+    "concept": "正态分布与参数",
+    "concept_id": "C48",
+    "parent_training_ids": [
+     "prob-041"
+    ],
+    "problem": "设$Z\\sim N(0,1)$。精确给出$P(|Z|\\le k)$（$k=1,2,3$）；对任意$k>0$证明双侧尾界$2k\\phi(k)/(k^2+1)<P(|Z|>k)<2\\phi(k)/k$。",
+    "solution": "对称性给$P(|Z|\\le k)=2\\Phi(k)-1$。记$I=\\int_k^\\infty\\phi(t)dt$；因$t/k>1$，$I<(1/k)\\int_k^\\infty t\\phi(t)dt=\\phi(k)/k$。分部积分得$I=\\phi(k)/k-\\int_k^\\infty\\phi(t)/t^2dt$，后项严格小于$I/k^2$，故$I>k\\phi(k)/(k^2+1)$。乘$2$即得双侧界。三个覆盖概率分别为$2\\Phi(1)-1,2\\Phi(2)-1,2\\Phi(3)-1$，所有界均有证明，无小数覆盖率。",
+    "answer": "覆盖概率$2\\Phi(k)-1$；尾界$\\frac{2k\\phi(k)}{k^2+1}<P(|Z|>k)<\\frac{2\\phi(k)}k$。",
+    "method": "正态双侧尾的积分界",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：正态双侧尾的积分界",
+    "scene_spec": {
+     "objects": [
+      "设$Z\\sim N(0,1)$。精确给出$P(|Z|\\le k)$（$k=1,2,3$）；对任意$k>0$证明双侧尾界$2k\\phi(k)/(k^2+1)<P(|Z|>k)<2\\phi(k)/k$。",
+      "覆盖概率$2\\Phi(k)-1$；尾界$\\frac{2k\\phi(k)}{k^2+1}<P(|Z|>k)<\\frac{2\\phi(k)}k$。"
+     ],
+     "steps": [
+      "第一步:对称性给$P(|Z|\\le k)=2\\Phi(k)-1$。",
+      "第二步:记$I=\\int_k^\\infty\\phi(t)dt$；因$t/k>1$，$I<(1/k)\\int_k^\\infty t\\phi(t)dt=\\phi(k)/k$。",
+      "第三步:分部积分得$I=\\phi(k)/k-\\int_k^\\infty\\phi(t)/t^2dt$，后项严格小于$I/k^2$，故$I>k\\phi(k)/(k^2+1)$。",
+      "第四步:乘$2$即得双侧界。",
+      "第五步:三个覆盖概率分别为$2\\Phi(1)-1,2\\Phi(2)-1,2\\Phi(3)-1$，所有界均有证明，无小数覆盖率。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c48-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e7c0cdbe068654cd2ffeebcba6f0e35a986b8c580307b542cabf1962c6b83b17",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c48-02",
+     "prior_parent_training_ids": [
+      "prob-041"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "以精确函数和有证明的Mills界替换百分比估算。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c48-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c48-04",
+   "deficiencies": [
+    "第一步 S~N(3,13)、T~N(0,25) 的均值方差来源未展示(E S=1+2=3、Var S=4+9=13、E T=2-2=0、Var T=4·4+9=25)",
+    "第二步协方差只给 2VarX-VarY=8-9,未展示双线性展开 Cov(X+Y,2X-Y)=2Cov(X,X)-Cov(X,Y)+2Cov(Y,X)-Cov(Y,Y) 及独立性给 Cov(X,Y)=0 的使用",
+    "第三步 4a-9=0 的展开未展示(Cov(S,aX-Y)=aCov(X,X)-Cov(Y,Y)=a·4-9)",
+    "第四步 aX-Y~N(1/4,117/4) 的代入计算未展示(均值 9/4-2=1/4,方差 (9/4)²·4+9=117/4)"
+   ],
+   "record": {
+    "id": "draft-c48-04",
+    "category": "概率论",
+    "sub_category": "正态分布",
+    "concept": "正态分布与参数",
+    "concept_id": "C48",
+    "parent_training_ids": [
+     "prob-041"
+    ],
+    "problem": "设独立$X\\sim N(1,4),Y\\sim N(2,9)$。求$S=X+Y,T=2X-Y$的分布及协方差，判断独立性；再求使$S$与$aX-Y$独立的全部实$a$。",
+    "solution": "$S\\sim N(3,13)$，$T\\sim N(0,25)$，所以$P(T>0)=1/2$。但$\\operatorname{Cov}(S,T)=2\\operatorname{Var}X-\\operatorname{Var}Y=8-9=-1$，故不独立。由于$(S,aX-Y)$联合正态，独立等价于协方差为零，即$4a-9=0$，唯一$a=9/4$。此时$aX-Y\\sim N(1/4,117/4)$。联合正态是使用零协方差推出独立的关键，不能推广到任意分布。",
+    "answer": "$S\\sim N(3,13),T\\sim N(0,25)$，协方差$-1$，不独立；唯一$a=9/4$。",
+    "method": "正态线性组合+对称性",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：正态线性组合+对称性",
+    "scene_spec": {
+     "objects": [
+      "设独立$X\\sim N(1,4),Y\\sim N(2,9)$。求$S=X+Y,T=2X-Y$的分布及协方差，判断独立性；再求使$S$与$aX-Y$独立的全部实$a$。",
+      "$S\\sim N(3,13),T\\sim N(0,25)$，协方差$-1$，不独立；唯一$a=9/4$。"
+     ],
+     "steps": [
+      "第一步:$S\\sim N(3,13)$，$T\\sim N(0,25)$，所以$P(T>0)=1/2$。",
+      "第二步:但$\\operatorname{Cov}(S,T)=2\\operatorname{Var}X-\\operatorname{Var}Y=8-9=-1$，故不独立。",
+      "第三步:由于$(S,aX-Y)$联合正态，独立等价于协方差为零，即$4a-9=0$，唯一$a=9/4$。",
+      "第四步:此时$aX-Y\\sim N(1/4,117/4)$。",
+      "第五步:联合正态是使用零协方差推出独立的关键，不能推广到任意分布。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c48-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "30960c6191eaa90dbc251e064c8253600561877ede7fb2463d5cc3dd52d0c934",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c48-04",
+     "prior_parent_training_ids": [
+      "prob-041"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "增加联合正态下的相关性与独立系数，避免只复制单变量仿射正态。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c48-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c49-04",
+   "deficiencies": [
+    "步骤仅为解答逐句拆分,缺少重点与细节标注:未写出并演示协方差交叉项 $\\frac{1}{n^2}\\sum_{i\\ne j}\\mathrm{Cov}(X_i,X_j)$ 如何因两两不相关而消失(仅第三步一句括注'协方差项全为零',无动画演示)",
+    "第四步切比雪夫代入后 $C/(n\\varepsilon^2)\\to0$ 未配过程可视化,未标注'ε 任意固定、n 增大时概率界收缩'这一收敛重点",
+    "未标注证明结构重点(ES_n=0 使只需控制方差、切比雪夫如何把方差界转化为概率界)"
+   ],
+   "record": {
+    "id": "draft-c49-04",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "大数定律",
+    "concept_id": "C49",
+    "parent_training_ids": [
+     "prob-042"
+    ],
+    "problem": "证明切比雪夫大数定律:若随机变量序列 $X_1,X_2,\\dots$ 两两不相关，且存在常数 $C$ 使 $Var(X_i)\\le C$ 对一切 $i$ 成立，则 $\\frac{1}{n}\\sum_{i=1}^{n}(X_i-EX_i)\\xrightarrow{P}0$。",
+    "solution": "令 $S_n=\\frac1n\\sum_{i=1}^{n}(X_i-EX_i)$。$ES_n=0$。由两两不相关,$Var(S_n)=\\frac{1}{n^2}\\sum_{i=1}^{n}Var(X_i)\\le\\frac{nC}{n^2}=\\frac{C}{n}$(协方差项全为零)。由切比雪夫不等式,对任意 $\\varepsilon>0$,$P(|S_n|\\ge\\varepsilon)\\le\\frac{Var(S_n)}{\\varepsilon^2}\\le\\frac{C}{n\\varepsilon^2}\\to0$。故 $S_n\\xrightarrow{P}0$。",
+    "answer": "证明见解法(两两不相关使方差无交叉项:$Var(S_n)\\le C/n\\to0$,切比雪夫得依概率收敛)。",
+    "method": "不相关条件下的证明",
+    "difficulty": "中等",
+    "variant_kind": "相关样本的适用条件:两两不相关(无需独立)下的切比雪夫大数定律证明",
+    "scene_spec": {
+     "objects": [
+      "证明切比雪夫大数定律:若随机变量序列 $X_1,X_2,\\dots$ 两两不相关，且存在常数 $C$ 使 $Var(X_i)\\le C$ 对一切 $i$ 成立，则 $\\frac{1}{n}\\sum_{i=1}^{n}(X_i-EX_i)\\xrightarrow{P}0$。",
+      "证明见解法(两两不相关使方差无交叉项:$Var(S_n)\\le C/n\\to0$,切比雪夫得依概率收敛)。"
+     ],
+     "steps": [
+      "第一步:令 $S_n=\\frac1n\\sum_{i=1}^{n}(X_i-EX_i)$。",
+      "第二步:$ES_n=0$。",
+      "第三步:由两两不相关,$Var(S_n)=\\frac{1}{n^2}\\sum_{i=1}^{n}Var(X_i)\\le\\frac{nC}{n^2}=\\frac{C}{n}$(协方差项全为零)。",
+      "第四步:由切比雪夫不等式,对任意 $\\varepsilon>0$,$P(|S_n|\\ge\\varepsilon)\\le\\frac{Var(S_n)}{\\varepsilon^2}\\le\\frac{C}{n\\varepsilon^2}\\to0$。",
+      "第五步:故 $S_n\\xrightarrow{P}0$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c49-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e4e44a0a646e28d7fc4b184b00e7d36b219b23fd5b721386f07f0e112f856b06",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c49-04",
+     "prior_parent_training_ids": [
+      "prob-042"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "有限方差与两两不相关使交叉协方差为零，方差C/n及Chebyshev界趋零，不需完全独立。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c49-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c49-05",
+   "deficiencies": [
+    "第三步将截断偏差、尾部概率、切比雪夫三项估计压缩为一句 $P\\le 3\\tau_M/\\varepsilon+9M^2/(n\\varepsilon^2)$,未逐项给出放缩依据(哪项来自 Markov 尾部控制、哪项来自 $E|\\bar X_n-\\bar Y_n^{(M)}|\\le\\tau_M$、哪项来自方差 $M^2/n$ 的切比雪夫)",
+    "未标注取极限次序这一重点:先 n→∞ 后 M→∞ 的必要性仅第五步一句说明,无高亮/动画强调",
+    "截断变量 $Y_i^{(M)}$ 的引入与 $\\tau_M\\to0$ 的依据未配细节演示"
+   ],
+   "record": {
+    "id": "draft-c49-05",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "大数定律",
+    "concept_id": "C49",
+    "parent_training_ids": [
+     "prob-042"
+    ],
+    "problem": "证明独立同分布且$E|X_1|<\\infty$时样本均值依概率收敛到$\\mu=EX_1$，无需有限方差。证明必须说明截断偏差和尾部概率怎样分别控制。",
+    "solution": "令$Y_i^{(M)}=X_i\\mathbf1_{|X_i|\\le M}$，$\\tau_M=E[|X_1|\\mathbf1_{|X_1|>M}]\\to0$。有$|EY_1^{(M)}-\\mu|\\le\\tau_M$，$E|\\overline X_n-\\overline Y_n^{(M)}|\\le\\tau_M$，且独立性给$\\operatorname{Var}(\\overline Y_n^{(M)})\\le M^2/n$。固定$\\varepsilon>0$并取$M$使$\\tau_M<\\varepsilon/3$，三角不等式、Markov与Chebyshev得$P(|\\overline X_n-\\mu|>\\varepsilon)\\le3\\tau_M/\\varepsilon+9M^2/(n\\varepsilon^2)$。先对固定$M$令$n\\to\\infty$，再令$M\\to\\infty$，上极限为零。该次序避免把随$n$变化的截断界误当一致方差界。",
+    "answer": "$E|X_1|<\\infty$的独立同分布样本满足$\\overline X_n\\xrightarrow P\\mu$，不需要有限方差。",
+    "method": "有限一阶矩WLLN的截断证明",
+    "difficulty": "进阶",
+    "variant_kind": "结构改写：有限一阶矩WLLN的截断证明",
+    "scene_spec": {
+     "objects": [
+      "证明独立同分布且$E|X_1|<\\infty$时样本均值依概率收敛到$\\mu=EX_1$，无需有限方差。证明必须说明截断偏差和尾部概率怎样分别控制。",
+      "$E|X_1|<\\infty$的独立同分布样本满足$\\overline X_n\\xrightarrow P\\mu$，不需要有限方差。"
+     ],
+     "steps": [
+      "第一步:令$Y_i^{(M)}=X_i\\mathbf1_{|X_i|\\le M}$，$\\tau_M=E[|X_1|\\mathbf1_{|X_1|>M}]\\to0$。",
+      "第二步:有$|EY_1^{(M)}-\\mu|\\le\\tau_M$，$E|\\overline X_n-\\overline Y_n^{(M)}|\\le\\tau_M$，且独立性给$\\operatorname{Var}(\\overline Y_n^{(M)})\\le M^2/n$。",
+      "第三步:固定$\\varepsilon>0$并取$M$使$\\tau_M<\\varepsilon/3$，三角不等式、Markov与Chebyshev得$P(|\\overline X_n-\\mu|>\\varepsilon)\\le3\\tau_M/\\varepsilon+9M^2/(n\\varepsilon^2)$。",
+      "第四步:先对固定$M$令$n\\to\\infty$，再令$M\\to\\infty$，上极限为零。",
+      "第五步:该次序避免把随$n$变化的截断界误当一致方差界。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c49-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "189f981f52b88d41c48349ce5d8293fd4a368de97560f38b2be9f7cf3bcdf877",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c49-05",
+     "prior_parent_training_ids": [
+      "prob-042"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "去掉与C49-04同一方差除n证明的特例，改为截断法消除方差假设。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c49-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c50-01",
+   "deficiencies": [
+    "第一步容斥展开未逐项演示:未展示 k=0,1,2 各项(单纯形体积 $s^{100}/100!$、扣除坐标超 1 区域与平移操作)如何累加成 $\\frac{1}{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}{k}(45-k)^{100}$",
+    "第二步 $P(S_{100}>55)=P(S_{100}<45)$ 的对称性推导未展示(同分布且无原子)",
+    "第三步均值 1/2、方差 1/12 未给出计算,标准化与极限 $1-\\Phi(a)$ 一步带过,未展示 Φ 连续性的使用"
+   ],
+   "record": {
+    "id": "draft-c50-01",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "中心极限定理",
+    "concept_id": "C50",
+    "parent_training_ids": [
+     "prob-043"
+    ],
+    "problem": "设独立$X_i\\sim U(0,1)$，$S_n=\\sum_{i=1}^nX_i$。精确求$P(S_{100}>55)$；另对固定实$a$求$\\lim_{n\\to\\infty}P(S_n>n/2+a\\sqrt{n/12})$。",
+    "solution": "连续均匀立方体中，$\\sum x_i\\le s$的非负单纯形体积为$s^n/n!$；用容斥扣除坐标超过$1$的区域，得到$P(S_n\\le s)=\\frac1{n!}\\sum_{k=0}^{\\lfloor s\\rfloor}(-1)^k\\binom nk(s-k)^n$（$0\\le s\\le n$）。$S_{100}$与$100-S_{100}$同分布且无原子，所以目标概率为$P(S_{100}<45)=\\frac1{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}k(45-k)^{100}$，是精确有理数。因单变量均值$1/2$、方差$1/12$，经典CLT给标准化和依分布收敛到$N(0,1)$；正态CDF连续，故极限为$1-\\Phi(a)$。CLT的极限不等于固定样本的概率。",
+    "answer": "有限概率$\\frac1{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}k(45-k)^{100}$；极限$1-\\Phi(a)$。",
+    "method": "连续立方体容斥与CLT尺度",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：连续立方体容斥与CLT尺度",
+    "scene_spec": {
+     "objects": [
+      "设独立$X_i\\sim U(0,1)$，$S_n=\\sum_{i=1}^nX_i$。精确求$P(S_{100}>55)$；另对固定实$a$求$\\lim_{n\\to\\infty}P(S_n>n/2+a\\sqrt{n/12})$。",
+      "有限概率$\\frac1{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}k(45-k)^{100}$；极限$1-\\Phi(a)$。"
+     ],
+     "steps": [
+      "第一步:连续均匀立方体中，$\\sum x_i\\le s$的非负单纯形体积为$s^n/n!$；用容斥扣除坐标超过$1$的区域，得到$P(S_n\\le s)=\\frac1{n!}\\sum_{k=0}^{\\lfloor s\\rfloor}(-1)^k\\binom nk(s-k)^n$（$0\\le s\\le n$）。",
+      "第二步:$S_{100}$与$100-S_{100}$同分布且无原子，所以目标概率为$P(S_{100}<45)=\\frac1{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}k(45-k)^{100}$，是精确有理数。",
+      "第三步:因单变量均值$1/2$、方差$1/12$，经典CLT给标准化和依分布收敛到$N(0,1)$；正态CDF连续，故极限为$1-\\Phi(a)$。",
+      "第四步:CLT的极限不等于固定样本的概率。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-18-draft-c50-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-18",
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "c57fe3f6f906100dd11c52c20524d6237532d34feb10de00c3f341acd7bb7c31",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft.jsonl",
+     "original_id": "draft-c50-01",
+     "prior_parent_training_ids": [
+      "prob-043"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "删除小数CLT替代，补充有限样本容斥精确概率与正确尺度的极限。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v3.jsonl",
+      "sha256": "060b5ee38bc77bdac9a47b03782c0b6f9442dd5d7a886432deda173887d62626",
+      "versioned_id": "codex-repair-20261005-batch-18-draft-c50-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
