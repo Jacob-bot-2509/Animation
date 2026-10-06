@@ -1,0 +1,30 @@
+{
+  "schema": "batch-selector-content-scope-v1",
+  "purpose": "8项批次repair材料+1项选择器旧版本的内容范围论证(按用户放宽裁决)",
+  "produced_at": "2026-10-07",
+  "batch_repair_8_items": {
+    "items": ["batch-01/draft-codex-repair-v1.jsonl", "batch-02/draft-codex-repair-v1.jsonl",
+              "batch-04/draft-codex-repair-v1.jsonl", "batch-05/draft-codex-repair-v1.jsonl",
+              "batch-06/draft-codex-repair-v1.jsonl", "batch-07/draft-codex-repair-v1.jsonl",
+              "batch-08/draft-codex-repair-v1.jsonl", "batch-02/DRAFT_REPORT-codex-repair-v1.md"],
+    "nature": "264草稿修复管线(batch-repair)的第一轮中间产物,被同路径 v2/v3/v4-final 迭代覆盖",
+    "lineage_evidence": {
+      "successor_files_exist": "8/8 同路径后继版本现存(v2..v4-final,乃至v5/v6报告)",
+      "sha_chain": "reviews/codex-supervision/2026-10-05-batch-repair-execution/before-final-weighted-cycle/delivery-manifest.json 含8处repair-v1旧SHA引用;后继清单SHA与当前实际字节关系已由Codex核对16组通过",
+      "pipeline_scope": "修复管线的输入=264自编草稿(problem/solution/answer),无任何外部题源接入"
+    },
+    "conclusion": "repair-v1 内容 ⊆ 修复管线对264自编题的处理输出 → 不含池题内容;按用户放宽裁决'不影响题目判定'成立",
+    "honest_limits": "旧字节不可恢复(被后续迭代覆盖);不声称角色访问记录"
+  },
+  "selector_1_item": {
+    "item": "reviews/2026-10-05-training-diversity-drafts/draft-selection.json 历史版本(5b3ecb92dff6505d)",
+    "nature": "选择器索引文件:只含 schema/entries(路径+SHA引用)/hash_algorithm/migration 等元数据,不含任何题目正文",
+    "lineage_evidence": {
+      "direct_predecessor": "c30e68c13eeeec8c0d9e48a5e1e7f89b39711101abaefbd64d782f12c312208b 原件可得(Codex已核)",
+      "current": "schema2 现役选择器 6cadccf0…",
+      "content_scope": "索引文件,其引用对象全部为264草稿目录内文件(池前自编)"
+    },
+    "conclusion": "选择器任何历史版本都不可能承载池题内容(索引无正文);按用户放宽裁决成立",
+    "honest_limits": "5b3e…目标版本字节未恢复;不声称角色访问记录"
+  }
+}
