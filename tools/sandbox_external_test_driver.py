@@ -97,6 +97,23 @@ def main(argv=None) -> int:
     }
     report["route"] = tracert(args.bind, family)
 
+    # 拓扑证据:发送侧 IPv6 接口清单(Get-NetIPAddress 原始输出,供 ipv4-joint topology.json)
+    try:
+        cp_if = subprocess.run(
+            ["powershell", "-NoProfile", "-Command",
+             "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"],
+            capture_output=True, text=True, timeout=60)
+        iface_raw = (cp_if.stdout or "").encode("utf-8")
+        iface_file = out_dir / f"interfaces-{args.round}-{uuid.uuid4().hex}.txt"
+        iface_file.write_bytes(iface_raw + b"\n")
+        report["sender_interfaces"] = {"path": str(iface_file),
+                                       "sha256": hashlib.sha256(iface_raw).hexdigest(),
+                                       "rc": cp_if.returncode,
+                                       "stderr": (cp_if.stderr or "")[:200],
+                                       "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"}
+    except Exception as exc:
+        report["sender_interfaces"] = {"error": repr(exc)}
+
     def phase(name, fn):
         t0 = time.time()
         result = fn()
