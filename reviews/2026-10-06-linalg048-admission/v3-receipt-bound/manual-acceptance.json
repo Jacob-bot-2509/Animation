@@ -1,0 +1,2087 @@
+{
+ "schema": "linalg048-manual-acceptance-v2",
+ "reviewer": "claude-code",
+ "render_evidence_raw_sha256": "4e81d921f2fb3ad5e90ab8e7372fa898203441bf8011008774f2d1b45cfbee25",
+ "candidate_raw_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+ "scene_raw_sha256": "e21c9ff372911a46a8538025f6e1f4f4f4cb36371fbef7740fe47fd71c65149e",
+ "media_raw_sha256": "da928b2d6d48185f3627b7c8e14549092cd530dd14a6bda870530c8b5e7d2f98",
+ "labeling_rule_sha256": "68a324dcfe6ad7581b5a5cf056d3282e67861a9cc2812193d0db6b05e6e44304",
+ "visual": {
+  "verdict": "ACCEPT",
+  "reason": "248 帧 AppContainer 真实渲染视频完整解码;独立视觉复验(Codex video-review-v2)确认此前四项缺陷(字幕重叠/白标低对比/标注遮挡/轴不等比)已修复;末帧单位正方形屏幕比例 1:1、黑色标签可读、橙色平行四边形/青色线段/绿色斜线/紫向量与公式齐备;数学内容与推导逐项一致(位移(3y,0)、X-3Y=1/2、sqrt(10)、det=1)"
+ },
+ "semantic_pairs": [
+  {
+   "split": "train",
+   "id": "calc-derivative-001",
+   "problem_sha256": "395f374b70ea4a45edbbd9122e3b8573fdf8a70eb9e47a651586aa733bb6e682",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "calc-improper-002",
+   "problem_sha256": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-param-improper-003",
+   "problem_sha256": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-double-integral-004",
+   "problem_sha256": "a03636bc12d3a0a5c93729316828c494afe0dce933d80db14e1e25ff2ed772ea",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-green-005",
+   "problem_sha256": "73bd5cbbb4148987a8d3cfb4a7a7475ece62c6ce2779e63a79d04e8b96da5e0c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-limit-006",
+   "problem_sha256": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-007",
+   "problem_sha256": "b6c40471a7b1a01bae6f02074c3f5c3bf65b41449b82f9bf53dbcab20fda0344",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-008",
+   "problem_sha256": "dc0d870b0fd14fe0c5c39ba803c177732876894194ee1dc6243922ddba3feb6b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-009",
+   "problem_sha256": "c7cec50e4bafdbaecb9ce02ced9be3d198ecc8c44b82795bc2d7ded57a631476",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-010",
+   "problem_sha256": "47bde9ed3223b33439d70670acc7103a4c97c08aa3f91f7e37f4292ccb6c4c84",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-011",
+   "problem_sha256": "20abc5c3e1753ebbd729471c6bd03d1ff6bb29faaf84bad5d652746f40b3809c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-vol-012",
+   "problem_sha256": "6cfc8d5667d046fef035d6878f439a1e5a65a3b0d78b98747a66510ab9c9febb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-area-013",
+   "problem_sha256": "210ee5084e4ed179c1254cfce0d660b48affb3d7caa2c83c6986fde598945182",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "calc-series-015",
+   "problem_sha256": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-series-017",
+   "problem_sha256": "7a0b942859332e92b20eaceb573b7a58454f73a35865049e8059cf6347807327",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "calc-series-020",
+   "problem_sha256": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "geom-020",
+   "problem_sha256": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "geom-022",
+   "problem_sha256": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "geom-024",
+   "problem_sha256": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "geom-026",
+   "problem_sha256": "1b1b40383ee5c7d6a609b7ee075e508b8dec41f11b2d18f2d453d6cedb1a3f86",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "geom-028",
+   "problem_sha256": "ec590aba47c88a93502747d9914179b39524c9bf28c2db63f0d7bd9e126ff684",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "geom-029",
+   "problem_sha256": "a70ee2750061a239c8fb1e9d8829167a415de73b4e087fb81d588dcec47b41c2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为三维空间等距变换(旋转+平移)作用于点的坐标计算;候选为二维平面水平剪切的几何描述,维数、变换类型与目标均不同,候选解答不含其答案"
+  },
+  {
+   "split": "train",
+   "id": "geom-030",
+   "problem_sha256": "0cbfdcb6f09ba329085b8aa4c3afa3df86df7e1b135452afcc3325ef73df9ce2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为三维仿射变换将球面变为椭球的图形判断;候选为二维剪切的几何效果,对象(球面vs单位正方形)与目标不同"
+  },
+  {
+   "split": "train",
+   "id": "geom-031",
+   "problem_sha256": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-050",
+   "problem_sha256": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "train",
+   "id": "linalg-051",
+   "problem_sha256": "9fba9e9b95edbfabe6a8d3b3a29e7dc31a057c55657be8eaae0541f462a1104f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "linalg-053",
+   "problem_sha256": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "train",
+   "id": "linalg-054",
+   "problem_sha256": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "train",
+   "id": "linalg-055",
+   "problem_sha256": "229f7f73fa24ece645756f5c5074a95e0a3a2eb89fd1f1885100405830dfd02a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-056",
+   "problem_sha256": "ad09575944b688736288386239c23307e12a6fb0546a0fe9810c3cc277fcaefe",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-058",
+   "problem_sha256": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "同考点训练变体:查询为初等矩阵[[1,0],[3,1]](竖直剪切)的几何意义,候选为[[1,3],[0,1]](水平剪切);矩阵不同、剪切方向与几何效果不同,候选解答不含其答案;按用户裁决同考点题保留为变体"
+  },
+  {
+   "split": "train",
+   "id": "linalg-062",
+   "problem_sha256": "ab2fba37d2a1688e0f30928437c0bd081bea475c825415792470f7d6bc087b48",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "train",
+   "id": "linalg-063",
+   "problem_sha256": "646f829ce7994212ac56cce77b28e62403b6a064af9932023d462eba0b35b8c7",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求 R^3→R^2 线性映射的核与值域维数;候选为具体二维剪切矩阵的几何描述,对象与目标不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-064",
+   "problem_sha256": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[3,1],[0,2]]的特征值/特征向量并说明其几何意义;候选不含任何谱数据且矩阵不同(纯剪切vs伸缩+剪切),题型与求解结构不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-065",
+   "problem_sha256": "693be5d7ba50bc04795b4cdcda3329dacc573bf62f4fd35be302c94bf10d09f7",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为λ-矩阵的不变因子/初等因子;候选为具体矩阵的几何效果,题型不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-066",
+   "problem_sha256": "6c1aa9315b152f120afa4866118cb6ed7a01fecf87f07e2645730e45923b5a20",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为若尔当标准形;候选为几何效果描述,无相似/若当内容"
+  },
+  {
+   "split": "train",
+   "id": "linalg-067",
+   "problem_sha256": "14346d6c8e3ad4c7591cc5fe58c43d67ffe5cdffa621cdf1908df1f4ed7e0584",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询验证旋转矩阵正交性并说明对应正交变换;候选为剪切矩阵的几何效果,矩阵类型(旋转vs剪切)与内容不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-069",
+   "problem_sha256": "0f869c412d8d4f1941641b07900d1c5c125268657564cd70d3e03dba31bb8b63",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+  },
+  {
+   "split": "train",
+   "id": "linalg-070",
+   "problem_sha256": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为辛形式在辛变换下不变的意义;候选为剪切几何效果,对象(辛形式vs剪切矩阵)不同"
+  },
+  {
+   "split": "train",
+   "id": "prob-038",
+   "problem_sha256": "cff3fc3eb09a77f1dbcc29399a47d61c2c6c12aac2ad743fe492b72cc2ce8a68",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "prob-039",
+   "problem_sha256": "d3c2d381d9003632b78b9eb449f70a71acbafb204ddb61f8f737c60e434b815b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间几何度量或另一变换类型的几何;候选只含特定剪切矩阵的几何内容,对象与求解结构不同"
+  },
+  {
+   "split": "train",
+   "id": "prob-040",
+   "problem_sha256": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "prob-041",
+   "problem_sha256": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "prob-042",
+   "problem_sha256": "5db972b750fe565bc2e516e4a55c1255e45419166a9636cf107cf24ea8bdb5d1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "train",
+   "id": "prob-043",
+   "problem_sha256": "9ba5f18532453cf789b45fd0d25c06e16dcf761d489d1e86bda096c8424dcbf5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求核与像(值域);候选为几何效果描述,对象与目标不同"
+  },
+  {
+   "split": "train",
+   "id": "prob-046",
+   "problem_sha256": "8461ccd1568d81c76a8413199be51563d23468c8a3bf8036dde9011a76c38072",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间几何度量或另一变换类型的几何;候选只含特定剪切矩阵的几何内容,对象与求解结构不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-001",
+   "problem_sha256": "99ff4f8b1d45ffec7e1b4b46fc52416063b8e6e15389cd5b6e60c9d729bcd594",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-002",
+   "problem_sha256": "f9bedeee03135ef61cfd29f1e4f1384e82c9bc7bd6a725d7c33924390d50f66d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-003",
+   "problem_sha256": "118751971c94c061c9882243c5e6c97113a484f8625b148f934761d1e54b834a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-004",
+   "problem_sha256": "aa2d5fc495f758e024221b0158ee60d18dc8c6e194a03d9722ef366bb40b4604",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-005",
+   "problem_sha256": "83499622a2133f409138dc1e6eba6307a8b0e78351badfe11147f8f8eb011089",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-006",
+   "problem_sha256": "1e60091776e296867b6ef915cb6e8ff897c3d41947ec0362c5bb50c8d9dd98e3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-007",
+   "problem_sha256": "879555b14eabf37dec48c4bae88b134b338ed10dd583470c8b714566951710f5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-008",
+   "problem_sha256": "44e0daaec40df2a7daa55648d3b6f11ebaa48065774429337f94375f736e998e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-009",
+   "problem_sha256": "d518d75965aa0b238ac76604c8e588ea01e6af0ebc99479b4a6be05624ffd989",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-010",
+   "problem_sha256": "74e752e576be685b4cdc64366e897cf12bfc3fcf5e9b0c2195aeb7770bfe8e75",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-011",
+   "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-012",
+   "problem_sha256": "3ceee48b951db0cf5ab977fffbca0f0b36d1f3d4d9026a704c868664ae430418",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-013",
+   "problem_sha256": "8e48e0d8ad49823f0064a70b3217ea20b0fa65ff03d0176a75048467e7b41bec",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-014",
+   "problem_sha256": "b0930d72502ed7c2b6cbef33f6e2c171c9057c2d445f1c365a80e26da7885f0d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-015",
+   "problem_sha256": "5cd7f65b3e3039904e3bbdbb2bc7d15882a2e4e82ec30681d3c1af06cace1991",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-016",
+   "problem_sha256": "ef2e5e7702d2b90237fc249adbcc6c5b7f04102067164afafc9d46b64dfe1194",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-017",
+   "problem_sha256": "2c5d8abc26a7152fe6af6b3f68bcbd35fa26b039383b1d251333e83bca9a0f93",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-018",
+   "problem_sha256": "2fc7588e696ba41d01efe9aabb14e323188eeabad475513d85b31e02ae4f98ce",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-019",
+   "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-020",
+   "problem_sha256": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-021",
+   "problem_sha256": "14f8b0e55c16d34159961ff30763784042a90a216a873d65ed33b4a1aedc559e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-022",
+   "problem_sha256": "6f25c4b291c4ba7e232e7b5ddff9b9c1da8909c60fc6e75f5697b45ec1e988a6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-023",
+   "problem_sha256": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-024",
+   "problem_sha256": "d20461e9e541de80f28d13de7faaecbf4cc2d3fbe2d2fd544f283c9e1e978f20",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-025",
+   "problem_sha256": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-026",
+   "problem_sha256": "1caaeaba6e895a4e687b662f0e655819f7254e88f05da21050dea5d44311af8a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-027",
+   "problem_sha256": "62572e2ce02c00bea462d6235ed7e90121dab0c9b96cb6f1986f8a089896632e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-028",
+   "problem_sha256": "166a03d5727e13a672fcf7c0f8591ca033730421b6ed1cce21b9dc0a00c4c7fd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-029",
+   "problem_sha256": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-030",
+   "problem_sha256": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-001",
+   "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-002",
+   "problem_sha256": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-003",
+   "problem_sha256": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-004",
+   "problem_sha256": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-005",
+   "problem_sha256": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-006",
+   "problem_sha256": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-007",
+   "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-008",
+   "problem_sha256": "923b23015cd9210b7107bff7ed7b5f7af44ff4d2d7263b30be00ea168855bdbd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-009",
+   "problem_sha256": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-010",
+   "problem_sha256": "4cadc4e56957bab7164a8e34f49689155ecc3cef73fb5731864657a7cc8cb359",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-011",
+   "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-012",
+   "problem_sha256": "850c318356a4425229fb688308688d6b0c2f550a582aae80d4721ebc1de278b2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-013",
+   "problem_sha256": "5ba60dccb32c121e1ac7dba8f91a6f32b6e33c478ef841733c83a54ab6bc90c0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-014",
+   "problem_sha256": "a7ecd9149c19c92a659ccf8525efaf8c6a397fb99882961a34645542c68f2adb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-015",
+   "problem_sha256": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-016",
+   "problem_sha256": "4ef3d39fd11867ab5e15cff4d08e2ffe2ea55df14a262794fbd07def2753fb5c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-017",
+   "problem_sha256": "229f0884ef0d5b6a96f8f64b000fb1f3c45a09edae6289a036af70dc6e64435a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-018",
+   "problem_sha256": "447eda4d3de6213be8aeaf1cba25b6bcf725f1bc2ecb980ef6e1ec65cfc741d0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-019",
+   "problem_sha256": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-020",
+   "problem_sha256": "b7f3862774661d65d7c246e3cc0ce7f59c6711298a160a89736b360804db8612",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-001",
+   "problem_sha256": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-002",
+   "problem_sha256": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-003",
+   "problem_sha256": "8900968919b8cb701a813092261762a39a5fe4380fb920604cf202530eae7e65",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为三对角行列式计算;候选不含行列式递推内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-004",
+   "problem_sha256": "17eddce7a85ba23a9214c0914209149b58e729c662402defba1cf1997fbece2f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为行列式计算;候选不含行列式运算内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-005",
+   "problem_sha256": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[3,2],[4,3]]的逆矩阵;候选不含逆矩阵内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-006",
+   "problem_sha256": "71842fa82fa88cbf447ed1c0fd3319faae393f2409497808c0c3e2c3e1e8bf0f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[1,1],[0,1]](另一剪切)的幂 A^n;候选不含矩阵幂内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-007",
+   "problem_sha256": "90c1821f68e0f9e69c06d8cd18f3800de333052a7cad7ae6cd30d67eb59c6b96",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求旋转矩阵的幂 A^n;候选无相关内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-008",
+   "problem_sha256": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求行列式/秩/逆矩阵;候选无这些代数内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-009",
+   "problem_sha256": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为分块行列式计算;候选无"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-010",
+   "problem_sha256": "e3717dc5aea9d521f06582634a09534d94068c3508320e8ef0c32e6cae909e09",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求矩阵的秩;候选无"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-011",
+   "problem_sha256": "ffc720f969aa792b7f020d572ddd7402a2b3111d65e94724d8cb5e568506564e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-012",
+   "problem_sha256": "eca94dd328c2837df1ecc6af4e86ba64605fe51fcd2de147645a2fe21136802b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-013",
+   "problem_sha256": "3f4f762951c78c5f22745d00109f4abcdfc2ad8e5d5d633b3a24b9e06b0bbc34",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-014",
+   "problem_sha256": "5c9ca9083640623ea34f6546c248e26966e1a899c736d56e52a821c296636a26",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为参数对称矩阵的特征值与正交对角化;候选不含谱数据"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-015",
+   "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "具名对:查询求[[1,2],[2,1]](对称)的特征值/对角化;候选矩阵不同且无任何谱数据,题型不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-016",
+   "problem_sha256": "d3de6839a9c89d4ccff817aea837d5ba8878713082579be4e419451acd07f9ac",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求解谱数据(特征值/对角化/谱分解);候选不含任何谱数据,题型不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-017",
+   "problem_sha256": "d5e74978274e5a0de40da591f3219cc5b5a3d519bd3b7b1749eb6e2d17b1bc8c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[1,1],[0,1]](另一剪切矩阵)的特征值并判断可对角化;候选不含任何特征值/对角化内容且矩阵不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-018",
+   "problem_sha256": "de3f947d7bc9e5817afe7089a0cb633a4efcd82760f607bbea2b3a886dc03c21",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[2,1],[1,2]]的 A^100;候选不含矩阵幂/谱内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-019",
+   "problem_sha256": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为二次型正定性;候选为剪切几何意义,对象与目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-020",
+   "problem_sha256": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为二次型正定性;候选为剪切几何意义,对象与目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-021",
+   "problem_sha256": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为二次型正定性;候选为剪切几何意义,对象与目标不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-022",
+   "problem_sha256": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-023",
+   "problem_sha256": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-024",
+   "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-025",
+   "problem_sha256": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-026",
+   "problem_sha256": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-027",
+   "problem_sha256": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-028",
+   "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-029",
+   "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求 T(x,y)=(x+2y,2x+y) 的核与像;题型签名一致但目标(核像计算vs几何描述)与映射不同,候选不含其答案"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-030",
+   "problem_sha256": "993eac2d7826c16ee6a655b8ab2ac34d16d1cd4d173c0ce35b71708efb181140",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-031",
+   "problem_sha256": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为最小多项式与若尔当标准形;候选无相似/若当内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-032",
+   "problem_sha256": "0106ec138785e64d52b91abc1384c5b6508eb1a81b40f06117bb29d0bd6102b2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为λ-矩阵不变因子/初等因子;候选无"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-033",
+   "problem_sha256": "439a7992de42fe9ea317bc51a7cde9800b07ca127dbd20b32d9f1fd83dd7a89c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求矩阵指数 e^{tA};候选无"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-034",
+   "problem_sha256": "a9bb397b61d8b3d9be679849828e965e8248492e7cd1ec8dbe2f148f4be1fdfc",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-035",
+   "problem_sha256": "d64eb331b97bdbef5bb72a6cb1975c1fab8e603e88f47d05dd2af3ee9f50ab0a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询证明正交矩阵等价于标准正交基;候选不含正交性内容"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-001",
+   "problem_sha256": "8a9db327ed0653427b7dc03f7d78496d88784a908d103d9dc829eb0d3414a39e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-002",
+   "problem_sha256": "1e5f1e79b63078901b6948f6d06af027d16fb89723b3ec7c5b168b1558013d78",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-003",
+   "problem_sha256": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-004",
+   "problem_sha256": "f81df1cd84bf93ed6a834f5cb32d52ba32210ec06eab9c68d225c9595af58071",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-005",
+   "problem_sha256": "52023160add43640fb6984e092a5e211243b355a3b0abb714e0e74eb4be538f0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-006",
+   "problem_sha256": "0328c42f087a0cbbe7d9c07005ab8ef3afb05de9c204b096e1e52b0c652ca415",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-007",
+   "problem_sha256": "5089b98664b1dfd7fbd9594ad3f7a59f6a6f491928acc00e7a0e5759955f69af",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-008",
+   "problem_sha256": "2a0d1fbf74525e693ffb682e66736ed5895abd595eb2f2002750edafcae5b131",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-009",
+   "problem_sha256": "e6a3d323c10e79a69627b04da93e52f1d9533c3b05f8189e123f94f33d18ecc6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-010",
+   "problem_sha256": "112aa1da081d6446ab04d10f0537afc8e29e6d0d61cd4da152909d99ff56a86a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-011",
+   "problem_sha256": "5b2ec8381948b9c2ac350e8ae92503ed4ad7ca424100bbdc2ddbdabd25548f9b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-012",
+   "problem_sha256": "c1a4f0f006d14e0f27d2a72ea22146b5145aca4822383b4bc7fbed767b2a8e02",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-013",
+   "problem_sha256": "e3a510d396155d28e8bca580b6f19047cc728c9413235b808621ed7282a4fd05",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-014",
+   "problem_sha256": "a79da55dc54b5b52dd6d76c491c7278636eb018baceedde2f41df6fc9e68d31d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-015",
+   "problem_sha256": "16542c5620aff2fe7cfb324274c6662240300a8301865d651ca43acd7983e066",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-001",
+   "problem_sha256": "e4fb1c09ae99787ce56c4f7e6308ccbbb99bdb8f3251ce47c5eba997d6ac6e27",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-002",
+   "problem_sha256": "b341f7042d7204bb4b04ad1fe5a8db7704e23eb42015ae740d340d029b60d2f1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-003",
+   "problem_sha256": "49d51bb4c468f99464875d3733046fbe0694504ecea76b1668ad26eeae5da78b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-004",
+   "problem_sha256": "004a5c3cea6a5f72a1f93580ddffa01d8ee275ac552db5a678e3e01e86b972d4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-005",
+   "problem_sha256": "ffaf0aab72e759d598c56ae31266c6c6803505c590fdce934ef8990e6bf9601b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-006",
+   "problem_sha256": "f708fdf69bf85f0096bc1e33bac9eeb5b0cb64cc2e729187349ae6b8fcb81891",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-007",
+   "problem_sha256": "fd1a844d11a9969bb56ccc4f3934d173f6b853af55b9524e853b4bd80ec67f58",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-008",
+   "problem_sha256": "b30904197263a7e28e050029c2f875617e1dea57241e9da5f2de284f1618ccfd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-009",
+   "problem_sha256": "9d4b61d24d871f4673c3fea08e03c475f8cecf9fed5c5f1a19efd70acf0dbdaf",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-010",
+   "problem_sha256": "e479996d1b4683c527603101d3189218b4a3870c8e9497f679fdeaa45afc348b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-011",
+   "problem_sha256": "9b5d8bc7ecf72ded7c884eaf9cb4ed9f9912641fd32e36cf13ddd427423ec43c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-012",
+   "problem_sha256": "7199d8e4196cf9e6eab81635e58b65cf9b4312d7a340b8696a94b259dc963878",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-013",
+   "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-014",
+   "problem_sha256": "909cbd7d40efdfbae7676a14b34e2df10aa874b80939f566d9e66d2fa72720a0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-015",
+   "problem_sha256": "0d75b6179aa7f666e220dbbcb03eca6e6274db7e8c364fece74321025a6efd3d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-016",
+   "problem_sha256": "b02d1fee194332aca5e18fcc8a309297c734cbc4885f6af61f81afe0c9dbfb0f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-017",
+   "problem_sha256": "c0a78065390328d5e370c681878d15d65e37c82230be32f80a24fe99920048f4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-018",
+   "problem_sha256": "68295e6c0af3c377d1a871e1ba92a89caa3522004cf7d701da7abeba77f703aa",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-019",
+   "problem_sha256": "9f240493f251d4467c5e37da295db04641fe415dd73607dc1903cef28f6bfeb6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-020",
+   "problem_sha256": "82207d18380df6f0c83d32835e944c21015965abcea9b6e2ad45084e4c2d33e2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-021",
+   "problem_sha256": "70baf80bf2a2770968ec29ef0fb8e97a96fba8efb25285edb1dcef11335b07a5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-022",
+   "problem_sha256": "eecca6d889e7a8d3ed181a2f8180fd6793103f10d9dc2e6a05995440f74c5c4d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-023",
+   "problem_sha256": "0fe8077c084db3dee2a71c7dc2e2e6e746d333a856430b3c27e8553f8875125b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-024",
+   "problem_sha256": "70bbdfba6d7c6e65e3545339b922957285d60c256ee3d8fe00d0a461d14bcb45",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-025",
+   "problem_sha256": "85cdcedaa2463bb02d46ebb720c1206a201356cfec10c1c4e97510b2ed1fb086",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为极限计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-026",
+   "problem_sha256": "d3186498206ba8ac6ff8350e4cd90a87dee260e5f3d5f5ac56cfe01d9b51bf4e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-027",
+   "problem_sha256": "1ceeb3f01a49931446c8f1adebae794b2d0e1a9352d02dbc45f66832fd2601ef",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-028",
+   "problem_sha256": "3ce5e64f524dd1fa7129de15f53a3ce24679a7d2db67008acf0df0dab9e488e0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-029",
+   "problem_sha256": "e41dc42e4d3e752f32301a7a12215c1fe8c9e729304550229e68db46ef664daf",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-030",
+   "problem_sha256": "83055e4762d726b9bf45ea249d66c74957b3ccde8b102b0177394d3c97797900",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-031",
+   "problem_sha256": "f1c0862229c1cf93633290f9c99bd2a4a25a01569ea093e3aabc68ee5bf5eb3a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-032",
+   "problem_sha256": "a014bcb4ac425919b7be8e0925fb3f04f59c52fcdc751a83d66cf41c68479692",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-033",
+   "problem_sha256": "a0766240a82e99facc45d956cf1746d75a4800ea8e9f7db3835dee26860f3997",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-034",
+   "problem_sha256": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-035",
+   "problem_sha256": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-036",
+   "problem_sha256": "86cdd36e2b295084a9cb615ef5fb462fa49c1a3142a39dbe2b0d251ca659d7fb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-037",
+   "problem_sha256": "9650e17d47e0eb0306d1f5bf82076bdb5b3549aa9c3de3938d58f8243a346549",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-038",
+   "problem_sha256": "a5c530bbc0adcff7c4e360a5772a810fc4998a1998a74676e1729666a34c1f87",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-039",
+   "problem_sha256": "c1a4544e619ea011362fcaab775b710c309efa8fdeada6a0588fd5315eaeae43",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为牛顿冷却微分方程(数学分析);与候选的线性代数几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-040",
+   "problem_sha256": "753b2985f69dff39492fbaf726fdfc32784fc377bb90e550eeab8b45ff4b04a0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-041",
+   "problem_sha256": "6e357696baf386d47786a0da604d33afb365d294f7a2d1d8b89ab99ac5691427",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间几何度量或另一变换类型的几何;候选只含特定剪切矩阵的几何内容,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-042",
+   "problem_sha256": "54c836589af9380405e1a8b50e35c3df0fca8629a4dd1fbb12dfc9d4b597c016",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-043",
+   "problem_sha256": "938915c6271dd0c2c25c8904c3d9bd17fa68b997a6b1a42b5ed64fac296a55e4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微积分计算;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-044",
+   "problem_sha256": "7242b9dc699f279cfec0c7662cf9cabd7eea40ea1fcc02f2bfc7d05914d911cd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-045",
+   "problem_sha256": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-001",
+   "problem_sha256": "da4d3d8109be156e8b9bb65ba0dcd428b4b15f03df0c2c5532ffa8cda7ab998d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-002",
+   "problem_sha256": "5f93ca34242ed1c47db511c24783767496f764cbfb12cc8bf001da1fb6802a81",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-003",
+   "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-004",
+   "problem_sha256": "3da455ca832c4280e23325592813dc7e876d11da7d851a809ffb9f51eead8a07",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-005",
+   "problem_sha256": "4b7a96674d27384c1d4c179bc9a1390df1a22ac4bb3a1c516ab9cd3a8e8f39cd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-006",
+   "problem_sha256": "42ccc4e914f2cb3ed2368d2ce5b6556a092dca7ca35ce108f1dfc846633d3eef",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-007",
+   "problem_sha256": "70e78d555526cbf2dcc917a4f282d73a4fa4b38ac778d0af008db54f53b8d391",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-008",
+   "problem_sha256": "cfbdb658b72bcb758357811ce3bc9eece5fece74ba521dc7810e51a2e513fe57",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-009",
+   "problem_sha256": "f01c61b5e71a7d704b2e40d4055f6beaa2411079b6e303e315472377f9677afd",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-010",
+   "problem_sha256": "e0f5156af7863a8c61a304eecfb3edd9dfb3d5f7b374be260dc709a5135c82a3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-011",
+   "problem_sha256": "4921a0abb80e06a007611ddd0cc47d90d5f3b49b1b431b255f5260417cb24981",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-012",
+   "problem_sha256": "83c3adf2a3e8eca5b4ac72597cca0a686d06a1fff732623995c9e84216301f10",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-013",
+   "problem_sha256": "cf724069a0ba515431d9f66b26b825a6c0bac7b7d8af6f1c4321349b03a1c6f0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-014",
+   "problem_sha256": "4c947ad397e63be1ed6abcb3c8ded7d9070a2fa5726ab73e4e5f858a3db65454",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-015",
+   "problem_sha256": "784a0c2739652b130d9677c163a0be4112505964389ca8ad8f0627bafcffd331",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-016",
+   "problem_sha256": "5341d6583f22e36e87c32cd820af3c66883dff9bab112ccb6d9edb1f9e8dba8a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[1,1],[0,1]](另一剪切)作用于单位圆的像(椭圆)与面积π;候选只描述单位正方形与水平/竖直直线的剪切行为,不含单位圆像方程与面积π的任何推导,对象(单位圆vs单位正方形)与目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-017",
+   "problem_sha256": "5108c1ce981dab3945f4ed3aa8704c822fc2597df77ed63d9f32fc3cb3c70d1f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-018",
+   "problem_sha256": "ca0f1339344f26e7ec8af1c3f0926bd107cede8026aed373d0a63e673ab14039",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-019",
+   "problem_sha256": "e764eb3aab6ea37554570dd761feb33c95a457197a6eebf526cc0a9139a281db",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-020",
+   "problem_sha256": "4d7cda188f79b34a7c9eedfc58d67f370e622929507e42db50c3186c742e05ea",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-021",
+   "problem_sha256": "0e93c63618e08b9b847fdee016a2467fd1dffa92b1c145d65162ea8b06673b02",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-022",
+   "problem_sha256": "262014474e7eeda9c4d0d0052ec7ae868282f41ca5e7f07f005fff2f27667321",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为绕y轴旋转矩阵R_y(φ)及其正交性验证;候选为二维剪切,维数与变换类型不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-023",
+   "problem_sha256": "0b3cce085f61c469e1a22bc11319c41adc971b01e5e229394ec59eb98e573350",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-024",
+   "problem_sha256": "e2dde273ab83fdde492c70efc02fc90ace2ff1b9b40b3a85a9cc6d7d72468dee",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-geom-025",
+   "problem_sha256": "2cd6fcdbd19d0ca16de5330324c8f8474604b4a6d74509705869566953e4e4ca",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为空间距离/投影度量;候选为平面剪切几何,对象与求解结构不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-001",
+   "problem_sha256": "4c258f373c67dc82caaf26d700c5b7f5e16f137e8b7071a351142ff4ea9be2ab",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-002",
+   "problem_sha256": "ece5c1102da718b1eedae7076b204170cf5d05c541a8eb0e5af5bff4cd081045",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询解矩阵方程 AX=B(A=[[2,1],[1,2]]);候选不含解方程内容"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-003",
+   "problem_sha256": "8cf363c416a885a63eebf23c7fc0b1787c45653dc658a860222b6f59d7d0e9c0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求 B^2=A 的矩阵平方根(A=[[1,2],[0,1]]);候选不含开方/特征值内容"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-004",
+   "problem_sha256": "cc149fe81e8809c3b943685be1093d341eed5f1f1097c83849b70e6d48fddecb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求 R^4→R^3 映射的秩与核维数;候选为二维具体矩阵的几何描述,维数与目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-005",
+   "problem_sha256": "df4cc13e95965121c637dd440d390802f1277ef7a198df65dbf435d22303191e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求解谱数据(特征值/对角化/谱分解);候选不含任何谱数据,题型不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-006",
+   "problem_sha256": "f38d929e1188133cdfb590118a042fe3fca0b7f2e45c9e665f69df30c882f7b0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询用相似对角化求 A^10 表达式;候选不含谱数据"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-007",
+   "problem_sha256": "7f551c385a1df9ab2dded473e131352f14cfbed158cf4a42e8fea93050f3a92f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-008",
+   "problem_sha256": "b140b0a0d9afd133c7006f15d3bb3f1d216f429fa9f41628b74cf84bd3235fa9",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询用 Cayley–Hamilton 求[[1,2],[2,1]]的逆;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-009",
+   "problem_sha256": "c00c9d13ad8666cad8064deecc6adaceeacea1dd73096369d810f12346ce3641",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求沿(1,1)方向的投影矩阵并作投影计算;候选为剪切,无投影内容"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-010",
+   "problem_sha256": "023f4ee6d8c884df1a0bd8d2696ff22c958de9751d4d59122c1dfe65629a9824",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求 QR 分解;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-011",
+   "problem_sha256": "e6581f165443143ee6a2ac520332ee8134910e00137d31bfa92da8a8b5ee903b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-012",
+   "problem_sha256": "ba0d6254f3ec0ec27d601a143dde03d578e5d6a45b6e363d50cf23bd289dbf04",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为斐波那契数列的矩阵方法;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-013",
+   "problem_sha256": "5f6d745766985a4414c1e7a924b9cbc91348941cec97b50c265d4cfe33a385d3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为三对角行列式的周期规律;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-014",
+   "problem_sha256": "917699d279d48760d83bcd0748b4e29a6643370204f482a9042499da9b08cbe6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求逆矩阵;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-015",
+   "problem_sha256": "aa6b6eb577a223bfe5fee2c987e4db6a43a72421c8d4534d96ba07240ab8fbf9",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-016",
+   "problem_sha256": "109f2fabc01b5ffa5ea39da659c572e08423d3c4a24f1d1bb148794e282069bc",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-017",
+   "problem_sha256": "48ed27b39eacc0b7fb74db266bcdaa23dd4ad3c11374e6618a4311e0a903d958",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为迹内积验证与矩阵范数;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-018",
+   "problem_sha256": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为幂等矩阵特征值与 rank=tr 性质;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-019",
+   "problem_sha256": "fefba401dbccebc268e49d6372fbb7cef4d5be9dcfd840158356e3236aaac9b6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求与[[1,1],[0,1]]可交换的矩阵族;候选不含交换性讨论"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-020",
+   "problem_sha256": "f15fb750c7ec542004cce2fb1fa2d406d208d8e4252ac6ec4c8dfa91957ee6d3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-021",
+   "problem_sha256": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为反射矩阵的正交性/特征值/几何意义;候选为剪切矩阵,矩阵类型与内容不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-022",
+   "problem_sha256": "ba937f9a6838ce27c27b513ebf4694f57709f70022009c02427aae5817e73dd2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为正定矩阵 Cholesky 分解;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-023",
+   "problem_sha256": "02d223a432d241bcaad40ada749c43f22287718c257f4974a3c1814bcf190e67",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询用矩阵方法解微分方程组(系数矩阵[[3,1],[1,3]]);候选不含 ODE/谱求解内容,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-024",
+   "problem_sha256": "f20f474ba31485b10dcd7ab950e5e4f61fc51fa5a1a8bd2daad88b205c8c229e",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-025",
+   "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "具名对:查询求[[1,2],[2,1]]的谱分解;候选矩阵不同且无谱数据"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-026",
+   "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为逆矩阵/可逆性;候选不含逆运算内容"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-027",
+   "problem_sha256": "7b7ea7d2bbc060fc4f665c7750712721b2a1118a8d671c480b9709f13455a2b8",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求方程/方程组;候选为几何解释,目标不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-028",
+   "problem_sha256": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求[[0,-1],[1,0]]的特征值与无实特征向量的几何原因;候选为剪切且无谱内容,矩阵不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-029",
+   "problem_sha256": "02a94b2af7da38f5b38e4bd25d5f5bf6517328cf6ebddc1c589d5d65df495aa7",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为最小多项式与若尔当标准形;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-030",
+   "problem_sha256": "77ed49d1c27111e93e89c6cd058e48fb6a5c545f9195baa66083a7928d2bca1d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-031",
+   "problem_sha256": "63350d3116ba9c2be70c1a04f8e71a898c784da4d0dab6c845ed75fd4a0c2ef2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-032",
+   "problem_sha256": "3973e60262c136a0edc51142b843dd8621ca5a392c68f3161d39c9421fee4230",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-033",
+   "problem_sha256": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求解谱数据(特征值/对角化/谱分解);候选不含任何谱数据,题型不同"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-034",
+   "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-035",
+   "problem_sha256": "d4f7f0a0e72ea78d10e9c4118f84eecce12a870b1aec6e076ae6df9c6a3fea90",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-036",
+   "problem_sha256": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为初等矩阵的行列式;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-037",
+   "problem_sha256": "d1a6c9ae435a534c1471fb0d33400e1fd62c6f06339cbd5a65c58e30a43d8e65",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为微分算子 T(f)=f' 在多项式空间下的矩阵;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-038",
+   "problem_sha256": "19d9d99da30da957cbecea447903c224f91ebe160d7dbec85eabf8486ab15bbf",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为逆矩阵/可逆性;候选不含逆运算内容"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-039",
+   "problem_sha256": "f60f734d6cc49bc90085be131ced538e09a8d2e477a88833f445f6b31c87c6f8",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-linalg-040",
+   "problem_sha256": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为圈图邻接矩阵的特征值;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-001",
+   "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-002",
+   "problem_sha256": "3056097af8b564ebe93c7763732f8cce5ab31461295e15f7dbbee9e77a25cb15",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-003",
+   "problem_sha256": "fc2b2034b382479b1093d3d25819f69702ad0918c67cb31e7bd373ceb178e040",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-004",
+   "problem_sha256": "d4f6148983ced91bdf7b62af926b2fccf405a9056d8d69f4f9645f27eb7f0f3b",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-005",
+   "problem_sha256": "e292aa403cf5de61745877ca0e86d5e2c7749ab094c3dc721342663f112de1b3",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-006",
+   "problem_sha256": "f0f3976c388292db2769515dea7795845fff25afc377aabc4d4e22a06dcf4f3f",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-007",
+   "problem_sha256": "178a5cd1c54a391adc84cbb047f823e2a33d70775f7b8425eb3e89c09c9abfdb",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-008",
+   "problem_sha256": "66804f3fa51772d47f91e05d1f28f451e61f1f9b067656f75d8b9cc0482a83af",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-009",
+   "problem_sha256": "e950c2eb5c911637c6a71ba6c78f09f6d4f5d6c215ee09dcfe38394cfc7d8e78",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-010",
+   "problem_sha256": "01a0b17cb298da7ce7a1e9d53da101fc60b61635ee39364c90de5457c4808c55",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-011",
+   "problem_sha256": "e91bc532a910d7c359f4dc3ff09902b25befaabd5865e32e82331e2af4e3c9b5",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-012",
+   "problem_sha256": "b170b4ff3a4b3d26cb7165cdea502e1369e26dc945f9893ac25dab9e5ead36d1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-013",
+   "problem_sha256": "ede08b5e8d41b0ba6fc34a057e4628c4d96823bfac12d3568bff08361d1f2256",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-014",
+   "problem_sha256": "9ac3000f417577b49f792a0717b790465a7ddf7d46d2353d5a2d79a7bb01538c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-015",
+   "problem_sha256": "ea2bfac2f4c7fc75b0cb72ec37a011dad68f576cf875c602020eaa983f7cf478",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-016",
+   "problem_sha256": "f51378608b65d36d0a9ac42977c370a809458a2fcaf73e1d5e12ca97627befd4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为马尔可夫链稳态分布(概率);与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-017",
+   "problem_sha256": "68efc747de0a687f4adb12a283489728e1a852e7cb9e7dc01e1804e3e36cb82d",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-018",
+   "problem_sha256": "95a5f13e1dc01fafec32a7f7bc192c59a7d4e59539cca2e520dfb47756b7fa51",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为级数敛散/求和;与候选的剪切几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-019",
+   "problem_sha256": "560f64f06d2b9760c290e76398df76a2e76d50f57f06ff9a38cbc879562d77b2",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-020",
+   "problem_sha256": "541c872d956d6994cf86ba35fbd1aeeb1d1292b67e1a86ae32acb210811d05d9",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-021",
+   "problem_sha256": "b333b8032026fa9fe0582022e58e6a434df062fe67744a1d19eea3a2003fd598",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-022",
+   "problem_sha256": "f7b377559d0995509ae28bfdbf6627949b85dc8dc243e2291482c441ed0e3ccf",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-023",
+   "problem_sha256": "4ac34128aff66bf8c334c31af1ea31bee05b331965123ef69a64f8e7e083f159",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-024",
+   "problem_sha256": "85945509391369ea2494034c4c6da6222bc034d7b71f46083705c38311e33f0a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-prob-025",
+   "problem_sha256": "841d2fd67c6e5327fcff560f3c51957308b4268fc603df2ccff730c6643268fe",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-x-001",
+   "problem_sha256": "b64a969b01c015e826d3ae1b479a2d4409bd18fcacfccef9fa8b4c9992b49de0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-x-002",
+   "problem_sha256": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-x-003",
+   "problem_sha256": "9aa6f2bd6563838fdb2b777a0840c8f21f3e058653bff28003a95394c12171a6",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询证明矩阵指数导数公式;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-x-004",
+   "problem_sha256": "a1e35d2eeecf323b092926be2b502e959b43a0bf9ae01cb6964bf99c34c047e4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为马尔可夫稳态分布与特征向量关系;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-x-005",
+   "problem_sha256": "f86cfe14862427fd7f52f66a664ac5acf4d67fed80dcb952af925ee1378908ac",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-x-006",
+   "problem_sha256": "2d6b9239617a8b0e04ee0a8c67bfe6055a30dde5d9b53c757c298bc6626c5e1a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-x-007",
+   "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询求解谱数据(特征值/对角化/谱分解);候选不含任何谱数据,题型不同"
+  },
+  {
+   "split": "test",
+   "id": "test-x-008",
+   "problem_sha256": "41561f553d3dbb550a4e032fd8ae9db3a08e6d26529fbdfed7798f6b9171a3c8",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-x-009",
+   "problem_sha256": "129299fe92064ab0296962860db94832aeb5226b8ae6461a70ea99fe3d2bb39a",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-x-010",
+   "problem_sha256": "d4c2d8c0ee524969fdb3808f753eaad099c7eb2da00177a30f9ffd7edac29c3c",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为协方差矩阵正定判定(概率);候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-x-011",
+   "problem_sha256": "9cdd3ebfe6775dc5e4449f8f39b7e9f302232d13d5793200296e08d4786cc0e4",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为反射复合=旋转及其几何意义;候选为剪切,变换类型(反射/旋转vs剪切)与内容不同"
+  },
+  {
+   "split": "test",
+   "id": "test-x-012",
+   "problem_sha256": "9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询用级数定义计算矩阵指数 e^A;候选无"
+  },
+  {
+   "split": "test",
+   "id": "test-x-013",
+   "problem_sha256": "c18c98ea035371c2ed48f969b07a422cf3f46ebf8df2209e339704380db1a7b1",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询为概率分布/数字特征计算;与候选的几何描述无共同对象与求解结构"
+  },
+  {
+   "split": "test",
+   "id": "test-x-014",
+   "problem_sha256": "2691ab324dff745695efec03ff95ecb11afc92cb7f1bc8732fe3148796b8a203",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询与候选无共同数学对象、条件、目标或求解结构,候选解答不含该查询的答案;共享知识点本身不算泄漏"
+  },
+  {
+   "split": "test",
+   "id": "test-x-015",
+   "problem_sha256": "6f102bc9723f09636976cc68dedb63edd318fb2d0856a343b6f9bbb9fa345e27",
+   "verdict": "DIFFERENT_CORE_TASK",
+   "reason": "查询用对角化求马尔可夫转移矩阵极限;候选无"
+  }
+ ]
+}
