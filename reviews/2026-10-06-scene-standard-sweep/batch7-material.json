@@ -1,0 +1,893 @@
+{
+ "remaining": [
+  "draft-c34-05",
+  "draft-c35-02",
+  "draft-c35-05",
+  "draft-c38-01",
+  "draft-c38-02",
+  "draft-c39-01",
+  "draft-c39-03",
+  "draft-c40-01",
+  "draft-c40-04",
+  "draft-c42-02",
+  "draft-c42-03",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c34-05",
+   "deficiencies": [
+    "第二步'逐因子相乘'只列中间结果 $I+b e_{23}+ab e_{13}$ 与最终结果 $I+ab e_{13}$,未标明每步哪一行乘哪一列的分量乘积(如(1,3)元经 $e_{12}e_{23}=e_{13}$ 如何积累出 $ab$)。",
+    "第三步逆公式 $E_{ij}(a)^{-1}=E_{ij}(-a)$ 未演示验证 $(I+a e_{ij})(I-a e_{ij})=I$(需利用 $e_{ij}^2=0$)。",
+    "第四步代入 $a=2/3,b=3/4$ 未演示分数乘法 $2/3\\times3/4=1/2$ 及 $1/2$ 填入复合矩阵(1,3)位置、逆矩阵改为 $-1/2$ 的过程。"
+   ],
+   "record": {
+    "id": "draft-c34-05",
+    "category": "高等代数",
+    "sub_category": "矩阵",
+    "concept": "初等矩阵与操作",
+    "concept_id": "C34",
+    "parent_training_ids": [
+     "linalg-058"
+    ],
+    "problem": "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+    "solution": "矩阵单位满足$e_{ij}e_{kl}=\\delta_{jk}e_{il}$，特别是$e_{12}e_{23}=e_{13}$而$e_{23}e_{12}=0$，各相关平方为零。逐因子相乘，前三因子为$I+b e_{23}+ab e_{13}$，再乘$I-b e_{23}$得$I+ab e_{13}$。$E_{ij}(a)^{-1}=E_{ij}(-a)$，所以最终逆为$E_{13}(-ab)$。代入两分数得$ab=1/2$，复合为$\\begin{pmatrix}1&0&1/2\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，逆将$1/2$改为$-1/2$。该交换子显示倍加变换的顺序通常不可交换。",
+    "answer": "交换子$E_{13}(ab)$，逆$E_{13}(-ab)$；指定参数的非对角项$1/2$。",
+    "method": "矩阵单位与初等交换子",
+    "difficulty": "进阶",
+    "variant_kind": "结构改写：矩阵单位与初等交换子",
+    "scene_spec": {
+     "objects": [
+      "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+      "交换子$E_{13}(ab)$，逆$E_{13}(-ab)$；指定参数的非对角项$1/2$。"
+     ],
+     "steps": [
+      "第一步:矩阵单位满足$e_{ij}e_{kl}=\\delta_{jk}e_{il}$，特别是$e_{12}e_{23}=e_{13}$而$e_{23}e_{12}=0$，各相关平方为零。",
+      "第二步:逐因子相乘，前三因子为$I+b e_{23}+ab e_{13}$，再乘$I-b e_{23}$得$I+ab e_{13}$。",
+      "第三步:$E_{ij}(a)^{-1}=E_{ij}(-a)$，所以最终逆为$E_{13}(-ab)$。",
+      "第四步:代入两分数得$ab=1/2$，复合为$\\begin{pmatrix}1&0&1/2\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，逆将$1/2$改为$-1/2$。",
+      "第五步:该交换子显示倍加变换的顺序通常不可交换。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c34-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "31f7cf88a3ee3559b33276dc3a02cfbbff34367a885d0a3627b675a09bef1b8f",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c34-05",
+     "prior_parent_training_ids": [
+      "linalg-058"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集完整的三类初等行列式问题，改为非交换倍加的交换子。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c34-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c35-02",
+   "deficiencies": [
+    "第一步只说「给反解」,未展示从 u1=x1-x2 等反解出 x1=u1+u2+u3+w 的逐步代入过程",
+    "第二步标准形/规范形一步写出,伸缩替换 v2=√2u2、v3=√3u3 的代入过程未展示",
+    "第三步「计算核」只给结论 span(1,1,1,1),未展示三个平方均为零推出坐标相等的推导",
+    "第四步限制正定的证明未展示具体代入:x=c(1,1,1,1) 与 x4=0⇒c=0 的论证细节缺失,只有概述性语言"
+   ],
+   "record": {
+    "id": "draft-c35-02",
+    "category": "高等代数",
+    "sub_category": "二次型",
+    "concept": "二次型标准形与惯性",
+    "concept_id": "C35",
+    "parent_training_ids": [
+     "linalg-059"
+    ],
+    "problem": "对四元二次型$f=(x_1-x_2)^2+2(x_2-x_3)^2+3(x_3-x_4)^2$，给出可逆线性替换、合同标准形及惯性；再证明将$f$限制在$V=\\{x:x_4=0\\}$上后成为正定型。",
+    "solution": "令$u_1=x_1-x_2,u_2=x_2-x_3,u_3=x_3-x_4,w=x_4$。反解为$x_4=w,x_3=u_3+w,x_2=u_2+u_3+w,x_1=u_1+u_2+u_3+w$，故替换可逆。标准形为$u_1^2+2u_2^2+3u_3^2+0w^2$；再伸缩$v_1=u_1,v_2=\\sqrt2u_2,v_3=\\sqrt3u_3$得规范形$v_1^2+v_2^2+v_3^2+0w^2$。全空间的秩为$3$，惯性为$(3,0,1)$，核为$\\operatorname{span}\\{(1,1,1,1)\\}$。若$x\\in V$且$f(x)=0$，三个平方均为零，故$x=c(1,1,1,1)$；第四坐标为零又给$c=0$，故$x=0$。因此$f|_V$正定；$\\dim V=3$，其惯性为$(3,0,0)$。亦可在新坐标中写约束$w=0$，三个差分坐标仍独立，标准形保留三个正平方。",
+    "answer": "全空间标准形$u_1^2+2u_2^2+3u_3^2+0w^2$，秩$3$、惯性$(3,0,1)$；限制在$V$上正定，惯性$(3,0,0)$。",
+    "method": "核方向消除后的二次型限制",
+    "difficulty": "基础",
+    "variant_kind": "四元退化型+超平面限制消除零模",
+    "scene_spec": {
+     "objects": [
+      "四元二次型及差分坐标",
+      "核$\\operatorname{span}(1,1,1,1)$",
+      "固定端点$x_4=w=0$",
+      "全空间与限制空间的惯性对照"
+     ],
+     "steps": [
+      "第一步:定义差分坐标并给反解。",
+      "第二步:写出标准形和规范形。",
+      "第三步:计算核、秩与三元惯性。",
+      "第四步:将约束代入，证明核与约束空间只交于零，得到限制正定。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-03",
+     "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "8558f5a8c840d40ca479f20b8e4dd0f0d2e2657f0aa4f1bbe4744721a1d76d43",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c35-02",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+     "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+     "original_id": "draft-c35-02",
+     "prior_parent_training_ids": [
+      "linalg-059"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "c46feb9ae21b6c31487c001dc00bea01e0aeb245580f0b920a943e7b8dd36fba",
+     "previous_hold_reasons": [
+      "EXACT_FROZEN_SPECTRUM_SUBTASK"
+     ],
+     "math_correction_notes": [
+      "纠正相似/合同的错误蕴含，区分标准形与规范形并给出完整变换矩阵"
+     ],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+      "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+      "versioned_id": "codex-repair-20261005-batch-03-draft-c35-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "9922125f39097c4e231c377eae2345bc55f1a8493d225f725df6f270d761a7f1",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c35-05",
+   "deficiencies": [
+    "第四步计算 C=M_f^{-1}M_g 只给结果矩阵,未标明哪一行乘哪一列及分量乘积(如第 1 行×第 1 列得 √2、第 1 行×第 2 列得 -√3 的来历)",
+    "第五步验证 CᵀAC=B 仅说「展示验证」,未展示逐项相乘核对的行×列分量运算",
+    "验证 det C=2√2≠0 只报结果,未展示行列式计算"
+   ],
+   "record": {
+    "id": "draft-c35-05",
+    "category": "高等代数",
+    "sub_category": "二次型",
+    "concept": "二次型标准形与惯性",
+    "concept_id": "C35",
+    "parent_training_ids": [
+     "linalg-059"
+    ],
+    "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy$ 与 $g(x,y,z)=2x^2+3y^2+4z^2$ 是否合同，并说明理由；若合同，构造可逆矩阵 $C$ 使 $C^{\\mathsf{T}}AC=B$。",
+    "solution": "配方：$f=(x+y)^2+y^2+3z^2$，正惯性指数 $3$，正定；$g=2x^2+3y^2+4z^2$，正惯性指数 $3$，正定。由惯性定理，两者惯性指数相同，故合同(都与 $I_3$ 合同，由合同关系的传递性)。构造：令 $M_f=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&\\sqrt3\\end{pmatrix}$，则 $f=(M_fx)^{\\mathsf{T}}(M_fx)$，即 $A=M_f^{\\mathsf{T}}M_f$;令 $M_g=\\mathrm{diag}(\\sqrt2,\\sqrt3,2)$，则 $B=M_g^{\\mathsf{T}}M_g$。于是 $B=(M_f^{-1}M_g)^{\\mathsf{T}}A(M_f^{-1}M_g)$，取 $C=M_f^{-1}M_g=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&\\frac{1}{\\sqrt3}\\end{pmatrix}\\begin{pmatrix}\\sqrt2&0&0\\\\0&\\sqrt3&0\\\\0&0&2\\end{pmatrix}=\\begin{pmatrix}\\sqrt2&-\\sqrt3&0\\\\0&\\sqrt3&0\\\\0&0&\\frac{2}{\\sqrt3}\\end{pmatrix}$。验证:$C^{\\mathsf{T}}AC=\\mathrm{diag}(2,3,4)=B$(逐项相乘核对),且 $\\det C=2\\sqrt2\\neq0$。",
+    "answer": "合同(两者均正定,惯性指数 $(3,0,0)$);$C=\\begin{pmatrix}\\sqrt2&-\\sqrt3&0\\\\0&\\sqrt3&0\\\\0&0&\\frac{2}{\\sqrt3}\\end{pmatrix}$。",
+    "method": "惯性定理判合同+显式合同变换构造",
+    "difficulty": "进阶",
+    "variant_kind": "任务升级:惯性定理的应用判断与合同变换矩阵的显式构造,非单纯配方",
+    "scene_spec": {
+     "objects": [
+      "板书:$f=(x+y)^2+y^2+3z^2$ 与 $g=2x^2+3y^2+4z^2$ 的配方",
+      "高亮框:两者惯性指数均为 $(3,0,0)$",
+      "板书:$M_f$、$M_g$ 的定义与 $C=M_f^{-1}M_g$ 的计算",
+      "高亮框:$C=\\begin{pmatrix}\\sqrt2&-\\sqrt3&0\\\\0&\\sqrt3&0\\\\0&0&\\frac{2}{\\sqrt3}\\end{pmatrix}$",
+      "验证板书:$C^{\\mathsf{T}}AC=\\mathrm{diag}(2,3,4)$"
+     ],
+     "steps": [
+      "第一步:分别配方 $f$ 与 $g$,得两者惯性指数均为 $(3,0,0)$。",
+      "第二步:由惯性定理判定合同,并说明传递性理由。",
+      "第三步:构造平方根因子矩阵 $M_f$ 与 $M_g$。",
+      "第四步:计算 $C=M_f^{-1}M_g$,高亮结果并验证 $\\det C\\neq0$。",
+      "第五步:展示验证 $C^{\\mathsf{T}}AC=B$,完成构造。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-03",
+     "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "cccf11cc39f8f226e1ad996c794a32f5033e855800ebcf1973681d3a5d424b47",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c35-05",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+     "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+     "original_id": "draft-c35-05",
+     "prior_parent_training_ids": [
+      "linalg-059"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "53f5864dfb9ab0c71f5acb2c6ef1f822ad423513b2b2f73e0167afd5c19ad6b3",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+      "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+      "versioned_id": "codex-repair-20261005-batch-03-draft-c35-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "cccf11cc39f8f226e1ad996c794a32f5033e855800ebcf1973681d3a5d424b47",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c38-01",
+   "deficiencies": [
+    "第三步把 $P^2=P$、核$V$、像$U$、维数均$2$ 四个结论并作一句,未演示 $P(P(a,b))=P(a,Ma)=(a,Ma)=P(a,b)$ 的两次作用代入、核的求解($P(a,b)=0\\Rightarrow a=0$,$b$ 任意$\\Rightarrow\\ker P=V$)、像的构造($\\{(a,Ma)\\}=U$)与维数 $\\dim U=\\dim V=2$ 的计算过程。"
+   ],
+   "record": {
+    "id": "draft-c38-01",
+    "category": "高等代数",
+    "sub_category": "线性空间",
+    "concept": "子空间和与交",
+    "concept_id": "C38",
+    "parent_training_ids": [
+     "linalg-062"
+    ],
+    "problem": "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+    "solution": "$(a,b)=(a,Ma)+(0,b-Ma)$，第一项属$U$、第二项属$V$，故和为全空间。若$(a,Ma)=(0,b)$，则$a=0,b=0$，交为零，分解唯一。投影$P(a,b)=(a,Ma)$，$P^2=P$，核$V$、像$U$，两者维数均$2$。不需要$M$可逆；图空间与竖直空间的互补来自第一坐标的唯一性。",
+    "answer": "$\\mathbb R^4=U\\oplus V$；$P(a,b)=(a,Ma)$，核$V$、像$U$，维数均$2$。",
+    "method": "图空间的规范补空间",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：图空间的规范补空间",
+    "scene_spec": {
+     "objects": [
+      "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+      "$\\mathbb R^4=U\\oplus V$；$P(a,b)=(a,Ma)$，核$V$、像$U$，维数均$2$。"
+     ],
+     "steps": [
+      "第一步:$(a,b)=(a,Ma)+(0,b-Ma)$，第一项属$U$、第二项属$V$，故和为全空间。",
+      "第二步:若$(a,Ma)=(0,b)$，则$a=0,b=0$，交为零，分解唯一。",
+      "第三步:投影$P(a,b)=(a,Ma)$，$P^2=P$，核$V$、像$U$，两者维数均$2$。",
+      "第四步:不需要$M$可逆；图空间与竖直空间的互补来自第一坐标的唯一性。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c38-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "b0326934744c4a6bacbc92bd18e3b4458027cf780980f09e56b0e2bfe3e4e7b0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c38-01",
+     "prior_parent_training_ids": [
+      "linalg-062"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集两固定子空间直接和的数值变体，改为图空间及无需可逆的唯一分解。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c38-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c38-02",
+   "deficiencies": [
+    "第二步从 $a+b+c=0,2b+4c=0$ 直接跳到 $f=c(x^2-1)^2$,未演示消元过程($2b+4c=0\\Rightarrow b=-2c$,代入得 $a=c$,再展开 $c(1-2x^2+x^4)=c(x^2-1)^2$)。",
+    "$f'(1)=0$ 得出 $2b+4c=0$ 的求导代入($f'=2bx+4cx^3$,代入 $x=1$)未展示。",
+    "维数计算未逐项列出:$V$ 的基 $(x-1)^2,x(x-1)^2,x^2(x-1)^2$ 与和维数 $3+3-1=5$。"
+   ],
+   "record": {
+    "id": "draft-c38-02",
+    "category": "高等代数",
+    "sub_category": "线性空间",
+    "concept": "子空间和与交",
+    "concept_id": "C38",
+    "parent_training_ids": [
+     "linalg-062"
+    ],
+    "problem": "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+    "solution": "$U=\\operatorname{span}(1,x^2,x^4)$，维数$3$；$V=(x-1)^2\\mathbb R[x]_{\\le2}$，维数$3$。若$f=a+bx^2+cx^4\\in V$，须$f(1)=f^{\\prime}(1)=0$，即$a+b+c=0,2b+4c=0$，得$f=c(x^2-1)^2$。故交为该一维空间。和的维数$3+3-1=5$，等于环境维数，所以和为全部$\\mathbb R[x]_{\\le4}$。交非零，故不是直和。",
+    "answer": "交$\\operatorname{span}(x^2-1)^2$，维数$1$；和为五维全空间，非直和。",
+    "method": "多项式子空间交与重数约束",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：多项式子空间交与重数约束",
+    "scene_spec": {
+     "objects": [
+      "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+      "交$\\operatorname{span}(x^2-1)^2$，维数$1$；和为五维全空间，非直和。"
+     ],
+     "steps": [
+      "第一步:$U=\\operatorname{span}(1,x^2,x^4)$，维数$3$；$V=(x-1)^2\\mathbb R[x]_{\\le2}$，维数$3$。",
+      "第二步:若$f=a+bx^2+cx^4\\in V$，须$f(1)=f^{\\prime}(1)=0$，即$a+b+c=0,2b+4c=0$，得$f=c(x^2-1)^2$。",
+      "第三步:故交为该一维空间。",
+      "第四步:和的维数$3+3-1=5$，等于环境维数，所以和为全部$\\mathbb R[x]_{\\le4}$。",
+      "第五步:交非零，故不是直和。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c38-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "354c20edda0e56dcba53416f07edc48e6972308ea2a6dfdd04c4ced35eafbcf7",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c38-02",
+     "prior_parent_training_ids": [
+      "linalg-062"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换两个三维坐标平面的数字变体，改为奇偶约束与重根约束的交。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c38-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c39-01",
+   "deficiencies": [
+    "第一步 $T(X)=AX-XA$ 的乘法与减法未逐项演示($AX=\\begin{pmatrix}a&b\\\\3c&3d\\end{pmatrix}$、$XA=\\begin{pmatrix}a&3b\\\\c&3d\\end{pmatrix}$,相减得 $\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$)。",
+    "第四步'$T^2$ 在像上为 $4I$'未列出 $T^2$ 的计算(把 $\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$ 代入 $T$ 得 $\\begin{pmatrix}0&4b\\\\4c&0\\end{pmatrix}$)。"
+   ],
+   "record": {
+    "id": "draft-c39-01",
+    "category": "高等代数",
+    "sub_category": "线性映射",
+    "concept": "线性映射核与像",
+    "concept_id": "C39",
+    "parent_training_ids": [
+     "linalg-063"
+    ],
+    "problem": "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+    "solution": "对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。",
+    "answer": "核为对角矩阵，像为零对角矩阵，秩$2$；$M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$。",
+    "method": "半单矩阵交换算子的核像",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：半单矩阵交换算子的核像",
+    "scene_spec": {
+     "objects": [
+      "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+      "核为对角矩阵，像为零对角矩阵，秩$2$；$M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$。"
+     ],
+     "steps": [
+      "第一步:对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。",
+      "第二步:所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。",
+      "第三步:两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。",
+      "第四步:$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v6-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v6-20261005-batch-14-draft-c39-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "5dd4fc241e308a6ebcac638bb8422cc2f0651b9e5da9defe59f522089c90953d",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/ready-row-separator-patches.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c39-01",
+     "prior_parent_training_ids": [
+      "linalg-063"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v6",
+     "math_correction_notes": [
+      "替",
+      "换",
+      "留",
+      "出",
+      "集",
+      "同",
+      "一",
+      "零",
+      "和",
+      "/",
+      "常",
+      "向",
+      "量",
+      "子",
+      "空",
+      "间",
+      "，",
+      "换",
+      "为",
+      "矩",
+      "阵",
+      "空",
+      "间",
+      "交",
+      "换",
+      "算",
+      "子",
+      "的",
+      "核",
+      "像",
+      "结",
+      "构",
+      "。",
+      "v6: 严格前后哈希校验+路径别名修正(Codex msg505/506)"
+     ],
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v5",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v5.jsonl",
+      "sha256": "90d910d3544dfd193de3e4d3bfbba81aa660e7102e71085d5ca66b581ff030c1",
+      "versioned_id": "codex-repair-v5-20261005-batch-14-draft-c39-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c39-03",
+   "deficiencies": [
+    "第二步只断言'三个节点的值依次为 $a,b,c$,所以 $TR=I$',未逐点演示代入验证($x=0$:$a(1-0^2)+0+0=a$;$x=1$:$b\\cdot1\\cdot2/2=b$;$x=-1$:$c\\cdot(-1)\\cdot(-2)/2=c$)。",
+    "第一步核的整除推导未说明依据(因子定理:$f$ 在 $0,1,-1$ 三点为零故被 $x(x-1)(x+1)$ 整除,三次多项式商为常数,得 $\\operatorname{span}(x^3-x)$)。"
+   ],
+   "record": {
+    "id": "draft-c39-03",
+    "category": "高等代数",
+    "sub_category": "线性映射",
+    "concept": "线性映射核与像",
+    "concept_id": "C39",
+    "parent_training_ids": [
+     "linalg-063"
+    ],
+    "problem": "定义$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$，$Tf=(f(0),f(1),f(-1))$。求核、像与秩，给出证明满射的显式右逆。",
+    "solution": "核中$f$在$0,1,-1$三个不同节点为零，因此被$x(x-1)(x+1)$整除；度数最多$3$，故核$\\operatorname{span}(x^3-x)$。对$(a,b,c)\\in\\mathbb R^3$，定义$R(a,b,c)=a(1-x^2)+b x(x+1)/2+c x(x-1)/2$，三个节点的值依次为$a,b,c$，所以$TR=I$。故像为全部$\\mathbb R^3$，秩$3$、核维数$1$，右逆证明满射不依赖仅报维数。",
+    "answer": "核$\\operatorname{span}(x^3-x)$；像$\\mathbb R^3$、秩$3$；右逆$R(a,b,c)=a(1-x^2)+\\frac b2x(x+1)+\\frac c2x(x-1)$。",
+    "method": "评价映射及Lagrange右逆",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：评价映射及Lagrange右逆",
+    "scene_spec": {
+     "objects": [
+      "定义$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$，$Tf=(f(0),f(1),f(-1))$。求核、像与秩，给出证明满射的显式右逆。",
+      "核$\\operatorname{span}(x^3-x)$；像$\\mathbb R^3$、秩$3$；右逆$R(a,b,c)=a(1-x^2)+\\frac b2x(x+1)+\\frac c2x(x-1)$。"
+     ],
+     "steps": [
+      "第一步:核中$f$在$0,1,-1$三个不同节点为零，因此被$x(x-1)(x+1)$整除；度数最多$3$，故核$\\operatorname{span}(x^3-x)$。",
+      "第二步:对$(a,b,c)\\in\\mathbb R^3$，定义$R(a,b,c)=a(1-x^2)+b x(x+1)/2+c x(x-1)/2$，三个节点的值依次为$a,b,c$，所以$TR=I$。",
+      "第三步:故像为全部$\\mathbb R^3$，秩$3$、核维数$1$，右逆证明满射不依赖仅报维数。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c39-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "48272933372a99f46173b03d4d28d12ace3beddd4d6d878b9510e94a281de0a4",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c39-03",
+     "prior_parent_training_ids": [
+      "linalg-063"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集同一多项式微分算子，改为评价映射及无歧义右逆。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c39-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c40-01",
+   "deficiencies": [
+    "第一步一阶子式首一gcd分别为 $f$ 与 $1$ 未列出一阶子式集合($\\{f,f^2\\}$ 与 $\\{1,f^3\\}$)及gcd计算过程。",
+    "第四步代入 $a=1$ 后未演示核的求解(解 $B(1)v=0$:$v_1=0$,$v_2$ 自由$\\Rightarrow\\ker B(1)=\\operatorname{span}(e_2)$、秩 $1$;$A(1)=0\\Rightarrow$ 秩 $0$、核 $\\mathbb R^2$)。",
+    "两矩阵行列式 $f\\cdot f^2=f^3$ 与 $1\\cdot f^3=f^3$ 的计算未列出。"
+   ],
+   "record": {
+    "id": "draft-c40-01",
+    "category": "高等代数",
+    "sub_category": "λ矩阵",
+    "concept": "λ矩阵不变因子",
+    "concept_id": "C40",
+    "parent_training_ids": [
+     "linalg-065"
+    ],
+    "problem": "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+    "solution": "两者行列式都为$f^3$，但一阶子式首一gcd分别为$f$与$1$，不变因子分别$f,f^2$与$1,f^3$，所以不unimodular等价。在有理函数域$\\mathbb R(\\lambda)$，$f$是可逆非零元素，两矩阵秩都为$2$、核都为零；在多项式环中核也都为零，因为环无零因子。在实数$a\\ne1$代入时两者仍秩$2$、核零。代入$a=1$，$A(1)=0$，秩$0$、核$\\mathbb R^2$；$B(1)=\\operatorname{diag}(1,0)$，秩$1$、核$\\operatorname{span}(e_2)$。同一行列式零点及其阶数不能确定特殊参数的核维数，通用域的核也不能直接代入当作特殊核。",
+    "answer": "不等价；一般域及$a\\ne1$均秩$2$，$a=1$时秩分别$0,1$；行列式相同不足以确定特殊核。",
+    "method": "相同det下不等价与特殊化核",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：相同det下不等价与特殊化核",
+    "scene_spec": {
+     "objects": [
+      "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+      "不等价；一般域及$a\\ne1$均秩$2$，$a=1$时秩分别$0,1$；行列式相同不足以确定特殊核。"
+     ],
+     "steps": [
+      "第一步:两者行列式都为$f^3$，但一阶子式首一gcd分别为$f$与$1$，不变因子分别$f,f^2$与$1,f^3$，所以不unimodular等价。",
+      "第二步:在有理函数域$\\mathbb R(\\lambda)$，$f$是可逆非零元素，两矩阵秩都为$2$、核都为零；在多项式环中核也都为零，因为环无零因子。",
+      "第三步:在实数$a\\ne1$代入时两者仍秩$2$、核零。",
+      "第四步:代入$a=1$，$A(1)=0$，秩$0$、核$\\mathbb R^2$；$B(1)=\\operatorname{diag}(1,0)$，秩$1$、核$\\operatorname{span}(e_2)$。",
+      "第五步:同一行列式零点及其阶数不能确定特殊参数的核维数，通用域的核也不能直接代入当作特殊核。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c40-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "55cf9cf5b3c357a4983afd04dd96849cadf7ba7ffe9a65b11b245b3461151d72",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c40-01",
+     "prior_parent_training_ids": [
+      "linalg-065"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "把同一对角gcd算法的重复题改为同det不同特殊秩，以及多项式、有理函数和实代入的区别。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c40-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c40-04",
+   "deficiencies": [
+    "第一步与第二步的 gcd 只给结果,未展示将各一阶/二阶子式因式分解后取最小指数的运算(如 D2 需对 λ(λ+1)²、(λ+1)³(λ−2)、λ(λ+1)³(λ−2) 分解取 min 指数才得 (λ+1)²);",
+    "第三步 D3 未展示对角元连乘展开 (λ+1)·λ(λ+1)·(λ+1)²(λ−2)=λ(λ+1)⁴(λ−2);",
+    "第五步初等因子直接列出,未展示将 d1、d2、d3 逐个分解(如 d3=λ(λ+1)²(λ−2)→λ、(λ+1)²、λ−2)的过程。"
+   ],
+   "record": {
+    "id": "draft-c40-04",
+    "category": "高等代数",
+    "sub_category": "λ矩阵",
+    "concept": "λ矩阵不变因子",
+    "concept_id": "C40",
+    "parent_training_ids": [
+     "linalg-065"
+    ],
+    "problem": "求 λ-矩阵 $A(\\lambda)=\\mathrm{diag}(\\lambda+1,\\,\\lambda(\\lambda+1),\\,(\\lambda+1)^2(\\lambda-2))$ 的行列式因子、不变因子与初等因子。",
+    "solution": "一阶行列式因子:$D_1=\\gcd(\\lambda+1,\\lambda(\\lambda+1),(\\lambda+1)^2(\\lambda-2))=\\lambda+1$。二阶行列式因子:各二阶子式(对角情形即两两乘积)为 $\\lambda(\\lambda+1)^2$、$(\\lambda+1)^3(\\lambda-2)$、$\\lambda(\\lambda+1)^3(\\lambda-2)$,最大公因式 $D_2=(\\lambda+1)^2$。$D_3=\\det=\\lambda(\\lambda+1)^4(\\lambda-2)$。不变因子:$d_1=D_1=\\lambda+1$;$d_2=\\frac{D_2}{D_1}=\\lambda+1$;$d_3=\\frac{D_3}{D_2}=\\lambda(\\lambda+1)^2(\\lambda-2)$。初等因子:$\\lambda+1$、$\\lambda+1$、$\\lambda$、$(\\lambda+1)^2$、$\\lambda-2$。",
+    "answer": "$D_1=\\lambda+1$,$D_2=(\\lambda+1)^2$,$D_3=\\lambda(\\lambda+1)^4(\\lambda-2)$;不变因子 $\\lambda+1,\\lambda+1,\\lambda(\\lambda+1)^2(\\lambda-2)$;初等因子 $\\lambda+1,\\lambda+1,\\lambda,(\\lambda+1)^2,\\lambda-2$。",
+    "method": "三阶行列式因子链",
+    "difficulty": "中等",
+    "variant_kind": "维数变化:三阶对角 λ 矩阵的完整因子链计算",
+    "scene_spec": {
+     "objects": [
+      "求 λ-矩阵 $A(\\lambda)=\\mathrm{diag}(\\lambda+1,\\,\\lambda(\\lambda+1),\\,(\\lambda+1)^2(\\lambda-2))$ 的行列式因子、不变因子与初等因子。",
+      "$D_1=\\lambda+1$,$D_2=(\\lambda+1)^2$,$D_3=\\lambda(\\lambda+1)^4(\\lambda-2)$;不变因子 $\\lambda+1,\\lambda+1,\\lambda(\\lambda+1)^2(\\lambda-2)$;初等因子 $\\lambda+1,\\lambda+1,\\lambda,(\\lambda+1)^2,\\lambda-2$。"
+     ],
+     "steps": [
+      "第一步:一阶行列式因子:$D_1=\\gcd(\\lambda+1,\\lambda(\\lambda+1),(\\lambda+1)^2(\\lambda-2))=\\lambda+1$。",
+      "第二步:二阶行列式因子:各二阶子式(对角情形即两两乘积)为 $\\lambda(\\lambda+1)^2$、$(\\lambda+1)^3(\\lambda-2)$、$\\lambda(\\lambda+1)^3(\\lambda-2)$,最大公因式 $D_2=(\\lambda+1)^2$。",
+      "第三步:$D_3=\\det=\\lambda(\\lambda+1)^4(\\lambda-2)$。",
+      "第四步:不变因子:$d_1=D_1=\\lambda+1$;$d_2=\\frac{D_2}{D_1}=\\lambda+1$;$d_3=\\frac{D_3}{D_2}=\\lambda(\\lambda+1)^2(\\lambda-2)$。",
+      "第五步:初等因子:$\\lambda+1$、$\\lambda+1$、$\\lambda$、$(\\lambda+1)^2$、$\\lambda-2$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c40-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "ac31cd7cefce40d266fd42958ad03f021911d8b4f2a09afaeff1bf37c10ac359",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c40-04",
+     "prior_parent_training_ids": [
+      "linalg-065"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "逐列举三非零二阶主子式并取gcd，D1,D2,D3与三不变因子及重复初等因子正确。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c40-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c42-02",
+   "deficiencies": [
+    "第一步 RxRy 与 RyRx 只给结果矩阵,未展示逐分量“行×列”计算(如 (RxRy)₁₁=1·0+0·1+0·0 等);",
+    "第三步固定向量 (1,1,1)、(1,1,−1) 的求解过程(如解 (R−I)x=0)未展示。"
+   ],
+   "record": {
+    "id": "draft-c42-02",
+    "category": "高等代数",
+    "sub_category": "正交变换",
+    "concept": "正交变换",
+    "concept_id": "C42",
+    "parent_training_ids": [
+     "linalg-067"
+    ],
+    "problem": "令$R_x=\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$、$R_y=\\begin{pmatrix}0&0&1\\\\0&1&0\\\\-1&0&0\\end{pmatrix}$。求两个乘积并说明三维不同轴旋转为何不交换，给两乘积的轴与精确角。",
+    "solution": "$R_xR_y=\\begin{pmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{pmatrix}$，$R_yR_x=\\begin{pmatrix}0&1&0\\\\0&0&-1\\\\-1&0&0\\end{pmatrix}$，不同。两者均正交、行列式$1$、迹$0$，由$\\operatorname{tr}R=1+2\\cos\\theta$得$\\theta=2\\pi/3$。固定向量分别为$(1,1,1)$、$(1,1,-1)$；反对称部分的轴向量分别正比于这两个向量，因$\\sin(2\\pi/3)>0$，取对应单位向量即给右手角$2\\pi/3$。不同轴使作用顺序改变结果，不能把平面旋转角相加律直接用于三维。",
+    "answer": "两个乘积不同，轴分别$(1,1,1)/\\sqrt3$与$(1,1,-1)/\\sqrt3$，右手角均$2\\pi/3$。",
+    "method": "三维旋转非交换与轴角",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：三维旋转非交换与轴角",
+    "scene_spec": {
+     "objects": [
+      "令$R_x=\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$、$R_y=\\begin{pmatrix}0&0&1\\\\0&1&0\\\\-1&0&0\\end{pmatrix}$。求两个乘积并说明三维不同轴旋转为何不交换，给两乘积的轴与精确角。",
+      "两个乘积不同，轴分别$(1,1,1)/\\sqrt3$与$(1,1,-1)/\\sqrt3$，右手角均$2\\pi/3$。"
+     ],
+     "steps": [
+      "第一步:$R_xR_y=\\begin{pmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{pmatrix}$，$R_yR_x=\\begin{pmatrix}0&1&0\\\\0&0&-1\\\\-1&0&0\\end{pmatrix}$，不同。",
+      "第二步:两者均正交、行列式$1$、迹$0$，由$\\operatorname{tr}R=1+2\\cos\\theta$得$\\theta=2\\pi/3$。",
+      "第三步:固定向量分别为$(1,1,1)$、$(1,1,-1)$；反对称部分的轴向量分别正比于这两个向量，因$\\sin(2\\pi/3)>0$，取对应单位向量即给右手角$2\\pi/3$。",
+      "第四步:不同轴使作用顺序改变结果，不能把平面旋转角相加律直接用于三维。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c42-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "55b48130a60af556619f5cddd437cd19c207d7496f21ef188ef0a3ff3e8225f0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c42-02",
+     "prior_parent_training_ids": [
+      "linalg-067"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集二维旋转幂的完整加法步骤，改为不同轴的非交换结构。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c42-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
