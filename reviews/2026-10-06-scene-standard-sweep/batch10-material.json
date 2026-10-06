@@ -1,0 +1,253 @@
+{
+ "remaining": [
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c50-03",
+   "deficiencies": [
+    "第二步分部积分递推未逐步展开:未演示 $T_{100}$ 逐次递推到 $T_1$ 如何累加出 $\\sum_{k=0}^{99}110^k/k!$",
+    "第四步均值与方差均 1 未给出计算,CLT 极限一步断言",
+    "第三步 Poisson 等价 $P(\\mathrm{Pois}(110)\\le 99)$ 未说明根据"
+   ],
+   "record": {
+    "id": "draft-c50-03",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "中心极限定理",
+    "concept_id": "C50",
+    "parent_training_ids": [
+     "prob-043"
+    ],
+    "problem": "独立$X_i\\sim\\operatorname{Exp}(1)$。求$P(S_{100}>110)$的精确式，并证明它；另求固定实$a$时$P(S_n>n+a\\sqrt n)$的极限。不得凭未验证小数宣称有限误差很小。",
+    "solution": "卷积或归纳给$S_n$密度$e^{-s}s^{n-1}/(n-1)!$（$s>0$）。对尾积分分部积分，$T_n(t)=e^{-t}t^{n-1}/(n-1)!+T_{n-1}(t)$，$T_1(t)=e^{-t}$，所以$P(S_{100}>110)=e^{-110}\\sum_{k=0}^{99}110^k/k!$。这是精确表达，也等于$P(\\operatorname{Pois}(110)\\le99)$。单变量均值和方差均$1$，CLT给$(S_n-n)/\\sqrt n\\Rightarrow N(0,1)$，故所求极限$1-\\Phi(a)$。该定理本身不提供$n=100$的误差大小，不能据此断言近似“极佳”。",
+    "answer": "精确尾$e^{-110}\\sum_{k=0}^{99}110^k/k!$；极限$1-\\Phi(a)$。",
+    "method": "Gamma尾递推与CLT",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：Gamma尾递推与CLT",
+    "scene_spec": {
+     "objects": [
+      "独立$X_i\\sim\\operatorname{Exp}(1)$。求$P(S_{100}>110)$的精确式，并证明它；另求固定实$a$时$P(S_n>n+a\\sqrt n)$的极限。不得凭未验证小数宣称有限误差很小。",
+      "精确尾$e^{-110}\\sum_{k=0}^{99}110^k/k!$；极限$1-\\Phi(a)$。"
+     ],
+     "steps": [
+      "第一步:卷积或归纳给$S_n$密度$e^{-s}s^{n-1}/(n-1)!$（$s>0$）。",
+      "第二步:对尾积分分部积分，$T_n(t)=e^{-t}t^{n-1}/(n-1)!+T_{n-1}(t)$，$T_1(t)=e^{-t}$，所以$P(S_{100}>110)=e^{-110}\\sum_{k=0}^{99}110^k/k!$。",
+      "第三步:这是精确表达，也等于$P(\\operatorname{Pois}(110)\\le99)$。",
+      "第四步:单变量均值和方差均$1$，CLT给$(S_n-n)/\\sqrt n\\Rightarrow N(0,1)$，故所求极限$1-\\Phi(a)$。",
+      "第五步:该定理本身不提供$n=100$的误差大小，不能据此断言近似“极佳”。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-18-draft-c50-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-18",
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "61d01564d84f3b521e9214730473d9a1791ea234d8f121a5cbbd836195273b97",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft.jsonl",
+     "original_id": "draft-c50-03",
+     "prior_parent_training_ids": [
+      "prob-043"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "删除未经独立验证的Gamma小数与误差宣传，以尾递推给精确值。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v3.jsonl",
+      "sha256": "060b5ee38bc77bdac9a47b03782c0b6f9442dd5d7a886432deda173887d62626",
+      "versioned_id": "codex-repair-20261005-batch-18-draft-c50-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c50-04",
+   "deficiencies": [
+    "第五步'用固定 $a\\pm\\varepsilon$ 夹逼和 Φ 连续性'压缩为一句,未展示夹逼的具体不等式与两边取极限的操作",
+    "第四步 $|z_n-a|\\le 2/\\sqrt n$ 与半单位移动增加 $1/\\sqrt n$ 的估计未给出推导",
+    "夹逼论证过程无细节标注(第六步的警示性说明不能替代运算演示)"
+   ],
+   "record": {
+    "id": "draft-c50-04",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "中心极限定理",
+    "concept_id": "C50",
+    "parent_training_ids": [
+     "prob-043"
+    ],
+    "problem": "设$X_n\\sim B(n,1/2)$。精确写出$P(X_{100}\\le55)$；证明整数事件阈值移动半单位的等价性，并对$k_n=\\lfloor n/2+a\\sqrt n/2\\rfloor$证明有无半单位移动都给同一极限。",
+    "solution": "有限精确概率为$2^{-100}\\sum_{j=0}^{55}\\binom{100}j$。由于$X_n$取整数，对整数$k$有$\\{X_n\\le k\\}=\\{X_n\\le k+1/2\\}$，这只是事件等价。标准化$Z_n=(X_n-n/2)/(\\sqrt n/2)$由CLT趋于标准正态。阈值$z_n=(k_n-n/2)/(\\sqrt n/2)$满足$|z_n-a|\\le2/\\sqrt n$，移动半单位后增加$1/\\sqrt n$，二者都趋于$a$。用固定$a\\pm\\varepsilon$夹逼和$\\Phi$连续性，得概率极限$\\Phi(a)$。有限事件等价不能推出其概率等于某个正态CDF；连续性修正的有限误差是否变小还需额外分析，不能由CLT单独保证。",
+    "answer": "精确值$2^{-100}\\sum_{j=0}^{55}\\binom{100}j$；整数事件可移动半单位，两个标准化阈值均给极限$\\Phi(a)$。",
+    "method": "格点事件与移动阈值CLT",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：格点事件与移动阈值CLT",
+    "scene_spec": {
+     "objects": [
+      "设$X_n\\sim B(n,1/2)$。精确写出$P(X_{100}\\le55)$；证明整数事件阈值移动半单位的等价性，并对$k_n=\\lfloor n/2+a\\sqrt n/2\\rfloor$证明有无半单位移动都给同一极限。",
+      "精确值$2^{-100}\\sum_{j=0}^{55}\\binom{100}j$；整数事件可移动半单位，两个标准化阈值均给极限$\\Phi(a)$。"
+     ],
+     "steps": [
+      "第一步:有限精确概率为$2^{-100}\\sum_{j=0}^{55}\\binom{100}j$。",
+      "第二步:由于$X_n$取整数，对整数$k$有$\\{X_n\\le k\\}=\\{X_n\\le k+1/2\\}$，这只是事件等价。",
+      "第三步:标准化$Z_n=(X_n-n/2)/(\\sqrt n/2)$由CLT趋于标准正态。",
+      "第四步:阈值$z_n=(k_n-n/2)/(\\sqrt n/2)$满足$|z_n-a|\\le2/\\sqrt n$，移动半单位后增加$1/\\sqrt n$，二者都趋于$a$。",
+      "第五步:用固定$a\\pm\\varepsilon$夹逼和$\\Phi$连续性，得概率极限$\\Phi(a)$。",
+      "第六步:有限事件等价不能推出其概率等于某个正态CDF；连续性修正的有限误差是否变小还需额外分析，不能由CLT单独保证。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-18-draft-c50-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-18",
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "49ca8226ddfcd5a0b8a0f41d943e5f27439d4a5d7ea34a309c08f217e7119ebe",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft.jsonl",
+     "original_id": "draft-c50-04",
+     "prior_parent_training_ids": [
+      "prob-043"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "将小数连续性修正比较改为精确整数事件与渐近阈值证明。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v3.jsonl",
+      "sha256": "060b5ee38bc77bdac9a47b03782c0b6f9442dd5d7a886432deda173887d62626",
+      "versioned_id": "codex-repair-20261005-batch-18-draft-c50-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c50-05",
+   "deficiencies": [
+    "第三步 $P(|\\bar X_n|\\le 1)=1/2$ 未给出计算(柯西分布函数代入)",
+    "第四步 $P(|\\bar X_n-c|\\le\\pi/8)\\le 1/4$ 未展示'密度≤1/π × 区间长 π/4'的运算",
+    "特征函数 $e^{-|t|}$ 只给结果未给计算,未高亮'样本均值仍为标准柯西'这一核心结论"
+   ],
+   "record": {
+    "id": "draft-c50-05",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "中心极限定理",
+    "concept_id": "C50",
+    "parent_training_ids": [
+     "prob-043"
+    ],
+    "problem": "说明经典独立同分布中心极限定理的充分矩条件，并以标准柯西分布证明：去掉这些条件后，样本均值不保证集中到常数或趋于正态。明确反例证明的逻辑范围。",
+    "solution": "经典独立同分布CLT的充分条件为$EX=\\mu$、$0<\\operatorname{Var}X=\\sigma^2<\\infty$，标准化为$(\\sum X_i-n\\mu)/(\\sigma\\sqrt n)$；零方差是退化情形。对标准柯西变量，$E|X|$及$EX^2$发散，均值不存在；特征函数$e^{-|t|}$。独立柯西样本均值的特征函数为$(e^{-|t|/n})^n=e^{-|t|}$，所以仍为标准柯西，且$P(|\\overline X_n|\\le1)=1/2$对所有$n$成立，不集中到零。密度不超过$1/\\pi$，故对任何常数$c$，$P(|\\overline X_n-c|\\le\\pi/8)\\le1/4$，也不集中到任何常数。这说明删去矩条件后结论不能普遍保证；它没有证明有限方差是所有正态吸引域或其他规范化极限定理的必要条件。",
+    "answer": "柯西样本均值仍为柯西，不集中到常数；有限正方差是经典$\\sqrt n$规范化CLT的充分假设，不能由该反例推断所有CLT的必要条件。",
+    "method": "退化限制(特征函数反例)",
+    "difficulty": "进阶",
+    "variant_kind": "结构改写：退化限制(特征函数反例)",
+    "scene_spec": {
+     "objects": [
+      "说明经典独立同分布中心极限定理的充分矩条件，并以标准柯西分布证明：去掉这些条件后，样本均值不保证集中到常数或趋于正态。明确反例证明的逻辑范围。",
+      "柯西样本均值仍为柯西，不集中到常数；有限正方差是经典$\\sqrt n$规范化CLT的充分假设，不能由该反例推断所有CLT的必要条件。"
+     ],
+     "steps": [
+      "第一步:经典独立同分布CLT的充分条件为$EX=\\mu$、$0<\\operatorname{Var}X=\\sigma^2<\\infty$，标准化为$(\\sum X_i-n\\mu)/(\\sigma\\sqrt n)$；零方差是退化情形。",
+      "第二步:对标准柯西变量，$E|X|$及$EX^2$发散，均值不存在；特征函数$e^{-|t|}$。",
+      "第三步:独立柯西样本均值的特征函数为$(e^{-|t|/n})^n=e^{-|t|}$，所以仍为标准柯西，且$P(|\\overline X_n|\\le1)=1/2$对所有$n$成立，不集中到零。",
+      "第四步:密度不超过$1/\\pi$，故对任何常数$c$，$P(|\\overline X_n-c|\\le\\pi/8)\\le1/4$，也不集中到任何常数。",
+      "第五步:这说明删去矩条件后结论不能普遍保证；它没有证明有限方差是所有正态吸引域或其他规范化极限定理的必要条件。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-18-draft-c50-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-18",
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "b535843305970c99630d780c6f8b1de83e17c287082ba6116d3bf848be4b2fc3",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "6f921b08949f3ee7aaa95ce0363cafaff81b0ab7d0d95f10e1b5a280d697d8d1",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft.jsonl",
+     "original_id": "draft-c50-05",
+     "prior_parent_training_ids": [
+      "prob-043"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "有限方差是经典充分假设，不能用一个柯西反例证明所有CLT均必需有限方差。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v3.jsonl",
+      "sha256": "060b5ee38bc77bdac9a47b03782c0b6f9442dd5d7a886432deda173887d62626",
+      "versioned_id": "codex-repair-20261005-batch-18-draft-c50-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
