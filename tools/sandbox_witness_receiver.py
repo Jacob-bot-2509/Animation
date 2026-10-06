@@ -27,7 +27,7 @@ def log_event(log, kind, **fields):
     print(json.dumps(event, ensure_ascii=False), flush=True)
 
 
-def udp_loop(bind, port, log):
+def udp_loop(bind, port, log, stop):
     s = socket.socket(socket.AF_INET6 if ":" in bind else socket.AF_INET,
                       socket.SOCK_DGRAM)
     if ":" in bind:
@@ -38,7 +38,7 @@ def udp_loop(bind, port, log):
     s.bind((bind, port))
     s.settimeout(0.5)
     log_event(log, "listening", proto="udp", bind=f"{bind}:{port}")
-    while True:
+    while not stop.is_set():
         try:
             data, addr = s.recvfrom(4096)
         except socket.timeout:
@@ -46,9 +46,10 @@ def udp_loop(bind, port, log):
         except OSError:
             break
         log_event(log, "udp", src=f"{addr[0]}:{addr[1]}", payload=data.decode("utf-8", "replace"))
+    s.close()
 
 
-def tcp_loop(bind, port, log):
+def tcp_loop(bind, port, log, stop):
     s = socket.socket(socket.AF_INET6 if ":" in bind else socket.AF_INET,
                       socket.SOCK_STREAM)
     if ":" in bind:
@@ -61,7 +62,7 @@ def tcp_loop(bind, port, log):
     s.listen(8)
     s.settimeout(0.5)
     log_event(log, "listening", proto="tcp", bind=f"{bind}:{port}")
-    while True:
+    while not stop.is_set():
         try:
             conn, addr = s.accept()
         except socket.timeout:
@@ -77,29 +78,29 @@ def tcp_loop(bind, port, log):
             pass
         finally:
             conn.close()
+    s.close()
 
 
 def selftest():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(("127.0.0.1", 0))
     port = s.getsockname()[1]
-    s.settimeout(0.5)
-    got = []
-    def recv():
-        try:
-            while True:
-                d, a = s.recvfrom(4096)
-                got.append((d.decode(), a))
-        except socket.timeout:
-            pass
-    t = threading.Thread(target=recv, daemon=True)
-    t.start()
+    s.setblocking(False)
     s2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s2.sendto(b"selftest-nonce", ("127.0.0.1", port))
-    time.sleep(0.5)
     s2.close()
+    got = []
+    deadline = time.time() + 1.0
+    while time.time() < deadline:
+        try:
+            data, _addr = s.recvfrom(4096)
+            got.append(data.decode())
+        except BlockingIOError:
+            time.sleep(0.05)
+        except OSError:
+            break
     s.close()
-    ok = any(d == "selftest-nonce" for d, _ in got)
+    ok = "selftest-nonce" in got
     print("selftest:", "OK 收发通路正常" if ok else "FAILED")
     return 0 if ok else 1
 
@@ -110,24 +111,31 @@ def main(argv=None) -> int:
     ap.add_argument("--tcp-port", type=int, default=49002)
     ap.add_argument("--bind", default="0.0.0.0", help="或 :: 双栈监听")
     ap.add_argument("--log", type=Path, default=Path("witness.jsonl"))
+    ap.add_argument("--seconds", type=float, default=0.0,
+                    help="运行N秒后自动停止并写证据(0=等Ctrl+C)")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args(argv)
     if args.selftest:
         return selftest()
     log = []
+    stop = threading.Event()
     threads = [
-        threading.Thread(target=udp_loop, args=(args.bind, args.udp_port, log), daemon=True),
-        threading.Thread(target=tcp_loop, args=(args.bind, args.tcp_port, log), daemon=True),
+        threading.Thread(target=udp_loop, args=(args.bind, args.udp_port, log, stop), daemon=True),
+        threading.Thread(target=tcp_loop, args=(args.bind, args.tcp_port, log, stop), daemon=True),
     ]
     for t in threads:
         t.start()
     log_event(log, "started", udp_port=args.udp_port, tcp_port=args.tcp_port)
     print("按 Ctrl+C 结束,证据将写入", args.log, flush=True)
     try:
-        while True:
+        deadline = time.time() + args.seconds if args.seconds > 0 else None
+        while deadline is None or time.time() < deadline:
             time.sleep(1)
     except KeyboardInterrupt:
         pass
+    stop.set()
+    for t in threads:
+        t.join(timeout=2)
     lines = [json.dumps(e, ensure_ascii=False) for e in log]
     raw = ("\n".join(lines) + "\n").encode("utf-8")
     args.log.write_bytes(raw)
