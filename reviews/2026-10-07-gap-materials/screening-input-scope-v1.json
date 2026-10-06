@@ -1,0 +1,27 @@
+{
+  "schema": "screening-input-scope-evidence-v1",
+  "purpose": "证明筛选/探针实验(cleanup清单27项)的输入范围=池(kaoyan)引入前的项目自编数据,输出不可能含池题内容",
+  "produced_at": "2026-10-07",
+  "findings": {
+    "probe_manifest_10_04": {
+      "manifest": "outputs/data-probe/run-20261004-004728/sample_manifest.json",
+      "n_inputs": 20,
+      "ids": ["test-calc-001..004", "test-geom-001..004", "test-linalg-001..004", "test-prob-001..004", "test-x-001..004"],
+      "hash_convention": "sha256(json.dumps({'problem':…,'solution':…}, ensure_ascii=False, sort_keys=True)) = tools/screening_probe.py input_hash",
+      "verification": "20/20 在 data/v1/test/dataset_test.jsonl 中精确匹配 input_sha256,0 缺失",
+      "source_of_inputs": "data/v2/test/dataset_test.jsonl(工具 data_probe.py 读 v2/test;同 id 记录在 v1/test 精确匹配)",
+      "all_pre_pool": true
+    },
+    "screening_10_03_input_scope": {
+      "selection_script": "tools/screening_probe.py select_samples",
+      "source_dir": "data/v1/raw/dataset_*.jsonl",
+      "quota": {"数学分析": 6, "概率论": 5, "解析几何": 4, "高等代数": 5},
+      "n_inputs": 20,
+      "reconstructed_id_list_current_raw": ["calc-derivative-001", "calc-improper-002", "calc-double-integral-004", "calc-green-005", "calc-limit-006", "calc-area-007", "prob-038", "prob-039", "prob-040", "prob-042", "prob-043", "geom-020", "geom-024", "geom-025", "geom-027", "linalg-048", "linalg-049", "linalg-050", "linalg-051", "linalg-055"],
+      "caveat": "data/v1/raw 在 10-05 经数学修订(prob038/042/043、linalg048/050 等被改),故被删的根目录 sample_manifest.json(09e132d0…)无法按当前字节精确重建;但输入范围= data/v1/raw 的 20 题抽样,来源池前,确定无疑",
+      "all_pre_pool": true
+    }
+  },
+  "conclusion": "cleanup 清单 27 项(qlora-probes/inference/screening 脚本与 manifest)的输入全部取自池引入(2026-10-06)之前的数据集(data/v1/raw 与 data/v1,v2/test 的自编题),按用户放宽裁决'能证明材料不影响题目判定的替代证据'成立,这些缺失材料的数学内容范围闭环,不影响池题判定",
+  "honest_limits": "不声称恢复原字节;不声称角色访问记录;仅内容范围证据"
+}
