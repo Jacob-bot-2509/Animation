@@ -1,0 +1,1682 @@
+{
+ "candidate": {
+  "id": "linalg-048",
+  "category": "高等代数",
+  "sub_category": "线性变换",
+  "function_family": "线性变换",
+  "visual_style": "空间几何图形",
+  "efficiency_tags": [
+   "几何意义",
+   "剪切变换"
+  ],
+  "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+  "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+  "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+  "scene_spec": {
+   "objects": [
+    "带有刻度的黑色坐标轴",
+    "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+    "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+    "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+    "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+   ],
+   "steps": [
+    "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+    "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+    "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+    "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+    "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+   ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only"
+ },
+ "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+ "pairs": [
+  {
+   "split": "train",
+   "id": "linalg-070",
+   "problem_sha256": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-038",
+   "problem_sha256": "cff3fc3eb09a77f1dbcc29399a47d61c2c6c12aac2ad743fe492b72cc2ce8a68",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-039",
+   "problem_sha256": "d3c2d381d9003632b78b9eb449f70a71acbafb204ddb61f8f737c60e434b815b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-040",
+   "problem_sha256": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-041",
+   "problem_sha256": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-042",
+   "problem_sha256": "5db972b750fe565bc2e516e4a55c1255e45419166a9636cf107cf24ea8bdb5d1",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-043",
+   "problem_sha256": "9ba5f18532453cf789b45fd0d25c06e16dcf761d489d1e86bda096c8424dcbf5",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "train",
+   "id": "prob-046",
+   "problem_sha256": "8461ccd1568d81c76a8413199be51563d23468c8a3bf8036dde9011a76c38072",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-001",
+   "problem_sha256": "99ff4f8b1d45ffec7e1b4b46fc52416063b8e6e15389cd5b6e60c9d729bcd594",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-002",
+   "problem_sha256": "f9bedeee03135ef61cfd29f1e4f1384e82c9bc7bd6a725d7c33924390d50f66d",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-003",
+   "problem_sha256": "118751971c94c061c9882243c5e6c97113a484f8625b148f934761d1e54b834a",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-004",
+   "problem_sha256": "aa2d5fc495f758e024221b0158ee60d18dc8c6e194a03d9722ef366bb40b4604",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-005",
+   "problem_sha256": "83499622a2133f409138dc1e6eba6307a8b0e78351badfe11147f8f8eb011089",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-006",
+   "problem_sha256": "1e60091776e296867b6ef915cb6e8ff897c3d41947ec0362c5bb50c8d9dd98e3",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-007",
+   "problem_sha256": "879555b14eabf37dec48c4bae88b134b338ed10dd583470c8b714566951710f5",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-008",
+   "problem_sha256": "44e0daaec40df2a7daa55648d3b6f11ebaa48065774429337f94375f736e998e",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-009",
+   "problem_sha256": "d518d75965aa0b238ac76604c8e588ea01e6af0ebc99479b4a6be05624ffd989",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-010",
+   "problem_sha256": "74e752e576be685b4cdc64366e897cf12bfc3fcf5e9b0c2195aeb7770bfe8e75",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-011",
+   "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+   "verdict": null,
+   "reason": ""
+  }
+ ],
+ "material": [
+  {
+   "split": "train",
+   "id": "linalg-070",
+   "problem_sha256": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+   "source_records": [
+    {
+     "id": "linalg-070",
+     "category": "高等代数",
+     "sub_category": "双线性函数与辛空间",
+     "function_family": "辛空间",
+     "visual_style": "辛变换与面积保持",
+     "efficiency_tags": [
+      "辛形式",
+      "面积守恒"
+     ],
+     "problem": "在 $\\mathbb{R}^2$ 上定义辛形式 $\\omega(u,v)=u_1v_2-u_2v_1$（标准行列式形式），说明辛变换保持该形式不变的意义。",
+     "solution": "标准辛形式即二维向量的行列式。辛变换是保持 $\\omega$ 不变的线性变换，即保持任意两个向量张成的平行四边形面积不变。在二维情形下，辛变换就是行列式为 1 的线性变换。",
+     "answer": "辛变换保持面积不变",
+     "scene_spec": {
+      "objects": [
+       "二维坐标系",
+       "两个向量张成的平行四边形",
+       "辛变换后的图形"
+      ],
+      "steps": [
+       "第一步：在二维坐标系中画出两个向量 u 和 v，以及它们张成的平行四边形。",
+       "第二步：用面积标注工具计算该平行四边形的面积。",
+       "第三步：应用辛变换（行列式为 1 的矩阵），展示两个向量变化后平行四边形的面积保持不变。",
+       "第四步：高亮辛形式的代数表达式，说明其与面积的关系。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "3eb3f7f02129d70a1894df537a368586d723a939116aac97e76e22046db20555"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-038",
+   "problem_sha256": "cff3fc3eb09a77f1dbcc29399a47d61c2c6c12aac2ad743fe492b72cc2ce8a68",
+   "source_records": [
+    {
+     "id": "prob-038",
+     "category": "概率论",
+     "sub_category": "条件概率与独立性",
+     "function_family": "事件关系与韦恩图",
+     "visual_style": "集合运算与面积动态切割",
+     "efficiency_tags": [
+      "条件概率空间缩减",
+      "交并集高亮"
+     ],
+     "problem": "已知事件 $A$ 与 $B$ 的概率分别为 $P(A) = 0.6$，$P(B) = 0.4$，且 $P(A \\cap B) = 0.2$。求条件概率 $P(A|B)$ 和 $P(B|A)$。",
+     "solution": "根据条件概率公式，$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.2}{0.4} = 0.5$。$P(B|A) = \\frac{P(A \\cap B)}{P(A)} = \\frac{0.2}{0.6} = \\frac{1}{3}$。可以直观理解为在缩减的样本空间 $B$ 或 $A$ 中，交集部分所占的比例。",
+     "answer": "$P(A|B) = 0.5$，$P(B|A) = \\frac{1}{3}$",
+     "scene_spec": {
+      "objects": [
+       "矩形样本空间（总面积对应概率 1）",
+       "蓝色圆 A（面积比例 0.6）",
+       "红色圆 B（面积比例 0.4）",
+       "交集区域（紫色，面积比例 0.2）"
+      ],
+      "steps": [
+       "第一步：画出一个正方形代表总样本空间（总面积对应概率 1），按面积比例 $0.6$、$0.4$ 画出相交的圆 A 和圆 B，交集面积比例为 $0.2$。",
+       "第二步：给交集部分涂上紫色，标注 $P(A \\cap B) = 0.2$。",
+       "第三步：动态展示“条件概率”的空间缩减过程，将圆 B 以外的区域变为灰色，强调样本空间现在变成了 B。",
+       "第四步：在缩小后的空间 B 中，高亮紫色交集部分的占比，直观展示 $P(A|B) = 0.5$。",
+       "第五步：同样地，动态演示缩小到空间 A 的情况，得出 $P(B|A) = \\frac{1}{3}$。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "9ea4a3ee9181d11913920e97c621e75a4b5bf7a7ed6c7228b36fbf461e0113d6"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-039",
+   "problem_sha256": "d3c2d381d9003632b78b9eb449f70a71acbafb204ddb61f8f737c60e434b815b",
+   "source_records": [
+    {
+     "id": "prob-039",
+     "category": "概率论",
+     "sub_category": "几何概型",
+     "function_family": "连续均匀分布与随机投点",
+     "visual_style": "空间撒点与频率逼近",
+     "efficiency_tags": [
+      "面积比计算",
+      "大数定律直观展示"
+     ],
+     "problem": "利用几何概型的思想，说明如何通过随机投点估算圆周率 $\\pi$ 的值。",
+     "solution": "考虑边长为2的正方形内切一个半径为1的圆。正方形的面积为4，圆的面积为 $\\pi$。如果向正方形内随机投掷 $n$ 个点，点落在圆内的概率为 $P = \\frac{\\pi}{4}$。随着投掷次数 $n$ 增大，落入圆内的点频数 $m$ 与 $n$ 的比值 $\\frac{m}{n}$ 会趋近于 $\\frac{\\pi}{4}$，从而可以估算 $\\pi \\approx \\frac{4m}{n}$。",
+     "answer": "$\\pi \\approx \\frac{4m}{n}$",
+     "scene_spec": {
+      "objects": [
+       "平面直角坐标系",
+       "正方形区域",
+       "内切圆区域",
+       "随机散点",
+       "动态更新的公式"
+      ],
+      "steps": [
+       "第一步：绘制一个边长为2，中心在原点的正方形，并画出它的内切圆。",
+       "第二步：用程序生成均匀分布的随机点，让这些点像下雨一样落在正方形内。",
+       "第三步：落在圆内的点显示为蓝色，落在圆外的点显示为灰色，动态统计蓝点的个数。",
+       "第四步：右侧实时展示估算公式 $\\pi \\approx \\frac{4m}{n}$，随着点数增加，数字逐渐逼近 $3.14159...$。",
+       "第五步：对比展示理论值，直观揭示频率的稳定性和大数定律。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "916010ea92d0857c6d2e1742f923cdf7af4116c2b815fac353b326ad8c293361"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-040",
+   "problem_sha256": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+   "source_records": [
+    {
+     "id": "prob-040",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "function_family": "二项分布与泊松分布",
+     "visual_style": "柱状图动态逼近",
+     "efficiency_tags": [
+      "参数调整",
+      "离散分布极限"
+     ],
+     "problem": "说明当 $n$ 很大，$p$ 很小时，二项分布 $B(n, p)$ 可以近似为泊松分布 $P(\\lambda)$，其中 $\\lambda = np$。",
+     "solution": "二项分布的概率质量函数为 $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$。当 $n \\to \\infty$，$p \\to 0$ 且 $np \\to \\lambda$ 时，利用极限 $\\lim_{n \\to \\infty} (1 - \\frac{\\lambda}{n})^n = e^{-\\lambda}$，可以推导出 $P(X=k) \\to \\frac{\\lambda^k e^{-\\lambda}}{k!}$，这正是泊松分布的概率质量函数。",
+     "answer": "当 $n \\to \\infty$、$p \\to 0$ 且 $np \\to \\lambda$ 时，$B(n,p)$ 的概率质量函数趋近于泊松分布 $P(\\lambda)$ 的概率质量函数 $\\frac{\\lambda^k e^{-\\lambda}}{k!}$",
+     "scene_spec": {
+      "objects": [
+       "直角坐标系",
+       "二项分布柱状图",
+       "泊松分布理想曲线",
+       "动态变化的参数滑块"
+      ],
+      "steps": [
+       "第一步：在坐标系中绘制二项分布 $B(n,p)$ 的柱状图，初始设定 $n=10, p=0.5$。",
+       "第二步：在画面右侧引入一个滑块，拖动滑块使得 $n$ 逐渐增大（如 $n=50, 100$），同时 $p$ 逐渐减小。",
+       "第三步：保持 $\\lambda = np = 5$ 固定，展示随着 $n$ 增大柱状图中心始终位于 5、方差由 2.5 逐渐趋近 5，形态收敛到固定的泊松分布 $P(5)$。",
+       "第四步：叠加上一条红色的泊松分布理论曲线，展示当 $n$ 很大 $p$ 很小时，二项分布的柱状图顶端几乎完全与红色曲线重合，验证泊松近似。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "8603c675ce665f2e3cda9c651e7ff29123390af943ae42c0dfb34ed87ee222c8"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-041",
+   "problem_sha256": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+   "source_records": [
+    {
+     "id": "prob-041",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "function_family": "正态分布",
+     "visual_style": "连续曲线与参数动态调整",
+     "efficiency_tags": [
+      "均值和方差几何意义",
+      "概率密度函数高亮"
+     ],
+     "problem": "分析正态分布 $X \\sim N(\\mu, \\sigma^2)$ 的概率密度函数，说明参数 $\\mu$ 和 $\\sigma$ 对曲线形状的影响。",
+     "solution": "正态分布的概率密度函数为 $f(x) = \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$。参数 $\\mu$ 是位置参数，决定曲线的对称轴位置；参数 $\\sigma$ 是尺度参数，决定曲线的陡峭程度（$\\sigma$ 越大，曲线越矮胖；$\\sigma$ 越小，曲线越高瘦）。",
+     "answer": "$\\mu$ 决定位置，$\\sigma$ 决定形状的陡峭程度",
+     "scene_spec": {
+      "objects": [
+       "直角坐标系",
+       "正态分布钟形曲线",
+       "$\\mu$ 滑块",
+       "$\\sigma$ 滑块",
+       "阴影面积高亮"
+      ],
+      "steps": [
+       "第一步：绘制标准正态分布曲线 $N(0,1)$，并高亮曲线下方面积为1。",
+       "第二步：拖动 $\\mu$ 滑块，展示曲线在水平方向上左右平移，而形状完全不变。",
+       "第三步：拖动 $\\sigma$ 滑块，展示曲线以 $\\mu$ 为中心变宽或变窄，同时高度发生反向变化以保持总面积为1。",
+       "第四步：在曲线上用阴影标记出 $\\mu \\pm \\sigma$ 区间，展示该区间的概率面积约为 $0.6827$，$\\mu \\pm 2\\sigma$ 约为 $0.9545$。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "eae914133e0447d5ba8da272170e4397878aaa3aafeb77f0833e5525ec03174f"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-042",
+   "problem_sha256": "5db972b750fe565bc2e516e4a55c1255e45419166a9636cf107cf24ea8bdb5d1",
+   "source_records": [
+    {
+     "id": "prob-042",
+     "category": "概率论",
+     "sub_category": "大数定律",
+     "function_family": "伯努利大数定律",
+     "visual_style": "动态折线与频率收敛",
+     "efficiency_tags": [
+      "动态收敛轨迹",
+      "水平极限线"
+     ],
+     "problem": "利用伯努利大数定律，说明抛硬币试验中正面出现的频率是如何随试验次数增加而趋于其概率的。",
+     "solution": "设 $X_i$ 为第 $i$ 次抛硬币的指示变量（正面为1，反面为0），$P(X_i=1) = p = 0.5$。伯努利大数定律指出，对于任意 $\\epsilon > 0$，有 $\\lim_{n \\to \\infty} P\\left( \\left| \\frac{1}{n} \\sum_{i=1}^n X_i - p \\right| < \\epsilon \\right) = 1$。即当试验次数 $n$ 趋近于无穷大时，正面出现的频率依概率收敛于其理论概率 $0.5$。",
+     "answer": "频率依概率收敛于 $0.5$",
+     "scene_spec": {
+      "objects": [
+       "二维坐标系",
+       "收敛水平线 $y=0.5$",
+       "动态折线图",
+       "不断累加的硬币图标"
+      ],
+      "steps": [
+       "第一步：在坐标系中画出横轴（试验次数 n）和纵轴（正面频率），并画一条红色的水平虚线表示极限概率 $0.5$。",
+       "第二步：模拟抛硬币过程，随着硬币不断被抛出（动态画面），折线图从左向右延伸。",
+       "第三步：折线在初始阶段（n 较小时）波动剧烈，经常上下大幅跳动。",
+       "第四步：随着试验次数 $n$ 增大（如 $n=1000, 10000$），折线震荡幅度越来越小。",
+       "第五步：最终，折线几乎紧贴并收敛于红色虚线 $y=0.5$，直观演示大数定律。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "3f70da56d2084427141488add9d6b5e007cdf8124c9c4ced27c2fd4dce3766c9"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-043",
+   "problem_sha256": "9ba5f18532453cf789b45fd0d25c06e16dcf761d489d1e86bda096c8424dcbf5",
+   "source_records": [
+    {
+     "id": "prob-043",
+     "category": "概率论",
+     "sub_category": "中心极限定理",
+     "function_family": "独立同分布中心极限定理",
+     "visual_style": "分屏对比与分布形态演变",
+     "efficiency_tags": [
+      "样本量滑块",
+      "直方图对比"
+     ],
+     "problem": "解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值的分布是如何变化的。",
+     "solution": "设随机变量 $X_1, X_2, \\dots, X_n$ 相互独立且同分布，具有有限的数学期望 $\\mu$ 和方差 $\\sigma^2$。中心极限定理指出，当 $n$ 充分大时，标准化样本均值 $\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}}$ 的分布近似于标准正态分布 $N(0, 1)$。直观来说，样本均值的方差为 $\\sigma^2/n$，随着 $n$ 增大，方差减小，分布变得更加集中，直方图会变高变窄，最终趋于钟形正态分布。",
+     "answer": "样本均值 $\\bar{X}$ 的分布趋近于正态分布 $N(\\mu, \\sigma^2/n)$：随着 $n$ 增大，分布变高变窄、中心不变。",
+     "scene_spec": {
+      "objects": [
+       "左侧原始总体分布（如均匀分布或指数分布）",
+       "右侧动态样本均值分布直方图",
+       "样本量 n 滑块",
+       "目标正态曲线 $N(\\mu, \\sigma^2/n)$"
+      ],
+      "steps": [
+       "第一步：屏幕左侧显示一个明显非正态的总体分布（例如均匀分布），明确标注其形态。",
+       "第二步：在右侧从该总体中随机抽取 n 个样本并计算均值，重复多次绘制直方图。",
+       "第三步：初始设置 n=2，样本均值的直方图已呈现三角分布（Irwin–Hall 分布），与原始均匀总体明显不同。",
+       "第四步：动画拖动“样本量 n”滑块，将 n 逐渐增大至 5, 10, 30。",
+       "第五步：右侧的直方图动态且平滑地变高变窄，形态逐渐转变成钟形。",
+       "第六步：叠加红色曲线 $N(\\mu, \\sigma^2/n)$，展示当 n=30 时，样本均值直方图几乎与红色曲线重合。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "cf5b5f432a33417be941dbf22d12345feee9ac3baa0ffb308569403206597c69"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "train",
+   "id": "prob-046",
+   "problem_sha256": "8461ccd1568d81c76a8413199be51563d23468c8a3bf8036dde9011a76c38072",
+   "source_records": [
+    {
+     "id": "prob-046",
+     "category": "概率论",
+     "sub_category": "可列可加性",
+     "function_family": "测度的可列可加性",
+     "visual_style": "无限级数面积拼图",
+     "efficiency_tags": [
+      "几何级数",
+      "极限逼近"
+     ],
+     "problem": "用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的小矩形。",
+     "solution": "将面积为 $1$ 的正方形依次分割：第一个矩形面积为 $\\frac{1}{2}$，第二个为 $\\frac{1}{4}$，第三个为 $\\frac{1}{8}$，依此类推。随着分割次数趋向无穷，矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$。这直观展示了可列可加性。",
+     "answer": "可列可加性成立：各矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$，恰等于单位正方形的总面积",
+     "scene_spec": {
+      "objects": [
+       "单位正方形",
+       "不断细分的矩形区域",
+       "动态更新的概率求和公式"
+      ],
+      "steps": [
+       "第一步：画出一个面积为1的单位正方形。",
+       "第二步：先分割出一半面积（1/2）的矩形，用蓝色填充，显示部分和 $S_1 = \\frac{1}{2}$。",
+       "第三步：在剩余的空间中再分割出 1/4 面积的矩形，用绿色填充，显示部分和 $S_2 = \\frac{1}{2} + \\frac{1}{4}$。",
+       "第四步：接着不断分割出 $\\frac{1}{8}, \\frac{1}{16}, \\frac{1}{32}$ 等更小的矩形，用不同颜色区分。",
+       "第五步：随着分割次数趋向无穷，剩余未分配的面积越来越小，最终无限趋近于 $0$。",
+       "第六步：展示求和公式 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k} = 1$，所有矩形面积之和等于 1，直观展示可列可加性。"
+      ]
+     },
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "3a779a65b5dc2c7a3d3841d13865c4e11fa53654ebd2ab9c4729e0399591fd6c"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-001",
+   "problem_sha256": "99ff4f8b1d45ffec7e1b4b46fc52416063b8e6e15389cd5b6e60c9d729bcd594",
+   "source_records": [
+    {
+     "id": "eval-calc-001-s1",
+     "problem_id": "eval-calc-001",
+     "solution_id": "eval-calc-001-s1",
+     "method": "半角公式",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+     "solution": "由 $1-\\cos x = 2\\sin^2\\dfrac{x}{2}$，得 $\\dfrac{1-\\cos x}{x^2}=\\dfrac{2\\sin^2(x/2)}{x^2}=\\dfrac{1}{2}\\left(\\dfrac{\\sin(x/2)}{x/2}\\right)^2$。令 $t=x/2\\to 0$，利用 $\\lim_{t\\to 0}\\dfrac{\\sin t}{t}=1$，故原式 $=\\dfrac{1}{2}\\cdot 1^2=\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "单位圆中半角 $x/2$ 的扇形与三角形面积",
+       "比值 $\\dfrac{\\sin(x/2)}{x/2}$ 随 $x\\to0$ 逼近 1 的动画",
+       "半角恒等式 $1-\\cos x=2\\sin^2(x/2)$ 的标注"
+      ],
+      "steps": [
+       "第一步：以半角公式为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：单位圆中半角 $x/2$ 的扇形与三角形面积。",
+       "第三步：比值 $\\dfrac{\\sin(x/2)}{x/2}$ 随 $x\\to0$ 逼近 1 的动画。",
+       "第四步：半角恒等式 $1-\\cos x=2\\sin^2(x/2)$ 的标注。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与二次多项式",
+     "visual_style": "几何面积比较+三法分屏对照",
+     "efficiency_tags": [
+      "单位圆中半角 $x/2$ 的扇形与三角形面积",
+      "比值 $\\dfrac{\\sin(x/2)}{x/2}$ 随 $x\\to0$ 逼近 1 的动画",
+      "半角恒等式 $1-\\cos x=2\\sin^2(x/2)$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-001-s2",
+     "problem_id": "eval-calc-001",
+     "solution_id": "eval-calc-001-s2",
+     "method": "泰勒展开",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+     "solution": "$\\cos x = 1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}+o(x^4)$，故 $1-\\cos x = \\dfrac{x^2}{2}+o(x^2)$，原式 $=\\lim_{x\\to 0}\\dfrac{x^2/2+o(x^2)}{x^2}=\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "原点邻域放大：$y=\\cos x$ 与 $y=1-x^2/2$ 二阶接触",
+       "泰勒多项式逐项贴合曲线"
+      ],
+      "steps": [
+       "第一步：以泰勒展开为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：原点邻域放大：$y=\\cos x$ 与 $y=1-x^2/2$ 二阶接触。",
+       "第三步：泰勒多项式逐项贴合曲线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与二次多项式",
+     "visual_style": "几何面积比较+三法分屏对照",
+     "efficiency_tags": [
+      "原点邻域放大：$y=\\cos x$ 与 $y=1-x^2/2$ 二阶接触",
+      "泰勒多项式逐项贴合曲线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-001-s3",
+     "problem_id": "eval-calc-001",
+     "solution_id": "eval-calc-001-s3",
+     "method": "洛必达法则",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+     "solution": "原式为 $\\dfrac{0}{0}$ 型。第一次求导：$\\lim_{x\\to 0}\\dfrac{\\sin x}{2x}$；第二次求导：$\\lim_{x\\to 0}\\dfrac{\\cos x}{2}=\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "分子分母比值表随两次求导收敛于 $\\dfrac{1}{2}$",
+       "洛必达两次求导的符号推导滚动"
+      ],
+      "steps": [
+       "第一步：以洛必达法则为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：分子分母比值表随两次求导收敛于 $\\dfrac{1}{2}$。",
+       "第三步：洛必达两次求导的符号推导滚动。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与二次多项式",
+     "visual_style": "几何面积比较+三法分屏对照",
+     "efficiency_tags": [
+      "分子分母比值表随两次求导收敛于 $\\dfrac{1}{2}$",
+      "洛必达两次求导的符号推导滚动"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "8621a0611afdb1abc06fb7192a5c47cfdad16da4a817c3feae26181efd9707e3",
+    "4d844384029a22018183e2a9c78a83d0f25cbd1877b8a90ae81be914a50a1abf",
+    "f908420ab02f437d5c1f79ef10e6d951c81e5dab4ecf20326ee771d0f178b686"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-002",
+   "problem_sha256": "f9bedeee03135ef61cfd29f1e4f1384e82c9bc7bd6a725d7c33924390d50f66d",
+   "source_records": [
+    {
+     "id": "eval-calc-002-s1",
+     "problem_id": "eval-calc-002",
+     "solution_id": "eval-calc-002-s1",
+     "method": "对数化+变量替换",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。",
+     "solution": "令 $y=x^x$，则 $\\ln y = x\\ln x$。令 $t=\\dfrac{1}{x}\\to+\\infty$，则 $x\\ln x = -\\dfrac{\\ln t}{t}\\to 0$（对数函数增长慢于幂函数）。故 $\\ln y\\to 0$，由指数函数连续性得 $y\\to e^0=1$。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "$t=\\dfrac{1}{x}$ 代换把 $0^+$ 邻域拉到 $+\\infty$ 的坐标动画",
+       "$y=\\dfrac{\\ln t}{t}$ 随 $t\\to\\infty$ 衰减到 0 的曲线"
+      ],
+      "steps": [
+       "第一步：以对数化+变量替换为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：$t=\\dfrac{1}{x}$ 代换把 $0^+$ 邻域拉到 $+\\infty$ 的坐标动画。",
+       "第三步：$y=\\dfrac{\\ln t}{t}$ 随 $t\\to\\infty$ 衰减到 0 的曲线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数 x^x",
+     "visual_style": "对数化坐标衰减演示",
+     "efficiency_tags": [
+      "$t=\\dfrac{1}{x}$ 代换把 $0^+$ 邻域拉到 $+\\infty$ 的坐标动画",
+      "$y=\\dfrac{\\ln t}{t}$ 随 $t\\to\\infty$ 衰减到 0 的曲线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-002-s2",
+     "problem_id": "eval-calc-002",
+     "solution_id": "eval-calc-002-s2",
+     "method": "对数化+洛必达",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。",
+     "solution": "同上先取对数，$x\\ln x = \\dfrac{\\ln x}{1/x}$ 为 $\\dfrac{-\\infty}{+\\infty}$ 型，洛必达：$\\lim_{x\\to 0^+}\\dfrac{1/x}{-1/x^2}=\\lim_{x\\to 0^+}(-x)=0$，故原极限 $=e^0=1$。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "$\\dfrac{\\ln x}{1/x}$ 的洛必达一次求导",
+       "$x\\ln x$ 在 $0^+$ 邻域的负值收敛曲线"
+      ],
+      "steps": [
+       "第一步：以对数化+洛必达为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：$\\dfrac{\\ln x}{1/x}$ 的洛必达一次求导。",
+       "第三步：$x\\ln x$ 在 $0^+$ 邻域的负值收敛曲线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数 x^x",
+     "visual_style": "对数化坐标衰减演示",
+     "efficiency_tags": [
+      "$\\dfrac{\\ln x}{1/x}$ 的洛必达一次求导",
+      "$x\\ln x$ 在 $0^+$ 邻域的负值收敛曲线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-002-s3",
+     "problem_id": "eval-calc-002",
+     "solution_id": "eval-calc-002-s3",
+     "method": "指数代换",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。",
+     "solution": "令 $x=e^{-t}$（$t\\to+\\infty$），则 $x^x = (e^{-t})^{e^{-t}} = e^{-t e^{-t}}$，而 $t e^{-t}\\to 0$，故极限为 $e^0=1$。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "指数代换 $x=e^{-t}$ 的坐标压缩示意",
+       "$y=x^x$ 全图与 $x\\to0^+$ 端放大趋近 $(0,1)$"
+      ],
+      "steps": [
+       "第一步：以指数代换为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：指数代换 $x=e^{-t}$ 的坐标压缩示意。",
+       "第三步：$y=x^x$ 全图与 $x\\to0^+$ 端放大趋近 $(0,1)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数 x^x",
+     "visual_style": "对数化坐标衰减演示",
+     "efficiency_tags": [
+      "指数代换 $x=e^{-t}$ 的坐标压缩示意",
+      "$y=x^x$ 全图与 $x\\to0^+$ 端放大趋近 $(0,1)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "76d4c68b452289821f6c8fea9e2ec068954088fbb4af2e4d4bcd4592f53fc96c",
+    "21652b2aa1baa834dd5edb1cb974f8a414e13eccf570ec08dfa4e45c67f23f6d",
+    "4f0f329dce3cb8066343df79c8e1a25dd11360c0bd51c545267a7e995e210204"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-003",
+   "problem_sha256": "118751971c94c061c9882243c5e6c97113a484f8625b148f934761d1e54b834a",
+   "source_records": [
+    {
+     "id": "eval-calc-003-s1",
+     "problem_id": "eval-calc-003",
+     "solution_id": "eval-calc-003-s1",
+     "method": "单调有界准则",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "证明极限 $\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^n$ 存在（记为 $e$），并说明它与级数 $\\displaystyle\\sum_{k=0}^{\\infty}\\frac{1}{k!}$ 的联系。",
+     "solution": "记 $a_n=\\left(1+\\dfrac{1}{n}\\right)^n$。由二项式展开 $a_n=\\sum_{k=0}^{n}\\binom{n}{k}\\dfrac{1}{n^k}=\\sum_{k=0}^{n}\\dfrac{1}{k!}\\cdot\\dfrac{n(n-1)\\cdots(n-k+1)}{n^k}$。比较 $a_n$ 与 $a_{n+1}$ 的展开式，第 $k$ 项因子 $\\dfrac{n(n-1)\\cdots(n-k+1)}{n^k}\\le\\dfrac{(n+1)n\\cdots(n-k+2)}{(n+1)^k}$，且 $a_{n+1}$ 还多一项，故 $a_{n+1}>a_n$，数列递增。又有 $a_n\\le\\sum_{k=0}^{n}\\dfrac{1}{k!}\\le 1+1+\\dfrac{1}{2}+\\dfrac{1}{4}+\\cdots+\\dfrac{1}{2^{n-1}}<3$，故有上界。由单调有界准则，$\\lim a_n$ 存在，记为 $e$。",
+     "answer": "极限存在且等于 $e=\\sum_{k=0}^{\\infty}\\frac{1}{k!}$",
+     "scene_spec": {
+      "objects": [
+       "二项展开系数柱状图逐项累加",
+       "数列 $a_n$ 单调递增且有上界 3 的标注",
+       "上界 3 的水平虚线"
+      ],
+      "steps": [
+       "第一步：以单调有界准则为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：二项展开系数柱状图逐项累加。",
+       "第三步：数列 $a_n$ 单调递增且有上界 3 的标注。",
+       "第四步：上界 3 的水平虚线。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数型数列 (1+1/n)^n",
+     "visual_style": "二项展开柱状与级数同框",
+     "efficiency_tags": [
+      "二项展开系数柱状图逐项累加",
+      "数列 $a_n$ 单调递增且有上界 3 的标注",
+      "上界 3 的水平虚线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-003-s2",
+     "problem_id": "eval-calc-003",
+     "solution_id": "eval-calc-003-s2",
+     "method": "对数化+洛必达",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "证明极限 $\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^n$ 存在（记为 $e$），并说明它与级数 $\\displaystyle\\sum_{k=0}^{\\infty}\\frac{1}{k!}$ 的联系。",
+     "solution": "设 $n\\ln\\left(1+\\dfrac{1}{n}\\right)=\\dfrac{\\ln(1+x)}{x}$，其中 $x=\\dfrac{1}{n}\\to 0^+$。洛必达：$\\lim_{x\\to 0^+}\\dfrac{\\ln(1+x)}{x}=\\lim_{x\\to 0^+}\\dfrac{1}{1+x}=1$。故 $\\lim n\\ln(1+1/n)=1$，原极限 $=e^1$。注意此解法默认 $e$ 已由其他途径定义，适合作为验证。",
+     "answer": "极限存在且等于 $e=\\sum_{k=0}^{\\infty}\\frac{1}{k!}$",
+     "scene_spec": {
+      "objects": [
+       "曲线 $y=\\dfrac{\\ln(1+x)}{x}$ 在 $x\\to0^+$ 趋于 1",
+       "洛必达一次求导的过程"
+      ],
+      "steps": [
+       "第一步：以对数化+洛必达为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：曲线 $y=\\dfrac{\\ln(1+x)}{x}$ 在 $x\\to0^+$ 趋于 1。",
+       "第三步：洛必达一次求导的过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数型数列 (1+1/n)^n",
+     "visual_style": "二项展开柱状与级数同框",
+     "efficiency_tags": [
+      "曲线 $y=\\dfrac{\\ln(1+x)}{x}$ 在 $x\\to0^+$ 趋于 1",
+      "洛必达一次求导的过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-003-s3",
+     "problem_id": "eval-calc-003",
+     "solution_id": "eval-calc-003-s3",
+     "method": "与级数定义的等价性",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "证明极限 $\\displaystyle\\lim_{n\\to\\infty}\\left(1+\\frac{1}{n}\\right)^n$ 存在（记为 $e$），并说明它与级数 $\\displaystyle\\sum_{k=0}^{\\infty}\\frac{1}{k!}$ 的联系。",
+     "solution": "记 $c_k(n)=\\left(1-\\dfrac{1}{n}\\right)\\left(1-\\dfrac{2}{n}\\right)\\cdots\\left(1-\\dfrac{k-1}{n}\\right)$（约定 $c_0=c_1=1$），则 $a_n=\\displaystyle\\sum_{k=0}^{n}\\dfrac{c_k(n)}{k!}$。每个因子都在 $(0,1]$ 内，故 $0<c_k(n)\\le 1$，且对固定 $k$ 有 $c_k(n)\\to 1$（$n\\to\\infty$）。一方面 $a_n\\le\\displaystyle\\sum_{k=0}^{n}\\dfrac{1}{k!}=:s_n$；另一方面对任意固定的 $m\\le n$，$a_n\\ge\\displaystyle\\sum_{k=0}^{m}\\dfrac{c_k(n)}{k!}\\to s_m$。于是 $s_m\\le\\liminf a_n\\le\\limsup a_n\\le\\lim s_n$，令 $m\\to\\infty$ 即得 $\\lim a_n=\\lim s_n=\\displaystyle\\sum_{k=0}^{\\infty}\\dfrac{1}{k!}$——数列极限与级数和两种构造给出同一个数 $e$。",
+     "answer": "极限存在且等于 $e=\\sum_{k=0}^{\\infty}\\frac{1}{k!}$",
+     "scene_spec": {
+      "objects": [
+       "因子 $c_k(n)\\to1$ 的逐项趋近动画",
+       "级数部分和 $s_n$ 与 $a_n$ 同框收敛于 $e$"
+      ],
+      "steps": [
+       "第一步：以与级数定义的等价性为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：因子 $c_k(n)\\to1$ 的逐项趋近动画。",
+       "第三步：级数部分和 $s_n$ 与 $a_n$ 同框收敛于 $e$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数型数列 (1+1/n)^n",
+     "visual_style": "二项展开柱状与级数同框",
+     "efficiency_tags": [
+      "因子 $c_k(n)\\to1$ 的逐项趋近动画",
+      "级数部分和 $s_n$ 与 $a_n$ 同框收敛于 $e$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "0a0794acbb774c78638593f5f1ad3eaf155ac88532c8836420cb7a1890e055bd",
+    "b9599df7d5f826342d759bd6636f3b6012b4a878a10de1791e3734788b433e84",
+    "91e594bd81e4f737e5f4a49f2cb6634904faffc0dc0f35517fdc33e6d134786a"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-004",
+   "problem_sha256": "aa2d5fc495f758e024221b0158ee60d18dc8c6e194a03d9722ef366bb40b4604",
+   "source_records": [
+    {
+     "id": "eval-calc-004-s1",
+     "problem_id": "eval-calc-004",
+     "solution_id": "eval-calc-004-s1",
+     "method": "因式分解+已知极限",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。",
+     "solution": "提公因式：$\\dfrac{\\sin x-\\tan x}{x^3}=\\dfrac{\\sin x\\left(1-\\dfrac{1}{\\cos x}\\right)}{x^3}=\\dfrac{\\sin x}{x}\\cdot\\dfrac{\\cos x-1}{x^2}\\cdot\\dfrac{1}{\\cos x}$。由 $\\lim\\dfrac{\\sin x}{x}=1$、$\\lim\\dfrac{\\cos x-1}{x^2}=-\\dfrac{1}{2}$（eval-calc-001）、$\\lim\\dfrac{1}{\\cos x}=1$，得原式 $=1\\cdot\\left(-\\dfrac{1}{2}\\right)\\cdot 1=-\\dfrac{1}{2}$。",
+     "answer": "$-\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "因式分解 $\\sin x\\cdot\\left(1-\\dfrac{1}{\\cos x}\\right)$ 的拆项高亮",
+       "三个已知极限乘积的分解式标注"
+      ],
+      "steps": [
+       "第一步：以因式分解+已知极限为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：因式分解 $\\sin x\\cdot\\left(1-\\dfrac{1}{\\cos x}\\right)$ 的拆项高亮。",
+       "第三步：三个已知极限乘积的分解式标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与高阶无穷小",
+     "visual_style": "原点邻域放大对比",
+     "efficiency_tags": [
+      "因式分解 $\\sin x\\cdot\\left(1-\\dfrac{1}{\\cos x}\\right)$ 的拆项高亮",
+      "三个已知极限乘积的分解式标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-004-s2",
+     "problem_id": "eval-calc-004",
+     "solution_id": "eval-calc-004-s2",
+     "method": "泰勒展开",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。",
+     "solution": "$\\sin x = x-\\dfrac{x^3}{6}+o(x^3)$，$\\tan x = x+\\dfrac{x^3}{3}+o(x^3)$，故 $\\sin x-\\tan x = -\\dfrac{x^3}{2}+o(x^3)$，原式 $=-\\dfrac{1}{2}$。",
+     "answer": "$-\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "原点放大：$\\sin x$ 与 $\\tan x$ 近乎重合",
+       "差值曲线 $y=\\sin x-\\tan x$ 与 $-\\dfrac{x^3}{2}$ 对比"
+      ],
+      "steps": [
+       "第一步：以泰勒展开为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：原点放大：$\\sin x$ 与 $\\tan x$ 近乎重合。",
+       "第三步：差值曲线 $y=\\sin x-\\tan x$ 与 $-\\dfrac{x^3}{2}$ 对比。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与高阶无穷小",
+     "visual_style": "原点邻域放大对比",
+     "efficiency_tags": [
+      "原点放大：$\\sin x$ 与 $\\tan x$ 近乎重合",
+      "差值曲线 $y=\\sin x-\\tan x$ 与 $-\\dfrac{x^3}{2}$ 对比"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-004-s3",
+     "problem_id": "eval-calc-004",
+     "solution_id": "eval-calc-004-s3",
+     "method": "洛必达法则",
+     "category": "数学分析",
+     "sub_category": "极限",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。",
+     "solution": "$\\dfrac{0}{0}$ 型。一阶：$\\dfrac{\\cos x-\\sec^2 x}{3x^2}$；二阶：$\\dfrac{-\\sin x-2\\sec^2 x\\tan x}{6x}$；三阶：$\\dfrac{-\\cos x-2(2\\sec^2 x\\tan^2 x+\\sec^4 x)}{6}\\to \\dfrac{-1-2}{6}=-\\dfrac{1}{2}$。",
+     "answer": "$-\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "洛必达三次求导的符号推导滚动",
+       "分子分母比值随求导次数收敛于 $-\\dfrac{1}{2}$"
+      ],
+      "steps": [
+       "第一步：以洛必达法则为主线，建立数学分析·极限场景并呈现该解法的关键图形。",
+       "第二步：洛必达三次求导的符号推导滚动。",
+       "第三步：分子分母比值随求导次数收敛于 $-\\dfrac{1}{2}$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三角函数与高阶无穷小",
+     "visual_style": "原点邻域放大对比",
+     "efficiency_tags": [
+      "洛必达三次求导的符号推导滚动",
+      "分子分母比值随求导次数收敛于 $-\\dfrac{1}{2}$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "3c72849f543043638adf9bc295b789142e7758c128292d04fc02dfdec41162d1",
+    "b6d4a46bc9278fe412db980b3d85535eeac7f3aa5067c38e804599e44c4cb13d",
+    "8eac11e5dbf4824fc8a7d6517e490a7897063a2cb5487b6631f4a94f00587479"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-005",
+   "problem_sha256": "83499622a2133f409138dc1e6eba6307a8b0e78351badfe11147f8f8eb011089",
+   "source_records": [
+    {
+     "id": "eval-calc-005-s1",
+     "problem_id": "eval-calc-005",
+     "solution_id": "eval-calc-005-s1",
+     "method": "对数求导法",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=x^x$（$x>0$）的导数。",
+     "solution": "两边取对数：$\\ln y=x\\ln x$。两边对 $x$ 求导：$\\dfrac{y'}{y}=\\ln x+1$。故 $y'=y(\\ln x+1)=x^x(\\ln x+1)$。",
+     "answer": "$y'=x^x(\\ln x+1)$",
+     "scene_spec": {
+      "objects": [
+       "两边取对数 $\\ln y=x\\ln x$ 的变形高亮",
+       "乘积求导法则作用于 $\\ln y$ 的过程"
+      ],
+      "steps": [
+       "第一步：以对数求导法为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：两边取对数 $\\ln y=x\\ln x$ 的变形高亮。",
+       "第三步：乘积求导法则作用于 $\\ln y$ 的过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数求导",
+     "visual_style": "切线斜率动态标注",
+     "efficiency_tags": [
+      "两边取对数 $\\ln y=x\\ln x$ 的变形高亮",
+      "乘积求导法则作用于 $\\ln y$ 的过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-005-s2",
+     "problem_id": "eval-calc-005",
+     "solution_id": "eval-calc-005-s2",
+     "method": "隐函数求导",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=x^x$（$x>0$）的导数。",
+     "solution": "令 $F(x,y)=\\ln y-x\\ln x=0$。由隐函数求导公式 $y'=-\\dfrac{F_x}{F_y}=-\\dfrac{-(\\ln x+1)}{1/y}=y(\\ln x+1)=x^x(\\ln x+1)$。",
+     "answer": "$y'=x^x(\\ln x+1)$",
+     "scene_spec": {
+      "objects": [
+       "隐函数求导公式 $y'=-\\dfrac{F_x}{F_y}$ 的分量标注",
+       "$F(x,y)=\\ln y-x\\ln x=0$ 的等值线"
+      ],
+      "steps": [
+       "第一步：以隐函数求导为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：隐函数求导公式 $y'=-\\dfrac{F_x}{F_y}$ 的分量标注。",
+       "第三步：$F(x,y)=\\ln y-x\\ln x=0$ 的等值线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数求导",
+     "visual_style": "切线斜率动态标注",
+     "efficiency_tags": [
+      "隐函数求导公式 $y'=-\\dfrac{F_x}{F_y}$ 的分量标注",
+      "$F(x,y)=\\ln y-x\\ln x=0$ 的等值线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-005-s3",
+     "problem_id": "eval-calc-005",
+     "solution_id": "eval-calc-005-s3",
+     "method": "指数化+链式法则",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=x^x$（$x>0$）的导数。",
+     "solution": "$x^x=e^{x\\ln x}$，故 $y'=e^{x\\ln x}\\cdot(x\\ln x)'=x^x(\\ln x+1)$。",
+     "answer": "$y'=x^x(\\ln x+1)$",
+     "scene_spec": {
+      "objects": [
+       "$y=x^x$ 曲线与极小值点 $x=\\dfrac{1}{e}$",
+       "切线斜率随 $x$ 变化（由负转正）"
+      ],
+      "steps": [
+       "第一步：以指数化+链式法则为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：$y=x^x$ 曲线与极小值点 $x=\\dfrac{1}{e}$。",
+       "第三步：切线斜率随 $x$ 变化（由负转正）。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂指函数求导",
+     "visual_style": "切线斜率动态标注",
+     "efficiency_tags": [
+      "$y=x^x$ 曲线与极小值点 $x=\\dfrac{1}{e}$",
+      "切线斜率随 $x$ 变化（由负转正）"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "5252a81dddadb1b800a19f242e2dc6f140f924e86dfb33bc6aa1d88dae0db3d3",
+    "b88c22f1074110c60f4ea70b41486100f691770e53306d88194a8e6d2d30ff04",
+    "a3f52c291a110544104a8a124ec11cade7b3322b0b5ce4ad5e44c31498beeb8c"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-006",
+   "problem_sha256": "1e60091776e296867b6ef915cb6e8ff897c3d41947ec0362c5bb50c8d9dd98e3",
+   "source_records": [
+    {
+     "id": "eval-calc-006-s1",
+     "problem_id": "eval-calc-006",
+     "solution_id": "eval-calc-006-s1",
+     "method": "直接链式法则",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=\\ln(x+\\sqrt{x^2+a^2})$（$a>0$）的导数，并说明其反函数。",
+     "solution": "$y'=\\dfrac{1+\\dfrac{x}{\\sqrt{x^2+a^2}}}{x+\\sqrt{x^2+a^2}}=\\dfrac{\\sqrt{x^2+a^2}+x}{\\sqrt{x^2+a^2}\\cdot(x+\\sqrt{x^2+a^2})}=\\dfrac{1}{\\sqrt{x^2+a^2}}$。",
+     "answer": "$y'=\\dfrac{1}{\\sqrt{x^2+a^2}}$；反函数为 $x=a\\sinh(y-\\ln a)=\\dfrac{e^y-a^2e^{-y}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "链式法则逐层拆解：外层对数、内层 $x+\\sqrt{x^2+a^2}$",
+       "分子分母同乘 $\\sqrt{x^2+a^2}$ 的化简动画"
+      ],
+      "steps": [
+       "第一步：以直接链式法则为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：链式法则逐层拆解：外层对数、内层 $x+\\sqrt{x^2+a^2}$。",
+       "第三步：分子分母同乘 $\\sqrt{x^2+a^2}$ 的化简动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数复合与双曲函数",
+     "visual_style": "双曲线面积定义",
+     "efficiency_tags": [
+      "链式法则逐层拆解：外层对数、内层 $x+\\sqrt{x^2+a^2}$",
+      "分子分母同乘 $\\sqrt{x^2+a^2}$ 的化简动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-006-s2",
+     "problem_id": "eval-calc-006",
+     "solution_id": "eval-calc-006-s2",
+     "method": "双曲函数观点",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=\\ln(x+\\sqrt{x^2+a^2})$（$a>0$）的导数，并说明其反函数。",
+     "solution": "令 $x=a\\sinh t$，则 $x+\\sqrt{x^2+a^2}=a(\\sinh t+\\cosh t)=a e^t$，故 $y=\\ln(ae^t)=t+\\ln a$，即 $y=\\operatorname{arsinh}\\dfrac{x}{a}+\\ln a$。由反双曲函数求导公式 $(\\operatorname{arsinh} u)'=\\dfrac{u'}{\\sqrt{1+u^2}}$，得 $y'=\\dfrac{1/a}{\\sqrt{1+x^2/a^2}}=\\dfrac{1}{\\sqrt{x^2+a^2}}$。",
+     "answer": "$y'=\\dfrac{1}{\\sqrt{x^2+a^2}}$；反函数为 $x=a\\sinh(y-\\ln a)=\\dfrac{e^y-a^2e^{-y}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "双曲线 $x^2-y^2=a^2$ 上 $\\operatorname{arsinh}$ 的面积定义",
+       "恒等式 $\\sinh t+\\cosh t=e^t$ 的标注"
+      ],
+      "steps": [
+       "第一步：以双曲函数观点为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：双曲线 $x^2-y^2=a^2$ 上 $\\operatorname{arsinh}$ 的面积定义。",
+       "第三步：恒等式 $\\sinh t+\\cosh t=e^t$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数复合与双曲函数",
+     "visual_style": "双曲线面积定义",
+     "efficiency_tags": [
+      "双曲线 $x^2-y^2=a^2$ 上 $\\operatorname{arsinh}$ 的面积定义",
+      "恒等式 $\\sinh t+\\cosh t=e^t$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-006-s3",
+     "problem_id": "eval-calc-006",
+     "solution_id": "eval-calc-006-s3",
+     "method": "反函数求导",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "求函数 $y=\\ln(x+\\sqrt{x^2+a^2})$（$a>0$）的导数，并说明其反函数。",
+     "solution": "由 $y=\\ln(x+\\sqrt{x^2+a^2})$ 解出 $x$：$e^y=x+\\sqrt{x^2+a^2}$，移项平方得 $e^{2y}-2xe^y=a^2$，故 $x=\\dfrac{e^y-a^2e^{-y}}{2}=a\\sinh(y-\\ln a)$。于是 $\\dfrac{dx}{dy}=a\\cosh(y-\\ln a)=\\sqrt{x^2+a^2}$，故 $\\dfrac{dy}{dx}=\\dfrac{1}{\\sqrt{x^2+a^2}}$。",
+     "answer": "$y'=\\dfrac{1}{\\sqrt{x^2+a^2}}$；反函数为 $x=a\\sinh(y-\\ln a)=\\dfrac{e^y-a^2e^{-y}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "反函数图像关于 $y=x$ 对称",
+       "反解出 $x=a\\sinh(y-\\ln a)$ 的推导过程"
+      ],
+      "steps": [
+       "第一步：以反函数求导为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：反函数图像关于 $y=x$ 对称。",
+       "第三步：反解出 $x=a\\sinh(y-\\ln a)$ 的推导过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数复合与双曲函数",
+     "visual_style": "双曲线面积定义",
+     "efficiency_tags": [
+      "反函数图像关于 $y=x$ 对称",
+      "反解出 $x=a\\sinh(y-\\ln a)$ 的推导过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "58bd4000463c01984167e700c0d597c9847bac3adb201f8ce20ced7d537c47b3",
+    "e0d1c25f413b1e5bd6e05b4615b1debf36398984d5f31faeba8ca6d8b631c159",
+    "cde2e9141acc938bd7ad7473418d3cdf3becc98d4a7a9a779c41fd2608ff5911"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-007",
+   "problem_sha256": "879555b14eabf37dec48c4bae88b134b338ed10dd583470c8b714566951710f5",
+   "source_records": [
+    {
+     "id": "eval-calc-007-s1",
+     "problem_id": "eval-calc-007",
+     "solution_id": "eval-calc-007-s1",
+     "method": "参数方程求导公式",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+     "solution": "$\\dfrac{dx}{dt}=-3a\\cos^2 t\\sin t$，$\\dfrac{dy}{dt}=3a\\sin^2 t\\cos t$，故 $\\dfrac{dy}{dx}=\\dfrac{3a\\sin^2t\\cos t}{-3a\\cos^2t\\sin t}=-\\tan t$。二阶导：$\\dfrac{d^2y}{dx^2}=\\dfrac{d}{dt}\\left(\\dfrac{dy}{dx}\\right)\\Big/\\dfrac{dx}{dt}=\\dfrac{-\\sec^2 t}{-3a\\cos^2 t\\sin t}=\\dfrac{1}{3a\\cos^4 t\\sin t}$。",
+     "answer": "$\\dfrac{dy}{dx}=-\\tan t$；$\\dfrac{d^2y}{dx^2}=\\dfrac{1}{3a\\cos^4 t\\sin t}$（两式仅在光滑分支上成立，即 $\\sin t\\cos t\\ne 0$；在尖点 $t=k\\dfrac{\\pi}{2}$ 处切线竖直或水平、二阶导不存在，需单独作单侧讨论）",
+     "scene_spec": {
+      "objects": [
+       "参数点 $(a\\cos^3t,a\\sin^3t)$ 沿星形线运动",
+       "$\\dfrac{dy}{dx}=\\dfrac{dy/dt}{dx/dt}$ 的商式动画"
+      ],
+      "steps": [
+       "第一步：以参数方程求导公式为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：参数点 $(a\\cos^3t,a\\sin^3t)$ 沿星形线运动。",
+       "第三步：$\\dfrac{dy}{dx}=\\dfrac{dy/dt}{dx/dt}$ 的商式动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "参数方程曲线(星形线)",
+     "visual_style": "滑动线段包络",
+     "efficiency_tags": [
+      "参数点 $(a\\cos^3t,a\\sin^3t)$ 沿星形线运动",
+      "$\\dfrac{dy}{dx}=\\dfrac{dy/dt}{dx/dt}$ 的商式动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-007-s2",
+     "problem_id": "eval-calc-007",
+     "solution_id": "eval-calc-007-s2",
+     "method": "消参后隐函数求导",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+     "solution": "消去参数：$x^{2/3}+y^{2/3}=a^{2/3}$。两边对 $x$ 求导：$\\dfrac{2}{3}x^{-1/3}+\\dfrac{2}{3}y^{-1/3}y'=0$，故 $y'=-\\left(\\dfrac{y}{x}\\right)^{1/3}=-\\tan t$。再对 $x$ 求导：$y''=-\\dfrac{1}{3}\\left(\\dfrac{y}{x}\\right)^{-2/3}\\cdot\\dfrac{y'x-y}{x^2}$。代入 $x=a\\cos^3 t$、$y=a\\sin^3 t$、$y'=-\\tan t$：$\\left(\\dfrac{y}{x}\\right)^{2/3}=\\tan^2 t$，且 $y'x-y=-\\tan t\\cdot a\\cos^3 t-a\\sin^3 t=-a\\sin t(\\cos^2 t+\\sin^2 t)=-a\\sin t$。故 $y''=-\\dfrac{1}{3}\\cot^2 t\\cdot\\dfrac{-a\\sin t}{a^2\\cos^6 t}=\\dfrac{1}{3a\\cos^4 t\\sin t}$，与解法一一致。",
+     "answer": "$\\dfrac{dy}{dx}=-\\tan t$；$\\dfrac{d^2y}{dx^2}=\\dfrac{1}{3a\\cos^4 t\\sin t}$（两式仅在光滑分支上成立，即 $\\sin t\\cos t\\ne 0$；在尖点 $t=k\\dfrac{\\pi}{2}$ 处切线竖直或水平、二阶导不存在，需单独作单侧讨论）",
+     "scene_spec": {
+      "objects": [
+       "消参方程 $x^{2/3}+y^{2/3}=a^{2/3}$ 的隐式求导",
+       "二阶导 $y''$ 代入参数化简的步骤"
+      ],
+      "steps": [
+       "第一步：以消参后隐函数求导为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：消参方程 $x^{2/3}+y^{2/3}=a^{2/3}$ 的隐式求导。",
+       "第三步：二阶导 $y''$ 代入参数化简的步骤。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "参数方程曲线(星形线)",
+     "visual_style": "滑动线段包络",
+     "efficiency_tags": [
+      "消参方程 $x^{2/3}+y^{2/3}=a^{2/3}$ 的隐式求导",
+      "二阶导 $y''$ 代入参数化简的步骤"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-007-s3",
+     "problem_id": "eval-calc-007",
+     "solution_id": "eval-calc-007-s3",
+     "method": "几何切线性质",
+     "category": "数学分析",
+     "sub_category": "导数",
+     "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+     "solution": "在参数点 $(a\\cos^3 t, a\\sin^3 t)$ 处，切线方程为 $y-a\\sin^3 t=-\\tan t\\,(x-a\\cos^3 t)$。令 $y=0$ 求 $x$ 截距：$\\tan t\\,x=a\\sin^3 t+\\tan t\\cdot a\\cos^3 t=a\\sin t(\\sin^2 t+\\cos^2 t)=a\\sin t$，故 $x=a\\cos t$；令 $x=0$ 得 $y$ 截距 $y=a\\sin^3 t+\\tan t\\cdot a\\cos^3 t=a\\sin t$。于是切线与两坐标轴交点间的线段长恒为 $\\sqrt{a^2\\cos^2 t+a^2\\sin^2 t}=a$，且切线斜率恰为 $\\dfrac{-a\\sin t}{a\\cos t}=-\\tan t$，与解法一一致。二阶导 $y''$ 则描述这条定长切线随 $t$ 转动的速率（解法一已算出 $\\dfrac{1}{3a\\cos^4 t\\sin t}$）。",
+     "answer": "$\\dfrac{dy}{dx}=-\\tan t$；$\\dfrac{d^2y}{dx^2}=\\dfrac{1}{3a\\cos^4 t\\sin t}$（两式仅在光滑分支上成立，即 $\\sin t\\cos t\\ne 0$；在尖点 $t=k\\dfrac{\\pi}{2}$ 处切线竖直或水平、二阶导不存在，需单独作单侧讨论）",
+     "scene_spec": {
+      "objects": [
+       "滑动线段包络生成星形线",
+       "四尖点处切线方向跳变标注",
+       "切线截距 $a\\cos t$、$a\\sin t$ 的实时显示"
+      ],
+      "steps": [
+       "第一步：以几何切线性质为主线，建立数学分析·导数场景并呈现该解法的关键图形。",
+       "第二步：滑动线段包络生成星形线。",
+       "第三步：四尖点处切线方向跳变标注。",
+       "第四步：切线截距 $a\\cos t$、$a\\sin t$ 的实时显示。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "参数方程曲线(星形线)",
+     "visual_style": "滑动线段包络",
+     "efficiency_tags": [
+      "滑动线段包络生成星形线",
+      "四尖点处切线方向跳变标注",
+      "切线截距 $a\\cos t$、$a\\sin t$ 的实时显示"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a886ca75348dd1572b09671af6f808769786333faf83de11e46fb919486c4e85",
+    "c338b65d70aaa5483659c1fe65fb4830d0a18b0022082c7daeb63bd5b4fe533d",
+    "378e4f17fe711e498dd9530fcce26150a08b8d3dd84b163cb5bf8520d1e190fe"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-008",
+   "problem_sha256": "44e0daaec40df2a7daa55648d3b6f11ebaa48065774429337f94375f736e998e",
+   "source_records": [
+    {
+     "id": "eval-calc-008-s1",
+     "problem_id": "eval-calc-008",
+     "solution_id": "eval-calc-008-s1",
+     "method": "单调性",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "证明：当 $x>0$ 时，$e^x>1+x$。",
+     "solution": "令 $f(x)=e^x-1-x$，则 $f'(x)=e^x-1>0$（$x>0$），故 $f$ 在 $[0,+\\infty)$ 上严格递增。又 $f(0)=0$，所以当 $x>0$ 时 $f(x)>f(0)=0$，即 $e^x>1+x$。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "差值函数 $f(x)=e^x-1-x$ 的递增曲线",
+       "$f(0)=0$ 起点的标注"
+      ],
+      "steps": [
+       "第一步：以单调性为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：差值函数 $f(x)=e^x-1-x$ 的递增曲线。",
+       "第三步：$f(0)=0$ 起点的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数不等式",
+     "visual_style": "曲线与切线分离",
+     "efficiency_tags": [
+      "差值函数 $f(x)=e^x-1-x$ 的递增曲线",
+      "$f(0)=0$ 起点的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-008-s2",
+     "problem_id": "eval-calc-008",
+     "solution_id": "eval-calc-008-s2",
+     "method": "拉格朗日中值定理",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "证明：当 $x>0$ 时，$e^x>1+x$。",
+     "solution": "对 $f(x)=e^x$ 在 $[0,x]$ 上用拉格朗日中值定理：存在 $\\xi\\in(0,x)$ 使 $e^x-e^0=e^\\xi(x-0)$。因 $\\xi>0$，$e^\\xi>1$，故 $e^x-1=e^\\xi x>x$，即 $e^x>1+x$。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "中值点 $\\xi$ 在 $(0,x)$ 上的扫描与 $e^\\xi$ 变化",
+       "$y=e^x$ 与割线的位置关系"
+      ],
+      "steps": [
+       "第一步：以拉格朗日中值定理为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：中值点 $\\xi$ 在 $(0,x)$ 上的扫描与 $e^\\xi$ 变化。",
+       "第三步：$y=e^x$ 与割线的位置关系。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数不等式",
+     "visual_style": "曲线与切线分离",
+     "efficiency_tags": [
+      "中值点 $\\xi$ 在 $(0,x)$ 上的扫描与 $e^\\xi$ 变化",
+      "$y=e^x$ 与割线的位置关系"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-008-s3",
+     "problem_id": "eval-calc-008",
+     "solution_id": "eval-calc-008-s3",
+     "method": "泰勒公式带余项",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "证明：当 $x>0$ 时，$e^x>1+x$。",
+     "solution": "$e^x=1+x+\\dfrac{x^2}{2}e^\\eta$，其中 $\\eta\\in(0,x)$。因 $\\dfrac{x^2}{2}e^\\eta>0$，故 $e^x>1+x$。此证法还给出更强的估计 $e^x>1+x+\\dfrac{x^2}{2}$。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "泰勒余项曲线 $y=\\dfrac{x^2}{2}e^{\\eta}$ 的包络",
+       "强估计 $e^x>1+x+\\dfrac{x^2}{2}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以泰勒公式带余项为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：泰勒余项曲线 $y=\\dfrac{x^2}{2}e^{\\eta}$ 的包络。",
+       "第三步：强估计 $e^x>1+x+\\dfrac{x^2}{2}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数不等式",
+     "visual_style": "曲线与切线分离",
+     "efficiency_tags": [
+      "泰勒余项曲线 $y=\\dfrac{x^2}{2}e^{\\eta}$ 的包络",
+      "强估计 $e^x>1+x+\\dfrac{x^2}{2}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "6859521db6b9128c4b15a90ef42eced06c9699f63c987d9446bf9e81ab3c4b2f",
+    "c338881aa88a1e6276f5c793a74721ae737f0302744b01b7578690c3014f432b",
+    "c95e60e126e11a8a0f4014321a2466e4eb2ea7fe75ce78d7487c0cab4083f168"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-009",
+   "problem_sha256": "d518d75965aa0b238ac76604c8e588ea01e6af0ebc99479b4a6be05624ffd989",
+   "source_records": [
+    {
+     "id": "eval-calc-009-s1",
+     "problem_id": "eval-calc-009",
+     "solution_id": "eval-calc-009-s1",
+     "method": "拉格朗日中值定理",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "设 $0<a<b$，证明：$\\arctan b-\\arctan a<b-a$。",
+     "solution": "对 $f(x)=\\arctan x$ 在 $[a,b]$ 上用中值定理：存在 $\\xi\\in(a,b)$ 使 $\\arctan b-\\arctan a=\\dfrac{1}{1+\\xi^2}(b-a)$。因 $\\dfrac{1}{1+\\xi^2}<1$，故 $\\arctan b-\\arctan a<b-a$。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "中值点 $\\xi\\in(a,b)$ 的扫描",
+       "切线斜率 $\\dfrac{1}{1+\\xi^2}<1$ 的实时标注"
+      ],
+      "steps": [
+       "第一步：以拉格朗日中值定理为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：中值点 $\\xi\\in(a,b)$ 的扫描。",
+       "第三步：切线斜率 $\\dfrac{1}{1+\\xi^2}<1$ 的实时标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "反三角函数不等式",
+     "visual_style": "割线与切线斜率联动",
+     "efficiency_tags": [
+      "中值点 $\\xi\\in(a,b)$ 的扫描",
+      "切线斜率 $\\dfrac{1}{1+\\xi^2}<1$ 的实时标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-009-s2",
+     "problem_id": "eval-calc-009",
+     "solution_id": "eval-calc-009-s2",
+     "method": "单调性",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "设 $0<a<b$，证明：$\\arctan b-\\arctan a<b-a$。",
+     "solution": "令 $g(x)=x-\\arctan x$，则 $g'(x)=1-\\dfrac{1}{1+x^2}=\\dfrac{x^2}{1+x^2}>0$（$x>0$），故 $g$ 在 $(0,+\\infty)$ 上严格递增，$g(b)>g(a)$，即 $b-\\arctan b>a-\\arctan a$，移项得证。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "差值函数 $g(x)=x-\\arctan x$ 的递增曲线",
+       "$g(b)>g(a)$ 的区间标注"
+      ],
+      "steps": [
+       "第一步：以单调性为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：差值函数 $g(x)=x-\\arctan x$ 的递增曲线。",
+       "第三步：$g(b)>g(a)$ 的区间标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "反三角函数不等式",
+     "visual_style": "割线与切线斜率联动",
+     "efficiency_tags": [
+      "差值函数 $g(x)=x-\\arctan x$ 的递增曲线",
+      "$g(b)>g(a)$ 的区间标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-009-s3",
+     "problem_id": "eval-calc-009",
+     "solution_id": "eval-calc-009-s3",
+     "method": "几何斜率比较",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "设 $0<a<b$，证明：$\\arctan b-\\arctan a<b-a$。",
+     "solution": "由 $(\\arctan x)'=\\dfrac{1}{1+x^2}<1$ 知 $y=\\arctan x$ 在 $(0,+\\infty)$ 上任意两点连线的斜率小于 1（割线斜率 = 某点导数值 < 1），故 $\\dfrac{\\arctan b-\\arctan a}{b-a}<1$，得证。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "割线斜率与中值点切线斜率联动",
+       "$y=\\arctan x$ 与 $y=x$ 对比"
+      ],
+      "steps": [
+       "第一步：以几何斜率比较为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：割线斜率与中值点切线斜率联动。",
+       "第三步：$y=\\arctan x$ 与 $y=x$ 对比。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "反三角函数不等式",
+     "visual_style": "割线与切线斜率联动",
+     "efficiency_tags": [
+      "割线斜率与中值点切线斜率联动",
+      "$y=\\arctan x$ 与 $y=x$ 对比"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "0c351cdc18d396b60f13e43d50b8c27b1f2a7855a8388901c38e6892e966905c",
+    "8c70290f861994d20e9cb0b6decbdc791df686ff25cadad455fea10e5dbed776",
+    "fdbd5a85e24345c807ef1e383b25645798a0ea2f1d0cafc1cf55b058d7cec484"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-010",
+   "problem_sha256": "74e752e576be685b4cdc64366e897cf12bfc3fcf5e9b0c2195aeb7770bfe8e75",
+   "source_records": [
+    {
+     "id": "eval-calc-010-s1",
+     "problem_id": "eval-calc-010",
+     "solution_id": "eval-calc-010-s1",
+     "method": "拉格朗日中值定理",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+     "solution": "令 $f(t)=e^t$，对 $f$ 在 $\\sin x$ 与 $x$ 之间用中值定理：$e^x-e^{\\sin x}=e^\\xi(x-\\sin x)$，其中 $\\xi$ 介于 $\\sin x$ 与 $x$ 之间。当 $x\\to 0$ 时 $\\sin x\\to 0$、$x\\to 0$，故 $\\xi\\to 0$。原式 $=\\lim_{x\\to 0}e^\\xi=1$。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "$y=e^t$ 上两点 $(\\sin x, e^{\\sin x})$、$(x, e^x)$ 随 $x\\to0$ 靠拢",
+       "中值点 $\\xi$ 被夹逼向 0"
+      ],
+      "steps": [
+       "第一步：以拉格朗日中值定理为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：$y=e^t$ 上两点 $(\\sin x, e^{\\sin x})$、$(x, e^x)$ 随 $x\\to0$ 靠拢。",
+       "第三步：中值点 $\\xi$ 被夹逼向 0。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数(中值定理)",
+     "visual_style": "两点靠拢与中值点标注",
+     "efficiency_tags": [
+      "$y=e^t$ 上两点 $(\\sin x, e^{\\sin x})$、$(x, e^x)$ 随 $x\\to0$ 靠拢",
+      "中值点 $\\xi$ 被夹逼向 0"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-010-s2",
+     "problem_id": "eval-calc-010",
+     "solution_id": "eval-calc-010-s2",
+     "method": "提取公因子+等价无穷小",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+     "solution": "原式 $=\\lim_{x\\to 0}\\dfrac{e^{\\sin x}\\left(e^{x-\\sin x}-1\\right)}{x-\\sin x}=\\lim_{x\\to 0}e^{\\sin x}\\cdot\\lim_{x\\to 0}\\dfrac{e^{x-\\sin x}-1}{x-\\sin x}=1\\cdot 1=1$。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "提取公因子 $e^{\\sin x}$ 的变形高亮",
+       "等价无穷小 $\\dfrac{e^u-1}{u}\\to1$ 的比值动画"
+      ],
+      "steps": [
+       "第一步：以提取公因子+等价无穷小为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：提取公因子 $e^{\\sin x}$ 的变形高亮。",
+       "第三步：等价无穷小 $\\dfrac{e^u-1}{u}\\to1$ 的比值动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数(中值定理)",
+     "visual_style": "两点靠拢与中值点标注",
+     "efficiency_tags": [
+      "提取公因子 $e^{\\sin x}$ 的变形高亮",
+      "等价无穷小 $\\dfrac{e^u-1}{u}\\to1$ 的比值动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-010-s3",
+     "problem_id": "eval-calc-010",
+     "solution_id": "eval-calc-010-s3",
+     "method": "洛必达法则，连用三次",
+     "category": "数学分析",
+     "sub_category": "中值定理",
+     "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+     "solution": "原式为 $\\dfrac{0}{0}$ 型。第一次：$\\lim_{x\\to 0}\\dfrac{e^x-e^{\\sin x}\\cos x}{1-\\cos x}$，仍为 $\\dfrac{0}{0}$ 型。第二次：分子求导得 $e^x-e^{\\sin x}\\cos^2 x+e^{\\sin x}\\sin x$，分母求导得 $\\sin x$，仍为 $\\dfrac{0}{0}$ 型。第三次：分子再求导为 $e^x-e^{\\sin x}(\\cos^3 x-2\\sin x\\cos x)+e^{\\sin x}\\cos x(\\sin x+1)$，分母求导为 $\\cos x$。令 $x\\to 0$：分子 $\\to 1-1\\cdot(1-0)+1\\cdot 1\\cdot(0+1)=1$，分母 $\\to 1$，故极限为 $\\dfrac{1}{1}=1$。此路可通但三次求导冗长，恰好反衬解法一的一步到位。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "洛必达三次求导的符号推导滚动",
+       "分子分母比值收敛于 1"
+      ],
+      "steps": [
+       "第一步：以洛必达法则，连用三次为主线，建立数学分析·中值定理场景并呈现该解法的关键图形。",
+       "第二步：洛必达三次求导的符号推导滚动。",
+       "第三步：分子分母比值收敛于 1。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数函数(中值定理)",
+     "visual_style": "两点靠拢与中值点标注",
+     "efficiency_tags": [
+      "洛必达三次求导的符号推导滚动",
+      "分子分母比值收敛于 1"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "1b4eb7e5d2f092e619dfcbf767f2ba8f22e36c2eeb489518c3155a9f248bbfe5",
+    "72521acaa9063927d7cd274e941b15d7e051fa89647b578231aff4315f0a7598",
+    "dd6d3ea8ec2f385865845bc96ef34c28409eddcc9913cb33f0a7d663179d3f2c"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-calc-011",
+   "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+   "source_records": [
+    {
+     "id": "eval-calc-011-s1",
+     "problem_id": "eval-calc-011",
+     "solution_id": "eval-calc-011-s1",
+     "method": "代入对数展开式",
+     "category": "数学分析",
+     "sub_category": "幂级数",
+     "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+     "solution": "由 $-\\ln(1-x)=\\displaystyle\\int_0^x\\dfrac{dt}{1-t}=\\int_0^x\\sum_{n=0}^{\\infty}t^n\\,dt=\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}=x+\\dfrac{x^2}{2}+\\dfrac{x^3}{3}+\\cdots$（$|x|<1$），取 $x=\\dfrac{1}{2}$，得 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n\\cdot 2^n}=-\\ln\\left(1-\\dfrac{1}{2}\\right)=-\\ln\\dfrac{1}{2}=\\ln 2$。",
+     "answer": "$\\ln 2$",
+     "scene_spec": {
+      "objects": [
+       "展开式 $-\\ln(1-x)=x+\\dfrac{x^2}{2}+\\cdots$ 的逐项生成",
+       "$x=\\dfrac{1}{2}$ 代入的标注"
+      ],
+      "steps": [
+       "第一步：以代入对数展开式为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+       "第二步：展开式 $-\\ln(1-x)=x+\\dfrac{x^2}{2}+\\cdots$ 的逐项生成。",
+       "第三步：$x=\\dfrac{1}{2}$ 代入的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂级数与对数函数",
+     "visual_style": "曲边梯形条带剖分",
+     "efficiency_tags": [
+      "展开式 $-\\ln(1-x)=x+\\dfrac{x^2}{2}+\\cdots$ 的逐项生成",
+      "$x=\\dfrac{1}{2}$ 代入的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-011-s2",
+     "problem_id": "eval-calc-011",
+     "solution_id": "eval-calc-011-s2",
+     "method": "积分表示求和",
+     "category": "数学分析",
+     "sub_category": "幂级数",
+     "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+     "solution": "由 $\\dfrac{1}{n\\cdot 2^n}=\\displaystyle\\int_0^{1/2}x^{n-1}\\,dx$（把 $\\dfrac{1}{2^n}$ 看作幂的积分），故 $S=\\displaystyle\\sum_{n=1}^{\\infty}\\int_0^{1/2}x^{n-1}dx=\\int_0^{1/2}\\sum_{n=1}^{\\infty}x^{n-1}dx=\\int_0^{1/2}\\dfrac{dx}{1-x}=\\left[-\\ln(1-x)\\right]_0^{1/2}=\\ln 2$（求和与积分可交换由正项级数单调收敛保证）。",
+     "answer": "$\\ln 2$",
+     "scene_spec": {
+      "objects": [
+       "$y=\\dfrac{1}{1-x}$ 在 $[0,1/2]$ 上的矩形条带剖分",
+       "每个条带面积 $\\dfrac{1}{n\\cdot2^n}$ 与级数项对照"
+      ],
+      "steps": [
+       "第一步：以积分表示求和为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+       "第二步：$y=\\dfrac{1}{1-x}$ 在 $[0,1/2]$ 上的矩形条带剖分。",
+       "第三步：每个条带面积 $\\dfrac{1}{n\\cdot2^n}$ 与级数项对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂级数与对数函数",
+     "visual_style": "曲边梯形条带剖分",
+     "efficiency_tags": [
+      "$y=\\dfrac{1}{1-x}$ 在 $[0,1/2]$ 上的矩形条带剖分",
+      "每个条带面积 $\\dfrac{1}{n\\cdot2^n}$ 与级数项对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-calc-011-s3",
+     "problem_id": "eval-calc-011",
+     "solution_id": "eval-calc-011-s3",
+     "method": "由导数重建展开式",
+     "category": "数学分析",
+     "sub_category": "幂级数",
+     "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+     "solution": "设 $f(x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}$，逐项求导得 $f'(x)=\\displaystyle\\sum_{n=1}^{\\infty}x^{n-1}=\\dfrac{1}{1-x}$（$|x|<1$），且 $f(0)=0$，故 $f(x)=-\\ln(1-x)$，取 $x=\\dfrac{1}{2}$ 得 $\\ln 2$。",
+     "answer": "$\\ln 2$",
+     "scene_spec": {
+      "objects": [
+       "逐项求导得 $f'(x)=\\dfrac{1}{1-x}$ 的过程",
+       "由 $f(0)=0$ 积分还原 $f(x)$ 的动画"
+      ],
+      "steps": [
+       "第一步：以由导数重建展开式为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+       "第二步：逐项求导得 $f'(x)=\\dfrac{1}{1-x}$ 的过程。",
+       "第三步：由 $f(0)=0$ 积分还原 $f(x)$ 的动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "幂级数与对数函数",
+     "visual_style": "曲边梯形条带剖分",
+     "efficiency_tags": [
+      "逐项求导得 $f'(x)=\\dfrac{1}{1-x}$ 的过程",
+      "由 $f(0)=0$ 积分还原 $f(x)$ 的动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "e9e3eecbc5c8c4187e58b32ecd764591dcaddfe7ee55805e3366718db711c5f6",
+    "c02dbdecb5fed1e54bf9f4f92fdd48f554457b7f70d7e848105567d7be954334",
+    "390e92e236f9fcbe3d43e43b6a018852ae55bbc1e8e4ae6c9d1813627ed2f246"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  }
+ ]
+}

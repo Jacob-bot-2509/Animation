@@ -1,0 +1,2186 @@
+{
+ "candidate": {
+  "id": "linalg-048",
+  "category": "高等代数",
+  "sub_category": "线性变换",
+  "function_family": "线性变换",
+  "visual_style": "空间几何图形",
+  "efficiency_tags": [
+   "几何意义",
+   "剪切变换"
+  ],
+  "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+  "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+  "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+  "scene_spec": {
+   "objects": [
+    "带有刻度的黑色坐标轴",
+    "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+    "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+    "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+    "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+   ],
+   "steps": [
+    "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+    "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+    "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+    "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+    "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+   ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only"
+ },
+ "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+ "pairs": [
+  {
+   "split": "eval",
+   "id": "eval-linalg-019",
+   "problem_sha256": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-020",
+   "problem_sha256": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-021",
+   "problem_sha256": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-022",
+   "problem_sha256": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-023",
+   "problem_sha256": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-024",
+   "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-025",
+   "problem_sha256": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-026",
+   "problem_sha256": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-027",
+   "problem_sha256": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-028",
+   "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-029",
+   "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-030",
+   "problem_sha256": "993eac2d7826c16ee6a655b8ab2ac34d16d1cd4d173c0ce35b71708efb181140",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-031",
+   "problem_sha256": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-032",
+   "problem_sha256": "0106ec138785e64d52b91abc1384c5b6508eb1a81b40f06117bb29d0bd6102b2",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-033",
+   "problem_sha256": "439a7992de42fe9ea317bc51a7cde9800b07ca127dbd20b32d9f1fd83dd7a89c",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-034",
+   "problem_sha256": "a9bb397b61d8b3d9be679849828e965e8248492e7cd1ec8dbe2f148f4be1fdfc",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-035",
+   "problem_sha256": "d64eb331b97bdbef5bb72a6cb1975c1fab8e603e88f47d05dd2af3ee9f50ab0a",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-001",
+   "problem_sha256": "8a9db327ed0653427b7dc03f7d78496d88784a908d103d9dc829eb0d3414a39e",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-002",
+   "problem_sha256": "1e5f1e79b63078901b6948f6d06af027d16fb89723b3ec7c5b168b1558013d78",
+   "verdict": null,
+   "reason": ""
+  }
+ ],
+ "material": [
+  {
+   "split": "eval",
+   "id": "eval-linalg-019",
+   "problem_sha256": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+   "source_records": [
+    {
+     "id": "eval-linalg-019-s1",
+     "problem_id": "eval-linalg-019",
+     "solution_id": "eval-linalg-019-s1",
+     "method": "配方法",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+     "solution": "先按含 $x$ 的项配方:$(x+y+z)^2=x^2+y^2+z^2+2xy+2xz+2yz$,故 $f=(x+y+z)^2+(y^2-2yz+(a-1)z^2)$。再对 $y$ 配方:$(y-z)^2=y^2-2yz+z^2$,得 $f=(x+y+z)^2+(y-z)^2+(a-2)z^2$。若 $a>2$,三项系数全正,且 $(x+y+z,y-z,z)=(0,0,0)$ 推出 $x=y=z=0$,故 $f>0$($(x,y,z)\\neq(0,0,0)$)。若 $a\\le 2$,取 $x+y+z=0,\\ y=z$ 的非零解(如 $(x,y,z)=(-2,1,1)$),此时前两项为 0、第三项 $\\le 0$,$f$ 不正定。",
+     "answer": "$f=(x+y+z)^2+(y-z)^2+(a-2)z^2$;$f$ 正定当且仅当 $a>2$",
+     "scene_spec": {
+      "objects": [
+       "配方过程逐项高亮:先 $(x+y+z)^2$ 再 $(y-z)^2$",
+       "$a$ 滑杆下 $z^2$ 系数由负转正(a=2 为临界)"
+      ],
+      "steps": [
+       "第一步：以配方法为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：配方过程逐项高亮:先 $(x+y+z)^2$ 再 $(y-z)^2$。",
+       "第三步：$a$ 滑杆下 $z^2$ 系数由负转正(a=2 为临界)。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三元含参二次型标准形与正定性",
+     "visual_style": "配方与合同变换及三维参数曲面分类",
+     "efficiency_tags": [
+      "配方过程逐项高亮:先 $(x+y+z)^2$ 再 $(y-z)^2$",
+      "$a$ 滑杆下 $z^2$ 系数由负转正(a=2 为临界)"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-019-s2",
+     "problem_id": "eval-linalg-019",
+     "solution_id": "eval-linalg-019-s2",
+     "method": "合同变换",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+     "solution": "$f$ 的矩阵 $A=\\begin{pmatrix}1&1&1\\\\1&2&0\\\\1&0&a\\end{pmatrix}$。作合同变换(行列同步):第一步,第二、三行分别减去第一行,第二、三列分别减去第一列,得 $\\begin{pmatrix}1&0&0\\\\0&1&-1\\\\0&-1&a-1\\end{pmatrix}$;第二步,第三行加上第二行、第三列加上第二列,得 $\\operatorname{diag}(1,1,a-2)$。两步对应的列变换矩阵累计为 $C=\\begin{pmatrix}1&-1&-2\\\\0&1&1\\\\0&0&1\\end{pmatrix}$,满足 $C^TAC=\\operatorname{diag}(1,1,a-2)$。对应新变量 $u=x+y+z,\\ v=y-z,\\ w=z$(即 $(x,y,z)^T=C(u,v,w)^T$),标准形为 $u^2+v^2+(a-2)w^2$。合同保持正定性,故 $f$ 正定 $\\iff$ 对角元全正 $\\iff a>2$。",
+     "answer": "$f=(x+y+z)^2+(y-z)^2+(a-2)z^2$;$f$ 正定当且仅当 $a>2$",
+     "scene_spec": {
+      "objects": [
+       "合同初等变换的行列同步消去两步动画",
+       "变换矩阵 $C$ 的累计与 $C^TAC=\\operatorname{diag}(1,1,a-2)$ 验证"
+      ],
+      "steps": [
+       "第一步：以合同变换为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：合同初等变换的行列同步消去两步动画。",
+       "第三步：变换矩阵 $C$ 的累计与 $C^TAC=\\operatorname{diag}(1,1,a-2)$ 验证。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三元含参二次型标准形与正定性",
+     "visual_style": "配方与合同变换及三维参数曲面分类",
+     "efficiency_tags": [
+      "合同初等变换的行列同步消去两步动画",
+      "变换矩阵 $C$ 的累计与 $C^TAC=\\operatorname{diag}(1,1,a-2)$ 验证"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-019-s3",
+     "problem_id": "eval-linalg-019",
+     "solution_id": "eval-linalg-019-s3",
+     "method": "LDLᵀ 分解",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+     "solution": "$f$ 的矩阵 $A$ 可作 $LDL^T$ 分解: $$A=L\\operatorname{diag}(1,1,a-2)L^T,\\qquad L=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\1&-1&1\\end{pmatrix}.$$ (直接乘开验证:行列为 $1,2,0$ 与 $1,0,a$ 的交叉项分别由 $L$ 的第 2、3 行生成。)令 $(u,v,w)^T=L^T(x,y,z)^T$,得新变量 $u=x+y+z,\\ v=y-z,\\ w=z$,于是 $$f=(x,y,z)A(x,y,z)^T=(L^T(x,y,z)^T)^T\\operatorname{diag}(1,1,a-2)(L^T(x,y,z)^T)=u^2+v^2+(a-2)w^2,$$ 即标准形为 $u^2+v^2+(a-2)w^2$。再由顺序主子式($\\Delta_1=1,\\Delta_2=1,\\Delta_3=|A|=a-2$),$f$ 正定 $\\iff\\Delta_3>0\\iff a>2$——本条解法独立完成\"化标准形+判正定\"两问。边界 $a=2$ 时标准形第三项系数为 0,$f=u^2+v^2$ 半正定,零空间为 $u=v=0$,即 $x+y+z=0,\\ y=z$,也就是 $t(-2,1,1)$。",
+     "answer": "$f=(x+y+z)^2+(y-z)^2+(a-2)z^2$;$f$ 正定当且仅当 $a>2$",
+     "scene_spec": {
+      "objects": [
+       "$LDL^T$ 分解的三角因子展示",
+       "主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注"
+      ],
+      "steps": [
+       "第一步：以LDLᵀ 分解为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：$LDL^T$ 分解的三角因子展示。",
+       "第三步：主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三元含参二次型标准形与正定性",
+     "visual_style": "配方与合同变换及三维参数曲面分类",
+     "efficiency_tags": [
+      "$LDL^T$ 分解的三角因子展示",
+      "主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "2ec0a6e255e92754ec3c10d214cec94d1828db1577c91296589417a973b9fed2",
+    "fa2b32203514c5440547c622a4b9bcb1deca4a2d623c7ca69052a01927d9e3a6",
+    "6760a5cc23c2c81e0f99a3f64562aeb42cf5deaf3a5a4b18e2e8a2a24e92d305"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-020",
+   "problem_sha256": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+   "source_records": [
+    {
+     "id": "eval-linalg-020-s1",
+     "problem_id": "eval-linalg-020",
+     "solution_id": "eval-linalg-020-s1",
+     "method": "配方法",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+     "solution": "$f=x^2-4xy+4y^2=(x-2y)^2\\ge 0$ 对一切 $(x,y)$ 成立，且 $x=2y$（如 $(2,1)$）时取到 0，故半正定。标准形为 $u^2$（$u=x-2y$），秩为 1。",
+     "answer": "半正定，秩为 1，正惯性指数 1、负惯性指数 0",
+     "scene_spec": {
+      "objects": [
+       "配方 $(x-2y)^2$ 的逐步动画",
+       "零方向 $x=2y$ 高亮"
+      ],
+      "steps": [
+       "第一步：以配方法为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：配方 $(x-2y)^2$ 的逐步动画。",
+       "第三步：零方向 $x=2y$ 高亮。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "半正定二次型",
+     "visual_style": "平行直线对等值线",
+     "efficiency_tags": [
+      "配方 $(x-2y)^2$ 的逐步动画",
+      "零方向 $x=2y$ 高亮"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-020-s2",
+     "problem_id": "eval-linalg-020",
+     "solution_id": "eval-linalg-020-s2",
+     "method": "矩阵特征值",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+     "solution": "矩阵 $A=\\begin{pmatrix}1&-2\\\\-2&4\\end{pmatrix}$。特征方程 $\\lambda^2-5\\lambda=0$，特征值 $\\lambda_1=5$、$\\lambda_2=0$。特征值非负且含 0，故半正定，秩 $=$ 非零特征值个数 $=1$。",
+     "answer": "半正定，秩为 1，正惯性指数 1、负惯性指数 0",
+     "scene_spec": {
+      "objects": [
+       "特征值 $5,0$ 的谱标注",
+       "半正定的判定"
+      ],
+      "steps": [
+       "第一步：以矩阵特征值为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：特征值 $5,0$ 的谱标注。",
+       "第三步：半正定的判定。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "半正定二次型",
+     "visual_style": "平行直线对等值线",
+     "efficiency_tags": [
+      "特征值 $5,0$ 的谱标注",
+      "半正定的判定"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-020-s3",
+     "problem_id": "eval-linalg-020",
+     "solution_id": "eval-linalg-020-s3",
+     "method": "几何观点",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+     "solution": "$f=0\\iff x=2y$，即一条过原点的直线；$f>0$ 对其余所有点成立。等值线族 $f=k$（$k>0$）是平行直线对 $x-2y=\\pm\\sqrt{k}$（两条直线）。这对应\"退化椭圆\"的极限情形，故半正定秩 1。",
+     "answer": "半正定，秩为 1，正惯性指数 1、负惯性指数 0",
+     "scene_spec": {
+      "objects": [
+       "平行直线对等值线族",
+       "退化椭圆的极限示意"
+      ],
+      "steps": [
+       "第一步：以几何观点为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：平行直线对等值线族。",
+       "第三步：退化椭圆的极限示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "半正定二次型",
+     "visual_style": "平行直线对等值线",
+     "efficiency_tags": [
+      "平行直线对等值线族",
+      "退化椭圆的极限示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "2395eae6403bd6fd33829c1cfed9a763ddd985a6e5f1424bff52780a057f366a",
+    "37cd313349d566095fe5d6d825a8736cd5ab660a5c725d8d3a3759d1e71d1f05",
+    "5a1d0b3d542f3c32a3c0d0cc980bfcd708a4bea81d62b96656d6d011706956e2"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-021",
+   "problem_sha256": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+   "source_records": [
+    {
+     "id": "eval-linalg-021-s1",
+     "problem_id": "eval-linalg-021",
+     "solution_id": "eval-linalg-021-s1",
+     "method": "顺序主子式",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+     "solution": "$f$ 的矩阵 $A=\\begin{pmatrix}2&1&a\\\\1&1&0\\\\a&0&2\\end{pmatrix}$。顺序主子式:$\\Delta_1=2>0$,$\\Delta_2=\\begin{vmatrix}2&1\\\\1&1\\end{vmatrix}=1>0$,$\\Delta_3=|A|=2\\cdot\\begin{vmatrix}1&0\\\\0&2\\end{vmatrix}-1\\cdot\\begin{vmatrix}1&0\\\\a&2\\end{vmatrix}+a\\cdot\\begin{vmatrix}1&1\\\\a&0\\end{vmatrix}=4-2-a^2=2-a^2$。$f$ 正定 $\\iff\\Delta_3>0\\iff 2-a^2>0\\iff -\\sqrt{2}<a<\\sqrt{2}$。",
+     "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注",
+       "主子式序列随 $a$ 变化"
+      ],
+      "steps": [
+       "第一步：以顺序主子式为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注。",
+       "第三步：主子式序列随 $a$ 变化。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "含参三元二次型正定范围",
+     "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换",
+     "efficiency_tags": [
+      "$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注",
+      "主子式序列随 $a$ 变化"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-021-s2",
+     "problem_id": "eval-linalg-021",
+     "solution_id": "eval-linalg-021-s2",
+     "method": "配方",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+     "solution": "$2\\left(x+\\dfrac{y}{2}+\\dfrac{az}{2}\\right)^2=2x^2+\\dfrac{y^2}{2}+\\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\left[\\frac{y^2}{2}-ayz+\\left(2-\\frac{a^2}{2}\\right)z^2\\right]=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\\ \\dfrac{1}{2},\\ 2-a^2$ 全正 $\\iff 2-a^2>0\\iff |a|<\\sqrt{2}$,与解法一一致。",
+     "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "含参配方逐步展开",
+       "系数 $2-a^2$ 的符号区间"
+      ],
+      "steps": [
+       "第一步：以配方为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：含参配方逐步展开。",
+       "第三步：系数 $2-a^2$ 的符号区间。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "含参三元二次型正定范围",
+     "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换",
+     "efficiency_tags": [
+      "含参配方逐步展开",
+      "系数 $2-a^2$ 的符号区间"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-021-s3",
+     "problem_id": "eval-linalg-021",
+     "solution_id": "eval-linalg-021-s3",
+     "method": "Schur 补",
+     "category": "高等代数",
+     "sub_category": "二次型",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+     "solution": "把 $A$ 分块为 $\\begin{pmatrix}B&c\\\\c^T&2\\end{pmatrix}$,其中 $B=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$,$c=(a,0)^T$。$B$ 正定($2>0$ 且 $|B|=1>0$),由 Schur 补判据,$A$ 正定 $\\iff$ $B$ 正定且 $S=2-c^TB^{-1}c>0$。$B^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$,$c^TB^{-1}c=(a,0)\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}\\begin{pmatrix}a\\\\0\\end{pmatrix}=a^2$,故 $S=2-a^2$。于是 $f$ 正定 $\\iff 2-a^2>0\\iff -\\sqrt{2}<a<\\sqrt{2}$,与前两法独立得到同一范围。",
+     "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注",
+       "等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)"
+      ],
+      "steps": [
+       "第一步：以Schur 补为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+       "第二步：$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注。",
+       "第三步：等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "含参三元二次型正定范围",
+     "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换",
+     "efficiency_tags": [
+      "$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注",
+      "等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+    "5c7b6b5053b27a1b5de1c2ad969444347906f060f42d2bf19ccbdc307c8542b3",
+    "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-022",
+   "problem_sha256": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+   "source_records": [
+    {
+     "id": "eval-linalg-022-s1",
+     "problem_id": "eval-linalg-022",
+     "solution_id": "eval-linalg-022-s1",
+     "method": "有理根定理",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+     "solution": "常数项 $12$ 与首项系数 $1$，可能的有理根为 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$。逐一代入：$f(1)=1+2-7-8+12=0$；$f(2)=16+16-28-16+12=0$；$f(-2)=16-16-28+16+12=0$；$f(-3)=81-54-63+24+12=0$。四次多项式有四个根 $1,2,-2,-3$，故 $f=(x-1)(x-2)(x+2)(x+3)$。",
+     "answer": "$(x-1)(x-2)(x+2)(x+3)$",
+     "scene_spec": {
+      "objects": [
+       "有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根",
+       "曲线 $y=f(x)$ 与四个实根"
+      ],
+      "steps": [
+       "第一步：以有理根定理为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根。",
+       "第三步：曲线 $y=f(x)$ 与四个实根。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "整系数多项式因式分解",
+     "visual_style": "曲线与四个实根",
+     "efficiency_tags": [
+      "有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根",
+      "曲线 $y=f(x)$ 与四个实根"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-022-s2",
+     "problem_id": "eval-linalg-022",
+     "solution_id": "eval-linalg-022-s2",
+     "method": "待定系数法",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+     "solution": "设 $f=(x^2+ax+b)(x^2+cx+d)$，展开比对：$a+c=2$，$b+d+ac=-7$，$ad+bc=-8$，$bd=12$。试 $b=-2$、$d=-6$（$bd=12$）：则 $b+d=-8$，$ac=-7+8=1$；结合 $a+c=2$、$ac=1$ 得 $a=c=1$。检验 $ad+bc=1\\cdot(-6)+1\\cdot(-2)=-8$，全部吻合。故 $f=(x^2+x-2)(x^2+x-6)=(x-1)(x+2)(x-2)(x+3)$。",
+     "answer": "$(x-1)(x-2)(x+2)(x+3)$",
+     "scene_spec": {
+      "objects": [
+       "待定系数 $(x^2+ax+b)(x^2+cx+d)$ 展开比对",
+       "四元方程组的求解"
+      ],
+      "steps": [
+       "第一步：以待定系数法为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：待定系数 $(x^2+ax+b)(x^2+cx+d)$ 展开比对。",
+       "第三步：四元方程组的求解。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "整系数多项式因式分解",
+     "visual_style": "曲线与四个实根",
+     "efficiency_tags": [
+      "待定系数 $(x^2+ax+b)(x^2+cx+d)$ 展开比对",
+      "四元方程组的求解"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-022-s3",
+     "problem_id": "eval-linalg-022",
+     "solution_id": "eval-linalg-022-s3",
+     "method": "综合除法逐步降次",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+     "solution": "由 $f(1)=0$，用综合除法除以 $x-1$：系数 $1,2,-7,-8,12$ 依次得商系数 $1,3,-4,-12$（即 $x^3+3x^2-4x-12$），余 0。检验 $g(2)=8+12-8-12=0$，再除以 $x-2$ 得 $x^2+5x+6$。最后 $x^2+5x+6=(x+2)(x+3)$。故 $f=(x-1)(x-2)(x+2)(x+3)$。",
+     "answer": "$(x-1)(x-2)(x+2)(x+3)$",
+     "scene_spec": {
+      "objects": [
+       "综合除法竖式动画",
+       "四次降次的过程与四个因式的连线"
+      ],
+      "steps": [
+       "第一步：以综合除法逐步降次为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：综合除法竖式动画。",
+       "第三步：四次降次的过程与四个因式的连线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "整系数多项式因式分解",
+     "visual_style": "曲线与四个实根",
+     "efficiency_tags": [
+      "综合除法竖式动画",
+      "四次降次的过程与四个因式的连线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+    "0efd060e7c4454f91bcf64e6e8a9933be5b7b986c41d4e0862dab863ce2250c8",
+    "aa909dedb3f35cc12452512d92a8836e142d3b29b398223566931262a89bff9d"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-023",
+   "problem_sha256": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+   "source_records": [
+    {
+     "id": "eval-linalg-023-s1",
+     "problem_id": "eval-linalg-023",
+     "solution_id": "eval-linalg-023-s1",
+     "method": "单位根",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+     "solution": "$x^8-1=0$ 的根是 8 次单位根 $e^{2\\pi ik/8}$（$k=0,1,\\dots,7$），在复平面上构成正八边形的顶点。复数域上 $x^8-1=\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$。实数域上把共轭根配对：$k=0,4$ 对应实根 $\\pm 1$；$k=1,7$ 配对得 $\\left(x-e^{i\\pi/4}\\right)\\left(x-e^{-i\\pi/4}\\right)=x^2-2x\\cos\\dfrac{\\pi}{4}+1=x^2-\\sqrt2x+1$；$k=2,6$ 配对得 $x^2+1$；$k=3,5$ 配对得 $x^2+\\sqrt2x+1$。故实数域分解为 $(x-1)(x+1)(x^2-\\sqrt2x+1)(x^2+1)(x^2+\\sqrt2x+1)$。",
+     "answer": "复数域：$\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$；实数域（完整实不可约分解）：$(x-1)(x+1)(x^2+1)(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)$",
+     "scene_spec": {
+      "objects": [
+       "复平面正八边形单位根",
+       "共轭根配对的动画"
+      ],
+      "steps": [
+       "第一步：以单位根为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：复平面正八边形单位根。",
+       "第三步：共轭根配对的动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "分圆多项式分解",
+     "visual_style": "复平面正八边形",
+     "efficiency_tags": [
+      "复平面正八边形单位根",
+      "共轭根配对的动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-023-s2",
+     "problem_id": "eval-linalg-023",
+     "solution_id": "eval-linalg-023-s2",
+     "method": "平方差递推",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+     "solution": "$x^8-1=(x^4-1)(x^4+1)=(x^2-1)(x^2+1)(x^4+1)=(x-1)(x+1)(x^2+1)(x^4+1)$。再对 $x^4+1$ 作实分解（见解法三的恒等式）：$x^4+1=(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)$，合并得完整实不可约分解 $(x-1)(x+1)(x^2+1)(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)$。",
+     "answer": "复数域：$\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$；实数域（完整实不可约分解）：$(x-1)(x+1)(x^2+1)(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)$",
+     "scene_spec": {
+      "objects": [
+       "平方差递推的分解树 $(x^4-1)(x^4+1)\\to\\cdots$",
+       "继续分解 $x^4+1$ 的恒等式标注"
+      ],
+      "steps": [
+       "第一步：以平方差递推为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：平方差递推的分解树 $(x^4-1)(x^4+1)\\to\\cdots$。",
+       "第三步：继续分解 $x^4+1$ 的恒等式标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "分圆多项式分解",
+     "visual_style": "复平面正八边形",
+     "efficiency_tags": [
+      "平方差递推的分解树 $(x^4-1)(x^4+1)\\to\\cdots$",
+      "继续分解 $x^4+1$ 的恒等式标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-023-s3",
+     "problem_id": "eval-linalg-023",
+     "solution_id": "eval-linalg-023-s3",
+     "method": "两种实数分解的联系",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+     "solution": "本题复数域分解为 $\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$（8 次单位根）。实数域分解有两种书写形式。形式一（按共轭根配对，完整实不可约分解）：$x^8-1=(x-1)(x+1)(x^2-\\sqrt2x+1)(x^2+1)(x^2+\\sqrt2x+1)$。形式二（按平方差递推，尚未完全分解）：$x^8-1=(x-1)(x+1)(x^2+1)(x^4+1)$。两形式由恒等式 $(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)=x^4+1$ 连接，其证明是平方差：$(x^2+1)^2-(\\sqrt2x)^2=x^4+2x^2+1-2x^2=x^4+1$。故形式二是形式一的合并书写，形式一才是完整实不可约分解。",
+     "answer": "复数域：$\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$；实数域（完整实不可约分解）：$(x-1)(x+1)(x^2+1)(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)$",
+     "scene_spec": {
+      "objects": [
+       "恒等式 $(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)=x^4+1$ 的展开验证",
+       "两种实数分解的连线对照"
+      ],
+      "steps": [
+       "第一步：以两种实数分解的联系为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：恒等式 $(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)=x^4+1$ 的展开验证。",
+       "第三步：两种实数分解的连线对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "分圆多项式分解",
+     "visual_style": "复平面正八边形",
+     "efficiency_tags": [
+      "恒等式 $(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)=x^4+1$ 的展开验证",
+      "两种实数分解的连线对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "15d0a4c300b22609580d882c5c9bf077f84fbf836b1981f47e3ac6a10f58c1f9",
+    "6f0547e08b227e736e589d836c7ecdbddea4b847c1ec573d03392d68ed44f98c",
+    "5a6862ebf1acc1c8efd0155018744941625f18cd5d406caa3ca949a77e104772"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-024",
+   "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+   "source_records": [
+    {
+     "id": "eval-linalg-024-s1",
+     "problem_id": "eval-linalg-024",
+     "solution_id": "eval-linalg-024-s1",
+     "method": "泰勒公式",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+     "solution": "$f(1)=1-7+6=0$；$f'(x)=3x^2-7$，$f'(1)=-4$；$f''(x)=6x$，$f''(1)=6$；$f'''(x)=6$，$f'''(1)=6$。由泰勒公式 $f(x)=f(1)+f'(1)(x-1)+\\dfrac{f''(1)}{2}(x-1)^2+\\dfrac{f'''(1)}{6}(x-1)^3=0-4(x-1)+3(x-1)^2+(x-1)^3$。",
+     "answer": "$f(x)=(x-1)^3+3(x-1)^2-4(x-1)$",
+     "scene_spec": {
+      "objects": [
+       "各阶导数值 $0,-4,6,6$ 的逐项代入",
+       "泰勒展开式的生成"
+      ],
+      "steps": [
+       "第一步：以泰勒公式为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：各阶导数值 $0,-4,6,6$ 的逐项代入。",
+       "第三步：泰勒展开式的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式按幂展开",
+     "visual_style": "各阶切触贴合",
+     "efficiency_tags": [
+      "各阶导数值 $0,-4,6,6$ 的逐项代入",
+      "泰勒展开式的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-024-s2",
+     "problem_id": "eval-linalg-024",
+     "solution_id": "eval-linalg-024-s2",
+     "method": "综合除法连除",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+     "solution": "对系数 $1,0,-7,6$ 反复除以 $x-1$。第一次：商系数 $1,1,-6$，余 $0$；第二次：商 $1,2$，余 $-4$；第三次：商 $1$，余 $3$。由 $f=(x-1)q_1+r_1$，$q_1=(x-1)q_2+r_2$，$q_2=(x-1)q_3+r_3$，得 $f=(x-1)[(x-1)[(x-1)\\cdot 1+3]-4]=(x-1)^3+3(x-1)^2-4(x-1)$。",
+     "answer": "$f(x)=(x-1)^3+3(x-1)^2-4(x-1)$",
+     "scene_spec": {
+      "objects": [
+       "综合除法连除的三次竖式",
+       "余数 $0,-4,3$ 的提取"
+      ],
+      "steps": [
+       "第一步：以综合除法连除为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：综合除法连除的三次竖式。",
+       "第三步：余数 $0,-4,3$ 的提取。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式按幂展开",
+     "visual_style": "各阶切触贴合",
+     "efficiency_tags": [
+      "综合除法连除的三次竖式",
+      "余数 $0,-4,3$ 的提取"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-024-s3",
+     "problem_id": "eval-linalg-024",
+     "solution_id": "eval-linalg-024-s3",
+     "method": "换元展开",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+     "solution": "令 $y=x-1$，则 $x=y+1$。$f=(y+1)^3-7(y+1)+6=y^3+3y^2+3y+1-7y-7+6=y^3+3y^2-4y$。代回 $y=x-1$ 得 $f=(x-1)^3+3(x-1)^2-4(x-1)$。",
+     "answer": "$f(x)=(x-1)^3+3(x-1)^2-4(x-1)$",
+     "scene_spec": {
+      "objects": [
+       "换元 $y=x-1$ 的展开动画",
+       "曲线与展开点 $(1,0)$"
+      ],
+      "steps": [
+       "第一步：以换元展开为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：换元 $y=x-1$ 的展开动画。",
+       "第三步：曲线与展开点 $(1,0)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式按幂展开",
+     "visual_style": "各阶切触贴合",
+     "efficiency_tags": [
+      "换元 $y=x-1$ 的展开动画",
+      "曲线与展开点 $(1,0)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "ea87cd664d9754caaa46a876536015d49f4fafc7dae10528f3b33c5ef66c9208",
+    "f5b94a6f7cad52cd60898f88b3487d6b1c78dc20de5833cc5e9f638ffeaadad4",
+    "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-025",
+   "problem_sha256": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+   "source_records": [
+    {
+     "id": "eval-linalg-025-s1",
+     "problem_id": "eval-linalg-025",
+     "solution_id": "eval-linalg-025-s1",
+     "method": "余数定理",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+     "solution": "除以 $x-1$ 的余式为 $f(1)=1+1+1=3$。除以二次式 $x^2+1$ 设余式为 $ax+b$，由 $x^2+1$ 的根 $x=i$（虚数单位）：$f(i)=i^5+i+1$，而 $i^4=1$ 故 $i^5=i$，得 $f(i)=2i+1$。余式在 $x=i$ 处的值 $ai+b$ 应等于 $f(i)$：$ai+b=2i+1$，故 $a=2$、$b=1$，余式为 $2x+1$。",
+     "answer": "除以 $x-1$ 余 $3$；除以 $x^2+1$ 余 $2x+1$",
+     "scene_spec": {
+      "objects": [
+       "余数定理代入 $f(1)=3$ 的标注",
+       "二次余式 $ax+b$ 的设定"
+      ],
+      "steps": [
+       "第一步：以余数定理为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：余数定理代入 $f(1)=3$ 的标注。",
+       "第三步：二次余式 $ax+b$ 的设定。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式除法求余",
+     "visual_style": "长除法竖式",
+     "efficiency_tags": [
+      "余数定理代入 $f(1)=3$ 的标注",
+      "二次余式 $ax+b$ 的设定"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-025-s2",
+     "problem_id": "eval-linalg-025",
+     "solution_id": "eval-linalg-025-s2",
+     "method": "长除法",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+     "solution": "除以 $x^2+1$：$x^5+x+1$ 中，$x^5$ 与 $x$ 各含 $x^2+1$ 的分解：$x^5=x^3(x^2+1)-x^3$，$x^3=x(x^2+1)-x$，故 $x^5+x+1=x^3(x^2+1)-x(x^2+1)+x+x+1=(x^2+1)(x^3-x)+(2x+1)$，余式 $2x+1$。除以 $x-1$：$x^5+x+1=(x-1)q+3$ 由余数定理直接得余 $3$（商 $q=x^4+x^3+x^2+x+2$，验证 $f(1)=3$）。",
+     "answer": "除以 $x-1$ 余 $3$；除以 $x^2+1$ 余 $2x+1$",
+     "scene_spec": {
+      "objects": [
+       "长除法竖式动画",
+       "商 $x^3-x$ 与余式 $2x+1$ 的提取"
+      ],
+      "steps": [
+       "第一步：以长除法为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：长除法竖式动画。",
+       "第三步：商 $x^3-x$ 与余式 $2x+1$ 的提取。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式除法求余",
+     "visual_style": "长除法竖式",
+     "efficiency_tags": [
+      "长除法竖式动画",
+      "商 $x^3-x$ 与余式 $2x+1$ 的提取"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-025-s3",
+     "problem_id": "eval-linalg-025",
+     "solution_id": "eval-linalg-025-s3",
+     "method": "待定余式验证",
+     "category": "高等代数",
+     "sub_category": "多项式",
+     "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+     "solution": "设除以 $x^2+1$ 的余式为 $ax+b$，则 $f(x)=(x^2+1)q(x)+ax+b$。取 $x=i$ 与 $x=-i$：$f(i)=1+2i$（同解法一），$f(-i)=(-i)^5-i+1=-i-i+1=1-2i$。解 $\\begin{cases}ai+b=1+2i\\\\-ai+b=1-2i\\end{cases}$，相加得 $2b=2$、$b=1$；相减得 $2ai=4i$、$a=2$。余式 $2x+1$。",
+     "answer": "除以 $x-1$ 余 $3$；除以 $x^2+1$ 余 $2x+1$",
+     "scene_spec": {
+      "objects": [
+       "复平面 $x=\\pm i$ 代入",
+       "方程组 $ai+b=1+2i$ 的求解"
+      ],
+      "steps": [
+       "第一步：以待定余式验证为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+       "第二步：复平面 $x=\\pm i$ 代入。",
+       "第三步：方程组 $ai+b=1+2i$ 的求解。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式除法求余",
+     "visual_style": "长除法竖式",
+     "efficiency_tags": [
+      "复平面 $x=\\pm i$ 代入",
+      "方程组 $ai+b=1+2i$ 的求解"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4e69defebd3e253f06a898bcafce815667ef13eba7f0ad16b3e8387817232a12",
+    "2b3f4b6b86cf6381a7b68745fbc2ec1d19b42c9d0fabe7fafcc5ad496ffcd6cc",
+    "e70e558aeee608824337e92df6031b0168b2ff6ad15628e887cd9648d111e72e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-026",
+   "problem_sha256": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+   "source_records": [
+    {
+     "id": "eval-linalg-026-s1",
+     "problem_id": "eval-linalg-026",
+     "solution_id": "eval-linalg-026-s1",
+     "method": "行列式",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+     "solution": "以三向量为行（或列）的行列式 $D=\\begin{vmatrix}1&2&3\\\\2&3&1\\\\3&1&2\\end{vmatrix}=1\\cdot(3\\cdot 2-1\\cdot 1)-2\\cdot(2\\cdot 2-1\\cdot 3)+3\\cdot(2\\cdot 1-3\\cdot 3)=1\\cdot 5-2\\cdot 1+3\\cdot(-7)=5-2-21=-18\\ne 0$。行列式非零，故三向量线性无关。",
+     "answer": "线性无关",
+     "scene_spec": {
+      "objects": [
+       "三阶行列式 $-18$ 的展开计算",
+       "体积 $|D|=18$ 的标注"
+      ],
+      "steps": [
+       "第一步：以行列式为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：三阶行列式 $-18$ 的展开计算。",
+       "第三步：体积 $|D|=18$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "向量组线性相关",
+     "visual_style": "平行六面体体积",
+     "efficiency_tags": [
+      "三阶行列式 $-18$ 的展开计算",
+      "体积 $|D|=18$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-026-s2",
+     "problem_id": "eval-linalg-026",
+     "solution_id": "eval-linalg-026-s2",
+     "method": "定义解方程组",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+     "solution": "设 $k_1\\alpha_1+k_2\\alpha_2+k_3\\alpha_3=0$，即 $\\begin{cases}k_1+2k_2+3k_3=0\\\\2k_1+3k_2+k_3=0\\\\3k_1+k_2+2k_3=0\\end{cases}$。由第一式 $k_1=-2k_2-3k_3$，代入第二式：$2(-2k_2-3k_3)+3k_2+k_3=0$，即 $-k_2-5k_3=0$，$k_2=-5k_3$；代入第三式：$3(-2k_2-3k_3)+k_2+2k_3=0$，即 $-5k_2-7k_3=0$，代入 $k_2=-5k_3$ 得 $25k_3-7k_3=18k_3=0$，$k_3=0$，进而 $k_2=0$、$k_1=0$。只有零解，线性无关。",
+     "answer": "线性无关",
+     "scene_spec": {
+      "objects": [
+       "齐次方程组的逐步代入消元",
+       "零解唯一性的标注"
+      ],
+      "steps": [
+       "第一步：以定义解方程组为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：齐次方程组的逐步代入消元。",
+       "第三步：零解唯一性的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "向量组线性相关",
+     "visual_style": "平行六面体体积",
+     "efficiency_tags": [
+      "齐次方程组的逐步代入消元",
+      "零解唯一性的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-026-s3",
+     "problem_id": "eval-linalg-026",
+     "solution_id": "eval-linalg-026-s3",
+     "method": "几何",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+     "solution": "三向量张成的平行六面体体积 $|D|=18\\ne 0$，即三向量不共面，故线性无关（线性相关⇔体积为 0）。",
+     "answer": "线性无关",
+     "scene_spec": {
+      "objects": [
+       "三向量与平行六面体",
+       "不共面的几何展示"
+      ],
+      "steps": [
+       "第一步：以几何为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：三向量与平行六面体。",
+       "第三步：不共面的几何展示。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "向量组线性相关",
+     "visual_style": "平行六面体体积",
+     "efficiency_tags": [
+      "三向量与平行六面体",
+      "不共面的几何展示"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+    "cceb134b9bc4c47dcbda688747e4e2a5ed8584a181dbf2cbe10f84b988e27432",
+    "ffd666e3985bfe05830b6108c1532143c258747edb972e13a44ef83be3b72814"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-027",
+   "problem_sha256": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+   "source_records": [
+    {
+     "id": "eval-linalg-027-s1",
+     "problem_id": "eval-linalg-027",
+     "solution_id": "eval-linalg-027-s1",
+     "method": "解方程组",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+     "solution": "$W^\\perp=\\{(x,y,z):(x,y,z)\\cdot(1,1,0)=0,\\ (x,y,z)\\cdot(0,1,1)=0\\}$，即 $\\begin{cases}x+y=0\\\\y+z=0\\end{cases}$。由第二式 $z=-y$，第一式 $x=-y$，故 $(x,y,z)=(-y,y,-y)=y(-1,1,-1)$，取 $(1,-1,1)$ 为基，$W^\\perp$ 为一维。",
+     "answer": "$W^\\perp=\\operatorname{span}\\{(1,-1,1)\\}$（一维）",
+     "scene_spec": {
+      "objects": [
+       "垂直方程组 $\\begin{cases}x+y=0\\\\y+z=0\\end{cases}$ 的求解",
+       "解方向 $(-y,y,-y)$ 的标注"
+      ],
+      "steps": [
+       "第一步：以解方程组为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：垂直方程组 $\\begin{cases}x+y=0\\\\y+z=0\\end{cases}$ 的求解。",
+       "第三步：解方向 $(-y,y,-y)$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "子空间正交补",
+     "visual_style": "平面与法线",
+     "efficiency_tags": [
+      "垂直方程组 $\\begin{cases}x+y=0\\\\y+z=0\\end{cases}$ 的求解",
+      "解方向 $(-y,y,-y)$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-027-s2",
+     "problem_id": "eval-linalg-027",
+     "solution_id": "eval-linalg-027-s2",
+     "method": "Gram–Schmidt 扩充",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+     "solution": "把 $\\{(1,1,0),(0,1,1)\\}$ 扩充为 $\\mathbb R^3$ 的正交基：$u_1=(1,1,0)$；$u_2=(0,1,1)-\\dfrac{(0,1,1)\\cdot(1,1,0)}{2}(1,1,0)=(0,1,1)-\\dfrac{1}{2}(1,1,0)=\\left(-\\dfrac{1}{2},\\dfrac{1}{2},1\\right)$，取 $(-1,1,2)$。再取 $e_3=(0,0,1)$ 去掉前两者的投影：$u_3=(0,0,1)-0-\\dfrac{(0,0,1)\\cdot(-1,1,2)}{6}(-1,1,2)=(0,0,1)-\\dfrac{1}{3}(-1,1,2)=\\left(\\dfrac{1}{3},-\\dfrac{1}{3},\\dfrac{1}{3}\\right)$，取 $(1,-1,1)$。它与 $u_1,u_2$ 均正交，故 $W^\\perp=\\operatorname{span}\\{(1,-1,1)\\}$。",
+     "answer": "$W^\\perp=\\operatorname{span}\\{(1,-1,1)\\}$（一维）",
+     "scene_spec": {
+      "objects": [
+       "Gram–Schmidt 扩充的投影步骤",
+       "第三个正交向量 $(1,-1,1)$ 的提取"
+      ],
+      "steps": [
+       "第一步：以Gram–Schmidt 扩充为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：Gram–Schmidt 扩充的投影步骤。",
+       "第三步：第三个正交向量 $(1,-1,1)$ 的提取。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "子空间正交补",
+     "visual_style": "平面与法线",
+     "efficiency_tags": [
+      "Gram–Schmidt 扩充的投影步骤",
+      "第三个正交向量 $(1,-1,1)$ 的提取"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-027-s3",
+     "problem_id": "eval-linalg-027",
+     "solution_id": "eval-linalg-027-s3",
+     "method": "叉积",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+     "solution": "$(1,1,0)\\times(0,1,1)=(1\\cdot 1-0\\cdot 1,\\ 0\\cdot 0-1\\cdot 1,\\ 1\\cdot 1-1\\cdot 0)=(1,-1,1)$，与两生成元都垂直，故 $W^\\perp=\\operatorname{span}\\{(1,-1,1)\\}$（$\\dim W^\\perp=3-2=1$）。",
+     "answer": "$W^\\perp=\\operatorname{span}\\{(1,-1,1)\\}$（一维）",
+     "scene_spec": {
+      "objects": [
+       "叉积 $(1,1,0)\\times(0,1,1)$ 的右手定则",
+       "平面 $W$ 与法线 $(1,-1,1)$"
+      ],
+      "steps": [
+       "第一步：以叉积为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：叉积 $(1,1,0)\\times(0,1,1)$ 的右手定则。",
+       "第三步：平面 $W$ 与法线 $(1,-1,1)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "子空间正交补",
+     "visual_style": "平面与法线",
+     "efficiency_tags": [
+      "叉积 $(1,1,0)\\times(0,1,1)$ 的右手定则",
+      "平面 $W$ 与法线 $(1,-1,1)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "40bfa4cccd36686cceb66f963162cfe9b0ffba015502cf0f32402709d98bef61",
+    "42d3b02587283b87ba5697165787cbade862293a01997012f18ca85e77824f80",
+    "7368ab4755ca6d0da77af4d45cd11714a1ba7ce36ea0f1ef2dc28d7181b0dcee"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-028",
+   "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+   "source_records": [
+    {
+     "id": "eval-linalg-028-s1",
+     "problem_id": "eval-linalg-028",
+     "solution_id": "eval-linalg-028-s1",
+     "method": "解方程组",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+     "solution": "设 $\\alpha=x_1\\beta_1+x_2\\beta_2$，即 $\\begin{cases}x_1+x_2=2\\\\2x_1+x_2=3\\end{cases}$。两式相减：$x_1=1$，代回得 $x_2=1$。故坐标为 $(1,1)$。",
+     "answer": "$(1,1)$",
+     "scene_spec": {
+      "objects": [
+       "方程组 $\\begin{cases}x_1+x_2=2\\\\2x_1+x_2=3\\end{cases}$ 的消元",
+       "坐标 $(1,1)$ 的标注"
+      ],
+      "steps": [
+       "第一步：以解方程组为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：方程组 $\\begin{cases}x_1+x_2=2\\\\2x_1+x_2=3\\end{cases}$ 的消元。",
+       "第三步：坐标 $(1,1)$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "基变换坐标",
+     "visual_style": "斜基网格分解",
+     "efficiency_tags": [
+      "方程组 $\\begin{cases}x_1+x_2=2\\\\2x_1+x_2=3\\end{cases}$ 的消元",
+      "坐标 $(1,1)$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-028-s2",
+     "problem_id": "eval-linalg-028",
+     "solution_id": "eval-linalg-028-s2",
+     "method": "过渡矩阵",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+     "solution": "从标准基到基 $\\{\\beta_1,\\beta_2\\}$ 的过渡矩阵 $P=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}$（列为基向量）。$\\alpha=P\\xi$，其中 $\\xi$ 为所求坐标。$P^{-1}=\\dfrac{1}{1-2}\\begin{pmatrix}1&-1\\\\-2&1\\end{pmatrix}=\\begin{pmatrix}-1&1\\\\2&-1\\end{pmatrix}$。故 $\\xi=P^{-1}\\alpha=\\begin{pmatrix}-1&1\\\\2&-1\\end{pmatrix}\\begin{pmatrix}2\\\\3\\end{pmatrix}=\\begin{pmatrix}-2+3\\\\4-3\\end{pmatrix}=\\begin{pmatrix}1\\\\1\\end{pmatrix}$。",
+     "answer": "$(1,1)$",
+     "scene_spec": {
+      "objects": [
+       "过渡矩阵 $P=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}$ 与 $P^{-1}$ 的作用",
+       "矩阵乘法动画"
+      ],
+      "steps": [
+       "第一步：以过渡矩阵为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：过渡矩阵 $P=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}$ 与 $P^{-1}$ 的作用。",
+       "第三步：矩阵乘法动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "基变换坐标",
+     "visual_style": "斜基网格分解",
+     "efficiency_tags": [
+      "过渡矩阵 $P=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}$ 与 $P^{-1}$ 的作用",
+      "矩阵乘法动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-028-s3",
+     "problem_id": "eval-linalg-028",
+     "solution_id": "eval-linalg-028-s3",
+     "method": "几何分解",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+     "solution": "在图上作平行四边形：$\\alpha=(2,3)$ 可由 $\\beta_1+\\beta_2=(2,3)$ 一次组合而成（$1\\cdot(1,2)+1\\cdot(1,1)=(2,3)$），坐标即组合系数 $(1,1)$。",
+     "answer": "$(1,1)$",
+     "scene_spec": {
+      "objects": [
+       "斜基网格与平行四边形分解",
+       "$\\beta_1+\\beta_2=(2,3)$ 的几何展示"
+      ],
+      "steps": [
+       "第一步：以几何分解为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：斜基网格与平行四边形分解。",
+       "第三步：$\\beta_1+\\beta_2=(2,3)$ 的几何展示。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "基变换坐标",
+     "visual_style": "斜基网格分解",
+     "efficiency_tags": [
+      "斜基网格与平行四边形分解",
+      "$\\beta_1+\\beta_2=(2,3)$ 的几何展示"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "16b3c1ed51f60db288ca069687b7aabeb2c5749344f3e4201fb5212c91ba3fb7",
+    "2991d2ecdfb7944cef41bef7524a5473b77e8c27abc157d652d751b12d28c503",
+    "0caa769c51c0dcc5311d6ba464a1b2befb242116e1f7bf311d9f0f3197a921b8"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-029",
+   "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+   "source_records": [
+    {
+     "id": "eval-linalg-029-s1",
+     "problem_id": "eval-linalg-029",
+     "solution_id": "eval-linalg-029-s1",
+     "method": "矩阵行列式",
+     "category": "高等代数",
+     "sub_category": "线性变换",
+     "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+     "solution": "$T$ 的矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$，$\\det A=1-4=-3\\ne 0$，故 $A$ 可逆，$T$ 为同构：$\\ker T=\\{0\\}$（零维），$\\operatorname{Im}T=\\mathbb R^2$（二维），维数公式 $0+2=2$ 成立。",
+     "answer": "$\\ker T=\\{(0,0)\\}$；$\\operatorname{Im}T=\\mathbb R^2$；$\\dim\\ker T+\\dim\\operatorname{Im}T=2$",
+     "scene_spec": {
+      "objects": [
+       "行列式 $\\det A=-3\\ne0$ 的可逆判定",
+       "核为零、像为全空间的标注"
+      ],
+      "steps": [
+       "第一步：以矩阵行列式为主线，建立高等代数·线性变换场景并呈现该解法的关键图形。",
+       "第二步：行列式 $\\det A=-3\\ne0$ 的可逆判定。",
+       "第三步：核为零、像为全空间的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "线性变换核与像",
+     "visual_style": "网格形变",
+     "efficiency_tags": [
+      "行列式 $\\det A=-3\\ne0$ 的可逆判定",
+      "核为零、像为全空间的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-029-s2",
+     "problem_id": "eval-linalg-029",
+     "solution_id": "eval-linalg-029-s2",
+     "method": "直接求解",
+     "category": "高等代数",
+     "sub_category": "线性变换",
+     "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+     "solution": "核：解 $\\begin{cases}x+2y=0\\\\2x+y=0\\end{cases}$，第一式 $x=-2y$ 代入第二式：$-4y+y=-3y=0$，$y=0$，$x=0$，故 $\\ker T=\\{(0,0)\\}$。像：对任意 $(u,v)$，解 $\\begin{cases}x+2y=u\\\\2x+y=v\\end{cases}$，由第二式 $y=v-2x$ 代入第一式：$x+2v-4x=u$，$x=\\dfrac{2v-u}{3}$，$y=v-2\\cdot\\dfrac{2v-u}{3}=\\dfrac{2u-v}{3}$，恒有解，故 $\\operatorname{Im}T=\\mathbb R^2$。",
+     "answer": "$\\ker T=\\{(0,0)\\}$；$\\operatorname{Im}T=\\mathbb R^2$；$\\dim\\ker T+\\dim\\operatorname{Im}T=2$",
+     "scene_spec": {
+      "objects": [
+       "齐次方程组只有零解的消元",
+       "对任意 $(u,v)$ 解的存在性验证"
+      ],
+      "steps": [
+       "第一步：以直接求解为主线，建立高等代数·线性变换场景并呈现该解法的关键图形。",
+       "第二步：齐次方程组只有零解的消元。",
+       "第三步：对任意 $(u,v)$ 解的存在性验证。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "线性变换核与像",
+     "visual_style": "网格形变",
+     "efficiency_tags": [
+      "齐次方程组只有零解的消元",
+      "对任意 $(u,v)$ 解的存在性验证"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-029-s3",
+     "problem_id": "eval-linalg-029",
+     "solution_id": "eval-linalg-029-s3",
+     "method": "复合变换",
+     "category": "高等代数",
+     "sub_category": "线性变换",
+     "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+     "solution": "$T\\circ T$ 的矩阵 $A^2=\\begin{pmatrix}5&4\\\\4&5\\end{pmatrix}$，$\\det A^2=9\\ne 0$，仍为同构。或由特征值观点：$A$ 的特征值为 $3,-1$（eval-linalg-015），均非零，故核为零、像为全空间。",
+     "answer": "$\\ker T=\\{(0,0)\\}$；$\\operatorname{Im}T=\\mathbb R^2$；$\\dim\\ker T+\\dim\\operatorname{Im}T=2$",
+     "scene_spec": {
+      "objects": [
+       "网格在 $T$ 下的形变",
+       "特征方向拉伸（3 倍/反向）与复合 $T\\circ T$ 的可逆性"
+      ],
+      "steps": [
+       "第一步：以复合变换为主线，建立高等代数·线性变换场景并呈现该解法的关键图形。",
+       "第二步：网格在 $T$ 下的形变。",
+       "第三步：特征方向拉伸（3 倍/反向）与复合 $T\\circ T$ 的可逆性。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "线性变换核与像",
+     "visual_style": "网格形变",
+     "efficiency_tags": [
+      "网格在 $T$ 下的形变",
+      "特征方向拉伸（3 倍/反向）与复合 $T\\circ T$ 的可逆性"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "310272bd6ba2b8e1fcd8104092323fbafe89cc8d0d3ad0a3b33fd235085784fa",
+    "936c5c7b605b619eaafec5fd0d30a1f54e3d08d57154a24487c9756b11902649",
+    "13c3857512122274d1c0796ba0afd91487801874829212f9b0c2f24a120036d7"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-030",
+   "problem_sha256": "993eac2d7826c16ee6a655b8ab2ac34d16d1cd4d173c0ce35b71708efb181140",
+   "source_records": [
+    {
+     "id": "eval-linalg-030-s1",
+     "problem_id": "eval-linalg-030",
+     "solution_id": "eval-linalg-030-s1",
+     "method": "标准 Gram–Schmidt 过程",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+     "solution": "取 $u_1=(1,1,0)$。$u_2=(1,0,1)-\\dfrac{(1,0,1)\\cdot u_1}{\\|u_1\\|^2}u_1=(1,0,1)-\\dfrac{1}{2}(1,1,0)=\\left(\\dfrac{1}{2},-\\dfrac{1}{2},1\\right)$，乘 2 取 $u_2=(1,-1,2)$。$u_3=(0,1,1)-\\dfrac{(0,1,1)\\cdot u_1}{\\|u_1\\|^2}u_1-\\dfrac{(0,1,1)\\cdot u_2}{\\|u_2\\|^2}u_2=(0,1,1)-\\dfrac{1}{2}(1,1,0)-\\dfrac{1}{6}(1,-1,2)=\\left(-\\dfrac{2}{3},\\dfrac{2}{3},\\dfrac{2}{3}\\right)$，乘 $-\\dfrac{3}{2}$ 取 $u_3=(1,-1,-1)$。验证：$u_1\\cdot u_2=0$，$u_1\\cdot u_3=1-1+0=0$，$u_2\\cdot u_3=1+1-2=0$，两两正交。",
+     "answer": "$u_1=(1,1,0)$，$u_2=(1,-1,2)$，$u_3=(1,-1,-1)$（可各乘常数）",
+     "scene_spec": {
+      "objects": [
+       "投影减去的逐步动画",
+       "$u_2=(1,-1,2)$、$u_3=(1,-1,-1)$ 的生成"
+      ],
+      "steps": [
+       "第一步：以标准 Gram–Schmidt 过程为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：投影减去的逐步动画。",
+       "第三步：$u_2=(1,-1,2)$、$u_3=(1,-1,-1)$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "Gram-Schmidt 正交化",
+     "visual_style": "投影减去步骤",
+     "efficiency_tags": [
+      "投影减去的逐步动画",
+      "$u_2=(1,-1,2)$、$u_3=(1,-1,-1)$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-030-s2",
+     "problem_id": "eval-linalg-030",
+     "solution_id": "eval-linalg-030-s2",
+     "method": "对称性构造",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+     "solution": "三个向量关于坐标轮换对称。取和向量 $v_1=(1,1,1)$（在张成空间内，因 $v_1=\\dfrac{(1,1,0)+(1,0,1)+(0,1,1)}{2}$ 验证：$\\dfrac{(2,2,2)}{2}=(1,1,1)$）；取差向量 $v_2=(1,0,-1)$：$v_1\\cdot v_2=0$；取 $v_3=v_1\\times v_2=(1,1,1)\\times(1,0,-1)=(1\\cdot(-1)-1\\cdot 0,\\ 1\\cdot 1-1\\cdot(-1),\\ 1\\cdot 0-1\\cdot 1)=(-1,2,-1)$。验证 $v_3$ 在张成空间内：$(1,1,0)-2(1,0,1)+(0,1,1)=(-1,2,-1)$；且 $v_3\\cdot v_1=0$、$v_3\\cdot v_2=0$。故 $\\{(1,1,1),(1,0,-1),(-1,2,-1)\\}$ 亦为正交基（这是利用对称性的替代正交基构造，与按原顺序做 Gram–Schmidt 的输出不必相同）。",
+     "answer": "$u_1=(1,1,0)$，$u_2=(1,-1,2)$，$u_3=(1,-1,-1)$（可各乘常数）",
+     "scene_spec": {
+      "objects": [
+       "和向量/差向量/叉积的轮换对称构造",
+       "替代正交基的标注"
+      ],
+      "steps": [
+       "第一步：以对称性构造为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：和向量/差向量/叉积的轮换对称构造。",
+       "第三步：替代正交基的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "Gram-Schmidt 正交化",
+     "visual_style": "投影减去步骤",
+     "efficiency_tags": [
+      "和向量/差向量/叉积的轮换对称构造",
+      "替代正交基的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-030-s3",
+     "problem_id": "eval-linalg-030",
+     "solution_id": "eval-linalg-030-s3",
+     "method": "验算还原",
+     "category": "高等代数",
+     "sub_category": "线性空间",
+     "problem": "用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+     "solution": "验证解法一的三向量线性无关：行列式 $\\begin{vmatrix}1&1&0\\\\1&-1&2\\\\1&-1&-1\\end{vmatrix}=1\\cdot(1+2)-1\\cdot(-1-2)+0=3+3=6\\ne 0$。且三者张成的空间与原组相同（原组行列式 $\\begin{vmatrix}1&1&0\\\\1&0&1\\\\0&1&1\\end{vmatrix}=-2\\ne 0$，两组都张成 $\\mathbb R^3$），故正交化合法。",
+     "answer": "$u_1=(1,1,0)$，$u_2=(1,-1,2)$，$u_3=(1,-1,-1)$（可各乘常数）",
+     "scene_spec": {
+      "objects": [
+       "两两垂直的验证标注",
+       "行列式 $6\\ne0$ 的线性无关验证"
+      ],
+      "steps": [
+       "第一步：以验算还原为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+       "第二步：两两垂直的验证标注。",
+       "第三步：行列式 $6\\ne0$ 的线性无关验证。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "Gram-Schmidt 正交化",
+     "visual_style": "投影减去步骤",
+     "efficiency_tags": [
+      "两两垂直的验证标注",
+      "行列式 $6\\ne0$ 的线性无关验证"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "ccc43c68b154899abac900084c0b718d2dca14f1ffd6303a5e3966a0d31b00b7",
+    "88551f5c294096a5795f93ac6a6b64a357c7f1478439bc1d0661640fcd5d2e76",
+    "9d804d056616fef3763dbb8625f14a8faae93f3c6b465e3b5af965b7974bd886"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-031",
+   "problem_sha256": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+   "source_records": [
+    {
+     "id": "eval-linalg-031-s1",
+     "problem_id": "eval-linalg-031",
+     "solution_id": "eval-linalg-031-s1",
+     "method": "最小多项式定最大块阶",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。",
+     "solution": "$m_A$ 的根为 $2,3$,故 $A$ 的谱为 $\\{2,3\\}$。因子 $(\\lambda-2)^2$ 表明 2 对应若尔当块的最大阶数为 2(且恰有一块取到 2 阶);因子 $(\\lambda-3)$ 无平方,表明 3 对应块全为 1 阶。$n=4$ 且 3 的重数至少为 1,故 2 的重数为 2 或 3。若 2 重数为 2:块为 $J_2(2)\\oplus J_1(3)\\oplus J_1(3)$,迹 $=2+2+3+3=10\\neq 9$,排除。若 2 重数为 3:块为 $J_2(2)\\oplus J_1(2)\\oplus J_1(3)$,共 $2+1+1=4$ 阶,迹 $=2+2+2+3=9$,符合。故唯一。",
+     "answer": "唯一:$\\operatorname{diag}\\!\\bigl(J_2(2),\\,2,\\,3\\bigr)=\\begin{pmatrix}2&1&0&0\\\\0&2&0&0\\\\0&0&2&0\\\\0&0&0&3\\end{pmatrix}$,其中 $J_2(2)=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "若尔当块按 $(\\lambda-2)^2$、$(\\lambda-3)$ 的阶数约束拼图",
+       "迹 9 排除 $10$ 的组合"
+      ],
+      "steps": [
+       "第一步：以最小多项式定最大块阶为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：若尔当块按 $(\\lambda-2)^2$、$(\\lambda-3)$ 的阶数约束拼图。",
+       "第三步：迹 9 排除 $10$ 的组合。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "最小多项式与迹约束的若尔当分块",
+     "visual_style": "四阶块拼图与主分解及二阶幂零链",
+     "efficiency_tags": [
+      "若尔当块按 $(\\lambda-2)^2$、$(\\lambda-3)$ 的阶数约束拼图",
+      "迹 9 排除 $10$ 的组合"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-031-s2",
+     "problem_id": "eval-linalg-031",
+     "solution_id": "eval-linalg-031-s2",
+     "method": "特征多项式与迹联立",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。",
+     "solution": "特征多项式 $f_A$ 与 $m_A$ 有相同根,$f_A=(\\lambda-2)^{r_2}(\\lambda-3)^{r_3}$,$r_2+r_3=4$,$r_2\\ge 2$,$r_3\\ge 1$,故 $(r_2,r_3)=(3,1)$ 或 $(2,2)$。迹 $=2r_2+3r_3$:$(3,1)$ 给 $6+3=9$;$(2,2)$ 给 $4+6=10$。故 $r_2=3,r_3=1$。2 的块:最大块阶为 2(由 $(\\lambda-2)^2$ 整除 $m_A$)且总维数为 3,故块大小拆分为 $2+1$,即 $J_2(2)\\oplus J_1(2)$;3 的块为 $J_1(3)$。故唯一:$\\operatorname{diag}\\!\\bigl(J_2(2),2,3\\bigr)$。",
+     "answer": "唯一:$\\operatorname{diag}\\!\\bigl(J_2(2),\\,2,\\,3\\bigr)=\\begin{pmatrix}2&1&0&0\\\\0&2&0&0\\\\0&0&2&0\\\\0&0&0&3\\end{pmatrix}$,其中 $J_2(2)=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "重数分配 $(3,1)$ 与 $(2,2)$ 的分支图",
+       "迹公式 $2r_2+3r_3$ 的对照表"
+      ],
+      "steps": [
+       "第一步：以特征多项式与迹联立为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：重数分配 $(3,1)$ 与 $(2,2)$ 的分支图。",
+       "第三步：迹公式 $2r_2+3r_3$ 的对照表。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "最小多项式与迹约束的若尔当分块",
+     "visual_style": "四阶块拼图与主分解及二阶幂零链",
+     "efficiency_tags": [
+      "重数分配 $(3,1)$ 与 $(2,2)$ 的分支图",
+      "迹公式 $2r_2+3r_3$ 的对照表"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-031-s3",
+     "problem_id": "eval-linalg-031",
+     "solution_id": "eval-linalg-031-s3",
+     "method": "主分解",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。",
+     "solution": "$m_A$ 的两个互素因子给出主分解 $V=\\ker(A-2I)^2\\oplus\\ker(A-3I)$。$\\ker(A-3I)$ 的维数等于 3 的重数 $r_3$;$\\ker(A-2I)^2$ 的维数等于 2 的重数 $r_2$。由 $r_2+r_3=4$、$r_2\\ge 2$、$r_3\\ge 1$ 与迹 $2r_2+3r_3=9$ 得 $r_2=3,\\ r_3=1$。在 $V_2=\\ker(A-2I)^2$ 上,幂零部分 $N=A-2I$ 满足 $N^2=0$ 且 $N\\neq 0$($N=0$ 会给 $m_A$ 带来因子 $(\\lambda-2)$ 而非 $(\\lambda-2)^2$),故 $N$ 的幂零指数恰为 2,$V_2$ 上的块为 $J_2(2)\\oplus J_1(2)$;$V_3$ 一维,块为 $J_1(3)$。故唯一:$\\operatorname{diag}\\!\\bigl(J_2(2),2,3\\bigr)$。",
+     "answer": "唯一:$\\operatorname{diag}\\!\\bigl(J_2(2),\\,2,\\,3\\bigr)=\\begin{pmatrix}2&1&0&0\\\\0&2&0&0\\\\0&0&2&0\\\\0&0&0&3\\end{pmatrix}$,其中 $J_2(2)=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "主分解 $V_2\\oplus V_3$ 的子空间示意",
+       "幂零指数 2(块阶上限)与维数 3 定出 $2+1$ 拆分"
+      ],
+      "steps": [
+       "第一步：以主分解为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：主分解 $V_2\\oplus V_3$ 的子空间示意。",
+       "第三步：幂零指数 2(块阶上限)与维数 3 定出 $2+1$ 拆分。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "最小多项式与迹约束的若尔当分块",
+     "visual_style": "四阶块拼图与主分解及二阶幂零链",
+     "efficiency_tags": [
+      "主分解 $V_2\\oplus V_3$ 的子空间示意",
+      "幂零指数 2(块阶上限)与维数 3 定出 $2+1$ 拆分"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a0610f26a4c8c348a99183e19bf40318da79ff6a1059ac09e2c04009785f5dfc",
+    "442642eb1ede2a611591c4956524d6ff9d5425d89382cbce84b70a7e1e35cd52",
+    "f5fdabd72feba815df3edaaa5036c3c5a766d550e2ab1370db433b9ae662ce54"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-032",
+   "problem_sha256": "0106ec138785e64d52b91abc1384c5b6508eb1a81b40f06117bb29d0bd6102b2",
+   "source_records": [
+    {
+     "id": "eval-linalg-032-s1",
+     "problem_id": "eval-linalg-032",
+     "solution_id": "eval-linalg-032-s1",
+     "method": "行列式因子",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,$\\lambda$-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda-a&1&0\\\\0&\\lambda-1&1\\\\0&0&\\lambda-1\\end{pmatrix}$。求 $A(\\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时两个不同根的初等因子合并、重数如何变化)。",
+     "solution": "一阶行列式因子 $D_1=1$。二阶子式中含 $\\begin{vmatrix}1&0\\\\\\lambda-1&1\\end{vmatrix}=1$,故二阶行列式因子 $D_2=\\gcd(\\cdots,1,\\cdots)=1$。三阶行列式因子 $D_3=|A(\\lambda)|=(\\lambda-a)(\\lambda-1)^2$。不变因子 $d_1=D_1=1$,$d_2=\\dfrac{D_2}{D_1}=1$,$d_3=\\dfrac{D_3}{D_2}=(\\lambda-a)(\\lambda-1)^2$。初等因子即不变因子分解出的互异幂因子:$a\\neq 1$ 时 $d_3$ 给出 $\\lambda-a$ 与 $(\\lambda-1)^2$ 两个初等因子;$a=1$ 时 $\\lambda-a$ 与 $(\\lambda-1)^2$ 的根重合,$d_3=(\\lambda-1)^3$ 成为一个三重初等因子。",
+     "answer": "不变因子:$1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$;初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$;$a=1$ 时为 $(\\lambda-1)^3$",
+     "scene_spec": {
+      "objects": [
+       "全部二阶子式 $\\gcd=1$ 的逐一检验",
+       "$a$ 滑杆下 $(\\lambda-a)$ 与 $(\\lambda-1)$ 的根逐渐重合"
+      ],
+      "steps": [
+       "第一步：以行列式因子为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：全部二阶子式 $\\gcd=1$ 的逐一检验。",
+       "第三步：$a$ 滑杆下 $(\\lambda-a)$ 与 $(\\lambda-1)$ 的根逐渐重合。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三阶含参λ-矩阵不变因子与初等因子",
+     "visual_style": "Smith等价变换与初等因子合并及若尔当块结构",
+     "efficiency_tags": [
+      "全部二阶子式 $\\gcd=1$ 的逐一检验",
+      "$a$ 滑杆下 $(\\lambda-a)$ 与 $(\\lambda-1)$ 的根逐渐重合"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-032-s2",
+     "problem_id": "eval-linalg-032",
+     "solution_id": "eval-linalg-032-s2",
+     "method": "初等变换化标准形",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,$\\lambda$-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda-a&1&0\\\\0&\\lambda-1&1\\\\0&0&\\lambda-1\\end{pmatrix}$。求 $A(\\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时两个不同根的初等因子合并、重数如何变化)。",
+     "solution": "交换第 1、2 列得 $\\begin{pmatrix}1&\\lambda-a&0\\\\\\lambda-1&0&1\\\\0&0&\\lambda-1\\end{pmatrix}$;第 2 行减去第 1 行的 $(\\lambda-1)$ 倍、第 2 列减去第 1 列的 $(\\lambda-a)$ 倍,得 $\\begin{pmatrix}1&0&0\\\\0&-(\\lambda-a)(\\lambda-1)&1\\\\0&0&\\lambda-1\\end{pmatrix}$;再交换第 2、3 列,第 3 行减去第 2 行的 $(\\lambda-1)$ 倍,第 3 列加回第 2 列的 $(\\lambda-a)(\\lambda-1)$ 倍,得标准形 $\\operatorname{diag}\\!\\bigl(1,\\,1,\\,(\\lambda-a)(\\lambda-1)^2\\bigr)$。不变因子读出 $1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$。末项分解得初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$ 两个;$a=1$ 时两者根重合,合并为 $(\\lambda-1)^3$ 一个。",
+     "answer": "不变因子:$1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$;初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$;$a=1$ 时为 $(\\lambda-1)^3$",
+     "scene_spec": {
+      "objects": [
+       "行、列初等变换分别逐步动画(Smith 形)",
+       "标准形 $\\operatorname{diag}(1,1,(\\lambda-a)(\\lambda-1)^2)$ 的生成"
+      ],
+      "steps": [
+       "第一步：以初等变换化标准形为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：行、列初等变换分别逐步动画(Smith 形)。",
+       "第三步：标准形 $\\operatorname{diag}(1,1,(\\lambda-a)(\\lambda-1)^2)$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三阶含参λ-矩阵不变因子与初等因子",
+     "visual_style": "Smith等价变换与初等因子合并及若尔当块结构",
+     "efficiency_tags": [
+      "行、列初等变换分别逐步动画(Smith 形)",
+      "标准形 $\\operatorname{diag}(1,1,(\\lambda-a)(\\lambda-1)^2)$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-032-s3",
+     "problem_id": "eval-linalg-032",
+     "solution_id": "eval-linalg-032-s3",
+     "method": "循环向量独立推导",
+     "category": "高等代数",
+     "sub_category": "λ-矩阵",
+     "problem": "设 $a\\in\\mathbb R$ 为参数,$\\lambda$-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda-a&1&0\\\\0&\\lambda-1&1\\\\0&0&\\lambda-1\\end{pmatrix}$。求 $A(\\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时两个不同根的初等因子合并、重数如何变化)。",
+     "solution": "令 $B(a)=\\begin{pmatrix}a&-1&0\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$,则 $A(\\lambda)=\\lambda I-B(a)$。取 $e_3=(0,0,1)^T$,直接计算: $$(e_3,\\ B e_3,\\ B^2 e_3)=\\begin{pmatrix}0&0&1\\\\0&-1&-2\\\\1&1&1\\end{pmatrix},\\qquad \\det=1\\neq 0,$$ 故 $\\{e_3,Be_3,B^2e_3\\}$ 构成基,$e_3$ 对所有 $a$ 都是 $B$ 的循环向量,因此 $m_B$ 的次数为 3,与特征多项式 $\\chi_B(\\lambda)=(\\lambda-a)(\\lambda-1)^2$ 相同,即 $m_B=\\chi_B$。于是 $A(\\lambda)$ 的不变因子为 $1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$(唯一非平凡不变因子等于特征多项式)。初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$,对应块 $\\operatorname{diag}\\!\\bigl(a,\\,J_2(1)\\bigr)$,其中 $J_2(1)=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$;$a=1$ 时合并为 $(\\lambda-1)^3$,对应块 $J_3(1)=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\0&0&1\\end{pmatrix}$。**所有参数取值下均不可对角化**($a\\neq 1$ 时已含 $J_2(1)$ 块);$a$ 从 $\\neq 1$ 变到 1 时,变化是初等因子合并、最大若尔当块由二阶升为三阶。",
+     "answer": "不变因子:$1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$;初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$;$a=1$ 时为 $(\\lambda-1)^3$",
+     "scene_spec": {
+      "objects": [
+       "在原参数矩阵上展示特征值合并、特征方向趋于重合",
+       "块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)"
+      ],
+      "steps": [
+       "第一步：以循环向量独立推导为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+       "第二步：在原参数矩阵上展示特征值合并、特征方向趋于重合。",
+       "第三步：块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三阶含参λ-矩阵不变因子与初等因子",
+     "visual_style": "Smith等价变换与初等因子合并及若尔当块结构",
+     "efficiency_tags": [
+      "在原参数矩阵上展示特征值合并、特征方向趋于重合",
+      "块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "e0c58aaa9fdf90ede941e255fdd94f14929db23bdf3db8ec136e51e1c13e16b8",
+    "cebe1ea620545ed9e0a94def411f80181035ed130a3700e129f2a800205d4b8a",
+    "f22552bb74c0e185a0d907f94194793806ed2e462744ddb8a89f3975986b6c76"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-033",
+   "problem_sha256": "439a7992de42fe9ea317bc51a7cde9800b07ca127dbd20b32d9f1fd83dd7a89c",
+   "source_records": [
+    {
+     "id": "eval-linalg-033-s1",
+     "problem_id": "eval-linalg-033",
+     "solution_id": "eval-linalg-033-s1",
+     "method": "级数定义",
+     "category": "高等代数",
+     "sub_category": "矩阵函数",
+     "problem": "设 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，求矩阵指数 $e^{tA}$（$t$ 为参数）。",
+     "solution": "$A^2=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}=0$，故 $A^k=0$（$k\\ge 2$）。$e^{tA}=I+tA+\\dfrac{t^2A^2}{2!}+\\cdots=I+tA=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$。",
+     "answer": "$e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "级数展开只留两项（$A^2=0$）的标注",
+       "$e^{tA}=I+tA$ 的生成"
+      ],
+      "steps": [
+       "第一步：以级数定义为主线，建立高等代数·矩阵函数场景并呈现该解法的关键图形。",
+       "第二步：级数展开只留两项（$A^2=0$）的标注。",
+       "第三步：$e^{tA}=I+tA$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "矩阵指数 e^{tA}",
+     "visual_style": "剪切流相图",
+     "efficiency_tags": [
+      "级数展开只留两项（$A^2=0$）的标注",
+      "$e^{tA}=I+tA$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-033-s2",
+     "problem_id": "eval-linalg-033",
+     "solution_id": "eval-linalg-033-s2",
+     "method": "解微分方程组",
+     "category": "高等代数",
+     "sub_category": "矩阵函数",
+     "problem": "设 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，求矩阵指数 $e^{tA}$（$t$ 为参数）。",
+     "solution": "方程组 $\\dfrac{d}{dt}\\begin{pmatrix}x\\\\y\\end{pmatrix}=A\\begin{pmatrix}x\\\\y\\end{pmatrix}$，即 $\\begin{cases}x'=y\\\\y'=0\\end{cases}$。解得 $y(t)=y_0$，$x(t)=x_0+y_0t$，即 $\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}\\begin{pmatrix}x_0\\\\y_0\\end{pmatrix}$。基解矩阵（满足 $\\Phi(0)=I$）即 $e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$。",
+     "answer": "$e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "方程组 $x'=y$、$y'=0$ 的求解",
+       "基解矩阵的生成"
+      ],
+      "steps": [
+       "第一步：以解微分方程组为主线，建立高等代数·矩阵函数场景并呈现该解法的关键图形。",
+       "第二步：方程组 $x'=y$、$y'=0$ 的求解。",
+       "第三步：基解矩阵的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "矩阵指数 e^{tA}",
+     "visual_style": "剪切流相图",
+     "efficiency_tags": [
+      "方程组 $x'=y$、$y'=0$ 的求解",
+      "基解矩阵的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-033-s3",
+     "problem_id": "eval-linalg-033",
+     "solution_id": "eval-linalg-033-s3",
+     "method": "拉普拉斯变换",
+     "category": "高等代数",
+     "sub_category": "矩阵函数",
+     "problem": "设 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，求矩阵指数 $e^{tA}$（$t$ 为参数）。",
+     "solution": "$(sI-A)^{-1}=\\begin{pmatrix}s&-1\\\\0&s\\end{pmatrix}^{-1}=\\dfrac{1}{s^2}\\begin{pmatrix}s&1\\\\0&s\\end{pmatrix}=\\begin{pmatrix}1/s&1/s^2\\\\0&1/s\\end{pmatrix}$。逐项取拉普拉斯逆变换（$\\mathcal L^{-1}\\{1/s\\}=1$，$\\mathcal L^{-1}\\{1/s^2\\}=t$），得 $e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$。",
+     "answer": "$e^{tA}=\\begin{pmatrix}1&t\\\\0&1\\end{pmatrix}$",
+     "scene_spec": {
+      "objects": [
+       "预解式 $(sI-A)^{-1}=\\begin{pmatrix}1/s&1/s^2\\\\0&1/s\\end{pmatrix}$ 的逆变换",
+       "相图：剪切流轨道"
+      ],
+      "steps": [
+       "第一步：以拉普拉斯变换为主线，建立高等代数·矩阵函数场景并呈现该解法的关键图形。",
+       "第二步：预解式 $(sI-A)^{-1}=\\begin{pmatrix}1/s&1/s^2\\\\0&1/s\\end{pmatrix}$ 的逆变换。",
+       "第三步：相图：剪切流轨道。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "矩阵指数 e^{tA}",
+     "visual_style": "剪切流相图",
+     "efficiency_tags": [
+      "预解式 $(sI-A)^{-1}=\\begin{pmatrix}1/s&1/s^2\\\\0&1/s\\end{pmatrix}$ 的逆变换",
+      "相图：剪切流轨道"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "527c974d1ce93b64fb9e74f859a500220a18c13dd72c54db7ac3d7b866360e37",
+    "9be18698581b973fa7c38edce88bb9c2a32c3c3b8fa145507b623b68e9aeaf85",
+    "08cec7efa0abd0972bef862c79572aa1177bfc79fd237eb87e47099449152423"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-034",
+   "problem_sha256": "a9bb397b61d8b3d9be679849828e965e8248492e7cd1ec8dbe2f148f4be1fdfc",
+   "source_records": [
+    {
+     "id": "eval-linalg-034-s1",
+     "problem_id": "eval-linalg-034",
+     "solution_id": "eval-linalg-034-s1",
+     "method": "判别式法",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明 Cauchy–Schwarz 不等式：对任意向量 $\\vec a,\\vec b$，$|\\vec a\\cdot\\vec b|\\le|\\vec a||\\vec b|$。",
+     "solution": "若 $\\vec b=\\vec 0$ 不等式平凡成立。设 $\\vec b\\ne\\vec 0$，对任意实数 $t$，$0\\le|\\vec a+t\\vec b|^2=|\\vec a|^2+2t(\\vec a\\cdot\\vec b)+t^2|\\vec b|^2$。该二次函数恒非负，故判别式 $\\Delta=4(\\vec a\\cdot\\vec b)^2-4|\\vec a|^2|\\vec b|^2\\le 0$，即 $(\\vec a\\cdot\\vec b)^2\\le|\\vec a|^2|\\vec b|^2$，开方得 $|\\vec a\\cdot\\vec b|\\le|\\vec a||\\vec b|$。等号成立当且仅当 $\\vec a+t\\vec b=\\vec 0$（$\\vec a$ 与 $\\vec b$ 线性相关）。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "判别式 $\\Delta\\le0$ 的推导",
+       "二次函数恒非负的抛物线"
+      ],
+      "steps": [
+       "第一步：以判别式法为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：判别式 $\\Delta\\le0$ 的推导。",
+       "第三步：二次函数恒非负的抛物线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "内积不等式证明",
+     "visual_style": "正交投影分解",
+     "efficiency_tags": [
+      "判别式 $\\Delta\\le0$ 的推导",
+      "二次函数恒非负的抛物线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-034-s2",
+     "problem_id": "eval-linalg-034",
+     "solution_id": "eval-linalg-034-s2",
+     "method": "正交投影",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明 Cauchy–Schwarz 不等式：对任意向量 $\\vec a,\\vec b$，$|\\vec a\\cdot\\vec b|\\le|\\vec a||\\vec b|$。",
+     "solution": "若 $\\vec b=\\vec 0$ 不等式平凡成立。以下设 $\\vec b\\ne\\vec 0$，把 $\\vec a$ 分解为 $\\vec a=\\vec a_\\parallel+\\vec a_\\perp$，其中 $\\vec a_\\parallel=\\dfrac{\\vec a\\cdot\\vec b}{|\\vec b|^2}\\vec b$ 与 $\\vec b$ 平行，$\\vec a_\\perp\\perp\\vec b$。由勾股定理 $|\\vec a|^2=|\\vec a_\\parallel|^2+|\\vec a_\\perp|^2\\ge|\\vec a_\\parallel|^2=\\dfrac{(\\vec a\\cdot\\vec b)^2}{|\\vec b|^2}$，移项即得。等号成立当且仅当 $\\vec a_\\perp=\\vec 0$。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "正交投影分解动画",
+       "勾股定理 $|\\vec a|^2\\ge|\\vec a_\\parallel|^2$ 的标注"
+      ],
+      "steps": [
+       "第一步：以正交投影为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：正交投影分解动画。",
+       "第三步：勾股定理 $|\\vec a|^2\\ge|\\vec a_\\parallel|^2$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "内积不等式证明",
+     "visual_style": "正交投影分解",
+     "efficiency_tags": [
+      "正交投影分解动画",
+      "勾股定理 $|\\vec a|^2\\ge|\\vec a_\\parallel|^2$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-034-s3",
+     "problem_id": "eval-linalg-034",
+     "solution_id": "eval-linalg-034-s3",
+     "method": "Gram 矩阵半正定",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明 Cauchy–Schwarz 不等式：对任意向量 $\\vec a,\\vec b$，$|\\vec a\\cdot\\vec b|\\le|\\vec a||\\vec b|$。",
+     "solution": "对随机变量 $X,Y$ 有 $E[(tX+Y)^2]\\ge 0$ 对任意 $t$，故二阶矩矩阵（当 $E[X]=E[Y]=0$ 时即协方差矩阵，一般情形称 Gram 矩阵）$\\begin{pmatrix}E[X^2]&E[XY]\\\\E[XY]&E[Y^2]\\end{pmatrix}$ 半正定，行列式 $E[X^2]E[Y^2]-(E[XY])^2\\ge 0$，即 $(E[XY])^2\\le E[X^2]E[Y^2]$。取有限样本空间上的随机变量与内积 $\\langle X,Y\\rangle=E[XY]$ 对应（必要时先中心化），即得向量形式的 Cauchy–Schwarz。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "二阶矩矩阵半正定的标注",
+       "等号条件（共线/退化）的标注"
+      ],
+      "steps": [
+       "第一步：以Gram 矩阵半正定为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：二阶矩矩阵半正定的标注。",
+       "第三步：等号条件（共线/退化）的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "内积不等式证明",
+     "visual_style": "正交投影分解",
+     "efficiency_tags": [
+      "二阶矩矩阵半正定的标注",
+      "等号条件（共线/退化）的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "277bab5ade99e04678391e607341c450f42d5502d2c347dd8ba7be2d148fb095",
+    "f4080891b4975038ae35e981c1917fad58b663e8ea153dfbf9cca48330848392",
+    "235154cb23e0cace415fb8a107549c244c462595e5a9aff7484061c95f35f66a"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-linalg-035",
+   "problem_sha256": "d64eb331b97bdbef5bb72a6cb1975c1fab8e603e88f47d05dd2af3ee9f50ab0a",
+   "source_records": [
+    {
+     "id": "eval-linalg-035-s1",
+     "problem_id": "eval-linalg-035",
+     "solution_id": "eval-linalg-035-s1",
+     "method": "分块矩阵",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+     "solution": "把 $A$ 按列分块 $A=(a_1,a_2,\\dots,a_n)$。$A^TA$ 的 $(i,j)$ 元为 $a_i^Ta_j=a_i\\cdot a_j$。$A^TA=I\\iff a_i\\cdot a_j=\\delta_{ij}$ 对一切 $i,j$ 成立 $\\iff$ 列向量两两正交且都是单位向量 $\\iff$ 列向量构成标准正交基（$n$ 个两两正交的单位向量必线性无关，因若 $\\sum c_ia_i=0$ 则与 $a_j$ 作内积得 $c_j=0$）。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注",
+       "线性无关性的验证"
+      ],
+      "steps": [
+       "第一步：以分块矩阵为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注。",
+       "第三步：线性无关性的验证。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正交矩阵刻画",
+     "visual_style": "标准正交列旋转",
+     "efficiency_tags": [
+      "分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注",
+      "线性无关性的验证"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-035-s2",
+     "problem_id": "eval-linalg-035",
+     "solution_id": "eval-linalg-035-s2",
+     "method": "保长⇔保内积",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+     "solution": "$A^TA=I\\iff$ 对任意 $x$，$|Ax|^2=(Ax)^T(Ax)=x^TA^TAx=x^Tx=|x|^2$，即 $A$ 保长。由极化恒等式 $(Ax,Ay)=\\dfrac{|A(x+y)|^2-|Ax|^2-|Ay|^2}{2}=\\dfrac{|x+y|^2-|x|^2-|y|^2}{2}=(x,y)$，保长⇒保内积。取 $x=e_i$、$y=e_j$：$(Ae_i,Ae_j)=(e_i,e_j)=\\delta_{ij}$，即列向量标准正交。反之列向量标准正交⇒$A^TA=I$ 由解法一。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "保长性质的演示",
+       "极化恒等式的推导"
+      ],
+      "steps": [
+       "第一步：以保长⇔保内积为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：保长性质的演示。",
+       "第三步：极化恒等式的推导。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正交矩阵刻画",
+     "visual_style": "标准正交列旋转",
+     "efficiency_tags": [
+      "保长性质的演示",
+      "极化恒等式的推导"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-linalg-035-s3",
+     "problem_id": "eval-linalg-035",
+     "solution_id": "eval-linalg-035-s3",
+     "method": "必要条件与反例说明",
+     "category": "高等代数",
+     "sub_category": "欧几里得空间",
+     "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+     "solution": "由 $A^TA=I$ 取行列式得 $(\\det A)^2=1$，故正交矩阵的行列式为 $\\pm 1$；又若 $Ax=\\lambda x$，则 $|x|^2=|Ax|^2=|\\lambda|^2|x|^2$，故特征值的模为 1。反之行列式为 $\\pm 1$ 或特征值模为 1 都不足以保证正交（反例：$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的行列式为 1、特征值均为 1，但列向量不垂直，非正交矩阵），说明\"列标准正交\"才是充要条件。",
+     "answer": "证毕（三种证法）",
+     "scene_spec": {
+      "objects": [
+       "行列式 $\\pm1$ 与特征值模 1 的必要条件",
+       "反例矩阵（剪切）的对照"
+      ],
+      "steps": [
+       "第一步：以必要条件与反例说明为主线，建立高等代数·欧几里得空间场景并呈现该解法的关键图形。",
+       "第二步：行列式 $\\pm1$ 与特征值模 1 的必要条件。",
+       "第三步：反例矩阵（剪切）的对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正交矩阵刻画",
+     "visual_style": "标准正交列旋转",
+     "efficiency_tags": [
+      "行列式 $\\pm1$ 与特征值模 1 的必要条件",
+      "反例矩阵（剪切）的对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "de526a918fc9eaf733f06abc01918c9f96c1472d8976dd2963aa8809b59ebef9",
+    "6eab3f5770a7a6f0d195fb51da7dab5270793ba3058314042a917546b0eb4533",
+    "0c3f0a578ed02935a51ff805176e4ad27bbea90e2b0e14b67ca7e67fa8fe986d"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-001",
+   "problem_sha256": "8a9db327ed0653427b7dc03f7d78496d88784a908d103d9dc829eb0d3414a39e",
+   "source_records": [
+    {
+     "id": "eval-prob-001-s1",
+     "problem_id": "eval-prob-001",
+     "solution_id": "eval-prob-001-s1",
+     "method": "树状图/直接分析",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。",
+     "solution": "参赛者初始选中山羊的概率为 $\\dfrac{2}{3}$，此时主持人必须打开另一扇山羊门（他不能开车门），剩下的未开门必然是汽车，换门必赢。初始选中汽车的概率为 $\\dfrac{1}{3}$，此时换门必输。故换门获胜概率 $=\\dfrac{2}{3}\\times 1+\\dfrac{1}{3}\\times 0=\\dfrac{2}{3}$。",
+     "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+     "scene_spec": {
+      "objects": [
+       "三扇门与车、羊的随机放置",
+       "初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注"
+      ],
+      "steps": [
+       "第一步：以树状图/直接分析为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：三扇门与车、羊的随机放置。",
+       "第三步：初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(三门问题)",
+     "visual_style": "概率条带转移",
+     "efficiency_tags": [
+      "三扇门与车、羊的随机放置",
+      "初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-001-s2",
+     "problem_id": "eval-prob-001",
+     "solution_id": "eval-prob-001-s2",
+     "method": "贝叶斯公式",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。",
+     "solution": "设参赛者选 1 号门、主持人打开 2 号门，并假设主持人在有两扇羊门可选时等概率选择（其余情形由对称性同理）。记 $C_i$=车在 $i$ 号门，$H_2$=主持人开 2 号门。则 $P(H_2|C_3)=1$（车在 3 号门时主持人只能开 2 号门），$P(H_2|C_1)=\\dfrac{1}{2}$（车在 1 号门时主持人可在 2、3 号门中等概率选择），$P(H_2|C_2)=0$（主持人不能开有车的门），$P(C_i)=\\dfrac{1}{3}$。由贝叶斯公式：$P(C_3|H_2)=\\dfrac{P(H_2|C_3)P(C_3)}{P(H_2|C_3)P(C_3)+P(H_2|C_1)P(C_1)+P(H_2|C_2)P(C_2)}=\\dfrac{1\\cdot\\frac{1}{3}}{1\\cdot\\frac{1}{3}+\\frac{1}{2}\\cdot\\frac{1}{3}+0}=\\dfrac{1/3}{1/2}=\\dfrac{2}{3}$。即主持人开 2 号门后，车在 3 号门（换门目标）的概率为 $\\dfrac{2}{3}$。注意\"总是换门\"的获胜率 $\\dfrac{2}{3}$ 其实不依赖主持人的等概率规则（见解法一）。",
+     "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+     "scene_spec": {
+      "objects": [
+       "贝叶斯分母三项的条带分解",
+       "条件概率 $P(C_3|H_2)$ 的收缩动画"
+      ],
+      "steps": [
+       "第一步：以贝叶斯公式为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：贝叶斯分母三项的条带分解。",
+       "第三步：条件概率 $P(C_3|H_2)$ 的收缩动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(三门问题)",
+     "visual_style": "概率条带转移",
+     "efficiency_tags": [
+      "贝叶斯分母三项的条带分解",
+      "条件概率 $P(C_3|H_2)$ 的收缩动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-001-s3",
+     "problem_id": "eval-prob-001",
+     "solution_id": "eval-prob-001-s3",
+     "method": "枚举等可能样本点",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。",
+     "solution": "车的位置（3 种）×参赛者初选（3 种）=9 种等可能情形。逐项枚举：参赛者初选=车门（3 种情形），换门必输；参赛者初选=山羊门（6 种情形），换门必赢。故换门获胜概率 $=\\dfrac{6}{9}=\\dfrac{2}{3}$。",
+     "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+     "scene_spec": {
+      "objects": [
+       "9 种等可能情形的枚举表格",
+       "换门胜 6 格的计数高亮"
+      ],
+      "steps": [
+       "第一步：以枚举等可能样本点为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：9 种等可能情形的枚举表格。",
+       "第三步：换门胜 6 格的计数高亮。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(三门问题)",
+     "visual_style": "概率条带转移",
+     "efficiency_tags": [
+      "9 种等可能情形的枚举表格",
+      "换门胜 6 格的计数高亮"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "cf38f53b380776d8ab02caf3e83c795669e7c6bd2d43ab535ed3292ad4d3a5b5",
+    "9052ccee1c04879e0bc667968d2a6d66fc0a0378d5039dd728906054862f5020",
+    "ad9853be76ef78f09386957ef0ba9184a8b1cfbc559e0b4c8282324c8793875b"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-002",
+   "problem_sha256": "1e5f1e79b63078901b6948f6d06af027d16fb89723b3ec7c5b168b1558013d78",
+   "source_records": [
+    {
+     "id": "eval-prob-002-s1",
+     "problem_id": "eval-prob-002",
+     "solution_id": "eval-prob-002-s1",
+     "method": "贝叶斯公式",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+     "solution": "记 $A$=摸到金币，$B_1,B_2,B_3$=分别选中甲盒（双金）、乙盒（双银）、丙盒（一金一银）。$P(B_i)=\\dfrac{1}{3}$，$P(A|B_1)=1$，$P(A|B_2)=0$，$P(A|B_3)=\\dfrac{1}{2}$。$P(B_1|A)=\\dfrac{P(A|B_1)P(B_1)}{P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+P(A|B_3)P(B_3)}=\\dfrac{1\\cdot\\frac{1}{3}}{1\\cdot\\frac{1}{3}+0\\cdot\\frac{1}{3}+\\frac{1}{2}\\cdot\\frac{1}{3}}=\\dfrac{1/3}{1/2}=\\dfrac{2}{3}$。",
+     "answer": "$\\dfrac{2}{3}$",
+     "scene_spec": {
+      "objects": [
+       "贝叶斯公式分子分母的条带分解",
+       "$P(A|B_i)$ 三值的标注"
+      ],
+      "steps": [
+       "第一步：以贝叶斯公式为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：贝叶斯公式分子分母的条带分解。",
+       "第三步：$P(A|B_i)$ 三值的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "条件概率(三盒问题)",
+     "visual_style": "分支熄灭重新归一化",
+     "efficiency_tags": [
+      "贝叶斯公式分子分母的条带分解",
+      "$P(A|B_i)$ 三值的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-002-s2",
+     "problem_id": "eval-prob-002",
+     "solution_id": "eval-prob-002-s2",
+     "method": "枚举等可能样本点",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+     "solution": "6 枚硬币等可能地被摸到。已知摸到的是金币，则它必是 3 枚金币之一，且 3 枚金币等可能。其中 2 枚来自甲盒（另一枚也是金），1 枚来自丙盒（另一枚是银）。故所求概率 $=\\dfrac{2}{3}$。",
+     "answer": "$\\dfrac{2}{3}$",
+     "scene_spec": {
+      "objects": [
+       "三盒六币的枚举展示",
+       "3 枚金币等可能的归一化动画"
+      ],
+      "steps": [
+       "第一步：以枚举等可能样本点为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：三盒六币的枚举展示。",
+       "第三步：3 枚金币等可能的归一化动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "条件概率(三盒问题)",
+     "visual_style": "分支熄灭重新归一化",
+     "efficiency_tags": [
+      "三盒六币的枚举展示",
+      "3 枚金币等可能的归一化动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-002-s3",
+     "problem_id": "eval-prob-002",
+     "solution_id": "eval-prob-002-s3",
+     "method": "树状图",
+     "category": "概率论",
+     "sub_category": "条件概率",
+     "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+     "solution": "第一层：选盒，各 $\\dfrac{1}{3}$；第二层：甲盒内摸到金概率 1（路径概率 $\\dfrac{1}{3}$），丙盒内摸到金概率 $\\dfrac{1}{2}$（路径概率 $\\dfrac{1}{6}$），乙盒为 0。摸到金的总概率 $\\dfrac{1}{3}+\\dfrac{1}{6}=\\dfrac{1}{2}$；其中来自甲盒的占比 $\\dfrac{1/3}{1/2}=\\dfrac{2}{3}$。",
+     "answer": "$\\dfrac{2}{3}$",
+     "scene_spec": {
+      "objects": [
+       "三盒六币的树状图",
+       "银币分支熄灭、金币重新归一化"
+      ],
+      "steps": [
+       "第一步：以树状图为主线，建立概率论·条件概率场景并呈现该解法的关键图形。",
+       "第二步：三盒六币的树状图。",
+       "第三步：银币分支熄灭、金币重新归一化。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "条件概率(三盒问题)",
+     "visual_style": "分支熄灭重新归一化",
+     "efficiency_tags": [
+      "三盒六币的树状图",
+      "银币分支熄灭、金币重新归一化"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "f1d1ca705cdf3bac40795bcad07d5467076a1a69928da55ec107bdadc66f57d9",
+    "321f1da4d4d3d026f0b3522e10cb7adfd41f6d0dda6bbd4ef59cf74bccae34e4",
+    "9be35ccae40b7f3bbc2801dcb6ba75167086ef0e6f8633825472d233d96a0850"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  }
+ ]
+}

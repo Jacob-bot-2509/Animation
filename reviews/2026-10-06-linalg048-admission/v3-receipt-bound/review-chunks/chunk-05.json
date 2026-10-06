@@ -1,0 +1,2189 @@
+{
+ "candidate": {
+  "id": "linalg-048",
+  "category": "高等代数",
+  "sub_category": "线性变换",
+  "function_family": "线性变换",
+  "visual_style": "空间几何图形",
+  "efficiency_tags": [
+   "几何意义",
+   "剪切变换"
+  ],
+  "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+  "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+  "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+  "scene_spec": {
+   "objects": [
+    "带有刻度的黑色坐标轴",
+    "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+    "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+    "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+    "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+   ],
+   "steps": [
+    "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+    "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+    "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+    "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+    "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+   ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only"
+ },
+ "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+ "pairs": [
+  {
+   "split": "eval",
+   "id": "eval-geom-001",
+   "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-002",
+   "problem_sha256": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-003",
+   "problem_sha256": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-004",
+   "problem_sha256": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-005",
+   "problem_sha256": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-006",
+   "problem_sha256": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-007",
+   "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-008",
+   "problem_sha256": "923b23015cd9210b7107bff7ed7b5f7af44ff4d2d7263b30be00ea168855bdbd",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-009",
+   "problem_sha256": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-010",
+   "problem_sha256": "4cadc4e56957bab7164a8e34f49689155ecc3cef73fb5731864657a7cc8cb359",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-011",
+   "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-012",
+   "problem_sha256": "850c318356a4425229fb688308688d6b0c2f550a582aae80d4721ebc1de278b2",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-013",
+   "problem_sha256": "5ba60dccb32c121e1ac7dba8f91a6f32b6e33c478ef841733c83a54ab6bc90c0",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-014",
+   "problem_sha256": "a7ecd9149c19c92a659ccf8525efaf8c6a397fb99882961a34645542c68f2adb",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-015",
+   "problem_sha256": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-016",
+   "problem_sha256": "4ef3d39fd11867ab5e15cff4d08e2ffe2ea55df14a262794fbd07def2753fb5c",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-017",
+   "problem_sha256": "229f0884ef0d5b6a96f8f64b000fb1f3c45a09edae6289a036af70dc6e64435a",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-018",
+   "problem_sha256": "447eda4d3de6213be8aeaf1cba25b6bcf725f1bc2ecb980ef6e1ec65cfc741d0",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-019",
+   "problem_sha256": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+   "verdict": null,
+   "reason": ""
+  }
+ ],
+ "material": [
+  {
+   "split": "eval",
+   "id": "eval-geom-001",
+   "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+   "source_records": [
+    {
+     "id": "eval-geom-001-s1",
+     "problem_id": "eval-geom-001",
+     "solution_id": "eval-geom-001-s1",
+     "method": "距离公式",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+     "solution": "平面法向量 $\\vec n=(2,-1,2)$，$|\\vec n|=\\sqrt{4+1+4}=3$。代入点到平面距离公式：$d=\\dfrac{|2\\cdot 1-1\\cdot 2+2\\cdot(-1)-3|}{3}=\\dfrac{|2-2-2-3|}{3}=\\dfrac{5}{3}$。",
+     "answer": "$\\dfrac{5}{3}$",
+     "scene_spec": {
+      "objects": [
+       "三维平面与法向量 $\\vec n=(2,-1,2)$",
+       "距离公式分子绝对值的标注"
+      ],
+      "steps": [
+       "第一步：以距离公式为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：三维平面与法向量 $\\vec n=(2,-1,2)$。",
+       "第三步：距离公式分子绝对值的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面与点(距离)",
+     "visual_style": "三维垂线段与投影",
+     "efficiency_tags": [
+      "三维平面与法向量 $\\vec n=(2,-1,2)$",
+      "距离公式分子绝对值的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-001-s2",
+     "problem_id": "eval-geom-001",
+     "solution_id": "eval-geom-001-s2",
+     "method": "投影向量",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+     "solution": "取平面上一点 $Q(0,-3,0)$（$2\\cdot 0-(-3)+2\\cdot 0=3$ 满足方程），则 $\\overrightarrow{QP}=(1,5,-1)$。$P$ 到平面的距离等于 $\\overrightarrow{QP}$ 在法向量上的投影长度：$d=\\dfrac{|\\overrightarrow{QP}\\cdot\\vec n|}{|\\vec n|}=\\dfrac{|1\\cdot 2+5\\cdot(-1)+(-1)\\cdot 2|}{3}=\\dfrac{5}{3}$。垂足为 $P$ 减去投影向量 $\\dfrac{\\overrightarrow{QP}\\cdot\\vec n}{|\\vec n|^2}\\vec n=\\dfrac{-5}{9}(2,-1,2)$，即 $\\left(\\dfrac{19}{9},\\dfrac{13}{9},\\dfrac{1}{9}\\right)$。",
+     "answer": "$\\dfrac{5}{3}$",
+     "scene_spec": {
+      "objects": [
+       "投影向量的分解动画",
+       "垂足 $\\left(\\dfrac{19}{9},\\dfrac{13}{9},\\dfrac{1}{9}\\right)$ 坐标标注"
+      ],
+      "steps": [
+       "第一步：以投影向量为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：投影向量的分解动画。",
+       "第三步：垂足 $\\left(\\dfrac{19}{9},\\dfrac{13}{9},\\dfrac{1}{9}\\right)$ 坐标标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面与点(距离)",
+     "visual_style": "三维垂线段与投影",
+     "efficiency_tags": [
+      "投影向量的分解动画",
+      "垂足 $\\left(\\dfrac{19}{9},\\dfrac{13}{9},\\dfrac{1}{9}\\right)$ 坐标标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-001-s3",
+     "problem_id": "eval-geom-001",
+     "solution_id": "eval-geom-001-s3",
+     "method": "拉格朗日乘数法",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+     "solution": "求 $f(x,y,z)=(x-1)^2+(y-2)^2+(z+1)^2$ 在约束 $2x-y+2z-3=0$ 下的最小值。由 $\\nabla f=\\lambda\\nabla(2x-y+2z-3)$：$2(x-1)=2\\lambda$，$2(y-2)=-\\lambda$，$2(z+1)=2\\lambda$，得 $x-1=\\lambda$，$y-2=-\\dfrac{\\lambda}{2}$，$z+1=\\lambda$。代入约束：$2(1+\\lambda)-\\left(2-\\dfrac{\\lambda}{2}\\right)+2(\\lambda-1)=3$，即 $\\dfrac{9\\lambda}{2}-2=3$，解得 $\\lambda=\\dfrac{10}{9}$。最近距离 $d=\\sqrt{\\lambda^2+\\dfrac{\\lambda^2}{4}+\\lambda^2}=\\dfrac{3}{2}|\\lambda|=\\dfrac{5}{3}$。",
+     "answer": "$\\dfrac{5}{3}$",
+     "scene_spec": {
+      "objects": [
+       "约束平面上的等高线",
+       "梯度与法向量平行的最优点标注"
+      ],
+      "steps": [
+       "第一步：以拉格朗日乘数法为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：约束平面上的等高线。",
+       "第三步：梯度与法向量平行的最优点标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面与点(距离)",
+     "visual_style": "三维垂线段与投影",
+     "efficiency_tags": [
+      "约束平面上的等高线",
+      "梯度与法向量平行的最优点标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "cf53e2a049f15e2e755f18eafb5ea9dc89074af3a960d5e7fb5d1f5e169b8f2d",
+    "266bd7297b518b55270f5c5d76c428e160c9e3d416a4cf66ec455e084d7f3735",
+    "26619ae11d05dd2e83d681b89daec049820257d72dc563c7ccc3df6fe818589a"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-002",
+   "problem_sha256": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+   "source_records": [
+    {
+     "id": "eval-geom-002-s1",
+     "problem_id": "eval-geom-002",
+     "solution_id": "eval-geom-002-s1",
+     "method": "混合积判别",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+     "solution": "$l_1$ 的方向向量 $\\vec{s_1}=(2,1,-1)$，$l_2$ 的 $\\vec{s_2}=(1,2,1)$。叉积 $\\vec{s_1}\\times\\vec{s_2}=(1\\cdot 1-(-1)\\cdot 2,\\ (-1)\\cdot 1-2\\cdot 1,\\ 2\\cdot 2-1\\cdot 1)=(3,-3,3)\\ne\\vec 0$，故不平行。取 $P_1(1,-1,2)\\in l_1$、$P_2(-1,2,0)\\in l_2$，$\\overrightarrow{P_1P_2}=(-2,3,-2)$。混合积 $\\overrightarrow{P_1P_2}\\cdot(\\vec{s_1}\\times\\vec{s_2})=-2\\cdot 3+3\\cdot(-3)+(-2)\\cdot 3=-21\\ne 0$，故两直线不共面，即异面。",
+     "answer": "异面直线",
+     "scene_spec": {
+      "objects": [
+       "叉积 $\\vec{s_1}\\times\\vec{s_2}=(3,-3,3)$ 的方向动画",
+       "混合积 $-21\\ne0$ 的平行六面体示意"
+      ],
+      "steps": [
+       "第一步：以混合积判别为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：叉积 $\\vec{s_1}\\times\\vec{s_2}=(3,-3,3)$ 的方向动画。",
+       "第三步：混合积 $-21\\ne0$ 的平行六面体示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线位置关系",
+     "visual_style": "三维视角旋转",
+     "efficiency_tags": [
+      "叉积 $\\vec{s_1}\\times\\vec{s_2}=(3,-3,3)$ 的方向动画",
+      "混合积 $-21\\ne0$ 的平行六面体示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-002-s2",
+     "problem_id": "eval-geom-002",
+     "solution_id": "eval-geom-002-s2",
+     "method": "方程组判别",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+     "solution": "参数化：$l_1:(1+2t,-1+t,2-t)$，$l_2:(-1+s,2+2s,s)$。若相交，需 $1+2t=-1+s$、$-1+t=2+2s$、$2-t=s$ 同时成立。由第三式 $s=2-t$ 代入第一式：$1+2t=-1+2-t$，得 $t=0$、$s=2$；代入第二式检验：$-1+0=2+4$，即 $-1=6$，矛盾。故无公共点；结合方向向量不平行，得异面。",
+     "answer": "异面直线",
+     "scene_spec": {
+      "objects": [
+       "参数方程三式联立的代入动画",
+       "矛盾式 $-1=6$ 的高亮"
+      ],
+      "steps": [
+       "第一步：以方程组判别为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：参数方程三式联立的代入动画。",
+       "第三步：矛盾式 $-1=6$ 的高亮。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线位置关系",
+     "visual_style": "三维视角旋转",
+     "efficiency_tags": [
+      "参数方程三式联立的代入动画",
+      "矛盾式 $-1=6$ 的高亮"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-002-s3",
+     "problem_id": "eval-geom-002",
+     "solution_id": "eval-geom-002-s3",
+     "method": "几何观察",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+     "solution": "两直线方向向量不平行（$\\vec{s_1}\\times\\vec{s_2}\\ne 0$），若相交则必共面；其公垂线方向为 $\\vec{s_1}\\times\\vec{s_2}=(3,-3,3)$。解法二已排除相交，故两直线不平行、不相交，只能异面。",
+     "answer": "异面直线",
+     "scene_spec": {
+      "objects": [
+       "三维两直线与方向向量箭头",
+       "视角旋转揭示\"看似相交\""
+      ],
+      "steps": [
+       "第一步：以几何观察为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：三维两直线与方向向量箭头。",
+       "第三步：视角旋转揭示\"看似相交\"。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线位置关系",
+     "visual_style": "三维视角旋转",
+     "efficiency_tags": [
+      "三维两直线与方向向量箭头",
+      "视角旋转揭示\"看似相交\""
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "d7bc4d30743b118335962f6709c17c373cd1dd54a8e7d9bfdd7576e33eecde79",
+    "03e6aee956296f95d2b99af10bd17d087acf7279350f0ddef56516055e5938bc",
+    "d307944ea65b3595516bd890d8976d59ae992f2980d3b429f0881c56f9edbe3d"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-003",
+   "problem_sha256": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+   "source_records": [
+    {
+     "id": "eval-geom-003-s1",
+     "problem_id": "eval-geom-003",
+     "solution_id": "eval-geom-003-s1",
+     "method": "法向量叉积",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求过直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 且垂直于平面 $\\pi:x+y+z=0$ 的平面方程。",
+     "solution": "直线方向 $\\vec s=(1,2,1)$，$\\pi$ 的法向量 $\\vec{n_1}=(1,1,1)$。所求平面含直线 $l$ 且垂直于 $\\pi$，故其法向量 $\\vec n\\perp\\vec s$ 且 $\\vec n\\perp\\vec{n_1}$，取 $\\vec n=\\vec s\\times\\vec{n_1}=(2\\cdot 1-1\\cdot 1,\\ 1\\cdot 1-1\\cdot 1,\\ 1\\cdot 1-2\\cdot 1)=(1,0,-1)$。过直线上一点 $P_0(1,0,-1)$：$1\\cdot(x-1)+0\\cdot y+(-1)\\cdot(z+1)=0$，即 $x-z=2$。检验：直线上点 $(1+t,2t,-1+t)$ 满足 $(1+t)-(-1+t)=2$；$|\\vec n\\cdot\\vec{n_1}|=|1-1|=0$ 故与 $\\pi$ 垂直。",
+     "answer": "$x-z=2$",
+     "scene_spec": {
+      "objects": [
+       "法向量叉积 $\\vec n=\\vec s\\times\\vec{n_1}=(1,0,-1)$ 的方向动画",
+       "直线 $l$ 与平面 $\\pi$ 的三维展示"
+      ],
+      "steps": [
+       "第一步：以法向量叉积为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：法向量叉积 $\\vec n=\\vec s\\times\\vec{n_1}=(1,0,-1)$ 的方向动画。",
+       "第三步：直线 $l$ 与平面 $\\pi$ 的三维展示。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面束",
+     "visual_style": "平面束旋转扫描",
+     "efficiency_tags": [
+      "法向量叉积 $\\vec n=\\vec s\\times\\vec{n_1}=(1,0,-1)$ 的方向动画",
+      "直线 $l$ 与平面 $\\pi$ 的三维展示"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-003-s2",
+     "problem_id": "eval-geom-003",
+     "solution_id": "eval-geom-003-s2",
+     "method": "平面束",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求过直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 且垂直于平面 $\\pi:x+y+z=0$ 的平面方程。",
+     "solution": "把 $l$ 写成两平面交线：由 $\\dfrac{x-1}{1}=\\dfrac{y}{2}$ 得 $y=2x-2$，由 $\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 得 $y=2z+2$。过 $l$ 的平面束为 $(2x-2-y)+\\lambda(2z+2-y)=0$，其法向量为 $(2,-1-\\lambda,2\\lambda)$。与 $\\pi$ 垂直要求 $2\\cdot 1+(-1-\\lambda)\\cdot 1+2\\lambda\\cdot 1=0$，即 $1+\\lambda=0$，$\\lambda=-1$。代入：$(2x-2-y)-(2z+2-y)=0$，即 $2x-2z-4=0$，$x-z=2$。",
+     "answer": "$x-z=2$",
+     "scene_spec": {
+      "objects": [
+       "平面束 $(2x-2-y)+\\lambda(2z+2-y)=0$ 旋转扫描到垂直位置",
+       "垂直条件 $1+\\lambda=0$ 的求解"
+      ],
+      "steps": [
+       "第一步：以平面束为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：平面束 $(2x-2-y)+\\lambda(2z+2-y)=0$ 旋转扫描到垂直位置。",
+       "第三步：垂直条件 $1+\\lambda=0$ 的求解。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面束",
+     "visual_style": "平面束旋转扫描",
+     "efficiency_tags": [
+      "平面束 $(2x-2-y)+\\lambda(2z+2-y)=0$ 旋转扫描到垂直位置",
+      "垂直条件 $1+\\lambda=0$ 的求解"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-003-s3",
+     "problem_id": "eval-geom-003",
+     "solution_id": "eval-geom-003-s3",
+     "method": "点+两方向向量",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求过直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 且垂直于平面 $\\pi:x+y+z=0$ 的平面方程。",
+     "solution": "所求平面过 $P_0(1,0,-1)$ 且含方向 $\\vec s=(1,2,1)$；又因垂直于 $\\pi$，平面法向量必与 $\\vec{n_1}$ 垂直，故 $\\vec{n_1}$ 必平行于所求平面，可作为平面内第二个方向向量。平面法向量 $\\vec n=\\vec s\\times\\vec{n_1}=(1,0,-1)$（同解法一），得 $x-z=2$。",
+     "answer": "$x-z=2$",
+     "scene_spec": {
+      "objects": [
+       "$\\vec{n_1}$ 躺在所求平面内的几何标注",
+       "点 $P_0$ 与两方向向量张成平面的过程"
+      ],
+      "steps": [
+       "第一步：以点+两方向向量为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：$\\vec{n_1}$ 躺在所求平面内的几何标注。",
+       "第三步：点 $P_0$ 与两方向向量张成平面的过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面束",
+     "visual_style": "平面束旋转扫描",
+     "efficiency_tags": [
+      "$\\vec{n_1}$ 躺在所求平面内的几何标注",
+      "点 $P_0$ 与两方向向量张成平面的过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "d41b642a7b36e1472c7f86bded305a889dc3e4c1b85d8b637d2197c04a45c0b6",
+    "8f7f656154a4b66a2c15ae35da5737ca583337734cda96a5ae8313b7d3d06f1a",
+    "e84769f506df2782ecc9c2579f3eb535afa6e6394682e249c229dc78327fafb4"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-004",
+   "problem_sha256": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+   "source_records": [
+    {
+     "id": "eval-geom-004-s1",
+     "problem_id": "eval-geom-004",
+     "solution_id": "eval-geom-004-s1",
+     "method": "法向量夹角公式",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x-y+z=1$ 与 $\\pi_2:2x+y-z=0$ 的夹角。",
+     "solution": "$\\vec{n_1}=(1,-1,1)$，$\\vec{n_2}=(2,1,-1)$。点积 $\\vec{n_1}\\cdot\\vec{n_2}=1\\cdot 2+(-1)\\cdot 1+1\\cdot(-1)=0$，故 $\\cos\\theta=\\dfrac{|\\vec{n_1}\\cdot\\vec{n_2}|}{|\\vec{n_1}||\\vec{n_2}|}=0$，两平面夹角为 $\\dfrac{\\pi}{2}$。",
+     "answer": "$\\dfrac{\\pi}{2}$（两平面垂直）",
+     "scene_spec": {
+      "objects": [
+       "法向量夹角联动显示",
+       "点积 $\\vec{n_1}\\cdot\\vec{n_2}=0$ 的标注"
+      ],
+      "steps": [
+       "第一步：以法向量夹角公式为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：法向量夹角联动显示。",
+       "第三步：点积 $\\vec{n_1}\\cdot\\vec{n_2}=0$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面夹角",
+     "visual_style": "截面直线标出平面角",
+     "efficiency_tags": [
+      "法向量夹角联动显示",
+      "点积 $\\vec{n_1}\\cdot\\vec{n_2}=0$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-004-s2",
+     "problem_id": "eval-geom-004",
+     "solution_id": "eval-geom-004-s2",
+     "method": "交线与截面直线",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x-y+z=1$ 与 $\\pi_2:2x+y-z=0$ 的夹角。",
+     "solution": "两平面交线方向 $\\vec s=\\vec{n_1}\\times\\vec{n_2}=((-1)(-1)-1\\cdot 1,\\ 1\\cdot 2-1\\cdot(-1),\\ 1\\cdot 1-(-1)\\cdot 2)=(0,3,3)$，取 $\\vec s=(0,1,1)$。在 $\\pi_1$ 内取垂直于交线的方向 $\\vec{d_1}=\\vec{n_1}\\times\\vec s=((-1)\\cdot 1-1\\cdot 1,\\ 1\\cdot 0-1\\cdot 1,\\ 1\\cdot 1-(-1)\\cdot 0)=(-2,-1,1)$；在 $\\pi_2$ 内取 $\\vec{d_2}=\\vec{n_2}\\times\\vec s=(1\\cdot 1-(-1)\\cdot 1,\\ (-1)\\cdot 0-2\\cdot 1,\\ 2\\cdot 1-1\\cdot 0)=(2,-2,2)$。两平面夹角即 $\\vec{d_1}$ 与 $\\vec{d_2}$ 的夹角：$\\vec{d_1}\\cdot\\vec{d_2}=-4+2+2=0$，夹角 $\\dfrac{\\pi}{2}$。",
+     "answer": "$\\dfrac{\\pi}{2}$（两平面垂直）",
+     "scene_spec": {
+      "objects": [
+       "交线方向 $\\vec s=(0,1,1)$ 的提取",
+       "截面直线 $\\vec{d_1}$、$\\vec{d_2}$ 标出平面角 $90^\\circ$"
+      ],
+      "steps": [
+       "第一步：以交线与截面直线为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：交线方向 $\\vec s=(0,1,1)$ 的提取。",
+       "第三步：截面直线 $\\vec{d_1}$、$\\vec{d_2}$ 标出平面角 $90^\\circ$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面夹角",
+     "visual_style": "截面直线标出平面角",
+     "efficiency_tags": [
+      "交线方向 $\\vec s=(0,1,1)$ 的提取",
+      "截面直线 $\\vec{d_1}$、$\\vec{d_2}$ 标出平面角 $90^\\circ$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-004-s3",
+     "problem_id": "eval-geom-004",
+     "solution_id": "eval-geom-004-s3",
+     "method": "法向量共面观察",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x-y+z=1$ 与 $\\pi_2:2x+y-z=0$ 的夹角。",
+     "solution": "检验 $\\pi_2$ 的法向量是否平行于 $\\pi_1$ 的方向空间：$\\vec{n_2}=(2,1,-1)$ 代入 $\\pi_1$ 的齐次方程 $x-y+z$ 得 $2-1-1=0$，说明 $\\vec{n_2}$ 是 $\\pi_1$ 内的一个方向向量，即一个平面的法向量躺在另一个平面内，这正是两平面垂直的充要条件。",
+     "answer": "$\\dfrac{\\pi}{2}$（两平面垂直）",
+     "scene_spec": {
+      "objects": [
+       "法向量 $\\vec{n_2}$ 代入 $\\pi_1$ 齐次方程得 0 的验证",
+       "两垂直平面的三维展示"
+      ],
+      "steps": [
+       "第一步：以法向量共面观察为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：法向量 $\\vec{n_2}$ 代入 $\\pi_1$ 齐次方程得 0 的验证。",
+       "第三步：两垂直平面的三维展示。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面夹角",
+     "visual_style": "截面直线标出平面角",
+     "efficiency_tags": [
+      "法向量 $\\vec{n_2}$ 代入 $\\pi_1$ 齐次方程得 0 的验证",
+      "两垂直平面的三维展示"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "8a88a1c9c760889eabb8d6afac24618340ae48b7a5787d5c9ef6d227f78487f5",
+    "f4369a41e087fe0e2280ee8ced98007cead20635fcd523ca964a4f30459fe081",
+    "c55ca97639ff1cccf359e58e212e459a5e2ca6e01362a6a3885dbaf4f3ed96f1"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-005",
+   "problem_sha256": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+   "source_records": [
+    {
+     "id": "eval-geom-005-s1",
+     "problem_id": "eval-geom-005",
+     "solution_id": "eval-geom-005-s1",
+     "method": "叉积公式",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(2,1,0)$ 到直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 的距离。",
+     "solution": "取直线上点 $P_0(1,0,-1)$、方向向量 $\\vec s=(1,2,1)$，$\\overrightarrow{P_0P}=(1,1,1)$。叉积 $\\overrightarrow{P_0P}\\times\\vec s=(1\\cdot 1-1\\cdot 2,\\ 1\\cdot 1-1\\cdot 1,\\ 1\\cdot 2-1\\cdot 1)=(-1,0,1)$，模 $\\sqrt{2}$。距离 $d=\\dfrac{|\\overrightarrow{P_0P}\\times\\vec s|}{|\\vec s|}=\\dfrac{\\sqrt{2}}{\\sqrt{6}}=\\dfrac{1}{\\sqrt{3}}$。",
+     "answer": "$\\dfrac{1}{\\sqrt{3}}$",
+     "scene_spec": {
+      "objects": [
+       "叉积 $\\overrightarrow{P_0P}\\times\\vec s=(-1,0,1)$ 的平行四边形面积分解",
+       "面积÷底=高的标注"
+      ],
+      "steps": [
+       "第一步：以叉积公式为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：叉积 $\\overrightarrow{P_0P}\\times\\vec s=(-1,0,1)$ 的平行四边形面积分解。",
+       "第三步：面积÷底=高的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线与点(距离)",
+     "visual_style": "叉积平行四边形",
+     "efficiency_tags": [
+      "叉积 $\\overrightarrow{P_0P}\\times\\vec s=(-1,0,1)$ 的平行四边形面积分解",
+      "面积÷底=高的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-005-s2",
+     "problem_id": "eval-geom-005",
+     "solution_id": "eval-geom-005-s2",
+     "method": "参数化求最小值",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(2,1,0)$ 到直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 的距离。",
+     "solution": "直线上点 $Q(t)=(1+t,2t,-1+t)$。$|PQ|^2=(t-1)^2+(2t-1)^2+(t-1)^2=2(t-1)^2+(2t-1)^2=6t^2-8t+3$。配方：$6\\left(t-\\dfrac{2}{3}\\right)^2+\\dfrac{1}{3}$，最小值 $\\dfrac{1}{3}$ 在 $t=\\dfrac{2}{3}$ 处取得，故 $d=\\sqrt{\\dfrac{1}{3}}=\\dfrac{1}{\\sqrt{3}}$。",
+     "answer": "$\\dfrac{1}{\\sqrt{3}}$",
+     "scene_spec": {
+      "objects": [
+       "$|PQ(t)|^2=6t^2-8t+3$ 的二次函数曲线与最低点",
+       "参数 $t=\\dfrac{2}{3}$ 的定位"
+      ],
+      "steps": [
+       "第一步：以参数化求最小值为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：$|PQ(t)|^2=6t^2-8t+3$ 的二次函数曲线与最低点。",
+       "第三步：参数 $t=\\dfrac{2}{3}$ 的定位。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线与点(距离)",
+     "visual_style": "叉积平行四边形",
+     "efficiency_tags": [
+      "$|PQ(t)|^2=6t^2-8t+3$ 的二次函数曲线与最低点",
+      "参数 $t=\\dfrac{2}{3}$ 的定位"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-005-s3",
+     "problem_id": "eval-geom-005",
+     "solution_id": "eval-geom-005-s3",
+     "method": "正交投影",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求点 $P(2,1,0)$ 到直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 的距离。",
+     "solution": "垂足参数 $t^*=\\dfrac{\\overrightarrow{P_0P}\\cdot\\vec s}{|\\vec s|^2}=\\dfrac{1\\cdot 1+1\\cdot 2+1\\cdot 1}{6}=\\dfrac{2}{3}$，垂足 $Q=\\left(\\dfrac{5}{3},\\dfrac{4}{3},-\\dfrac{1}{3}\\right)$。$d=|PQ|=\\sqrt{\\left(\\dfrac{1}{3}\\right)^2+\\left(-\\dfrac{1}{3}\\right)^2+\\left(\\dfrac{1}{3}\\right)^2}=\\dfrac{1}{\\sqrt{3}}$。检验垂足在直线上：$\\dfrac{5/3-1}{1}=\\dfrac{4/3}{2}=\\dfrac{-1/3+1}{1}=\\dfrac{2}{3}$。",
+     "answer": "$\\dfrac{1}{\\sqrt{3}}$",
+     "scene_spec": {
+      "objects": [
+       "垂足 $Q=\\left(\\dfrac{5}{3},\\dfrac{4}{3},-\\dfrac{1}{3}\\right)$ 的投影标注",
+       "垂线段长度 $\\dfrac{1}{\\sqrt3}$"
+      ],
+      "steps": [
+       "第一步：以正交投影为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：垂足 $Q=\\left(\\dfrac{5}{3},\\dfrac{4}{3},-\\dfrac{1}{3}\\right)$ 的投影标注。",
+       "第三步：垂线段长度 $\\dfrac{1}{\\sqrt3}$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间直线与点(距离)",
+     "visual_style": "叉积平行四边形",
+     "efficiency_tags": [
+      "垂足 $Q=\\left(\\dfrac{5}{3},\\dfrac{4}{3},-\\dfrac{1}{3}\\right)$ 的投影标注",
+      "垂线段长度 $\\dfrac{1}{\\sqrt3}$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "dceff4d0fa9bb57440d49475f38daf04de97ff179f7a77183bd9a3a73e4e5886",
+    "1870eff7fadcb8a1ab8629b94de2cc1be6e8111ff9694111120f87e96259afc6",
+    "7bbd12216521bd8fd284345f22acc3808b827bb250ed23dcafc082fcccea518c"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-006",
+   "problem_sha256": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+   "source_records": [
+    {
+     "id": "eval-geom-006-s1",
+     "problem_id": "eval-geom-006",
+     "solution_id": "eval-geom-006-s1",
+     "method": "高斯消元/秩",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "讨论三个平面 $\\pi_1:x+y+z=1$，$\\pi_2:x-y+z=1$，$\\pi_3:2x+2z=2$ 的位置关系，并求其公共部分。",
+     "solution": "系数矩阵与增广矩阵行变换：$\\begin{pmatrix}1&1&1&1\\\\1&-1&1&1\\\\2&0&2&2\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&-2&0&0\\\\0&-2&0&0\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&1&0&0\\\\0&0&0&0\\end{pmatrix}$。秩 $\\mathrm r(A)=\\mathrm r(\\bar A)=2<3$，无穷多解，解空间一维：$y=0$，$x+z=1$，即一条直线。",
+     "answer": "三平面共线，交线为 $y=0,\\ x+z=1$",
+     "scene_spec": {
+      "objects": [
+       "增广矩阵行变换的逐步动画",
+       "秩 $2<3$ 与解空间一维的对应标注"
+      ],
+      "steps": [
+       "第一步：以高斯消元/秩为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：增广矩阵行变换的逐步动画。",
+       "第三步：秩 $2<3$ 与解空间一维的对应标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三平面位置关系",
+     "visual_style": "共轴平面组",
+     "efficiency_tags": [
+      "增广矩阵行变换的逐步动画",
+      "秩 $2<3$ 与解空间一维的对应标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-006-s2",
+     "problem_id": "eval-geom-006",
+     "solution_id": "eval-geom-006-s2",
+     "method": "几何分析：方程相加",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "讨论三个平面 $\\pi_1:x+y+z=1$，$\\pi_2:x-y+z=1$，$\\pi_3:2x+2z=2$ 的位置关系，并求其公共部分。",
+     "solution": "观察 $\\pi_3$ 的方程恰是 $\\pi_1$ 与 $\\pi_2$ 方程之和，故 $\\pi_3$ 必过 $\\pi_1\\cap\\pi_2$ 的每一点。求 $\\pi_1\\cap\\pi_2$：两式相减得 $2y=0$，$y=0$；代回得 $x+z=1$。故公共部分为直线 $\\begin{cases}y=0\\\\x+z=1\\end{cases}$，参数化 $(x,y,z)=(t,0,1-t)$。检验满足 $\\pi_3$：$2t+2(1-t)=2$。",
+     "answer": "三平面共线，交线为 $y=0,\\ x+z=1$",
+     "scene_spec": {
+      "objects": [
+       "方程相加的几何含义",
+       "三平面共线交叠的三维视图"
+      ],
+      "steps": [
+       "第一步：以几何分析：方程相加为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：方程相加的几何含义。",
+       "第三步：三平面共线交叠的三维视图。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三平面位置关系",
+     "visual_style": "共轴平面组",
+     "efficiency_tags": [
+      "方程相加的几何含义",
+      "三平面共线交叠的三维视图"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-006-s3",
+     "problem_id": "eval-geom-006",
+     "solution_id": "eval-geom-006-s3",
+     "method": "向量法",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "讨论三个平面 $\\pi_1:x+y+z=1$，$\\pi_2:x-y+z=1$，$\\pi_3:2x+2z=2$ 的位置关系，并求其公共部分。",
+     "solution": "三个法向量 $\\vec{n_1}=(1,1,1)$、$\\vec{n_2}=(1,-1,1)$、$\\vec{n_3}=(2,0,2)$ 满足 $\\vec{n_3}=\\vec{n_1}+\\vec{n_2}$，故共面。交线方向 $\\vec s=\\vec{n_1}\\times\\vec{n_2}=(1\\cdot 1-1\\cdot(-1),\\ 1\\cdot 1-1\\cdot 1,\\ 1\\cdot(-1)-1\\cdot 1)=(2,0,-2)$，取 $\\vec s=(1,0,-1)$。找交线上一点：令 $y=0$，解 $x+z=1$，取 $(1,0,0)$。交线为 $(x,y,z)=(1+t,0,-t)$。",
+     "answer": "三平面共线，交线为 $y=0,\\ x+z=1$",
+     "scene_spec": {
+      "objects": [
+       "法向量关系 $\\vec{n_3}=\\vec{n_1}+\\vec{n_2}$ 的标注",
+       "交线方向 $\\vec s=(1,0,-1)$ 与交点 $(1,0,0)$"
+      ],
+      "steps": [
+       "第一步：以向量法为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：法向量关系 $\\vec{n_3}=\\vec{n_1}+\\vec{n_2}$ 的标注。",
+       "第三步：交线方向 $\\vec s=(1,0,-1)$ 与交点 $(1,0,0)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "三平面位置关系",
+     "visual_style": "共轴平面组",
+     "efficiency_tags": [
+      "法向量关系 $\\vec{n_3}=\\vec{n_1}+\\vec{n_2}$ 的标注",
+      "交线方向 $\\vec s=(1,0,-1)$ 与交点 $(1,0,0)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "df0959e08b4dd30ad010a7a93cdc14cce3391d2e8700477d63406965c205c326",
+    "b058cd79b7d1d5da203f53943f6bc4171f1cac24ff58f22dd3e77f8a5c4c343f",
+    "e6c4e8f5f14d7d574f36048dce88741b0dfd6b56c101953308e8e562867baba8"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-007",
+   "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+   "source_records": [
+    {
+     "id": "eval-geom-007-s1",
+     "problem_id": "eval-geom-007",
+     "solution_id": "eval-geom-007-s1",
+     "method": "标准型判断",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+     "solution": "方程化为 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$，形如 $\\dfrac{x^2}{a^2}+\\dfrac{z^2}{b^2}-\\dfrac{y^2}{c^2}=1$（一个负号项），是单叶双曲面，对称轴为 $y$ 轴。",
+     "answer": "单叶双曲面（以 $y$ 轴为对称轴）",
+     "scene_spec": {
+      "objects": [
+       "标准型 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$ 的符号标注",
+       "单叶双曲面束腰形态"
+      ],
+      "steps": [
+       "第一步：以标准型判断为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：标准型 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$ 的符号标注。",
+       "第三步：单叶双曲面束腰形态。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(单叶双曲面)",
+     "visual_style": "水平截面扫描+直母线",
+     "efficiency_tags": [
+      "标准型 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$ 的符号标注",
+      "单叶双曲面束腰形态"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-007-s2",
+     "problem_id": "eval-geom-007",
+     "solution_id": "eval-geom-007-s2",
+     "method": "截面法",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+     "solution": "用 $y=k$ 截：$4x^2+z^2=1+k^2$，即 $\\dfrac{x^2}{(1+k^2)/4}+\\dfrac{z^2}{1+k^2}=1$，恒为椭圆，且随 $|k|$ 增大而变大（\"中间细、两头粗\"）。用 $z=k$ 截：$4x^2-y^2=1-k^2$，$|k|<1$ 时为双曲线，$|k|=1$ 时为两相交直线 $y=\\pm 2x$，$|k|>1$ 时仍为双曲线（开口换向）。用 $x=k$ 截：$z^2-y^2=1-4k^2$，同为双曲线族。三类截面共同刻画单叶双曲面的\"马鞍+束腰\"形态。",
+     "answer": "单叶双曲面（以 $y$ 轴为对称轴）",
+     "scene_spec": {
+      "objects": [
+       "水平截面扫描与截面椭圆族",
+       "双曲线截面族（两族方向）"
+      ],
+      "steps": [
+       "第一步：以截面法为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：水平截面扫描与截面椭圆族。",
+       "第三步：双曲线截面族（两族方向）。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(单叶双曲面)",
+     "visual_style": "水平截面扫描+直母线",
+     "efficiency_tags": [
+      "水平截面扫描与截面椭圆族",
+      "双曲线截面族（两族方向）"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-007-s3",
+     "problem_id": "eval-geom-007",
+     "solution_id": "eval-geom-007-s3",
+     "method": "直纹性验证",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+     "solution": "构造两族直线（参数 $s$）：$\\begin{cases}x=\\dfrac{\\cos\\theta+s\\sin\\theta}{2}\\\\y=s\\\\z=\\sin\\theta-s\\cos\\theta\\end{cases}$ 与 $\\begin{cases}x=\\dfrac{\\cos\\theta-s\\sin\\theta}{2}\\\\y=s\\\\z=\\sin\\theta+s\\cos\\theta\\end{cases}$。代入验证：$4x^2+z^2-y^2=(\\cos\\theta\\pm s\\sin\\theta)^2+(\\sin\\theta\\mp s\\cos\\theta)^2-s^2=\\cos^2\\theta+\\sin^2\\theta\\pm 2s\\sin\\theta\\cos\\theta\\mp 2s\\sin\\theta\\cos\\theta+s^2(\\sin^2\\theta+\\cos^2\\theta)-s^2=1$，整条直线都落在曲面上。直母线族的存在是单叶双曲面的特征性质（双叶双曲面无此性质）。",
+     "answer": "单叶双曲面（以 $y$ 轴为对称轴）",
+     "scene_spec": {
+      "objects": [
+       "参数化直线族沿曲面滑动",
+       "代入验证恒等式的过程"
+      ],
+      "steps": [
+       "第一步：以直纹性验证为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：参数化直线族沿曲面滑动。",
+       "第三步：代入验证恒等式的过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(单叶双曲面)",
+     "visual_style": "水平截面扫描+直母线",
+     "efficiency_tags": [
+      "参数化直线族沿曲面滑动",
+      "代入验证恒等式的过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "ec4295b03616c521c1da0a8dc8cc6b9c718064a2946f3f11f92c05b64eae3fc2",
+    "2fc29ccbaf372a35a8e393590d20bfcc49d26a9b1822f2a54315b1c6aaa3f056",
+    "702577a56534bac7abceeefbed02b1cc497f3ffd14d169ce16392ce25c6fd411"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-008",
+   "problem_sha256": "923b23015cd9210b7107bff7ed7b5f7af44ff4d2d7263b30be00ea168855bdbd",
+   "source_records": [
+    {
+     "id": "eval-geom-008-s1",
+     "problem_id": "eval-geom-008",
+     "solution_id": "eval-geom-008-s1",
+     "method": "特征值法",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+     "solution": "二次项矩阵 $A=\\begin{pmatrix}2&2&0\\\\2&1&0\\\\0&0&-1\\end{pmatrix}$。$2\\times 2$ 块 $\\begin{pmatrix}2&2\\\\2&1\\end{pmatrix}$ 的特征方程为 $(2-\\lambda)(1-\\lambda)-4=0$，即 $\\lambda^2-3\\lambda-2=0$，特征值 $\\lambda_1=\\dfrac{3+\\sqrt{17}}{2}>0$、$\\lambda_2=\\dfrac{3-\\sqrt{17}}{2}<0$；第三个特征值为 $-1<0$。正惯性指数 $1$、负惯性指数 $2$，对应双叶双曲面。",
+     "answer": "双叶双曲面",
+     "scene_spec": {
+      "objects": [
+       "特征值 $\\dfrac{3\\pm\\sqrt{17}}{2}$ 与 $-1$ 的谱标注",
+       "正负惯性指数 $(1,2)$ 的标注"
+      ],
+      "steps": [
+       "第一步：以特征值法为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：特征值 $\\dfrac{3\\pm\\sqrt{17}}{2}$ 与 $-1$ 的谱标注。",
+       "第三步：正负惯性指数 $(1,2)$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(双叶双曲面)",
+     "visual_style": "三截面双曲线",
+     "efficiency_tags": [
+      "特征值 $\\dfrac{3\\pm\\sqrt{17}}{2}$ 与 $-1$ 的谱标注",
+      "正负惯性指数 $(1,2)$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-008-s2",
+     "problem_id": "eval-geom-008",
+     "solution_id": "eval-geom-008-s2",
+     "method": "配方法",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+     "solution": "$2x^2+4xy+y^2=2(x+y)^2-y^2$，故曲面方程为 $2(x+y)^2-y^2-z^2=1$，正平方项 1 个、负平方项 2 个，为双叶双曲面。",
+     "answer": "双叶双曲面",
+     "scene_spec": {
+      "objects": [
+       "配方 $2(x+y)^2-y^2-z^2=1$ 的逐步动画",
+       "双叶双曲面的三维渲染"
+      ],
+      "steps": [
+       "第一步：以配方法为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：配方 $2(x+y)^2-y^2-z^2=1$ 的逐步动画。",
+       "第三步：双叶双曲面的三维渲染。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(双叶双曲面)",
+     "visual_style": "三截面双曲线",
+     "efficiency_tags": [
+      "配方 $2(x+y)^2-y^2-z^2=1$ 的逐步动画",
+      "双叶双曲面的三维渲染"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-008-s3",
+     "problem_id": "eval-geom-008",
+     "solution_id": "eval-geom-008-s3",
+     "method": "截面法",
+     "category": "解析几何",
+     "sub_category": "二次曲面分类",
+     "problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+     "solution": "用 $z=0$ 截：$2x^2+4xy+y^2=1$，配方为 $2(x+y)^2-y^2=1$，是双曲线；用 $y=0$ 截：$2x^2-z^2=1$，是双曲线；用 $x+y=0$（即 $x=-y$）截：$-y^2-z^2=1$ 无实解——该平面与曲面不相交。三个截面说明曲面在 $z$ 方向与 $x+y$ 方向均为双曲型、且存在与曲面完全不相交的平面（双叶分离的特征）。",
+     "answer": "双叶双曲面",
+     "scene_spec": {
+      "objects": [
+       "三个典型截面的双曲线",
+       "$x+y=0$ 截面无实解的标注",
+       "与单叶双曲面（eval-geom-007）对照"
+      ],
+      "steps": [
+       "第一步：以截面法为主线，建立解析几何·二次曲面分类场景并呈现该解法的关键图形。",
+       "第二步：三个典型截面的双曲线。",
+       "第三步：$x+y=0$ 截面无实解的标注。",
+       "第四步：与单叶双曲面（eval-geom-007）对照。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲面(双叶双曲面)",
+     "visual_style": "三截面双曲线",
+     "efficiency_tags": [
+      "三个典型截面的双曲线",
+      "$x+y=0$ 截面无实解的标注",
+      "与单叶双曲面（eval-geom-007）对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "1058d0112614aa8d0f448ca9be85f87bcc88b8bae384d2ca7927f8d106af6ec7",
+    "58483e66d4ce678055a70a172264a2500354a1365b85079996e5738be1b43923",
+    "a24264703105f7f3f928f2c54a3adfe4391048870bf3a3d16d784d5f090da678"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-009",
+   "problem_sha256": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+   "source_records": [
+    {
+     "id": "eval-geom-009-s1",
+     "problem_id": "eval-geom-009",
+     "solution_id": "eval-geom-009-s1",
+     "method": "代入法",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+     "solution": "将 $x=1$ 代入椭球面方程：$\\dfrac{1}{4}+\\dfrac{y^2}{9}+z^2=1$，即 $\\dfrac{y^2}{9}+z^2=\\dfrac{3}{4}$。化为标准形 $\\dfrac{y^2}{9\\cdot\\frac{3}{4}}+\\dfrac{z^2}{\\frac{3}{4}}=1$，即 $\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$。这是平面 $x=1$ 内的椭圆，半轴分别为 $\\sqrt{\\dfrac{27}{4}}=\\dfrac{3\\sqrt{3}}{2}$ 与 $\\sqrt{\\dfrac{3}{4}}=\\dfrac{\\sqrt{3}}{2}$，中心 $(1,0,0)$。",
+     "answer": "椭圆：$\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$（$x=1$），半轴 $\\dfrac{3\\sqrt{3}}{2}$ 与 $\\dfrac{\\sqrt{3}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "椭球面与截平面 $x=1$ 相交",
+       "代入后方程 $\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$ 的化简"
+      ],
+      "steps": [
+       "第一步：以代入法为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：椭球面与截平面 $x=1$ 相交。",
+       "第三步：代入后方程 $\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$ 的化简。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "椭球面与截面",
+     "visual_style": "截面椭圆族扫描",
+     "efficiency_tags": [
+      "椭球面与截平面 $x=1$ 相交",
+      "代入后方程 $\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$ 的化简"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-009-s2",
+     "problem_id": "eval-geom-009",
+     "solution_id": "eval-geom-009-s2",
+     "method": "参数化",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+     "solution": "由标准形直接参数化：$x=1$，$y=\\dfrac{3\\sqrt{3}}{2}\\cos t$，$z=\\dfrac{\\sqrt{3}}{2}\\sin t$，$t\\in[0,2\\pi]$。代回验证：$\\dfrac{1}{4}+\\dfrac{27\\cos^2 t}{4\\cdot 9}+\\dfrac{3\\sin^2 t}{4}=\\dfrac{1}{4}+\\dfrac{3}{4}(\\cos^2 t+\\sin^2 t)=1$。",
+     "answer": "椭圆：$\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$（$x=1$），半轴 $\\dfrac{3\\sqrt{3}}{2}$ 与 $\\dfrac{\\sqrt{3}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "参数点 $\\left(1,\\dfrac{3\\sqrt3}{2}\\cos t,\\dfrac{\\sqrt3}{2}\\sin t\\right)$ 沿椭圆运动",
+       "代回验证恒等式"
+      ],
+      "steps": [
+       "第一步：以参数化为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：参数点 $\\left(1,\\dfrac{3\\sqrt3}{2}\\cos t,\\dfrac{\\sqrt3}{2}\\sin t\\right)$ 沿椭圆运动。",
+       "第三步：代回验证恒等式。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "椭球面与截面",
+     "visual_style": "截面椭圆族扫描",
+     "efficiency_tags": [
+      "参数点 $\\left(1,\\dfrac{3\\sqrt3}{2}\\cos t,\\dfrac{\\sqrt3}{2}\\sin t\\right)$ 沿椭圆运动",
+      "代回验证恒等式"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-009-s3",
+     "problem_id": "eval-geom-009",
+     "solution_id": "eval-geom-009-s3",
+     "method": "平行截面族",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+     "solution": "一般截面 $x=k$：$|k|<2$ 时为椭圆 $\\dfrac{y^2}{9\\left(1-\\frac{k^2}{4}\\right)}+\\dfrac{z^2}{1-\\frac{k^2}{4}}=1$，半轴 $3\\sqrt{1-\\dfrac{k^2}{4}}$ 与 $\\sqrt{1-\\dfrac{k^2}{4}}$（比值恒为 $3$，故所有截面椭圆相似）；$k=\\pm 2$ 时 $1-\\dfrac{k^2}{4}=0$，方程仅剩 $y=z=0$，截面退化为单点 $(\\pm 2,0,0)$；$|k|>2$ 时无交点。取 $k=1$：半轴 $3\\cdot\\dfrac{\\sqrt{3}}{2}=\\dfrac{3\\sqrt{3}}{2}$ 与 $\\dfrac{\\sqrt{3}}{2}$，与解法一一致。",
+     "answer": "椭圆：$\\dfrac{y^2}{27/4}+\\dfrac{z^2}{3/4}=1$（$x=1$），半轴 $\\dfrac{3\\sqrt{3}}{2}$ 与 $\\dfrac{\\sqrt{3}}{2}$",
+     "scene_spec": {
+      "objects": [
+       "截面椭圆族扫描动画",
+       "半轴长度随 $k$ 变化的曲线与 $k=\\pm2$ 退化点"
+      ],
+      "steps": [
+       "第一步：以平行截面族为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：截面椭圆族扫描动画。",
+       "第三步：半轴长度随 $k$ 变化的曲线与 $k=\\pm2$ 退化点。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "椭球面与截面",
+     "visual_style": "截面椭圆族扫描",
+     "efficiency_tags": [
+      "截面椭圆族扫描动画",
+      "半轴长度随 $k$ 变化的曲线与 $k=\\pm2$ 退化点"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "ce155ec4de12fb15b12168a0cd483315057132d2d2afc3c72f50649ad66ed83a",
+    "83ecd6c561cefbf072196e74b6469cbf5f060b35aa5e8b6a206876d5cb9e35de",
+    "3f2ebdae6226ceff16648f743da2b945b91af28ee9201d5e8cde93dd10bcf113"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-010",
+   "problem_sha256": "4cadc4e56957bab7164a8e34f49689155ecc3cef73fb5731864657a7cc8cb359",
+   "source_records": [
+    {
+     "id": "eval-geom-010-s1",
+     "problem_id": "eval-geom-010",
+     "solution_id": "eval-geom-010-s1",
+     "method": "旋转化标准形",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+     "solution": "作正交变换 $u=\\dfrac{x+y}{\\sqrt{2}}$、$v=\\dfrac{x-y}{\\sqrt{2}}$，则 $x=\\dfrac{u+v}{\\sqrt{2}}$、$y=\\dfrac{u-v}{\\sqrt{2}}$，$xy=\\dfrac{u^2-v^2}{2}$。曲面方程化为 $z=\\dfrac{u^2}{2}-\\dfrac{v^2}{2}$，即 $2z=u^2-v^2$，是双曲抛物面（马鞍面）。",
+     "answer": "双曲抛物面（马鞍面），直纹面",
+     "scene_spec": {
+      "objects": [
+       "马鞍面三维渲染与 $45^\\circ$ 旋转变换",
+       "$xy=\\dfrac{u^2-v^2}{2}$ 的代入"
+      ],
+      "steps": [
+       "第一步：以旋转化标准形为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：马鞍面三维渲染与 $45^\\circ$ 旋转变换。",
+       "第三步：$xy=\\dfrac{u^2-v^2}{2}$ 的代入。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "双曲抛物面",
+     "visual_style": "直母线网格",
+     "efficiency_tags": [
+      "马鞍面三维渲染与 $45^\\circ$ 旋转变换",
+      "$xy=\\dfrac{u^2-v^2}{2}$ 的代入"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-010-s2",
+     "problem_id": "eval-geom-010",
+     "solution_id": "eval-geom-010-s2",
+     "method": "直母线族",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+     "solution": "固定 $y=c$：截面 $z=cx$ 是直线；固定 $x=c$：截面 $z=cy$ 也是直线。即曲面上存在两族平行于坐标平面的直线族 $\\{z=cx,\\ y=c\\}$ 与 $\\{z=cy,\\ x=c\\}$，故 $z=xy$ 是直纹面，且每一点处恰有两条直母线通过（交叉直线构成马鞍网格）。",
+     "answer": "双曲抛物面（马鞍面），直纹面",
+     "scene_spec": {
+      "objects": [
+       "两族直母线 $z=cx$（$y=c$）与 $z=cy$（$x=c$）的网格动画"
+      ],
+      "steps": [
+       "第一步：以直母线族为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：两族直母线 $z=cx$（$y=c$）与 $z=cy$（$x=c$）的网格动画。",
+       "第三步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "双曲抛物面",
+     "visual_style": "直母线网格",
+     "efficiency_tags": [
+      "两族直母线 $z=cx$（$y=c$）与 $z=cy$（$x=c$）的网格动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-010-s3",
+     "problem_id": "eval-geom-010",
+     "solution_id": "eval-geom-010-s3",
+     "method": "截面法",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+     "solution": "用 $y=k$ 截：$z=kx$，对任意 $k$ 都是直线（竖直截面均为直线，直纹性的又一体现）；用 $z=k$ 截：$xy=k$，等轴双曲线（$k\\ne 0$）或两坐标轴（$k=0$）；若要抛物线截面，取斜截面 $x=y$（得 $z=x^2$）与 $x=-y$（得 $z=-x^2$）。直线截面与双曲线截面正是双曲抛物面的截面特征。",
+     "answer": "双曲抛物面（马鞍面），直纹面",
+     "scene_spec": {
+      "objects": [
+       "竖直截面（直线族）与水平截面（等轴双曲线）扫描",
+       "斜截面 $x=\\pm y$ 的抛物线"
+      ],
+      "steps": [
+       "第一步：以截面法为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：竖直截面（直线族）与水平截面（等轴双曲线）扫描。",
+       "第三步：斜截面 $x=\\pm y$ 的抛物线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "双曲抛物面",
+     "visual_style": "直母线网格",
+     "efficiency_tags": [
+      "竖直截面（直线族）与水平截面（等轴双曲线）扫描",
+      "斜截面 $x=\\pm y$ 的抛物线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "42c9768716ba0702343312fb65976851066d1b2235cc769d8c7db483d95d01be",
+    "cacac6afc635dcdefd84993a691fdb836cf275188351e5d0fabeaa135e828b30",
+    "4ae3e8eb32316bffebd83aeb8a1ae59d9a3e36889b9e2c5deca5bd33ca96db86"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-011",
+   "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+   "source_records": [
+    {
+     "id": "eval-geom-011-s1",
+     "problem_id": "eval-geom-011",
+     "solution_id": "eval-geom-011-s1",
+     "method": "判别式法",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+     "solution": "代入：$(1+t)^2+t^2+t^2=4$，即 $3t^2+2t-3=0$。判别式 $\\Delta=4+36=40>0$，故有两个交点。解出 $t=\\dfrac{-2\\pm\\sqrt{40}}{6}=\\dfrac{-1\\pm\\sqrt{10}}{3}$，对应两点 $\\left(1+t,t,t\\right)$：$t_1=\\dfrac{-1+\\sqrt{10}}{3}$ 时 $\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$，$t_2=\\dfrac{-1-\\sqrt{10}}{3}$ 时 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$。",
+     "answer": "两个交点：$\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$ 与 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "代入得 $3t^2+2t-3=0$ 的判别式动画",
+       "两交点高亮标注"
+      ],
+      "steps": [
+       "第一步：以判别式法为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：代入得 $3t^2+2t-3=0$ 的判别式动画。",
+       "第三步：两交点高亮标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "直线与二次曲面交点",
+     "visual_style": "判别式与弦长",
+     "efficiency_tags": [
+      "代入得 $3t^2+2t-3=0$ 的判别式动画",
+      "两交点高亮标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-011-s2",
+     "problem_id": "eval-geom-011",
+     "solution_id": "eval-geom-011-s2",
+     "method": "距离法",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+     "solution": "球心 $O(0,0,0)$ 到直线距离：直线上取点 $P_0(1,0,0)$、方向 $\\vec s=(1,1,1)$，$\\overrightarrow{P_0O}=(-1,0,0)$，叉积 $\\overrightarrow{P_0O}\\times\\vec s=(0\\cdot 1-0\\cdot 1,\\ 0\\cdot 1-(-1)\\cdot 1,\\ (-1)\\cdot 1-0\\cdot 1)=(0,1,-1)$，模 $\\sqrt{2}$，故 $d=\\dfrac{\\sqrt{2}}{\\sqrt{3}}=\\sqrt{\\dfrac{2}{3}}<2$，直线与球面相交于两点。相交弦长 $=2\\sqrt{4-\\dfrac{2}{3}}=2\\sqrt{\\dfrac{10}{3}}$，与解法一中两参数差对应的长度 $|t_1-t_2|\\cdot|\\vec s|=\\dfrac{2\\sqrt{10}}{3}\\cdot\\sqrt{3}=2\\sqrt{\\dfrac{10}{3}}$ 一致。",
+     "answer": "两个交点：$\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$ 与 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$",
+       "相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照"
+      ],
+      "steps": [
+       "第一步：以距离法为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$。",
+       "第三步：相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "直线与二次曲面交点",
+     "visual_style": "判别式与弦长",
+     "efficiency_tags": [
+      "球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$",
+      "相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-011-s3",
+     "problem_id": "eval-geom-011",
+     "solution_id": "eval-geom-011-s3",
+     "method": "配方直接求解",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+     "solution": "$3t^2+2t-3=3\\left(t+\\dfrac{1}{3}\\right)^2-\\dfrac{10}{3}=0$，故 $t+\\dfrac{1}{3}=\\pm\\dfrac{\\sqrt{10}}{3}$，$t=\\dfrac{-1\\pm\\sqrt{10}}{3}$，与解法一相同。",
+     "answer": "两个交点：$\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$ 与 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "配方 $3\\left(t+\\dfrac{1}{3}\\right)^2-\\dfrac{10}{3}=0$ 的对称轴与顶点",
+       "球面与直线相交的三维视图"
+      ],
+      "steps": [
+       "第一步：以配方直接求解为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：配方 $3\\left(t+\\dfrac{1}{3}\\right)^2-\\dfrac{10}{3}=0$ 的对称轴与顶点。",
+       "第三步：球面与直线相交的三维视图。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "直线与二次曲面交点",
+     "visual_style": "判别式与弦长",
+     "efficiency_tags": [
+      "配方 $3\\left(t+\\dfrac{1}{3}\\right)^2-\\dfrac{10}{3}=0$ 的对称轴与顶点",
+      "球面与直线相交的三维视图"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "32d5d591c005cbc3054ea8ceb8e192b947a8b84edc3bdcc0f3128d9f7d88dedf",
+    "0ef82acf84ecce48cc9f9c08f3822b8c004b893b2a9a429d135f72326fe421fd",
+    "1e9a5ee25bc8a78fcab9ea883147bfdcb133f62643843953e8ca750162cfe998"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-012",
+   "problem_sha256": "850c318356a4425229fb688308688d6b0c2f550a582aae80d4721ebc1de278b2",
+   "source_records": [
+    {
+     "id": "eval-geom-012-s1",
+     "problem_id": "eval-geom-012",
+     "solution_id": "eval-geom-012-s1",
+     "method": "Frenet 公式直接计算",
+     "category": "解析几何",
+     "sub_category": "曲线",
+     "problem": "求圆柱螺线 $x=a\\cos t,\\ y=a\\sin t,\\ z=bt$（$a,b>0$）的曲率与挠率。",
+     "solution": "记 $c=\\sqrt{a^2+b^2}$。$\\vec r'=(-a\\sin t,a\\cos t,b)$，$|\\vec r'|=c$；$\\vec r''=(-a\\cos t,-a\\sin t,0)$；$\\vec r'\\times\\vec r''=(ab\\sin t,-ab\\cos t,a^2)$，模 $\\sqrt{a^2b^2+a^4}=ac$。曲率 $\\kappa=\\dfrac{|\\vec r'\\times\\vec r''|}{|\\vec r'|^3}=\\dfrac{ac}{c^3}=\\dfrac{a}{c^2}=\\dfrac{a}{a^2+b^2}$。又 $\\vec r'''=(a\\sin t,-a\\cos t,0)$，挠率 $\\tau=\\dfrac{(\\vec r',\\vec r'',\\vec r''')}{|\\vec r'\\times\\vec r''|^2}=\\dfrac{a^2b\\sin^2 t+a^2b\\cos^2 t}{a^2c^2}=\\dfrac{b}{c^2}=\\dfrac{b}{a^2+b^2}$。",
+     "answer": "曲率 $\\kappa=\\dfrac{a}{a^2+b^2}$，挠率 $\\tau=\\dfrac{b}{a^2+b^2}$",
+     "scene_spec": {
+      "objects": [
+       "向量 $\\vec r'\\times\\vec r''$ 与三阶混合积的计算标注",
+       "圆柱螺线与密切圆、副法线"
+      ],
+      "steps": [
+       "第一步：以Frenet 公式直接计算为主线，建立解析几何·曲线场景并呈现该解法的关键图形。",
+       "第二步：向量 $\\vec r'\\times\\vec r''$ 与三阶混合积的计算标注。",
+       "第三步：圆柱螺线与密切圆、副法线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间曲线(圆柱螺线)",
+     "visual_style": "密切圆与圆柱展开",
+     "efficiency_tags": [
+      "向量 $\\vec r'\\times\\vec r''$ 与三阶混合积的计算标注",
+      "圆柱螺线与密切圆、副法线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-012-s2",
+     "problem_id": "eval-geom-012",
+     "solution_id": "eval-geom-012-s2",
+     "method": "物理分解",
+     "category": "解析几何",
+     "sub_category": "曲线",
+     "problem": "求圆柱螺线 $x=a\\cos t,\\ y=a\\sin t,\\ z=bt$（$a,b>0$）的曲率与挠率。",
+     "solution": "速度 $\\vec v=\\vec r'$，模 $|\\vec v|=c$ 恒定，故切向加速度为 $0$；加速度 $\\vec a=\\vec r''=(-a\\cos t,-a\\sin t,0)$，模 $|\\vec a|=a$。由 $|\\vec a|=\\kappa|\\vec v|^2$ 得 $\\kappa=\\dfrac{a}{c^2}=\\dfrac{a}{a^2+b^2}$。副法向量 $\\vec B=\\dfrac{\\vec r'\\times\\vec r''}{|\\vec r'\\times\\vec r''|}=\\dfrac{1}{c}(b\\sin t,-b\\cos t,a)$，$\\dfrac{d\\vec B}{dt}=\\dfrac{1}{c}(b\\cos t,b\\sin t,0)$，模 $\\dfrac{b}{c}$。由 Frenet 公式 $\\dfrac{d\\vec B}{ds}=-\\tau\\vec N$ 核对方向（本题 $\\dfrac{d\\vec B}{ds}$ 与 $-\\vec N$ 同向，故 $\\tau>0$），且 $\\left|\\dfrac{d\\vec B}{ds}\\right|=\\tau$、$\\dfrac{ds}{dt}=c$，得 $\\tau=\\dfrac{b/c}{c}=\\dfrac{b}{a^2+b^2}$。",
+     "answer": "曲率 $\\kappa=\\dfrac{a}{a^2+b^2}$，挠率 $\\tau=\\dfrac{b}{a^2+b^2}$",
+     "scene_spec": {
+      "objects": [
+       "速度、加速度的分解动画",
+       "副法向量 $\\vec B$ 的变化率标注"
+      ],
+      "steps": [
+       "第一步：以物理分解为主线，建立解析几何·曲线场景并呈现该解法的关键图形。",
+       "第二步：速度、加速度的分解动画。",
+       "第三步：副法向量 $\\vec B$ 的变化率标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间曲线(圆柱螺线)",
+     "visual_style": "密切圆与圆柱展开",
+     "efficiency_tags": [
+      "速度、加速度的分解动画",
+      "副法向量 $\\vec B$ 的变化率标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-012-s3",
+     "problem_id": "eval-geom-012",
+     "solution_id": "eval-geom-012-s3",
+     "method": "展开法",
+     "category": "解析几何",
+     "sub_category": "曲线",
+     "problem": "求圆柱螺线 $x=a\\cos t,\\ y=a\\sin t,\\ z=bt$（$a,b>0$）的曲率与挠率。",
+     "solution": "把圆柱面沿一条母线剪开展平，螺线变成一条直线，其与水平方向的夹角 $\\alpha$ 满足 $\\tan\\alpha=\\dfrac{b}{a}$（螺距 $2\\pi b$ 与周长 $2\\pi a$ 之比），故 $\\cos^2\\alpha=\\dfrac{a^2}{a^2+b^2}$。螺线的曲率完全来自柱面弯曲：$\\kappa=\\dfrac{\\cos^2\\alpha}{a}=\\dfrac{a}{a^2+b^2}$；挠率来自螺线\"扭转\"：$\\tau=\\dfrac{\\sin\\alpha\\cos\\alpha}{a}=\\dfrac{b}{a^2+b^2}$。$\\dfrac{\\tau}{\\kappa}=\\dfrac{b}{a}$ 为常数，说明圆柱螺线是常曲率常挠率曲线。",
+     "answer": "曲率 $\\kappa=\\dfrac{a}{a^2+b^2}$，挠率 $\\tau=\\dfrac{b}{a^2+b^2}$",
+     "scene_spec": {
+      "objects": [
+       "圆柱展开成平面、螺线变直线",
+       "夹角 $\\alpha$ 与 $\\kappa:\\tau=a:b$ 的标注"
+      ],
+      "steps": [
+       "第一步：以展开法为主线，建立解析几何·曲线场景并呈现该解法的关键图形。",
+       "第二步：圆柱展开成平面、螺线变直线。",
+       "第三步：夹角 $\\alpha$ 与 $\\kappa:\\tau=a:b$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间曲线(圆柱螺线)",
+     "visual_style": "密切圆与圆柱展开",
+     "efficiency_tags": [
+      "圆柱展开成平面、螺线变直线",
+      "夹角 $\\alpha$ 与 $\\kappa:\\tau=a:b$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4b6d8f214ac1efa03a107ec2996b3bb93dd640f231f741dbe97d1d1f9770242a",
+    "54c75228c7a68f635849d583deced08613028745db482a6a2e8f693941ca1712",
+    "3b420918e4f5c13593c4a067b2bcecf59e462d543207c4b53e9cfad5574e89c1"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-013",
+   "problem_sha256": "5ba60dccb32c121e1ac7dba8f91a6f32b6e33c478ef841733c83a54ab6bc90c0",
+   "source_records": [
+    {
+     "id": "eval-geom-013-s1",
+     "problem_id": "eval-geom-013",
+     "solution_id": "eval-geom-013-s1",
+     "method": "梯度法",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+     "solution": "令 $F(x,y,z)=z-x^2-y^2$，曲面为 $F=0$。$\\nabla F=(-2x,-2y,1)$，在 $(1,1,2)$ 处为 $\\vec n=(-2,-2,1)$。切平面：$-2(x-1)-2(y-1)+1\\cdot(z-2)=0$，即 $2x+2y-z=2$。法线：$\\dfrac{x-1}{-2}=\\dfrac{y-1}{-2}=\\dfrac{z-2}{1}$。",
+     "answer": "切平面 $2x+2y-z=2$；法线 $\\dfrac{x-1}{-2}=\\dfrac{y-1}{-2}=\\dfrac{z-2}{1}$",
+     "scene_spec": {
+      "objects": [
+       "梯度 $\\nabla F=(-2x,-2y,1)$ 在 $(1,1,2)$ 的取值",
+       "切平面方程标注"
+      ],
+      "steps": [
+       "第一步：以梯度法为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：梯度 $\\nabla F=(-2x,-2y,1)$ 在 $(1,1,2)$ 的取值。",
+       "第三步：切平面方程标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "旋转抛物面切平面",
+     "visual_style": "切平面贴合",
+     "efficiency_tags": [
+      "梯度 $\\nabla F=(-2x,-2y,1)$ 在 $(1,1,2)$ 的取值",
+      "切平面方程标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-013-s2",
+     "problem_id": "eval-geom-013",
+     "solution_id": "eval-geom-013-s2",
+     "method": "全微分",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+     "solution": "$dz=2x\\,dx+2y\\,dy$，在 $(1,1)$ 处 $dz=2dx+2dy$。切平面为 $z-2=2(x-1)+2(y-1)$，即 $2x+2y-z=2$。法线方向由 $(dx,dy,dz)$ 与 $(2,2,-1)$ 垂直得出：法向 $(2,2,-1)$，法线方程同上。",
+     "answer": "切平面 $2x+2y-z=2$；法线 $\\dfrac{x-1}{-2}=\\dfrac{y-1}{-2}=\\dfrac{z-2}{1}$",
+     "scene_spec": {
+      "objects": [
+       "全微分 $dz=2x\\,dx+2y\\,dy$ 的推导",
+       "切平面 $z-2=2(x-1)+2(y-1)$ 的贴合"
+      ],
+      "steps": [
+       "第一步：以全微分为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：全微分 $dz=2x\\,dx+2y\\,dy$ 的推导。",
+       "第三步：切平面 $z-2=2(x-1)+2(y-1)$ 的贴合。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "旋转抛物面切平面",
+     "visual_style": "切平面贴合",
+     "efficiency_tags": [
+      "全微分 $dz=2x\\,dx+2y\\,dy$ 的推导",
+      "切平面 $z-2=2(x-1)+2(y-1)$ 的贴合"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-013-s3",
+     "problem_id": "eval-geom-013",
+     "solution_id": "eval-geom-013-s3",
+     "method": "参数化切向量",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+     "solution": "参数化 $\\vec r(u,v)=(u,v,u^2+v^2)$。$\\vec r_u=(1,0,2u)$，$\\vec r_v=(0,1,2v)$，在 $(u,v)=(1,1)$ 处为 $(1,0,2)$、$(0,1,2)$。切平面法向量 $\\vec r_u\\times\\vec r_v=(0\\cdot 2-2\\cdot 1,\\ 2\\cdot 0-1\\cdot 2,\\ 1\\cdot 1-0\\cdot 0)=(-2,-2,1)$，与解法一一致，切平面、法线同上。",
+     "answer": "切平面 $2x+2y-z=2$；法线 $\\dfrac{x-1}{-2}=\\dfrac{y-1}{-2}=\\dfrac{z-2}{1}$",
+     "scene_spec": {
+      "objects": [
+       "两条参数切向量 $\\vec r_u=(1,0,2)$、$\\vec r_v=(0,1,2)$",
+       "叉积得法向量 $(-2,-2,1)$"
+      ],
+      "steps": [
+       "第一步：以参数化切向量为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：两条参数切向量 $\\vec r_u=(1,0,2)$、$\\vec r_v=(0,1,2)$。",
+       "第三步：叉积得法向量 $(-2,-2,1)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "旋转抛物面切平面",
+     "visual_style": "切平面贴合",
+     "efficiency_tags": [
+      "两条参数切向量 $\\vec r_u=(1,0,2)$、$\\vec r_v=(0,1,2)$",
+      "叉积得法向量 $(-2,-2,1)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "320405440206a69495afa8c0aeb19d878f083c6db5fd3f9714b2ac8300934827",
+    "e91aebd3d082cf7b4a5476f73edfa9973f33f698ae106488e5de3d4952ad8b01",
+    "293664ac77322351a2130b6187583e02544c8c4c7d5d6f2a4b4e90bf7d7c0fee"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-014",
+   "problem_sha256": "a7ecd9149c19c92a659ccf8525efaf8c6a397fb99882961a34645542c68f2adb",
+   "source_records": [
+    {
+     "id": "eval-geom-014-s1",
+     "problem_id": "eval-geom-014",
+     "solution_id": "eval-geom-014-s1",
+     "method": "切线公式",
+     "category": "解析几何",
+     "sub_category": "二次曲线",
+     "problem": "求椭圆 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}=1$ 在点 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处的切线方程。",
+     "solution": "椭圆上点 $(x_0,y_0)$ 处的切线为 $\\dfrac{xx_0}{4}+\\dfrac{yy_0}{9}=1$。代入 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$：$\\dfrac{\\sqrt{2}}{4}x+\\dfrac{3}{9\\sqrt{2}}y=1$，即 $\\dfrac{\\sqrt{2}}{4}x+\\dfrac{1}{3\\sqrt{2}}y=1$。两边乘 $12\\sqrt{2}$：$6x+4y=12\\sqrt{2}$，即 $3x+2y=6\\sqrt{2}$。检验切点在切线上：$3\\sqrt{2}+2\\cdot\\dfrac{3}{\\sqrt{2}}=3\\sqrt{2}+3\\sqrt{2}=6\\sqrt{2}$。",
+     "answer": "$3x+2y=6\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "切线公式 $\\dfrac{xx_0}{4}+\\dfrac{yy_0}{9}=1$ 的代入",
+       "椭圆与切线在切点的一阶接触"
+      ],
+      "steps": [
+       "第一步：以切线公式为主线，建立解析几何·二次曲线场景并呈现该解法的关键图形。",
+       "第二步：切线公式 $\\dfrac{xx_0}{4}+\\dfrac{yy_0}{9}=1$ 的代入。",
+       "第三步：椭圆与切线在切点的一阶接触。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲线(椭圆)切线",
+     "visual_style": "切点滑动切线族",
+     "efficiency_tags": [
+      "切线公式 $\\dfrac{xx_0}{4}+\\dfrac{yy_0}{9}=1$ 的代入",
+      "椭圆与切线在切点的一阶接触"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-014-s2",
+     "problem_id": "eval-geom-014",
+     "solution_id": "eval-geom-014-s2",
+     "method": "隐函数求导",
+     "category": "解析几何",
+     "sub_category": "二次曲线",
+     "problem": "求椭圆 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}=1$ 在点 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处的切线方程。",
+     "solution": "两边对 $x$ 求导：$\\dfrac{2x}{4}+\\dfrac{2y}{9}y'=0$，得 $y'=-\\dfrac{9x}{4y}$。在 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处 $y'=-\\dfrac{9\\sqrt{2}}{4\\cdot\\frac{3}{\\sqrt{2}}}=-\\dfrac{9\\cdot 2}{12}=-\\dfrac{3}{2}$。切线：$y-\\dfrac{3}{\\sqrt{2}}=-\\dfrac{3}{2}(x-\\sqrt{2})$，整理得 $2y-\\dfrac{6}{\\sqrt{2}}=-3x+3\\sqrt{2}$，即 $3x+2y=3\\sqrt{2}+3\\sqrt{2}=6\\sqrt{2}$。",
+     "answer": "$3x+2y=6\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "隐函数求导 $y'=-\\dfrac{9x}{4y}$ 的过程",
+       "斜率 $-\\dfrac{3}{2}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以隐函数求导为主线，建立解析几何·二次曲线场景并呈现该解法的关键图形。",
+       "第二步：隐函数求导 $y'=-\\dfrac{9x}{4y}$ 的过程。",
+       "第三步：斜率 $-\\dfrac{3}{2}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲线(椭圆)切线",
+     "visual_style": "切点滑动切线族",
+     "efficiency_tags": [
+      "隐函数求导 $y'=-\\dfrac{9x}{4y}$ 的过程",
+      "斜率 $-\\dfrac{3}{2}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-014-s3",
+     "problem_id": "eval-geom-014",
+     "solution_id": "eval-geom-014-s3",
+     "method": "参数化求导",
+     "category": "解析几何",
+     "sub_category": "二次曲线",
+     "problem": "求椭圆 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}=1$ 在点 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处的切线方程。",
+     "solution": "参数化 $x=2\\cos t$、$y=3\\sin t$。切点处 $\\cos t=\\dfrac{\\sqrt{2}}{2}$、$\\sin t=\\dfrac{1}{\\sqrt{2}}$，即 $t=\\dfrac{\\pi}{4}$。切线斜率 $\\dfrac{dy}{dx}=\\dfrac{3\\cos t}{-2\\sin t}$，在 $t=\\dfrac{\\pi}{4}$ 处为 $-\\dfrac{3}{2}$。切线方程同解法二，即 $3x+2y=6\\sqrt{2}$。",
+     "answer": "$3x+2y=6\\sqrt{2}$",
+     "scene_spec": {
+      "objects": [
+       "参数化 $x=2\\cos t$、$y=3\\sin t$ 在 $t=\\dfrac{\\pi}{4}$ 处",
+       "切点沿椭圆滑动的切线族"
+      ],
+      "steps": [
+       "第一步：以参数化求导为主线，建立解析几何·二次曲线场景并呈现该解法的关键图形。",
+       "第二步：参数化 $x=2\\cos t$、$y=3\\sin t$ 在 $t=\\dfrac{\\pi}{4}$ 处。",
+       "第三步：切点沿椭圆滑动的切线族。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二次曲线(椭圆)切线",
+     "visual_style": "切点滑动切线族",
+     "efficiency_tags": [
+      "参数化 $x=2\\cos t$、$y=3\\sin t$ 在 $t=\\dfrac{\\pi}{4}$ 处",
+      "切点沿椭圆滑动的切线族"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4d1674107c32e3db9544119fa9a78257783a21578e0653cb3bdf4ce32f98ea0a",
+    "02cc35f9e16841e7e3a101d8deb315fdf0410d0cea4f5c6303f7b523ea793228",
+    "e60a110e8867089aaa15a58ba71ca38100754f13ed53c6b787b29734d35ff702"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-015",
+   "problem_sha256": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+   "source_records": [
+    {
+     "id": "eval-geom-015-s1",
+     "problem_id": "eval-geom-015",
+     "solution_id": "eval-geom-015-s1",
+     "method": "两式相减",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求两球面 $x^2+y^2+z^2=4$ 与 $x^2+(y-1)^2+z^2=4$ 的交线方程。",
+     "solution": "两方程相减：$x^2+y^2+z^2-\\left[x^2+(y-1)^2+z^2\\right]=0$，即 $y^2-(y^2-2y+1)=0$，得 $2y-1=0$，$y=\\dfrac{1}{2}$。代入第一式：$x^2+z^2=4-\\dfrac{1}{4}=\\dfrac{15}{4}$。交线为平面 $y=\\dfrac{1}{2}$ 上的圆 $x^2+z^2=\\dfrac{15}{4}$。",
+     "answer": "圆：$y=\\dfrac{1}{2}$，$x^2+z^2=\\dfrac{15}{4}$（圆心 $\\left(0,\\dfrac{1}{2},0\\right)$，半径 $\\dfrac{\\sqrt{15}}{2}$）",
+     "scene_spec": {
+      "objects": [
+       "两式相减得 $y=\\dfrac{1}{2}$ 的消元动画",
+       "代入得圆 $x^2+z^2=\\dfrac{15}{4}$"
+      ],
+      "steps": [
+       "第一步：以两式相减为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：两式相减得 $y=\\dfrac{1}{2}$ 的消元动画。",
+       "第三步：代入得圆 $x^2+z^2=\\dfrac{15}{4}$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两球面交线",
+     "visual_style": "垂直平分面",
+     "efficiency_tags": [
+      "两式相减得 $y=\\dfrac{1}{2}$ 的消元动画",
+      "代入得圆 $x^2+z^2=\\dfrac{15}{4}$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-015-s2",
+     "problem_id": "eval-geom-015",
+     "solution_id": "eval-geom-015-s2",
+     "method": "平面截球",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求两球面 $x^2+y^2+z^2=4$ 与 $x^2+(y-1)^2+z^2=4$ 的交线方程。",
+     "solution": "两球半径相等（均为 $2$），故交线圆所在平面是两球心连线的垂直平分面。球心 $O_1(0,0,0)$、$O_2(0,1,0)$，垂直平分面为 $y=\\dfrac{1}{2}$。球心 $O_1$ 到该平面的距离为 $\\dfrac{1}{2}$，故截面圆半径 $\\sqrt{2^2-\\left(\\dfrac{1}{2}\\right)^2}=\\dfrac{\\sqrt{15}}{2}$，圆心 $\\left(0,\\dfrac{1}{2},0\\right)$。",
+     "answer": "圆：$y=\\dfrac{1}{2}$，$x^2+z^2=\\dfrac{15}{4}$（圆心 $\\left(0,\\dfrac{1}{2},0\\right)$，半径 $\\dfrac{\\sqrt{15}}{2}$）",
+     "scene_spec": {
+      "objects": [
+       "两相交球面的三维视图",
+       "球心连线的垂直平分面与截面圆"
+      ],
+      "steps": [
+       "第一步：以平面截球为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：两相交球面的三维视图。",
+       "第三步：球心连线的垂直平分面与截面圆。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两球面交线",
+     "visual_style": "垂直平分面",
+     "efficiency_tags": [
+      "两相交球面的三维视图",
+      "球心连线的垂直平分面与截面圆"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-015-s3",
+     "problem_id": "eval-geom-015",
+     "solution_id": "eval-geom-015-s3",
+     "method": "参数化",
+     "category": "解析几何",
+     "sub_category": "曲面与曲线",
+     "problem": "求两球面 $x^2+y^2+z^2=4$ 与 $x^2+(y-1)^2+z^2=4$ 的交线方程。",
+     "solution": "由圆方程直接参数化：$x=\\dfrac{\\sqrt{15}}{2}\\cos t$，$y=\\dfrac{1}{2}$，$z=\\dfrac{\\sqrt{15}}{2}\\sin t$，$t\\in[0,2\\pi]$。代回两球面验证：$x^2+y^2+z^2=\\dfrac{15}{4}+\\dfrac{1}{4}=4$；$x^2+(y-1)^2+z^2=\\dfrac{15}{4}+\\dfrac{1}{4}=4$。",
+     "answer": "圆：$y=\\dfrac{1}{2}$，$x^2+z^2=\\dfrac{15}{4}$（圆心 $\\left(0,\\dfrac{1}{2},0\\right)$，半径 $\\dfrac{\\sqrt{15}}{2}$）",
+     "scene_spec": {
+      "objects": [
+       "参数点沿交线圆运动",
+       "代回两球面验证恒等式"
+      ],
+      "steps": [
+       "第一步：以参数化为主线，建立解析几何·曲面与曲线场景并呈现该解法的关键图形。",
+       "第二步：参数点沿交线圆运动。",
+       "第三步：代回两球面验证恒等式。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两球面交线",
+     "visual_style": "垂直平分面",
+     "efficiency_tags": [
+      "参数点沿交线圆运动",
+      "代回两球面验证恒等式"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4824be338bb24f1c7b4dcc85ec0910251fee278d226b82e98294bca6f3531f8e",
+    "b0d95cbea79707ebf0f587a64b06f82af8f822cb216dc90d221319d24517d626",
+    "adfb3dd0248536f14bbfd703b595e1dc53552ff1e01ce1c7d7ba7d21fc385439"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-016",
+   "problem_sha256": "4ef3d39fd11867ab5e15cff4d08e2ffe2ea55df14a262794fbd07def2753fb5c",
+   "source_records": [
+    {
+     "id": "eval-geom-016-s1",
+     "problem_id": "eval-geom-016",
+     "solution_id": "eval-geom-016-s1",
+     "method": "模长公式",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $|\\vec a|=2$，$|\\vec b|=3$，$\\vec a$ 与 $\\vec b$ 的夹角为 $60^\\circ$，求 $|\\vec a+\\vec b|$、$|2\\vec a-\\vec b|$ 及 $\\vec a+\\vec b$ 与 $\\vec a-\\vec b$ 的夹角余弦。",
+     "solution": "$|\\vec a+\\vec b|^2=|\\vec a|^2+|\\vec b|^2+2|\\vec a||\\vec b|\\cos 60^\\circ=4+9+2\\cdot 2\\cdot 3\\cdot\\dfrac{1}{2}=19$，故 $|\\vec a+\\vec b|=\\sqrt{19}$。$|2\\vec a-\\vec b|^2=4|\\vec a|^2+|\\vec b|^2-4|\\vec a||\\vec b|\\cos 60^\\circ=16+9-12=13$，故 $|2\\vec a-\\vec b|=\\sqrt{13}$。又 $(\\vec a+\\vec b)\\cdot(\\vec a-\\vec b)=|\\vec a|^2-|\\vec b|^2=4-9=-5$，$|\\vec a-\\vec b|^2=4+9-2\\cdot 2\\cdot 3\\cdot\\dfrac{1}{2}=7$，故 $\\cos\\theta=\\dfrac{-5}{\\sqrt{19}\\cdot\\sqrt{7}}=-\\dfrac{5}{\\sqrt{133}}$。",
+     "answer": "$|\\vec a+\\vec b|=\\sqrt{19}$，$|2\\vec a-\\vec b|=\\sqrt{13}$，$\\cos\\theta=-\\dfrac{5}{\\sqrt{133}}$",
+     "scene_spec": {
+      "objects": [
+       "模长平方公式的逐项展开",
+       "点积恒等式 $(\\vec a+\\vec b)\\cdot(\\vec a-\\vec b)=|\\vec a|^2-|\\vec b|^2$ 的标注"
+      ],
+      "steps": [
+       "第一步：以模长公式为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：模长平方公式的逐项展开。",
+       "第三步：点积恒等式 $(\\vec a+\\vec b)\\cdot(\\vec a-\\vec b)=|\\vec a|^2-|\\vec b|^2$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面向量模长",
+     "visual_style": "平行四边形对角线",
+     "efficiency_tags": [
+      "模长平方公式的逐项展开",
+      "点积恒等式 $(\\vec a+\\vec b)\\cdot(\\vec a-\\vec b)=|\\vec a|^2-|\\vec b|^2$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-016-s2",
+     "problem_id": "eval-geom-016",
+     "solution_id": "eval-geom-016-s2",
+     "method": "坐标法",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $|\\vec a|=2$，$|\\vec b|=3$，$\\vec a$ 与 $\\vec b$ 的夹角为 $60^\\circ$，求 $|\\vec a+\\vec b|$、$|2\\vec a-\\vec b|$ 及 $\\vec a+\\vec b$ 与 $\\vec a-\\vec b$ 的夹角余弦。",
+     "solution": "取 $\\vec a=(2,0)$，$\\vec b=\\left(\\dfrac{3}{2},\\dfrac{3\\sqrt{3}}{2}\\right)$。则 $\\vec a+\\vec b=\\left(\\dfrac{7}{2},\\dfrac{3\\sqrt{3}}{2}\\right)$，$|\\vec a+\\vec b|^2=\\dfrac{49}{4}+\\dfrac{27}{4}=19$；$2\\vec a-\\vec b=\\left(\\dfrac{5}{2},-\\dfrac{3\\sqrt{3}}{2}\\right)$，模平方 $\\dfrac{25}{4}+\\dfrac{27}{4}=13$；$\\vec a-\\vec b=\\left(\\dfrac{1}{2},-\\dfrac{3\\sqrt{3}}{2}\\right)$，$(\\vec a+\\vec b)\\cdot(\\vec a-\\vec b)=\\dfrac{7}{4}-\\dfrac{27}{4}=-5$，与解法一一致。",
+     "answer": "$|\\vec a+\\vec b|=\\sqrt{19}$，$|2\\vec a-\\vec b|=\\sqrt{13}$，$\\cos\\theta=-\\dfrac{5}{\\sqrt{133}}$",
+     "scene_spec": {
+      "objects": [
+       "坐标化 $\\vec a=(2,0)$、$\\vec b=\\left(\\dfrac{3}{2},\\dfrac{3\\sqrt3}{2}\\right)$ 的分量计算",
+       "各向量坐标标注"
+      ],
+      "steps": [
+       "第一步：以坐标法为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：坐标化 $\\vec a=(2,0)$、$\\vec b=\\left(\\dfrac{3}{2},\\dfrac{3\\sqrt3}{2}\\right)$ 的分量计算。",
+       "第三步：各向量坐标标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面向量模长",
+     "visual_style": "平行四边形对角线",
+     "efficiency_tags": [
+      "坐标化 $\\vec a=(2,0)$、$\\vec b=\\left(\\dfrac{3}{2},\\dfrac{3\\sqrt3}{2}\\right)$ 的分量计算",
+      "各向量坐标标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-016-s3",
+     "problem_id": "eval-geom-016",
+     "solution_id": "eval-geom-016-s3",
+     "method": "几何法",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $|\\vec a|=2$，$|\\vec b|=3$，$\\vec a$ 与 $\\vec b$ 的夹角为 $60^\\circ$，求 $|\\vec a+\\vec b|$、$|2\\vec a-\\vec b|$ 及 $\\vec a+\\vec b$ 与 $\\vec a-\\vec b$ 的夹角余弦。",
+     "solution": "以 $\\vec a,\\vec b$ 为邻边作平行四边形，对角线长为 $|\\vec a+\\vec b|$ 与 $|\\vec a-\\vec b|$。由余弦定理：$|\\vec a+\\vec b|^2=2^2+3^2-2\\cdot 2\\cdot 3\\cos 120^\\circ=19$（补角 $120^\\circ$），$|\\vec a-\\vec b|^2=2^2+3^2-2\\cdot 2\\cdot 3\\cos 60^\\circ=7$。$2\\vec a-\\vec b$ 可用三角形法则：以 $2\\vec a$ 与 $-\\vec b$ 为边，$|2\\vec a-\\vec b|^2=16+9-2\\cdot 4\\cdot 3\\cdot\\dfrac{1}{2}=13$。夹角余弦由点积公式同解法一。",
+     "answer": "$|\\vec a+\\vec b|=\\sqrt{19}$，$|2\\vec a-\\vec b|=\\sqrt{13}$，$\\cos\\theta=-\\dfrac{5}{\\sqrt{133}}$",
+     "scene_spec": {
+      "objects": [
+       "平行四边形与两对角线",
+       "三角形法则拼接 $2\\vec a$ 与 $-\\vec b$",
+       "余弦定理补角 $120^\\circ$ 的标注"
+      ],
+      "steps": [
+       "第一步：以几何法为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：平行四边形与两对角线。",
+       "第三步：三角形法则拼接 $2\\vec a$ 与 $-\\vec b$。",
+       "第四步：余弦定理补角 $120^\\circ$ 的标注。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "平面向量模长",
+     "visual_style": "平行四边形对角线",
+     "efficiency_tags": [
+      "平行四边形与两对角线",
+      "三角形法则拼接 $2\\vec a$ 与 $-\\vec b$",
+      "余弦定理补角 $120^\\circ$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "0ba7fd4c1544172bce020ec2c9dc48160914bf751d076a136b0643e3a40da5e2",
+    "687f3d855af864807dd360f1a9fe84b0300b86e776fc822815bf7507dd623afb",
+    "31e672c4bc5ca2b51d00d0b1443caf5ea65f23681a99b68c2aeb589ab2c6fbaa"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-017",
+   "problem_sha256": "229f0884ef0d5b6a96f8f64b000fb1f3c45a09edae6289a036af70dc6e64435a",
+   "source_records": [
+    {
+     "id": "eval-geom-017-s1",
+     "problem_id": "eval-geom-017",
+     "solution_id": "eval-geom-017-s1",
+     "method": "点积公式",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $\\vec a=(1,2,2)$，$\\vec b=(-2,1,2)$，求 $\\vec a$ 与 $\\vec b$ 的夹角余弦及 $\\vec a$ 在 $\\vec b$ 上的投影向量。",
+     "solution": "$\\vec a\\cdot\\vec b=1\\cdot(-2)+2\\cdot 1+2\\cdot 2=4$，$|\\vec a|=\\sqrt{1+4+4}=3$，$|\\vec b|=\\sqrt{4+1+4}=3$，故 $\\cos\\theta=\\dfrac{4}{3\\cdot 3}=\\dfrac{4}{9}$。投影向量 $\\mathrm{proj}_{\\vec b}\\vec a=\\dfrac{\\vec a\\cdot\\vec b}{|\\vec b|^2}\\vec b=\\dfrac{4}{9}(-2,1,2)=\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$。",
+     "answer": "$\\cos\\theta=\\dfrac{4}{9}$；投影向量 $\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "点积 $\\vec a\\cdot\\vec b=4$ 与模长 $3,3$ 的标注",
+       "夹角余弦 $\\dfrac{4}{9}$"
+      ],
+      "steps": [
+       "第一步：以点积公式为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：点积 $\\vec a\\cdot\\vec b=4$ 与模长 $3,3$ 的标注。",
+       "第三步：夹角余弦 $\\dfrac{4}{9}$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间向量投影",
+     "visual_style": "正交分解",
+     "efficiency_tags": [
+      "点积 $\\vec a\\cdot\\vec b=4$ 与模长 $3,3$ 的标注",
+      "夹角余弦 $\\dfrac{4}{9}$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-017-s2",
+     "problem_id": "eval-geom-017",
+     "solution_id": "eval-geom-017-s2",
+     "method": "投影几何",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $\\vec a=(1,2,2)$，$\\vec b=(-2,1,2)$，求 $\\vec a$ 与 $\\vec b$ 的夹角余弦及 $\\vec a$ 在 $\\vec b$ 上的投影向量。",
+     "solution": "投影长度 $|\\vec a|\\cos\\theta=3\\cdot\\dfrac{4}{9}=\\dfrac{4}{3}$，方向为 $\\dfrac{\\vec b}{|\\vec b|}=\\dfrac{1}{3}(-2,1,2)$，故投影向量 $=\\dfrac{4}{3}\\cdot\\dfrac{1}{3}(-2,1,2)=\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$。",
+     "answer": "$\\cos\\theta=\\dfrac{4}{9}$；投影向量 $\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "投影长度 $\\dfrac{4}{3}$ 与单位方向 $\\dfrac{\\vec b}{3}$ 的乘积",
+       "三维向量与夹角"
+      ],
+      "steps": [
+       "第一步：以投影几何为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：投影长度 $\\dfrac{4}{3}$ 与单位方向 $\\dfrac{\\vec b}{3}$ 的乘积。",
+       "第三步：三维向量与夹角。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间向量投影",
+     "visual_style": "正交分解",
+     "efficiency_tags": [
+      "投影长度 $\\dfrac{4}{3}$ 与单位方向 $\\dfrac{\\vec b}{3}$ 的乘积",
+      "三维向量与夹角"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-017-s3",
+     "problem_id": "eval-geom-017",
+     "solution_id": "eval-geom-017-s3",
+     "method": "正交分解验证",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "已知 $\\vec a=(1,2,2)$，$\\vec b=(-2,1,2)$，求 $\\vec a$ 与 $\\vec b$ 的夹角余弦及 $\\vec a$ 在 $\\vec b$ 上的投影向量。",
+     "solution": "取单位向量 $\\vec u=\\dfrac{\\vec b}{3}=\\left(-\\dfrac{2}{3},\\dfrac{1}{3},\\dfrac{2}{3}\\right)$，则 $\\vec a=\\left(\\vec a\\cdot\\vec u\\right)\\vec u+\\vec a_\\perp$，其中 $\\vec a\\cdot\\vec u=\\dfrac{4}{3}$，$\\vec a_\\perp=\\vec a-\\dfrac{4}{3}\\vec u=(1,2,2)-\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)=\\left(\\dfrac{17}{9},\\dfrac{14}{9},\\dfrac{10}{9}\\right)$。验证 $\\vec a_\\perp\\cdot\\vec b=\\dfrac{17}{9}\\cdot(-2)+\\dfrac{14}{9}\\cdot 1+\\dfrac{10}{9}\\cdot 2=\\dfrac{-34+14+20}{9}=0$，正交分解成立，投影分量即 $\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$。",
+     "answer": "$\\cos\\theta=\\dfrac{4}{9}$；投影向量 $\\left(-\\dfrac{8}{9},\\dfrac{4}{9},\\dfrac{8}{9}\\right)$",
+     "scene_spec": {
+      "objects": [
+       "$a$ 分解为平行/垂直分量",
+       "正交性验证 $\\vec a_\\perp\\cdot\\vec b=0$"
+      ],
+      "steps": [
+       "第一步：以正交分解验证为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：$a$ 分解为平行/垂直分量。",
+       "第三步：正交性验证 $\\vec a_\\perp\\cdot\\vec b=0$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "空间向量投影",
+     "visual_style": "正交分解",
+     "efficiency_tags": [
+      "$a$ 分解为平行/垂直分量",
+      "正交性验证 $\\vec a_\\perp\\cdot\\vec b=0$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "30f04d6ed6f7aa0da504e9f54805005e4b85f7e708f5d0bcfcbf7983a36ee995",
+    "93f700c0a32298e2e214192cf2e592eef9f7508dff67d497cf055e583a264ee8",
+    "0a4b07a0225ef3578c46c58c179e883692b93b93759862ac792cab0f673f7b78"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-018",
+   "problem_sha256": "447eda4d3de6213be8aeaf1cba25b6bcf725f1bc2ecb980ef6e1ec65cfc741d0",
+   "source_records": [
+    {
+     "id": "eval-geom-018-s1",
+     "problem_id": "eval-geom-018",
+     "solution_id": "eval-geom-018-s1",
+     "method": "混合积",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "求以 $O(0,0,0)$、$A(2,0,0)$、$B(0,3,0)$、$C(0,0,4)$ 为顶点的四面体体积。",
+     "solution": "$V=\\dfrac{1}{6}\\left|\\det(\\overrightarrow{OA},\\overrightarrow{OB},\\overrightarrow{OC})\\right|=\\dfrac{1}{6}\\left|\\begin{vmatrix}2&0&0\\\\0&3&0\\\\0&0&4\\end{vmatrix}\\right|=\\dfrac{24}{6}=4$。",
+     "answer": "$4$",
+     "scene_spec": {
+      "objects": [
+       "混合积行列式 $\\begin{vmatrix}2&0&0\\\\0&3&0\\\\0&0&4\\end{vmatrix}=24$ 的计算",
+       "四面体与对应平行六面体"
+      ],
+      "steps": [
+       "第一步：以混合积为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：混合积行列式 $\\begin{vmatrix}2&0&0\\\\0&3&0\\\\0&0&4\\end{vmatrix}=24$ 的计算。",
+       "第三步：四面体与对应平行六面体。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "混合积体积",
+     "visual_style": "线性替换拉正单纯形",
+     "efficiency_tags": [
+      "混合积行列式 $\\begin{vmatrix}2&0&0\\\\0&3&0\\\\0&0&4\\end{vmatrix}=24$ 的计算",
+      "四面体与对应平行六面体"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-018-s2",
+     "problem_id": "eval-geom-018",
+     "solution_id": "eval-geom-018-s2",
+     "method": "底面积×高",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "求以 $O(0,0,0)$、$A(2,0,0)$、$B(0,3,0)$、$C(0,0,4)$ 为顶点的四面体体积。",
+     "solution": "取底面 $OAB$：面积 $S=\\dfrac{1}{2}\\cdot 2\\cdot 3=3$。顶点 $C$ 到平面 $xOy$ 的距离即高 $h=4$。故 $V=\\dfrac{1}{3}Sh=\\dfrac{1}{3}\\cdot 3\\cdot 4=4$。",
+     "answer": "$4$",
+     "scene_spec": {
+      "objects": [
+       "底面积 $\\dfrac{1}{2}\\cdot2\\cdot3=3$ 与高 4 的标注",
+       "体积 $\\dfrac{1}{3}Sh=4$"
+      ],
+      "steps": [
+       "第一步：以底面积×高为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：底面积 $\\dfrac{1}{2}\\cdot2\\cdot3=3$ 与高 4 的标注。",
+       "第三步：体积 $\\dfrac{1}{3}Sh=4$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "混合积体积",
+     "visual_style": "线性替换拉正单纯形",
+     "efficiency_tags": [
+      "底面积 $\\dfrac{1}{2}\\cdot2\\cdot3=3$ 与高 4 的标注",
+      "体积 $\\dfrac{1}{3}Sh=4$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-018-s3",
+     "problem_id": "eval-geom-018",
+     "solution_id": "eval-geom-018-s3",
+     "method": "三重积分",
+     "category": "解析几何",
+     "sub_category": "向量",
+     "problem": "求以 $O(0,0,0)$、$A(2,0,0)$、$B(0,3,0)$、$C(0,0,4)$ 为顶点的四面体体积。",
+     "solution": "四面体区域为 $\\dfrac{x}{2}+\\dfrac{y}{3}+\\dfrac{z}{4}\\le 1$、$x,y,z\\ge 0$。作线性替换 $u=\\dfrac{x}{2}$、$v=\\dfrac{y}{3}$、$w=\\dfrac{z}{4}$（雅可比行列式 $\\dfrac{\\partial(x,y,z)}{\\partial(u,v,w)}=2\\cdot 3\\cdot 4=24$），区域变为 $u+v+w\\le 1$、$u,v,w\\ge 0$。$V=\\displaystyle\\iiint dx\\,dy\\,dz=24\\iiint du\\,dv\\,dw=24\\cdot\\dfrac{1}{6}=4$（单位单纯形 $u+v+w\\le 1,\\ u,v,w\\ge 0$ 的体积为 $\\dfrac{1}{6}$）。",
+     "answer": "$4$",
+     "scene_spec": {
+      "objects": [
+       "线性替换 $u=\\dfrac{x}{2}$ 等拉正为标准单纯形",
+       "雅可比 $24$ 与单纯形体积 $\\dfrac{1}{6}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以三重积分为主线，建立解析几何·向量场景并呈现该解法的关键图形。",
+       "第二步：线性替换 $u=\\dfrac{x}{2}$ 等拉正为标准单纯形。",
+       "第三步：雅可比 $24$ 与单纯形体积 $\\dfrac{1}{6}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "混合积体积",
+     "visual_style": "线性替换拉正单纯形",
+     "efficiency_tags": [
+      "线性替换 $u=\\dfrac{x}{2}$ 等拉正为标准单纯形",
+      "雅可比 $24$ 与单纯形体积 $\\dfrac{1}{6}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a97e7e0e0d3116cc66ca303d2dd08784fbfa460ae3737c4ea501fe9f546ef5af",
+    "2337a3a02760c195acf77eb402c8e629ca7c8f1acb86a45f1ef70e5522797247",
+    "867c10182b15f111ec5fe69e80cbdbd25882df65f89a055ee96a962687c14f3c"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-geom-019",
+   "problem_sha256": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+   "source_records": [
+    {
+     "id": "eval-geom-019-s1",
+     "problem_id": "eval-geom-019",
+     "solution_id": "eval-geom-019-s1",
+     "method": "法向量叉积",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x+y+z=1$ 与 $\\pi_2:x+2y+3z=6$ 的交线方程。",
+     "solution": "方向向量 $\\vec s=\\vec{n_1}\\times\\vec{n_2}=(1,1,1)\\times(1,2,3)=(1\\cdot 3-1\\cdot 2,\\ 1\\cdot 1-1\\cdot 3,\\ 1\\cdot 2-1\\cdot 1)=(1,-2,1)$。求交线上一点：令 $z=0$，解 $\\begin{cases}x+y=1\\\\x+2y=6\\end{cases}$，两式相减得 $y=5$、$x=-4$，得点 $P_0(-4,5,0)$。交线为 $\\dfrac{x+4}{1}=\\dfrac{y-5}{-2}=\\dfrac{z}{1}$。",
+     "answer": "$\\dfrac{x+4}{1}=\\dfrac{y-5}{-2}=\\dfrac{z}{1}$，即 $(x,y,z)=(-4+t,5-2t,t)$",
+     "scene_spec": {
+      "objects": [
+       "叉积 $\\vec s=(1,-2,1)$ 的方向动画",
+       "点 $P_0(-4,5,0)$ 的定位"
+      ],
+      "steps": [
+       "第一步：以法向量叉积为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：叉积 $\\vec s=(1,-2,1)$ 的方向动画。",
+       "第三步：点 $P_0(-4,5,0)$ 的定位。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面交线",
+     "visual_style": "法向量叉积",
+     "efficiency_tags": [
+      "叉积 $\\vec s=(1,-2,1)$ 的方向动画",
+      "点 $P_0(-4,5,0)$ 的定位"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-019-s2",
+     "problem_id": "eval-geom-019",
+     "solution_id": "eval-geom-019-s2",
+     "method": "高斯消元",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x+y+z=1$ 与 $\\pi_2:x+2y+3z=6$ 的交线方程。",
+     "solution": "方程组 $\\begin{cases}x+y+z=1\\\\x+2y+3z=6\\end{cases}$。第二式减第一式：$y+2z=5$，即 $y=5-2z$；代回第一式：$x+5-2z+z=1$，$x=z-4$。令 $z=t$，得参数方程 $(x,y,z)=(t-4,5-2t,t)=(-4+t,5-2t,t)$。",
+     "answer": "$\\dfrac{x+4}{1}=\\dfrac{y-5}{-2}=\\dfrac{z}{1}$，即 $(x,y,z)=(-4+t,5-2t,t)$",
+     "scene_spec": {
+      "objects": [
+       "高斯消元得 $y=5-2z$、$x=z-4$ 的步骤",
+       "参数方程 $(t-4,5-2t,t)$ 的生成"
+      ],
+      "steps": [
+       "第一步：以高斯消元为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：高斯消元得 $y=5-2z$、$x=z-4$ 的步骤。",
+       "第三步：参数方程 $(t-4,5-2t,t)$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面交线",
+     "visual_style": "法向量叉积",
+     "efficiency_tags": [
+      "高斯消元得 $y=5-2z$、$x=z-4$ 的步骤",
+      "参数方程 $(t-4,5-2t,t)$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-geom-019-s3",
+     "problem_id": "eval-geom-019",
+     "solution_id": "eval-geom-019-s3",
+     "method": "参数化验证",
+     "category": "解析几何",
+     "sub_category": "直线与平面",
+     "problem": "求两平面 $\\pi_1:x+y+z=1$ 与 $\\pi_2:x+2y+3z=6$ 的交线方程。",
+     "solution": "由解法一/二得 $(x,y,z)=(-4+t,5-2t,t)$。代入 $\\pi_1$：$(-4+t)+(5-2t)+t=1$；代入 $\\pi_2$：$(-4+t)+2(5-2t)+3t=-4+t+10-4t+3t=6$。两式恒成立，故确为交线。",
+     "answer": "$\\dfrac{x+4}{1}=\\dfrac{y-5}{-2}=\\dfrac{z}{1}$，即 $(x,y,z)=(-4+t,5-2t,t)$",
+     "scene_spec": {
+      "objects": [
+       "参数点沿交线运动",
+       "代回两平面恒成立的验证"
+      ],
+      "steps": [
+       "第一步：以参数化验证为主线，建立解析几何·直线与平面场景并呈现该解法的关键图形。",
+       "第二步：参数点沿交线运动。",
+       "第三步：代回两平面恒成立的验证。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "两平面交线",
+     "visual_style": "法向量叉积",
+     "efficiency_tags": [
+      "参数点沿交线运动",
+      "代回两平面恒成立的验证"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "1ccfe7efa9885f9d0565f392adc2c38e24823e50a0cd257e265033dc2b49f5c2",
+    "95b14412bc4e0d728c325dd77ea1162e0f2f2c00f2b2add873d55ee903c9eeab",
+    "4165e9a9dd62ad4b42f40997e139cd63ea66518d787375a10cb9b4d65670e3f3"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  }
+ ]
+}

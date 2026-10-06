@@ -1,0 +1,916 @@
+{
+ "candidate": {
+  "id": "linalg-048",
+  "category": "高等代数",
+  "sub_category": "线性变换",
+  "function_family": "线性变换",
+  "visual_style": "空间几何图形",
+  "efficiency_tags": [
+   "几何意义",
+   "剪切变换"
+  ],
+  "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+  "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+  "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+  "scene_spec": {
+   "objects": [
+    "带有刻度的黑色坐标轴",
+    "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+    "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+    "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+    "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+   ],
+   "steps": [
+    "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+    "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+    "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+    "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+    "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+   ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only"
+ },
+ "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+ "pairs": [
+  {
+   "split": "test",
+   "id": "test-calc-007",
+   "problem_sha256": "fd1a844d11a9969bb56ccc4f3934d173f6b853af55b9524e853b4bd80ec67f58",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-008",
+   "problem_sha256": "b30904197263a7e28e050029c2f875617e1dea57241e9da5f2de284f1618ccfd",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-009",
+   "problem_sha256": "9d4b61d24d871f4673c3fea08e03c475f8cecf9fed5c5f1a19efd70acf0dbdaf",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-010",
+   "problem_sha256": "e479996d1b4683c527603101d3189218b4a3870c8e9497f679fdeaa45afc348b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-011",
+   "problem_sha256": "9b5d8bc7ecf72ded7c884eaf9cb4ed9f9912641fd32e36cf13ddd427423ec43c",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-012",
+   "problem_sha256": "7199d8e4196cf9e6eab81635e58b65cf9b4312d7a340b8696a94b259dc963878",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-013",
+   "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-014",
+   "problem_sha256": "909cbd7d40efdfbae7676a14b34e2df10aa874b80939f566d9e66d2fa72720a0",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-015",
+   "problem_sha256": "0d75b6179aa7f666e220dbbcb03eca6e6274db7e8c364fece74321025a6efd3d",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-016",
+   "problem_sha256": "b02d1fee194332aca5e18fcc8a309297c734cbc4885f6af61f81afe0c9dbfb0f",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-017",
+   "problem_sha256": "c0a78065390328d5e370c681878d15d65e37c82230be32f80a24fe99920048f4",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-018",
+   "problem_sha256": "68295e6c0af3c377d1a871e1ba92a89caa3522004cf7d701da7abeba77f703aa",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-019",
+   "problem_sha256": "9f240493f251d4467c5e37da295db04641fe415dd73607dc1903cef28f6bfeb6",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-020",
+   "problem_sha256": "82207d18380df6f0c83d32835e944c21015965abcea9b6e2ad45084e4c2d33e2",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-021",
+   "problem_sha256": "70baf80bf2a2770968ec29ef0fb8e97a96fba8efb25285edb1dcef11335b07a5",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-022",
+   "problem_sha256": "eecca6d889e7a8d3ed181a2f8180fd6793103f10d9dc2e6a05995440f74c5c4d",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-023",
+   "problem_sha256": "0fe8077c084db3dee2a71c7dc2e2e6e746d333a856430b3c27e8553f8875125b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-024",
+   "problem_sha256": "70bbdfba6d7c6e65e3545339b922957285d60c256ee3d8fe00d0a461d14bcb45",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-025",
+   "problem_sha256": "85cdcedaa2463bb02d46ebb720c1206a201356cfec10c1c4e97510b2ed1fb086",
+   "verdict": null,
+   "reason": ""
+  }
+ ],
+ "material": [
+  {
+   "split": "test",
+   "id": "test-calc-007",
+   "problem_sha256": "fd1a844d11a9969bb56ccc4f3934d173f6b853af55b9524e853b4bd80ec67f58",
+   "source_records": [
+    {
+     "id": "test-calc-007",
+     "category": "数学分析",
+     "sub_category": "中值定理×极限",
+     "problem": "设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\\displaystyle\\lim_{x\\to 0}\\frac{f(x)}{x^2}$。",
+     "solution": "由 $f(0)=0$ 与 $f'(0)=0$，$\\dfrac{f(x)}{x^2}$ 为 $\\dfrac{0}{0}$ 型。洛必达一次：$\\lim_{x\\to 0}\\dfrac{f'(x)}{2x}$。不假设 $f''$ 连续，直接由二阶导数定义（$f'(0)=0$）：$\\lim_{x\\to 0}\\dfrac{f'(x)}{2x}=\\dfrac{1}{2}\\lim_{x\\to 0}\\dfrac{f'(x)-f'(0)}{x}=\\dfrac{f''(0)}{2}$。",
+     "answer": "$\\dfrac{f''(0)}{2}$",
+     "scene_spec": {
+      "objects": [
+       "洛必达两步的分子分母比值",
+       "$f$ 在原点附近的二阶接触"
+      ],
+      "steps": [
+       "第一步：建立数学分析·中值定理×极限综合场景，呈现与洛必达法则、二阶导数、函数极限相关的核心图形。",
+       "第二步：洛必达两步的分子分母比值。",
+       "第三步：$f$ 在原点附近的二阶接触。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "一般函数二阶导数极限",
+     "visual_style": "洛必达两步比值",
+     "efficiency_tags": [
+      "洛必达两步的分子分母比值",
+      "$f$ 在原点附近的二阶接触"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a01db6345019e848a78b4a91d85cf3013f04449125dd921d1861fa00ad69350e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-008",
+   "problem_sha256": "b30904197263a7e28e050029c2f875617e1dea57241e9da5f2de284f1618ccfd",
+   "source_records": [
+    {
+     "id": "test-calc-008",
+     "category": "数学分析",
+     "sub_category": "变限积分×极值",
+     "problem": "求 $f(x)=\\displaystyle\\int_0^x(t^2-t)\\,dt$ 的极值点与极值。",
+     "solution": "$f'(x)=x^2-x=x(x-1)$，驻点 $x=0,1$。$f''(x)=2x-1$：$f''(0)=-1<0$，$x=0$ 为极大值点；$f''(1)=1>0$，$x=1$ 为极小值点。计算值：$f(x)=\\displaystyle\\int_0^x(t^2-t)dt=\\dfrac{x^3}{3}-\\dfrac{x^2}{2}$。$f(0)=0$（极大值），$f(1)=\\dfrac{1}{3}-\\dfrac{1}{2}=-\\dfrac{1}{6}$（极小值）。",
+     "answer": "极大值 $f(0)=0$；极小值 $f(1)=-\\dfrac{1}{6}$",
+     "scene_spec": {
+      "objects": [
+       "被积函数 $t^2-t$ 与面积的正负变化",
+       "$f$ 曲线与两个极值点"
+      ],
+      "steps": [
+       "第一步：建立数学分析·变限积分×极值综合场景，呈现与微积分基本定理、极值判别、定积分计算相关的核心图形。",
+       "第二步：被积函数 $t^2-t$ 与面积的正负变化。",
+       "第三步：$f$ 曲线与两个极值点。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式变限积分极值",
+     "visual_style": "被积函数正负面积",
+     "efficiency_tags": [
+      "被积函数 $t^2-t$ 与面积的正负变化",
+      "$f$ 曲线与两个极值点"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "953e9843c952a65950d72193bf1c0323ebb790d1cfee7bd01b4055380a3e837e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-009",
+   "problem_sha256": "9d4b61d24d871f4673c3fea08e03c475f8cecf9fed5c5f1a19efd70acf0dbdaf",
+   "source_records": [
+    {
+     "id": "test-calc-009",
+     "category": "数学分析",
+     "sub_category": "参数方程×弧长",
+     "problem": "求曲线 $x=t^2,\\ y=t^3$（$0\\le t\\le 1$）的弧长。",
+     "solution": "$\\dfrac{dx}{dt}=2t$，$\\dfrac{dy}{dt}=3t^2$。弧长 $L=\\displaystyle\\int_0^1\\sqrt{(2t)^2+(3t^2)^2}\\,dt=\\int_0^1 t\\sqrt{4+9t^2}\\,dt$。令 $u=4+9t^2$（$du=18t\\,dt$），$L=\\dfrac{1}{18}\\displaystyle\\int_4^{13}\\sqrt{u}\\,du=\\dfrac{1}{18}\\cdot\\dfrac{2}{3}\\left[u^{3/2}\\right]_4^{13}=\\dfrac{1}{27}(13\\sqrt{13}-8)$。",
+     "answer": "$\\dfrac{13\\sqrt{13}-8}{27}$",
+     "scene_spec": {
+      "objects": [
+       "半立方抛物线 $x=t^2,y=t^3$ 的绘制",
+       "弧长微元沿曲线扫掠"
+      ],
+      "steps": [
+       "第一步：建立数学分析·参数方程×弧长综合场景，呈现与参数方程、弧长公式、换元积分相关的核心图形。",
+       "第二步：半立方抛物线 $x=t^2,y=t^3$ 的绘制。",
+       "第三步：弧长微元沿曲线扫掠。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "参数曲线(半立方抛物线)弧长",
+     "visual_style": "弧长微元扫掠",
+     "efficiency_tags": [
+      "半立方抛物线 $x=t^2,y=t^3$ 的绘制",
+      "弧长微元沿曲线扫掠"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "5d08f06640c1bd0ece955c7adad6a88c2c625570084910b49e3719bdaaee68bf"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-010",
+   "problem_sha256": "e479996d1b4683c527603101d3189218b4a3870c8e9497f679fdeaa45afc348b",
+   "source_records": [
+    {
+     "id": "test-calc-010",
+     "category": "数学分析",
+     "sub_category": "极坐标×面积",
+     "problem": "求心形线 $r=1+\\cos\\theta$ 所围图形的面积。",
+     "solution": "极坐标面积 $S=\\dfrac{1}{2}\\displaystyle\\int_0^{2\\pi}r^2\\,d\\theta=\\dfrac{1}{2}\\int_0^{2\\pi}(1+\\cos\\theta)^2d\\theta=\\dfrac{1}{2}\\int_0^{2\\pi}(1+2\\cos\\theta+\\cos^2\\theta)d\\theta$。其中 $\\int_0^{2\\pi}\\cos\\theta\\,d\\theta=0$，$\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta=\\pi$，故 $S=\\dfrac{1}{2}(2\\pi+0+\\pi)=\\dfrac{3\\pi}{2}$。",
+     "answer": "$\\dfrac{3\\pi}{2}$",
+     "scene_spec": {
+      "objects": [
+       "心形线的动态绘制",
+       "扇形微元扫掠",
+       "面积结果标注"
+      ],
+      "steps": [
+       "第一步：建立数学分析·极坐标×面积综合场景，呈现与极坐标面积公式、倍角积分、对称性相关的核心图形。",
+       "第二步：心形线的动态绘制。",
+       "第三步：扇形微元扫掠。",
+       "第四步：面积结果标注。",
+       "第五步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "极坐标曲线(心形线)面积",
+     "visual_style": "扇形微元扫掠",
+     "efficiency_tags": [
+      "心形线的动态绘制",
+      "扇形微元扫掠",
+      "面积结果标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "7b084def871104f4037c1d6a5a05e6699d52b8178c6c33d85e9fcfcdae5ceee9"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-011",
+   "problem_sha256": "9b5d8bc7ecf72ded7c884eaf9cb4ed9f9912641fd32e36cf13ddd427423ec43c",
+   "source_records": [
+    {
+     "id": "test-calc-011",
+     "category": "数学分析",
+     "sub_category": "旋转体×壳层法",
+     "problem": "求由 $y=x^2$ 与 $y=4$ 围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+     "solution": "区域为 $-2\\le x\\le 2,\\ x^2\\le y\\le 4$（关于 $y$ 轴对称）。绕 $y$ 轴旋转时左右两半生成同一个旋转体，只需取右半 $0\\le x\\le 2$。在 $x$ 处取高 $4-x^2$、厚 $dx$ 的竖直壳层，$dV=2\\pi x(4-x^2)dx$。$V=\\displaystyle\\int_0^2 2\\pi x(4-x^2)dx=2\\pi\\int_0^2(4x-x^3)dx=2\\pi\\left[2x^2-\\dfrac{x^4}{4}\\right]_0^2=2\\pi(8-4)=8\\pi$。",
+     "answer": "$8\\pi$",
+     "scene_spec": {
+      "objects": [
+       "壳层展开成薄板的扫掠动画",
+       "抛物线、直线与旋转轴"
+      ],
+      "steps": [
+       "第一步：建立数学分析·旋转体×壳层法综合场景，呈现与壳层法、多项式积分、旋转体体积相关的核心图形。",
+       "第二步：壳层展开成薄板的扫掠动画。",
+       "第三步：抛物线、直线与旋转轴。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多项式旋转体体积",
+     "visual_style": "壳层展开成薄板",
+     "efficiency_tags": [
+      "壳层展开成薄板的扫掠动画",
+      "抛物线、直线与旋转轴"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "26a2080c3407221d0647ff48e0c8c97b8e3bf5b24a5e1190cadecb811351e0b8"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-012",
+   "problem_sha256": "7199d8e4196cf9e6eab81635e58b65cf9b4312d7a340b8696a94b259dc963878",
+   "source_records": [
+    {
+     "id": "test-calc-012",
+     "category": "数学分析",
+     "sub_category": "反常积分×部分分式",
+     "problem": "判断反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。",
+     "solution": "$\\dfrac{1}{x(1+x)}=\\dfrac{1}{x}-\\dfrac{1}{1+x}$。$\\displaystyle\\int_1^b\\dfrac{dx}{x(1+x)}=\\left[\\ln x-\\ln(1+x)\\right]_1^b=\\ln\\dfrac{b}{1+b}-\\ln\\dfrac{1}{2}$。令 $b\\to+\\infty$：$\\ln\\dfrac{b}{1+b}\\to\\ln 1=0$，故积分 $=0-\\ln\\dfrac{1}{2}=\\ln 2$，收敛。",
+     "answer": "$\\ln 2$",
+     "scene_spec": {
+      "objects": [
+       "部分分式拆分的面积分解",
+       "上限 $b\\to\\infty$ 时面积趋于 $\\ln 2$"
+      ],
+      "steps": [
+       "第一步：建立数学分析·反常积分×部分分式综合场景，呈现与反常积分、部分分式、对数函数相关的核心图形。",
+       "第二步：部分分式拆分的面积分解。",
+       "第三步：上限 $b\\to\\infty$ 时面积趋于 $\\ln 2$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "有理函数反常积分",
+     "visual_style": "部分分式面积分解",
+     "efficiency_tags": [
+      "部分分式拆分的面积分解",
+      "上限 $b\\to\\infty$ 时面积趋于 $\\ln 2$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "bcc99768771e0d56f29f5a44f55bf201dba3fb6800e1e9d8ff3d8600c493a063"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-013",
+   "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+   "source_records": [
+    {
+     "id": "test-calc-013",
+     "category": "数学分析",
+     "sub_category": "级数×裂项",
+     "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+     "solution": "$\\dfrac{1}{n(n+2)}=\\dfrac{1}{2}\\left(\\dfrac{1}{n}-\\dfrac{1}{n+2}\\right)$。部分和 $S_n=\\dfrac{1}{2}\\displaystyle\\sum_{k=1}^{n}\\left(\\dfrac{1}{k}-\\dfrac{1}{k+2}\\right)=\\dfrac{1}{2}\\left[\\left(1+\\dfrac{1}{2}+\\dfrac{1}{3}+\\cdots+\\dfrac{1}{n}\\right)-\\left(\\dfrac{1}{3}+\\dfrac{1}{4}+\\cdots+\\dfrac{1}{n+2}\\right)\\right]=\\dfrac{1}{2}\\left(1+\\dfrac{1}{2}-\\dfrac{1}{n+1}-\\dfrac{1}{n+2}\\right)$。令 $n\\to\\infty$，$S=\\dfrac{1}{2}\\cdot\\dfrac{3}{2}=\\dfrac{3}{4}$。",
+     "answer": "$\\dfrac{3}{4}$",
+     "scene_spec": {
+      "objects": [
+       "裂项相消的逐项抵消动画",
+       "部分和逼近 $3/4$"
+      ],
+      "steps": [
+       "第一步：建立数学分析·级数×裂项综合场景，呈现与裂项相消、部分和极限、几何级数思想相关的核心图形。",
+       "第二步：裂项相消的逐项抵消动画。",
+       "第三步：部分和逼近 $3/4$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "有理型级数求和",
+     "visual_style": "裂项相消动画",
+     "efficiency_tags": [
+      "裂项相消的逐项抵消动画",
+      "部分和逼近 $3/4$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "c7c92233358cd431849850583ae18ce1c84ec1d3f06bd0ada37f3915d173f032"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-014",
+   "problem_sha256": "909cbd7d40efdfbae7676a14b34e2df10aa874b80939f566d9e66d2fa72720a0",
+   "source_records": [
+    {
+     "id": "test-calc-014",
+     "category": "数学分析",
+     "sub_category": "幂级数×微分方程",
+     "problem": "验证幂级数 $y=\\displaystyle\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。",
+     "solution": "该级数收敛半径为 $+\\infty$（比值判别法：$\\dfrac{1/(n+1)!}{1/n!}=\\dfrac{1}{n+1}\\to 0$），可逐项求导：$y'=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{nx^{n-1}}{n!}=\\sum_{n=1}^{\\infty}\\dfrac{x^{n-1}}{(n-1)!}=\\sum_{m=0}^{\\infty}\\dfrac{x^m}{m!}=y$。且 $y(0)=\\dfrac{1}{0!}+\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{0^n}{n!}=1+0=1$。由解的唯一性，$y=e^x$。",
+     "answer": "$y'=y$、$y(0)=1$，故 $y=e^x$",
+     "scene_spec": {
+      "objects": [
+       "部分和多项式随项数增长逼近 $e^x$",
+       "逐项求导的系数错位对应"
+      ],
+      "steps": [
+       "第一步：建立数学分析·幂级数×微分方程综合场景，呈现与幂级数逐项求导、微分方程、指数函数相关的核心图形。",
+       "第二步：部分和多项式随项数增长逼近 $e^x$。",
+       "第三步：逐项求导的系数错位对应。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数型幂级数",
+     "visual_style": "部分和逼近 e^x",
+     "efficiency_tags": [
+      "部分和多项式随项数增长逼近 $e^x$",
+      "逐项求导的系数错位对应"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "f5ece7d2c8afef493d33fa2af0ee865543ad4535ef49f0c35950bc82e5f276a4"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-015",
+   "problem_sha256": "0d75b6179aa7f666e220dbbcb03eca6e6274db7e8c364fece74321025a6efd3d",
+   "source_records": [
+    {
+     "id": "test-calc-015",
+     "category": "数学分析",
+     "sub_category": "幂级数×定积分",
+     "problem": "利用幂级数展开求 $\\displaystyle\\int_0^1\\frac{\\ln(1+x)}{x}\\,dx$ 的精确值。",
+     "solution": "$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\\dfrac{\\ln(1+x)}{x}=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\\left|\\displaystyle\\sum_{k>N}\\dfrac{(-1)^{k-1}x^{k-1}}{k}\\right|\\le\\dfrac{x^N}{N+1}\\le\\dfrac{1}{N+1}\\to 0$（交错级数估计，对 $x\\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\\lim_{x\\to 0}\\dfrac{\\ln(1+x)}{x}=1$）。故可逐项积分：$\\displaystyle\\int_0^1\\dfrac{\\ln(1+x)}{x}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n}\\int_0^1x^{n-1}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\\zeta(2)$ 的关系：$\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}=\\eta(2)=\\left(1-2^{1-2}\\right)\\zeta(2)=\\dfrac{1}{2}\\cdot\\dfrac{\\pi^2}{6}=\\dfrac{\\pi^2}{12}$（其中 $\\zeta(2)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}=\\dfrac{\\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。",
+     "answer": "$\\dfrac{\\pi^2}{12}$",
+     "scene_spec": {
+      "objects": [
+       "级数部分和逐项逼近",
+       "$\\dfrac{\\pi^2}{12}$ 与积分数值对照"
+      ],
+      "steps": [
+       "第一步：建立数学分析·幂级数×定积分综合场景，呈现与幂级数逐项积分、交错级数、$\\zeta(2)$相关的核心图形。",
+       "第二步：级数部分和逐项逼近。",
+       "第三步：$\\dfrac{\\pi^2}{12}$ 与积分数值对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数函数幂级数积分",
+     "visual_style": "逐项积分逼近",
+     "efficiency_tags": [
+      "级数部分和逐项逼近",
+      "$\\dfrac{\\pi^2}{12}$ 与积分数值对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a0cc62ee959be5f8b098ea14a803a021bf5af764a25ec35acfdc3501fc094858"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-016",
+   "problem_sha256": "b02d1fee194332aca5e18fcc8a309297c734cbc4885f6af61f81afe0c9dbfb0f",
+   "source_records": [
+    {
+     "id": "test-calc-016",
+     "category": "数学分析",
+     "sub_category": "隐函数×高阶导数",
+     "problem": "由方程 $x^2+y^2+xy=3$ 确定隐函数 $y=y(x)$。求 $y'(1)$ 与 $y''(1)$（已知 $(1,1)$ 满足方程）。",
+     "solution": "两边对 $x$ 求导：$2x+2yy'+y+xy'=0$。代入 $(1,1)$：$2+2y'(1)+1+y'(1)=0$，即 $3y'(1)=-3$，$y'(1)=-1$。再对 $x$ 求导：$2+2(y')^2+2yy''+y'+y'+xy''=0$，即 $2+2(y')^2+2yy''+2y'+xy''=0$。代入 $(1,1)$ 与 $y'=-1$：$2+2\\cdot 1+2y''-2+y''=0$，即 $3y''=-2$，$y''(1)=-\\dfrac{2}{3}$。",
+     "answer": "$y'(1)=-1$；$y''(1)=-\\dfrac{2}{3}$",
+     "scene_spec": {
+      "objects": [
+       "隐式曲线在 $(1,1)$ 处的切线与凹凸",
+       "逐次求导的符号推导"
+      ],
+      "steps": [
+       "第一步：建立数学分析·隐函数×高阶导数综合场景，呈现与隐函数求导、链式法则、高阶导数相关的核心图形。",
+       "第二步：隐式曲线在 $(1,1)$ 处的切线与凹凸。",
+       "第三步：逐次求导的符号推导。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "隐函数二阶导数",
+     "visual_style": "隐式曲线切触",
+     "efficiency_tags": [
+      "隐式曲线在 $(1,1)$ 处的切线与凹凸",
+      "逐次求导的符号推导"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "12ac2fd2faef1e71d8270ebac7c57340a24b9a8ed3a501d93af2823d78d1f81d"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-017",
+   "problem_sha256": "c0a78065390328d5e370c681878d15d65e37c82230be32f80a24fe99920048f4",
+   "source_records": [
+    {
+     "id": "test-calc-017",
+     "category": "数学分析",
+     "sub_category": "多元函数×无条件极值",
+     "problem": "求 $f(x,y)=x^2+y^2-xy+x+y$ 的极值点与极值。",
+     "solution": "驻点条件：$f_x=2x-y+1=0$，$f_y=2y-x+1=0$。两式相加得 $x+y+2=0$；两式相减得 $3x-3y=0$，即 $x=y$。代入 $x+y+2=0$：$2x=-2$，$x=y=-1$。驻点 $(-1,-1)$。Hessian $H=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix}$，顺序主子式 $2>0$、$\\det H=3>0$，正定，故 $(-1,-1)$ 为极小值点。$f(-1,-1)=1+1-1-1-1=-1$。",
+     "answer": "极小值 $f(-1,-1)=-1$",
+     "scene_spec": {
+      "objects": [
+       "曲面 $z=f(x,y)$ 与极小点",
+       "等高线向极值点收缩"
+      ],
+      "steps": [
+       "第一步：建立数学分析·多元函数×无条件极值综合场景，呈现与多元极值、驻点、Hessian 矩阵相关的核心图形。",
+       "第二步：曲面 $z=f(x,y)$ 与极小点。",
+       "第三步：等高线向极值点收缩。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "多元二次函数极值",
+     "visual_style": "曲面与等高线",
+     "efficiency_tags": [
+      "曲面 $z=f(x,y)$ 与极小点",
+      "等高线向极值点收缩"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "39ebd88d7b787e1dc098a81b9ca12f90170925626b789e608208a8d3c09d275b"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-018",
+   "problem_sha256": "68295e6c0af3c377d1a871e1ba92a89caa3522004cf7d701da7abeba77f703aa",
+   "source_records": [
+    {
+     "id": "test-calc-018",
+     "category": "数学分析",
+     "sub_category": "条件极值×拉格朗日乘数",
+     "problem": "求 $f(x,y)=xy$ 在约束 $x+y=4$ 下的最大值。",
+     "solution": "拉格朗日函数 $L=xy+\\lambda(x+y-4)$。$L_x=y+\\lambda=0$，$L_y=x+\\lambda=0$，故 $x=y=-\\lambda$。代入约束 $2x=4$，$x=y=2$，$\\lambda=-2$。$f(2,2)=4$。验证（消元法）：$y=4-x$，$f=x(4-x)=4x-x^2=-(x-2)^2+4\\le 4$，等号在 $x=2$ 取得，最大值 $4$。",
+     "answer": "最大值 $4$（在 $(2,2)$ 处取得）",
+     "scene_spec": {
+      "objects": [
+       "约束直线与等高线（双曲线族）相切",
+       "拉格朗日乘数的几何意义"
+      ],
+      "steps": [
+       "第一步：建立数学分析·条件极值×拉格朗日乘数综合场景，呈现与拉格朗日乘数法、约束优化、消元验证相关的核心图形。",
+       "第二步：约束直线与等高线（双曲线族）相切。",
+       "第三步：拉格朗日乘数的几何意义。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "双曲型等高线条件极值",
+     "visual_style": "约束直线与等高线相切",
+     "efficiency_tags": [
+      "约束直线与等高线（双曲线族）相切",
+      "拉格朗日乘数的几何意义"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "8f03f6b86bef9f645a0626d80c07bec2cf1a08731bdf21e156a984bcab53aeba"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-019",
+   "problem_sha256": "9f240493f251d4467c5e37da295db04641fe415dd73607dc1903cef28f6bfeb6",
+   "source_records": [
+    {
+     "id": "test-calc-019",
+     "category": "数学分析",
+     "sub_category": "重积分×交换次序",
+     "problem": "求 $\\displaystyle I=\\int_0^1\\!\\!\\int_y^1\\frac{x}{1+x^2}\\,dx\\,dy$。",
+     "solution": "区域 $D=\\{(x,y):0\\le y\\le 1,\\ y\\le x\\le 1\\}=\\{(x,y):0\\le x\\le 1,\\ 0\\le y\\le x\\}$。交换次序：$I=\\displaystyle\\int_0^1\\!\\!\\int_0^x\\frac{x}{1+x^2}\\,dy\\,dx=\\int_0^1\\frac{x^2}{1+x^2}\\,dx=\\int_0^1\\left(1-\\frac{1}{1+x^2}\\right)dx=\\left[x-\\arctan x\\right]_0^1=1-\\dfrac{\\pi}{4}$。",
+     "answer": "$1-\\dfrac{\\pi}{4}$",
+     "scene_spec": {
+      "objects": [
+       "三角形区域的两种扫描方向",
+       "交换次序前后的对照"
+      ],
+      "steps": [
+       "第一步：建立数学分析·重积分×交换次序综合场景，呈现与交换积分次序、反三角函数、二重积分相关的核心图形。",
+       "第二步：三角形区域的两种扫描方向。",
+       "第三步：交换次序前后的对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "有理函数二重积分",
+     "visual_style": "两种扫描方向",
+     "efficiency_tags": [
+      "三角形区域的两种扫描方向",
+      "交换次序前后的对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "bcfc0a2c42717c4227d9def4323a1180aaf13dc751304ae5c285fdfa6db0c0b0"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-020",
+   "problem_sha256": "82207d18380df6f0c83d32835e944c21015965abcea9b6e2ad45084e4c2d33e2",
+   "source_records": [
+    {
+     "id": "test-calc-020",
+     "category": "数学分析",
+     "sub_category": "格林公式×参数方程",
+     "problem": "用格林公式（或曲线积分）求椭圆 $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$（$a,b>0$）的面积。",
+     "solution": "参数化 $x=a\\cos t$、$y=b\\sin t$（$t:0\\to 2\\pi$）。由格林公式，面积 $S=\\dfrac{1}{2}\\displaystyle\\oint(x\\,dy-y\\,dx)=\\dfrac{1}{2}\\int_0^{2\\pi}\\left[a\\cos t\\cdot b\\cos t-b\\sin t\\cdot(-a\\sin t)\\right]dt=\\dfrac{1}{2}\\int_0^{2\\pi}ab(\\cos^2t+\\sin^2t)dt=\\dfrac{1}{2}ab\\cdot 2\\pi=\\pi ab$。",
+     "answer": "$\\pi ab$",
+     "scene_spec": {
+      "objects": [
+       "椭圆参数点沿边界运动",
+       "面积公式与扇形微元"
+      ],
+      "steps": [
+       "第一步：建立数学分析·格林公式×参数方程综合场景，呈现与格林公式、参数方程、定积分相关的核心图形。",
+       "第二步：椭圆参数点沿边界运动。",
+       "第三步：面积公式与扇形微元。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "椭圆参数方程面积",
+     "visual_style": "参数点沿边界运动",
+     "efficiency_tags": [
+      "椭圆参数点沿边界运动",
+      "面积公式与扇形微元"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "5d846beab2e725e5f8db4d7559e97d8127307515081c84ff41fca616828e80e4"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-021",
+   "problem_sha256": "70baf80bf2a2770968ec29ef0fb8e97a96fba8efb25285edb1dcef11335b07a5",
+   "source_records": [
+    {
+     "id": "test-calc-021",
+     "category": "数学分析",
+     "sub_category": "曲线积分×路径无关",
+     "problem": "求曲线积分 $\\displaystyle\\int_L(2xy\\,dx+x^2\\,dy)$，其中 $L$ 为从 $(0,0)$ 到 $(1,1)$ 的任意光滑曲线段，并说明结果与路径无关的原因。",
+     "solution": "$d(x^2y)=2xy\\,dx+x^2\\,dy$，故被积表达式是全微分，势函数 $\\varphi(x,y)=x^2y$。由微积分基本定理，$\\displaystyle\\int_L d\\varphi=\\varphi(1,1)-\\varphi(0,0)=1-0=1$，与路径无关（本题已直接构造出 $\\mathbb R^2$ 上的全局势函数，故无需再讨论充要条件；一般结论\"$\\dfrac{\\partial P}{\\partial y}=\\dfrac{\\partial Q}{\\partial x}$ 等价于积分与路径无关\"只在单连通区域上对 $C^1$ 向量场成立）。",
+     "answer": "$1$",
+     "scene_spec": {
+      "objects": [
+       "不同路径的曲线积分同一结果",
+       "势函数的等高线"
+      ],
+      "steps": [
+       "第一步：建立数学分析·曲线积分×路径无关综合场景，呈现与全微分、势函数、曲线积分相关的核心图形。",
+       "第二步：不同路径的曲线积分同一结果。",
+       "第三步：势函数的等高线。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "全微分曲线积分",
+     "visual_style": "势函数等高线",
+     "efficiency_tags": [
+      "不同路径的曲线积分同一结果",
+      "势函数的等高线"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4ca0013ba50e7d05a5509c7dc20fb36b6c1b4593f0ab2d7dd96501f070aa5051"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-022",
+   "problem_sha256": "eecca6d889e7a8d3ed181a2f8180fd6793103f10d9dc2e6a05995440f74c5c4d",
+   "source_records": [
+    {
+     "id": "test-calc-022",
+     "category": "数学分析",
+     "sub_category": "曲面积分×高斯公式",
+     "problem": "用高斯公式求 $\\displaystyle\\iint_S\\vec F\\cdot\\vec n\\,dS$，其中 $\\vec F=(x,y,z)$，$S$ 为单位球面 $x^2+y^2+z^2=1$（外侧），$\\vec n$ 为单位外法向量。",
+     "solution": "$\\operatorname{div}\\vec F=\\dfrac{\\partial x}{\\partial x}+\\dfrac{\\partial y}{\\partial y}+\\dfrac{\\partial z}{\\partial z}=3$。由高斯公式，$\\displaystyle\\iint_S\\vec F\\cdot\\vec n\\,dS=\\iiint_B\\operatorname{div}\\vec F\\,dV=3\\iiint_B dV=3\\cdot\\dfrac{4\\pi}{3}=4\\pi$（$B$ 为单位球体，体积 $\\dfrac{4\\pi}{3}$）。",
+     "answer": "$4\\pi$",
+     "scene_spec": {
+      "objects": [
+       "单位球面与向量场",
+       "高斯公式的区域积分示意"
+      ],
+      "steps": [
+       "第一步：建立数学分析·曲面积分×高斯公式综合场景，呈现与高斯散度定理、球体积、散度相关的核心图形。",
+       "第二步：单位球面与向量场。",
+       "第三步：高斯公式的区域积分示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "径向向量场通量",
+     "visual_style": "高斯公式区域积分",
+     "efficiency_tags": [
+      "单位球面与向量场",
+      "高斯公式的区域积分示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "93b4f445cc270d1001b8df4bcb032d6bd10bffc8bf6b8f819fac007c7138fb0e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-023",
+   "problem_sha256": "0fe8077c084db3dee2a71c7dc2e2e6e746d333a856430b3c27e8553f8875125b",
+   "source_records": [
+    {
+     "id": "test-calc-023",
+     "category": "数学分析",
+     "sub_category": "傅里叶级数×Parseval 等式",
+     "problem": "已知 $f(x)=x$（$-\\pi\\le x\\le\\pi$）的傅里叶级数为 $2\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n+1}}{n}\\sin nx$。利用 Parseval 等式求 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$。",
+     "solution": "Parseval 等式：$\\dfrac{1}{\\pi}\\displaystyle\\int_{-\\pi}^{\\pi}f(x)^2dx=\\sum_{n=1}^{\\infty}b_n^2$（奇函数情形，$a_n=0$），其中 $b_n=\\dfrac{2(-1)^{n+1}}{n}$。左端 $\\dfrac{1}{\\pi}\\displaystyle\\int_{-\\pi}^{\\pi}x^2dx=\\dfrac{1}{\\pi}\\cdot\\dfrac{2\\pi^3}{3}=\\dfrac{2\\pi^2}{3}$。右端 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{4}{n^2}=4\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}$。故 $4\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}=\\dfrac{2\\pi^2}{3}$，$\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}=\\dfrac{\\pi^2}{6}$。",
+     "answer": "$\\dfrac{\\pi^2}{6}$",
+     "scene_spec": {
+      "objects": [
+       "锯齿波与傅里叶部分和叠加",
+       "能量等式两端的对照"
+      ],
+      "steps": [
+       "第一步：建立数学分析·傅里叶级数×Parseval 等式综合场景，呈现与傅里叶级数、Parseval 等式、欧拉求和相关的核心图形。",
+       "第二步：锯齿波与傅里叶部分和叠加。",
+       "第三步：能量等式两端的对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "锯齿波傅里叶级数",
+     "visual_style": "部分和叠加与能量",
+     "efficiency_tags": [
+      "锯齿波与傅里叶部分和叠加",
+      "能量等式两端的对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "5135a1d4bf9391354fe5c3a08a2cfe22276732634e2a890c1a35bbf1392c1244"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-024",
+   "problem_sha256": "70bbdfba6d7c6e65e3545339b922957285d60c256ee3d8fe00d0a461d14bcb45",
+   "source_records": [
+    {
+     "id": "test-calc-024",
+     "category": "数学分析",
+     "sub_category": "数列极限×定积分",
+     "problem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{\\sqrt[n]{n!}}{n}$。",
+     "solution": "记 $S_n=\\dfrac{1}{n}\\displaystyle\\sum_{k=1}^{n}\\ln\\dfrac{k}{n}$，其中 $\\dfrac{k}{n}$ 是小区间 $\\left[\\dfrac{k-1}{n},\\dfrac{k}{n}\\right]$ 的右端点。因 $\\ln x$ 单调递增，在每个小区间上 $\\ln x\\le\\ln\\dfrac{k}{n}$，故 $\\displaystyle\\int_0^1\\ln x\\,dx=\\sum_{k=1}^{n}\\int_{(k-1)/n}^{k/n}\\ln x\\,dx\\le S_n$；又对 $k\\le n-1$，在 $\\left[\\dfrac{k}{n},\\dfrac{k+1}{n}\\right]$ 上 $\\ln x\\ge\\ln\\dfrac{k}{n}$，故 $S_n\\le\\displaystyle\\sum_{k=1}^{n-1}\\int_{k/n}^{(k+1)/n}\\ln x\\,dx+\\dfrac{1}{n}\\ln 1=\\int_{1/n}^1\\ln x\\,dx$。于是 $-1=\\displaystyle\\int_0^1\\ln x\\,dx\\le S_n\\le\\int_{1/n}^1\\ln x\\,dx=\\left[x\\ln x-x\\right]_{1/n}^1=-1+\\dfrac{\\ln n+1}{n}$（其中 $\\lim_{x\\to 0^+}x\\ln x=0$ 保证左端积分为 $-1$）。两端都趋于 $-1$，由夹逼准则 $S_n\\to-1$。故原极限 $=\\lim e^{S_n}=e^{-1}=\\dfrac{1}{e}$。",
+     "answer": "$\\dfrac{1}{e}$",
+     "scene_spec": {
+      "objects": [
+       "对数函数的黎曼矩形",
+       "极限值 $1/e$ 的收敛示意"
+      ],
+      "steps": [
+       "第一步：建立数学分析·数列极限×定积分综合场景，呈现与对数化、黎曼和、对数积分相关的核心图形。",
+       "第二步：对数函数的黎曼矩形。",
+       "第三步：极限值 $1/e$ 的收敛示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数函数黎曼和极限",
+     "visual_style": "对数黎曼矩形",
+     "efficiency_tags": [
+      "对数函数的黎曼矩形",
+      "极限值 $1/e$ 的收敛示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "031d0b9f5f94a6934a3a41014441ce7c3c647c911030ffbfb12fc37c44f49f77"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-025",
+   "problem_sha256": "85cdcedaa2463bb02d46ebb720c1206a201356cfec10c1c4e97510b2ed1fb086",
+   "source_records": [
+    {
+     "id": "test-calc-025",
+     "category": "数学分析",
+     "sub_category": "单调有界×递推数列",
+     "problem": "设 $a_1=1$，$a_{n+1}=1+\\dfrac{a_n}{1+a_n}$。证明 $\\{a_n\\}$ 收敛并求其极限。",
+     "solution": "记 $\\varphi=\\dfrac{1+\\sqrt5}{2}$（满足 $\\varphi^2=\\varphi+1$）。先证 $1\\le a_n<\\varphi$：$a_1=1<\\varphi$；若 $a_n<\\varphi$，则 $a_{n+1}=1+\\dfrac{a_n}{1+a_n}<1+\\dfrac{\\varphi}{1+\\varphi}$。由 $\\varphi^2=\\varphi+1$ 得 $\\dfrac{\\varphi}{1+\\varphi}=\\dfrac{1}{\\varphi}$，故 $a_{n+1}<1+\\dfrac{1}{\\varphi}=\\varphi$（$1+\\dfrac{1}{\\varphi}=\\dfrac{\\varphi+1}{\\varphi}=\\dfrac{\\varphi^2}{\\varphi}=\\varphi$）。再证单调递增：$a_{n+1}-a_n=1-\\dfrac{a_n^2}{1+a_n}=\\dfrac{1+a_n-a_n^2}{1+a_n}>0$（因 $a_n<\\varphi$ 时 $a_n^2<1+a_n$）。故 $\\{a_n\\}$ 单调递增有上界，收敛。设极限为 $L$，对递推式取极限：$L=1+\\dfrac{L}{1+L}$，即 $L^2=L+1$，正根 $L=\\varphi=\\dfrac{1+\\sqrt5}{2}$。",
+     "answer": "极限为 $\\dfrac{1+\\sqrt5}{2}$",
+     "scene_spec": {
+      "objects": [
+       "蛛网图（cobweb）迭代收敛",
+       "不动点 $\\varphi$ 的标注"
+      ],
+      "steps": [
+       "第一步：建立数学分析·单调有界×递推数列综合场景，呈现与单调有界准则、递推数列、不动点相关的核心图形。",
+       "第二步：蛛网图（cobweb）迭代收敛。",
+       "第三步：不动点 $\\varphi$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "递推数列收敛",
+     "visual_style": "蛛网图迭代",
+     "efficiency_tags": [
+      "蛛网图（cobweb）迭代收敛",
+      "不动点 $\\varphi$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "dcb944aa69100c2f18bb6cc319d8965f901cec47c224d0327a72a147ca95ddef"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  }
+ ]
+}

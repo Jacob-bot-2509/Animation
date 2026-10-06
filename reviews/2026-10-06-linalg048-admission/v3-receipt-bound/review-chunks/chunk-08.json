@@ -1,0 +1,1787 @@
+{
+ "candidate": {
+  "id": "linalg-048",
+  "category": "高等代数",
+  "sub_category": "线性变换",
+  "function_family": "线性变换",
+  "visual_style": "空间几何图形",
+  "efficiency_tags": [
+   "几何意义",
+   "剪切变换"
+  ],
+  "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+  "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+  "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+  "scene_spec": {
+   "objects": [
+    "带有刻度的黑色坐标轴",
+    "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+    "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+    "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+    "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+   ],
+   "steps": [
+    "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+    "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+    "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+    "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+    "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+   ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only"
+ },
+ "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+ "pairs": [
+  {
+   "split": "eval",
+   "id": "eval-prob-003",
+   "problem_sha256": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-004",
+   "problem_sha256": "f81df1cd84bf93ed6a834f5cb32d52ba32210ec06eab9c68d225c9595af58071",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-005",
+   "problem_sha256": "52023160add43640fb6984e092a5e211243b355a3b0abb714e0e74eb4be538f0",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-006",
+   "problem_sha256": "0328c42f087a0cbbe7d9c07005ab8ef3afb05de9c204b096e1e52b0c652ca415",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-007",
+   "problem_sha256": "5089b98664b1dfd7fbd9594ad3f7a59f6a6f491928acc00e7a0e5759955f69af",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-008",
+   "problem_sha256": "2a0d1fbf74525e693ffb682e66736ed5895abd595eb2f2002750edafcae5b131",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-009",
+   "problem_sha256": "e6a3d323c10e79a69627b04da93e52f1d9533c3b05f8189e123f94f33d18ecc6",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-010",
+   "problem_sha256": "112aa1da081d6446ab04d10f0537afc8e29e6d0d61cd4da152909d99ff56a86a",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-011",
+   "problem_sha256": "5b2ec8381948b9c2ac350e8ae92503ed4ad7ca424100bbdc2ddbdabd25548f9b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-012",
+   "problem_sha256": "c1a4f0f006d14e0f27d2a72ea22146b5145aca4822383b4bc7fbed767b2a8e02",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-013",
+   "problem_sha256": "e3a510d396155d28e8bca580b6f19047cc728c9413235b808621ed7282a4fd05",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-014",
+   "problem_sha256": "a79da55dc54b5b52dd6d76c491c7278636eb018baceedde2f41df6fc9e68d31d",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-015",
+   "problem_sha256": "16542c5620aff2fe7cfb324274c6662240300a8301865d651ca43acd7983e066",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-001",
+   "problem_sha256": "e4fb1c09ae99787ce56c4f7e6308ccbbb99bdb8f3251ce47c5eba997d6ac6e27",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-002",
+   "problem_sha256": "b341f7042d7204bb4b04ad1fe5a8db7704e23eb42015ae740d340d029b60d2f1",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-003",
+   "problem_sha256": "49d51bb4c468f99464875d3733046fbe0694504ecea76b1668ad26eeae5da78b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-004",
+   "problem_sha256": "004a5c3cea6a5f72a1f93580ddffa01d8ee275ac552db5a678e3e01e86b972d4",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-005",
+   "problem_sha256": "ffaf0aab72e759d598c56ae31266c6c6803505c590fdce934ef8990e6bf9601b",
+   "verdict": null,
+   "reason": ""
+  },
+  {
+   "split": "test",
+   "id": "test-calc-006",
+   "problem_sha256": "f708fdf69bf85f0096bc1e33bac9eeb5b0cb64cc2e729187349ae6b8fcb81891",
+   "verdict": null,
+   "reason": ""
+  }
+ ],
+ "material": [
+  {
+   "split": "eval",
+   "id": "eval-prob-003",
+   "problem_sha256": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+   "source_records": [
+    {
+     "id": "eval-prob-003-s1",
+     "problem_id": "eval-prob-003",
+     "solution_id": "eval-prob-003-s1",
+     "method": "级数求和",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "抛一枚均匀硬币直到出现正面为止，求抛掷次数的期望（几何分布期望）。",
+     "solution": "设 $X\\sim\\operatorname{Geom}\\!\\left(\\dfrac{1}{2}\\right)$，$P(X=n)=q^{n-1}p=\\left(\\dfrac{1}{2}\\right)^n$。$E[X]=\\displaystyle\\sum_{n=1}^{\\infty}n\\left(\\dfrac{1}{2}\\right)^n$。由 eval-calc-021 的错位相减（或幂级数 $\\sum nx^{n-1}=\\dfrac{1}{(1-x)^2}$ 取 $x=\\dfrac{1}{2}$），得 $E[X]=\\dfrac{1/2}{(1-1/2)^2}=2$。",
+     "answer": "$2$",
+     "scene_spec": {
+      "objects": [
+       "错位相减竖式逐行对齐",
+       "与级数 $\\sum n/2^n$ 的同构对照"
+      ],
+      "steps": [
+       "第一步：以级数求和为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：错位相减竖式逐行对齐。",
+       "第三步：与级数 $\\sum n/2^n$ 的同构对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "几何分布期望",
+     "visual_style": "树状图与自指方程",
+     "efficiency_tags": [
+      "错位相减竖式逐行对齐",
+      "与级数 $\\sum n/2^n$ 的同构对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-003-s2",
+     "problem_id": "eval-prob-003",
+     "solution_id": "eval-prob-003-s2",
+     "method": "无记忆性递推",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "抛一枚均匀硬币直到出现正面为止，求抛掷次数的期望（几何分布期望）。",
+     "solution": "记 $E$ 为首次正面所需次数的期望。第一次若为正面（概率 $\\dfrac{1}{2}$），总次数为 1；若为反面（概率 $\\dfrac{1}{2}$），则\"回到原点\"，总次数为 $1+E$。故 $E=\\dfrac{1}{2}\\cdot 1+\\dfrac{1}{2}\\cdot(1+E)=1+\\dfrac{E}{2}$，解得 $E=2$。",
+     "answer": "$2$",
+     "scene_spec": {
+      "objects": [
+       "抛硬币树状图与\"回到原点\"分支",
+       "期望自指方程 $E=1+\\dfrac{E}{2}$ 的天平示意"
+      ],
+      "steps": [
+       "第一步：以无记忆性递推为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：抛硬币树状图与\"回到原点\"分支。",
+       "第三步：期望自指方程 $E=1+\\dfrac{E}{2}$ 的天平示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "几何分布期望",
+     "visual_style": "树状图与自指方程",
+     "efficiency_tags": [
+      "抛硬币树状图与\"回到原点\"分支",
+      "期望自指方程 $E=1+\\dfrac{E}{2}$ 的天平示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-003-s3",
+     "problem_id": "eval-prob-003",
+     "solution_id": "eval-prob-003-s3",
+     "method": "概率母函数",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "抛一枚均匀硬币直到出现正面为止，求抛掷次数的期望（几何分布期望）。",
+     "solution": "概率母函数 $G(z)=E[z^X]=\\displaystyle\\sum_{n=1}^{\\infty}z^nq^{n-1}p=\\dfrac{pz}{1-qz}$。$G'(z)=\\dfrac{p(1-qz)+pqz}{(1-qz)^2}=\\dfrac{p}{(1-qz)^2}$，故 $E[X]=G'(1)=\\dfrac{p}{(1-q)^2}=\\dfrac{1}{p}=2$（$p=q=\\dfrac{1}{2}$）。",
+     "answer": "$2$",
+     "scene_spec": {
+      "objects": [
+       "母函数 $G(z)=\\dfrac{pz}{1-qz}$ 的曲线",
+       "$G'(1)$ 切线斜率的标注"
+      ],
+      "steps": [
+       "第一步：以概率母函数为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：母函数 $G(z)=\\dfrac{pz}{1-qz}$ 的曲线。",
+       "第三步：$G'(1)$ 切线斜率的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "几何分布期望",
+     "visual_style": "树状图与自指方程",
+     "efficiency_tags": [
+      "母函数 $G(z)=\\dfrac{pz}{1-qz}$ 的曲线",
+      "$G'(1)$ 切线斜率的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "13093879a7c856089171c468623008f962eead0380bdd3c3aa4e5be973a68955",
+    "e6919dca1184d7731e2aa60b5fb621b5a2f426b6e75168fa563b93be088cad0a",
+    "7ac9689ca553be056dcaaf489a9677cb941c185a51068492f1fc38f145cf8ba2"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-004",
+   "problem_sha256": "f81df1cd84bf93ed6a834f5cb32d52ba32210ec06eab9c68d225c9595af58071",
+   "source_records": [
+    {
+     "id": "eval-prob-004-s1",
+     "problem_id": "eval-prob-004",
+     "solution_id": "eval-prob-004-s1",
+     "method": "条件分布表",
+     "category": "概率论",
+     "sub_category": "条件分布",
+     "problem": "掷一枚均匀骰子两次，设 $X$ 为第一次点数，$Y$ 为两次点数之和。求 $P(Y\\ge 8\\mid X=3)$ 与 $E[Y\\mid X=3]$。",
+     "solution": "给定 $X=3$，第二次点数 $Z$ 在 $\\{1,2,3,4,5,6\\}$ 上等可能。$Y=3+Z\\ge 8\\iff Z\\ge 5$，故 $P(Y\\ge 8|X=3)=P(Z\\in\\{5,6\\})=\\dfrac{2}{6}=\\dfrac{1}{3}$。$E[Y|X=3]=3+E[Z]=3+\\dfrac{7}{2}=\\dfrac{13}{2}$。",
+     "answer": "$P(Y\\ge 8\\mid X=3)=\\dfrac{1}{3}$；$E[Y\\mid X=3]=\\dfrac{13}{2}$",
+     "scene_spec": {
+      "objects": [
+       "条件分布表（$Z\\in\\{1,\\dots,6\\}$ 等可能）",
+       "$Z\\ge5$ 的两格高亮"
+      ],
+      "steps": [
+       "第一步：以条件分布表为主线，建立概率论·条件分布场景并呈现该解法的关键图形。",
+       "第二步：条件分布表（$Z\\in\\{1,\\dots,6\\}$ 等可能）。",
+       "第三步：$Z\\ge5$ 的两格高亮。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散条件分布",
+     "visual_style": "条件化样本空间收缩",
+     "efficiency_tags": [
+      "条件分布表（$Z\\in\\{1,\\dots,6\\}$ 等可能）",
+      "$Z\\ge5$ 的两格高亮"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-004-s2",
+     "problem_id": "eval-prob-004",
+     "solution_id": "eval-prob-004-s2",
+     "method": "条件概率公式",
+     "category": "概率论",
+     "sub_category": "条件分布",
+     "problem": "掷一枚均匀骰子两次，设 $X$ 为第一次点数，$Y$ 为两次点数之和。求 $P(Y\\ge 8\\mid X=3)$ 与 $E[Y\\mid X=3]$。",
+     "solution": "$P(Y\\ge 8|X=3)=\\dfrac{P(X=3,Y\\ge 8)}{P(X=3)}$。$P(X=3)=\\dfrac{1}{6}$；事件 $\\{X=3,Y\\ge 8\\}$ 即 $\\{X=3,Z\\ge 5\\}$，由独立性 $P=\\dfrac{1}{6}\\cdot\\dfrac{2}{6}=\\dfrac{1}{18}$。故条件概率 $=\\dfrac{1/18}{1/6}=\\dfrac{1}{3}$。同理 $E[Y|X=3]=\\dfrac{1}{P(X=3)}\\displaystyle\\sum_z(3+z)P(X=3)P(Z=z)=\\sum_z(3+z)\\cdot\\dfrac{1}{6}=\\dfrac{13}{2}$。",
+     "answer": "$P(Y\\ge 8\\mid X=3)=\\dfrac{1}{3}$；$E[Y\\mid X=3]=\\dfrac{13}{2}$",
+     "scene_spec": {
+      "objects": [
+       "条件概率公式 $\\dfrac{P(X=3,Y\\ge8)}{P(X=3)}$ 的代入",
+       "独立性拆分的标注"
+      ],
+      "steps": [
+       "第一步：以条件概率公式为主线，建立概率论·条件分布场景并呈现该解法的关键图形。",
+       "第二步：条件概率公式 $\\dfrac{P(X=3,Y\\ge8)}{P(X=3)}$ 的代入。",
+       "第三步：独立性拆分的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散条件分布",
+     "visual_style": "条件化样本空间收缩",
+     "efficiency_tags": [
+      "条件概率公式 $\\dfrac{P(X=3,Y\\ge8)}{P(X=3)}$ 的代入",
+      "独立性拆分的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-004-s3",
+     "problem_id": "eval-prob-004",
+     "solution_id": "eval-prob-004-s3",
+     "method": "树状图",
+     "category": "概率论",
+     "sub_category": "条件分布",
+     "problem": "掷一枚均匀骰子两次，设 $X$ 为第一次点数，$Y$ 为两次点数之和。求 $P(Y\\ge 8\\mid X=3)$ 与 $E[Y\\mid X=3]$。",
+     "solution": "第一层固定 $X=3$，第二层 $Z\\in\\{1,\\dots,6\\}$ 各 $\\dfrac{1}{6}$。数出 $Z\\ge 5$ 的分支两条，概率 $\\dfrac{2}{6}$；所有分支的 $Y$ 值平均为 $\\dfrac{4+5+6+7+8+9}{6}=\\dfrac{39}{6}=\\dfrac{13}{2}$。",
+     "answer": "$P(Y\\ge 8\\mid X=3)=\\dfrac{1}{3}$；$E[Y\\mid X=3]=\\dfrac{13}{2}$",
+     "scene_spec": {
+      "objects": [
+       "两次掷骰的树状图",
+       "给定 $X=3$ 后第二层高亮与六值平均"
+      ],
+      "steps": [
+       "第一步：以树状图为主线，建立概率论·条件分布场景并呈现该解法的关键图形。",
+       "第二步：两次掷骰的树状图。",
+       "第三步：给定 $X=3$ 后第二层高亮与六值平均。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散条件分布",
+     "visual_style": "条件化样本空间收缩",
+     "efficiency_tags": [
+      "两次掷骰的树状图",
+      "给定 $X=3$ 后第二层高亮与六值平均"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "fc3777f469e04088de6f2eff38b0b15ad0b10587dd35e11bc08245413015003e",
+    "f81f5a5c5096c581e4b6c14b24bbcc6b31b86baa4f334d672e66f5f319990892",
+    "f72d37376266016b6dab542ce2605c8c893dd6b52b7596d3a16df976b485405e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-005",
+   "problem_sha256": "52023160add43640fb6984e092a5e211243b355a3b0abb714e0e74eb4be538f0",
+   "source_records": [
+    {
+     "id": "eval-prob-005-s1",
+     "problem_id": "eval-prob-005",
+     "solution_id": "eval-prob-005-s1",
+     "method": "分布函数法",
+     "category": "概率论",
+     "sub_category": "随机变量函数的分布",
+     "problem": "设 $X\\sim U(0,1)$（区间 $(0,1)$ 上的均匀分布），求 $Y=-\\ln X$ 的分布。",
+     "solution": "$F_Y(y)=P(Y\\le y)=P(-\\ln X\\le y)=P(X\\ge e^{-y})=1-e^{-y}$（$y>0$，用到 $X$ 的分布函数 $F_X(x)=x$ 于 $(0,1)$）。对 $y$ 求导：$f_Y(y)=e^{-y}$（$y>0$），即 $Y\\sim\\operatorname{Exp}(1)$。",
+     "answer": "$Y\\sim\\operatorname{Exp}(1)$，密度 $f_Y(y)=e^{-y}$（$y>0$）",
+     "scene_spec": {
+      "objects": [
+       "事件 $\\{X\\ge e^{-y}\\}$ 的区间高亮",
+       "分布函数 $F_Y(y)=1-e^{-y}$ 的生成"
+      ],
+      "steps": [
+       "第一步：以分布函数法为主线，建立概率论·随机变量函数的分布场景并呈现该解法的关键图形。",
+       "第二步：事件 $\\{X\\ge e^{-y}\\}$ 的区间高亮。",
+       "第三步：分布函数 $F_Y(y)=1-e^{-y}$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "均匀分布与指数变换",
+     "visual_style": "映射密度拉伸",
+     "efficiency_tags": [
+      "事件 $\\{X\\ge e^{-y}\\}$ 的区间高亮",
+      "分布函数 $F_Y(y)=1-e^{-y}$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-005-s2",
+     "problem_id": "eval-prob-005",
+     "solution_id": "eval-prob-005-s2",
+     "method": "密度变换公式",
+     "category": "概率论",
+     "sub_category": "随机变量函数的分布",
+     "problem": "设 $X\\sim U(0,1)$（区间 $(0,1)$ 上的均匀分布），求 $Y=-\\ln X$ 的分布。",
+     "solution": "$y=g(x)=-\\ln x$ 在 $(0,1)$ 上严格递减，反函数 $x=h(y)=e^{-y}$（$y>0$），$|h'(y)|=e^{-y}$。由变换公式 $f_Y(y)=f_X(h(y))\\cdot|h'(y)|=1\\cdot e^{-y}=e^{-y}$（$y>0$）。",
+     "answer": "$Y\\sim\\operatorname{Exp}(1)$，密度 $f_Y(y)=e^{-y}$（$y>0$）",
+     "scene_spec": {
+      "objects": [
+       "$y=-\\ln x$ 曲线与映射动画",
+       "反函数 $e^{-y}$ 与导数的密度变换"
+      ],
+      "steps": [
+       "第一步：以密度变换公式为主线，建立概率论·随机变量函数的分布场景并呈现该解法的关键图形。",
+       "第二步：$y=-\\ln x$ 曲线与映射动画。",
+       "第三步：反函数 $e^{-y}$ 与导数的密度变换。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "均匀分布与指数变换",
+     "visual_style": "映射密度拉伸",
+     "efficiency_tags": [
+      "$y=-\\ln x$ 曲线与映射动画",
+      "反函数 $e^{-y}$ 与导数的密度变换"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-005-s3",
+     "problem_id": "eval-prob-005",
+     "solution_id": "eval-prob-005-s3",
+     "method": "逆变换采样原理",
+     "category": "概率论",
+     "sub_category": "随机变量函数的分布",
+     "problem": "设 $X\\sim U(0,1)$（区间 $(0,1)$ 上的均匀分布），求 $Y=-\\ln X$ 的分布。",
+     "solution": "指数分布 $\\operatorname{Exp}(1)$ 的分布函数为 $F(y)=1-e^{-y}$，其反函数 $F^{-1}(u)=-\\ln(1-u)$。由于 $1-X$ 与 $X$ 同分布，$-\\ln X$ 与 $F^{-1}(X)$ 同分布，故 $Y\\sim\\operatorname{Exp}(1)$。这正是计算机生成指数随机数的标准方法（逆变换法）。",
+     "answer": "$Y\\sim\\operatorname{Exp}(1)$，密度 $f_Y(y)=e^{-y}$（$y>0$）",
+     "scene_spec": {
+      "objects": [
+       "均匀点列映射到正半轴",
+       "逆变换采样原理的示意"
+      ],
+      "steps": [
+       "第一步：以逆变换采样原理为主线，建立概率论·随机变量函数的分布场景并呈现该解法的关键图形。",
+       "第二步：均匀点列映射到正半轴。",
+       "第三步：逆变换采样原理的示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "均匀分布与指数变换",
+     "visual_style": "映射密度拉伸",
+     "efficiency_tags": [
+      "均匀点列映射到正半轴",
+      "逆变换采样原理的示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4b33c2ecefe65b73c5b2554c927e68c7dcdbc10f9d80b1fdf0b03cadfadde99c",
+    "67905df37148fa6be6743b0934d0e6a66fabe9167e7194ffe1c1076b54e6e59e",
+    "86a1989f2b39873a1427e5bdfd32973d908607e3f15dccda5b938c49891d5725"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-006",
+   "problem_sha256": "0328c42f087a0cbbe7d9c07005ab8ef3afb05de9c204b096e1e52b0c652ca415",
+   "source_records": [
+    {
+     "id": "eval-prob-006-s1",
+     "problem_id": "eval-prob-006",
+     "solution_id": "eval-prob-006-s1",
+     "method": "定义级数求和",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "设 $X\\sim\\operatorname{Poisson}(\\lambda)$，求 $E[X^2]$，并由此求 $\\operatorname{Var}(X)$。",
+     "solution": "$E[X^2]=\\displaystyle\\sum_{k=0}^{\\infty}k^2\\cdot\\dfrac{\\lambda^ke^{-\\lambda}}{k!}=\\sum_{k=0}^{\\infty}\\left[k(k-1)+k\\right]\\dfrac{\\lambda^ke^{-\\lambda}}{k!}=e^{-\\lambda}\\left[\\lambda^2\\sum_{k=2}^{\\infty}\\dfrac{\\lambda^{k-2}}{(k-2)!}+\\lambda\\sum_{k=1}^{\\infty}\\dfrac{\\lambda^{k-1}}{(k-1)!}\\right]=e^{-\\lambda}\\left[\\lambda^2e^{\\lambda}+\\lambda e^{\\lambda}\\right]=\\lambda^2+\\lambda$。故 $\\operatorname{Var}(X)=E[X^2]-(E[X])^2=\\lambda^2+\\lambda-\\lambda^2=\\lambda$。",
+     "answer": "$E[X^2]=\\lambda^2+\\lambda$，$\\operatorname{Var}(X)=\\lambda$",
+     "scene_spec": {
+      "objects": [
+       "$k^2=k(k-1)+k$ 的拆项动画",
+       "两级数 $e^\\lambda$ 求和的重整化"
+      ],
+      "steps": [
+       "第一步：以定义级数求和为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：$k^2=k(k-1)+k$ 的拆项动画。",
+       "第三步：两级数 $e^\\lambda$ 求和的重整化。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "泊松分布矩",
+     "visual_style": "阶乘矩重整化",
+     "efficiency_tags": [
+      "$k^2=k(k-1)+k$ 的拆项动画",
+      "两级数 $e^\\lambda$ 求和的重整化"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-006-s2",
+     "problem_id": "eval-prob-006",
+     "solution_id": "eval-prob-006-s2",
+     "method": "阶乘矩",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "设 $X\\sim\\operatorname{Poisson}(\\lambda)$，求 $E[X^2]$，并由此求 $\\operatorname{Var}(X)$。",
+     "solution": "$E[X(X-1)]=\\displaystyle\\sum_{k=2}^{\\infty}k(k-1)\\dfrac{\\lambda^ke^{-\\lambda}}{k!}=e^{-\\lambda}\\lambda^2\\sum_{k=2}^{\\infty}\\dfrac{\\lambda^{k-2}}{(k-2)!}=\\lambda^2$。故 $E[X^2]=E[X(X-1)]+E[X]=\\lambda^2+\\lambda$，$\\operatorname{Var}(X)=\\lambda$。",
+     "answer": "$E[X^2]=\\lambda^2+\\lambda$，$\\operatorname{Var}(X)=\\lambda$",
+     "scene_spec": {
+      "objects": [
+       "$E[X(X-1)]=\\lambda^2$ 的阶乘矩重整化示意",
+       "泊松分布柱状图随 $\\lambda$ 变化"
+      ],
+      "steps": [
+       "第一步：以阶乘矩为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：$E[X(X-1)]=\\lambda^2$ 的阶乘矩重整化示意。",
+       "第三步：泊松分布柱状图随 $\\lambda$ 变化。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "泊松分布矩",
+     "visual_style": "阶乘矩重整化",
+     "efficiency_tags": [
+      "$E[X(X-1)]=\\lambda^2$ 的阶乘矩重整化示意",
+      "泊松分布柱状图随 $\\lambda$ 变化"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-006-s3",
+     "problem_id": "eval-prob-006",
+     "solution_id": "eval-prob-006-s3",
+     "method": "矩母函数",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "设 $X\\sim\\operatorname{Poisson}(\\lambda)$，求 $E[X^2]$，并由此求 $\\operatorname{Var}(X)$。",
+     "solution": "$M(t)=E[e^{tX}]=e^{\\lambda(e^t-1)}$。$M'(t)=M(t)\\cdot\\lambda e^t$，$M''(t)=M(t)\\left[(\\lambda e^t)^2+\\lambda e^t\\right]$。$E[X]=M'(0)=\\lambda$，$E[X^2]=M''(0)=\\lambda^2+\\lambda$，$\\operatorname{Var}(X)=M''(0)-[M'(0)]^2=\\lambda$。",
+     "answer": "$E[X^2]=\\lambda^2+\\lambda$，$\\operatorname{Var}(X)=\\lambda$",
+     "scene_spec": {
+      "objects": [
+       "矩母函数 $M(t)=e^{\\lambda(e^t-1)}$ 的曲线",
+       "二阶导 $M''(0)=\\lambda^2+\\lambda$ 的标注"
+      ],
+      "steps": [
+       "第一步：以矩母函数为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：矩母函数 $M(t)=e^{\\lambda(e^t-1)}$ 的曲线。",
+       "第三步：二阶导 $M''(0)=\\lambda^2+\\lambda$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "泊松分布矩",
+     "visual_style": "阶乘矩重整化",
+     "efficiency_tags": [
+      "矩母函数 $M(t)=e^{\\lambda(e^t-1)}$ 的曲线",
+      "二阶导 $M''(0)=\\lambda^2+\\lambda$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "8f93e6cf767eede68dd01b170d4620fab8b5ce270bbac032ce6166c9dfce9192",
+    "a2e4b82145b3edbc8de0142b317e2108f693ff1de5c91e2dd0dcfdba083d4ef2",
+    "de36434916e4cd927128202f960e96949d704b7af21f500669cd9ae41eb71fde"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-007",
+   "problem_sha256": "5089b98664b1dfd7fbd9594ad3f7a59f6a6f491928acc00e7a0e5759955f69af",
+   "source_records": [
+    {
+     "id": "eval-prob-007-s1",
+     "problem_id": "eval-prob-007",
+     "solution_id": "eval-prob-007-s1",
+     "method": "对立事件",
+     "category": "概率论",
+     "sub_category": "经典概型",
+     "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+     "solution": "记 $A$=至少两人生日相同。$\\bar A$=30 人生日全不同。依次安排生日：第 1 人 $365$ 种，第 2 人 $364$ 种，$\\dots$，第 30 人 $336$ 种。$P(\\bar A)=\\dfrac{365\\cdot 364\\cdots 336}{365^{30}}$。故 $P(A)=1-\\dfrac{365\\cdot 364\\cdots 336}{365^{30}}=1-0.29368\\cdots\\approx 0.7063$。",
+     "answer": "$1-\\dfrac{365\\cdot 364\\cdots 336}{365^{30}}\\approx 0.7063$",
+     "scene_spec": {
+      "objects": [
+       "对立事件乘积式 $\\dfrac{365\\cdot364\\cdots336}{365^{30}}$ 的逐项生成",
+       "365 格生日占位动画"
+      ],
+      "steps": [
+       "第一步：以对立事件为主线，建立概率论·经典概型场景并呈现该解法的关键图形。",
+       "第二步：对立事件乘积式 $\\dfrac{365\\cdot364\\cdots336}{365^{30}}$ 的逐项生成。",
+       "第三步：365 格生日占位动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(生日问题)",
+     "visual_style": "365 格占位模拟",
+     "efficiency_tags": [
+      "对立事件乘积式 $\\dfrac{365\\cdot364\\cdots336}{365^{30}}$ 的逐项生成",
+      "365 格生日占位动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-007-s2",
+     "problem_id": "eval-prob-007",
+     "solution_id": "eval-prob-007-s2",
+     "method": "递推计算",
+     "category": "概率论",
+     "sub_category": "经典概型",
+     "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+     "solution": "记 $p_k$=前 $k$ 人生日全不同的概率。$p_1=1$，$p_k=p_{k-1}\\cdot\\dfrac{365-(k-1)}{365}$。依次计算：$p_{10}\\approx 0.88305$，$p_{20}\\approx 0.58856$，$p_{23}\\approx 0.49270$（第 23 人时首次低于 $\\dfrac{1}{2}$），$p_{30}\\approx 0.29368$。故 $P(A)=1-p_{30}\\approx 0.70632$。",
+     "answer": "$1-\\dfrac{365\\cdot 364\\cdots 336}{365^{30}}\\approx 0.7063$",
+     "scene_spec": {
+      "objects": [
+       "$p_k$ 下降曲线与 $k=23$ 临界点",
+       "递推式 $p_k=p_{k-1}\\cdot\\dfrac{366-k}{365}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以递推计算为主线，建立概率论·经典概型场景并呈现该解法的关键图形。",
+       "第二步：$p_k$ 下降曲线与 $k=23$ 临界点。",
+       "第三步：递推式 $p_k=p_{k-1}\\cdot\\dfrac{366-k}{365}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(生日问题)",
+     "visual_style": "365 格占位模拟",
+     "efficiency_tags": [
+      "$p_k$ 下降曲线与 $k=23$ 临界点",
+      "递推式 $p_k=p_{k-1}\\cdot\\dfrac{366-k}{365}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-007-s3",
+     "problem_id": "eval-prob-007",
+     "solution_id": "eval-prob-007-s3",
+     "method": "配对计数的精确期望视角",
+     "category": "概率论",
+     "sub_category": "经典概型",
+     "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+     "solution": "30 人两两配对共 $C_{30}^2=435$ 对，每对生日相同的概率恰为 $\\dfrac{1}{365}$，由期望线性性，\"生日相同对数\"的期望精确等于 $\\dfrac{435}{365}=\\dfrac{87}{73}\\approx 1.19$。期望已大于 1，从侧面印证 $P(A)$ 较大；精确概率仍由解法一的对立事件公式给出。",
+     "answer": "$1-\\dfrac{365\\cdot 364\\cdots 336}{365^{30}}\\approx 0.7063$",
+     "scene_spec": {
+      "objects": [
+       "435 对配对的计数高亮",
+       "期望 $\\dfrac{87}{73}\\approx1.19$ 的线性性标注"
+      ],
+      "steps": [
+       "第一步：以配对计数的精确期望视角为主线，建立概率论·经典概型场景并呈现该解法的关键图形。",
+       "第二步：435 对配对的计数高亮。",
+       "第三步：期望 $\\dfrac{87}{73}\\approx1.19$ 的线性性标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "古典概型(生日问题)",
+     "visual_style": "365 格占位模拟",
+     "efficiency_tags": [
+      "435 对配对的计数高亮",
+      "期望 $\\dfrac{87}{73}\\approx1.19$ 的线性性标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "20bfef54c69999cf065126ca303f5c9f8530b2579ab42530d8eea62c63075d3c",
+    "8d803b2b03a9738daeef87079c72948b51409e54bcc74933d92d5a0e97c0fbc8",
+    "83562fabf24e3ac3f75c458762291bfe8ea1afdf46ad3ac048b94e8f0f905dfb"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-008",
+   "problem_sha256": "2a0d1fbf74525e693ffb682e66736ed5895abd595eb2f2002750edafcae5b131",
+   "source_records": [
+    {
+     "id": "eval-prob-008-s1",
+     "problem_id": "eval-prob-008",
+     "solution_id": "eval-prob-008-s1",
+     "method": "切比雪夫不等式",
+     "category": "概率论",
+     "sub_category": "大数定律",
+     "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+     "solution": "$E[X]=np=50$，$\\operatorname{Var}(X)=np(1-p)=25$。由切比雪夫不等式 $P(|X-E[X]|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(X)}{\\varepsilon^2}$，取 $\\varepsilon=10$：$P(|X-50|\\ge 10)\\le\\dfrac{25}{100}=\\dfrac{1}{4}$。",
+     "answer": "切比雪夫上界 $\\dfrac{1}{4}$；精确值 $2\\displaystyle\\sum_{k=0}^{40}\\binom{100}{k}\\left(\\frac{1}{2}\\right)^{100}\\approx 0.0569$",
+     "scene_spec": {
+      "objects": [
+       "切比雪夫不等式 $\\dfrac{25}{100}=\\dfrac{1}{4}$ 的代入",
+       "上界水平线标注"
+      ],
+      "steps": [
+       "第一步：以切比雪夫不等式为主线，建立概率论·大数定律场景并呈现该解法的关键图形。",
+       "第二步：切比雪夫不等式 $\\dfrac{25}{100}=\\dfrac{1}{4}$ 的代入。",
+       "第三步：上界水平线标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二项分布与切比雪夫",
+     "visual_style": "尾部概率对比条",
+     "efficiency_tags": [
+      "切比雪夫不等式 $\\dfrac{25}{100}=\\dfrac{1}{4}$ 的代入",
+      "上界水平线标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-008-s2",
+     "problem_id": "eval-prob-008",
+     "solution_id": "eval-prob-008-s2",
+     "method": "精确二项求和",
+     "category": "概率论",
+     "sub_category": "大数定律",
+     "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+     "solution": "$P(|X-50|\\ge 10)=P(X\\le 40)+P(X\\ge 60)$。由对称性（$p=\\dfrac{1}{2}$），$P(X\\ge 60)=P(X\\le 40)$（$X$ 与 $100-X$ 同分布），故 $P=2P(X\\le 40)=2\\displaystyle\\sum_{k=0}^{40}\\binom{100}{k}\\left(\\dfrac{1}{2}\\right)^{100}\\approx 0.0569$。",
+     "answer": "切比雪夫上界 $\\dfrac{1}{4}$；精确值 $2\\displaystyle\\sum_{k=0}^{40}\\binom{100}{k}\\left(\\frac{1}{2}\\right)^{100}\\approx 0.0569$",
+     "scene_spec": {
+      "objects": [
+       "二项分布柱状图与 $|X-50|<10$ 区间高亮",
+       "对称性 $P(X\\ge60)=P(X\\le40)$ 的尾部概率放大"
+      ],
+      "steps": [
+       "第一步：以精确二项求和为主线，建立概率论·大数定律场景并呈现该解法的关键图形。",
+       "第二步：二项分布柱状图与 $|X-50|<10$ 区间高亮。",
+       "第三步：对称性 $P(X\\ge60)=P(X\\le40)$ 的尾部概率放大。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二项分布与切比雪夫",
+     "visual_style": "尾部概率对比条",
+     "efficiency_tags": [
+      "二项分布柱状图与 $|X-50|<10$ 区间高亮",
+      "对称性 $P(X\\ge60)=P(X\\le40)$ 的尾部概率放大"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-008-s3",
+     "problem_id": "eval-prob-008",
+     "solution_id": "eval-prob-008-s3",
+     "method": "方法对比讨论",
+     "category": "概率论",
+     "sub_category": "大数定律",
+     "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+     "solution": "切比雪夫上界 $0.25$ 只需均值与方差、对任何同均值方差的分布都成立（通用性），但远松于精确值 $0.0569$；精确计算需要完整的二项分布信息（专用性）。两者之差 $0.193$ 体现了\"分布无关界\"与\"分布相关值\"的代价差。动画可并排展示两种结果的对比条。",
+     "answer": "切比雪夫上界 $\\dfrac{1}{4}$；精确值 $2\\displaystyle\\sum_{k=0}^{40}\\binom{100}{k}\\left(\\frac{1}{2}\\right)^{100}\\approx 0.0569$",
+     "scene_spec": {
+      "objects": [
+       "切比雪夫上界与精确值 0.0569 的对比条",
+       "\"分布无关界 vs 分布相关值\"的标注"
+      ],
+      "steps": [
+       "第一步：以方法对比讨论为主线，建立概率论·大数定律场景并呈现该解法的关键图形。",
+       "第二步：切比雪夫上界与精确值 0.0569 的对比条。",
+       "第三步：\"分布无关界 vs 分布相关值\"的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二项分布与切比雪夫",
+     "visual_style": "尾部概率对比条",
+     "efficiency_tags": [
+      "切比雪夫上界与精确值 0.0569 的对比条",
+      "\"分布无关界 vs 分布相关值\"的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "ddd96677c862e208ebfd78a74bfc1bce878a44ec465c6c6415d58553668f6738",
+    "a7e2505d526e2911631a93cf475a071c1bfcf32320e08524225d3eaa1445cd42",
+    "2892dba66828cfdbe63eec2e20c2925d6156f10d1c716a86209a078b309e564a"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-009",
+   "problem_sha256": "e6a3d323c10e79a69627b04da93e52f1d9533c3b05f8189e123f94f33d18ecc6",
+   "source_records": [
+    {
+     "id": "eval-prob-009-s1",
+     "problem_id": "eval-prob-009",
+     "solution_id": "eval-prob-009-s1",
+     "method": "生存函数法",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+     "solution": "$P(Z>z)=P(X>z,Y>z)=P(X>z)P(Y>z)=e^{-z}\\cdot e^{-z}=e^{-2z}$（$z>0$，由独立性）。故 $F_Z(z)=1-e^{-2z}$，$f_Z(z)=2e^{-2z}$，即 $Z\\sim\\operatorname{Exp}(2)$。",
+     "answer": "$Z\\sim\\operatorname{Exp}(2)$，密度 $f_Z(z)=2e^{-2z}$（$z>0$）",
+     "scene_spec": {
+      "objects": [
+       "生存函数 $P(Z>z)=e^{-z}e^{-z}$ 的乘积动画",
+       "$\\min>z$ 区域的收缩动画"
+      ],
+      "steps": [
+       "第一步：以生存函数法为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：生存函数 $P(Z>z)=e^{-z}e^{-z}$ 的乘积动画。",
+       "第三步：$\\min>z$ 区域的收缩动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布最小值",
+     "visual_style": "联合区域收缩",
+     "efficiency_tags": [
+      "生存函数 $P(Z>z)=e^{-z}e^{-z}$ 的乘积动画",
+      "$\\min>z$ 区域的收缩动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-009-s2",
+     "problem_id": "eval-prob-009",
+     "solution_id": "eval-prob-009-s2",
+     "method": "次序统计量公式",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+     "solution": "最小值的密度公式：$f_Z(z)=2f(z)[1-F(z)]$，其中 $f(z)=e^{-z}$、$F(z)=1-e^{-z}$ 为 $\\operatorname{Exp}(1)$ 的密度与分布函数。故 $f_Z(z)=2e^{-z}\\cdot e^{-z}=2e^{-2z}$。",
+     "answer": "$Z\\sim\\operatorname{Exp}(2)$，密度 $f_Z(z)=2e^{-2z}$（$z>0$）",
+     "scene_spec": {
+      "objects": [
+       "次序统计量公式 $2f(z)[1-F(z)]$ 的代入",
+       "密度 $2e^{-2z}$ 的生成"
+      ],
+      "steps": [
+       "第一步：以次序统计量公式为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：次序统计量公式 $2f(z)[1-F(z)]$ 的代入。",
+       "第三步：密度 $2e^{-2z}$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布最小值",
+     "visual_style": "联合区域收缩",
+     "efficiency_tags": [
+      "次序统计量公式 $2f(z)[1-F(z)]$ 的代入",
+      "密度 $2e^{-2z}$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-009-s3",
+     "problem_id": "eval-prob-009",
+     "solution_id": "eval-prob-009-s3",
+     "method": "几何积分",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+     "solution": "联合密度 $f(x,y)=e^{-x-y}$（$x,y>0$）。$P(Z>z)=\\displaystyle\\int_z^\\infty\\!\\!\\int_z^\\infty e^{-x-y}\\,dx\\,dy=\\left(\\int_z^\\infty e^{-x}dx\\right)\\left(\\int_z^\\infty e^{-y}dy\\right)=e^{-z}\\cdot e^{-z}=e^{-2z}$，与解法一一致。",
+     "answer": "$Z\\sim\\operatorname{Exp}(2)$，密度 $f_Z(z)=2e^{-2z}$（$z>0$）",
+     "scene_spec": {
+      "objects": [
+       "联合密度曲面与方形区域",
+       "二重积分 $\\int_z^\\infty\\int_z^\\infty e^{-x-y}dxdy$ 的分解"
+      ],
+      "steps": [
+       "第一步：以几何积分为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：联合密度曲面与方形区域。",
+       "第三步：二重积分 $\\int_z^\\infty\\int_z^\\infty e^{-x-y}dxdy$ 的分解。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布最小值",
+     "visual_style": "联合区域收缩",
+     "efficiency_tags": [
+      "联合密度曲面与方形区域",
+      "二重积分 $\\int_z^\\infty\\int_z^\\infty e^{-x-y}dxdy$ 的分解"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4f14f27a2edddf9a0fadf554935ae0662e82938dc92161191cdc1b82628e02d6",
+    "f38f419a6a0fcc25e66ae7b0f3fe0cd896be3385f40bff13fc1464f6f2a24026",
+    "9a9142656ef17c0a44ede45d793ffef05d592a3999f2d078724e314b00f075c4"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-010",
+   "problem_sha256": "112aa1da081d6446ab04d10f0537afc8e29e6d0d61cd4da152909d99ff56a86a",
+   "source_records": [
+    {
+     "id": "eval-prob-010-s1",
+     "problem_id": "eval-prob-010",
+     "solution_id": "eval-prob-010-s1",
+     "method": "指示变量+期望线性性",
+     "category": "概率论",
+     "sub_category": "期望",
+     "problem": "$n$ 个人各带一顶帽子，帽子随机打乱后每人随机取回一顶（全排列等可能）。求取到自己帽子的人数的期望，并说明该期望不依赖 $n$ 的原因。",
+     "solution": "设 $I_i$ 为\"第 $i$ 人取到自己帽子\"的指示变量。由对称性，第 $i$ 人取到自己帽子的概率 $P(I_i=1)=\\dfrac{1}{n}$（$n$ 顶帽子中恰有一顶属于他，均匀排列下等可能）。总正确人数 $X=I_1+\\cdots+I_n$，由期望线性性（**不要求独立性**）：$E[X]=\\displaystyle\\sum_{i=1}^{n}E[I_i]=\\sum_{i=1}^{n}P(I_i=1)=n\\cdot\\dfrac{1}{n}=1$。",
+     "answer": "$1$（与 $n$ 无关）",
+     "scene_spec": {
+      "objects": [
+       "指示变量 $I_i$ 的高亮",
+       "期望线性性 $n\\cdot\\dfrac{1}{n}=1$ 的标注"
+      ],
+      "steps": [
+       "第一步：以指示变量+期望线性性为主线，建立概率论·期望场景并呈现该解法的关键图形。",
+       "第二步：指示变量 $I_i$ 的高亮。",
+       "第三步：期望线性性 $n\\cdot\\dfrac{1}{n}=1$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "随机排列期望",
+     "visual_style": "帽子交换动画",
+     "efficiency_tags": [
+      "指示变量 $I_i$ 的高亮",
+      "期望线性性 $n\\cdot\\dfrac{1}{n}=1$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-010-s2",
+     "problem_id": "eval-prob-010",
+     "solution_id": "eval-prob-010-s2",
+     "method": "分布与生成函数",
+     "category": "概率论",
+     "sub_category": "期望",
+     "problem": "$n$ 个人各带一顶帽子，帽子随机打乱后每人随机取回一顶（全排列等可能）。求取到自己帽子的人数的期望，并说明该期望不依赖 $n$ 的原因。",
+     "solution": "恰有 $k$ 人取对的概率 $P(X=k)=\\dfrac{\\binom{n}{k}D(n-k)}{n!}$，其中 $D(m)=m!\\displaystyle\\sum_{j=0}^{m}\\dfrac{(-1)^j}{j!}$ 为错排数。生成函数 $G(z)=\\displaystyle\\sum_{k=0}^{n}\\dfrac{\\binom{n}{k}D(n-k)}{n!}z^k$。$E[X]=G'(1)=\\dfrac{1}{n!}\\displaystyle\\sum_{k=1}^{n}k\\binom{n}{k}D(n-k)=\\dfrac{n}{n!}\\sum_{k=1}^{n}\\binom{n-1}{k-1}D(n-k)=\\dfrac{1}{(n-1)!}\\sum_{j=0}^{n-1}\\binom{n-1}{j}D(n-1-j)$。而 $\\displaystyle\\sum_{j=0}^{n-1}\\binom{n-1}{j}D(n-1-j)=(n-1)!$（对 $n-1$ 个元素的所有排列按\"不动点个数 $j$\"分类计数），故 $E[X]=1$。",
+     "answer": "$1$（与 $n$ 无关）",
+     "scene_spec": {
+      "objects": [
+       "固定点人数 $X$ 的分布柱状图 $P(X=k)=\\binom{n}{k}D(n-k)/n!$",
+       "错排数 $D(m)$ 与生成函数 $G(z)=\\sum_{k=0}^{n}P(X=k)z^k$",
+       "导数求和 $G^{\\prime}(1)=\\sum_{k=1}^{n}kP(X=k)$",
+       "按固定点个数分类的 $n-1$ 元素排列示意"
+      ],
+      "steps": [
+       "固定 $n$，按 $k$ 展示分布柱状图与组合表达式。",
+       "写出生成函数 $G(z)$ 并逐项求导得 $G^{\\prime}(1)$ 的求和式。",
+       "用 $k\\binom{n}{k}=n\\binom{n-1}{k-1}$ 把求和化为按固定点分类计数。",
+       "由 $\\sum_j\\binom{n-1}{j}D(n-1-j)=(n-1)!$ 得 $E[X]=1$"
+      ]
+     },
+     "function_family": "随机排列期望",
+     "visual_style": "帽子交换动画",
+     "efficiency_tags": [
+      "分布柱状图 $P(X=k)=\\binom{n}{k}D(n-k)/n!$",
+      "生成函数 $G(z)$ 与导数求和 $G'(1)$",
+      "按固定点个数分类的 $n-1$ 元素排列示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-010-s3",
+     "problem_id": "eval-prob-010",
+     "solution_id": "eval-prob-010-s3",
+     "method": "双重计数",
+     "category": "概率论",
+     "sub_category": "期望",
+     "problem": "$n$ 个人各带一顶帽子，帽子随机打乱后每人随机取回一顶（全排列等可能）。求取到自己帽子的人数的期望，并说明该期望不依赖 $n$ 的原因。",
+     "solution": "对全部 $n!$ 种排列统计\"拿对帽子\"的总人次：对任意固定的第 $i$ 人，其帽子被自己拿到的排列数为 $(n-1)!$（其余 $n-1$ 顶帽子任意排列），故总固定点数 $=\\displaystyle\\sum_{i=1}^{n}(n-1)!=n\\cdot(n-1)!=n!$。除以排列总数 $n!$，得期望 $=\\dfrac{n!}{n!}=1$。期望不随 $n$ 变化的本质是\"每顶帽子命中率恒为 $\\dfrac{1}{n}$、恰好 $n$ 顶\"。",
+     "answer": "$1$（与 $n$ 无关）",
+     "scene_spec": {
+      "objects": [
+       "$n$ 人帽子随机交换动画",
+       "总固定点数 $n!$ 的双重计数示意"
+      ],
+      "steps": [
+       "第一步：以双重计数为主线，建立概率论·期望场景并呈现该解法的关键图形。",
+       "第二步：$n$ 人帽子随机交换动画。",
+       "第三步：总固定点数 $n!$ 的双重计数示意。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "随机排列期望",
+     "visual_style": "帽子交换动画",
+     "efficiency_tags": [
+      "$n$ 人帽子随机交换动画",
+      "总固定点数 $n!$ 的双重计数示意"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "de786044c9dd4e117da0ea4738d3efc344573c06dfd53bf2e8723f1c10b87338",
+    "0279951def9311b6777a3e77f31ce4b1fb40960b5d709dc5ad35c87d83928f6a",
+    "0a6b1af16e894a3ae231fcf531fe817d6dadc30b714dec57ab649db9fc44d8fb"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-011",
+   "problem_sha256": "5b2ec8381948b9c2ac350e8ae92503ed4ad7ca424100bbdc2ddbdabd25548f9b",
+   "source_records": [
+    {
+     "id": "eval-prob-011-s1",
+     "problem_id": "eval-prob-011",
+     "solution_id": "eval-prob-011-s1",
+     "method": "状态递推方程",
+     "category": "概率论",
+     "sub_category": "随机过程",
+     "problem": "抛均匀硬币直到连续出现两次正面（HH）为止，求所需抛掷次数的期望。",
+     "solution": "设 $E_0$=当前无连续正面记录时的期望剩余次数，$E_1$=刚出现一次正面时的期望剩余次数。状态转移：$E_0=1+\\dfrac{1}{2}E_0+\\dfrac{1}{2}E_1$（抛一次后：反面回 $E_0$，正面进 $E_1$）；$E_1=1+\\dfrac{1}{2}\\cdot 0+\\dfrac{1}{2}E_0$（再抛：正面完成，反面回 $E_0$）。由第二式 $E_1=1+\\dfrac{E_0}{2}$，代入第一式：$E_0=1+\\dfrac{E_0}{2}+\\dfrac{1}{2}\\left(1+\\dfrac{E_0}{2}\\right)=\\dfrac{3}{2}+\\dfrac{3E_0}{4}$，解得 $E_0=6$。",
+     "answer": "$6$",
+     "scene_spec": {
+      "objects": [
+       "状态递推方程 $E_0=1+\\dfrac12E_0+\\dfrac12E_1$ 的平衡示意",
+       "代入求解 $E_0=6$ 的动画"
+      ],
+      "steps": [
+       "第一步：以状态递推方程为主线，建立概率论·随机过程场景并呈现该解法的关键图形。",
+       "第二步：状态递推方程 $E_0=1+\\dfrac12E_0+\\dfrac12E_1$ 的平衡示意。",
+       "第三步：代入求解 $E_0=6$ 的动画。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "马尔可夫链首达",
+     "visual_style": "状态转移图",
+     "efficiency_tags": [
+      "状态递推方程 $E_0=1+\\dfrac12E_0+\\dfrac12E_1$ 的平衡示意",
+      "代入求解 $E_0=6$ 的动画"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-011-s2",
+     "problem_id": "eval-prob-011",
+     "solution_id": "eval-prob-011-s2",
+     "method": "吸收马尔可夫链",
+     "category": "概率论",
+     "sub_category": "随机过程",
+     "problem": "抛均匀硬币直到连续出现两次正面（HH）为止，求所需抛掷次数的期望。",
+     "solution": "状态 $\\{0,1,H\\}$（$H$ 为吸收态），转移矩阵 $P=\\begin{pmatrix}1/2&1/2&0\\\\1/2&0&1/2\\\\0&0&1\\end{pmatrix}$，瞬态子矩阵 $Q=\\begin{pmatrix}1/2&1/2\\\\1/2&0\\end{pmatrix}$。基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}1/2&-1/2\\\\-1/2&1\\end{pmatrix}^{-1}=4\\begin{pmatrix}1&1/2\\\\1/2&1/2\\end{pmatrix}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$（$\\det(I-Q)=\\dfrac{1}{2}-\\dfrac{1}{4}=\\dfrac{1}{4}$）。从状态 0 出发的期望步数为 $N$ 第 1 行之和 $=4+2=6$。",
+     "answer": "$6$",
+     "scene_spec": {
+      "objects": [
+       "三状态转移图与概率箭头",
+       "基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注"
+      ],
+      "steps": [
+       "第一步：以吸收马尔可夫链为主线，建立概率论·随机过程场景并呈现该解法的关键图形。",
+       "第二步：三状态转移图与概率箭头。",
+       "第三步：基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "马尔可夫链首达",
+     "visual_style": "状态转移图",
+     "efficiency_tags": [
+      "三状态转移图与概率箭头",
+      "基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-011-s3",
+     "problem_id": "eval-prob-011",
+     "solution_id": "eval-prob-011-s3",
+     "method": "首达分布与生成函数",
+     "category": "概率论",
+     "sub_category": "随机过程",
+     "problem": "抛均匀硬币直到连续出现两次正面（HH）为止，求所需抛掷次数的期望。",
+     "solution": "首次出现 HH 的时刻 $T\\ge 2$，其分布为 $P(T=k)=\\dfrac{F_{k-1}}{2^k}$（$k\\ge 2$），其中 $F_1=F_2=1$ 为斐波那契数（$k$ 次抛掷中前 $k-1$ 次无 HH 且第 $k$ 次前恰为 $\\dots H$ 的计数即斐波那契递推）。概率母函数 $G(z)=\\displaystyle\\sum_{k=2}^{\\infty}\\dfrac{F_{k-1}}{2^k}z^k=\\dfrac{z^2}{4-2z-z^2}$（由 $\\sum_{m\\ge 1}F_mx^m=\\dfrac{x}{1-x-x^2}$ 代入 $x=\\dfrac{z}{2}$ 得）。$E[T]=G'(1)=\\left.\\dfrac{2z(4-2z-z^2)+z^2(2+2z)}{(4-2z-z^2)^2}\\right|_{z=1}=\\dfrac{2\\cdot 1+4}{1}=6$。",
+     "answer": "$6$",
+     "scene_spec": {
+      "objects": [
+       "斐波那契计数 $P(T=k)=\\dfrac{F_{k-1}}{2^k}$ 的生成",
+       "母函数 $G'(1)=6$ 的求导标注"
+      ],
+      "steps": [
+       "第一步：以首达分布与生成函数为主线，建立概率论·随机过程场景并呈现该解法的关键图形。",
+       "第二步：斐波那契计数 $P(T=k)=\\dfrac{F_{k-1}}{2^k}$ 的生成。",
+       "第三步：母函数 $G'(1)=6$ 的求导标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "马尔可夫链首达",
+     "visual_style": "状态转移图",
+     "efficiency_tags": [
+      "斐波那契计数 $P(T=k)=\\dfrac{F_{k-1}}{2^k}$ 的生成",
+      "母函数 $G'(1)=6$ 的求导标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4e24564d2e88ddc05c80fcef23ebeb85a1ce189634f13c8d73602ef011712249",
+    "87f7f46c1e766031a896d39bc065792d7f9d708f48123d9efc8274d7cabd5b87",
+    "e258c15aad58c58315e1a20d730b9e231ea2b2d905df7b0dab6c0d445823affb"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-012",
+   "problem_sha256": "c1a4f0f006d14e0f27d2a72ea22146b5145aca4822383b4bc7fbed767b2a8e02",
+   "source_records": [
+    {
+     "id": "eval-prob-012-s1",
+     "problem_id": "eval-prob-012",
+     "solution_id": "eval-prob-012-s1",
+     "method": "几何面积",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $U(0,1)$，求 $P(X+Y\\le 1)$。",
+     "solution": "$(X,Y)$ 在单位正方形 $[0,1]^2$ 上均匀分布。事件 $\\{X+Y\\le 1\\}$ 对应正方形中直线 $x+y=1$ 左下方的等腰直角三角形，面积 $\\dfrac{1}{2}\\cdot 1\\cdot 1=\\dfrac{1}{2}$。均匀分布下概率=面积比，故 $P=\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "单位正方形与分割直线 $x+y=1$",
+       "三角形面积 $\\dfrac{1}{2}$ 的高亮"
+      ],
+      "steps": [
+       "第一步：以几何面积为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：单位正方形与分割直线 $x+y=1$。",
+       "第三步：三角形面积 $\\dfrac{1}{2}$ 的高亮。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二维均匀分布",
+     "visual_style": "正方形分割散点",
+     "efficiency_tags": [
+      "单位正方形与分割直线 $x+y=1$",
+      "三角形面积 $\\dfrac{1}{2}$ 的高亮"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-012-s2",
+     "problem_id": "eval-prob-012",
+     "solution_id": "eval-prob-012-s2",
+     "method": "卷积密度",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $U(0,1)$，求 $P(X+Y\\le 1)$。",
+     "solution": "$Z=X+Y$ 的密度为卷积：$f_Z(z)=\\displaystyle\\int_{-\\infty}^{\\infty}f_X(x)f_Y(z-x)dx=\\int_0^1\\mathbf 1_{[0,1]}(z-x)dx$。当 $0<z<1$：$f_Z(z)=\\displaystyle\\int_0^z dx=z$；当 $1<z<2$：$f_Z(z)=\\displaystyle\\int_{z-1}^1 dx=2-z$（三角分布）。故 $P(X+Y\\le 1)=\\displaystyle\\int_0^1 z\\,dz=\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "卷积滑动的矩形面积",
+       "三角密度 $f_Z(z)=z$、$2-z$ 的生成"
+      ],
+      "steps": [
+       "第一步：以卷积密度为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：卷积滑动的矩形面积。",
+       "第三步：三角密度 $f_Z(z)=z$、$2-z$ 的生成。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二维均匀分布",
+     "visual_style": "正方形分割散点",
+     "efficiency_tags": [
+      "卷积滑动的矩形面积",
+      "三角密度 $f_Z(z)=z$、$2-z$ 的生成"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-012-s3",
+     "problem_id": "eval-prob-012",
+     "solution_id": "eval-prob-012-s3",
+     "method": "对称性",
+     "category": "概率论",
+     "sub_category": "多维随机变量",
+     "problem": "设 $X,Y$ 相互独立且均服从 $U(0,1)$，求 $P(X+Y\\le 1)$。",
+     "solution": "$(X,Y)$ 与 $(1-X,1-Y)$ 同分布。$X+Y\\le 1\\iff (1-X)+(1-Y)\\ge 1$，且 $P(X+Y=1)=0$。故 $P(X+Y\\le 1)=P(X+Y\\ge 1)=\\dfrac{1}{2}$（两事件互补且等概率）。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "对称性 $(X,Y)\\sim(1-X,1-Y)$ 的镜像动画",
+       "互补事件等概率的标注"
+      ],
+      "steps": [
+       "第一步：以对称性为主线，建立概率论·多维随机变量场景并呈现该解法的关键图形。",
+       "第二步：对称性 $(X,Y)\\sim(1-X,1-Y)$ 的镜像动画。",
+       "第三步：互补事件等概率的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "二维均匀分布",
+     "visual_style": "正方形分割散点",
+     "efficiency_tags": [
+      "对称性 $(X,Y)\\sim(1-X,1-Y)$ 的镜像动画",
+      "互补事件等概率的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "6cb7a11acaf592447d5dd83fa9611aaa69d59070e8d921202a683110d365f277",
+    "d3a458817e67ef5c72f31349245defbe611a718e96d887a608629c94bfb07dbc",
+    "30b46a7caeae6e0da945866a8740230bffcc7af95f46b2739dcffd4bdc350617"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-013",
+   "problem_sha256": "e3a510d396155d28e8bca580b6f19047cc728c9413235b808621ed7282a4fd05",
+   "source_records": [
+    {
+     "id": "eval-prob-013-s1",
+     "problem_id": "eval-prob-013",
+     "solution_id": "eval-prob-013-s1",
+     "method": "直接积分",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim N(0,1)$（标准正态分布），求 $E|X|$。",
+     "solution": "$E|X|=\\displaystyle\\int_{-\\infty}^{\\infty}|x|\\dfrac{1}{\\sqrt{2\\pi}}e^{-x^2/2}dx=\\dfrac{2}{\\sqrt{2\\pi}}\\int_0^{\\infty}xe^{-x^2/2}dx$。令 $u=\\dfrac{x^2}{2}$（$du=x\\,dx$）：$=\\dfrac{2}{\\sqrt{2\\pi}}\\displaystyle\\int_0^{\\infty}e^{-u}du=\\dfrac{2}{\\sqrt{2\\pi}}\\cdot 1=\\sqrt{\\dfrac{2}{\\pi}}$。",
+     "answer": "$\\sqrt{\\dfrac{2}{\\pi}}$",
+     "scene_spec": {
+      "objects": [
+       "偶函数积分 $\\dfrac{2}{\\sqrt{2\\pi}}\\int_0^\\infty xe^{-x^2/2}dx$ 的分解",
+       "换元 $u=\\dfrac{x^2}{2}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以直接积分为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：偶函数积分 $\\dfrac{2}{\\sqrt{2\\pi}}\\int_0^\\infty xe^{-x^2/2}dx$ 的分解。",
+       "第三步：换元 $u=\\dfrac{x^2}{2}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正态分布绝对矩",
+     "visual_style": "密度折叠成半正态",
+     "efficiency_tags": [
+      "偶函数积分 $\\dfrac{2}{\\sqrt{2\\pi}}\\int_0^\\infty xe^{-x^2/2}dx$ 的分解",
+      "换元 $u=\\dfrac{x^2}{2}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-013-s2",
+     "problem_id": "eval-prob-013",
+     "solution_id": "eval-prob-013-s2",
+     "method": "半正态分布",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim N(0,1)$（标准正态分布），求 $E|X|$。",
+     "solution": "$|X|$ 服从半正态分布，密度 $f(y)=\\dfrac{2}{\\sqrt{2\\pi}}e^{-y^2/2}$（$y>0$，即把负半轴密度折叠到正半轴）。$E|X|=\\displaystyle\\int_0^\\infty y\\dfrac{2}{\\sqrt{2\\pi}}e^{-y^2/2}dy=\\dfrac{2}{\\sqrt{2\\pi}}\\left[-e^{-y^2/2}\\right]_0^\\infty=\\dfrac{2}{\\sqrt{2\\pi}}=\\sqrt{\\dfrac{2}{\\pi}}$。",
+     "answer": "$\\sqrt{\\dfrac{2}{\\pi}}$",
+     "scene_spec": {
+      "objects": [
+       "正态密度负半轴折叠成半正态的动画",
+       "折叠后积分 $\\dfrac{2}{\\sqrt{2\\pi}}$ 的标注"
+      ],
+      "steps": [
+       "第一步：以半正态分布为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：正态密度负半轴折叠成半正态的动画。",
+       "第三步：折叠后积分 $\\dfrac{2}{\\sqrt{2\\pi}}$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正态分布绝对矩",
+     "visual_style": "密度折叠成半正态",
+     "efficiency_tags": [
+      "正态密度负半轴折叠成半正态的动画",
+      "折叠后积分 $\\dfrac{2}{\\sqrt{2\\pi}}$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-013-s3",
+     "problem_id": "eval-prob-013",
+     "solution_id": "eval-prob-013-s3",
+     "method": "$\\chi^2$ 分布观点",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim N(0,1)$（标准正态分布），求 $E|X|$。",
+     "solution": "$Y=X^2\\sim\\chi^2(1)$，密度 $f_Y(y)=\\dfrac{1}{\\sqrt{2\\pi}}y^{-1/2}e^{-y/2}$（$y>0$）。$E|X|=E[\\sqrt{Y}]=\\displaystyle\\int_0^\\infty\\sqrt{y}\\cdot\\dfrac{1}{\\sqrt{2\\pi}}y^{-1/2}e^{-y/2}dy=\\dfrac{1}{\\sqrt{2\\pi}}\\int_0^\\infty e^{-y/2}dy=\\dfrac{1}{\\sqrt{2\\pi}}\\cdot 2=\\sqrt{\\dfrac{2}{\\pi}}$。",
+     "answer": "$\\sqrt{\\dfrac{2}{\\pi}}$",
+     "scene_spec": {
+      "objects": [
+       "$\\chi^2(1)$ 密度 $\\dfrac{1}{\\sqrt{2\\pi}}y^{-1/2}e^{-y/2}$ 的曲线",
+       "$E[\\sqrt{Y}]$ 的积分过程"
+      ],
+      "steps": [
+       "第一步：以$\\chi^2$ 分布观点为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：$\\chi^2(1)$ 密度 $\\dfrac{1}{\\sqrt{2\\pi}}y^{-1/2}e^{-y/2}$ 的曲线。",
+       "第三步：$E[\\sqrt{Y}]$ 的积分过程。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正态分布绝对矩",
+     "visual_style": "密度折叠成半正态",
+     "efficiency_tags": [
+      "$\\chi^2(1)$ 密度 $\\dfrac{1}{\\sqrt{2\\pi}}y^{-1/2}e^{-y/2}$ 的曲线",
+      "$E[\\sqrt{Y}]$ 的积分过程"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "a1d3ef140dc37f4850810b65ed436faba67d94611ab29a03045eaa1b39bdcd6b",
+    "352ed272fdf8e7ca3c3d92778a95e157e75885e4cff6dcd5a46f44f4bd42305f",
+    "97390791ce0a91747b1464fd8a0cb3fd5d2b45f2ff16fe3ff58e2bf0e985de45"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-014",
+   "problem_sha256": "a79da55dc54b5b52dd6d76c491c7278636eb018baceedde2f41df6fc9e68d31d",
+   "source_records": [
+    {
+     "id": "eval-prob-014-s1",
+     "problem_id": "eval-prob-014",
+     "solution_id": "eval-prob-014-s1",
+     "method": "直接计算",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim\\operatorname{Exp}(\\lambda)$（$\\lambda>0$）。证明无记忆性 $P(X>s+t\\mid X>s)=P(X>t)$（$s,t>0$），并说明其含义。",
+     "solution": "$P(X>s+t\\mid X>s)=\\dfrac{P(X>s+t)}{P(X>s)}=\\dfrac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}=e^{-\\lambda t}=P(X>t)$。即条件后剩余寿命的分布与全新时完全相同。",
+     "answer": "证毕；无记忆性成立且是指数分布的特征性质",
+     "scene_spec": {
+      "objects": [
+       "生存函数比值 $\\dfrac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}$ 的相消动画",
+       "自相似右移的标注"
+      ],
+      "steps": [
+       "第一步：以直接计算为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：生存函数比值 $\\dfrac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}$ 的相消动画。",
+       "第三步：自相似右移的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布无记忆性",
+     "visual_style": "生存函数自相似右移",
+     "efficiency_tags": [
+      "生存函数比值 $\\dfrac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}$ 的相消动画",
+      "自相似右移的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-014-s2",
+     "problem_id": "eval-prob-014",
+     "solution_id": "eval-prob-014-s2",
+     "method": "危险率函数",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim\\operatorname{Exp}(\\lambda)$（$\\lambda>0$）。证明无记忆性 $P(X>s+t\\mid X>s)=P(X>t)$（$s,t>0$），并说明其含义。",
+     "solution": "危险率函数 $h(t)=\\dfrac{f(t)}{1-F(t)}=\\dfrac{\\lambda e^{-\\lambda t}}{e^{-\\lambda t}}=\\lambda$ 为常数。常数危险率意味着\"每时每刻的瞬时失效倾向不随年龄变化\"，这正是无记忆性的微分刻画；反之，若某分布危险率为常数 $\\lambda$，解微分方程 $\\dfrac{F'}{1-F}=\\lambda$ 得 $F(t)=1-e^{-\\lambda t}$，故常数危险率⇔指数分布。",
+     "answer": "证毕；无记忆性成立且是指数分布的特征性质",
+     "scene_spec": {
+      "objects": [
+       "危险率常数 $h(t)=\\lambda$ 的水平线",
+       "微分方程 $\\dfrac{F'}{1-F}=\\lambda$ 的求解"
+      ],
+      "steps": [
+       "第一步：以危险率函数为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：危险率常数 $h(t)=\\lambda$ 的水平线。",
+       "第三步：微分方程 $\\dfrac{F'}{1-F}=\\lambda$ 的求解。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布无记忆性",
+     "visual_style": "生存函数自相似右移",
+     "efficiency_tags": [
+      "危险率常数 $h(t)=\\lambda$ 的水平线",
+      "微分方程 $\\dfrac{F'}{1-F}=\\lambda$ 的求解"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-014-s3",
+     "problem_id": "eval-prob-014",
+     "solution_id": "eval-prob-014-s3",
+     "method": "泊松过程视角",
+     "category": "概率论",
+     "sub_category": "常见分布",
+     "problem": "设 $X\\sim\\operatorname{Exp}(\\lambda)$（$\\lambda>0$）。证明无记忆性 $P(X>s+t\\mid X>s)=P(X>t)$（$s,t>0$），并说明其含义。",
+     "solution": "在强度 $\\lambda$ 的泊松过程中，相邻事件的时间间隔服从 $\\operatorname{Exp}(\\lambda)$。已等待 $s$ 而无事件发生，意味着 $(0,s]$ 内的事件数 $N(s)=0$；由泊松过程的独立增量性，$(s,s+t]$ 内的事件数与 $(0,s]$ 内无关，$P(N(s,s+t)=0\\mid N(s)=0)=P(N(s,s+t)=0)=e^{-\\lambda t}$。故剩余等待时间仍服从 $\\operatorname{Exp}(\\lambda)$。",
+     "answer": "证毕；无记忆性成立且是指数分布的特征性质",
+     "scene_spec": {
+      "objects": [
+       "泊松过程时间轴上的间隔",
+       "独立增量性 $P(N(s,s+t)=0|N(s)=0)$ 的标注"
+      ],
+      "steps": [
+       "第一步：以泊松过程视角为主线，建立概率论·常见分布场景并呈现该解法的关键图形。",
+       "第二步：泊松过程时间轴上的间隔。",
+       "第三步：独立增量性 $P(N(s,s+t)=0|N(s)=0)$ 的标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "指数分布无记忆性",
+     "visual_style": "生存函数自相似右移",
+     "efficiency_tags": [
+      "泊松过程时间轴上的间隔",
+      "独立增量性 $P(N(s,s+t)=0|N(s)=0)$ 的标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "e76519cc1036cb47b2832d0014ae72ba12640f1f20048a15bd871af02138596e",
+    "6f44cf08cb835262bf2bb64faf5a5e608d2ecef4a3ba102c71d7de94716bb05d",
+    "5f1d7eabc91672f9e4b07a4afd6866ca85f05d49356b010fe4def0d522938a93"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "eval",
+   "id": "eval-prob-015",
+   "problem_sha256": "16542c5620aff2fe7cfb324274c6662240300a8301865d651ca43acd7983e066",
+   "source_records": [
+    {
+     "id": "eval-prob-015-s1",
+     "problem_id": "eval-prob-015",
+     "solution_id": "eval-prob-015-s1",
+     "method": "定义计算",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "掷一枚均匀骰子，设 $X$ 为点数。求 $E[X]$ 与 $\\operatorname{Var}(X)$。",
+     "solution": "$E[X]=\\dfrac{1+2+3+4+5+6}{6}=\\dfrac{21}{6}=\\dfrac{7}{2}$。$E[X^2]=\\dfrac{1+4+9+16+25+36}{6}=\\dfrac{91}{6}$。$\\operatorname{Var}(X)=E[X^2]-(E[X])^2=\\dfrac{91}{6}-\\dfrac{49}{4}=\\dfrac{182-147}{12}=\\dfrac{35}{12}$。",
+     "answer": "$E[X]=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=\\dfrac{35}{12}$",
+     "scene_spec": {
+      "objects": [
+       "均匀柱状图与重心 $3.5$",
+       "$E[X^2]=\\dfrac{91}{6}$ 的逐格求和"
+      ],
+      "steps": [
+       "第一步：以定义计算为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：均匀柱状图与重心 $3.5$。",
+       "第三步：$E[X^2]=\\dfrac{91}{6}$ 的逐格求和。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散均匀分布矩",
+     "visual_style": "重心与离散度标注",
+     "efficiency_tags": [
+      "均匀柱状图与重心 $3.5$",
+      "$E[X^2]=\\dfrac{91}{6}$ 的逐格求和"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-015-s2",
+     "problem_id": "eval-prob-015",
+     "solution_id": "eval-prob-015-s2",
+     "method": "矩母函数",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "掷一枚均匀骰子，设 $X$ 为点数。求 $E[X]$ 与 $\\operatorname{Var}(X)$。",
+     "solution": "$M(t)=\\dfrac{e^t+e^{2t}+e^{3t}+e^{4t}+e^{5t}+e^{6t}}{6}$。$M'(0)=\\dfrac{1+2+3+4+5+6}{6}=\\dfrac{7}{2}$，$M''(0)=\\dfrac{1+4+9+16+25+36}{6}=\\dfrac{91}{6}$。故 $E[X]=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=M''(0)-[M'(0)]^2=\\dfrac{35}{12}$。",
+     "answer": "$E[X]=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=\\dfrac{35}{12}$",
+     "scene_spec": {
+      "objects": [
+       "矩母函数 $M(t)$ 的曲线",
+       "$M'(0)=\\dfrac72$、$M''(0)=\\dfrac{91}{6}$ 的切线标注"
+      ],
+      "steps": [
+       "第一步：以矩母函数为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：矩母函数 $M(t)$ 的曲线。",
+       "第三步：$M'(0)=\\dfrac72$、$M''(0)=\\dfrac{91}{6}$ 的切线标注。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散均匀分布矩",
+     "visual_style": "重心与离散度标注",
+     "efficiency_tags": [
+      "矩母函数 $M(t)$ 的曲线",
+      "$M'(0)=\\dfrac72$、$M''(0)=\\dfrac{91}{6}$ 的切线标注"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    },
+    {
+     "id": "eval-prob-015-s3",
+     "problem_id": "eval-prob-015",
+     "solution_id": "eval-prob-015-s3",
+     "method": "离散均匀公式+线性变换",
+     "category": "概率论",
+     "sub_category": "数字特征",
+     "problem": "掷一枚均匀骰子，设 $X$ 为点数。求 $E[X]$ 与 $\\operatorname{Var}(X)$。",
+     "solution": "令 $X=1+U$，其中 $U\\sim U\\{0,1,\\dots,5\\}$。离散均匀分布 $\\{0,\\dots,n-1\\}$ 的方差公式：$\\operatorname{Var}(U)=\\dfrac{n^2-1}{12}=\\dfrac{36-1}{12}=\\dfrac{35}{12}$。故 $E[X]=1+\\dfrac{5}{2}=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=\\operatorname{Var}(U)=\\dfrac{35}{12}$。",
+     "answer": "$E[X]=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=\\dfrac{35}{12}$",
+     "scene_spec": {
+      "objects": [
+       "离散均匀方差 $\\dfrac{n^2-1}{12}$ 的公式标注",
+       "平移 $+1$ 的方差不变性"
+      ],
+      "steps": [
+       "第一步：以离散均匀公式+线性变换为主线，建立概率论·数字特征场景并呈现该解法的关键图形。",
+       "第二步：离散均匀方差 $\\dfrac{n^2-1}{12}$ 的公式标注。",
+       "第三步：平移 $+1$ 的方差不变性。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "离散均匀分布矩",
+     "visual_style": "重心与离散度标注",
+     "efficiency_tags": [
+      "离散均匀方差 $\\dfrac{n^2-1}{12}$ 的公式标注",
+      "平移 $+1$ 的方差不变性"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "2904a2347c2dcbdb4aa62a6f71d956b7ce71ec488ae9a2266d08aa4d03c5f218",
+    "b824dbc8560bfcb740565d4b89ed47a6de84225ec92a0fd622606725eb5ebe7f",
+    "68d42ef058741b23598c3013a174f1b7a7a68095802f4aec5e0ca07c03cfe8ef"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-001",
+   "problem_sha256": "e4fb1c09ae99787ce56c4f7e6308ccbbb99bdb8f3251ce47c5eba997d6ac6e27",
+   "source_records": [
+    {
+     "id": "test-calc-001",
+     "category": "数学分析",
+     "sub_category": "极限×定积分",
+     "problem": "求极限 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\sin\\frac{k\\pi}{n}$。",
+     "solution": "该和式为函数 $f(x)=\\sin(\\pi x)$ 在 $[0,1]$ 上 $n$ 等分的黎曼和（取右端点 $\\dfrac{k}{n}$）：$\\dfrac{1}{n}\\displaystyle\\sum_{k=1}^{n}\\sin\\dfrac{k\\pi}{n}=\\sum_{k=1}^{n}\\sin\\left(\\pi\\cdot\\dfrac{k}{n}\\right)\\cdot\\dfrac{1}{n}$。由定积分定义，$\\lim_{n\\to\\infty}\\dfrac{1}{n}\\displaystyle\\sum_{k=1}^{n}\\sin\\dfrac{k\\pi}{n}=\\int_0^1\\sin(\\pi x)\\,dx=\\left[-\\dfrac{\\cos\\pi x}{\\pi}\\right]_0^1=-\\dfrac{\\cos\\pi}{\\pi}+\\dfrac{\\cos 0}{\\pi}=\\dfrac{1}{\\pi}+\\dfrac{1}{\\pi}=\\dfrac{2}{\\pi}$。",
+     "answer": "$\\dfrac{2}{\\pi}$",
+     "scene_spec": {
+      "objects": [
+       "单位区间 $[0,1]$ 上 $\\sin(\\pi x)$ 的黎曼矩形逼近",
+       "和式随 $n$ 增大收敛于积分值"
+      ],
+      "steps": [
+       "第一步：建立数学分析·极限×定积分综合场景，呈现与黎曼和、定积分定义、正弦函数积分相关的核心图形。",
+       "第二步：单位区间 $[0,1]$ 上 $\\sin(\\pi x)$ 的黎曼矩形逼近。",
+       "第三步：和式随 $n$ 增大收敛于积分值。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "正弦函数(黎曼和)",
+     "visual_style": "黎曼矩形逼近",
+     "efficiency_tags": [
+      "单位区间 $[0,1]$ 上 $\\sin(\\pi x)$ 的黎曼矩形逼近",
+      "和式随 $n$ 增大收敛于积分值"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "d8e0dd494f401ed99e8ab604181bea6f93872b2f9f560bf8f6482d8f01eef9d6"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-002",
+   "problem_sha256": "b341f7042d7204bb4b04ad1fe5a8db7704e23eb42015ae740d340d029b60d2f1",
+   "source_records": [
+    {
+     "id": "test-calc-002",
+     "category": "数学分析",
+     "sub_category": "数列极限×泰勒公式",
+     "problem": "求极限 $\\displaystyle\\lim_{n\\to\\infty}n^2\\left(1-\\cos\\frac{1}{n}\\right)$。",
+     "solution": "由 $\\cos x=1-\\dfrac{x^2}{2}+o(x^2)$，取 $x=\\dfrac{1}{n}\\to 0$：$1-\\cos\\dfrac{1}{n}=\\dfrac{1}{2n^2}+o\\left(\\dfrac{1}{n^2}\\right)$。故 $n^2\\left(1-\\cos\\dfrac{1}{n}\\right)=n^2\\cdot\\dfrac{1}{2n^2}+n^2\\cdot o\\left(\\dfrac{1}{n^2}\\right)\\to\\dfrac{1}{2}$。",
+     "answer": "$\\dfrac{1}{2}$",
+     "scene_spec": {
+      "objects": [
+       "$y=1-\\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触",
+       "数列点列向 $1/2$ 收敛"
+      ],
+      "steps": [
+       "第一步：建立数学分析·数列极限×泰勒公式综合场景，呈现与数列极限、泰勒展开、无穷小阶相关的核心图形。",
+       "第二步：$y=1-\\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触。",
+       "第三步：数列点列向 $1/2$ 收敛。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "余弦函数无穷小阶",
+     "visual_style": "数列点列收敛",
+     "efficiency_tags": [
+      "$y=1-\\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触",
+      "数列点列向 $1/2$ 收敛"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "5fb47be3b5d0cb5c3f5db0bd58b432b38fad9600d065fa2644e3de57945cc7b4"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-003",
+   "problem_sha256": "49d51bb4c468f99464875d3733046fbe0694504ecea76b1668ad26eeae5da78b",
+   "source_records": [
+    {
+     "id": "test-calc-003",
+     "category": "数学分析",
+     "sub_category": "变限积分×导数",
+     "problem": "设 $F(x)=\\displaystyle\\int_1^x\\frac{\\ln t}{t}\\,dt$（$x>0$）。求 $F'(x)$、$F''(x)$，并给出 $F(x)$ 的显式表达式。",
+     "solution": "由微积分基本定理，$F'(x)=\\dfrac{\\ln x}{x}$。再求导：$F''(x)=\\dfrac{\\frac{1}{x}\\cdot x-\\ln x\\cdot 1}{x^2}=\\dfrac{1-\\ln x}{x^2}$。显式积分：令 $u=\\ln t$（$du=\\dfrac{dt}{t}$），$F(x)=\\displaystyle\\int_0^{\\ln x}u\\,du=\\dfrac{(\\ln x)^2}{2}$（下限 $t=1$ 对应 $u=0$）。验证：$F'(x)=\\dfrac{2\\ln x}{2}\\cdot\\dfrac{1}{x}=\\dfrac{\\ln x}{x}$，一致。",
+     "answer": "$F'(x)=\\dfrac{\\ln x}{x}$；$F''(x)=\\dfrac{1-\\ln x}{x^2}$；$F(x)=\\dfrac{(\\ln x)^2}{2}$",
+     "scene_spec": {
+      "objects": [
+       "被积函数曲线与变限积分的面积",
+       "$F,F',F''$ 三条曲线对照"
+      ],
+      "steps": [
+       "第一步：建立数学分析·变限积分×导数综合场景，呈现与微积分基本定理、对数函数、链式求导相关的核心图形。",
+       "第二步：被积函数曲线与变限积分的面积。",
+       "第三步：$F,F',F''$ 三条曲线对照。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数函数变限积分",
+     "visual_style": "三曲线对照",
+     "efficiency_tags": [
+      "被积函数曲线与变限积分的面积",
+      "$F,F',F''$ 三条曲线对照"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "6b23429644c8f9a64d47ca4e2f685ae73a1662c431172908fe9f49fdd2f5198d"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-004",
+   "problem_sha256": "004a5c3cea6a5f72a1f93580ddffa01d8ee275ac552db5a678e3e01e86b972d4",
+   "source_records": [
+    {
+     "id": "test-calc-004",
+     "category": "数学分析",
+     "sub_category": "微分方程×一阶线性",
+     "problem": "求微分方程 $y'+2y=e^{-x}$ 的通解。",
+     "solution": "积分因子 $\\mu(x)=e^{\\int 2\\,dx}=e^{2x}$。方程两边乘 $e^{2x}$：$e^{2x}y'+2e^{2x}y=e^{x}$，即 $(e^{2x}y)'=e^{x}$。积分得 $e^{2x}y=e^{x}+C$，故通解 $y=e^{-x}+Ce^{-2x}$。",
+     "answer": "$y=e^{-x}+Ce^{-2x}$",
+     "scene_spec": {
+      "objects": [
+       "积分因子把左端变为乘积导数",
+       "通解曲线族（含特解 $e^{-x}$）"
+      ],
+      "steps": [
+       "第一步：建立数学分析·微分方程×一阶线性综合场景，呈现与一阶线性微分方程、积分因子、常数变易相关的核心图形。",
+       "第二步：积分因子把左端变为乘积导数。",
+       "第三步：通解曲线族（含特解 $e^{-x}$）。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "一阶线性微分方程",
+     "visual_style": "积分因子乘积导数",
+     "efficiency_tags": [
+      "积分因子把左端变为乘积导数",
+      "通解曲线族（含特解 $e^{-x}$）"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "7739d24513650882f73102b8c94aa6d2caece4180e8880faac512c5fb9f115d9"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-005",
+   "problem_sha256": "ffaf0aab72e759d598c56ae31266c6c6803505c590fdce934ef8990e6bf9601b",
+   "source_records": [
+    {
+     "id": "test-calc-005",
+     "category": "数学分析",
+     "sub_category": "级数×反常积分",
+     "problem": "用积分判别法判断级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{1}{n\\ln n}$ 的敛散性。",
+     "solution": "$f(x)=\\dfrac{1}{x\\ln x}$ 在 $[2,+\\infty)$ 上非负递减。$\\displaystyle\\int_2^{+\\infty}\\dfrac{dx}{x\\ln x}=\\lim_{b\\to\\infty}\\left[\\ln(\\ln x)\\right]_2^b=\\lim_{b\\to\\infty}\\left(\\ln(\\ln b)-\\ln(\\ln 2)\\right)=+\\infty$，发散。由积分判别法，级数 $\\sum\\dfrac{1}{n\\ln n}$ 发散。",
+     "answer": "发散",
+     "scene_spec": {
+      "objects": [
+       "$y=\\dfrac{1}{x\\ln x}$ 曲线下的无穷面积",
+       "级数柱状图嵌入曲线下方"
+      ],
+      "steps": [
+       "第一步：建立数学分析·级数×反常积分综合场景，呈现与积分判别法、对数函数积分、p 级数思想相关的核心图形。",
+       "第二步：$y=\\dfrac{1}{x\\ln x}$ 曲线下的无穷面积。",
+       "第三步：级数柱状图嵌入曲线下方。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数型 p 级数",
+     "visual_style": "柱状图嵌入曲线",
+     "efficiency_tags": [
+      "$y=\\dfrac{1}{x\\ln x}$ 曲线下的无穷面积",
+      "级数柱状图嵌入曲线下方"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "4ef1c141d430ed8258eb11a3586af4479d6319fce9015562ec52bbe1ce521301"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  },
+  {
+   "split": "test",
+   "id": "test-calc-006",
+   "problem_sha256": "f708fdf69bf85f0096bc1e33bac9eeb5b0cb64cc2e729187349ae6b8fcb81891",
+   "source_records": [
+    {
+     "id": "test-calc-006",
+     "category": "数学分析",
+     "sub_category": "泰勒公式×递推",
+     "problem": "求 $f(x)=\\ln(1+x)$ 的麦克劳林展开式，并归纳 $f^{(n)}(0)$ 的规律。",
+     "solution": "逐阶求导：$f'(x)=(1+x)^{-1}$，$f''(x)=-(1+x)^{-2}$，$f'''(x)=2(1+x)^{-3}$，$f^{(4)}(x)=-6(1+x)^{-4}$。归纳得 $f^{(n)}(x)=(-1)^{n-1}(n-1)!\\,(1+x)^{-n}$（$n\\ge 1$），故 $f^{(n)}(0)=(-1)^{n-1}(n-1)!$。麦克劳林展开：$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$（$|x|<1$）。",
+     "answer": "$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$；$f^{(n)}(0)=(-1)^{n-1}(n-1)!$",
+     "scene_spec": {
+      "objects": [
+       "逐阶导数系数的递推表",
+       "部分和多项式逐阶逼近 $\\ln(1+x)$"
+      ],
+      "steps": [
+       "第一步：建立数学分析·泰勒公式×递推综合场景，呈现与泰勒公式、高阶导数递推、幂级数相关的核心图形。",
+       "第二步：逐阶导数系数的递推表。",
+       "第三步：部分和多项式逐阶逼近 $\\ln(1+x)$。",
+       "第四步：高亮最终结果与答案。"
+      ]
+     },
+     "function_family": "对数函数高阶导数",
+     "visual_style": "系数递推表",
+     "efficiency_tags": [
+      "逐阶导数系数的递推表",
+      "部分和多项式逐阶逼近 $\\ln(1+x)$"
+     ],
+     "source": "self-authored",
+     "license": "Internal-Research-Use-Only"
+    }
+   ],
+   "source_record_sha256": [
+    "f722ecd519b0ddde429026da5f71440665a049534ddafa744b16ef946fc9460e"
+   ],
+   "status": "PENDING_ACTUAL_REVIEW"
+  }
+ ]
+}
