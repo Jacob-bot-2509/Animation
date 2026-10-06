@@ -1,0 +1,26 @@
+{
+  "schema": "evidence-byte-preservation-delivery-v1",
+  "base_amendment_manifest": {
+    "path": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/amendment-delivery-manifest.json",
+    "sha256": "2acdcaa42eeb31879a174eca960d996c1978c37f97a4b6e19879e7509dcd76e8"
+  },
+  "artifacts": [
+    {
+      "path": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/.gitattributes",
+      "bytes": 89,
+      "sha256": "3438ddfab3fe3829f136b09053e8a19c7e6c8c4f729767f590ba2098a25b6b72"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/git-byte-preservation.json",
+      "bytes": 1319,
+      "sha256": "ae603daa25d0c72f858b1c4b014a62084b51bc23b1c8879b615dc17087d882b2"
+    }
+  ],
+  "exclusions": [
+    "byte-preservation-delivery-manifest.json",
+    "amendment-commit-receipt.json",
+    "final-bridge-handoff.json",
+    "final-consistency.json"
+  ],
+  "exclusion_reason": "Self hash and post-commit/post-handoff receipts are recorded separately."
+}

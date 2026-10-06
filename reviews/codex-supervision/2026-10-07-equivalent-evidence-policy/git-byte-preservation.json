@@ -1,0 +1,21 @@
+{
+  "schema": "review-evidence-byte-preservation-v1",
+  "time": "2026-10-07T04:08:34.863308+08:00",
+  "extends_commit_plan": {
+    "path": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/amendment-commit-plan.json",
+    "raw_sha256": "4df327ed72e5fcbc9e61a2a8d5be1fa9d15ee76072784cb865e587502d7ee05f"
+  },
+  "additional_commit_paths": [
+    "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/.gitattributes",
+    "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/git-byte-preservation.json",
+    "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/byte-preservation-delivery-manifest.json"
+  ],
+  "reason": "A captured historical sample_manifest.json uses CRLF. Project *.json text/eol=lf would change its bound bytes. Preserve all raw-hash-bound artifacts in this review directory via scoped -text !eol attributes.",
+  "attribute_path": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/.gitattributes",
+  "attribute_raw_sha256": "3438ddfab3fe3829f136b09053e8a19c7e6c8c4f729767f590ba2098a25b6b72",
+  "root_project_gitattributes_changed_by_this_revision": false,
+  "failed_git_add_preserved_empty_index": true,
+  "original_source_files_changed": false,
+  "policy_and_statistical_thresholds_changed": false,
+  "effective_commit_path_count": 18
+}
