@@ -30,16 +30,24 @@
 - 格式:**题目以 PNG 图片存储**(prompt/options/analysis 均为 img),文本源不在库中
   → 提取需 OCR,数学公式 OCR 误差风险高;**暂列为备用源,非主力**
 
-## 提取管线计划(kaoyan 优先)
+## 提取管线计划(已完成 v1,2026-10-06)
 
-1. 解析 papers/*.md → 逐题拆分(选择题/填空题/解答题,选项 A-D)
-2. 解析 solutions/*解析/*.md → (n)【答案】+【解】逐题拆分
-3. 题号配对校验(每套题数一致、无缺号)→ 生成记录:
-   {id: holdout-src-kaoyan-<year>-<n>, problem, options, answer, solution,
-    source_repo, source_path, year, question_no, license, subject}
-4. 剔除图片题(题面含 ![]() 且图片承载信息者)
-5. 与项目 264+47+497 全部记录做哈希/内容去重
-6. 输出未曝光辅助总体池(JSONL),加锁冻结
+1. ✅ 题面解析:papers md 按(大题节,局部题号)切题(填空题+选择题;解答题因节头被【解】污染暂不取)
+2. ✅ 答案+解析:solutions md 按 (n)【答案】/【解】切
+3. ✅ 配对校验:仅 (节,题号) 两侧对上且三成分齐全才出记录——缺题面/缺解析一律不要(用户指令)
+4. ✅ 图片题剔除:题面含图片的题目未入池
+5. ✅ 去重:与项目 297 对(现役+评测/测试)归一化比对,零精确重叠
+6. ✅ 冻结:391 条 → kaoyan-pool-v1-manifest.json(记录级 SHA 绑定,FROZEN_UNEXPOSED)
+   - 池本体 holdout-sources/extracted/kaoyan-triples.jsonl(gitignored,不入库)
+   - 覆盖年份 1987-2021(2022-2025 因缺解析或格式变化,按"只有答案无题面的不要"排除)
+   - 题量 391 ≥ 统计最小需求(299 负例 + 59 正例),有余量
+7. 提取工具:tools/holdout_{scan,probe,extract,dedup,freeze}_*.py(已提交)
+
+## 待办
+
+- holdout v2 设计(Codex corrected-v2.md 口径):分层抽样、种子、盲标注角色、校准正例对构造
+- libpku 33 个 PDF 的文本可提取性验证(次主力补充源)
+
 
 ## 与 holdout v2 设计的关系
 
