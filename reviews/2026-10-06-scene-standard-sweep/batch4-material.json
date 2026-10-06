@@ -1,0 +1,925 @@
+{
+ "remaining_90": [
+  "draft-c02-01",
+  "draft-c02-04",
+  "draft-c04-04",
+  "draft-c06-01",
+  "draft-c06-02",
+  "draft-c07-01",
+  "draft-c07-03",
+  "draft-c07-04",
+  "draft-c07-05",
+  "draft-c08-01",
+  "draft-c08-02",
+  "draft-c08-03",
+  "draft-c10-01",
+  "draft-c10-03",
+  "draft-c10-04",
+  "draft-c10-05",
+  "draft-c12-01",
+  "draft-c12-03",
+  "draft-c14-01",
+  "draft-c14-02",
+  "draft-c14-04",
+  "draft-c17-04",
+  "draft-c19-03",
+  "draft-c19-04",
+  "draft-c19-05",
+  "draft-c20-03",
+  "draft-c20-04",
+  "draft-c23-05",
+  "draft-c24-03",
+  "draft-c25-04",
+  "draft-c25-05",
+  "draft-c26-01",
+  "draft-c26-03",
+  "draft-c26-04",
+  "draft-c26-05",
+  "draft-c27-01",
+  "draft-c27-02",
+  "draft-c27-03",
+  "draft-c27-04",
+  "draft-c27-05",
+  "draft-c29-02",
+  "draft-c29-03",
+  "draft-c29-05",
+  "draft-c30-01",
+  "draft-c30-03",
+  "draft-c31-03",
+  "draft-c31-04",
+  "draft-c31-05",
+  "draft-c32-02",
+  "draft-c34-01",
+  "draft-c34-02",
+  "draft-c34-03",
+  "draft-c34-05",
+  "draft-c35-02",
+  "draft-c35-05",
+  "draft-c38-01",
+  "draft-c38-02",
+  "draft-c39-01",
+  "draft-c39-03",
+  "draft-c40-01",
+  "draft-c40-04",
+  "draft-c41-01",
+  "draft-c41-02",
+  "draft-c41-04",
+  "draft-c42-02",
+  "draft-c42-03",
+  "draft-c42-04",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-03",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c07-05",
+   "deficiencies": [
+    "板书\"A₁=½∫cos2θ dθ=½\"积分式直接等于结果,未展示原函数 sin2θ/2 及代入 ±π/4 的求值(½×1=½)",
+    "第三步仅\"计算右叶面积 ½\",运算过程未列"
+   ],
+   "record": {
+    "id": "draft-c07-05",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "极坐标面积",
+    "concept_id": "C07",
+    "parent_training_ids": [
+     "calc-area-008"
+    ],
+    "problem": "求双纽线 $r^2=\\cos 2\\theta$ 所围成的总面积，并说明角域的确定方式。",
+    "solution": "需 $r^2\\ge0$,即 $\\cos2\\theta\\ge0$,故角域为 $[-\\frac{\\pi}{4},\\frac{\\pi}{4}]\\cup[\\frac{3\\pi}{4},\\frac{5\\pi}{4}]$(按模 $2\\pi$ 理解,等价于 $[0,\\frac{\\pi}{4}]\\cup[\\frac{3\\pi}{4},\\frac{5\\pi}{4}]\\cup[\\frac{7\\pi}{4},2\\pi]$),两段对应两个对称的叶。右叶面积 $A_1=\\frac12\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos2\\theta\\,d\\theta=\\frac12\\left.\\frac{\\sin2\\theta}{2}\\right|_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}=\\frac12\\times1=\\frac12$。总面积 $=2A_1=1$。",
+    "answer": "总面积为 $1$(每叶 $\\frac12$,共两叶)。",
+    "method": "极坐标面积公式($r^2$ 形式+角域约束)",
+    "difficulty": "进阶",
+    "variant_kind": "结构升级:r² 形式的双纽线,角域由非负性约束确定",
+    "scene_spec": {
+     "objects": [
+      "极坐标网格",
+      "双纽线 $r^2=\\cos2\\theta$(两叶对称图)",
+      "角域约束示意:$\\cos2\\theta\\ge0$ 的区间高亮",
+      "板书:$A_1=\\frac12\\int_{-\\pi/4}^{\\pi/4}\\cos2\\theta\\,d\\theta=\\frac12$",
+      "高亮框:总面积 $1$"
+     ],
+     "steps": [
+      "第一步:画出双纽线两叶。",
+      "第二步:由 $r^2\\ge0$ 确定角域,高亮两个有效区间。",
+      "第三步:计算右叶面积 $\\frac12$。",
+      "第四步:由对称性得总面积 $1$。",
+      "第五步:高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-08",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "62609d3421ce6395e126076644b52527e29d368394e2738fc5547905d1ec4521",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-05",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "original_id": "draft-c07-05",
+     "prior_parent_training_ids": [
+      "calc-area-008"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "ebe828e25ba181db40577efd521d304c089e8083cf7ca5378a246680d16621a6",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+      "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+      "versioned_id": "codex-repair-20261005-batch-08-draft-c07-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "62609d3421ce6395e126076644b52527e29d368394e2738fc5547905d1ec4521",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c08-01",
+   "deficiencies": [
+    "第三步\"写正面积参数积分并精确积分\"未展示展开 (1-cost)²=1-2cost+cos²t 及逐项积分 2π+0+π=3π 的过程",
+    "面积公式 ∫y dx 以参数 t 换元(dx=x'dt、代入 x'=a(1-cos t))的代入过程未展示",
+    "第一步\"证明横坐标严格递增及纵坐标非负\"未给出依据(x'=a(1-cos t)≥0 且在 (0,2π) 严格为正、y≥0、两端点),对象只列了 x' 公式",
+    "第四步有向边界符号核对(顺时针闭合边界)仅一句概括,未列依据"
+   ],
+   "record": {
+    "id": "draft-c08-01",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "参数曲线面积",
+    "concept_id": "C08",
+    "parent_training_ids": [
+     "calc-area-009"
+    ],
+    "problem": "设$a>0$，摆线一拱参数方程$x=a(t-\\sin t),y=a(1-\\cos t)$，$0\\le t\\le2\\pi$。求这一拱与$x$轴围成的面积，并说明参数积分方向与封闭边界的依据。",
+    "solution": "$x^{\\prime}=a(1-\\cos t)\\ge0$，在$(0,2\\pi)$严格为正；$y\\ge0$，两端点为$(0,0)$与$(2\\pi a,0)$。因此这一拱是从左到右的单值图形，由轴上线段闭合，普通面积为$\\int y\\,dx=\\int_0^{2\\pi}a^2(1-\\cos t)^2\\,dt$。展开得$\\int_0^{2\\pi}(1-2\\cos t+\\cos^2t)dt=2\\pi+0+\\pi=3\\pi$，故面积$3\\pi a^2$。这里沿上拱从左到右的$\\int y\\,dx$给正面积；如果使用有向闭曲线公式，应同时说明此上拱方向对应顺时针闭边界，不能混用逆时针符号。轴上线段的$y\\,dx$贡献为零。",
+    "answer": "面积$3\\pi a^2$。",
+    "method": "摆线一拱与轴的参数面积",
+    "difficulty": "基础",
+    "variant_kind": "开拱由轴闭合+横坐标单调+方向符号",
+    "scene_spec": {
+     "objects": [
+      "摆线一拱与$x$轴",
+      "端点$(0,0),(2\\pi a,0)$",
+      "$x^{\\prime}=a(1-\\cos t)$",
+      "面积$3\\pi a^2$"
+     ],
+     "steps": [
+      "第一步:证明横坐标严格递增及纵坐标非负。",
+      "第二步:用两端点和轴线段确定闭合区域。",
+      "第三步:写正面积参数积分并精确积分。",
+      "第四步:核对有向边界符号与零贡献轴段。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-08",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "fcda5ced58bfcbfeffedfb27d637026b7705d6c0fffcea8a43edd2f739b1b705",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c08-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "original_id": "draft-c08-01",
+     "prior_parent_training_ids": [
+      "calc-area-009"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "446145f5a8db6a01ba7ccfc903ce0626a50cfdb18e2737c61ab52dd9bc9413d2",
+     "previous_hold_reasons": [
+      "EXACT_PROBLEM_AND_METHOD"
+     ],
+     "math_correction_notes": [],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+      "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+      "versioned_id": "codex-repair-20261005-batch-08-draft-c08-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "edb3cbb43fba8f345c8d173f8c6e4bf4d515efbcaf344d078ead446a4b2bcdd6",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c08-02",
+   "deficiencies": [
+    "第三步\"写出第一象限的面积积分并计算\"未展示 x'=-3a cos²t sin t 的求导与代入、符号整理得 3a²∫sin⁴t cos²t dt 的过程",
+    "未展示 sin⁴t cos²t 定积分的求值依据与步骤((3!!·1!!)π/(6!!·2)=3π/96→3πa²/32),板书只给积分式与最终结果"
+   ],
+   "record": {
+    "id": "draft-c08-02",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "参数曲线面积",
+    "concept_id": "C08",
+    "parent_training_ids": [
+     "calc-area-009"
+    ],
+    "problem": "求星形线 $\\begin{cases}x=a\\cos^3 t\\\\ y=a\\sin^3 t\\end{cases}$($a>0$)围成的面积。",
+    "solution": "星形线在第一象限的部分对应 $t$ 从 $\\frac{\\pi}{2}$ 到 $0$。第一象限面积 $A_1=\\int_{\\frac{\\pi}{2}}^{0}y\\,x'\\,dt$ 的绝对值,$x'=-3a\\cos^2t\\sin t$:$\\int_{\\frac{\\pi}{2}}^{0}(a\\sin^3t)(-3a\\cos^2t\\sin t)\\,dt=3a^2\\int_0^{\\frac{\\pi}{2}}\\sin^4t\\cos^2t\\,dt=3a^2\\cdot\\frac{(3!!\\cdot1!!)\\pi}{6!!\\cdot2}=3a^2\\cdot\\frac{3\\pi}{96}=\\frac{3\\pi a^2}{32}$。总面积为 $4A_1=\\frac{3\\pi a^2}{8}$。",
+    "answer": "面积为 $\\frac{3\\pi a^2}{8}$。",
+    "method": "参数方程面积公式(对称简化)",
+    "difficulty": "基础",
+    "variant_kind": "曲线类型变化:星形线的四象限对称面积",
+    "scene_spec": {
+     "objects": [
+      "平面坐标系:星形线(四角星形状)与内部阴影",
+      "第一象限部分高亮,其余淡化",
+      "板书:$3a^2\\int_0^{\\pi/2}\\sin^4t\\cos^2t\\,dt$",
+      "高亮框:$\\frac{3\\pi a^2}{8}$",
+      "标签「四象限对称乘 4」"
+     ],
+     "steps": [
+      "第一步:画出星形线,阴影标出内部。",
+      "第二步:高亮第一象限部分,说明对称性。",
+      "第三步:写出第一象限的面积积分并计算。",
+      "第四步:乘以 $4$ 得总面积。",
+      "第五步:高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-08",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "1093e590c62d8bfc22a988039fabdb87e4a499b7a9fd98d54c7270a422e2ff3f",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c08-02",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "original_id": "draft-c08-02",
+     "prior_parent_training_ids": [
+      "calc-area-009"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "adf267dc16f3eddf2be0f1397aee3b8a199ccab533a52be6504ccf4de7f170f4",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+      "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+      "versioned_id": "codex-repair-20261005-batch-08-draft-c08-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "1093e590c62d8bfc22a988039fabdb87e4a499b7a9fd98d54c7270a422e2ff3f",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c08-03",
+   "deficiencies": [
+    "第三步\"推导 xy'-yx' 的化简结果\"未逐项列出 x'=3(1-2t³)/(1+t³)²、y'=3t(2-t³)/(1+t³)² 的求导、叉积相减 9t²(2-t³)-9t²(1-2t³) 与约分 (1+t³) 的操作,板书只标\"的推导\"未落实分步",
+    "第四步\"计算广义积分得 3/2\"未展示原函数 -3/(1+t³)、代入上下限及 t→∞ 取极限的过程,学生无法跟着算"
+   ],
+   "record": {
+    "id": "draft-c08-03",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "参数曲线面积",
+    "concept_id": "C08",
+    "parent_training_ids": [
+     "calc-area-009"
+    ],
+    "problem": "求笛卡尔叶形线 $x=\\frac{3t}{1+t^3}$，$y=\\frac{3t^2}{1+t^3}$($t\\ge0$)的环所围成的面积。",
+    "solution": "叶形线的环对应 $t$ 从 $0$ 到 $+\\infty$(曲线从原点出发,经第一象限后回到原点)。用面积公式 $A=\\frac12\\int_0^{+\\infty}(x\\,y'-y\\,x')\\,dt$。计算:$x'=\\frac{3(1-2t^3)}{(1+t^3)^2}$,$y'=\\frac{3t(2-t^3)}{(1+t^3)^2}$,故 $x\\,y'-y\\,x'=\\frac{9t^2(2-t^3)-9t^2(1-2t^3)}{(1+t^3)^3}=\\frac{9t^2(1+t^3)}{(1+t^3)^3}=\\frac{9t^2}{(1+t^3)^2}$。$A=\\frac12\\int_0^{+\\infty}\\frac{9t^2}{(1+t^3)^2}\\,dt=\\frac12\\left.\\left(-\\frac{3}{1+t^3}\\right)\\right|_0^{+\\infty}=\\frac12\\times3=\\frac32$。 对$t>0$有$y/x=t$，故不同有限参数对应不同非原点，曲线在此参数域无自交；$t\\downarrow0$与$t\\to+\\infty$均趋于原点，恰描绘一个环一次。上述无穷上限须理解为有限积分再取极限，原函数给出极限$3/2$。",
+    "answer": "环的面积为 $\\frac32$。",
+    "method": "参数曲线面积公式(闭环+广义积分)",
+    "difficulty": "中等",
+    "variant_kind": "参数非单调:叶形线闭环的广义积分面积计算",
+    "scene_spec": {
+     "objects": [
+      "平面坐标系：仅绘题定$t\\ge0$的叶形线闭环及环内阴影",
+      "动画:参数 $t$ 从 $0$ 增大,动点沿环行进",
+      "板书:$xy'-yx'=\\frac{9t^2}{(1+t^3)^2}$ 的推导",
+      "板书:广义积分 $\\frac12\\int_0^{+\\infty}$ 的计算",
+      "高亮框:$\\frac32$"
+     ],
+     "steps": [
+      "第一步:画出叶形线,阴影标出环部。",
+      "第二步:动画展示动点从原点出发画环又回到原点。",
+      "第三步:推导 $xy'-yx'$ 的化简结果。",
+      "第四步:计算广义积分得 $\\frac32$。",
+      "第五步:高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-08",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "720a4eb2587ce615d9f36f10326a70f72ff550649a5cdc5ed7eb75b147edc131",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c08-03",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "original_id": "draft-c08-03",
+     "prior_parent_training_ids": [
+      "calc-area-009"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "3c466c841cb7b338589ca3f9fbc004a7e39a9b79b8e667a173f98e633ffcc99a",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [
+      "补环的单次遍历、无自交及反常积分极限依据"
+     ],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+      "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+      "versioned_id": "codex-repair-20261005-batch-08-draft-c08-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "720a4eb2587ce615d9f36f10326a70f72ff550649a5cdc5ed7eb75b147edc131",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c14-04",
+   "deficiencies": [
+    "第三步代入 α=π/3 只给最终展开式,未逐项展示各频率系数代入计算(a_1'=2cos(π/3)=1、b_1'=2sin(π/3)=√3、a_2'=−b_2sin(2π/3)=√3/2、b_2'=b_2cos(2π/3)=1/2),学生无法跟着算",
+    "第二步'平方相加消去交叉项'未展开 (a_n cos(nα)−b_n sin(nα))²+(a_n sin(nα)+b_n cos(nα))² 的具体平方与合并过程",
+    "无高亮/关键点标注机制"
+   ],
+   "record": {
+    "id": "draft-c14-04",
+    "category": "数学分析",
+    "sub_category": "傅立叶级数",
+    "concept": "傅立叶展开",
+    "concept_id": "C14",
+    "parent_training_ids": [
+     "calc-series-020"
+    ],
+    "problem": "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+    "solution": "若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。",
+    "answer": "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。",
+    "method": "Fourier平移作用与系数不变量",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：Fourier平移作用与系数不变量",
+    "scene_spec": {
+     "objects": [
+      "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+      "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。"
+     ],
+     "steps": [
+      "第一步:若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。",
+      "第二步:这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。",
+      "第三步:本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "3e01d7b0e655444dd558204de190e6db71320c81d676bd987bfce281bf8bf3e6",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c14-04",
+     "prior_parent_training_ids": [
+      "calc-series-020"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换相位改变的锯齿数值变体，改为系数变换及逐频率不变量。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c14-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c17-04",
+   "deficiencies": [
+    "第五步只给'f1(P)=f2(P)=2',未展示代入坐标的运算:1+1+1-1=2、1-1+2·1=2",
+    "'故(s:t)=(1:-1)'未展示由 s f1(P)+t f2(P)=2s+2t=0 解得 s=-t 的过程",
+    "'平面为2y-z=1'未展示合并展开 f1-f2=(x+y+z-1)-(x-y+2z)=2y-z-1=0"
+   ],
+   "record": {
+    "id": "draft-c17-04",
+    "category": "解析几何",
+    "sub_category": "平面",
+    "concept": "平面方程与构造",
+    "concept_id": "C17",
+    "parent_training_ids": [
+     "geom-022"
+    ],
+    "problem": "设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。",
+    "solution": "法向量$n_1=(1,1,1)$、$n_2=(1,-1,2)$线性无关。任何包含$l$的平面法向量属于$\\operatorname{span}(n_1,n_2)$，在$l$上取一点比较常数项，得全部平面$s f_1+t f_2=0$，$(s,t)\\ne(0,0)$，比例$(s:t)$标识同一平面。该齐次表示包含$f_2=0$，不能用$f_1+\\lambda f_2$遗漏它。经过$P$需$s f_1(P)+t f_2(P)=0$：若$P\\in l$，所有成员都经过$P$；否则一条非零齐次线性约束唯一确定比例。对$P=(1,1,1)$，$f_1(P)=f_2(P)=2$，故$(s:t)=(1:-1)$，平面为$2y-z=1$。",
+    "answer": "全部$s f_1+t f_2=0$，$(s:t)\\in\\mathbb{RP}^1$；$P\\in l$时全部，否则唯一；指定点对应$2y-z=1$。",
+    "method": "射影平面束与完整分类",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：射影平面束与完整分类",
+    "scene_spec": {
+     "objects": [
+      "设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。",
+      "全部$s f_1+t f_2=0$，$(s:t)\\in\\mathbb{RP}^1$；$P\\in l$时全部，否则唯一；指定点对应$2y-z=1$。"
+     ],
+     "steps": [
+      "第一步:法向量$n_1=(1,1,1)$、$n_2=(1,-1,2)$线性无关。",
+      "第二步:任何包含$l$的平面法向量属于$\\operatorname{span}(n_1,n_2)$，在$l$上取一点比较常数项，得全部平面$s f_1+t f_2=0$，$(s,t)\\ne(0,0)$，比例$(s:t)$标识同一平面。",
+      "第三步:该齐次表示包含$f_2=0$，不能用$f_1+\\lambda f_2$遗漏它。",
+      "第四步:经过$P$需$s f_1(P)+t f_2(P)=0$：若$P\\in l$，所有成员都经过$P$；否则一条非零齐次线性约束唯一确定比例。",
+      "第五步:对$P=(1,1,1)$，$f_1(P)=f_2(P)=2$，故$(s:t)=(1:-1)$，平面为$2y-z=1$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-10-draft-c17-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-10",
+     "source_sha256": "9aa29561a8f8dc1a725169c6fa9b3fb558e5c2bed5b0d43940d42e9b5ff823e3",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "5d971095e7c082464fb1897ca24732eb7c55042b633ff7fb6ccb996f55ec5a87",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "9aa29561a8f8dc1a725169c6fa9b3fb558e5c2bed5b0d43940d42e9b5ff823e3",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-10/draft.jsonl",
+     "original_id": "draft-c17-04",
+     "prior_parent_training_ids": [
+      "geom-022"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "补全被仿射参数遗漏的成员，增加全集与点位置分类。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-10/draft-codex-repair-v3.jsonl",
+      "sha256": "5deff814a5143c19a00e1460f9c5e71f6b14c390ce7db489ef7b5fa8c93271c3",
+      "versioned_id": "codex-repair-20261005-batch-10-draft-c17-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c26-01",
+   "deficiencies": [
+    "第三步直接给出矩阵而未展示导出过程:应逐列展示 P(e₁)=e₁−(n·e₁)d/3=(1,0,0)−(1,1,0)/3=(2/3,−1/3,0),以及 P(e₂)=(0,1,0)−(2,2,0)/3=(−2/3,1/3,0)、P(e₃)=(0,0,1)+(1,1,0)/3=(1/3,1/3,1) 的逐分量运算(或展开 x−(x₁+2x₂−x₃)(1,1,0)/3 的分量式),学生无法跟着算出矩阵。"
+   ],
+   "record": {
+    "id": "draft-c26-01",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "concept": "线性变换的几何解释",
+    "concept_id": "C26",
+    "parent_training_ids": [
+     "linalg-048"
+    ],
+    "problem": "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+    "solution": "$n\\cdot d=3$，所以$Pd=0$且$n\\cdot Px=0$；对$n\\cdot x=0$的向量有$Px=x$。因此像为$n^{\\perp}$，核为$\\operatorname{span}(d)$，$P^2=P$，秩$2$。矩阵为$\\begin{pmatrix}2/3&-2/3&1/3\\\\-1/3&1/3&1/3\\\\0&0&1\\end{pmatrix}$。核方向$d$不平行法向量$n$，矩阵也不对称，故不是Euclidean正交投影；分解$x=Px+(n\\cdot x)d/3$唯一，说明投影方向。",
+    "answer": "$\\ker P=\\operatorname{span}(1,1,0)$，$\\operatorname{im}P=n^{\\perp}$，$P^2=P$；斜投影而非Euclidean正交投影。",
+    "method": "斜投影的唯一分解",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：斜投影的唯一分解",
+    "scene_spec": {
+     "objects": [
+      "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+      "$\\ker P=\\operatorname{span}(1,1,0)$，$\\operatorname{im}P=n^{\\perp}$，$P^2=P$；斜投影而非Euclidean正交投影。"
+     ],
+     "steps": [
+      "第一步:$n\\cdot d=3$，所以$Pd=0$且$n\\cdot Px=0$；对$n\\cdot x=0$的向量有$Px=x$。",
+      "第二步:因此像为$n^{\\perp}$，核为$\\operatorname{span}(d)$，$P^2=P$，秩$2$。",
+      "第三步:矩阵为$\\begin{pmatrix}2/3&-2/3&1/3\\\\-1/3&1/3&1/3\\\\0&0&1\\end{pmatrix}$。",
+      "第四步:核方向$d$不平行法向量$n$，矩阵也不对称，故不是Euclidean正交投影；分解$x=Px+(n\\cdot x)d/3$唯一，说明投影方向。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-12",
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "6d1ac85b70ef7fe07a7064e6065c8856f4ecc16a20c7bc208cf70fefc0100680",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+     "original_id": "draft-c26-01",
+     "prior_parent_training_ids": [
+      "linalg-048"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "去掉与C24同一剪切任务，改为核与像不正交的投影结构。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+      "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+      "versioned_id": "codex-repair-20261005-batch-12-draft-c26-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c26-05",
+   "deficiencies": [
+    "第一步 AB、BA 只给出结果矩阵,未标明哪一行乘哪一列:应逐项展示 AB 第1行×第1列=0·2+(−1)·0=0、第1行×第2列=0·0+(−1)·1=−1、第2行×第1列=1·2+0·0=2、第2行×第2列=1·0+0·1=0,BA 的四个分量乘积同理展示。"
+   ],
+   "record": {
+    "id": "draft-c26-05",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "concept": "线性变换的几何解释",
+    "concept_id": "C26",
+    "parent_training_ids": [
+     "linalg-048"
+    ],
+    "problem": "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+    "solution": "$AB=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$;$BA=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。$AB\\neq BA$。几何:单位正方形在 $AB$(先伸缩、后旋转)下:伸缩把顶点映为 $(0,0),(2,0),(2,1),(0,1)$(水平长条),再旋转 $90^\\circ$ 得 $(0,0),(0,2),(-1,2),(-1,0)$(竖直长条)。在 $BA$(先旋转、后伸缩)下:旋转得 $(0,0),(0,1),(-1,1),(-1,0)$,再沿 $x$ 方向伸缩得 $(0,0),(0,1),(-2,1),(-2,0)$(水平长条)。两像不同($AB$ 的像为竖直 $1\\times2$ 长条,$BA$ 的像为水平 $2\\times1$ 长条),故矩阵乘法顺序不可交换,几何上对应「先伸缩后旋转」与「先旋转后伸缩」的不同。",
+    "answer": "$AB=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$,$BA=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$,两者不同;$AB$ 的像为竖直长条,$BA$ 的像为水平长条,几何上为「先伸缩后旋转」与「先旋转后伸缩」的差异。",
+    "method": "复合变换顺序对照",
+    "difficulty": "进阶",
+    "variant_kind": "逆变换与复合:矩阵乘法不可交换的几何对照",
+    "scene_spec": {
+     "objects": [
+      "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+      "$AB=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$,$BA=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$,两者不同;$AB$ 的像为竖直长条,$BA$ 的像为水平长条,几何上为「先伸缩后旋转」与「先旋转后伸缩」的差异。"
+     ],
+     "steps": [
+      "第一步:$AB=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$;$BA=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。",
+      "第二步:$AB\\neq BA$。",
+      "第三步:几何:单位正方形在 $AB$(先伸缩、后旋转)下:伸缩把顶点映为 $(0,0),(2,0),(2,1),(0,1)$(水平长条),再旋转 $90^\\circ$ 得 $(0,0),(0,2),(-1,2),(-1,0)$(竖直长条)。",
+      "第四步:在 $BA$(先旋转、后伸缩)下:旋转得 $(0,0),(0,1),(-1,1),(-1,0)$,再沿 $x$ 方向伸缩得 $(0,0),(0,1),(-2,1),(-2,0)$(水平长条)。",
+      "第五步:两像不同($AB$ 的像为竖直 $1\\times2$ 长条,$BA$ 的像为水平 $2\\times1$ 长条),故矩阵乘法顺序不可交换,几何上对应「先伸缩后旋转」与「先旋转后伸缩」的不同。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-12",
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "a3dc4380de79779dd86cb8cb360fa53cd72545d6d684666558c3c2ca4fe1d9ba",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+     "original_id": "draft-c26-05",
+     "prior_parent_training_ids": [
+      "linalg-048"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "独立核验AB和BA及四像顶点；非交换因子为各向异性伸缩和旋转，无冻结旋转幂任务。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+      "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+      "versioned_id": "codex-repair-20261005-batch-12-draft-c26-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c29-02",
+   "deficiencies": [
+    "第一步 (x-(2+i))(x-(2-i))=x²-4x+5 未展示展开过程(如 ((x-2)-i)((x-2)+i)=(x-2)²-i²=x²-4x+4+1),学生看不到 i²=-1 的符号处理;第二步韦达代入与第三步展开核对已达标,仅此一处缺口。"
+   ],
+   "record": {
+    "id": "draft-c29-02",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "concept": "多项式因式分解与根",
+    "concept_id": "C29",
+    "parent_training_ids": [
+     "linalg-051"
+    ],
+    "problem": "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+    "solution": "实系数多项式的非实根成对出现:$2-i$ 也是根,故 $f$ 含因子 $(x-(2+i))(x-(2-i))=x^2-4x+5$。用韦达定理或综合除法:设第三根为 $r$,三根之和为 $7$,故 $r=7-(2+i)-(2-i)=3$。验证:$f=(x-3)(x^2-4x+5)$,展开核对:$x^3-4x^2+5x-3x^2+12x-15=x^3-7x^2+17x-15$ ✓。全部根:$3$,$2+i$,$2-i$。",
+    "answer": "全部根:$3$,$2+i$,$2-i$。",
+    "method": "复根共轭配对+韦达定理",
+    "difficulty": "基础",
+    "variant_kind": "复根配对:已知复根求全部根(共轭+韦达)",
+    "scene_spec": {
+     "objects": [
+      "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+      "全部根:$3$,$2+i$,$2-i$。"
+     ],
+     "steps": [
+      "第一步:实系数多项式的非实根成对出现:$2-i$ 也是根,故 $f$ 含因子 $(x-(2+i))(x-(2-i))=x^2-4x+5$。",
+      "第二步:用韦达定理或综合除法:设第三根为 $r$,三根之和为 $7$,故 $r=7-(2+i)-(2-i)=3$。",
+      "第三步:验证:$f=(x-3)(x^2-4x+5)$,展开核对:$x^3-4x^2+5x-3x^2+12x-15=x^3-7x^2+17x-15$ ✓。",
+      "第四步:全部根:$3$,$2+i$,$2-i$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c29-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "955cbd2028c4051c16cf5cc3fdaff2cbf0cdd630971646bbf05e99360cb478d6",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c29-02",
+     "prior_parent_training_ids": [
+      "linalg-051"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "实系数共轭根与第三根3，精确展开(x-3)(x²-4x+5)等于原多项式。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c29-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c29-03",
+   "deficiencies": [
+    "第二步\"欧几里得步骤 f-(x-1)f'/4=0\"未展示长除法演算过程:用 f'=4x³-12x²+12x-4 除 f 得商 (x-1)/4、余 0 的逐步过程缺失,学生看不到商从何而来。",
+    "第三步 f^(j)(1) 只给结论,未逐一求导代入(如 f''=12(x-1)²→f''(1)=0、f^(4)=24→f^(4)(1)=4!=24≠0)。"
+   ],
+   "record": {
+    "id": "draft-c29-03",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "concept": "多项式因式分解与根",
+    "concept_id": "C29",
+    "parent_training_ids": [
+     "linalg-051"
+    ],
+    "problem": "用 $f$ 与 $f'$ 的公因式求多项式 $f(x)=x^4-4x^3+6x^2-4x+1$ 的重根及其重数。",
+    "solution": "$f=x^4-4x^3+6x^2-4x+1=(x-1)^4$，$f^{\\prime}=4(x-1)^3$。欧几里得步骤$f-(x-1)f^{\\prime}/4=0$，故首一最大公因子为$(x-1)^3$。$f/f_{\\mathrm{gcd}}=x-1$给唯一不同根$1$；$f^{(j)}(1)=0$（$j=0,1,2,3$）、$f^{(4)}(1)=24\\ne0$，证明重数恰为$4$。",
+    "answer": "$f=(x-1)^4$,$x=1$ 是四重根。",
+    "method": "导数公因式判重根",
+    "difficulty": "中等",
+    "variant_kind": "重根判定:公因式方法与二项式识别的双路径",
+    "scene_spec": {
+     "objects": [
+      "用 $f$ 与 $f'$ 的公因式求多项式 $f(x)=x^4-4x^3+6x^2-4x+1$ 的重根及其重数。",
+      "$f=(x-1)^4$,$x=1$ 是四重根。"
+     ],
+     "steps": [
+      "第一步:$f=x^4-4x^3+6x^2-4x+1=(x-1)^4$，$f^{\\prime}=4(x-1)^3$。",
+      "第二步:欧几里得步骤$f-(x-1)f^{\\prime}/4=0$，故首一最大公因子为$(x-1)^3$。",
+      "第三步:$f/f_{\\mathrm{gcd}}=x-1$给唯一不同根$1$；$f^{(j)}(1)=0$（$j=0,1,2,3$）、$f^{(4)}(1)=24\\ne0$，证明重数恰为$4$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c29-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "4478f2bede767643feab70df40573cb828776aeea1f49f4ed15c75d6b6ef87f3",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c29-03",
+     "prior_parent_training_ids": [
+      "linalg-051"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "补充实际欧几里得余式和重数终止检查。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c29-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
