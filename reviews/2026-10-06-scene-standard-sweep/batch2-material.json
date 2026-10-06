@@ -1,0 +1,909 @@
+{
+ "remaining_90": [
+  "draft-c02-01",
+  "draft-c02-04",
+  "draft-c04-04",
+  "draft-c06-01",
+  "draft-c06-02",
+  "draft-c07-01",
+  "draft-c07-03",
+  "draft-c07-04",
+  "draft-c07-05",
+  "draft-c08-01",
+  "draft-c08-02",
+  "draft-c08-03",
+  "draft-c10-01",
+  "draft-c10-03",
+  "draft-c10-04",
+  "draft-c10-05",
+  "draft-c12-01",
+  "draft-c12-03",
+  "draft-c14-01",
+  "draft-c14-02",
+  "draft-c14-04",
+  "draft-c17-04",
+  "draft-c19-03",
+  "draft-c19-04",
+  "draft-c19-05",
+  "draft-c20-03",
+  "draft-c20-04",
+  "draft-c23-05",
+  "draft-c24-03",
+  "draft-c25-04",
+  "draft-c25-05",
+  "draft-c26-01",
+  "draft-c26-03",
+  "draft-c26-04",
+  "draft-c26-05",
+  "draft-c27-01",
+  "draft-c27-02",
+  "draft-c27-03",
+  "draft-c27-04",
+  "draft-c27-05",
+  "draft-c29-02",
+  "draft-c29-03",
+  "draft-c29-05",
+  "draft-c30-01",
+  "draft-c30-03",
+  "draft-c31-03",
+  "draft-c31-04",
+  "draft-c31-05",
+  "draft-c32-02",
+  "draft-c34-01",
+  "draft-c34-02",
+  "draft-c34-03",
+  "draft-c34-05",
+  "draft-c35-02",
+  "draft-c35-05",
+  "draft-c38-01",
+  "draft-c38-02",
+  "draft-c39-01",
+  "draft-c39-03",
+  "draft-c40-01",
+  "draft-c40-04",
+  "draft-c41-01",
+  "draft-c41-02",
+  "draft-c41-04",
+  "draft-c42-02",
+  "draft-c42-03",
+  "draft-c42-04",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-03",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c10-01",
+   "deficiencies": [
+    "objects 仅复制题干与答案,无板书/高亮框/标注等呈现元素,无法构成标准①要求的清晰细致的运算动画",
+    "收敛论证未标注重点与细节:关键部分和公式 S_{2N}=1-2^{-N}、S_{2N+1}=1-2^{-N}+1/(N+1)、绝对值级数发散式 Σ_{n=1}^{2N}|u_n|=2Σ1/k-1+2^{-N}、反例 |u_4|=1/4<|u_5|=1/3 均无高亮/关键点标注",
+    "步骤为解法文字逐句复制,未设计逐项运算的呈现过程(如部分和逐项累加、绝对值级数逐项对照的动画)"
+   ],
+   "record": {
+    "id": "draft-c10-01",
+    "category": "数学分析",
+    "sub_category": "级数",
+    "concept": "交错级数与绝对收敛",
+    "concept_id": "C10",
+    "parent_training_ids": [
+     "calc-series-015"
+    ],
+    "problem": "定义$u_{2k-1}=1/k$、$u_{2k}=-1/k+2^{-k}$（$k\\ge1$）。求$\\sum_{n\\ge1}u_n$的和与敛散类型，并判断绝对值单调递减是否为交错级数收敛的必要条件。",
+    "solution": "由$2^k>k$知偶项为负，奇项为正。精确部分和为$S_{2N}=1-2^{-N}$、$S_{2N+1}=1-2^{-N}+1/(N+1)$，均趋于$1$。而$\\sum_{n=1}^{2N}|u_n|=2\\sum_{k=1}^N1/k-1+2^{-N}\\to\\infty$，所以条件收敛。$|u_4|=1/4<|u_5|=1/3$，绝对值不单调；莱布尼茨的单调条件是充分条件，并非必要条件。",
+    "answer": "条件收敛，和$1$；绝对值不单调，单调性不是必要条件。",
+    "method": "成对抵消与必要条件反例",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：成对抵消与必要条件反例",
+    "scene_spec": {
+     "objects": [
+      "定义$u_{2k-1}=1/k$、$u_{2k}=-1/k+2^{-k}$（$k\\ge1$）。求$\\sum_{n\\ge1}u_n$的和与敛散类型，并判断绝对值单调递减是否为交错级数收敛的必要条件。",
+      "条件收敛，和$1$；绝对值不单调，单调性不是必要条件。"
+     ],
+     "steps": [
+      "第一步:由$2^k>k$知偶项为负，奇项为正。",
+      "第二步:精确部分和为$S_{2N}=1-2^{-N}$、$S_{2N+1}=1-2^{-N}+1/(N+1)$，均趋于$1$。",
+      "第三步:而$\\sum_{n=1}^{2N}|u_n|=2\\sum_{k=1}^N1/k-1+2^{-N}\\to\\infty$，所以条件收敛。",
+      "第四步:$|u_4|=1/4<|u_5|=1/3$，绝对值不单调；莱布尼茨的单调条件是充分条件，并非必要条件。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c10-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "507639bd455a17fb7d8c9846b23ec978eb2312436b4b2c92e5a28e71ce8671a4",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c10-01",
+     "prior_parent_training_ids": [
+      "calc-series-015"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换与留出集相同的交错调和求和；改为成对抵消、非单调振幅及精确奇偶部分和。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c10-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c10-03",
+   "deficiencies": [
+    "objects 仅复制题干与答案,无板书/高亮框/标注等呈现元素,无法构成标准①要求的清晰细致的运算动画",
+    "发散证明未标注重点与细节:成对和估计 (4k-3)/[2k(2k-1)]≥1/(2k) 的放缩依据、下界 S_{2N}≥(1/2)Σ1/k→∞、振幅不递减 1/(2k-1)<3/(2k) 均无高亮/关键点标注"
+   ],
+   "record": {
+    "id": "draft-c10-03",
+    "category": "数学分析",
+    "sub_category": "级数",
+    "concept": "交错级数与绝对收敛",
+    "concept_id": "C10",
+    "parent_training_ids": [
+     "calc-series-015"
+    ],
+    "problem": "说明级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n(2+(-1)^n)}{n}$ 发散，并解释莱布尼茨判别法为何不能使用。",
+    "solution": "第$2k-1$项为$-1/(2k-1)$，第$2k$项为$3/(2k)$，成对和为$(4k-3)/[2k(2k-1)]\\ge1/(2k)$。所以$S_{2N}\\ge\\frac12\\sum_{k=1}^N1/k\\to+\\infty$；$S_{2N+1}=S_{2N}-1/(2N+1)\\to+\\infty$。振幅也不递减：$1/(2k-1)<3/(2k)$。因此不能用莱布尼茨判别法，级数发散到$+\\infty$。",
+    "answer": "级数发散(拆成 $2\\sum(-1)^n/n+\\sum1/n$,收敛+发散);莱布尼茨判别法因通项绝对值不单调而不可用。",
+    "method": "拆项分析(单调性条件的必要性)",
+    "difficulty": "中等",
+    "variant_kind": "单调性不满足:莱布尼茨条件失效的反例辨析",
+    "scene_spec": {
+     "objects": [
+      "说明级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n(2+(-1)^n)}{n}$ 发散，并解释莱布尼茨判别法为何不能使用。",
+      "级数发散(拆成 $2\\sum(-1)^n/n+\\sum1/n$,收敛+发散);莱布尼茨判别法因通项绝对值不单调而不可用。"
+     ],
+     "steps": [
+      "第一步:第$2k-1$项为$-1/(2k-1)$，第$2k$项为$3/(2k)$，成对和为$(4k-3)/[2k(2k-1)]\\ge1/(2k)$。",
+      "第二步:所以$S_{2N}\\ge\\frac12\\sum_{k=1}^N1/k\\to+\\infty$；$S_{2N+1}=S_{2N}-1/(2N+1)\\to+\\infty$。",
+      "第三步:振幅也不递减：$1/(2k-1)<3/(2k)$。",
+      "第四步:因此不能用莱布尼茨判别法，级数发散到$+\\infty$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c10-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "272e990af3d0ccf22774d5dda4ff6295afc36f738b40d94c29d53d7d69ad4ccf",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c10-03",
+     "prior_parent_training_ids": [
+      "calc-series-015"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "改用有限成对部分和下界，避免把发散无穷和当成数相加。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c10-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c12-03",
+   "deficiencies": [
+    "第一步'几何求和'只给结论 |∑_{n=p}^q sin(nx)|≤1/|sin(x/2)|,未展示几何求和恒等式 2sin(x/2)∑_{n=p}^q sin(nx)=cos((p−1/2)x)−cos((q+1/2)x) 的推导与放缩过程,学生无法跟着推导",
+    "第二步'对权1/n作分部求和'只点名技巧,未列出Abel分部求和的具体展开(记 S_k=∑_{n=p}^k sin(nx),∑sin(nx)/n=S_q/q+∑_{k=p}^{q−1}S_k(1/k−1/(k+1)))及逐项取绝对值后的放缩,学生无法跟着算",
+    "收敛证明未按标准③标注重点与细节:无高亮/关键点标注(如'界与x,q无关→满足一致柯西准则'、反例中 x_N=π/(4N) 的选取意图),步骤仅为解答文本的机械拆分"
+   ],
+   "record": {
+    "id": "draft-c12-03",
+    "category": "数学分析",
+    "sub_category": "函数项级数",
+    "concept": "函数项级数一致收敛",
+    "concept_id": "C12",
+    "parent_training_ids": [
+     "calc-series-017"
+    ],
+    "problem": "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+    "solution": "几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。块和不能一致趋于零，因此在整个开区间不一致收敛。",
+    "answer": "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。",
+    "method": "一致Dirichlet与移动点反例",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：一致Dirichlet与移动点反例",
+    "scene_spec": {
+     "objects": [
+      "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+      "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。"
+     ],
+     "steps": [
+      "第一步:几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。",
+      "第二步:对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。",
+      "第三步:反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。",
+      "第四步:块和不能一致趋于零，因此在整个开区间不一致收敛。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "ca758f532c54dccbceca09d3cad49200746c9283be371730cfd2467747ae48f7",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c12-03",
+     "prior_parent_training_ids": [
+      "calc-series-017"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换对数生成函数变体，改为一致Dirichlet界与移动点柯西反例。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c12-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c14-01",
+   "deficiencies": [
+    "第三步'用积化和差积分可得'未展示具体运算:sinx·cos(nx) 的积化和差公式、各项积分原函数与代入上下限、a_{2k}=−4/[π(4k²−1)] 通式的推导,学生无法跟着算",
+    "n=1 时通式分母为零的细节仅有文字提示,无高亮标注;第五步 M判别法放缩(4k²−1≥3k²)无重点标注,不符合标准③",
+    "无高亮/关键点标注机制"
+   ],
+   "record": {
+    "id": "draft-c14-01",
+    "category": "数学分析",
+    "sub_category": "傅立叶级数",
+    "concept": "傅立叶展开",
+    "concept_id": "C14",
+    "parent_training_ids": [
+     "calc-series-020"
+    ],
+    "problem": "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+    "solution": "$f$为偶函数，故$b_n=0$。$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。",
+    "answer": "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。",
+    "method": "积化和差与绝对一致收敛",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：积化和差与绝对一致收敛",
+    "scene_spec": {
+     "objects": [
+      "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+      "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。"
+     ],
+     "steps": [
+      "第一步:$f$为偶函数，故$b_n=0$。",
+      "第二步:$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。",
+      "第三步:用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。",
+      "第四步:故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。",
+      "第五步:因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。",
+      "第六步:$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "5d415d2e745ca6a8658490d1b648cba8534846059ca77a6d82d7b56d8292f30a",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c14-01",
+     "prior_parent_training_ids": [
+      "calc-series-020"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "移除留出集Basel求和子任务，改为非多项式周期函数与一致性证明。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c14-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c26-04",
+   "deficiencies": [
+    "第二步只给结果未展示迭代运算:T²(x)=T(x₃,x₄,0,0)=(0,0,0,0)、U²(x)=U(x₂,x₃,0,0)=(x₃,0,0,0)、U³(x)=U(x₃,0,0,0)=0 的逐分量代入过程,以及像维数序列 4→2→0 与 4→2→1→0 的得出过程,应逐项展示。"
+   ],
+   "record": {
+    "id": "draft-c26-04",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "concept": "线性变换的几何解释",
+    "concept_id": "C26",
+    "parent_training_ids": [
+     "linalg-048"
+    ],
+    "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+    "solution": "两者像维数均为$2$。$T^2=0$且$T\\ne0$，像维数序列为$4,2,0$；$U^2(x)=(x_3,0,0,0)\\ne0$、$U^3=0$，像维数为$4,2,1,0$。相似会保持所有幂的秩或最小归零次数，故两者不相似。若一个非零幂零实或复矩阵可对角化，其对角特征值全为零，矩阵只能为零，矛盾。因此两者均不可对角化。相同一次秩不足以描述线性迭代的几何压缩。",
+    "answer": "秩均$2$；$T$二次归零，$U$三次归零，不相似，均不可对角化。",
+    "method": "几何迭代像与相似不变量",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：几何迭代像与相似不变量",
+    "scene_spec": {
+     "objects": [
+      "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+      "秩均$2$；$T$二次归零，$U$三次归零，不相似，均不可对角化。"
+     ],
+     "steps": [
+      "第一步:两者像维数均为$2$。",
+      "第二步:$T^2=0$且$T\\ne0$，像维数序列为$4,2,0$；$U^2(x)=(x_3,0,0,0)\\ne0$、$U^3=0$，像维数为$4,2,1,0$。",
+      "第三步:相似会保持所有幂的秩或最小归零次数，故两者不相似。",
+      "第四步:若一个非零幂零实或复矩阵可对角化，其对角特征值全为零，矩阵只能为零，矛盾。",
+      "第五步:因此两者均不可对角化。",
+      "第六步:相同一次秩不足以描述线性迭代的几何压缩。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-12",
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "3c20767c365236c22d3bb8bfe8e88d9aa0201dccd0af65444dd7ee8ef8d3ae04",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+     "original_id": "draft-c26-04",
+     "prior_parent_training_ids": [
+      "linalg-048"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集相同的二阶Jordan块，改为同秩不同迭代压缩的四维比较。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+      "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+      "versioned_id": "codex-repair-20261005-batch-12-draft-c26-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c27-01",
+   "deficiencies": [
+    "第一步 N²=αN 未展示代入过程:应展示 N²=(uv^T)(uv^T)=u(v^Tu)v^T=αuv^T=αN。",
+    "第二步'A 分别作用为 1 和 1+α'未展示作用计算:应展示 x∈ker v^T 时 Ax=x+u(v^Tx)=x(得特征值 1)、Au=u+u(v^Tu)=(1+α)u(得特征值 1+α)。"
+   ],
+   "record": {
+    "id": "draft-c27-01",
+    "category": "高等代数",
+    "sub_category": "矩阵对角化",
+    "concept": "谱分解与对角化",
+    "concept_id": "C27",
+    "parent_training_ids": [
+     "linalg-049",
+     "linalg-064",
+     "linalg-068"
+    ],
+    "problem": "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+    "solution": "记$N=uv^{\\mathsf T}\\ne0$，则$N^2=\\alpha N$。若$\\alpha\\ne0$，$\\ker v^{\\mathsf T}$维数$n-1$，$u$不在其中，全空间分解为该超平面与$\\operatorname{span}(u)$的直和；$A$分别作用为$1$和$1+\\alpha$，两个不同特征值都出现，所以可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$。若$\\alpha=0$，$N^2=0$但$N\\ne0$，$A$仅有特征值$1$，最小多项式为$(\\lambda-1)^2$；若可对角化只能是$I$，与$N\\ne0$矛盾。因此非零向量产生的零内积边界导致不可对角化。",
+    "answer": "$\\alpha\\ne0$可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$；$\\alpha=0$不可，最小多项式$(\\lambda-1)^2$。",
+    "method": "秩一扰动的谱分解与边界",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：秩一扰动的谱分解与边界",
+    "scene_spec": {
+     "objects": [
+      "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+      "$\\alpha\\ne0$可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$；$\\alpha=0$不可，最小多项式$(\\lambda-1)^2$。"
+     ],
+     "steps": [
+      "第一步:记$N=uv^{\\mathsf T}\\ne0$，则$N^2=\\alpha N$。",
+      "第二步:若$\\alpha\\ne0$，$\\ker v^{\\mathsf T}$维数$n-1$，$u$不在其中，全空间分解为该超平面与$\\operatorname{span}(u)$的直和；$A$分别作用为$1$和$1+\\alpha$，两个不同特征值都出现，所以可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$。",
+      "第三步:若$\\alpha=0$，$N^2=0$但$N\\ne0$，$A$仅有特征值$1$，最小多项式为$(\\lambda-1)^2$；若可对角化只能是$I$，与$N\\ne0$矛盾。",
+      "第四步:因此非零向量产生的零内积边界导致不可对角化。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "29ef73daa2f671f2820da7423b4107e3d0d8ae668d4d396d9f69728c1d03756c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c27-01",
+     "prior_parent_training_ids": [
+      "linalg-049",
+      "linalg-064",
+      "linalg-068"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "消除与活动训练linalg-066同Jordan结构的改数值题，改为秩一算子参数的半单与幂零边界。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c27-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c41-02",
+   "deficiencies": [
+    "第一步特征值 1±2i 与特征向量 q± 直接给出,未展示特征多项式 λ²−2λ+5=0 的求解及 (B−λI)q=0 的代入解算;",
+    "第二步 (A−λ±I)w±=v± 仅断言,未展示分块矩阵乘法的逐项验证;",
+    "第四步 [(λ−1)²+4]² 的展开未逐步展示,学生无法跟着算。"
+   ],
+   "record": {
+    "id": "draft-c41-02",
+    "category": "高等代数",
+    "sub_category": "矩阵标准形",
+    "concept": "若尔当标准形",
+    "concept_id": "C41",
+    "parent_training_ids": [
+     "linalg-066"
+    ],
+    "problem": "设$B=\\begin{pmatrix}1&-2\\\\2&1\\end{pmatrix}$、$A=\\begin{pmatrix}B&I_2\\\\0&B\\end{pmatrix}$。求复域Jordan形式和实最小多项式，说明实域是否可以写成实对角阵。",
+    "solution": "$B$有不同复根$\\lambda_\\pm=1\\pm2i$，特征向量$q_+=(1,-i)^{\\mathsf T},q_-=(1,i)^{\\mathsf T}$。对各根令$v_\\pm=(q_\\pm,0)$、$w_\\pm=(0,q_\\pm)$，则$(A-\\lambda_\\pm I)w_\\pm=v_\\pm$、$(A-\\lambda_\\pm I)v_\\pm=0$。因$q_+,q_-$独立，四向量组成复基，所以Jordan形式$J_2(1+2i)\\oplus J_2(1-2i)$。两个二阶块使复最小多项式为$(\\lambda-1-2i)^2(\\lambda-1+2i)^2=[(\\lambda-1)^2+4]^2$，它也是实最小多项式。非实特征值且存在二阶块，不能写成实对角阵，也不能在复域对角化。",
+    "answer": "复Jordan形式$J_2(1+2i)\\oplus J_2(1-2i)$；实最小多项式$[(\\lambda-1)^2+4]^2$；不可对角化。",
+    "method": "共轭特征值的广义链",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：共轭特征值的广义链",
+    "scene_spec": {
+     "objects": [
+      "设$B=\\begin{pmatrix}1&-2\\\\2&1\\end{pmatrix}$、$A=\\begin{pmatrix}B&I_2\\\\0&B\\end{pmatrix}$。求复域Jordan形式和实最小多项式，说明实域是否可以写成实对角阵。",
+      "复Jordan形式$J_2(1+2i)\\oplus J_2(1-2i)$；实最小多项式$[(\\lambda-1)^2+4]^2$；不可对角化。"
+     ],
+     "steps": [
+      "第一步:$B$有不同复根$\\lambda_\\pm=1\\pm2i$，特征向量$q_+=(1,-i)^{\\mathsf T},q_-=(1,i)^{\\mathsf T}$。",
+      "第二步:对各根令$v_\\pm=(q_\\pm,0)$、$w_\\pm=(0,q_\\pm)$，则$(A-\\lambda_\\pm I)w_\\pm=v_\\pm$、$(A-\\lambda_\\pm I)v_\\pm=0$。",
+      "第三步:因$q_+,q_-$独立，四向量组成复基，所以Jordan形式$J_2(1+2i)\\oplus J_2(1-2i)$。",
+      "第四步:两个二阶块使复最小多项式为$(\\lambda-1-2i)^2(\\lambda-1+2i)^2=[(\\lambda-1)^2+4]^2$，它也是实最小多项式。",
+      "第五步:非实特征值且存在二阶块，不能写成实对角阵，也不能在复域对角化。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c41-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "65878e19dba3ff28a217b81d51b5bfbd357700fc3070684f2131fc977d334a14",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c41-02",
+     "prior_parent_training_ids": [
+      "linalg-066"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换固定二阶实Jordan块的数值平移变体，改为实复数域与共轭链耦合。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c41-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c42-04",
+   "deficiencies": [
+    "第一步 AᵀA=I 仅凭分块识别断言,未展示列向量模长(√(1/4+3/4)=1 等)与两两内积的正交性验证计算;",
+    "第三步特征值 1/2±i√3/2 与 −1 未展示特征多项式 (λ+1)(λ²−λ+1) 的展开与求解。"
+   ],
+   "record": {
+    "id": "draft-c42-04",
+    "category": "高等代数",
+    "sub_category": "正交变换",
+    "concept": "正交变换",
+    "concept_id": "C42",
+    "parent_training_ids": [
+     "linalg-067"
+    ],
+    "problem": "判断矩阵 $A=\\begin{pmatrix}\\frac12&\\frac{\\sqrt3}{2}&0\\\\-\\frac{\\sqrt3}{2}&\\frac12&0\\\\0&0&-1\\end{pmatrix}$ 是否为正交矩阵；若是，说明其对应的几何变换。",
+    "solution": "前两维块为$R(-\\pi/3)$，第三维为$-1$，故$A^{\\mathsf T}A=I$、$\\det A=-1$。它是绕$z$轴旋转$-\\pi/3$与关于$xy$平面反射的可交换复合。特征值为$1/2\\pm i\\sqrt3/2,-1$，没有$1$，所以没有非零逐点固定向量；$z$轴仍是旋转因子的轴并被整个变换作为集合保持，轴上点变号。不能把“没有逐点固定轴”误说为复合中没有旋转轴。",
+    "answer": "正交、行列式$-1$；绕$z$轴旋转$-\\pi/3$与$xy$平面反射的复合，无非零固定点。",
+    "method": "分块结构判型(旋转块+反射块)",
+    "difficulty": "中等",
+    "variant_kind": "三维分类:旋转反射(det=−1 且含旋转面与反射方向)的结构分析",
+    "scene_spec": {
+     "objects": [
+      "判断矩阵 $A=\\begin{pmatrix}\\frac12&\\frac{\\sqrt3}{2}&0\\\\-\\frac{\\sqrt3}{2}&\\frac12&0\\\\0&0&-1\\end{pmatrix}$ 是否为正交矩阵；若是，说明其对应的几何变换。",
+      "正交、行列式$-1$；绕$z$轴旋转$-\\pi/3$与$xy$平面反射的复合，无非零固定点。"
+     ],
+     "steps": [
+      "第一步:前两维块为$R(-\\pi/3)$，第三维为$-1$，故$A^{\\mathsf T}A=I$、$\\det A=-1$。",
+      "第二步:它是绕$z$轴旋转$-\\pi/3$与关于$xy$平面反射的可交换复合。",
+      "第三步:特征值为$1/2\\pm i\\sqrt3/2,-1$，没有$1$，所以没有非零逐点固定向量；$z$轴仍是旋转因子的轴并被整个变换作为集合保持，轴上点变号。",
+      "第四步:不能把“没有逐点固定轴”误说为复合中没有旋转轴。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c42-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "46bd3293779dd051d53af723384274175bf7afb5cd1f2f6e5fdd7572540e00c2",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c42-04",
+     "prior_parent_training_ids": [
+      "linalg-067"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "用精确弧度并区分反射旋转的因子轴与点wise固定轴。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c42-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c07-01",
+   "deficiencies": [
+    "第三步\"写出面积公式并换元计算\"只提\"换元\"名词,未逐项展示 u=3θ、du=3dθ、∫_0^π sin²u du=π/2、1/3×π/2=π/6 的换算",
+    "系数整理 ½×4=2 未展示;第四步虽有\"π/6×2=π/3\",但 π/6 的由来未在动画中呈现"
+   ],
+   "record": {
+    "id": "draft-c07-01",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "极坐标面积",
+    "concept_id": "C07",
+    "parent_training_ids": [
+     "calc-area-008"
+    ],
+    "problem": "求三叶玫瑰线 $r=2\\sin 3\\theta$ 的一叶所围成的面积。",
+    "solution": "一叶对应角域 $0\\le\\theta\\le\\frac{\\pi}{3}$(当 $\\theta$ 从 $0$ 到 $\\frac{\\pi}{3}$ 时,$r$ 从 $0$ 增大到 $2$ 再回到 $0$)。面积 $A=\\frac12\\int_0^{\\frac{\\pi}{3}}r^2\\,d\\theta=\\frac12\\int_0^{\\frac{\\pi}{3}}4\\sin^2 3\\theta\\,d\\theta=2\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta$。换元 $u=3\\theta$:$\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta=\\frac13\\int_0^{\\pi}\\sin^2u\\,du=\\frac13\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{6}$。故 $A=2\\times\\frac{\\pi}{6}=\\frac{\\pi}{3}$。",
+    "answer": "一叶面积为 $\\frac{\\pi}{3}$。",
+    "method": "极坐标面积公式(单瓣角域)",
+    "difficulty": "基础",
+    "variant_kind": "多瓣区域:玫瑰线单叶面积(角域确定)",
+    "scene_spec": {
+     "objects": [
+      "极坐标网格",
+      "三叶玫瑰线 $r=2\\sin3\\theta$(三叶完整图)",
+      "一叶高亮(其余两叶淡化)与角域扇形示意",
+      "板书:$A=\\frac12\\int_0^{\\pi/3}4\\sin^{2}(3\\theta)\\,d\\theta$",
+      "高亮框:$\\frac{\\pi}{3}$"
+     ],
+     "steps": [
+      "第一步:画出三叶玫瑰线,高亮其中一叶。",
+      "第二步:说明该叶对应角域 $0\\le\\theta\\le\\frac\\pi3$。",
+      "第三步:写出面积公式并换元计算。",
+      "第四步:得 $\\frac{\\pi}{6}\\times2=\\frac{\\pi}{3}$。",
+      "第五步:高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-08",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "4eb51823b1be115272a8e83d56f6a7c1b6a939606a5c1bfe7548ff55e0259e1c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+     "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+     "original_id": "draft-c07-01",
+     "prior_parent_training_ids": [
+      "calc-area-008"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "1446ce58780f23d3dd537a62a1508e4daf7a79236fd7b430513e2bdc8243d0c2",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+      "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+      "versioned_id": "codex-repair-20261005-batch-08-draft-c07-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "74c25d4ad8e88d0f69e8c73d25f3e845cfd1a7e275bdc7ae1360a266a8f48d0a",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c49-03",
+   "deficiencies": [
+    "第一步 EY_n=1/2 与 Var Y_n=∑w²/12 的依据未标注(EX_i=1/2、∑w=1、Var U(0,1)=1/12)",
+    "第二步不等式链 (max w)²≤∑w²≤max w 只陈述不证明,逐项放缩依据(w_i²≤w_i·max w)未标注",
+    "第三步代入权重的中间式未展示:∑(2i/[n(n+1)])²=4/(n²(n+1)²)·n(n+1)(2n+1)/6,直接给结果 2(2n+1)/[3n(n+1)]",
+    "第四步 Chebyshev 代入(除以 (1/10)² 即乘 100 得 50(2n+1)/[9n(n+1)])与 n=100 时代入化简为 67/606 的运算过程未展示"
+   ],
+   "record": {
+    "id": "draft-c49-03",
+    "category": "概率论",
+    "sub_category": "极限定理",
+    "concept": "大数定律",
+    "concept_id": "C49",
+    "parent_training_ids": [
+     "prob-042"
+    ],
+    "problem": "设$X_i$独立同分布于$U(0,1)$，非负权$w_{n,i}$满足$\\sum_{i=1}^nw_{n,i}=1$。证明$Y_n=\\sum_iw_{n,i}X_i$在$L^2$收敛到$1/2$的充要条件，并对$w_{n,i}=2i/[n(n+1)]$求精确方差及$P(|Y_n-1/2|\\ge1/10)$的上界。",
+    "solution": "$EY_n=1/2$，$E|Y_n-1/2|^2=\\operatorname{Var}Y_n=\\sum_iw_{n,i}^2/12$，故$L^2$收敛当且仅当该平方和趋零。又$(\\max_iw_{n,i})^2\\le\\sum_iw_{n,i}^2\\le\\max_iw_{n,i}$，所以也等价于最大权趋零。指定权用$\\sum i^2=n(n+1)(2n+1)/6$得平方和$2(2n+1)/[3n(n+1)]$，方差$(2n+1)/[18n(n+1)]$。Chebyshev给上界$\\min\\{1,50(2n+1)/[9n(n+1)]\\}$；$n=100$时为$67/606$。",
+    "answer": "充要条件$\\sum_iw_{n,i}^2\\to0$，等价于最大权趋零；方差$(2n+1)/[18n(n+1)]$，上界如上。",
+    "method": "加权均值的L2判据",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：加权均值的L2判据",
+    "scene_spec": {
+     "objects": [
+      "设$X_i$独立同分布于$U(0,1)$，非负权$w_{n,i}$满足$\\sum_{i=1}^nw_{n,i}=1$。证明$Y_n=\\sum_iw_{n,i}X_i$在$L^2$收敛到$1/2$的充要条件，并对$w_{n,i}=2i/[n(n+1)]$求精确方差及$P(|Y_n-1/2|\\ge1/10)$的上界。",
+      "充要条件$\\sum_iw_{n,i}^2\\to0$，等价于最大权趋零；方差$(2n+1)/[18n(n+1)]$，上界如上。"
+     ],
+     "steps": [
+      "第一步:$EY_n=1/2$，$E|Y_n-1/2|^2=\\operatorname{Var}Y_n=\\sum_iw_{n,i}^2/12$，故$L^2$收敛当且仅当该平方和趋零。",
+      "第二步:又$(\\max_iw_{n,i})^2\\le\\sum_iw_{n,i}^2\\le\\max_iw_{n,i}$，所以也等价于最大权趋零。",
+      "第三步:指定权用$\\sum i^2=n(n+1)(2n+1)/6$得平方和$2(2n+1)/[3n(n+1)]$，方差$(2n+1)/[18n(n+1)]$。",
+      "第四步:Chebyshev给上界$\\min\\{1,50(2n+1)/[9n(n+1)]\\}$；$n=100$时为$67/606$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-17-draft-c49-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-17",
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "ddd9993a1f05888bb4967d2d2fb6333c90adeba0ac36582a266efedc6a0e263f",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "bcd6ec3d0204b822f83440669662afcfe3ec7712fa4806d51506f98cb797b0c2",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft.jsonl",
+     "original_id": "draft-c49-03",
+     "prior_parent_training_ids": [
+      "prob-042"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集等权均值的数值变体，改为权重充要条件及非等权族。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v3.jsonl",
+      "sha256": "9c0ce0327cd2a07d10a1540fee6262a73627f27e1338f114d9cd76fa254e5254",
+      "versioned_id": "codex-repair-20261005-batch-17-draft-c49-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
