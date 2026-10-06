@@ -1,0 +1,50 @@
+{
+  "schema": "earliest-origin-evidence-v1",
+  "purpose": "曝光审核时间线锚点:项目数据谱系的最早原始证据(全部早于预留题池 2026-10-06 引入)",
+  "produced_at": "2026-10-07",
+  "items": [
+    {
+      "kind": "bridge_messages",
+      "desc": "最早的 Codex 审查邮件(项目启动期,2026-09-29/30),记录最初审查范围 R1-R8 与初始提交 c0b0ed6/28d916b",
+      "ids": ["msg_1790701058432_105", "msg_1790701795805_106", "msg_1790701814909_107",
+              "msg_1790702095614_108", "msg_1790733966696_110"],
+      "excerpt_file": "reviews/2026-10-07-gap-materials/msg105-110-earliest-excerpt.json",
+      "excerpt_sha256": "72dd14ab15cb2059f2b9cdaec61e28f73e441511fa5400a8f5ccfb34ecf4fd05"
+    },
+    {
+      "kind": "root_docs",
+      "desc": "项目最早的三份根文档(启动期)",
+      "files": {
+        "RESTART_LOG.md": "feee7220ba7a1b0feb39307f8ac1c8a4ae77ae9d8560c49e53d5d4ad5c9ca721",
+        "REVIEW_REPORT.md": "b09d390afa06c8eb02aa9c2cc3c9e08bfd0f2674fa891643d9facca50bc9112b",
+        "PIPELINE_PLAN.md": "fa5b9b27c6489c6c3e986ac9150e252e32e970a9e8910271191c44d7b329d4f8"
+      }
+    },
+    {
+      "kind": "earliest_reviews",
+      "desc": "最早两轮审查原始材料(2026-09-30)",
+      "files": {
+        "reviews/2026-09-30-initial/probe_results.json": "b21f5e4e89a76a654d1c39145965574c798bcdfdc98856aa0b5b0c70632e6ad7",
+        "reviews/2026-09-30-sync/final_snapshot.json": "e1ca46db41a4b7bd3b64ded7dd46ec81e19b80c9a375f6eb333f6d957e40803f",
+        "reviews/2026-09-30-sync/REVIEW.md": "0e20c02f2e491268d24915d724b02761e088e56acc2533564b67ff9aca8595a5"
+      }
+    },
+    {
+      "kind": "dataset_baseline",
+      "desc": "池引入前数据集基线(data/v1/raw,2026-10-03 19:25)——最早的题目数据状态",
+      "files": {
+        "data/v1/raw/dataset_calc.jsonl": "9f862c7c687685d3ec4f1bc474d4df30b5c2703fefafa8e0f8df2d968abab3ea",
+        "data/v1/raw/dataset_geom.jsonl": "bbd5c6ad09e9c8d9c7bb8fba74ade5616d71d2ec3ddedcd2381244929dc5cf89",
+        "data/v1/raw/dataset_linalg.jsonl": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+        "data/v1/raw/dataset_prob.jsonl": "5ddd3a1c25b949dc1f119ab8e4218a8c0469b56b5c07e67eec62ac8d5c6388d1"
+      }
+    },
+    {
+      "kind": "earliest_commit",
+      "desc": "仓库最早提交 c0b0ed6(2026-09-30,最小可运行骨架)——git 历史起点",
+      "commit": "c0b0ed6"
+    }
+  ],
+  "conclusion": "全部最早原始证据均属 2026-09-29/30 至 10-03 项目启动与数据建设期,预留题池(2026-10-06)晚于全部谱系起点;这些材料固定了开发数据的自编起源",
+  "honest_limits": "不声称角色访问记录;引用文件均为当前磁盘字节的SHA,历史版本另见Codex的75739文件索引"
+}
