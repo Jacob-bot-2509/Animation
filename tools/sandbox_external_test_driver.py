@@ -54,13 +54,21 @@ def send_tcp(ep, payload, family, timeout=6):
         s.close()
 
 
-def tracert(ip, family):
+def tracert(ip, family, out_dir=None, tag="route"):
     args = ["tracert", "-d", "-h", "4", "-w", "500", ip]
     if family == socket.AF_INET6:
         args.insert(1, "-6")
     try:
-        cp = subprocess.run(args, capture_output=True, text=True, timeout=30)
-        return {"rc": cp.returncode, "out": (cp.stdout or "")[-800:]}
+        cp = subprocess.run(args, capture_output=True, timeout=30)  # bytes,防GBK解码炸
+        raw = cp.stdout or b""
+        record = {"rc": cp.returncode, "stderr": (cp.stderr or b"")[:200].decode("gbk", "replace")}
+        if out_dir is not None:
+            f = out_dir / f"{tag}-{uuid.uuid4().hex}.txt"
+            f.write_bytes(raw + b"\n")
+            record["path"] = str(f)
+            record["sha256"] = hashlib.sha256(raw).hexdigest()
+        record["out"] = raw[:800].decode("gbk", "replace")
+        return record
     except subprocess.TimeoutExpired:
         return {"rc": "timeout", "out": ""}
 
@@ -95,21 +103,21 @@ def main(argv=None) -> int:
         "started_utc": time.time(),
         "phases": {},
     }
-    report["route"] = tracert(args.bind, family)
+    report["route"] = tracert(args.bind, family, out_dir=out_dir, tag=f"route-{args.round}")
 
     # 拓扑证据:发送侧 IPv6 接口清单(Get-NetIPAddress 原始输出,供 ipv4-joint topology.json)
     try:
         cp_if = subprocess.run(
             ["powershell", "-NoProfile", "-Command",
              "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"],
-            capture_output=True, text=True, timeout=60)
-        iface_raw = (cp_if.stdout or "").encode("utf-8")
+            capture_output=True, timeout=60)  # bytes,防GBK解码炸
+        iface_raw = cp_if.stdout or b""
         iface_file = out_dir / f"interfaces-{args.round}-{uuid.uuid4().hex}.txt"
         iface_file.write_bytes(iface_raw + b"\n")
         report["sender_interfaces"] = {"path": str(iface_file),
                                        "sha256": hashlib.sha256(iface_raw).hexdigest(),
                                        "rc": cp_if.returncode,
-                                       "stderr": (cp_if.stderr or "")[:200],
+                                       "stderr": (cp_if.stderr or b"")[:200].decode("gbk", "replace"),
                                        "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"}
     except Exception as exc:
         report["sender_interfaces"] = {"error": repr(exc)}
