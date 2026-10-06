@@ -47,3 +47,15 @@ reviews/*/evidence/*.png
 !data/v1/test/*.jsonl
 !data/v2/eval/*.jsonl
 !data/v2/test/*.jsonl
+
+# 2026-10-05 用户确认的结构泄漏隔离训练入口及中间归档版本
+!data/v2/train/leakage-isolated-2026-10-05/*.jsonl
+!data/v2/train/leakage-isolated-v2-2026-10-05/*.jsonl
+# 本地沙箱工具链副本/配置/缓存不入库
+.sandbox-runtime/
+
+!data/v2/train/leakage-isolated-v3-2026-10-05/*.jsonl
+
+# 预留题源 clone(不入库,清单 SOURCES.md 单独跟踪)
+holdout-sources/*
+!holdout-sources/SOURCES.md
