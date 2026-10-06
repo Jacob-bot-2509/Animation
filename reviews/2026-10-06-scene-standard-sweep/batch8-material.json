@@ -1,0 +1,832 @@
+{
+ "remaining": [
+  "draft-c42-03",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c42-03",
+   "deficiencies": [
+    "第六步由 (1,2,2)、(2,1,2) 直接跳到结果矩阵,未展示 u−v=(−1,1,0)、‖u−v‖=√2 的代入计算;",
+    "nnᵀ 外积与 I−2nnᵀ 的逐项矩阵运算未展示,只给最终矩阵 H。"
+   ],
+   "record": {
+    "id": "draft-c42-03",
+    "category": "高等代数",
+    "sub_category": "正交变换",
+    "concept": "正交变换",
+    "concept_id": "C42",
+    "parent_training_ids": [
+     "linalg-067"
+    ],
+    "problem": "给定$u,v\\in\\mathbb R^3$，分类将$u$映到$v$的单个过原点平面反射。证明存在性与唯一性条件，并求将$(1,2,2)$映到$(2,1,2)$的反射矩阵。",
+    "solution": "反射保持范数，故必要$\\|u\\|=\\|v\\|$。若$u\\ne v$且等范数，令$n=(u-v)/\\|u-v\\|$；由$\\|u-v\\|^2=2(\\|u\\|^2-u\\cdot v)$得$2(n\\cdot u)n=u-v$，所以$H=I-2nn^{\\mathsf T}$满足$Hu=v$。反过来任何满足条件的反射都有$u-v=2(n\\cdot u)n$，法线必须平行$u-v$，故矩阵唯一。若$u=v\\ne0$，任意单位$n\\perp u$都给反射，故不唯一；若均为零，任意单位法线都可以。范数不等时无解。指定数据法线$(-1,1,0)/\\sqrt2$，得到$H=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+    "answer": "等范数且不同则唯一；相同则有多种；范数不等无解。指定矩阵交换$x,y$。",
+    "method": "Householder逆问题与唯一性",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：Householder逆问题与唯一性",
+    "scene_spec": {
+     "objects": [
+      "给定$u,v\\in\\mathbb R^3$，分类将$u$映到$v$的单个过原点平面反射。证明存在性与唯一性条件，并求将$(1,2,2)$映到$(2,1,2)$的反射矩阵。",
+      "等范数且不同则唯一；相同则有多种；范数不等无解。指定矩阵交换$x,y$。"
+     ],
+     "steps": [
+      "第一步:反射保持范数，故必要$\\|u\\|=\\|v\\|$。",
+      "第二步:若$u\\ne v$且等范数，令$n=(u-v)/\\|u-v\\|$；由$\\|u-v\\|^2=2(\\|u\\|^2-u\\cdot v)$得$2(n\\cdot u)n=u-v$，所以$H=I-2nn^{\\mathsf T}$满足$Hu=v$。",
+      "第三步:反过来任何满足条件的反射都有$u-v=2(n\\cdot u)n$，法线必须平行$u-v$，故矩阵唯一。",
+      "第四步:若$u=v\\ne0$，任意单位$n\\perp u$都给反射，故不唯一；若均为零，任意单位法线都可以。",
+      "第五步:范数不等时无解。",
+      "第六步:指定数据法线$(-1,1,0)/\\sqrt2$，得到$H=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-15-draft-c42-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-15",
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "91e1cba25ed21ff73e38da68633155656bf522294a0032fcf71ed315082e9594",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "58ae126d6bd255576c005783f78e6ade29c9f0bd60b1c7fa2e0971ba6cad1a00",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft.jsonl",
+     "original_id": "draft-c42-03",
+     "prior_parent_training_ids": [
+      "linalg-067"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集二维给定反射矩阵的角度变体，改为从点像约束逆求反射的全部情况。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v3.jsonl",
+      "sha256": "9aa72cf2aedb69a797b1df5a9abe5b5f14ccc447e9460725bccc1b8f815d0bbb",
+      "versioned_id": "codex-repair-20261005-batch-15-draft-c42-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c43-01",
+   "deficiencies": [
+    "第二步、第四步解方程组仅以「解得 a=b=1/2」「解得 c=1/2,d=−1/2」一笔带过,未展示加减消元操作过程(如 a+b=1 与 a−b=0 相加得 2a=1→a=1/2,再回代得 b=1/2;c、d 同理),学生无法跟着算"
+   ],
+   "record": {
+    "id": "draft-c43-01",
+    "category": "高等代数",
+    "sub_category": "对偶空间",
+    "concept": "对偶基与线性泛函",
+    "concept_id": "C43",
+    "parent_training_ids": [
+     "linalg-069"
+    ],
+    "problem": "设 $\\mathbb R^2$ 的基为 $\\eta_1=(1,1)$，$\\eta_2=(1,-1)$。求对偶基 $f_1,f_2$，使 $f_i(\\eta_j)=\\delta_{ij}$。",
+    "solution": "设 $f_1(x,y)=ax+by$。条件:$f_1(\\eta_1)=a+b=1$,$f_1(\\eta_2)=a-b=0$,解得 $a=b=\\frac12$,故 $f_1(x,y)=\\frac{x+y}{2}$。设 $f_2(x,y)=cx+dy$。条件:$f_2(\\eta_1)=c+d=0$,$f_2(\\eta_2)=c-d=1$,解得 $c=\\frac12,d=-\\frac12$,故 $f_2(x,y)=\\frac{x-y}{2}$。验证:$f_1(\\eta_1)=\\frac{1+1}{2}=1$,$f_1(\\eta_2)=0$;$f_2(\\eta_1)=0$,$f_2(\\eta_2)=1$ ✓。",
+    "answer": "$f_1(x,y)=\\frac{x+y}{2}$,$f_2(x,y)=\\frac{x-y}{2}$。",
+    "method": "解方程组求对偶基",
+    "difficulty": "基础",
+    "variant_kind": "非标准基:非正交基的对偶基求解(与标准基父题不同)",
+    "scene_spec": {
+     "objects": [
+      "设 $\\mathbb R^2$ 的基为 $\\eta_1=(1,1)$，$\\eta_2=(1,-1)$。求对偶基 $f_1,f_2$，使 $f_i(\\eta_j)=\\delta_{ij}$。",
+      "$f_1(x,y)=\\frac{x+y}{2}$,$f_2(x,y)=\\frac{x-y}{2}$。"
+     ],
+     "steps": [
+      "第一步:设 $f_1(x,y)=ax+by$。",
+      "第二步:条件:$f_1(\\eta_1)=a+b=1$,$f_1(\\eta_2)=a-b=0$,解得 $a=b=\\frac12$,故 $f_1(x,y)=\\frac{x+y}{2}$。",
+      "第三步:设 $f_2(x,y)=cx+dy$。",
+      "第四步:条件:$f_2(\\eta_1)=c+d=0$,$f_2(\\eta_2)=c-d=1$,解得 $c=\\frac12,d=-\\frac12$,故 $f_2(x,y)=\\frac{x-y}{2}$。",
+      "第五步:验证:$f_1(\\eta_1)=\\frac{1+1}{2}=1$,$f_1(\\eta_2)=0$;$f_2(\\eta_1)=0$,$f_2(\\eta_2)=1$ ✓。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c43-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "5b8c28edf8ef8288c018e2bab026b0eca0ff023862e44223dcccef2e1347d7e0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c43-01",
+     "prior_parent_training_ids": [
+      "linalg-069"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "两泛函四个基配对全部δ值；该题求对偶而非冻结平衡矩阵的谱计算。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c43-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c43-02",
+   "deficiencies": [
+    "第二步未列出代入条件得到的方程组(f(1,0,2)=α+2γ=2、f(0,2,1)=2β+γ=−1),直接跳到「前两式给 α=2−2t、β=(−1−t)/2」,移项求解过程未展示",
+    "第一步「第三个输入是前两个之和」未展示逐分量相加 (1,0,2)+(0,2,1)=(1,2,3)"
+   ],
+   "record": {
+    "id": "draft-c43-02",
+    "category": "高等代数",
+    "sub_category": "对偶空间",
+    "concept": "对偶基与线性泛函",
+    "concept_id": "C43",
+    "parent_training_ids": [
+     "linalg-069"
+    ],
+    "problem": "求实线性泛函$f:\\mathbb R^3\\to\\mathbb R$，满足$f(1,0,2)=2$、$f(0,2,1)=-1$、$f(1,2,3)=a$。分类存在性并给全部解，说明为何不能按三个给定值就认为唯一。",
+    "solution": "第三个输入是前两个之和，所以线性性要求$a=1$，否则无解。若$a=1$，设$f(x,y,z)=\\alpha x+\\beta y+\\gamma z$，取$\\gamma=t$，前两式给$\\alpha=2-2t$、$\\beta=(-1-t)/2$。因此全部解$f_t=(2-2t)x-(1+t)y/2+tz$，$t\\in\\mathbb R$，直接代入三条件成立。两个独立输入只张成二维空间，没有组成三维基，故留下一个自由参数。",
+    "answer": "$a=1$才有解；全部$f_t=(2-2t)x-(1+t)y/2+tz$；不唯一。",
+    "method": "相关输入的泛函相容性",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：相关输入的泛函相容性",
+    "scene_spec": {
+     "objects": [
+      "求实线性泛函$f:\\mathbb R^3\\to\\mathbb R$，满足$f(1,0,2)=2$、$f(0,2,1)=-1$、$f(1,2,3)=a$。分类存在性并给全部解，说明为何不能按三个给定值就认为唯一。",
+      "$a=1$才有解；全部$f_t=(2-2t)x-(1+t)y/2+tz$；不唯一。"
+     ],
+     "steps": [
+      "第一步:第三个输入是前两个之和，所以线性性要求$a=1$，否则无解。",
+      "第二步:若$a=1$，设$f(x,y,z)=\\alpha x+\\beta y+\\gamma z$，取$\\gamma=t$，前两式给$\\alpha=2-2t$、$\\beta=(-1-t)/2$。",
+      "第三步:因此全部解$f_t=(2-2t)x-(1+t)y/2+tz$，$t\\in\\mathbb R$，直接代入三条件成立。",
+      "第四步:两个独立输入只张成二维空间，没有组成三维基，故留下一个自由参数。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c43-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "a5050bb61de0002625df5013fcb7aa42cd2d363b54e82030a229fc62c8ca9b84",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c43-02",
+     "prior_parent_training_ids": [
+      "linalg-069"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "替换留出集相同“给基向量值唯一求泛函”的数值变体，改为相关输入的相容性及非唯一。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c43-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c43-03",
+   "deficiencies": [
+    "第三步求 C 只写「独立反解或积分核验得」,CG=I 的 3×3 求逆/消元过程完全未展示,未标明哪一行乘哪一列",
+    "第四步九个配对值 ∫g_i x^j=δ_ij 只一句「相乘给」,未逐个列出乘积展开、逐项积分与代入(如 ∫g_0·1=∫(9−15x²)/8 dx=(9·2−15·2/3)/8=1 等九项)",
+    "第一步 Gram 矩阵元素直接给出,未展示 ∫_{−1}^{1}x^k dx 的积分计算(偶次 2/(k+1)、奇次 0)"
+   ],
+   "record": {
+    "id": "draft-c43-03",
+    "category": "高等代数",
+    "sub_category": "对偶空间",
+    "concept": "对偶基与线性泛函",
+    "concept_id": "C43",
+    "parent_training_ids": [
+     "linalg-069"
+    ],
+    "problem": "在$V=\\mathbb R[x]_{\\le2}$中取基$1,x,x^2$。求三个多项式$g_0,g_1,g_2$，使$f_i(p)=\\int_{-1}^1g_i(x)p(x)\\,dx$为此基的对偶泛函，并证明九个配对值。",
+    "solution": "矩阵$G_{ij}=\\int_{-1}^1x^{i+j}dx$（$i,j=0,1,2$）为$\\begin{pmatrix}2&0&2/3\\\\0&2/3&0\\\\2/3&0&2/5\\end{pmatrix}$。若$g_i$的系数为矩阵$C$第$i$行，则配对条件为$CG=I$。独立反解或积分核验得$C=\\begin{pmatrix}9/8&0&-15/8\\\\0&3/2&0\\\\-15/8&0&45/8\\end{pmatrix}$，故$g_0=(9-15x^2)/8,g_1=3x/2,g_2=(-15+45x^2)/8$。利用奇次矩积分为零、$\\int1=2,\\int x^2=2/3,\\int x^4=2/5$，相乘给九个配对$\\int g_i x^j=\\delta_{ij}$。真正的对偶元素是$f_i$，多项式$g_i$是相对于该积分配对的表示。",
+    "answer": "$g_0=(9-15x^2)/8,g_1=3x/2,g_2=(-15+45x^2)/8$；$f_i(p)=\\int_{-1}^1g_i p$组成对偶基。",
+    "method": "多项式矩配对的对偶表示",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：多项式矩配对的对偶表示",
+    "scene_spec": {
+     "objects": [
+      "在$V=\\mathbb R[x]_{\\le2}$中取基$1,x,x^2$。求三个多项式$g_0,g_1,g_2$，使$f_i(p)=\\int_{-1}^1g_i(x)p(x)\\,dx$为此基的对偶泛函，并证明九个配对值。",
+      "$g_0=(9-15x^2)/8,g_1=3x/2,g_2=(-15+45x^2)/8$；$f_i(p)=\\int_{-1}^1g_i p$组成对偶基。"
+     ],
+     "steps": [
+      "第一步:矩阵$G_{ij}=\\int_{-1}^1x^{i+j}dx$（$i,j=0,1,2$）为$\\begin{pmatrix}2&0&2/3\\\\0&2/3&0\\\\2/3&0&2/5\\end{pmatrix}$。",
+      "第二步:若$g_i$的系数为矩阵$C$第$i$行，则配对条件为$CG=I$。",
+      "第三步:独立反解或积分核验得$C=\\begin{pmatrix}9/8&0&-15/8\\\\0&3/2&0\\\\-15/8&0&45/8\\end{pmatrix}$，故$g_0=(9-15x^2)/8,g_1=3x/2,g_2=(-15+45x^2)/8$。",
+      "第四步:利用奇次矩积分为零、$\\int1=2,\\int x^2=2/3,\\int x^4=2/5$，相乘给九个配对$\\int g_i x^j=\\delta_{ij}$。",
+      "第五步:真正的对偶元素是$f_i$，多项式$g_i$是相对于该积分配对的表示。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c43-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "a7c79d76559574d4180916637cf7684d9ca31c32ab2a8caf2c0202e263727c8b",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c43-03",
+     "prior_parent_training_ids": [
+      "linalg-069"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "移除与冻结正交补输入相同的两基向量子任务，改为矩积分配对的对偶表示。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c43-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c44-01",
+   "deficiencies": [
+    "S_B^T J S_B 的分块矩阵乘法只给结果矩阵,未展示哪一分块行乘哪一分块列的中间过程",
+    "第二步指定 B 的转置计算与对称性检验(B^T=[[1,2],[2,−1]]=B)未展示",
+    "第三步「所有 S_B 的行列式均为 1」未展示 det 计算"
+   ],
+   "record": {
+    "id": "draft-c44-01",
+    "category": "高等代数",
+    "sub_category": "辛空间",
+    "concept": "辛形式与保持变换",
+    "concept_id": "C44",
+    "parent_training_ids": [
+     "linalg-070"
+    ],
+    "problem": "在$\\mathbb R^4$坐标$(p_1,p_2,q_1,q_2)$中，$J=\\begin{pmatrix}0&I_2\\\\-I_2&0\\end{pmatrix}$。分类块剪切$S_B=\\begin{pmatrix}I_2&B\\\\0&I_2\\end{pmatrix}$何时保持$\\omega(u,v)=u^{\\mathsf T}Jv$，并检验$B=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$。",
+    "solution": "矩阵乘法给$S_B^{\\mathsf T}JS_B=\\begin{pmatrix}0&I_2\\\\-I_2&B^{\\mathsf T}-B\\end{pmatrix}$，所以保持形式当且仅当$B^{\\mathsf T}=B$。指定$B$对称，故保持。所有$S_B$的行列式均为$1$，但不对称$B$不保持形式；在四维不能以行列式$1$替代辛条件。",
+    "answer": "充要条件$B$对称；指定矩阵满足，保持$\\omega$。",
+    "method": "辛块剪切的对称条件",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：辛块剪切的对称条件",
+    "scene_spec": {
+     "objects": [
+      "在$\\mathbb R^4$坐标$(p_1,p_2,q_1,q_2)$中，$J=\\begin{pmatrix}0&I_2\\\\-I_2&0\\end{pmatrix}$。分类块剪切$S_B=\\begin{pmatrix}I_2&B\\\\0&I_2\\end{pmatrix}$何时保持$\\omega(u,v)=u^{\\mathsf T}Jv$，并检验$B=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$。",
+      "充要条件$B$对称；指定矩阵满足，保持$\\omega$。"
+     ],
+     "steps": [
+      "第一步:矩阵乘法给$S_B^{\\mathsf T}JS_B=\\begin{pmatrix}0&I_2\\\\-I_2&B^{\\mathsf T}-B\\end{pmatrix}$，所以保持形式当且仅当$B^{\\mathsf T}=B$。",
+      "第二步:指定$B$对称，故保持。",
+      "第三步:所有$S_B$的行列式均为$1$，但不对称$B$不保持形式；在四维不能以行列式$1$替代辛条件。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c44-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "21079df806c2abde404dc483b2d5bfc48ea6bca01b97ac7e68fdcd6e0bcf86c6",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c44-01",
+     "prior_parent_training_ids": [
+      "linalg-070"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "去掉多批复用的同一二阶剪切，改为四维块剪切的完整结构条件。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c44-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c44-02",
+   "deficiencies": [
+    "ω(Ae1,Ae3)=2 直接给出,未展示 Ae1=2e1 及 ω(2e1,e3)=2ω(e1,e3)=2·1=2 的代入与双线性性质应用",
+    "ω(e2,e4) 从 1 变 1/2 未展示 Ae4=(1/2)e4 的代入计算 ω(e2,(1/2)e4)=(1/2)ω(e2,e4)=1/2"
+   ],
+   "record": {
+    "id": "draft-c44-02",
+    "category": "高等代数",
+    "sub_category": "辛空间",
+    "concept": "辛形式与保持变换",
+    "concept_id": "C44",
+    "parent_training_ids": [
+     "linalg-070"
+    ],
+    "problem": "在同一标准四维辛形式$J$下，证明保体积不必保持辛形式：检验$A=\\operatorname{diag}(2,1,1,1/2)$，给具体反例向量，并解释二维与四维的差异。",
+    "solution": "$\\det A=2\\cdot1\\cdot1\\cdot(1/2)=1$，所以保体积。但$\\omega(e_1,e_3)=1$而$\\omega(Ae_1,Ae_3)=2$，故不保持辛形式；$\\omega(e_2,e_4)$也从$1$变为$1/2$。二维标准交替形式满足$A^{\\mathsf T}J_2A=(\\det A)J_2$，所以二维行列式$1$足够；四维需要每对配对坐标及交叉项同时满足$A^{\\mathsf T}JA=J$，总体积条件不能代替这些约束。",
+    "answer": "行列式$1$但非辛，反例$(e_1,e_3)$的形式值从$1$到$2$。",
+    "method": "保体积与辛条件的维数边界",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：保体积与辛条件的维数边界",
+    "scene_spec": {
+     "objects": [
+      "在同一标准四维辛形式$J$下，证明保体积不必保持辛形式：检验$A=\\operatorname{diag}(2,1,1,1/2)$，给具体反例向量，并解释二维与四维的差异。",
+      "行列式$1$但非辛，反例$(e_1,e_3)$的形式值从$1$到$2$。"
+     ],
+     "steps": [
+      "第一步:$\\det A=2\\cdot1\\cdot1\\cdot(1/2)=1$，所以保体积。",
+      "第二步:但$\\omega(e_1,e_3)=1$而$\\omega(Ae_1,Ae_3)=2$，故不保持辛形式；$\\omega(e_2,e_4)$也从$1$变为$1/2$。",
+      "第三步:二维标准交替形式满足$A^{\\mathsf T}J_2A=(\\det A)J_2$，所以二维行列式$1$足够；四维需要每对配对坐标及交叉项同时满足$A^{\\mathsf T}JA=J$，总体积条件不能代替这些约束。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c44-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e41702269e9058be2cdf38809f75180a6a949b9f742b2071857512484e63a4e9",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c44-02",
+     "prior_parent_training_ids": [
+      "linalg-070"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "改为维数改变后充分条件失效的反例，避免只换二维伸缩数值。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c44-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c44-03",
+   "deficiencies": [
+    "A^T J A 的矩阵乘法过程未展示,只给配对系数 ac、bd 的结果,未标明分量如何相乘(如 (A^T J A)_{1,3}=a·1·c=ac)",
+    "指定数据 (2,2,1/2,1/2) 的检验 2·(1/2)=1、2·(1/2)=1 未逐项列出"
+   ],
+   "record": {
+    "id": "draft-c44-03",
+    "category": "高等代数",
+    "sub_category": "辛空间",
+    "concept": "辛形式与保持变换",
+    "concept_id": "C44",
+    "parent_training_ids": [
+     "linalg-070"
+    ],
+    "problem": "在标准四维辛形式$J$下分类可逆对角矩阵$A=\\operatorname{diag}(a,b,c,d)$何时为辛矩阵，并检验$(a,b,c,d)=(2,2,1/2,1/2)$。",
+    "solution": "$A^{\\mathsf T}JA$的两个配对系数为$ac$与$bd$，所以充要条件$ac=bd=1$，即$a,b\\ne0$且$c=1/a,d=1/b$。指定数据满足两个等式，故保持辛形式。条件自动给行列式$1$，但仅行列式$1$不足以推出两配对分别为$1$。",
+    "answer": "充要条件$ac=bd=1$；指定矩阵为辛矩阵。",
+    "method": "四维辛变换验证(逐项配对)",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：四维辛变换验证(逐项配对)",
+    "scene_spec": {
+     "objects": [
+      "在标准四维辛形式$J$下分类可逆对角矩阵$A=\\operatorname{diag}(a,b,c,d)$何时为辛矩阵，并检验$(a,b,c,d)=(2,2,1/2,1/2)$。",
+      "充要条件$ac=bd=1$；指定矩阵为辛矩阵。"
+     ],
+     "steps": [
+      "第一步:$A^{\\mathsf T}JA$的两个配对系数为$ac$与$bd$，所以充要条件$ac=bd=1$，即$a,b\\ne0$且$c=1/a,d=1/b$。",
+      "第二步:指定数据满足两个等式，故保持辛形式。",
+      "第三步:条件自动给行列式$1$，但仅行列式$1$不足以推出两配对分别为$1$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c44-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "ddfbf14c7a5fdf9689f1163b591e8758394203e617cca3e0b096b0fdc6896103",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c44-03",
+     "prior_parent_training_ids": [
+      "linalg-070"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "扩展为完整配对缩放判据，保留原精确实例。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c44-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c44-04",
+   "deficiencies": [
+    "未展示叉积 u×v 的三分量展开与点乘 e1 得到 u2v3−u3v2 的过程",
+    "第二步取 v=e3、v=e2 的代入计算(ω(u,e3)=u2、ω(u,e2)=−u3)未列出,直接给 u2=u3=0"
+   ],
+   "record": {
+    "id": "draft-c44-04",
+    "category": "高等代数",
+    "sub_category": "辛空间",
+    "concept": "辛形式与保持变换",
+    "concept_id": "C44",
+    "parent_training_ids": [
+     "linalg-070"
+    ],
+    "problem": "在 $\\mathbb R^3$ 上定义 $\\omega(u,v)=(u\\times v)\\cdot e_1$($e_1=(1,0,0)$)。验证 $\\omega$ 是交替的，并说明它不是辛形式(退化)。",
+    "solution": "$\\omega(u,v)=u_2v_3-u_3v_2$，显然对两变量分别线性，且$\\omega(u,u)=0$，所以交替。若它对所有$v$为零，分别取$v=e_3,e_2$得$u_2=u_3=0$；反过来这些条件足够。故核恰为$\\operatorname{span}(e_1)$，秩$2$，形式退化，不是辛形式。",
+    "answer": "$\\omega$ 交替(叉积反交换)但退化($e_1$ 在核中),不是辛形式。",
+    "method": "交替性验证+退化判定",
+    "difficulty": "中等",
+    "variant_kind": "退化交替形式与反例:三维交叉分量的退化性分析",
+    "scene_spec": {
+     "objects": [
+      "在 $\\mathbb R^3$ 上定义 $\\omega(u,v)=(u\\times v)\\cdot e_1$($e_1=(1,0,0)$)。验证 $\\omega$ 是交替的，并说明它不是辛形式(退化)。",
+      "$\\omega$ 交替(叉积反交换)但退化($e_1$ 在核中),不是辛形式。"
+     ],
+     "steps": [
+      "第一步:$\\omega(u,v)=u_2v_3-u_3v_2$，显然对两变量分别线性，且$\\omega(u,u)=0$，所以交替。",
+      "第二步:若它对所有$v$为零，分别取$v=e_3,e_2$得$u_2=u_3=0$；反过来这些条件足够。",
+      "第三步:故核恰为$\\operatorname{span}(e_1)$，秩$2$，形式退化，不是辛形式。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c44-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "7cfc225f4fd3d921340286e16ae3f62500f1acdf84bdfdec8b14eab1c58ee97c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c44-04",
+     "prior_parent_training_ids": [
+      "linalg-070"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "补全双线性、直接交替以及完整核的证明。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c44-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c45-04",
+   "deficiencies": [
+    "第四步 q=(p−v)/(u−v) 未展示从 p=qu+(1−q)v 移项求解的过程(qu+(1−q)v=p → q(u−v)=p−v),也未验证 q∈(0,1)(需展示 p−v>0 且 p−v<u−v)",
+    "第三步「概率严格位于 min(u,v) 与 max(u,v) 之间」未标注依据:qu+(1−q)v 是 u、v 的凸组合,权重 q、1−q 均在 (0,1) 内"
+   ],
+   "record": {
+    "id": "draft-c45-04",
+    "category": "概率论",
+    "sub_category": "条件概率",
+    "concept": "条件概率与独立性",
+    "concept_id": "C45",
+    "parent_training_ids": [
+     "prob-038"
+    ],
+    "problem": "说明是否存在满足 $P(A|B)=\\frac{9}{10}$，$P(A|\\bar B)=\\frac45$，且 $P(A)=\\frac{1}{10}$ 的事件 $A,B$($0<P(B)<1$)；并说明一般情形下 $P(A)$ 必须满足什么约束。",
+    "solution": "记$u=P(A\\mid B),v=P(A\\mid B^c),q=P(B)\\in(0,1)$。全概率公式给$P(A)=qu+(1-q)v$。若$u\\ne v$，概率严格位于$\\min(u,v)$与$\\max(u,v)$之间；若$u=v$，等于共同值。反过来，任何严格介于两者之间的$p$都可取$q=(p-v)/(u-v)\\in(0,1)$，用四原子概率$qu,q(1-u),(1-q)v,(1-q)(1-v)$实现。指定$u=9/10,v=4/5$时必有$4/5<P(A)<9/10$，与$P(A)=1/10$矛盾，因此数据不可能。",
+    "answer": "指定数据不可能；一般$u\\ne v$时$\\min(u,v)<P(A)<\\max(u,v)$，且区间内任意值可实现。",
+    "method": "全概率公式的自洽性约束",
+    "difficulty": "中等",
+    "variant_kind": "不相容数据的可行性:条件概率数据的自洽性检验",
+    "scene_spec": {
+     "objects": [
+      "说明是否存在满足 $P(A|B)=\\frac{9}{10}$，$P(A|\\bar B)=\\frac45$，且 $P(A)=\\frac{1}{10}$ 的事件 $A,B$($0<P(B)<1$)；并说明一般情形下 $P(A)$ 必须满足什么约束。",
+      "指定数据不可能；一般$u\\ne v$时$\\min(u,v)<P(A)<\\max(u,v)$，且区间内任意值可实现。"
+     ],
+     "steps": [
+      "第一步:记$u=P(A\\mid B),v=P(A\\mid B^c),q=P(B)\\in(0,1)$。",
+      "第二步:全概率公式给$P(A)=qu+(1-q)v$。",
+      "第三步:若$u\\ne v$，概率严格位于$\\min(u,v)$与$\\max(u,v)$之间；若$u=v$，等于共同值。",
+      "第四步:反过来，任何严格介于两者之间的$p$都可取$q=(p-v)/(u-v)\\in(0,1)$，用四原子概率$qu,q(1-u),(1-q)v,(1-q)(1-v)$实现。",
+      "第五步:指定$u=9/10,v=4/5$时必有$4/5<P(A)<9/10$，与$P(A)=1/10$矛盾，因此数据不可能。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-16-draft-c45-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-16",
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "7f0e89c144e4d6fe921864a41f6db4f17736464eb65aecbd2e566cbed85385b8",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "b92648645c3b17a796e6b8938f67de934cddafd0cf192ab24ae006e5b423e27f",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft.jsonl",
+     "original_id": "draft-c45-04",
+     "prior_parent_training_ids": [
+      "prob-038"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "将加权条件概率的闭区间必要条件改为严格区间与可实现性。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v3.jsonl",
+      "sha256": "510ffe524336ac26f59676219e222fed712c5193a3efd88fe6cfcf8397e73460",
+      "versioned_id": "codex-repair-20261005-batch-16-draft-c45-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c46-04",
+   "deficiencies": [
+    "第一步'验证非负性与全区域归一化'只点名未展示运算:未列∫₀¹∫₀¹(x+y)dydx=∫₀¹(x+1/2)dx=1的逐项代入过程",
+    "第二步'对事件区域积分密度'只给结果3/8:未展示∫₀^{1/2}∫₀¹(x+y)dydx=∫₀^{1/2}(x+1/2)dx=1/8+1/4=3/8的运算步骤",
+    "第三步比较加权概率与普通面积仅标数值,缺对照计算过程,学生无法看动画跟着算"
+   ],
+   "record": {
+    "id": "draft-c46-04",
+    "category": "概率论",
+    "sub_category": "几何概型",
+    "concept": "几何概型",
+    "concept_id": "C46",
+    "parent_training_ids": [
+     "prob-039"
+    ],
+    "problem": "在单位正方形上取联合密度$f(x,y)=x+y$，其余地方为零。验证这是概率密度，求$P(X\\le1/2)$，并解释为什么此时不能直接用事件区域与正方形的普通面积之比。",
+    "solution": "$f\\ge0$且$\\int_0^1\\int_0^1(x+y)\\,dy\\,dx=\\int_0^1(x+1/2)\\,dx=1$，故密度有效。所求概率为$\\int_0^{1/2}\\int_0^1(x+y)\\,dy\\,dx=\\int_0^{1/2}(x+1/2)\\,dx=1/8+1/4=3/8$。事件区域的普通面积为$1/2$，但该分布不是均匀分布，所以普通面积比不是概率；正确几何表示是密度加权面积。边界线$x=1/2$零测，不影响结果。",
+    "answer": "密度归一化积分为$1$；$P(X\\le1/2)=3/8$，普通面积比$1/2$不适用。",
+    "method": "几何概率中均匀假设的适用边界",
+    "difficulty": "中等",
+    "variant_kind": "非均匀二维密度+加权面积反例",
+    "scene_spec": {
+     "objects": [
+      "单位正方形的权重$x+y$",
+      "事件$x\\le1/2$",
+      "加权面积$3/8$与普通面积$1/2$"
+     ],
+     "steps": [
+      "第一步:验证非负性与全区域归一化。",
+      "第二步:对事件区域积分密度。",
+      "第三步:比较加权概率与普通面积。",
+      "第四步:说明均匀假设与零测边界。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-06",
+     "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "1a9f045f44cb210843a51108e18c8ed431c5f35a58696fb57d7a1dc7b4e918c0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-04",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+     "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+     "original_id": "draft-c46-04",
+     "prior_parent_training_ids": [
+      "prob-039"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "add7f2c94b718e49a716e14762b496ee2d1203943fa81ce1b5fdbec9406390d5",
+     "previous_hold_reasons": [
+      "EXACT_FROZEN_TRANSFORM_SUBTASK"
+     ],
+     "math_correction_notes": [
+      "用联合密度与雅可比严格证明均匀性，不只验证径向分布"
+     ],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+      "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+      "versioned_id": "codex-repair-20261005-batch-06-draft-c46-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "f3e56ad52993f24b5a1b4db68e1e038c12194936fdd1a4f1c6d16ab0cdaf64c0",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  }
+ ]
+}
