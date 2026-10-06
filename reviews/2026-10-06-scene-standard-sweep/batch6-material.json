@@ -1,0 +1,888 @@
+{
+ "remaining": [
+  "draft-c29-05",
+  "draft-c30-01",
+  "draft-c30-03",
+  "draft-c31-03",
+  "draft-c31-04",
+  "draft-c31-05",
+  "draft-c32-02",
+  "draft-c34-01",
+  "draft-c34-02",
+  "draft-c34-03",
+  "draft-c34-05",
+  "draft-c35-02",
+  "draft-c35-05",
+  "draft-c38-01",
+  "draft-c38-02",
+  "draft-c39-01",
+  "draft-c39-03",
+  "draft-c40-01",
+  "draft-c40-04",
+  "draft-c42-02",
+  "draft-c42-03",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c29-05",
+   "deficiencies": [
+    "第二步一般展开 x³-(α+β+γ)x²+(αβ+βγ+γα)x-αβγ 只给结果,未展示逐步相乘(先 (x-α)(x-β)=x²-(α+β)x+αβ,再乘 (x-γ) 逐项合并),两两积和项 αβ+βγ+γα 的来源不明;第五步具体例子的展开虽详细,但定理证明本身的核心展开被断言。"
+   ],
+   "record": {
+    "id": "draft-c29-05",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "concept": "多项式因式分解与根",
+    "concept_id": "C29",
+    "parent_training_ids": [
+     "linalg-051"
+    ],
+    "problem": "证明三次多项式的根与系数关系(韦达定理)，并构造一个以 $2$、$-1$、$\\frac12$ 为根的首一三次多项式。",
+    "solution": "设首一三次多项式 $f(x)=x^3+px^2+qx+r$ 的根为 $\\alpha,\\beta,\\gamma$,则 $f(x)=(x-\\alpha)(x-\\beta)(x-\\gamma)$。展开右边:$x^3-(\\alpha+\\beta+\\gamma)x^2+(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)x-\\alpha\\beta\\gamma$。比较系数得韦达定理:$\\alpha+\\beta+\\gamma=-p$,$\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha=q$,$\\alpha\\beta\\gamma=-r$。构造:以 $2,-1,\\frac12$ 为根,则 $f(x)=(x-2)(x+1)(x-\\frac12)$。展开:$(x^2-x-2)(x-\\frac12)=x^3-x^2-2x-\\frac12x^2+\\frac12x+1=x^3-\\frac32x^2-\\frac32x+1$。",
+    "answer": "韦达定理:根和 $=-p$,两两积和 $=q$,根积 $=-r$;构造:$f=x^3-\\frac32x^2-\\frac32x+1$。",
+    "method": "展开比较系数(韦达定理证明)+构造",
+    "difficulty": "进阶",
+    "variant_kind": "证明+构造:韦达定理的推导与给定根的多项式构造",
+    "scene_spec": {
+     "objects": [
+      "证明三次多项式的根与系数关系(韦达定理)，并构造一个以 $2$、$-1$、$\\frac12$ 为根的首一三次多项式。",
+      "韦达定理:根和 $=-p$,两两积和 $=q$,根积 $=-r$;构造:$f=x^3-\\frac32x^2-\\frac32x+1$。"
+     ],
+     "steps": [
+      "第一步:设首一三次多项式 $f(x)=x^3+px^2+qx+r$ 的根为 $\\alpha,\\beta,\\gamma$,则 $f(x)=(x-\\alpha)(x-\\beta)(x-\\gamma)$。",
+      "第二步:展开右边:$x^3-(\\alpha+\\beta+\\gamma)x^2+(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)x-\\alpha\\beta\\gamma$。",
+      "第三步:比较系数得韦达定理:$\\alpha+\\beta+\\gamma=-p$,$\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha=q$,$\\alpha\\beta\\gamma=-r$。",
+      "第四步:构造:以 $2,-1,\\frac12$ 为根,则 $f(x)=(x-2)(x+1)(x-\\frac12)$。",
+      "第五步:展开:$(x^2-x-2)(x-\\frac12)=x^3-x^2-2x-\\frac12x^2+\\frac12x+1=x^3-\\frac32x^2-\\frac32x+1$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c29-05",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "0c9f69ba421eccfcd0b8561f10f205f7cf777dfd3e8f7f926dc7c089ea07e765",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c29-05",
+     "prior_parent_training_ids": [
+      "linalg-051"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "按重数列出根的展开给Vieta，指定有理根的首一多项式系数为-3/2,-3/2,1。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c29-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c30-01",
+   "deficiencies": [
+    "第三步'归一化确定常数'未展示代入计算:$f(0)=c(-1)^3(-2)^2=-4c=1\\Rightarrow c=-1/4$,学生无法跟着算。",
+    "平移展开只给最终结果 $-u^5/4+u^4/2-u^3/4$,未展示 $(u-1)^2=u^2-2u+1$、与 $u^3$ 相乘、逐项除以 $-4$ 的运算过程。",
+    "第四步'验证精确重数和唯一性'未展示具体验证细节(如 $c\\ne0$ 且两因子互素推出重数恰为 3 与 2 的论证)。"
+   ],
+   "record": {
+    "id": "draft-c30-01",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "concept": "多项式平移展开",
+    "concept_id": "C30",
+    "parent_training_ids": [
+     "linalg-052"
+    ],
+    "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+    "solution": "零点重数给$(x-1)^3(x-2)^2\\mid f$。由次数上界，$f=c(x-1)^3(x-2)^2$；$f(0)=1$给$-4c=1$，即$c=-1/4$。令$u=x-1$，则$f=-u^3(u-1)^2/4=-u^5/4+u^4/2-u^3/4$。因为$c\\ne0$且两个因子互素，重数分别恰为$3$与$2$。所有条件均验证，且常数被唯一确定，故解唯一。",
+    "answer": "$f=-\\frac14(x-1)^3(x-2)^2=-\\frac14(x-1)^5+\\frac12(x-1)^4-\\frac14(x-1)^3$，唯一。",
+    "method": "重数约束的Hermite型平移重建",
+    "difficulty": "基础",
+    "variant_kind": "两个节点的重数条件+次数与归一化唯一性",
+    "scene_spec": {
+     "objects": [
+      "重数$3,2$与次数$\\le5$",
+      "$f(0)=1$归一化",
+      "关于$u=x-1$的有限恒等式"
+     ],
+     "steps": [
+      "第一步:把重数条件改写为整除条件。",
+      "第二步:由次数上界限制为一个常数倍。",
+      "第三步:归一化确定常数并平移展开。",
+      "第四步:验证精确重数和唯一性。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-04",
+     "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+     "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+     "original_id": "draft-c30-01",
+     "prior_parent_training_ids": [
+      "linalg-052"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "57320599bd5b6b2ca4cc97446dc1dd0f91cbdf0d819a4b5be958a99c93427340",
+     "previous_hold_reasons": [
+      "DIRECT_POLYNOMIAL_SHIFT_TEMPLATE",
+      "SECONDARY_FINITE_TAYLOR_TEMPLATE"
+     ],
+     "math_correction_notes": [],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+      "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+      "versioned_id": "codex-repair-20261005-batch-04-draft-c30-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "e15ce999256e86cefe8f79d3e42c0001aa8ef7f082b095bcf5ac8b69f5e0d822",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c30-03",
+   "deficiencies": [
+    "第三步'比较差分系数求多项式'未列出比较所得的方程组 3a=3、3a+2b=5、a+b+c=2 及逐步回代 a=1→b=1→c=0 的过程",
+    "第一步'用有限二项式展开证明精确降阶'未展示首项系数 mc 的推导细节(二项式展开中哪些项贡献 x^(m-1) 系数)",
+    "第四步未展示'差为常数'的代入验证与归一化计算"
+   ],
+   "record": {
+    "id": "draft-c30-03",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "concept": "多项式平移展开",
+    "concept_id": "C30",
+    "parent_training_ids": [
+     "linalg-052"
+    ],
+    "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+    "solution": "若$f$非恒定且次数为$m$，首项系数为$c\\ne0$，二项式展开给$\\Delta f$的次数恰为$m-1$，首项系数为$mc$。因此在该四维空间上$\\Delta^4=0$；且$\\Delta^3(x^3)=6\\ne0$，指数恰为$4$。设$f=ax^3+bx^2+cx+d$，则$\\Delta f=3ax^2+(3a+2b)x+(a+b+c)$。与目标比较得$a=1,b=1,c=0$，而$f(0)=2$给$d=2$。故$f=x^3+x^2+2$。若两个解存在，其差被$\\Delta$消去；降阶结论说明差为常数，归一化又给常数为零，故唯一。",
+    "answer": "$\\Delta^4=0,\\Delta^3(x^3)=6$；唯一$f=x^3+x^2+2$。",
+    "method": "有限平移差分算子的逆问题",
+    "difficulty": "中等",
+    "variant_kind": "精确次数降阶+幂零指数+规范化重建",
+    "scene_spec": {
+     "objects": [
+      "$\\Delta f=f(x+1)-f(x)$",
+      "次数降阶与$\\Delta^4=0$",
+      "$f=x^3+x^2+2$"
+     ],
+     "steps": [
+      "第一步:用有限二项式展开证明精确降阶。",
+      "第二步:证明幂零指数恰为$4$。",
+      "第三步:比较差分系数求多项式。",
+      "第四步:用差分核与初值证明唯一。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-04",
+     "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "50a8fb292d72106b3c005f7b1cf208b70dde3068690bb2b92d9588da1a08003d",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-03",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+     "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+     "original_id": "draft-c30-03",
+     "prior_parent_training_ids": [
+      "linalg-052"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "5064bd1c41925ac8ff210d011b217668a8aea2daf25486cff981883c48731eec",
+     "previous_hold_reasons": [
+      "PARENT_TEMPLATE_REUSE"
+     ],
+     "math_correction_notes": [],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+      "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+      "versioned_id": "codex-repair-20261005-batch-04-draft-c30-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "bd4c8507625d92dfcf6c7a96bb57d506edb1e9a205edbfb1e1f41bbc1d4979a8",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c31-03",
+   "deficiencies": [
+    "第一步「计算系数行列式」未标明按哪一行展开及各余子式分量乘积(如 D=1×(a−4)−1×(a−2)+1×(2−1))",
+    "第二步三个替换行列式只说「依次计算」,未逐项展开其分量乘积",
+    "第三步虽提到分母为 −1 的符号处理,但比值代入 (−a+3)/(−1)=a−3 的逐项过程未展示"
+   ],
+   "record": {
+    "id": "draft-c31-03",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "克拉默法则",
+    "concept_id": "C31",
+    "parent_training_ids": [
+     "linalg-054"
+    ],
+    "problem": "用克拉默法则求方程组 $\\begin{cases}x+y+z=1\\\\ x+y+2z=2\\\\ x+2y+az=3\\end{cases}$ 的解，并说明解与参数 $a$ 的关系。",
+    "solution": "系数行列式 $D=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&a\\end{vmatrix}=1\\times(a-4)-1\\times(a-2)+1\\times(2-1)=-1$,与 $a$ 无关且非零,故对一切 $a$ 都有唯一解。$D_x=\\begin{vmatrix}1&1&1\\\\2&1&2\\\\3&2&a\\end{vmatrix}=1\\times(a-4)-1\\times(2a-6)+1\\times(4-3)=-a+3$;$D_y=\\begin{vmatrix}1&1&1\\\\1&2&2\\\\1&3&a\\end{vmatrix}=1\\times(2a-6)-1\\times(a-2)+1\\times(3-2)=a-3$;$D_z=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&3\\end{vmatrix}=1\\times(3-4)-1\\times(3-2)+1\\times(2-1)=-1$。故 $x=\\frac{-a+3}{-1}=a-3$,$y=\\frac{a-3}{-1}=3-a$,$z=\\frac{-1}{-1}=1$。验证:$x+y+z=(a-3)+(3-a)+1=1$;$x+y+2z=0+2=2$;$x+2y+az=(a-3)+2(3-a)+a=3$。",
+    "answer": "$D=-1$ 与 $a$ 无关,对一切 $a$ 有唯一解 $x=a-3$,$y=3-a$,$z=1$。",
+    "method": "克拉默法则(三阶含参)",
+    "difficulty": "中等",
+    "variant_kind": "参数结构:系数行列式与参数无关的非平凡含参方程组,解线性依赖参数",
+    "scene_spec": {
+     "objects": [
+      "板书:方程组与行列式 $D=-1$(高亮「与 $a$ 无关」)",
+      "板书:$D_x=-a+3$、$D_y=a-3$、$D_z=-1$ 的计算",
+      "高亮框:$x=a-3$,$y=3-a$,$z=1$",
+      "验证板书:三式代入逐项核对",
+      "标签「对一切 $a$ 唯一解」"
+     ],
+     "steps": [
+      "第一步:计算系数行列式,高亮结果 $-1$ 不含 $a$。",
+      "第二步:依次计算三个替换行列式。",
+      "第三步:由比值公式得解,注意分母为 $-1$ 的符号处理。",
+      "第四步:展示三式代入验证。",
+      "第五步:总结:参数位于系数矩阵 $a_{33}$ 位置,但其代数余子式为零,故 $D$ 与 $a$ 无关、唯一性不变,解线性依赖 $a$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-05",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "992eee7cb4d0b27315cc62526e57eaa538612f5ba5ab47d719dfbc9ca2d6e79f",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c31-03",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "original_id": "draft-c31-03",
+     "prior_parent_training_ids": [
+      "linalg-054"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "428063cc8a5d049cedcc20aae1d064328c37c3f3754dbb51f268b7f475805411",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+      "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+      "versioned_id": "codex-repair-20261005-batch-05-draft-c31-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "992eee7cb4d0b27315cc62526e57eaa538612f5ba5ab47d719dfbc9ca2d6e79f",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c31-04",
+   "deficiencies": [
+    "第二步「计算 Dx=0,Dy=D」只给结果,未标明对角分量乘积相减的过程(Dx=1·k−k·1=k−k=0,Dy=k·k−1·1=k²−1)",
+    "x=0/D=0、y=D/D=1 的比值代入过程未展示",
+    "第一步 D=k²−1 的分量乘积来源同样未标注"
+   ],
+   "record": {
+    "id": "draft-c31-04",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "克拉默法则",
+    "concept_id": "C31",
+    "parent_training_ids": [
+     "linalg-054"
+    ],
+    "problem": "用克拉默法则解方程组 $\\begin{cases}kx+y=1\\\\ x+ky=k\\end{cases}$($k$ 为参数),并讨论奇异情形($D=0$)时的解。",
+    "solution": "$D=k^2-1=(k-1)(k+1)$。当 $k\\neq\\pm1$ 时,$D_x=\\begin{vmatrix}1&1\\\\k&k\\end{vmatrix}=k-k=0$,$D_y=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k^2-1$,故唯一解 $x=\\frac{0}{D}=0$,$y=\\frac{D}{D}=1$。当 $k=1$ 时,两方程均为 $x+y=1$,无穷多解。当 $k=-1$ 时,方程为 $-x+y=1$ 与 $x-y=-1$,后者乘以 $-1$ 恰为前者,仍是同一条直线,无穷多解。注意:本题两个奇异值均落在无穷多解分支,与常见的「一个奇异值无解、另一个无穷多解」的例子不同;克拉默法则仅在 $D\\neq0$ 时适用,$D=0$ 时必须改用初等变换/秩判断。",
+    "answer": "$k\\neq\\pm1$ 时唯一解 $x=0,y=1$;$k=1$ 与 $k=-1$ 时均有无穷多解(两方程退化为同一直线)。",
+    "method": "克拉默法则+奇异分支(分母为零改用消元)",
+    "difficulty": "中等",
+    "variant_kind": "奇异分支对比:两个奇异值同属无穷多解分支,强调 D=0 时须改判秩",
+    "scene_spec": {
+     "objects": [
+      "板书:$D=(k-1)(k+1)$",
+      "数轴:奇异点 $k=\\pm1$ 红色标记",
+      "板书:$D_x=0,D_y=D$,唯一解 $x=0,y=1$",
+      "板书:$k=1$ 与 $k=-1$ 时两方程退化对比(均重合直线)",
+      "标签「$D=0$ 时克拉默失效,改判秩」"
+     ],
+     "steps": [
+      "第一步:计算 $D=(k-1)(k+1)$,标出奇异点。",
+      "第二步:非奇异时计算 $D_x=0,D_y=D$,得唯一解 $x=0,y=1$。",
+      "第三步:检查 $k=1$:两方程同为 $x+y=1$,无穷多解。",
+      "第四步:检查 $k=-1$:两方程相差负号,仍为同一直线,无穷多解。",
+      "第五步:强调 $D=0$ 时克拉默法则失效,须用初等变换判秩,汇总结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v6-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-05",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "5ddc802efa157c5d8c7508c1ed2ded44257b7fab5ca1339fdfff92e27135f8f1",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/ready-row-separator-patches.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v6-20261005-batch-05-draft-c31-04",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "original_id": "draft-c31-04",
+     "prior_parent_training_ids": [
+      "linalg-054"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "8421b1db6533ecb298400cc40d7049b750b7f83ebce174c18ecb8453a60245d8",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [
+      "v6: 严格前后哈希校验+路径别名修正(Codex msg505/506)"
+     ],
+     "revised_in_place": false,
+     "version": "codex-repair-v6",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v5",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v5.jsonl",
+      "sha256": "4943b724ba14bb2e87d7e8f0862c38acc04f85b90c42f2d6b40657fefbc5e526",
+      "versioned_id": "codex-repair-v5-20261005-batch-05-draft-c31-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "1a5c61c1e659e8577a183c76a1c968c4ad88b9ad265ec457709ffe9cd1440a25",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c31-05",
+   "deficiencies": [
+    "第二步论证 A·adj(A)=D·I 未标明第 i 行×第 j 列的分量求和 (A·adj(A))_ij=Σ_k a_ik·A_jk 的书写与标注",
+    "i=j(按行展开得 D)与 i≠j(异行展开为 0)的对照仅以括号短语交代,未承诺逐项高亮展开及依据(按行展开公式、异行展开为零的引用)",
+    "第四步第 j 分量 Σ b_i A_ij 的展开识别同样缺分量级展示"
+   ],
+   "record": {
+    "id": "draft-c31-05",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "克拉默法则",
+    "concept_id": "C31",
+    "parent_training_ids": [
+     "linalg-054"
+    ],
+    "problem": "证明:若 $n$ 阶系数矩阵 $A$ 的行列式 $D=\\det A\\neq0$,则线性方程组 $AX=b$ 有唯一解,且解由克拉默公式给出:$x_j=\\frac{D_j}{D}$,其中 $D_j$ 是把 $A$ 的第 $j$ 列换成 $b$ 所得的行列式。",
+    "solution": "记 $A_{ij}$ 为代数余子式,伴随矩阵 $\\mathrm{adj}(A)=(A_{ji})$。由行列式按行展开,$(A\\,\\mathrm{adj}(A))_{ij}=\\sum_{k=1}^{n}a_{ik}A_{jk}=\\begin{cases}\\det A,&i=j\\\\0,&i\\neq j\\end{cases}$(异行展开为零),即 $A\\,\\mathrm{adj}(A)=D\\,I$。因 $D\\neq0$,$A^{-1}=\\frac{1}{D}\\mathrm{adj}(A)$ 存在,故 $AX=b$ 有唯一解 $X=A^{-1}b=\\frac{1}{D}\\mathrm{adj}(A)b$。第 $j$ 个分量 $x_j=\\frac{1}{D}\\sum_{i=1}^{n}b_iA_{ij}$,而 $\\sum_{i=1}^{n}b_iA_{ij}$ 恰是按第 $j$ 列展开的、第 $j$ 列为 $b$ 的行列式 $D_j$,故 $x_j=\\frac{D_j}{D}$。",
+    "answer": "证明见解法;核心:$A\\,\\mathrm{adj}(A)=D\\,I$(按行展开+异行展开为零),$D\\neq0$ 时 $X=\\frac{1}{D}\\mathrm{adj}(A)b$,第 $j$ 分量为 $D_j/D$。",
+    "method": "伴随矩阵证明(克拉默法则推导)",
+    "difficulty": "进阶",
+    "variant_kind": "证明型:克拉默法则的一般推导(伴随矩阵与行列式展开,非数值代入)",
+    "scene_spec": {
+     "objects": [
+      "板书:伴随矩阵定义 $\\mathrm{adj}(A)=(A_{ji})$",
+      "板书:$A\\,\\mathrm{adj}(A)=D\\,I$ 的展开论证(按行展开=异行展开对照)",
+      "板书:$A^{-1}=\\frac{1}{D}\\mathrm{adj}(A)$ 与唯一解",
+      "板书:第 $j$ 分量 $\\sum b_iA_{ij}=D_j$ 的按列展开解释",
+      "高亮框:克拉默公式 $x_j=\\frac{D_j}{D}$"
+     ],
+     "steps": [
+      "第一步:定义伴随矩阵,说明代数余子式的摆放。",
+      "第二步:论证 $A\\,\\mathrm{adj}(A)=D\\,I$(同行的按行展开与异行为零)。",
+      "第三步:由 $D\\neq0$ 得逆矩阵存在,解唯一。",
+      "第四步:展开第 $j$ 个分量,识别 $\\sum b_iA_{ij}$ 为按第 $j$ 列展开的 $D_j$。",
+      "第五步:高亮克拉默公式,完成证明。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-05",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "a49200255f1da31a728685cd1c0b38bff8a141ea1e7fc2265734060e0bd65c2d",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c31-05",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+     "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+     "original_id": "draft-c31-05",
+     "prior_parent_training_ids": [
+      "linalg-054"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "1a3a17b9411a8c2652a81a830c67dccc5a1bc09ad5fa07f9546c37326952c80c",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+      "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+      "versioned_id": "codex-repair-20261005-batch-05-draft-c31-05"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "a49200255f1da31a728685cd1c0b38bff8a141ea1e7fc2265734060e0bd65c2d",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c32-02",
+   "deficiencies": [
+    "第二步\"v,w 同时满足两个约束\"未展示代入验算:v:1-2+1+0=0、0·1+1·(-2)+2·1+3·0=0,w 同理,均需逐项列出。",
+    "第三步剩余坐标方程组 y₁+y₂=0、y₁+2y₂=0 的消元求解过程(两式相减得 y₂=0、回代得 y₁=0)未展示,只给了\"故全零\"。"
+   ],
+   "record": {
+    "id": "draft-c32-02",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "线性方程组解空间",
+    "concept_id": "C32",
+    "parent_training_ids": [
+     "linalg-055",
+     "linalg-056"
+    ],
+    "problem": "求$V=\\{x\\in\\mathbb R^4:\\sum_{i=0}^3x_i=0,\\ \\sum_{i=0}^3i x_i=0\\}$的基与维数，证明给出的基张成全部解。",
+    "solution": "约束行$(1,1,1,1)$与$(0,1,2,3)$不成比例，秩$2$，故维数$2$。向量$v=(1,-2,1,0)$与$w=(0,1,-2,1)$同时满足两个约束，且由首末坐标可知独立。也可对任意解先取$x_0v+x_3w$，减去后首末坐标为零，剩余两坐标满足$y_1+y_2=0,y_1+2y_2=0$，故全零，证明张成。",
+    "answer": "基$(1,-2,1,0),(0,1,-2,1)$，维数$2$。",
+    "method": "独立矩约束与构造基",
+    "difficulty": "基础",
+    "variant_kind": "结构改写：独立矩约束与构造基",
+    "scene_spec": {
+     "objects": [
+      "求$V=\\{x\\in\\mathbb R^4:\\sum_{i=0}^3x_i=0,\\ \\sum_{i=0}^3i x_i=0\\}$的基与维数，证明给出的基张成全部解。",
+      "基$(1,-2,1,0),(0,1,-2,1)$，维数$2$。"
+     ],
+     "steps": [
+      "第一步:约束行$(1,1,1,1)$与$(0,1,2,3)$不成比例，秩$2$，故维数$2$。",
+      "第二步:向量$v=(1,-2,1,0)$与$w=(0,1,-2,1)$同时满足两个约束，且由首末坐标可知独立。",
+      "第三步:也可对任意解先取$x_0v+x_3w$，减去后首末坐标为零，剩余两坐标满足$y_1+y_2=0,y_1+2y_2=0$，故全零，证明张成。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c32-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "40d1e002b3f51594dc2b3587a4c2c8994ac5e0b84ef87462e497d148faa242b5",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c32-02",
+     "prior_parent_training_ids": [
+      "linalg-055",
+      "linalg-056"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "去掉重复的单一零和约束，改为两个独立离散矩约束。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c32-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c34-01",
+   "deficiencies": [
+    "左乘只给结论\"第三行乘以5\",未展示行×列机制:(EA)_{ij}=Σ_k E_{ik}A_{kj},由 E 仅对角元非零得 (EA)_{3j}=5·A_{3j}、(EA)_{ij}=A_{ij}(i≠3);右乘 (AE)_{i3}=5·A_{i3} 同理未展示。",
+    "整个场景只有结论没有运算过程,应配一个含符号元的 3×3 矩阵 A 做逐元素演示。"
+   ],
+   "record": {
+    "id": "draft-c34-01",
+    "category": "高等代数",
+    "sub_category": "矩阵",
+    "concept": "初等矩阵与操作",
+    "concept_id": "C34",
+    "parent_training_ids": [
+     "linalg-058"
+    ],
+    "problem": "设 $E=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&5\\end{pmatrix}$。说明用 $E$ 左乘与右乘一个 $3$ 阶矩阵 $A$ 分别对 $A$ 做了什么操作。",
+    "solution": "左乘 $EA$:把 $A$ 的第三行乘以 $5$(其余行不变)。右乘 $AE$:把 $A$ 的第三列乘以 $5$(其余列不变)。$E$ 是由单位矩阵把第三行(列)乘以 $5$ 得到的倍乘型初等矩阵。",
+    "answer": "左乘:第三行乘 $5$;右乘:第三列乘 $5$。",
+    "method": "初等矩阵的左乘右乘作用辨析",
+    "difficulty": "基础",
+    "variant_kind": "左乘与右乘:同一初等矩阵两侧作用的区分(与几何意义父题不同)",
+    "scene_spec": {
+     "objects": [
+      "设 $E=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&5\\end{pmatrix}$。说明用 $E$ 左乘与右乘一个 $3$ 阶矩阵 $A$ 分别对 $A$ 做了什么操作。",
+      "左乘:第三行乘 $5$;右乘:第三列乘 $5$。"
+     ],
+     "steps": [
+      "第一步:左乘 $EA$:把 $A$ 的第三行乘以 $5$(其余行不变)。",
+      "第二步:右乘 $AE$:把 $A$ 的第三列乘以 $5$(其余列不变)。",
+      "第三步:$E$ 是由单位矩阵把第三行(列)乘以 $5$ 得到的倍乘型初等矩阵。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c34-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "78ef86adb40c7fd1ed10fb828b9e0fc8db21b16c5619f7a20524ab76f3c09615",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c34-01",
+     "prior_parent_training_ids": [
+      "linalg-058"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "左乘操作第三行、右乘第三列，元素定义和乘法逐索引核验。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c34-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c34-02",
+   "deficiencies": [
+    "第三步验证 EE⁻¹=I 只验算第一行且用\"减第二行\"口诀代替,未按行×列标明分量乘积(如第1行×第2列:1·(-1)+1·1+0·0=0),第2、3行未验算。",
+    "第一步构造 E 未展示行×列机制(EA 的第1行=(1,1,0)·A=第1行+第2行),学生只看到结论。"
+   ],
+   "record": {
+    "id": "draft-c34-02",
+    "category": "高等代数",
+    "sub_category": "矩阵",
+    "concept": "初等矩阵与操作",
+    "concept_id": "C34",
+    "parent_training_ids": [
+     "linalg-058"
+    ],
+    "problem": "构造把 $3$ 阶矩阵的第二行加到第一行的初等矩阵 $E$，并求 $E^{-1}$ 与 $E^{-1}$ 对应的操作。",
+    "solution": "把第二行加到第一行的初等矩阵为 $E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$(左乘 $EA$ 即第一行加第二行)。其逆为把第一行减去第二行:$E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。验证:$EE^{-1}=I$(第一行:$(1,1,0)$ 减第二行 $(0,1,0)$ 得 $(1,0,0)$)。",
+    "answer": "$E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$;$E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$,对应「第一行减第二行」。",
+    "method": "倍加型初等矩阵构造与求逆",
+    "difficulty": "基础",
+    "variant_kind": "构造+逆操作:倍加型初等矩阵的构造与逆操作对应",
+    "scene_spec": {
+     "objects": [
+      "构造把 $3$ 阶矩阵的第二行加到第一行的初等矩阵 $E$，并求 $E^{-1}$ 与 $E^{-1}$ 对应的操作。",
+      "$E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$;$E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$,对应「第一行减第二行」。"
+     ],
+     "steps": [
+      "第一步:把第二行加到第一行的初等矩阵为 $E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$(左乘 $EA$ 即第一行加第二行)。",
+      "第二步:其逆为把第一行减去第二行:$E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+      "第三步:验证:$EE^{-1}=I$(第一行:$(1,1,0)$ 减第二行 $(0,1,0)$ 得 $(1,0,0)$)。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c34-02",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "3526c0c123648a121e886ab03095061f6fb25237139b5d522b46c8cc4f961c42",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c34-02",
+     "prior_parent_training_ids": [
+      "linalg-058"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "单次行倍加的逆为反号倍加，EE逆=I；不复制冻结三类行列式全集。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c34-02"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c34-03",
+   "deficiencies": [
+    "第二步矩阵乘法 $P_2P_1$ 只给出等号结果 $\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,未标明哪一行乘哪一列的分量乘积(如第1行$(2,0,0)$×第1列$(0,1,0)^T=2\\cdot0+0\\cdot1+0\\cdot0=0$、第1行×第2列$(1,0,0)^T=2$ 等),学生无法跟着算。",
+    "'验证作用顺序'未演示:未把 $P_2P_1$ 作用于具体向量或矩阵、逐步展示'先交换第1、2行,再把第1行乘2'的操作与结果对应。"
+   ],
+   "record": {
+    "id": "draft-c34-03",
+    "category": "高等代数",
+    "sub_category": "矩阵",
+    "concept": "初等矩阵与操作",
+    "concept_id": "C34",
+    "parent_training_ids": [
+     "linalg-058"
+    ],
+    "problem": "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+    "solution": "$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。先做 $P_1$ 后做 $P_2$ 对应左乘 $P_2P_1$(先作用的矩阵写在右边):$P_2P_1=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。复合矩阵把第二行换到第一行并乘以 $2$。",
+    "answer": "复合变换矩阵为$\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，它是两个初等矩阵的乘积。",
+    "method": "操作顺序与矩阵乘积次序",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：操作顺序与矩阵乘积次序",
+    "scene_spec": {
+     "objects": [
+      "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+      "复合变换矩阵为$\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，它是两个初等矩阵的乘积。"
+     ],
+     "steps": [
+      "第一步:$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+      "第二步:先做 $P_1$ 后做 $P_2$ 对应左乘 $P_2P_1$(先作用的矩阵写在右边):$P_2P_1=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+      "第三步:复合矩阵把第二行换到第一行并乘以 $2$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-14-draft-c34-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-14",
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "b17f73882b4b2b3a7722577470a4d9bc86efcba811be33cee1855ab89c14820c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "2a488597e92f7efdb6ec80074b147c9290e949fbeb4cbd114e293657e7c04776",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft.jsonl",
+     "original_id": "draft-c34-03",
+     "prior_parent_training_ids": [
+      "linalg-058"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "初等矩阵的乘积一般不再是单个初等矩阵，修正名称。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v3.jsonl",
+      "sha256": "a48c6f1d4f406669c6c4516e27305c7ee7250a7242be30cb52f302b5c2fa7d0a",
+      "versioned_id": "codex-repair-20261005-batch-14-draft-c34-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}
