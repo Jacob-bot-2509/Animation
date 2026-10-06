@@ -11,22 +11,22 @@
    "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
    "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
    "expected_record_sha256": "9f5709c2921c5bcf6971f08ac2a2cabc131f9bf634caef0d7f64722b1d243688",
-   "new_math_content_sha256": "5e1bf8e83ca037feba6103cf8c3f387b7920b7c001dda83e142499f1674d62df",
+   "new_math_content_sha256": "496d54078753a0d651d9363c0b5b902f81f25040279b9570b37e5084088e6853",
    "fields": {
     "scene_spec": {
      "objects": [
       "题面卡:三次韦达定理与构造题",
-      "板书一:逐步相乘 $(x-\u0007lpha)(x-\beta)=x^2-(\u0007lpha+\beta)x+\u0007lpha\beta$ 再乘 $(x-\\gamma)$ 的逐项合并",
-      "高亮框:关键点——两两积和项 $\u0007lpha\beta+\beta\\gamma+\\gamma\u0007lpha$ 的来源",
-      "板书二:系数比较 $\u0007lpha+\beta+\\gamma=-p$ 等三条",
-      "构造板:根 $2,-1,\frac12$ 的三项代入与验证"
+      "板书一:逐步相乘 $(x-\\alpha)(x-\\beta)=x^2-(\\alpha+\\beta)x+\\alpha\\beta$ 再乘 $(x-\\gamma)$ 的逐项合并",
+      "高亮框:关键点——两两积和项 $\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha$ 的来源",
+      "板书二:系数比较 $\\alpha+\\beta+\\gamma=-p$ 等三条",
+      "构造板:根 $2,-1,\\frac12$ 的三项代入与验证"
      ],
      "steps": [
-      "第一步:设首一三次多项式 $f(x)=x^3+px^2+qx+r$ 的根为 $\u0007lpha,\beta,\\gamma$,则 $f(x)=(x-\u0007lpha)(x-\beta)(x-\\gamma)$。",
-      "第二步:逐步相乘(高亮):先 $(x-\u0007lpha)(x-\beta)=x^2-(\u0007lpha+\beta)x+\u0007lpha\beta$;再乘 $(x-\\gamma)$:$(x^2-(\u0007lpha+\beta)x+\u0007lpha\beta)(x-\\gamma)=x^3-(\u0007lpha+\beta)x^2+\u0007lpha\beta x-\\gamma x^2+\\gamma(\u0007lpha+\beta)x-\u0007lpha\beta\\gamma=x^3-(\u0007lpha+\beta+\\gamma)x^2+(\u0007lpha\beta+\beta\\gamma+\\gamma\u0007lpha)x-\u0007lpha\beta\\gamma$(关键点:$x$ 项来自 $\u0007lpha\beta+\\gamma\u0007lpha+\\gamma\beta$,即两两积和)。",
-      "第三步:比较系数:$x^2$ 项:$\u0007lpha+\beta+\\gamma=-p$;$x$ 项:$\u0007lpha\beta+\beta\\gamma+\\gamma\u0007lpha=q$;常数项:$\u0007lpha\beta\\gamma=-r$。",
-      "第四步:构造(逐步代入):根 $2,-1,\frac12$:根和 $=2-1+\frac12=\frac32$,故 $p=-\frac32$;两两积和 $=2\\cdot(-1)+(-1)\\cdot\frac12+\frac12\\cdot2=-2-\frac12+1=-\frac32$,故 $q=-\frac32$;根积 $=2\\cdot(-1)\\cdot\frac12=-1$,故 $r=1$。",
-      "第五步:故 $f(x)=x^3-\frac32x^2-\frac32x+1$;验证 $x=2$:$8-6-3+1=0$ ✓(高亮结论)。"
+      "第一步:设首一三次多项式 $f(x)=x^3+px^2+qx+r$ 的根为 $\\alpha,\\beta,\\gamma$,则 $f(x)=(x-\\alpha)(x-\\beta)(x-\\gamma)$。",
+      "第二步:逐步相乘(高亮):先 $(x-\\alpha)(x-\\beta)=x^2-(\\alpha+\\beta)x+\\alpha\\beta$;再乘 $(x-\\gamma)$:$(x^2-(\\alpha+\\beta)x+\\alpha\\beta)(x-\\gamma)=x^3-(\\alpha+\\beta)x^2+\\alpha\\beta x-\\gamma x^2+\\gamma(\\alpha+\\beta)x-\\alpha\\beta\\gamma=x^3-(\\alpha+\\beta+\\gamma)x^2+(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)x-\\alpha\\beta\\gamma$(关键点:$x$ 项来自 $\\alpha\\beta+\\gamma\\alpha+\\gamma\\beta$,即两两积和)。",
+      "第三步:比较系数:$x^2$ 项:$\\alpha+\\beta+\\gamma=-p$;$x$ 项:$\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha=q$;常数项:$\\alpha\\beta\\gamma=-r$。",
+      "第四步:构造(逐步代入):根 $2,-1,\\frac12$:根和 $=2-1+\\frac12=\\frac32$,故 $p=-\\frac32$;两两积和 $=2\\cdot(-1)+(-1)\\cdot\\frac12+\\frac12\\cdot2=-2-\\frac12+1=-\\frac32$,故 $q=-\\frac32$;根积 $=2\\cdot(-1)\\cdot\\frac12=-1$,故 $r=1$。",
+      "第五步:故 $f(x)=x^3-\\frac32x^2-\\frac32x+1$;验证 $x=2$:$8-6-3+1=0$ ✓(高亮结论)。"
      ]
     }
    }
@@ -39,7 +39,7 @@
    "expected_selected_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
    "expected_selected_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
    "expected_record_sha256": "e8b73cb7ca90608fbc83c976cc8d431fab5971193319c4614ffdbc8327bc8938",
-   "new_math_content_sha256": "d38bc4963351561cade433b50a39b5f2740a0837b3f6a1d7cbc7a6baff9837a0",
+   "new_math_content_sha256": "49b971a00feb7fd2f7e2a3c5a742d74b1fa8f8ed648cacce675e37e612c526ab",
    "fields": {
     "scene_spec": {
      "objects": [
@@ -47,14 +47,14 @@
       "板书一:$f=c(x-1)^3(x-2)^2$ 的因子依据",
       "高亮框:关键点——$f(0)=c(-1)^3(-2)^2=-4c=1$ 的代入",
       "平移展开板:$(u-1)^2=u^2-2u+1$ 与逐项乘除",
-      "结论卡:$f=-\frac{u^5}4+\frac{u^4}2-\frac{u^3}4$,解唯一"
+      "结论卡:$f=-\\frac{u^5}4+\\frac{u^4}2-\\frac{u^3}4$,解唯一"
      ],
      "steps": [
       "第一步:零点重数给 $(x-1)^3(x-2)^2\\mid f$;由次数不超过 $5$,得 $f=c(x-1)^3(x-2)^2$。",
-      "第二步:代入(逐步,高亮):$f(0)=c(-1)^3(-2)^2=c\\cdot(-1)\\cdot4=-4c$;条件 $f(0)=1$ 给 $-4c=1$,即 $c=-\frac14$。",
+      "第二步:代入(逐步,高亮):$f(0)=c(-1)^3(-2)^2=c\\cdot(-1)\\cdot4=-4c$;条件 $f(0)=1$ 给 $-4c=1$,即 $c=-\\frac14$。",
       "第三步:换元 $u=x-1$:则 $(x-2)^2=(u-1)^2=u^2-2u+1$(逐项展开)。",
-      "第四步:逐项相乘:$f=-\frac14u^3(u^2-2u+1)=-\frac14(u^5-2u^4+u^3)=-\frac{u^5}4+\frac{u^4}2-\frac{u^3}4$(高亮)。",
-      "第五步:唯一性(关键点):$c\ne0$ 且两个因子互素,故重数分别恰为 $3$ 与 $2$;常数被唯一确定,解唯一(高亮)。"
+      "第四步:逐项相乘:$f=-\\frac14u^3(u^2-2u+1)=-\\frac14(u^5-2u^4+u^3)=-\\frac{u^5}4+\\frac{u^4}2-\\frac{u^3}4$(高亮)。",
+      "第五步:唯一性(关键点):$c\\ne0$ 且两个因子互素,故重数分别恰为 $3$ 与 $2$;常数被唯一确定,解唯一(高亮)。"
      ]
     }
    }
@@ -67,19 +67,19 @@
    "expected_selected_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
    "expected_selected_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
    "expected_record_sha256": "88c522ccf5efb67f9f1d8465977607e65f016f877de24a6b9917a5be8676e26c",
-   "new_math_content_sha256": "2c18c97ed53814befc860bbca953ad6734d14e77321b0abee3019130495a996c",
+   "new_math_content_sha256": "f201c9b4d7e4e9925fbc690cd38ea3582255556400d2aaa5eb6971e1138d4482",
    "fields": {
     "scene_spec": {
      "objects": [
       "题面卡:$\\Delta f(x)=f(x+1)-f(x)$ 在次数≤3空间上",
       "板书一:二项式展开 $(x+1)^m=x^m+mx^{m-1}+\\cdots$ 与首项抵消",
-      "高亮框:关键点——$x^{m-1}$ 项系数 $mc\ne0$ 来自哪一项",
+      "高亮框:关键点——$x^{m-1}$ 项系数 $mc\\ne0$ 来自哪一项",
       "板书二:$\\Delta(x^3)=3x^2+3x+1$ 等逐项差分",
       "比较板:方程组 $3a=3$、$3a+2b=5$、$a+b+c=2$ 的逐步回代"
      ],
      "steps": [
-      "第一步:降阶证明(逐步,高亮):设 $f$ 首项 $cx^m$;二项式展开 $(x+1)^m=x^m+mx^{m-1}+\\cdots$;$\\Delta f$ 中 $x^m$ 项 $c-c=0$ 抵消;而 $x^{m-1}$ 项仅由 $c(x+1)^m$ 展开贡献,系数为 $mc\ne0$(关键点:只有 $(x+1)^m$ 的 $mx^{m-1}$ 项贡献 $x^{m-1}$ 系数);故 $\\deg\\Delta f=m-1$。",
-      "第二步:在次数≤3空间上连续四次 $\\Delta$ 必降为 $0$:$\\Delta^4=0$;且 $\\Delta^3(x^3)=3\\cdot2\\cdot1=6\ne0$(三次降阶后为常数),故指数恰为 $4$(高亮)。",
+      "第一步:降阶证明(逐步,高亮):设 $f$ 首项 $cx^m$;二项式展开 $(x+1)^m=x^m+mx^{m-1}+\\cdots$;$\\Delta f$ 中 $x^m$ 项 $c-c=0$ 抵消;而 $x^{m-1}$ 项仅由 $c(x+1)^m$ 展开贡献,系数为 $mc\\ne0$(关键点:只有 $(x+1)^m$ 的 $mx^{m-1}$ 项贡献 $x^{m-1}$ 系数);故 $\\deg\\Delta f=m-1$。",
+      "第二步:在次数≤3空间上连续四次 $\\Delta$ 必降为 $0$:$\\Delta^4=0$;且 $\\Delta^3(x^3)=3\\cdot2\\cdot1=6\\ne0$(三次降阶后为常数),故指数恰为 $4$(高亮)。",
       "第三步:设 $f=ax^3+bx^2+cx+d$;逐项差分(高亮):$\\Delta(x^3)=(x+1)^3-x^3=3x^2+3x+1$;$\\Delta(x^2)=2x+1$;$\\Delta x=1$;$\\Delta1=0$;故 $\\Delta f=3ax^2+(3a+2b)x+(a+b+c)$。",
       "第四步:比较系数(逐步回代,高亮):$3a=3$ → $a=1$;$3a+2b=5$ → $3+2b=5$ → $b=1$;$a+b+c=2$ → $1+1+c=2$ → $c=0$。",
       "第五步:$f(0)=2$ 给 $d=2$;故 $f=x^3+x^2+2$;若另有一解,差满足 $\\Delta g=0$ 且 $g(0)=0$,只能 $g=0$,解唯一(高亮)。"
@@ -95,7 +95,7 @@
    "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
    "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
    "expected_record_sha256": "b426eebc7299845f421fb7fd81e4eabc3c89a5815079978efd52d9fb54710d1c",
-   "new_math_content_sha256": "0f8b4fe3257594012e7f3f526ef8f09dba867c92d94b7044291a955100f8ff0e",
+   "new_math_content_sha256": "0580cff9f7d04552d1d97b46004d052afd70ba5f707cb2a9ae212e26b6e84e12",
    "fields": {
     "scene_spec": {
      "objects": [
@@ -106,11 +106,11 @@
       "结论卡:$x=a-3$,$y=3-a$,$z=1$"
      ],
      "steps": [
-      "第一步:系数行列式(按第一行展开,逐项,高亮):$D=\begin{vmatrix}1&1&1\\1&1&2\\1&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(a-2)+1\\cdot(2-1)=a-4-a+2+1=-1$;与 $a$ 无关且非零 → 对一切 $a$ 有唯一解。",
-      "第二步:$D_x$(逐项展开):$\begin{vmatrix}1&1&1\\2&1&2\\3&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(2a-6)+1\\cdot(4-3)=a-4-2a+6+1=-a+3$。",
-      "第三步:$D_y$(逐项展开):$\begin{vmatrix}1&1&1\\1&2&2\\1&3&a\\end{vmatrix}=1\\cdot(2a-6)-1\\cdot(a-2)+1\\cdot(3-2)=2a-6-a+2+1=a-3$。",
-      "第四步:$D_z$(逐项展开):$\begin{vmatrix}1&1&1\\1&1&2\\1&2&3\\end{vmatrix}=1\\cdot(3-4)-1\\cdot(3-2)+1\\cdot(2-1)=-1-1+1=-1$。",
-      "第五步:克拉默公式(逐步比值,高亮):$x=\frac{D_x}D=\frac{-a+3}{-1}=a-3$;$y=\frac{D_y}D=\frac{a-3}{-1}=3-a$;$z=\frac{D_z}D=\frac{-1}{-1}=1$。"
+      "第一步:系数行列式(按第一行展开,逐项,高亮):$D=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(a-2)+1\\cdot(2-1)=a-4-a+2+1=-1$;与 $a$ 无关且非零 → 对一切 $a$ 有唯一解。",
+      "第二步:$D_x$(逐项展开):$\\begin{vmatrix}1&1&1\\\\2&1&2\\\\3&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(2a-6)+1\\cdot(4-3)=a-4-2a+6+1=-a+3$。",
+      "第三步:$D_y$(逐项展开):$\\begin{vmatrix}1&1&1\\\\1&2&2\\\\1&3&a\\end{vmatrix}=1\\cdot(2a-6)-1\\cdot(a-2)+1\\cdot(3-2)=2a-6-a+2+1=a-3$。",
+      "第四步:$D_z$(逐项展开):$\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&3\\end{vmatrix}=1\\cdot(3-4)-1\\cdot(3-2)+1\\cdot(2-1)=-1-1+1=-1$。",
+      "第五步:克拉默公式(逐步比值,高亮):$x=\\frac{D_x}D=\\frac{-a+3}{-1}=a-3$;$y=\\frac{D_y}D=\\frac{a-3}{-1}=3-a$;$z=\\frac{D_z}D=\\frac{-1}{-1}=1$。"
      ]
     }
    }
@@ -123,20 +123,20 @@
    "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
    "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
    "expected_record_sha256": "14ed1b1c797d57b0534e3147cd31321e1271d2a4c12bda7c073ba804a150794a",
-   "new_math_content_sha256": "fb045d43f21fa4db12dfa9159cd2898c1c2250f1cb6dbd4d9670772b549bf6c6",
+   "new_math_content_sha256": "3f7a19e1ea2606e019a7c17c8eeaf5ce34c0cf7c51a2598e95d7e16ceb1f7830",
    "fields": {
     "scene_spec": {
      "objects": [
       "方程组卡:$kx+y=1$、$x+ky=k$",
       "板书一:$D=k^2-1=(k-1)(k+1)$ 的对角乘积相减",
       "高亮框:关键点——$D_x=1\\cdot k-k\\cdot1=0$、$D_y=k^2-1$ 的分量乘积",
-      "比值板:$x=\frac0D=0$、$y=\frac DD=1$",
+      "比值板:$x=\\frac0D=0$、$y=\\frac DD=1$",
       "奇异讨论卡:$k=1$ 与 $k=-1$ 的退化方程"
      ],
      "steps": [
-      "第一步:系数行列式(对角乘积相减,高亮):$D=\begin{vmatrix}k&1\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=(k-1)(k+1)$。",
-      "第二步:$k\ne\\pm1$ 时(逐项):$D_x=\begin{vmatrix}1&1\\k&k\\end{vmatrix}=1\\cdot k-1\\cdot k=0$;$D_y=\begin{vmatrix}k&1\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=D$(高亮)。",
-      "第三步:比值(逐步代入):$x=\frac{D_x}D=\frac0D=0$;$y=\frac{D_y}D=\frac DD=1$。",
+      "第一步:系数行列式(对角乘积相减,高亮):$D=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=(k-1)(k+1)$。",
+      "第二步:$k\\ne\\pm1$ 时(逐项):$D_x=\\begin{vmatrix}1&1\\\\k&k\\end{vmatrix}=1\\cdot k-1\\cdot k=0$;$D_y=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=D$(高亮)。",
+      "第三步:比值(逐步代入):$x=\\frac{D_x}D=\\frac0D=0$;$y=\\frac{D_y}D=\\frac DD=1$。",
       "第四步:$k=1$:两方程均为 $x+y=1$,退化为同一直线,无穷多解(高亮)。",
       "第五步:$k=-1$:方程为 $-x+y=1$ 与 $x-y=-1$;第二个是第一个的 $-1$ 倍,同一直线,无穷多解(高亮结论)。"
      ]
@@ -151,22 +151,22 @@
    "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
    "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
    "expected_record_sha256": "cee2990afa3e846f949a69e4ee9a5070c116e2b315e64c6ca57b9bc1ca5b6c04",
-   "new_math_content_sha256": "f1ffe53c5c29b104b9e9125e56ade9681c393e313ec5a609f4fdb46451a96302",
+   "new_math_content_sha256": "d2715d148b558349fc1327628408018bbe0649d2ca39013ba2cd1fbf785ea979",
    "fields": {
     "scene_spec": {
      "objects": [
       "题面卡:克拉默公式的证明",
       "板书一:$(A\\,\\mathrm{adj}(A))_{ij}=\\sum_{k=1}^na_{ik}A_{jk}$ 的第i行×第j列书写",
-      "高亮框:关键点——$i=j$ 按行展开得 $D$;$i\ne j$ 异行展开为 $0$",
-      "板书二:$A^{-1}=\frac1D\\mathrm{adj}(A)$ 与解的表达式",
-      "结论卡:$x_j=\frac{D_j}D$"
+      "高亮框:关键点——$i=j$ 按行展开得 $D$;$i\\ne j$ 异行展开为 $0$",
+      "板书二:$A^{-1}=\\frac1D\\mathrm{adj}(A)$ 与解的表达式",
+      "结论卡:$x_j=\\frac{D_j}D$"
      ],
      "steps": [
       "第一步:记 $A_{ij}$ 为代数余子式,伴随矩阵 $\\mathrm{adj}(A)=(A_{ji})$(注意转置排列,高亮)。",
       "第二步:第 $i$ 行×第 $j$ 列(高亮书写):$(A\\,\\mathrm{adj}(A))_{ij}=\\sum_{k=1}^na_{ik}A_{jk}$。",
-      "第三步:分两种情形(关键点):$i=j$ 时是第 $i$ 行按行展开:$\\sum_ka_{ik}A_{ik}=\\det A=D$;$i\ne j$ 时是异行展开:$\\sum_ka_{ik}A_{jk}=0$(引用按行展开公式与异行展开为零,高亮)。",
-      "第四步:故 $A\\,\\mathrm{adj}(A)=DI$;因 $D\ne0$,得 $A^{-1}=\frac1D\\mathrm{adj}(A)$;方程组解为 $x=A^{-1}b$。",
-      "第五步:第 $j$ 个分量(逐步,高亮):$x_j=\frac1D\\sum_k(\\mathrm{adj}(A))_{jk}b_k=\frac1D\\sum_kA_{kj}b_k=\frac{D_j}D$($D_j$ 是把第 $j$ 列换成 $b$ 后按第 $j$ 列展开的行列式)。"
+      "第三步:分两种情形(关键点):$i=j$ 时是第 $i$ 行按行展开:$\\sum_ka_{ik}A_{ik}=\\det A=D$;$i\\ne j$ 时是异行展开:$\\sum_ka_{ik}A_{jk}=0$(引用按行展开公式与异行展开为零,高亮)。",
+      "第四步:故 $A\\,\\mathrm{adj}(A)=DI$;因 $D\\ne0$,得 $A^{-1}=\\frac1D\\mathrm{adj}(A)$;方程组解为 $x=A^{-1}b$。",
+      "第五步:第 $j$ 个分量(逐步,高亮):$x_j=\\frac1D\\sum_k(\\mathrm{adj}(A))_{jk}b_k=\\frac1D\\sum_kA_{kj}b_k=\\frac{D_j}D$($D_j$ 是把第 $j$ 列换成 $b$ 后按第 $j$ 列展开的行列式)。"
      ]
     }
    }
@@ -207,11 +207,11 @@
    "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
    "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
    "expected_record_sha256": "18c05dba090236e18bc625edba93ea90520ca4b7b6ad1555ab2e8ed0fd497d45",
-   "new_math_content_sha256": "c0cb431449c2c229862b8cccd6d2fd5e914b5c6ae367a7ca8afb3970509f8e78",
+   "new_math_content_sha256": "31d5ad13425ecb027bb27a9565e58050475aa268b3faf6f045f5f3cf4b7fe05c",
    "fields": {
     "scene_spec": {
      "objects": [
-      "矩阵卡:$E=\begin{pmatrix}1&0&0\\0&1&0\\0&0&5\\end{pmatrix}$ 与符号元矩阵 $A=(a_{ij})$",
+      "矩阵卡:$E=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&5\\end{pmatrix}$ 与符号元矩阵 $A=(a_{ij})$",
       "板书一:$(EA)_{ij}=\\sum_kE_{ik}A_{kj}$ 的行×列机制",
       "高亮框:关键点——$E$ 仅对角元非零,故 $(EA)_{3j}=5A_{3j}$、$(AE)_{i3}=5A_{i3}$",
       "演示板:左乘后第三行乘 5、右乘后第三列乘 5 的逐元素对照",
@@ -219,9 +219,9 @@
      ],
      "steps": [
       "第一步:行×列机制(高亮):$(EA)_{ij}=\\sum_kE_{ik}A_{kj}$;因 $E$ 仅对角元非零($E_{11}=E_{22}=1,E_{33}=5$)。",
-      "第二步:左乘逐项:$i\ne3$ 时 $(EA)_{ij}=1\\cdot A_{ij}=A_{ij}$,其余行不变;$i=3$ 时 $(EA)_{3j}=5\\cdot A_{3j}$,第三行乘以 $5$(高亮)。",
-      "第三步:右乘逐项:$(AE)_{ij}=\\sum_kA_{ik}E_{kj}$;$j\ne3$ 时 $(AE)_{ij}=A_{ij}$;$j=3$ 时 $(AE)_{i3}=5\\cdot A_{i3}$,第三列乘以 $5$(高亮)。",
-      "第四步:符号元演示(逐元素):左乘后 $EA=\begin{pmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\5a_{31}&5a_{32}&5a_{33}\\end{pmatrix}$;右乘后 $AE=\begin{pmatrix}a_{11}&a_{12}&5a_{13}\\a_{21}&a_{22}&5a_{23}\\a_{31}&a_{32}&5a_{33}\\end{pmatrix}$(逐格对照)。",
+      "第二步:左乘逐项:$i\\ne3$ 时 $(EA)_{ij}=1\\cdot A_{ij}=A_{ij}$,其余行不变;$i=3$ 时 $(EA)_{3j}=5\\cdot A_{3j}$,第三行乘以 $5$(高亮)。",
+      "第三步:右乘逐项:$(AE)_{ij}=\\sum_kA_{ik}E_{kj}$;$j\\ne3$ 时 $(AE)_{ij}=A_{ij}$;$j=3$ 时 $(AE)_{i3}=5\\cdot A_{i3}$,第三列乘以 $5$(高亮)。",
+      "第四步:符号元演示(逐元素):左乘后 $EA=\\begin{pmatrix}a_{11}&a_{12}&a_{13}\\\\a_{21}&a_{22}&a_{23}\\\\5a_{31}&5a_{32}&5a_{33}\\end{pmatrix}$;右乘后 $AE=\\begin{pmatrix}a_{11}&a_{12}&5a_{13}\\\\a_{21}&a_{22}&5a_{23}\\\\a_{31}&a_{32}&5a_{33}\\end{pmatrix}$(逐格对照)。",
       "第五步:结论:$E$ 是单位矩阵把第三行(列)乘以 $5$ 得到的倍乘型初等矩阵;左乘作用于行、右乘作用于列(高亮)。"
      ]
     }
@@ -235,7 +235,7 @@
    "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
    "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
    "expected_record_sha256": "d10b3277a88e33069a686e04529337e705aee4f5d6ca23c9f1ceb90cd804ccf0",
-   "new_math_content_sha256": "bb3f3cd597fd7fe1a77f577997d166da32c9d5a05c64a1ce1eaa974a22fc9de5",
+   "new_math_content_sha256": "6050a80d11154cbca2b88868ac5129f779297531e76546191982340577506947",
    "fields": {
     "scene_spec": {
      "objects": [
@@ -246,8 +246,8 @@
       "结论卡:$E$ 与 $E^{-1}$ 的矩阵"
      ],
      "steps": [
-      "第一步:构造机制(高亮):要求 $(EA)_{1j}=\\sum_kE_{1k}A_{kj}=1\\cdot A_{1j}+1\\cdot A_{2j}=$ 第1行+第2行;故 $E=\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\\end{pmatrix}$。",
-      "第二步:逆操作:把第一行减去第二行,即 $E^{-1}=\begin{pmatrix}1&-1&0\\0&1&0\\0&0&1\\end{pmatrix}$。",
+      "第一步:构造机制(高亮):要求 $(EA)_{1j}=\\sum_kE_{1k}A_{kj}=1\\cdot A_{1j}+1\\cdot A_{2j}=$ 第1行+第2行;故 $E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+      "第二步:逆操作:把第一行减去第二行,即 $E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
       "第三步:验证第1行(逐行×列,高亮):第1行×第1列:$1\\cdot1+1\\cdot0+0\\cdot0=1$;第1行×第2列:$1\\cdot(-1)+1\\cdot1+0\\cdot0=0$;第1行×第3列:$0$。",
       "第四步:验证第2、3行(逐项):第2行×各列:$0\\cdot1+1\\cdot0+0=0$、$0\\cdot(-1)+1\\cdot1+0=1$、$0$;第3行×各列:$0,0,1\\cdot1$;得 $EE^{-1}=I$(高亮)。",
       "第五步:结论:$E^{-1}$ 对应的操作是「把第一行减去第二行」(高亮)。"
@@ -263,22 +263,22 @@
    "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
    "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
    "expected_record_sha256": "ae2729b8de07c4158cf7c6c56a49299a898e65a19776f1d2bc09a0616dfde09b",
-   "new_math_content_sha256": "bcd0cbbf60a12309df0c5ff622b2fd46c34fd868b75da53c5ac60b0c469a9fdd",
+   "new_math_content_sha256": "d08e7f45ea7e281383d754acbf2b237e62ee34e26c8606bd9991a9e869172504",
    "fields": {
     "scene_spec": {
      "objects": [
       "操作卡:先交换第一、二行,再将(新的)第一行乘以 $2$",
-      "矩阵卡:$P_1$ 与 $P_2$",
+      "矩阵卡:$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$、$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$",
       "高亮框:关键点——先作用的矩阵写在右边:复合为 $P_2P_1$",
       "行×列计算板:$P_2P_1$ 的九项分量乘积",
       "作用演示板:对符号元矩阵逐步做两次行变换并对照"
      ],
      "steps": [
-      "第一步:写出 $P_1=\begin{pmatrix}0&1&0\\1&0&0\\0&0&1\\end{pmatrix}$(交换1、2行),$P_2=\begin{pmatrix}2&0&0\\0&1&0\\0&0&1\\end{pmatrix}$(第1行乘2)。",
+      "第一步:写出 $P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$(交换1、2行),$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$(第1行乘2)。",
       "第二步:顺序(关键点,高亮):先做 $P_1$ 后做 $P_2$,对应左乘 $P_2P_1$——先作用的矩阵写在右边。",
-      "第三步:乘法(逐行×列,高亮):第1行 $(2,0,0)$:×第1列 $(0,1,0)^{\\mathsf T}=2\\cdot0+0\\cdot1+0\\cdot0=0$;×第2列 $(1,0,0)^{\\mathsf T}=2\\cdot1=2$;×第3列 $=0$;第2行 $(0,1,0)$:×第1列 $=1$、×第2列 $=0$、×第3列 $=0$;第3行:×第3列 $=1$;得 $P_2P_1=\begin{pmatrix}0&2&0\\1&0&0\\0&0&1\\end{pmatrix}$。",
-      "第四步:作用验证(逐步):对 $A=\begin{pmatrix}a&b&c\\d&e&f\\g&h&i\\end{pmatrix}$:先 $P_1A=\begin{pmatrix}d&e&f\\a&b&c\\g&h&i\\end{pmatrix}$(交换1、2行);再 $P_2(P_1A)=\begin{pmatrix}2d&2e&2f\\a&b&c\\g&h&i\\end{pmatrix}$(第1行乘2);与 $(P_2P_1)A$ 一致(高亮)。",
-      "第五步:结论:复合行变换矩阵为 $P_2P_1=\begin{pmatrix}0&2&0\\1&0&0\\0&0&1\\end{pmatrix}$,先交换第一、二行,再把新的第一行乘以 $2$(高亮)。"
+      "第三步:乘法(逐行×列,高亮):第1行 $(2,0,0)$:×第1列 $(0,1,0)^{\\mathsf T}=2\\cdot0+0\\cdot1+0\\cdot0=0$;×第2列 $(1,0,0)^{\\mathsf T}=2\\cdot1=2$;×第3列 $=0$;第2行 $(0,1,0)$:×第1列 $=1$、×第2列 $=0$、×第3列 $=0$;第3行:×第3列 $=1$;得 $P_2P_1=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+      "第四步:作用验证(逐步):对 $A=\\begin{pmatrix}a&b&c\\\\d&e&f\\\\g&h&i\\end{pmatrix}$:先 $P_1A=\\begin{pmatrix}d&e&f\\\\a&b&c\\\\g&h&i\\end{pmatrix}$(交换1、2行);再 $P_2(P_1A)=\\begin{pmatrix}2d&2e&2f\\\\a&b&c\\\\g&h&i\\end{pmatrix}$(第1行乘2);与 $(P_2P_1)A$ 一致(高亮)。",
+      "第五步:结论:复合行变换矩阵为 $P_2P_1=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,先交换第一、二行,再把新的第一行乘以 $2$(高亮)。"
      ]
     }
    }
