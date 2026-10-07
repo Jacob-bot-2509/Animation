@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 1:
+    if len(argv) < 1:
         print(__doc__, file=sys.stderr)
         return 2
     code = Path(argv[0])
@@ -25,7 +25,7 @@ def main(argv: list[str]) -> int:
         print(f"代码文件不存在: {code}", file=sys.stderr)
         return 2
     previous_argv = sys.argv
-    sys.argv = [str(code)]
+    sys.argv = [str(code)] + argv[1:]
     try:
         runpy.run_path(str(code), run_name="__main__")
     except SystemExit as error:
