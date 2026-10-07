@@ -1,0 +1,86 @@
+{
+  "unique_formulas": [
+    "T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)",
+    "\\lambda=\\dfrac{1}{1000}",
+    "P(T>1500\\mid T>500)",
+    "P(T>t)=e^{-t/1000}",
+    "t\\ge0",
+    "\\{T>1500\\}\\subseteq\\{T>500\\}",
+    "P(T>1500\\mid T>500)=\\frac{e^{-1500/1000}}{e^{-500/1000}}=\\frac{e^{-3/2}}{e^{-1/2}}=e^{-1}",
+    "e^{-1}",
+    "S(t)=P(T>t)=e^{-t/1000}",
+    "P(T>500+t\\mid T>500)=S(500+t)/S(500)=S(t)",
+    "S(500+t)=e^{-1/2}S(t)",
+    "S(t)",
+    "t=1000"
+  ],
+  "source_occurrences": [
+    {
+      "field": "problem",
+      "formula": "T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)"
+    },
+    {
+      "field": "problem",
+      "formula": "\\lambda=\\dfrac{1}{1000}"
+    },
+    {
+      "field": "problem",
+      "formula": "P(T>1500\\mid T>500)"
+    },
+    {
+      "field": "solution",
+      "formula": "P(T>t)=e^{-t/1000}"
+    },
+    {
+      "field": "solution",
+      "formula": "t\\ge0"
+    },
+    {
+      "field": "solution",
+      "formula": "\\{T>1500\\}\\subseteq\\{T>500\\}"
+    },
+    {
+      "field": "solution",
+      "formula": "P(T>1500\\mid T>500)=\\frac{e^{-1500/1000}}{e^{-500/1000}}=\\frac{e^{-3/2}}{e^{-1/2}}=e^{-1}"
+    },
+    {
+      "field": "answer",
+      "formula": "e^{-1}"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 0,
+      "formula": "S(t)=P(T>t)=e^{-t/1000}"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 0,
+      "formula": "t\\ge0"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 1,
+      "formula": "P(T>500+t\\mid T>500)=S(500+t)/S(500)=S(t)"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 2,
+      "formula": "S(500+t)=e^{-1/2}S(t)"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 2,
+      "formula": "S(t)"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 3,
+      "formula": "t=1000"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 3,
+      "formula": "e^{-1}"
+    }
+  ]
+}

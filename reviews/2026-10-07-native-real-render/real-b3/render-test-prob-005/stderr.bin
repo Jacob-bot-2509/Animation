@@ -1,0 +1,93 @@
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\cli\render\comman │
+│ ds.py:125 in render                                                         │
+│                                                                             │
+│   122 │   │   │   try:                                                      │
+│   123 │   │   │   │   with tempconfig({}):                                  │
+│   124 │   │   │   │   │   scene = SceneClass()                              │
+│ > 125 │   │   │   │   │   scene.render()                                    │
+│   126 │   │   │   except Exception:                                         │
+│   127 │   │   │   │   error_console.print_exception()                       │
+│   128 │   │   │   │   sys.exit(1)                                           │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\scene\scene.py:25 │
+│ 9 in render                                                                 │
+│                                                                             │
+│    256 │   │   """                                                          │
+│    257 │   │   self.setup()                                                 │
+│    258 │   │   try:                                                         │
+│ >  259 │   │   │   self.construct()                                         │
+│    260 │   │   except EndSceneEarlyException:                               │
+│    261 │   │   │   pass                                                     │
+│    262 │   │   except RerunSceneException:                                  │
+│                                                                             │
+│ D:\Animation-Model-Training\reviews\2026-10-07-native-real-render\real-b3\r │
+│ ender-test-prob-005\scene.py:5 in construct                                 │
+│                                                                             │
+│    2 FORMULAS = ['X,Y', 'U(0,1)', 'Z=X+Y', 'P(Z>\\frac32)', 'f_Z(z)=\\int_{ │
+│    3 class ConceptScene(Scene):                                             │
+│    4 │   def construct(self):                                               │
+│ >  5 │   │   maths = [MathTex(formula) for formula in FORMULAS]             │
+│    6 │   │   group = VGroup(*maths).arrange(DOWN, buff=1/4)                 │
+│    7 │   │   group.scale(min((config.frame_width-1)/group.width, (config.fr │
+│    8 │   │   self.add(group)                                                │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\mobject\text\tex_ │
+│ mobject.py:329 in __init__                                                  │
+│                                                                             │
+│   326 │   │   │   │   │   │   """,                                          │
+│   327 │   │   │   │   │   ),                                                │
+│   328 │   │   │   │   )                                                     │
+│ > 329 │   │   │   raise compilation_error                                   │
+│   330 │   │   self.set_color_by_tex_to_color_map(self.tex_to_color_map)     │
+│   331 │   │                                                                 │
+│   332 │   │   if self.organize_left_to_right:                               │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\mobject\text\tex_ │
+│ mobject.py:306 in __init__                                                  │
+│                                                                             │
+│   303 │   │   │   joined_string = self._join_tex_strings_with_unique_delimi │
+│   304 │   │   │   │   self.tex_strings, self.substrings_to_isolate          │
+│   305 │   │   │   )                                                         │
+│ > 306 │   │   │   super().__init__(                                         │
+│   307 │   │   │   │   joined_string,                                        │
+│   308 │   │   │   │   tex_environment=self.tex_environment,                 │
+│   309 │   │   │   │   tex_template=self.tex_template,                       │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\mobject\text\tex_ │
+│ mobject.py:81 in __init__                                                   │
+│                                                                             │
+│    78 │   │   self.tex_template: TexTemplate = tex_template                 │
+│    79 │   │                                                                 │
+│    80 │   │   self.tex_string = tex_string                                  │
+│ >  81 │   │   file_name = tex_to_svg_file(                                  │
+│    82 │   │   │   self._get_modified_expression(tex_string),                │
+│    83 │   │   │   environment=self.tex_environment,                         │
+│    84 │   │   │   tex_template=self.tex_template,                           │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\utils\tex_file_wr │
+│ iting.py:65 in tex_to_svg_file                                              │
+│                                                                             │
+│    62 │   if svg_file.exists():                                             │
+│    63 │   │   return svg_file                                               │
+│    64 │                                                                     │
+│ >  65 │   dvi_file = compile_tex(                                           │
+│    66 │   │   tex_file,                                                     │
+│    67 │   │   tex_template.tex_compiler,                                    │
+│    68 │   │   tex_template.output_format,                                   │
+│                                                                             │
+│ D:\Animation-Model-Training\.venv\Lib\site-packages\manim\utils\tex_file_wr │
+│ iting.py:218 in compile_tex                                                 │
+│                                                                             │
+│   215 │   │   │   if cp.returncode != 0:                                    │
+│   216 │   │   │   │   log_file = tex_file.with_suffix(".log")               │
+│   217 │   │   │   │   print_all_tex_errors(log_file, compiler, tex_file)    │
+│ > 218 │   │   │   │   raise ValueError(                                     │
+│   219 │   │   │   │   │   f"{compiler} error converting to"                 │
+│   220 │   │   │   │   │   f" {output_format[1:]}. See log output above or"  │
+│   221 │   │   │   │   │   f" the log file: {log_file}",                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+ValueError: latex error converting to dvi. See log output above or the log 
+file: 
+D:\Animation-Model-Training\reviews\2026-10-07-native-real-render\real-b3\rende
+r-test-prob-005\media\Tex\cb417d81189dec43.log
