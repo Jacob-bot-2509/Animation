@@ -1,0 +1,42 @@
+{"id": "eval-calc-015-s1", "verdict": "MATH_PASS", "findings": "对称性2I=π·π/2,I=π²/4,正确", "sympy": null}
+{"id": "eval-calc-015-s2", "verdict": "MATH_PASS", "findings": "v=-arctan(cos x)验证;边界-πarctan(-1)=π²/4;反对称积分为0,正确", "sympy": null}
+{"id": "eval-calc-016-s1", "verdict": "MATH_PASS", "findings": "x=a tan t代换,sin t cos t=ax/(x²+a²),结果正确", "sympy": null}
+{"id": "eval-calc-016-s2", "verdict": "MATH_PASS", "findings": "递推I_{n+1}=[x/(x²+a²)^n+(2n-1)I_n]/(2na²)推导核对,正确", "sympy": null}
+{"id": "eval-calc-016-s3", "verdict": "MATH_PASS", "findings": "留数C=-1/(4a²)、D=-i/(4a³);辐角2(π/2-arctan)与x<0分支说明,常数并入C,正确", "sympy": null}
+{"id": "eval-calc-017-s1", "verdict": "MATH_PASS", "findings": "tan(π/4-t)恒等式,2I=(π/4)ln2,正确", "sympy": null}
+{"id": "eval-calc-017-s2", "verdict": "MATH_PASS", "findings": "x=(1-t)/(1+t)代换各因子核对,I=(π/4)ln2-I,正确", "sympy": null}
+{"id": "eval-calc-017-s3", "verdict": "MATH_PASS", "findings": "分部+J自相似;arctan((1-t)/(1+t))=π/4-arctan t范围说明,正确", "sympy": null}
+{"id": "eval-calc-018-s1", "verdict": "MATH_PASS", "findings": "分部积分(x²+1)/2·arctan x-x/2,正确", "sympy": null}
+{"id": "eval-calc-018-s2", "verdict": "MATH_PASS", "findings": "t=arctan x代换(1/2)t(1+tan²t)-(1/2)tan t代回一致", "sympy": null}
+{"id": "eval-calc-018-s3", "verdict": "MATH_PASS", "findings": "I=x²arctan x-I-(x-arctan x)自洽2I,正确", "sympy": null}
+{"id": "eval-calc-019-s1", "verdict": "MATH_PASS", "findings": "分部-(x+1)e^{-x},b→∞极限1,正确", "sympy": null}
+{"id": "eval-calc-019-s2", "verdict": "MATH_PASS", "findings": "Γ(2)=1·Γ(1)=1,正确", "sympy": null}
+{"id": "eval-calc-019-s3", "verdict": "MATH_PASS", "findings": "E[Exp(1)]=1,尾积分公式同结果,正确", "sympy": null}
+{"id": "eval-calc-020-s1", "verdict": "MATH_PASS", "findings": "p积分分类p>1收敛1/(p-1),正确", "sympy": null}
+{"id": "eval-calc-020-s2", "verdict": "MATH_PASS", "findings": "积分判别法与p级数互证,正确", "sympy": null}
+{"id": "eval-calc-020-s3", "verdict": "MATH_PASS", "findings": "几何直觉分块比较,结论引用s1,正确", "sympy": null}
+{"id": "eval-calc-021-s1", "verdict": "MATH_PASS", "findings": "S-S/2=Σ1/2ⁿ=1,S=2,正确", "sympy": null}
+{"id": "eval-calc-021-s2", "verdict": "MATH_PASS", "findings": "逐项求导x/(1-x)²,x=1/2得2,正确", "sympy": null}
+{"id": "eval-calc-021-s3", "verdict": "MATH_PASS", "findings": "几何分布E[X]=1/p=2,正确", "sympy": null}
+{"id": "eval-calc-022-s1", "verdict": "MATH_PASS", "findings": "Σn²xⁿ=x(1+x)/(1-x)³,x=1/2得6,正确", "sympy": null}
+{"id": "eval-calc-022-s2", "verdict": "MATH_PASS", "findings": "S-S/2=Σ(2n-1)/2ⁿ=2A-B=3,S=6,正确", "sympy": null}
+{"id": "eval-calc-022-s3", "verdict": "MATH_PASS", "findings": "阶乘矩E[X(X-1)]=2q/p²,E[X²]=(2-p)/p²=6,正确", "sympy": null}
+{"id": "eval-calc-023-s1", "verdict": "MATH_PASS", "findings": "积分判别法,正确", "sympy": null}
+{"id": "eval-calc-023-s2", "verdict": "MATH_PASS", "findings": "1/n²<1/(n(n-1))望远镜<2,正确", "sympy": null}
+{"id": "eval-calc-023-s3", "verdict": "MATH_PASS", "findings": "Cauchy凝聚Σ1/2^k收敛,正确", "sympy": null}
+{"id": "eval-calc-024-s1", "verdict": "MATH_PASS", "findings": "逐项积分展开|x|<1,正确", "sympy": null}
+{"id": "eval-calc-024-s2", "verdict": "MATH_PASS", "findings": "交错收敛+Abel定理端点π/4,正确", "sympy": null}
+{"id": "eval-calc-024-s3", "verdict": "MATH_PASS", "findings": "余项|f^(m)|≤(m-1)!给|R_N|≤1/(N+1)一致收敛含端点,正确", "sympy": null}
+{"id": "eval-calc-025-s1", "verdict": "MATH_PASS", "findings": "莱布尼茨收敛;1/ln n>1/n比较发散,条件收敛", "sympy": null}
+{"id": "eval-calc-025-s2", "verdict": "MATH_PASS", "findings": "配对奇子列递增有界1/ln2,偶子列差a_{2m+1}→0,收敛,正确", "sympy": null}
+{"id": "eval-calc-025-s3", "verdict": "MATH_PASS", "findings": "数值直觉,严格结论引用s1,诚实", "sympy": null}
+{"id": "eval-calc-026-s1", "verdict": "MATH_PASS", "findings": "z_x=2,z_y=0,正确", "sympy": null}
+{"id": "eval-calc-026-s2", "verdict": "MATH_PASS", "findings": "全微分dz/z,dz=2dx,正确", "sympy": null}
+{"id": "eval-calc-027-s1", "verdict": "MATH_PASS", "findings": "换序∫₀¹y e^{y²}dy=(e-1)/2,正确", "sympy": null}
+{"id": "eval-calc-027-s2", "verdict": "MATH_PASS", "findings": "F(x)分部积分xF(x)|₀¹-∫xF'=(e-1)/2,正确", "sympy": null}
+{"id": "eval-calc-028-s1", "verdict": "MATH_PASS", "findings": "极坐标4∫sin⁴=4·3π/8=3π/2,正确", "sympy": null}
+{"id": "eval-calc-028-s2", "verdict": "MATH_PASS", "findings": "直角坐标内层化简(4/3)y(1+y)√(2y-y²);u=y-1后2·π/2+0+π/8=9π/8,I=3π/2,正确", "sympy": null}
+{"id": "eval-calc-028-s3", "verdict": "MATH_PASS", "findings": "平行轴定理J_O=πR⁴/2+A·1²=π/2+π=3π/2,正确", "sympy": null}
+{"id": "eval-calc-029-s1", "verdict": "MATH_PASS", "findings": "ds=3a|sin t cos t|,4·12a/2...L=12a·1/2=6a,正确", "sympy": null}
+{"id": "eval-calc-029-s2", "verdict": "MATH_PASS", "findings": "ds=a^{1/3}x^{-1/3},L1=3a/2,L=6a,正确", "sympy": null}
+{"id": "eval-calc-029-s3", "verdict": "MATH_PASS", "findings": "滑动线段包络叉积为零v=sin²t,包络即星形线,弧长6a,正确", "sympy": null}
