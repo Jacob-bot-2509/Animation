@@ -1,0 +1,367 @@
+{
+  "schema": "deep-semantic-candidates-v1",
+  "family_pairs_total": 1131,
+  "candidate_count": 12,
+  "candidates": [
+    {
+      "train_id": "draft-c02-01",
+      "eval_id": "eval-calc-019-s1",
+      "eval_group": "eval",
+      "category": "数学分析",
+      "sub_category": "反常积分",
+      "same_goal_group": false,
+      "steps_jaccard": 0.25,
+      "train_goal": "证明反常积分条件收敛与精确尾界",
+      "eval_goal": "求反常积分∫xe⁻ˣdx",
+      "train_domain": "∫sin(x²)dx",
+      "eval_domain": "[0,∞)",
+      "train_conditions": [
+        "振荡",
+        "尾界对T>R≥1"
+      ],
+      "eval_conditions": [
+        "收敛"
+      ],
+      "train_steps": [
+        "换元",
+        "分部积分",
+        "下界估计"
+      ],
+      "eval_steps": [
+        "分部积分",
+        "极限"
+      ],
+      "train_record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "eval_record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c30-01",
+      "eval_id": "eval-linalg-024-s3",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "求满足零点重数条件的多项式",
+      "eval_goal": "按x-1幂展开多项式",
+      "train_domain": "deg≤5",
+      "eval_domain": "三次多项式",
+      "train_conditions": [
+        "重数条件",
+        "f(0)=1"
+      ],
+      "eval_conditions": [
+        "泰勒"
+      ],
+      "train_steps": [
+        "整除性",
+        "定常数",
+        "换元展开"
+      ],
+      "eval_steps": [
+        "换元展开"
+      ],
+      "train_record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+      "eval_record_sha256": "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "linalg-051",
+      "eval_id": "eval-linalg-022-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "多项式因式分解与根分布",
+      "eval_goal": "多项式因式分解",
+      "train_domain": "f(x)=x³-6x²+11x-6",
+      "eval_domain": "四次多项式",
+      "train_conditions": [
+        "整数系数"
+      ],
+      "eval_conditions": [
+        "整数系数"
+      ],
+      "train_steps": [
+        "有理根定理",
+        "综合除法",
+        "根分布"
+      ],
+      "eval_steps": [
+        "有理根定理"
+      ],
+      "train_record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "eval_record_sha256": "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c35-01",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "配方法化标准形与惯性",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "可逆替换"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性指数"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c35-03",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "求二次型秩参数与标准形",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "二元含参",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩条件",
+        "各参数标准形"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c35-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "配方法化标准形与惯性",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "退化"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.5,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "顺序主子式"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.0,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s3",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.0,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "Schur补"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c36-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "判断二次型半正定与秩",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "零解条件"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c36-05",
+      "eval_id": "eval-linalg-021-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "构造顺序主子式非负但非半正定反例",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三阶对称矩阵",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "反例构造"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "构造矩阵",
+        "顺序主子式",
+        "负特征值"
+      ],
+      "eval_steps": [
+        "顺序主子式"
+      ],
+      "train_record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "disposition": "UNREVIEWED"
+    },
+    {
+      "train_id": "draft-c37-05",
+      "eval_id": "eval-linalg-026-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "证明向量组为基并求坐标",
+      "eval_goal": "判断向量组线性相关性",
+      "train_domain": "多项式空间",
+      "eval_domain": "三向量R³",
+      "train_conditions": [
+        "行列式非零"
+      ],
+      "eval_conditions": [
+        "相关性"
+      ],
+      "train_steps": [
+        "行列式",
+        "求逆",
+        "验证"
+      ],
+      "eval_steps": [
+        "行列式"
+      ],
+      "train_record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+      "eval_record_sha256": "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+      "disposition": "UNREVIEWED"
+    }
+  ]
+}
