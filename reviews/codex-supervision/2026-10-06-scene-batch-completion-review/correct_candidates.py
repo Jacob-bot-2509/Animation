@@ -1,0 +1,44 @@
+import ast,copy,json,re,sys
+from pathlib import Path
+ROOT=Path(r'D:\Animation-Model-Training');OUT=Path(__file__).resolve().parent;OLD=OUT.parent/'2026-10-06-scene-repair-takeover';sys.path.insert(0,str(ROOT/'tools'))
+from scene_sweep_protocol import verify_inputs,sorted_sha,MATH_FIELDS
+from dataset_audit import Audit,check_latex
+from holdout_contract import object_sha
+_,inputs=verify_inputs(OLD/'inputs-v2');records={x['record']['id']:x['record'] for x in inputs}
+items=json.loads((OUT/'patches-with-batch.json').read_text('utf-8'));incoming={x['patch']['id']:x['patch'] for x in items};merged={p['id']:p for p in json.loads((OLD/'scene-candidates-corrected-v4.json').read_text('utf-8'))['records']};merged.update(copy.deepcopy(incoming))
+fixes=[]
+def step(pid,index,new,why):
+ scene=merged[pid]['fields']['scene_spec'];old=scene['steps'][index];scene['steps'][index]=new;fixes.append({'id':pid,'kind':'mathematics_or_missing_proof','field':f'scene_spec.steps[{index}]','before':old,'after':new,'reason':why})
+def add(pid,new,why):
+ scene=merged[pid]['fields']['scene_spec'];scene['steps'].append(new);fixes.append({'id':pid,'kind':'missing_proof','field':f'scene_spec.steps[{len(scene["steps"])-1}]','before':None,'after':new,'reason':why})
+step('draft-c07-03',2,r'第三步：换元 $u=2\theta$，$d\theta=\frac{1}{2}du$；上下限分别变为 $-\frac{\pi}{2}$、$\frac{\pi}{2}$。逐项写出 $\int_{-\frac{\pi}{4}}^{\frac{\pi}{4}}\cos^2(2\theta)\,d\theta=\frac{1}{2}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\cos^2u\,du$；高亮两端均为定积分。','restore both limits; indefinite integral cannot equal a definite value')
+step('draft-c10-05',2,r'第三步：高亮真正的交叉序 $S_{2m}\le S_{2l+1}$，对任意 $m,l\ge0$ 成立。若 $m\le l$，由偶子列递增得 $S_{2m}\le S_{2l}\le S_{2l+1}$；若 $m>l$，由奇子列递减得 $S_{2m}\le S_{2m+1}\le S_{2l+1}$。因此 $0=S_0\le S_{2m}\le S_1$，两子列单调有界；$S_{2N+1}-S_{2N}=a_{2N+1}\to0$，故两极限相同，记为 $S$。','old odd-to-odd inequality was false for arbitrary indices; case split repairs ordering')
+step('draft-c20-04',3,r'第四步：写 $x=c+h$，$n^{\mathsf T}h=0$。先逐分量算 $Wc=\frac{t}{11}(6,6,6)^{\mathsf T}=\frac{6t}{11}n$，于是 $2c^{\mathsf T}Wh=2(Wc)^{\mathsf T}h=\frac{12t}{11}n^{\mathsf T}h=0$。截面满足 $h^{\mathsf T}Wh=1-\frac{6t^2}{11}$；$|t|>\sqrt{\frac{11}{6}}$ 时空集，等号时仅为 $c$，严格小于时为椭圆。','missing 6/11 factor in Wc')
+add('draft-c20-04',r'第六步：高亮限制矩阵的特征方程 $\left(\lambda-\frac{3}{2}\right)\left(\lambda-\frac{5}{2}\right)-\frac{1}{12}=\lambda^2-4\lambda+\frac{11}{3}=(\lambda-2)^2-\frac{1}{3}=0$。故特征值为 $2\pm\frac{1}{\sqrt3}$；在正交特征坐标中逐轴用 $\lambda_j u_j^2=1-\frac{6t^2}{11}$ 求半轴，无小数估算。','show exact roots rather than announce them')
+step('draft-c34-05',1,r'第二步：逐因子相乘：$(I+ae_{12})(I+be_{23})=I+ae_{12}+be_{23}+abe_{13}$。右乘 $(I-ae_{12})$ 时保持次序：$I+ae_{12}+be_{23}+abe_{13}-ae_{12}-a^2e_{12}^2-ab e_{23}e_{12}-a^2b e_{13}e_{12}=I+be_{23}+abe_{13}$。高亮 $e_{23}e_{12}=0$，不能误写为 $e_{12}e_{23}=e_{13}$。','noncommuting multiplication order was reversed')
+step('draft-c48-04',4,r'第五步：$a=\frac{9}{4}$ 时先高亮平方 $a^2=\frac{81}{16}$；均值为 $aEX-EY=\frac{9}{4}-2=\frac{1}{4}$，方差为 $a^2\operatorname{Var}X+\operatorname{Var}Y=\frac{81}{16}\cdot4+9=\frac{81}{4}+\frac{36}{4}=\frac{117}{4}$。故 $aX-Y\sim N\left(\frac{1}{4},\frac{117}{4}\right)$；与 $S$ 联合正态且协方差为零，因而独立。其余 $a$ 的协方差非零，不独立。','a squared was 81/16, not 81/4')
+step('draft-c49-05',3,r'第四步：对任意 $\varepsilon>0$，先选足够大的固定 $M$ 使 $\tau_M<\frac{\varepsilon}{3}$。三角不等式把误差分为平均尾部、截断均值波动、确定性偏差；后者小于 $\frac{\varepsilon}{3}$。对平均尾部用 Markov：$P\left(|\overline X_n-\overline Y_n^{(M)}|\ge\frac{\varepsilon}{3}\right)\le\frac{3\tau_M}{\varepsilon}$。对截断均值用切比雪夫：$P\left(|\overline Y_n^{(M)}-EY_1^{(M)}|\ge\frac{\varepsilon}{3}\right)\le\frac{9M^2}{n\varepsilon^2}$。故 $P(|\overline X_n-\mu|\ge\varepsilon)\le\frac{3\tau_M}{\varepsilon}+\frac{9M^2}{n\varepsilon^2}$。','union bound for existence of a large individual term cannot control average or vanish at fixed M')
+step('draft-c49-05',4,r'第五步：高亮极限次序。对每个满足偏差条件的固定 $M$，先令 $n\to\infty$ 得 $\limsup_{n\to\infty}P(|\overline X_n-\mu|\ge\varepsilon)\le\frac{3\tau_M}{\varepsilon}$；再令 $M\to\infty$，由 $\tau_M\to0$ 得上界为零。于是 $\overline X_n\xrightarrow{P}\mu$；全程仅用 $E|X_1|<\infty$，没有假设原变量方差有限。','correct limit order and uniform averaged-tail control')
+add('draft-c25-05',r'第六步：补全非平面证明。若整条交线在平面 $ax+by+cz=d$ 内，代入交线上的 $(0,0,1)$、$(0,0,-1)$ 得 $c=d=0$；再代入 $(r,r^2,0)$、$(-r,r^2,0)$，其中 $r>0$，得 $ar+br^2=0$、$-ar+br^2=0$，逐式相减、相加得 $a=b=0$。这与平面法向量非零矛盾。因此交线确为非平面；前五步已证明连接性与正则性。','nonplanarity was asserted without proof')
+add('draft-c17-04',r'第六步：补全任意给定点 $P$ 的分类。高亮过点条件 $s f_1(P)+t f_2(P)=0$：若两值均零，则 $P\in l$，全部成员都过 $P$；否则非零解的射影比例唯一，为 $(s:t)=(f_2(P):-f_1(P))$。指定点 $(1,1,1)$ 的比例 $(2:-2)=(1:-1)$ 与前面计算一致。','general point classification was omitted')
+step('draft-c26-01',1,r'第二步：完整证明核与像。$Px=0$ 当且仅当 $x=\frac{n\cdot x}{3}d$，即 $x\in\operatorname{span}(d)$；反向由 $Pd=0$ 及线性性成立。第一步给 $\operatorname{im}P\subset n^\perp$；若 $y\in n^\perp$，则 $Py=y$，给反向包含。因此 $\ker P=\operatorname{span}(d)$、$\operatorname{im}P=n^\perp$，且 $P^2x=P(Px)=Px$，秩为 $2$。','show both inclusions for kernel/image instead of inferring equality from one direction')
+step('draft-c43-03',4,r'第五步：九个配对值逐项展示，所有积分均在 $[-1,1]$。第一行：$\int g_0=\frac{18-10}{8}=1$，$\int g_0x=0$，$\int g_0x^2=\frac{6-6}{8}=0$。第二行：$\int g_1=0$，$\int g_1x=\frac{3}{2}\cdot\frac{2}{3}=1$，$\int g_1x^2=0$。第三行：$\int g_2=\frac{-30+30}{8}=0$，$\int g_2x=0$，$\int g_2x^2=\frac{-10+18}{8}=1$。四个零项由奇函数在对称区间的积分为零得到；高亮完整配对矩阵为 $I_3$。','replace six unspecified same-way values with all nine actual evaluations')
+add('draft-c27-04',r'第六步：角度边界须精确表述为两特征线的较小夹角 $0<\alpha\le\frac{\pi}{2}$；当 $k=0$ 时 $\alpha=\frac{\pi}{2}$，是直角；当 $k\ne0$ 时才是锐角。仍用 $\alpha=\arccos\frac{|k|}{\sqrt{k^2+1}}$，不把直角称为锐角。','state right-angle boundary explicitly')
+# Recursively brace TeX fraction tokens without changing numbers or mathematics.
+tree=ast.parse((OLD/'materialize_exact_math.py').read_text('utf-8'));helpers=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in {'walk','frac_braces'}];code=ast.unparse(ast.Module(body=helpers,type_ignores=[]));code=code.replace('return (t[i:j], j)',"return ('{'+frac_braces(t[i+1:j-1])+'}',j)");exec(compile(code,'fraction_helpers','exec'))
+qa=[]
+for pid,p in merged.items():
+ before=copy.deepcopy(p['fields']['scene_spec']);p['fields']['scene_spec']=walk(before,frac_braces)
+ if before!=p['fields']['scene_spec']:fixes.append({'id':pid,'kind':'fraction_braces','before_scene_sha256':object_sha(before),'after_scene_sha256':object_sha(p['fields']['scene_spec'])})
+ after={**records[pid],**p['fields']};p['new_math_content_sha256']=sorted_sha({k:after[k] for k in MATH_FIELDS});a=Audit();check_latex(a,{'path':'corrected combined candidate'},{'record':{'scene_spec':after['scene_spec']},'locator':pid},pid)
+ bad=[x for x in a.issues if x['severity'] in ('hard','quarantine')];assert not bad,(pid,bad)
+ assert not re.search(r'\d+\.\d+',json.dumps(after['scene_spec'],ensure_ascii=False))
+ qa.append({'id':pid,'scene_latex_blockers':0,'decimal_literals':0,'source_mathematics_unchanged':True,'incoming_batch':next((x['batch_number'] for x in items if x['patch']['id']==pid),None),'review_scope':'new93 goal/answer/scene formula audit; prior51 retained at prior review scope','visual_verified':False})
+packet={'schema':'source-bound-scene-candidate-patches-v5','status':'SCENE_REPAIR_CANDIDATE_UNSELECTED_NO_VISUAL_ACCEPTANCE','records':[merged[pid] for pid in sorted(merged)],'normalization':'All fractions recursively braced; explicit mathematical and proof repairs recorded separately.'}
+def save(name,v): (OUT/name).write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+save('scene-candidates-corrected-v5.json',packet);save('corrections.json',fixes);save('corrected-scene-qa.json',{'records':qa,'scene_latex_blockers':0,'full_264_math_review_complete':False,'visual_verified':False})
+# Materialize the wording repair as a separate new full-record candidate; never activates selector.
+pid='draft-c27-04';record=copy.deepcopy(records[pid]);assert '锐夹角' in record['problem'];record['problem']=record['problem'].replace('锐夹角','较小夹角（包含直角情形）');record['scene_spec']=merged[pid]['fields']['scene_spec'];from scene_sweep_protocol import _invalidate
+record=_invalidate(record,'codex-angle-wording-v1',object_sha(records[pid]));(OUT/'math-wording-c27-04.candidate.jsonl').write_text(json.dumps(record,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+save('math-wording-c27-04-receipt.json',{'id':pid,'source_binding':next(x['binding'] for x in inputs if x['record']['id']==pid),'source_record_sha256':object_sha(records[pid]),'candidate_record_sha256':object_sha(record),'changed_math_fields':['problem'],'reason':'k=0 has right angle, not acute angle','selected':False,'admitted':False})
+print(json.dumps({'merged_candidates':len(merged),'scene_blockers':0,'semantic_repair_ids':sorted({x['id'] for x in fixes if x['kind']!='fraction_braces'}),'fraction_normalized_ids':len({x['id'] for x in fixes if x['kind']=='fraction_braces'}),'wording_candidate':pid,'selected':False},ensure_ascii=False,indent=2))

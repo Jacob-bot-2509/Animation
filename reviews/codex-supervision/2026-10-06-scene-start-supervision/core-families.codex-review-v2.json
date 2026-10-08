@@ -1,0 +1,884 @@
+{
+  "schema": "train-core-families-codex-review-v2",
+  "status": "CORE_CENSUS_REVIEWED_MATH_AND_DENSITY_COMPLETION_PENDING",
+  "scope": "Whole active training task structure; not cross-split leakage or formal training readiness",
+  "source_packet_path": "reviews/codex-supervision/2026-10-06-scene-start-supervision/train-47-source-bound.packet-v2.json",
+  "source_packet_raw_sha256": "ee4a4df096ee72a21858f49098a9a40a15e248a5235112d16f8f14fe7336b060",
+  "reviewer": "codex",
+  "record_core_reviews": [
+    {
+      "id": "calc-area-007",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 7,
+      "raw_line_sha256": "2c4f16b0846f0ea7deae0a0f34c2766696b5eb678a1ac8812d0a2ca958f0908f",
+      "record_canonical_sha256": "5362c761944b4748832f9807a72851917dd7076e65812d045854465c889a3795",
+      "core_family_id": "S-calc-area-007",
+      "core_profile": {
+        "object": "两条显式曲线围成的区域",
+        "conditions": "计算由抛物线 $y=x^2$ 与直线 $y=x+2$ 所围成的封闭图形的面积。",
+        "goal": "单区间面积",
+        "solution_structure": "求二次方程交点；积分多项式上减下。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-area-008",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 8,
+      "raw_line_sha256": "f5cca36a6b3325b8961c1711b3d1260d76f06f9eed8c7272bc288bd378951da2",
+      "record_canonical_sha256": "59fb7a78f08c354859df1793997ea06f87f39487be39186353c76a3d60ee0801",
+      "core_family_id": "S-calc-area-008",
+      "core_profile": {
+        "object": "极坐标圆",
+        "conditions": "计算由极坐标方程 $r = 2a\\cos\\theta$（$a>0$）所围成的图形的面积。",
+        "goal": "极坐标面积",
+        "solution_structure": "确定非负半径的角区间；积分 r²/2。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-area-009",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 9,
+      "raw_line_sha256": "462ad19581730a358aaa271bd7cedf4a15a57a2884002dd222f6954b66250b3a",
+      "record_canonical_sha256": "15ce0d6025f6a3cf50952947ed7c3d8eb85ddfd296b20765769f119e748c949e",
+      "core_family_id": "S-calc-area-009",
+      "core_profile": {
+        "object": "摆线一拱",
+        "conditions": "求摆线 $x = a(t - \\sin t), y = a(1 - \\cos t)$ 的一拱（$0 \\le t \\le 2\\pi$）与 $x$ 轴所围成的面积。",
+        "goal": "参数曲线面积",
+        "solution_structure": "计算 y(t)x′(t)，对参数积分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-area-010",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 10,
+      "raw_line_sha256": "779e9ed44aa7b2b31a6b0de5a1752fcd20d19a6c99576e728d68d2365dd2e8be",
+      "record_canonical_sha256": "f2b0cf66178ffbe0bf3d4db809a2818ff57ebb0502e61bdfef24f9ea96b81fac",
+      "core_family_id": "S-calc-area-010",
+      "core_profile": {
+        "object": "对数曲线、直线和x轴组成的三边区域",
+        "conditions": "计算由曲线 $y=\\ln x$、直线 $y=-x+e+1$ 以及 $x$ 轴围成的封闭图形的面积。",
+        "goal": "换上边界的分段面积",
+        "solution_structure": "求三处边界交点；在[1,e]及[e,e+1]切换上边界后求和。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-area-011",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 11,
+      "raw_line_sha256": "23a39630d151bc122536c4097720c6cb137e27699bea4878cf493bcd7104c534",
+      "record_canonical_sha256": "14db1d21c52d8763fa8f90ba302a9d0d13e0f19f39c41b4b4f1de10cfe62f7f0",
+      "core_family_id": "S-calc-area-011",
+      "core_profile": {
+        "object": "带绝对值折点的曲线与水平线",
+        "conditions": "计算由曲线 $y = |x^2 - 1|$ 与直线 $y = 1$ 所围成的封闭图形的面积。",
+        "goal": "绝对值区域面积",
+        "solution_structure": "利用对称性；在折点1分段去绝对值再积分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-area-013",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 13,
+      "raw_line_sha256": "e3c9dbc1568e780bcb665a350ed37a7b81f9464dd3bcb86fcef22489057a114a",
+      "record_canonical_sha256": "3186d4b0a62ce04b4235da187f3e1369111048654c16cd5e2466b78e355b27d3",
+      "core_family_id": "S-calc-area-013",
+      "core_profile": {
+        "object": "指数乘积曲线、x轴与固定竖线",
+        "conditions": "计算由曲线 $y = x e^{-x}$、直线 $x = 1$ 以及x轴围成的封闭图形的面积。",
+        "goal": "曲线下方面积",
+        "solution_structure": "区间[0,1]已由边界确定；对xe^(-x)分部积分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-derivative-001",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 1,
+      "raw_line_sha256": "0f6fb3cbd0c062c313954b405d9c39478ccfb4935413b48bc1b78626e1545dd0",
+      "record_canonical_sha256": "70a89019a4ed327fd7f64afc57a45099694a33da8b6a16fdc9d26cd9d3c0d671",
+      "core_family_id": "S-calc-derivative-001",
+      "core_profile": {
+        "object": "单变量函数图形",
+        "conditions": "求函数 $f(x)=x^2$ 在 $x=1$ 处的切线方程。",
+        "goal": "指定点切线",
+        "solution_structure": "导数给斜率，计算切点并构造点斜式。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-double-integral-004",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 4,
+      "raw_line_sha256": "9395c6a9a0de7a405672cd935b8c05efc2b203da6ff23363b190f41e0aee192b",
+      "record_canonical_sha256": "f93c07ad63dd319f3c3cd4a19c76e1e14d13b4081491fade754fcbde05c386ff",
+      "core_family_id": "S-calc-double-integral-004",
+      "core_profile": {
+        "object": "单位圆盘上的曲顶柱体",
+        "conditions": "利用二重积分的几何意义，说明 $\\iint_D (1 - x^2 - y^2) dxdy$ 的值，其中 $D$ 是单位圆盘 $x^2 + y^2 \\le 1$。",
+        "goal": "二重积分及几何体积",
+        "solution_structure": "极坐标换元含Jacobian r；计算径向与角向积分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-green-005",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 5,
+      "raw_line_sha256": "08a5c54eab0bfcd08460bb78e46283277bd76e761611fbef68b8dc2a832e2cec",
+      "record_canonical_sha256": "a732f0521056602044ad966ef416bdef289458a8bd6c53bb3b8ca2d316745c44",
+      "core_family_id": "S-calc-green-005",
+      "core_profile": {
+        "object": "定向闭圆周与微分形式",
+        "conditions": "利用格林公式计算曲线积分 $\\oint_L x dy - y dx$，其中 $L$ 是正向圆周 $x^2 + y^2 = a^2$。",
+        "goal": "曲线积分",
+        "solution_structure": "通过Green公式把环路积分化为面积积分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-improper-002",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 2,
+      "raw_line_sha256": "8fd1cdc0e28bfb1cc752ae977c1ef67cb34ec335498f0eeab27550d6dc5fb7ec",
+      "record_canonical_sha256": "4553bb903bb9bc33397c21eec8d1f14108543e4dd6a9b12edeab4f60f5e389e1",
+      "core_family_id": "S-calc-improper-002",
+      "core_profile": {
+        "object": "有理核1/(1+x²)的无穷限积分",
+        "conditions": "判断反常积分 $\\int_0^{+\\infty} \\frac{1}{1+x^2} dx$ 是否收敛，若收敛，求其值。",
+        "goal": "有限值与收敛",
+        "solution_structure": "求arctan原函数并取其无穷极限。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-limit-006",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 6,
+      "raw_line_sha256": "7ca6c928edf9a41c2be4efae4de7f16459d4c04d159f4f4e5ae027cc0ec75a9f",
+      "record_canonical_sha256": "4f07f35747328b445316aa043679b54c72add9b8ff7f29bb05b4751d497e30c9",
+      "core_family_id": "S-calc-limit-006",
+      "core_profile": {
+        "object": "sin x/x的双侧极限",
+        "conditions": "求极限 $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ 的值。",
+        "goal": "极限及几何证明",
+        "solution_structure": "面积比较得到夹逼不等式，再用偶性扩展到负侧。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-param-improper-003",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 3,
+      "raw_line_sha256": "a51630f09b57a2d220a2ba2223e8aa5de899164c50e317095d8667204e167de3",
+      "record_canonical_sha256": "0b008740140446c84fe7f379472aa7b9e2a9dbd0d9c418273c6cdc47ba9be884",
+      "core_family_id": "S-calc-param-improper-003",
+      "core_profile": {
+        "object": "参数α>0的指数衰减积分",
+        "conditions": "求含参反常积分$I(\\alpha) = \\int_{0}^{+\\infty} e^{-\\alpha x}dx$的值（设$\\alpha>0$）。",
+        "goal": "依参数的积分值",
+        "solution_structure": "求指数原函数并利用α>0控制尾项极限。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-series-015",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 14,
+      "raw_line_sha256": "cddf506fa13073c92d68f622eeb559ae163af161cccfe9791a18b1a3218cd70f",
+      "record_canonical_sha256": "7e18007bb5821ba4b517ea6499165565cf63c04652b7538e60a97d976693dae3",
+      "core_family_id": "S-calc-series-015",
+      "core_profile": {
+        "object": "交错的平方根倒数数项级数",
+        "conditions": "讨论级数 $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{\\sqrt{n}}$ 的敛散性，并指出是绝对收敛还是条件收敛。",
+        "goal": "条件或绝对收敛",
+        "solution_structure": "莱布尼茨判别与绝对值p级数发散分别论证。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-series-017",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 15,
+      "raw_line_sha256": "0e5294774ca6b70f73b0ea0977d6639480db1ecc5aad165c04355758e6886774",
+      "record_canonical_sha256": "bd4323dca10213b71396b4bcc8a89d477e72d5e83fe85ffcf128ced2aa71468f",
+      "core_family_id": "S-calc-series-017",
+      "core_profile": {
+        "object": "区间上的函数项级数",
+        "conditions": "讨论函数项级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n^2}$ 在区间 $[-1, 1]$ 上是否一致收敛。",
+        "goal": "一致收敛",
+        "solution_structure": "用与x无关的1/n²控制并应用M判别法。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-series-020",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 16,
+      "raw_line_sha256": "7bda6604ea0f84507559f483c5f1c87de4c67cf3fdd446deb1b02980dcc33c59",
+      "record_canonical_sha256": "c4ffe032f9fe9152e58378c08ba42d725e3b52a812c9b7434053a460d116071f",
+      "core_family_id": "S-calc-series-020",
+      "core_profile": {
+        "object": "周期延拓的函数x",
+        "conditions": "将函数 $f(x) = x$（$-\\pi \\le x \\le \\pi$）展开为傅立叶级数。",
+        "goal": "傅里叶系数及级数",
+        "solution_structure": "奇偶性与分部积分求正弦系数；区分内部与接缝收敛。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "calc-vol-012",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 12,
+      "raw_line_sha256": "52b4be7ba438583a1842fdc9108c91deef2c2da0565cdd4714b3838fe3b8b65b",
+      "record_canonical_sha256": "3e65c3bcbf2910133c224c839ddea6f873093d2fbe2b10ffa7fb09443346d3c0",
+      "core_family_id": "S-calc-vol-012",
+      "core_profile": {
+        "object": "arcsin曲线形成的旋转体",
+        "conditions": "求曲线 $y = \\arcsin x$（$0 \\le x \\le 1$）与x轴、直线 $x=1$ 围成的图形绕x轴旋转一周所得旋转体的体积。",
+        "goal": "三维体积",
+        "solution_structure": "圆盘法积分函数平方；分部积分求值。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-020",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 1,
+      "raw_line_sha256": "e36f1052887479c98e40408d6d16e5321b1f4cb458b1ef8d5f2f3e7c35302b2b",
+      "record_canonical_sha256": "b5b861497fb320ad03d7d4309d6d88fe78154886d0566cc8080668cbac632a6f",
+      "core_family_id": "S-geom-020",
+      "core_profile": {
+        "object": "三维直线方向和法向量",
+        "conditions": "求直线 $l: \\frac{x-1}{2} = \\frac{y+1}{-1} = \\frac{z}{3}$ 与平面 $\\pi: 2x - y + 3z = 5$ 的夹角。",
+        "goal": "直线与平面夹角",
+        "solution_structure": "计算点积和模长；用夹角的正弦公式。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-022",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 2,
+      "raw_line_sha256": "ac74f4d8e03c0da053118155e21337b1441ade7705575405a8d8918642daea78",
+      "record_canonical_sha256": "6bca30f252391153444b24b59c84ad1778152bf5e9a3632dac4d7c01ebb9e689",
+      "core_family_id": "S-geom-022",
+      "core_profile": {
+        "object": "三个空间点",
+        "conditions": "求过三点 $A(1,0,0)$、$B(0,2,0)$、$C(0,0,3)$ 的平面方程。",
+        "goal": "平面方程",
+        "solution_structure": "构造两条差向量；叉乘求法向量并写点法式。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-024",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 3,
+      "raw_line_sha256": "4a69204139e50398c9c66b08c89597f92e11d2d59ef71b7d7544bc3a73203535",
+      "record_canonical_sha256": "44f74742b6396d58e382ca51b81547a71410d8334762d4b05270bd8a0366d380",
+      "core_family_id": "S-geom-024",
+      "core_profile": {
+        "object": "缺z变量的圆柱面",
+        "conditions": "说明方程 $x^2 + y^2 = 4$ 在空间直角坐标系中表示什么曲面，并画出其图形。",
+        "goal": "识别与图形生成",
+        "solution_structure": "任意z截面的同一圆沿z方向生成柱面。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-026",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 4,
+      "raw_line_sha256": "93076a69dd7d8195f9434ef59c56c8b60e690fc3458cb2ab1697d634f51b29b4",
+      "record_canonical_sha256": "348c49265098b87862ea3b1a89564124ab750e50d926ba642c1754716f3c0600",
+      "core_family_id": "S-geom-026",
+      "core_profile": {
+        "object": "椭圆抛物面",
+        "conditions": "指出方程 $z = x^2 + 2y^2$ 表示的二次曲面类型，并分析其与平面 $y = 0$ 和 $y = 1$ 的交线。",
+        "goal": "识别及两条指定截线",
+        "solution_structure": "将y=0与y=1代入；追踪截面顶点变化。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-028",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 5,
+      "raw_line_sha256": "adddb5bd8386078298195a1b006387c6c65d932c1922ac7ea0c4efc98eba9f7a",
+      "record_canonical_sha256": "0d057d9c18189ad4032f1d8b7025e53a6a8e9938c7282f9f8e6713f4d85a446e",
+      "core_family_id": "S-geom-028",
+      "core_profile": {
+        "object": "椭圆抛物面上的候选直线",
+        "conditions": "判断椭圆抛物面 $z = x^2 + y^2$ 是否为直纹面，并说明理由。",
+        "goal": "是否直纹面的证明",
+        "solution_structure": "代入直线参数，比较二次和一次系数，排除非零方向。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-029",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 6,
+      "raw_line_sha256": "230949919c70285a0e6e9e81cc40ccf5de21768b8467d752470ecbe63af9f8ed",
+      "record_canonical_sha256": "737a94a96b717e5c60f99c53040df03d69ddc2525b625cc111a879f8210cf2ef",
+      "core_family_id": "S-geom-029",
+      "core_profile": {
+        "object": "仿射等距变换下一个空间点",
+        "conditions": "已知空间中的等距变换由正交矩阵 $A = \\begin{pmatrix} 0 & -1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$ 和平移向量 $\\vec{b} = (1, 2, 3)$ 定义。求点 $P(1, 0, 0)$ 变换后的坐标。",
+        "goal": "点像的坐标",
+        "solution_structure": "逐行点乘AP后加平移向量b。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-030",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 7,
+      "raw_line_sha256": "bdd9e5df91a3dc633df38592916f3b3da1754812e42d6f690e209d153999e2b0",
+      "record_canonical_sha256": "505d525a0b6ecaf2c12cece0e92860b733fb0c9849b8eef4149c45471944cb46",
+      "core_family_id": "S-geom-030",
+      "core_profile": {
+        "object": "三维伸缩下的单位球面",
+        "conditions": "说明仿射变换 $x' = 2x, y' = y, z' = z$ 将球面 $x^2 + y^2 + z^2 = 1$ 变成了什么图形。",
+        "goal": "整个曲面的像",
+        "solution_structure": "将逆变换代入隐式曲面方程，得到椭球。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "geom-031",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 8,
+      "raw_line_sha256": "960cc372c04f8b19d80125441055b83ee6ee596df749b2561590643c8376800b",
+      "record_canonical_sha256": "29d04a841b4ff1e6e864ebe519ae347f98270b08190c03fafbc075d80384c3d5",
+      "core_family_id": "S-geom-031",
+      "core_profile": {
+        "object": "球面与柱面的交线",
+        "conditions": "求球面 $x^2+y^2+z^2=4a^2$ 与圆柱面 $x^2+y^2=2ax$ 的交线（维维安尼曲线）的参数方程（$a>0$）。",
+        "goal": "整条闭曲线参数化",
+        "solution_structure": "先参数化柱面，再求z并用4π参数区间覆盖上下分支。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-048",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 1,
+      "raw_line_sha256": "ab7ec0469e9e2ac5d55743e662fdc1bb3118022753121e1f7ba7f845eca96ef1",
+      "record_canonical_sha256": "79de529e40a7bb98d088a21037d3f41e2c05f45a81b2770781382126fd7e6ea0",
+      "core_family_id": "F3-shear-geometric-meaning",
+      "core_profile": {
+        "object": "单位平面剪切",
+        "conditions": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+        "goal": "固定轴、线族、正方形像与面积",
+        "solution_structure": "按轴置换规范化剪切；求坐标式、图形像与det。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-050",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 2,
+      "raw_line_sha256": "b0fe6b4b3b6663167fb99c82613e0b7d22835b1ced999f8f02d2cc7a77c3c540",
+      "record_canonical_sha256": "98555b3d4a1ae1ffba3c1649e4a98fa01e183035243184e0d83ed8675ed080bf",
+      "core_family_id": "S-linalg-050",
+      "core_profile": {
+        "object": "一般二维符号行列式",
+        "conditions": "利用几何图形解释二阶行列式 $\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc$ 的几何意义。",
+        "goal": "有向面积与退化分类",
+        "solution_structure": "列向量的平行四边形；ad-bc符号、rank1及rank0情形。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-051",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 3,
+      "raw_line_sha256": "864f91deca946e55ae032371665d8435044bf9ce30a2eb481e5715a27b85955e",
+      "record_canonical_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "core_family_id": "S-linalg-051",
+      "core_profile": {
+        "object": "给定三次多项式",
+        "conditions": "设多项式 $f(x)=x^3-6x^2+11x-6$，将其因式分解并说明其根在复平面上的分布。",
+        "goal": "因式分解和复平面根分布",
+        "solution_structure": "有理根检验及除法；列出全部根及实轴分布。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-053",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 4,
+      "raw_line_sha256": "9ba1c9c9d538e946074e6b15376ef87503ca0a91dbe9a4d4239dc71efa6cbf18",
+      "record_canonical_sha256": "f257e2425409858699514e0beac6859df86eaa86f04a0995124e4b94e2a53ec5",
+      "core_family_id": "S-linalg-053",
+      "core_profile": {
+        "object": "具体三阶数值行列式",
+        "conditions": "利用几何图形解释三阶行列式 $\\begin{vmatrix} 1 & 2 & 0 \\\\ 0 & 1 & 3 \\\\ 2 & 1 & 1 \\end{vmatrix}$ 的几何意义。",
+        "goal": "平行六面体体积",
+        "solution_structure": "计算三阶余子式；三列向量所成平行体的体积。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-054",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 5,
+      "raw_line_sha256": "4ea17f9f0124c28b4f1d0b3daa2a6d9ceb5206aceb6fbe6bc115765a59a65984",
+      "record_canonical_sha256": "da8cdcee83888931a391155143b894ddf1cf7977f59da628e02b9ac430c56dba",
+      "core_family_id": "S-linalg-054",
+      "core_profile": {
+        "object": "具体二元非齐次方程组",
+        "conditions": "利用 Cramer 法则求解线性方程组 $\\begin{cases} 2x + y = 5 \\\\ x - y = 1 \\end{cases}$，并说明行列式为零时的几何意义。",
+        "goal": "Cramer解与奇异几何解释",
+        "solution_structure": "替换列求三个行列式；讨论两直线平行或重合。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-055",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 6,
+      "raw_line_sha256": "fa7f534ca1aa01a9ac213b279cd76c22d9e2d1597ff6f8dadcb8e01f99545bb7",
+      "record_canonical_sha256": "77f70b1591db703295a5805198a5bf7c7ca8c048364676ece5861cc622ed04cc",
+      "core_family_id": "S-linalg-055",
+      "core_profile": {
+        "object": "具体三元非齐次方程组",
+        "conditions": "讨论线性方程组 $\\begin{cases} x + y + z = 1 \\\\ x - y + z = 1 \\\\ 2x + z = 2 \\end{cases}$ 解的情况。",
+        "goal": "相容性与解的情况",
+        "solution_structure": "消元及秩比较给出唯一解。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-056",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 7,
+      "raw_line_sha256": "16b44199f2bee34aa6f34f699a266f9af2cbc32b84b7b7c4992d39b9a19bd7d3",
+      "record_canonical_sha256": "34433235e65ddd6bd82e2f4ee1f823536278c3e8efd3e7854f5af18f75c17982",
+      "core_family_id": "S-linalg-056",
+      "core_profile": {
+        "object": "秩亏齐次方程组",
+        "conditions": "求齐次线性方程组 $\\begin{cases} x_1 + 2x_2 + x_3 = 0 \\\\ 2x_1 + 4x_2 + 2x_3 = 0 \\end{cases}$ 的基础解系。",
+        "goal": "基础解系",
+        "solution_structure": "选择自由变量并构造两个线性无关解向量。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-058",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 8,
+      "raw_line_sha256": "923fc30c3570261e9fbb39a813de477bc9d47cfa0aecbf76d9ae3abd076f7947",
+      "record_canonical_sha256": "0006aaf8c255cec0bae511a826ed367cf4a3d8ae95f2533b373301c30c78267d",
+      "core_family_id": "F3-shear-geometric-meaning",
+      "core_profile": {
+        "object": "单位平面剪切",
+        "conditions": "说明初等矩阵 $E=\\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$ 对应的线性变换的几何意义。",
+        "goal": "固定轴、线族、正方形像与面积",
+        "solution_structure": "按轴置换规范化剪切；求坐标式、图形像与det。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-062",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 9,
+      "raw_line_sha256": "a5a3729c7a1bb22b6ae2adfb585e5d35b9563be0cf4ef294aafd63e0e7c1037d",
+      "record_canonical_sha256": "785653fd613ab2a58a3eaa8659e338f51e7930870331cc4f9407f2d225b6f5ab",
+      "core_family_id": "S-linalg-062",
+      "core_profile": {
+        "object": "两个指定三维子空间",
+        "conditions": "在 $\\mathbb{R}^3$ 中，已知子空间 $W_1=\\{(x,y,0)\\}$（xOy平面）和 $W_2=\\{(0,y,z)\\}$（yOz平面），求 $\\dim(W_1+W_2)$ 和 $\\dim(W_1\\cap W_2)$。",
+        "goal": "和与交的维数",
+        "solution_structure": "识别交空间及和空间，使用维数公式。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-063",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 10,
+      "raw_line_sha256": "b5c6b5dfcb78e72c91cfa0d21fce04c78b54840ff0f9a3b255e87befc39ce819",
+      "record_canonical_sha256": "98ce95ed5ca6af2fade511a62e543f28135747d3a8f356be90388f906468ec9a",
+      "core_family_id": "S-linalg-063",
+      "core_profile": {
+        "object": "指定R³到R²线性映射",
+        "conditions": "设线性变换 $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ 由 $T(x,y,z)=(x+y, y+z)$ 定义，求 $T$ 的核和值域的维数。",
+        "goal": "核与像维数",
+        "solution_structure": "解核方程并由秩-零度定理求像维数。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-064",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 11,
+      "raw_line_sha256": "6195eb4ce22aba17327258675ef482586e39fca39ee57eb25a513d31d6b915d0",
+      "record_canonical_sha256": "1054f681c953165c301284e10ffd60b406c424a9cc8357f3449d60a467c14499",
+      "core_family_id": "S-linalg-064",
+      "core_profile": {
+        "object": "具体三角矩阵",
+        "conditions": "求矩阵 $A=\\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+        "goal": "特征方向与缩放",
+        "solution_structure": "解特征方程及特征向量方程，再解释方向作用。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-065",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 12,
+      "raw_line_sha256": "989ca7e2ed969c323ca34c798b2cfac96b57fd3d7d5fcfe2a9b769b3d3f14126",
+      "record_canonical_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+      "core_family_id": "S-linalg-065",
+      "core_profile": {
+        "object": "多项式λ矩阵",
+        "conditions": "求 λ-矩阵 $A(\\lambda)=\\begin{pmatrix} \\lambda & 0 \\\\ 0 & \\lambda^2-1 \\end{pmatrix}$ 的不变因子和初等因子。",
+        "goal": "不变因子与初等因子",
+        "solution_structure": "计算各阶行列式因子gcd及商，然后分解。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-066",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 13,
+      "raw_line_sha256": "cb436f85780d2765a810cbc929fbd5921c2bbff9c2e2c0d541800600c7f02766",
+      "record_canonical_sha256": "037e01abf3aaf02bfee249648581a940fb51244e0989a23697bfed2191a8f4cd",
+      "core_family_id": "S-linalg-066",
+      "core_profile": {
+        "object": "具体已分块的数值矩阵",
+        "conditions": "求矩阵 $A=\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$ 的若尔当标准形。",
+        "goal": "若尔当标准形",
+        "solution_structure": "识别大小2和大小1的Jordan块；不依赖065题的数据。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-067",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 14,
+      "raw_line_sha256": "70e0e0e3975c34f0bbb407ebd6ef97e8b5f68a5c1ae5cfa5a0b758454d8df765",
+      "record_canonical_sha256": "308ae4734dad5650788d5605531f4ce593ab67bfaab45ee9b769190388c3ff9f",
+      "core_family_id": "S-linalg-067",
+      "core_profile": {
+        "object": "参数平面旋转矩阵",
+        "conditions": "验证矩阵 $A=\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$ 是正交矩阵，并说明其对应的正交变换。",
+        "goal": "正交性与对应变换",
+        "solution_structure": "逐项计算AᵀA=I并识别旋转。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-069",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 15,
+      "raw_line_sha256": "938da20b45a4350246c2198bd2e576205f387308ebb5572ea7e74709be1d75d1",
+      "record_canonical_sha256": "89625d2e3cb81b2f94912a8587eb481dc854fdde1fe1250ee0ff78ba11078a73",
+      "core_family_id": "S-linalg-069",
+      "core_profile": {
+        "object": "标准基与线性泛函",
+        "conditions": "设 $V=\\mathbb{R}^2$，$\\varepsilon_1=(1,0), \\varepsilon_2=(0,1)$ 是标准基。求对偶基 $f_1, f_2$，使得 $f_i(\\varepsilon_j)=\\delta_{ij}$。",
+        "goal": "对偶基",
+        "solution_structure": "由基上的Kronecker配对确定两个坐标泛函。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "linalg-070",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 16,
+      "raw_line_sha256": "528463fec18b388cb55d29461f259fa63ae2a9841e65da1f25fa0b9e995f9a76",
+      "record_canonical_sha256": "3eb3f7f02129d70a1894df537a368586d723a939116aac97e76e22046db20555",
+      "core_family_id": "S-linalg-070",
+      "core_profile": {
+        "object": "二维标准交替双线性形式",
+        "conditions": "在 $\\mathbb{R}^2$ 上定义辛形式 $\\omega(u,v)=u_1v_2-u_2v_1$（标准行列式形式），说明辛变换保持该形式不变的意义。",
+        "goal": "辛不变性的有向面积解释",
+        "solution_structure": "证明ω(Au,Av)=det(A)ω(u,v)，区分面积与定向。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-038",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 1,
+      "raw_line_sha256": "a7e0d9dacf2a55b3d689a8aa1c976bcf5638985c46170eca3c1903209ceb4ec5",
+      "record_canonical_sha256": "9ea4a3ee9181d11913920e97c621e75a4b5bf7a7ed6c7228b36fbf461e0113d6",
+      "core_family_id": "S-prob-038",
+      "core_profile": {
+        "object": "两个事件及交集的概率",
+        "conditions": "已知事件 $A$ 与 $B$ 的概率分别为 $P(A) = 0.6$，$P(B) = 0.4$，且 $P(A \\cap B) = 0.2$。求条件概率 $P(A|B)$ 和 $P(B|A)$。",
+        "goal": "两个条件概率",
+        "solution_structure": "以各条件事件概率为分母，分别作精确分数计算。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-039",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 2,
+      "raw_line_sha256": "e93566719d7ddafcb67cf74a6873cca1eb27082af49f4e4671efa4e0088525f1",
+      "record_canonical_sha256": "916010ea92d0857c6d2e1742f923cdf7af4116c2b815fac353b326ad8c293361",
+      "core_family_id": "S-prob-039",
+      "core_profile": {
+        "object": "独立均匀投点的命中计数",
+        "conditions": "利用几何概型的思想，说明如何通过随机投点估算圆周率 $\\pi$ 的值。",
+        "goal": "圆周率估计量及稳定性",
+        "solution_structure": "面积比给Bernoulli参数，构造4m/n并用大数定律。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-040",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 3,
+      "raw_line_sha256": "94c7123237a4be80ae7a0bada232c55644ff6d5cb07589bf3b8608be214c312b",
+      "record_canonical_sha256": "8603c675ce665f2e3cda9c651e7ff29123390af943ae42c0dfb34ed87ee222c8",
+      "core_family_id": "S-prob-040",
+      "core_profile": {
+        "object": "稀疏二项分布",
+        "conditions": "说明当 $n$ 很大，$p$ 很小时，二项分布 $B(n, p)$ 可以近似为泊松分布 $P(\\lambda)$，其中 $\\lambda = np$。",
+        "goal": "泊松极限",
+        "solution_structure": "固定k分解概率质量函数，在np→λ下逐因子取极限。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-041",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 4,
+      "raw_line_sha256": "fc67499992b9690dedd30c92aee9a9ca361bd05c3309749fcaa166eadc5a497c",
+      "record_canonical_sha256": "eae914133e0447d5ba8da272170e4397878aaa3aafeb77f0833e5525ec03174f",
+      "core_family_id": "S-prob-041",
+      "core_profile": {
+        "object": "正态密度族",
+        "conditions": "分析正态分布 $X \\sim N(\\mu, \\sigma^2)$ 的概率密度函数，说明参数 $\\mu$ 和 $\\sigma$ 对曲线形状的影响。",
+        "goal": "位置与尺度变化",
+        "solution_structure": "由μ和σ的参数化解释密度中心、宽度和峰高。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-042",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 5,
+      "raw_line_sha256": "7c3b668f7bde685db53c8d61f026018419d524995eb48aa6bdc8196589d946bc",
+      "record_canonical_sha256": "3f70da56d2084427141488add9d6b5e007cdf8124c9c4ced27c2fd4dce3766c9",
+      "core_family_id": "S-prob-042",
+      "core_profile": {
+        "object": "独立Bernoulli试验频率",
+        "conditions": "利用伯努利大数定律，说明抛硬币试验中正面出现的频率是如何随试验次数增加而趋于其概率的。",
+        "goal": "依概率收敛到成功概率",
+        "solution_structure": "计算频率的期望方差并用概率界；不预设公平。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-043",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 6,
+      "raw_line_sha256": "dd304410a68a7fa40130d51efbc54e672922a7e6395da18a3ad111a8824ce4aa",
+      "record_canonical_sha256": "cf5b5f432a33417be941dbf22d12345feee9ac3baa0ffb308569403206597c69",
+      "core_family_id": "S-prob-043",
+      "core_profile": {
+        "object": "独立同分布样本均值",
+        "conditions": "解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值的分布是如何变化的。",
+        "goal": "中心极限定理的标准化极限",
+        "solution_structure": "标准化后作分布极限；与原尺度集中区分。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    },
+    {
+      "id": "prob-046",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 7,
+      "raw_line_sha256": "2da94440020978fe724bee1a29dd7c267fc5d99450a419d07b1b1544140063e0",
+      "record_canonical_sha256": "3a779a65b5dc2c7a3d3841d13865c4e11fa53654ebd2ab9c4729e0399591fd6c",
+      "core_family_id": "S-prob-046",
+      "core_profile": {
+        "object": "单位正方形的可列分割",
+        "conditions": "用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的小矩形。",
+        "goal": "可列可加性具体例子",
+        "solution_structure": "半开矩形两两不交且覆盖；几何级数与零面积边界。"
+      },
+      "core_reviewed": true,
+      "independent_math_verified": null,
+      "concept_and_variant_kind_status": "PENDING_POLICY_ATTRIBUTION"
+    }
+  ],
+  "family_dispositions": {
+    "F1-area-between-curves": "SPLIT: boundary composition, piecewise topology and actual integration tasks differ",
+    "F2-improper-convergence-value": "SPLIT: rational arctangent kernel versus parameterized exponential kernel is not a constant/symbol substitution",
+    "F3-shear-geometric-meaning": "SAME_CORE_TRAIN_VARIANT: E=PAP with coordinate-swap P",
+    "F4-determinant-geometric-meaning": "SPLIT: symbolic 2D oriented-area classification versus concrete 3D cofactor/volume task",
+    "F5-quadric-surface-identification": "SPLIT: z-independent ruled cylinder versus elliptic paraboloid section analysis"
+  },
+  "counts": {
+    "records": 47,
+    "shared_core_families": 1,
+    "shared_family_members": 2,
+    "singletons": 45,
+    "core_tasks_under_this_census": 46
+  },
+  "math_repair_ids": [
+    "calc-series-015",
+    "calc-series-020",
+    "linalg-050",
+    "linalg-070",
+    "prob-038",
+    "prob-039",
+    "prob-042",
+    "prob-043",
+    "prob-046"
+  ],
+  "concept_density_verified": false,
+  "formal_training_readiness_certified": false,
+  "existing_sources_modified": false
+}

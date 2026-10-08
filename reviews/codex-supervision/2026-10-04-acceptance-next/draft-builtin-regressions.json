@@ -1,0 +1,83 @@
+{
+  "cases": [
+    {
+      "name": "N1 denied_write 目标出现",
+      "verdict": "FAIL",
+      "expect": "FAIL",
+      "holds": true
+    },
+    {
+      "name": "N2 denied_read 内容泄漏",
+      "verdict": "FAIL",
+      "expect": "FAIL",
+      "holds": true
+    },
+    {
+      "name": "N3 控制端失败",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N4 令牌证据缺失",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N5 SID 不符",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N6 授予类哈希不一致",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N7 授予类无记录",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N8 拒绝类 winerror 非 5",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N9 拒绝类结果无法解释",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "N10 沙箱未启动",
+      "verdict": "UNVERIFIED",
+      "expect": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "P1 granted_write 基线",
+      "verdict": "PASS",
+      "expect": "PASS",
+      "holds": true
+    },
+    {
+      "name": "P2 denied_write 基线",
+      "verdict": "PASS",
+      "expect": "PASS",
+      "holds": true
+    },
+    {
+      "name": "P3 denied_read 基线",
+      "verdict": "PASS",
+      "expect": "PASS",
+      "holds": true
+    }
+  ],
+  "all_hold": true
+}

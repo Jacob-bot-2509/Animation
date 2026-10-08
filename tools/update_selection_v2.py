@@ -5,6 +5,7 @@ import hashlib
 import json
 import sys
 from pathlib import Path
+from draft_io import require_legacy_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
@@ -13,6 +14,7 @@ SUMMARY = DRAFTS / "repair-v2-summary.json"
 
 
 def main() -> int:
+    require_legacy_selection(SEL)
     sel = json.loads(SEL.read_text(encoding="utf-8"))
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     for e in sel["entries"]:

@@ -10,6 +10,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from draft_io import require_legacy_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
@@ -63,6 +64,7 @@ def fix_scene(spec: dict, old: str, new: str, count: int) -> tuple[dict, int]:
 
 
 def main() -> int:
+    require_legacy_selection(DRAFTS / "draft-selection.json")
     files = sorted(DRAFTS.glob("batch-*/draft-codex-repair-v1.jsonl"))
     text_fixed = 0
     prefix_added = 0

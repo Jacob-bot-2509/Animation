@@ -1,0 +1,3222 @@
+{
+  "schema": "leakage-diagnostic-pairs-v2",
+  "sampling": {
+    "algorithm": "unique-question-metadata-stratified-v2",
+    "seed": 20261006,
+    "s1a_max_drafts_per_parent_pair": 3,
+    "s1b_per_concept": 2,
+    "s2_per_category": 12,
+    "s3_total": 32
+  },
+  "independence": {
+    "status": "DEVELOPMENT_DERIVED",
+    "calibration_eligible": false,
+    "reason": "Sampling uses development labels and draft parent lineage; previously reviewed draft problems are not an untouched holdout."
+  },
+  "labeling_rule": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "labeling_rule_sha256": "68a324dcfe6ad7581b5a5cf056d3282e67861a9cc2812193d0db6b05e6e44304",
+  "labeling_status": "PENDING",
+  "source_bindings": {
+    "data/eval-v2.lock.json": {
+      "raw_sha256": "335d8b3f7338f53276ce8f76903fa7da0d03ed906ab07d5bf37f9a062e87c728",
+      "bytes": 738
+    },
+    "data/test-v2.lock.json": {
+      "raw_sha256": "f84704df7fd5f8d8ebd258c76c519d5678a6c74ed5c0e0292586a38b6609c091",
+      "bytes": 738
+    },
+    "data/v2/eval/dataset_eval.jsonl": {
+      "raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+      "bytes": 442378
+    },
+    "data/v2/test/dataset_test.jsonl": {
+      "raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+      "bytes": 200390
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "e52c6ac7de59e7cec9f2c56ced7e6ff399d66dbf9811ec6bac2d574c7fe7d259",
+      "bytes": 68642
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-02/draft-codex-repair-v6.jsonl": {
+      "raw_sha256": "fc452babbd4d0e70583703759186527f6fc2631f1b875e4b49e13c5a3ba4168f",
+      "bytes": 63293
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac",
+      "bytes": 65034
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+      "bytes": 58319
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl": {
+      "raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+      "bytes": 58831
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+      "bytes": 57406
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "bytes": 55061
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "bytes": 60914
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "bytes": 56220
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-10/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e",
+      "bytes": 56518
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-11/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea",
+      "bytes": 54601
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl": {
+      "raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "bytes": 55790
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "bytes": 54909
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v6.jsonl": {
+      "raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "bytes": 54473
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "bytes": 61440
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "bytes": 55838
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "bytes": 55890
+    },
+    "reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v4-final.jsonl": {
+      "raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+      "bytes": 38840
+    },
+    "reviews/2026-10-05-training-diversity-drafts/draft-selection.json": {
+      "raw_sha256": "6cadccf0cf60ad2eca80ed3fa20ecc3b13b1f1ea016f506a21da2e7690cdfe25",
+      "bytes": 26369
+    },
+    "reviews/codex-supervision/2026-10-05-math-template-followup-v2/new-overlap-before-fix.json": {
+      "raw_sha256": "010ac5773ecf059ab1ff86a92e958d1b8d63f4d5af6a7a39a53054dc003619e7",
+      "bytes": 14310
+    },
+    "reviews/codex-supervision/2026-10-05-readiness-completion/cross-signature-leakage-findings.json": {
+      "raw_sha256": "8700880784f78fb270cf0d81331b060fc6b1e366fc1a6b10601f8c08a191fcff",
+      "bytes": 11554
+    },
+    "reviews/codex-supervision/2026-10-05-readiness-completion/independent-leakage-labels-v2.json": {
+      "raw_sha256": "0b71e3e319d182605935d5479780aaf5cc9385b0f32cde6544d72ff11df90c5e",
+      "bytes": 155749
+    },
+    "reviews/codex-supervision/2026-10-05-readiness-completion/leakage-population.json": {
+      "raw_sha256": "3e0454c0ecf59aaa6ed90367954c372a9f3cb5de33074b7c23e784defe4e4909",
+      "bytes": 362779
+    },
+    "tools/build_holdout_pairs.py": {
+      "raw_sha256": "34c66a0712363301524c7b521f6e4c0f0492d9113ec84a4f5f463f437c6873cb",
+      "bytes": 13130
+    },
+    "tools/draft_io.py": {
+      "raw_sha256": "172592042690d542c0218b8d6c4784f3580d3179f4d5e276173eab6d0053f2ac",
+      "bytes": 4674
+    },
+    "tools/holdout_contract.py": {
+      "raw_sha256": "b52682e093caf5b67c1b122cb8850416d4da55594d8bd0d52e4d80e28c6c73d8",
+      "bytes": 6208
+    }
+  },
+  "sampling_unit": "unique question; all scene records retained in source identity",
+  "pairs": [
+    {
+      "pair_id": "cb4a039c6887ee233b2f730bae9e573e4531b4bcae511e57c8ee2a7b658f77ff",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "split": "eval",
+        "record_sha256": "c08b569d035185c61d2737ce7e8288e3e4e244127983fc7a4705d89a896ad014"
+      },
+      "train": {
+        "id": "draft-c11-05",
+        "problem": "设$a_n=\\binom{2n}{n}/4^n$，$S(x)=\\sum_{n=0}^{\\infty}a_nx^n$。由系数递推推导$S$满足的微分方程，求和函数与实收敛域，并严格处理两个端点。",
+        "category": "数学分析",
+        "problem_sha256": "84ef338700cf5106919cdc14642cc8b19992e6916de5d0ce9e85bb857f321c5f",
+        "record_sha256": "96c2842ddbc50c97a8098c6faf082e871a03d106793e001ef3104bec1892f562"
+      }
+    },
+    {
+      "pair_id": "10e11bcc88544635e5934ce6eeb7cfdd11cbe463ff1726cda458e960af31a0d6",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "split": "eval",
+        "record_sha256": "c08b569d035185c61d2737ce7e8288e3e4e244127983fc7a4705d89a896ad014"
+      },
+      "train": {
+        "id": "draft-c11-02",
+        "problem": "把$f(x)=1/(1+x^2)$在$x=1$处展开为$\\sum_{n=0}^{\\infty}c_n(x-1)^n$。求系数的显式式、收敛半径和实收敛域，严格检查两个端点，并解释为什么相邻系数比值法不适用。",
+        "category": "数学分析",
+        "problem_sha256": "02defbe41891c9b6f205aad837f108126a5ca14e752435dc4297a4ac22ffdbd6",
+        "record_sha256": "36f91980f19b86b0049c1428ccd0fea0dbeceeda59ba2ec2f772d6eba29e6cb4"
+      }
+    },
+    {
+      "pair_id": "2d3120359037897df32a5a46da0e968b41cba418d530dd1826f0133d3f1958f5",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "split": "eval",
+        "record_sha256": "c08b569d035185c61d2737ce7e8288e3e4e244127983fc7a4705d89a896ad014"
+      },
+      "train": {
+        "id": "draft-c11-03",
+        "problem": "设$S(x)=\\sum_{n=0}^{\\infty}x^{2^n}$。求其收敛域，证明$S(x)=x+S(x^2)$；并证明在$(-1,1)$上，满足该方程、在$0$处连续且$S(0)=0$的函数唯一。",
+        "category": "数学分析",
+        "problem_sha256": "c3b1373e90ccfea9002094e4bed48d2d7d9008cac9ab064d0cc32a4231c24cc0",
+        "record_sha256": "56e8ce5fcdfab3f7f9948132115344850fd9b253fb78c3b3796c6277f7996851"
+      }
+    },
+    {
+      "pair_id": "52eca8e0b80fe2fec10317baa3599af5dda94720bd8aa60726e5348abae64309",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+        "split": "test",
+        "record_sha256": "9aaada129d3833a9f2dc80e1c34d0b4eb2cb531f3ea1a1bf3ad9ddc5fcd47a94"
+      },
+      "train": {
+        "id": "draft-c13-04",
+        "problem": "求$\\sum_{n=1}^{\\infty}(\\sqrt{n+2}-2\\sqrt{n+1}+\\sqrt n)$的和，证明绝对收敛，并给精确余项。",
+        "category": "数学分析",
+        "problem_sha256": "18a87d6545beb61eec0832b22308b04ca02367cd206beec9ac4499b849fd9ebf",
+        "record_sha256": "d41ae55ef0dd3604e68cf0b1d3514ceca90da9d248928af7533093c14367e9fc"
+      }
+    },
+    {
+      "pair_id": "9f7f6f1b824f208fc4fe2a75eb69904a3f4a8aea148a9e730ce07d785e2d2cce",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+        "split": "test",
+        "record_sha256": "9aaada129d3833a9f2dc80e1c34d0b4eb2cb531f3ea1a1bf3ad9ddc5fcd47a94"
+      },
+      "train": {
+        "id": "draft-c13-01",
+        "problem": "求$\\sum_{n=1}^{\\infty}\\arctan\\frac1{n^2+n+1}$的精确和，并给出前$N$项后的精确余项。",
+        "category": "数学分析",
+        "problem_sha256": "04c45a9e1c7389b744d3d9be117aa984c8b04e112946c526fded8ea6c84515fe",
+        "record_sha256": "fafeb7b0591976694a12731d48685ee33beb6909bbb312977c169bc1d04246fe"
+      }
+    },
+    {
+      "pair_id": "b99a7effdfa18a6b88247011bfc90e3b4a5aa8f6d93a3d9a3aaf1a865d264e16",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+        "split": "test",
+        "record_sha256": "9aaada129d3833a9f2dc80e1c34d0b4eb2cb531f3ea1a1bf3ad9ddc5fcd47a94"
+      },
+      "train": {
+        "id": "draft-c13-05",
+        "problem": "证明不存在有理函数 $R\\in\\mathbb R(t)$ 使 $\\frac1{t^2+1}=R(t)-R(t+1)$。由此说明该级数不能用这类有理函数裂项直接求和。再用精确不等式证明 $S=\\sum_{n=1}^{\\infty}\\frac1{n^2+1}<2$。",
+        "category": "数学分析",
+        "problem_sha256": "d213fb1913e6220b1ad76fdbaee396c156b45f4e02e0931aa09351f3f64d23a8",
+        "record_sha256": "308f6596996291729628b80e0c13f086462d2311f3bceb6fe4d91438a4b25f6e"
+      }
+    },
+    {
+      "pair_id": "4ee58f8c7ab95c5af72bc761d7f375a52c1c930a4a81a964ad558e30a9a5d6b6",
+      "query": {
+        "id": "test-geom-003",
+        "problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+        "split": "test",
+        "record_sha256": "ab0c78ba722b2842f764f07205417c4ec4f0ae612bce8e5d03d052f5d04bb376"
+      },
+      "train": {
+        "id": "draft-c16-02",
+        "problem": "求两平行直线 $l_1$：过点 $(1,2,3)$、方向 $(1,1,1)$ 与 $l_2$：过点 $(2,3,3)$、方向 $(1,1,1)$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "5aa5a003cab4bfbf82e15c1a74bf77cf8f6fe92c34647e4518fe349ddc6db903",
+        "record_sha256": "7d2f136a67a33343c74e073156f9e6b93a5f0e5e94a49ac7db7efbc226c77967"
+      }
+    },
+    {
+      "pair_id": "bdf27d0c8512038525c15c6d6d8d8ec34d73628d5d5d7b076a848e6589b393a7",
+      "query": {
+        "id": "test-geom-003",
+        "problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+        "split": "test",
+        "record_sha256": "ab0c78ba722b2842f764f07205417c4ec4f0ae612bce8e5d03d052f5d04bb376"
+      },
+      "train": {
+        "id": "draft-c16-03",
+        "problem": "求异面直线 $l_1$：$x$ 轴 与 $l_2$：过点 $(0,1,1)$、方向 $(0,1,0)$ 的公垂线方程、两个垂足与两直线间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "1b598b76c3c9e78813a342ac207132d524aa51fa6e199e73658836b2f4250e1d",
+        "record_sha256": "95ecfa55adf3f9abb0bfa7ab0f448d3e9014377cfb7cb9ebae6bbd4d7c5bf90e"
+      }
+    },
+    {
+      "pair_id": "a97562cbb71b43b0723bdef383d562235011427db78b32f7588bdb6b397e975e",
+      "query": {
+        "id": "test-geom-003",
+        "problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+        "split": "test",
+        "record_sha256": "ab0c78ba722b2842f764f07205417c4ec4f0ae612bce8e5d03d052f5d04bb376"
+      },
+      "train": {
+        "id": "draft-c16-04",
+        "problem": "求两条异面直线 $l_1:(t,t,0)$ 与 $l_2:(s,0,1-s)$ 上动点之间距离的最小值(即两直线间的距离)。",
+        "category": "解析几何",
+        "problem_sha256": "b644f541bfde4b4b3d6f6ee88758761cacae021992b712e2e75ac8f63b294265",
+        "record_sha256": "6240e09e82a817bd5544e95fcecc308ff036db9b5c26018a388fb4beb0a7ce37"
+      }
+    },
+    {
+      "pair_id": "87cf7f66ba2a555ffc12b989c2c64584423fda3ab6a256bb54961bdb6dd372f0",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何",
+        "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "split": "eval",
+        "record_sha256": "e4428aa4eb62e0327f71941f536b034214d51239c7cba3bf66669e74b120ffc7"
+      },
+      "train": {
+        "id": "draft-c18-03",
+        "problem": "求过点 $P(1,2,3)$ 且垂直于方向 $v=(2,1,-1)$ 的平面方程；并求该平面与过原点、方向为 $v$ 的直线的交点。",
+        "category": "解析几何",
+        "problem_sha256": "c26b879099190b8209c4a1a4436d97ea61f772eaa27af5669c58c2049bc2a4a4",
+        "record_sha256": "bd6c6de3dd94894c537e0f7426f4d3a194d0a2b085aece1a747bc21e41deb331"
+      }
+    },
+    {
+      "pair_id": "7232ec87c3fae2f89e7dc0d162b76039c9277e822e6f8f56265779ca79babea4",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何",
+        "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "split": "eval",
+        "record_sha256": "e4428aa4eb62e0327f71941f536b034214d51239c7cba3bf66669e74b120ffc7"
+      },
+      "train": {
+        "id": "draft-c18-05",
+        "problem": "证明空间中任意一点$P$到平面$\\pi=\\{X:n\\cdot X=c\\}$（$n\\ne0$）的最近点存在且唯一，并推导正交投影及距离公式。",
+        "category": "解析几何",
+        "problem_sha256": "a9dca47073d8d17fe68898cf50f3b6d4a6285a6939b172abe1d51512b7b13577",
+        "record_sha256": "8aab1701da61f6bf532b8ef142d34552ae52030198cecceb8c2560a9f6b7d576"
+      }
+    },
+    {
+      "pair_id": "5de23a49ec1b1e4d9a965360b5696194116f61846ca934ae97fbab8ad736f542",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何",
+        "problem_sha256": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "split": "eval",
+        "record_sha256": "e4428aa4eb62e0327f71941f536b034214d51239c7cba3bf66669e74b120ffc7"
+      },
+      "train": {
+        "id": "draft-c18-04",
+        "problem": "设$P=(1,2,3)$，平面$\\pi:x+y+z=0$。在加权距离$d_W(P,X)^2=(X-P)^{\\mathsf T}W(X-P)$、$W=\\operatorname{diag}(1,2,3)$下求唯一最近点与距离，并证明全局唯一性。",
+        "category": "解析几何",
+        "problem_sha256": "b1039c9579b8fd63ffb2eee81599bb027034e31125e66418632cd07eb89ff795",
+        "record_sha256": "d2fdf343951d34c4cf84356c4fa6fede7bfd75625ef4ca07a541e391dd560b09"
+      }
+    },
+    {
+      "pair_id": "482a435d56dcca0bfd6d6d7720ac1a57aac5c49c6acad79436cb0f74a9bf9a98",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何",
+        "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "split": "eval",
+        "record_sha256": "cf644a5cf6a47d7e6711a2bbd4a4cf63ffadb777455ea59e841b3119516ce175"
+      },
+      "train": {
+        "id": "draft-c20-03",
+        "problem": "对曲面$xy+t z^2=1$（$t\\in\\mathbb R$），给出正交坐标替换并分类全部参数，特别说明$t=0$的秩退化。",
+        "category": "解析几何",
+        "problem_sha256": "0062db17b53be779ab40345b9a48c1030730e0af9d16015a777b1aed2fd48a39",
+        "record_sha256": "5014b481d6b45edfd9fdd3fc1a4a2b9be93ccae0bf0be0585d69cff8d115a5fe"
+      }
+    },
+    {
+      "pair_id": "dbe7565eb357dd9d11f5616edd31fd20a1a037a07d0ae6051a346cc319bc68af",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何",
+        "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "split": "eval",
+        "record_sha256": "cf644a5cf6a47d7e6711a2bbd4a4cf63ffadb777455ea59e841b3119516ce175"
+      },
+      "train": {
+        "id": "draft-c20-01",
+        "problem": "指出方程 $z=x^2-y^2$ 表示的二次曲面类型，并分别说明其与平面 $z=0$、$z=1$、$z=-1$ 的交线形状。",
+        "category": "解析几何",
+        "problem_sha256": "de0cf709cff727352103d9a6467703eaa973882c120341d1841aa0be694dd2af",
+        "record_sha256": "9af736b399aa6d0549a798e1f1a2abfccbe6c59a0b2991e878512a557e4a35f2"
+      }
+    },
+    {
+      "pair_id": "55f7aae07cbddb1bee00031a3ebc01d2ad71361f92761631426495d0e9ec92c5",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何",
+        "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "split": "eval",
+        "record_sha256": "cf644a5cf6a47d7e6711a2bbd4a4cf63ffadb777455ea59e841b3119516ce175"
+      },
+      "train": {
+        "id": "draft-c20-02",
+        "problem": "用配方法判断方程 $x^2+y^2+z^2-2x-4y+1=0$ 表示什么曲面，并求其中心(球心)与半径。",
+        "category": "解析几何",
+        "problem_sha256": "e496407a32850cc4a0ddf873c1ffa59b9e54d13a0a528b5c87f3b444a6feebde",
+        "record_sha256": "02b799dadcb4c5a40da64578a037b7316a38b293aa3c2138a544b3b0c3c425e6"
+      }
+    },
+    {
+      "pair_id": "2f75bf01eaa17c4d08c11302ea2362a63013537b3f84e9665690f3999900f5fa",
+      "query": {
+        "id": "eval-geom-011",
+        "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+        "category": "解析几何",
+        "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "split": "eval",
+        "record_sha256": "9442cdc81b586fe8fe33326bb9dc99f58004aecb56ead84d6408e6b171344775"
+      },
+      "train": {
+        "id": "draft-c21-03",
+        "problem": "求直线 $l:(1+t,2t,t)$ 与双曲抛物面 $z=xy$ 的交点。",
+        "category": "解析几何",
+        "problem_sha256": "751baafeeb15e751351ba224b24c4fb52f4bedee3be4465df8c728a5fc720530",
+        "record_sha256": "f097ab2fe940dcb95de7d97b448ad4b8b931a521429d99de6fe2d7ccd71fe6f8"
+      }
+    },
+    {
+      "pair_id": "c8434d51833f5b20ba86377ef58af3a4bc6b5e4a01a8f6ffd5d4abe01367725b",
+      "query": {
+        "id": "eval-geom-011",
+        "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+        "category": "解析几何",
+        "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "split": "eval",
+        "record_sha256": "9442cdc81b586fe8fe33326bb9dc99f58004aecb56ead84d6408e6b171344775"
+      },
+      "train": {
+        "id": "draft-c21-02",
+        "problem": "设直线 $l_a=\\{(a,0,t):t\\in\\mathbb R\\}$。求使 $l_a$ 与球面 $x^2+y^2+z^2=4$ 相交于两点、相切、无交点的 $a$ 的取值范围，并求相切时的切点。",
+        "category": "解析几何",
+        "problem_sha256": "397ef913506dcb625a71b4f6b7cb40554ea4d7604107c990621f3dbcf9784722",
+        "record_sha256": "3abbb7c1567ea85dc2d15bb627541e71dc4e2ab49bde7b1306640479e3cffbb5"
+      }
+    },
+    {
+      "pair_id": "5eb60362984b05fb3efac7f2d9cc5b167d36f853187309f81fb27f32648a271c",
+      "query": {
+        "id": "eval-geom-011",
+        "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+        "category": "解析几何",
+        "problem_sha256": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "split": "eval",
+        "record_sha256": "9442cdc81b586fe8fe33326bb9dc99f58004aecb56ead84d6408e6b171344775"
+      },
+      "train": {
+        "id": "draft-c21-04",
+        "problem": "在曲面$xy=1$上，讨论直线$l_{a,b}(t)=(t,at+b,t)$（$a,b\\in\\mathbb R$）的全部交点情况。区分无交点、一个或两个交点；在二次方程重根时证明直线与曲面相切。",
+        "category": "解析几何",
+        "problem_sha256": "b6a1292a9e40858abeb8ffba94524e40f6a71c501d03506262641ef2b9d5463f",
+        "record_sha256": "92e10fd96617870330bce770e4efd88336a2c83eae1bb3a80b69591d7e700493"
+      }
+    },
+    {
+      "pair_id": "426a297a486c44efb7beae84454e31df2767410f2593ec26b643754823359164",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c26-04",
+        "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+        "category": "高等代数",
+        "problem_sha256": "2ffc3668d7ba49bd78085b80e69ac116c4bc51021bb3295ff58a61b17937c8a8",
+        "record_sha256": "2c247e5f0a5729041ccb4fa2084f14e0e36cc65489c7500b700c0aa1748ad617"
+      }
+    },
+    {
+      "pair_id": "8a342fd736584e0728bd6501d9823979d63f246708f9f3c8e5fb2d320cd2a706",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c26-03",
+        "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+        "category": "高等代数",
+        "problem_sha256": "5e214d3b13ccbae4edece4dfebe4273a72d3d5837a65a9589febf7b07ec55c5f",
+        "record_sha256": "3fdfb579c3bf218488a75c008dd2d58901f87ab10969a79fd4e3e4f1555f6e37"
+      }
+    },
+    {
+      "pair_id": "f07031aee21377ad9d101b911f52b59452ffacfb3d817316d0b4321bc407fcc2",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c26-01",
+        "problem": "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+        "category": "高等代数",
+        "problem_sha256": "c1f5b3c258603fa8c7c68733422325ac16cf78d6ed802f3247bc519d6a2498d7",
+        "record_sha256": "e4958c415d9bdd85dc46090cd31565345d93333188be53f8334119bc1eaaa70e"
+      }
+    },
+    {
+      "pair_id": "a8963c83f4f144c910efe792d7199a11631a60e4b63ed7e33a2a4ba801243abd",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c26-02",
+        "problem": "分类所有保持两条坐标轴各自不变、并将单位圆映到自身的实线性映射$A:\\mathbb R^2\\to\\mathbb R^2$。分别给其固定点集合与定向。",
+        "category": "高等代数",
+        "problem_sha256": "e0364e1ef0d0f0c04da05c01af44f814dcb3d4379e8c721d685c7ebfc848cce7",
+        "record_sha256": "a5c82e5177526bf955f2e0ff331018081f1cb00a6935cc5a3fcedbccc9c3d6a2"
+      }
+    },
+    {
+      "pair_id": "472ab6d93a75ff8b297c50334a5e03ab136e198724f228859083d64f7050f589",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c26-03",
+        "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+        "category": "高等代数",
+        "problem_sha256": "5e214d3b13ccbae4edece4dfebe4273a72d3d5837a65a9589febf7b07ec55c5f",
+        "record_sha256": "3fdfb579c3bf218488a75c008dd2d58901f87ab10969a79fd4e3e4f1555f6e37"
+      }
+    },
+    {
+      "pair_id": "008b884e3b5a095019d8ed7c4aa2403adc9c4e61d477dc224e94f5c9b5ef7d4c",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c26-05",
+        "problem": "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+        "category": "高等代数",
+        "problem_sha256": "e7301c631de714ceb2f3742ffc2fcef1a1f34d3a0153b50176a03283a37a422a",
+        "record_sha256": "ba688df7b049d9d9683d03c718dea49dd0eb4b7e89a2e5c4c1583a1f80f2c591"
+      }
+    },
+    {
+      "pair_id": "8bb888c22aa40baee98c034b0d6ab26e7b61f0d15c9e671c34a133b631a9812a",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c27-03",
+        "problem": "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+        "category": "高等代数",
+        "problem_sha256": "4401189c22644005fef9d8e23bddf74e1b76a9501245271d8fd1dd2957736364",
+        "record_sha256": "6867068f6a8f954c7495ea4f0b8f3459c8b3f14e1ada073101ecdfcfeb5bf700"
+      }
+    },
+    {
+      "pair_id": "ace171d73b1d3fd496e4521f94e253e95c7e4cb6713326ca7924ab15873ef974",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c27-02",
+        "problem": "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+        "category": "高等代数",
+        "problem_sha256": "8675df487b884bb1d1a2b8b4b75ff9ecfee4b8642d8cc630250264c88dca9057",
+        "record_sha256": "1f3ddfd849967c728286ff398ab7b333bd9f41977f8a27d27652e99f18c54364"
+      }
+    },
+    {
+      "pair_id": "ddaa49ab8f109fada8e7cb2ce6957000461940de492c51d1d92d372dd095ce27",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c27-05",
+        "problem": "证明：若$n$阶矩阵在数域$\\mathbb F$内有$n$个互异特征值，则在$\\mathbb F$内可对角化。",
+        "category": "高等代数",
+        "problem_sha256": "9cfc1835a9227e92a7160e3d64b124eb093adb44872f6f8b8ffed585c18d91fd",
+        "record_sha256": "b1d4feaa24c4bee07e17effca208960534abc9ccfe52b5e0a2aca46aefd25731"
+      }
+    },
+    {
+      "pair_id": "64675fb73b762bd2a0da1ebda290ff5bcc56a354f98fe3df7ebac23512e6bd3c",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c27-03",
+        "problem": "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+        "category": "高等代数",
+        "problem_sha256": "4401189c22644005fef9d8e23bddf74e1b76a9501245271d8fd1dd2957736364",
+        "record_sha256": "6867068f6a8f954c7495ea4f0b8f3459c8b3f14e1ada073101ecdfcfeb5bf700"
+      }
+    },
+    {
+      "pair_id": "ea1e248c6b4e114a946cfa356933c0d6118b5124afb2f86c200958b86bb72103",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c27-05",
+        "problem": "证明：若$n$阶矩阵在数域$\\mathbb F$内有$n$个互异特征值，则在$\\mathbb F$内可对角化。",
+        "category": "高等代数",
+        "problem_sha256": "9cfc1835a9227e92a7160e3d64b124eb093adb44872f6f8b8ffed585c18d91fd",
+        "record_sha256": "b1d4feaa24c4bee07e17effca208960534abc9ccfe52b5e0a2aca46aefd25731"
+      }
+    },
+    {
+      "pair_id": "69b62189c51eeafb4678a9c507743ac26a790cb16ba5b59fdeb6aea8e472360d",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c27-02",
+        "problem": "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+        "category": "高等代数",
+        "problem_sha256": "8675df487b884bb1d1a2b8b4b75ff9ecfee4b8642d8cc630250264c88dca9057",
+        "record_sha256": "1f3ddfd849967c728286ff398ab7b333bd9f41977f8a27d27652e99f18c54364"
+      }
+    },
+    {
+      "pair_id": "d49fc98e5f4cf016820edef00b81ed6254b0bb2cd6222406f8c45ad7c4807960",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数",
+        "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+        "split": "eval",
+        "record_sha256": "3317af82afcf4eebb5d3a220b1e78a6b214bf8180a01ade82154a59954208ad0"
+      },
+      "train": {
+        "id": "draft-c30-05",
+        "problem": "证明非恒定实多项式没有非零实周期。再求全部满足$f(x+1)+f(x-1)=2f(x)$对所有实数$x$成立的实多项式。",
+        "category": "高等代数",
+        "problem_sha256": "56ec1d15d0af48e4af7d615642c478eadf54fc023593a9005761820883a6bfe9",
+        "record_sha256": "a65964dee715d0e9c4eb8dda7fbf8e33c945479d79b51e501be752029f968965"
+      }
+    },
+    {
+      "pair_id": "9898bc69d68d41347f02ab9f5e43cb11129dc1f4a76aa4f6e7ea210e2db4f516",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数",
+        "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+        "split": "eval",
+        "record_sha256": "3317af82afcf4eebb5d3a220b1e78a6b214bf8180a01ade82154a59954208ad0"
+      },
+      "train": {
+        "id": "draft-c30-04",
+        "problem": "已知多项式 $f$ 在 $x=1$ 处的展开为 $f=2+3(x-1)+(x-1)^2-(x-1)^3$。求 $f$ 按 $x$ 的幂展开的标准形式，并求 $f(1)$、$f'(1)$、$f''(1)$。",
+        "category": "高等代数",
+        "problem_sha256": "42e0e971e5a7ba38e6e75f8cfb9930220c4ac47b071cf8af4d05ea11f0522f67",
+        "record_sha256": "86c7a7e7b890c7fff04633659656f40fc1b78649437e6a0480bf52f81c758f33"
+      }
+    },
+    {
+      "pair_id": "2686b6c2a17158c0ebd69d70c01b064bf150292179da256343bd0612ad116efc",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数",
+        "problem_sha256": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+        "split": "eval",
+        "record_sha256": "3317af82afcf4eebb5d3a220b1e78a6b214bf8180a01ade82154a59954208ad0"
+      },
+      "train": {
+        "id": "draft-c30-01",
+        "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+        "category": "高等代数",
+        "problem_sha256": "04d992430fd5e068887906d48d5d527f1c90a19693dadb2495a8134c4f304688",
+        "record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22"
+      }
+    },
+    {
+      "pair_id": "4ed0a6c2f70b8e0eb32384ff4f8ef319451f07524b98ee0207cedb2b0629a3d0",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "split": "eval",
+        "record_sha256": "a82a5afad47019d2f75cc0010e7c513cb0b32f8dd45c6d412d9e872636621fb1"
+      },
+      "train": {
+        "id": "draft-c33-02",
+        "problem": "求使矩阵 $A=\\begin{pmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{pmatrix}$ 可逆的参数 $a$ 的取值范围；并求 $a=0$ 时的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "6a527ba7542b17b5f09147a4f79591798b316d4c9383794998ff8267d18bc5cd",
+        "record_sha256": "a2e9487a0b850ef7a84e84585815cb656a81379b9d79e9b04b55041561d874a2"
+      }
+    },
+    {
+      "pair_id": "d1123b5355cea3aab058a3c5c5047aed0d135e612b512383d534ae388c0dc7d9",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "split": "eval",
+        "record_sha256": "a82a5afad47019d2f75cc0010e7c513cb0b32f8dd45c6d412d9e872636621fb1"
+      },
+      "train": {
+        "id": "draft-c33-03",
+        "problem": "用分块方法求矩阵 $M=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\0&0&2\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "6661ada13a7a1d7c786589a4e318bd71dd94f80bfed3e0dd7d56e75ce6311f41",
+        "record_sha256": "df1db44c10d80d713036c4118bb7372b257543a4dff327d6c06f4bf40a7a5511"
+      }
+    },
+    {
+      "pair_id": "f9c6c6d16237e455645ef65aff190bc98a0cfd3a204612b55ef0906a22e16952",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "split": "eval",
+        "record_sha256": "a82a5afad47019d2f75cc0010e7c513cb0b32f8dd45c6d412d9e872636621fb1"
+      },
+      "train": {
+        "id": "draft-c33-01",
+        "problem": "用初等行变换求矩阵 $A=\\begin{pmatrix}1&2&3\\\\0&1&2\\\\0&0&1\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "ae5d6257babcb5cecbb8a1cef49294c059b8a0e5afccd71cb505aa3c3ff81ce9",
+        "record_sha256": "fdb60aec8afd14659c836650ef00f6f4a56c2513880fb26da5dd803932656c98"
+      }
+    },
+    {
+      "pair_id": "2060a5b605fcd683b00ebf496383fe41eb4da0aa53c41a4a0a13c28ec2ffbe3d",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数",
+        "problem_sha256": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+        "split": "eval",
+        "record_sha256": "e407d193a5d4458116ba6280e362b630207c79730105f33310a0c07e962df5c3"
+      },
+      "train": {
+        "id": "draft-c33-05",
+        "problem": "令加权循环矩阵$C=\\begin{pmatrix}0&2&0\\\\0&0&3\\\\1/6&0&0\\end{pmatrix}$，$A_t=I-tC$，$t\\in\\mathbb R$。用矩阵多项式恒等式求全部可逆参数及逆矩阵。在唯一奇异参数下，求$A_tx=b$的相容条件与全部解。",
+        "category": "高等代数",
+        "problem_sha256": "9db5e5f1f7777a716bba67e53d5bfdb4ee10640ed400cfd7c50ac868d81ddeb6",
+        "record_sha256": "b7f792aec4e5fae917a471c111eb013876fd9298d590a225eae38fc547e841cb"
+      }
+    },
+    {
+      "pair_id": "b9de08dbc2f86b802c48e4f88a6b21f73510c703947e5eb208b64be1d4e33f47",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数",
+        "problem_sha256": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+        "split": "eval",
+        "record_sha256": "e407d193a5d4458116ba6280e362b630207c79730105f33310a0c07e962df5c3"
+      },
+      "train": {
+        "id": "draft-c33-03",
+        "problem": "用分块方法求矩阵 $M=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\0&0&2\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "6661ada13a7a1d7c786589a4e318bd71dd94f80bfed3e0dd7d56e75ce6311f41",
+        "record_sha256": "df1db44c10d80d713036c4118bb7372b257543a4dff327d6c06f4bf40a7a5511"
+      }
+    },
+    {
+      "pair_id": "9f83c1d9dc5e755cfe7cd1738132f894cbaa118d2f7db9a8f08f06af8c0fa229",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数",
+        "problem_sha256": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+        "split": "eval",
+        "record_sha256": "e407d193a5d4458116ba6280e362b630207c79730105f33310a0c07e962df5c3"
+      },
+      "train": {
+        "id": "draft-c33-04",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$ 的一个左逆与矩阵 $B=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 的一个右逆，并说明这两种单边逆的区别与不唯一性。",
+        "category": "高等代数",
+        "problem_sha256": "fd4abf7dc4c0522af6c88310e71bfb671cb72d82e515e427d0134358feb5f55d",
+        "record_sha256": "bb635220a1b9035aa188ed19a0d1c037cfac45c89aaae113d630614d9afc92df"
+      }
+    },
+    {
+      "pair_id": "b10db5f262b380bd3e9ba3ca6962fe1061fc8422cba56231632cb95633639387",
+      "query": {
+        "id": "test-linalg-026",
+        "problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+        "category": "高等代数",
+        "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+        "split": "test",
+        "record_sha256": "0bc08e768c07e187dd5ca1045499361706c4fbd52e653cff5a8d29f0efc2ff51"
+      },
+      "train": {
+        "id": "draft-c35-02",
+        "problem": "对四元二次型$f=(x_1-x_2)^2+2(x_2-x_3)^2+3(x_3-x_4)^2$，给出可逆线性替换、合同标准形及惯性；再证明将$f$限制在$V=\\{x:x_4=0\\}$上后成为正定型。",
+        "category": "高等代数",
+        "problem_sha256": "c8b6daba05b7c7e28f6802be08781d580b7266c4a1e688a32fcd066ec2d9816c",
+        "record_sha256": "47ce1cea243d645747ad6804a07f3c3cfb02ac3bc0a14fc0de654f190dd862b4"
+      }
+    },
+    {
+      "pair_id": "209f914226db89a1238c5b422193f8921876aaf94caaea92b0cac2d337cddaa0",
+      "query": {
+        "id": "test-linalg-026",
+        "problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+        "category": "高等代数",
+        "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+        "split": "test",
+        "record_sha256": "0bc08e768c07e187dd5ca1045499361706c4fbd52e653cff5a8d29f0efc2ff51"
+      },
+      "train": {
+        "id": "draft-c35-03",
+        "problem": "求使二次型 $f(x,y)=x^2+2xy+ay^2$ 的秩为 $1$ 的参数 $a$ 的值；并分别求 $a=0$、$a=1$、$a=2$ 时的标准形与正负惯性指数。",
+        "category": "高等代数",
+        "problem_sha256": "a5843d24bfe75e4b6542a57f00de8a998744375644af8fa7005156d058f867bf",
+        "record_sha256": "f06541b3a1a2c53f12c06983bcf8a1315fad9a72af83b170582f0527169858d9"
+      }
+    },
+    {
+      "pair_id": "e864442a18661f69bf3d0c436ea57100e53d47a51d762d26ccce8ced7d598403",
+      "query": {
+        "id": "test-linalg-026",
+        "problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+        "category": "高等代数",
+        "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+        "split": "test",
+        "record_sha256": "0bc08e768c07e187dd5ca1045499361706c4fbd52e653cff5a8d29f0efc2ff51"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数",
+        "problem_sha256": "e8f6ad3b143d5c32d6453bd7df102b2ea829f999a8ebb0ac689fda5a2cdea383",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50"
+      }
+    },
+    {
+      "pair_id": "529fa7008d80448804e2662865aa25cabc45b43880cc05752e7a8b78b9572a28",
+      "query": {
+        "id": "test-x-007",
+        "problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+        "category": "跨学科",
+        "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+        "split": "test",
+        "record_sha256": "c9637dc4e97f5eca18cfcc667c62c92d54ef0b75ad6e5bbe8c577b86f1f43f50"
+      },
+      "train": {
+        "id": "draft-c35-02",
+        "problem": "对四元二次型$f=(x_1-x_2)^2+2(x_2-x_3)^2+3(x_3-x_4)^2$，给出可逆线性替换、合同标准形及惯性；再证明将$f$限制在$V=\\{x:x_4=0\\}$上后成为正定型。",
+        "category": "高等代数",
+        "problem_sha256": "c8b6daba05b7c7e28f6802be08781d580b7266c4a1e688a32fcd066ec2d9816c",
+        "record_sha256": "47ce1cea243d645747ad6804a07f3c3cfb02ac3bc0a14fc0de654f190dd862b4"
+      }
+    },
+    {
+      "pair_id": "4c341cd43bb13d0bece5915b93e56f87c1297efd5c79a86c29691368836f1868",
+      "query": {
+        "id": "test-x-007",
+        "problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+        "category": "跨学科",
+        "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+        "split": "test",
+        "record_sha256": "c9637dc4e97f5eca18cfcc667c62c92d54ef0b75ad6e5bbe8c577b86f1f43f50"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数",
+        "problem_sha256": "e8f6ad3b143d5c32d6453bd7df102b2ea829f999a8ebb0ac689fda5a2cdea383",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50"
+      }
+    },
+    {
+      "pair_id": "6d853510ad9831369229197a8c9e5c239afb17c4f9c9d2bca88be738fc400bb5",
+      "query": {
+        "id": "test-x-007",
+        "problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+        "category": "跨学科",
+        "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+        "split": "test",
+        "record_sha256": "c9637dc4e97f5eca18cfcc667c62c92d54ef0b75ad6e5bbe8c577b86f1f43f50"
+      },
+      "train": {
+        "id": "draft-c35-05",
+        "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy$ 与 $g(x,y,z)=2x^2+3y^2+4z^2$ 是否合同，并说明理由；若合同，构造可逆矩阵 $C$ 使 $C^{\\mathsf{T}}AC=B$。",
+        "category": "高等代数",
+        "problem_sha256": "0509a69d467fea0338e802f5def5cf0302b148e7458f459953af71f891282d2d",
+        "record_sha256": "ab751a5530a1c549bc7c7995410fc69bfb9f0bed2d12ce625bef322fdb9505be"
+      }
+    },
+    {
+      "pair_id": "dc4250decae860ff8153253ac03a59cc9df4cfd2f8b4ba6d1547aea7604c3787",
+      "query": {
+        "id": "test-linalg-034",
+        "problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+        "category": "高等代数",
+        "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+        "split": "test",
+        "record_sha256": "a568460e7252e3196f2f81ad5738681519543375bd684af31e302ac14bb50cc3"
+      },
+      "train": {
+        "id": "draft-c36-02",
+        "problem": "用特征值方法判断二次型 $f(x,y,z)=2x^2+2y^2+2z^2-2xy-2yz$ 是否正定。",
+        "category": "高等代数",
+        "problem_sha256": "f3e24e0f6875e4183b1e3634be36ffadb64f44fd19b068c34b90c2fb8c856225",
+        "record_sha256": "8516d42bb4099ffb8cb5a5b731b8307a0102dabb4eef5fc588184b6010b48dee"
+      }
+    },
+    {
+      "pair_id": "a6258ecc86e5452f1a6d0fd1093dc44b4c92c050dddd9b37cdf9df1f3208c129",
+      "query": {
+        "id": "test-linalg-034",
+        "problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+        "category": "高等代数",
+        "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+        "split": "test",
+        "record_sha256": "a568460e7252e3196f2f81ad5738681519543375bd684af31e302ac14bb50cc3"
+      },
+      "train": {
+        "id": "draft-c36-01",
+        "problem": "本题正定矩阵指实对称且二次型对所有非零实向量为正的矩阵。设 $A$ 为 $n$ 阶正定矩阵。证明 $A^{-1}$ 也是正定矩阵；并举出两个正定矩阵，其乘积不是正定矩阵的例子。",
+        "category": "高等代数",
+        "problem_sha256": "48acc56dca76cbce1df2284d61f6b073ca59cff431ae9fcc629f3dbb3b768279",
+        "record_sha256": "f1af4b8c852355b0629a01ea89a13081dd29765e1e72af700749ef5478a8ab20"
+      }
+    },
+    {
+      "pair_id": "84d6d7d33ac4f7d100c23e599e791b8db243eb9bc537af67e2168527b2b3c533",
+      "query": {
+        "id": "test-linalg-034",
+        "problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+        "category": "高等代数",
+        "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+        "split": "test",
+        "record_sha256": "a568460e7252e3196f2f81ad5738681519543375bd684af31e302ac14bb50cc3"
+      },
+      "train": {
+        "id": "draft-c36-04",
+        "problem": "判断二次型 $f(x,y,z)=(x-y)^2+2(y-z)^2$ 是否正定；若不正定，判断其是否半正定，并求该二次型的秩。",
+        "category": "高等代数",
+        "problem_sha256": "bab8b42abc2dcc7a577d928d0d72ee8ccb8df4ffa09e554750c5b4025c113a33",
+        "record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3"
+      }
+    },
+    {
+      "pair_id": "ba9696688a97605465c81c6339d6c16f7bbd7ca80e4fb9562ebaf40127e25750",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "split": "eval",
+        "record_sha256": "a9ecd6d6dcb777ceabf5edf204a0beec2a5e9132d2dc2ff3382aa2431d156e92"
+      },
+      "train": {
+        "id": "draft-c37-04",
+        "problem": "在 $\\mathbb R^2$ 中，设从标准基 $\\varepsilon$ 到基 $\\eta=\\{\\eta_1=(1,1),\\eta_2=(1,-1)\\}$ 的过渡矩阵为 $P$，从 $\\eta$ 到基 $\\zeta=\\{\\zeta_1=(2,1),\\zeta_2=(1,2)\\}$ 的过渡矩阵为 $Q$。求 $P$、$Q$ 与从 $\\varepsilon$ 到 $\\zeta$ 的过渡矩阵，并验证后者等于 $PQ$；若向量 $\\alpha$ 在基 $\\zeta$ 下的坐标为 $(1,1)$，求 $\\alpha$ 在标准基下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "fe90e46926ba60bf691b12b60bb7904520d53fb3574ddf5948f080a920c995ec",
+        "record_sha256": "6ff20e2a8a9dbd7e8cf88a7962045cf942f5b2956a5ca7791642cb56108cb1b2"
+      }
+    },
+    {
+      "pair_id": "b0f7ae0943394f87a631ceb76ac668c1e4db4e3a1c7956a906081890650b5d47",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "split": "eval",
+        "record_sha256": "a9ecd6d6dcb777ceabf5edf204a0beec2a5e9132d2dc2ff3382aa2431d156e92"
+      },
+      "train": {
+        "id": "draft-c37-01",
+        "problem": "在 $\\mathbb R^3$ 中，求从标准基 $\\varepsilon_1,\\varepsilon_2,\\varepsilon_3$ 到基 $\\eta_1=(1,1,0)$，$\\eta_2=(0,1,1)$，$\\eta_3=(1,0,1)$ 的过渡矩阵，并求向量 $\\alpha=(1,2,3)$ 在基 $\\eta_1,\\eta_2,\\eta_3$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "6c25cdea3c2739e0bc8bc7794cabc083f421eae019c488d6aa1f3b2d5d140273",
+        "record_sha256": "97bc115a1df7972b432ec0c40ad5f2425aabfb3e0cb9b5444f8fc3b98f6a000a"
+      }
+    },
+    {
+      "pair_id": "5dbf23e5cc64d99a2fdabf082553d8aba64b8bba6da3ca646b155f0b1c054ffd",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "split": "eval",
+        "record_sha256": "a9ecd6d6dcb777ceabf5edf204a0beec2a5e9132d2dc2ff3382aa2431d156e92"
+      },
+      "train": {
+        "id": "draft-c37-02",
+        "problem": "在次数不超过 $2$ 的实系数多项式空间 $V$ 中，求从基 $\\{1,x,x^2\\}$ 到基 $\\{1,\\,x-1,\\,(x-1)^2\\}$ 的过渡矩阵，并求 $p(x)=2x^2+3x+4$ 在新基下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "507663e71641ececb37c33aeaaedba4ed129ae1b959ead84cd9a3456bb2c8013",
+        "record_sha256": "f4fb090c730068c31996d53d46c91710a098c53bcbdc530badec85491657eff0"
+      }
+    },
+    {
+      "pair_id": "c93c1877efa885e00477f45bd07d95161097afa12d92c09ae64fd764d8a5d4ac",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c27-01",
+        "problem": "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+        "category": "高等代数",
+        "problem_sha256": "e47d2b3b1f1c4b8daf014b83a8d8806e6c9ee6827d5136230c33f2092234dce8",
+        "record_sha256": "93109f0039ded5fc20091850b6dc8bda19ebaf4c70bcd9fb0437221d5a80e031"
+      }
+    },
+    {
+      "pair_id": "404b4d6d5073a2e59bf4f87ca8d67910b60e90e0f42b5ca92042292217b3c8a1",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c27-04",
+        "problem": "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+        "category": "高等代数",
+        "problem_sha256": "ecfe2128708705dcf37f5acd29a0142d59f6069a8a516e325533a1a9a084420a",
+        "record_sha256": "4c90e80511445f7fa2265bcd892c6279a0d3e0df75d73e3b9cae6e47a3a5eefb"
+      }
+    },
+    {
+      "pair_id": "f3b88b3d26c8ecbe3087841d0326e62b1a2d443725ad313373ddde84240b2333",
+      "query": {
+        "id": "test-prob-001",
+        "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+        "category": "概率论",
+        "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+        "split": "test",
+        "record_sha256": "f6c615ec311fba7f59bae5c921604fb8a720b5c9b3d038651ddde685bceeff2d"
+      },
+      "train": {
+        "id": "draft-c51-03",
+        "problem": "某疾病患病率为 $\\frac{1}{1000}$。一次检测对患病者呈阳性的概率为 $\\frac{99}{100}$，对未患病者呈阳性的概率为 $\\frac{1}{100}$。某人第一次检测呈阳性，随后做了一次独立(在给定患病状态下)的同类检测，仍呈阳性。求两次检测后此人患病的概率，并与第一次检测后的概率对比。",
+        "category": "概率论",
+        "problem_sha256": "f744cdc40dc68575703fd15ce690cd47d5ed892299dce9fec04d9bf24840c21f",
+        "record_sha256": "5bcb4a9d8b5191c33cbc9561e2522e70721ffc36b89134cdb8c9e00ed6e46635"
+      }
+    },
+    {
+      "pair_id": "977903bba6ce8fcb4937a50bdf15a47aa4fa89d7f36e45e1d8902b33fde19205",
+      "query": {
+        "id": "test-prob-001",
+        "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+        "category": "概率论",
+        "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+        "split": "test",
+        "record_sha256": "f6c615ec311fba7f59bae5c921604fb8a720b5c9b3d038651ddde685bceeff2d"
+      },
+      "train": {
+        "id": "draft-c51-04",
+        "problem": "设一枚硬币正面朝上的概率为 $\\theta$，先验取 $\\theta\\sim U(0,1)$。抛 $10$ 次观察到 $7$ 次正面。求 $\\theta$ 的后验密度与后验均值。",
+        "category": "概率论",
+        "problem_sha256": "06340fac48b7a1dde5fc96f695f40536d34807022bbbe85daa49d9ffe353bbc9",
+        "record_sha256": "c258f15004ca0661f8dad59a6d8d09d8b41c8b23c384d17ec8ebe434c33994b3"
+      }
+    },
+    {
+      "pair_id": "5bc61fa9e5a5cd370091988995398e7505543d01507045338597287227cde8b4",
+      "query": {
+        "id": "test-prob-001",
+        "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+        "category": "概率论",
+        "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+        "split": "test",
+        "record_sha256": "f6c615ec311fba7f59bae5c921604fb8a720b5c9b3d038651ddde685bceeff2d"
+      },
+      "train": {
+        "id": "draft-c51-02",
+        "problem": "先随机选择硬币参数$\\Theta$：$P(\\Theta=1/4)=2/3$，$P(\\Theta=3/4)=1/3$。给定$\\Theta$后各次抛掷独立，正面概率为$\\Theta$。观测前三次恰有两次正面，求$\\Theta$的后验分布及第四次为正面的预测概率。",
+        "category": "概率论",
+        "problem_sha256": "4710360c831282882e36666c3cbbd334095da1f284f816081d496d9a39ab64b4",
+        "record_sha256": "28195b62e5c5a09377793c69cd8db21834009f43e0ae074cf3bb4285109f8db4"
+      }
+    },
+    {
+      "pair_id": "386417a406b03b4c78f7fb55ec7ed26a8730f9af403933f928643e39cc932aa3",
+      "query": {
+        "id": "test-x-002",
+        "problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+        "category": "跨学科",
+        "problem_sha256": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+        "split": "test",
+        "record_sha256": "c5da41363b9c9c1582728be61d20361af471fdd0b8fd0d7509a063320f9732a2"
+      },
+      "train": {
+        "id": "draft-c52-02",
+        "problem": "设随机变量 $X\\sim N(0,1)$，求 $Y=X^2$ 的概率密度函数。",
+        "category": "概率论",
+        "problem_sha256": "35bdcf5bf4dd82971eddba175ed55449d234e698742bce03255a3a72b8f71e94",
+        "record_sha256": "bd156d2d8c5a78590a008b0ab99ccd63c87d8dc6b586f5689b1816fd7bd22f7a"
+      }
+    },
+    {
+      "pair_id": "dcdc5ce22f4f353bb2b6057498f49d98c0ae5da459c0700bf1d2046184bb63d9",
+      "query": {
+        "id": "test-x-002",
+        "problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+        "category": "跨学科",
+        "problem_sha256": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+        "split": "test",
+        "record_sha256": "c5da41363b9c9c1582728be61d20361af471fdd0b8fd0d7509a063320f9732a2"
+      },
+      "train": {
+        "id": "draft-c52-05",
+        "problem": "设随机变量 $X$ 的分布函数 $F$ 连续，在某区间 $I$ 上严格递增，且 $P(X\\in I)=1$、$F(I)=(0,1)$。证明 $Y=F(X)\\sim U(0,1)$。再设目标随机变量 $Z$ 的密度为 $g(z)=\\begin{cases}\\frac12,&0<z<1\\\\ z-1,&1<z<2\\\\0,&\\text{otherwise}\\end{cases}$。给定 $U\\sim U(0,1)$，构造 $Z=T(U)$，写出完整分布函数并验证其分布；说明为何 $T$ 必须分段。",
+        "category": "概率论",
+        "problem_sha256": "2bf8dc9a3175e22b3dfcff81e6f1c258cf4ce4764a9bcc87f589118a23ce8573",
+        "record_sha256": "c255b1f473a632b95cdc3d5b2d16b23a6dd918649552c9944afb4260284884a6"
+      }
+    },
+    {
+      "pair_id": "77916c297d3660f12b1451e79a9f00798199ecddeb7ee167e0e32a1f2e24de71",
+      "query": {
+        "id": "test-x-002",
+        "problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+        "category": "跨学科",
+        "problem_sha256": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+        "split": "test",
+        "record_sha256": "c5da41363b9c9c1582728be61d20361af471fdd0b8fd0d7509a063320f9732a2"
+      },
+      "train": {
+        "id": "draft-c52-01",
+        "problem": "设随机变量 $X$ 的概率密度为 $f_X(x)=2x\\ (0<x<1)$，其余为 $0$。求 $Y=3X+1$ 的概率密度函数。",
+        "category": "概率论",
+        "problem_sha256": "044353d060302f84cf24c3b696340c0881c5d5adc2c425e8281a5850e7c3e89c",
+        "record_sha256": "fe46b227ffc876f0298a2d48ac356568f53ed18f70c6b190009c9522fc66f64e"
+      }
+    },
+    {
+      "pair_id": "7c60e6365a757d51418611995f793fd794017707a3eddb980dfff40ec4e41b76",
+      "query": {
+        "id": "eval-calc-007",
+        "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+        "category": "数学分析",
+        "problem_sha256": "879555b14eabf37dec48c4bae88b134b338ed10dd583470c8b714566951710f5",
+        "split": "eval",
+        "record_sha256": "f87a820edbbebe2af6ad179148407a7330b2664cc3073081dd677e72483eea61"
+      },
+      "train": {
+        "id": "draft-c01-02",
+        "problem": "设 $f(x)=\\begin{cases}x^2+a, & x\\leq 1\\\\ bx+1, & x>1\\end{cases}$，其中 $a,b$ 为常数。求使 $f$ 在 $x=1$ 处连续的条件；在连续前提下，求使 $f$ 在 $x=1$ 处可微（具有有限斜率的切线）的条件，并写出此时的切线方程；再给出一组参数，使 $f$ 在 $x=1$ 处连续但不可微，并说明曲线在该点处的几何特征。",
+        "category": "数学分析",
+        "problem_sha256": "f8db7a19ccbce9b45786517291146e25572aa144b7f01948745d09df9f358f84",
+        "record_sha256": "f05b35ae8d984b3653779830dcfed89ef00272c9a7d4813201affc77ccaf52b9"
+      }
+    },
+    {
+      "pair_id": "2bbebfa100dcb8a8bc5b10ad36463fb1250296082f773ecf7ddf11e4cc2cd18d",
+      "query": {
+        "id": "eval-calc-005",
+        "problem": "求函数 $y=x^x$（$x>0$）的导数。",
+        "category": "数学分析",
+        "problem_sha256": "83499622a2133f409138dc1e6eba6307a8b0e78351badfe11147f8f8eb011089",
+        "split": "eval",
+        "record_sha256": "1f3cb6e673ca6c7be77d96607eea303b407c366ce981611f5fea300a4041e74a"
+      },
+      "train": {
+        "id": "draft-c01-02",
+        "problem": "设 $f(x)=\\begin{cases}x^2+a, & x\\leq 1\\\\ bx+1, & x>1\\end{cases}$，其中 $a,b$ 为常数。求使 $f$ 在 $x=1$ 处连续的条件；在连续前提下，求使 $f$ 在 $x=1$ 处可微（具有有限斜率的切线）的条件，并写出此时的切线方程；再给出一组参数，使 $f$ 在 $x=1$ 处连续但不可微，并说明曲线在该点处的几何特征。",
+        "category": "数学分析",
+        "problem_sha256": "f8db7a19ccbce9b45786517291146e25572aa144b7f01948745d09df9f358f84",
+        "record_sha256": "f05b35ae8d984b3653779830dcfed89ef00272c9a7d4813201affc77ccaf52b9"
+      }
+    },
+    {
+      "pair_id": "9fbfd126e4cf82ee5dd169d80be7fd3a661b53d99c80eec4598c7e9bef074e89",
+      "query": {
+        "id": "eval-calc-019",
+        "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+        "split": "eval",
+        "record_sha256": "2216b38fe33de643ae32651d937a191afd51b9a6fb75bd803b2fb85088294d6a"
+      },
+      "train": {
+        "id": "draft-c02-05",
+        "problem": "对实参数$a$，讨论$\\int_0^{\\infty}x^{a-1}/(1+x)\\,dx$的收敛性，必须同时处理零点与无穷远。并在$a=1/2$时求精确值。",
+        "category": "数学分析",
+        "problem_sha256": "1e3b35e2384192fed58d7b8d695167c6fdc38b9e672ad73325e64c91e7646f89",
+        "record_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6"
+      }
+    },
+    {
+      "pair_id": "5802aa18b93f67f9c54144bb3c513bd20c7f78aad90381be230bf26d22bd7fa7",
+      "query": {
+        "id": "eval-calc-020",
+        "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+        "category": "数学分析",
+        "problem_sha256": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+        "split": "eval",
+        "record_sha256": "4c25b45a872c5e8f78fa6b7e2c2ab5acf3d90237a3f0b506e47494b6efd2e358"
+      },
+      "train": {
+        "id": "draft-c02-01",
+        "problem": "证明广义积分$\\int_1^{\\infty}\\sin(x^2)\\,dx$收敛但不绝对收敛，并给出对任意$T>R\\ge1$均成立的精确尾积分上界。无需计算积分的具体值。",
+        "category": "数学分析",
+        "problem_sha256": "4ae63ddc0b29fdd49882a3a78329cf4cf62d712268ceef75c05ecb157198603b",
+        "record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a"
+      }
+    },
+    {
+      "pair_id": "634a7f66e3f93f4c0a770ebf226f6f778b91cf21e477f21c0a8dde68291f8705",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "split": "eval",
+        "record_sha256": "c08b569d035185c61d2737ce7e8288e3e4e244127983fc7a4705d89a896ad014"
+      },
+      "train": {
+        "id": "draft-c11-04",
+        "problem": "设$a_0=1,a_1=0$，$a_n=a_{n-1}+2a_{n-2}$（$n\\ge2$）。求幂级数$S(x)=\\sum_{n=0}^{\\infty}a_nx^n$的收敛域与和函数，并求$S(1/4)$。",
+        "category": "数学分析",
+        "problem_sha256": "da1a465cde9bec1513b81308885ea070ebb8c7c85c5ab7bcb15b672874c3bfda",
+        "record_sha256": "bd2d6778b72f7c96c4a38620fa43e94a1e73c75409b5b6c69e54476303bee444"
+      }
+    },
+    {
+      "pair_id": "278299ddb88358c1a6de984204304b87f4aedef482da561765c0e393cca01cb2",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "split": "eval",
+        "record_sha256": "c08b569d035185c61d2737ce7e8288e3e4e244127983fc7a4705d89a896ad014"
+      },
+      "train": {
+        "id": "draft-c11-01",
+        "problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\left(\\frac{n}{n+1}\\right)^{n^2}x^n$ 的收敛域。",
+        "category": "数学分析",
+        "problem_sha256": "aeb540e75ceb5c1fc8e4012724b9bc63ed68bd537eee93ec35d7a2ad7db6f941",
+        "record_sha256": "ed7c57029b7d328e66d357e3cf333c61e54ae6077cf3a22e6ed098b98d046d6b"
+      }
+    },
+    {
+      "pair_id": "de36670d145883445b4508104e2a3faabc66b8395ce00b276362a5766e2e0026",
+      "query": {
+        "id": "eval-linalg-029",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "category": "高等代数",
+        "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "split": "eval",
+        "record_sha256": "c13e476cb43f6bf557b3e9c5a60a243ad9e20d9d04d34c22608d5e059162fc3f"
+      },
+      "train": {
+        "id": "draft-c26-04",
+        "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+        "category": "高等代数",
+        "problem_sha256": "2ffc3668d7ba49bd78085b80e69ac116c4bc51021bb3295ff58a61b17937c8a8",
+        "record_sha256": "2c247e5f0a5729041ccb4fa2084f14e0e36cc65489c7500b700c0aa1748ad617"
+      }
+    },
+    {
+      "pair_id": "8e51968612f99405a9fce51e9317967ac234e7ad77db7f7888c54e3e351f9563",
+      "query": {
+        "id": "eval-linalg-029",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "category": "高等代数",
+        "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "split": "eval",
+        "record_sha256": "c13e476cb43f6bf557b3e9c5a60a243ad9e20d9d04d34c22608d5e059162fc3f"
+      },
+      "train": {
+        "id": "draft-c26-03",
+        "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+        "category": "高等代数",
+        "problem_sha256": "5e214d3b13ccbae4edece4dfebe4273a72d3d5837a65a9589febf7b07ec55c5f",
+        "record_sha256": "3fdfb579c3bf218488a75c008dd2d58901f87ab10969a79fd4e3e4f1555f6e37"
+      }
+    },
+    {
+      "pair_id": "2d1945f5e90e10c1cab88efce9c1b73e1911a210b4b96b76501e5e7bb08d5d49",
+      "query": {
+        "id": "eval-linalg-002",
+        "problem": "计算四阶行列式 $D=\\begin{vmatrix}1&1&1&1\\\\1&2&1&1\\\\1&1&3&1\\\\1&1&1&4\\end{vmatrix}$。",
+        "category": "高等代数",
+        "problem_sha256": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+        "split": "eval",
+        "record_sha256": "67a67a947365be0ec1075900e3527ba40e6fed6a7974e0ddc6a83d043122db9a"
+      },
+      "train": {
+        "id": "draft-c28-03",
+        "problem": "线性变换 $T(x)=Ax$，其中 $A=\\begin{pmatrix}1&1&1\\\\0&2&1\\\\0&0&3\\end{pmatrix}$。求单位立方体在 $T$ 下的像(一个平行六面体)的体积；并求 $T^{-1}$ 对应的体积缩放因子。",
+        "category": "高等代数",
+        "problem_sha256": "095fd8e0ec739e09f574b1db9a438998d7da2f8b14fd8bc6c4eeedc4ff5d5f9f",
+        "record_sha256": "1ddffd607dc4c956851d430ebf2dfa1589ff30ea511b10c07c4cd804f3b07a7f"
+      }
+    },
+    {
+      "pair_id": "49493e6183065c3957920c7c4b97845226329c33ec1a25a44ddaac972938c419",
+      "query": {
+        "id": "eval-linalg-001",
+        "problem": "计算范德蒙德行列式 $\\begin{vmatrix}1&1&1\\\\a&b&c\\\\a^2&b^2&c^2\\end{vmatrix}$，并求 $a=1,b=2,c=3$ 时的值。",
+        "category": "高等代数",
+        "problem_sha256": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+        "split": "eval",
+        "record_sha256": "324fb7a62b7559a15039d42f51edd40975efac45eabc8d642345ebc7f9e2efb6"
+      },
+      "train": {
+        "id": "draft-c28-03",
+        "problem": "线性变换 $T(x)=Ax$，其中 $A=\\begin{pmatrix}1&1&1\\\\0&2&1\\\\0&0&3\\end{pmatrix}$。求单位立方体在 $T$ 下的像(一个平行六面体)的体积；并求 $T^{-1}$ 对应的体积缩放因子。",
+        "category": "高等代数",
+        "problem_sha256": "095fd8e0ec739e09f574b1db9a438998d7da2f8b14fd8bc6c4eeedc4ff5d5f9f",
+        "record_sha256": "1ddffd607dc4c956851d430ebf2dfa1589ff30ea511b10c07c4cd804f3b07a7f"
+      }
+    },
+    {
+      "pair_id": "0518eefb40fea3168cce29051896ee61ccd292d73177e5a705ce768177a806b9",
+      "query": {
+        "id": "eval-linalg-023",
+        "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+        "category": "高等代数",
+        "problem_sha256": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+        "split": "eval",
+        "record_sha256": "231afa1ea7fda329cc30f8f083dd187e5f50c0313bcb1b17be1ffd1b67bef604"
+      },
+      "train": {
+        "id": "draft-c29-02",
+        "problem": "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+        "category": "高等代数",
+        "problem_sha256": "73bafa18aa722e66201d6d7b4527486c0b9e46d853ccd9efc0b7386538bfc0dd",
+        "record_sha256": "5c8d9374bf3a7484faaf5cc6360c4b9d2f09ac343dd354e0426a90a9a131bb2e"
+      }
+    },
+    {
+      "pair_id": "042da4bcaed7ba653eed454bf8f86431e6067efe3400e6cc449ad5784cdc7d7b",
+      "query": {
+        "id": "eval-linalg-022",
+        "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+        "category": "高等代数",
+        "problem_sha256": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+        "split": "eval",
+        "record_sha256": "c935711dd40d1dcfe08d9f45d6538836f84325607c413a9e73176df593003acb"
+      },
+      "train": {
+        "id": "draft-c29-02",
+        "problem": "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+        "category": "高等代数",
+        "problem_sha256": "73bafa18aa722e66201d6d7b4527486c0b9e46d853ccd9efc0b7386538bfc0dd",
+        "record_sha256": "5c8d9374bf3a7484faaf5cc6360c4b9d2f09ac343dd354e0426a90a9a131bb2e"
+      }
+    },
+    {
+      "pair_id": "f3ccd1a5486f5eed7936e4b12c63c672f0de202b266a047fe801c8a066a76860",
+      "query": {
+        "id": "eval-linalg-023",
+        "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+        "category": "高等代数",
+        "problem_sha256": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+        "split": "eval",
+        "record_sha256": "231afa1ea7fda329cc30f8f083dd187e5f50c0313bcb1b17be1ffd1b67bef604"
+      },
+      "train": {
+        "id": "draft-c30-03",
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "category": "高等代数",
+        "problem_sha256": "cef1e7a5619a2ede974a317235ab3b4a6863e0b8666cbb3c66069f346f971216",
+        "record_sha256": "93756fa5d40b0b2bc89f498386306319a767a25bb461490a2636f212d265a8a3"
+      }
+    },
+    {
+      "pair_id": "26ad772d85ceed3eb3438adca5490f22ec3f33a07462f8a9bfee94600169d976",
+      "query": {
+        "id": "eval-linalg-025",
+        "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+        "category": "高等代数",
+        "problem_sha256": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+        "split": "eval",
+        "record_sha256": "efee8e9a7d879ee78813ecbd55abd2ced6259ab2a37db17387e552133cfb26bf"
+      },
+      "train": {
+        "id": "draft-c30-04",
+        "problem": "已知多项式 $f$ 在 $x=1$ 处的展开为 $f=2+3(x-1)+(x-1)^2-(x-1)^3$。求 $f$ 按 $x$ 的幂展开的标准形式，并求 $f(1)$、$f'(1)$、$f''(1)$。",
+        "category": "高等代数",
+        "problem_sha256": "42e0e971e5a7ba38e6e75f8cfb9930220c4ac47b071cf8af4d05ea11f0522f67",
+        "record_sha256": "86c7a7e7b890c7fff04633659656f40fc1b78649437e6a0480bf52f81c758f33"
+      }
+    },
+    {
+      "pair_id": "cbec77464e0d31e62c0eb55beb32896ec19b41b5652598a650a2dfad84ca5954",
+      "query": {
+        "id": "eval-linalg-012",
+        "problem": "求参数 $a$ 使齐次线性方程组 $\\begin{cases}ax+y+z=0\\\\x+ay+z=0\\\\x+y+az=0\\end{cases}$ 有非零解，并求各情形下的解空间。",
+        "category": "高等代数",
+        "problem_sha256": "eca94dd328c2837df1ecc6af4e86ba64605fe51fcd2de147645a2fe21136802b",
+        "split": "eval",
+        "record_sha256": "33c037ccc1b3f829a6f6564da0fb52695a5bd07f61830a8abf611136eea5acff"
+      },
+      "train": {
+        "id": "draft-c31-03",
+        "problem": "用克拉默法则求方程组 $\\begin{cases}x+y+z=1\\\\ x+y+2z=2\\\\ x+2y+az=3\\end{cases}$ 的解，并说明解与参数 $a$ 的关系。",
+        "category": "高等代数",
+        "problem_sha256": "f3e27046c7acbc995be27291e1d5937f87991f210c45a17f0d5c9871aa17616a",
+        "record_sha256": "dd7bb9d15c2e898c1bec639ed1bf94716f197b1a24b00e4c218b783a512bd2c1"
+      }
+    },
+    {
+      "pair_id": "007ab0f6efbdbc5641afe2ec3e521c6ef0ceb8722a0a4a644d49c8ec9ef7c1b2",
+      "query": {
+        "id": "eval-linalg-011",
+        "problem": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+        "category": "高等代数",
+        "problem_sha256": "ffc720f969aa792b7f020d572ddd7402a2b3111d65e94724d8cb5e568506564e",
+        "split": "eval",
+        "record_sha256": "91c1484360344a66b13a458aff7706c610d5e743ac700f6ab36575773a27d6de"
+      },
+      "train": {
+        "id": "draft-c31-05",
+        "problem": "证明:若 $n$ 阶系数矩阵 $A$ 的行列式 $D=\\det A\\neq0$,则线性方程组 $AX=b$ 有唯一解,且解由克拉默公式给出:$x_j=\\frac{D_j}{D}$,其中 $D_j$ 是把 $A$ 的第 $j$ 列换成 $b$ 所得的行列式。",
+        "category": "高等代数",
+        "problem_sha256": "1f05b30731a4f8f510ce37663c76c2f09d7961cc48127cc64f490b19bb69228d",
+        "record_sha256": "ab217838e54476f726a45ba0c0299bfba92a3c1206a3004659a2ef64bd9ea1d6"
+      }
+    },
+    {
+      "pair_id": "da0d22eba6f3c8bf4147fa4f60573c494688e365b18e333122dabf281fd88029",
+      "query": {
+        "id": "eval-linalg-011",
+        "problem": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+        "category": "高等代数",
+        "problem_sha256": "ffc720f969aa792b7f020d572ddd7402a2b3111d65e94724d8cb5e568506564e",
+        "split": "eval",
+        "record_sha256": "91c1484360344a66b13a458aff7706c610d5e743ac700f6ab36575773a27d6de"
+      },
+      "train": {
+        "id": "draft-c32-01",
+        "problem": "求$\\mathbb R^5$中满足$x_{i+2}-2x_{i+1}+x_i=0$（$i=1,2,3$）的子空间的基与维数，并证明解的表达式完整。",
+        "category": "高等代数",
+        "problem_sha256": "4db80737aeaed3b903c1238154f8674b75a708fe3e1b6da94557708d7314fee1",
+        "record_sha256": "ce523b76f748a34f98fba6a7c7dc246aca86a422c103b1b576ca130872889ff5"
+      }
+    },
+    {
+      "pair_id": "17d46a14d74154166381181be8cf9e3dced194a28de8881cbe8303e58ca60810",
+      "query": {
+        "id": "eval-linalg-012",
+        "problem": "求参数 $a$ 使齐次线性方程组 $\\begin{cases}ax+y+z=0\\\\x+ay+z=0\\\\x+y+az=0\\end{cases}$ 有非零解，并求各情形下的解空间。",
+        "category": "高等代数",
+        "problem_sha256": "eca94dd328c2837df1ecc6af4e86ba64605fe51fcd2de147645a2fe21136802b",
+        "split": "eval",
+        "record_sha256": "33c037ccc1b3f829a6f6564da0fb52695a5bd07f61830a8abf611136eea5acff"
+      },
+      "train": {
+        "id": "draft-c32-02",
+        "problem": "求$V=\\{x\\in\\mathbb R^4:\\sum_{i=0}^3x_i=0,\\ \\sum_{i=0}^3i x_i=0\\}$的基与维数，证明给出的基张成全部解。",
+        "category": "高等代数",
+        "problem_sha256": "9e839c20715f27b39aea673e98e62c0176aca66155f2bd80dc0f837891d2763b",
+        "record_sha256": "0f09d6959fc6685290486905963cfb5e3729c2935f1a8b6b9f1293096873b51c"
+      }
+    },
+    {
+      "pair_id": "e01fd08155585e6a809d1a995cd47e496a13fcd4e69a40cd43f454ae1639fdec",
+      "query": {
+        "id": "eval-linalg-009",
+        "problem": "用分块方法计算 $M=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\0&0&3\\end{pmatrix}$ 的行列式。",
+        "category": "高等代数",
+        "problem_sha256": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+        "split": "eval",
+        "record_sha256": "b717a2f37686eb13a3c2f493048e008c0e07ba2a3b5227535c688f92508bd19a"
+      },
+      "train": {
+        "id": "draft-c33-05",
+        "problem": "令加权循环矩阵$C=\\begin{pmatrix}0&2&0\\\\0&0&3\\\\1/6&0&0\\end{pmatrix}$，$A_t=I-tC$，$t\\in\\mathbb R$。用矩阵多项式恒等式求全部可逆参数及逆矩阵。在唯一奇异参数下，求$A_tx=b$的相容条件与全部解。",
+        "category": "高等代数",
+        "problem_sha256": "9db5e5f1f7777a716bba67e53d5bfdb4ee10640ed400cfd7c50ac868d81ddeb6",
+        "record_sha256": "b7f792aec4e5fae917a471c111eb013876fd9298d590a225eae38fc547e841cb"
+      }
+    },
+    {
+      "pair_id": "79b68a6d7117e23e0e17c0c0287bf4d62d997efe06b6ed7c9cfa7559b6f1e55e",
+      "query": {
+        "id": "eval-linalg-007",
+        "problem": "设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。",
+        "category": "高等代数",
+        "problem_sha256": "90c1821f68e0f9e69c06d8cd18f3800de333052a7cad7ae6cd30d67eb59c6b96",
+        "split": "eval",
+        "record_sha256": "ffdc46e969f12e0e82d52015b9198fcc61f8397b94be4058836cb0a92223fca9"
+      },
+      "train": {
+        "id": "draft-c33-05",
+        "problem": "令加权循环矩阵$C=\\begin{pmatrix}0&2&0\\\\0&0&3\\\\1/6&0&0\\end{pmatrix}$，$A_t=I-tC$，$t\\in\\mathbb R$。用矩阵多项式恒等式求全部可逆参数及逆矩阵。在唯一奇异参数下，求$A_tx=b$的相容条件与全部解。",
+        "category": "高等代数",
+        "problem_sha256": "9db5e5f1f7777a716bba67e53d5bfdb4ee10640ed400cfd7c50ac868d81ddeb6",
+        "record_sha256": "b7f792aec4e5fae917a471c111eb013876fd9298d590a225eae38fc547e841cb"
+      }
+    },
+    {
+      "pair_id": "02b19f119390c4bfb215d9a7d915d65fb2ea1d8d03d6024740cc0e04546576b1",
+      "query": {
+        "id": "eval-linalg-010",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&1&2\\\\2&1&3\\\\1&2&3\\end{pmatrix}$ 的秩。",
+        "category": "高等代数",
+        "problem_sha256": "e3717dc5aea9d521f06582634a09534d94068c3508320e8ef0c32e6cae909e09",
+        "split": "eval",
+        "record_sha256": "5e0be3971ab12d798f5cbd222812110302b02b5b337d2f4542362d52d98223a1"
+      },
+      "train": {
+        "id": "draft-c34-01",
+        "problem": "设 $E=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&5\\end{pmatrix}$。说明用 $E$ 左乘与右乘一个 $3$ 阶矩阵 $A$ 分别对 $A$ 做了什么操作。",
+        "category": "高等代数",
+        "problem_sha256": "f9f4eb0c8b37c4edc63af2417647a50a9a72c77c88b74278357bd1b03cab36d1",
+        "record_sha256": "1e34139f904555e9c5c3ce653df70ff0e8d8b3c7176e4d251590e3f0eaab4150"
+      }
+    },
+    {
+      "pair_id": "966bfff04b3d2c5377b1c44b561646e7df89491547dc2565681a62a817963295",
+      "query": {
+        "id": "eval-linalg-010",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&1&2\\\\2&1&3\\\\1&2&3\\end{pmatrix}$ 的秩。",
+        "category": "高等代数",
+        "problem_sha256": "e3717dc5aea9d521f06582634a09534d94068c3508320e8ef0c32e6cae909e09",
+        "split": "eval",
+        "record_sha256": "5e0be3971ab12d798f5cbd222812110302b02b5b337d2f4542362d52d98223a1"
+      },
+      "train": {
+        "id": "draft-c34-05",
+        "problem": "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+        "category": "高等代数",
+        "problem_sha256": "c2f52fa789b02e7d37f55c4b5d9d623bcb2fe2a7d7db4639589cde8fe39bfc62",
+        "record_sha256": "20902b324bccf0dd3b97f77eeeeb39a0ad9a3d29e06393babdd074116d27407f"
+      }
+    },
+    {
+      "pair_id": "0791bc7d61b0e037788c419df42c186001e80eb35abf23deb8e5c4330661b75e",
+      "query": {
+        "id": "eval-linalg-020",
+        "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+        "category": "高等代数",
+        "problem_sha256": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+        "split": "eval",
+        "record_sha256": "29547e0c1adfc4eebb6a81b49c781dea595a2e6529778f2e9e4c2573713f1c2e"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数",
+        "problem_sha256": "e8f6ad3b143d5c32d6453bd7df102b2ea829f999a8ebb0ac689fda5a2cdea383",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50"
+      }
+    },
+    {
+      "pair_id": "10ddb66f7b0b212cbbc799715bb97f87eac8d8c519bd5c0f1e6b045a82107f15",
+      "query": {
+        "id": "eval-linalg-021",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "category": "高等代数",
+        "problem_sha256": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+        "split": "eval",
+        "record_sha256": "68cfa08e74279a7492b5c28c0629b822da2d0cc2f2caa6e6ea033ea27e0f87f7"
+      },
+      "train": {
+        "id": "draft-c35-05",
+        "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy$ 与 $g(x,y,z)=2x^2+3y^2+4z^2$ 是否合同，并说明理由；若合同，构造可逆矩阵 $C$ 使 $C^{\\mathsf{T}}AC=B$。",
+        "category": "高等代数",
+        "problem_sha256": "0509a69d467fea0338e802f5def5cf0302b148e7458f459953af71f891282d2d",
+        "record_sha256": "ab751a5530a1c549bc7c7995410fc69bfb9f0bed2d12ce625bef322fdb9505be"
+      }
+    },
+    {
+      "pair_id": "af162a70d55d6b960f7229bb318cdda4462744f2da868e327a196c171c08ea12",
+      "query": {
+        "id": "eval-linalg-019",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+        "category": "高等代数",
+        "problem_sha256": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+        "split": "eval",
+        "record_sha256": "8528f8bbbc10a1b020fd0b37e4ae8be939c74953b6f8843c88592486e7d1af9e"
+      },
+      "train": {
+        "id": "draft-c36-01",
+        "problem": "本题正定矩阵指实对称且二次型对所有非零实向量为正的矩阵。设 $A$ 为 $n$ 阶正定矩阵。证明 $A^{-1}$ 也是正定矩阵；并举出两个正定矩阵，其乘积不是正定矩阵的例子。",
+        "category": "高等代数",
+        "problem_sha256": "48acc56dca76cbce1df2284d61f6b073ca59cff431ae9fcc629f3dbb3b768279",
+        "record_sha256": "f1af4b8c852355b0629a01ea89a13081dd29765e1e72af700749ef5478a8ab20"
+      }
+    },
+    {
+      "pair_id": "dd79f6248051670f181bd643872ed5ce3e001d2e6ec4bdb58c119629c342601d",
+      "query": {
+        "id": "eval-linalg-019",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+        "category": "高等代数",
+        "problem_sha256": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+        "split": "eval",
+        "record_sha256": "8528f8bbbc10a1b020fd0b37e4ae8be939c74953b6f8843c88592486e7d1af9e"
+      },
+      "train": {
+        "id": "draft-c36-02",
+        "problem": "用特征值方法判断二次型 $f(x,y,z)=2x^2+2y^2+2z^2-2xy-2yz$ 是否正定。",
+        "category": "高等代数",
+        "problem_sha256": "f3e24e0f6875e4183b1e3634be36ffadb64f44fd19b068c34b90c2fb8c856225",
+        "record_sha256": "8516d42bb4099ffb8cb5a5b731b8307a0102dabb4eef5fc588184b6010b48dee"
+      }
+    },
+    {
+      "pair_id": "7d59713b89b695307a521e5af02e0bc307ec96cbef0e8bf9a00907ed11d470b3",
+      "query": {
+        "id": "eval-linalg-027",
+        "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+        "category": "高等代数",
+        "problem_sha256": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+        "split": "eval",
+        "record_sha256": "7c522a136e92fc5369533c94a3220979d8d67b76265e64f6a697926ccdfad123"
+      },
+      "train": {
+        "id": "draft-c37-05",
+        "problem": "证明 $\\{1+x+x^2,\\ 1-x+x^2,\\ x-x^2\\}$ 是次数不超过 $2$ 的多项式空间的一组基，并求 $p(x)=x^2$ 在这组基下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "b3d22884aff4d2c849abe06e4f90ae4e583acafe3f38776d5e3dab2731b7635f",
+        "record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933"
+      }
+    },
+    {
+      "pair_id": "51a8684789177a2ea97101e983ef7d7796c63f594df2e3af4b73e22b174d7af6",
+      "query": {
+        "id": "eval-linalg-027",
+        "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+        "category": "高等代数",
+        "problem_sha256": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+        "split": "eval",
+        "record_sha256": "7c522a136e92fc5369533c94a3220979d8d67b76265e64f6a697926ccdfad123"
+      },
+      "train": {
+        "id": "draft-c37-02",
+        "problem": "在次数不超过 $2$ 的实系数多项式空间 $V$ 中，求从基 $\\{1,x,x^2\\}$ 到基 $\\{1,\\,x-1,\\,(x-1)^2\\}$ 的过渡矩阵，并求 $p(x)=2x^2+3x+4$ 在新基下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "507663e71641ececb37c33aeaaedba4ed129ae1b959ead84cd9a3456bb2c8013",
+        "record_sha256": "f4fb090c730068c31996d53d46c91710a098c53bcbdc530badec85491657eff0"
+      }
+    },
+    {
+      "pair_id": "0902fe8e09a905006ae4b0e0648f8aba1794b8137cc254f9da1e87321442e381",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "split": "eval",
+        "record_sha256": "a9ecd6d6dcb777ceabf5edf204a0beec2a5e9132d2dc2ff3382aa2431d156e92"
+      },
+      "train": {
+        "id": "draft-c38-05",
+        "problem": "证明维数公式:若 $U,V$ 是有限维线性空间 $W$ 的子空间，则 $\\dim(U+V)=\\dim U+\\dim V-\\dim(U\\cap V)$。",
+        "category": "高等代数",
+        "problem_sha256": "242bb4553ab0755e748949420152fb94a65662ec2af3149d462e94e99948b414",
+        "record_sha256": "952e8e25970e16cfe77f1c9579c34ea1afcd6174a0f6fc9dc321b92ee42a6c9e"
+      }
+    },
+    {
+      "pair_id": "0564312300e565c8fec0c7c180f25c9cab2453aa584310bb5b7e7ce572ef0f70",
+      "query": {
+        "id": "eval-linalg-026",
+        "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+        "category": "高等代数",
+        "problem_sha256": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+        "split": "eval",
+        "record_sha256": "5dbfc37f12e25d69332260baf04a0255b05d211b773ebc2217d6ee27e84d25c4"
+      },
+      "train": {
+        "id": "draft-c38-02",
+        "problem": "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+        "category": "高等代数",
+        "problem_sha256": "172abca660f29da61f2f60d43cc2adccf536678fb6d47cc29ee88c4198129f7f",
+        "record_sha256": "48e9f598cfb32ba197794e7d4f893a32aafcb07549ecc366cf79b436bc49e998"
+      }
+    },
+    {
+      "pair_id": "4c6fface4d936675718dc5c041fe8e8c13f9c2e0ffb5c616d223bc9fb91371a9",
+      "query": {
+        "id": "eval-prob-002",
+        "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+        "category": "概率论",
+        "problem_sha256": "1e5f1e79b63078901b6948f6d06af027d16fb89723b3ec7c5b168b1558013d78",
+        "split": "eval",
+        "record_sha256": "635682e7627cb75c9259500ac0f8b328502df9ee644f353a0c4acbd0d0b33b2c"
+      },
+      "train": {
+        "id": "draft-c45-01",
+        "problem": "证明:若 $A,B$ 相互独立且 $P(A)>0,P(B)>0$，则 $A,B$ 不互斥；若 $A,B$ 互斥且概率均为正，则 $A,B$ 不独立。",
+        "category": "概率论",
+        "problem_sha256": "974a6d3b1e4d8b5a73705446f8924e16fbad52913b621b786c81b6c1dc855482",
+        "record_sha256": "ff4394f59e656fe53bb00a9d89c3d5cdfbe8bcf8091c7a12b8a0df538a67601f"
+      }
+    },
+    {
+      "pair_id": "9bd06bf0f05d89967d46fb87782c7635a401707d5db1bd4bf310753b4e96efc2",
+      "query": {
+        "id": "eval-prob-001",
+        "problem": "三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。",
+        "category": "概率论",
+        "problem_sha256": "8a9db327ed0653427b7dc03f7d78496d88784a908d103d9dc829eb0d3414a39e",
+        "split": "eval",
+        "record_sha256": "36f5ba8613d59c9878227d7ab59533897eb905aa753429e086f34f6b4e521f8c"
+      },
+      "train": {
+        "id": "draft-c45-04",
+        "problem": "说明是否存在满足 $P(A|B)=\\frac{9}{10}$，$P(A|\\bar B)=\\frac45$，且 $P(A)=\\frac{1}{10}$ 的事件 $A,B$($0<P(B)<1$)；并说明一般情形下 $P(A)$ 必须满足什么约束。",
+        "category": "概率论",
+        "problem_sha256": "95b04bc4f7e094f390916cd9f1c723ec88d237e6ab065442c9e5c8c9e254492c",
+        "record_sha256": "e530412166df3348a620923afc3351df97ea9ec21ccf81afc14c7d286a784e64"
+      }
+    },
+    {
+      "pair_id": "b9873ab20b9509732cc3ec455e75b01e33f4e65488318a1eca748ee439a9f524",
+      "query": {
+        "id": "test-calc-006",
+        "problem": "求 $f(x)=\\ln(1+x)$ 的麦克劳林展开式，并归纳 $f^{(n)}(0)$ 的规律。",
+        "category": "数学分析",
+        "problem_sha256": "f708fdf69bf85f0096bc1e33bac9eeb5b0cb64cc2e729187349ae6b8fcb81891",
+        "split": "test",
+        "record_sha256": "ffd32e9a3ef5f648ec7353e7b35bd6edd587ddb70c908be3746c7780edcdc85a"
+      },
+      "train": {
+        "id": "draft-c05-03",
+        "problem": "求极限 $\\lim_{x\\to+\\infty}\\left(\\sqrt{x^2+2x}-x\\right)$。",
+        "category": "数学分析",
+        "problem_sha256": "040cf12292b9aa6e5696cb01efb24bd96708bc9d893e180b3e9f5822455ffecc",
+        "record_sha256": "9e7c7b0e1302b7ec8ed120f31b5080b935cd91d319b0b86002f35c475b69b05b"
+      }
+    },
+    {
+      "pair_id": "77e56fe3ffd7ca1359b23a5f808722734d056ed4c3ec2c5d5825ce3dc6c50975",
+      "query": {
+        "id": "eval-calc-019",
+        "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+        "split": "eval",
+        "record_sha256": "2216b38fe33de643ae32651d937a191afd51b9a6fb75bd803b2fb85088294d6a"
+      },
+      "train": {
+        "id": "draft-c06-01",
+        "problem": "求由抛物线 $y=x^2$ 与 $y=2-x^2$ 围成的封闭图形的面积。",
+        "category": "数学分析",
+        "problem_sha256": "bfc905243934e1bfa72cd54b3da96f0b3a7ac3f6e57ed76056bd3be6753c448a",
+        "record_sha256": "e13d2805407da196c52cea9594c8fe6a1d070ea58873515cb0988d3e4f0a49ce"
+      }
+    },
+    {
+      "pair_id": "01a8eec0026bf6abd5fb77d199836547dbc26d8168bea81e3db06ee08d88f0f3",
+      "query": {
+        "id": "test-calc-035",
+        "problem": "求幂级数 $\\displaystyle\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$ 与 $\\displaystyle\\sum_{n=0}^{\\infty}n!\\,x^n$ 的收敛半径，并对比说明。",
+        "category": "数学分析",
+        "problem_sha256": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "split": "test",
+        "record_sha256": "2a8526456e6713a71bfb864b59ca9081571f750c0e905b8e8dd5c460343648c9"
+      },
+      "train": {
+        "id": "draft-c12-01",
+        "problem": "证明函数项级数 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛。",
+        "category": "数学分析",
+        "problem_sha256": "7ea4b7c788bc241f9c45a8b1c8ce9f8f0d92e60ca34acc6e2cad27833af35736",
+        "record_sha256": "56ee34e9be90290d1542f584d6aa96d45dd56584e6238cd117dba15bac830e45"
+      }
+    },
+    {
+      "pair_id": "77a9d8b879dfa381e839dae26eddb929730d7e247ca3d580828e4afc23acc5b8",
+      "query": {
+        "id": "test-calc-030",
+        "problem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\int_0^1\\frac{x^n}{1+x}\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "83055e4762d726b9bf45ea249d66c74957b3ccde8b102b0177394d3c97797900",
+        "split": "test",
+        "record_sha256": "12953b4c44b80fd68b137314600b4dc6ab42b3a2db1008d6dedb4589843d3986"
+      },
+      "train": {
+        "id": "draft-c09-01",
+        "problem": "区域$D=\\{(x,y):0\\le x\\le1,-x\\le y\\le x^2\\}$绕$x$轴旋转。求体积，并说明为什么不能把上下边界的平方直接相减。",
+        "category": "数学分析",
+        "problem_sha256": "0697a8283c7dc321b4cc5bd1b92b078a46b13609413124fbde1d8fd528ad11ea",
+        "record_sha256": "1aff124bf6002db66787ab443b0c9aef6721868fc7acf360fc898894908db993"
+      }
+    },
+    {
+      "pair_id": "22f95faac5fe8e541ff5645703b7d66badbd7d6ed42d59ff7c5c64c8e07078b6",
+      "query": {
+        "id": "test-calc-004",
+        "problem": "求微分方程 $y'+2y=e^{-x}$ 的通解。",
+        "category": "数学分析",
+        "problem_sha256": "004a5c3cea6a5f72a1f93580ddffa01d8ee275ac552db5a678e3e01e86b972d4",
+        "split": "test",
+        "record_sha256": "0b691adec42dcbc11db68ebacd1be2729ccdf2d4170cd5660c6ea4e476ded8bb"
+      },
+      "train": {
+        "id": "draft-c04-03",
+        "problem": "用格林公式求 $\\oint_L -y^3\\,dx+x^3\\,dy$，其中 $L$ 为圆环 $1\\le x^2+y^2\\le4$ 的边界(外圆逆时针、内圆顺时针)，并说明内外圆方向相反的原因。",
+        "category": "数学分析",
+        "problem_sha256": "105d12645a335b6ac79475565ef6f6fbbcf73e35d76cd9e88a435b1ec9bec5ad",
+        "record_sha256": "1b3244edd9a2bc0e589e0c638195617f6c13dc7a2872c98ba288aa491da0cf69"
+      }
+    },
+    {
+      "pair_id": "84ab0bb98aedcf34b7d1185b49131bdd8d52c4fb7955528efcd534a170b813e2",
+      "query": {
+        "id": "eval-calc-013",
+        "problem": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "8e48e0d8ad49823f0064a70b3217ea20b0fa65ff03d0176a75048467e7b41bec",
+        "split": "eval",
+        "record_sha256": "1167b3e65f8169eefce0eb7d8e024804f1b36744c44aba40db70c34f65d73afd"
+      },
+      "train": {
+        "id": "draft-c09-04",
+        "problem": "矩形$[0,1]\\times[0,2]$绕直线$y=h$旋转，$h\\in\\mathbb R$。求体积关于$h$的完整分段表达式及所有使体积最小的轴位置。",
+        "category": "数学分析",
+        "problem_sha256": "b4ce16ef143c799a4df1c1da6b237f07745ec04395ebe33579d9cd15a6e87730",
+        "record_sha256": "2ade2f75e962904ec5588d7ff4805e2f01d750b6bc882b3622cea772cb96c268"
+      }
+    },
+    {
+      "pair_id": "c44ec9f6937aa01c8ec58730c61a94957a4bb4315f6a7a53c1955ae5cc66c7e6",
+      "query": {
+        "id": "test-calc-022",
+        "problem": "用高斯公式求 $\\displaystyle\\iint_S\\vec F\\cdot\\vec n\\,dS$，其中 $\\vec F=(x,y,z)$，$S$ 为单位球面 $x^2+y^2+z^2=1$（外侧），$\\vec n$ 为单位外法向量。",
+        "category": "数学分析",
+        "problem_sha256": "eecca6d889e7a8d3ed181a2f8180fd6793103f10d9dc2e6a05995440f74c5c4d",
+        "split": "test",
+        "record_sha256": "b90560730f71b26f8225f3394c90415d5ad89536f4f817b79128d3d834fd0012"
+      },
+      "train": {
+        "id": "draft-c08-04",
+        "problem": "求李萨如曲线 $\\begin{cases}x=\\cos t\\\\ y=\\sin 2t\\end{cases}$ 的两个环各自的面积与总面积，并说明沿全周期 $[0,2\\pi]$ 的有向积分为何为零。",
+        "category": "数学分析",
+        "problem_sha256": "b25223bad361c7c68749dea7cf1ac2eeb0c52584048cb227021c5191a326a9e8",
+        "record_sha256": "aac9d1746f07c204a9a59359872a0bc2c8f292f98b1d462fe19258a791c3ea9e"
+      }
+    },
+    {
+      "pair_id": "8b78545d259472350f5e1e4921eada788654411f8f0cc0f62b60146fe7368b3b",
+      "query": {
+        "id": "eval-calc-016",
+        "problem": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+        "category": "数学分析",
+        "problem_sha256": "ef2e5e7702d2b90237fc249adbcc6c5b7f04102067164afafc9d46b64dfe1194",
+        "split": "eval",
+        "record_sha256": "3ed9ee44ef67f9bb7dc24e59a70b9eb9b413ce27dd1817a21535cd2d17329f9d"
+      },
+      "train": {
+        "id": "draft-c03-05",
+        "problem": "用变量替换 $u=x+y$，$v=x-y$ 求二重积分 $\\iint_D (x+y)\\,dxdy$，其中 $D=[0,1]\\times[0,1]$。",
+        "category": "数学分析",
+        "problem_sha256": "179d6dbdca3eadfad674ddb5ca3202a161c525830270828ab285b0724a134289",
+        "record_sha256": "b206215ac653e1e441d53c4be7645bceadab4f1e20092c018dd4fa4506115237"
+      }
+    },
+    {
+      "pair_id": "8973c21de095ad5cca59080b2eea1142514ca9982f8c12df9bf53f49f26f8e22",
+      "query": {
+        "id": "eval-calc-024",
+        "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+        "category": "数学分析",
+        "problem_sha256": "d20461e9e541de80f28d13de7faaecbf4cc2d3fbe2d2fd544f283c9e1e978f20",
+        "split": "eval",
+        "record_sha256": "9320c4f9df2be3331d6c204d0fd4c4b2141eae076554cfc6210c796b890b47f0"
+      },
+      "train": {
+        "id": "draft-c01-01",
+        "problem": "求曲线 $y=x^3-3x^2+2$ 上切线平行于 $x$ 轴的所有点，并写出各点处的切线方程。",
+        "category": "数学分析",
+        "problem_sha256": "7a49523d7ae9ccc490dbca87e1e0ebf46edbb63ca3bbcf31ff58bbde84d2469f",
+        "record_sha256": "6352e00a8b923c1f40658a3792537e52d1559fdf2d8a11c481f21e6c45357918"
+      }
+    },
+    {
+      "pair_id": "1d650cedc97aa462ce232507ecf5dede29519e93357cc621eaedb4de7c6566d0",
+      "query": {
+        "id": "test-calc-024",
+        "problem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{\\sqrt[n]{n!}}{n}$。",
+        "category": "数学分析",
+        "problem_sha256": "70bbdfba6d7c6e65e3545339b922957285d60c256ee3d8fe00d0a461d14bcb45",
+        "split": "test",
+        "record_sha256": "cbb70411384f6f33a826ed0fcd9139db37305e70ac4cf54f62dde440d601bc6d"
+      },
+      "train": {
+        "id": "draft-c09-05",
+        "problem": "区域$D=\\{(x,y):0\\le x\\le3,\\ y\\in[1,2]\\cup[-x,0]\\}$绕$x$轴旋转。求其旋转像并集的体积，说明两部分分别旋转后的体积为什么不能直接相加。",
+        "category": "数学分析",
+        "problem_sha256": "03659303df6d8be5d369049eba8324052c3053d915d13bc2b96b13a9be851c7e",
+        "record_sha256": "7e09e1b3a2c2c693ecf76bc60fb3664c3b65bfcffc50eb9c85673dd0a4d251d1"
+      }
+    },
+    {
+      "pair_id": "4f37972b0de5fb1abab8b473d98d59b390107434cf08b66dd3d3ab73c4aa7ad6",
+      "query": {
+        "id": "test-calc-045",
+        "problem": "求 $\\displaystyle\\lim_{x\\to+\\infty}x^2\\left(2^{1/x}-2^{1/(x+1)}\\right)$。",
+        "category": "数学分析",
+        "problem_sha256": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+        "split": "test",
+        "record_sha256": "6cdd2d36a60884e1aa0d3d78734c32e1d6e97a65c48cfad27dde79aa49160fe2"
+      },
+      "train": {
+        "id": "draft-c02-05",
+        "problem": "对实参数$a$，讨论$\\int_0^{\\infty}x^{a-1}/(1+x)\\,dx$的收敛性，必须同时处理零点与无穷远。并在$a=1/2$时求精确值。",
+        "category": "数学分析",
+        "problem_sha256": "1e3b35e2384192fed58d7b8d695167c6fdc38b9e672ad73325e64c91e7646f89",
+        "record_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6"
+      }
+    },
+    {
+      "pair_id": "53a4eccf33356f317ab946da14ebb4263cbd986e6ec9321d16eac9adcc5853cf",
+      "query": {
+        "id": "eval-calc-002",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。",
+        "category": "数学分析",
+        "problem_sha256": "f9bedeee03135ef61cfd29f1e4f1384e82c9bc7bd6a725d7c33924390d50f66d",
+        "split": "eval",
+        "record_sha256": "1ff35b51fa5ef72538f863ba20138c09ee29342a79b1dbdbb5c3d429d1d64601"
+      },
+      "train": {
+        "id": "draft-c12-02",
+        "problem": "证明 $\\sum_{n=0}^{\\infty}x^n$ 在 $[-\\frac12,\\frac12]$ 上一致收敛，并说明在 $(-1,1)$ 上不一致收敛。",
+        "category": "数学分析",
+        "problem_sha256": "5ba6756ab03682265745c474741e4b29d4877336858e5a52cd35956855d60ba6",
+        "record_sha256": "ca93bac77d000919f94838eab50f31721deaaa8b97f950dbf2f336a4a4dfff9e"
+      }
+    },
+    {
+      "pair_id": "f4a8900e28518d106f14fe09d6bb5651db4948a6ce581de13f7b2a4d881a8769",
+      "query": {
+        "id": "test-prob-009",
+        "problem": "设 $X\\sim N(2,3)$（均值 2、方差 3），$Y=2X-1$。求 $Y$ 的分布与 $P(Y>3)$。",
+        "category": "概率论",
+        "problem_sha256": "e950c2eb5c911637c6a71ba6c78f09f6d4f5d6c215ee09dcfe38394cfc7d8e78",
+        "split": "test",
+        "record_sha256": "123e2389f5e9ab73309afbd2903a7b64848ff8d1263d43da70a9a5ff2fa473c0"
+      },
+      "train": {
+        "id": "draft-c52-01",
+        "problem": "设随机变量 $X$ 的概率密度为 $f_X(x)=2x\\ (0<x<1)$，其余为 $0$。求 $Y=3X+1$ 的概率密度函数。",
+        "category": "概率论",
+        "problem_sha256": "044353d060302f84cf24c3b696340c0881c5d5adc2c425e8281a5850e7c3e89c",
+        "record_sha256": "fe46b227ffc876f0298a2d48ac356568f53ed18f70c6b190009c9522fc66f64e"
+      }
+    },
+    {
+      "pair_id": "ec1bb1f78ed208c46ed7e5e4c46f331a848b31528554620cd34ece685b017b30",
+      "query": {
+        "id": "test-prob-007",
+        "problem": "某灯泡寿命 $T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)$（单位：小时，参数 $\\lambda=\\dfrac{1}{1000}$）。求 $P(T>1500\\mid T>500)$。",
+        "category": "概率论",
+        "problem_sha256": "178a5cd1c54a391adc84cbb047f823e2a33d70775f7b8425eb3e89c09c9abfdb",
+        "split": "test",
+        "record_sha256": "92530129f60c7fdabbc2bac051b7442465f14761d3e423f119a742c8244f1acf"
+      },
+      "train": {
+        "id": "draft-c45-05",
+        "problem": "证明:给定事件 $B$($P(B)>0$)，条件概率 $P(\\cdot|B)$ 是样本空间上的概率测度，并推导全概率公式。",
+        "category": "概率论",
+        "problem_sha256": "062192404fd8d35fba9b24a82778ab74d5d8c02fba6a3d7f0b3c8626194ef188",
+        "record_sha256": "45e2cdb86b5149dd38837c5e5b3aaff76eb6dd73af3c37009e01ad782247f554"
+      }
+    },
+    {
+      "pair_id": "866033727adb76bc082a3dd9b5bb20f593d58ab7ad4737012aca869c9d8735bd",
+      "query": {
+        "id": "test-prob-001",
+        "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+        "category": "概率论",
+        "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+        "split": "test",
+        "record_sha256": "f6c615ec311fba7f59bae5c921604fb8a720b5c9b3d038651ddde685bceeff2d"
+      },
+      "train": {
+        "id": "draft-c46-02",
+        "problem": "在单位圆盘 $x^2+y^2\\le1$ 内随机取一点(均匀分布),求该点落入内接正方形 $|x|\\le\\frac{1}{\\sqrt2}$，$|y|\\le\\frac{1}{\\sqrt2}$ 的概率。",
+        "category": "概率论",
+        "problem_sha256": "a65c6b45bfcf56d91cff7ac99ba10a9f65b2002c432f575995adb28df5d22c60",
+        "record_sha256": "31bfe2106ebb13ba5c6e5966459ccf926d542f2323f3d3dd975c2c7352d70a67"
+      }
+    },
+    {
+      "pair_id": "9bf3bac38e7f9a917670f887dfffe0a71000059d8dcc642165ff9e8f844a2746",
+      "query": {
+        "id": "eval-prob-007",
+        "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+        "category": "概率论",
+        "problem_sha256": "5089b98664b1dfd7fbd9594ad3f7a59f6a6f491928acc00e7a0e5759955f69af",
+        "split": "eval",
+        "record_sha256": "ef6509f5b65d04eff090db48d894809b3440b626f46b0200a0e08de97e344a2b"
+      },
+      "train": {
+        "id": "draft-c53-04",
+        "problem": "设 $X\\sim U(0,1)$，$A_n=\\{X\\ge\\frac1n\\}$。求 $P(A_n)$ 与 $P\\left(\\bigcup_{n=1}^{\\infty}A_n\\right)$，并说明与概率的单调连续性(下连续性)的关系。",
+        "category": "概率论",
+        "problem_sha256": "6242377b2e70f883f9ed44a84af02f5441e7172a9ad9baae9ccfdb39d15e533c",
+        "record_sha256": "2a8cdacb82286b3dca2d08f5e6659c52c2e87264e1089edb045ff1b9a7403136"
+      }
+    },
+    {
+      "pair_id": "e14b6ef5801c6c080c5c1e4b5acc388bb9785f9384b0304c06e0ed359657431e",
+      "query": {
+        "id": "test-prob-015",
+        "problem": "甲乙两人独立地抛硬币直到各自出现正面为止。求两人在同一时刻停止的概率。",
+        "category": "概率论",
+        "problem_sha256": "ea2bfac2f4c7fc75b0cb72ec37a011dad68f576cf875c602020eaa983f7cf478",
+        "split": "test",
+        "record_sha256": "854a61305b89eaf0b530f796629833c2748d759b59ab2121c3248c619223f686"
+      },
+      "train": {
+        "id": "draft-c45-03",
+        "problem": "独立地抛两枚公平硬币。记 $A=${第一枚正面},$B=${第二枚正面},$C=${两枚同面}。证明 $A,B,C$ 两两独立但整体不独立。",
+        "category": "概率论",
+        "problem_sha256": "c3ce3b6bd403762d972829332b5554a806b7f86607ccc1a82732f540d48d8996",
+        "record_sha256": "e26b5357da25bcce771ab29af782f13cdf2bacb79d2e4338581b98acf98f55a5"
+      }
+    },
+    {
+      "pair_id": "b274a81b1f1310989b5192a3456d55140c25eb2080d74f706e7d8bbf8ac29856",
+      "query": {
+        "id": "test-prob-017",
+        "problem": "设 $X,Y$ 独立同分布于 $U(0,1)$。求 $M=\\max(X,Y)$ 的分布函数，并求 $E[M]$。",
+        "category": "概率论",
+        "problem_sha256": "68efc747de0a687f4adb12a283489728e1a852e7cb9e7dc01e1804e3e36cb82d",
+        "split": "test",
+        "record_sha256": "573e92456374ee81a8c1d27a7e4d1eaefcb58ef7484e870a41dbda8d0f799e44"
+      },
+      "train": {
+        "id": "draft-c47-02",
+        "problem": "设$X\\sim B(100,1/100)$。给出$P(X=0)$的精确值，严格比较它与$e^{-1}$，给指数形式的精确误差上界，不作小数计算。",
+        "category": "概率论",
+        "problem_sha256": "fc15b39f3eb1eb352ac456c783cf63d5d383b3d51b8868515f08f485fc598eea",
+        "record_sha256": "2d7288c37259346bb04af1be9ce42df113536a7035b7585b4c3b911be19c64bf"
+      }
+    },
+    {
+      "pair_id": "f6e944d042c21f2bfc1f6fe3cb0d92112a4b2dbc1560288610a41b329224f264",
+      "query": {
+        "id": "test-prob-019",
+        "problem": "设 $X_1,\\dots,X_5$ 独立同分布于 $U(0,1)$。求 $E[\\min X_i]$ 与 $E[\\max X_i]$。",
+        "category": "概率论",
+        "problem_sha256": "560f64f06d2b9760c290e76398df76a2e76d50f57f06ff9a38cbc879562d77b2",
+        "split": "test",
+        "record_sha256": "2961d8ddcfa533d34f674d324effc1f3ae179db1352907852f146e05643434ab"
+      },
+      "train": {
+        "id": "draft-c53-02",
+        "problem": "独立地抛两枚公平硬币。用互斥事件的拆分与可加性求「至少一枚正面朝上」的概率。",
+        "category": "概率论",
+        "problem_sha256": "aa160ea4098e0b33778d9bd4cc93f054cc144d917e12c109b9adda59e8ba9ea5",
+        "record_sha256": "a8d83452f55e4df46f5db2294f9b4910c7f990f40a462a05dd7d6d7c356c1541"
+      }
+    },
+    {
+      "pair_id": "94f6557481a325a5d97301c8a37b03005f0e8a767c1fc2588ebbd5ad43a3bb43",
+      "query": {
+        "id": "test-prob-002",
+        "problem": "设 $X\\sim B\\!\\left(10,\\dfrac{3}{10}\\right)$。求 $P(X=3)$ 与 $P(X\\le 1)$ 的精确值。",
+        "category": "概率论",
+        "problem_sha256": "3056097af8b564ebe93c7763732f8cce5ab31461295e15f7dbbee9e77a25cb15",
+        "split": "test",
+        "record_sha256": "e36e34bf5d09eab8f5c742d7165b64901a367fcd05f00c25f72c77cf8b8790f2"
+      },
+      "train": {
+        "id": "draft-c45-01",
+        "problem": "证明:若 $A,B$ 相互独立且 $P(A)>0,P(B)>0$，则 $A,B$ 不互斥；若 $A,B$ 互斥且概率均为正，则 $A,B$ 不独立。",
+        "category": "概率论",
+        "problem_sha256": "974a6d3b1e4d8b5a73705446f8924e16fbad52913b621b786c81b6c1dc855482",
+        "record_sha256": "ff4394f59e656fe53bb00a9d89c3d5cdfbe8bcf8091c7a12b8a0df538a67601f"
+      }
+    },
+    {
+      "pair_id": "6869ffef6368f8d08b90b9796eca471275b1a4b0cc3e37ccec348253a386a43f",
+      "query": {
+        "id": "test-prob-006",
+        "problem": "设 $X\\sim\\operatorname{Poisson}(4)$。求 $P(X=2)$ 与 $P(X\\ge 1)$ 的精确表达式。",
+        "category": "概率论",
+        "problem_sha256": "f0f3976c388292db2769515dea7795845fff25afc377aabc4d4e22a06dcf4f3f",
+        "split": "test",
+        "record_sha256": "2daefeb2c9025cd5871cce21df2ca18013afa5ecfa5183d41d7353cf4817e954"
+      },
+      "train": {
+        "id": "draft-c48-01",
+        "problem": "约定$N(\\mu,\\sigma^2)$第二参数为方差。设$X\\sim N(2,9)$，精确求$P(X>5)$与$E[X\\mid X>5]$。记$\\phi(t)=e^{-t^2/2}/\\sqrt{2\\pi}$、$\\Phi(t)=\\int_{-\\infty}^t\\phi(s)ds$。",
+        "category": "概率论",
+        "problem_sha256": "6031e2256ec889b6199884759800304995ae7a390f82644ae7a9b92c3269676c",
+        "record_sha256": "901c0cc573aee4b4de92aea5359608e5163168c9166b9bbb8ee4d4a119f4fc08"
+      }
+    },
+    {
+      "pair_id": "6c15adf9ee369d527ab069c604193608a7d014fcb8da38f283fd12b13fa4e214",
+      "query": {
+        "id": "test-prob-012",
+        "problem": "袋中有 3 个红球、2 个白球，不放回地抽取 2 个。求恰抽到一红一白的概率。",
+        "category": "概率论",
+        "problem_sha256": "b170b4ff3a4b3d26cb7165cdea502e1369e26dc945f9893ac25dab9e5ead36d1",
+        "split": "test",
+        "record_sha256": "a3dc4b4cc06b33b2f39d33dfd3b26503c08eac6d8f9802f363f4ed9e18d1d1e9"
+      },
+      "train": {
+        "id": "draft-c50-05",
+        "problem": "说明经典独立同分布中心极限定理的充分矩条件，并以标准柯西分布证明：去掉这些条件后，样本均值不保证集中到常数或趋于正态。明确反例证明的逻辑范围。",
+        "category": "概率论",
+        "problem_sha256": "6aa0d7be9419fc2d4df6aae684b2212389886b1e509628ba77d053c933a3c01b",
+        "record_sha256": "7c26e186df6ff80be4449b1332fb0ae606d31b5b704c72895de83eb302940c8b"
+      }
+    },
+    {
+      "pair_id": "e6f9a2ed24739dc0958c51e47d488f3a1d05a3517871b35d187f09500730227a",
+      "query": {
+        "id": "test-prob-012",
+        "problem": "袋中有 3 个红球、2 个白球，不放回地抽取 2 个。求恰抽到一红一白的概率。",
+        "category": "概率论",
+        "problem_sha256": "b170b4ff3a4b3d26cb7165cdea502e1369e26dc945f9893ac25dab9e5ead36d1",
+        "split": "test",
+        "record_sha256": "a3dc4b4cc06b33b2f39d33dfd3b26503c08eac6d8f9802f363f4ed9e18d1d1e9"
+      },
+      "train": {
+        "id": "draft-c53-03",
+        "problem": "说明为什么概率公理中的可加性只要求「可列」而不要求「不可列」:以 $[0,1]$ 上的均匀分布为例。",
+        "category": "概率论",
+        "problem_sha256": "d973a46b97bc023f48986a37aa43778f7858b8a548267377bcc38d82a4ec7188",
+        "record_sha256": "bd414fd5fa72d5343aefd9d61191fa885907d8c61b15b860da28a8a923241bb3"
+      }
+    },
+    {
+      "pair_id": "01994644f3d641b9ce0f5420a72a3ec57671434ffa6ccf54160c6a4870c246b3",
+      "query": {
+        "id": "eval-prob-009",
+        "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+        "category": "概率论",
+        "problem_sha256": "e6a3d323c10e79a69627b04da93e52f1d9533c3b05f8189e123f94f33d18ecc6",
+        "split": "eval",
+        "record_sha256": "5f1e039069242a41930ad2a3428e6d18ee2174b1f92bf1c1dec62d3c4bdf0481"
+      },
+      "train": {
+        "id": "draft-c50-05",
+        "problem": "说明经典独立同分布中心极限定理的充分矩条件，并以标准柯西分布证明：去掉这些条件后，样本均值不保证集中到常数或趋于正态。明确反例证明的逻辑范围。",
+        "category": "概率论",
+        "problem_sha256": "6aa0d7be9419fc2d4df6aae684b2212389886b1e509628ba77d053c933a3c01b",
+        "record_sha256": "7c26e186df6ff80be4449b1332fb0ae606d31b5b704c72895de83eb302940c8b"
+      }
+    },
+    {
+      "pair_id": "2d849874f3d05ba157cc0fc713713f1b12cc634567d5c4bb1c0d85c1c476afa0",
+      "query": {
+        "id": "eval-geom-009",
+        "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+        "category": "解析几何",
+        "problem_sha256": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+        "split": "eval",
+        "record_sha256": "5cc7ed872638416849cfcd6ef43a4e15bb5033c08b0ddadde1d9d0b4228e9eed"
+      },
+      "train": {
+        "id": "draft-c16-05",
+        "problem": "证明两条异面直线有且仅有一条公垂线，并写出公垂线方向与两直线间距离的公式。",
+        "category": "解析几何",
+        "problem_sha256": "46642fb5bb7de2f12b1bd5337fb5c59206cfed6a941cb65baca5a6487233ea51",
+        "record_sha256": "e53731968e5ba4485a10d1f7e5d02332aadcb2531ae481cd6e13a27dd563d742"
+      }
+    },
+    {
+      "pair_id": "ba975a7d7c330322f756319931544380a7162e44be03ae1a2bc328e270e4080d",
+      "query": {
+        "id": "eval-geom-018",
+        "problem": "求以 $O(0,0,0)$、$A(2,0,0)$、$B(0,3,0)$、$C(0,0,4)$ 为顶点的四面体体积。",
+        "category": "解析几何",
+        "problem_sha256": "447eda4d3de6213be8aeaf1cba25b6bcf725f1bc2ecb980ef6e1ec65cfc741d0",
+        "split": "eval",
+        "record_sha256": "fd44c941a11419e724889eeb22a63c70e7e6b13ab091e6d088e3a4cd4e586858"
+      },
+      "train": {
+        "id": "draft-c18-03",
+        "problem": "求过点 $P(1,2,3)$ 且垂直于方向 $v=(2,1,-1)$ 的平面方程；并求该平面与过原点、方向为 $v$ 的直线的交点。",
+        "category": "解析几何",
+        "problem_sha256": "c26b879099190b8209c4a1a4436d97ea61f772eaa27af5669c58c2049bc2a4a4",
+        "record_sha256": "bd6c6de3dd94894c537e0f7426f4d3a194d0a2b085aece1a747bc21e41deb331"
+      }
+    },
+    {
+      "pair_id": "a230d372c235e85048adc9eeb01b89379d639bbc899eed3b4fdf42e12bf557b2",
+      "query": {
+        "id": "test-geom-007",
+        "problem": "求以 $O(0,0,0)$、$A(1,2,0)$、$B(2,0,1)$、$C(0,1,2)$ 为顶点的四面体体积。",
+        "category": "解析几何",
+        "problem_sha256": "70e78d555526cbf2dcc917a4f282d73a4fa4b38ac778d0af008db54f53b8d391",
+        "split": "test",
+        "record_sha256": "41be4548a2402311f614a1428ccd76b741b4bf1372beba77f243c21e3f5cbbfd"
+      },
+      "train": {
+        "id": "draft-c20-04",
+        "problem": "椭球$x^2+2y^2+3z^2=1$与平面$x+y+z=t$相交。求截面中心、全部空集或退化情形，以及非退化截面的精确半轴长。",
+        "category": "解析几何",
+        "problem_sha256": "c290a6745d5e5514033cb53444f6b35ef2fe00506bb891b56e70b723fadabe82",
+        "record_sha256": "a411822671d47303697779c7d8d014770281ff8f406e62f997bde91d8f84a5b9"
+      }
+    },
+    {
+      "pair_id": "e775c2a4e92db0f7f3c2d6192736a95029d06992962b48acc2c2dcce29521673",
+      "query": {
+        "id": "eval-geom-015",
+        "problem": "求两球面 $x^2+y^2+z^2=4$ 与 $x^2+(y-1)^2+z^2=4$ 的交线方程。",
+        "category": "解析几何",
+        "problem_sha256": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+        "split": "eval",
+        "record_sha256": "4da99dde9e506b7ddbac354dd9ab1df9b55e51327353b8f174aa568989b4d1ba"
+      },
+      "train": {
+        "id": "draft-c16-03",
+        "problem": "求异面直线 $l_1$：$x$ 轴 与 $l_2$：过点 $(0,1,1)$、方向 $(0,1,0)$ 的公垂线方程、两个垂足与两直线间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "1b598b76c3c9e78813a342ac207132d524aa51fa6e199e73658836b2f4250e1d",
+        "record_sha256": "95ecfa55adf3f9abb0bfa7ab0f448d3e9014377cfb7cb9ebae6bbd4d7c5bf90e"
+      }
+    },
+    {
+      "pair_id": "388f258f1a01746fa070fecfa744df40dbb7ddb3f5bc2a4bf002ff585058b772",
+      "query": {
+        "id": "eval-geom-004",
+        "problem": "求两平面 $\\pi_1:x-y+z=1$ 与 $\\pi_2:2x+y-z=0$ 的夹角。",
+        "category": "解析几何",
+        "problem_sha256": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "split": "eval",
+        "record_sha256": "3677f07455552949497a717b9d0d1e09a78ff83262ea3f02c63a06b2cc5facbe"
+      },
+      "train": {
+        "id": "draft-c19-02",
+        "problem": "求以 $xy$ 平面内的圆 $x^2+y^2=1$($z=0$)为准线、母线平行于直线 $l$:方向 $(1,1,1)$ 的柱面方程。",
+        "category": "解析几何",
+        "problem_sha256": "19a818bc69668d5738a29359e8599b9b5e0391bb6ffa26338a95f74cb3076d24",
+        "record_sha256": "0a22807e1602ac6cba3ad2191032b05f18f18b8525557fd2af38f8c4c86ffbac"
+      }
+    },
+    {
+      "pair_id": "4ed51cb86628c2e48a3f0251657e40076bca4ba3a484442fd70611cb54e6d15d",
+      "query": {
+        "id": "eval-geom-002",
+        "problem": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+        "category": "解析几何",
+        "problem_sha256": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+        "split": "eval",
+        "record_sha256": "d8675559344da6d5547f10fe1f36c7df9905da748cfb77809796cf257fe0eb26"
+      },
+      "train": {
+        "id": "draft-c20-05",
+        "problem": "用正交变换(旋转)判断方程 $x^2+2xy+y^2+z=0$ 表示的曲面类型。",
+        "category": "解析几何",
+        "problem_sha256": "bfecc705f20dcfc33db6d83c6a4a24eeb6962a823f7319ac94653446f7151c65",
+        "record_sha256": "9618aa731ae69d6af46129bd074187fbdb095fbdaa4b460697baf7766dae1062"
+      }
+    },
+    {
+      "pair_id": "9755d8db74a8f3beb888ca57de42fa904cab63410ed12786830ceaf432457ad7",
+      "query": {
+        "id": "eval-geom-003",
+        "problem": "求过直线 $l:\\dfrac{x-1}{1}=\\dfrac{y}{2}=\\dfrac{z+1}{1}$ 且垂直于平面 $\\pi:x+y+z=0$ 的平面方程。",
+        "category": "解析几何",
+        "problem_sha256": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+        "split": "eval",
+        "record_sha256": "3fb398346f9b9218bb6960430b3d82ed49d52a2532d5630d2e84d93970cdf5e7"
+      },
+      "train": {
+        "id": "draft-c15-04",
+        "problem": "求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\\pi:x+y=0$ 的夹角 $\\varphi$；再求 $l$ 在 $\\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\\theta$，说明 $\\theta$ 与 $\\varphi$ 的关系。",
+        "category": "解析几何",
+        "problem_sha256": "6c35d948cb5604d742b8dde91a03232fdde23dc39f8304bfaf6e4c78fa66e2f1",
+        "record_sha256": "6852be64c8dcac6644149fc40fb5c2a74dec0e3dc673f55a4e4e9cfc86780837"
+      }
+    },
+    {
+      "pair_id": "7a956cf535c17f1f298d72191430180b0ae37b6c75cf68e5e7d3b01f2b342e66",
+      "query": {
+        "id": "test-geom-002",
+        "problem": "求点 $P(1,2,3)$ 到直线 $l:x=1+t,\\ y=1+2t,\\ z=1+3t$ 的距离与垂足坐标。",
+        "category": "解析几何",
+        "problem_sha256": "5f93ca34242ed1c47db511c24783767496f764cbfb12cc8bf001da1fb6802a81",
+        "split": "test",
+        "record_sha256": "476e683dc172328802027c83c905c8cb4200cd551e45394665fb431bd65cd79b"
+      },
+      "train": {
+        "id": "draft-c21-03",
+        "problem": "求直线 $l:(1+t,2t,t)$ 与双曲抛物面 $z=xy$ 的交点。",
+        "category": "解析几何",
+        "problem_sha256": "751baafeeb15e751351ba224b24c4fb52f4bedee3be4465df8c728a5fc720530",
+        "record_sha256": "f097ab2fe940dcb95de7d97b448ad4b8b931a521429d99de6fe2d7ccd71fe6f8"
+      }
+    },
+    {
+      "pair_id": "7600fbe9457aec8273ff5abdcceb9515cdff5004208e0e5c7edc990d9562476a",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何",
+        "problem_sha256": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "split": "eval",
+        "record_sha256": "cf644a5cf6a47d7e6711a2bbd4a4cf63ffadb777455ea59e841b3119516ce175"
+      },
+      "train": {
+        "id": "draft-c19-01",
+        "problem": "说明方程 $y^2=2x$ 在空间直角坐标系中表示什么曲面，并指出它与 $xy$ 平面内的曲线 $y^2=2x$ 的区别。",
+        "category": "解析几何",
+        "problem_sha256": "738ecc1c639f297d382fb5dc2066f449e0a91b3c8e9d652845ff82d47ebb6fbe",
+        "record_sha256": "bfc12ed772f04e02487cefcdc52928829a91547b81a491064442d449ad3a6170"
+      }
+    },
+    {
+      "pair_id": "d71e1104a96878685b1d96d2fff94d449c94186c9d41dd55c24e443d1e730407",
+      "query": {
+        "id": "test-geom-009",
+        "problem": "求点 $(2,1)$ 绕原点逆时针旋转 $90^\\circ$ 后的坐标，以及向量 $(3,4)$ 在方向 $(1,1)$ 上的投影向量。",
+        "category": "解析几何",
+        "problem_sha256": "f01c61b5e71a7d704b2e40d4055f6beaa2411079b6e303e315472377f9677afd",
+        "split": "test",
+        "record_sha256": "8d31d2d5096f4637ad173129225589dbcb3f5c369127cf015e960543b5deb3bf"
+      },
+      "train": {
+        "id": "draft-c25-04",
+        "problem": "求柱面$x^2+y^2=4$与$z=x^2$的完整交线参数式，并证明交线不包含于任何平面。",
+        "category": "解析几何",
+        "problem_sha256": "f70df5d27774403fe91dd5e3c8b0d52acaaabbc682c7f30a240642b7b9aa31c7",
+        "record_sha256": "bd51573b224b833cd2e1780bc2664f24d386aac5e40e31e5e01e3358627d13e9"
+      }
+    },
+    {
+      "pair_id": "7dca8e9bb3c4f45490b74a7b5294049b21b15ac1fca743f433c4179910e22fcb",
+      "query": {
+        "id": "eval-geom-016",
+        "problem": "已知 $|\\vec a|=2$，$|\\vec b|=3$，$\\vec a$ 与 $\\vec b$ 的夹角为 $60^\\circ$，求 $|\\vec a+\\vec b|$、$|2\\vec a-\\vec b|$ 及 $\\vec a+\\vec b$ 与 $\\vec a-\\vec b$ 的夹角余弦。",
+        "category": "解析几何",
+        "problem_sha256": "4ef3d39fd11867ab5e15cff4d08e2ffe2ea55df14a262794fbd07def2753fb5c",
+        "split": "eval",
+        "record_sha256": "3a018ff295bb385d1112c69a730af528412a1d64d6db027f2a801a34e0707704"
+      },
+      "train": {
+        "id": "draft-c15-03",
+        "problem": "求过点 $P(1,2,3)$、法向量位于 $xz$ 平面内、且与方向为 $(1,1,0)$ 的直线成 $30^\\circ$ 角的平面方程。",
+        "category": "解析几何",
+        "problem_sha256": "3ff763d88d25bdfecea217c91d05db9d7a8379457ca106e2e4e8050aca73b4c6",
+        "record_sha256": "84fac28d0f63fc15ed15ba7c88ddabe9fe47422f31195fe52977c4e49b94bb49"
+      }
+    },
+    {
+      "pair_id": "3342c00c60b56b1e96870e42defcc84c54ac6c67a37ee121b54ed0e0a611a99a",
+      "query": {
+        "id": "eval-geom-004",
+        "problem": "求两平面 $\\pi_1:x-y+z=1$ 与 $\\pi_2:2x+y-z=0$ 的夹角。",
+        "category": "解析几何",
+        "problem_sha256": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "split": "eval",
+        "record_sha256": "3677f07455552949497a717b9d0d1e09a78ff83262ea3f02c63a06b2cc5facbe"
+      },
+      "train": {
+        "id": "draft-c24-02",
+        "problem": "仿射映射$T(x,y)=(1+x+y,-1+2x+2y)$作用于单位圆$x^2+y^2=1$。求完整像集和每个像点在圆上的原像数，说明为什么不能使用可逆仿射的椭圆结论。",
+        "category": "解析几何",
+        "problem_sha256": "eeac80068f04c1cc5a16a983979664c0483dcb87cc97e03445ff18f206eeada3",
+        "record_sha256": "412831cbe61695b7eebbc8c10820d4f91a835264e66a2a6b698f4bea81963db7"
+      }
+    },
+    {
+      "pair_id": "09891dcd8d9e6383bda7a01f27006cfc057c3a1bf177addb1cf6870f3a7af8cf",
+      "query": {
+        "id": "eval-linalg-021",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "category": "高等代数",
+        "problem_sha256": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+        "split": "eval",
+        "record_sha256": "68cfa08e74279a7492b5c28c0629b822da2d0cc2f2caa6e6ea033ea27e0f87f7"
+      },
+      "train": {
+        "id": "draft-c40-01",
+        "problem": "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+        "category": "高等代数",
+        "problem_sha256": "0d28b7c98d6eda1ef116e5c6e7200d92cd7a0abb6d1220e2334439e94f94b851",
+        "record_sha256": "3936d63ed817cb91ae39c3b796dfb722ad4b92a5a697323adb7a4b966d3618ee"
+      }
+    },
+    {
+      "pair_id": "4a48735e2167beb877c9c459de62f5ea290188f0b773bc8ca5ff85dccbcf15c6",
+      "query": {
+        "id": "eval-linalg-034",
+        "problem": "证明 Cauchy–Schwarz 不等式：对任意向量 $\\vec a,\\vec b$，$|\\vec a\\cdot\\vec b|\\le|\\vec a||\\vec b|$。",
+        "category": "高等代数",
+        "problem_sha256": "a9bb397b61d8b3d9be679849828e965e8248492e7cd1ec8dbe2f148f4be1fdfc",
+        "split": "eval",
+        "record_sha256": "bcd22fe767d7a1db6049b5450006f706e68714644cc58c16b4999b88de15ba78"
+      },
+      "train": {
+        "id": "draft-c29-01",
+        "problem": "用$f(x)=x^4+4$说明“没有有理根”不等于“在$\\mathbb Q[x]$不可约”。给出在$\\mathbb Q,\\mathbb R,\\mathbb C$中的不可约因子，并证明。",
+        "category": "高等代数",
+        "problem_sha256": "173116d2580a9a55580d55c1a8df08a9eff57194d97e4bac47c57b360064b02a",
+        "record_sha256": "4860b6f0c118f3c04b872b3e178c3b1d2316f6cde1494c93936c6daf9d12aa24"
+      }
+    },
+    {
+      "pair_id": "6a9646439a39862a9b07ff71ea4de312e63e71aeec9de60c1368de6b8802aa17",
+      "query": {
+        "id": "eval-linalg-016",
+        "problem": "设 $A$ 为二阶方阵，已知 $\\operatorname{tr}A=5$、$\\det A=6$。求 $A$ 的特征值，并验证 $A^2-5A+6I=0$。",
+        "category": "高等代数",
+        "problem_sha256": "d3de6839a9c89d4ccff817aea837d5ba8878713082579be4e419451acd07f9ac",
+        "split": "eval",
+        "record_sha256": "d8c134bc8620c7e9d9c563b5c370c4741f4af0079f5e059732e14e82f0e7695a"
+      },
+      "train": {
+        "id": "draft-c32-02",
+        "problem": "求$V=\\{x\\in\\mathbb R^4:\\sum_{i=0}^3x_i=0,\\ \\sum_{i=0}^3i x_i=0\\}$的基与维数，证明给出的基张成全部解。",
+        "category": "高等代数",
+        "problem_sha256": "9e839c20715f27b39aea673e98e62c0176aca66155f2bd80dc0f837891d2763b",
+        "record_sha256": "0f09d6959fc6685290486905963cfb5e3729c2935f1a8b6b9f1293096873b51c"
+      }
+    },
+    {
+      "pair_id": "55e366f824afd0cb51b0494b8fc2dae1e4a92190a62b2cf6d1021c1a3edf13d8",
+      "query": {
+        "id": "test-linalg-011",
+        "problem": "用最小二乘法拟合数据点 $(1,2),(2,4),(3,7)$ 的直线 $y=ax+b$。",
+        "category": "高等代数",
+        "problem_sha256": "e6581f165443143ee6a2ac520332ee8134910e00137d31bfa92da8a8b5ee903b",
+        "split": "test",
+        "record_sha256": "e70147d95c39f2d13e1c3bca49dc7bc6ad8ed7d6e9c5464ab167db58b0863437"
+      },
+      "train": {
+        "id": "draft-c30-03",
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "category": "高等代数",
+        "problem_sha256": "cef1e7a5619a2ede974a317235ab3b4a6863e0b8666cbb3c66069f346f971216",
+        "record_sha256": "93756fa5d40b0b2bc89f498386306319a767a25bb461490a2636f212d265a8a3"
+      }
+    },
+    {
+      "pair_id": "3d69be45ac85ad4752005d57dbad8cc5dd257152b47782b6f7c1cd22d4416e80",
+      "query": {
+        "id": "eval-linalg-029",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "category": "高等代数",
+        "problem_sha256": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "split": "eval",
+        "record_sha256": "c13e476cb43f6bf557b3e9c5a60a243ad9e20d9d04d34c22608d5e059162fc3f"
+      },
+      "train": {
+        "id": "draft-c44-01",
+        "problem": "在$\\mathbb R^4$坐标$(p_1,p_2,q_1,q_2)$中，$J=\\begin{pmatrix}0&I_2\\\\-I_2&0\\end{pmatrix}$。分类块剪切$S_B=\\begin{pmatrix}I_2&B\\\\0&I_2\\end{pmatrix}$何时保持$\\omega(u,v)=u^{\\mathsf T}Jv$，并检验$B=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$。",
+        "category": "高等代数",
+        "problem_sha256": "cfd3aedaf501a0fb858bb1dd7fb9be3a9ac392bb4d7b492c68a4568d1259089f",
+        "record_sha256": "6a15dba0ea1eb8e79b478748c46f42d47ceb807e8095631b734365991bbb654d"
+      }
+    },
+    {
+      "pair_id": "465d25d7a4035a0b8ec29a7873f3ae2915908e6d39a850a8fe8ae25d982c1540",
+      "query": {
+        "id": "test-linalg-005",
+        "problem": "已知 3 阶方阵 $A$ 的特征值为 $1,2,3$。求 $\\operatorname{tr}A$、$\\det A$、$\\operatorname{tr}(A^2)$ 及 $A^{-1}$ 的特征值。",
+        "category": "高等代数",
+        "problem_sha256": "df4cc13e95965121c637dd440d390802f1277ef7a198df65dbf435d22303191e",
+        "split": "test",
+        "record_sha256": "5466f6d07af96c2028a78bcf1762850bb33a28bc0d0c6d62be40d3cd9fb4fd70"
+      },
+      "train": {
+        "id": "draft-c35-04",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2-y^2+2xz+2yz$ 化为标准形，写出可逆线性替换，并求正负惯性指数与秩。",
+        "category": "高等代数",
+        "problem_sha256": "41b9c03f093016a988393991b1ae7b9e294c9f9a9a13888c5f8befe590407403",
+        "record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17"
+      }
+    },
+    {
+      "pair_id": "a7ca890292e75ad2b228ae6eb69c040486632460cc5a739add63f10ed017fb54",
+      "query": {
+        "id": "test-linalg-035",
+        "problem": "把 $D(x)=\\begin{vmatrix}1&x&x^2\\\\1&2&4\\\\1&3&9\\end{vmatrix}$ 看成 $x$ 的多项式并因式分解。",
+        "category": "高等代数",
+        "problem_sha256": "d4f7f0a0e72ea78d10e9c4118f84eecce12a870b1aec6e076ae6df9c6a3fea90",
+        "split": "test",
+        "record_sha256": "b7c02b72a7fd9bc9bb1e08e714474c7440279fb32bc4a1d5d4e7d1bf482ddab1"
+      },
+      "train": {
+        "id": "draft-c32-04",
+        "problem": "对实参数$a,b$，分类系统$x+y=1,\\ ax+y=b$的全部解，并写出每种解集的维数或为空。",
+        "category": "高等代数",
+        "problem_sha256": "30409bf17924c14d7a851b02a5d5ea93e5226992b9ecfb559b1469368047b01a",
+        "record_sha256": "beaa68870fb7195fc2fac2afeedd867e08daabac8e408719b6f3708dcb6e4d40"
+      }
+    },
+    {
+      "pair_id": "cee51fabe1e98be90c7ba338364103abbee595ce5f307e4f85532468b36f56e1",
+      "query": {
+        "id": "test-linalg-024",
+        "problem": "求 $t$ 使三点 $(1,2)$、$(2,4)$、$(t,6)$ 共线。",
+        "category": "高等代数",
+        "problem_sha256": "f20f474ba31485b10dcd7ab950e5e4f61fc51fa5a1a8bd2daad88b205c8c229e",
+        "split": "test",
+        "record_sha256": "72d5ecda8ec857b3e8e4558e620de5d589f2f78b84969e8e8c5da6b9c3ff541d"
+      },
+      "train": {
+        "id": "draft-c36-03",
+        "problem": "求使二次型 $f(x,y,z)=x^2+2xy+2y^2+az^2$ 正定的参数 $a$ 的取值范围，并讨论 $a=0$ 与 $a<0$ 时二次型的情形。",
+        "category": "高等代数",
+        "problem_sha256": "bac044cc867446ac57e80c7656f52d92c0bb3d8e28a472e16c2ed697b9e63131",
+        "record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69"
+      }
+    },
+    {
+      "pair_id": "7eb836a96cc2a23ef7e0e3bbab2864b3de22bdc202c42d17bf3cec0a61385558",
+      "query": {
+        "id": "test-linalg-033",
+        "problem": "证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。",
+        "category": "高等代数",
+        "problem_sha256": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+        "split": "test",
+        "record_sha256": "66ba81b7522d9e0541c79122bad139d281eb915f980da37ff92277418126901f"
+      },
+      "train": {
+        "id": "draft-c34-03",
+        "problem": "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+        "category": "高等代数",
+        "problem_sha256": "41e3466f3b16ec2b6a415c0a564dd40f9fa883cc26a20a1d8ef390ea2a8754e6",
+        "record_sha256": "3d208246e5661178cad239e45820a7568a3619d9ae2481d20b6423107d26db6e"
+      }
+    },
+    {
+      "pair_id": "6580e1a32b539524c7119898110324a6811bb2e1b56236a5175ac8c4aeb592eb",
+      "query": {
+        "id": "test-linalg-013",
+        "problem": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+        "category": "高等代数",
+        "problem_sha256": "5f6d745766985a4414c1e7a924b9cbc91348941cec97b50c265d4cfe33a385d3",
+        "split": "test",
+        "record_sha256": "16882bc21743c290b6c23d3655f8d8afe9ea4b6169e35c17f0d528edd8190f53"
+      },
+      "train": {
+        "id": "draft-c38-01",
+        "problem": "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+        "category": "高等代数",
+        "problem_sha256": "8f05ecad217300a03e6f99207dcbdeeac8df5d485859e390a178db49daa6e11f",
+        "record_sha256": "82e259091bd0dc8e9018e6feeb6a4797fa31d4b97ceb01248106f89d387d80ba"
+      }
+    },
+    {
+      "pair_id": "6730c18ead75b30243d9bf9c8ec72656fd28470703da6382835fe7d290ba1b68",
+      "query": {
+        "id": "test-linalg-032",
+        "problem": "证明 $\\operatorname{rank}(A+B)\\le\\operatorname{rank}A+\\operatorname{rank}B$，并举出等号成立的例子。",
+        "category": "高等代数",
+        "problem_sha256": "3973e60262c136a0edc51142b843dd8621ca5a392c68f3161d39c9421fee4230",
+        "split": "test",
+        "record_sha256": "0e256ab6e9c543514b52c206256e5dc99a4522db6664e35f15166ff889318fbc"
+      },
+      "train": {
+        "id": "draft-c41-01",
+        "problem": "在基$e_{11},e_{12},e_{21},e_{22}$中，令$N=J_2(0)\\otimes I_2+I_2\\otimes J_2(0)$。从张量结构求Jordan形式，并给出实际Jordan链及换基矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "fe003e31867a286d1709e3c2c93dba8107650da8b37b48ec744f4e61f4023ef2",
+        "record_sha256": "fc7eb587b2153e61631c83c299d72a798f6cf102f096cca8441a6fd311178662"
+      }
+    },
+    {
+      "pair_id": "81cc95c6770a4530c7c450a67e3faf8d0305e47e51fd21f4a7e0948099456376",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数",
+        "problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "split": "eval",
+        "record_sha256": "343a534beed50711cdb5e6cb5cbbcfd8556407dca7471a55eac8ad76e0fcf63c"
+      },
+      "train": {
+        "id": "draft-c38-01",
+        "problem": "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+        "category": "高等代数",
+        "problem_sha256": "8f05ecad217300a03e6f99207dcbdeeac8df5d485859e390a178db49daa6e11f",
+        "record_sha256": "82e259091bd0dc8e9018e6feeb6a4797fa31d4b97ceb01248106f89d387d80ba"
+      }
+    },
+    {
+      "pair_id": "46d7b34582395a4f4bab4d609685aaa2c4ce76e2457eb9e77fa431a9e046bf1a",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "split": "eval",
+        "record_sha256": "a82a5afad47019d2f75cc0010e7c513cb0b32f8dd45c6d412d9e872636621fb1"
+      },
+      "train": {
+        "id": "draft-c21-03",
+        "problem": "求直线 $l:(1+t,2t,t)$ 与双曲抛物面 $z=xy$ 的交点。",
+        "category": "解析几何",
+        "problem_sha256": "751baafeeb15e751351ba224b24c4fb52f4bedee3be4465df8c728a5fc720530",
+        "record_sha256": "f097ab2fe940dcb95de7d97b448ad4b8b931a521429d99de6fe2d7ccd71fe6f8"
+      }
+    },
+    {
+      "pair_id": "21011e208cee326698e287c2c69487909275a3eb1597e0dc603b209c8a750282",
+      "query": {
+        "id": "test-calc-028",
+        "problem": "求 $\\displaystyle\\int_{-1}^{1}x^3\\sqrt{1-x^2}\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "3ce5e64f524dd1fa7129de15f53a3ce24679a7d2db67008acf0df0dab9e488e0",
+        "split": "test",
+        "record_sha256": "99315230d2f1281ed36eccbf1ac6ea3a9fb38cbafa9b12135f0ec2dd298662a0"
+      },
+      "train": {
+        "id": "draft-c34-04",
+        "problem": "把矩阵 $A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$ 分解为初等矩阵的乘积。",
+        "category": "高等代数",
+        "problem_sha256": "4ebac46330a79cd29529080bfd3021c2766d7719df2f9d306e26370d2dac37a2",
+        "record_sha256": "d2abc5ee03ee564599f6ab85c3f98207f6799307d02c16840adc0fd2863020aa"
+      }
+    },
+    {
+      "pair_id": "111f8f8834bc162b6e7f3f23cf641d0cf87f50323eaffaf78e676cef5e416f20",
+      "query": {
+        "id": "test-linalg-040",
+        "problem": "求四顶点圈 $C_4$ 的邻接矩阵及其特征值。",
+        "category": "高等代数",
+        "problem_sha256": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+        "split": "test",
+        "record_sha256": "1154971218fd7c4799ac154b8676d2bb56fc69cedee7472915bcf876ed8cb12a"
+      },
+      "train": {
+        "id": "draft-c06-02",
+        "problem": "求由 $y=|x|$ 与 $y=1$ 围成的封闭图形的面积。",
+        "category": "数学分析",
+        "problem_sha256": "ca5445aa9b0f3ad8fe0c33fb52700cb3ab65f08d77fdc00b0c094cbeef8d070b",
+        "record_sha256": "5e461b6526adaa3b2984d9feaa243eebeeb74ba1636e14c169ed2f7903f38743"
+      }
+    },
+    {
+      "pair_id": "15424b8ce062f2a325cf0d14b906cda0974d7c8869846e31b6bd4da5d3b8e1a2",
+      "query": {
+        "id": "test-prob-016",
+        "problem": "某地天气的转移矩阵为 $P=\\begin{pmatrix}0.8&0.2\\\\0.4&0.6\\end{pmatrix}$（状态 1 晴、状态 2 雨，行表示今天）。求稳态分布。",
+        "category": "概率论",
+        "problem_sha256": "f51378608b65d36d0a9ac42977c370a809458a2fcaf73e1d5e12ca97627befd4",
+        "split": "test",
+        "record_sha256": "5c02fe4c66c155d600976f8cf0c1d9b335a2b4b1d3f0f2283ae082596ec8d1b8"
+      },
+      "train": {
+        "id": "draft-c02-05",
+        "problem": "对实参数$a$，讨论$\\int_0^{\\infty}x^{a-1}/(1+x)\\,dx$的收敛性，必须同时处理零点与无穷远。并在$a=1/2$时求精确值。",
+        "category": "数学分析",
+        "problem_sha256": "1e3b35e2384192fed58d7b8d695167c6fdc38b9e672ad73325e64c91e7646f89",
+        "record_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6"
+      }
+    },
+    {
+      "pair_id": "77ccbd129bff6dfc543597f4ee969f223e94cde6380b8bbc7779798c974288f3",
+      "query": {
+        "id": "test-calc-032",
+        "problem": "求曲线 $y=x^2$ 在原点处的曲率，以及曲线 $y=\\ln x$ 在 $(1,0)$ 处的曲率。",
+        "category": "数学分析",
+        "problem_sha256": "a014bcb4ac425919b7be8e0925fb3f04f59c52fcdc751a83d66cf41c68479692",
+        "split": "test",
+        "record_sha256": "eb47be7a1fabea0150077209944a25906a669fc5aeb7f003eb8b6fa8a4eca7c8"
+      },
+      "train": {
+        "id": "draft-c36-03",
+        "problem": "求使二次型 $f(x,y,z)=x^2+2xy+2y^2+az^2$ 正定的参数 $a$ 的取值范围，并讨论 $a=0$ 与 $a<0$ 时二次型的情形。",
+        "category": "高等代数",
+        "problem_sha256": "bac044cc867446ac57e80c7656f52d92c0bb3d8e28a472e16c2ed697b9e63131",
+        "record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69"
+      }
+    },
+    {
+      "pair_id": "8a88e144a0e95db1738834b6c16a3be8bb6b6b67525d5f9d03a0d486ad358079",
+      "query": {
+        "id": "test-prob-005",
+        "problem": "设 $X,Y$ 独立同分布于 $U(0,1)$，求 $Z=X+Y$ 的密度与 $P(Z>1.5)$。",
+        "category": "概率论",
+        "problem_sha256": "e292aa403cf5de61745877ca0e86d5e2c7749ab094c3dc721342663f112de1b3",
+        "split": "test",
+        "record_sha256": "2453f89140c8c2afe11a35fd1376dd0bb3689e6d66e7cd1c0dc7a800651cd4bf"
+      },
+      "train": {
+        "id": "draft-c16-01",
+        "problem": "判断直线 $l_1$：过点 $(1,0,0)$、方向 $(1,1,0)$ 与直线 $l_2$：过点 $(0,1,0)$、方向 $(1,-1,0)$ 的位置关系；若相交，求交点与夹角。",
+        "category": "解析几何",
+        "problem_sha256": "c097eeb120aed589b12e3833a451bcce240d6a630b0f6c5e7a7a32afd94429ed",
+        "record_sha256": "08c4e9377b2a0c21ba1396163226d050231ea5b6c9283696ae3db75708785b75"
+      }
+    },
+    {
+      "pair_id": "641dde386e87eadbd36ad4dd1ff8074bd8b04a99d131718c90cbdfaa428ee36a",
+      "query": {
+        "id": "eval-calc-022",
+        "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+        "category": "数学分析",
+        "problem_sha256": "6f25c4b291c4ba7e232e7b5ddff9b9c1da8909c60fc6e75f5697b45ec1e988a6",
+        "split": "eval",
+        "record_sha256": "3dffbad8343d1118f4b97ca8c838f901e011875fcbf6570597c16b7000675709"
+      },
+      "train": {
+        "id": "draft-c23-02",
+        "problem": "证明:若 $A$ 为正交矩阵,则等距变换 $T(x)=Ax+b$ 保持任意两点间的距离,即 $\\|T(x)-T(y)\\|=\\|x-y\\|$。",
+        "category": "解析几何",
+        "problem_sha256": "317bca6b8ad1f0fd9e68ceca956ddce428486d3ce3abb63b8d3bbab89d5d1371",
+        "record_sha256": "d9ebde684e3a94229bf80c58b23145c42b002118708829cda963dbe86bb52e08"
+      }
+    },
+    {
+      "pair_id": "ee16f2e0b2528cd08bea8848884bb21a6e180562ffcf4d80d4db947d63849d39",
+      "query": {
+        "id": "eval-linalg-035",
+        "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+        "category": "高等代数",
+        "problem_sha256": "d64eb331b97bdbef5bb72a6cb1975c1fab8e603e88f47d05dd2af3ee9f50ab0a",
+        "split": "eval",
+        "record_sha256": "7a270d358332ab41ad2746e458a06a588d8cbf6953425f8d60c11f3fb5500cb2"
+      },
+      "train": {
+        "id": "draft-c53-05",
+        "problem": "设$P$为σ代数上的非负、规范化、有限可加函数。证明可列可加性与下连续性等价。",
+        "category": "概率论",
+        "problem_sha256": "91bc7bf94ecdc554f55981121900bdc995f8ecb2b585e17c129e0e75394f307b",
+        "record_sha256": "30dba5f792af027e3af0487c643921a8c033e5ae4dfcbca479498c15d071b307"
+      }
+    },
+    {
+      "pair_id": "ad93667b63beef9f3017dea39d8e0d379ce638ad047cbfd3a41a2d93e28dee2d",
+      "query": {
+        "id": "eval-linalg-025",
+        "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+        "category": "高等代数",
+        "problem_sha256": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+        "split": "eval",
+        "record_sha256": "efee8e9a7d879ee78813ecbd55abd2ced6259ab2a37db17387e552133cfb26bf"
+      },
+      "train": {
+        "id": "draft-c11-02",
+        "problem": "把$f(x)=1/(1+x^2)$在$x=1$处展开为$\\sum_{n=0}^{\\infty}c_n(x-1)^n$。求系数的显式式、收敛半径和实收敛域，严格检查两个端点，并解释为什么相邻系数比值法不适用。",
+        "category": "数学分析",
+        "problem_sha256": "02defbe41891c9b6f205aad837f108126a5ca14e752435dc4297a4ac22ffdbd6",
+        "record_sha256": "36f91980f19b86b0049c1428ccd0fea0dbeceeda59ba2ec2f772d6eba29e6cb4"
+      }
+    },
+    {
+      "pair_id": "9c66a37082e347cad6916e9d07d26acee25d31c318fe4e5dd9acd8a653b4a6aa",
+      "query": {
+        "id": "test-linalg-037",
+        "problem": "求微分算子 $T(f)=f'$ 在多项式空间 $P_2$（次数 $\\le 2$，基 $1,x,x^2$）下的矩阵。",
+        "category": "高等代数",
+        "problem_sha256": "d1a6c9ae435a534c1471fb0d33400e1fd62c6f06339cbd5a65c58e30a43d8e65",
+        "split": "test",
+        "record_sha256": "bc232dcb554d983bd5b4b8a6e5c4c93723a30878d5f9c5016a7a5ec89502bd30"
+      },
+      "train": {
+        "id": "draft-c23-05",
+        "problem": "把等距变换 $T(x)=Ax+b$ 分解为绕某轴的旋转与沿该轴平移的复合(螺旋运动),其中 $A=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$(绕 $z$ 轴旋转 $90^\\circ$),$b=(1,2,3)$。",
+        "category": "解析几何",
+        "problem_sha256": "2e21ee0e727f4fd0873bb216cdad20ccc8be155949666360438b9a56e850a34e",
+        "record_sha256": "6bd033dc38a59fa889bc4218d4b7944c912276e9269117810eb2859f1880806e"
+      }
+    },
+    {
+      "pair_id": "8b2b76a39ea6701f02904410fc0fb4bacb2a7e5f89b6c03642848656b5c67d73",
+      "query": {
+        "id": "test-geom-003",
+        "problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+        "split": "test",
+        "record_sha256": "ab0c78ba722b2842f764f07205417c4ec4f0ae612bce8e5d03d052f5d04bb376"
+      },
+      "train": {
+        "id": "draft-c39-02",
+        "problem": "设 $T:\\mathbb R^2\\to\\mathbb R^3$ 由 $T(x,y)=(x+y,\\,x-y,\\,2x)$ 定义。判断 $T$ 是否单射、是否满射，并求核与像的维数。",
+        "category": "高等代数",
+        "problem_sha256": "94a579e6dbdae67a54efeef3d86118c1e8a9267bb88fa9a35e019d921c8ea379",
+        "record_sha256": "b2a03df9d8a89c777db8e7639b6db19b6e7e77ffb93d5748b57ff2405914c400"
+      }
+    },
+    {
+      "pair_id": "8562f8318d27bb693c24114a36057b4d02c3fa0f7a61819274bab8458f526ef5",
+      "query": {
+        "id": "test-prob-003",
+        "problem": "用指示变量法推导 $X\\sim B(n,p)$ 的期望与方差。",
+        "category": "概率论",
+        "problem_sha256": "fc2b2034b382479b1093d3d25819f69702ad0918c67cb31e7bd373ceb178e040",
+        "split": "test",
+        "record_sha256": "9c33a23e0b340d07cecb1751232f0340c5fbc1fdbbf2b74116ab6ce20c8dcee8"
+      },
+      "train": {
+        "id": "draft-c01-04",
+        "problem": "求过点 $P(1,-2)$ 且与抛物线 $y=x^2-2x$ 相切的所有直线的方程，并写出各切点坐标。",
+        "category": "数学分析",
+        "problem_sha256": "896b7001939d0729a716751b98d9e807d700b87d8439260b821b5034ae35c66e",
+        "record_sha256": "43001de625901531c404ef5ec9c33fcf0ae244afb425e2885c46194ad6635b0c"
+      }
+    },
+    {
+      "pair_id": "87300799f2b4e4400648de3b7bd72f2c9a373f2c77ca7b0f4f497e265072f791",
+      "query": {
+        "id": "test-calc-016",
+        "problem": "由方程 $x^2+y^2+xy=3$ 确定隐函数 $y=y(x)$。求 $y'(1)$ 与 $y''(1)$（已知 $(1,1)$ 满足方程）。",
+        "category": "数学分析",
+        "problem_sha256": "b02d1fee194332aca5e18fcc8a309297c734cbc4885f6af61f81afe0c9dbfb0f",
+        "split": "test",
+        "record_sha256": "b6d85643426d6b82ac1d9331272f58cc60f9440f957c50ee705b2a2020148e6b"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数",
+        "problem_sha256": "e8f6ad3b143d5c32d6453bd7df102b2ea829f999a8ebb0ac689fda5a2cdea383",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50"
+      }
+    },
+    {
+      "pair_id": "a1a6d5d5d509aa9b86318e7d7709d1f827f1260dfaf76d043b30d6543659ed1c",
+      "query": {
+        "id": "test-linalg-033",
+        "problem": "证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。",
+        "category": "高等代数",
+        "problem_sha256": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+        "split": "test",
+        "record_sha256": "66ba81b7522d9e0541c79122bad139d281eb915f980da37ff92277418126901f"
+      },
+      "train": {
+        "id": "draft-c19-02",
+        "problem": "求以 $xy$ 平面内的圆 $x^2+y^2=1$($z=0$)为准线、母线平行于直线 $l$:方向 $(1,1,1)$ 的柱面方程。",
+        "category": "解析几何",
+        "problem_sha256": "19a818bc69668d5738a29359e8599b9b5e0391bb6ffa26338a95f74cb3076d24",
+        "record_sha256": "0a22807e1602ac6cba3ad2191032b05f18f18b8525557fd2af38f8c4c86ffbac"
+      }
+    },
+    {
+      "pair_id": "442d571494567f8d686975c3ba7440d67c1261f024940a64861e08b2856290e3",
+      "query": {
+        "id": "test-calc-006",
+        "problem": "求 $f(x)=\\ln(1+x)$ 的麦克劳林展开式，并归纳 $f^{(n)}(0)$ 的规律。",
+        "category": "数学分析",
+        "problem_sha256": "f708fdf69bf85f0096bc1e33bac9eeb5b0cb64cc2e729187349ae6b8fcb81891",
+        "split": "test",
+        "record_sha256": "ffd32e9a3ef5f648ec7353e7b35bd6edd587ddb70c908be3746c7780edcdc85a"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数",
+        "problem_sha256": "e8f6ad3b143d5c32d6453bd7df102b2ea829f999a8ebb0ac689fda5a2cdea383",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50"
+      }
+    },
+    {
+      "pair_id": "fa5224947ba1165fbc272e1a5ed00872fb9f71dc200ff2edd193004a10267fb2",
+      "query": {
+        "id": "eval-linalg-006",
+        "problem": "设 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，求 $A^n$（$n$ 为正整数）。",
+        "category": "高等代数",
+        "problem_sha256": "71842fa82fa88cbf447ed1c0fd3319faae393f2409497808c0c3e2c3e1e8bf0f",
+        "split": "eval",
+        "record_sha256": "3288a9c5b30f29ec3badb18d263441b20945f7e6e3d0272fe31c9855273518b4"
+      },
+      "train": {
+        "id": "draft-c46-03",
+        "problem": "从单位正方形均匀选取点$M=(X,Y)$。求$M$分别以$A=(0,0)$、$B=(1,0)$、$C=(0,1)$为三个点中唯一最近点的概率，证明平局不会改变结果。",
+        "category": "概率论",
+        "problem_sha256": "610541724df79c551b1d815b3a708967882e18d77f95592a51e1fecfaf71ba03",
+        "record_sha256": "bd9682b73e745ad4fbe1fa0a06a2364c7fbb877e944849bad8b7a7ff781137bb"
+      }
+    },
+    {
+      "pair_id": "7d652c1675a0920043671a2b9b20a0e67fcddf884a33746b056bd5d1a358b510",
+      "query": {
+        "id": "test-linalg-020",
+        "problem": "求 $f(x)=x^4-4x^2+3$ 除以 $x^2-2x$ 的余式。",
+        "category": "高等代数",
+        "problem_sha256": "f15fb750c7ec542004cce2fb1fa2d406d208d8e4252ac6ec4c8dfa91957ee6d3",
+        "split": "test",
+        "record_sha256": "a7d741bebcbbb4bb545368fe84ce41370cf4bc0a9fdf3fc7763efe4633571eb8"
+      },
+      "train": {
+        "id": "draft-c18-02",
+        "problem": "求两平行平面 $\\pi_1:2x-y+2z=1$ 与 $\\pi_2:2x-y+2z=5$ 之间的距离。",
+        "category": "解析几何",
+        "problem_sha256": "25a0d914d9772e3d58937e07183b69a9be5ef4fb2f460177f0abfb66c54b1fb9",
+        "record_sha256": "8e3197f933a35a03c9a6f8046fad796ee5f53c8f8c959d30e574b0e609be6f94"
+      }
+    },
+    {
+      "pair_id": "5ba716d0b9e75c5a7be03cc3570dd1b419c940d36e738b4524e8870f91acffde",
+      "query": {
+        "id": "test-calc-001",
+        "problem": "求极限 $\\displaystyle\\lim_{n\\to\\infty}\\frac{1}{n}\\sum_{k=1}^{n}\\sin\\frac{k\\pi}{n}$。",
+        "category": "数学分析",
+        "problem_sha256": "e4fb1c09ae99787ce56c4f7e6308ccbbb99bdb8f3251ce47c5eba997d6ac6e27",
+        "split": "test",
+        "record_sha256": "f6eb607d1ce8c0446eb6aaf896cdfcefefaa01c74a3c7d671b3186c474f5c9a2"
+      },
+      "train": {
+        "id": "draft-c38-02",
+        "problem": "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+        "category": "高等代数",
+        "problem_sha256": "172abca660f29da61f2f60d43cc2adccf536678fb6d47cc29ee88c4198129f7f",
+        "record_sha256": "48e9f598cfb32ba197794e7d4f893a32aafcb07549ecc366cf79b436bc49e998"
+      }
+    },
+    {
+      "pair_id": "99d7b6168f6817421274121b29be5f4a861e1d8d4d42c5605f01a3b702870594",
+      "query": {
+        "id": "eval-linalg-020",
+        "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+        "category": "高等代数",
+        "problem_sha256": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+        "split": "eval",
+        "record_sha256": "29547e0c1adfc4eebb6a81b49c781dea595a2e6529778f2e9e4c2573713f1c2e"
+      },
+      "train": {
+        "id": "draft-c07-04",
+        "problem": "求圆 $r=4\\cos\\theta$ 内部位于圆 $r=2$ 外部的区域(月牙形)的面积。",
+        "category": "数学分析",
+        "problem_sha256": "7bffc8234c72fd7f91a2a4609560f8e6f5503d6e8c00d15e9ad5c061ac871d9e",
+        "record_sha256": "afc9a843b407b391b464757c97aaa09b62464f9b97e362bd4f54d1d5d0526000"
+      }
+    },
+    {
+      "pair_id": "038d586156838421eb0452c649245a0bb35f40063d7b442a8d69b3af73156169",
+      "query": {
+        "id": "test-calc-045",
+        "problem": "求 $\\displaystyle\\lim_{x\\to+\\infty}x^2\\left(2^{1/x}-2^{1/(x+1)}\\right)$。",
+        "category": "数学分析",
+        "problem_sha256": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+        "split": "test",
+        "record_sha256": "6cdd2d36a60884e1aa0d3d78734c32e1d6e97a65c48cfad27dde79aa49160fe2"
+      },
+      "train": {
+        "id": "draft-c43-03",
+        "problem": "在$V=\\mathbb R[x]_{\\le2}$中取基$1,x,x^2$。求三个多项式$g_0,g_1,g_2$，使$f_i(p)=\\int_{-1}^1g_i(x)p(x)\\,dx$为此基的对偶泛函，并证明九个配对值。",
+        "category": "高等代数",
+        "problem_sha256": "36e861885b9d864d53534063728a755667e557b5fb3d1df0a9cc5183d922d917",
+        "record_sha256": "6fcf015efcb3976931904902be713c58be052fec8d1ca7e6ce0e1e41fd9bee69"
+      }
+    },
+    {
+      "pair_id": "76ce9d727239d12f7eb62e269f99a68c370270d3d4fd9eb73160f4a64b3d1b31",
+      "query": {
+        "id": "test-calc-040",
+        "problem": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\frac{x^2}{2}}{x^4}$。",
+        "category": "数学分析",
+        "problem_sha256": "753b2985f69dff39492fbaf726fdfc32784fc377bb90e550eeab8b45ff4b04a0",
+        "split": "test",
+        "record_sha256": "c38c80caf6ecb5ffdae4f1f2e464c95af24ea470edb3419784201718cab4df5b"
+      },
+      "train": {
+        "id": "draft-c39-03",
+        "problem": "定义$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$，$Tf=(f(0),f(1),f(-1))$。求核、像与秩，给出证明满射的显式右逆。",
+        "category": "高等代数",
+        "problem_sha256": "f287dc95cae11779c150151e27bdbe32408e353fcb7cf6f2195f56dbc841465c",
+        "record_sha256": "3598fb9a686749358515c53eb8c41575a34e163bd060605612fe0bdb1c768b65"
+      }
+    },
+    {
+      "pair_id": "8f49d04e32df78cf080970b5539658c221d57c28974228bab1b1db7b035a3a4e",
+      "query": {
+        "id": "eval-calc-008",
+        "problem": "证明：当 $x>0$ 时，$e^x>1+x$。",
+        "category": "数学分析",
+        "problem_sha256": "44e0daaec40df2a7daa55648d3b6f11ebaa48065774429337f94375f736e998e",
+        "split": "eval",
+        "record_sha256": "36ce59bfbad5c94330e47227135c73813a4692e8673cf531068f3717be1eddbc"
+      },
+      "train": {
+        "id": "draft-c20-01",
+        "problem": "指出方程 $z=x^2-y^2$ 表示的二次曲面类型，并分别说明其与平面 $z=0$、$z=1$、$z=-1$ 的交线形状。",
+        "category": "解析几何",
+        "problem_sha256": "de0cf709cff727352103d9a6467703eaa973882c120341d1841aa0be694dd2af",
+        "record_sha256": "9af736b399aa6d0549a798e1f1a2abfccbe6c59a0b2991e878512a557e4a35f2"
+      }
+    },
+    {
+      "pair_id": "376e82c7c4e538c4880b022cad33d979cb326cbafc89ca052a03729ebefbc983",
+      "query": {
+        "id": "eval-linalg-031",
+        "problem": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。",
+        "category": "高等代数",
+        "problem_sha256": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+        "split": "eval",
+        "record_sha256": "ca0f9bbc572bf75e348678d392bffb4650d49a9fa0cdfa823fded7aae93698ee"
+      },
+      "train": {
+        "id": "draft-c17-02",
+        "problem": "求过点 $P(1,1,1)$ 且平行于向量 $a=(1,0,1)$ 与 $b=(0,1,1)$ 的平面方程。",
+        "category": "解析几何",
+        "problem_sha256": "63909ace7fa4a5e266622ed87170b3f8b6e6f1872a40b405f1cb2550d08d19aa",
+        "record_sha256": "16542d33c497cc3d0da83fbdd35517c632fdae2bf31c8f3ef802c488f2edf99c"
+      }
+    },
+    {
+      "pair_id": "ad62e34ddb3d85c57da8d12ab36b8e997f3f09d1f798d77c534e56f22b24811f",
+      "query": {
+        "id": "eval-calc-019",
+        "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+        "category": "数学分析",
+        "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+        "split": "eval",
+        "record_sha256": "2216b38fe33de643ae32651d937a191afd51b9a6fb75bd803b2fb85088294d6a"
+      },
+      "train": {
+        "id": "draft-c52-03",
+        "problem": "设随机变量 $X$ 服从区间 $(-1,2)$ 上的均匀分布，求 $Y=X^2$ 的概率密度函数，并指出密度分段的分界点。",
+        "category": "概率论",
+        "problem_sha256": "372d04bcd1e7bd641b9207e6bd40e94634ea640be3c2a115d9d30d8bb0f1f092",
+        "record_sha256": "bfff7c181fc83ead6bd104f99043c98b8f2ee1c96f1368f332db282146bf6208"
+      }
+    },
+    {
+      "pair_id": "f7006abecd932abe7b424d6eaecbc0281cfc0b35a0977843daa41eec11a35fe4",
+      "query": {
+        "id": "eval-prob-003",
+        "problem": "抛一枚均匀硬币直到出现正面为止，求抛掷次数的期望（几何分布期望）。",
+        "category": "概率论",
+        "problem_sha256": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+        "split": "eval",
+        "record_sha256": "91ffbbe0c8eaabbb6837c559d859a01a129b26675c5ac0ad79bfd65ba0167e8e"
+      },
+      "train": {
+        "id": "draft-c12-02",
+        "problem": "证明 $\\sum_{n=0}^{\\infty}x^n$ 在 $[-\\frac12,\\frac12]$ 上一致收敛，并说明在 $(-1,1)$ 上不一致收敛。",
+        "category": "数学分析",
+        "problem_sha256": "5ba6756ab03682265745c474741e4b29d4877336858e5a52cd35956855d60ba6",
+        "record_sha256": "ca93bac77d000919f94838eab50f31721deaaa8b97f950dbf2f336a4a4dfff9e"
+      }
+    },
+    {
+      "pair_id": "3249cb2c1b753cd0bc729ac6df8bca17f818fa558bdb79f962642f00de810d57",
+      "query": {
+        "id": "eval-prob-009",
+        "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+        "category": "概率论",
+        "problem_sha256": "e6a3d323c10e79a69627b04da93e52f1d9533c3b05f8189e123f94f33d18ecc6",
+        "split": "eval",
+        "record_sha256": "5f1e039069242a41930ad2a3428e6d18ee2174b1f92bf1c1dec62d3c4bdf0481"
+      },
+      "train": {
+        "id": "draft-c15-04",
+        "problem": "求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\\pi:x+y=0$ 的夹角 $\\varphi$；再求 $l$ 在 $\\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\\theta$，说明 $\\theta$ 与 $\\varphi$ 的关系。",
+        "category": "解析几何",
+        "problem_sha256": "6c35d948cb5604d742b8dde91a03232fdde23dc39f8304bfaf6e4c78fa66e2f1",
+        "record_sha256": "6852be64c8dcac6644149fc40fb5c2a74dec0e3dc673f55a4e4e9cfc86780837"
+      }
+    },
+    {
+      "pair_id": "9be0252b968f8e1bf0ecd1bc07fd9d6cbc019ac70c35ccc525bfadbdfa541456",
+      "query": {
+        "id": "test-x-008",
+        "problem": "求由 $y=x^2$ 与 $y=\\sqrt{x}$ 围成的区域的面积。",
+        "category": "跨学科",
+        "problem_sha256": "41561f553d3dbb550a4e032fd8ae9db3a08e6d26529fbdfed7798f6b9171a3c8",
+        "split": "test",
+        "record_sha256": "4bd520eb86d06981d886f3410f8187b6f626c62b2ed370ee0c61535bad8ba601"
+      },
+      "train": {
+        "id": "draft-c36-04",
+        "problem": "判断二次型 $f(x,y,z)=(x-y)^2+2(y-z)^2$ 是否正定；若不正定，判断其是否半正定，并求该二次型的秩。",
+        "category": "高等代数",
+        "problem_sha256": "bab8b42abc2dcc7a577d928d0d72ee8ccb8df4ffa09e554750c5b4025c113a33",
+        "record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3"
+      }
+    },
+    {
+      "pair_id": "b0e7153c790cb5fb29b90bac5dc74303678f6fa59caff736a9b90e41c398f4dc",
+      "query": {
+        "id": "test-prob-012",
+        "problem": "袋中有 3 个红球、2 个白球，不放回地抽取 2 个。求恰抽到一红一白的概率。",
+        "category": "概率论",
+        "problem_sha256": "b170b4ff3a4b3d26cb7165cdea502e1369e26dc945f9893ac25dab9e5ead36d1",
+        "split": "test",
+        "record_sha256": "a3dc4b4cc06b33b2f39d33dfd3b26503c08eac6d8f9802f363f4ed9e18d1d1e9"
+      },
+      "train": {
+        "id": "draft-c20-04",
+        "problem": "椭球$x^2+2y^2+3z^2=1$与平面$x+y+z=t$相交。求截面中心、全部空集或退化情形，以及非退化截面的精确半轴长。",
+        "category": "解析几何",
+        "problem_sha256": "c290a6745d5e5514033cb53444f6b35ef2fe00506bb891b56e70b723fadabe82",
+        "record_sha256": "a411822671d47303697779c7d8d014770281ff8f406e62f997bde91d8f84a5b9"
+      }
+    },
+    {
+      "pair_id": "5e40b73acca3f5e9f7bb473a06a4af0f63ba34bbede2ecd27bb4c65cda067f9a",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数",
+        "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "split": "test",
+        "record_sha256": "4cfc94c530b0893035cf36fce6f124320bf99bebbe18e3f99f0edfed71787cad"
+      },
+      "train": {
+        "id": "draft-c17-04",
+        "problem": "设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。",
+        "category": "解析几何",
+        "problem_sha256": "bbc84ffb971aa63aba73c91de931d586027389e4580e2ad98f65de0d62a5d2a7",
+        "record_sha256": "b15b608a46e7b4372d993bca738edc2b4376f069a9876e4c20df7d6c429f85ae"
+      }
+    },
+    {
+      "pair_id": "e681aaf7f8f9ef0a3b2ffb52cdc34ea71af33e85526bc9148778d4da58c29975",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数",
+        "problem_sha256": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "split": "eval",
+        "record_sha256": "a9ecd6d6dcb777ceabf5edf204a0beec2a5e9132d2dc2ff3382aa2431d156e92"
+      },
+      "train": {
+        "id": "draft-c50-01",
+        "problem": "设独立$X_i\\sim U(0,1)$，$S_n=\\sum_{i=1}^nX_i$。精确求$P(S_{100}>55)$；另对固定实$a$求$\\lim_{n\\to\\infty}P(S_n>n/2+a\\sqrt{n/12})$。",
+        "category": "概率论",
+        "problem_sha256": "c9b401c8e7b629a25e916ffaeaccf06e087ca782106565a8bb88bc85bf99bf84",
+        "record_sha256": "6be99a1a5b00a84dad43574be3ee1992e712da8be2a0bfa03a72fb4b0603529c"
+      }
+    },
+    {
+      "pair_id": "b0f006867d67a1c43712831fd9cf64e6e5cb32800dc7f3f2aa4c8114ae9280d6",
+      "query": {
+        "id": "test-prob-024",
+        "problem": "证明泊松分布的概率质量函数归一化：$\\displaystyle\\sum_{k=0}^{\\infty}\\frac{\\lambda^ke^{-\\lambda}}{k!}=1$，并用阶乘矩求 $\\operatorname{Var}(X)$（$X\\sim\\operatorname{Poisson}(\\lambda)$）。",
+        "category": "概率论",
+        "problem_sha256": "85945509391369ea2494034c4c6da6222bc034d7b71f46083705c38311e33f0a",
+        "split": "test",
+        "record_sha256": "1ab4143617db832ebfbc90e3d0d4d98512519affff6d18898d3b38913a0eb8c6"
+      },
+      "train": {
+        "id": "draft-c24-02",
+        "problem": "仿射映射$T(x,y)=(1+x+y,-1+2x+2y)$作用于单位圆$x^2+y^2=1$。求完整像集和每个像点在圆上的原像数，说明为什么不能使用可逆仿射的椭圆结论。",
+        "category": "解析几何",
+        "problem_sha256": "eeac80068f04c1cc5a16a983979664c0483dcb87cc97e03445ff18f206eeada3",
+        "record_sha256": "412831cbe61695b7eebbc8c10820d4f91a835264e66a2a6b698f4bea81963db7"
+      }
+    },
+    {
+      "pair_id": "e339d47aaf7d61b79f62cf8ad896353461ea625878324aa815b3869c26ff6c97",
+      "query": {
+        "id": "eval-calc-001",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x}{x^2}$。",
+        "category": "数学分析",
+        "problem_sha256": "99ff4f8b1d45ffec7e1b4b46fc52416063b8e6e15389cd5b6e60c9d729bcd594",
+        "split": "eval",
+        "record_sha256": "abacdc4935202b52e37deb081cfac6bc7a0eb1ae7efb5980b675e5535d485532"
+      },
+      "train": {
+        "id": "draft-c34-03",
+        "problem": "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+        "category": "高等代数",
+        "problem_sha256": "41e3466f3b16ec2b6a415c0a564dd40f9fa883cc26a20a1d8ef390ea2a8754e6",
+        "record_sha256": "3d208246e5661178cad239e45820a7568a3619d9ae2481d20b6423107d26db6e"
+      }
+    }
+  ]
+}

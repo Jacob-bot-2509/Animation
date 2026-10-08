@@ -1,0 +1,915 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "test",
+      "id": "test-calc-026",
+      "problem_sha256": "d3186498206ba8ac6ff8350e4cd90a87dee260e5f3d5f5ac56cfe01d9b51bf4e",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-027",
+      "problem_sha256": "1ceeb3f01a49931446c8f1adebae794b2d0e1a9352d02dbc45f66832fd2601ef",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-028",
+      "problem_sha256": "3ce5e64f524dd1fa7129de15f53a3ce24679a7d2db67008acf0df0dab9e488e0",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-029",
+      "problem_sha256": "e41dc42e4d3e752f32301a7a12215c1fe8c9e729304550229e68db46ef664daf",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-030",
+      "problem_sha256": "83055e4762d726b9bf45ea249d66c74957b3ccde8b102b0177394d3c97797900",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-031",
+      "problem_sha256": "f1c0862229c1cf93633290f9c99bd2a4a25a01569ea093e3aabc68ee5bf5eb3a",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-032",
+      "problem_sha256": "a014bcb4ac425919b7be8e0925fb3f04f59c52fcdc751a83d66cf41c68479692",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-033",
+      "problem_sha256": "a0766240a82e99facc45d956cf1746d75a4800ea8e9f7db3835dee26860f3997",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-034",
+      "problem_sha256": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-035",
+      "problem_sha256": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-036",
+      "problem_sha256": "86cdd36e2b295084a9cb615ef5fb462fa49c1a3142a39dbe2b0d251ca659d7fb",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-037",
+      "problem_sha256": "9650e17d47e0eb0306d1f5bf82076bdb5b3549aa9c3de3938d58f8243a346549",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-038",
+      "problem_sha256": "a5c530bbc0adcff7c4e360a5772a810fc4998a1998a74676e1729666a34c1f87",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-039",
+      "problem_sha256": "c1a4544e619ea011362fcaab775b710c309efa8fdeada6a0588fd5315eaeae43",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-040",
+      "problem_sha256": "753b2985f69dff39492fbaf726fdfc32784fc377bb90e550eeab8b45ff4b04a0",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-041",
+      "problem_sha256": "6e357696baf386d47786a0da604d33afb365d294f7a2d1d8b89ab99ac5691427",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-042",
+      "problem_sha256": "54c836589af9380405e1a8b50e35c3df0fca8629a4dd1fbb12dfc9d4b597c016",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-043",
+      "problem_sha256": "938915c6271dd0c2c25c8904c3d9bd17fa68b997a6b1a42b5ed64fac296a55e4",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-calc-044",
+      "problem_sha256": "7242b9dc699f279cfec0c7662cf9cabd7eea40ea1fcc02f2bfc7d05914d911cd",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "test",
+      "id": "test-calc-026",
+      "problem_sha256": "d3186498206ba8ac6ff8350e4cd90a87dee260e5f3d5f5ac56cfe01d9b51bf4e",
+      "source_records": [
+        {
+          "id": "test-calc-026",
+          "category": "数学分析",
+          "sub_category": "洛必达×变限积分",
+          "problem": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{\\displaystyle\\int_0^x\\sin(t^2)\\,dt}{x^3}$。",
+          "solution": "$\\dfrac{0}{0}$ 型。分子求导得 $\\sin(x^2)$，分母求导得 $3x^2$。原式 $=\\lim_{x\\to 0}\\dfrac{\\sin(x^2)}{3x^2}$。令 $u=x^2\\to 0$，$\\dfrac{\\sin u}{u}\\to 1$，故原式 $=\\dfrac{1}{3}$。",
+          "answer": "$\\dfrac{1}{3}$",
+          "scene_spec": {
+            "objects": [
+              "被积函数与面积",
+              "洛必达步骤的比值对照"
+            ],
+            "steps": [
+              "第一步：建立数学分析·洛必达×变限积分综合场景，呈现与洛必达法则、变限积分求导、等价无穷小相关的核心图形。",
+              "第二步：被积函数与面积。",
+              "第三步：洛必达步骤的比值对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "正弦型变限积分极限",
+          "visual_style": "洛必达比值对照",
+          "efficiency_tags": [
+            "被积函数与面积",
+            "洛必达步骤的比值对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "66092700e94e43ffee1a90dd292967cfdf386e51841a517bbcbf7cd92fea68e7"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-027",
+      "problem_sha256": "1ceeb3f01a49931446c8f1adebae794b2d0e1a9352d02dbc45f66832fd2601ef",
+      "source_records": [
+        {
+          "id": "test-calc-027",
+          "category": "数学分析",
+          "sub_category": "零点定理×中值定理",
+          "problem": "证明方程 $e^x=2x+1$ 恰有两个实根，并给出两个根所在的区间。",
+          "solution": "令 $f(x)=e^x-2x-1$。$f(0)=1-0-1=0$，故 $x=0$ 是一个根。$f'(x)=e^x-2$，$f'=0$ 当 $x=\\ln 2$。$f(\\ln 2)=2-2\\ln 2-1=1-2\\ln 2<0$（$\\ln 2\\approx 0.693$）。$f(2)=e^2-5>0$，$f(-\\infty)=+\\infty$ 且 $f(-2)=e^{-2}+4-1>0$。在 $(-\\infty,\\ln 2]$ 上 $f$ 严格递减（$f'<0$），且 $f(-2)>0$、$f(\\ln 2)<0$，由零点定理存在唯一根 $\\xi_1\\in(-2,\\ln 2)$（即 $x=0$，因 $f(0)=0$ 且该区间上单调故唯一）；在 $[\\ln 2,+\\infty)$ 上 $f$ 严格递增，$f(\\ln 2)<0$、$f(2)>0$，存在唯一根 $\\xi_2\\in(\\ln 2,2)$。故恰有两个实根：$x=0$ 与 $\\xi_2\\in(\\ln 2,2)$。",
+          "answer": "恰有两个实根：$x=0$ 与 $\\xi_2\\in(\\ln 2,2)$",
+          "scene_spec": {
+            "objects": [
+              "$y=e^x$ 与 $y=2x+1$ 的两交点",
+              "单调区间与零点定位"
+            ],
+            "steps": [
+              "第一步：建立数学分析·零点定理×中值定理综合场景，呈现与零点存在性、单调区间、极值分析相关的核心图形。",
+              "第二步：$y=e^x$ 与 $y=2x+1$ 的两交点。",
+              "第三步：单调区间与零点定位。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数与线性函数零点",
+          "visual_style": "两曲线交点",
+          "efficiency_tags": [
+            "$y=e^x$ 与 $y=2x+1$ 的两交点",
+            "单调区间与零点定位"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "a38f965c73e38de452f3507f495d0cae6afb9afb57a55018a6b8a04fba4b5dfb"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-028",
+      "problem_sha256": "3ce5e64f524dd1fa7129de15f53a3ce24679a7d2db67008acf0df0dab9e488e0",
+      "source_records": [
+        {
+          "id": "test-calc-028",
+          "category": "数学分析",
+          "sub_category": "定积分×奇偶对称性",
+          "problem": "求 $\\displaystyle\\int_{-1}^{1}x^3\\sqrt{1-x^2}\\,dx$。",
+          "solution": "被积函数 $f(x)=x^3\\sqrt{1-x^2}$ 满足 $f(-x)=(-x)^3\\sqrt{1-(-x)^2}=-x^3\\sqrt{1-x^2}=-f(x)$，为奇函数，积分区间关于原点对称，故 $\\displaystyle\\int_{-1}^{1}f(x)dx=0$。",
+          "answer": "$0$",
+          "scene_spec": {
+            "objects": [
+              "奇函数曲线两侧面积正负抵消",
+              "对称性标注"
+            ],
+            "steps": [
+              "第一步：建立数学分析·定积分×奇偶对称性综合场景，呈现与奇函数对称性、定积分相关的核心图形。",
+              "第二步：奇函数曲线两侧面积正负抵消。",
+              "第三步：对称性标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "奇函数定积分",
+          "visual_style": "正负面积抵消",
+          "efficiency_tags": [
+            "奇函数曲线两侧面积正负抵消",
+            "对称性标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "d09e1a00abd294e28ccf22557e47376ca32c0d716c3a7b2948ffc299b634c96e"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-029",
+      "problem_sha256": "e41dc42e4d3e752f32301a7a12215c1fe8c9e729304550229e68db46ef664daf",
+      "source_records": [
+        {
+          "id": "test-calc-029",
+          "category": "数学分析",
+          "sub_category": "反常积分×分部积分",
+          "problem": "判断 $\\displaystyle\\int_1^{+\\infty}\\frac{\\ln x}{x^2}\\,dx$ 的敛散性，若收敛求其值。",
+          "solution": "分部积分（$u=\\ln x$、$dv=x^{-2}dx$）：$\\displaystyle\\int\\dfrac{\\ln x}{x^2}dx=-\\dfrac{\\ln x}{x}+\\int\\dfrac{dx}{x^2}=-\\dfrac{\\ln x}{x}-\\dfrac{1}{x}+C$。$\\displaystyle\\int_1^b=-\\left[\\dfrac{\\ln x}{x}+\\dfrac{1}{x}\\right]_1^b=1-\\dfrac{\\ln b}{b}-\\dfrac{1}{b}$。令 $b\\to+\\infty$：$\\dfrac{\\ln b}{b}\\to 0$、$\\dfrac{1}{b}\\to 0$，故积分为 $1$，收敛。",
+          "answer": "$1$",
+          "scene_spec": {
+            "objects": [
+              "曲线下面积趋于 1",
+              "分部积分的两项分解"
+            ],
+            "steps": [
+              "第一步：建立数学分析·反常积分×分部积分综合场景，呈现与反常积分、分部积分、极限相关的核心图形。",
+              "第二步：曲线下面积趋于 1。",
+              "第三步：分部积分的两项分解。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数×幂函数反常积分",
+          "visual_style": "分部两项分解",
+          "efficiency_tags": [
+            "曲线下面积趋于 1",
+            "分部积分的两项分解"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3f2e6e6c2e459e4f9cbb4cee7b1446f3ece1da6a5b91624a532eeddb16a66794"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-030",
+      "problem_sha256": "83055e4762d726b9bf45ea249d66c74957b3ccde8b102b0177394d3c97797900",
+      "source_records": [
+        {
+          "id": "test-calc-030",
+          "category": "数学分析",
+          "sub_category": "极限×积分不等式",
+          "problem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\int_0^1\\frac{x^n}{1+x}\\,dx$。",
+          "solution": "当 $0\\le x\\le 1$ 时 $0\\le\\dfrac{x^n}{1+x}\\le x^n$（因 $1+x\\ge 1$），故 $0\\le\\displaystyle\\int_0^1\\dfrac{x^n}{1+x}dx\\le\\int_0^1x^ndx=\\dfrac{1}{n+1}$。由夹逼准则，极限为 $0$。",
+          "answer": "$0$",
+          "scene_spec": {
+            "objects": [
+              "被积函数随 $n$ 增大而\"塌陷\"",
+              "夹逼上下界的动画"
+            ],
+            "steps": [
+              "第一步：建立数学分析·极限×积分不等式综合场景，呈现与夹逼准则、定积分估计、极限相关的核心图形。",
+              "第二步：被积函数随 $n$ 增大而\"塌陷\"。",
+              "第三步：夹逼上下界的动画。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂函数积分极限",
+          "visual_style": "被积函数塌陷",
+          "efficiency_tags": [
+            "被积函数随 $n$ 增大而\"塌陷\"",
+            "夹逼上下界的动画"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "4b6340510e0169e949e9bac149a91280e495bedd9443dc9833cf912f043b15e9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-031",
+      "problem_sha256": "f1c0862229c1cf93633290f9c99bd2a4a25a01569ea093e3aabc68ee5bf5eb3a",
+      "source_records": [
+        {
+          "id": "test-calc-031",
+          "category": "数学分析",
+          "sub_category": "导数×物理建模",
+          "problem": "物体从高度 $20$ 米处自由下落，高度函数 $h(t)=20-5t^2$（米，$t$ 为秒）。求速度与加速度函数，及物体落地时刻与落地速度。",
+          "solution": "$v(t)=h'(t)=-10t$（米/秒），$a(t)=v'(t)=-10$（米/秒²，向下）。落地：$h(t)=0$，即 $20-5t^2=0$，$t=2$（秒，舍负根）。落地速度 $v(2)=-20$（米/秒，向下，大小为 $20$）。",
+          "answer": "$v=-10t$；$a=-10$；$t=2$ 秒落地，落地速度大小 $20$ 米/秒",
+          "scene_spec": {
+            "objects": [
+              "高度抛物线、速度直线、加速度水平线三图对照",
+              "落地时刻标注"
+            ],
+            "steps": [
+              "第一步：建立数学分析·导数×物理建模综合场景，呈现与导数、物理建模、二次函数相关的核心图形。",
+              "第二步：高度抛物线、速度直线、加速度水平线三图对照。",
+              "第三步：落地时刻标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "二次函数运动模型",
+          "visual_style": "位移速度加速度三图",
+          "efficiency_tags": [
+            "高度抛物线、速度直线、加速度水平线三图对照",
+            "落地时刻标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "a50121acf5c23640eba686af81827e7d45f38c47764e74c366b9d0e03be3470a"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-032",
+      "problem_sha256": "a014bcb4ac425919b7be8e0925fb3f04f59c52fcdc751a83d66cf41c68479692",
+      "source_records": [
+        {
+          "id": "test-calc-032",
+          "category": "数学分析",
+          "sub_category": "曲率×导数",
+          "problem": "求曲线 $y=x^2$ 在原点处的曲率，以及曲线 $y=\\ln x$ 在 $(1,0)$ 处的曲率。",
+          "solution": "曲率公式 $\\kappa=\\dfrac{|y''|}{(1+y'^2)^{3/2}}$。对 $y=x^2$：$y'=2x$，$y''=2$，在 $(0,0)$：$\\kappa=\\dfrac{2}{(1+0)^{3/2}}=2$。对 $y=\\ln x$：$y'=\\dfrac{1}{x}$，$y''=-\\dfrac{1}{x^2}$，在 $(1,0)$：$\\kappa=\\dfrac{1}{(1+1)^{3/2}}=\\dfrac{1}{2\\sqrt2}$。",
+          "answer": "$y=x^2$ 在原点处 $\\kappa=2$；$y=\\ln x$ 在 $(1,0)$ 处 $\\kappa=\\dfrac{1}{2\\sqrt2}$",
+          "scene_spec": {
+            "objects": [
+              "密切圆在两曲线处的贴合",
+              "曲率随位置变化"
+            ],
+            "steps": [
+              "第一步：建立数学分析·曲率×导数综合场景，呈现与曲率公式、二阶导数、反函数思想相关的核心图形。",
+              "第二步：密切圆在两曲线处的贴合。",
+              "第三步：曲率随位置变化。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "曲率计算",
+          "visual_style": "密切圆贴合",
+          "efficiency_tags": [
+            "密切圆在两曲线处的贴合",
+            "曲率随位置变化"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2b0bfa1a240fd7a8123b84a679191cd484263a7ec874321f1711e0fd699214e7"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-033",
+      "problem_sha256": "a0766240a82e99facc45d956cf1746d75a4800ea8e9f7db3835dee26860f3997",
+      "source_records": [
+        {
+          "id": "test-calc-033",
+          "category": "数学分析",
+          "sub_category": "泰勒公式×不等式证明",
+          "problem": "证明：当 $x\\ge 0$ 时，$e^x\\ge 1+x+\\dfrac{x^2}{2}$。",
+          "solution": "令 $f(x)=e^x-1-x-\\dfrac{x^2}{2}$。$f'(x)=e^x-1-x$。由 $e^x>1+x$（$x>0$，eval-calc-008）得 $f'(x)>0$（$x>0$），故 $f$ 在 $[0,+\\infty)$ 上严格递增。又 $f(0)=1-1-0-0=0$，故 $x\\ge 0$ 时 $f(x)\\ge 0$，即 $e^x\\ge 1+x+\\dfrac{x^2}{2}$。亦可由泰勒公式带拉格朗日余项 $e^x=1+x+\\dfrac{x^2}{2}+\\dfrac{x^3}{6}e^\\xi\\ge 1+x+\\dfrac{x^2}{2}$（$\\xi\\ge 0$）直接得证。",
+          "answer": "证毕（两种证法）",
+          "scene_spec": {
+            "objects": [
+              "$y=e^x$ 与 $y=1+x+\\dfrac{x^2}{2}$ 的分离",
+              "余项曲线的包络"
+            ],
+            "steps": [
+              "第一步：建立数学分析·泰勒公式×不等式证明综合场景，呈现与泰勒公式、单调性、不等式相关的核心图形。",
+              "第二步：$y=e^x$ 与 $y=1+x+\\dfrac{x^2}{2}$ 的分离。",
+              "第三步：余项曲线的包络。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数函数不等式",
+          "visual_style": "曲线与二次逼近分离",
+          "efficiency_tags": [
+            "$y=e^x$ 与 $y=1+x+\\dfrac{x^2}{2}$ 的分离",
+            "余项曲线的包络"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "637795ec1922dd26f433c6fe295129b1ca253512ad1e11330435e29ef8e81544"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-034",
+      "problem_sha256": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+      "source_records": [
+        {
+          "id": "test-calc-034",
+          "category": "数学分析",
+          "sub_category": "级数×比值判别法",
+          "problem": "判断级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{n!}{n^n}$ 的敛散性。",
+          "solution": "比值：$\\dfrac{a_{n+1}}{a_n}=\\dfrac{(n+1)!}{(n+1)^{n+1}}\\cdot\\dfrac{n^n}{n!}=\\dfrac{n^n}{(n+1)^n}=\\left(\\dfrac{n}{n+1}\\right)^n=\\dfrac{1}{\\left(1+\\frac{1}{n}\\right)^n}\\to\\dfrac{1}{e}<1$。由比值判别法，级数收敛。",
+          "answer": "收敛",
+          "scene_spec": {
+            "objects": [
+              "比值 $\\left(\\frac{n}{n+1}\\right)^n$ 趋近 $1/e$",
+              "级数项与几何级数比较"
+            ],
+            "steps": [
+              "第一步：建立数学分析·级数×比值判别法综合场景，呈现与比值判别法、重要极限、阶乘增长相关的核心图形。",
+              "第二步：比值 $\\left(\\frac{n}{n+1}\\right)^n$ 趋近 $1/e$。",
+              "第三步：级数项与几何级数比较。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "阶乘级数敛散",
+          "visual_style": "比值趋近 1/e",
+          "efficiency_tags": [
+            "比值 $\\left(\\frac{n}{n+1}\\right)^n$ 趋近 $1/e$",
+            "级数项与几何级数比较"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "99edec6515ff13d76689441a21ea219db43414390b1ede642a70b806e56ad8ce"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-035",
+      "problem_sha256": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+      "source_records": [
+        {
+          "id": "test-calc-035",
+          "category": "数学分析",
+          "sub_category": "幂级数×收敛半径",
+          "problem": "求幂级数 $\\displaystyle\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$ 与 $\\displaystyle\\sum_{n=0}^{\\infty}n!\\,x^n$ 的收敛半径，并对比说明。",
+          "solution": "用系数比值 $\\left|\\dfrac{a_{n+1}}{a_n}\\right|$（$a_n$ 为幂级数系数，不含 $x$）。对 $\\sum\\dfrac{x^n}{n!}$：$a_n=\\dfrac{1}{n!}$，$\\left|\\dfrac{a_{n+1}}{a_n}\\right|=\\dfrac{1}{n+1}\\to 0$，收敛半径 $R=\\dfrac{1}{0}=+\\infty$。对 $\\sum n!\\,x^n$：$a_n=n!$，$\\left|\\dfrac{a_{n+1}}{a_n}\\right|=n+1\\to+\\infty$，$R=0$；且 $x\\ne 0$ 时通项 $n!x^n\\not\\to 0$，级数发散，与 $R=0$ 一致。",
+          "answer": "$R=+\\infty$ 与 $R=0$",
+          "scene_spec": {
+            "objects": [
+              "两系数序列的增长对比（$1/n!$ 与 $n!$）",
+              "数轴上收敛域标注"
+            ],
+            "steps": [
+              "第一步：建立数学分析·幂级数×收敛半径综合场景，呈现与收敛半径、比值判别法、阶乘增长相关的核心图形。",
+              "第二步：两系数序列的增长对比（$1/n!$ 与 $n!$）。",
+              "第三步：数轴上收敛域标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂级数收敛半径",
+          "visual_style": "系数增长对比",
+          "efficiency_tags": [
+            "两系数序列的增长对比（$1/n!$ 与 $n!$）",
+            "数轴上收敛域标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "c05d2c565288e444eb3ba863f6f4a7c16aed00a7834e39a96f1d4edb6fbcfc3c"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-036",
+      "problem_sha256": "86cdd36e2b295084a9cb615ef5fb462fa49c1a3142a39dbe2b0d251ca659d7fb",
+      "source_records": [
+        {
+          "id": "test-calc-036",
+          "category": "数学分析",
+          "sub_category": "多元链式法则×拉普拉斯算子",
+          "problem": "设 $u=f(r)$，其中 $r=\\sqrt{x^2+y^2}$（$(x,y)\\ne(0,0)$），$f$ 二阶可导。证明在 $\\mathbb R^2\\setminus\\{(0,0)\\}$ 上 $u_{xx}+u_{yy}=f''(r)+\\dfrac{f'(r)}{r}$，并验证 $u=\\ln r$ 满足 $u_{xx}+u_{yy}=0$。",
+          "solution": "$r_x=\\dfrac{x}{r}$，$r_y=\\dfrac{y}{r}$。$u_x=f'(r)\\dfrac{x}{r}$，$u_{xx}=f''(r)\\dfrac{x^2}{r^2}+f'(r)\\left(\\dfrac{1}{r}-\\dfrac{x^2}{r^3}\\right)$。同理 $u_{yy}=f''(r)\\dfrac{y^2}{r^2}+f'(r)\\left(\\dfrac{1}{r}-\\dfrac{y^2}{r^3}\\right)$。相加：$u_{xx}+u_{yy}=f''(r)\\dfrac{x^2+y^2}{r^2}+f'(r)\\left(\\dfrac{2}{r}-\\dfrac{x^2+y^2}{r^3}\\right)=f''(r)+f'(r)\\left(\\dfrac{2}{r}-\\dfrac{1}{r}\\right)=f''(r)+\\dfrac{f'(r)}{r}$。取 $f(r)=\\ln r$：$f'(r)=\\dfrac{1}{r}$，$f''(r)=-\\dfrac{1}{r^2}$，代入得 $u_{xx}+u_{yy}=-\\dfrac{1}{r^2}+\\dfrac{1}{r^2}=0$，即 $\\ln r$ 在去掉原点的平面上调和。",
+          "answer": "证毕（在 $\\mathbb R^2\\setminus\\{(0,0)\\}$ 上）；$u=\\ln r$ 在 $\\mathbb R^2\\setminus\\{(0,0)\\}$ 上满足 $u_{xx}+u_{yy}=0$",
+          "scene_spec": {
+            "objects": [
+              "径向函数与极坐标拉普拉斯",
+              "$\\ln r$ 的等值线（同心圆）"
+            ],
+            "steps": [
+              "第一步：建立数学分析·多元链式法则×拉普拉斯算子综合场景，呈现与多元链式法则、拉普拉斯算子、调和函数相关的核心图形。",
+              "第二步：径向函数与极坐标拉普拉斯。",
+              "第三步：$\\ln r$ 的等值线（同心圆）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "径向函数拉普拉斯",
+          "visual_style": "同心圆等值线",
+          "efficiency_tags": [
+            "径向函数与极坐标拉普拉斯",
+            "$\\ln r$ 的等值线（同心圆）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "ee9af23045e406b28a9748b1b16e15647dee504f7f7da698e5cde2dd55dbd670"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-037",
+      "problem_sha256": "9650e17d47e0eb0306d1f5bf82076bdb5b3549aa9c3de3938d58f8243a346549",
+      "source_records": [
+        {
+          "id": "test-calc-037",
+          "category": "数学分析",
+          "sub_category": "隐函数×导数",
+          "problem": "由笛卡尔叶形线方程 $x^3+y^3-3xy=0$ 确定隐函数。求曲线在点 $\\left(\\dfrac{3}{2},\\dfrac{3}{2}\\right)$ 处的切线斜率。",
+          "solution": "两边对 $x$ 求导：$3x^2+3y^2y'-3y-3xy'=0$，即 $(y^2-x)y'=y-x^2$，$y'=\\dfrac{y-x^2}{y^2-x}$。在 $\\left(\\dfrac{3}{2},\\dfrac{3}{2}\\right)$ 处：$y'=\\dfrac{\\frac{3}{2}-\\frac{9}{4}}{\\frac{9}{4}-\\frac{3}{2}}=\\dfrac{-\\frac{3}{4}}{\\frac{3}{4}}=-1$。",
+          "answer": "$-1$",
+          "scene_spec": {
+            "objects": [
+              "叶形线的环与渐近线",
+              "切点 $\\left(\\frac32,\\frac32\\right)$ 处的切线"
+            ],
+            "steps": [
+              "第一步：建立数学分析·隐函数×导数综合场景，呈现与隐函数求导、代数曲线、切线相关的核心图形。",
+              "第二步：叶形线的环与渐近线。",
+              "第三步：切点 $\\left(\\frac32,\\frac32\\right)$ 处的切线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "代数曲线隐函数",
+          "visual_style": "叶形线与切线",
+          "efficiency_tags": [
+            "叶形线的环与渐近线",
+            "切点 $\\left(\\frac32,\\frac32\\right)$ 处的切线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "753025245299fed17406c972965d8be90cf2540f5e45aa1f96b115b87e53ee20"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-038",
+      "problem_sha256": "a5c530bbc0adcff7c4e360a5772a810fc4998a1998a74676e1729666a34c1f87",
+      "source_records": [
+        {
+          "id": "test-calc-038",
+          "category": "数学分析",
+          "sub_category": "凸函数×积分不等式",
+          "problem": "证明 $\\displaystyle\\int_0^1 e^{x^2}\\,dx\\ge e^{1/3}$。",
+          "solution": "$e^t$ 是凸函数。区间 $[0,1]$ 上取均匀\"概率测度\"，由积分型 Jensen 不等式：$\\displaystyle\\int_0^1 e^{x^2}dx\\ge e^{\\int_0^1 x^2dx}=e^{1/3}$（凸函数在\"平均点\"的取值不大于函数值的平均）。其中 $\\displaystyle\\int_0^1x^2dx=\\dfrac{1}{3}$。",
+          "answer": "证毕",
+          "scene_spec": {
+            "objects": [
+              "凸函数图像上弦与弧的位置关系",
+              "不等式两端的对照"
+            ],
+            "steps": [
+              "第一步：建立数学分析·凸函数×积分不等式综合场景，呈现与Jensen 不等式、凸函数、定积分相关的核心图形。",
+              "第二步：凸函数图像上弦与弧的位置关系。",
+              "第三步：不等式两端的对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "凸函数积分不等式",
+          "visual_style": "弦与弧的位置关系",
+          "efficiency_tags": [
+            "凸函数图像上弦与弧的位置关系",
+            "不等式两端的对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3bb364750bc7f7394e9cc5da486be5a307160cb09af6f4cb0f61c93ffc977a10"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-039",
+      "problem_sha256": "c1a4544e619ea011362fcaab775b710c309efa8fdeada6a0588fd5315eaeae43",
+      "source_records": [
+        {
+          "id": "test-calc-039",
+          "category": "数学分析",
+          "sub_category": "微分方程×应用建模",
+          "problem": "牛顿冷却模型：物体温度 $T(t)$ 满足 $T'=-k(T-20)$（环境温度 $20^\\circ$C）。已知 $T(0)=100$、$T(5)=60$，求 $T(10)$。",
+          "solution": "解方程：$\\dfrac{dT}{T-20}=-k\\,dt$，积分得 $\\ln(T-20)=-kt+C$，$T=20+Ce^{-kt}$。由 $T(0)=100$：$C=80$，$T=20+80e^{-kt}$。由 $T(5)=60$：$60=20+80e^{-5k}$，$e^{-5k}=\\dfrac{1}{2}$。故 $T(10)=20+80e^{-10k}=20+80(e^{-5k})^2=20+80\\cdot\\dfrac{1}{4}=40$。",
+          "answer": "$T(10)=40^\\circ$C",
+          "scene_spec": {
+            "objects": [
+              "冷却曲线与 $20^\\circ$C 渐近线",
+              "两点确定参数 $k$"
+            ],
+            "steps": [
+              "第一步：建立数学分析·微分方程×应用建模综合场景，呈现与可分离变量微分方程、指数衰减、参数确定相关的核心图形。",
+              "第二步：冷却曲线与 $20^\\circ$C 渐近线。",
+              "第三步：两点确定参数 $k$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数衰减冷却模型",
+          "visual_style": "冷却曲线与渐近线",
+          "efficiency_tags": [
+            "冷却曲线与 $20^\\circ$C 渐近线",
+            "两点确定参数 $k$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3f8bd69afaa67287df7faad306f0fe59ba67af58671024f934b5c0519430cc8d"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-040",
+      "problem_sha256": "753b2985f69dff39492fbaf726fdfc32784fc377bb90e550eeab8b45ff4b04a0",
+      "source_records": [
+        {
+          "id": "test-calc-040",
+          "category": "数学分析",
+          "sub_category": "泰勒公式×极限",
+          "problem": "求 $\\displaystyle\\lim_{x\\to 0}\\frac{1-\\cos x-\\frac{x^2}{2}}{x^4}$。",
+          "solution": "$\\cos x=1-\\dfrac{x^2}{2}+\\dfrac{x^4}{24}-\\dfrac{x^6}{720}+\\cdots$。故 $1-\\cos x-\\dfrac{x^2}{2}=-\\dfrac{x^4}{24}+o(x^4)$。原式 $=\\lim_{x\\to 0}\\dfrac{-x^4/24+o(x^4)}{x^4}=-\\dfrac{1}{24}$。",
+          "answer": "$-\\dfrac{1}{24}$",
+          "scene_spec": {
+            "objects": [
+              "$\\cos x$ 与 $1-\\dfrac{x^2}{2}$ 的四阶偏差",
+              "极限值标注"
+            ],
+            "steps": [
+              "第一步：建立数学分析·泰勒公式×极限综合场景，呈现与泰勒展开、高阶无穷小、极限相关的核心图形。",
+              "第二步：$\\cos x$ 与 $1-\\dfrac{x^2}{2}$ 的四阶偏差。",
+              "第三步：极限值标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "余弦高阶无穷小",
+          "visual_style": "四阶偏差放大",
+          "efficiency_tags": [
+            "$\\cos x$ 与 $1-\\dfrac{x^2}{2}$ 的四阶偏差",
+            "极限值标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b5855bbc8f344b4c5189136c170601400328b1813287a92754a5a5be9656a2a5"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-041",
+      "problem_sha256": "6e357696baf386d47786a0da604d33afb365d294f7a2d1d8b89ab99ac5691427",
+      "source_records": [
+        {
+          "id": "test-calc-041",
+          "category": "数学分析",
+          "sub_category": "定积分×对称性",
+          "problem": "求 $\\displaystyle\\int_0^{\\pi}\\sin^2x\\,dx$ 与 $\\displaystyle\\int_0^{\\pi}\\cos^2x\\,dx$，并说明两者相等的几何原因。",
+          "solution": "$\\displaystyle\\int_0^{\\pi}\\sin^2x\\,dx=\\int_0^{\\pi}\\dfrac{1-\\cos 2x}{2}dx=\\left[\\dfrac{x}{2}-\\dfrac{\\sin 2x}{4}\\right]_0^{\\pi}=\\dfrac{\\pi}{2}$。$\\displaystyle\\int_0^{\\pi}\\cos^2x\\,dx=\\int_0^{\\pi}\\dfrac{1+\\cos 2x}{2}dx=\\left[\\dfrac{x}{2}+\\dfrac{\\sin 2x}{4}\\right]_0^{\\pi}=\\dfrac{\\pi}{2}$。几何原因：$\\cos^2x=\\sin^2\\left(x+\\dfrac{\\pi}{2}\\right)$，故 $\\displaystyle\\int_0^{\\pi}\\cos^2x\\,dx=\\int_0^{\\pi}\\sin^2\\left(x+\\dfrac{\\pi}{2}\\right)dx=\\int_{\\pi/2}^{3\\pi/2}\\sin^2u\\,du$（换元 $u=x+\\dfrac{\\pi}{2}$）$=\\displaystyle\\int_0^{\\pi}\\sin^2u\\,du$（$\\sin^2$ 以 $\\pi$ 为周期）。",
+          "answer": "均为 $\\dfrac{\\pi}{2}$",
+          "scene_spec": {
+            "objects": [
+              "两曲线的平移关系",
+              "面积相等的对照"
+            ],
+            "steps": [
+              "第一步：建立数学分析·定积分×对称性综合场景，呈现与倍角公式、平移对称、定积分相关的核心图形。",
+              "第二步：两曲线的平移关系。",
+              "第三步：面积相等的对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角平方积分",
+          "visual_style": "平移对应面积",
+          "efficiency_tags": [
+            "两曲线的平移关系",
+            "面积相等的对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "86893f869dcdf965b9056bd4e5cc0f577245eaf66f9ed6fdb5941c1ad2584a36"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-042",
+      "problem_sha256": "54c836589af9380405e1a8b50e35c3df0fca8629a4dd1fbb12dfc9d4b597c016",
+      "source_records": [
+        {
+          "id": "test-calc-042",
+          "category": "数学分析",
+          "sub_category": "交错级数×幂级数",
+          "problem": "证明 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n}=\\ln 2$。",
+          "solution": "由 test-calc-006，$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$ 对 $|x|<1$ 成立。$x=1$ 处级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n}$ 为交错级数（$a_n=\\dfrac{1}{n}\\searrow 0$），由莱布尼茨判别法收敛。由 Abel 定理，幂级数的和函数在收敛点左连续，故 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n}=\\lim_{x\\to 1^-}\\ln(1+x)=\\ln 2$。另一证法（积分表示）：$\\dfrac{1}{n}=\\displaystyle\\int_0^1x^{n-1}dx$，故 $\\displaystyle\\sum_{n=1}^{N}\\dfrac{(-1)^{n-1}}{n}=\\int_0^1\\sum_{n=1}^{N}(-x)^{n-1}dx=\\int_0^1\\dfrac{1-(-x)^N}{1+x}dx\\to\\int_0^1\\dfrac{dx}{1+x}=\\ln 2$。",
+          "answer": "证毕（两种证法）",
+          "scene_spec": {
+            "objects": [
+              "交错级数部分和逼近 $\\ln 2$",
+              "$x\\to 1^-$ 的和函数连续过渡"
+            ],
+            "steps": [
+              "第一步：建立数学分析·交错级数×幂级数综合场景，呈现与幂级数、Abel 定理、交错级数相关的核心图形。",
+              "第二步：交错级数部分和逼近 $\\ln 2$。",
+              "第三步：$x\\to 1^-$ 的和函数连续过渡。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "交错调和级数",
+          "visual_style": "部分和逼近 ln2",
+          "efficiency_tags": [
+            "交错级数部分和逼近 $\\ln 2$",
+            "$x\\to 1^-$ 的和函数连续过渡"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "edd73178c1e3225c1075131fa5b8d15d4985e4b54ec9f34ed790f31c2bde8563"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-043",
+      "problem_sha256": "938915c6271dd0c2c25c8904c3d9bd17fa68b997a6b1a42b5ed64fac296a55e4",
+      "source_records": [
+        {
+          "id": "test-calc-043",
+          "category": "数学分析",
+          "sub_category": "反常积分×极坐标",
+          "problem": "求 $\\displaystyle\\int_0^{+\\infty}e^{-x^2}\\,dx$（高斯积分）。",
+          "solution": "记 $I=\\displaystyle\\int_0^{+\\infty}e^{-x^2}dx$。$I^2=\\displaystyle\\int_0^{\\infty}e^{-x^2}dx\\int_0^{\\infty}e^{-y^2}dy=\\iint_{[0,\\infty)^2}e^{-(x^2+y^2)}dx\\,dy$。用极坐标（第一象限）：$I^2=\\displaystyle\\int_0^{\\pi/2}\\!\\!\\int_0^{\\infty}e^{-r^2}r\\,dr\\,d\\theta=\\int_0^{\\pi/2}\\left[-\\dfrac{e^{-r^2}}{2}\\right]_0^{\\infty}d\\theta=\\int_0^{\\pi/2}\\dfrac{1}{2}\\,d\\theta=\\dfrac{\\pi}{4}$。故 $I=\\dfrac{\\sqrt\\pi}{2}$（$I>0$）。严格化：先对有限正方形/四分之一圆取极限，用夹逼说明无穷区域上的积分等于逐次积分。",
+          "answer": "$\\dfrac{\\sqrt\\pi}{2}$",
+          "scene_spec": {
+            "objects": [
+              "钟形曲面与体积",
+              "四分之一圆的极坐标扫描"
+            ],
+            "steps": [
+              "第一步：建立数学分析·反常积分×极坐标综合场景，呈现与反常积分、极坐标换元、夹逼相关的核心图形。",
+              "第二步：钟形曲面与体积。",
+              "第三步：四分之一圆的极坐标扫描。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "高斯积分",
+          "visual_style": "钟形曲面极坐标扫描",
+          "efficiency_tags": [
+            "钟形曲面与体积",
+            "四分之一圆的极坐标扫描"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "1706b9480ef69cbc9885609a9c007fe31cb7b51da03406113d6bf5a7c51b4570"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-calc-044",
+      "problem_sha256": "7242b9dc699f279cfec0c7662cf9cabd7eea40ea1fcc02f2bfc7d05914d911cd",
+      "source_records": [
+        {
+          "id": "test-calc-044",
+          "category": "数学分析",
+          "sub_category": "参数方程×面积",
+          "problem": "用参数方程 $x=a\\cos t,\\ y=b\\sin t$（$0\\le t\\le 2\\pi$，$a,b>0$）求椭圆所围面积。",
+          "solution": "$S=\\left|\\displaystyle\\int_0^{2\\pi}y\\,dx\\right|=\\left|\\int_0^{2\\pi}b\\sin t\\cdot(-a\\sin t)dt\\right|=ab\\displaystyle\\int_0^{2\\pi}\\sin^2t\\,dt=ab\\cdot\\pi=\\pi ab$（$\\int_0^{2\\pi}\\sin^2t\\,dt=\\pi$，与 test-calc-041 同法）。",
+          "answer": "$\\pi ab$",
+          "scene_spec": {
+            "objects": [
+              "参数点沿椭圆运动",
+              "面积微元的累积"
+            ],
+            "steps": [
+              "第一步：建立数学分析·参数方程×面积综合场景，呈现与参数方程面积公式、倍角积分相关的核心图形。",
+              "第二步：参数点沿椭圆运动。",
+              "第三步：面积微元的累积。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "椭圆参数面积",
+          "visual_style": "面积微元累积",
+          "efficiency_tags": [
+            "参数点沿椭圆运动",
+            "面积微元的累积"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "61f8acd4265f10bfdcbf419d1ddceb5e63ca26d78ed82a1eae1378e686d2fc9a"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}

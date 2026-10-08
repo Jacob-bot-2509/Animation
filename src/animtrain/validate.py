@@ -360,6 +360,34 @@ def validate_manifest(m: Manifest, root: Path,
                         f"{Fraction(str(near_dup_threshold))},命中 {hit['path']}:"
                         f"{hit['line'] + 1})")
 
+    # User's structural definition crosses category/signature boundaries.
+    # Candidates are review quarantines, not automatic labels/certified negatives.
+    from .structural_leakage import compare as structural_compare, VERSION as structural_version, implementation_sha256
+    structure_rows = {"train": {}, "eval": {}, "test": {}}
+    for entry, path in approved:
+        if entry.split not in structure_rows or path.suffix != ".jsonl":
+            continue
+        for line in _load_lines(path):
+            try:
+                obj = _json.loads(line)
+                problem = obj.get("problem")
+                if isinstance(problem, str) and problem.strip():
+                    identity = canonical_problem_hash(line)
+                    structure_rows[entry.split].setdefault(identity, obj)
+            except (ValueError, TypeError, AttributeError):
+                continue
+    structural_candidates = []
+    for split in ("eval", "test"):
+        for query_hash, query in structure_rows[split].items():
+            for train_hash, example in structure_rows["train"].items():
+                result = structural_compare(query["problem"], example["problem"])
+                if result["candidate"] and query_hash != train_hash:
+                    structural_candidates.append({"split": split, "query_id": query.get("id"),
+                        "train_id": example.get("id"), "query_hash": query_hash,
+                        "train_hash": train_hash, "reasons": result["reasons"], "score": result["score"]})
+    if structural_candidates:
+        quarantines.append(f"结构泄漏候选 {len(structural_candidates)} 对须逐对复核；签名不同或低文字相似度不能自动判为不泄漏")
+
     # 6.5 B5 签名规则和组合屏诊断均不自动解除 ready。
     # 组合屏尚缺独立定义的泄漏标签及与输入/实现/目标绑定的复算证据。
     # 按检测条件筛掉 FN 后的 domain_recall 不能替代原标注召回率。
@@ -405,6 +433,8 @@ def validate_manifest(m: Manifest, root: Path,
     return {"ok": not problems and not quarantines,
             "n_entries": len(m.entries),
             "problems": problems, "quarantines": quarantines,
+            "structural_screen": {"rule": structural_version, "implementation_sha256": implementation_sha256(),
+                "candidates": structural_candidates, "calibrated": False, "unmatched": "UNKNOWN"},
             "near_dup_rule": NEAR_DUP_RULE,
             "near_dup_threshold": near_dup_threshold,
             "near_dup_calibrated": near_dup_calibrated,

@@ -1,0 +1,257 @@
+{
+  "schema": "exact-deep-rewrite-proof-v1",
+  "symbolic_checks": 46,
+  "checks": [
+    {
+      "name": "difference task is actual candidate",
+      "result": "PASS"
+    },
+    {
+      "name": "actual normalized polynomial satisfies exact difference",
+      "result": "PASS"
+    },
+    {
+      "name": "actual polynomial normalization",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 1 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 2 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 3 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 4 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 5 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 6 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 7 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 8 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 9 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 10 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 11 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "difference of degree 12 has exact leading term",
+      "result": "PASS"
+    },
+    {
+      "name": "constant kernel example exact",
+      "result": "PASS"
+    },
+    {
+      "name": "actual C invertible with determinant 6",
+      "result": "PASS"
+    },
+    {
+      "name": "actual B equals congruence product",
+      "result": "PASS"
+    },
+    {
+      "name": "actual B rank two",
+      "result": "PASS"
+    },
+    {
+      "name": "A inertia has one positive one negative one zero",
+      "result": "PASS"
+    },
+    {
+      "name": "actual B has one zero eigenvalue",
+      "result": "PASS"
+    },
+    {
+      "name": "nonzero eigenvalues have opposite signs exact",
+      "result": "PASS"
+    },
+    {
+      "name": "trace obstruction exact",
+      "result": "PASS"
+    },
+    {
+      "name": "quadratic congruence identity for arbitrary vector",
+      "result": "PASS"
+    },
+    {
+      "name": "actual multiplicity answer bound",
+      "result": "PASS"
+    },
+    {
+      "name": "degree exactly five",
+      "result": "PASS"
+    },
+    {
+      "name": "normalization exactly one",
+      "result": "PASS"
+    },
+    {
+      "name": "root one derivative 0 vanishes",
+      "result": "PASS"
+    },
+    {
+      "name": "root one derivative 1 vanishes",
+      "result": "PASS"
+    },
+    {
+      "name": "root one derivative 2 vanishes",
+      "result": "PASS"
+    },
+    {
+      "name": "root one third derivative nonzero exact",
+      "result": "PASS"
+    },
+    {
+      "name": "root two derivative 0 vanishes",
+      "result": "PASS"
+    },
+    {
+      "name": "root two derivative 1 vanishes",
+      "result": "PASS"
+    },
+    {
+      "name": "root two second derivative nonzero exact",
+      "result": "PASS"
+    },
+    {
+      "name": "factors are coprime",
+      "result": "PASS"
+    },
+    {
+      "name": "normalization coefficient unique",
+      "result": "PASS"
+    },
+    {
+      "name": "evaluation expansion subtask actually removed",
+      "result": "PASS"
+    },
+    {
+      "name": "actual finite dimension hypothesis",
+      "result": "PASS"
+    },
+    {
+      "name": "symbolic matrix commutator has trace zero",
+      "result": "PASS"
+    },
+    {
+      "name": "identity trace exact nonzero",
+      "result": "PASS"
+    },
+    {
+      "name": "infinite polynomial operator identity via product rule",
+      "result": "PASS"
+    },
+    {
+      "name": "actual operators stated",
+      "result": "PASS"
+    },
+    {
+      "name": "linalg-051 exact math text has no decimal approximations",
+      "result": "PASS"
+    },
+    {
+      "name": "draft-c36-03 exact math text has no decimal approximations",
+      "result": "PASS"
+    },
+    {
+      "name": "draft-c37-05 exact math text has no decimal approximations",
+      "result": "PASS"
+    },
+    {
+      "name": "draft-c30-01 exact math text has no decimal approximations",
+      "result": "PASS"
+    }
+  ],
+  "general_proof_obligations": [
+    {
+      "record_id": "linalg-051",
+      "obligation": "For every n>=1 in R[x], the leading coefficient n*a_n is nonzero; therefore only constants lie in the kernel.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    },
+    {
+      "record_id": "linalg-051",
+      "obligation": "Subtracting the exact leading-term primitive reduces degree; induction with constant base establishes surjectivity for all finite degrees.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    },
+    {
+      "record_id": "draft-c36-03",
+      "obligation": "An invertible variable map bijects positive/negative subspaces preserving their dimensions; invertible left/right factors preserve rank.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    },
+    {
+      "record_id": "draft-c30-01",
+      "obligation": "Distinct roots make the multiplicity factors coprime; degree bound forces a constant quotient uniquely fixed by f(0)=1.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    },
+    {
+      "record_id": "draft-c37-05",
+      "obligation": "Finite double sums prove tr(ST)=tr(TS) in every dimension n>=1; the real scalar n cannot vanish.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    },
+    {
+      "record_id": "draft-c37-05",
+      "obligation": "Derivative and multiplication are endomorphisms of infinite-dimensional R[x]; product rule gives the identity without a finite trace.",
+      "verdict": "PASS_INDEPENDENT_EXACT_PROOF"
+    }
+  ],
+  "version_bindings": {
+    "linalg-051": {
+      "record_sha256": "fd48752fa5b8e1f218dd74f3be0fb4bbb3e70f3e00fd8035cf3432448bcce66f",
+      "math_sha256": "84771179a89e1aca1d9bd39b4f18172af9556611b84ce7ecf3ff614c859d1007",
+      "source_sha256": "d6a7b4f7a86e2cbfacb3c90bfd5878132ceb2b40abdd827b1aee0f23b3c246c8",
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_line": 3
+    },
+    "draft-c36-03": {
+      "record_sha256": "30b1adf774e59835b48377253ffb1763db5978ec6f6b7524746cc570a2b9a981",
+      "math_sha256": "3d59d3db7840fe6044105b825526dee60c960cca5b98cc4739dc0833e38d6f04",
+      "source_sha256": "45a57ef4fccc98ad85da281dce9d0a1838010d8927b7c839f22d862861a4963a",
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl",
+      "source_line": 8
+    },
+    "draft-c37-05": {
+      "record_sha256": "a94d233b90c407ad927c7f514a3ab4014870d954e84d54568e2316fd2d275ff1",
+      "math_sha256": "961f1e3ae2707b93b827bd51ccd7f53ba08e77e8c9eff718d890de25e3d3e26f",
+      "source_sha256": "bca72b33e073bc21db919f30cac3fa321eeeba21423d2b5d11c2a00d2e280b0a",
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "source_line": 10
+    },
+    "draft-c30-01": {
+      "record_sha256": "11df07aa02dc0f36bd3b3af7bfcaa80d4b772b2cdfe73f7d2a9caafbb2046554",
+      "math_sha256": "0045d811bf48ebd7d38f32aff48184d571d33d4f0652fc054da2dc8037d79456",
+      "source_sha256": "6d039d7d3698af573a73c42bd3583c1a8989a17f049bb1574d8f41269fa07d4e",
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+      "source_line": 11
+    }
+  },
+  "verifier_sha256": "7d1cf2596e46a41b5b32de7c359cedec1b722dcb6f00ed64ddcd037083e57108",
+  "mathematics": "PASS_EXACT_NEW_FOUR_RECORDS",
+  "scene_text": "PASS_INDEPENDENTLY_REVIEWED_WITH_FORMULAS",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "production": "CLOSED"
+}

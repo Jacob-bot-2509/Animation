@@ -9,6 +9,7 @@ import json
 import shutil
 import sys
 from pathlib import Path
+from draft_io import require_legacy_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
@@ -18,6 +19,7 @@ STAGED_18 = ROOT / "reviews/codex-supervision/2026-10-05-remaining-batch-audit/s
 
 
 def main() -> int:
+    require_legacy_selection(SEL)
     sel = json.loads(SEL.read_text(encoding="utf-8"))
     ok = True
     for e in sel["entries"]:

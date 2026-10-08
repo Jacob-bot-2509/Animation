@@ -1,0 +1,988 @@
+{
+  "schema": "codex-strict-repair-delivery-v1",
+  "created_at": "2026-10-06T19:10:23.459876+08:00",
+  "report": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\FIX_REPORT.md",
+  "report_sha256": "b97bfa31a37bc3bec08836b98f7caad3938299a03442f22d7bdf3991a3c2877d",
+  "scope": "Six probes and evidence accounting, private-profile grant-path validation, area candidate and guarded rendering, read-only observer",
+  "production_gate": "CLOSED",
+  "full_surface_accepted": false,
+  "green_safety_points": 0,
+  "partial_safety_points": 28,
+  "gap_safety_points": 15,
+  "regressions_passed": 57,
+  "bounded_native_runs": 3,
+  "bounded_native_status": "UNVERIFIED",
+  "candidate_selected": false,
+  "candidate_rendered": false,
+  "candidate_admitted": false,
+  "old_clipboard_contents_recoverable": false,
+  "old_receipts_re_signed": false,
+  "artifacts": [
+    {
+      "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-environment.json",
+      "sha256": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+      "bytes": 857,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real\\miktex\\config\\miktexstartup.ini",
+      "sha256": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+      "bytes": 234,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "sha256": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+      "bytes": 255320,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\docs\\项目总览\\进度看板.md",
+      "sha256": "05bb4005dc5c40768091b86b74fcb3ae685804cdb2df9177dbcff5642229b2d5",
+      "bytes": 8760,
+      "role": "live_observer_or_progress"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\bisect_formula_only.py",
+      "sha256": "3f3e32232e1edf98eb2fb2c0a8866130704b9207b4cdf82924072c173348956a",
+      "bytes": 158,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\bisect_four_tex.py",
+      "sha256": "3f3e32232e1edf98eb2fb2c0a8866130704b9207b4cdf82924072c173348956a",
+      "bytes": 158,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\bisect_no_captions.py",
+      "sha256": "3f3e32232e1edf98eb2fb2c0a8866130704b9207b4cdf82924072c173348956a",
+      "bytes": 158,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\bisect_unicode_free.py",
+      "sha256": "3f3e32232e1edf98eb2fb2c0a8866130704b9207b4cdf82924072c173348956a",
+      "bytes": 158,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\build_candidate.py",
+      "sha256": "9976c57e72934909ef3c2b69b8441d6517cc6810eb8a4b7c9eec9cba1b1666fb",
+      "bytes": 2214,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\calc-area-007.corrected-v2-248e1b79eb7844f08eab1efae609a78f.candidate.jsonl",
+      "sha256": "dfb4bdb17e16c53a5a11fc1f903ad7bedec05150cc1c89ffb1caf052535c1b26",
+      "bytes": 1099,
+      "role": "unselected_unrendered_candidate"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\calc-area-007.corrected-v2-248e1b79eb7844f08eab1efae609a78f.candidate.receipt.json",
+      "sha256": "ff528e21fc4277567b6415fe2a0efc2c3c60dd059ce8a04b9c463cc10cbd81e1",
+      "bytes": 736,
+      "role": "unselected_unrendered_candidate"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\render_scene.py",
+      "sha256": "90b098148538c60f622e582a00d2800940f1d4210d429b68cdd8d83051f04055",
+      "bytes": 934,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\scene.py",
+      "sha256": "3f8db7beaf45576a9d617afd1d6203ed279d65c7c6d90126b8c9f6a96ecf4310",
+      "bytes": 3153,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-asset-acceptance\\calc-area-007\\visual_check.py",
+      "sha256": "3635a164202557c21ac8ce2763b58ea5a46ff7c0492f3a7f7f275417ab9b5cb2",
+      "bytes": 2733,
+      "role": "live_asset_candidate_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\FULL_SURFACE_REPORT.md",
+      "sha256": "f6348afd5f5cec47e16de9df995f6682a54f637553b431ae49dcc423a4746969",
+      "bytes": 789,
+      "role": "bounded_status_or_preserved_raw"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\SAFETY_POINT_ENUMERATION.md",
+      "sha256": "1c532ddf98fabc27cda8bf6c0fe320c125712eecdc396f431cb0c7b24ad5b287",
+      "bytes": 7711,
+      "role": "bounded_status_or_preserved_raw"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\fix_ipc3_accounting.py",
+      "sha256": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+      "bytes": 1076,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\host_section_debug.py",
+      "sha256": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+      "bytes": 1667,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\ipc3-accounting-v2-40d8329ae4144c0da6238db545a496cb.json",
+      "sha256": "86e0c865dfe328d1ab4f706ca6ee4a49f2dd42be4a507f3a4e33a552d01a1f4f",
+      "bytes": 873,
+      "role": "readonly_analysis"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-exe-v2-289c0c971273496a84eff22ed71b219f-results.json",
+      "sha256": "5ac960b6f163d2e5dd359c9d03460ae8eb9b1f0c643399e648d7268ca82133f9",
+      "bytes": 16012,
+      "role": "bounded_native_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-ipc-v2-77d90c0b87e349209c27aa37e9ae1fb7-results.json",
+      "sha256": "f41b856c532beb67585895996b7dc014f444717a74ba453f53bb58652b3bb6ba",
+      "bytes": 13797,
+      "role": "bounded_native_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-raw-ipc3-v1-results.json",
+      "sha256": "c7162f2402ef7dac1e21adfafc212253b5d13d2fa6cac8ce25ddc2528f06bb3b",
+      "bytes": 2578,
+      "role": "bounded_status_or_preserved_raw"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-udp-v2-83062769fb2e4b529e30ab8593ff5766-results.json",
+      "sha256": "8814e29b7d347ee0d9905f973c5f8d0bea045446e49e8b1da08f541810ca540d",
+      "bytes": 12015,
+      "role": "bounded_native_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_exe_ipc_fs.py",
+      "sha256": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+      "bytes": 180,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_ipc4.py",
+      "sha256": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+      "bytes": 169,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_ipc5.py",
+      "sha256": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+      "bytes": 152,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_ipc6.py",
+      "sha256": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+      "bytes": 152,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_raw_ipc3.py",
+      "sha256": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+      "bytes": 180,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_udp_external.py",
+      "sha256": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+      "bytes": 180,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\surface_probe_contract.py",
+      "sha256": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+      "bytes": 9295,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\surface_probe_suite.py",
+      "sha256": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880",
+      "bytes": 15963,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-live-watch\\README.md",
+      "sha256": "dfce6eb93511e66075372711911e23ec35e80c302dc192a83024278dd43cf6ac",
+      "bytes": 5831,
+      "role": "live_observer_or_progress"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-live-watch\\watch_claude.py",
+      "sha256": "49cf244197a3900b1bb316d2ee349fdafe37adb6ddcf6cb4388b7987cb2f7fe2",
+      "bytes": 22940,
+      "role": "live_observer_or_progress"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\scene.py",
+      "sha256": "512e5898b8a32360edc30abe233935389440f0ac2894a8d01e4efa94e38cc1cd",
+      "bytes": 3104,
+      "role": "actual_native_job_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\stdout.txt",
+      "sha256": "76c08f0d2a2c3bac7dcf5e595666360b4e15a5bcdfb9d4d091cf8c64f2ff1280",
+      "bytes": 916,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\scene.py",
+      "sha256": "a865d684afda786c7de377332c9918c0a92887377c9b1182b1bfb2d2e2505f8d",
+      "bytes": 1003,
+      "role": "actual_native_job_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\stdout.txt",
+      "sha256": "2d5b01cef6ad7d7c4207ffa5ca85074cef7de5b372f40522fffc3f33b0e3df2d",
+      "bytes": 138,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-c322b8c752b7450aae07b917044d9711\\scene.py",
+      "sha256": "7e6c4daa2f1c6e956d60ec3b3168914f92adb6ff77d56a87b39c8219e3dc4a9c",
+      "bytes": 2729,
+      "role": "actual_native_job_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-c322b8c752b7450aae07b917044d9711\\stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-c322b8c752b7450aae07b917044d9711\\stdout.txt",
+      "sha256": "cae122fd6d0f44b6784431b07bb1fc05d1728f9e4758f00909f9f6fb7753b7fd",
+      "bytes": 367,
+      "role": "actual_raw_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\FIX_REPORT.before-final-486b7883fb80c43efedfa81a8342ea0bd32a6cd4f98ab1c903b496cd0be216c6.original.md",
+      "sha256": "486b7883fb80c43efedfa81a8342ea0bd32a6cd4f98ab1c903b496cd0be216c6",
+      "bytes": 5670,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\FIX_REPORT.md",
+      "sha256": "b97bfa31a37bc3bec08836b98f7caad3938299a03442f22d7bdf3991a3c2877d",
+      "bytes": 5928,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\SUPERVISION_REPORT.md",
+      "sha256": "d0d5fec55abe6fb2eb8b924b3abf95163e5009f3fa8e6788ccd7226ce00168a6",
+      "bytes": 5079,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\_watcher-verification-e9a84611662b47c0b4daf8e9c06ce1b2\\scope\\first.txt",
+      "sha256": "a7937b64b8caa58f03721bb6bacf5c78cb235febe0e70b1b84cd99541461a08e",
+      "bytes": 5,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\_watcher-verification-e9a84611662b47c0b4daf8e9c06ce1b2\\scope\\nested\\second.txt",
+      "sha256": "16367aacb67a4a017c8da8ab95682ccb390863780f7114dda0a0e0c55644c7c4",
+      "bytes": 6,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-before-repair.json",
+      "sha256": "4331b0e2a5c93f980f3021f30207b39dd50538882e23cf5a4d693ce855c229cf",
+      "bytes": 4695,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-final-bound-check.json",
+      "sha256": "2f88b25d126de369c57f82098eefe723e72b8f692087952db90e9a8d9546a13c",
+      "bytes": 5339,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-independent-checks.json",
+      "sha256": "4622aa4ee4c9a030910472423fa9d01a43ff105d6044895473eb6821c26aeaf8",
+      "bytes": 1366,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect-formula-only.json.6a55b97ebe99.original",
+      "sha256": "6a55b97ebe99a44f4fb51498768147daadde6d8918ab25bfbdca0974a8023120",
+      "bytes": 11513,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect-four-tex.json.cb1a2ed23ee9.original",
+      "sha256": "cb1a2ed23ee9635d957dc5c1e70dd9b109f32947e102f95e77daf7323a6cee65",
+      "bytes": 17049,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect-no-captions.json.69fa95dddbe1.original",
+      "sha256": "69fa95dddbe14a6f3c409574a4ed585b49c2c050f7cace85fde2edb81cb330ab",
+      "bytes": 22456,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect-unicode-free.json.8ea5083ebc46.original",
+      "sha256": "8ea5083ebc46ad75c01f272d08befa7d65e530d2965f154a860c293c79593e8d",
+      "bytes": 29363,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect_formula_only.py.41fbc914fe08.original",
+      "sha256": "41fbc914fe08cd6912a4d5aa936a8a9c205f00a43f506ed7628f7d0e4e6cbe16",
+      "bytes": 911,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect_four_tex.py.f7ce0c0b466c.original",
+      "sha256": "f7ce0c0b466cc6ba3b207b2c21f59e201d42030b5be615cc5f2ea945f33e743e",
+      "bytes": 1175,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect_no_captions.py.271863c239ab.original",
+      "sha256": "271863c239abeccf7e6631e96f733479eb0a730b619bb9bde1559fcce839001b",
+      "bytes": 2473,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\bisect_unicode_free.py.caff526c1538.original",
+      "sha256": "caff526c15380c8c941973d77a7c82d909c065d2683450c3089f4150f6a93c86",
+      "bytes": 3294,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\build_candidate.py.a28d79668832.original",
+      "sha256": "a28d79668832d551bb9ed0bf87636a6909087d6dc242b406de7154ee9971e6c0",
+      "bytes": 1749,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\calc-area-007.candidate.jsonl.3956bca27034.original",
+      "sha256": "3956bca2703410ab711a8cf3cf82098d9455f5d4b9b312b52a5fadb2ceac73c9",
+      "bytes": 1135,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\render-evidence.attempt1.json.962aaea670f5.original",
+      "sha256": "962aaea670f5cf58d2a19f460e74a5ffa5b2004324c58e84c0a3c9729eccbc0b",
+      "bytes": 29453,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\render-evidence.attempt2.json.08e88d48fe74.original",
+      "sha256": "08e88d48fe74226c9e278e7c80384f729e2b4f7d88f97bad6295cd474f56e8d9",
+      "bytes": 29453,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\render-evidence.json.d2594eebe8cf.original",
+      "sha256": "d2594eebe8cf7b74eec2c19be08dac2c40e3dddc075253054de842b1ef14b0bc",
+      "bytes": 24050,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\render_scene.py.f0700f9d3051.original",
+      "sha256": "f0700f9d3051ea779ca8c2f7e821abe2bc8b56de35c20a857c13dfabb72a6724",
+      "bytes": 972,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\scene.py.c2ab6a488029.pretex-order.original",
+      "sha256": "c2ab6a48802974454cc540cf84423f92ca0a63323e1d0e6868a0d1a8fb50b5df",
+      "bytes": 2898,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\scene.py.ff2b5afcc5f7.original",
+      "sha256": "ff2b5afcc5f7eb8e908a4af7c4ec8f011a7e9852a0e01f0b9eb8f76d2c333c1b",
+      "bytes": 3245,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-source-snapshots\\visual-check.json.0cc7d7e5ae0f.original",
+      "sha256": "0cc7d7e5ae0f578f8ceb1d89add229f42c622878cd1fa9d48dc45b3988028fb1",
+      "bytes": 2705,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\asset-tex-order-check.json",
+      "sha256": "89851e054b5686a6b76558560eebeec746fdbf387d82af2a0e862ca4e5304544",
+      "bytes": 603,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\claude-full-surface-delivery.original.manifest.json",
+      "sha256": "7c2d1e196b5c7777fef7e6c1094bd47777e6d539dbd39d70351038385ce8c7f2",
+      "bytes": 6111,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\delivery-manifest.json",
+      "sha256": "89ffc2079455f210c1f074f7a9db4c2aac13e4ef4e4210d12ee02e4a2db47bce",
+      "bytes": 5787,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\enum_original.md",
+      "sha256": "62e37bede9235045874504c667a3c8aa84e8158a4ec742cebed4ecc821f6d58c",
+      "bytes": 6401,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\executed-probe.scene.original.py",
+      "sha256": "45efa8eb2a1f473af7f4199ca2b0100bfc154c26b4c48b973c6428be75cf17d8",
+      "bytes": 750,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\existing-regression-result.json",
+      "sha256": "805f606642c193a560d0dffe6bfa0d0ad11f1ac3376906887358b8188afeb38c",
+      "bytes": 397,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\existing-regression.stderr.raw.txt",
+      "sha256": "c018eed4ea87c69eb138ef76dc7b68d1d6844e6e6fe17c5e783903752c932065",
+      "bytes": 4298,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\existing-regression.stdout.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\final-verification.json",
+      "sha256": "cc5711cef72b7b611dc80ed580ab640f187e1460a1d50f2fc64c1621193d65eb",
+      "bytes": 1782,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\grant-junction-fixture.json",
+      "sha256": "c74fc4344f6c389fa528af36ec46584532c70cb73731a9aaa249c59eb7323c3b",
+      "bytes": 327,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\grant-junction-native-check.json",
+      "sha256": "965428aac02ddc056eede6c89267d6747c9245f881d529bd3899ee6729c4a817",
+      "bytes": 739,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\incoming-asset-root-cause.original.json",
+      "sha256": "3dd24df5c661f94f4be0f572c89cb54628dc2b6127ac7f57b72ff924d46cc299",
+      "bytes": 1463,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\incoming-mail.initial.original.json",
+      "sha256": "f01240ae907619ce59595621907804f6e03b2d697ed18bd54cbd9588b6731b23",
+      "bytes": 741,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\incoming-mail.start.original.json",
+      "sha256": "e11294a75f533d79d1eb5a61ab8a1887d98d298ed793daf9ced9cb4d56daeed2",
+      "bytes": 1221,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\independent-integrity.json",
+      "sha256": "72d5756eb60f98bca0f0d8f8a98947b0c085add3325414fcb8b03d17a9a65acf",
+      "bytes": 148732,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-bounded-first-generation-failure.original.json",
+      "sha256": "32d4691fc37db67000730d669821a1e30f859f23c38427aa8f335e4d0bb99313",
+      "bytes": 1389,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-bounded-validation.json",
+      "sha256": "9f8025876f230ceb1ce92b2b512f4f4a7a0bded1730ded8de757279ebc12755c",
+      "bytes": 6611,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-exe.stderr.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-exe.stdout.raw.txt",
+      "sha256": "59c009ad6c0d1fb04272bae6c983e570b9eed264c1545029cc3abc97e72f9097",
+      "bytes": 204,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-ipc.stderr.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-ipc.stdout.raw.txt",
+      "sha256": "ab8a217af2b407f7a48a2e52a46a4a5439f8744f3bc116865806656182c17049",
+      "bytes": 204,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-udp.stderr.raw.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-udp.stderr.raw.txt.previous-7001610be71141c4963da5fa00d91e68",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-udp.stdout.raw.txt",
+      "sha256": "61a2b2e5959eca48cea8e819eeb3feee8ec73b7eeb17ba5d106e478fbbe40fa7",
+      "bytes": 204,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\native-udp.stdout.raw.txt.previous-95e750783d3544a69cf105a86fe1b09a",
+      "sha256": "3c81427672fb7f7a7f2322d909a28f3d94e349954d945d5e0b56e935242854b2",
+      "bytes": 204,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\preliminary-supervision-manifest.original.json",
+      "sha256": "89ffc2079455f210c1f074f7a9db4c2aac13e4ef4e4210d12ee02e4a2db47bce",
+      "bytes": 5787,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\private-profile-change.json",
+      "sha256": "1e46d2278d334632b201b06adbf3199f07e3370c30e958afb673533ef5d944d8",
+      "bytes": 487,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\private_profile.before.py",
+      "sha256": "5c7fa93acbc5f9c7cb489b34a664c9e8da5f03c69b51cd67e28472b0593d25bf",
+      "bytes": 5898,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe-counterexamples.json",
+      "sha256": "70738100a06ff09813896d5c7818ac663c948ee58f907748f00fadd16e1a63d7",
+      "bytes": 654,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe-exe-ipc-fs-v1-results.original.json",
+      "sha256": "32dd46bcfcf1c0c7632f85ac1bb077e545e0c37176a61a8d39305a48b529606e",
+      "bytes": 2549,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe-review.json",
+      "sha256": "1635a6e8e3fa932c25199a7b8a7dcac7128893ab182ca631d1e5732fe7fb77e2",
+      "bytes": 2279,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe-udp-external-v1-results.original.json",
+      "sha256": "47cd8f572558bc4a856e1f5fa4d8af854a9d7bdbd96788319d951b7b38792f49",
+      "bytes": 1279,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe-udp-external-v1.source.original.py",
+      "sha256": "d11c760c1f2dd649fd7ceb900a7dffcfea72ec8259d58479628574c6120e3ef0",
+      "bytes": 5209,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe_exe_ipc_fs.source.original.py",
+      "sha256": "fae9c711cf565e0a2ff5332394406a2a3cc19b274b887856370536abdf0cab6c",
+      "bytes": 9004,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\probe_raw_ipc3.source.original.py",
+      "sha256": "1389129e5d868982e90f98c98c71babc7e048ebc51b96cf6d35f4e6cb88b899b",
+      "bytes": 13893,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\progress-board-repair-change.json",
+      "sha256": "8f42c70ffe6d16d6a3a2baa9a4f4f4cbf671e86c85cddac98d45ccfedae77b95",
+      "bytes": 358,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\progress-board.before-repair.md",
+      "sha256": "ee90a3d39225116cc0b4ed4d579f2f146825aebcdcbebf723f3e4f92d14e66e8",
+      "bytes": 8256,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\raw3-after-overwrite-88b807ba0cb9.original.json",
+      "sha256": "88b807ba0cb9760a9a899d29c9506277e209648710d476bc539982b107a4c4aa",
+      "bytes": 2912,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\raw3-original-restored-verified.json",
+      "sha256": "c7162f2402ef7dac1e21adfafc212253b5d13d2fa6cac8ce25ddc2528f06bb3b",
+      "bytes": 2578,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\raw3-restoration.json",
+      "sha256": "259cde155df7e3b4c41a3046424a2f8bab30a50503312481d27ea007594b4c64",
+      "bytes": 502,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\readonly-accounting-check.json",
+      "sha256": "6ebb051ff0fd18e081b3127016babc9af2309fde5678eeb8804cee9dc49dff14",
+      "bytes": 639,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\repair-final-verification.json",
+      "sha256": "1009ef79532283e8495af880b4d2e673cee8e1a2961f4a31262d5d49ca32c7eb",
+      "bytes": 105382,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\repaired-live-sources.json",
+      "sha256": "4330f1b338d1d429d54cac57a5166002df61892e456d6e415972f91bbade2aec",
+      "bytes": 1799,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\run_native_bounded.py",
+      "sha256": "ebdaf3ea231980d6e950de924f7c2cfbe2d978f699f960bfd4b7c205a3b5cb62",
+      "bytes": 2459,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\second-third-probe-review.json",
+      "sha256": "f084dff872bb54db2f9c5309940858f7fd85dbb631cdf1b81ea2b8048ce9909c",
+      "bytes": 1506,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\status-question.receipt.original.json",
+      "sha256": "a0baf2ee6fc26f58217154dbd7577812019782648634332e9993ebd509febe09",
+      "bytes": 941,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-snapshot.json",
+      "sha256": "aea5cbbd31b96818bacc900d195a23b430a837255050c6654f82357c90fabc6a",
+      "bytes": 2781,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\FULL_SURFACE_REPORT.md.614c4dd34357.original",
+      "sha256": "614c4dd343577cbdde7e9dbe86ba001fce938071c69bc381a9bcfdbb5bcd0c0e",
+      "bytes": 4561,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\SAFETY_POINT_ENUMERATION.md.62e37bede923.original",
+      "sha256": "62e37bede9235045874504c667a3c8aa84e8158a4ec742cebed4ecc821f6d58c",
+      "bytes": 6401,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\SAFETY_POINT_ENUMERATION.md.e04f17350eb3.original",
+      "sha256": "e04f17350eb34dd8b3b23cea11128787cfd566abde3f2a7cca10165a6d726ba8",
+      "bytes": 6926,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\fix_ipc3_accounting.py.548bd94622fc.original",
+      "sha256": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+      "bytes": 1076,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\fix_ipc3_accounting.py.7567745084db.original",
+      "sha256": "7567745084db185126d2ec846c4c55af9256e66a49cd0f6934a89bde4b48894b",
+      "bytes": 1121,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\host-only-sentinel.txt.016f21cdea2b.original",
+      "sha256": "016f21cdea2b7a2e0f0a50c50284481934d85b42f0b89c98cf1813b1fde73dc7",
+      "bytes": 25,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\host_section_debug.py.12f341f0f1a5.original",
+      "sha256": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+      "bytes": 1667,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-exe-ipc-fs-v1-results.json.32dd46bcfcf1.original",
+      "sha256": "32dd46bcfcf1c0c7632f85ac1bb077e545e0c37176a61a8d39305a48b529606e",
+      "bytes": 2549,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-ipc4-v1-contaminated-truncation.json.b3dc2e76c393.original",
+      "sha256": "b3dc2e76c39312cc71634dd48a698d73ad440aacff9abba499447c0f1e1b0a2f",
+      "bytes": 987,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-ipc4-v1-results.json.e4365eb5f191.original",
+      "sha256": "e4365eb5f191f76076e7f4b27f74d0a1b307567998f0b63c5ec779899844969a",
+      "bytes": 1508,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-ipc5-v1-results.json.603cc4a714c1.original",
+      "sha256": "603cc4a714c1de3505dd7589a981b497fd7f92a588b4f69889320756a45c1796",
+      "bytes": 1336,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-ipc6-v1-results.json.d419c71a2b7e.original",
+      "sha256": "d419c71a2b7ee56c6237b250ab07afb650b834e6349b18d56a8e4be0c65211c3",
+      "bytes": 1702,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-raw-ipc3-v1-results.json.c7162f2402ef.original",
+      "sha256": "c7162f2402ef7dac1e21adfafc212253b5d13d2fa6cac8ce25ddc2528f06bb3b",
+      "bytes": 2578,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe-udp-external-v1-results.json.47cd8f572558.original",
+      "sha256": "47cd8f572558bc4a856e1f5fa4d8af854a9d7bdbd96788319d951b7b38792f49",
+      "bytes": 1279,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_exe_ipc_fs.py.7a2011c74529.original",
+      "sha256": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+      "bytes": 180,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_exe_ipc_fs.py.fae9c711cf56.original",
+      "sha256": "fae9c711cf565e0a2ff5332394406a2a3cc19b274b887856370536abdf0cab6c",
+      "bytes": 9004,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_ipc4.py.3739b01b5977.original",
+      "sha256": "3739b01b59772ef4cb84cf4ed9a00690a167dd9ba733138db46dd6434a998ecb",
+      "bytes": 11130,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_ipc4.py.8f41534a6adf.original",
+      "sha256": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+      "bytes": 169,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_ipc4.py.a949ae3bba6f.original",
+      "sha256": "a949ae3bba6f795e00a16b21e4ab17bad62ec577e7e8be09bb38a564669b40b8",
+      "bytes": 10270,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_ipc5.py.f4a5c1d02242.original",
+      "sha256": "f4a5c1d02242583e453e21a976b7ddc5de42716f4251f8ccc36bc6daad005627",
+      "bytes": 10373,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_ipc6.py.8ab9607ccbcb.original",
+      "sha256": "8ab9607ccbcb095fa39c19f07fb6cf6151788a103db117f6c199a80c07e53e4c",
+      "bytes": 7188,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_raw_ipc3.py.2f2adc898178.original",
+      "sha256": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+      "bytes": 180,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_raw_ipc3.py.ffe789610b2f.original",
+      "sha256": "ffe789610b2f77adc207b6a75453f2f15a9e7666840e9f90f62939e23331c421",
+      "bytes": 13936,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_udp_external.py.82f42f7bb786.original",
+      "sha256": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+      "bytes": 180,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\takeover-source-snapshots\\probe_udp_external.py.d11c760c1f2d.original",
+      "sha256": "d11c760c1f2dd649fd7ceb900a7dffcfea72ec8259d58479628574c6120e3ef0",
+      "bytes": 5209,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\test_probe_repairs.py",
+      "sha256": "a59a087041ffb86be070a395127c6fde02a53355c84746d5fc6c2801b14c3ce1",
+      "bytes": 8109,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\third-probe-format-counterexample.json",
+      "sha256": "90567be75d39f058dc584336203fb19a95153ce0b464dd27c452326436cf7e9c",
+      "bytes": 134,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-after.original.json",
+      "sha256": "d6aa3eb22033d7cd7291f372de4b0325ab48d4c012b5b4dd05ac99842eceeefa",
+      "bytes": 36501,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-asset-scope-change.json",
+      "sha256": "3af4dca98072c9e92969fddbe0aa89f99a925e5c8dc3ba42122c79586d0c8332",
+      "bytes": 235,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-before-asset-scope.py",
+      "sha256": "ec7267aa9f78e03be0796fe58b72d7fa4abc1a5ba04eef1332f8162d8ec8c8b9",
+      "bytes": 22903,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-change.json",
+      "sha256": "65fc68db45daf432e07e0aee7a938c1fbfadfbb512ee67eb6f9d19bcebae404a",
+      "bytes": 563,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-delivery.original.json",
+      "sha256": "440bae7ca1c1345a96dd83a3d6f57ef0fdd6a92e6b8ce474dc3646d53441e8b1",
+      "bytes": 43782,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-final.original.json",
+      "sha256": "169346aca69ae5b0c55adde9fb610981d66190f07bb38f84839c2e2d1047f0b6",
+      "bytes": 45160,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-readme.before-final.md",
+      "sha256": "498a5b38d57f9d3784fda029b58b73e64f1dc0437bd9dd8742671663935d65aa",
+      "bytes": 5184,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-readme.before.md",
+      "sha256": "a6dc5dbc840617e0b1caea992299654e5708a7cda515e103f66487ced509e6fe",
+      "bytes": 4575,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-registration.original.json",
+      "sha256": "96169239053e02bef10371864281054a7bcab924ab241755cdf3e05015da4dc0",
+      "bytes": 379,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher-verification.json",
+      "sha256": "8834975a7d0ec9f98388f1536d79fbd360cdfbaca2e25dcbdfef3483cc2197fe",
+      "bytes": 874,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher_before.py",
+      "sha256": "9ddefb3c96a593bf82af673905c356f52ca2cfa7c55fc9b06a528f073673d9b8",
+      "bytes": 21418,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\watcher_latest_before.json",
+      "sha256": "d747783f5854036045b2b006baa462dc7abcb5aeafa86a85e65ed87575831913",
+      "bytes": 34970,
+      "role": "local_review_or_preserved_original"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\appcontainer.py",
+      "sha256": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+      "bytes": 19432,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\isolation_evidence.py",
+      "sha256": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+      "bytes": 5811,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\network_isolation.py",
+      "sha256": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+      "bytes": 21794,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\private_profile.py",
+      "sha256": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+      "bytes": 6238,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\render_gate.py",
+      "sha256": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+      "bytes": 9579,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\sandbox_execution.py",
+      "sha256": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+      "bytes": 9773,
+      "role": "native_bound_implementation"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\win_job.py",
+      "sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "bytes": 12034,
+      "role": "native_bound_implementation"
+    }
+  ],
+  "skipped_reparse_points": [
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-exec-surface-supervision\\grant-junction-871a9484436841928963bf5b583582bf"
+  ],
+  "volatile_observer_files_bound_live": false,
+  "handoff_receipt_written_after_manifest": true,
+  "consistency_check_written_after_manifest": true
+}

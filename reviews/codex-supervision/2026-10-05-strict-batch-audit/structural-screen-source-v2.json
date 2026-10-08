@@ -1,0 +1,1374 @@
+{
+  "version": "source",
+  "scope": "batch01-v3,batch02-08-v1 frozen snapshots",
+  "problems": 119,
+  "heldout_method_records": 450,
+  "comparisons": 53550,
+  "all_categories": true,
+  "rule": "structure-candidates-v4",
+  "implementation_sha256": "81382303878e8658e5c6c27834119857bb7adc6a542c109a76169d3f71874169",
+  "calibrated": false,
+  "UNKNOWN_is_not_no_leakage": true,
+  "candidate_pairs": [
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-geom-008-s1",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "特征值法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/31",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-geom-008-s2",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/31",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-geom-008-s3",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "截面法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/31",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-019-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/24",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-019-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "合同变换",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/24",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-019-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "LDLᵀ 分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "5/24",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-021-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "顺序主子式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "22/87",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-021-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "配方",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "22/87",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "eval-linalg-021-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "Schur 补",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "22/87",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "test-linalg-034",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "11/62",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-02",
+      "query_id": "test-linalg-039",
+      "query_problem": "求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "15/74",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-geom-008-s1",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "特征值法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/21",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-geom-008-s2",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/21",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-geom-008-s3",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "截面法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/21",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-019-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "4/13",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-019-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "合同变换",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "4/13",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-019-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "LDLᵀ 分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "4/13",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-021-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "顺序主子式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "10/33",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-021-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "配方",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "10/33",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "eval-linalg-021-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "Schur 补",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "10/33",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "test-linalg-034",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "4/27",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c36-03",
+      "query_id": "test-linalg-039",
+      "query_problem": "求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "12/97",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-01",
+      "train_id": "draft-c52-03",
+      "query_id": "test-x-002",
+      "query_problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "uniform-monotone-power-transform"
+        ],
+        "score": "1/14",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c11-03",
+      "query_id": "test-calc-013",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "telescoping-constant-gap-series"
+        ],
+        "score": "35/71",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c51-03",
+      "query_id": "test-prob-001",
+      "query_problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "two-latent-class-bayes-posterior"
+        ],
+        "score": "1/146",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-geom-008-s1",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "特征值法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "7/86",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-geom-008-s2",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "7/86",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-geom-008-s3",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "截面法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "7/86",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-019-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "29/108",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-019-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "合同变换",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "29/108",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-019-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "LDLᵀ 分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "29/108",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-021-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "顺序主子式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-021-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "配方",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "eval-linalg-021-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "Schur 补",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "2/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "test-linalg-034",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "13/81",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-01",
+      "query_id": "test-linalg-039",
+      "query_problem": "求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "3/19",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "query_id": "eval-linalg-020-s1",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "20/77",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "query_id": "eval-linalg-020-s2",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "矩阵特征值",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "20/77",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "query_id": "eval-linalg-020-s3",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "几何观点",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "20/77",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "query_id": "test-linalg-026",
+      "query_problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "17/81",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "query_id": "test-x-007",
+      "query_problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "3/28",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-03",
+      "query_id": "eval-linalg-020-s1",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "17/88",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-03",
+      "query_id": "eval-linalg-020-s2",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "矩阵特征值",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "17/88",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-03",
+      "query_id": "eval-linalg-020-s3",
+      "query_problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+      "query_method": "几何观点",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "17/88",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-03",
+      "query_id": "test-linalg-026",
+      "query_problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "6/47",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-03",
+      "query_id": "test-x-007",
+      "query_problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "9/92",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-geom-008-s1",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "特征值法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "6/79",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-geom-008-s2",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "6/79",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-geom-008-s3",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_method": "截面法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "6/79",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-019-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "配方法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "26/103",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-019-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "合同变换",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "26/103",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-019-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+      "query_method": "LDLᵀ 分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "26/103",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-021-s1",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "顺序主子式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "8/53",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-021-s2",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "配方",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "8/53",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "eval-linalg-021-s3",
+      "query_problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "query_method": "Schur 补",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "8/53",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "test-linalg-034",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "3/40",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-04",
+      "query_id": "test-linalg-039",
+      "query_problem": "求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-3"
+        ],
+        "score": "13/89",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-03",
+      "query_id": "eval-linalg-028-s1",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "解方程组",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "2/5",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-03",
+      "query_id": "eval-linalg-028-s2",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "过渡矩阵",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "2/5",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-03",
+      "query_id": "eval-linalg-028-s3",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "几何分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "2/5",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-04",
+      "query_id": "eval-linalg-028-s1",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "解方程组",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "38/151",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-04",
+      "query_id": "eval-linalg-028-s2",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "过渡矩阵",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "38/151",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-04",
+      "query_id": "eval-linalg-028-s3",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_method": "几何分解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "38/151",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c16-03",
+      "query_id": "test-geom-003",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "skew-lines-distance"
+        ],
+        "score": "11/98",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c16-04",
+      "query_id": "test-geom-003",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "skew-lines-distance"
+        ],
+        "score": "6/49",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c16-05",
+      "query_id": "test-geom-003",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "skew-lines-distance"
+        ],
+        "score": "1/45",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c13-02",
+      "query_id": "test-calc-013",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "query_method": null,
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "telescoping-constant-gap-series"
+        ],
+        "score": "41/43",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-01",
+      "query_id": "eval-geom-001-s1",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "距离公式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "6/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-01",
+      "query_id": "eval-geom-001-s2",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "投影向量",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "6/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-01",
+      "query_id": "eval-geom-001-s3",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "拉格朗日乘数法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "6/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-04",
+      "query_id": "eval-geom-001-s1",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "距离公式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "16/81",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-04",
+      "query_id": "eval-geom-001-s2",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "投影向量",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "16/81",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-04",
+      "query_id": "eval-geom-001-s3",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_method": "拉格朗日乘数法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "16/81",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-01",
+      "query_id": "eval-linalg-024-s1",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "泰勒公式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/56",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-01",
+      "query_id": "eval-linalg-024-s2",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "综合除法连除",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/56",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-01",
+      "query_id": "eval-linalg-024-s3",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "换元展开",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/56",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-02",
+      "query_id": "eval-linalg-024-s1",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "泰勒公式",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/59",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-02",
+      "query_id": "eval-linalg-024-s2",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "综合除法连除",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/59",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-02",
+      "query_id": "eval-linalg-024-s3",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "query_method": "换元展开",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "taylor-cubic-polynomial"
+        ],
+        "score": "23/59",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-02",
+      "query_id": "eval-geom-011-s1",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "判别式法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/116",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-02",
+      "query_id": "eval-geom-011-s2",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "距离法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/116",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-02",
+      "query_id": "eval-geom-011-s3",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "配方直接求解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/116",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-04",
+      "query_id": "eval-geom-011-s1",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "判别式法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/86",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-04",
+      "query_id": "eval-geom-011-s2",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "距离法",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/86",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-05",
+      "train_id": "draft-c21-04",
+      "query_id": "eval-geom-011-s3",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "query_method": "配方直接求解",
+      "prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "line-positive-quadric-intersection"
+        ],
+        "score": "19/86",
+        "rule": "structure-candidates-v4"
+      }
+    }
+  ]
+}

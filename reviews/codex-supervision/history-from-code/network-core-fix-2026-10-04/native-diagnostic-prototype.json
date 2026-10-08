@@ -1,0 +1,236 @@
+{
+  "command": [
+    "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+    "D:\\code\\output\\claude-supervision\\network-core-fix-2026-10-04\\probe_native_diagnostic.py"
+  ],
+  "script_sha256": "4559e077d9a0d06ddb012e912866fb026dc1cbd19d65b76f239b9cc5a24414b7",
+  "client": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-netiso-8da576f75f65.py",
+  "config": {
+    "pth_ok": true,
+    "client_file_sha256": "2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521",
+    "runtime_python_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+  },
+  "runtime_before": {
+    "python.exe": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "python313.dll": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+    "Lib/socket.py": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+    "DLLs/_socket.pyd": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259"
+  },
+  "scope": "Native diagnostic prototype; existing runtime/work/profile; no grants/profile/firewall/exemption changes",
+  "attempts": [
+    {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "nonce_control": "0bb22fdd997641fa8acff76d8953f365",
+      "nonce_sandbox": "656c2d9eba104b4a94749c5f28b7a2ba",
+      "control_server": {
+        "port": 57967,
+        "t_bind_mono_s": 0.001
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "TCP_SENT_OK\r\nTOKEN_IS_APPCONTAINER=0 ok=1/1\r\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\r\nSHIM_ABSENT=True\r\nSITE_ABSENT=True\r\nSYS_EXECUTABLE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe\r\nSOCKET_FILE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py\r\nCLIENT_FILE_SHA256=2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521\r\nRUNTIME_EXE_SHA256=dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\r\nOUTCOME=sent_ok ERR_WINERROR=None T_DELTA=0.003\r\nNETISO_DIAGNOSTIC={\"server\": \"127.0.0.1\", \"return_code\": 0, \"netiso_error\": 0}\r\n",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "peer": "('127.0.0.1', 57968)",
+          "finalized": true,
+          "received_hex": "3062623232666464393937363431666138616366663736643839353366333635",
+          "received_len": 32,
+          "received_latin1": "0bb22fdd997641fa8acff76d8953f365"
+        },
+        "command": [
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-netiso-8da576f75f65.py",
+          "tcp",
+          "127.0.0.1",
+          "57967",
+          "0bb22fdd997641fa8acff76d8953f365"
+        ],
+        "t_launch_mono_s": 0.001,
+        "t_return_mono_s": 0.059,
+        "t_recv_end_mono_s": 0.059,
+        "native_diagnostic": {
+          "server": "127.0.0.1",
+          "return_code": 0,
+          "netiso_error": 0
+        }
+      },
+      "sandbox_server": {
+        "port": 57969,
+        "t_bind_mono_s": 0.0
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "NET_TIMEOUT\r\nTOKEN_IS_APPCONTAINER=1 ok=1/1\r\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\r\nSHIM_ABSENT=True\r\nSITE_ABSENT=True\r\nSYS_EXECUTABLE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe\r\nSOCKET_FILE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py\r\nCLIENT_FILE_SHA256=2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521\r\nRUNTIME_EXE_SHA256=dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\r\nOUTCOME=net_timeout ERR_WINERROR=None T_DELTA=3.016\r\nNETISO_DIAGNOSTIC={\"server\": \"127.0.0.1\", \"return_code\": 0, \"netiso_error\": 0}\r\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": true,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": true,
+        "client_file_ok": true,
+        "site_absent": true,
+        "sys_executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+        "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+        "client_file_sha": "2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521",
+        "runtime_exe_sha": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+        "outcome": "net_timeout",
+        "err_winerror": null,
+        "server": {
+          "listening": true,
+          "timeout": true,
+          "finalized": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-netiso-8da576f75f65.py",
+          "tcp",
+          "127.0.0.1",
+          "57969",
+          "656c2d9eba104b4a94749c5f28b7a2ba"
+        ],
+        "t_launch_mono_s": 0.0,
+        "t_return_mono_s": 3.07,
+        "t_recv_end_mono_s": 20.002,
+        "native_diagnostic": {
+          "server": "127.0.0.1",
+          "return_code": 0,
+          "netiso_error": 0
+        }
+      },
+      "verdict": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "非明确拒绝(outcome=net_timeout, winerror=None);无收包不归因 OS 隔离"
+        ]
+      }
+    },
+    {
+      "transport": "udp",
+      "host": "127.0.0.1",
+      "nonce_control": "0f6b145a4edf4ffda4bfc63ae0997983",
+      "nonce_sandbox": "b560ce02350a454e982b5109b4dd00b8",
+      "control_server": {
+        "port": 52439,
+        "t_bind_mono_s": 0.0
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "UDP_SENT_OK\r\nTOKEN_IS_APPCONTAINER=0 ok=1/1\r\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\r\nSHIM_ABSENT=True\r\nSITE_ABSENT=True\r\nSYS_EXECUTABLE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe\r\nSOCKET_FILE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py\r\nCLIENT_FILE_SHA256=2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521\r\nRUNTIME_EXE_SHA256=dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\r\nOUTCOME=sent_ok ERR_WINERROR=None T_DELTA=0.003\r\nNETISO_DIAGNOSTIC={\"server\": \"127.0.0.1\", \"return_code\": 0, \"netiso_error\": 0}\r\n",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "peer": "('127.0.0.1', 52440)",
+          "finalized": true,
+          "received_hex": "3066366231343561346564663466666461346266633633616530393937393833",
+          "received_len": 32,
+          "received_latin1": "0f6b145a4edf4ffda4bfc63ae0997983"
+        },
+        "command": [
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-netiso-8da576f75f65.py",
+          "udp",
+          "127.0.0.1",
+          "52439",
+          "0f6b145a4edf4ffda4bfc63ae0997983"
+        ],
+        "t_launch_mono_s": 0.0,
+        "t_return_mono_s": 0.051,
+        "t_recv_end_mono_s": 0.051,
+        "native_diagnostic": {
+          "server": "127.0.0.1",
+          "return_code": 0,
+          "netiso_error": 0
+        }
+      },
+      "sandbox_server": {
+        "port": 52441,
+        "t_bind_mono_s": 0.0
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "UDP_SENT_OK\r\nTOKEN_IS_APPCONTAINER=1 ok=1/1\r\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\r\nSHIM_ABSENT=True\r\nSITE_ABSENT=True\r\nSYS_EXECUTABLE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe\r\nSOCKET_FILE=D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py\r\nCLIENT_FILE_SHA256=2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521\r\nRUNTIME_EXE_SHA256=dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\r\nOUTCOME=sent_ok ERR_WINERROR=None T_DELTA=0.003\r\nNETISO_DIAGNOSTIC={\"server\": \"127.0.0.1\", \"return_code\": 0, \"netiso_error\": 0}\r\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": true,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": true,
+        "client_file_ok": true,
+        "site_absent": true,
+        "sys_executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+        "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+        "client_file_sha": "2effdcdf2617781af18e7184407502c10349b7025e83c9b74f0152b9c8d46521",
+        "runtime_exe_sha": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+        "outcome": "sent_ok",
+        "err_winerror": null,
+        "server": {
+          "listening": true,
+          "timeout": true,
+          "finalized": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-netiso-8da576f75f65.py",
+          "udp",
+          "127.0.0.1",
+          "52441",
+          "b560ce02350a454e982b5109b4dd00b8"
+        ],
+        "t_launch_mono_s": 0.0,
+        "t_return_mono_s": 0.054,
+        "t_recv_end_mono_s": 20.001,
+        "native_diagnostic": {
+          "server": "127.0.0.1",
+          "return_code": 0,
+          "netiso_error": 0
+        }
+      },
+      "verdict": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "非明确拒绝(outcome=sent_ok, winerror=None);无收包不归因 OS 隔离"
+        ]
+      }
+    }
+  ],
+  "runtime_after": {
+    "python.exe": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "python313.dll": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+    "Lib/socket.py": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+    "DLLs/_socket.pyd": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259"
+  },
+  "runtime_unchanged": true,
+  "script_unchanged": true
+}

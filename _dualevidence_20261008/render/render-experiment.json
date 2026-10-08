@@ -1,0 +1,71 @@
+{
+  "experiment": "render-side AppContainer sandbox",
+  "tool": "run_render_experiment.py",
+  "format": "png",
+  "root": "D:\\Animation-Model-Training",
+  "stages": {
+    "appcontainer_sid": {
+      "ok": false,
+      "error": "OSError: [Errno -2147024891] AppContainer profile unavailable: HRESULT 0x80070005; provision the profile explicitly before sandbox startup"
+    },
+    "project_interpreter": {
+      "ok": false,
+      "path": "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "exists": false,
+      "bytes": null
+    },
+    "host_control_project_interpreter": {
+      "argv": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import sys; print(sys.version)"
+      ],
+      "error": "PermissionError: [WinError 5] 拒绝访问。"
+    },
+    "sandboxed_render": [
+      {
+        "manifest": "D:\\Animation-Model-Training\\data\\manifest.json",
+        "entry": {
+          "path": "v2\\train\\leakage-isolated-v3-2026-10-05\\dataset_calc.jsonl",
+          "sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+          "size": 28056,
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only",
+          "split": "train",
+          "notes": "train:新增直接代值泄漏隔离，累计16条，活动47条；历史版本保留；资产/校准仍未通过"
+        },
+        "record_id": "calc-derivative-001",
+        "workdir": "D:\\Animation-Model-Training\\_dualevidence_20261008\\render\\scene-fd336a6bacc9",
+        "result": {
+          "id": "calc-derivative-001",
+          "input_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+          "template": "derivative",
+          "math": "UNVERIFIED",
+          "ok": false,
+          "command": [
+            "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "-B",
+            "-m",
+            "manim",
+            "render",
+            "-ql",
+            "--format=png",
+            "--media_dir",
+            "D:\\Animation-Model-Training\\_dualevidence_20261008\\render\\scene-fd336a6bacc9\\media",
+            "D:\\Animation-Model-Training\\_dualevidence_20261008\\render\\scene-fd336a6bacc9\\scene.py",
+            "PilotScene"
+          ],
+          "scene_sha256": "de78e30f8e83cbf4a0f8013860dd237ed7789ace7bd2282f4801fad832cfa9c5",
+          "error": "OSError(-2147024891, 'AppContainer profile unavailable: HRESULT 0x80070005; provision the profile explicitly before sandbox startup')"
+        }
+      }
+    ]
+  },
+  "started_unix": 1791439547.820816,
+  "rendered_records": 0,
+  "verdict": "FAIL",
+  "finished_unix": 1791439547.8844395,
+  "evidence_sha256": null
+}

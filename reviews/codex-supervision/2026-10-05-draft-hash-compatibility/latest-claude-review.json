@@ -1,0 +1,157 @@
+{
+  "reviewed_at": "2026-10-05T22:49:45.946680+08:00",
+  "latest_claude_commit": "1e9f60ba9470383b87c40f60a7667a3cc8ef5820",
+  "latest_claude_commit_subject": "审阅稿 PDF 渲染链修复:Edge 调用改 as_uri+独立临时 profile,打印改两段式(先 dump-dom 取静态 DOM 再打印),放宽 rc 判据为 PDF 实际产出;新增审阅稿合并构建器与渲染探测脚本",
+  "latest_pdf_source_snapshots": [
+    {
+      "path": "tools/render_review.py",
+      "snapshot_path": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/latest-claude-pdf-source/tools/render_review.py",
+      "raw_sha256": "d863260b2349bf8e445cdc6959b53d9ba9dfc0dc7f18445a8eebe2ff95a01b86",
+      "working_file_still_matches_snapshot": true
+    },
+    {
+      "path": "tools/build_review_pdf.py",
+      "snapshot_path": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/latest-claude-pdf-source/tools/build_review_pdf.py",
+      "raw_sha256": "875fe210adb5411a9f35271370f5f4be8bb8ecbbac82e7af8f0f52e68c0ba943",
+      "working_file_still_matches_snapshot": true
+    },
+    {
+      "path": "tools/probe_edge_render.py",
+      "snapshot_path": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/latest-claude-pdf-source/tools/probe_edge_render.py",
+      "raw_sha256": "8ed5ff59bae14af9ef8cef4ed3c70801c169fb87a2f84c2c37f8838b83d1167b",
+      "working_file_still_matches_snapshot": true
+    },
+    {
+      "path": "tools/probe_pdf_print.py",
+      "snapshot_path": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/latest-claude-pdf-source/tools/probe_pdf_print.py",
+      "raw_sha256": "ac660695cce0aefa2bc025f87930f199d3f90e9dd5621b39c73507ac0cb3797f",
+      "working_file_still_matches_snapshot": true
+    },
+    {
+      "path": "tools/probe_pdf_print2.py",
+      "snapshot_path": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/latest-claude-pdf-source/tools/probe_pdf_print2.py",
+      "raw_sha256": "77dd18caf41d653d0521a6fdca736408a1e792b5953bc273cd22a1017b54b65f",
+      "working_file_still_matches_snapshot": true
+    }
+  ],
+  "pdf_valid_pages": 103,
+  "pdf_raw_sha256": "0409dee38f732e3a7c200a9feedf1c3f7d1089f2638880f6d521321897b8e3a2",
+  "math_containers_rendered": 8316,
+  "red_undefined_nodes": 14,
+  "affected_formula_count": 12,
+  "affected_ids": [
+    "draft-c24-03",
+    "draft-c31-04",
+    "draft-c33-02",
+    "draft-c33-04",
+    "draft-c33-05",
+    "draft-c38-03",
+    "draft-c39-01"
+  ],
+  "steps_actual": 1176,
+  "steps_printed_on_cover": 1172,
+  "full_batch_md_present": [
+    {
+      "batch": "batch-01",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-02",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-03",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-04",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-05",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-06",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-07",
+      "all_report_text_present": true,
+      "count": 14
+    },
+    {
+      "batch": "batch-08",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-09",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-10",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-11",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-12",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-13",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-14",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-15",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-16",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-17",
+      "all_report_text_present": true,
+      "count": 15
+    },
+    {
+      "batch": "batch-18",
+      "all_report_text_present": true,
+      "count": 10
+    }
+  ],
+  "basic_audit_hard": 0,
+  "basic_audit_not_full_render_acceptance": true,
+  "exact_similarity_info": [
+    "与训练池的最大题干近重复:set 口径 33/79(草稿 draft-c40-02 ↔ linalg-065)",
+    "与冻结 eval/test的最大题干近重复:set 口径 18/43(草稿 draft-c13-02 ↔ test-calc-013)",
+    "草稿集内最大题干近重复:24/53(draft-c03-01 ↔ draft-c03-05)"
+  ],
+  "latest_claude_pdf_revision_accepted": false,
+  "findings_returned_to_claude": true,
+  "hash_compatibility_fix_status": "INDEPENDENTLY_VERIFIED",
+  "visual_scope": "103 page thumbnails plus full-resolution pages 1,12,13,14,57,58,103; no proof of zero layout defects from thumbnails alone",
+  "intermediate_merror_correction": "pdf-mathjax-merror-confirmed.json counted 2 CSS selectors, not actual merror nodes; authoritative undefined-command findings use parsed red SVG mtext nodes"
+}

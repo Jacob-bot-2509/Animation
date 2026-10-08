@@ -1,0 +1,99 @@
+{
+  "source_hashes": {
+    "src/animtrain/publish.py": "c497f1f5c7f08b1b7c979821530a665fc85a2d494df8bf109b1feb0cc9883516",
+    "src/animtrain/preflight.py": "60c4b54eb21d27f901fbf2038c6ea7b717b83d70e7bb34bb845d6e77b1bee14a",
+    "src/animtrain/run_record.py": "0e7cb17c0f977ed7276449c3c03654c7ff3b9de03af1bc4c4205b72810e46307",
+    "src/animtrain/win_job.py": "1c5e83fe7abeae77be43aaead335bd03cf0fe37b26976ce6342e3d346e5aa5bd"
+  },
+  "results": [
+    {
+      "case": "cleanup_recovery_mixes_versions",
+      "expected": "cleanup recovery keeps committed group intact",
+      "before": [
+        "newA",
+        "newB"
+      ],
+      "after": [
+        "newA",
+        "oldB"
+      ],
+      "report": {
+        "recovered": false,
+        "error": "a.txt: 已写且无备份,无法自动回滚",
+        "actions": [
+          "回滚 b.txt"
+        ]
+      }
+    },
+    {
+      "case": "partial_backup_overwrites_original",
+      "expected": "failed backup creation cannot damage intact original",
+      "after": "PARTIAL",
+      "journal_remains": false
+    },
+    {
+      "case": "target_backup_cross_collision",
+      "expected": "target cannot equal another target's backup",
+      "returned_count": 2,
+      "a": "newA",
+      "b_exists": false
+    },
+    {
+      "case": "target_journal_collision",
+      "expected": "target cannot equal transaction journal",
+      "returned_count": 1,
+      "target_exists": false
+    },
+    {
+      "case": "new_file_recovery_deletes_frozen",
+      "expected": "all recovery mutations respect current freeze protection",
+      "target_exists": false,
+      "journal_remains": false,
+      "report": {
+        "recovered": true,
+        "actions": [
+          "删除残留新文件 new.jsonl"
+        ]
+      }
+    },
+    {
+      "case": "empty_journal_false_recovered",
+      "expected": "empty/missing-schema journal rejected and preserved",
+      "journal_remains": false,
+      "report": {
+        "recovered": true,
+        "actions": []
+      }
+    },
+    {
+      "case": "interrupted_recovery_not_idempotent",
+      "expected": "recovery retry completes and removes valid journal",
+      "after": [
+        "oldA",
+        "oldB"
+      ],
+      "journal_remains": true,
+      "report": {
+        "recovered": false,
+        "error": "a.txt: 已写且无备份,无法自动回滚",
+        "actions": [
+          "回滚 b.txt"
+        ]
+      }
+    },
+    {
+      "case": "asset_nonexistent_artifact",
+      "expected": "evidence requires full record input binding and real output verification",
+      "data_gate_exit": 0,
+      "asset_gate_ok": true,
+      "detail": "资产验收证据绑定当前 manifest,逐条覆盖 1/1 条"
+    },
+    {
+      "case": "asset_changed_solution_and_scene",
+      "expected": "evidence requires full record input binding and real output verification",
+      "data_gate_exit": 0,
+      "asset_gate_ok": true,
+      "detail": "资产验收证据绑定当前 manifest,逐条覆盖 1/1 条"
+    }
+  ]
+}

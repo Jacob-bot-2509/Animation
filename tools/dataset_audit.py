@@ -151,7 +151,7 @@ def math_atoms(text: str) -> list[str]:
 
 
 # ---------------------------------------------------------------- 文件加载
-def load_file(path: Path) -> dict:
+def load_file(path: Path, *, allow_utf8_bom: bool = False) -> dict:
     """只读加载,保留源行号/索引。返回记录与结构诊断。"""
     raw = path.read_bytes()
     info = {
@@ -172,7 +172,7 @@ def load_file(path: Path) -> dict:
     if raw.startswith(b"\xef\xbb\xbf"):
         info["structure_issues"].append("BOM:文件带 UTF-8 BOM")
     try:
-        text = raw.decode("utf-8")
+        text = raw.decode("utf-8-sig" if allow_utf8_bom else "utf-8")
     except UnicodeDecodeError as exc:
         info["decode_error"] = str(exc)
         info["structure_issues"].append(f"非 UTF-8 可解码:{exc}")
@@ -510,7 +510,7 @@ def check_latex(audit: Audit, info: dict, r: dict, rid: str) -> None:
                 audit.add("hard", "L005", f, loc,
                           f"{field} 公式花括号不配对(id={rid})",
                           rid=rid, field=field, evidence=ev)
-            if span.count(r"\left") != span.count(r"\right"):
+            if len(re.findall(r"\\left(?![A-Za-z])", span)) != len(re.findall(r"\\right(?![A-Za-z])", span)):
                 audit.add("quarantine", "L006", f, loc,
                           f"{field} \\left/\\right 不配对(id={rid})",
                           rid=rid, field=field, evidence=ev)

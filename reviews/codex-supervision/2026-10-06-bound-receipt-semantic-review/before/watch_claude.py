@@ -1,0 +1,53 @@
+"""Read-only Claude start/change observer; records events, never reviews or executes code."""
+from pathlib import Path
+import os,json,hashlib,subprocess,time,datetime,msvcrt
+ROOT=Path(__file__).resolve().parents[3]
+OUT=Path(__file__).resolve().parent
+if ROOT.name!='Animation-Model-Training' or not OUT.is_relative_to(ROOT):raise RuntimeError('Unexpected project path')
+lock=(OUT/'watch.lock').open('a+b');lock.seek(0);lock.write(b'1');lock.flush();lock.seek(0)
+try:msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1)
+except OSError:raise SystemExit('Watcher already running')
+def now():return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat()
+def write(name,obj):
+ p=OUT/name;tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2),encoding='utf-8');tmp.replace(p)
+def event(kind,detail):
+ with (OUT/'events.jsonl').open('a',encoding='utf-8') as f:f.write(json.dumps({'time':now(),'kind':kind,'detail':detail},ensure_ascii=False)+'\n')
+PS=r"""$OutputEncoding=[System.Text.UTF8Encoding]::new($false);[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new($false);$items=Get-CimInstance Win32_Process;$ids=[System.Collections.Generic.HashSet[uint32]]::new();foreach($p in @($items | Where-Object {$_.Name -eq 'claude.exe'})){[void]$ids.Add([uint32]$p.ProcessId)};do{$added=$false;foreach($p in $items){if($ids.Contains([uint32]$p.ParentProcessId) -and -not $ids.Contains([uint32]$p.ProcessId)){[void]$ids.Add([uint32]$p.ProcessId);$added=$true}}}while($added);$items | Where-Object {$ids.Contains([uint32]$_.ProcessId)} | Select-Object ProcessId,ParentProcessId,Name | ConvertTo-Json -Compress"""
+manifest=json.loads((ROOT/'reviews/codex-supervision/latest-live-file-hashes.json').read_text(encoding='utf-8'))['files']
+watched=sorted(set(manifest)|{'reviews/2026-10-04-acceptance-support/file_acceptance.py','tools/render_pilot.py','tools/b5_annotation_set.py','data/b5-annotation-set/b5-annotation-set.json','data/b5-annotation-set/b5-annotation-set.md','tools/runpy.py','tools/b5_calibrate.py','data/b5-calibration-report/b5-calibration-report.json','data/b5-calibration-report/b5-calibration-report.md','data/b5-calibration-report/pdf/b5-calibration-report.pdf'})
+watched=sorted(set(watched)|{'data/manifest.json','data/eval-v2.lock.json','data/test-v2.lock.json','data/asset_evidence.json','data/execution_evidence.json','configs/train_loop.example.json','src/animtrain/structural_leakage.py','src/animtrain/preflight.py','src/animtrain/isolation_evidence.py','src/animtrain/private_profile.py','src/animtrain/sandbox_execution.py','tools/train_step.py','tools/eval_step.py','tools/train_loop.py','tools/hp_sweep.py','tools/verified_scene_registry.py','reviews/2026-10-05-training-diversity-drafts/batch-01/draft.jsonl','reviews/2026-10-05-training-diversity-drafts/batch-01/DRAFT_REPORT.md'})
+for entry in json.loads((ROOT/'data/manifest.json').read_text(encoding='utf-8'))['entries']:
+ candidate=(ROOT/'data'/entry['path']).resolve()
+ if not candidate.is_relative_to(ROOT/'data'):raise RuntimeError('Manifest observation path escaped data directory')
+ watched.append(candidate.relative_to(ROOT).as_posix())
+watched=sorted(set(watched)|{'tools/build_holdout_pairs.py', 'tests/test_linalg048_admission_guards.py', 'tools/score_holdout.py', 'docs/项目总览/环节入口.md', 'reviews/2026-10-06-linalg048-admission/v2-rerender/receipt.json', 'docs/项目总览/目录地图.md', 'reviews/codex-supervision/2026-10-06-repair-progress-followup/shear-scene-v2.py', 'tools/apply_linalg048_admission.py', 'tools/holdout_contract.py', 'docs/项目总览/进度看板.md', 'tools/admit_linalg048_v3.py', 'tools/prepare_linalg048_rewrite.py'})
+write('watcher.json',{'pid':os.getpid(),'started_at':now(),'interval_seconds':5,'scope':'read-only process/file/head observer; no autonomous AI review or approval','stop_file':str(OUT/'STOP')})
+prior=None;event('watch_started',{'pid':os.getpid()})
+while not (OUT/'STOP').exists():
+ try:
+  cp=subprocess.run(['powershell.exe','-NoLogo','-NoProfile','-Command',PS],capture_output=True,timeout=15)
+  if cp.returncode:raise RuntimeError('CIM failed: '+cp.stderr.decode('utf-8','replace')[-300:])
+  v=cp.stdout.decode('utf-8-sig').strip();procs=json.loads(v) if v else [];procs=[procs] if isinstance(procs,dict) else procs
+  procs=sorted(procs,key=lambda p:p['ProcessId']);jobs=[p for p in procs if p['Name'].lower() not in ('claude.exe','conhost.exe')]
+  sha={}
+  for rel in watched:
+   p=ROOT/rel
+   try:sha[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
+   except OSError:sha[rel]=None
+  git=subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,capture_output=True,text=True,timeout=5)
+  head=git.stdout.strip() if git.returncode==0 else None
+  state={'time':now(),'watcher_pid':os.getpid(),'head':head,'claude_tree':procs,'child_jobs':jobs,'hashes':sha,'core_drift':[rel for rel,expected in manifest.items() if sha[rel]!=expected]}
+  if prior is None:event('baseline',{'head':head,'tree':procs,'core_drift':state['core_drift']})
+  else:
+   old={p['ProcessId']:p for p in prior['claude_tree']};new={p['ProcessId']:p for p in procs}
+   for pid in sorted(new.keys()-old.keys()):event('process_started',new[pid])
+   for pid in sorted(old.keys()-new.keys()):event('process_ended',old[pid])
+   if head!=prior['head']:event('commit_changed',{'before':prior['head'],'after':head})
+   for rel,value in sha.items():
+    if value!=prior['hashes'].get(rel):event('file_changed',{'path':rel,'before':prior['hashes'].get(rel),'after':value})
+   if state['core_drift']!=prior['core_drift']:event('core_drift_changed',state['core_drift'])
+  write('latest.json',state);prior=state
+ except Exception as e:event('observer_error',{'error':repr(e)})
+ time.sleep(5)
+event('watch_stopped',{'pid':os.getpid()})
+write('stopped.json',{'pid':os.getpid(),'time':now()})

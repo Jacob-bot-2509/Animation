@@ -1,0 +1,141 @@
+{
+  "source_hashes": {
+    "replay_script_sha256": "1abfcbe589b01bc9904a353af67360a12b8403fc094e5b00c01a2ad0dfaa5555",
+    "appcontainer_sha256": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+    "win_job_sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c"
+  },
+  "command": [
+    "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+    "reviews/2026-10-04-acceptance-support/replay_v2.py"
+  ],
+  "work": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\replay3-bc675cd7",
+  "negative_regressions": {
+    "cases": [
+      {
+        "name": "N1 正对照启动失败",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N2 哨兵不匹配",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N3 未真正超时",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N4 返回时未清理(人工清理后退出)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N5 WAIT_FAILED 不得判活(仅 WAIT_TIMEOUT 判活)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N6 沙箱子进程异常退出(rc!=0)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N5b 完整_handshake WAIT_FAILED 故障注入",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N7 清理成功(终止后用同一句柄确认退出)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N8 清理等待失败(不虚报完成)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "A1_inherited_handle": {
+    "blocked": true,
+    "control_good": true,
+    "sandbox_blocked": true,
+    "control": {
+      "spawned": true,
+      "waited": true,
+      "rc_read": true,
+      "rc": 0,
+      "lasterr": null,
+      "out": "SENTINEL_READ:SYNTHETIC-INHERITED-HANDLE-PROBE\n"
+    },
+    "sandbox": {
+      "rc": 0,
+      "winerror": 3221225480,
+      "token_ok": true,
+      "out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\r\nREAD_ERROR winerror=3221225480\r\n"
+    }
+  },
+  "A2_tree_termination": {
+    "timeout": {
+      "timed_out": true,
+      "rc": null,
+      "signaled_at_return": true,
+      "handshake": {
+        "verified": true,
+        "pid": 27180,
+        "image": "D:\\Python\\python.exe",
+        "wait_error": null
+      },
+      "token_ok": true,
+      "thread_finished": true,
+      "ack_received": false,
+      "cleanup": {
+        "terminate_attempted": false,
+        "terminate_ok": null,
+        "terminate_lasterr": null,
+        "exit_confirmed": null,
+        "wait_lasterr": null,
+        "alive_before_cleanup": false
+      },
+      "out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\r\nGRAND_PID=27180\r\n"
+    },
+    "normal_exit": {
+      "timed_out": false,
+      "rc": 0,
+      "signaled_at_return": true,
+      "handshake": {
+        "verified": true,
+        "pid": 18660,
+        "image": "D:\\Python\\python.exe",
+        "wait_error": null
+      },
+      "token_ok": true,
+      "thread_finished": true,
+      "ack_received": true,
+      "cleanup": {
+        "terminate_attempted": false,
+        "terminate_ok": null,
+        "terminate_lasterr": null,
+        "exit_confirmed": null,
+        "wait_lasterr": null,
+        "alive_before_cleanup": false
+      },
+      "out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\r\nGRAND_PID=18660\r\nACK_SEEN=True\r\n"
+    },
+    "passed": true,
+    "timeout_ok": true,
+    "exit_ok": true
+  }
+}

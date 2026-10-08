@@ -1,0 +1,158 @@
+{
+  "_说明": "提案配置；hyperparameter_approval须为CONFIRMED且sha256绑定同一参数对象，确认前拒绝训练；数据多样性、资产、校准和隔离门禁仍须通过。",
+  "subset": {
+    "count": 20,
+    "seed": 20261005
+  },
+  "model_path": ".models/qwen3-4b",
+  "dataset_manifest": "data/manifest.json",
+  "render_executor": null,
+  "judge_script": null,
+  "output_winner": "configs/train_loop.winner.json",
+  "candidates": [
+    {
+      "name": "center",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "lr-low",
+      "hyperparameters": {
+        "learning_rate": "1/10000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "lr-high",
+      "hyperparameters": {
+        "learning_rate": "1/2500",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "ep4",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 4,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "ep10",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 10,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "r16",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "effbatch4",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 1,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 2048,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    },
+    {
+      "name": "seq1024",
+      "hyperparameters": {
+        "learning_rate": "1/5000",
+        "batch_size": 2,
+        "gradient_accumulation_steps": 4,
+        "epochs": 6,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "max_seq_length": 1024,
+        "quantization": "4bit",
+        "seed": 42
+      },
+      "hyperparameter_approval": {
+        "status": "PROPOSED",
+        "sha256": null
+      }
+    }
+  ]
+}

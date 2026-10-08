@@ -1,0 +1,305 @@
+{
+  "known_relations": [
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c11-03",
+      "train_source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+      "query_id": "eval-calc-011-s1",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 31,
+      "query_row_sha256": "950c8050a55e55adeb8b2ec6d8a0bf5c83167db2df6b7015c068e2fd2ffe854b",
+      "query_method": "代入对数展开式",
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\frac{x^n}{n(n+1)}$ 的收敛域与和函数，并求 $S(0)$、$S(1)$、$S(-1)$。",
+      "train_solution": "收敛域：$|x|<1$ 时由比值法收敛；$x=\\pm1$ 时 $\\left|\\frac{(\\pm1)^n}{n(n+1)}\\right|\\leq\\frac{1}{n(n+1)}$ 且 $\\sum\\frac{1}{n(n+1)}$ 收敛，故两端点绝对收敛，收敛域为 $[-1,1]$。求和(先对 $|x|<1$)：拆项 $\\frac{1}{n(n+1)}=\\frac{1}{n}-\\frac{1}{n+1}$，记 $A(x)=\\sum_{n=1}^{\\infty}\\frac{x^n}{n}=-\\ln(1-x)$，则 $\\sum_{n=1}^{\\infty}\\frac{x^n}{n+1}=\\frac{1}{x}\\sum_{n=1}^{\\infty}\\frac{x^{n+1}}{n+1}=\\frac{A(x)-x}{x}$($x\\neq0$)。故 $S(x)=A(x)-\\frac{A(x)-x}{x}=1+\\frac{(1-x)\\ln(1-x)}{x}$。$S(0)=0$(通项为 0)；$S(1)=\\sum\\frac{1}{n(n+1)}=1$(裂项求和),与公式在 $x\\to1^-$ 的极限一致;$S(-1)=\\sum\\frac{(-1)^n}{n(n+1)}=1-2\\ln2$(由公式 $1+\\frac{2\\ln2}{-1}$)。",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "query_solution": "由 $-\\ln(1-x)=\\displaystyle\\int_0^x\\dfrac{dt}{1-t}=\\int_0^x\\sum_{n=0}^{\\infty}t^n\\,dt=\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}=x+\\dfrac{x^2}{2}+\\dfrac{x^3}{3}+\\cdots$（$|x|<1$），取 $x=\\dfrac{1}{2}$，得 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n\\cdot 2^n}=-\\ln\\left(1-\\dfrac{1}{2}\\right)=-\\ln\\dfrac{1}{2}=\\ln 2$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "解答给出的完整-log生成函数直接代入即可得到冻结s1结果",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "29/85",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c11-05",
+      "train_source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+      "query_id": "eval-calc-011-s1",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 31,
+      "query_row_sha256": "950c8050a55e55adeb8b2ec6d8a0bf5c83167db2df6b7015c068e2fd2ffe854b",
+      "query_method": "代入对数展开式",
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^nx^n}{n}$ 的收敛域与和函数，并求 $x=1$ 处的值(说明所用定理)。",
+      "train_solution": "当 $|x|<1$ 时由比值法绝对收敛。当 $x=1$ 时，级数为 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n}{n}$，由莱布尼茨判别法($\\frac1n$ 单调递减趋于 $0$)收敛；当 $x=-1$ 时，级数为 $\\sum\\frac{1}{n}$，发散。故收敛域为 $(-1,1]$。求和：对 $|x|<1$，$\\sum_{n=1}^{\\infty}(-1)^{n+1}\\frac{x^n}{n}=\\ln(1+x)$，故 $S(x)=-\\ln(1+x)$。$x=1$ 处级数收敛，由阿贝尔定理，$S(1)=\\lim_{x\\to1^-}S(x)=\\lim_{x\\to1^-}-\\ln(1+x)=-\\ln2$。",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "query_solution": "由 $-\\ln(1-x)=\\displaystyle\\int_0^x\\dfrac{dt}{1-t}=\\int_0^x\\sum_{n=0}^{\\infty}t^n\\,dt=\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}=x+\\dfrac{x^2}{2}+\\dfrac{x^3}{3}+\\cdots$（$|x|<1$），取 $x=\\dfrac{1}{2}$，得 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n\\cdot 2^n}=-\\ln\\left(1-\\dfrac{1}{2}\\right)=-\\ln\\dfrac{1}{2}=\\ln 2$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "仅符号反射的同一完整-log生成函数",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "30/89",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c11-03",
+      "train_source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+      "query_id": "test-calc-013",
+      "query_source": "data/v2/test/dataset_test.jsonl",
+      "query_line": 13,
+      "query_row_sha256": "c89ee5a4fe1702af8c092c87321f24dd70f50edd6a6204913eae2eaa06a992e9",
+      "query_method": null,
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\frac{x^n}{n(n+1)}$ 的收敛域与和函数，并求 $S(0)$、$S(1)$、$S(-1)$。",
+      "train_solution": "收敛域：$|x|<1$ 时由比值法收敛；$x=\\pm1$ 时 $\\left|\\frac{(\\pm1)^n}{n(n+1)}\\right|\\leq\\frac{1}{n(n+1)}$ 且 $\\sum\\frac{1}{n(n+1)}$ 收敛，故两端点绝对收敛，收敛域为 $[-1,1]$。求和(先对 $|x|<1$)：拆项 $\\frac{1}{n(n+1)}=\\frac{1}{n}-\\frac{1}{n+1}$，记 $A(x)=\\sum_{n=1}^{\\infty}\\frac{x^n}{n}=-\\ln(1-x)$，则 $\\sum_{n=1}^{\\infty}\\frac{x^n}{n+1}=\\frac{1}{x}\\sum_{n=1}^{\\infty}\\frac{x^{n+1}}{n+1}=\\frac{A(x)-x}{x}$($x\\neq0$)。故 $S(x)=A(x)-\\frac{A(x)-x}{x}=1+\\frac{(1-x)\\ln(1-x)}{x}$。$S(0)=0$(通项为 0)；$S(1)=\\sum\\frac{1}{n(n+1)}=1$(裂项求和),与公式在 $x\\to1^-$ 的极限一致;$S(-1)=\\sum\\frac{(-1)^n}{n(n+1)}=1-2\\ln2$(由公式 $1+\\frac{2\\ln2}{-1}$)。",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "query_solution": "$\\dfrac{1}{n(n+2)}=\\dfrac{1}{2}\\left(\\dfrac{1}{n}-\\dfrac{1}{n+2}\\right)$。部分和 $S_n=\\dfrac{1}{2}\\displaystyle\\sum_{k=1}^{n}\\left(\\dfrac{1}{k}-\\dfrac{1}{k+2}\\right)=\\dfrac{1}{2}\\left[\\left(1+\\dfrac{1}{2}+\\dfrac{1}{3}+\\cdots+\\dfrac{1}{n}\\right)-\\left(\\dfrac{1}{3}+\\dfrac{1}{4}+\\cdots+\\dfrac{1}{n+2}\\right)\\right]=\\dfrac{1}{2}\\left(1+\\dfrac{1}{2}-\\dfrac{1}{n+1}-\\dfrac{1}{n+2}\\right)$。令 $n\\to\\infty$，$S=\\dfrac{1}{2}\\cdot\\dfrac{3}{2}=\\dfrac{3}{4}$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "题内x=1裂项是同固定间隔部分分式/边界尾项结构，间隔数值改变",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "telescoping-constant-gap-series"
+        ],
+        "score": "35/71",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-02",
+      "train_id": "draft-c11-04",
+      "train_source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+      "query_id": "test-calc-014",
+      "query_source": "data/v2/test/dataset_test.jsonl",
+      "query_line": 14,
+      "query_row_sha256": "57252cac850e055fc43d553c07c17e6ccf0b54c3290bdf3d92bcf328af021471",
+      "query_method": null,
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\frac{nx^n}{n!}$ 的收敛域与和函数。",
+      "train_solution": "比值法：$\\lim_{n\\to\\infty}\\left|\\frac{(n+1)x^{n+1}/(n+1)!}{nx^n/n!}\\right|=\\lim_{n\\to\\infty}\\frac{n+1}{n}\\cdot\\frac{|x|}{n+1}=0$，对一切实数 $x$ 收敛，收敛域为 $\\mathbb R$。求和：$\\sum_{n=1}^{\\infty}\\frac{nx^n}{n!}=\\sum_{n=1}^{\\infty}\\frac{x^n}{(n-1)!}=x\\sum_{m=0}^{\\infty}\\frac{x^m}{m!}=xe^x$。逐项运算的合法性由该级数在全实轴上一致收敛于紧区间保证(指数级数)。",
+      "query_problem": "验证幂级数 $y=\\displaystyle\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。",
+      "query_solution": "该级数收敛半径为 $+\\infty$（比值判别法：$\\dfrac{1/(n+1)!}{1/n!}=\\dfrac{1}{n+1}\\to 0$），可逐项求导：$y'=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{nx^{n-1}}{n!}=\\sum_{n=1}^{\\infty}\\dfrac{x^{n-1}}{(n-1)!}=\\sum_{m=0}^{\\infty}\\dfrac{x^m}{m!}=y$。且 $y(0)=\\dfrac{1}{0!}+\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{0^n}{n!}=1+0=1$。由解的唯一性，$y=e^x$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "n/n!重编号指数级数直接给出冻结y′=y核心，乘x包装",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "32/79",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c35-02",
+      "train_source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+      "query_id": "eval-geom-008-s1",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 112,
+      "query_row_sha256": "941aa5aa991f06d74fd51f66afb159e5e5c425cb1ba0ecd3e9a505bf363d3c58",
+      "query_method": "特征值法",
+      "train_problem": "求二次型 $f(x,y)=x^2+4xy+2y^2$ 的合同标准形与对应矩阵的相似标准形，并说明两者所记录的信息有何不同。",
+      "train_solution": "合同标准形(配方)：$f=(x+2y)^2-2y^2$，令 $u=x+2y,v=y$，得 $u^2-2v^2$;再作伸缩 $\\tilde u=u,\\tilde v=\\sqrt2v$，得合同标准形 $u^2-v^2$(规范形)，正负惯性指数为 $(1,1,0)$。相似标准形(特征值)：对应矩阵 $A=\\begin{pmatrix}1&2\\\\2&2\\end{pmatrix}$，特征方程 $|A-\\lambda I|=(1-\\lambda)(2-\\lambda)-4=\\lambda^2-3\\lambda-2=0$，特征值 $\\lambda=\\frac{3\\pm\\sqrt{17}}{2}$，相似标准形为 $\\begin{pmatrix}\\frac{3+\\sqrt{17}}{2}&0\\\\0&\\frac{3-\\sqrt{17}}{2}\\end{pmatrix}$。区别:合同标准形只记录二次型的符号结构(惯性指数),相似标准形记录线性变换的全部特征值;合同变换一般改变特征值,相似变换一般改变二次型的系数。",
+      "query_problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "query_solution": "二次项矩阵 $A=\\begin{pmatrix}2&2&0\\\\2&1&0\\\\0&0&-1\\end{pmatrix}$。$2\\times 2$ 块 $\\begin{pmatrix}2&2\\\\2&1\\end{pmatrix}$ 的特征方程为 $(2-\\lambda)(1-\\lambda)-4=0$，即 $\\lambda^2-3\\lambda-2=0$，特征值 $\\lambda_1=\\dfrac{3+\\sqrt{17}}{2}>0$、$\\lambda_2=\\dfrac{3-\\sqrt{17}}{2}<0$；第三个特征值为 $-1<0$。正惯性指数 $1$、负惯性指数 $2$，对应双叶双曲面。",
+      "judgment": "EXACT_FROZEN_SPECTRUM_SUBTASK",
+      "reason": "二维对称块仅交换坐标即为冻结三维题的二维块；±√17精确谱相同，不声称已给曲面分类完整步骤",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "6/77",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c37-03",
+      "train_source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+      "query_id": "eval-linalg-028-s2",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 278,
+      "query_row_sha256": "621431d575693cc1cc52e4eeb16db901270976be2db14d87063024efb8a324f7",
+      "query_method": "过渡矩阵",
+      "train_problem": "在 $\\mathbb R^2$ 中，设从标准基到基 $\\eta_1=(1,1)$，$\\eta_2=(1,-1)$ 的过渡矩阵为 $P$。求 $P$；若向量 $\\alpha$ 在基 $\\eta$ 下的坐标为 $(2,3)$，求 $\\alpha$ 在标准基下的坐标；若向量 $\\beta$ 在标准基下的坐标为 $(2,3)$，求 $\\beta$ 在基 $\\eta$ 下的坐标。",
+      "train_solution": "过渡矩阵 $P=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。由 $P^2=\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}=2I$ 得 $P^{-1}=\\frac12P=\\frac12\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。$\\alpha$ 在标准基下的坐标(基向量按新坐标组合)：$\\alpha=2\\eta_1+3\\eta_2=2(1,1)+3(1,-1)=(5,-1)$。$\\beta$ 在基 $\\eta$ 下的坐标：$\\xi=P^{-1}\\beta=\\frac12(2+3,\\,2-3)=(\\frac52,-\\frac12)$。验证:$\\frac52\\eta_1-\\frac12\\eta_2=(\\frac52-\\frac12,\\frac52+\\frac12)=(2,3)=\\beta$。注意:向量本身用 $P$ 组合,坐标换基用 $P^{-1}$,方向相反。",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "query_solution": "从标准基到基 $\\{\\beta_1,\\beta_2\\}$ 的过渡矩阵 $P=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}$（列为基向量）。$\\alpha=P\\xi$，其中 $\\xi$ 为所求坐标。$P^{-1}=\\dfrac{1}{1-2}\\begin{pmatrix}1&-1\\\\-2&1\\end{pmatrix}=\\begin{pmatrix}-1&1\\\\2&-1\\end{pmatrix}$。故 $\\xi=P^{-1}\\alpha=\\begin{pmatrix}-1&1\\\\2&-1\\end{pmatrix}\\begin{pmatrix}2\\\\3\\end{pmatrix}=\\begin{pmatrix}-2+3\\\\4-3\\end{pmatrix}=\\begin{pmatrix}1\\\\1\\end{pmatrix}$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "同一向量(2,3)的二维列基矩阵逆乘坐标，只换基向量数值",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "coordinate-change-2"
+        ],
+        "score": "2/5",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-03",
+      "train_id": "draft-c16-04",
+      "train_source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+      "query_id": "test-geom-003",
+      "query_source": "data/v2/test/dataset_test.jsonl",
+      "query_line": 48,
+      "query_row_sha256": "88f1cd8de775a5a59cd0c1bf6c404c495d9ec711afa8619e876ad7054dc9c765",
+      "query_method": null,
+      "train_problem": "求两条异面直线 $l_1:(t,t,0)$ 与 $l_2:(s,0,1-s)$ 上动点之间距离的最小值(即两直线间的距离)。",
+      "train_solution": "两动点分别为 $A=(t,t,0)$ 与 $B=(s,0,1-s)$，距离平方 $|AB|^2=(s-t)^2+t^2+(1-s)^2$。对 $t,s$ 求偏导：$\\frac{\\partial}{\\partial t}=-2(s-t)+2t=4t-2s$，$\\frac{\\partial}{\\partial s}=2(s-t)-2(1-s)=4s-2t-2$。令两者为零，得 $s=2t$ 与 $2s-t=1$，解得 $t=\\frac13,s=\\frac23$。此时 $|AB|^2=(\\frac13)^2+(\\frac13)^2+(\\frac13)^2=\\frac13$，故最小距离为 $\\frac{1}{\\sqrt3}=\\frac{\\sqrt3}{3}$。交叉验证(混合积公式)：$d_1=(1,1,0),d_2=(1,0,-1)$，$P_2-P_1=(0,0,1)$，$[d_1,d_2,P_2-P_1]=-1$，$|d_1\\times d_2|=\\sqrt3$，距离 $\\frac{1}{\\sqrt3}$，一致。",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "query_solution": "$\\vec{s_1}=(1,2,1)$，$\\vec{s_2}=(2,-1,2)$，取点 $P_1=(1,0,3)\\in l_1$、$P_2=(0,1,0)\\in l_2$。公垂线方向 $\\vec n=\\vec{s_1}\\times\\vec{s_2}=(2\\cdot 2-1\\cdot(-1),\\ 1\\cdot 2-1\\cdot 2,\\ 1\\cdot(-1)-2\\cdot 2)=(5,0,-5)$，取 $(1,0,-1)$。$\\overrightarrow{P_1P_2}=(-1,1,-3)$。距离 $d=\\dfrac{|\\overrightarrow{P_1P_2}\\cdot\\vec n|}{|\\vec n|}=\\dfrac{|-1-0+3|}{\\sqrt2}=\\dfrac{2}{\\sqrt2}=\\sqrt2$。",
+      "judgment": "SOURCE_SECONDARY_METHOD_REUSE_REPAIRED",
+      "reason": "原始附加混合积数值验证是同一异面距离公式链；严格副本删数值附加链，保留有新增正定平方证明的二元最小化",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "skew-lines-distance"
+        ],
+        "score": "6/49",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c13-01",
+      "train_source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+      "query_id": "test-calc-013",
+      "query_source": "data/v2/test/dataset_test.jsonl",
+      "query_line": 13,
+      "query_row_sha256": "c89ee5a4fe1702af8c092c87321f24dd70f50edd6a6204913eae2eaa06a992e9",
+      "query_method": null,
+      "train_problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{1}{(2n-1)(2n+1)}$ 的和。",
+      "train_solution": "部分分式：$\\frac{1}{(2n-1)(2n+1)}=\\frac12\\left(\\frac{1}{2n-1}-\\frac{1}{2n+1}\\right)$。前 $N$ 项和 $S_N=\\frac12\\sum_{n=1}^{N}\\left(\\frac{1}{2n-1}-\\frac{1}{2n+1}\\right)=\\frac12\\left(1-\\frac{1}{2N+1}\\right)$(中间项两两抵消)。令 $N\\to\\infty$ 得 $S=\\frac12$。",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "query_solution": "$\\dfrac{1}{n(n+2)}=\\dfrac{1}{2}\\left(\\dfrac{1}{n}-\\dfrac{1}{n+2}\\right)$。部分和 $S_n=\\dfrac{1}{2}\\displaystyle\\sum_{k=1}^{n}\\left(\\dfrac{1}{k}-\\dfrac{1}{k+2}\\right)=\\dfrac{1}{2}\\left[\\left(1+\\dfrac{1}{2}+\\dfrac{1}{3}+\\cdots+\\dfrac{1}{n}\\right)-\\left(\\dfrac{1}{3}+\\dfrac{1}{4}+\\cdots+\\dfrac{1}{n+2}\\right)\\right]=\\dfrac{1}{2}\\left(1+\\dfrac{1}{2}-\\dfrac{1}{n+1}-\\dfrac{1}{n+2}\\right)$。令 $n\\to\\infty$，$S=\\dfrac{1}{2}\\cdot\\dfrac{3}{2}=\\dfrac{3}{4}$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "仍是两个一次因子固定间隔裂项→有限尾项→极限，仅采样步长和数值改变",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "37/50",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c13-04",
+      "train_source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+      "query_id": "test-calc-013",
+      "query_source": "data/v2/test/dataset_test.jsonl",
+      "query_line": 13,
+      "query_row_sha256": "c89ee5a4fe1702af8c092c87321f24dd70f50edd6a6204913eae2eaa06a992e9",
+      "query_method": null,
+      "train_problem": "求级数 $\\sum_{n=2}^{\\infty}\\frac{1}{n^2-1}$ 的和。",
+      "train_solution": "部分分式：$\\frac{1}{n^2-1}=\\frac12\\left(\\frac{1}{n-1}-\\frac{1}{n+1}\\right)$。前 $N$ 项和 $S_N=\\frac12\\sum_{n=2}^{N}\\left(\\frac{1}{n-1}-\\frac{1}{n+1}\\right)=\\frac12\\left(1+\\frac12-\\frac{1}{N}-\\frac{1}{N+1}\\right)$(正项只留下 $n=2$ 的 $\\frac11$ 与 $\\frac12$，负项只留下 $\\frac1N$ 与 $\\frac1{N+1}$)。令 $N\\to\\infty$ 得 $S=\\frac12\\cdot\\frac32=\\frac34$。",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "query_solution": "$\\dfrac{1}{n(n+2)}=\\dfrac{1}{2}\\left(\\dfrac{1}{n}-\\dfrac{1}{n+2}\\right)$。部分和 $S_n=\\dfrac{1}{2}\\displaystyle\\sum_{k=1}^{n}\\left(\\dfrac{1}{k}-\\dfrac{1}{k+2}\\right)=\\dfrac{1}{2}\\left[\\left(1+\\dfrac{1}{2}+\\dfrac{1}{3}+\\cdots+\\dfrac{1}{n}\\right)-\\left(\\dfrac{1}{3}+\\dfrac{1}{4}+\\cdots+\\dfrac{1}{n+2}\\right)\\right]=\\dfrac{1}{2}\\left(1+\\dfrac{1}{2}-\\dfrac{1}{n+1}-\\dfrac{1}{n+2}\\right)$。令 $n\\to\\infty$，$S=\\dfrac{1}{2}\\cdot\\dfrac{3}{2}=\\dfrac{3}{4}$。",
+      "judgment": "IDENTICAL_SERIES_REINDEXED",
+      "reason": "令k=n−1，1/(n²−1)=1/[k(k+2)]，起点n=2变k=1，完全同一序列与和",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "34/47",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-01",
+      "train_source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+      "query_id": "eval-geom-001-s1",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 91,
+      "query_row_sha256": "7f974fd177fca3a18ec006c86810496de2888aa246c7b986c248ba0eef2a4441",
+      "query_method": "距离公式",
+      "train_problem": "求点 $P(2,1,1)$ 到平面 $\\pi: x+2y+2z=3$ 的距离与投影点。",
+      "train_solution": "平面法向量 $n=(1,2,2)$，$|n|=3$。有向距离 $\\frac{n\\cdot P-3}{|n|}=\\frac{2+2+2-3}{3}=1$，故距离为 $1$。投影点 $Q=P-\\frac{n\\cdot P-3}{|n|^2}n=(2,1,1)-\\frac{3}{9}(1,2,2)=(2,1,1)-(\\frac13,\\frac23,\\frac23)=(\\frac53,\\frac13,\\frac13)$。验证:$Q$ 在平面上($\\frac53+\\frac23+\\frac23=3$)且 $P-Q=(\\frac13,\\frac23,\\frac23)\\parallel n$。",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_solution": "平面法向量 $\\vec n=(2,-1,2)$，$|\\vec n|=\\sqrt{4+1+4}=3$。代入点到平面距离公式：$d=\\dfrac{|2\\cdot 1-1\\cdot 2+2\\cdot(-1)-3|}{3}=\\dfrac{|2-2-2-3|}{3}=\\dfrac{5}{3}$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "点到平面距离residual/法向量模的完整链，只换点/平面数值",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "6/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c18-01",
+      "train_source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+      "query_id": "eval-geom-001-s2",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 92,
+      "query_row_sha256": "b025b8be217105f21bb356e35a3e560a9f4f38c5fa1e088d9a7422e9dbe5ae7a",
+      "query_method": "投影向量",
+      "train_problem": "求点 $P(2,1,1)$ 到平面 $\\pi: x+2y+2z=3$ 的距离与投影点。",
+      "train_solution": "平面法向量 $n=(1,2,2)$，$|n|=3$。有向距离 $\\frac{n\\cdot P-3}{|n|}=\\frac{2+2+2-3}{3}=1$，故距离为 $1$。投影点 $Q=P-\\frac{n\\cdot P-3}{|n|^2}n=(2,1,1)-\\frac{3}{9}(1,2,2)=(2,1,1)-(\\frac13,\\frac23,\\frac23)=(\\frac53,\\frac13,\\frac13)$。验证:$Q$ 在平面上($\\frac53+\\frac23+\\frac23=3$)且 $P-Q=(\\frac13,\\frac23,\\frac23)\\parallel n$。",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "query_solution": "取平面上一点 $Q(0,-3,0)$（$2\\cdot 0-(-3)+2\\cdot 0=3$ 满足方程），则 $\\overrightarrow{QP}=(1,5,-1)$。$P$ 到平面的距离等于 $\\overrightarrow{QP}$ 在法向量上的投影长度：$d=\\dfrac{|\\overrightarrow{QP}\\cdot\\vec n|}{|\\vec n|}=\\dfrac{|1\\cdot 2+5\\cdot(-1)+(-1)\\cdot 2|}{3}=\\dfrac{5}{3}$。垂足为 $P$ 减去投影向量 $\\dfrac{\\overrightarrow{QP}\\cdot\\vec n}{|\\vec n|^2}\\vec n=\\dfrac{-5}{9}(2,-1,2)$，即 $\\left(\\dfrac{19}{9},\\dfrac{13}{9},\\dfrac{1}{9}\\right)$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "相同法向量投影坐标公式及检验链，只换点/平面数值",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "point-plane-distance"
+        ],
+        "score": "6/11",
+        "rule": "structure-candidates-v4"
+      }
+    },
+    {
+      "batch": "batch-04",
+      "train_id": "draft-c30-05",
+      "train_source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+      "query_id": "eval-calc-011-s1",
+      "query_source": "data/v2/eval/dataset_eval.jsonl",
+      "query_line": 31,
+      "query_row_sha256": "950c8050a55e55adeb8b2ec6d8a0bf5c83167db2df6b7015c068e2fd2ffe854b",
+      "query_method": "代入对数展开式",
+      "train_problem": "写出 $f(x)=\\ln x$ 在 $x=1$ 处的幂级数展开的前四项，并讨论其收敛范围；再与多项式(如 $x^4$)的平移展开对照，说明两者在项数与适用范围上的区别。",
+      "train_solution": "令 $u=x-1$，$\\ln x=\\ln(1+u)=u-\\frac{u^2}{2}+\\frac{u^3}{3}-\\frac{u^4}{4}+\\cdots$，即 $\\ln x=(x-1)-\\frac{(x-1)^2}{2}+\\frac{(x-1)^3}{3}-\\frac{(x-1)^4}{4}+\\cdots$。收敛范围:该级数在 $|u|<1$ 收敛，即 $0<x<2$;$u=1$(即 $x=2$)时级数为交错调和级数，条件收敛，故 $0<x\\leq2$;其余 $x$ 发散。对照:多项式 $x^4$ 的平移展开 $(x-1)^4+4(x-1)^3+\\cdots$ 只有有限项,且对一切实数恒等成立;而 $\\ln x$ 的展开有无穷多项,只在收敛域 $0<x\\leq2$ 内成立。区别的根源:多项式展开是有限次恒等变形,超越函数展开是无穷级数,其有效性受收敛半径限制。",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "query_solution": "由 $-\\ln(1-x)=\\displaystyle\\int_0^x\\dfrac{dt}{1-t}=\\int_0^x\\sum_{n=0}^{\\infty}t^n\\,dt=\\sum_{n=1}^{\\infty}\\dfrac{x^n}{n}=x+\\dfrac{x^2}{2}+\\dfrac{x^3}{3}+\\cdots$（$|x|<1$），取 $x=\\dfrac{1}{2}$，得 $\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n\\cdot 2^n}=-\\ln\\left(1-\\dfrac{1}{2}\\right)=-\\ln\\dfrac{1}{2}=\\ln 2$。",
+      "judgment": "DIRECT_METHOD_REUSE",
+      "reason": "ln(1+u)完整生成函数与冻结-log求和仅变量反射/取值不同",
+      "not_independent_holdout": true,
+      "candidate_prediction": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "0",
+        "rule": "structure-candidates-v4"
+      }
+    }
+  ],
+  "full_method_claim_not_made_for_partial_spectrum": true,
+  "generic_theorem_sharing_alone_not_leakage": true,
+  "old_development_labels_unchanged": true
+}

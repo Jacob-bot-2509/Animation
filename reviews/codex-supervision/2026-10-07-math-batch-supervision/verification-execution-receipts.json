@@ -1,0 +1,29 @@
+{
+  "candidate_reconstruction": {
+    "chunk_id": "eaf830",
+    "wall_time_seconds": 0.0666098,
+    "exit_code": 0,
+    "original_token_count": 91,
+    "output": "{\r\n  \"status\": \"PASS_INDEPENDENT_SOURCE_AND_VERSION_RECONSTRUCTION\",\r\n  \"reviewed\": 38,\r\n  \"additional_revisions\": 10,\r\n  \"previous_revisions_preserved\": 30,\r\n  \"candidate_sources\": 6,\r\n  \"candidate_records\": 497,\r\n  \"semantic_isolation\": \"NOT_ESTABLISHED\",\r\n  \"native_render\": \"UNVERIFIED\",\r\n  \"active_data_admission\": \"PENDING\",\r\n  \"production\": \"CLOSED\"\r\n}\r\n"
+  },
+  "exact_math_witnesses": {
+    "chunk_id": "46b4a3",
+    "wall_time_seconds": 0.8363715,
+    "exit_code": 0,
+    "original_token_count": 21,
+    "output": "38 bound records: exact equalities and explicit theorem/coverage reasoning pass.\r\n"
+  },
+  "pytest_final": {
+    "command": "python -X utf8 -B -m pytest -q -p no:cacheprovider tests/test_math_review_batch.py tests/test_tools_runpy.py --basetemp=reviews/codex-supervision/2026-10-07-math-batch-supervision/pytest-scratch-v3",
+    "exit_code": 0,
+    "output": "45 passed, 3 subtests passed in 0.34s"
+  },
+  "scope": "Actual final verification outcomes; earlier failed drafts are not reported as passing.",
+  "exact_math_final_read_only_run": {
+    "chunk_id": "42d46e",
+    "wall_time_seconds": 0.7771011,
+    "exit_code": 0,
+    "original_token_count": 49,
+    "output": "{\r\n  \"status\": \"PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW\",\r\n  \"reviewed\": 38,\r\n  \"exact_equalities\": 61,\r\n  \"decimal_or_numerical_approximation_used\": false,\r\n  \"write_performed\": false\r\n}\r\n"
+  }
+}

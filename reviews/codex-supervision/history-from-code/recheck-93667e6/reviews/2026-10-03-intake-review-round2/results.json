@@ -1,0 +1,219 @@
+{
+  "head": "48a6fc8bc0525feac4a1067add64f0ded2368c9b",
+  "input_hashes": {
+    "data/v1/raw/dataset_calc.jsonl": "f0a8294dcecdc0e91d421cbc3484bb58bbb1c9da2e58652442ca54975b576842",
+    "data/v1/raw/dataset_geom.jsonl": "0f033af96a29bb01074fb05b9e30e54a2e7c4fec0d2b4b448d7fe19874f80db8",
+    "data/v1/raw/dataset_linalg.jsonl": "b2895ec152f47f0420302bc3aeccdfa0ea4975894ebe2ed15c7702e8f20e7e0b",
+    "data/v1/raw/dataset_prob.jsonl": "7c05779a333e0844f9f9cc372a920430f19ad05e11b4a94ed35ca4146ce9bd8c"
+  },
+  "current_intake": {
+    "n_records": 62,
+    "categories": {
+      "数学分析": 19,
+      "解析几何": 11,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "problems": [],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": true,
+    "status": "clean",
+    "exit_code": 0
+  },
+  "current_manifest": {
+    "ok": true,
+    "n_entries": 4,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "audit_v2_binding": {
+    "reported_count": 62,
+    "hash_mismatches": []
+  },
+  "empty": {
+    "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\empty.jsonl",
+    "n_records": 0,
+    "categories": {},
+    "problems": [
+      "empty.jsonl: 没有有效样本行(空 JSONL/空输入不得 ok=true)"
+    ],
+    "quarantines": [],
+    "id_lines": {},
+    "ok": false,
+    "status": "rejected",
+    "exit_code": 1
+  },
+  "empty_list": {
+    "n_records": 0,
+    "categories": {},
+    "problems": [
+      "未提供任何输入文件"
+    ],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": false,
+    "status": "rejected",
+    "exit_code": 1
+  },
+  "cross_file_duplicate": {
+    "n_records": 2,
+    "categories": {
+      "数学分析": 2
+    },
+    "problems": [
+      "id=same 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\a.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\b.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+    ],
+    "quarantines": [],
+    "problem_groups": {
+      "id=same 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\a.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\b.jsonl:1):全局 ID 唯一性,跨文件零容忍": [
+        1,
+        [
+          "id=same 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\a.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\b.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+        ]
+      ]
+    },
+    "quarantine_groups": {},
+    "ok": false,
+    "status": "rejected",
+    "exit_code": 1
+  },
+  "invalid_values": {
+    "id": {
+      "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\id.jsonl",
+      "n_records": 1,
+      "categories": {
+        "数学分析": 1
+      },
+      "problems": [
+        "line 1: id 类型非法(list),仅允许 str/int(id=['bad'])"
+      ],
+      "quarantines": [],
+      "id_lines": {},
+      "ok": false,
+      "status": "rejected",
+      "exit_code": 1
+    },
+    "problem": {
+      "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\problem.jsonl",
+      "n_records": 1,
+      "categories": {
+        "数学分析": 1
+      },
+      "problems": [
+        "line 1: problem 不是字符串(list)"
+      ],
+      "quarantines": [],
+      "id_lines": {
+        "fixture-001": [
+          1
+        ]
+      },
+      "ok": false,
+      "status": "rejected",
+      "exit_code": 1
+    },
+    "scene_spec": {
+      "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-intake-probe-maewkhef\\scene_spec.jsonl",
+      "n_records": 1,
+      "categories": {
+        "数学分析": 1
+      },
+      "problems": [
+        "line 1: scene_spec 结构非法(需 objects/steps 两列表)"
+      ],
+      "quarantines": [],
+      "id_lines": {
+        "fixture-001": [
+          1
+        ]
+      },
+      "ok": false,
+      "status": "rejected",
+      "exit_code": 1
+    }
+  },
+  "convert_same_input": {
+    "outcome": {
+      "exception": "ValueError",
+      "detail": "拒绝覆盖转换输入文件，--force 不能绕过原文件只读保护"
+    },
+    "input_changed": false
+  },
+  "report_same_input": {
+    "exit_code": 2,
+    "input_changed": false
+  },
+  "same_basename_report": {
+    "n_records": 2,
+    "categories": {
+      "数学分析": 2
+    },
+    "problems": [
+      "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\left\\samples.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\right\\samples.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+    ],
+    "quarantines": [],
+    "problem_groups": {
+      "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\left\\samples.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\right\\samples.jsonl:1):全局 ID 唯一性,跨文件零容忍": [
+        1,
+        [
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\left\\samples.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-cross-basename-cev606wx\\right\\samples.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+        ]
+      ]
+    },
+    "quarantine_groups": {},
+    "ok": false,
+    "status": "rejected",
+    "exit_code": 1
+  },
+  "same_basename_cli_exit": 1,
+  "semantic_verification": {
+    "calc-area-010": {
+      "correct_area": "3/2",
+      "stored_answer": "-1 + exp(2)/2",
+      "equal": false
+    },
+    "prob-040": {
+      "example_lambda": 5,
+      "n_p_means": [
+        {
+          "n": 10,
+          "p": "1/2",
+          "mean": "5"
+        },
+        {
+          "n": 50,
+          "p": "1/10",
+          "mean": "5"
+        },
+        {
+          "n": 100,
+          "p": "1/20",
+          "mean": "5"
+        }
+      ],
+      "center_fixed": true
+    },
+    "linalg-058": {
+      "vertical_line_image": "Matrix([[c], [3*c + t]])",
+      "horizontal_line_image": "Matrix([[t], [c + 3*t]])",
+      "vertical_stays_vertical": true
+    }
+  },
+  "source_sha256": {
+    "src/animtrain/dataset_intake.py": "5f40a47277a73317faf8eee20dda5e029515af94b2cdf89cafbb81864d22e666",
+    "tools/dataset_intake.py": "d0d3d6f16c6d26aa0cc7bd7fdb476c05fa133a5f8129153166c38b6400294d62",
+    "tests/test_intake_cross_file_review.py": "8a22817ddebb3407cb0226d9936c2c7bb7595883be85423ff51fe71d0ff65af8"
+  },
+  "inputs_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  }
+}

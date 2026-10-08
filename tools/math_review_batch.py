@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import importlib.util
 import json
 import re
 from collections import Counter
@@ -25,7 +24,7 @@ CORRECTED = {
     "test-prob-021", "test-linalg-012", "test-x-004", "test-x-015",
 }
 FILES = {"batch-report.json", "batch-verdicts.jsonl", "batch-spec.json",
-         "review-input-verdicts.jsonl", "input-bindings.json"}
+         "review-input-verdicts.jsonl", "input-bindings.json", "packager.py"}
 STATUSES = {"MATH_PASS": "pass", "MATH_ISSUE": "issue", "NEEDS_CODEX": "needs_codex"}
 SHA_RE = re.compile(r"[0-9a-f]{64}\Z")
 
@@ -170,7 +169,7 @@ def validate_verdicts(verdicts: list[dict], records: list[dict]) -> list[dict]:
 
 def report_for(batch: str, rows: list[dict]) -> dict:
     counts = Counter(STATUSES[x["verdict"]] for x in rows)
-    return {"schema": "math-review-batch-v2", "batch": batch, "reviewer": "claude-code",
+    return {"schema": "math-review-batch-v3", "batch": batch, "reviewer": "claude-code",
             "status": "PACKAGED_AUTHORED_REVIEWS", "total": len(rows),
             **{key: counts[key] for key in STATUSES.values()},
             "note": "Source bindings verified; authored math verdicts require independent review.",
@@ -224,18 +223,18 @@ def build_bundle(batch: str, destination: Path | None = None, root: Path | None 
     rows = validate_verdicts(jsonl_bytes(verdict_bytes), records)
     report = report_for(batch, rows)
     inputs = {
-        "schema": "math-review-input-bindings-v2",
+        "schema": "math-review-input-bindings-v3",
         "core_manifest": {"path": (PACKET / "delivery-manifest.json").as_posix(),
                           "raw_sha256": MANIFEST_SHA, "bytes": MANIFEST_BYTES},
         "spec": {**binding(spec_path, spec_bytes), "snapshot": "batch-spec.json"},
         "authored_verdicts": {**binding(verdict_path, verdict_bytes),
                              "snapshot": "review-input-verdicts.jsonl"},
         "sources": sources,
-        "packager": binding("tools/math_review_batch.py", Path(__file__).read_bytes())}
+        "packager": {**binding("tools/math_review_batch.py", Path(__file__).read_bytes()), "snapshot": "packager.py"}}
     artifacts = {"batch-report.json": encode(report), "batch-verdicts.jsonl": encode_rows(rows),
                  "batch-spec.json": spec_bytes, "review-input-verdicts.jsonl": verdict_bytes,
-                 "input-bindings.json": encode(inputs)}
-    receipt = {"schema": "math-review-batch-receipt-v2", "batch": batch,
+                 "input-bindings.json": encode(inputs), "packager.py": Path(__file__).read_bytes()}
+    receipt = {"schema": "math-review-batch-receipt-v3", "batch": batch,
                "reviewer": "claude-code", "files": {k: binding(k, data) for k, data in sorted(artifacts.items())},
                "verdict_counts": {k: report[k] for k in ("total", "pass", "issue", "needs_codex")},
                "mathematical_acceptance_claimed": False, "PASS_CORE_SCOPE_issued": False}
@@ -257,7 +256,7 @@ def verify_bundle(destination: Path, root: Path | None = None) -> dict:
     if not dest.is_relative_to((root / "reviews").resolve()):
         raise ValueError("input outside project reviews")
     receipt = json_bytes((dest / "batch-receipt.json").read_bytes())
-    if receipt.get("schema") != "math-review-batch-receipt-v2":
+    if receipt.get("schema") != "math-review-batch-receipt-v3":
         raise ValueError("unsupported historical receipt schema; preserve original")
     if (set(receipt.get("files", {})) != FILES or
             {p.name for p in dest.iterdir()} != FILES | {"batch-receipt.json"}):
@@ -285,15 +284,14 @@ def verify_bundle(destination: Path, root: Path | None = None) -> dict:
     expected_verdicts = {**binding(f"tools/review-batches/{batch}-verdicts.jsonl",
                                  artifacts["review-input-verdicts.jsonl"]),
                         "snapshot": "review-input-verdicts.jsonl"}
-    if (inputs.get("schema") != "math-review-input-bindings-v2" or
+    if (inputs.get("schema") != "math-review-input-bindings-v3" or
             inputs.get("core_manifest") != expected_core or inputs.get("spec") != expected_spec or
             inputs.get("authored_verdicts") != expected_verdicts or inputs.get("sources") != sources):
         raise ValueError("input bindings disagree")
-    packager = inputs.get("packager")
-    if (not isinstance(packager, dict) or packager.get("path") != "tools/math_review_batch.py" or
-            not isinstance(packager.get("raw_sha256"), str) or not SHA_RE.fullmatch(packager["raw_sha256"]) or
-            type(packager.get("bytes")) is not int or packager["bytes"] <= 0):
-        raise ValueError("invalid packager version binding")
+    expected_packager = {**binding("tools/math_review_batch.py", artifacts["packager.py"]),
+                         "snapshot": "packager.py"}
+    if inputs.get("packager") != expected_packager:
+        raise ValueError("packager source snapshot binding mismatch")
     if (receipt.get("reviewer") != "claude-code" or
             receipt.get("verdict_counts") != {k: report[k] for k in ("total", "pass", "issue", "needs_codex")} or
             receipt.get("mathematical_acceptance_claimed") is not False or

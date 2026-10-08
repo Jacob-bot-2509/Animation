@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>候选数据集全量审计报告（第四轮 · 2026-10-03）</h1>
+<blockquote>
+<p>工具：<code>tools/dataset_audit.py</code>（纯标准库，只读；含 manifest 一致性、来源文档↔交付逐条比对、JSONL 结构/ID/一致性/scene_spec/LaTeX/重复/分布/验收语义九类检查）
+复现命令：
+<code>python tools/dataset_audit.py --out dataset_audit_2026-10-03-v4 --content-findings dataset_audit_2026-10-03-v4/content_findings.jsonl</code>
+契约依据：<code>DATASET_SCHEMA.md</code>；证据：<code>issues.jsonl</code>、<code>summary.json</code>、<code>record_status.jsonl/.csv</code>、<code>file_hashes.*</code>
+历史轮次：第一轮 <code>dataset_audit_2026-10-02</code>（63 条）、第二轮 <code>dataset_audit_2026-10-03-v2</code>（62 条）、第三轮 <code>dataset_audit_2026-10-03-v3</code>（63 条）</p>
+</blockquote>
+<hr />
+<h2>0. 结论摘要</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样本总量</td>
+<td><strong>63 条</strong>（数学分析 19、高等代数 23、解析几何 12、概率论 9）</td>
+</tr>
+<tr>
+<td>逐条状态</td>
+<td><strong>rejected 1 / candidate 62 / clean 0</strong></td>
+</tr>
+<tr>
+<td>问题计数</td>
+<td>硬伤 5（结构 4 = JSON 数组容器 <code>S005</code>；<strong>内容 1 = <code>prob-043</code> 动画与抽样分布矛盾</strong>）、quarantine 140、info 139</td>
+</tr>
+<tr>
+<td>内容级硬伤</td>
+<td><strong>1</strong>（<code>prob-043</code>；其余 62 条无记录级硬伤）</td>
+</tr>
+<tr>
+<td>JSONL 结构与字段</td>
+<td>通过（0 解析错误、0 缺字段、0 空值、0 未知字段）</td>
+</tr>
+<tr>
+<td>ID 唯一性</td>
+<td>通过（63 唯一 ID、0 冲突；<code>geom-020–031</code> 连续；仅 <code>calc</code> 缺 14）</td>
+</tr>
+<tr>
+<td>LaTeX / 中文进公式</td>
+<td>硬性缺陷 <strong>0</strong></td>
+</tr>
+<tr>
+<td>精确/近重复</td>
+<td>精确 0；近重复按项目实现 0 对（<code>linalg-049/064</code> = 0.698113，多重集口径 0.714286，卡在阈值两侧）</td>
+</tr>
+<tr>
+<td>来源/许可证</td>
+<td>manifest 4/4 哈希匹配、<code>split=raw</code>；来源手稿与交付 63/63 逐条一致；<strong>数据已推送至 GitHub 远端（license 为&quot;不公开分发&quot;）与哈希行尾不可复现两项仍未决</strong></td>
+</tr>
+<tr>
+<td>是否误标为已验收训练数据</td>
+<td><strong>否</strong>（无 train/eval/test、无验收字段、动画 0/63 验证）</td>
+</tr>
+<tr>
+<td>动画验证状态</td>
+<td>0/63</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一句话结论：第四轮把第三轮列出的 scene_spec 语义冲突（10 处）与元数据口径（7 处）全部修掉；但复核发现 1 条动画描述与数学矛盾（<code>prob-043</code> n=2 样本均值应为三角分布，已判 hard→rejected），另有 12 条 quarantine 集中在&quot;answer 未答题面第二问&quot;（5 条）、answer 不完整（2 条）、许可证/分发与哈希行尾（2 条）等。</strong></p>
+<h3>0.1 评审分歧的裁决（本轮）</h3>
+<table>
+<thead>
+<tr>
+<th>争议项</th>
+<th>评审主张</th>
+<th>Lead 裁决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prob-043</code> steps[2] n=2 形态</td>
+<td>prob 评审：<strong>hard</strong>（会生成错误画面，附 20 万次模拟：两端 3991/4002、中部 36028）</td>
+<td><strong>采纳为 hard</strong>（与历史同类：<code>prob-040</code>、<code>linalg-058</code> 的动画-数学矛盾均判 hard）</td>
+</tr>
+<tr>
+<td><code>prob-046</code> answer 缺通式/口径</td>
+<td>prob 评审：<strong>hard</strong></td>
+<td><strong>定为 quarantine</strong>：<code>DATASET_SCHEMA §2</code> 规定 answer 缺失/不完整属&quot;补齐&quot;类；数学本身正确</td>
+</tr>
+<tr>
+<td><code>linalg-051</code> 复平面双面板</td>
+<td>linalg 评审：quarantine</td>
+<td><strong>定为 info</strong>：上一轮的&quot;objects 复平面 vs steps 实曲线&quot;矛盾已消除，场景现自洽；仅未画复平面面板</td>
+</tr>
+<tr>
+<td><code>linalg-067</code> visual_style&quot;旋转与反射&quot;</td>
+<td>linalg 评审：quarantine</td>
+<td><strong>定为 info</strong>：属元数据措辞与演示范围不符（同类元数据项一律 info）</td>
+</tr>
+<tr>
+<td><code>linalg-068</code> answer 缺 Q</td>
+<td>linalg 评审：quarantine</td>
+<td><strong>采纳为 quarantine</strong>：与 5 条&quot;answer 未答第二问&quot;同属 answer 不完整</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 审计范围与只读保证</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON 数组容器（待转换）</td>
+<td><code>dataset_calc.json</code>(19)、<code>dataset_geom.json</code>(12)、<code>dataset_linalg.json</code>(23)、<code>dataset_prob.json</code>(9)</td>
+</tr>
+<tr>
+<td>正式样本入口格式（候选）</td>
+<td><code>data/v1/raw/dataset_{calc,geom,linalg,prob}.jsonl</code>（已入库 git）</td>
+</tr>
+<tr>
+<td>来源手稿</td>
+<td><code>dataset.md</code>（63 条，逐行 JSON 对象）</td>
+</tr>
+<tr>
+<td>清单</td>
+<td><code>data/v1/manifest.json</code>（4 条 entry）</td>
+</tr>
+<tr>
+<td>排除</td>
+<td><code>reviews/**</code>、<code>.venv/**</code>、<code>runs/**</code>、其他 <code>dataset_audit_*</code> 产物</td>
+</tr>
+</tbody>
+</table>
+<p>只读保证：本会话未修改任何 <code>dataset_*.json</code>、<code>data/v1/raw/*.jsonl</code>、<code>dataset.md</code>、<code>data/v1/manifest.json</code>；未自动重命名 ID、未自动改写公式；未启动训练、未下载模型、未生成批量动画。</p>
+<hr />
+<h2>2. 原始文件哈希（SHA256，本轮审计快照）</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th style="text-align:right">字节</th>
+<th>SHA256（前 12 位；完整值见 <code>file_hashes.json</code>）</th>
+<th style="text-align:right">记录数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/v1/raw/dataset_calc.jsonl</code></td>
+<td style="text-align:right">32927</td>
+<td>见 <code>file_hashes.json</code></td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td><code>data/v1/raw/dataset_geom.jsonl</code></td>
+<td style="text-align:right">18150</td>
+<td>同上</td>
+<td style="text-align:right">12</td>
+</tr>
+<tr>
+<td><code>data/v1/raw/dataset_linalg.jsonl</code></td>
+<td style="text-align:right">30343</td>
+<td>同上</td>
+<td style="text-align:right">23</td>
+</tr>
+<tr>
+<td><code>data/v1/raw/dataset_prob.jsonl</code></td>
+<td style="text-align:right">15303</td>
+<td>同上</td>
+<td style="text-align:right">9</td>
+</tr>
+<tr>
+<td><code>dataset_calc.json</code> / <code>dataset_geom.json</code> / <code>dataset_linalg.json</code> / <code>dataset_prob.json</code></td>
+<td style="text-align:right">32951 / 18167 / 30371 / 15317</td>
+<td>同上</td>
+<td style="text-align:right">19/12/23/9</td>
+</tr>
+<tr>
+<td><code>dataset.md</code></td>
+<td style="text-align:right">96847</td>
+<td>同上</td>
+<td style="text-align:right">63</td>
+</tr>
+<tr>
+<td><code>data/v1/manifest.json</code></td>
+<td style="text-align:right">1604</td>
+<td>4 条 entry 与文件 4/4 匹配</td>
+<td style="text-align:right">4 entries</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>审计期间 9 个数据文件哈希与 mtime 未变化（会话内只读）；manifest 由本轮提交 <code>db8f63b</code> 重新绑定，校验 4/4 通过。</p>
+</blockquote>
+<hr />
+<h2>3. 与上一轮（第三轮，63 条）的差异</h2>
+<h3>3.1 记录级</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记录数 / ID 集合</td>
+<td>63 条不变；无新增/删除 ID（<code>geom-031</code> 保持）</td>
+</tr>
+<tr>
+<td>所有 9 个文件</td>
+<td>哈希全部变化（本轮为 scene_spec 与元数据修补）</td>
+</tr>
+<tr>
+<td>上一轮 hard</td>
+<td>无（连续两轮记录级 hard=0）</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 第三轮 quarantine：已修复 8 条</h3>
+<table>
+<thead>
+<tr>
+<th>上一轮项</th>
+<th>本轮状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>calc-param-improper-003</code> objects&quot;三条曲线&quot;vs steps 单曲线</td>
+<td><strong>已修复</strong>：objects 改为&quot;随参数 α 变化的衰减曲线 y=e^{-αx}&quot;，并补登&quot;曲线下方黄色积分区域高亮&quot;</td>
+</tr>
+<tr>
+<td><code>calc-series-017</code> objects 要&quot;极限函数曲线&quot;但无表达式</td>
+<td><strong>已修复</strong>：objects/steps 改为&quot;高项数部分和参考曲线（N=200）&quot;作为极限函数近似</td>
+</tr>
+<tr>
+<td><code>calc-series-020</code> objects 仅&quot;前3项&quot;vs steps 前10项</td>
+<td><strong>已修复</strong>：objects 拆为&quot;逐项正弦波（前3项…，中间项快速带过）&quot;+&quot;前10项叠加的合成波形&quot;</td>
+</tr>
+<tr>
+<td><code>calc-vol-012</code> objects 无公式项</td>
+<td><strong>已修复（主体）</strong>：objects 补&quot;右侧分部积分推导公式&quot;；残留 steps 5/6 重复承诺（info）</td>
+</tr>
+<tr>
+<td><code>geom-026</code> steps&quot;抛物线沿 y 轴平移&quot;与方程不符</td>
+<td><strong>已修复</strong>：solution/steps 改为&quot;截面抛物线 z=x²+2c² 随 c 变化，顶点沿 y 平移 c 同时沿 z 抬高 2c²&quot;</td>
+</tr>
+<tr>
+<td><code>linalg-048</code> &quot;剪切和拉伸&quot;</td>
+<td><strong>已修复</strong>：solution 改为&quot;对称矩阵…沿两个正交特征方向的纯拉伸（无剪切）&quot;，scene 改为&quot;沿两个正交特征方向发生纯拉伸变形&quot;</td>
+</tr>
+<tr>
+<td><code>linalg-051</code> objects&quot;复平面&quot;vs steps 实曲线</td>
+<td><strong>已修复</strong>：objects 改为&quot;直角坐标系（实轴）&quot;，steps 第四步改为&quot;在数轴上展示三个根&quot;</td>
+</tr>
+<tr>
+<td><code>linalg-064</code> sub_category 口径交叉</td>
+<td><strong>已修复</strong>：sub_category 改为&quot;特征值与特征向量&quot;，与 linalg-049 一致</td>
+</tr>
+<tr>
+<td><code>prob-038</code> 圆面积/正方形口径</td>
+<td><strong>已修复</strong>：objects 改为&quot;矩形样本空间（总面积对应概率 1）&quot;并按比例标注 0.6/0.4/0.2</td>
+</tr>
+<tr>
+<td><code>calc-improper-002</code> 措辞（钟形曲线、位置）</td>
+<td><strong>已修复</strong>：steps 改为&quot;对称单峰曲线&quot;，objects/steps 位置统一为&quot;右下角&quot;</td>
+</tr>
+<tr>
+<td><code>calc-series-017</code> 元数据&quot;包络线&quot;</td>
+<td><strong>已修复</strong>：visual_style 改&quot;上下界约束带&quot;、tags 改&quot;上下界直线&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 元数据口径（7 处）：已修复</h3>
+<p><code>linalg-053</code>（二维 tags → &quot;单位立方体映射/有向体积&quot;）、<code>linalg-058</code>（&quot;网格剪切与缩放/行列式值变化&quot; → &quot;网格剪切/面积保持&quot;）、<code>linalg-060</code>（&quot;开口方向&quot; → &quot;等值面闭合性与正定性&quot;）、<code>linalg-066</code>（tags&quot;相似变换&quot; → &quot;分块高亮&quot;）、<code>linalg-064</code>（见上）、<code>linalg-049</code>（function_family → &quot;矩阵的特征分解&quot;）、<code>linalg-068</code>（→ &quot;主轴旋转与正交对角化&quot;）。</p>
+<h3>3.4 第三轮问题：仍未修复（本轮重复确认）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>linalg-049/052/054/057/064</code> answer 未答题面第二问</td>
+<td><strong>未修复</strong>（answer 内容与上一轮逐字相同）</td>
+</tr>
+<tr>
+<td><code>prob-046</code> answer 仍为&quot;1，即所有事件概率之和为1&quot;（无 <code>$</code>、口径为&quot;事件&quot;）</td>
+<td><strong>未修复</strong></td>
+</tr>
+<tr>
+<td><code>prob-043</code> steps[1]&quot;重复多次&quot;未定 M、steps[2] n=2 形态表述</td>
+<td><strong>未修复</strong></td>
+</tr>
+<tr>
+<td>许可证/分发（数据已推送、无 LICENSE）、哈希行尾（CRLF/LF）</td>
+<td><strong>未修复</strong>（见 §6）</td>
+</tr>
+<tr>
+<td>各类 info（objects 未登记公式、退化口径、answer 粒度等）</td>
+<td>多数未修（见 §6.3）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 逐项检查结果</h2>
+<h3>4.1 JSONL 结构与字段</h3>
+<p>4 个 JSONL 共 <strong>63 行、全部合法 JSON 对象</strong>：0 解析失败、0 重复键；12 字段齐全、类型正确、无空值、无未知字段。4 个 <code>dataset_*.json</code> 仍为 JSON 数组容器，<strong>不能作为样本入口</strong>（<code>S005</code>×4），与 JSONL 63/63 一致。</p>
+<h3>4.2 ID 唯一性</h3>
+<p>63 个唯一 ID、0 冲突；JSON/JSONL 镜像 63/63；<code>geom-020–031</code>、<code>linalg-048–070</code>、<code>prob-038–046</code> 连续，仅 <code>calc</code> 缺 14（info）。未改名、未去重。</p>
+<h3>4.3 problem / solution / answer 一致性</h3>
+<p><strong>记录级硬伤 0</strong>。机械 <code>C007</code> 30 条提示经复核均为等价表述或纯文字结论差异；未答第二问的 5 条 <code>linalg-*</code> 见 §6.2。</p>
+<h3>4.4 scene_spec.objects / steps</h3>
+<p>63/63 非空（objects 2–9/条、steps 4–7/条），步骤编号 0 例外；<strong>动画验证 0/63</strong>。本轮第三轮列出的 10 处 scene_spec 语义冲突已全部修复；剩余为 objects 未登记既有公式文本等 info。</p>
+<h3>4.5 LaTeX 与中文进公式</h3>
+<p>公式内中文 0、全角 0、<code>$</code> 不配对 0、花括号/<code>\left</code>-<code>\right</code> 不配对 0、漏反斜杠 0、重复等式 0；1 条风格提示（<code>linalg-070</code> <code>u_1v_2</code>，合法）。</p>
+<h3>4.6 来源与许可证状态</h3>
+<ul>
+<li>63/63 <code>source=self-authored</code>、<code>license=Internal-Research-Use-Only</code>（<code>P002</code>/<code>P003</code>）。</li>
+<li><code>manifest.json</code>：4/4 哈希匹配、<code>split=raw</code>、无验收语义（<code>MF000</code>）。</li>
+<li>来源手稿 <code>dataset.md</code> 与交付池 <strong>63/63 逐条一致</strong>（<code>SRC008</code>）。</li>
+<li><strong>两项未决（quarantine）</strong>：① 数据已入库并推送至 GitHub 远端（<code>origin/main=61e7922</code>），与&quot;不公开分发&quot;可能冲突，且仓库无 LICENSE；② 哈希绑定 CRLF 字节而 git 存 LF，跨平台克隆后不可复现。</li>
+</ul>
+<h3>4.7 精确重复与近重复</h3>
+<p>整条/<code>problem</code>/<code>scene_spec</code> 精确重复 0；近重复按项目实现 0 对；<code>linalg-049/064</code> 阈值敏感项见 §6.2。</p>
+<h3>4.8 四个板块的数量与分布</h3>
+<table>
+<thead>
+<tr>
+<th>板块</th>
+<th style="text-align:right">条数</th>
+<th style="text-align:right">占比</th>
+<th>ID 区间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高等代数</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">36.5%</td>
+<td><code>linalg-048…070</code></td>
+</tr>
+<tr>
+<td>数学分析</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">30.2%</td>
+<td><code>calc-*-001…020</code>（缺 14）</td>
+</tr>
+<tr>
+<td>解析几何</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">19.0%</td>
+<td><code>geom-020…031</code></td>
+</tr>
+<tr>
+<td>概率论</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">14.3%</td>
+<td><code>prob-038…046</code></td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align:right"><strong>63</strong></td>
+<td style="text-align:right">100%</td>
+<td>35 个子类</td>
+</tr>
+</tbody>
+</table>
+<p>拆分角色：<code>raw=63</code>，<code>train/eval/test/rejected=0</code>。</p>
+<h3>4.9 是否误把候选数据标成已验收训练数据</h3>
+<p><strong>否</strong>：无 train/eval/test、无锁文件、无逐样本验收字段、动画 0/63；manifest 只登记事实；文档均声明 <code>candidate ≠ 已验收训练集</code>。仅 <code>DATASET_REVIEW.md</code> 头部&quot;状态: clean&quot;建议加限定词（<code>M010</code>，info）。</p>
+<hr />
+<h2>5. clean / quarantine / rejected 划分</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th style="text-align:right">条数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>rejected</strong></td>
+<td style="text-align:right"><strong>1</strong></td>
+<td><code>prob-043</code>（scene_spec 动画与抽样分布矛盾）</td>
+</tr>
+<tr>
+<td><strong>candidate</strong></td>
+<td style="text-align:right"><strong>62</strong></td>
+<td>无硬伤，但存在 quarantine（answer 待补、动画未验证、许可证待转正等）</td>
+</tr>
+<tr>
+<td><strong>clean</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td>尚无一条同时满足动画已验证 + 许可证转正 + 元数据完备</td>
+</tr>
+</tbody>
+</table>
+<p>文件级：4 个 JSONL 均 candidate（0 硬伤）；4 个 <code>dataset_*.json</code> 入口维度 rejected（<code>S005</code>）；<code>dataset.md</code> clean（来源镜像）。</p>
+<hr />
+<h2>6. 逐条问题清单</h2>
+<h3>6.1 硬伤（5 条）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>文件:定位</th>
+<th>ID</th>
+<th>代码</th>
+<th>问题</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>dataset_prob.jsonl:6</code></td>
+<td><code>prob-043</code></td>
+<td>K-ANIM-ERR</td>
+<td>scene_spec.steps[2]「初始设置 n=2，右侧直方图呈现出与总体相似的粗糙形态」与抽样分布矛盾：均匀总体下 n=2 的样本均值服从三角分布（Irwin–Hall，峰值 0.5、f(0.5)=2、方差 σ²/2=1/24），与高 1 矩形形态明显不同，会生成错误画面</td>
+<td>人工改为&quot;n=2 时样本均值呈三角分布，已明显不同于总体形态&quot;</td>
+</tr>
+<tr>
+<td>2–5</td>
+<td><code>dataset_{calc,geom,linalg,prob}.json</code></td>
+<td>—</td>
+<td>S005</td>
+<td>JSON 数组不是合法样本入口（<code>DATASET_SCHEMA §1</code>）</td>
+<td>按 convert 流程使用 JSONL，原文件保留</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>prob-043</code> 的 hard 判定依据：prob 评审 20 万次模拟（直方图两端 3991/4002、中部 36028 的单峰）；Lead 复核该分布为标准 Irwin–Hall（n=2 均匀样本均值），与数据描述不符。</p>
+</blockquote>
+<h3>6.2 内容 quarantine（14 条）</h3>
+<table>
+<thead>
+<tr>
+<th>文件:定位</th>
+<th>ID</th>
+<th>代码</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/v1/manifest.json</code></td>
+<td>—</td>
+<td>K-LICENSE-DIST</td>
+<td>数据已推送至 GitHub 远端，与 <code>Internal-Research-Use-Only</code>（不公开分发）可能冲突；仓库无 LICENSE</td>
+</tr>
+<tr>
+<td><code>data/v1/manifest.json</code></td>
+<td>—</td>
+<td>K-HASH-EOL</td>
+<td>哈希绑定 CRLF 字节、git 存 LF，跨平台克隆后校验不可复现</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:2</code></td>
+<td><code>linalg-049</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未答题面第二问（几何意义）</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:5</code></td>
+<td><code>linalg-052</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未答题面第二问（展开式意义）</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:7</code></td>
+<td><code>linalg-054</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未答题面第二问（行列式为零的几何意义）</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:10</code></td>
+<td><code>linalg-057</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未答题面第二问（可逆性几何意义）</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:17</code></td>
+<td><code>linalg-064</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未答题面第二问（几何意义）</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:21</code></td>
+<td><code>linalg-068</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 未给正交矩阵 Q（题面要求&quot;正交对角化&quot;）</td>
+</tr>
+<tr>
+<td><code>dataset_prob.jsonl:9</code></td>
+<td><code>prob-046</code></td>
+<td>K-ANS-WEAK</td>
+<td>answer 仍为&quot;1，即所有事件概率之和为1&quot;，无 <code>$</code> 通式、口径为&quot;事件&quot;</td>
+</tr>
+<tr>
+<td><code>dataset_prob.jsonl:6</code></td>
+<td><code>prob-043</code></td>
+<td>K-AMBIG</td>
+<td>steps[1]&quot;重复多次&quot;未定独立重复次数 M</td>
+</tr>
+<tr>
+<td><code>dataset_prob.jsonl:1</code></td>
+<td><code>prob-038</code></td>
+<td>K-SPEC-CONFLICT</td>
+<td>&quot;圆面积表示概率&quot;在单位正方形内不可行（两圆并集 0.8 超出等周/面积约束），且 objects&quot;矩形样本空间&quot;与 steps&quot;正方形&quot;口径不一</td>
+</tr>
+<tr>
+<td><code>dataset_calc.jsonl:19</code></td>
+<td><code>calc-series-020</code></td>
+<td>K-SPEC-CONFLICT</td>
+<td>objects&quot;目标直线（灰色半透明）&quot; vs steps&quot;灰色虚线&quot;；第一项正弦波颜色归属空档</td>
+</tr>
+<tr>
+<td><code>dataset_calc.jsonl:5</code></td>
+<td><code>calc-green-005</code></td>
+<td>K-SPEC-CONFLICT</td>
+<td>steps&quot;随机绘制向量箭头&quot;无法体现被积场 (P,Q)=(-y,x)；偏导推导文本未登记进 objects</td>
+</tr>
+<tr>
+<td><code>dataset_linalg.jsonl:2</code></td>
+<td><code>linalg-049</code></td>
+<td>K-NEAR-DUP</td>
+<td>与 <code>linalg-064</code> 题干模板逐字相同，阈值敏感（set 0.698113 / multiset 0.714286）</td>
+</tr>
+</tbody>
+</table>
+<h3>6.3 内容 info（30 条，按类聚合）</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th style="text-align:right">条数</th>
+<th>记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元数据与内容不符</td>
+<td style="text-align:right">3</td>
+<td><code>linalg-067</code>（&quot;旋转与反射&quot;但只演示旋转）、<code>linalg-054</code>（sub_category&quot;行列式&quot; vs Cramer 法则）、<code>linalg-058</code>（&quot;底和高均为 1&quot;仅对本矩阵成立）</td>
+</tr>
+<tr>
+<td>objects ↔ steps 登记缺口</td>
+<td style="text-align:right">9</td>
+<td><code>linalg-055/058/065/066/067/070</code>（缺秩/单位正方形/公式/块标注）、<code>calc-green-005</code>、<code>calc-limit-006</code>、<code>calc-param-improper-003</code>（登记式与展示式不同）、<code>calc-series-019</code>（名称/颜色）、<code>calc-series-015</code>（颜色/参考线）</td>
+</tr>
+<tr>
+<td>answer 粒度/记法/风格</td>
+<td style="text-align:right">6</td>
+<td><code>geom-024</code>/<code>geom-025</code>（缺半径）、<code>prob-041</code>（缺密度式）、<code>linalg-061</code>（矩阵与坐标并列）、<code>calc-answer-style</code>（4 条裸文本）、<code>prob-046</code>（steps 表述）</td>
+</tr>
+<tr>
+<td>表述精度</td>
+<td style="text-align:right">8</td>
+<td><code>geom-026</code>（&quot;平移 c&quot;）、<code>geom-031</code>（&quot;参数平移 2π&quot;）、<code>geom-030</code>（方向歧义）、<code>linalg-050</code>（秩 0 退化/无具体矩阵）、<code>linalg-059</code>（非正交替换）、<code>linalg-060</code>（主轴口径）、<code>calc-series-017</code>（尾项带）、<code>calc-area-009</code>（被积函数替换）</td>
+</tr>
+<tr>
+<td>概率/统计表述</td>
+<td style="text-align:right">5</td>
+<td><code>prob-042</code>（轨道收敛）、<code>prob-039</code>（&quot;频数 m&quot;）、<code>prob-040</code>（<code>P(λ)</code> 记法）、<code>prob-044</code>（缺&quot;特异度&quot;）、<code>prob-045</code>（开闭区间/支撑/坐标轴）</td>
+</tr>
+<tr>
+<td>其他</td>
+<td style="text-align:right">2</td>
+<td><code>calc-series-018</code>（收敛域偏窄）、<code>linalg-051</code>（未画复平面面板）、<code>M010</code>（<code>DATASET_REVIEW.md</code> 状态词）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>完整逐条明细见 <strong><code>issues.jsonl</code></strong>（共 284 条）与 <strong><code>content_findings.jsonl</code></strong>（45 条：hard 1 / quarantine 14 / info 30）。</p>
+</blockquote>
+<hr />
+<h2>7. 汇总统计</h2>
+<ul>
+<li><strong>严重度</strong>：hard 5（S005×4 + <code>prob-043</code>）/ quarantine 140 / info 139（逐条问题共 284 条）。</li>
+<li><strong>逐条状态</strong>：rejected 1 / candidate 62 / clean 0。</li>
+<li><strong>系统级 quarantine</strong>：<code>A008</code>×63、<code>P002</code>×63。</li>
+<li><strong>结构化数据</strong>：63 条、63 唯一 ID、35 子类、镜像 63/63、来源镜像 63/63、manifest 4/4。</li>
+<li><strong>重复</strong>：精确 0；近重复按项目实现 0 对。</li>
+<li><strong>LaTeX</strong>：公式内中文/全角/<code>$</code> 不配对/漏反斜杠/重复等式 全为 0。</li>
+</ul>
+<hr />
+<h2>8. 建议的下一步</h2>
+<ol>
+<li><strong>修 1 条硬伤</strong>：<code>prob-043</code> steps[2] 改为&quot;n=2 时样本均值呈三角分布&quot;。</li>
+<li><strong>补 answer 第二问（6 条，最易收尾）</strong>：<code>linalg-049/052/054/057/064</code>、<code>linalg-068</code>（补 Q）；另 <code>prob-046</code> answer 补通式与&quot;矩形面积&quot;口径。</li>
+<li><strong>许可证/分发与哈希（最高风险）</strong>：确认 <code>origin</code> 可见性；若公开则撤下或转正许可证；补 LICENSE；加 <code>.gitattributes</code> 固定行尾并重绑 manifest 哈希。</li>
+<li><strong>收尾表述</strong>：<code>prob-043</code> 重复次数 M、<code>prob-038</code> 面积口径、<code>linalg-049/064</code> 同模板题与 5-gram 口径。</li>
+<li><strong>元数据/登记一致性（info）</strong>：<code>calc-green-005/limit-006/series-015/series-019/vol-012</code>、<code>linalg-050/051/054/055/058/059/060/061/065/066/067/070</code>、<code>geom-024/025/026/030/031</code>、<code>prob-039/040/041/042/044/045/046</code>。</li>
+<li><strong>动画验证</strong>：逐条过 <code>render_gate</code> 后登记 <code>code/render_status=verified/code_sha256</code>，在此之前保持 candidate。</li>
+<li><strong>补齐编号</strong>：确认 <code>calc-series-014</code> 是否应有记录。</li>
+<li><strong>修复完成后重跑本审计</strong>，再走 <code>make_manifest → data_check → split → freeze → preflight</code> 全链路。</li>
+<li>保留四轮审计目录以便追溯（<code>-v2</code>、<code>-v3</code>、<code>-v4</code> 及首轮 <code>dataset_audit_2026-10-02</code>）。</li>
+</ol>
+<hr />
+<h2>9. 产物清单</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AUDIT_REPORT.md</code> / <code>AUDIT_REPORT.pdf</code></td>
+<td>本报告</td>
+</tr>
+<tr>
+<td><code>issues.jsonl</code></td>
+<td>逐条问题（260 条）</td>
+</tr>
+<tr>
+<td><code>content_findings.jsonl</code></td>
+<td>内容评审发现（21 条）</td>
+</tr>
+<tr>
+<td><code>record_status.jsonl</code> / <code>.csv</code></td>
+<td>逐条状态与问题代码</td>
+</tr>
+<tr>
+<td><code>summary.json</code></td>
+<td>汇总统计</td>
+</tr>
+<tr>
+<td><code>file_hashes.json</code> / <code>.sha256</code></td>
+<td>9 个原始文件哈希</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮审计未修改任何数据集文件、未自动重命名 ID、未自动改写公式，未启动训练、未下载模型、未生成批量动画。</p>
+
+</body>
+</html>

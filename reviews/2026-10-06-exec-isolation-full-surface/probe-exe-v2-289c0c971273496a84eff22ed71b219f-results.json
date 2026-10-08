@@ -1,0 +1,238 @@
+{
+  "schema": "exec-surface-bounded-probe-v2",
+  "probe": "exe",
+  "run_id": "289c0c971273496a84eff22ed71b219f",
+  "status": "UNVERIFIED",
+  "production_gate": "CLOSED",
+  "certificate_written": false,
+  "full_surface_accepted": false,
+  "native_executed": true,
+  "transport_verified": true,
+  "safety_points": {
+    "C6": "UNKNOWN",
+    "C7": "UNKNOWN",
+    "D9": "UNKNOWN",
+    "D11": "UNKNOWN",
+    "D12": "UNKNOWN",
+    "F1": "UNKNOWN",
+    "F4": "UNKNOWN"
+  },
+  "controls": {
+    "owned_http": {
+      "before": {
+        "received_exactly_once": true
+      },
+      "after": {
+        "received_exactly_once": true
+      }
+    }
+  },
+  "fixture_errors": {},
+  "scoped_results": {
+    "host_registry_fixture": {
+      "host_value_unchanged": true,
+      "verdict": "SCOPED_PASS"
+    },
+    "curl_owned_http": {
+      "endpoint": [
+        "127.0.0.1",
+        57507
+      ],
+      "nonces": {
+        "before": "fb8801eac7e04ca1bbb5b85e843ab1a7",
+        "sandbox": "3f8dd9389897444da73a1b85d2ff6109",
+        "after": "34d7bd7f746f4e13bf3a46a137224f15"
+      },
+      "packets": [
+        "fb8801eac7e04ca1bbb5b85e843ab1a7",
+        "34d7bd7f746f4e13bf3a46a137224f15"
+      ],
+      "complete": true,
+      "errors": [],
+      "observation_ns": 27450380200,
+      "verdict": "BOUNDED_NO_DELIVERY"
+    },
+    "delete_owned_host_fixture": {
+      "exists": true,
+      "unchanged": true,
+      "verdict": "SCOPED_PASS"
+    },
+    "junction_write": {
+      "verified_junction": false,
+      "marker_exists": false,
+      "verdict": "UNKNOWN"
+    },
+    "raw_socket": {
+      "observation": {
+        "outcome": "created",
+        "reason": "Creation alone does not test ICMP delivery"
+      },
+      "verdict": "UNKNOWN",
+      "reason": "ICMP transmit/receive not verified by creating a socket"
+    }
+  },
+  "clipboard_accessed": false,
+  "implementation_before": {
+    "src/animtrain/sandbox_execution.py": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+    "reviews/2026-10-06-exec-isolation-full-surface/fix_ipc3_accounting.py": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+    "reviews/2026-10-06-exec-isolation-full-surface/host_section_debug.py": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_exe_ipc_fs.py": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc4.py": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc5.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc6.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_raw_ipc3.py": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_udp_external.py": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880"
+  },
+  "native_requested": true,
+  "executable_bindings": {
+    "C:\\windows\\system32\\curl.exe": "73d24149ff289afc49ec41f08918ef9faa727d39ad993e929757dc2ddafab805"
+  },
+  "generated_source": "import json,subprocess,_socket,os,pathlib,winreg\nr={}\nconfig={'commands': {'curl_native': ['C:\\\\windows\\\\system32\\\\curl.exe', '--noproxy', '*', '-sS', '--connect-timeout', '3', '--max-time', '5', '-o', 'NUL', 'http://127.0.0.1:57507/3f8dd9389897444da73a1b85d2ff6109']}, 'fixture': 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-06-exec-isolation-full-surface\\\\owned-fixture-289c0c971273496a84eff22ed71b219f', 'victim': 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-06-exec-isolation-full-surface\\\\owned-fixture-289c0c971273496a84eff22ed71b219f\\\\victim.txt', 'nonce': '289c0c971273496a84eff22ed71b219f', 'cmd': 'C:\\\\windows\\\\System32\\\\cmd.exe', 'registry_key': 'Software\\\\AnimationModelTraining\\\\CodexProbes\\\\289c0c971273496a84eff22ed71b219f'}\n\ndef failure(exc):\n    number=getattr(exc,'winerror',None)\n    return {'outcome':'os_denied' if number in (5,10013) else 'error',\n            'winerror':number,'errno':getattr(exc,'errno',None),\n            'error_type':type(exc).__name__,'detail':str(exc)}\n\nfor name,args in config['commands'].items():\n    try:\n        cp=subprocess.run(args,capture_output=True,text=True,timeout=10)\n        r[name]={'outcome':'completed','rc':cp.returncode,'stdout':cp.stdout,'stderr':cp.stderr}\n    except Exception as exc:r[name]=failure(exc)\ntry:\n    pathlib.Path(config['victim']).unlink();r['delete_owned_host_fixture']={'outcome':'allowed'}\nexcept OSError as exc:r['delete_owned_host_fixture']=failure(exc)\ntry:\n    cp=subprocess.run([config['cmd'],'/c','mklink','/J','escape',config['fixture']],capture_output=True,text=True,timeout=10)\n    r['junction_setup']={'rc':cp.returncode,'stdout':cp.stdout,'stderr':cp.stderr}\n    link=pathlib.Path('escape')\n    target=os.readlink(link) if cp.returncode==0 and link.is_junction() else None\n    normalize=lambda value:os.path.normcase(os.path.abspath(value.removeprefix('\\\\\\\\?\\\\')))\n    valid=target is not None and normalize(target)==normalize(config['fixture'])\n    r['junction_setup']['verified_target']=valid\n    if valid:\n        try:\n            with (link/'escaped-marker.txt').open('x',encoding='utf-8') as stream:stream.write(config['nonce'])\n            r['junction_write']={'outcome':'allowed'}\n        except OSError as exc:r['junction_write']=failure(exc)\n    else:r['junction_write']={'outcome':'not_tested','reason':'Verified junction fixture absent'}\nexcept Exception as exc:r['junction_setup']=failure(exc);r['junction_write']={'outcome':'not_tested'}\nraw=None\ntry:\n    raw=_socket.socket(_socket.AF_INET,_socket.SOCK_RAW,_socket.IPPROTO_ICMP)\n    r['raw_socket']={'outcome':'created','reason':'Creation alone does not test ICMP delivery'}\nexcept OSError as exc:r['raw_socket']=failure(exc)\nfinally:\n    if raw is not None:raw.close()\ntry:\n    with winreg.OpenKey(winreg.HKEY_CURRENT_USER,config['registry_key'],0,winreg.KEY_SET_VALUE) as key:\n        winreg.SetValueEx(key,'nonce',0,winreg.REG_SZ,config['nonce'])\n    r['host_registry_write']={'outcome':'allowed'}\nexcept OSError as exc:r['host_registry_write']=failure(exc)\nprint(json.dumps(r),flush=True)\n",
+  "generated_source_canonical_sha256": "841fb722968e98f5ca50b8e926bb99946b1050002fceaddfeb2c0d0f8adb2a01",
+  "native_attempted": true,
+  "transport": {
+    "rc": 0,
+    "stdout": "{\"curl_native\": {\"outcome\": \"completed\", \"rc\": 28, \"stdout\": \"\", \"stderr\": \"curl: (28) Connection timed out after 3006 milliseconds\\n\"}, \"delete_owned_host_fixture\": {\"outcome\": \"os_denied\", \"winerror\": 5, \"errno\": 13, \"error_type\": \"PermissionError\", \"detail\": \"[WinError 5] \\u62d2\\u7edd\\u8bbf\\u95ee\\u3002: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\reviews\\\\\\\\2026-10-06-exec-isolation-full-surface\\\\\\\\owned-fixture-289c0c971273496a84eff22ed71b219f\\\\\\\\victim.txt'\"}, \"junction_setup\": {\"rc\": 1, \"stdout\": \"\", \"stderr\": \"Access is denied.\\n\", \"verified_target\": false}, \"junction_write\": {\"outcome\": \"not_tested\", \"reason\": \"Verified junction fixture absent\"}, \"raw_socket\": {\"outcome\": \"created\", \"reason\": \"Creation alone does not test ICMP delivery\"}, \"host_registry_write\": {\"outcome\": \"os_denied\", \"winerror\": 5, \"errno\": 13, \"error_type\": \"PermissionError\", \"detail\": \"[WinError 5] \\u62d2\\u7edd\\u8bbf\\u95ee\\u3002\"}}\r\n",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77",
+    "source_sha256": "512e5898b8a32360edc30abe233935389440f0ac2894a8d01e4efa94e38cc1cd",
+    "command": [
+      "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\scene.py"
+    ],
+    "parent_evidence": {
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-2364961870-4270651602-1069093034-2100560163-3075484493-2547524789-3582140966"
+      },
+      "memory_limit_mb": 2048,
+      "created_suspended": true,
+      "job_assigned_before_resume": true,
+      "tree_stopped": true,
+      "pid": 28600,
+      "private_profile": {
+        "profile_name": "animtrain-job-054f2fd3061b410991ddadc3dfb9565e",
+        "sid": "S-1-15-2-2364961870-4270651602-1069093034-2100560163-3075484493-2547524789-3582140966",
+        "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-054f2fd3061b410991ddadc3dfb9565e\\AC",
+        "temporary_acl": [
+          {
+            "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77",
+            "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.venv",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Python",
+            "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "restored": true
+          }
+        ],
+        "cleanup_complete": true
+      }
+    }
+  },
+  "raw_streams": {
+    "stdout": {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\stdout.txt",
+      "raw_sha256": "76c08f0d2a2c3bac7dcf5e595666360b4e15a5bcdfb9d4d091cf8c64f2ff1280",
+      "bytes": 916
+    },
+    "stderr": {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6ab7b5ae5279440a802c9afaaf7a5b77\\stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "observations": {
+    "curl_native": {
+      "outcome": "completed",
+      "rc": 28,
+      "stdout": "",
+      "stderr": "curl: (28) Connection timed out after 3006 milliseconds\n"
+    },
+    "delete_owned_host_fixture": {
+      "outcome": "os_denied",
+      "winerror": 5,
+      "errno": 13,
+      "error_type": "PermissionError",
+      "detail": "[WinError 5] 拒绝访问。: 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-06-exec-isolation-full-surface\\\\owned-fixture-289c0c971273496a84eff22ed71b219f\\\\victim.txt'"
+    },
+    "junction_setup": {
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Access is denied.\n",
+      "verified_target": false
+    },
+    "junction_write": {
+      "outcome": "not_tested",
+      "reason": "Verified junction fixture absent"
+    },
+    "raw_socket": {
+      "outcome": "created",
+      "reason": "Creation alone does not test ICMP delivery"
+    },
+    "host_registry_write": {
+      "outcome": "os_denied",
+      "winerror": 5,
+      "errno": 13,
+      "error_type": "PermissionError",
+      "detail": "[WinError 5] 拒绝访问。"
+    }
+  },
+  "required_fixtures": [
+    "independent LAN and external non-Python receivers",
+    "healthy ICMP receive controls",
+    "bidirectional shared-memory fixture"
+  ],
+  "implementation_after": {
+    "src/animtrain/sandbox_execution.py": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+    "reviews/2026-10-06-exec-isolation-full-surface/fix_ipc3_accounting.py": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+    "reviews/2026-10-06-exec-isolation-full-surface/host_section_debug.py": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_exe_ipc_fs.py": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc4.py": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc5.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc6.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_raw_ipc3.py": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_udp_external.py": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880"
+  },
+  "implementation_unchanged": true
+}

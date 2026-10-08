@@ -1,0 +1,11 @@
+--- README-before.md
++++ README-after.md
+@@ -8,7 +8,7 @@
+ - 633页的真实PNG/几何SHA、4K尺寸及顺序绑定通过；完整公式页552页、分片81页。仅552完整页计槽位代理：最小92像素，第十分位数484/3像素（最近秩），中位数219像素；最小代理折算到1080行画面为46像素。分片标NOT_APPLICABLE，不混入统计。
+ - 原v2 JSON增加了真实路径/SHA和顺序配对，633页绑定经独立核对通过。但其旧源码按缩半整帧计算，包含页标题；报告还将偶数样本上中位数2897/10冒作中位数，按原已舍入值计算的正确算术中位数应为579/2。原JSON、源码与前后补丁均保留，新候选不会覆盖原件。
+ - **槽位代理不等于最小字形高度，也不是符号或分片完整性认证。** 原生画布边缘墨迹检查只判结构，不能据此推导全量视觉通过。
+-- 同版本实际逐页证据当前覆盖170/633页：144页继承具名证据，本轮实际新增26页（其中4页是分片，仅判可见部分，注明伴随页）。其余463页见 [unreviewed-pages.json](../codex-supervision/2026-10-08-quantitative-v2-review/unreviewed-pages.json)。逐页理由与SHA见 [page-glyph-verdicts.jsonl](../codex-supervision/2026-10-08-quantitative-v2-review/page-glyph-verdicts.jsonl)。显示预览2048×1152，原PNG3840×2160，不据此签发原生最小字形尺寸证书。
++- 同版本实际逐页证据当前覆盖209/633页：170页从具名同版本证据继承，本次实际新增39页（29页完整公式、10页分片；分片仅判可见部分且全部核对伴随页）。其余424页见 [unreviewed-pages.json](../codex-supervision/2026-10-08-glyph-continuation/unreviewed-pages.json)。本次逐页理由与SHA见 [page-glyph-verdicts.jsonl](../codex-supervision/2026-10-08-glyph-continuation/page-glyph-verdicts.jsonl)，续审报告见 [REVIEW_REPORT.md](../codex-supervision/2026-10-08-glyph-continuation/REVIEW_REPORT.md)。预览为2048×1152，原PNG为3840×2160，不据此签发原生最小字形尺寸证书。
+ - **当前仅本地版本绑定、结构和量化工具修复合格，全量字形仍NOT_ESTABLISHED**；概念动画NOT_EVALUATED、全局隔离NOT_ESTABLISHED、原生沙箱UNVERIFIED，production=CLOSED。
+ 
+ `readable-pages-verification-4k.json` 属于修复前626页，`readable-pages-verification-4k-v2.json` 属于633页旧量化工具；二者为历史原始材料。当前完整算法和精确候选以本轮v3证据为准，不能混用各版统计或把结构PASS当全量字形PASS。

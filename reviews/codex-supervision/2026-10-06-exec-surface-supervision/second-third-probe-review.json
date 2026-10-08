@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-06T18:11:43.409526+08:00",
+  "status": "NOT_ACCEPTED",
+  "scope": "Second probe source/result and third probe static review only",
+  "counterexamples": [
+    {
+      "name": "healthy-after-http-control-looks-like-sandbox-hit",
+      "before": 3,
+      "hits_after_only_control": 4,
+      "old_sandbox_hit_claim": true,
+      "actual_sandbox_hit": false
+    },
+    {
+      "name": "default-int32-invalid-handle-compared-to-pointer-sized-sentinel",
+      "int32_result": -1,
+      "HANDLE_negative_one": 18446744073709551615,
+      "old_opened_claim": true
+    },
+    {
+      "name": "WNDCLASSW-not-defined-in-installed-wintypes",
+      "exists": false
+    }
+  ],
+  "problems": [
+    "Second probe: after control counted as sandbox hit",
+    "Second probe: nonexistent/uncreated junction produces missing-path error, not escape-test denial",
+    "Second probe: curl timeout and missing PowerShell do not prove OS network denial",
+    "Second probe: F4 object released before host visibility check",
+    "Third probe: destructive host clipboard replacement without complete restore",
+    "Third probe: Win32 ABI/error handling incomplete; invalid HANDLE misclassification possible",
+    "Third probe: WNDCLASSW unavailable; background thread failure cannot prove window-message isolation",
+    "All probes: parent_evidence/command/source_sha256 missing from saved transport"
+  ],
+  "new_native_run_by_codex": false,
+  "production_gate": "CLOSED"
+}

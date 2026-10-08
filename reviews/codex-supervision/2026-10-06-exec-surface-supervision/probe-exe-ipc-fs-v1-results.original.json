@@ -1,0 +1,79 @@
+{
+  "probe": "exe-ipc-fs-v1",
+  "lan_ip": "28.0.0.1",
+  "nonce": "acb2bb0a6681",
+  "production_gate": "CLOSED",
+  "controls": {
+    "http_via_lan_ip": {
+      "rc": 0
+    },
+    "tcp_via_lan_ip": "connected",
+    "http_via_loopback": {
+      "rc": 0
+    },
+    "after_http_via_lan_ip": {
+      "rc": 0
+    }
+  },
+  "sandbox": {
+    "rc": 0,
+    "stdout": "{\"curl_exe\": {\"rc\": 28, \"out\": \"\", \"err\": \"\"}, \"powershell_exe\": {\"err\": \"FileNotFoundError:[WinError 2] \\u7cfb\\u7edf\\u627e\\u4e0d\\u5230\\u6307\\u5b9a\\u7684\\u6587\\u4ef6\\u3002\"}, \"tcp_lan_v4\": {\"outcome\": \"denied\", \"winerror\": null}, \"raw_icmp\": {\"outcome\": \"created\"}, \"reg_hklm\": {\"outcome\": \"denied\", \"winerror\": 5}, \"reg_hkcu\": {\"outcome\": \"denied\", \"winerror\": 5}, \"junction_create\": {\"rc\": 1, \"out\": \"\", \"err\": \"\\u62d2\\u7edd\\u8bbf\\u95ee\\u3002\\n\"}, \"junction_write\": {\"outcome\": \"denied\", \"winerror\": null}, \"delete_outside\": {\"outcome\": \"denied\", \"winerror\": 5}, \"global_section\": {\"outcome\": \"created\"}}",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-77ab872b79674229a44ec5e70fabd16b",
+    "results": {
+      "curl_exe": {
+        "rc": 28,
+        "out": "",
+        "err": ""
+      },
+      "powershell_exe": {
+        "err": "FileNotFoundError:[WinError 2] 系统找不到指定的文件。"
+      },
+      "tcp_lan_v4": {
+        "outcome": "denied",
+        "winerror": null
+      },
+      "raw_icmp": {
+        "outcome": "created"
+      },
+      "reg_hklm": {
+        "outcome": "denied",
+        "winerror": 5
+      },
+      "reg_hkcu": {
+        "outcome": "denied",
+        "winerror": 5
+      },
+      "junction_create": {
+        "rc": 1,
+        "out": "",
+        "err": "拒绝访问。\n"
+      },
+      "junction_write": {
+        "outcome": "denied",
+        "winerror": null
+      },
+      "delete_outside": {
+        "outcome": "denied",
+        "winerror": 5
+      },
+      "global_section": {
+        "outcome": "created"
+      }
+    }
+  },
+  "after": {
+    "listener_hits": [
+      "('28.0.0.1', 55396)",
+      "('28.0.0.1', 55397)",
+      "('127.0.0.1', 55398)",
+      "('28.0.0.1', 55421)"
+    ],
+    "hits_before_sandbox": 3,
+    "sandbox_hit_listener": true,
+    "sentinel_exists": true,
+    "escape_marker_exists": false,
+    "global_section_visible_to_host": false,
+    "hkcu_leaked_to_host": false
+  }
+}

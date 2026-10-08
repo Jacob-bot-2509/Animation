@@ -1,0 +1,987 @@
+{
+  "head": "602c792a6d2bb92346960edb8bce6cd7fd513659",
+  "real_input_hashes": {
+    "data/v1/raw/dataset_calc.jsonl": "65d9c9255cd6ac1ee6200917b630882a7d974e787829f46a159c2dc16af75def",
+    "data/v1/raw/dataset_geom.jsonl": "109d993d8dfd8ed347911a996074ae2b75b38fcf300417e9a06bb8a557cf5ddb",
+    "data/v1/raw/dataset_linalg.jsonl": "2fa2a95de269877eeb24a3128f120ae8a0e2530ca9ff630de49054302c0d8c3c",
+    "data/v1/raw/dataset_prob.jsonl": "254626ccd2f1e0d86399127eb8b15dbb03232133ade5970cf4bf2920865a3ae7"
+  },
+  "source_hashes": {
+    "src/animtrain/__init__.py": "49cff126acefffb5c90647fa30c5cca10ede76d004e404d28fa71900163967d3",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd",
+    "src/animtrain/calibrate.py": "e2fde0c49b7ec747370ae6577f659a8b1f078595bb90856be0f7756a221f55dc",
+    "src/animtrain/code_gate.py": "58d80f2246218e35202786026f1cdcd2571bf961575e8034a1c3d25836d58a65",
+    "src/animtrain/dataset_intake.py": "0646ca13e468179a31aac4343d0d3e0cb5aa92e30d24c2af2be8cd090eb5b5fd",
+    "src/animtrain/fields.py": "0427ee7765b44f5b32c1c326f84cbfab0fdde9a3aec17bad27bdccfa013f74b3",
+    "src/animtrain/freeze.py": "80234f07f86246323e29a472e359d74ce5e48406d4bde98df07a16b9501d99a3",
+    "src/animtrain/fs_guard.py": "cd8eecdf472b1fca7c36c8aa1201b4b1a24636fecd67dc6fe1dd0842b88c248e",
+    "src/animtrain/manifest.py": "9f0062f75ae923e8b9579620d946dbf83f46889a65eb4532d24a04b1f9cdb816",
+    "src/animtrain/near_dup.py": "b888f1a9eaea6631fd3892256940c59387b38b53beae6f6ee2ce7aa8e5314df4",
+    "src/animtrain/preflight.py": "94808a072c1e11f8da074066a59d8d28953f3323ca0a3c6ee21860b8cb5e2d92",
+    "src/animtrain/render_gate.py": "04b07c10f82b10bd91a814de28f72196e9bbdd5002be4d9b1a30ecf8c19a91fc",
+    "src/animtrain/run_record.py": "cf0a0d8ce355cb84990ddb1b308f3a05387ccf96aa6099431252f5ca048afa2c",
+    "src/animtrain/scan.py": "040dc867f7370eb6d20832aedb1253b90779aa93857e50542cf8b47bfb051828",
+    "src/animtrain/validate.py": "d3f4f408162cf7450a5be32b03cbbbed9dd1ab3848474d369f9c217b401cfdc1",
+    "tools/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/check_code.py": "fdf06346ba127778a2e6756424497852bacaa63f6a049cfb4a2e9413e1a1ffe2",
+    "tools/check_fields.py": "8f9262929952de70e708278feedb01875aa5a3a4e16f42a54de8525d3cd9a9e5",
+    "tools/data_check.py": "14c59dc31387fe915eab6084c0d57af860d638258519a3d0348e3d98265de12f",
+    "tools/dataset_intake.py": "ebc81e786909f4c71929a8a45453b694476bdda8947dd45453a4e76c03f507ac",
+    "tools/freeze_data.py": "fa10b23faee33d042304cf076af553b387834a99c8b42d26791153bb86e9506b",
+    "tools/make_manifest.py": "a04e881928f141417fee1517127bb2c81c165eb3f0f414a10cce68158e3de1bd",
+    "tools/preflight.py": "08955f0c9bdd15e9dcf235024ac85e04b09b073ab79d64c8216e0d5dcb31fb44",
+    "tools/run_record.py": "76f27fdc1a4f6f72db3e9d316b27bd41fdafa63212380f1b8732d50cc18ede3d",
+    "tools/split_data.py": "435d7ed974907c7cdfc91a2571f2e5e2e8192097571f33f79681e6a3c6078c53"
+  },
+  "G1_entry_disagreement": {
+    "train.txt": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\train.txt",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "train.txt: 非 .jsonl 文件不能作为样本入口(JSONL 一行一对象);请先 convert 转换"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": null
+    },
+    "empty.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "empty.jsonl: 数据文件为空(空样本入口不得 ok=true)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] empty.jsonl: 数据文件为空(空样本入口不得 ok=true)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\empty.jsonl",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "empty.jsonl: 没有有效样本行(空 JSONL/空输入不得 ok=true)"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [],
+      "fields_cli": {
+        "exit_code": 1,
+        "stdout": "[FAIL] 输入为空 JSONL(空样本入口不得通过)\n"
+      }
+    },
+    "idonly.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)"
+        ],
+        "quarantines": [
+          "idonly.jsonl:1 缺 answer(A6:与入场检查同口径,候选数据待补齐)"
+        ],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 1\n  [FAIL] idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)\n  [QUARANTINE] idonly.jsonl:1 缺 answer(A6:与入场检查同口径,候选数据待补齐)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\idonly.jsonl",
+        "n_records": 1,
+        "categories": {},
+        "problems": [
+          "line 1: 缺关键字段 category, sub_category, problem, solution, scene_spec, source, license(id=one)"
+        ],
+        "quarantines": [
+          "line 1: 缺 answer(id=one,候选数据:判分字段待补齐)",
+          "line 1: 可选元数据缺/空: function_family, visual_style, efficiency_tags(id=one,candidate 语义)"
+        ],
+        "id_lines": {
+          "one": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [
+        {
+          "sample_id": "one",
+          "line": 1,
+          "missing": [
+            "problem",
+            "solution",
+            "answer"
+          ],
+          "reason": "缺失必填字段: problem, solution, answer"
+        }
+      ]
+    },
+    "duplicate.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\duplicate.jsonl",
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=one 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "one": [
+            1,
+            2
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": []
+    },
+    "same_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=dup(one.jsonl:1, one.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名": [
+            1,
+            [
+              "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "same_split_cross_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 2,
+        "problems": [
+          "train 内 ID 重复: id=dup(left.jsonl:1, right.jsonl:1)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍": [
+            1,
+            [
+              "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    }
+  },
+  "G2_frozen_overwrite": {
+    "convert": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_data": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\report_data\\eval.jsonl: A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_lock": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-w2un0p3g\\report_lock\\eval.lock.json: A7 冻结保护:拒绝覆盖冻结锁文件(*.lock.json),--force 不能绕过\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    }
+  },
+  "G3_same_task_different_metadata": {
+    "same_task_fields": [
+      "problem",
+      "solution",
+      "answer",
+      "scene_spec"
+    ],
+    "different_fields": [
+      "id",
+      "function_family"
+    ],
+    "core_manifest": {
+      "ok": false,
+      "n_entries": 2,
+      "problems": [
+        "train 与 eval 精确重叠 1 个样本(零容忍,前项目 20/20 污染教训)",
+        "same_task_eval.jsonl:1 与训练样本近重复(5-gram Jaccard 1.000 ≥ 0.7,命中 same_task_train.jsonl:1)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    },
+    "intake": {
+      "n_records": 2,
+      "categories": {
+        "数学分析": 2
+      },
+      "problems": [],
+      "quarantines": [],
+      "problem_groups": {},
+      "quarantine_groups": {},
+      "ok": true,
+      "status": "clean",
+      "exit_code": 0
+    },
+    "whole_json_jaccard": 0.04743833017077799
+  },
+  "G4_field_shapes": [
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [],
+          "steps": []
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [
+            null
+          ],
+          "steps": [
+            false
+          ]
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "category": [
+          "wrong"
+        ],
+        "sub_category": {
+          "x": 1
+        },
+        "source": {
+          "bad": 1
+        },
+        "function_family": true,
+        "visual_style": 17,
+        "efficiency_tags": "not-a-list"
+      },
+      "problems": [
+        "line 1: category 不是字符串(list)",
+        "line 1: sub_category 不是字符串(dict)",
+        "line 1: source 不是字符串(dict)",
+        "line 1: function_family 不是字符串(bool)",
+        "line 1: visual_style 不是字符串(int)",
+        "line 1: efficiency_tags 必须为非空字符串列表(B7 类型契约)"
+      ],
+      "quarantines": []
+    }
+  ],
+  "known_B2_core_ready_missing_assets": {
+    "ok": true,
+    "ready": true,
+    "exit_code": 0,
+    "checks": [
+      {
+        "check": "gpu",
+        "ok": true,
+        "detail": "synthetic GPU"
+      },
+      {
+        "check": "model_dir",
+        "ok": true,
+        "detail": "synthetic model"
+      },
+      {
+        "check": "data_manifest",
+        "ok": true,
+        "detail": "synthetic data"
+      },
+      {
+        "check": "run_snapshot",
+        "ok": true,
+        "detail": "synthetic record"
+      },
+      {
+        "check": "ready",
+        "ok": true,
+        "detail": "全部必需门禁通过,可生成可执行训练计划"
+      }
+    ]
+  },
+  "current_real_intake": {
+    "n_records": 63,
+    "categories": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "problems": [],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": true,
+    "status": "clean",
+    "exit_code": 0
+  },
+  "current_real_manifest": {
+    "ok": true,
+    "n_entries": 4,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "real_inputs_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  },
+  "source_unchanged": {
+    "src/animtrain/__init__.py": true,
+    "src/animtrain/atomic_write.py": true,
+    "src/animtrain/calibrate.py": true,
+    "src/animtrain/code_gate.py": true,
+    "src/animtrain/dataset_intake.py": true,
+    "src/animtrain/fields.py": true,
+    "src/animtrain/freeze.py": true,
+    "src/animtrain/fs_guard.py": true,
+    "src/animtrain/manifest.py": true,
+    "src/animtrain/near_dup.py": true,
+    "src/animtrain/preflight.py": true,
+    "src/animtrain/render_gate.py": true,
+    "src/animtrain/run_record.py": true,
+    "src/animtrain/scan.py": true,
+    "src/animtrain/validate.py": true,
+    "tools/__init__.py": true,
+    "tools/check_code.py": true,
+    "tools/check_fields.py": true,
+    "tools/data_check.py": true,
+    "tools/dataset_intake.py": true,
+    "tools/freeze_data.py": true,
+    "tools/make_manifest.py": true,
+    "tools/preflight.py": true,
+    "tools/run_record.py": true,
+    "tools/split_data.py": true
+  },
+  "baseline_tests": {
+    "stable_1c9d332": 213,
+    "codex_answer_guard": 215,
+    "stable_602c792": 223,
+    "subtests": 29,
+    "latest_seconds": 6.76
+  },
+  "answer_container_tests_before": {
+    "failed": 2
+  },
+  "A6_remaining_recheck": {
+    "body_containers": {
+      "manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.jsonl:1 核心正文字段类型非法(A6:problem/solution 必须为字符串)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-final-gate-darse7xp\\body_containers\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [
+          "line 1: problem 不是字符串(list)",
+          "line 1: solution 不是字符串(dict)"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "missing_answer": {
+      "manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [],
+        "quarantines": [
+          "train.jsonl:1 缺 answer(A6:与入场检查同口径,候选数据待补齐)"
+        ],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 2
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-final-gate-darse7xp\\missing_answer\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [],
+        "quarantines": [
+          "line 1: 缺 answer(id=fixture-001,候选数据:判分字段待补齐)"
+        ],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "candidate",
+        "exit_code": 2
+      }
+    },
+    "answer_list": {
+      "manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.jsonl:1 answer 类型非法(A6:answer 必须为字符串，与入场检查一致)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-final-gate-darse7xp\\answer_list\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [
+          "line 1: answer 不是字符串(list)"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "answer_dict": {
+      "manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.jsonl:1 answer 类型非法(A6:answer 必须为字符串，与入场检查一致)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-final-gate-darse7xp\\answer_dict\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [
+          "line 1: answer 不是字符串(dict)"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "sample_id_duplicate": {
+      "manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=dup(train.jsonl:1, train.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-final-gate-darse7xp\\sample_id_duplicate\\train.jsonl",
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "line 1: 缺关键字段 id(id=<no-id>)",
+          "line 2: 缺关键字段 id(id=<no-id>)"
+        ],
+        "quarantines": [
+          "line 1: 非正式字段 ['sample_id'](id=<no-id>,正式字段见 DATASET_SCHEMA.md)",
+          "line 2: 非正式字段 ['sample_id'](id=<no-id>,正式字段见 DATASET_SCHEMA.md)"
+        ],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    }
+  },
+  "B7_metadata_types": {
+    "function_family": {
+      "problems": [
+        "line 1: function_family 不是字符串(bool)"
+      ],
+      "quarantines": []
+    },
+    "visual_style": {
+      "problems": [
+        "line 1: visual_style 不是字符串(int)"
+      ],
+      "quarantines": []
+    },
+    "efficiency_tags": {
+      "problems": [
+        "line 1: efficiency_tags 必须为非空字符串列表(B7 类型契约)"
+      ],
+      "quarantines": []
+    }
+  },
+  "mirror_arrays": {
+    "dataset_calc.jsonl": true,
+    "dataset_geom.jsonl": true,
+    "dataset_linalg.jsonl": true,
+    "dataset_prob.jsonl": true
+  },
+  "doc_matches": true,
+  "v7_binding": {
+    "count": 63,
+    "record_status": {
+      "candidate": 63
+    },
+    "hash_mismatches": []
+  },
+  "answer_record_snapshot": {
+    "linalg-049": {
+      "id": "linalg-049",
+      "category": "高等代数",
+      "sub_category": "特征值与特征向量",
+      "function_family": "矩阵的特征分解",
+      "visual_style": "方向不变与长度缩放",
+      "efficiency_tags": [
+        "特定方向高亮",
+        "缩放因子视觉化"
+      ],
+      "problem": "求矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+      "solution": "特征方程为 $|\\lambda I - A| = (\\lambda - 2)^2 - 1 = 0$，解得特征值 $\\lambda_1 = 3, \\lambda_2 = 1$。对于 $\\lambda_1 = 3$，解方程 $(3I - A)x = 0$ 得特征向量 $(1, 1)^T$。对于 $\\lambda_2 = 1$，解得特征向量 $(1, -1)^T$。几何上，整个空间在变换时，特征向量 $(1,1)$ 的方向保持不变，长度拉伸为原来的3倍；特征向量 $(1,-1)$ 的方向也保持不变，长度保持为原来的1倍。",
+      "answer": "特征值 3 和 1，对应特征向量 (1,1) 和 (1,-1)；几何意义：变换保持这两个特征方向不变，$(1,1)$ 方向拉伸为原来的 3 倍，$(1,-1)$ 方向保持不变",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "标准网格",
+          "多个方向不同的向量箭头",
+          "特征向量高亮"
+        ],
+        "steps": [
+          "第一步：建立二维坐标系，画出一个网格。",
+          "第二步：随机画出几个不同方向的向量，并在矩阵变换前用灰色表示。",
+          "第三步：应用矩阵变换，观察大部分向量都改变了方向。",
+          "第四步：高亮特定方向的特征向量 (1,1)，展示它方向不变，长度变为原来的 3 倍。",
+          "第五步：高亮另一个特征向量 (1,-1)，展示它方向不变，长度保持不变。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-052": {
+      "id": "linalg-052",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "function_family": "多项式函数逼近",
+      "visual_style": "泰勒展开叠加逼近",
+      "efficiency_tags": [
+        "阶数递增",
+        "逼近误差"
+      ],
+      "problem": "将多项式 $f(x)=x^3$ 在 $x=1$ 处按泰勒公式展开，并说明展开式的意义。",
+      "solution": "对 $f(x)=x^3$ 求导：$f(1)=1$，$f'(1)=3$，$f''(1)=6$，$f'''(1)=6$。代入泰勒公式得 $f(x)=1+3(x-1)+3(x-1)^2+(x-1)^3$。展开式的每一项系数由各阶导数在 $x=1$ 处的值决定。",
+      "answer": "$1+3(x-1)+3(x-1)^2+(x-1)^3$；展开式各项系数由各阶导数在 $x=1$ 处的值决定，且三次多项式的三阶泰勒展开与原函数精确相等",
+      "scene_spec": {
+        "objects": [
+          "坐标系",
+          "三次曲线 y=x^3",
+          "泰勒多项式逐阶叠加曲线",
+          "展开点 x=1"
+        ],
+        "steps": [
+          "第一步：绘制三次曲线 y=x^3，用红色圆点标记展开点 (1,1)。",
+          "第二步：先画出零阶近似（常数函数 y=1），用虚线表示，观察它与原曲线的偏差。",
+          "第三步：逐步叠加一阶、二阶、三阶项，用不同颜色展示逼近多项式曲线与原曲线的重合过程。",
+          "第四步：最终三阶泰勒多项式与原曲线完全重合，说明三次多项式在任意点展开后仍然精确。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-054": {
+      "id": "linalg-054",
+      "category": "高等代数",
+      "sub_category": "行列式",
+      "function_family": "Cramer法则",
+      "visual_style": "行列式比值与解",
+      "efficiency_tags": [
+        "解的存在性条件",
+        "行列式为零"
+      ],
+      "problem": "利用 Cramer 法则求解线性方程组 $\\begin{cases} 2x + y = 5 \\\\ x - y = 1 \\end{cases}$，并说明行列式为零时的几何意义。",
+      "solution": "系数行列式 $D=\\begin{vmatrix} 2 & 1 \\\\ 1 & -1 \\end{vmatrix}=-3\\neq0$，方程组有唯一解。$D_x=\\begin{vmatrix} 5 & 1 \\\\ 1 & -1 \\end{vmatrix}=-6$，$D_y=\\begin{vmatrix} 2 & 5 \\\\ 1 & 1 \\end{vmatrix}=-3$，故 $x=2, y=1$。若 $D=0$，两直线平行或重合，对应无解或无穷多解。",
+      "answer": "$x=2, y=1$；当系数行列式为零时，两直线平行或重合，对应无解或无穷多解",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "两条直线",
+          "交点",
+          "行列式值的变化"
+        ],
+        "steps": [
+          "第一步：在坐标系中画出两条直线 $2x+y=5$ 和 $x-y=1$，标记它们的交点为 (2,1)。",
+          "第二步：用动画展示系数行列式 D 的计算过程。",
+          "第三步：拖动直线使其斜率变化，当 D 趋近于 0 时，展示两直线逐渐平行，交点消失。",
+          "第四步：高亮显示 D=0 时两条直线平行的几何状态，对应无解的情况。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-057": {
+      "id": "linalg-057",
+      "category": "高等代数",
+      "sub_category": "矩阵",
+      "function_family": "逆矩阵与可逆变换",
+      "visual_style": "变换与逆变换",
+      "efficiency_tags": [
+        "可逆性几何条件",
+        "行列式非零"
+      ],
+      "problem": "已知矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}$，求其逆矩阵，并说明可逆性的几何意义。",
+      "solution": "计算 $\\det(A)=2\\times1-1\\times1=1\\neq0$，矩阵可逆。$A^{-1}=\\frac{1}{1}\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}=\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$。几何上，可逆意味着该线性变换不将空间压缩到更低维度，存在逆变换将空间恢复。",
+      "answer": "$A^{-1}=\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$；几何意义：可逆变换不将空间压缩到更低维度，存在逆变换将空间恢复原状",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "标准网格",
+          "变换后网格",
+          "逆变换过程"
+        ],
+        "steps": [
+          "第一步：绘制标准网格，用蓝色箭头标出基向量。",
+          "第二步：应用矩阵 A 的变换，展示网格沿特征方向发生拉伸形变（对称正定矩阵为纯拉伸）。",
+          "第三步：用动画展示逆矩阵 A⁻¹ 作用于变换后的网格，将其恢复为原始标准网格。",
+          "第四步：高亮显示 $\\det(A)=1 \\ne 0$，说明该变换可逆（行列式非零是可逆的充要条件）。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-064": {
+      "id": "linalg-064",
+      "category": "高等代数",
+      "sub_category": "特征值与特征向量",
+      "function_family": "矩阵的特征分解",
+      "visual_style": "方向不变与缩放",
+      "efficiency_tags": [
+        "特定方向高亮",
+        "缩放因子"
+      ],
+      "problem": "求矩阵 $A=\\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+      "solution": "特征方程 $|\\lambda I-A|=(\\lambda-3)(\\lambda-2)=0$，特征值 $\\lambda_1=3, \\lambda_2=2$。对应特征向量：$\\lambda_1=3$ 时 $\\xi_1=(1,0)^T$；$\\lambda_2=2$ 时 $\\xi_2=(1,-1)^T$。几何上，方向 $(1,0)$ 上的向量被拉伸 3 倍，方向 $(1,-1)$ 上的向量被拉伸 2 倍。",
+      "answer": "$\\lambda_1=3$ 对应特征向量 $(1,0)^T$，$\\lambda_2=2$ 对应 $(1,-1)^T$；几何意义：变换保持这两个方向不变，分别拉伸为原来的 3 倍和 2 倍",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "标准网格",
+          "多个方向向量",
+          "特征向量高亮"
+        ],
+        "steps": [
+          "第一步：画出标准网格和几个不同方向的向量。",
+          "第二步：应用矩阵变换，展示大部分向量方向发生改变。",
+          "第三步：高亮特征向量 (1,0)，展示它方向不变，长度变为 3 倍。",
+          "第四步：高亮特征向量 (1,-1)，展示它方向不变，长度变为 2 倍。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-068": {
+      "id": "linalg-068",
+      "category": "高等代数",
+      "sub_category": "欧几里得空间",
+      "function_family": "实对称矩阵",
+      "visual_style": "主轴旋转与正交对角化",
+      "efficiency_tags": [
+        "特征向量正交",
+        "主轴变换"
+      ],
+      "problem": "将实对称矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 正交对角化。",
+      "solution": "特征值 $\\lambda_1=3$ 对应特征向量 $(1,1)^T/\\sqrt{2}$，$\\lambda_2=1$ 对应 $(1,-1)^T/\\sqrt{2}$。两个特征向量正交。正交矩阵 $Q=\\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$，$Q^TAQ=\\operatorname{diag}(3,1)$。",
+      "answer": "$Q=\\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$，$Q^TAQ=\\operatorname{diag}(3,1)$，即正交对角化把二次型化为对角标准形",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "二次型椭圆",
+          "特征向量方向",
+          "主轴旋转"
+        ],
+        "steps": [
+          "第一步：绘制实对称矩阵对应的二次型椭圆。",
+          "第二步：画出两个特征向量方向，展示它们相互垂直。",
+          "第三步：用动画展示将坐标系旋转到特征向量方向后，椭圆与坐标轴对齐。",
+          "第四步：高亮对角化结果 diag(3,1)，说明实对称矩阵可以通过正交变换对角化。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "prob-046": {
+      "id": "prob-046",
+      "category": "概率论",
+      "sub_category": "可列可加性",
+      "function_family": "测度的可列可加性",
+      "visual_style": "无限级数面积拼图",
+      "efficiency_tags": [
+        "几何级数",
+        "极限逼近"
+      ],
+      "problem": "用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的小矩形。",
+      "solution": "将面积为 $1$ 的正方形依次分割：第一个矩形面积为 $\\frac{1}{2}$，第二个为 $\\frac{1}{4}$，第三个为 $\\frac{1}{8}$，依此类推。随着分割次数趋向无穷，矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$。这直观展示了可列可加性。",
+      "answer": "可列可加性成立：各矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$，恰等于单位正方形的总面积",
+      "scene_spec": {
+        "objects": [
+          "单位正方形",
+          "不断细分的矩形区域",
+          "动态更新的概率求和公式"
+        ],
+        "steps": [
+          "第一步：画出一个面积为1的单位正方形。",
+          "第二步：先分割出一半面积（1/2）的矩形，用蓝色填充，显示部分和 $S_1 = \\frac{1}{2}$。",
+          "第三步：在剩余的空间中再分割出 1/4 面积的矩形，用绿色填充，显示部分和 $S_2 = \\frac{1}{2} + \\frac{1}{4}$。",
+          "第四步：接着不断分割出 $\\frac{1}{8}, \\frac{1}{16}, \\frac{1}{32}$ 等更小的矩形，用不同颜色区分。",
+          "第五步：随着分割次数趋向无穷，剩余未分配的面积越来越小，最终无限趋近于 $0$。",
+          "第六步：展示求和公式 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k} = 1$，所有矩形面积之和等于 1，直观展示可列可加性。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  "independent_math": {
+    "linalg-049_eigen_residuals": [
+      "Matrix([[0], [0]])",
+      "Matrix([[0], [0]])"
+    ],
+    "linalg-052_taylor_difference": "0",
+    "linalg-054_solution": "Matrix([[2], [1]])",
+    "linalg-057_inverse_product": "Matrix([[1, 0], [0, 1]])",
+    "linalg-064_eigen_residuals": [
+      "Matrix([[0], [0]])",
+      "Matrix([[0], [0]])"
+    ],
+    "linalg-068_orthogonal": "Matrix([[1, 0], [0, 1]])",
+    "linalg-068_diagonal": "Matrix([[3, 0], [0, 1]])",
+    "prob-046_geometric_series": "1"
+  },
+  "train_manifest": {
+    "sha256": "8f1c9b98bfc7c07137645b01555e596f798d750912ab2dd7201290e5569e8353",
+    "report": {
+      "ok": true,
+      "n_entries": 4,
+      "problems": [],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 0
+    },
+    "splits": [
+      "train",
+      "train",
+      "train",
+      "train"
+    ]
+  },
+  "raw_manifest_sha256": "297c037306a64d34ab0171375e0e2df8d94f3ba2bc014af0eda7d3fe2290ab3f",
+  "prep_template_sha256": "ea918d1dfb73039af0af024846c027092e34fc9a207a1d1e9d6090eb7adf4b53",
+  "prep_plan_sha256": "1d6bb27f82867315c5dd5fb014d3e2ef200620155a81762f9a13c1cd4a0c3dd6",
+  "preflight_observation": {
+    "command": "tools/preflight.py --ready --run-id prep-check-0001 --manifest data/v1/manifest-train.json",
+    "exit_code": 1,
+    "ready": false,
+    "passed": [
+      "gpu",
+      "data_manifest",
+      "render_gate",
+      "math_gate"
+    ],
+    "failed": [
+      "model_dir",
+      "run_snapshot",
+      "near_dup_calibrated",
+      "freeze_gate"
+    ],
+    "scope": "Fixed trusted environmental smoke only; no training"
+  },
+  "source_consistent": {
+    "src/animtrain/__init__.py": true,
+    "src/animtrain/atomic_write.py": true,
+    "src/animtrain/calibrate.py": true,
+    "src/animtrain/code_gate.py": true,
+    "src/animtrain/dataset_intake.py": true,
+    "src/animtrain/fields.py": true,
+    "src/animtrain/freeze.py": true,
+    "src/animtrain/fs_guard.py": true,
+    "src/animtrain/manifest.py": true,
+    "src/animtrain/near_dup.py": true,
+    "src/animtrain/preflight.py": true,
+    "src/animtrain/render_gate.py": true,
+    "src/animtrain/run_record.py": true,
+    "src/animtrain/scan.py": true,
+    "src/animtrain/validate.py": true,
+    "tools/__init__.py": true,
+    "tools/check_code.py": true,
+    "tools/check_fields.py": true,
+    "tools/data_check.py": true,
+    "tools/dataset_intake.py": true,
+    "tools/freeze_data.py": true,
+    "tools/make_manifest.py": true,
+    "tools/preflight.py": true,
+    "tools/run_record.py": true,
+    "tools/split_data.py": true
+  },
+  "real_inputs_consistent": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  }
+}

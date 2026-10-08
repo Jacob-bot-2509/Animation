@@ -184,7 +184,7 @@ class _AssetEvidenceHelpers(unittest.TestCase):
                     "input_sha256": hashlib.sha256(
                         line.strip().encode("utf-8")).hexdigest(),
                     "output": output or {},
-                    "math": "verified", "render": "rendered"}}}
+                    "math": "verified", "render": "rendered", "semantic": "verified"}}}
 
     def test_per_record_evidence_passes(self):
         from animtrain.preflight import check_asset_evidence
@@ -192,11 +192,12 @@ class _AssetEvidenceHelpers(unittest.TestCase):
             d = Path(d)
             mp, line = self._mk(d, None, with_sample=True)
             import hashlib
-            artifact = d / "render-out.svg"
-            artifact.write_text("<svg/>", encoding="utf-8")
+            artifact = d / "render-out.png"
+            from PIL import Image
+            Image.new("RGB", (2, 2), "blue").save(artifact)
             out = {"path": str(artifact.relative_to(d)),
-                   "sha256": hashlib.sha256(b"<svg/>").hexdigest(),
-                   "size": len(b"<svg/>")}
+                   "sha256": hashlib.sha256(artifact.read_bytes()).hexdigest(),
+                   "size": artifact.stat().st_size}
             import json
             (d / "asset_evidence.json").write_text(json.dumps(
                 self._evidence(mp, line, output=out), ensure_ascii=False),

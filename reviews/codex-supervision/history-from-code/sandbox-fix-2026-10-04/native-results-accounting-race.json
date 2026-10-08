@@ -1,0 +1,42 @@
+{
+  "profile": "codex-fixed-sandbox-99312bb260c24ad1",
+  "work": "D:\\code\\output\\claude-supervision\\sandbox-fix-2026-10-04\\native-work-dwtm799i",
+  "runtime": "D:\\code\\output\\claude-supervision\\fix-2026-10-04\\appcontainer-probe-wenbjyjh\\runtime",
+  "checks": {
+    "inherited_handle": {
+      "token_is_appcontainer": true,
+      "stdin_eof": true,
+      "direct_errno": 13,
+      "inherited_read_ok": false,
+      "inherited_error": -1073741816,
+      "inherited_invalid_handle": true,
+      "inherited_bytes": "",
+      "returncode": 0,
+      "stderr_capture": true
+    },
+    "timeout_tree": {
+      "timed_out": true,
+      "stdout": "{\"child_pid\": 644}\r\n",
+      "stderr": "",
+      "child_pid": 644,
+      "child_image_matches": true,
+      "child_observed_alive_before_cleanup": true,
+      "held_child_handle_signaled_after_return": true
+    }
+  },
+  "create_hresult": 0,
+  "emergency_cleanup": [
+    "normal_root_exit"
+  ],
+  "status": "FAIL",
+  "error": {
+    "type": "AssertionError",
+    "detail": "Child survived helper return"
+  },
+  "delete_hresult": 0,
+  "profile_exists_after_cleanup": false,
+  "source_sha256": {
+    "src/animtrain/appcontainer.py": "7316dd60998edce79ac5634a992d98992e7a29402145401bddc8cb4f38abcd9a",
+    "src/animtrain/win_job.py": "055936e20beaa11c80188fe4e351739148ebffa7c427c176d3bdc44ae1e2449e"
+  }
+}

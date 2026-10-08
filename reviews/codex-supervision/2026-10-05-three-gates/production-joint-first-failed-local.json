@@ -1,0 +1,796 @@
+{
+  "schema": "production-joint-raw-v1",
+  "implementation_sha256": {
+    "src/animtrain/sandbox_execution.py": "1c1afaee366122d893e840e38fcc9bbe14471a6e66094e7f9d0567ae52e7edb7",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "5c7fa93acbc5f9c7cb489b34a664c9e8da5f03c69b51cd67e28472b0593d25bf",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "probe_sha256": "de72f108f1bacc733c4b7ff30162b7f3db976cbbda71f273ee99ffc26d56d9c3",
+  "records": {
+    "render_formula": {
+      "ok": true,
+      "status": "rendered",
+      "detail": "AppContainer 真实渲染并完整解码",
+      "unverified": [],
+      "output": {
+        "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\media\\videos\\scene\\480p15\\ConceptScene.mp4",
+        "sha256": "69d0d433f07af73f773c7f76309be3d1d2cfb97cc99c072db3022c6b46205d64",
+        "size": 3222,
+        "frames": 3,
+        "width": 854,
+        "height": 480,
+        "frame_rate": "15/1"
+      },
+      "transport": {
+        "rc": 0,
+        "stdout": "Manim Community v0.21.0\r\n\r\n[10/05/26 02:08:17] INFO     Writing                    tex_file_writing.py:110\r\n                             \\special{dvisvgm:raw <g                           \r\n                             id='unique000'>}f'(x)=2x\\s                        \r\n                             pecial{dvisvgm:raw </g>}                          \r\n                             to                                                \r\n                             D:\\Animation-Model-Trainin                        \r\n                             g\\reviews\\codex-supervisio                        \r\n                             n\\2026-10-05-three-gates\\e                        \r\n                             xecution-e625419b074c4753a                        \r\n                             4d328168ea6e46b\\media\\Tex\\                        \r\n                             c3e09256c95e1b28.tex                              \r\n[10/05/26 02:08:18] INFO     Animation 0 : Partial     scene_file_writer.py:192\r\n                             movie file written in                             \r\n                             'D:\\Animation-Model-Train                         \r\n                             ing\\reviews\\codex-supervi                         \r\n                             sion\\2026-10-05-three-gat                         \r\n                             es\\execution-e625419b074c                         \r\n                             4753a4d328168ea6e46b\\medi                         \r\n                             a\\videos\\scene\\480p15\\par                         \r\n                             tial_movie_files\\ConceptS                         \r\n                             cene\\2118183852_358564154                         \r\n                             _2358308170.mp4'                                  \r\n                    INFO     Combining to Movie file.  scene_file_writer.py:952\r\n                    INFO                              scene_file_writer.py:1103\r\n                             File ready at                                     \r\n                             'D:\\Animation-Model-Trai                          \r\n                             ning\\reviews\\codex-super                          \r\n                             vision\\2026-10-05-three-                          \r\n                             gates\\execution-e625419b                          \r\n                             074c4753a4d328168ea6e46b                          \r\n                             \\media\\videos\\scene\\480p                          \r\n                             15\\ConceptScene.mp4'                              \r\n                                                                               \r\n                    INFO     Rendered ConceptScene                 scene.py:290\r\n                             Played 1 animations                               \r\n",
+        "stderr": "latex: major issue: So far, you have not checked for MiKTeX updates.\r\n",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b",
+        "source_sha256": "7ad7092a1adf812fa20fc5a9c31a8334c36a6231adbf2ba45daef9bf614503d1",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\bootstrap.py",
+          "render",
+          "-ql",
+          "--format=mp4",
+          "--media_dir",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\media",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\scene.py",
+          "ConceptScene"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3517178744-2115292370-2655657973-30313274-1695609149-4156624750-485432826"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 29424,
+          "private_profile": {
+            "profile_name": "animtrain-job-d65455e4f4524000842f61dbd5e7fabf",
+            "sid": "S-1-15-2-3517178744-2115292370-2655657973-30313274-1695609149-4156624750-485432826",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-d65455e4f4524000842f61dbd5e7fabf\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "isolation": {
+        "backend": "windows_appcontainer",
+        "shell": false,
+        "memory_limit_mb": 2048,
+        "job_assigned": true,
+        "network_isolated": true,
+        "fs_isolation": "private_per_run",
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3517178744-2115292370-2655657973-30313274-1695609149-4156624750-485432826"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 29424,
+          "private_profile": {
+            "profile_name": "animtrain-job-d65455e4f4524000842f61dbd5e7fabf",
+            "sid": "S-1-15-2-3517178744-2115292370-2655657973-30313274-1695609149-4156624750-485432826",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-d65455e4f4524000842f61dbd5e7fabf\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      }
+    },
+    "render_chinese": {
+      "ok": true,
+      "status": "rendered",
+      "detail": "AppContainer 真实渲染并完整解码",
+      "unverified": [],
+      "output": {
+        "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024\\media\\videos\\scene\\480p15\\ConceptScene.mp4",
+        "sha256": "09146a8fd69175e5142bab90590648a9e673685ab8b5e556f1cd7bb6953b7c78",
+        "size": 3449,
+        "frames": 3,
+        "width": 854,
+        "height": 480,
+        "frame_rate": "15/1"
+      },
+      "transport": {
+        "rc": 0,
+        "stdout": "Manim Community v0.21.0\r\n\r\n[10/05/26 02:08:53] INFO     Animation 0 : Partial     scene_file_writer.py:192\r\n                             movie file written in                             \r\n                             'D:\\Animation-Model-Train                         \r\n                             ing\\reviews\\codex-supervi                         \r\n                             sion\\2026-10-05-three-gat                         \r\n                             es\\execution-bd75088126e7                         \r\n                             415c9be930eaff655024\\medi                         \r\n                             a\\videos\\scene\\480p15\\par                         \r\n                             tial_movie_files\\ConceptS                         \r\n                             cene\\2118183852_358564154                         \r\n                             _227058407.mp4'                                   \r\n                    INFO     Combining to Movie file.  scene_file_writer.py:952\r\n                    INFO                              scene_file_writer.py:1103\r\n                             File ready at                                     \r\n                             'D:\\Animation-Model-Trai                          \r\n                             ning\\reviews\\codex-super                          \r\n                             vision\\2026-10-05-three-                          \r\n                             gates\\execution-bd750881                          \r\n                             26e7415c9be930eaff655024                          \r\n                             \\media\\videos\\scene\\480p                          \r\n                             15\\ConceptScene.mp4'                              \r\n                                                                               \r\n                    INFO     Rendered ConceptScene                 scene.py:290\r\n                             Played 1 animations                               \r\n",
+        "stderr": "\n** (process:42852): WARNING **: 02:08:53.457: IDWriteFontFamily::GetFont failed with error code 88985004\n\n\n** (process:42852): WARNING **: 02:08:53.731: IDWriteFontFamily::GetFont failed with error code 88985004\n\n",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024",
+        "source_sha256": "5cca98199220f6be7dbbae0159eb05324d94695de4fa619aada74d5e001f880d",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024\\bootstrap.py",
+          "render",
+          "-ql",
+          "--format=mp4",
+          "--media_dir",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024\\media",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024\\scene.py",
+          "ConceptScene"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3521368713-665437406-1129872155-347631107-3316883224-1277740715-1286638020"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 13980,
+          "private_profile": {
+            "profile_name": "animtrain-job-729cd1c4996642cdb3e9ba798f428933",
+            "sid": "S-1-15-2-3521368713-665437406-1129872155-347631107-3316883224-1277740715-1286638020",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-729cd1c4996642cdb3e9ba798f428933\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "isolation": {
+        "backend": "windows_appcontainer",
+        "shell": false,
+        "memory_limit_mb": 2048,
+        "job_assigned": true,
+        "network_isolated": true,
+        "fs_isolation": "private_per_run",
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3521368713-665437406-1129872155-347631107-3316883224-1277740715-1286638020"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 13980,
+          "private_profile": {
+            "profile_name": "animtrain-job-729cd1c4996642cdb3e9ba798f428933",
+            "sid": "S-1-15-2-3521368713-665437406-1129872155-347631107-3316883224-1277740715-1286638020",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-729cd1c4996642cdb3e9ba798f428933\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-bd75088126e7415c9be930eaff655024",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      }
+    },
+    "files": {
+      "transport": {
+        "rc": 0,
+        "stdout": "{\"file_read_outside\": \"denied\", \"file_write_outside\": \"denied\", \"file_write_runtime\": \"denied\", \"cross_run_write\": \"denied\", \"cross_run_cache_write\": \"denied\"}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-689d2b31cd3b4bef8cf06cbdc0000c08",
+        "source_sha256": "d8d35bc10e2c1d07d215ef4ea8f343c6c0bf6fefa5e58e84ae63716e79b0eb25",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-689d2b31cd3b4bef8cf06cbdc0000c08\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3855936784-4238265094-2454180825-4112312462-2724307964-2387331352-458600372"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 40300,
+          "private_profile": {
+            "profile_name": "animtrain-job-992625c92fac44e4b95163ebd23f2fd9",
+            "sid": "S-1-15-2-3855936784-4238265094-2454180825-4112312462-2724307964-2387331352-458600372",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-992625c92fac44e4b95163ebd23f2fd9\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-689d2b31cd3b4bef8cf06cbdc0000c08",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "attempts": [
+        [
+          "file_read_outside",
+          "read",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\joint-private-sentinel.txt"
+        ],
+        [
+          "file_write_outside",
+          "write",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\joint-outside-write-marker.txt"
+        ],
+        [
+          "file_write_runtime",
+          "write",
+          "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real\\joint-write-marker.txt"
+        ],
+        [
+          "cross_run_write",
+          "write",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\cross-run-marker.txt"
+        ],
+        [
+          "cross_run_cache_write",
+          "write",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-e625419b074c4753a4d328168ea6e46b\\state\\config\\cross-run-marker.txt"
+        ]
+      ],
+      "private_before_sha256": "1f4b64635c77b92e24dc2cb3cb9c5ddf6fbf1425b5f66467cda24188ef957482",
+      "private_after_sha256": "1f4b64635c77b92e24dc2cb3cb9c5ddf6fbf1425b5f66467cda24188ef957482",
+      "markers_absent": {
+        "file_write_outside": true,
+        "file_write_runtime": true,
+        "cross_run_write": true,
+        "cross_run_cache_write": true
+      }
+    },
+    "local_network": {
+      "transport": {
+        "rc": 0,
+        "stdout": "{\"tcp_loopback_v4\": {\"outcome\": \"error\", \"winerror\": null}, \"tcp_loopback_v6\": {\"outcome\": \"error\", \"winerror\": null}, \"udp_loopback_v4\": {\"outcome\": \"sent\"}, \"udp_loopback_v6\": {\"outcome\": \"sent\"}}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-21667d0d751041f1bab45f8be6c98bdf",
+        "source_sha256": "b2ea29f6fc9d78e647517f93452f4763248b7df1ff981a976e08fee4df79c3e7",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-21667d0d751041f1bab45f8be6c98bdf\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-433515301-2952114442-2956915169-782263600-3732636059-2809113492-4210047696"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 44676,
+          "private_profile": {
+            "profile_name": "animtrain-job-52089cdb4706410da2e26d3dc2534815",
+            "sid": "S-1-15-2-433515301-2952114442-2956915169-782263600-3732636059-2809113492-4210047696",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-52089cdb4706410da2e26d3dc2534815\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-21667d0d751041f1bab45f8be6c98bdf",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "before": {
+        "tcp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "269952698ba04f2787c4cbc0acb38ffc"
+        },
+        "tcp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "853bdb4e125b4ab6af0313df77ce4ae9"
+        },
+        "udp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "898475c32ff94ba89d01f0c8b31fed76"
+        },
+        "udp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "e4d9fb54dfc544569e47bb63bce3ad48"
+        }
+      },
+      "after": {
+        "tcp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "f9cb600f41544370a13c7698ae8199c1"
+        },
+        "tcp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "da951ed8dfb44694b31d2411dc0aed85"
+        },
+        "udp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "5e821d99a9c4461b96f6908f05d0f3cb"
+        },
+        "udp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "cd2c6e9763b145f999326a67f4e61217"
+        }
+      },
+      "nonces": {
+        "before": {
+          "tcp_loopback_v4": "269952698ba04f2787c4cbc0acb38ffc",
+          "tcp_loopback_v6": "853bdb4e125b4ab6af0313df77ce4ae9",
+          "udp_loopback_v4": "898475c32ff94ba89d01f0c8b31fed76",
+          "udp_loopback_v6": "e4d9fb54dfc544569e47bb63bce3ad48"
+        },
+        "sandbox": {
+          "tcp_loopback_v4": "2f6a0362f83c4773805bc62f9e41b03b",
+          "tcp_loopback_v6": "328bcd759b2f48c482880a3e8faa74e2",
+          "udp_loopback_v4": "aee1757daa9441c8829317db1b4b4be7",
+          "udp_loopback_v6": "9d1e6af9bbf941ae8be282c55d72ce95"
+        },
+        "after": {
+          "tcp_loopback_v4": "f9cb600f41544370a13c7698ae8199c1",
+          "tcp_loopback_v6": "da951ed8dfb44694b31d2411dc0aed85",
+          "udp_loopback_v4": "5e821d99a9c4461b96f6908f05d0f3cb",
+          "udp_loopback_v6": "cd2c6e9763b145f999326a67f4e61217"
+        }
+      },
+      "packets": {
+        "tcp_loopback_v4": [
+          {
+            "hex": "3236393935323639386261303466323738376334636263306163623338666663",
+            "at": 1791137380.6110058
+          },
+          {
+            "hex": "6639636236303066343135343433373061313363373639386165383139396331",
+            "at": 1791137428.6082146
+          }
+        ],
+        "tcp_loopback_v6": [
+          {
+            "hex": "3835336264623465313235623461623661663033313364663737636534616539",
+            "at": 1791137380.6112807
+          }
+        ],
+        "udp_loopback_v4": [
+          {
+            "hex": "3839383437356333326666393462613839643031663063386233316665643736",
+            "at": 1791137380.6114235
+          }
+        ],
+        "udp_loopback_v6": [
+          {
+            "hex": "6534643966623534646663353434353639653437626236336263653361643438",
+            "at": 1791137380.6115596
+          }
+        ]
+      },
+      "observation_seconds": 20,
+      "receiver_complete": true
+    },
+    "external_network": {
+      "transport": {
+        "rc": 0,
+        "stdout": "{\"tcp_external_v4\": {\"outcome\": \"error\", \"winerror\": 10013}, \"tcp_external_v6\": {\"outcome\": \"error\", \"winerror\": 10013}}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7b38ab0e687748e5a12aa931a0458235",
+        "source_sha256": "369fa66afd2a0280ca986dc3e317ca0cfdfd9c4106f478bc502935516183078a",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7b38ab0e687748e5a12aa931a0458235\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-313014905-1857681253-1164641133-854416269-3701866040-4130514870-2398570962"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 38140,
+          "private_profile": {
+            "profile_name": "animtrain-job-dbaab319220f48e59640a1dddadda3ef",
+            "sid": "S-1-15-2-313014905-1857681253-1164641133-854416269-3701866040-4130514870-2398570962",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-dbaab319220f48e59640a1dddadda3ef\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7b38ab0e687748e5a12aa931a0458235",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "before": {
+        "tcp_external_v4": "connected",
+        "tcp_external_v6": "connected"
+      },
+      "after": {
+        "tcp_external_v4": "connected",
+        "tcp_external_v6": "connected"
+      },
+      "endpoints": [
+        [
+          "tcp_external_v4",
+          2,
+          [
+            "1.1.1.1",
+            443
+          ]
+        ],
+        [
+          "tcp_external_v6",
+          23,
+          [
+            "2606:4700:4700::1111",
+            443,
+            0,
+            0
+          ]
+        ]
+      ]
+    },
+    "root_exit_tree": {
+      "transport": {
+        "rc": 0,
+        "stdout": "{\"child_pid\": 44088}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-130be6c77df14789b57b656e5c812a4d",
+        "source_sha256": "dffb87535f53165b9634343289ae72fe6cf7df3615c3285f382b27beffd69931",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-130be6c77df14789b57b656e5c812a4d\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-1916991043-2937414194-2091206429-2102324101-1214521965-3110016645-4265553657"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 31772,
+          "private_profile": {
+            "profile_name": "animtrain-job-2ce65ad4ffdd444a8205ef90e4017578",
+            "sid": "S-1-15-2-1916991043-2937414194-2091206429-2102324101-1214521965-3110016645-4265553657",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-2ce65ad4ffdd444a8205ef90e4017578\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-130be6c77df14789b57b656e5c812a4d",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "timed_out": false,
+      "child_state": {
+        "dead": true,
+        "error": 87
+      }
+    },
+    "timeout_tree": {
+      "timed_out": true,
+      "parent_evidence": {
+        "token": {
+          "api_ok": true,
+          "is_appcontainer": true,
+          "capability_count": 0,
+          "sid": "S-1-15-2-287616902-2529832316-3840251386-2360860324-3946364240-3574504889-882499817"
+        },
+        "memory_limit_mb": 2048,
+        "created_suspended": true,
+        "job_assigned_before_resume": true,
+        "tree_stopped": true,
+        "pid": 27896,
+        "private_profile": {
+          "profile_name": "animtrain-job-092c8319b13140239d985c4120774636",
+          "sid": "S-1-15-2-287616902-2529832316-3840251386-2360860324-3946364240-3574504889-882499817",
+          "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-092c8319b13140239d985c4120774636\\AC",
+          "temporary_acl": [
+            {
+              "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-ec3dba9f718d48fd9845cca4d5a3a0ec",
+              "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.venv",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Python",
+              "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "restored": true
+            }
+          ],
+          "cleanup_complete": true
+        }
+      },
+      "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-ec3dba9f718d48fd9845cca4d5a3a0ec",
+      "stdout": "{\"child_pid\": 3844}\r\n",
+      "child_state": {
+        "dead": true,
+        "error": 87
+      }
+    },
+    "memory_limit": {
+      "transport": {
+        "rc": 17,
+        "stdout": "{\"memory_denied\": true, \"allocated_chunks\": 31, \"chunk_bytes\": 67108864}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6cb7245a98124ee0833741764b1924d1",
+        "source_sha256": "903a8f205844859e679c3ecf247ca8e351bf7f5f68beb5b5d2062d9b80c341d2",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6cb7245a98124ee0833741764b1924d1\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-1409837944-2995378376-4161022600-2003143909-1603660690-716262635-175133261"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 26268,
+          "private_profile": {
+            "profile_name": "animtrain-job-5d6745c358984b4e8552d0cb59eadd12",
+            "sid": "S-1-15-2-1409837944-2995378376-4161022600-2003143909-1603660690-716262635-175133261",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-5d6745c358984b4e8552d0cb59eadd12\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6cb7245a98124ee0833741764b1924d1",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      }
+    }
+  },
+  "production_gate": "CLOSED",
+  "complete": true,
+  "implementation_unchanged": true
+}

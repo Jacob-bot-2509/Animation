@@ -1,0 +1,101 @@
+[
+  {
+    "case": "selftest_failed",
+    "exit_code": 0,
+    "mocked_grants": [
+      "support/file-work-aaaaaaaaaaaa"
+    ],
+    "json_records": [
+      {
+        "schema": 1,
+        "run_id": "aaaaaaaaaaaa",
+        "contract": "local-file-acl-v1",
+        "scope": "\u4ec5\u672c\u6b21\u5177\u540d\u76ee\u5f55/\u64cd\u4f5c\u7684\u672c\u5730\u6587\u4ef6\u8bfb\u5199\u9694\u79bb;\u4e0d\u6784\u6210\u6574\u4f53\u6587\u4ef6\u9694\u79bb\u6216\u751f\u4ea7\u653e\u884c\u7ed3\u8bba",
+        "state": "COMPLETE",
+        "overall": "PASS_LOCAL_FILE_ACL",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "file_acceptance.py"
+        ],
+        "work": "support/file-work-aaaaaaaaaaaa",
+        "denied_dir": "support/file-denied-aaaaaaaaaaaa",
+        "runtime": "runtime/python.exe",
+        "profile": "profile",
+        "expected_sid": "S-1-15-2-123",
+        "pre_granted_acl": [
+          [
+            "support/file-work-aaaaaaaaaaaa",
+            "read_write"
+          ]
+        ],
+        "allowed_dirs": [],
+        "sandbox_env": {
+          "SYSTEMROOT": "C:\\Windows",
+          "SystemDrive": "C:",
+          "windir": "C:\\windows",
+          "USERNAME": "Jacap",
+          "USERDOMAIN": "JACAPO",
+          "PATH": "runtime;C:\\Windows\\System32",
+          "TEMP": "support/file-work-aaaaaaaaaaaa",
+          "TMP": "support/file-work-aaaaaaaaaaaa",
+          "LOCALAPPDATA": "profile",
+          "APPDATA": "profile",
+          "USERPROFILE": "profile",
+          "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+        },
+        "negative_regressions": {
+          "all_hold": false,
+          "cases": []
+        },
+        "source_hashes": {
+          "script_sha256": "1589780eab7c8d7274f2b6528417aa9b3e5689e9001648820b44da40b93f6a4a",
+          "appcontainer_sha256": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+          "win_job_sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+          "runtime_python_sha256": "d50fa1b5c9299e5f5b8ecd359ee4c479446017f0a82a02d7766d15ae225da36e",
+          "client_file_sha256": "d50fa1b5c9299e5f5b8ecd359ee4c479446017f0a82a02d7766d15ae225da36e"
+        },
+        "case": {
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "synthetic": true
+        }
+      }
+    ]
+  },
+  {
+    "case": "case_error",
+    "exit_code": 2,
+    "mocked_grants": [
+      "support/file-work-aaaaaaaaaaaa"
+    ],
+    "json_records": [
+      {
+        "error": "RuntimeError('injected failure')",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\code\\output\\claude-supervision\\acceptance-next-2026-10-04\\file_acceptance-snapshot.py\", line 456, in main\n    results[\"case\"] = _case(work, denied_dir, runtime, env, expected_sid,\n                      ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                            client)\n                            ^^^^^^^\n  File \"<stdin>\", line 20, in fake_case\nRuntimeError: injected failure\n",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "file_acceptance.py"
+        ],
+        "run_id": "aaaaaaaaaaaa",
+        "partial_results_keys": [
+          "schema",
+          "run_id",
+          "contract",
+          "scope",
+          "state",
+          "overall",
+          "command",
+          "work",
+          "denied_dir",
+          "runtime",
+          "profile",
+          "expected_sid",
+          "pre_granted_acl",
+          "allowed_dirs",
+          "sandbox_env",
+          "negative_regressions",
+          "source_hashes"
+        ]
+      }
+    ]
+  }
+]

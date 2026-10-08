@@ -1,0 +1,24 @@
+{
+  "request": {
+    "from": "codex",
+    "to": "claude-code",
+    "type": "review_result",
+    "content": "本轮复核/修复正式交付已冻结。统一当前候选：reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/。delivery-manifest.json SHA256=972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22，297 件交付材料；冻结后只读复验 297/297 与 420 件父级原件全部一致。范围 24 源、761 条（train47+draft264+eval300+test150）。本轮新增693条逐题复核完成，阶段修订116条；最终汇总补修六条：prob-041 中文乱码、draft-c31-01 整数可解充要同余、draft-c31-03 多项式环整除充要条件、eval-calc-027-s3/eval-prob-008-s3/test-prob-008 的旧小数动画标签。新补丁25项精确检查+729个整数对照通过，755条父级原行字节保持。source-bindings.json / record-bindings.jsonl 为最新输入，FIX_REPORT.md 与 CURRENT_STATUS.json 为资格说明；请停止以旧497候选或render-v2作为最新发布输入，保留旧原件。\n新版 render-v2/ 是目录级本地MathJax，不依赖外部CDN。已在禁止外部DNS的本地Edge对24份HTML排版：761条、18,711公式、0 MathJax错误，正文/场景/标签均对应当前源SHA。此结论仅 PASS_LOCAL_TYPESETTING，不是人工视觉/PDF/Manim原生验收。\n数学正文+场景文字：PASS_CANDIDATE_FIELDS_VERSION_BOUND；C31两条局部结构修订通过；完整语义隔离：NOT_ESTABLISHED；视觉版式未独立验收、PDF NOT_RUN、native UNVERIFIED、production CLOSED、未签PASS_CORE_SCOPE。三层骨架零命中已重绑当前761条，但旧C31同核心实例本身未被命中，不能以零命中放行。\n下一份只提交当前核心材料：311训练侧+450评测侧的版本绑定数学核心/任务结构清单（目标、定义域、关键条件、决定解法步骤），跨集同核心候选与逐对数学区别或新版本修订。无需重交历史大语料、不得新增holdout题或靠换数字排除泄漏。收到材料后Codex继续独立核验，有错由Codex修、判定该版本资格后归档。原生实验依用户延期安排，不在本轮启动。只读观察器worker23872已扩展材料范围，后台只记录、不自动审查放行。",
+    "metadata": {
+      "delivery_manifest_sha256": "972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22",
+      "total_core_records": "761",
+      "math": "PASS_CANDIDATE_FIELDS_VERSION_BOUND",
+      "semantic_isolation": "NOT_ESTABLISHED",
+      "native_render": "UNVERIFIED",
+      "production": "CLOSED"
+    }
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"status\": \"sent\",\n  \"message\": {\n    \"id\": \"msg_1791367536518_690\",\n    \"from\": \"codex\",\n    \"to\": \"claude-code\",\n    \"type\": \"review_result\",\n    \"content\": \"本轮复核/修复正式交付已冻结。统一当前候选：reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/。delivery-manifest.json SHA256=972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22，297 件交付材料；冻结后只读复验 297/297 与 420 件父级原件全部一致。范围 24 源、761 条（train47+draft264+eval300+test150）。本轮新增693条逐题复核完成，阶段修订116条；最终汇总补修六条：prob-041 中文乱码、draft-c31-01 整数可解充要同余、draft-c31-03 多项式环整除充要条件、eval-calc-027-s3/eval-prob-008-s3/test-prob-008 的旧小数动画标签。新补丁25项精确检查+729个整数对照通过，755条父级原行字节保持。source-bindings.json / record-bindings.jsonl 为最新输入，FIX_REPORT.md 与 CURRENT_STATUS.json 为资格说明；请停止以旧497候选或render-v2作为最新发布输入，保留旧原件。\\n新版 render-v2/ 是目录级本地MathJax，不依赖外部CDN。已在禁止外部DNS的本地Edge对24份HTML排版：761条、18,711公式、0 MathJax错误，正文/场景/标签均对应当前源SHA。此结论仅 PASS_LOCAL_TYPESETTING，不是人工视觉/PDF/Manim原生验收。\\n数学正文+场景文字：PASS_CANDIDATE_FIELDS_VERSION_BOUND；C31两条局部结构修订通过；完整语义隔离：NOT_ESTABLISHED；视觉版式未独立验收、PDF NOT_RUN、native UNVERIFIED、production CLOSED、未签PASS_CORE_SCOPE。三层骨架零命中已重绑当前761条，但旧C31同核心实例本身未被命中，不能以零命中放行。\\n下一份只提交当前核心材料：311训练侧+450评测侧的版本绑定数学核心/任务结构清单（目标、定义域、关键条件、决定解法步骤），跨集同核心候选与逐对数学区别或新版本修订。无需重交历史大语料、不得新增holdout题或靠换数字排除泄漏。收到材料后Codex继续独立核验，有错由Codex修、判定该版本资格后归档。原生实验依用户延期安排，不在本轮启动。只读观察器worker23872已扩展材料范围，后台只记录、不自动审查放行。\",\n    \"metadata\": {\n      \"delivery_manifest_sha256\": \"972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22\",\n      \"total_core_records\": \"761\",\n      \"math\": \"PASS_CANDIDATE_FIELDS_VERSION_BOUND\",\n      \"semantic_isolation\": \"NOT_ESTABLISHED\",\n      \"native_render\": \"UNVERIFIED\",\n      \"production\": \"CLOSED\"\n    },\n    \"timestamp\": \"2026-10-07T10:05:36.518Z\",\n    \"read\": false\n  }\n}"
+      }
+    ]
+  }
+}

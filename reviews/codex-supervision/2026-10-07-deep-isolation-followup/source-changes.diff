@@ -1,0 +1,821 @@
+--- received/tools/core_signatures.py
++++ repaired/tools/core_signatures.py
+@@ -10,11 +10,11 @@
+ 
+ ROOT=Path(__file__).resolve().parents[1]
+ 
+-CORE=ROOT/"reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2"
++CORE=ROOT/"reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3"
+ 
+ SIG_DIR=ROOT/"reviews/2026-10-07-semantic-core-lists"
+ 
+-CORE_MANIFEST_SHA256="78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5"
++CORE_MANIFEST_SHA256="e66ca4f1835667801cc20502818dbf3398308634e8dc2b9a7f1b182ba3805eda"
+ 
+ EXPECTED_GROUPS={"train":47,"selected_draft":264,"eval":300,"test":150}
+ 
+@@ -234,6 +234,10 @@
+ 
+     if path.is_relative_to(CORE) or path.is_relative_to(ROOT/"reviews/codex-supervision/2026-10-07-continuous-math-review/current-core"):raise ValueError("Cannot write into frozen core or its frozen parent")
+ 
++    for ancestor in (path, *path.parents):
++        if ancestor == ROOT / "reviews": break
++        if (ancestor / "delivery-manifest.json").is_file():
++            raise ValueError("Cannot write into a frozen archive")
+     return path
+ 
+ def publish(directory,files):
+--- received/tools/deep_isolation_candidates.py
++++ repaired/tools/deep_isolation_candidates.py
+@@ -1,155 +1,139 @@
+-"""全局语义隔离深层通道:同(category,sub_category)族跨集配对 + 签名相似度分级候选."""
++"""Version-bound family candidate screen. Non-hit is never semantic exclusion."""
+ from __future__ import annotations
+-import hashlib
++
++import argparse
++from collections import Counter, defaultdict
++from fractions import Fraction
+ import json
+-from collections import Counter, defaultdict
+ from pathlib import Path
++import sys
+ 
+-ROOT = Path(__file__).resolve().parents[1]
+-SUP = ROOT / "reviews/codex-supervision/2026-10-07-semantic-signature-supervision"
+-OUT = ROOT / "reviews/2026-10-07-semantic-core-lists"
++if str(Path(__file__).resolve().parent) not in sys.path:
++    sys.path.insert(0, str(Path(__file__).resolve().parent))
++import core_signatures as core
+ 
+-# 目标同义组:同一数学目标的不同表述(几何↔代数等)
+-GOAL_SYNONYMS = [
+-    {"求直线与平面交点", "求直线与曲面交点", "求参数方程交点", "求方程组交点"},
+-    {"求两平面交线", "求平面交线参数方程"},
+-    {"求点面距离", "求点到平面距离"},
+-    {"求点到直线距离", "求点线距离"},
+-    {"求两平行平面距离", "求平行平面距离"},
+-    {"克拉默法则解方程组", "用克拉默法则求解方程组", "克拉默法则求解"},
+-    {"求矩阵逆", "求逆矩阵", "求矩阵的逆"},
+-    {"求特征值与特征向量", "求特征值特征向量", "求特征值和特征向量"},
+-    {"求条件概率", "求后验概率"},
+-    {"求二项尾概率", "求尾概率上界"},
+-    {"求极限", "计算极限", "求数列极限"},
+-    {"求两曲线围成面积", "计算两曲线围成面积", "求围成图形的面积", "计算封闭图形面积"},
+-    {"求旋转体体积", "计算旋转体体积"},
+-    {"判断级数敛散", "讨论级数敛散性", "判断级数收敛性"},
+-    {"求幂级数收敛域", "求级数收敛域"},
+-    {"求傅里叶展开", "傅里叶级数展开", "求傅里叶级数"},
+-    {"判断二次曲面类型", "指出二次曲面类型", "说明二次曲面类型"},
+-    {"求曲面切平面", "求切平面方程"},
+-    {"求直线与平面夹角", "求线面夹角"},
+-    {"求过三点平面方程", "求过三点平面"},
+-    {"求正态尾概率", "求正态分布概率"},
+-    {"求指数分布无记忆性", "证明无记忆性"},
+-    {"求几何分布期望", "求首次成功期望"},
+-]
++DEFAULT_INPUT = core.ROOT / "reviews/codex-supervision/2026-10-07-deep-isolation-followup/revised-complete-signatures-v3.jsonl"
++GOAL_SYNONYMS = (
++    ("求两平面交线", "求平面交线参数方程"),
++    ("求点面距离", "求点到平面距离"),
++    ("求点到直线距离", "求点线距离"),
++    ("求两平行平面距离", "求平行平面距离"),
++    ("克拉默法则解方程组", "用克拉默法则求解方程组", "克拉默法则求解"),
++    ("求矩阵逆", "求逆矩阵", "求矩阵的逆"),
++    ("求特征值与特征向量", "求特征值特征向量", "求特征值和特征向量"),
++    ("求两曲线围成面积", "计算两曲线围成面积", "求围成图形的面积", "计算封闭图形面积"),
++    ("求旋转体体积", "计算旋转体体积"),
++    ("判断级数敛散", "讨论级数敛散性", "判断级数收敛性"),
++    ("求幂级数收敛域", "求级数收敛域"),
++    ("求傅里叶展开", "傅里叶级数展开", "求傅里叶级数"),
++    ("求直线与平面夹角", "求线面夹角"),
++    ("求过三点平面方程", "求过三点平面"),
++)
++# Same goal labels can nominate pairs; they never certify task equivalence.
++def canon(text):
++    return text.strip().rstrip("。；; ")
+ 
++def synonym_group(goal):
++    goal = canon(goal)
++    for group in GOAL_SYNONYMS:
++        values = frozenset(map(canon, group))
++        if goal in values:
++            return values
++    return frozenset((goal,))
+ 
+-def digest(data: bytes) -> str:
+-    return hashlib.sha256(data).hexdigest()
++def jaccard(left, right):
++    a, b = set(map(canon, left)), set(map(canon, right))
++    return Fraction(len(a & b), len(a | b)) if a | b else Fraction(1)
+ 
++def population(input_path):
++    bindings = core.load_record_bindings()
++    by_id = {b["id"]: b for b in bindings}
++    sigs, inputs = core.read_signature_inputs([input_path], by_id)
++    if {s["id"] for s in sigs} != set(by_id):
++        raise ValueError("Complete current-core signature coverage required")
++    records = {rid: core.load_record(by_id, rid) for rid in by_id}
++    for record in records.values():
++        for name in ("category", "sub_category"):
++            if not isinstance(record.get(name), str) or not record[name].strip():
++                raise ValueError("Nonempty actual family metadata required")
++    return sigs, inputs, records
+ 
+-def canon(t: str) -> str:
+-    return t.strip().rstrip("。；; ")
+-
+-
+-def synonym_group(goal: str) -> frozenset:
+-    g = canon(goal)
+-    for group in GOAL_SYNONYMS:
+-        if g in group:
+-            return frozenset(canon(x) for x in group)
+-    return frozenset({g})
+-
+-
+-def jaccard(a: list, b: list) -> float:
+-    sa, sb = set(a), set(b)
+-    if not sa and not sb:
+-        return 1.0
+-    return len(sa & sb) / len(sa | sb)
+-
+-
+-def load_records() -> dict:
+-    """从 effective-core-v2 绑定加载记录元数据(category/sub_category)."""
+-    core = SUP / "effective-core-v2"
+-    man = json.loads((core / "delivery-manifest.json").read_text(encoding="utf-8-sig"))
+-    expected = "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5"
+-    if digest((core / "delivery-manifest.json").read_bytes()) != expected:
+-        raise ValueError("effective-core-v2 manifest changed")
+-    rb = [json.loads(l) for l in (core / "record-bindings.jsonl").read_text(encoding="utf-8-sig").splitlines()
+-          if l.strip()]
+-    if len(rb) != 761:
+-        raise ValueError("record bindings incomplete")
+-    cache = {}
+-    meta = {}
+-    for b in rb:
+-        src = b["path"]
+-        if src not in cache:
+-            data = (ROOT / src).read_bytes()
+-            if digest(data) != b["source_sha256"]:
+-                raise ValueError("source changed: " + src)
+-            cache[src] = data.splitlines(keepends=True)
+-        rec = json.loads(cache[src][b["source_line"] - 1].decode("utf-8-sig"))
+-        meta[b["id"]] = {"category": rec.get("category", ""),
+-                         "sub_category": rec.get("sub_category", ""),
+-                         "group": b["group"]}
+-    return meta
+-
+-
+-def main() -> int:
+-    sigs = [json.loads(l) for l in (SUP / "revised-complete-signatures-v2.jsonl")
+-            .read_text(encoding="utf-8-sig").splitlines() if l.strip()]
+-    by_id = {s["id"]: s for s in sigs}
+-    if len(by_id) != 761:
+-        raise ValueError("signature count != 761")
+-    meta = load_records()
+-    train_side = [s for s in sigs if s["group"] in ("train", "selected_draft")]
+-    eval_side = [s for s in sigs if s["group"] in ("eval", "test")]
+-
+-    # 1) 同族跨集配对计数
++def build_report(sigs, inputs, records):
++    groups = dict(Counter(s["group"] for s in sigs))
++    if groups != core.EXPECTED_GROUPS or len({s["id"] for s in sigs}) != len(sigs):
++        raise ValueError("Population/group mismatch")
++    train = [s for s in sigs if s["group"] in ("train", "selected_draft")]
++    evaluation = [s for s in sigs if s["group"] in ("eval", "test")]
+     family = defaultdict(lambda: {"train": [], "eval": []})
+-    for s in train_side:
+-        m = meta[s["id"]]
+-        family[(m["category"], m["sub_category"])]["train"].append(s)
+-    for s in eval_side:
+-        m = meta[s["id"]]
+-        family[(m["category"], m["sub_category"])]["eval"].append(s)
+-    total_pairs = 0
+-    fam_lines = []
++    for side, signatures in (("train", train), ("eval", evaluation)):
++        for sig in signatures:
++            record = records[sig["id"]]
++            family[(record["category"], record["sub_category"])][side].append(sig)
++    candidates, family_counts = [], []
+     for (cat, sub), sides in sorted(family.items()):
+-        pairs = len(sides["train"]) * len(sides["eval"])
+-        total_pairs += pairs
+-        if pairs:
+-            fam_lines.append((pairs, cat, sub, len(sides["train"]), len(sides["eval"])))
+-    print(f"同族跨集配对总数: {total_pairs}")
+-    print("前 12 大族:")
+-    for pairs, cat, sub, nt, ne in sorted(fam_lines, reverse=True)[:12]:
+-        print(f"  {pairs:>5} 对  {cat}/{sub}  (train侧{nt} × eval侧{ne})")
+-
+-    # 2) 候选过滤:同族 且 (目标同义组相同 或 步骤Jaccard≥0.25)
+-    candidates = []
+-    for (cat, sub), sides in family.items():
++        nt, ne = len(sides["train"]), len(sides["eval"])
++        if nt * ne:
++            family_counts.append({"category": cat, "sub_category": sub, "train_side": nt, "eval_side": ne, "pairs": nt * ne})
+         for t in sides["train"]:
+             for e in sides["eval"]:
+-                same_goal = synonym_group(t["goal"]) == synonym_group(e["goal"])
+-                jac = jaccard(t["decisive_steps"], e["decisive_steps"])
+-                if same_goal or jac >= 0.25:
+-                    candidates.append({
+-                        "train_id": t["id"], "eval_id": e["id"],
+-                        "eval_group": e["group"], "category": cat, "sub_category": sub,
+-                        "same_goal_group": same_goal,
+-                        "steps_jaccard": round(jac, 3),
+-                        "train_goal": t["goal"], "eval_goal": e["goal"],
+-                        "train_domain": t["domain"], "eval_domain": e["domain"],
+-                        "train_conditions": t["key_conditions"], "eval_conditions": e["key_conditions"],
+-                        "train_steps": t["decisive_steps"], "eval_steps": e["decisive_steps"],
+-                        "train_record_sha256": t["record_sha256"],
+-                        "eval_record_sha256": e["record_sha256"],
+-                        "disposition": "UNREVIEWED",
+-                    })
+-    out = OUT / "deep-candidates-v1.json"
+-    with out.open("w", encoding="utf-8", newline="\n") as f:
+-        json.dump({"schema": "deep-semantic-candidates-v1",
+-                   "family_pairs_total": total_pairs,
+-                   "candidate_count": len(candidates),
+-                   "candidates": candidates}, f, ensure_ascii=False, indent=2)
+-        f.write("\n")
+-    b = out.read_bytes()
+-    print(f"\n候选过滤后: {len(candidates)} 对 -> {out.relative_to(ROOT)}")
+-    print(f"sha256={digest(b)}  bytes={len(b)}")
++                same = synonym_group(t["goal"]) == synonym_group(e["goal"])
++                score = jaccard(t["decisive_steps"], e["decisive_steps"])
++                if not same and score < Fraction(1, 4):
++                    continue
++                candidates.append({
++                    "train_id": t["id"], "eval_id": e["id"], "eval_group": e["group"],
++                    "category": cat, "sub_category": sub, "same_goal_group": same,
++                    "steps_jaccard": str(score),
++                    **{"train_" + key: t[key] for key in ("goal", "domain", "record_sha256", "math_sha256")},
++                    **{"eval_" + key: e[key] for key in ("goal", "domain", "record_sha256", "math_sha256")},
++                    "train_conditions": t["key_conditions"], "eval_conditions": e["key_conditions"],
++                    "train_steps": t["decisive_steps"], "eval_steps": e["decisive_steps"],
++                    "disposition": "UNREVIEWED",
++                })
++    candidates.sort(key=lambda c: (c["train_id"], c["eval_id"]))
++    family_total = sum(f["pairs"] for f in family_counts)
++    all_pairs = len(train) * len(evaluation)
++    return {
++        "schema": "deep-semantic-candidates-v2",
++        "core_manifest_sha256": core.CORE_MANIFEST_SHA256,
++        "input_bindings": inputs, "actual_sources_and_records_verified": True,
++        "signature_coverage": "COMPLETE", "covered_groups": groups,
++        "train_side": len(train), "eval_side": len(evaluation),
++        "all_record_pairs": all_pairs, "family_pairs_total": family_total,
++        "outside_family_pairs_not_screened": all_pairs - family_total,
++        "family_pair_counts": family_counts,
++        "filter": {"same_goal_label_group": True, "steps_jaccard_minimum": "1/4", "family_required": True},
++        "candidate_count": len(candidates), "candidates": candidates,
++        "family_pairs_not_flagged": family_total - len(candidates),
++        "nonflagged_semantic_verdict": "NOT_REVIEWED",
++        "candidate_generation_exhaustive": False,
++        "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED", "PASS_CORE_SCOPE_issued": False,
++        "limitations": [
++            "Only identical actual category/sub_category families are screened.",
++            "Finite goal aliases and literal step sets miss synonymous or reformulated cores.",
++            "Unflagged pairs are not semantically excluded; zero candidates cannot certify isolation.",
++            "Extra training subquestions do not remove leakage of an embedded evaluation task.",
++        ],
++    }
++
++def generate(input_path, out_path):
++    sigs, inputs, records = population(input_path)
++    report = build_report(sigs, inputs, records)
++    report["generator_sha256"] = core.digest(Path(__file__).read_bytes())
++    core.publish(out_path, {"deep-candidates.json": core.encoded(report)})
++    print(json.dumps({k: report[k] for k in ("candidate_count", "family_pairs_total", "family_pairs_not_flagged", "semantic_isolation")}, ensure_ascii=False))
+     return 0
+ 
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
++    parser.add_argument("--out", type=Path, required=True)
++    args = parser.parse_args(argv)
++    try:
++        return generate(args.input, args.out)
++    except (ValueError, KeyError, TypeError, IndexError, OSError) as exc:
++        print(json.dumps({"status": "FAIL_BOUND_CANDIDATE_SCREEN", "error": str(exc), "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED"}, ensure_ascii=False))
++        return 2
+ 
+ if __name__ == "__main__":
+     raise SystemExit(main())
+--- received/tools/deep_candidates_dispositions.py
++++ repaired/tools/deep_candidates_dispositions.py
+@@ -1,98 +1,88 @@
+-"""深层候选逐对裁决:DIFFERENT_CORE(附数学区别) 或 NEEDS_CODEX(边界交裁决)."""
++"""Validate explicit version-bound pair decisions; never certify global isolation."""
+ from __future__ import annotations
+-import hashlib
++
++import argparse
++from collections import Counter
+ import json
+ from pathlib import Path
++import sys
+ 
+-ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / "reviews/2026-10-07-semantic-core-lists"
++if str(Path(__file__).resolve().parent) not in sys.path:
++    sys.path.insert(0, str(Path(__file__).resolve().parent))
++import deep_isolation_candidates as deep
++core = deep.core
+ 
++def disposed(candidate_path, expected_sha256, decisions_path, out_path):
++    raw = core.checked_path(candidate_path, core.ROOT).read_bytes()
++    if core.digest(raw) != expected_sha256:
++        raise ValueError("Candidate submission hash mismatch")
++    candidate = core.read_json(raw)
++    if candidate.get("core_manifest_sha256") != core.CORE_MANIFEST_SHA256:
++        raise ValueError("Candidate refers to a different current core")
++    inputs = candidate["input_bindings"]
++    if len(inputs) != 1:
++        raise ValueError("Exactly one complete signature input required")
++    sig_path = core.checked_path(core.ROOT / inputs[0]["path"], core.ROOT)
++    sigs, actual_inputs, records = deep.population(sig_path)
++    expected = deep.build_report(sigs, actual_inputs, records)
++    generator_hash = core.digest(Path(deep.__file__).read_bytes())
++    expected["generator_sha256"] = generator_hash
++    if candidate != expected:
++        raise ValueError("Candidate content/source/counts differ from actual recomputation")
++    decision_raw = core.checked_path(decisions_path, core.ROOT).read_bytes()
++    decision_doc = core.read_json(decision_raw)
++    if decision_doc.get("candidate_sha256") != expected_sha256:
++        raise ValueError("Decision document not bound to submitted candidate version")
++    by_pair = {(c["train_id"], c["eval_id"]): c for c in candidate["candidates"]}
++    seen, rows = set(), []
++    for d in decision_doc["rows"]:
++        key = (d["train_id"], d["eval_id"])
++        if key in seen or key not in by_pair:
++            raise ValueError("Duplicate/unknown decision pair")
++        seen.add(key)
++        c = by_pair[key]
++        for f in ("train_record_sha256", "eval_record_sha256"):
++            if d.get(f) != c[f]:
++                raise ValueError("Decision record version mismatch")
++        if d.get("verdict") not in ("SAME_CORE", "DIFFERENT_CORE", "NEEDS_REVIEW"):
++            raise ValueError("Invalid decision verdict")
++        reason = d.get("pairwise_reason")
++        if not isinstance(reason, str) or not reason.strip():
++            raise ValueError("Nonempty independent mathematical reason required")
++        rows.append({**c, "disposition": d["verdict"], "pairwise_reason": reason})
++    if seen != set(by_pair):
++        raise ValueError("Missing candidate pair dispositions")
++    counts = Counter(r["disposition"] for r in rows)
++    report = {
++        "schema": "deep-candidates-disposed-v2", "core_manifest_sha256": core.CORE_MANIFEST_SHA256,
++        "candidate_binding": {"path": candidate_path.relative_to(core.ROOT).as_posix(), "sha256": expected_sha256},
++        "decision_binding": {"path": decisions_path.relative_to(core.ROOT).as_posix(), "sha256": core.digest(decision_raw)},
++        "disposer_sha256": core.digest(Path(__file__).read_bytes()),
++        "family_pairs_total": candidate["family_pairs_total"], "flagged_pairs": len(rows),
++        "same_core": counts["SAME_CORE"], "different_core": counts["DIFFERENT_CORE"], "needs_review": counts["NEEDS_REVIEW"],
++        "family_pairs_not_flagged": candidate["family_pairs_not_flagged"],
++        "nonflagged_semantic_verdict": "NOT_REVIEWED",
++        "outside_family_pairs_not_screened": candidate["outside_family_pairs_not_screened"],
++        "rows": rows, "decision_packaging": "PASS_VERSION_BOUND_DECISION_PACKAGING",
++        "independent_reason_correctness": "REQUIRES_SEPARATE_REVIEW_RECEIPT",
++        "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED", "PASS_CORE_SCOPE_issued": False,
++    }
++    core.publish(out_path, {"deep-candidates-disposed.json": core.encoded(report)})
++    print(json.dumps({k: report[k] for k in ("flagged_pairs", "same_core", "different_core", "needs_review", "semantic_isolation")}, ensure_ascii=False))
++    return 3 if counts["SAME_CORE"] or counts["NEEDS_REVIEW"] else 0
+ 
+-def digest(data: bytes) -> str:
+-    return hashlib.sha256(data).hexdigest()
+-
+-
+-VERDICTS = {
+-    ("draft-c36-03", "eval-linalg-021-s1"): (
+-        "NEEDS_CODEX",
+-        "同目标'求二次型正定参数范围'+同族+共享'顺序主子式';结构差异:训练侧参数在对角z²系数"
+-        "(Δ3=a→a>0),评测侧参数在交叉项xz(Δ3=2-a²→|a|<√2);训练侧另要求a=0半正定/a<0不定的退化讨论。"
+-        "按c31从宽原则交Codex裁决"),
+-    ("draft-c36-03", "eval-linalg-021-s2"): (
+-        "NEEDS_CODEX",
+-        "同目标同族;训练侧顺序主子式,评测侧配方——方法不同但任务同型、阈值同型(|a|<常数)。交裁决"),
+-    ("draft-c36-03", "eval-linalg-021-s3"): (
+-        "NEEDS_CODEX",
+-        "同目标同族;训练侧顺序主子式,评测侧Schur补。任务同型。交裁决"),
+-    ("linalg-051", "eval-linalg-022-s1"): (
+-        "NEEDS_CODEX",
+-        "同目标'多项式因式分解'+同族+共享'有理根定理';差异:训练侧三次(x³-6x²+11x-6,根1,2,3)"
+-        "且多要求根分布讨论,评测侧四次(x⁴+2x³-7x²-8x+12,根1,2,-2,-3)。方法完全可迁移,交裁决"),
+-    ("draft-c02-01", "eval-calc-019-s1"): (
+-        "DIFFERENT_CORE",
+-        "训练侧为振荡型反常积分(Fresnel)条件收敛+尾界证明;评测侧为指数衰减反常积分求值。"
+-        "核心对象(振荡vs指数)与任务(证明+界vs求值)均不同,仅共享'分部积分'这一泛用步骤"),
+-    ("draft-c30-01", "eval-linalg-024-s3"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:由零点重数条件构造多项式(整除性+定常数);评测侧:已知多项式按x-1展开(泰勒)。"
+-        "任务方向相反,仅共享'换元展开'泛用步骤"),
+-    ("draft-c35-01", "eval-linalg-021-s2"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:化标准形+求惯性指数(无参数);评测侧:求正定参数范围(含参)。目标不同,仅共享'配方'"),
+-    ("draft-c35-03", "eval-linalg-021-s2"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:求秩为1的参数+各参数标准形;评测侧:求正定参数范围。目标与判定量(秩vs正定)不同"),
+-    ("draft-c35-04", "eval-linalg-021-s2"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:化标准形+惯性(无参退化);评测侧:求正定参数范围。目标不同"),
+-    ("draft-c36-04", "eval-linalg-021-s2"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:判断半正定与秩(无参);评测侧:求正定参数范围(含参)。目标不同"),
+-    ("draft-c36-05", "eval-linalg-021-s1"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:构造反例(顺序主子式非负但非半正定);评测侧:判正定参数范围。任务相反(构造vs判定)"),
+-    ("draft-c37-05", "eval-linalg-026-s1"): (
+-        "DIFFERENT_CORE",
+-        "训练侧:证向量组为基+求坐标;评测侧:判断线性相关性。目标不同,仅共享'行列式'"),
+-}
+-
+-
+-def main() -> int:
+-    cand = json.loads((OUT / "deep-candidates-v1.json").read_text(encoding="utf-8-sig"))
+-    rows = []
+-    missing = []
+-    for c in cand["candidates"]:
+-        key = (c["train_id"], c["eval_id"])
+-        v = VERDICTS.get(key)
+-        if v is None:
+-            missing.append(key)
+-            continue
+-        rows.append({**c, "verdict": v[0], "pairwise_reason": v[1]})
+-    # 第二梯队 11 对也须有裁决(与第一梯队 3 对并集)
+-    report = {
+-        "schema": "deep-candidates-disposed-v1",
+-        "family_pairs_total": cand["family_pairs_total"],
+-        "flagged_pairs": len(rows),
+-        "needs_codex": sum(1 for r in rows if r["verdict"] == "NEEDS_CODEX"),
+-        "different_core": sum(1 for r in rows if r["verdict"] == "DIFFERENT_CORE"),
+-        "missing_dispositions": [list(k) for k in missing],
+-        "rows": rows,
+-        "honest_coverage": (
+-            "1131 同族跨集配对经(同义目标组∨步骤Jaccard≥0.5)得3对高信号+11对二梯队=14对已逐对裁决;"
+-            "其余1117对签名层面目标组不同且Jaccard<0.25,已由签名逐对计算排除,未逐对写理由;"
+-            "跨族同义核心(不同sub_category的几何↔代数改写)不在此通道覆盖内,如实保留风险"),
+-    }
+-    out = OUT / "deep-candidates-disposed-v1.json"
+-    with out.open("w", encoding="utf-8", newline="\n") as f:
+-        json.dump(report, f, ensure_ascii=False, indent=2)
+-        f.write("\n")
+-    b = out.read_bytes()
+-    print(f"裁决: {len(rows)} 对 (NEEDS_CODEX {report['needs_codex']}, DIFFERENT_CORE {report['different_core']})")
+-    if missing:
+-        print("缺裁决:", missing)
+-    print(f"回执: {out.relative_to(ROOT)}  sha256={digest(b)}  bytes={len(b)}")
+-    return 0
+-
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--candidates", type=Path, required=True)
++    parser.add_argument("--candidate-sha256", required=True)
++    parser.add_argument("--decisions", type=Path, required=True)
++    parser.add_argument("--out", type=Path, required=True)
++    args = parser.parse_args(argv)
++    try:
++        return disposed(args.candidates.absolute(), args.candidate_sha256, args.decisions.absolute(), args.out)
++    except (ValueError, KeyError, TypeError, IndexError, OSError) as exc:
++        print(json.dumps({"status": "FAIL_BOUND_PAIR_DISPOSITIONS", "error": str(exc), "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED"}, ensure_ascii=False))
++        return 2
+ 
+ if __name__ == "__main__":
+     raise SystemExit(main())
+--- received/tools/native_render_pilot.py
++++ repaired/tools/native_render_pilot.py
+@@ -1,149 +1,192 @@
+-"""原生渲染试点:当前核心修订记录 → 模板生成 Manim 场景 → venv 原生渲染(可信固定样例先行).
+-
+-口径:本地可信样例渲染,验证 LaTeX/MiKTeX/Pango 真实渲染;不是生产传输证据
+-(生产门 CLOSED,AppContainer 证书未签发),回执如实 LOCAL_RENDER_ONLY。
+-"""
++"""Compile actual complete mathematical formulas from version-bound trusted local records."""
+ from __future__ import annotations
+ import argparse
+-import hashlib
+ import json
++from pathlib import Path
+ import re
+ import subprocess
++import sys
+ import time
+-from pathlib import Path
++from fractions import Fraction
+ 
+-ROOT = Path(__file__).resolve().parents[1]
+-CORE = ROOT / "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2"
++if str(Path(__file__).resolve().parent) not in sys.path:
++    sys.path.insert(0, str(Path(__file__).resolve().parent))
++import core_signatures as core
++
++ROOT = core.ROOT
+ OUT = ROOT / "reviews/2026-10-07-native-render-pilot"
+ PY = ROOT / ".venv/Scripts/python.exe"
+-MATH_SPLIT = re.compile(r"\$([^$]+)\$")
++ID_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}")
+ 
++def escaped(text, index):
++    n = 0
++    while index > 0 and text[index - 1] == "\\":
++        n += 1
++        index -= 1
++    return bool(n % 2)
+ 
+-def digest(data: bytes) -> str:
+-    return hashlib.sha256(data).hexdigest()
++def extract_formulas(text):
++    if not isinstance(text, str):
++        raise ValueError("Math source must be text")
++    formulas, i = [], 0
++    while i < len(text):
++        if text[i] == "$" and not escaped(text, i):
++            delimiter = "$" if text.startswith("$", i) else "$"
++            start = i + len(delimiter)
++            end = start
++            while end < len(text):
++                if text.startswith(delimiter, end) and not escaped(text, end):
++                    break
++                end += 1
++            if end == len(text):
++                raise ValueError("Unclosed dollar math delimiter")
++            formula = text[start:end].strip()
++            i = end + len(delimiter)
++        elif text.startswith(r"\(", i) or text.startswith(r"\[", i):
++            closing = r"\)" if text.startswith(r"\(", i) else r"\]"
++            start = i + 2
++            end = text.find(closing, start)
++            if end < 0:
++                raise ValueError("Unclosed bracket math delimiter")
++            formula = text[start:end].strip()
++            i = end + 2
++        else:
++            i += 1
++            continue
++        if not formula:
++            raise ValueError("Empty mathematical formula")
++        formulas.append(formula)
++    return formulas
+ 
++def formula_inventory(record):
++    locations = []
++    for field in ("problem", "solution", "answer"):
++        for formula in extract_formulas(record[field]):
++            locations.append({"field": field, "formula": formula})
++    scene = record.get("scene_spec")
++    if scene is not None:
++        if not isinstance(scene, dict):
++            raise ValueError("Scene must be an object")
++        for field in ("objects", "steps"):
++            values = scene.get(field, [])
++            if not isinstance(values, list):
++                raise ValueError("Scene text must be a list")
++            for i, text in enumerate(values):
++                for formula in extract_formulas(text):
++                    locations.append({"field": "scene_spec." + field, "index": i, "formula": formula})
++    unique = list(dict.fromkeys(x["formula"] for x in locations))
++    if not unique:
++        raise ValueError("Record has no mathematical formulas to compile")
++    return unique, locations
+ 
+-def load_record(rid: str) -> tuple[dict, dict]:
+-    rows = [json.loads(l) for l in (CORE / "record-bindings.jsonl").read_text(encoding="utf-8-sig").splitlines()
+-            if l.strip()]
+-    b = next((r for r in rows if r["id"] == rid), None)
+-    if b is None:
+-        raise ValueError("unknown id: " + rid)
+-    lines = (ROOT / b["path"]).read_bytes().splitlines(keepends=True)
+-    rec = json.loads(lines[b["source_line"] - 1].decode("utf-8-sig"))
+-    return rec, b
++def build_scene(record):
++    formulas, _ = formula_inventory(record)
++    # Each exact source formula is the argument to MathTex; no filtering by length.
++    return (
++        "from manim import *\n"
++        "FORMULAS = " + repr(formulas) + "\n"
++        "class ConceptScene(Scene):\n"
++        "    def construct(self):\n"
++        "        maths = [MathTex(formula) for formula in FORMULAS]\n"
++        "        group = VGroup(*maths).arrange(DOWN, buff=1/4)\n"
++        "        group.scale(min((config.frame_width-1)/group.width, (config.frame_height-1)/group.height))\n"
++        "        self.add(group)\n"
++        "        self.wait(1/5)\n"
++    )
+ 
++def as_bytes(value):
++    if value is None:
++        return b""
++    return value if isinstance(value, bytes) else value.encode("utf-8", errors="replace")
+ 
+-def build_scene(rec: dict) -> str:
+-    """模板场景:先建全部 MathTex(修复顺序),再 Text 标签;不做动画."""
+-    formulas = []
+-    for field in ("problem", "solution", "answer"):
+-        text = rec.get(field) or ""
+-        formulas.extend(m for m in MATH_SPLIT.findall(text) if len(m) <= 200)
+-    spec = rec.get("scene_spec")
+-    if isinstance(spec, dict):
+-        for s in list(spec.get("objects") or []) + list(spec.get("steps") or []):
+-            formulas.extend(m for m in MATH_SPLIT.findall(s) if len(m) <= 200)
+-    # 去重保序
+-    seen, unique = set(), []
+-    for f in formulas:
+-        if f not in seen:
+-            seen.add(f)
+-            unique.append(f)
+-    lines = [
+-        "from manim import *",
+-        "import numpy as np",
+-        "class ConceptScene(Scene):",
+-        "    def construct(self):",
+-        "        # 修复顺序:所有 MathTex 先编译,再渲染 Text(Pango)",
+-        "        maths = [MathTex(r'%s') for r in ["
+-        % "",
+-    ]
+-    body = []
+-    for f in unique:
+-        body.append("            " + repr(f) + ",")
+-    if not body:
+-        body.append("            '\\\\text{(无公式)}',")
+-    lines.append("\n".join(body))
+-    lines.append("        ]]")
+-    lines.append("        group = VGroup(*maths)")
+-    lines.append("        group.arrange(DOWN, buff=0.25).scale_to_fit_width(config.frame_width - 1)")
+-    lines.append("        self.add(group)")
+-    lines.append("        label = Text('trusted-sample-render', font_size=24).to_corner(UL)")
+-    lines.append("        self.add(label)")
+-    lines.append("        self.wait(0.2)")
+-    return "\n".join(lines) + "\n"
++def render_one(rid, work, record, binding, timeout=240):
++    if not ID_RE.fullmatch(rid):
++        raise ValueError("Invalid output record ID")
++    work = core.checked_path(work, core.ROOT / "reviews")
++    work.mkdir(exist_ok=False)
++    formulas, locations = formula_inventory(record)
++    scene = work / "scene.py"
++    scene.write_text(build_scene(record), encoding="utf-8", newline="\n")
++    (work / "formula-inventory.json").write_bytes(core.encoded({"unique_formulas": formulas, "source_occurrences": locations}))
++    command = [str(PY), "-m", "manim", "render", str(scene), "ConceptScene", "-ql", "--media_dir", str(work / "media"), "--disable_caching"]
++    start = time.monotonic_ns()
++    try:
++        proc = subprocess.run(command, capture_output=True, timeout=timeout, cwd=str(work))
++        rc, stdout, stderr, timed_out = proc.returncode, proc.stdout, proc.stderr, False
++    except subprocess.TimeoutExpired as exc:
++        rc, stdout, stderr, timed_out = -1, as_bytes(exc.stdout), as_bytes(exc.stderr), True
++    elapsed = str(Fraction(time.monotonic_ns() - start, 1000000000))
++    (work / "stdout.bin").write_bytes(as_bytes(stdout))
++    (work / "stderr.bin").write_bytes(as_bytes(stderr))
++    videos = [core.checked_path(p, work) for p in (work / "media").rglob("ConceptScene.mp4") if p.is_file()]
++    valid_video = len(videos) == 1 and videos[0].stat().st_size > 0
++    success = type(rc) is int and rc == 0 and not timed_out and valid_video
++    return {
++        "id": rid, "rc": rc, "timed_out": timed_out, "elapsed_seconds_exact": elapsed,
++        "status": "PASS_LOCAL_COMPLETE_FORMULA_COMPILATION" if success else "FAIL_LOCAL_FORMULA_RENDER",
++        "unique_formulas": len(formulas), "source_formula_occurrences": len(locations),
++        "formulas_sha256": core.dense(formulas), "record_sha256": binding["record_sha256"],
++        "math_sha256": binding["math_sha256"], "source_sha256": binding["source_sha256"],
++        "core_manifest_sha256": core.CORE_MANIFEST_SHA256,
++        "scene_py_sha256": core.digest(scene.read_bytes()),
++        "stdout_sha256": core.digest(as_bytes(stdout)), "stderr_sha256": core.digest(as_bytes(stderr)),
++        "mp4": valid_video, "mp4_path": videos[0].relative_to(work).as_posix() if valid_video else None,
++        "mp4_sha256": core.digest(videos[0].read_bytes()) if valid_video else None,
++        "production_evidence": False, "visual_acceptance": "NOT_REVIEWED",
++    }
+ 
++def run(ids, out, timeout=240):
++    if not ids or len(ids) != len(set(ids)):
++        raise ValueError("Unique nonempty IDs required")
++    if type(timeout) is not int or timeout <= 0:
++        raise ValueError("Positive integer timeout required")
++    bindings = core.load_record_bindings()
++    by_id = {b["id"]: b for b in bindings}
++    records = {}
++    for rid in ids:
++        if not isinstance(rid, str) or not ID_RE.fullmatch(rid):
++            raise ValueError("Invalid record ID")
++        records[rid] = core.load_record(by_id, rid)
++        formula_inventory(records[rid])
++    inputs = {"schema": "native-formula-run-inputs-v2", "core_manifest_sha256": core.CORE_MANIFEST_SHA256,
++              "generator_sha256": core.digest(Path(__file__).read_bytes()), "bindings": [by_id[rid] for rid in ids],
++              "scope": "TRUSTED_LOCAL_MATHTEX_ONLY"}
++    core.publish(out, {"run-inputs.json": core.encoded(inputs)})
++    results = []
++    for rid in ids:
++        # Recheck this actual frozen record immediately before using it.
++        record = core.load_record(by_id, rid)
++        result = render_one(rid, out / ("render-" + rid), record, by_id[rid], timeout)
++        results.append(result)
++        print(json.dumps({k: result[k] for k in ("id", "status", "unique_formulas", "rc")}), flush=True)
++    passed = sum(r["status"] == "PASS_LOCAL_COMPLETE_FORMULA_COMPILATION" for r in results)
++    receipt = {"schema": "native-complete-formula-receipt-v2", **inputs,
++               "results": results, "summary": {"total": len(results), "rendered": passed, "failed": len(results) - passed},
++               "production_evidence": False, "native_sandbox": "UNVERIFIED",
++               "visual_acceptance": "NOT_REVIEWED", "mathematics": "SEPARATE_BOUND_PROOF_REQUIRED",
++               "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED", "PASS_CORE_SCOPE_issued": False}
++    # inputs schema and receipt schema are deliberately distinct.
++    receipt["schema"] = "native-complete-formula-receipt-v2"
++    with (out / "receipt.json").open("xb") as f:
++        f.write(core.encoded(receipt))
++    print(json.dumps(receipt["summary"]), flush=True)
++    return 0 if passed == len(results) else 3
+ 
+-def render_one(rid: str, work: Path) -> dict:
+-    rec, binding = load_record(rid)
+-    code = build_scene(rec)
+-    scene_file = work / "scene.py"
+-    scene_file.write_text(code, encoding="utf-8", newline="\n")
+-    t0 = time.monotonic()
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--ids", nargs="+", required=True)
++    parser.add_argument("--batch", default="complete-formulas-v2")
++    parser.add_argument("--out", type=Path)
++    parser.add_argument("--timeout", type=int, default=240)
++    args = parser.parse_args(argv)
+     try:
+-        proc = subprocess.run(
+-            [str(PY), "-m", "manim", "render", str(scene_file), "ConceptScene",
+-             "-ql", "--media_dir", str(work / "media"), "--disable_caching"],
+-            capture_output=True, text=True, encoding="utf-8", errors="replace",
+-            timeout=240, cwd=str(work))
+-        rc, stdout, stderr = proc.returncode, proc.stdout, proc.stderr
+-        timed_out = False
+-    except subprocess.TimeoutExpired as exc:
+-        rc, stdout, stderr, timed_out = -1, "", (exc.stdout or "") + (exc.stderr or ""), True
+-    mp4s = list((work / "media").rglob("ConceptScene.mp4"))
+-    result = {
+-        "id": rid, "rc": rc, "timed_out": timed_out,
+-        "elapsed_s": round(time.monotonic() - t0, 1),
+-        "mp4": len(mp4s) == 1,
+-        "mp4_path": str(mp4s[0].relative_to(work)) if len(mp4s) == 1 else None,
+-        "record_sha256": binding["record_sha256"],
+-        "math_sha256": binding["math_sha256"],
+-        "scene_py_sha256": digest(scene_file.read_bytes()),
+-        "stderr_tail": stderr[-400:],
+-    }
+-    return result
+-
+-
+-def main(argv=None) -> int:
+-    ap = argparse.ArgumentParser(description=__doc__)
+-    ap.add_argument("--ids", nargs="+", required=True)
+-    ap.add_argument("--batch")
+-    args = ap.parse_args(argv)
+-    batch = args.batch or "pilot"
+-    if not re.fullmatch(r"[a-z0-9-]{1,60}", batch):
+-        raise ValueError("invalid batch name")
+-    bdir = OUT / batch
+-    bdir.mkdir(parents=True, exist_ok=True)
+-    results = []
+-    for rid in args.ids:
+-        work = bdir / f"render-{rid}"
+-        work.mkdir(parents=True, exist_ok=True)
+-        r = render_one(rid, work)
+-        results.append(r)
+-        print(f"[{rid}] rc={r['rc']} mp4={r['mp4']} {r['elapsed_s']}s")
+-    receipt = {
+-        "schema": "native-render-pilot-v1",
+-        "batch": batch, "renderer": "claude-code",
+-        "transport": "LOCAL_VENV_MANIM_TRUSTED_SAMPLE",
+-        "production_evidence": False,
+-        "note": "可信固定样例本地原生渲染;生产门CLOSED,此回执不构成生产传输/隔离证据;"
+-                "场景为模板生成(先MathTex后Text,修复顺序),验证修订版LaTeX真实渲染",
+-        "results": results,
+-        "summary": {
+-            "total": len(results),
+-            "rendered": sum(1 for r in results if r["mp4"] and r["rc"] == 0),
+-            "failed": sum(1 for r in results if not r["mp4"] or r["rc"] != 0),
+-        },
+-    }
+-    with (bdir / "receipt.json").open("w", encoding="utf-8", newline="\n") as f:
+-        json.dump(receipt, f, ensure_ascii=False, indent=2)
+-        f.write("\n")
+-    b = (bdir / "receipt.json").read_bytes()
+-    print(f"回执: {(bdir / 'receipt.json').relative_to(ROOT)}  sha256={digest(b)}  bytes={len(b)}")
+-    print(f"汇总: {receipt['summary']}")
+-    return 0
+-
++        if not re.fullmatch(r"[a-z0-9-]{1,60}", args.batch):
++            raise ValueError("Invalid batch name")
++        out = (args.out or OUT / args.batch).absolute()
++        return run(args.ids, out, args.timeout)
++    except (ValueError, KeyError, TypeError, IndexError, OSError) as exc:
++        print(json.dumps({"status": "FAIL_LOCAL_BOUND_RENDER_INPUT", "error": str(exc), "production": "CLOSED"}))
++        return 2
+ 
+ if __name__ == "__main__":
+     raise SystemExit(main())
+--- received/tests/test_core_signatures.py
++++ repaired/tests/test_core_signatures.py
+@@ -16,7 +16,8 @@
+ 
+     def setUp(self):
+ 
+-        self.owner=ROOT/"reviews/codex-supervision/2026-10-07-semantic-signature-supervision"
++        self.owner=ROOT/"reviews/codex-supervision/2026-10-08-regression-work"
++        self.owner.mkdir(parents=True,exist_ok=True)
+ 
+         self.temp=tempfile.TemporaryDirectory(prefix="signature-test-",dir=self.owner)
+ 

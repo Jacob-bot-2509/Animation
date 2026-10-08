@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>Codex 修改版草稿 · 修复后复检报告（2026-10-05 · 第二轮）</h1>
+<blockquote>
+<p>对象：<strong>Claude Code 生成、Codex 修改</strong>的 264 题草稿
+<code>reviews/2026-10-05-training-diversity-drafts/batch-01…18/draft-codex-repair-v1.jsonl</code>
+工具：<code>tools/draft_audit.py</code>（只读；本轮补充误报复核）
+复现命令：
+<code>python tools/draft_audit.py --out dataset_audit_2026-10-05-codex-drafts-v2 --pool data/v2/train/leakage-isolated-v3-2026-10-05 --eval-test data/v2/eval/dataset_eval.jsonl --eval-test data/v2/test/dataset_test.jsonl</code>
+上一轮：<code>dataset_audit_2026-10-05-codex-drafts/</code>（hard 13、rejected 5）
+修复提交：<code>e555173</code>（「公式内中文 15 处改英文（5 题）、步骤前缀补齐 752 条；从 staged 原件恢复后重跑」）</p>
+</blockquote>
+<hr />
+<h2>0. 结论摘要（修复前后对照）</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>上一轮</th>
+<th><strong>本轮</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>批次 / 题数</td>
+<td>18 / 264</td>
+<td>18 / 264（未增删）</td>
+</tr>
+<tr>
+<td>逐条状态</td>
+<td>rejected <strong>5</strong> / quarantine 259 / clean 0</td>
+<td><strong>rejected 0 / quarantine 264 / clean 0</strong></td>
+</tr>
+<tr>
+<td>hard</td>
+<td><strong>13</strong>（<code>L002</code>×12 + <code>L010</code>×1）</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>quarantine</td>
+<td>713</td>
+<td><strong>528</strong></td>
+</tr>
+<tr>
+<td>info</td>
+<td>1042</td>
+<td>1027</td>
+</tr>
+<tr>
+<td>公式内中文（<code>L002</code>）</td>
+<td>9 处 / 5 题</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>步骤前缀缺失（<code>A005</code>/<code>V010</code>）</td>
+<td>180 题</td>
+<td><strong>0</strong>（1172 步全部带&quot;第N步&quot;）</td>
+</tr>
+<tr>
+<td>与训练池泄漏</td>
+<td>精确 0；max 0.4177</td>
+<td>精确 0；max <strong>0.4177</strong>（不变）</td>
+</tr>
+<tr>
+<td>与冻结 eval/test 泄漏</td>
+<td>精确 0；max 0.4186</td>
+<td>精确 0；max <strong>0.4186</strong>（不变）</td>
+</tr>
+<tr>
+<td>集内重复</td>
+<td>精确 0；max 0.4528</td>
+<td>精确 0；max <strong>0.4528</strong>（不变）</td>
+</tr>
+<tr>
+<td>身份 / 清单</td>
+<td>264 id 保留、清单匹配</td>
+<td><strong>264 id 保留、清单重绑后仍匹配</strong></td>
+</tr>
+<tr>
+<td>准入声明</td>
+<td>admitted=true 0；render=true 0</td>
+<td><strong>admitted=true 0；render=true 0</strong>（如实）</td>
+</tr>
+</tbody>
+</table>
+<h3>裁定：<strong>内容层门禁通过（0 hard）</strong>；剩余 528 条 quarantine 全部为系统级/用户级项</h3>
+<ul>
+<li>上一轮报告的 <strong>5 题公式内中文全部修复</strong>（<code>\text{其余}</code>→<code>\text{otherwise}</code>、<code>\text{唯一最近}</code>→<code>\text{uniquely nearest}</code>、<code>\text{或}</code>→<code>\text{or}</code>、<code>\text{患病}</code>→<code>\text{diseased}</code>、<code>\text{两枚皆正}</code>→<code>\text{both heads}</code>/<code>\text{same face}</code>）；</li>
+<li>上一轮 <strong>180 题的步骤前缀全部补齐</strong>（现 1172 步 100% 以&quot;第N步&quot;开头）；</li>
+<li><strong>修改范围精确</strong>：与 staged 原件逐条比对，仅 182 题有改动，字段分布 <code>scene_spec</code> 180、<code>solution</code> 2、<code>answer</code> 2、<code>problem</code> 1 —— 无越权改动、无新增/删除题；</li>
+<li>剩余 quarantine：<code>P002</code>×264（许可证仅内部研究）+ <code>A008</code>×264（动画未验证），均与草稿内容无关。</li>
+</ul>
+<hr />
+<h2>1. 对象、基准与只读保证</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>受检集</td>
+<td><code>batch-01…18/draft-codex-repair-v1.jsonl</code>（264 条）</td>
+</tr>
+<tr>
+<td>对照集</td>
+<td>同批 <code>draft.jsonl</code>（Claude 原始草稿，264 条）与 <code>codex-supervision/*/staged/batch-*.jsonl</code>（staged 原件，18 份）</td>
+</tr>
+<tr>
+<td>训练池基准</td>
+<td><code>data/v2/train/leakage-isolated-v3-2026-10-05/dataset_{calc,geom,linalg,prob}.jsonl</code>（活动清单指向）</td>
+</tr>
+<tr>
+<td>评测集基准</td>
+<td><code>data/v2/eval/dataset_eval.jsonl</code>、<code>data/v2/test/dataset_test.jsonl</code></td>
+</tr>
+<tr>
+<td>清单基准</td>
+<td><code>draft-selection.json</code>（19:1x 重绑）、两个 <code>delivery-manifest.json</code></td>
+</tr>
+<tr>
+<td>板块</td>
+<td>高等代数 95、数学分析 69、解析几何 55、概率论 45</td>
+</tr>
+<tr>
+<td>只读保证</td>
+<td>未修改任何草稿/数据/清单；未启动训练、未下载模型、未生成动画</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 原始文件哈希（SHA256 前 12 位，完整见 <code>file_hashes.json</code>）</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>上一轮</th>
+<th>本轮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>batch-01/draft-codex-repair-v1.jsonl</code></td>
+<td><code>5103259cb6bd</code></td>
+<td>见 <code>file_hashes.json</code></td>
+</tr>
+<tr>
+<td><code>batch-02</code> … <code>batch-18</code></td>
+<td>各见上轮报告</td>
+<td>18 份全部变化</td>
+</tr>
+<tr>
+<td><code>draft-selection.json</code></td>
+<td><code>b852700ade80</code>*</td>
+<td>已重绑</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本轮快照：18 份草稿 + 18 份原始草稿 + 18 份 staged 原件 + 3 份清单 + 训练池/评测集基准，全部登记在 <code>file_hashes.json</code> / <code>.sha256</code>；检测跑完后复核无变化。</p>
+</blockquote>
+<hr />
+<h2>3. 修复验收（逐项）</h2>
+<h3>3.1 公式内中文（上轮 hard 13 → 0）</h3>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>上轮命中</th>
+<th>本轮文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>draft-c52-05</code></td>
+<td>problem <code>\text{其余}</code></td>
+<td><code>&amp;\text{otherwise}\end{cases}</code> ✅</td>
+</tr>
+<tr>
+<td><code>draft-c46-03</code></td>
+<td>answer <code>\text{唯一最近}</code>×2</td>
+<td><code>P(A\text{ uniquely nearest})=1/4</code> ✅</td>
+</tr>
+<tr>
+<td><code>draft-c09-04</code></td>
+<td>answer <code>\text{或}</code></td>
+<td><code>h&lt;0\text{ or }h&gt;2.</code> ✅</td>
+</tr>
+<tr>
+<td><code>draft-c51-03</code></td>
+<td>solution <code>\text{患病}</code>×2</td>
+<td><code>P(\text{diseased}\mid+_1)=…</code> ✅</td>
+</tr>
+<tr>
+<td><code>draft-c45-03</code></td>
+<td>solution×3 + scene×3 <code>\text{两枚皆正}</code></td>
+<td><code>P(\text{both heads})=\frac14</code> / <code>\text{same face}</code> ✅</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>全量扫描：264 题的 problem/solution/answer 与 scene_spec 中，<code>$...$</code> 内 CJK/全角 <strong>命中 0</strong>。</li>
+<li>归因复核：<code>introduced_cjk = []</code>、<code>preexisting_cjk = []</code> → 既无新增，也无遗留。</li>
+</ul>
+<h3>3.2 步骤前缀（上轮 180 题 → 0）</h3>
+<ul>
+<li>264 题共 <strong>1172 步</strong>，全部以&quot;第N步&quot;开头；<code>A005</code>/<code>V010</code> = 0。</li>
+</ul>
+<h3>3.3 修改范围核对（staged 原件 → 当前）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th style="text-align:right">改动题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scene_spec</code></td>
+<td style="text-align:right">180</td>
+</tr>
+<tr>
+<td><code>solution</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>answer</code></td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td><code>problem</code></td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td><strong>合计（有改动的题）</strong></td>
+<td style="text-align:right"><strong>182 / 264</strong></td>
+</tr>
+<tr>
+<td>其它字段（id/category/…）</td>
+<td style="text-align:right"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ 改动<strong>精确落在修复范围内</strong>（步骤前缀 180 + 公式内中文 5 题中的 5 个字段），未触碰身份、分类、来源、许可证等字段；未新增或删除题目。</p>
+<hr />
+<h2>4. 泄漏检测（与上轮一致，仍干净）</h2>
+<table>
+<thead>
+<tr>
+<th>对比对象</th>
+<th style="text-align:right">精确题干重叠</th>
+<th style="text-align:right">最大题干近重复（5-gram，set）</th>
+<th style="text-align:right">≥0.7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前训练池（leakage-isolated-v3）</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">0.4177（<code>draft-c40-02</code> ↔ <code>linalg-065</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>冻结 eval/test</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">0.4186（<code>draft-c13-02</code> ↔ <code>test-calc-013</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>草稿集内</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">0.4528（<code>draft-c03-01</code> ↔ <code>draft-c03-05</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 声明与清单核查</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admitted=true</code></td>
+<td><strong>0</strong>（264 条全 false）</td>
+</tr>
+<tr>
+<td><code>animation_render_verified=true</code></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td><code>draft_status</code></td>
+<td>全为 <code>CODEX-REPAIR-v1-NOT-ADMITTED</code></td>
+</tr>
+<tr>
+<td>id 保留</td>
+<td>与原始草稿 id 集合与顺序 <strong>完全一致</strong>（264/264）</td>
+</tr>
+<tr>
+<td>与原始草稿差异</td>
+<td>264/264 均有改动（修复后仍成立）</td>
+</tr>
+<tr>
+<td><code>draft-selection.json</code></td>
+<td>声明 264 = 实际 264、<code>deleted_questions=0</code>、状态 <code>DRAFT_ONLY_NOT_TRAINING_ADMISSION</code>；18 批 <strong>sha256 与条数全部匹配</strong>（重绑成功）</td>
+</tr>
+<tr>
+<td>未入库</td>
+<td>264 题与训练池无精确重叠且 <code>admitted=false</code> → 未混入训练清单</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 剩余问题与误报说明</h2>
+<h3>6.1 quarantine（528 条，全部系统级/用户级）</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">条数</th>
+<th>内容</th>
+<th>处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P002</code></td>
+<td style="text-align:right">264</td>
+<td><code>license=Internal-Research-Use-Only</code>（仅内部研究、不公开分发）</td>
+<td>用户级：训练/公开前转正</td>
+</tr>
+<tr>
+<td><code>A008</code></td>
+<td style="text-align:right">264</td>
+<td>动画未验证（scene_spec 缺 <code>code</code>/<code>render_status</code>/<code>code_sha256</code>）</td>
+<td>用户级：过 <code>render_gate</code> 后登记</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 上轮 quarantine 中已消除的项</h3>
+<p><code>A005</code>×180（步骤前缀）、<code>V010</code>×1、<code>L011</code>×1 → 本轮 <strong>0</strong>。</p>
+<h3>6.3 本轮复核为<strong>误报</strong>并降为 info 的 3 条</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>位置</th>
+<th>原判</th>
+<th>Lead 复核结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C008</code>×2</td>
+<td><code>draft-c46-03</code></td>
+<td>重复等式 <code>1/2,y = 1/2,y</code></td>
+<td>实为逗号并列的三条直线枚举 <code>$x=1/2,y=1/2,y=x$</code>，<strong>非笔误</strong></td>
+</tr>
+<tr>
+<td><code>L008</code>×1</td>
+<td><code>draft-c07-01</code> scene_spec</td>
+<td>多位数字上标 <code>^23</code></td>
+<td>实为 <code>4\sin^23\theta</code>（单字符上标 2 + 系数 3），<strong>合法 TeX</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>6.4 info 概览（1027 条）</h3>
+<p><code>P003</code>×264（self-authored）、<code>C007</code>×257（answer 与 solution 等价表述/纯文字结论）、<code>L009</code>×343（<code>\frac</code> 单 token，合法）、<code>L007</code>×154（双上下标，合法）、<code>C008</code>×2 / <code>L008</code>×1（本轮误报降级）、<code>X003</code>×2、<code>X005</code>×1、<code>V004</code>/<code>V005</code>/<code>V009</code> 各 1。</p>
+<hr />
+<h2>7. 汇总统计</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>批次 / 记录</td>
+<td>18 / 264（原始对照 264，staged 原件 264）</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>rejected <strong>0</strong>、quarantine 264、clean 0</td>
+</tr>
+<tr>
+<td>严重度</td>
+<td>hard <strong>0</strong>、quarantine 528、info 1027（共 1555）</td>
+</tr>
+<tr>
+<td>泄漏</td>
+<td>训练池 0 / eval-test 0 / 集内精确 0；最大近重复 0.4177 / 0.4186 / 0.4528</td>
+</tr>
+<tr>
+<td>公式内中文</td>
+<td>0（修复前 9 处 / 5 题）</td>
+</tr>
+<tr>
+<td>步骤前缀</td>
+<td>1172/1172 合规（修复前 180 题缺失）</td>
+</tr>
+<tr>
+<td>改动范围</td>
+<td>182 题（scene_spec 180、solution 2、answer 2、problem 1）</td>
+</tr>
+<tr>
+<td>准入声明</td>
+<td>admitted=true 0、render_verified=true 0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. 裁定与建议</h2>
+<ol>
+<li><strong>内容层门禁通过</strong>：本轮 0 hard，上一轮的全部内容问题（5 题公式内中文、180 题步骤前缀）已修复并复核；修改范围精确、身份与清单一致。</li>
+<li><strong>可以进入准入流程的下一环</strong>：若计划把这 264 题纳入训练池，需由用户批准并按项目流程执行（新版本号 → 重跑多样性/泄漏门禁 → make_manifest → freeze → preflight）。</li>
+<li><strong>仍需完成的用户级前置</strong>：
+<ul>
+<li><code>P002</code>：<code>license</code> 由 <code>Internal-Research-Use-Only</code> 转正；</li>
+<li><code>A008</code>：264 条 scene_spec 过 <code>render_gate</code> 并登记 <code>code</code>/<code>render_status=verified</code>/<code>code_sha256</code>；项目 <code>preflight --ready</code> 仍以 <code>asset_evidence</code>、<code>near_dup_calibrated</code>、<code>exec_isolation</code> 等阻断。</li>
+</ul>
+</li>
+<li><strong>门禁建议</strong>：本轮最大近重复 0.4528/0.4177/0.4186 均远低于 0.7，可纳入阈值校准的负样本。</li>
+</ol>
+<hr />
+<h2>9. 产物清单</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v2/AUDIT_REPORT.md</code> / <code>.pdf</code></td>
+<td>本报告</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v2/issues.jsonl</code></td>
+<td>逐条问题（1555 条）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v2/record_status.jsonl</code> / <code>.csv</code></td>
+<td>264 题逐条状态</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v2/summary.json</code></td>
+<td>汇总（含泄漏、归因、按批统计）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v2/file_hashes.json</code> / <code>.sha256</code></td>
+<td>受检文件哈希</td>
+</tr>
+<tr>
+<td><code>tools/draft_audit.py</code></td>
+<td>只读检测工具（含本轮误报复核）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮为只读复检，未修改任何草稿、数据、清单或锁；未自动改写公式或 ID；未启动训练、未下载模型、未生成动画。</p>
+
+</body>
+</html>

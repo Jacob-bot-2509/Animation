@@ -1,0 +1,53 @@
+{
+  "source_hashes": {
+    "src/animtrain/dataset_intake.py": "f2d0ab4b750c7e1da05a9710ba419486d7ee7931604ecbe48c733bea96a08e34",
+    "tools/eval_test_prep.py": "6f3d80869c39f7a156e71102b363c647c55492e2c2641742437d5e65e2ab4299",
+    "src/animtrain/validate.py": "2148d2198a4b99c9b1253b68a3f595ad1ab607282ada90e324869a36c95d73c6"
+  },
+  "results": [
+    {
+      "case": "same_eval_problem_two_files",
+      "expected": "same split multi-method rows accepted regardless of storage sharding",
+      "exit_code": 1,
+      "stdout": "[WARN] 候选/训练参考集存在 3 项 quarantine；仅继续隔离预检，不表示入场完整验收\n  [FAIL] a.jsonl 与 b.jsonl 跨集合同题重叠 1 条(核心正文哈希)—— 评测题目族必须独立(GS3)\n结论: 隔离检查不通过,1 个问题\n",
+      "stderr": ""
+    },
+    {
+      "case": "same_eval_problem_one_file",
+      "expected": "same logical data should give same outcome as two files",
+      "exit_code": 0,
+      "stdout": "[WARN] 候选/训练参考集存在 3 项 quarantine；仅继续隔离预检，不表示入场完整验收\n[OK] ['C:\\\\Users\\\\Jacap\\\\AppData\\\\Local\\\\Temp\\\\tmpjb3d850d\\\\single.jsonl']: 入场检查、train 隔离与候选集间隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    },
+    {
+      "case": "duplicate_method",
+      "expected": "same problem must use distinct methods",
+      "exit_code": 0,
+      "stdout": "[WARN] 候选/训练参考集存在 3 项 quarantine；仅继续隔离预检，不表示入场完整验收\n[OK] ['C:\\\\Users\\\\Jacap\\\\AppData\\\\Local\\\\Temp\\\\tmpjb3d850d\\\\single.jsonl']: 入场检查、train 隔离与候选集间隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    },
+    {
+      "case": "same_problem_id_different_problem",
+      "expected": "problem identity must bind one stable problem body",
+      "exit_code": 0,
+      "stdout": "[WARN] 候选/训练参考集存在 3 项 quarantine；仅继续隔离预检，不表示入场完整验收\n[OK] ['C:\\\\Users\\\\Jacap\\\\AppData\\\\Local\\\\Temp\\\\tmpjb3d850d\\\\single.jsonl']: 入场检查、train 隔离与候选集间隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing_method",
+      "expected": "multi-solution identity requires method",
+      "exit_code": 0,
+      "stdout": "[WARN] 候选/训练参考集存在 2 项 quarantine；仅继续隔离预检，不表示入场完整验收\n[OK] ['C:\\\\Users\\\\Jacap\\\\AppData\\\\Local\\\\Temp\\\\tmpjb3d850d\\\\single.jsonl']: 入场检查、train 隔离与候选集间隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    },
+    {
+      "case": "multi_solution_intake_manifest_identity_mismatch",
+      "intake_status": "candidate",
+      "intake_problems": [],
+      "manifest_exit": 1,
+      "manifest_problems": [
+        "single.jsonl:1 ID 非法: 缺 ID 或仅空白(A1)"
+      ]
+    }
+  ]
+}

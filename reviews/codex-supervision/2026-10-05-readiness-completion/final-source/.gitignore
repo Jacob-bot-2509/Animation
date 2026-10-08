@@ -1,0 +1,55 @@
+__pycache__/
+*.pyc
+data/raw/
+data/train/
+data/eval/
+data/test/
+*.log
+.venv/
+.env
+checkpoints/
+outputs/
+
+# Secrets and local configuration
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+# Real model/data assets (review fixtures remain tracked explicitly)
+/models/
+/.models/
+*.safetensors
+*.gguf
+pytorch_model*.bin
+checkpoint-*/
+/data/**/*.jsonl
+/data/**/*.parquet
+*.mp4
+*.mov
+*.webm
+# Local caches, environments, IDE and bridge scratch
+.pytest_cache/
+.cache/
+venv/
+.vscode/
+.idea/
+.bridge_tmp/
+
+# 正式样本入口 JSONL 入库(用户授权 2026-10-03;真实大资产仍不入库)
+!data/v1/raw/*.jsonl
+
+# 复查证据页图不入库(仅本地留存)
+reviews/*/evidence/*.png
+
+# eval/test 正式入口 JSONL 入库(用户指示 2026-10-03 生成,harness 预跑)
+!data/v1/eval/*.jsonl
+!data/v1/test/*.jsonl
+!data/v2/eval/*.jsonl
+!data/v2/test/*.jsonl
+
+# 2026-10-05 用户确认的结构泄漏隔离训练入口及中间归档版本
+!data/v2/train/leakage-isolated-2026-10-05/*.jsonl
+!data/v2/train/leakage-isolated-v2-2026-10-05/*.jsonl
+# 本地沙箱工具链副本/配置/缓存不入库
+.sandbox-runtime/

@@ -1,0 +1,55 @@
+{
+  "revision": "68c51be",
+  "checks": {
+    "active_manifest": {
+      "ok": true,
+      "n_entries": 6,
+      "problems": [],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 0
+    },
+    "v2_lock_binding": [
+      {
+        "split": "eval",
+        "errors": [],
+        "binding_ok": true
+      },
+      {
+        "split": "test",
+        "errors": [],
+        "binding_ok": true
+      }
+    ],
+    "network_gate": [
+      false,
+      "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+    ],
+    "v2_status": {
+      "exit_code": 0,
+      "stdout": "[OK] eval: 已生成 1 个 JSONL\n[INFO] eval: 锁 eval-v1.lock.json 覆盖其他版本文件,不参与本次判定\n[WARN] eval: 冻结锁 eval-v2.lock.json 校验未过(1 项,不视为已冻结):\n       - manifest 绑定不一致(锁绑定 b11def7be902…,候选清单 ['manifest.json', 'manifest.json', 'manifest.json'])\n[OK] test: 已生成 1 个 JSONL\n[INFO] test: 锁 test-v1.lock.json 覆盖其他版本文件,不参与本次判定\n[WARN] test: 冻结锁 test-v2.lock.json 校验未过(1 项,不视为已冻结):\n       - manifest 绑定不一致(锁绑定 b11def7be902…,候选清单 ['manifest.json', 'manifest.json', 'manifest.json'])\n"
+    },
+    "native_sid_contract": {
+      "hresult": 0,
+      "success": true,
+      "sid_pointer_nonnull": true,
+      "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "length": 40,
+      "implementation_sid_length": 28,
+      "implementation_matches_system_sid": false
+    }
+  },
+  "findings": [
+    {
+      "priority": "P2",
+      "file": "tools/eval_test_prep.py:46",
+      "issue": "After the active manifest moved to data/manifest.json, status still omits it from the candidate set and rejects correctly rebound v2 locks."
+    },
+    {
+      "priority": "P1",
+      "file": "src/animtrain/appcontainer.py:101",
+      "issue": "DeriveAppContainerSidFromAppContainerName returns HRESULT S_OK=0, but implementation declares BOOL and treats zero as failure, discarding a valid SID and using a different fallback. Home/admin failure conclusion is not established."
+    }
+  ]
+}

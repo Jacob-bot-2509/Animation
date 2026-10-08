@@ -1,0 +1,137 @@
+{
+  "scope": "Actual host interface capture and file hashing only; no sandbox or receiver acceptance",
+  "checks": [
+    {
+      "family": "IPv4",
+      "proof": {
+        "command_argv": [
+          "powershell",
+          "-NoProfile",
+          "-Command",
+          "Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+        ],
+        "rc": 0,
+        "timed_out": false,
+        "elapsed_ns": 1429238300,
+        "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-driver-host-check-3d76237f9b7f413b8a92055cc06b0ad1\\native-IPv4.stdout.bin",
+        "sha256": "321003e0f5190d3d94fe7e6338f24a1f92cfbaa11895c22053ce353d755dcca1",
+        "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-driver-host-check-3d76237f9b7f413b8a92055cc06b0ad1\\native-IPv4.stderr.bin",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "",
+        "command": "Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+      },
+      "json_rows": [
+        {
+          "IPAddress": "169.254.29.35",
+          "PrefixLength": 16
+        },
+        {
+          "IPAddress": "172.30.43.234",
+          "PrefixLength": 16
+        },
+        {
+          "IPAddress": "169.254.144.40",
+          "PrefixLength": 16
+        },
+        {
+          "IPAddress": "28.0.0.1",
+          "PrefixLength": 30
+        },
+        {
+          "IPAddress": "172.31.31.2",
+          "PrefixLength": 24
+        },
+        {
+          "IPAddress": "169.254.42.55",
+          "PrefixLength": 16
+        },
+        {
+          "IPAddress": "169.254.175.69",
+          "PrefixLength": 16
+        },
+        {
+          "IPAddress": "127.0.0.1",
+          "PrefixLength": 8
+        }
+      ],
+      "stdout_sha_exact": true,
+      "stderr_sha_exact": true
+    },
+    {
+      "family": "IPv6",
+      "proof": {
+        "command_argv": [
+          "powershell",
+          "-NoProfile",
+          "-Command",
+          "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+        ],
+        "rc": 0,
+        "timed_out": false,
+        "elapsed_ns": 1385589800,
+        "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-driver-host-check-3d76237f9b7f413b8a92055cc06b0ad1\\native-IPv6.stdout.bin",
+        "sha256": "6d3a08d88ebb04a6f0ae1e4eeb7fbd1ce836bded788457d6af15c05d3dd2102f",
+        "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-driver-host-check-3d76237f9b7f413b8a92055cc06b0ad1\\native-IPv6.stderr.bin",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr": "",
+        "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+      },
+      "json_rows": [
+        {
+          "IPAddress": "fe80::6d25:6a2b:d80d:c580%16",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "fe80::9f24:66f5:4f5d:dc4f%8",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "2001:da8:2019:b282:7c45:2e9e:c6ed:1fc2",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "2001:da8:2019:b282:253b:b1d5:722:b67",
+          "PrefixLength": 128
+        },
+        {
+          "IPAddress": "fe80::b3c2:fae3:bdca:2db9%18",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "fdfe:dcba:9876::1",
+          "PrefixLength": 126
+        },
+        {
+          "IPAddress": "fe80::40c6:d871:3bcf:77ba%11",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "240e:47c:c32:9625:8913:c217:808e:be3e",
+          "PrefixLength": 128
+        },
+        {
+          "IPAddress": "240e:47c:c32:9625:6357:7190:59f5:7e66",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "fe80::e729:31c9:73b:f806%17",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "fe80::eaae:8d18:fec1:915c%6",
+          "PrefixLength": 64
+        },
+        {
+          "IPAddress": "::1",
+          "PrefixLength": 128
+        }
+      ],
+      "stdout_sha_exact": true,
+      "stderr_sha_exact": true
+    }
+  ],
+  "RoundA_target_on_current_sender": false,
+  "campus_ipv6_classification": "Receiver is inside the sender LAN, not external",
+  "production_gate": "CLOSED",
+  "AppContainer_jobs_started": 0
+}

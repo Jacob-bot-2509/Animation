@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-06T18:07:25.010648+08:00",
+  "scope": "Pure counterexamples only; no network, ACL edit or native run",
+  "probe_source_raw_sha256": "d11c760c1f2dd649fd7ceb900a7dffcfea72ec8259d58479628574c6120e3ef0",
+  "counterexamples": [
+    {
+      "name": "sandbox-prefix-can-satisfy-before-control",
+      "old_substring_before_claim": true,
+      "actual_exact_before_control": false
+    },
+    {
+      "name": "non-permission-OSError-is-mislabeled-denied",
+      "observed": {
+        "outcome": "denied",
+        "winerror": null,
+        "err": "OSError"
+      },
+      "permission_denial_proven": false
+    }
+  ]
+}

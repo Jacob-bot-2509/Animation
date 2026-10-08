@@ -16,14 +16,14 @@ _PREAMBLE = (
 
 def _math_segments(text: str) -> str | None:
     """提取 $...$ 数学段并拼接(中文与标点不进 MathTex);无数学段返回 None。
-    注意:直接拼入生成的场景代码(r 字符串内反斜杠原样保留,不得 repr 加倍)。"""
+    以 Python 字符串字面量安全转义；保留导数撇号与引号的数学意义。"""
     import re
     parts = re.findall(r"\$([^$]+)\$", text)
     if not parts:
         return None
     segs = []
     for p in parts:
-        s = p.replace("'", "").replace('"', "").strip()
+        s = p.strip()
         if s.endswith("\\"):
             s += " "
         if s:
@@ -31,17 +31,22 @@ def _math_segments(text: str) -> str | None:
     return " \\quad ".join(segs) if segs else None
 
 
-def _title_block(problem: str) -> str:
+def _title_block(problem: str, answer: str) -> str:
     """标题=问题公式段,超宽自动缩放;无公式段时用中文占位。"""
+    # LaTeX child processes must run before Pango/Text accumulates in the
+    # 2 GiB job. Prebuild the answer, display it only after the solution steps.
+    answer_math = _math_segments(answer)
+    prefix = (f"        answer_math = MathTex({answer_math!r}, color=YELLOW)\n"
+              if answer_math is not None else "")
     math = _math_segments(problem)
     if math is not None:
-        return (
-            f"        title = MathTex(r'{math}').scale_to_fit_width("
+        return prefix + (
+            f"        title = MathTex({math!r}).scale_to_fit_width("
             f"config.frame_width - 1.2)\n"
             "        title.to_edge(UP)\n"
             "        self.play(Write(title))\n"
         )
-    return (
+    return prefix + (
         "        title = Text('(公式段提取失败)', font='Microsoft YaHei', "
         "font_size=24).to_edge(UP)\n"
         "        self.play(Write(title))\n"
@@ -66,7 +71,7 @@ def _answer_block(answer: str) -> str:
     if math is None:
         return "        self.wait(0.3)\n"
     return (
-        f"        ans = MathTex(r'{math}', color=YELLOW).scale_to_fit_width("
+        "        ans = answer_math.scale_to_fit_width("
         f"config.frame_width - 2)\n"
         "        ans.to_edge(DOWN)\n"
         "        self.play(FadeIn(ans))\n"
@@ -79,7 +84,7 @@ def _scene_body(body: str) -> str:
 
 
 def unit_circle(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        circle = Circle(radius=2, color=BLUE)\n"
         "        self.play(Create(circle))\n"
@@ -100,7 +105,7 @@ def unit_circle(rec: dict) -> str:
 
 
 def graph_limit(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        ax = Axes(x_range=[-3, 3, 1], y_range=[-1, 3, 1],\n"
         "                  x_length=7, y_length=4).shift(DOWN * 0.6)\n"
@@ -121,7 +126,7 @@ def graph_limit(rec: dict) -> str:
 
 
 def sequence(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        line = NumberLine(x_range=[0, 12, 1], length=9).shift(DOWN * 1.2)\n"
         "        self.play(Create(line))\n"
@@ -138,7 +143,7 @@ def sequence(rec: dict) -> str:
 
 
 def matrix(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        m = Matrix([[1, 2], [0, 1]], h_buff=0.9)\n"
         "        self.play(Write(m))\n"
@@ -155,7 +160,7 @@ def matrix(rec: dict) -> str:
 
 
 def derivative(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        ax = Axes(x_range=[-2, 4, 1], y_range=[-2, 6, 1],\n"
         "                  x_length=7, y_length=4).shift(DOWN * 0.6)\n"
@@ -177,7 +182,7 @@ def derivative(rec: dict) -> str:
 
 
 def geometry(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        tri = Polygon(ORIGIN + DOWN * 0.8, 2 * RIGHT + DOWN * 0.8,\n"
         "                       1.2 * UP + 0.3 * RIGHT,\n"
@@ -197,7 +202,7 @@ def geometry(rec: dict) -> str:
 
 
 def statistics(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += (
         "        ax = Axes(x_range=[0, 6, 1], y_range=[0, 4, 1],\n"
         "                  x_length=7, y_length=4).shift(DOWN * 0.6)\n"
@@ -218,7 +223,7 @@ def statistics(rec: dict) -> str:
 
 
 def fallback(rec: dict) -> str:
-    body = _title_block(rec["problem"])
+    body = _title_block(rec["problem"], rec["answer"])
     body += _steps_block(rec["scene_spec"]["steps"])
     body += _answer_block(rec["answer"])
     return _scene_body(body)

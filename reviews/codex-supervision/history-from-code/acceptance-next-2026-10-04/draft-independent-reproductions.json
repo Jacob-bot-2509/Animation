@@ -1,0 +1,120 @@
+[
+  {
+    "case": "denied_write_unknown_target",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "denied_read_unknown_leak",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "sandbox_timeout_unknown",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "control_timeout_unknown",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "unknown_operation",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "control_spawned_numeric",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  {
+    "case": "token_int_vs_bool",
+    "client_is_appcontainer": 1,
+    "predicate_token29": false,
+    "effect": "Valid AppContainer token fails identity check"
+  },
+  {
+    "case": "sibling_prefix_path",
+    "path": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support-other\\arbitrary",
+    "accepted": true
+  },
+  {
+    "case": "draft_builtin_regressions",
+    "count": 13,
+    "all_hold": true
+  },
+  {
+    "case": "no_actual_sandbox_granted_write",
+    "result": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "overall": "PASS_LOCAL_FILE_ACL",
+    "client_calls": [
+      {
+        "mode": "write",
+        "target": "test/work/granted-write-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bin",
+        "sandbox": false
+      },
+      {
+        "mode": "write",
+        "target": "test/work/granted-write-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bin",
+        "sandbox": true
+      },
+      {
+        "mode": "read",
+        "target": "test/work/granted-read.bin",
+        "sandbox": false
+      },
+      {
+        "mode": "read",
+        "target": "test/work/granted-read.bin",
+        "sandbox": true
+      },
+      {
+        "mode": "write",
+        "target": "test/denied/denied-write-ctrl-cccccccccccccccccccccccccccccccc.bin",
+        "sandbox": false
+      },
+      {
+        "mode": "write",
+        "target": "test/denied/denied-write-sb-cccccccccccccccccccccccccccccccc.bin",
+        "sandbox": true
+      },
+      {
+        "mode": "read",
+        "target": "test/denied/sentinel.bin",
+        "sandbox": false
+      },
+      {
+        "mode": "read",
+        "target": "test/denied/sentinel.bin",
+        "sandbox": true
+      }
+    ],
+    "deleted_control_files": [
+      "test/denied/denied-write-ctrl-cccccccccccccccccccccccccccccccc.bin"
+    ]
+  }
+]

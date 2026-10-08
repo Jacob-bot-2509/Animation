@@ -1,0 +1,25 @@
+{
+  "schema": 2,
+  "run_id": "2a9334b8db7e43e8a494164029eb679d",
+  "scope": "Local loopback only",
+  "contract": "local-loopback-os-policy-v1",
+  "contract_history": "Replaces the WSAEACCES-10013-only contract with read-only OS policy, actual token identity and same-endpoint before/after controls; rationale: D:/code/output/claude-supervision/network-core-fix-2026-10-04/FIX_REPORT.md",
+  "baseline_evidence": "D:\\code\\output\\claude-supervision\\network-core-review-fix-2026-10-04\\deliberately-missing-baseline.json",
+  "command": [
+    "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+    "D:\\Animation-Model-Training\\tools\\network_acceptance.py",
+    "--baseline-evidence",
+    "D:\\code\\output\\claude-supervision\\network-core-review-fix-2026-10-04\\deliberately-missing-baseline.json",
+    "--output",
+    "D:\\code\\output\\claude-supervision\\network-core-review-fix-2026-10-04\\cli-error"
+  ],
+  "observation_seconds_after_client_return": 20,
+  "attempts": [],
+  "state": "ERROR",
+  "overall": "UNVERIFIED",
+  "runtime_unchanged": false,
+  "production_gate": "CLOSED",
+  "external_network": "UNVERIFIED",
+  "error": "FileNotFoundError(2, 'No such file or directory')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\Animation-Model-Training\\tools\\network_acceptance.py\", line 178, in main\n    execute(args, result, target)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Animation-Model-Training\\tools\\network_acceptance.py\", line 128, in execute\n    baseline = json.loads(args.baseline_evidence.read_text(encoding=\"utf-8\"))\n                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"D:\\Python\\Lib\\pathlib\\_local.py\", line 546, in read_text\n    return PathBase.read_text(self, encoding, errors, newline)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Python\\Lib\\pathlib\\_abc.py\", line 632, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Python\\Lib\\pathlib\\_local.py\", line 537, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'D:\\\\code\\\\output\\\\claude-supervision\\\\network-core-review-fix-2026-10-04\\\\deliberately-missing-baseline.json'\n"
+}

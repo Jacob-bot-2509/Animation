@@ -1,217 +1,199 @@
-"""Admit linalg-048 v3 shear candidate: exact math + record-specific render.
-
-Follows the calc-derivative-001 acceptance pattern (three-gates). The
-candidate scene is authored for THIS record only — no generic template.
-Evidence output: reviews/2026-10-06-linalg048-admission/render-evidence.json
-plus final frame PNG. Does NOT modify active data/manifest/locks; that is the
-separate apply step.
-"""
+"""Produce a bound isolated-render receipt; visual/semantic acceptance is separate."""
 from __future__ import annotations
-
-import hashlib
-import json
-import re
+import argparse
+import ast
 import sys
-from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "src"))
+sys.path[:0] = [str(ROOT / 'tools'), str(ROOT / 'src')]
+from holdout_contract import Snapshot, json_object, raw_sha, object_sha, required_text, write_new_json
+import prepare_linalg048_rewrite as rewrite
+from animtrain import sandbox_execution as sandbox
 
-from animtrain.sandbox_execution import render_scene  # noqa: E402
-
-CANDIDATE_PATH = (ROOT / "reviews/codex-supervision/2026-10-06-holdout-strict-fix"
-                  / "linalg048-v3/candidate.json")
-CANDIDATE_SHA = "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169"
-ACTIVE = ROOT / "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl"
-MANIFEST = ROOT / "data/manifest.json"
-OUT_DIR = ROOT / "reviews/2026-10-06-linalg048-admission"
-
-# Record-specific Manim scene for the horizontal shear T(x,y)=(x+3y,y).
-# Faithfully implements the candidate's five scene_spec steps.
-SCENE_SOURCE = r"""
-from manim import *
-
-class ConceptScene(Scene):
-    def construct(self):
-        title = Text('求矩阵对应的线性变换对二维平面的几何影响',
-                     font='Microsoft YaHei', font_size=24, color=WHITE).to_edge(UP)
-        formula = MathTex(r'T(x,y)=(x+3y,\,y),\qquad \det A=1',
-                          color=WHITE).scale(3/4).next_to(title, DOWN)
-        panel = Rectangle(width=8.8, height=3.9, fill_color=GRAY_A,
-                          fill_opacity=1, stroke_width=0).shift(DOWN*0.4)
-        axes = Axes(x_range=[-0.5, 5.5, 1], y_range=[-0.5, 2.2, 1],
-                    x_length=7.4, y_length=2.6,
-                    axis_config={'color': BLACK, 'include_numbers': True,
-                                 'font_size': 15,
-                                 'decimal_number_config': {'color': BLACK,
-                                                           'num_decimal_places': 0}})
-        axes.move_to(panel.get_center() + DOWN*0.05)
-
-        sq_pts = [(0,0), (1,0), (1,1), (0,1)]
-        pa_pts = [(0,0), (1,0), (4,1), (3,1)]
-        square = Polygon(*[axes.c2p(*p) for p in sq_pts],
-                         color=BLUE, fill_opacity=0.2)
-        sq_verts = VGroup(*[Dot(axes.c2p(*p), color=BLUE, radius=0.06)
-                            for p in sq_pts])
-        para = Polygon(*[axes.c2p(*p) for p in pa_pts],
-                       color=ORANGE, fill_opacity=0.2)
-        pa_verts = VGroup(*[Dot(axes.c2p(*p), color=ORANGE, radius=0.06)
-                            for p in pa_pts])
-        pa_labels = VGroup(*[
-            MathTex(r'(%d,%d)' % p, color=WHITE).scale(1/2).next_to(
-                axes.c2p(*p), UL if p[1] == 0 else UR)
-            for p in pa_pts])
-
-        def seg(y):
-            dots = VGroup(Dot(axes.c2p(0, y), color=TEAL, radius=0.06),
-                          Dot(axes.c2p(1, y), color=TEAL, radius=0.06))
-            return VGroup(Line(axes.c2p(0, y), axes.c2p(1, y), color=TEAL), dots)
-        seg1, seg1_img = seg(1/2), seg(1/2)
-        seg1_img.shift(axes.c2p(3/2, 0) - axes.c2p(0, 0))
-        seg2, seg2_img = seg(1), seg(1)
-        seg2_img.shift(axes.c2p(3, 0) - axes.c2p(0, 0))
-        caption3 = Text('水平直线作为集合不变，线上点位移 (3y, 0)',
-                        font='Microsoft YaHei', font_size=20,
-                        color=WHITE).to_edge(DOWN)
-        caption4 = Text('单位正方形变为底 1 高 1 的平行四边形，面积不变',
-                        font='Microsoft YaHei', font_size=20,
-                        color=WHITE).to_edge(DOWN)
-        vline = Line(axes.c2p(1/2, -0.3), axes.c2p(1/2, 1.2), color=GREEN)
-        vline_img = Line(axes.c2p(1/2 - 0.9, -0.3), axes.c2p(1/2 + 3.6, 1.2),
-                         color=GREEN)
-        vlabel = MathTex(r'X-3Y=c', color=WHITE).scale(1/2).next_to(
-            axes.c2p(4.1, 1.2), UR)
-        e2_dot = Dot(axes.c2p(0, 1), color=YELLOW, radius=0.07)
-        e2_img = Dot(axes.c2p(3, 1), color=YELLOW, radius=0.07)
-        e2_label = MathTex(r'\sqrt{10}', color=WHITE).scale(1/2).next_to(
-            axes.c2p(3, 1), UR)
-
-        self.add(title, panel)
-        self.play(Create(axes))
-        self.play(Create(square), Create(sq_verts))
-        self.play(Write(formula))
-        self.play(Transform(seg1, seg1_img), Transform(seg2, seg2_img),
-                  run_time=1.5)
-        self.play(Write(caption3))
-        self.wait(1/2)
-        self.play(Transform(square, para), Transform(sq_verts, pa_verts),
-                  run_time=1.5)
-        self.play(Write(caption4), Write(pa_labels))
-        self.wait(1/2)
-        self.play(Create(vline), Create(e2_dot))
-        self.play(Transform(vline, vline_img), Write(vlabel),
-                  Transform(e2_dot, e2_img), Write(e2_label), run_time=1.5)
-        self.wait(1)
-"""
+CANDIDATE_PATH = ROOT / 'reviews/codex-supervision/2026-10-06-holdout-strict-fix/linalg048-v3/candidate.json'
+CANDIDATE_SHA = '8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169'
+SCENE_PATH = ROOT / 'reviews/codex-supervision/2026-10-06-repair-progress-followup/shear-scene-v2.py'
+SCENE_SHA = 'e21c9ff372911a46a8538025f6e1f4f4f4cb36371fbef7740fe47fd71c65149e'
+SCHEMA = 'linalg048-bound-render-v2'
+CODE_FILES = [
+    'tools/admit_linalg048_v3.py', 'tools/apply_linalg048_admission.py',
+    'tools/prepare_linalg048_rewrite.py', 'tools/holdout_contract.py',
+    'tools/build_holdout_pairs.py', 'tools/draft_io.py',
+    'src/animtrain/kp_rule.py', 'src/animtrain/near_dup.py',
+    'src/animtrain/structural_leakage.py', 'src/animtrain/validate.py',
+    'src/animtrain/sandbox_execution.py', 'src/animtrain/appcontainer.py',
+    'src/animtrain/win_job.py', 'src/animtrain/private_profile.py',
+    'src/animtrain/isolation_evidence.py', 'src/animtrain/network_isolation.py',
+]
+math_checks = rewrite.math_checks
 
 
-def sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def load_candidate(snapshot, path=CANDIDATE_PATH):
+    raw = snapshot.read(path)
+    if raw_sha(raw) != CANDIDATE_SHA:
+        raise ValueError('candidate raw hash differs from reviewed v3')
+    return json_object(raw)
 
 
-def load_candidate():
-    raw = CANDIDATE_PATH.read_bytes()
-    if hashlib.sha256(raw).hexdigest() != CANDIDATE_SHA:
-        raise ValueError("candidate hash mismatch")
-    return json.loads(raw.decode("utf-8-sig"))
+def prepare(snapshot, candidate_path, scene_path):
+    candidate = load_candidate(snapshot, candidate_path)
+    scene_raw = snapshot.read(scene_path)
+    if raw_sha(scene_raw) != SCENE_SHA:
+        raise ValueError('scene is not the reviewed revision')
+    scene = scene_raw.decode('utf-8-sig').replace('\r\n', '\n')
+    compile(ast.parse(scene), str(scene_path), 'exec')
+    active, others, aliases, population = rewrite.load_population(snapshot)
+    checks = rewrite.check_candidate(candidate, active, others, aliases)
+    for rel in CODE_FILES:
+        snapshot.read(ROOT / rel)
+    subjects = [{'split':split, 'id':qid,
+                 'problem_sha256':raw_sha(row['problem'].encode('utf-8'))}
+                for split, qid, row in others]
+    return candidate, scene, checks, population, subjects
 
 
-def math_checks(c: dict) -> dict:
-    m = re.search(r"\\begin\{pmatrix\}(.*?)\\end\{pmatrix\}", c["problem"])
-    if not m:
-        raise ValueError("matrix missing")
-    A = [[Fraction(x) for x in row.split("&")] for row in m.group(1).split(r"\\")]
-    assert A == [[1, 3], [0, 1]], "matrix mismatch"
-    def T(p):
-        x, y = p
-        return (A[0][0] * x + A[0][1] * y, A[1][0] * x + A[1][1] * y)
-    det = A[0][0] * A[1][1] - A[0][1] * A[1][0]
-    assert det == 1, "det mismatch"
-    imgs = [T(p) for p in [(0, 0), (1, 0), (1, 1), (0, 1)]]
-    assert imgs == [(0, 0), (1, 0), (4, 1), (3, 1)], "vertex images mismatch"
-    # shoelace oriented area
-    area = Fraction(0)
-    pts = [(0, 0), (1, 0), (4, 1), (3, 1)]
-    for i, (x1, y1) in enumerate(pts):
-        x2, y2 = pts[(i + 1) % 4]
-        area += x1 * y2 - x2 * y1
-    assert area / 2 == 1, "shoelace area mismatch"
-    # segment images for c=1/2 and c=1
-    for c in (Fraction(1, 2), Fraction(1)):
-        assert T((0, c)) == (3 * c, c) and T((1, c)) == (1 + 3 * c, c)
-    # vertical line x=c -> X-3Y=c, slope 1/3
-    assert T((Fraction(1, 2), 0)) == (Fraction(1, 2), 0)
-    assert T((Fraction(1, 2), 1)) == (Fraction(7, 2), 1), "vline image mismatch"
-    # e2 image norm
-    assert T((0, 1)) == (3, 1)
-    return {"matrix": [["1", "3"], ["0", "1"]], "det": "1",
-            "vertex_images": [list(map(str, p)) for p in imgs],
-            "shoelace_area": "1",
-            "segment_images_c12": ["3/2", "5/2"],
-            "segment_images_c1": ["3", "4"],
-            "vline_image": "X-3Y=c",
-            "e2_image": "(3,1)",
-            "e2_norm_squared": "10"}
+def verify_result(result, scene, snapshot, decoder=None):
+    if not isinstance(result, dict) or result.get('ok') is not True or result.get('status') != 'rendered':
+        raise ValueError('actual render did not succeed')
+    transport = result.get('transport')
+    isolation = result.get('isolation')
+    if not isinstance(transport, dict) or type(transport.get('rc')) is not int or transport['rc'] != 0:
+        raise ValueError('explicit zero transport return code required')
+    if not isinstance(isolation, dict):
+        raise ValueError('isolation evidence required')
+    for k,v in {'backend':'windows_appcontainer', 'shell':False,
+                'job_assigned':True, 'network_isolated':True,
+                'fs_isolation':'private_per_run', 'memory_limit_mb':2048}.items():
+        if isolation.get(k) != v or type(isolation.get(k)) is not type(v):
+            raise ValueError('isolation field mismatch: '+k)
+    parent = transport.get('parent_evidence')
+    if not isinstance(parent, dict) or parent != isolation.get('parent_evidence'):
+        raise ValueError('parent evidence mismatch')
+    for key in ('created_suspended', 'job_assigned_before_resume', 'tree_stopped'):
+        if parent.get(key) is not True:
+            raise ValueError('parent guard missing: '+key)
+    if type(parent.get('memory_limit_mb')) is not int or parent['memory_limit_mb'] != 2048:
+        raise ValueError('parent memory guard mismatch')
+    token = parent.get('token', {})
+    if (token.get('api_ok') is not True or token.get('is_appcontainer') is not True or
+            type(token.get('capability_count')) is not int or token['capability_count'] != 0):
+        raise ValueError('verified zero-capability AppContainer token required')
+    if not isinstance(token.get('sid'), str) or not token['sid'].startswith('S-1-15-2-'):
+        raise ValueError('AppContainer SID required')
+    profile = parent.get('private_profile', {})
+    if profile.get('cleanup_complete') is not True or token.get('sid') != profile.get('sid'):
+        raise ValueError('private profile cleanup/identity mismatch')
+    grants = profile.get('temporary_acl')
+    if not isinstance(grants, list) or not grants:
+        raise ValueError('restored ACL evidence required')
+    for grant in grants:
+        if (not isinstance(grant, dict) or grant.get('restored') is not True or
+                not isinstance(grant.get('before_sha256'), str) or
+                len(grant['before_sha256']) != 64 or
+                grant['before_sha256'] != grant.get('after_sha256')):
+            raise ValueError('ACL restoration failed')
+    work = Path(required_text(transport, 'work')).resolve()
+    if not work.is_relative_to(sandbox.WORK_ROOT.resolve()):
+        raise ValueError('render work outside controlled transport root')
+    scene_path = work / 'scene.py'
+    actual_source = snapshot.read(scene_path)
+    if (raw_sha(actual_source) != transport.get('source_sha256') or
+            actual_source.decode('utf-8-sig').replace('\r\n', '\n') != scene):
+        raise ValueError('executed scene/source binding mismatch')
+    expected_command = [str((ROOT/'.venv/Scripts/python.exe').resolve()), '-I', '-B',
+                        str(work/'bootstrap.py'), 'render', '-ql', '--format=mp4',
+                        '--media_dir', str(work/'media'), str(scene_path), 'ConceptScene']
+    if transport.get('command') != expected_command:
+        raise ValueError('render command differs from controlled command')
+    snapshot.read(work/'bootstrap.py')
+    for key in ('stdout', 'stderr'):
+        raw = snapshot.read(work/(key+'.txt'))
+        if raw.decode('utf-8', 'replace') != transport.get(key):
+            raise ValueError('raw transport log mismatch: '+key)
+    output = result.get('output')
+    if not isinstance(output, dict):
+        raise ValueError('media binding required')
+    if any(type(output.get(k)) is not int or output[k] <= 0 for k in ('size','frames','width','height')):
+        raise ValueError('positive integer media metadata required')
+    media = Path(required_text(output, 'path')).resolve()
+    if not media.is_relative_to(work/'media') or 'partial_movie_files' in media.parts:
+        raise ValueError('media is not a final artifact of this run')
+    media_raw = snapshot.read(media)
+    if raw_sha(media_raw) != output.get('sha256') or len(media_raw) != output.get('size'):
+        raise ValueError('media raw binding mismatch')
+    decoded = (decoder or sandbox.decode_video)(media)
+    if decoded != output:
+        raise ValueError('full decoded media metadata mismatch')
+    snapshot.check_unchanged()
+    return output
 
 
-def main() -> int:
+def publish_render(out, *, scene_path=SCENE_PATH, candidate_path=CANDIDATE_PATH, renderer=None):
+    snapshot = Snapshot(ROOT)
+    out = Path(out).resolve()
+    if not out.is_relative_to(ROOT) or out.exists():
+        raise ValueError('render receipt must use a new project path')
+    candidate, scene, checks, population, subjects = prepare(snapshot, candidate_path, scene_path)
+    snapshot.check_unchanged()
+    result = (renderer or sandbox.render_scene)(scene)
+    verify_result(result, scene, snapshot)
+    data = {'schema':SCHEMA, 'status':'RENDERED_PENDING_MANUAL_ACCEPTANCE',
+            'accepted':False, 'candidate_raw_sha256':CANDIDATE_SHA,
+            'candidate_record_sha256':object_sha(candidate),
+            'scene':{'path':Path(scene_path).resolve().relative_to(ROOT).as_posix(),
+                     'raw_sha256':SCENE_SHA},
+            'math':checks['math'], 'screening':checks, 'population':population,
+            'semantic_subjects':subjects, 'render_result':result,
+            'source_bindings':snapshot.bindings(),
+            'visual_review':None, 'global_leakage_free_certified':False,
+            'calibration_eligible':False}
+    write_new_json(out, data, snapshot)
+    return data
+
+
+def verify_evidence(snapshot, evidence_path, candidate_path=CANDIDATE_PATH):
+    data = json_object(snapshot.read(evidence_path))
+    if data.get('schema') != SCHEMA or data.get('accepted') is not False:
+        raise ValueError('bound v2 render receipt required; old/unbound receipt rejected')
+    if data.get('status') != 'RENDERED_PENDING_MANUAL_ACCEPTANCE':
+        raise ValueError('render receipt status mismatch')
+    scene_info = data.get('scene', {})
+    if scene_info.get('raw_sha256') != SCENE_SHA:
+        raise ValueError('reviewed scene binding mismatch')
+    candidate, scene, checks, population, subjects = prepare(
+        snapshot, candidate_path, ROOT / required_text(scene_info, 'path'))
+    if (data.get('candidate_raw_sha256') != CANDIDATE_SHA or
+            data.get('candidate_record_sha256') != object_sha(candidate) or
+            data.get('math') != checks['math'] or data.get('screening') != checks or
+            data.get('population') != population or data.get('semantic_subjects') != subjects):
+        raise ValueError('candidate/input/population evidence is stale or mismatched')
+    verify_result(data.get('render_result'), scene, snapshot)
+    bindings = data.get('source_bindings')
+    expected = snapshot.bindings()
+    receipt_rel = Path(evidence_path).resolve().relative_to(ROOT).as_posix()
+    expected.pop(receipt_rel, None)
+    if bindings != expected:
+        raise ValueError('receipt source bindings incomplete, extra or stale')
+    snapshot.check_unchanged()
+    return candidate, data
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', required=True, type=Path)
+    parser.add_argument('--scene', type=Path, default=SCENE_PATH)
+    parser.add_argument('--candidate', type=Path, default=CANDIDATE_PATH)
+    args = parser.parse_args(argv)
     try:
-        cand = load_candidate()
-        checks = math_checks(cand)
-        active = json.loads(ACTIVE.read_text("utf-8-sig").splitlines()[0])
-        assert active.get("id") == "linalg-048", "line 1 is not linalg-048"
-        manifest = json.loads(MANIFEST.read_text("utf-8"))
-        entry = next(e for e in manifest["entries"] if e["path"].endswith("dataset_linalg.jsonl"))
-        assert sha(ACTIVE) == entry["sha256"], "active file hash mismatch"
-        OUT_DIR.mkdir(parents=True, exist_ok=True)
-        evidence_path = OUT_DIR / "render-evidence.json"
-        if evidence_path.exists():
-            raise ValueError("evidence output exists")
-        print("math checks ok; rendering scene in AppContainer ...", flush=True)
-        result = render_scene(SCENE_SOURCE)
-        if not result.get("ok"):
-            print("[FAIL] render:", result.get("detail"))
-            return 1
-        out = result["output"]["path"]
-        import av
-        with av.open(out) as c:
-            frames = list(c.decode(video=0))
-        final_png = OUT_DIR / "linalg048-final-frame-v3.png"
-        frames[-1].to_image().save(final_png)
-        evidence = {
-            "schema": "linalg048-admission-render-v1",
-            "candidate_sha256": sha(CANDIDATE_PATH),
-            "candidate_raw_sha256": CANDIDATE_SHA,
-            "active_record_sha256": hashlib.sha256(
-                ACTIVE.read_text("utf-8-sig").splitlines()[0].encode("utf-8")).hexdigest(),
-            "manifest_sha256": sha(MANIFEST),
-            "math_checks": checks,
-            "semantic_review": (
-                "Read full problem/solution/answer and all 5 scene steps. "
-                "T(x,y)=(x+3y,y): x-axis fixed; horizontal line SETS invariant with "
-                "point displacement (3y,0); segments [0,1]x{c} -> [3c,1+3c]x{c}; "
-                "vertical x=c -> X-3Y=c slope 1/3; unit square -> parallelogram "
-                "(0,0),(1,0),(4,1),(3,1) with shoelace area 1 = det A; "
-                "||T(0,1)|| = sqrt(10) shows length not preserved. No generic "
-                "geometry; five steps match the derivation one-to-one."),
-            "render": {"ok": result["ok"], "detail": result["detail"],
-                       "frames": len(frames),
-                       "media_path": str(out),
-                       "final_frame_png": str(final_png),
-                       "isolation": result.get("isolation")},
-        }
-        evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n",
-                                 encoding="utf-8", newline="\n")
-        print(json.dumps({"render_ok": True, "frames": len(frames),
-                          "final_frame": str(final_png),
-                          "evidence": str(evidence_path)}, ensure_ascii=False))
+        data = publish_render(args.out, scene_path=args.scene, candidate_path=args.candidate)
+        print('render receipt published; manual acceptance PENDING; frames:',
+              data['render_result']['output']['frames'])
         return 0
-    except Exception as exc:
-        print("[FAIL]", exc)
-        return 1
+    except (ValueError, OSError, KeyError, TypeError) as exc:
+        print('[FAIL]', exc)
+        return 2
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

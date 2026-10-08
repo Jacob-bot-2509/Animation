@@ -1,0 +1,62 @@
+{
+  "verifier_sha256": "fe341abdeac108e86bf82b9f718de13501efa6a8b3572c5aad4611d309d4742f",
+  "checks": 9,
+  "passed": 9,
+  "results": [
+    {
+      "case": "valid_control",
+      "expected": "PASS_CONTROL",
+      "actual": "PASS_CONTROL",
+      "reason": null
+    },
+    {
+      "case": "empty_completed_batch",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "empty or invalid completed bindings"
+    },
+    {
+      "case": "wrong_current_version",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "wrong current manifest"
+    },
+    {
+      "case": "stale_record_hash",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "calc-area-009: result binding mismatch record_sha256"
+    },
+    {
+      "case": "placeholder_scene_with_updated_hash",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "calc-area-009: scene incomplete or altered"
+    },
+    {
+      "case": "omitted_formula_with_updated_counts",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "calc-area-009: formula inventory does not match complete actual record"
+    },
+    {
+      "case": "fake_video_hash",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "calc-area-009: video hash mismatch"
+    },
+    {
+      "case": "zero_rc_missing_video",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "calc-area-009: status inconsistent with execution/video"
+    },
+    {
+      "case": "forged_summary",
+      "expected": "REJECT_INVALID_EVIDENCE",
+      "actual": "REJECT_INVALID_EVIDENCE",
+      "reason": "reported summary mismatch"
+    }
+  ],
+  "fixtures_scope": "SYNTHETIC_ADVERSARIAL_RECEIPTS_NOT_ACCEPTANCE_EVIDENCE"
+}

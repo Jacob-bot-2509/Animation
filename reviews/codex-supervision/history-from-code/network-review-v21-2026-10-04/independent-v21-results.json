@@ -1,0 +1,630 @@
+{
+  "source_sha256": "e91706386e42778b20cf3fff98e281be00eb4546c4e07eb4d35705e5adef55a4",
+  "internal_regressions": {
+    "cases": [
+      {
+        "name": "N1 沙箱 rc!=0",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N2 沙箱未启动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N3 接收观察未完结",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N4 接收线程错误",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N5 TCP 发送成功但无收包",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N6 UDP 已发送无明确阻断",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N7 控制异常但沙箱送达(必须 FAIL)",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N8 连接被拒 10061",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N9 令牌证据失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N10 能力 API 失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N11 控制未送达",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N12 shim 存在",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N13 客户端哈希核验缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N14 沙箱超时",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N15 沙箱送达状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N16 ._pth 核验失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N17 socket.__file__ 不符",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "P8 干净阻断基线(10013+全证据)",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "json_roundtrip": {
+    "ok": true,
+    "error": null
+  },
+  "independent_cases": [
+    {
+      "name": "nonzero_exit",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "not_spawned",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "receive_unknown",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "receiver_failure",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "tcp_sent_no_receive",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "udp_sent_no_receive",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "delivered_with_failed_control",
+      "actual": "FAIL",
+      "expected": "FAIL",
+      "holds": true
+    },
+    {
+      "name": "valid_blocked_baseline",
+      "actual": "PASS",
+      "expected": "PASS",
+      "holds": true
+    },
+    {
+      "name": "refused",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "token_query_failed",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "socket_outside_runtime",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "listener_expired_before_launch",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    },
+    {
+      "name": "tcp_receive_error_closes_both_sockets",
+      "actual": true,
+      "expected": true,
+      "holds": true
+    },
+    {
+      "name": "pth_clean",
+      "actual": true,
+      "expected": true,
+      "holds": true
+    },
+    {
+      "name": "pth_site_injection",
+      "actual": false,
+      "expected": false,
+      "holds": true
+    },
+    {
+      "name": "pth_external_path",
+      "actual": false,
+      "expected": false,
+      "holds": true
+    },
+    {
+      "name": "pth_missing",
+      "actual": false,
+      "expected": false,
+      "holds": true
+    },
+    {
+      "name": "_server_tcp_start_event_timeout_fails_and_closes",
+      "actual": true,
+      "expected": true,
+      "holds": true
+    },
+    {
+      "name": "_server_udp_start_event_timeout_fails_and_closes",
+      "actual": true,
+      "expected": true,
+      "holds": true
+    },
+    {
+      "name": "orchestration_valid_blocked_baseline",
+      "actual": "PASS",
+      "expected": "PASS",
+      "holds": true
+    },
+    {
+      "name": "orchestration_client_hash_mismatch",
+      "actual": "UNVERIFIED",
+      "expected": "UNVERIFIED",
+      "holds": true
+    }
+  ],
+  "independent_holds": 21,
+  "independent_total": 21,
+  "fake_attempt_evidence": {
+    "socket_outside_runtime": {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "nonce_control": "control-nonce",
+      "nonce_sandbox": "sandbox-nonce",
+      "control_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "control",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "received_hex": "636f6e74726f6c2d6e6f6e6365",
+          "received_len": 13,
+          "received_latin1": "control-nonce"
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "control-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "sandbox_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\nSHIM_ABSENT=True\nSITE_ABSENT=True\nSYS_EXECUTABLE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe\nSOCKET_FILE=D:\\Python\\Lib\\socket.py\nCLIENT_FILE_SHA256=abc123\nRUNTIME_EXE_SHA256=def456\nOUTCOME=net_error ERR_WINERROR=10013 T_DELTA=0\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": true,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": false,
+        "client_file_ok": true,
+        "site_absent": true,
+        "sys_executable": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+        "socket_file": "D:\\Python\\Lib\\socket.py",
+        "client_file_sha": "abc123",
+        "runtime_exe_sha": "def456",
+        "outcome": "net_error",
+        "err_winerror": 10013,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "timeout": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "sandbox-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "verdict": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "socket.__file__ 与运行时副本不符"
+        ]
+      }
+    },
+    "listener_expired_before_launch": {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "nonce_control": "control-nonce",
+      "nonce_sandbox": "sandbox-nonce",
+      "control_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "control",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "received_hex": "636f6e74726f6c2d6e6f6e6365",
+          "received_len": 13,
+          "received_latin1": "control-nonce"
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "control-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "sandbox_server": {
+        "port": 12345,
+        "t_bind_mono_s": 32
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\nSHIM_ABSENT=True\nSITE_ABSENT=True\nSYS_EXECUTABLE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe\nSOCKET_FILE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py\nCLIENT_FILE_SHA256=abc123\nRUNTIME_EXE_SHA256=def456\nOUTCOME=net_error ERR_WINERROR=10013 T_DELTA=0\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": false,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": true,
+        "client_file_ok": true,
+        "site_absent": true,
+        "sys_executable": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+        "socket_file": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py",
+        "client_file_sha": "abc123",
+        "runtime_exe_sha": "def456",
+        "outcome": "net_error",
+        "err_winerror": 10013,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "server_error": "start event not triggered",
+          "timeout": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "sandbox-nonce"
+        ],
+        "t_launch_mono_s": 33,
+        "t_return_mono_s": 34,
+        "t_recv_end_mono_s": 35
+      },
+      "verdict": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "沙箱侧接收观察未完结或接收线程存在错误/未知状态"
+        ]
+      }
+    },
+    "hash_mismatch_baseline": {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "nonce_control": "control-nonce",
+      "nonce_sandbox": "sandbox-nonce",
+      "control_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "control",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "received_hex": "636f6e74726f6c2d6e6f6e6365",
+          "received_len": 13,
+          "received_latin1": "control-nonce"
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "control-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "sandbox_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\nSHIM_ABSENT=True\nSITE_ABSENT=True\nSYS_EXECUTABLE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe\nSOCKET_FILE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py\nCLIENT_FILE_SHA256=abc123\nRUNTIME_EXE_SHA256=def456\nOUTCOME=net_error ERR_WINERROR=10013 T_DELTA=0\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": true,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": true,
+        "client_file_ok": true,
+        "site_absent": true,
+        "sys_executable": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+        "socket_file": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py",
+        "client_file_sha": "abc123",
+        "runtime_exe_sha": "def456",
+        "outcome": "net_error",
+        "err_winerror": 10013,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "timeout": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "sandbox-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "verdict": {
+        "verdict": "PASS",
+        "reasons": []
+      }
+    },
+    "hash_mismatch": {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "nonce_control": "control-nonce",
+      "nonce_sandbox": "sandbox-nonce",
+      "control_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "control": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "control",
+        "delivered": true,
+        "nonce_match": true,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "received_hex": "636f6e74726f6c2d6e6f6e6365",
+          "received_len": 13,
+          "received_latin1": "control-nonce"
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "control-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "sandbox_server": {
+        "port": 12345,
+        "t_bind_mono_s": 1
+      },
+      "sandbox": {
+        "spawned": true,
+        "rc": 0,
+        "timed_out": false,
+        "client_out": "TOKEN_IS_APPCONTAINER=1 ok=1/1\nCAPABILITY_COUNT=0 CAP_API_OK=1 CAP_NEEDED=8\nSHIM_ABSENT=True\nSITE_ABSENT=True\nSYS_EXECUTABLE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe\nSOCKET_FILE=D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py\nCLIENT_FILE_SHA256=abc123\nRUNTIME_EXE_SHA256=def456\nOUTCOME=net_error ERR_WINERROR=10013 T_DELTA=0\n",
+        "delivered": false,
+        "server_ok": true,
+        "recv_final": true,
+        "token29": true,
+        "cap_count": 0,
+        "cap_api_ok": true,
+        "shim_absent": true,
+        "pth_ok": true,
+        "socket_ok": true,
+        "client_file_ok": false,
+        "site_absent": true,
+        "sys_executable": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+        "socket_file": "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\Lib\\socket.py",
+        "client_file_sha": "different",
+        "runtime_exe_sha": "def456",
+        "outcome": "net_error",
+        "err_winerror": 10013,
+        "server": {
+          "listening": true,
+          "finalized": true,
+          "timeout": true,
+          "received_hex": null,
+          "received_len": 0,
+          "received_latin1": null
+        },
+        "command": [
+          "D:\\code\\output\\claude-supervision\\network-review-v2-2026-10-04\\fake-runtime\\python.exe",
+          "-X",
+          "utf8",
+          "D:\\code\\output\\claude-supervision\\network-review-v21-2026-10-04\\fake-client.py",
+          "tcp",
+          "127.0.0.1",
+          "12345",
+          "sandbox-nonce"
+        ],
+        "t_launch_mono_s": 2,
+        "t_return_mono_s": 3,
+        "t_recv_end_mono_s": 4
+      },
+      "verdict": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "客户端自哈希与记录值不符/缺失"
+        ]
+      }
+    }
+  },
+  "receive_error_cleanup": {
+    "conn_closed": true,
+    "server_closed": true,
+    "result": {
+      "listening": true,
+      "received": null,
+      "server_error": 10054,
+      "finalized": true
+    }
+  },
+  "scope": "AST functions with fake I/O only; no sockets, profile, native process or ACL created"
+}

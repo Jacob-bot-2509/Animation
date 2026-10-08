@@ -1,0 +1,217 @@
+﻿{
+  "schema": "codex-current-patch-independent-exact-review-v1",
+  "checks": [
+    {
+      "name": "normal_normalization",
+      "left": "1",
+      "right": "1",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_symmetry",
+      "left": "sqrt(2)*exp(-x**2/(2*sigma**2))/(2*sqrt(pi)*sigma)",
+      "right": "sqrt(2)*exp(-x**2/(2*sigma**2))/(2*sqrt(pi)*sigma)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_peak",
+      "left": "sqrt(2)/(2*sqrt(pi)*sigma)",
+      "right": "sqrt(2)/(2*sqrt(pi)*sigma)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_derivative_factor",
+      "left": "-sqrt(2)*(-2*mu + 2*x)*exp(-(-mu + x)**2/(2*sigma**2))/(4*sqrt(pi)*sigma**3)",
+      "right": "sqrt(2)*(mu - x)*exp(-(-mu + x)**2/(2*sigma**2))/(2*sqrt(pi)*sigma**3)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_exact_symmetric_mass",
+      "left": "erf(sqrt(2)*c/2)",
+      "right": "erf(sqrt(2)*c/2)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_mass_c1",
+      "left": "erf(sqrt(2)/2)",
+      "right": "erf(sqrt(2)/2)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "normal_mass_c2",
+      "left": "erf(sqrt(2))",
+      "right": "erf(sqrt(2))",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_det",
+      "left": "4",
+      "right": "4",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_equation_0",
+      "left": "0",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_cramer_0",
+      "left": "2*b2 + 2*b3",
+      "right": "2*b2 + 2*b3",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_equation_1",
+      "left": "0",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_cramer_1",
+      "left": "2*b1 - 2*b2",
+      "right": "2*b1 - 2*b2",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_equation_2",
+      "left": "0",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_cramer_2",
+      "left": "2*b1 - 2*b3",
+      "right": "2*b1 - 2*b3",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "integer_729_exact_parity_cases",
+      "verdict": "PASS_EXACT",
+      "cases": 729,
+      "scope": "supplements the arbitrary integer necessity and sufficiency proof"
+    },
+    {
+      "name": "polynomial_det_nonunit",
+      "left": "t**2 - t",
+      "right": "t*(t - 1)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "rational_function_equation_0",
+      "left": "-p + (q - r)/(t - 1) + (p*(t - 1) - q + r)/(t - 1)",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_cramer_0",
+      "left": "p*t - p - q + r",
+      "right": "(t**2 - t)*(p*(t - 1) - q + r)/(t*(t - 1))",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "rational_function_equation_1",
+      "left": "0",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_cramer_1",
+      "left": "q*t - r*t",
+      "right": "(q - r)*(t**2 - t)/(t - 1)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "rational_function_equation_2",
+      "left": "0",
+      "right": "0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_cramer_2",
+      "left": "r*t**2 - r*t",
+      "right": "r*(t**2 - t)",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_N_at_zero",
+      "left": "-p0 - q0 + r0",
+      "right": "-p0 - q0 + r0",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_N_at_one",
+      "left": "-q0 - q1 - q2 + r0 + r1 + r2",
+      "right": "-q0 - q1 - q2 + r0 + r1 + r2",
+      "verdict": "PASS_EXACT"
+    },
+    {
+      "name": "polynomial_two_root_remainder",
+      "left": "-p0 - q0 + r0 + t*(p0 - q1 - q2 + r1 + r2)",
+      "right": "t*(-q0 - q1 - q2 + r0 + r1 + r2) + (1 - t)*(-p0 - q0 + r0)",
+      "verdict": "PASS_EXACT"
+    }
+  ],
+  "check_count": 25,
+  "manual_proofs": {
+    "prob-041": "For sigma>0 the affine change z=(x-mu)/sigma preserves normalization. The derivative is positive for x<mu and negative for x>mu; hence unique peak at mu. Standardization and u=z/sqrt(2) give erf(c/sqrt(2)) exactly for c>=0. UTF-8 restored P and A agree with unchanged reviewed proof and scene.",
+    "draft-c31-01": "Cramer gives x=(b2+b3)/2,y=(b1-b2)/2,z=(b1-b3)/2. Integer solutions imply b1-b2 and b1-b3 even; the converse makes all three numerators even. det=4 gives uniqueness. The map Z^3 to (Z/2Z)^2 sending b to (b1-b2,b1-b3) is surjective and its kernel is A Z^3, so the index is 4.",
+    "draft-c31-03": "Over R(t), D=t(t-1) gives the displayed rational solution. A polynomial solution requires q(1)=r(1) and p(0)+q(0)-r(0)=0 by evaluating original equations. Conversely N=(t-1)p-q+r has zeros 0 and 1; coprimality yields t(t-1)|N and t-1|q-r. Direct substitution proves sufficiency. Differences solve triangular homogeneous equations; R[t] has no zero divisors, yielding uniqueness. Nonzero D is not a unit in R[t].",
+    "eval-calc-027-s3": "Only stale efficiency tags changed: exact continuous triangular-domain integral (e-1)/2; inherits unchanged reviewed P/S/A/scene.",
+    "eval-prob-008-s3": "Only stale efficiency tags changed: exact binomial tail q=2^-99 sum(k=0..40) C(100,k), exact Chebyshev gap; inherits unchanged reviewed P/S/A/scene.",
+    "test-prob-008": "Only stale efficiency tags changed: exact die mean 7/2 and Chebyshev bound min(1,875/(3n)); inherits unchanged reviewed P/S/A/scene."
+  },
+  "patch_bindings": [
+    {
+      "id": "prob-041",
+      "record_sha256": "286754fa13ef01227f0b53f712cd107166a4b34a56b01d7541f467db6b09be7c",
+      "math_sha256": "5e3f8715cb7eda8e53c9ce4658b1ad4caeaf57e795daca920074702b86f82688",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "ENCODING_FIXED"
+    },
+    {
+      "id": "draft-c31-01",
+      "record_sha256": "77cad5f8c6eaace67bdcd7f36e6dcc12b4783c0d72af1b30f0f224309258f6e3",
+      "math_sha256": "3834cbc22dd5354aaa44868c4b97d1e93915a52fd1ffafbd96e61dcc1029fbac",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "FIXED_LOCAL_CRAMER_TEMPLATE"
+    },
+    {
+      "id": "draft-c31-03",
+      "record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+      "math_sha256": "aa1a163e957801d3f49c5001e0762a643333ee1ed63e23d3c48b3e56fceaff4a",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "FIXED_LOCAL_CRAMER_TEMPLATE"
+    },
+    {
+      "id": "eval-calc-027-s3",
+      "record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+      "math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "EXACT_TAGS_SYNCHRONIZED"
+    },
+    {
+      "id": "eval-prob-008-s3",
+      "record_sha256": "57944b3a5498c92c812181fd37a8372f02e9cdbc56af58ee34655a1e4f64c256",
+      "math_sha256": "d4c7f33e909c14b48a24b8a23d577cd31a21687500df4aca0610510078c0b779",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "EXACT_TAGS_SYNCHRONIZED"
+    },
+    {
+      "id": "test-prob-008",
+      "record_sha256": "389e68cb50a48bf8e0deb76b0c0821fbc0044b50cad3184d79a7457e8cb894aa",
+      "math_sha256": "5e9d98a66cdcb954c93b5ccd7952e2592b9b9481456846a696554e5423d1702c",
+      "math": "PASS",
+      "scene_text": "PASS",
+      "semantic_pair_disposition": "EXACT_TAGS_SYNCHRONIZED"
+    }
+  ],
+  "global_semantic_isolation": "NOT_ESTABLISHED",
+  "native_render": "UNVERIFIED",
+  "production": "CLOSED"
+}

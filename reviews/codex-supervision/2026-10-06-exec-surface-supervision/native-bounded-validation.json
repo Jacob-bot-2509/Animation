@@ -1,0 +1,186 @@
+{
+  "checked_at": "2026-10-06T18:38:40.188062+08:00",
+  "scope": "Only owned loopback, new project fixture/registry leaf, and live owned IPC object access. No clipboard/window/external receiver/render/train operations.",
+  "production_gate": "CLOSED",
+  "full_surface_accepted": false,
+  "results": [
+    {
+      "mode": "udp",
+      "command": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_udp_external.py",
+        "--execute-native"
+      ],
+      "rc": 3,
+      "stdout_raw_sha256": "61a2b2e5959eca48cea8e819eeb3feee8ec73b7eeb17ba5d106e478fbbe40fa7",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-udp-v2-83062769fb2e4b529e30ab8593ff5766-results.json",
+      "raw_sha256": "8814e29b7d347ee0d9905f973c5f8d0bea045446e49e8b1da08f541810ca540d",
+      "status": "UNVERIFIED",
+      "transport_verified": true,
+      "implementation_unchanged": true,
+      "error": null,
+      "scoped_results": {
+        "owned_loopback_udp_v4": {
+          "endpoint": [
+            "127.0.0.1",
+            65211
+          ],
+          "nonces": {
+            "before": "605680414c1e4768b4c64df94816e414",
+            "sandbox": "8ad003084ece4c1ba626ca205d92c1fb",
+            "after": "c4c32f4c641f44d59fcc6b159828a4a8"
+          },
+          "packets": [
+            "605680414c1e4768b4c64df94816e414",
+            "c4c32f4c641f44d59fcc6b159828a4a8"
+          ],
+          "complete": true,
+          "errors": [],
+          "observation_ns": 25169083100,
+          "verdict": "BOUNDED_NO_DELIVERY"
+        },
+        "owned_loopback_udp_v6": {
+          "endpoint": [
+            "::1",
+            65213,
+            0,
+            0
+          ],
+          "nonces": {
+            "before": "e6f61e3d2d804e2e84e918f67efb9995",
+            "sandbox": "dc124cf97f6740beb3c53a70e4982052",
+            "after": "6af60b63d877412db79d1e08d3fb1e2b"
+          },
+          "packets": [
+            "e6f61e3d2d804e2e84e918f67efb9995",
+            "6af60b63d877412db79d1e08d3fb1e2b"
+          ],
+          "complete": true,
+          "errors": [],
+          "observation_ns": 25169087700,
+          "verdict": "BOUNDED_NO_DELIVERY"
+        }
+      },
+      "expected_unverified_exit": true
+    },
+    {
+      "mode": "exe",
+      "command": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_exe_ipc_fs.py",
+        "--execute-native"
+      ],
+      "rc": 3,
+      "stdout_raw_sha256": "59c009ad6c0d1fb04272bae6c983e570b9eed264c1545029cc3abc97e72f9097",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-exe-v2-289c0c971273496a84eff22ed71b219f-results.json",
+      "raw_sha256": "5ac960b6f163d2e5dd359c9d03460ae8eb9b1f0c643399e648d7268ca82133f9",
+      "status": "UNVERIFIED",
+      "transport_verified": true,
+      "implementation_unchanged": true,
+      "error": null,
+      "scoped_results": {
+        "host_registry_fixture": {
+          "host_value_unchanged": true,
+          "verdict": "SCOPED_PASS"
+        },
+        "curl_owned_http": {
+          "endpoint": [
+            "127.0.0.1",
+            57507
+          ],
+          "nonces": {
+            "before": "fb8801eac7e04ca1bbb5b85e843ab1a7",
+            "sandbox": "3f8dd9389897444da73a1b85d2ff6109",
+            "after": "34d7bd7f746f4e13bf3a46a137224f15"
+          },
+          "packets": [
+            "fb8801eac7e04ca1bbb5b85e843ab1a7",
+            "34d7bd7f746f4e13bf3a46a137224f15"
+          ],
+          "complete": true,
+          "errors": [],
+          "observation_ns": 27450380200,
+          "verdict": "BOUNDED_NO_DELIVERY"
+        },
+        "delete_owned_host_fixture": {
+          "exists": true,
+          "unchanged": true,
+          "verdict": "SCOPED_PASS"
+        },
+        "junction_write": {
+          "verified_junction": false,
+          "marker_exists": false,
+          "verdict": "UNKNOWN"
+        },
+        "raw_socket": {
+          "observation": {
+            "outcome": "created",
+            "reason": "Creation alone does not test ICMP delivery"
+          },
+          "verdict": "UNKNOWN",
+          "reason": "ICMP transmit/receive not verified by creating a socket"
+        }
+      },
+      "expected_unverified_exit": true
+    },
+    {
+      "mode": "ipc",
+      "command": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe_raw_ipc3.py",
+        "--execute-native"
+      ],
+      "rc": 3,
+      "stdout_raw_sha256": "ab8a217af2b407f7a48a2e52a46a4a5439f8744f3bc116865806656182c17049",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\probe-ipc-v2-77d90c0b87e349209c27aa37e9ae1fb7-results.json",
+      "raw_sha256": "f41b856c532beb67585895996b7dc014f444717a74ba453f53bb58652b3bb6ba",
+      "status": "UNVERIFIED",
+      "transport_verified": true,
+      "implementation_unchanged": true,
+      "error": null,
+      "scoped_results": {
+        "pipe": {
+          "controls": {
+            "before": {
+              "opened": true,
+              "winerror": null
+            },
+            "after": {
+              "opened": true,
+              "winerror": null
+            }
+          },
+          "lifetime": "host handle held throughout child operation",
+          "verdict": "SCOPED_PASS"
+        },
+        "mailslot": {
+          "controls": {
+            "before": {
+              "opened": true,
+              "winerror": null
+            },
+            "after": {
+              "opened": true,
+              "winerror": null
+            }
+          },
+          "lifetime": "host handle held throughout child operation",
+          "verdict": "SCOPED_PASS"
+        }
+      },
+      "expected_unverified_exit": true
+    }
+  ]
+}

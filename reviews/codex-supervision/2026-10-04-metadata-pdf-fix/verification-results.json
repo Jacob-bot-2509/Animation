@@ -1,0 +1,40 @@
+{
+  "completed_at": "2026-10-04T23:26:40.481404+08:00",
+  "related_tests_run": 141,
+  "tests_exit_code": 0,
+  "test_input_hashes_stable": true,
+  "data_check": {
+    "ok": true,
+    "problems": 0,
+    "quarantines": 0
+  },
+  "locks_bound_and_valid": true,
+  "core_files_checked": 11,
+  "core_drift": [],
+  "fixed_findings": [
+    "新题元数据源映射与raw/JSONL同步",
+    "B5表格公式SVG越界"
+  ],
+  "remaining_project_readiness": {
+    "near_dup_calibrated": false,
+    "asset_evidence": [
+      false,
+      "资产验收证据缺失(asset_evidence.json 不存在)——当前资产未经真实渲染/数学验收,UNVERIFIED 阻断 ready"
+    ],
+    "exec_isolation": [
+      false,
+      "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+    ]
+  },
+  "final_file_hashes": {
+    "tools/meta_eval_test.py": "d27d170dcc8d0f712e5a404ae3ecb98bcdcc93e04628bf19268392d7a1b4f944",
+    "tools/render_b5_report.py": "03338f9d0d658d52ba343b697e2004fd3d81b4f2355f6c79b07c491d34462124",
+    "tools/make_eval_test.py": "2ab7923c8bfe5739016bedfe20a279307e2218d71923dcdcea65ee83f45bb831",
+    "data/v2/eval/dataset_eval.jsonl": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+    "data/v2/raw/dataset_eval.json": "174b518bc39944ac4a71ac99f8558b13a2ee9a1088fe335fb33242b973013fc5",
+    "data/manifest.json": "dfbed3109b4bf91627899544986e5eee042dd52d91d83bd87890722da5e42694",
+    "data/eval-v2.lock.json": "11632b0ab3242db540ed38efcf11981f2761e7061eec1d22f71f12592cf9d628",
+    "data/test-v2.lock.json": "7ba751de93f97931ce11a5e66fbd3a8dd75db02ae33dc3229549bc16ee1b53e3",
+    "data/b5-calibration-report/pdf/b5-calibration-report.pdf": "adf0543ccb7171a309da793e93d42d00d8a7f0495eeb877fb14923372873014b"
+  }
+}

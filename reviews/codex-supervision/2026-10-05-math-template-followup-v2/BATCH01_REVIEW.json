@@ -1,0 +1,152 @@
+{
+  "source_sha256": "25bcdf9bb0a1003d55e845e089a047013953ef216cac4b699485bae107174a8f",
+  "records": 15,
+  "blocked_ids": [
+    "draft-c01-02",
+    "draft-c36-01",
+    "draft-c52-05"
+  ],
+  "eligible_after_corrections": 12,
+  "nominal_per_group_eligible": {
+    "C01": 4,
+    "C36": 4,
+    "C52": 4
+  },
+  "all_currently_not_admitted": true,
+  "edits": {
+    "draft-c01-01": [],
+    "draft-c01-02": [],
+    "draft-c01-03": [
+      "原scene把(1,±2)误称自交点；改为(3,0)，并补实参数范围"
+    ],
+    "draft-c01-04": [],
+    "draft-c01-05": [
+      "补充无竖直切线，确保不存在结论覆盖所有直线"
+    ],
+    "draft-c36-01": [
+      "答案补配方验证；删父题“对角占优”误称；仍因跨集直接套解要求重写"
+    ],
+    "draft-c36-02": [],
+    "draft-c36-03": [
+      "不定性证明补正值见证，仅有负值不足以证明不定"
+    ],
+    "draft-c36-04": [],
+    "draft-c36-05": [],
+    "draft-c52-01": [
+      "method从分布函数法改为实际使用的变换密度公式"
+    ],
+    "draft-c52-02": [],
+    "draft-c52-03": [
+      "值域含0；修区间开端点；补CDF外侧和分界密度取值/无原子区别"
+    ],
+    "draft-c52-04": [
+      "明确混合分布不存在普通整体PDF；原子图用质量箭头，区别密度高度"
+    ],
+    "draft-c52-05": [
+      "斜截线长度漏√2，改成投影积分区间并给真实线段长度；仍须重写以解除跨集复用"
+    ]
+  },
+  "overlap_pairs": [
+    {
+      "train_id": "draft-c01-02",
+      "query_id": "eval-geom-014-s2",
+      "train_problem": "求椭圆 $x^2+4y^2=8$ 在点 $(2,1)$ 处的切线方程。",
+      "train_solution": "点 $(2,1)$ 满足 $2^2+4\\cdot 1^2=8$，在椭圆上。对隐式方程两边关于 $x$ 求导：$2x+8y\\cdot y'=0$，即 $y'=-\\frac{x}{4y}$。在点 $(2,1)$ 处，$y'=-\\frac{2}{4\\cdot 1}=-\\frac{1}{2}$。由点斜式，切线为 $y-1=-\\frac{1}{2}(x-2)$，整理得 $x+2y=4$。",
+      "query_problem": "求椭圆 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}=1$ 在点 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处的切线方程。",
+      "query_method": "隐函数求导",
+      "query_solution": "两边对 $x$ 求导：$\\dfrac{2x}{4}+\\dfrac{2y}{9}y'=0$，得 $y'=-\\dfrac{9x}{4y}$。在 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处 $y'=-\\dfrac{9\\sqrt{2}}{4\\cdot\\frac{3}{\\sqrt{2}}}=-\\dfrac{9\\cdot 2}{12}=-\\dfrac{3}{2}$。切线：$y-\\dfrac{3}{\\sqrt{2}}=-\\dfrac{3}{2}(x-\\sqrt{2})$，整理得 $2y-\\dfrac{6}{\\sqrt{2}}=-3x+3\\sqrt{2}$，即 $3x+2y=3\\sqrt{2}+3\\sqrt{2}=6\\sqrt{2}$。",
+      "query_source": {
+        "path": "data/v2/eval/dataset_eval.jsonl",
+        "line": 131,
+        "row_sha256": "bf486872bf8e43706eaf09ec2660578b710067e713f94e04d44a67db940f2ff8"
+      },
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为非竖直点处对角椭圆的隐函数求导，改变系数与点坐标；全解题链一致。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "15/77",
+        "rule": "structure-candidates-v3"
+      }
+    },
+    {
+      "train_id": "draft-c36-01",
+      "query_id": "test-linalg-026",
+      "train_problem": "判断二次型 $f(x,y)=3x^2-2xy+3y^2$ 是否正定，并用配方法验证你的结论。",
+      "train_solution": "二次型对应矩阵 $A=\\begin{pmatrix}3&-1\\\\-1&3\\end{pmatrix}$。顺序主子式：$\\Delta_1=3>0$，$\\Delta_2=\\det A=3\\times 3-(-1)\\times(-1)=8>0$，故 $f$ 正定。配方法验证：$f=3x^2-2xy+3y^2=3\\left(x-\\frac{y}{3}\\right)^2+\\frac{8}{3}y^2$。对任意 $(x,y)\\neq(0,0)$，若 $y\\neq 0$ 则 $\\frac{8}{3}y^2>0$；若 $y=0$ 则 $x\\neq 0$，第一项 $3x^2>0$，故恒有 $f>0$，正定。",
+      "query_problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+      "query_method": null,
+      "query_solution": "$f=3\\left(x^2+\\dfrac{4}{3}xy\\right)+6y^2=3\\left(x+\\dfrac{2}{3}y\\right)^2-\\dfrac{4}{3}y^2+6y^2=3\\left(x+\\dfrac{2}{3}y\\right)^2+\\dfrac{14}{3}y^2$。令 $u=x+\\dfrac{2}{3}y$、$v=y$（可逆：$x=u-\\dfrac{2}{3}v$、$y=v$），标准形为 $3u^2+\\dfrac{14}{3}v^2$。矩阵形式：$A=\\begin{pmatrix}3&2\\\\2&6\\end{pmatrix}$，$C=\\begin{pmatrix}1&-\\frac{2}{3}\\\\0&1\\end{pmatrix}$，验证 $C^TAC=\\begin{pmatrix}3&0\\\\0&\\frac{14}{3}\\end{pmatrix}$（$AC=\\begin{pmatrix}3&0\\\\2&\\frac{14}{3}\\end{pmatrix}$，$C^T(AC)=\\begin{pmatrix}3&0\\\\0&\\frac{14}{3}\\end{pmatrix}$）。",
+      "query_source": {
+        "path": "data/v2/test/dataset_test.jsonl",
+        "line": 121,
+        "row_sha256": "35507922b090b1b9304aad0c897d17f5a3e65e0b78e4d8175a3610315e9d1763"
+      },
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为二元正定二次型的单次配方及可逆坐标替换，交叉项非零，改变系数不改变分支或方法。",
+      "prediction_before": {
+        "candidate": true,
+        "coverage": "CANDIDATE",
+        "reasons": [
+          "quadratic-form-reduction-2"
+        ],
+        "score": "5/23",
+        "rule": "structure-candidates-v3"
+      }
+    },
+    {
+      "train_id": "draft-c52-05",
+      "query_id": "test-prob-005",
+      "train_problem": "设 $X$ 与 $Y$ 相互独立且均服从区间 $(0,1)$ 上的均匀分布，$Z=X+Y$。求 $Z$ 的概率密度函数，并求 $P\\left(\\frac{1}{2}<Z<\\frac{3}{2}\\right)$。",
+      "train_solution": "卷积法:$Z$ 的密度为 $f_Z(z)=\\int f_X(x)f_Y(z-x)\\,dx$。当 $0<z<1$ 时,$0<x<z$,$f_Z(z)=\\int_0^z 1\\,dx=z$;当 $1\\leq z<2$ 时,$z-1<x<1$,$f_Z(z)=\\int_{z-1}^1 1\\,dx=2-z$。故 $f_Z(z)=z$($0<z<1$)、$f_Z(z)=2-z$($1\\leq z<2$)、其余为 $0$(三角密度)。所求概率:$P\\left(\\frac{1}{2}<Z<\\frac{3}{2}\\right)=\\int_{\\frac{1}{2}}^1z\\,dz+\\int_1^{\\frac{3}{2}}(2-z)\\,dz=\\left.\\frac{z^2}{2}\\right|_{\\frac{1}{2}}^1+\\left.\\left(2z-\\frac{z^2}{2}\\right)\\right|_1^{\\frac{3}{2}}=\\frac{3}{8}+\\frac{3}{8}=\\frac{3}{4}$。(几何验证:两端各剔除一个直角边为 $\\frac{1}{2}$ 的小三角形,面积各 $\\frac{1}{8}$。)",
+      "query_problem": "设 $X,Y$ 独立同分布于 $U(0,1)$，求 $Z=X+Y$ 的密度与 $P(Z>1.5)$。",
+      "query_method": null,
+      "query_solution": "$f_Z(z)=\\displaystyle\\int_0^1 f_X(x)f_Y(z-x)dx=\\int_0^1\\mathbf 1_{[0,1]}(z-x)dx$。当 $0<z<1$：$f_Z(z)=\\displaystyle\\int_0^z dx=z$；当 $1\\le z<2$：$f_Z(z)=\\displaystyle\\int_{z-1}^1 dx=2-z$；其余为 0（三角分布）。$P(Z>1.5)=\\displaystyle\\int_{1.5}^{2}(2-z)dz=\\left[2z-\\dfrac{z^2}{2}\\right]_{1.5}^{2}=\\left(4-2\\right)-\\left(3-\\dfrac{2.25}{2}\\right)=2-(3-1.125)=0.125=\\dfrac{1}{8}$。",
+      "query_source": {
+        "path": "data/v2/test/dataset_test.jsonl",
+        "line": 75,
+        "row_sha256": "fa593f6ce5f057f80451282e2ccfc8f2a9d172d8a42d465237d7d8d218567672"
+      },
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "独立U(0,1)和的卷积密度相同；训练直接给出完整三角密度并计算两端尾面积，评测仅提取其中区间/尾概率。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "4/37",
+        "rule": "structure-candidates-v3"
+      }
+    },
+    {
+      "train_id": "draft-c52-05",
+      "query_id": "eval-prob-012-s2",
+      "train_problem": "设 $X$ 与 $Y$ 相互独立且均服从区间 $(0,1)$ 上的均匀分布，$Z=X+Y$。求 $Z$ 的概率密度函数，并求 $P\\left(\\frac{1}{2}<Z<\\frac{3}{2}\\right)$。",
+      "train_solution": "卷积法:$Z$ 的密度为 $f_Z(z)=\\int f_X(x)f_Y(z-x)\\,dx$。当 $0<z<1$ 时,$0<x<z$,$f_Z(z)=\\int_0^z 1\\,dx=z$;当 $1\\leq z<2$ 时,$z-1<x<1$,$f_Z(z)=\\int_{z-1}^1 1\\,dx=2-z$。故 $f_Z(z)=z$($0<z<1$)、$f_Z(z)=2-z$($1\\leq z<2$)、其余为 $0$(三角密度)。所求概率:$P\\left(\\frac{1}{2}<Z<\\frac{3}{2}\\right)=\\int_{\\frac{1}{2}}^1z\\,dz+\\int_1^{\\frac{3}{2}}(2-z)\\,dz=\\left.\\frac{z^2}{2}\\right|_{\\frac{1}{2}}^1+\\left.\\left(2z-\\frac{z^2}{2}\\right)\\right|_1^{\\frac{3}{2}}=\\frac{3}{8}+\\frac{3}{8}=\\frac{3}{4}$。(几何验证:两端各剔除一个直角边为 $\\frac{1}{2}$ 的小三角形,面积各 $\\frac{1}{8}$。)",
+      "query_problem": "设 $X,Y$ 相互独立且均服从 $U(0,1)$，求 $P(X+Y\\le 1)$。",
+      "query_method": "卷积密度",
+      "query_solution": "$Z=X+Y$ 的密度为卷积：$f_Z(z)=\\displaystyle\\int_{-\\infty}^{\\infty}f_X(x)f_Y(z-x)dx=\\int_0^1\\mathbf 1_{[0,1]}(z-x)dx$。当 $0<z<1$：$f_Z(z)=\\displaystyle\\int_0^z dx=z$；当 $1<z<2$：$f_Z(z)=\\displaystyle\\int_{z-1}^1 dx=2-z$（三角分布）。故 $P(X+Y\\le 1)=\\displaystyle\\int_0^1 z\\,dz=\\dfrac{1}{2}$。",
+      "query_source": {
+        "path": "data/v2/eval/dataset_eval.jsonl",
+        "line": 185,
+        "row_sha256": "9430580204bdaab241cf2cff424efc4136afc3e959932b1899eba1718d0680eb"
+      },
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "独立U(0,1)和的卷积密度相同；训练直接给出完整三角密度并计算两端尾面积，评测仅提取其中区间/尾概率。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "17/101",
+        "rule": "structure-candidates-v3"
+      }
+    }
+  ],
+  "boundary_review": {
+    "draft-c36-02": "三元谱正定判别与含参求完整特征向量/Q的任务不同，额外求基不是只包装现成方向；不凭同类判泄漏。",
+    "draft-c36-03": "标量a独立方向与eval019耦合项的LDL/合同标准化任务不同；评测需新增耦合消去与完整标准形，单个判正定子问共享算法不等同于完整方法记录已覆盖。允许进阶共存，补齐不定性正负见证。"
+  },
+  "calibrated": false,
+  "user_review": "PENDING",
+  "render_review": "UNVERIFIED"
+}

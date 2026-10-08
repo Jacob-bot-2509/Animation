@@ -1,0 +1,16 @@
+{
+  "status": "CONFIRMED_AUDIT_BINDING_CHECK_SKIPPED",
+  "tool_sha256": "654bc43f03faad910b4544414fdc8ac0fc9627e73f7337c78da3ff1ef8457f0f",
+  "fixture_selector": "reviews/codex-supervision/2026-10-05-latest-change-review/isolated-bad-binding-selector-rebased.json",
+  "only_fixture_modified": true,
+  "actual_selector_and_author_files_unchanged": true,
+  "deliberately_wrong_sha_batch": "batch-01",
+  "actual_correct_file_sha256": "e52c6ac7de59e7cec9f2c56ced7e6ff399d66dbf9811ec6bac2d574c7fe7d259",
+  "fixture_declared_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "expected_V007_for_bad_binding": 1,
+  "actual_V007": 0,
+  "actual_V011_skips": 18,
+  "audit_reported_hard": 0,
+  "tool_returncode": 0,
+  "cause": "e.path is relative to the draft root (batch-01/...), p.relative_to(ROOT) is relative to project root (reviews/.../batch-01/...). Their direct comparison is always unequal for current selector entries."
+}

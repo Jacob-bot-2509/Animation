@@ -1,0 +1,928 @@
+{
+  "arithmetic": "exact SymPy expressions only; no floats, evalf, approximate quadrature or finite numerical sampling",
+  "checks": [
+    {
+      "id": "draft-c21-01",
+      "check": "root 0 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-01",
+      "check": "root 1 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-01",
+      "check": "substituted polynomial factorization",
+      "actual": "-2*t**2 + 2*t",
+      "expected": "-2*t**2 + 2*t",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-03",
+      "check": "root 0 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-03",
+      "check": "root 1 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-03",
+      "check": "substituted polynomial factorization",
+      "actual": "-2*t*(t + 1) + t",
+      "expected": "-2*t**2 - t",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "root 0 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "root 1 substitutes into surface",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "substituted polynomial factorization",
+      "actual": "17*t**2/4 + (t + 1)**2 - 1",
+      "expected": "21*t**2/4 + 2*t",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-02",
+      "check": "sphere substitution",
+      "actual": "a**2 + t**2 - 4",
+      "expected": "a**2 + t**2 - 4",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-02",
+      "check": "tangent dot normal",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-05",
+      "check": "discriminant",
+      "actual": "m**2 + 8",
+      "expected": "m**2 + 8",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-05",
+      "check": "root sign -1",
+      "actual": "-m*(m/4 - sqrt(m**2 + 8)/4) + 2*(m/4 - sqrt(m**2 + 8)/4)**2 - 1",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c21-05",
+      "check": "root sign 1",
+      "actual": "-m*(m/4 + sqrt(m**2 + 8)/4) + 2*(m/4 + sqrt(m**2 + 8)/4)**2 - 1",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-01",
+      "check": "volume determinant",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "oriented area before swap",
+      "actual": "-2",
+      "expected": "-2",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "oriented area after swap",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-03",
+      "check": "linear volume scale",
+      "actual": "6",
+      "expected": "6",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-03",
+      "check": "inverse volume scale",
+      "actual": "1/6",
+      "expected": "1/6",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-04",
+      "check": "parameter determinant",
+      "actual": "-k - 1",
+      "expected": "-k - 1",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-04",
+      "check": "dependent witness",
+      "actual": "Matrix([[-1], [0], [1]])",
+      "expected": "Matrix([[-1], [0], [1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c28-05",
+      "check": "general determinant/triple product identity",
+      "actual": "a1*b2*c3 - a1*b3*c2 - a2*b1*c3 + a2*b3*c1 + a3*b1*c2 - a3*b2*c1",
+      "expected": "a1*(b2*c3 - b3*c2) + a2*(-b1*c3 + b3*c1) + a3*(b1*c2 - b2*c1)",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-01",
+      "check": "computed solution",
+      "actual": "Matrix([[1], [2], [3]])",
+      "expected": "Matrix([[1], [2], [3]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-01",
+      "check": "substitution",
+      "actual": "Matrix([[6], [2], [0]])",
+      "expected": "Matrix([[6], [2], [0]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-01",
+      "check": "Cramer numerator 0",
+      "actual": "4",
+      "expected": "4",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-01",
+      "check": "Cramer numerator 1",
+      "actual": "8",
+      "expected": "8",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-01",
+      "check": "Cramer numerator 2",
+      "actual": "12",
+      "expected": "12",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-03",
+      "check": "computed solution",
+      "actual": "Matrix([[a - 3], [3 - a], [1]])",
+      "expected": "Matrix([[a - 3], [3 - a], [1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-03",
+      "check": "substitution",
+      "actual": "Matrix([[1], [2], [3]])",
+      "expected": "Matrix([[1], [2], [3]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-03",
+      "check": "Cramer numerator 0",
+      "actual": "3 - a",
+      "expected": "3 - a",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-03",
+      "check": "Cramer numerator 1",
+      "actual": "a - 3",
+      "expected": "a - 3",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-03",
+      "check": "Cramer numerator 2",
+      "actual": "-1",
+      "expected": "-1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "computed solution",
+      "actual": "Matrix([[a/(a**2 - 1) - 1/(a**2 - 1)], [a/(a**2 - 1) - 1/(a**2 - 1)]])",
+      "expected": "Matrix([[1/(a + 1)], [1/(a + 1)]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "substitution",
+      "actual": "Matrix([[a/(a + 1) + 1/(a + 1)], [a/(a + 1) + 1/(a + 1)]])",
+      "expected": "Matrix([[1], [1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "Cramer numerator 0",
+      "actual": "a - 1",
+      "expected": "a - 1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "Cramer numerator 1",
+      "actual": "a - 1",
+      "expected": "a - 1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "singular coefficient rank -1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "singular augmented rank -1",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "singular coefficient rank 1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-02",
+      "check": "singular augmented rank 1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "computed solution",
+      "actual": "Matrix([[0], [k**2/(k**2 - 1) - 1/(k**2 - 1)]])",
+      "expected": "Matrix([[0], [1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "substitution",
+      "actual": "Matrix([[1], [k]])",
+      "expected": "Matrix([[1], [k]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "Cramer numerator 0",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "Cramer numerator 1",
+      "actual": "k**2 - 1",
+      "expected": "(k - 1)*(k + 1)",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "singular coefficient rank -1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "singular augmented rank -1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "singular coefficient rank 1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-04",
+      "check": "singular augmented rank 1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-05",
+      "check": "adjugate identity generic 3x3",
+      "actual": "Matrix([[g0*(g4*g8 - g5*g7) + g1*(-g3*g8 + g5*g6) + g2*(g3*g7 - g4*g6), g0*(-g1*g8 + g2*g7) + g1*(g0*g8 - g2*g6) + g2*(-g0*g7 + g1*g6), g0*(g1*g5 - g2*g4) + g1*(-g0*g5 + g2*g3) + g2*(g0*g4 - g1*g3)], [g3*(g4*g8 - g5*g7) + g4*(-g3*g8 + g5*g6) + g5*(g3*g7 - g4*g6), g3*(-g1*g8 + g2*g7) + g4*(g0*g8 - g2*g6) + g5*(-g0*g7 + g1*g6), g3*(g1*g5 - g2*g4) + g4*(-g0*g5 + g2*g3) + g5*(g0*g4 - g1*g3)], [g6*(g4*g8 - g5*g7) + g7*(-g3*g8 + g5*g6) + g8*(g3*g7 - g4*g6), g6*(-g1*g8 + g2*g7) + g7*(g0*g8 - g2*g6) + g8*(-g0*g7 + g1*g6), g6*(g1*g5 - g2*g4) + g7*(-g0*g5 + g2*g3) + g8*(g0*g4 - g1*g3)]])",
+      "expected": "Matrix([[g0*g4*g8 - g0*g5*g7 - g1*g3*g8 + g1*g5*g6 + g2*g3*g7 - g2*g4*g6, 0, 0], [0, g0*g4*g8 - g0*g5*g7 - g1*g3*g8 + g1*g5*g6 + g2*g3*g7 - g2*g4*g6, 0], [0, 0, g0*g4*g8 - g0*g5*g7 - g1*g3*g8 + g1*g5*g6 + g2*g3*g7 - g2*g4*g6]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-05",
+      "check": "cofactor replacement 0",
+      "actual": "b0*(g4*g8 - g5*g7) + b1*(-g1*g8 + g2*g7) + b2*(g1*g5 - g2*g4)",
+      "expected": "b0*g4*g8 - b0*g5*g7 - b1*g1*g8 + b1*g2*g7 + b2*g1*g5 - b2*g2*g4",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-05",
+      "check": "cofactor replacement 1",
+      "actual": "b0*(-g3*g8 + g5*g6) + b1*(g0*g8 - g2*g6) + b2*(-g0*g5 + g2*g3)",
+      "expected": "-b0*g3*g8 + b0*g5*g6 + b1*g0*g8 - b1*g2*g6 - b2*g0*g5 + b2*g2*g3",
+      "pass": true
+    },
+    {
+      "id": "draft-c31-05",
+      "check": "cofactor replacement 2",
+      "actual": "b0*(g3*g7 - g4*g6) + b1*(-g0*g7 + g1*g6) + b2*(g0*g4 - g1*g3)",
+      "expected": "b0*g3*g7 - b0*g4*g6 - b1*g0*g7 + b1*g1*g6 + b2*g0*g4 - b2*g1*g3",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-01",
+      "check": "separable integral",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-02",
+      "check": "triangle first order",
+      "actual": "1/4",
+      "expected": "1/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-02",
+      "check": "triangle reversed order",
+      "actual": "1/4",
+      "expected": "1/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-03",
+      "check": "polar integral with Jacobian",
+      "actual": "2*pi",
+      "expected": "2*pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-04",
+      "check": "upper half disk polar",
+      "actual": "2/3",
+      "expected": "2/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-04",
+      "check": "upper half disk Cartesian",
+      "actual": "2/3",
+      "expected": "2/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-04",
+      "check": "full disk",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-05",
+      "check": "Jacobian determinant",
+      "actual": "-2",
+      "expected": "-2",
+      "pass": true
+    },
+    {
+      "id": "draft-c03-05",
+      "check": "diamond pieces",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-01",
+      "check": "rational limit",
+      "actual": "1/2",
+      "expected": "1/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-02",
+      "check": "right limit",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-02",
+      "check": "left limit",
+      "actual": "-1",
+      "expected": "-1",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-03",
+      "check": "rationalization limit",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-04",
+      "check": "polynomial over exponential",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-04",
+      "check": "logarithm over root",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-04",
+      "check": "root over cube",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-05",
+      "check": "sequence first value",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-05",
+      "check": "sequence second value",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c05-05",
+      "check": "sequence tends zero",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-01",
+      "check": "meeting band",
+      "actual": "7/16",
+      "expected": "7/16",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-02",
+      "check": "square/disk ratio",
+      "actual": "2/pi",
+      "expected": "2/pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-03",
+      "check": "joint-density integral",
+      "actual": "1/4",
+      "expected": "1/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-04",
+      "check": "corrected radial CDF",
+      "actual": "u**2",
+      "expected": "u**2",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-04",
+      "check": "corrected joint density divided by Jacobian",
+      "actual": "1/pi",
+      "expected": "1/pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c46-05",
+      "check": "Buffon density integral",
+      "actual": "2*l_pos/(pi*d_pos)",
+      "expected": "2*l_pos/(pi*d_pos)",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-01",
+      "check": "finite p=2 integral",
+      "actual": "1 - 1/R",
+      "expected": "1 - 1/R",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-01",
+      "check": "tail limit",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-02",
+      "check": "finite p=1/2 integral",
+      "actual": "2*sqrt(R) - 2",
+      "expected": "2*sqrt(R) - 2",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-02",
+      "check": "divergent limit",
+      "actual": "oo",
+      "expected": "oo",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-03",
+      "check": "log integral derivative",
+      "actual": "1/(x*log(x))",
+      "expected": "1/(x*log(x))",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-03",
+      "check": "log-square primitive derivative",
+      "actual": "1/(x*log(x)**2)",
+      "expected": "1/(x*log(x)**2)",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-03",
+      "check": "convergent value",
+      "actual": "1/log(2)",
+      "expected": "1/log(2)",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-04",
+      "check": "finite integral",
+      "actual": "(-R - 1)*exp(-R) + 1",
+      "expected": "-(R + 1)*exp(-R) + 1",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-04",
+      "check": "integral limit",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "p not equal 1 primitive derivative",
+      "actual": "x**(1 - p)/x",
+      "expected": "x**(-p)",
+      "pass": true
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "p=1 primitive derivative",
+      "actual": "1/x",
+      "expected": "1/x",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-01",
+      "check": "Green triangle",
+      "actual": "1/3",
+      "expected": "1/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-02",
+      "check": "CCW circle integral",
+      "actual": "-pi",
+      "expected": "-pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-03",
+      "check": "annulus Green integral",
+      "actual": "45*pi/2",
+      "expected": "45*pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-04",
+      "check": "supplementary segment",
+      "actual": "-3/2",
+      "expected": "-3/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-04",
+      "check": "direct parabola verification",
+      "actual": "3/2",
+      "expected": "3/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c04-05",
+      "check": "ellipse Green integral",
+      "actual": "pi*a_pos*b_pos",
+      "expected": "pi*a_pos*b_pos",
+      "pass": true
+    },
+    {
+      "id": "draft-c06-01",
+      "check": "two parabolas",
+      "actual": "8/3",
+      "expected": "8/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c06-02",
+      "check": "absolute graph",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c06-03",
+      "check": "horizontal slices",
+      "actual": "9/2",
+      "expected": "9/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c06-04",
+      "check": "positive parameter slices",
+      "actual": "k**3/6",
+      "expected": "k**3/6",
+      "pass": true
+    },
+    {
+      "id": "draft-c06-04",
+      "check": "k=2",
+      "actual": "4/3",
+      "expected": "4/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c07-01",
+      "check": "rose petal",
+      "actual": "pi/3",
+      "expected": "pi/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c07-02",
+      "check": "cardioid",
+      "actual": "3*pi/2",
+      "expected": "3*pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c07-03",
+      "check": "four rose petals",
+      "actual": "pi/2",
+      "expected": "pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c07-04",
+      "check": "difference of disks",
+      "actual": "2*sqrt(3) + 4*pi/3",
+      "expected": "2*sqrt(3) + 4*pi/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c07-05",
+      "check": "two lemniscate leaves",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-01",
+      "check": "ellipse oriented integral",
+      "actual": "-pi*a_pos*b_pos",
+      "expected": "-pi*a_pos*b_pos",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-02",
+      "check": "astroid quadrant",
+      "actual": "3*pi*a_pos**2/32",
+      "expected": "3*pi*a_pos**2/32",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-03",
+      "check": "folium cross-derivative",
+      "actual": "-3*t**2*(-9*t**3/(t**3 + 1)**2 + 3/(t**3 + 1))/(t**3 + 1) + 3*t*(-9*t**4/(t**3 + 1)**2 + 6*t/(t**3 + 1))/(t**3 + 1)",
+      "expected": "9*t**2/(t**3 + 1)**2",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-03",
+      "check": "folium integral",
+      "actual": "3/2",
+      "expected": "3/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-04",
+      "check": "Lissajous first loop integral",
+      "actual": "8/3",
+      "expected": "8/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-04",
+      "check": "Lissajous second loop integral",
+      "actual": "-8/3",
+      "expected": "-8/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-04",
+      "check": "Lissajous period",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-05",
+      "check": "counterexample whole circle",
+      "actual": "-pi",
+      "expected": "-pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-05",
+      "check": "counterexample first half",
+      "actual": "-4 - pi/2",
+      "expected": "-4 - pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c08-05",
+      "check": "counterexample second half",
+      "actual": "4 - pi/2",
+      "expected": "4 - pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-01",
+      "check": "disk volume",
+      "actual": "8*pi",
+      "expected": "8*pi",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-02",
+      "check": "shell volume",
+      "actual": "pi/2",
+      "expected": "pi/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-03",
+      "check": "washer volume",
+      "actual": "2*pi/15",
+      "expected": "2*pi/15",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "shifted shell volume",
+      "actual": "7*pi/6",
+      "expected": "7*pi/6",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-05",
+      "check": "x-axis disk volume",
+      "actual": "pi**2/2",
+      "expected": "pi**2/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c09-05",
+      "check": "y-axis shell volume",
+      "actual": "2*pi**2",
+      "expected": "2*pi**2",
+      "pass": true
+    }
+  ],
+  "passed": 120,
+  "total": 120,
+  "record_coverage": [
+    "draft-c02-01",
+    "draft-c02-02",
+    "draft-c02-03",
+    "draft-c02-04",
+    "draft-c02-05",
+    "draft-c03-01",
+    "draft-c03-02",
+    "draft-c03-03",
+    "draft-c03-04",
+    "draft-c03-05",
+    "draft-c04-01",
+    "draft-c04-02",
+    "draft-c04-03",
+    "draft-c04-04",
+    "draft-c04-05",
+    "draft-c05-01",
+    "draft-c05-02",
+    "draft-c05-03",
+    "draft-c05-04",
+    "draft-c05-05",
+    "draft-c06-01",
+    "draft-c06-02",
+    "draft-c06-03",
+    "draft-c06-04",
+    "draft-c07-01",
+    "draft-c07-02",
+    "draft-c07-03",
+    "draft-c07-04",
+    "draft-c07-05",
+    "draft-c08-01",
+    "draft-c08-02",
+    "draft-c08-03",
+    "draft-c08-04",
+    "draft-c08-05",
+    "draft-c09-01",
+    "draft-c09-02",
+    "draft-c09-03",
+    "draft-c09-04",
+    "draft-c09-05",
+    "draft-c21-01",
+    "draft-c21-02",
+    "draft-c21-03",
+    "draft-c21-04",
+    "draft-c21-05",
+    "draft-c28-01",
+    "draft-c28-02",
+    "draft-c28-03",
+    "draft-c28-04",
+    "draft-c28-05",
+    "draft-c31-01",
+    "draft-c31-02",
+    "draft-c31-03",
+    "draft-c31-04",
+    "draft-c31-05",
+    "draft-c46-01",
+    "draft-c46-02",
+    "draft-c46-03",
+    "draft-c46-04",
+    "draft-c46-05"
+  ],
+  "record_count": 59,
+  "manual_proof_obligations": [
+    "sphere tangency and parameter branch inequalities",
+    "triple-product volume including degenerate base",
+    "general-n cofactor proof, not inferred from generic 3x3 check",
+    "Fubini and Jacobian change-of-variable hypotheses",
+    "Heine sequence criterion",
+    "independent uniform sampling hypotheses and Jacobian density",
+    "p-integral all-real-parameter branch proof",
+    "Green regularity and orientation",
+    "rose/lemniscate single traversal and disjoint leaves",
+    "folium loop single traversal and endpoint limit",
+    "self-intersection area overlap correction and graph monotonicity"
+  ],
+  "input_sha256": {
+    "batch-05.jsonl": "6eabbb3d46a7d6a4b39d563a7fc339d117b2be8533dce70e0a85bf2963570f0e",
+    "batch-06.jsonl": "756525876eec2bd8dbc8d8f3e28afbf61ca70fd4cab235964621646009a7ae5f",
+    "batch-07.jsonl": "b14a41ee891c643ede8cbc2986187adaa63a4bce93c398f0cce2544a7bc123a5",
+    "batch-08.jsonl": "ea1c07b9071036519edc08c465091156e48eb731d5e09444d5111f468faf2f1d"
+  }
+}

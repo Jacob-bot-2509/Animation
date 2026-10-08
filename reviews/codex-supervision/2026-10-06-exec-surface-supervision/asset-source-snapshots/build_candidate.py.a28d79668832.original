@@ -1,0 +1,43 @@
+# -*- coding: utf-8 -*-
+"""calc-area-007 修正候选:仅替换 scene_spec.steps(≤28字×5),其余字段逐字节一致。
+数学三字段 problem/solution/answer 自动核对与源行完全相等,防手打漂移。
+"""
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+SRC = ROOT / "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl"
+OUT = Path(__file__).with_name("calc-area-007.candidate.jsonl")
+
+NEW_STEPS = [
+    "第一步：坐标系、抛物线 y=x²、直线 y=x+2",
+    "第二步：标交点(-1,1)与(2,4)",
+    "第三步：黄色填充封闭区域",
+    "第四步：矩形微元扫过区域",
+    "第五步：S=∫((x+2)-x²)dx=9/2",
+]
+assert all(len(s) <= 28 for s in NEW_STEPS), [len(s) for s in NEW_STEPS]
+assert len(NEW_STEPS) <= 5
+
+lines = SRC.read_text(encoding="utf-8").splitlines()
+raw = lines[6]  # line 7 (0-based 6)
+rec = json.loads(raw)
+assert rec["id"] == "calc-area-007"
+
+math_three = {k: rec[k] for k in ("problem", "solution", "answer")}
+new_rec = dict(rec)
+new_rec["scene_spec"] = dict(rec["scene_spec"])
+new_rec["scene_spec"]["steps"] = NEW_STEPS
+
+out_line = json.dumps(new_rec, ensure_ascii=False)
+new_math = {k: new_rec[k] for k in ("problem", "solution", "answer")}
+assert new_math == math_three, "math field drift!"
+assert rec["scene_spec"]["objects"] == new_rec["scene_spec"]["objects"], "objects drift!"
+
+OUT.write_text(out_line + "\n", encoding="utf-8", newline="\n")
+print("candidate written:", OUT)
+print("math fields byte-identical: True")
+print("old steps lens:", [len(s) for s in rec["scene_spec"]["steps"]])
+print("new steps lens:", [len(s) for s in NEW_STEPS])
+print("source line sha256:", hashlib.sha256(raw.strip().encode()).hexdigest())

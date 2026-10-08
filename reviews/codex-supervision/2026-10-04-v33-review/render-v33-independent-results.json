@@ -1,0 +1,37 @@
+{
+  "snapshot_sha256": "797218030b0caa78f53761ad1e1aaf068de50548f16c4429547d8e1e1e37c816",
+  "mode": "memory inputs; no media decoder/no render",
+  "media_verification_label_present": true,
+  "checks": [
+    {
+      "name": "partial",
+      "actual": false,
+      "expected_by_header_only_contract": false,
+      "holds": true
+    },
+    {
+      "name": "wrong_scene",
+      "actual": false,
+      "expected_by_header_only_contract": false,
+      "holds": true
+    },
+    {
+      "name": "garbage",
+      "actual": false,
+      "expected_by_header_only_contract": false,
+      "holds": true
+    },
+    {
+      "name": "header_only_mp4",
+      "actual": true,
+      "expected_by_header_only_contract": true,
+      "holds": true
+    },
+    {
+      "name": "wrong_png_scene",
+      "actual": false,
+      "expected_by_header_only_contract": false,
+      "holds": true
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-10-03T16:05:44+00:00",
+  "tool": "tools/eval_test_audit.py (只读)",
+  "scope": {
+    "base": "data/v2",
+    "entry_jsonl": {
+      "eval": [
+        "data/v2/eval/dataset_eval.jsonl"
+      ],
+      "test": [
+        "data/v2/test/dataset_test.jsonl"
+      ]
+    },
+    "mirrors": {
+      "eval": "data/v2/eval/dataset_eval.json",
+      "test": "data/v2/test/dataset_test.json"
+    },
+    "source_docs": {
+      "eval": "data/v2/sources/dataset-eval.md",
+      "test": "data/v2/sources/data-test.md"
+    },
+    "train_pool": [
+      "data/v1/raw/dataset_calc.jsonl",
+      "data/v1/raw/dataset_geom.jsonl",
+      "data/v1/raw/dataset_linalg.jsonl",
+      "data/v1/raw/dataset_prob.jsonl"
+    ]
+  },
+  "totals": {
+    "eval_records": 300,
+    "test_records": 150,
+    "all_records": 450,
+    "train_records": 63
+  },
+  "severity_counts": {
+    "quarantine": 908,
+    "info": 858
+  },
+  "issue_code_counts": {
+    "P002": 450,
+    "P003": 450,
+    "A008": 450,
+    "C007": 274,
+    "L007": 101,
+    "A005": 4,
+    "L009": 7,
+    "L006": 11,
+    "C008": 1,
+    "X002": 3,
+    "M002": 2,
+    "MF008": 1,
+    "LK008": 1,
+    "LK007": 2,
+    "PTR003": 1,
+    "PTR004": 1,
+    "PTR005": 1,
+    "D012": 3,
+    "G002": 1,
+    "G003": 1,
+    "R001": 1
+  },
+  "record_status_counts": {
+    "quarantine": 450
+  },
+  "per_split": {
+    "eval": {
+      "records": 300,
+      "identities": 300,
+      "problem_ids": 100,
+      "status": {
+        "quarantine": 300
+      },
+      "categories": {
+        "数学分析": 90,
+        "解析几何": 60,
+        "概率论": 45,
+        "高等代数": 105
+      },
+      "sub_categories": 41,
+      "objects": 617,
+      "steps": 1212,
+      "animation_verified": 0,
+      "methods": 263
+    },
+    "test": {
+      "records": 150,
+      "identities": 150,
+      "problem_ids": 0,
+      "status": {
+        "quarantine": 150
+      },
+      "categories": {
+        "数学分析": 45,
+        "解析几何": 25,
+        "概率论": 25,
+        "高等代数": 40,
+        "跨学科": 15
+      },
+      "sub_categories": 144,
+      "objects": 303,
+      "steps": 603,
+      "animation_verified": 0,
+      "methods": 0
+    }
+  },
+  "isolation": {
+    "exact_cross_pool_overlaps": 0,
+    "near_dup_pairs_ge_threshold": [],
+    "max_cross_pool_similarity_set": 0.6667,
+    "threshold": 0.7,
+    "threshold_status": "UNCALIBRATED"
+  },
+  "mirror_identical": {
+    "eval": true,
+    "test": true
+  },
+  "prior_review": {
+    "n": 64,
+    "A": 5,
+    "B": 31,
+    "C": 28,
+    "eval": 30,
+    "test": 34,
+    "a_ids": [
+      "test-prob-002",
+      "test-linalg-021",
+      "test-x-011",
+      "eval-calc-006",
+      "eval-linalg-023"
+    ]
+  },
+  "freeze_locks": [
+    {
+      "path": "data/eval-v2.lock.json",
+      "name": "eval-v2",
+      "locked": true,
+      "n_files": 1,
+      "manifest_sha256": "b11def7be9027162f95a43726c403f81b7f0d54b25ce408418061896b63bf866"
+    },
+    {
+      "path": "data/test-v2.lock.json",
+      "name": "test-v2",
+      "locked": true,
+      "n_files": 1,
+      "manifest_sha256": "b11def7be9027162f95a43726c403f81b7f0d54b25ce408418061896b63bf866"
+    }
+  ],
+  "pointer": {
+    "active": "data/manifest.json",
+    "exists": true,
+    "versions": [
+      "v1",
+      "v2"
+    ],
+    "name": "animation-data-v1",
+    "generated_at": "2026-10-03 18:42:00",
+    "splits": {
+      "train": 4,
+      "eval": 1,
+      "test": 1
+    }
+  }
+}

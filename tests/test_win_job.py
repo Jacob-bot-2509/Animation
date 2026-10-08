@@ -83,25 +83,14 @@ class TestJobAssignFailClosed(unittest.TestCase):
             finally:
                 job.close()
 
-    def test_render_assign_failure_kills_process(self):
-        import sys
+    def test_render_backend_assignment_failure_does_not_fallback(self):
         from unittest import mock
         from animtrain import render_gate
-        with mock.patch("animtrain.render_gate.check_manim_available",
-                        return_value=(True, "ok")), \
-             mock.patch.object(sys, "platform", "win32"), \
-             mock.patch("animtrain.render_gate.WindowsJob") as job_cls:
-            job = mock.MagicMock()
-            job.assign.side_effect = OSError("AssignProcessToJobObject 失败: 5")
-            job_cls.return_value = job
-            proc = mock.MagicMock()
-            proc.kill.return_value = None
-            proc.wait.return_value = 0
-            with mock.patch("animtrain.render_gate.subprocess.Popen",
-                            return_value=proc):
-                r = render_gate.render_check("x = 1", trusted=True)
-            self.assertEqual(r["status"], "exec_error")
-            self.assertFalse(r["ok"])
-            proc.kill.assert_called()  # 已启动进程必须被清理
-            proc.wait.assert_called()
-            self.assertFalse(r["isolation"]["job_assigned"])
+        with mock.patch("animtrain.render_gate.check_manim_available", return_value=(True,"ok")), \
+             mock.patch("animtrain.sandbox_execution.run_code", side_effect=OSError("AssignProcessToJobObject failed: 5")), \
+             mock.patch("subprocess.Popen") as host:
+            result=render_gate.render_check("fixed scene",trusted=True)
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["status"],"exec_error")
+        self.assertIn("AssignProcess",result["detail"])
+        host.assert_not_called()

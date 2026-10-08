@@ -1,0 +1,92 @@
+{
+  "id": "draft-c18-02",
+  "category": "解析几何",
+  "sub_category": "平面",
+  "concept": "点到平面距离与投影",
+  "concept_id": "C18",
+  "parent_training_ids": [
+    "geom-023"
+  ],
+  "problem": "在$\\mathbb R^3$中令$\\pi_1=\\{(x,y,z):x=0\\}$、$\\pi_2=\\{(x,y,z):x+y=0\\}$，$\\Pi_1,\\Pi_2$分别为到这两个平面的Euclidean正交投影。取任意$P_0=(a,b,c)$（$a,b,c\\in\\mathbb R$），定义$P_{n+1}=\\Pi_1\\Pi_2P_n$（先投影到$\\pi_2$，再投影到$\\pi_1$）。求两投影及复合的矩阵，给全部$P_n$、极限与到极限的精确距离，分类何时有限次到达极限，并判断$\\Pi_1\\Pi_2$本身是否为正交投影。",
+  "solution": "到$\\pi_1$的正交投影为$\\Pi_1(x,y,z)=(0,y,z)$。$\\pi_2$的法向量为$(1,1,0)$，故$\\Pi_2(x,y,z)=(x,y,z)-\\frac{x+y}{2}(1,1,0)=((x-y)/2,(y-x)/2,z)$。对应矩阵为$B_1=\\operatorname{diag}(0,1,1)$、$B_2=\\begin{pmatrix}1/2&-1/2&0\\\\-1/2&1/2&0\\\\0&0&1\\end{pmatrix}$；它们对称且幂等，像分别为$\\pi_1,\\pi_2$，所以确为正交投影。复合矩阵$A=B_1B_2=\\begin{pmatrix}0&0&0\\\\-1/2&1/2&0\\\\0&0&1\\end{pmatrix}$，作用顺序不可颠倒。直接得$P_1=(0,(b-a)/2,c)$。由第二坐标每一步减半，对$n\\ge1$归纳得到$A^n=\\begin{pmatrix}0&0&0\\\\-1/2^n&1/2^n&0\\\\0&0&1\\end{pmatrix}$、$P_n=(0,(b-a)/2^n,c)$；$n=0$仍为题设$P_0$，不能套用$n\\ge1$的公式。于是$P_n\\to Q=(0,0,c)$；$Q$是$P_0$到交线$\\pi_1\\cap\\pi_2=\\{(0,0,z):z\\in\\mathbb R\\}$的正交投影。精确误差为$\\|P_0-Q\\|=\\sqrt{a^2+b^2}$，且$\\|P_n-Q\\|=|b-a|/2^n$（$n\\ge1$）。若$a=b=0$则$n=0$已到达；若$a=b\\ne0$则第一次到达；若$a\\ne b$则任意有限$n\\ge1$都有$|b-a|/2^n>0$，只能在极限到达。最后$Ae_2=e_2/2$、$A^2e_2=e_2/4$，故$A^2\\ne A$，复合不是投影，当然不是正交投影。逐次投影虽收敛到交线投影，却不等于一次对交线作投影。",
+  "answer": "$\\Pi_1=B_1=\\operatorname{diag}(0,1,1)$，$\\Pi_2=B_2=\\begin{pmatrix}1/2&-1/2&0\\\\-1/2&1/2&0\\\\0&0&1\\end{pmatrix}$，$A=B_1B_2=\\begin{pmatrix}0&0&0\\\\-1/2&1/2&0\\\\0&0&1\\end{pmatrix}$。$P_0=(a,b,c)$；$P_n=(0,(b-a)/2^n,c)$（$n\\ge1$），极限$Q=(0,0,c)$；误差分别为$\\sqrt{a^2+b^2}$（$n=0$）与$|b-a|/2^n$（$n\\ge1$）。$a=b=0$时初始已到达，$a=b\\ne0$时一次到达，$a\\ne b$时不在有限步到达。$A^2\\ne A$，复合不是正交投影。",
+  "method": "正交投影矩阵复合、递推归纳与非幂等反例",
+  "difficulty": "进阶",
+  "variant_kind": "解题结构改写：从静态平行平面距离转为交替投影精确迭代、收敛与有限终止分类",
+  "scene_spec": {
+    "objects": [
+      "两个相交平面$x=0$、$x+y=0$与交线$x=y=0$",
+      "初点$P_0=(a,b,c)$、中间投影$\\Pi_2P_n$和$P_{n+1}$",
+      "顺序标注：先$\\Pi_2$，后$\\Pi_1$；矩阵$A=B_1B_2$",
+      "精确点列：$P_n=(0,(b-a)/2^n,c)$（$n\\ge1$）",
+      "极限$Q=(0,0,c)$与精确误差$|b-a|/2^n$",
+      "三分支：$a=b=0$；$a=b\\ne0$；$a\\ne b$",
+      "非幂等证据：$Ae_2=e_2/2$、$A^2e_2=e_2/4$"
+    ],
+    "steps": [
+      "第一步：用法向量构造两正交投影，核验矩阵对称、幂等和像。",
+      "第二步：固定先后顺序，逐次标出两次投影及复合矩阵。",
+      "第三步：分别保留$n=0$，归纳$n\\ge1$的精确幂与点列公式。",
+      "第四步：展示交线投影$Q$和误差精确减半，不用小数轨迹代替公式。",
+      "第五步：分别展示初始到达、一次到达、永不有限到达三个分支。",
+      "第六步：以第二坐标单位向量的两次作用证明复合不幂等。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "CODEX-SEMANTIC-CORE-v2-NOT-ADMITTED",
+  "strict_review": {
+    "core_math_verified": true,
+    "exact_expression_required": true,
+    "rational_numbers": "fractions_or_integers",
+    "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+    "render_verified": false,
+    "admitted": false,
+    "source_batch": "batch-04",
+    "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+    "text_math_fields_reviewed": true,
+    "scene_text_reviewed": true,
+    "math_content_sha256": "5914f26ab8b4ee1b4f124422f6c820daec1028911879340d0a3c75df12100232",
+    "math_review_evidence": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/exact-proof.json",
+    "verification_basis": "EXACT_SYMBOLIC_PROJECTION_INDUCTION_AND_REAL_DOMAIN_CASE_PROOF",
+    "admission_disposition": "MATH_VALID_KNOWN_PAIR_REPAIRED_PENDING_GLOBAL_SEMANTIC_AND_ASSET_ACCEPTANCE"
+  },
+  "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+  "versioned_id": "codex-semantic-core-v2-20261007-draft-c18-02",
+  "revision_lineage": {
+    "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+    "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+    "original_id": "draft-c18-02",
+    "prior_parent_training_ids": [
+      "geom-023"
+    ],
+    "historical_risk_not_reset": true,
+    "prior_corrected_record_sha256": "93b50ededb503998291ec37bfdd1851a6cd4135a95fa5ac458bf3a1bc144e4ab",
+    "previous_hold_reasons": [],
+    "math_correction_notes": [],
+    "revised_in_place": false,
+    "version": "codex-repair-v4-final",
+    "additional_recheck_reason": null,
+    "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+      "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+      "versioned_id": "codex-repair-20261005-batch-04-draft-c18-02"
+    },
+    "previous_math_review_binding": {
+      "math_content_sha256": "7f7259db375b192f8446524e81b14ccd7169d45e93b6427fc1ccbad39e059ec3",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+    },
+    "current_core_v2": {
+      "parent_record_sha256": "8e3197f933a35a03c9a6f8046fad796ee5f53c8f8c959d30e574b0e609be6f94",
+      "parent_math_sha256": "7f7259db375b192f8446524e81b14ccd7169d45e93b6427fc1ccbad39e059ec3",
+      "parent_source_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+      "parent_source_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+      "historical_risk_not_reset": true,
+      "reason": "Confirmed structural leakage with test-geom-024; replace static distance task with exact alternating projections; same id/count."
+    }
+  },
+  "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+  "admitted": false,
+  "animation_render_verified": false
+}

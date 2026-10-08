@@ -1,0 +1,584 @@
+{
+  "schema": "exact-math-corrected-version-v1",
+  "status": "MATERIALIZED_NOT_ADMITTED",
+  "record_count": 47,
+  "corrected_count": 9,
+  "files": {
+    "dataset_calc.jsonl": {
+      "sha256": "2fcfcfa2e6a502713da56eef403e095695369d0e9d4f0c3b233d39243df278bd",
+      "raw_sha256": "9de79a5d2171b2ac00c07cc5a3dea5f27e4e783b11bb98bb8064d5ddcb24ca10",
+      "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "count": 16,
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1"
+    },
+    "dataset_linalg.jsonl": {
+      "sha256": "2335873c8f2b776cdc11ba6886ceaaca791010276f7862f21b6b9a835bafee39",
+      "raw_sha256": "2c977c78d12f5eb107f065edf279973d344c180fde5d1c7f241b0c54bd0a0cf4",
+      "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "count": 16,
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f"
+    },
+    "dataset_prob.jsonl": {
+      "sha256": "25ca6b199ef4a7daaa6fde6239e54ea1208a64a679f07020ee39a72351c43a28",
+      "raw_sha256": "fb3eeba175e0c7653626cd047c6e7dd48fd1d4b14ec1cfe89be9f0db0ad95183",
+      "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "count": 7,
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0"
+    },
+    "dataset_geom.jsonl": {
+      "sha256": "56f70c81e812db3060cce6a4d0cc21f4cc6a28f2837afba446e63fc2db7bace4",
+      "raw_sha256": "08e6257db4e41c80c4a53953178a5df0125c0e5821f094a0e8e7ec6a5d67a257",
+      "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "count": 8,
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3"
+    }
+  },
+  "corrections": [
+    {
+      "id": "calc-series-015",
+      "record": {
+        "id": "calc-series-015",
+        "category": "数学分析",
+        "sub_category": "一般级数",
+        "problem": "讨论级数 $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{\\sqrt{n}}$ 的敛散性，并指出是绝对收敛还是条件收敛。",
+        "solution": "设 $u_n=1/\\sqrt n$，则 $u_{n+1}\\le u_n$ 且 $\\lim_{n\\to\\infty}u_n=0$。由莱布尼茨判别法，$\\sum_{n=1}^{\\infty}(-1)^n u_n$ 收敛。若和为 $S$、前 $N$ 项和为 $S_N$，则 $|S-S_N|\\le 1/\\sqrt{N+1}$。绝对值级数满足 $\\sum_{n=1}^{N}1/\\sqrt n\\ge\\int_1^{N+1}x^{-1/2}\\,dx=2(\\sqrt{N+1}-1)\\to+\\infty$，即 $p=\\frac{1}{2}\\le1$ 的 $p$ 级数发散。因此原级数条件收敛。",
+        "answer": "条件收敛",
+        "scene_spec": {
+          "objects": [
+            "交错项 $(-1)^n/\\sqrt n$ 的柱状图",
+            "部分和 $S_N$ 与误差界 $|S-S_N|\\le1/\\sqrt{N+1}$",
+            "绝对值部分和及下界 $2(\\sqrt{N+1}-1)$"
+          ],
+          "steps": [
+            "第一步：列出 $u_n=1/\\sqrt n$，高亮 $u_{n+1}\\le u_n$ 与 $u_n\\to0$ 两个收敛判别假设。",
+            "第二步：展示带符号项与部分和 $S_N$，以莱布尼茨判别法得出存在有限和 $S$。",
+            "第三步：标出余项区间 $S_N\\pm1/\\sqrt{N+1}$，逐步增加 $N$，用精确界解释区间收缩。",
+            "第四步：对绝对值项显示 $\\sum_{n=1}^{N}1/\\sqrt n\\ge\\int_1^{N+1}x^{-1/2}\\,dx=2(\\sqrt{N+1}-1)$，高亮该下界趋于 $+\\infty$。",
+            "第五步：并列“原级数收敛”与“绝对值级数发散”，得出条件收敛。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "正负交替数列",
+        "visual_style": "柱状图与部分和折线对比",
+        "efficiency_tags": [
+          "正负柱分色",
+          "部分和震荡折线"
+        ],
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-calc-series-015",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "7e18007bb5821ba4b517ea6499165565cf63c04652b7538e60a97d976693dae3",
+          "math_content_sha256": "77a98efed2ec2dfdab0b096f03005dda9918efe428fcbca1ec70dc294e8520a9",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 14,
+      "before_record_canonical_sha256": "7e18007bb5821ba4b517ea6499165565cf63c04652b7538e60a97d976693dae3",
+      "after_record_canonical_sha256": "e6b219ae12b06193daf77d4de806f8081e2cacd0e663a5ae628ffd77d3fcc803",
+      "after_math_fields_canonical_sha256": "f284d853f5da3333f74e2fc8db9bae837b08488eee4f338de5ce8e73360d5960"
+    },
+    {
+      "id": "calc-series-020",
+      "record": {
+        "id": "calc-series-020",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "visual_style": "渐进式叠加（Progressive Superposition）",
+        "efficiency_tags": [
+          "按需渲染",
+          "颜色区分谐波",
+          "避免过度堆叠"
+        ],
+        "problem": "将函数 $f(x) = x$（$-\\pi \\le x \\le \\pi$）展开为傅立叶级数。",
+        "solution": "$f(x)=x$ 为奇函数，故 $a_0=a_n=0$。分部积分得 $b_n=\\frac{2}{\\pi}\\int_0^\\pi x\\sin(nx)\\,dx=\\frac{2}{\\pi}[-\\frac{x\\cos(nx)}{n}+\\frac{\\sin(nx)}{n^2}]_0^\\pi=\\frac{2(-1)^{n+1}}{n}$。令 $S(x)=2\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{n}\\sin(nx)$。由傅里叶收敛定理，对 $-\\pi<x<\\pi$ 有 $S(x)=x$；在 $x=\\pm\\pi$，周期延拓的左右极限为 $\\pi$ 与 $-\\pi$，级数收敛到其中值 $0$，并不等于题中端点所指定的 $\\pm\\pi$。事实上每个有限部分和在这两个端点也恰为 $0$。",
+        "answer": "$S(x)=2\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{n}\\sin(nx)$；$-\\pi<x<\\pi$ 时 $S(x)=x$，$x=\\pm\\pi$ 时 $S(x)=0$。",
+        "scene_spec": {
+          "objects": [
+            "目标函数 $y=x$ 与其 $2\\pi$ 周期延拓",
+            "正弦系数的分部积分板书",
+            "部分和 $S_N(x)$",
+            "端点标签 $S_N(\\pm\\pi)=0$ 和左右极限 $\\pi,-\\pi$"
+          ],
+          "steps": [
+            "第一步：画出 $-\\pi<x<\\pi$ 上的直线与周期接缝，标明接缝两侧极限为 $\\pi$、$-\\pi$。",
+            "第二步：高亮奇函数条件，写出 $a_0=a_n=0$；逐步展示 $\\int x\\sin(nx)\\,dx$ 中 $u=x$、$dv=\\sin(nx)\\,dx$ 与系数 $b_n=2(-1)^{n+1}/n$。",
+            "第三步：依次叠加 $2\\sin x$、$-\\sin2x$、$\\frac{2}{3}\\sin3x$，展示 $S_N$ 的精确项式。",
+            "第四步：区分区间内部 $S(x)=x$ 与端点 $S(\\pm\\pi)=0$，注明 $\\sin(n\\pi)=0$ 导致所有有限部分和端点值也为 $0$。",
+            "第五步：高亮跳跃点附近的吉布斯振荡，并明确振荡峰位于附近，不能把 $x=\\pi$ 处画成非零峰值。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "傅立叶正弦级数",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-calc-series-020",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "c4ffe032f9fe9152e58378c08ba42d725e3b52a812c9b7434053a460d116071f",
+          "math_content_sha256": "662675e691b179e8028e7be21dc5c22bf892c6b2f61249ed35140019865ce66c",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 16,
+      "before_record_canonical_sha256": "c4ffe032f9fe9152e58378c08ba42d725e3b52a812c9b7434053a460d116071f",
+      "after_record_canonical_sha256": "e58adf16b45995cca3aa5f72cd570d0249d33ae143f36a7452e4dc4d9212f837",
+      "after_math_fields_canonical_sha256": "2929b048c1a9bb79d621902780ff2b81d789fcb7095685b5721f7b5292d13a10"
+    },
+    {
+      "id": "linalg-050",
+      "record": {
+        "id": "linalg-050",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "function_family": "行列式的几何意义",
+        "visual_style": "面积标尺与空间形变",
+        "efficiency_tags": [
+          "面积计算",
+          "正方形映射"
+        ],
+        "problem": "利用几何图形解释二阶行列式 $\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc$ 的几何意义。",
+        "solution": "令 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，其两列为 $u=(a,c)^T$、$v=(b,d)^T$。单位正方形顶点按次序映为 $0,u,u+v,v$，所得平行四边形的有向面积为 $\\det(u,v)=ad-bc$，通常面积为 $|ad-bc|$。$\\det A>0$ 时保持定向，$\\det A<0$ 时反转定向。若 $\\det A=0$，则 $\\operatorname{rank}A\\le1$：秩为 $1$ 时整个平面的像为直线、单位正方形的像为线段；秩为 $0$ 时 $A=0$，两者的像均为一个点。两种退化情形的面积均为 $0$。",
+        "answer": "有向面积为 $ad-bc$，通常面积为 $|ad-bc|$；行列式为零时像可退化为线段或点。",
+        "scene_spec": {
+          "objects": [
+            "矩阵 $A$、列向量 $u=(a,c)^T$、$v=(b,d)^T$",
+            "单位正方形与顶点像 $0,u,u+v,v$",
+            "有向面积 $ad-bc$ 与通常面积 $|ad-bc|$",
+            "秩为 $1$ 的线段和秩为 $0$ 的点"
+          ],
+          "steps": [
+            "第一步：显示 $T(x,y)=(ax+by,cx+dy)$，标出第一行 $(a,b)$ 与列向量 $(x,y)^T$ 的点乘、第二行 $(c,d)$ 与同一列的点乘。",
+            "第二步：对基向量分别计算 $Ae_1=u$、$Ae_2=v$，按 $0,u,u+v,v$ 展示单位正方形的像。",
+            "第三步：展示有向面积 $\\det(u,v)=ad-bc$，分别高亮乘积 $ad$、$bc$ 与相减；通常面积取绝对值。",
+            "第四步：分别说明正、负行列式的定向，并用箭头顺序区分有向面积与非负面积。",
+            "第五步：分两种退化显示：秩 $1$ 的像为线段；$A=0$、秩 $0$ 的像为点；二者面积均为 $0$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-linalg-050",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "98555b3d4a1ae1ffba3c1649e4a98fa01e183035243184e0d83ed8675ed080bf",
+          "math_content_sha256": "e890a66c76fa9b47731084f41d135592efb4f8d44018aa8f4c475fb0041ae4a8",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 2,
+      "before_record_canonical_sha256": "98555b3d4a1ae1ffba3c1649e4a98fa01e183035243184e0d83ed8675ed080bf",
+      "after_record_canonical_sha256": "3921f80088463a79a177c2b913bef1c8aadf04df3b253129aacf80593be22c10",
+      "after_math_fields_canonical_sha256": "39c8f8fc104504305cfdc5d29cd6130b79d3450dbddeb438f89a21313c402980"
+    },
+    {
+      "id": "linalg-070",
+      "record": {
+        "id": "linalg-070",
+        "category": "高等代数",
+        "sub_category": "双线性函数与辛空间",
+        "function_family": "辛空间",
+        "visual_style": "辛变换与面积保持",
+        "efficiency_tags": [
+          "辛形式",
+          "面积守恒"
+        ],
+        "problem": "在 $\\mathbb{R}^2$ 上定义辛形式 $\\omega(u,v)=u_1v_2-u_2v_1$（标准行列式形式），说明辛变换保持该形式不变的意义。",
+        "solution": "设 $J=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，则 $\\omega(u,v)=u^TJv=\\det(u,v)$，表示有向面积。对 $A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，有 $A^TJA=\\begin{pmatrix}0&ad-bc\\\\bc-ad&0\\end{pmatrix}=(\\det A)J$，因此 $\\omega(Au,Av)=(\\det A)\\omega(u,v)$。二维中，$A$ 是辛变换当且仅当 $\\det A=1$；它同时保持有向面积、通常面积与定向。仅保持通常面积还不足以判定为辛变换：反射 $R=\\operatorname{diag}(1,-1)$ 的行列式为 $-1$，它使 $\\omega(Ru,Rv)=-\\omega(u,v)$。",
+        "answer": "辛变换保持有向面积与定向：$\\omega(Au,Av)=\\omega(u,v)$；二维中等价于 $\\det A=1$。",
+        "scene_spec": {
+          "objects": [
+            "向量 $u,v$ 与带方向箭头的平行四边形",
+            "矩阵 $A$、$J$、$JA$、$A^TJA$",
+            "反射对照 $R=\\operatorname{diag}(1,-1)$"
+          ],
+          "steps": [
+            "第一步：标注 $\\omega(u,v)=u_1v_2-u_2v_1$ 是有向面积，通常面积为 $|\\omega(u,v)|$。",
+            "第二步：逐行逐列计算 $JA=\\begin{pmatrix}c&d\\\\-a&-b\\end{pmatrix}$，标明每个元素的行与列对应关系。",
+            "第三步：对 $A^T(JA)$ 的四个元素分别标出行乘列：$ac-ca=0$、$ad-cb$、$bc-da$、$bd-db=0$，得到 $(\\det A)J$。",
+            "第四步：在 $\\det A=1$ 条件下展示变换后箭头顺序与面积均保持，并列出 $\\omega(Au,Av)=\\omega(u,v)$。",
+            "第五步：展示反射 $R$ 作为对照：通常面积不变，但有向面积变号，故它不是辛变换。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-linalg-070",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "3eb3f7f02129d70a1894df537a368586d723a939116aac97e76e22046db20555",
+          "math_content_sha256": "66d6cf40fbf292a3f89fdaa373e6e908df31b6ab2681791bf64132d9e91bcfe0",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 16,
+      "before_record_canonical_sha256": "3eb3f7f02129d70a1894df537a368586d723a939116aac97e76e22046db20555",
+      "after_record_canonical_sha256": "55496fe591aba41c62a7c454addb08420328f540829fde0771ee78e2e1b39084",
+      "after_math_fields_canonical_sha256": "e760cf5bacd3ed5cb93f6c3af8fe8ab607d39d2a35ae2c02fd85cf7a8f52bc50"
+    },
+    {
+      "id": "prob-038",
+      "record": {
+        "id": "prob-038",
+        "category": "概率论",
+        "sub_category": "条件概率与独立性",
+        "function_family": "事件关系与韦恩图",
+        "visual_style": "集合运算与面积动态切割",
+        "efficiency_tags": [
+          "条件概率空间缩减",
+          "交并集高亮"
+        ],
+        "problem": "已知 $P(A)=\\frac{3}{5}$，$P(B)=\\frac{2}{5}$，且 $P(A\\cap B)=\\frac{1}{5}$。求 $P(A\\mid B)$ 和 $P(B\\mid A)$。",
+        "solution": "由条件概率定义，$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}=\\frac{1/5}{2/5}=\\frac{1}{5}\\cdot\\frac{5}{2}=\\frac{1}{2}$；$P(B\\mid A)=\\frac{P(A\\cap B)}{P(A)}=\\frac{1/5}{3/5}=\\frac{1}{5}\\cdot\\frac{5}{3}=\\frac{1}{3}$。两条件事件的概率均为正，定义适用。",
+        "answer": "$P(A\\mid B)=\\frac{1}{2}$，$P(B\\mid A)=\\frac{1}{3}$。",
+        "scene_spec": {
+          "objects": [
+            "均匀样本空间 $\\Omega=[0,1)\\times[0,1)$",
+            "蓝色矩形 $A=[0,\\frac{3}{5})\\times[0,1)$",
+            "红色矩形 $B=[\\frac{2}{5},\\frac{4}{5})\\times[0,1)$",
+            "紫色交集 $A\\cap B=[\\frac{2}{5},\\frac{3}{5})\\times[0,1)$"
+          ],
+          "steps": [
+            "第一步：画出单位样本空间，并按精确横坐标 $0,\\frac{2}{5},\\frac{3}{5},\\frac{4}{5},1$ 划分矩形，标注 $P(A)=\\frac{3}{5}$、$P(B)=\\frac{2}{5}$、$P(A\\cap B)=\\frac{1}{5}$。",
+            "第二步：高亮交集矩形，说明面积为 $\\frac{3}{5}-\\frac{2}{5}=\\frac{1}{5}$。",
+            "第三步：将 $B$ 外部置灰，列出 $\\frac{1/5}{2/5}=\\frac{1}{5}\\cdot\\frac{5}{2}=\\frac{1}{2}$，逐项标明分子、分母及约分。",
+            "第四步：将 $A$ 外部置灰，列出 $\\frac{1/5}{3/5}=\\frac{1}{5}\\cdot\\frac{5}{3}=\\frac{1}{3}$。",
+            "第五步：并列两个条件概率，注明分母均大于零。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-prob-038",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "9ea4a3ee9181d11913920e97c621e75a4b5bf7a7ed6c7228b36fbf461e0113d6",
+          "math_content_sha256": "b7c738cf9782a112e7d464609990344826c88e4a53fc060a3ad9c30f75a06492",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "problem",
+        "solution",
+        "answer",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 1,
+      "before_record_canonical_sha256": "9ea4a3ee9181d11913920e97c621e75a4b5bf7a7ed6c7228b36fbf461e0113d6",
+      "after_record_canonical_sha256": "352e1a1a60cc2d5608c37b88acfd4e0792b342d97277a6a37ae4fa42c9565ecf",
+      "after_math_fields_canonical_sha256": "85e5d62d0fb683c47fd029a2df77d5500be318691444d5bc6f6b76f57571cabb"
+    },
+    {
+      "id": "prob-039",
+      "record": {
+        "id": "prob-039",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "function_family": "连续均匀分布与随机投点",
+        "visual_style": "空间撒点与频率逼近",
+        "efficiency_tags": [
+          "面积比计算",
+          "大数定律直观展示"
+        ],
+        "problem": "独立均匀地在正方形 $Q=[-1,1]^2$ 中选取 $n\\ge1$ 个点，记落入单位圆 $D=\\{(x,y):x^2+y^2\\le1\\}$ 的点数为 $m_n$。构造 $\\widehat\\pi_n=4m_n/n$，精确求其期望和方差，并证明 $\\widehat\\pi_n\\xrightarrow{P}\\pi$。说明有限样本的有理数 $4m_n/n$ 与符号常量 $\\pi$ 的区别。",
+        "solution": "令 $Q=[-1,1]^2$，$D=\\{(x,y):x^2+y^2\\le1\\}$，独立均匀地在 $Q$ 中抽取 $n\\ge1$ 个点。记 $I_i$ 为第 $i$ 点落入 $D$ 的指示变量，$m_n=\\sum_{i=1}^n I_i$，则 $P(I_i=1)=\\frac{\\pi}{4}$。定义估计量 $\\widehat\\pi_n=\\frac{4m_n}{n}$，这是给定计数后的精确有理数，不是有限样本下与 $\\pi$ 的恒等式。$E(\\widehat\\pi_n)=\\pi$，$\\operatorname{Var}(\\widehat\\pi_n)=\\frac{\\pi(4-\\pi)}{n}$。对任意 $\\varepsilon>0$，切比雪夫不等式给出 $P(|\\widehat\\pi_n-\\pi|\\ge\\varepsilon)\\le\\frac{\\pi(4-\\pi)}{n\\varepsilon^2}\\to0$，故 $\\widehat\\pi_n\\xrightarrow{P}\\pi$；强大数定律还给出几乎处处收敛。",
+        "answer": "$\\widehat\\pi_n=\\frac{4m_n}{n}$，$E(\\widehat\\pi_n)=\\pi$，$\\operatorname{Var}(\\widehat\\pi_n)=\\frac{\\pi(4-\\pi)}{n}$，且 $\\widehat\\pi_n\\xrightarrow{P}\\pi$。",
+        "scene_spec": {
+          "objects": [
+            "正方形 $Q=[-1,1]^2$ 与单位圆 $D$",
+            "计数 $n,m_n$ 与估计量 $\\widehat\\pi_n=4m_n/n$",
+            "精确期望、方差与概率界"
+          ],
+          "steps": [
+            "第一步：标出正方形面积 $4$、圆面积 $\\pi$，推得命中概率 $\\pi/4$。",
+            "第二步：独立均匀投点，分别统计总点数 $n$ 与圆内点数 $m_n$，把每次估计值保留为精确分数 $4m_n/n$。",
+            "第三步：注明有限样本估计量不是 $\\pi$ 的精确值；展示 $E(m_n)=n\\pi/4$、$\\operatorname{Var}(m_n)=n(\\pi/4)(1-\\pi/4)$。",
+            "第四步：逐步乘以尺度因子 $4/n$，得到 $E(\\widehat\\pi_n)=\\pi$ 与方差 $\\pi(4-\\pi)/n$。",
+            "第五步：高亮切比雪夫概率界 $\\pi(4-\\pi)/(n\\varepsilon^2)\\to0$，以该界说明一致性，不用小数圆周率或有限点云冒充证明。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-prob-039",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "916010ea92d0857c6d2e1742f923cdf7af4116c2b815fac353b326ad8c293361",
+          "math_content_sha256": "b0c8a1964e806a66ebe8326ebb04829a8bb3451bb30ceb49ed7d3535f9ff9d94",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec",
+        "problem"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 2,
+      "before_record_canonical_sha256": "916010ea92d0857c6d2e1742f923cdf7af4116c2b815fac353b326ad8c293361",
+      "after_record_canonical_sha256": "42991faf60a44c2e6129b9f7966fdc3f67f25ae32cbcfe541c5240d7551b9f35",
+      "after_math_fields_canonical_sha256": "b1ae1eb2e3fcc352945ac17d11029590dae804bb74664d5ff04dee70a06ce578"
+    },
+    {
+      "id": "prob-042",
+      "record": {
+        "id": "prob-042",
+        "category": "概率论",
+        "sub_category": "大数定律",
+        "function_family": "伯努利大数定律",
+        "visual_style": "动态折线与频率收敛",
+        "efficiency_tags": [
+          "动态收敛轨迹",
+          "水平极限线"
+        ],
+        "problem": "设 $X_1,X_2,\\ldots$ 独立同分布，$P(X_i=1)=p$、$P(X_i=0)=1-p$，其中 $0\\le p\\le1$。令正面频率 $F_n=n^{-1}\\sum_{i=1}^nX_i$。精确求 $E(F_n)$、$\\operatorname{Var}(F_n)$，并用切比雪夫不等式证明 $F_n\\xrightarrow{P}p$；说明公平硬币附加条件对应的 $p$。",
+        "solution": "设各次投掷独立同分布，$X_i\\sim\\operatorname{Bernoulli}(p)$，其中 $p=P(X_i=1)$，$0\\le p\\le1$；题目未指定公平性，不能直接令 $p=\\frac{1}{2}$。正面频率为 $F_n=\\frac{1}{n}\\sum_{i=1}^n X_i$。由独立性，$E(F_n)=p$，$\\operatorname{Var}(F_n)=p(1-p)/n$。对任意 $\\varepsilon>0$，$P(|F_n-p|\\ge\\varepsilon)\\le\\frac{p(1-p)}{n\\varepsilon^2}\\to0$，故 $F_n\\xrightarrow{P}p$。若另有公平硬币条件，才取 $p=\\frac{1}{2}$。",
+        "answer": "$F_n\\xrightarrow{P}p$，其中 $p$ 为单次正面概率；公平硬币时 $p=\\frac{1}{2}$。",
+        "scene_spec": {
+          "objects": [
+            "指示变量 $X_i$、次数 $n$ 与频率 $F_n$",
+            "理论概率水平线 $y=p$",
+            "概率界 $p(1-p)/(n\\varepsilon^2)$"
+          ],
+          "steps": [
+            "第一步：明确独立同分布假设，标出 $P(X_i=1)=p$；以 $p$ 为参数而不是预设公平性。",
+            "第二步：累计正面次数并用精确分数 $F_n=(X_1+\\cdots+X_n)/n$ 更新频率曲线。",
+            "第三步：逐步计算 $E(F_n)=p$ 和 $\\operatorname{Var}(F_n)=p(1-p)/n$，说明独立性用于方差相加。",
+            "第四步：标出偏差带 $p\\pm\\varepsilon$，高亮切比雪夫不等式与概率界趋零，得出依概率收敛。",
+            "第五步：将公平硬币作为附加示例，明确此时 $p=\\frac{1}{2}$；单条有限轨迹不能代替收敛证明。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-prob-042",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "3f70da56d2084427141488add9d6b5e007cdf8124c9c4ced27c2fd4dce3766c9",
+          "math_content_sha256": "85e47a2faed10a080c0ee1c50df262dad9365d113c84c6d57a159cfa13e1f81e",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec",
+        "problem"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 5,
+      "before_record_canonical_sha256": "3f70da56d2084427141488add9d6b5e007cdf8124c9c4ced27c2fd4dce3766c9",
+      "after_record_canonical_sha256": "c3afd8b40fbd7f8c6f68ff25edf6ef9102272d1f126a9155c3acf27631431135",
+      "after_math_fields_canonical_sha256": "a61c3cf4058eb13bfc20e80a93a65963618b1a9986c3948b05098e6e55bdee04"
+    },
+    {
+      "id": "prob-043",
+      "record": {
+        "id": "prob-043",
+        "category": "概率论",
+        "sub_category": "中心极限定理",
+        "function_family": "独立同分布中心极限定理",
+        "visual_style": "分屏对比与分布形态演变",
+        "efficiency_tags": [
+          "样本量滑块",
+          "直方图对比"
+        ],
+        "problem": "设 $X_1,X_2,\\ldots$ 独立同分布，$E(X_i)=\\mu$、$0<\\operatorname{Var}(X_i)=\\sigma^2<\\infty$，$\\overline X_n=n^{-1}\\sum_{i=1}^nX_i$。写出标准化均值的中心极限定理，并区分其分布极限与原尺度 $\\overline X_n$ 的极限；说明总体正态时有限样本的精确分布。",
+        "solution": "设 $X_1,X_2,\\ldots$ 独立同分布，$E(X_i)=\\mu$、$0<\\operatorname{Var}(X_i)=\\sigma^2<\\infty$，$\\overline X_n=\\frac{1}{n}\\sum_{i=1}^n X_i$。中心极限定理的精确结论为 $Z_n=\\frac{\\sqrt n(\\overline X_n-\\mu)}{\\sigma}\\xrightarrow{d}N(0,1)$，即对每个 $t\\in\\mathbb R$，$\\lim_{n\\to\\infty}P(Z_n\\le t)=\\Phi(t)$。未经标准化的均值有 $E(\\overline X_n)=\\mu$、$\\operatorname{Var}(\\overline X_n)=\\sigma^2/n$，且 $\\overline X_n\\xrightarrow{P}\\mu$，其极限分布为点质量 $\\delta_\\mu$，不能称为趋向固定的非退化正态分布。只有总体本身正态时，有限 $n$ 下才精确有 $\\overline X_n\\sim N(\\mu,\\sigma^2/n)$。",
+        "answer": "$\\frac{\\sqrt n(\\overline X_n-\\mu)}{\\sigma}\\xrightarrow{d}N(0,1)$；$\\operatorname{Var}(\\overline X_n)=\\sigma^2/n$ 且 $\\overline X_n\\xrightarrow{P}\\mu$。",
+        "scene_spec": {
+          "objects": [
+            "独立同分布条件与 $0<\\sigma^2<\\infty$",
+            "标准化变量 $Z_n$ 的分布与 $N(0,1)$ 曲线",
+            "原尺度均值 $\\overline X_n$、中心 $\\mu$ 与方差 $\\sigma^2/n$"
+          ],
+          "steps": [
+            "第一步：高亮独立同分布、有限正方差两项条件，列出 $E(X_i)=\\mu$ 和 $\\operatorname{Var}(X_i)=\\sigma^2$。",
+            "第二步：逐项求均值与方差，得到 $E(\\overline X_n)=\\mu$、$\\operatorname{Var}(\\overline X_n)=\\sigma^2/n$。",
+            "第三步：展示减去 $\\mu$ 再除以 $\\sigma/\\sqrt n$ 的标准化操作，得到 $Z_n$。",
+            "第四步：在固定尺度上对照 $Z_n$ 与 $N(0,1)$，展示分布函数极限 $P(Z_n\\le t)\\to\\Phi(t)$；有限 $n$ 的图形不标为完全一致。",
+            "第五步：另屏展示原尺度均值集中到 $\\mu$，用 $P(|\\overline X_n-\\mu|\\ge\\varepsilon)\\le\\sigma^2/(n\\varepsilon^2)$ 区分大数定律与中心极限定理。",
+            "第六步：说明总体正态时 $\\overline X_n\\sim N(\\mu,\\sigma^2/n)$ 对有限 $n$ 精确成立；一般总体不能用某个固定样本量保证精确正态。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-prob-043",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "cf5b5f432a33417be941dbf22d12345feee9ac3baa0ffb308569403206597c69",
+          "math_content_sha256": "7620e3f08d65dc7b0c6247ef319048f21ec948447572b6e93b3a4e3b3abc430f",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "answer",
+        "scene_spec",
+        "problem"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 6,
+      "before_record_canonical_sha256": "cf5b5f432a33417be941dbf22d12345feee9ac3baa0ffb308569403206597c69",
+      "after_record_canonical_sha256": "8fd03f387ae4849c400189eadc8afad167be6a3c48778340657d4003c3d5d62d",
+      "after_math_fields_canonical_sha256": "e9f09eb7fcb833cdd494f1fec3fd541e29ded6015df1579f1edf445518af0997"
+    },
+    {
+      "id": "prob-046",
+      "record": {
+        "id": "prob-046",
+        "category": "概率论",
+        "sub_category": "可列可加性",
+        "function_family": "测度的可列可加性",
+        "visual_style": "无限级数面积拼图",
+        "efficiency_tags": [
+          "几何级数",
+          "极限逼近"
+        ],
+        "problem": "用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的小矩形。",
+        "solution": "取半开单位正方形 $\\Omega=[0,1)\\times[0,1)$，面积为 $1$。令 $R_k=[1-2^{-(k-1)},1-2^{-k})\\times[0,1)$，$k\\ge1$。这些矩形两两不交，且 $\\bigcup_{k=1}^{\\infty}R_k=\\Omega$，$\\operatorname{area}(R_k)=2^{-k}$。前 $N$ 个矩形的面积和为 $S_N=\\sum_{k=1}^{N}2^{-k}=1-2^{-N}$，剩余面积为 $2^{-N}\\to0$，所以由面积测度的可列可加性，$\\operatorname{area}(\\Omega)=\\sum_{k=1}^{\\infty}\\operatorname{area}(R_k)=1$。若画闭单位正方形，只多出零面积边界，不改变面积等式。该例展示可列可加性，不能把单个图例当作对所有可测集合的一般证明。",
+        "answer": "可列可加性成立：各矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$，恰等于单位正方形的总面积",
+        "scene_spec": {
+          "objects": [
+            "半开单位正方形 $\\Omega=[0,1)^2$",
+            "两两不交的矩形 $R_k$ 及面积 $2^{-k}$",
+            "部分和 $S_N=1-2^{-N}$ 和剩余面积 $2^{-N}$"
+          ],
+          "steps": [
+            "第一步：说明边界采用半开约定，保证相邻矩形作为集合不重叠；若画完整边框，标明附加边界面积为零。",
+            "第二步：依次划出 $R_1=[0,\\frac{1}{2})\\times[0,1)$、$R_2=[\\frac{1}{2},\\frac{3}{4})\\times[0,1)$、$R_3=[\\frac{3}{4},\\frac{7}{8})\\times[0,1)$。",
+            "第三步：列出一般矩形端点并相减，得到宽度 $2^{-k}$，高度为 $1$，面积为 $2^{-k}$。",
+            "第四步：逐项显示几何级数部分和 $S_N=1-2^{-N}$，高亮剩余面积恰为 $2^{-N}$。",
+            "第五步：用 $2^{-N}\\to0$ 与两两不交、完整覆盖条件得出总面积为 $1$，标注这是可列可加性的具体例子。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "admitted": false,
+        "training_admitted": false,
+        "render_verified": false,
+        "animation_verified": false,
+        "draft_status": "STAGED_NOT_ADMITTED",
+        "versioned_id": "codex-exact-math-v1-prob-046",
+        "strict_review": {
+          "status": "PENDING_NEW_VERSION_REVIEW",
+          "source_record_sha256": "3a779a65b5dc2c7a3d3841d13865c4e11fa53654ebd2ab9c4729e0399591fd6c",
+          "math_content_sha256": "5874353e1e000d6bb4dd5848bf79ed6822000e6b5f38e7cbf3b5d2dab0fd9cc3",
+          "scene_semantic_review": "PENDING",
+          "visual_review": "PENDING"
+        }
+      },
+      "changed_fields": [
+        "solution",
+        "scene_spec"
+      ],
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 7,
+      "before_record_canonical_sha256": "3a779a65b5dc2c7a3d3841d13865c4e11fa53654ebd2ab9c4729e0399591fd6c",
+      "after_record_canonical_sha256": "ec8b101afbf83105fd60dca2c6167c4870a980bed245860e543608f424b9b88b",
+      "after_math_fields_canonical_sha256": "7336e623fc340fb8750cf04f1eb96c1398025e2f093510e6c8519d046a9c7139"
+    }
+  ],
+  "source_bindings": {
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl": {
+      "raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "bytes": 28056
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl": {
+      "raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "bytes": 12050
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl": {
+      "raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "bytes": 22190
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl": {
+      "raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "bytes": 11845
+    }
+  },
+  "formal_manifest_updated": false,
+  "animation_verified": false,
+  "unchanged_records_math_reviewed": false,
+  "source_proposal_raw_sha256": "271199e7aa59032a8339fff9674eab555995e9d66a201d47b06c674d2c914d3b"
+}

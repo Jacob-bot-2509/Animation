@@ -4,7 +4,7 @@
 
 合法 SID 的启动失败现为 WinError 2；GetAppContainerFolderPath 返回 HRESULT 0x80070002，说明容器配置尚不存在。新容器需要先完成 profile 配置，单独派生 SID 并不会创建配置；不能据此宣称系统或管理员权限限制。启动代码已在 mkdir/ACL 修改前检查配置可用性。
 
-当前完整测试 376 passed + 29 subtests passed，无跳过项；这些只验证已有功能及 SID/配置契约，实际 OS 网络隔离和渲染集成仍未验收，门禁继续阻断。详情和原生对照证据见 D:/code/output/claude-supervision/fix-2026-10-04/FIX_REPORT.md。
+当前完整测试 376 passed + 29 subtests passed，无跳过项；这些只验证已有功能及 SID/配置契约，实际 OS 网络隔离和渲染集成仍未验收，门禁继续阻断。详情和原生对照证据见 D:/Animation-Model-Training/reviews/codex-supervision/history-from-code/fix-2026-10-04/FIX_REPORT.md。
 
 以下保留原始尝试过程，涉及失败归因的旧结论以本更正为准。
 

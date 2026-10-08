@@ -1,0 +1,38 @@
+[
+  {
+    "case": "expected_sid",
+    "exception": "AttributeError(\"'NoneType' object has no attribute 'startswith'\")"
+  },
+  {
+    "case": "policy_before",
+    "exception": "AttributeError(\"'NoneType' object has no attribute 'get'\")"
+  },
+  {
+    "case": "nonce",
+    "exception": "AttributeError(\"'bytes' object has no attribute 'encode'\")"
+  },
+  {
+    "case": "client",
+    "exception": "AttributeError(\"'list' object has no attribute 'get'\")"
+  },
+  {
+    "case": "data",
+    "exception": "AttributeError(\"'str' object has no attribute 'get'\")"
+  },
+  {
+    "case": "server_errors",
+    "result": {
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "reasons": [],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation"
+    }
+  },
+  {
+    "case": "packet_at",
+    "result": {
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "reasons": [],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation"
+    }
+  }
+]

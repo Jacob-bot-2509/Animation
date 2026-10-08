@@ -1,0 +1,332 @@
+{
+  "head": "61e7922e0df1f16c49b1b3c9779cbad23a961e1e",
+  "input_hashes": {
+    "data/v1/raw/dataset_calc.jsonl": "17a06617201c6954de5644b97338c1e36a563972d292cbb323428711bdb09fb9",
+    "data/v1/raw/dataset_geom.jsonl": "c3b93572c87534bb8c160af46de730fa09315b1c332640e9e2ec8127e26f0411",
+    "data/v1/raw/dataset_linalg.jsonl": "ebfe69974c640167be939b6263787d064f915fb7bd52fe057d2577b4958388fc",
+    "data/v1/raw/dataset_prob.jsonl": "59916c228033f56020b0d700cee7f5ae104af1c3ca6132aad035a445136780d9"
+  },
+  "manifest_sha256": "dcda69eecea44d2dee557552479a459c34c54f61b7ba2c75e54278c113b61cf8",
+  "intake": {
+    "n_records": 63,
+    "categories": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "problems": [],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": true,
+    "status": "clean",
+    "exit_code": 0
+  },
+  "manifest": {
+    "ok": true,
+    "n_entries": 4,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "mirror_arrays": {
+    "dataset_calc.jsonl": true,
+    "dataset_geom.jsonl": true,
+    "dataset_linalg.jsonl": true,
+    "dataset_prob.jsonl": true
+  },
+  "source_doc_count": 63,
+  "source_doc_same_id_set": true,
+  "source_doc_diffs": [],
+  "audit_v2_count": 62,
+  "audit_v2_mismatches": [
+    "data/v1/raw/dataset_calc.jsonl",
+    "data/v1/raw/dataset_geom.jsonl",
+    "data/v1/raw/dataset_linalg.jsonl",
+    "data/v1/raw/dataset_prob.jsonl"
+  ],
+  "record_snapshot": {
+    "calc-area-010": {
+      "id": "calc-area-010",
+      "category": "数学分析",
+      "sub_category": "定积分的应用",
+      "function_family": "超越函数与一次函数",
+      "visual_style": "面积分割与叠加",
+      "efficiency_tags": [
+        "交点计算",
+        "分段积分"
+      ],
+      "problem": "计算由曲线 $y=\\ln x$、直线 $y=-x+e+1$ 以及 $x$ 轴围成的封闭图形的面积。",
+      "solution": "联立 $y=\\ln x$ 与 $y=-x+e+1$ 得交点为 $(e, 1)$。该封闭图形以 $x$ 轴为下边界，由两部分组成：在 $[1, e]$ 上，上边界为曲线 $y=\\ln x$；在 $[e, e+1]$ 上，上边界为直线 $y=-x+e+1$。面积 $S = \\int_1^e \\ln x dx + \\int_e^{e+1} (-x+e+1) dx$。第一项：$\\int_1^e \\ln x dx = [x\\ln x - x]_1^e = (e - e) - (0 - 1) = 1$。第二项：$\\int_e^{e+1} (-x+e+1) dx = [-\\frac{1}{2}x^2 + (e+1)x]_e^{e+1} = \\frac{1}{2}$。总面积 $S = 1 + \\frac{1}{2} = \\frac{3}{2}$。",
+      "answer": "$\\frac{3}{2}$",
+      "scene_spec": {
+        "objects": [
+          "带有刻度的直角坐标系",
+          "蓝色对数曲线 $y=\\ln x$",
+          "红色直线 $y=-x+e+1$",
+          "由两条曲线和 x 轴围成的封闭区域（黄色填充）",
+          "区分 $[1,e]$ 与 $[e,e+1]$ 的分段垂直虚线",
+          "垂直微元矩形"
+        ],
+        "steps": [
+          "第一步：绘制直角坐标系，用蓝色画出对数曲线 $y=\\ln x$，用红色画出直线 $y=-x+e+1$。",
+          "第二步：标出交点 $(e, 1)$，以及曲线与 x 轴的交点 $(1, 0)$ 和直线与 x 轴的交点 $(e+1, 0)$。",
+          "第三步：用黄色半透明填充由曲线、直线和 x 轴围成的封闭区域，并用垂直虚线将区域分为 $[1, e]$ 和 $[e, e+1]$ 两部分。",
+          "第四步：在区域中动态绘制垂直微元，分别展示两部分面积积分 $S_1$ 和 $S_2$。",
+          "第五步：高亮显示面积计算结果 $S = \\frac{3}{2}$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "prob-040": {
+      "id": "prob-040",
+      "category": "概率论",
+      "sub_category": "常见分布",
+      "function_family": "二项分布与泊松分布",
+      "visual_style": "柱状图动态逼近",
+      "efficiency_tags": [
+        "参数调整",
+        "离散分布极限"
+      ],
+      "problem": "说明当 $n$ 很大，$p$ 很小时，二项分布 $B(n, p)$ 可以近似为泊松分布 $P(\\lambda)$，其中 $\\lambda = np$。",
+      "solution": "二项分布的概率质量函数为 $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$。当 $n \\to \\infty$，$p \\to 0$ 且 $np \\to \\lambda$ 时，利用极限 $\\lim_{n \\to \\infty} (1 - \\frac{\\lambda}{n})^n = e^{-\\lambda}$，可以推导出 $P(X=k) \\to \\frac{\\lambda^k e^{-\\lambda}}{k!}$，这正是泊松分布的概率质量函数。",
+      "answer": "当 $n \\to \\infty$、$p \\to 0$ 且 $np \\to \\lambda$ 时，$B(n,p)$ 的概率质量函数趋近于泊松分布 $P(\\lambda)$ 的概率质量函数 $\\frac{\\lambda^k e^{-\\lambda}}{k!}$",
+      "scene_spec": {
+        "objects": [
+          "直角坐标系",
+          "二项分布柱状图",
+          "泊松分布理想曲线",
+          "动态变化的参数滑块"
+        ],
+        "steps": [
+          "第一步：在坐标系中绘制二项分布 $B(n,p)$ 的柱状图，初始设定 $n=10, p=0.5$。",
+          "第二步：在画面右侧引入一个滑块，拖动滑块使得 $n$ 逐渐增大（如 $n=50, 100$），同时 $p$ 逐渐减小。",
+          "第三步：保持 $\\lambda = np = 5$ 固定，展示随着 $n$ 增大柱状图中心始终位于 5、方差由 2.5 逐渐趋近 5，形态收敛到固定的泊松分布 $P(5)$。",
+          "第四步：叠加上一条红色的泊松分布理论曲线，展示当 $n$ 很大 $p$ 很小时，二项分布的柱状图顶端几乎完全与红色曲线重合，验证泊松近似。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-058": {
+      "id": "linalg-058",
+      "category": "高等代数",
+      "sub_category": "矩阵",
+      "function_family": "初等变换",
+      "visual_style": "网格剪切与缩放",
+      "efficiency_tags": [
+        "行变换几何效果",
+        "行列式值变化"
+      ],
+      "problem": "说明初等矩阵 $E=\\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$ 对应的线性变换的几何意义。",
+      "solution": "该矩阵是将单位矩阵第二行加上第一行的 3 倍得到的初等矩阵。对应的线性变换是沿 $y$ 轴方向的剪切变换：平面上每一点的 $x$ 坐标不变，$y$ 坐标变为 $y+3x$。这是一个保持面积不变（行列式为 1）的剪切变换。",
+      "answer": "$x$ 坐标不变，$y$ 坐标变为 $y+3x$，面积不变",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "标准网格",
+          "剪切后网格",
+          "基向量变化"
+        ],
+        "steps": [
+          "第一步：画出标准网格和单位正方形。",
+          "第二步：应用初等矩阵 E 的变换，展示水平网格线发生倾斜（竖直网格线保持竖直），网格被剪切。",
+          "第三步：观察单位正方形变为平行四边形，但底和高不变，面积保持为 1。",
+          "第四步：高亮显示行列式值为 1，说明剪切变换不改变面积。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "geom-026": {
+      "id": "geom-026",
+      "category": "解析几何",
+      "sub_category": "二次曲面分类",
+      "function_family": "二次曲面标准形式",
+      "visual_style": "截面法与三维立体",
+      "efficiency_tags": [
+        "截面扫描",
+        "抛物线平移"
+      ],
+      "problem": "指出方程 $z = x^2 + 2y^2$ 表示的二次曲面类型，并分析其与平面 $y = 0$ 和 $y = 1$ 的交线。",
+      "solution": "该方程为椭圆抛物面。当 $y = 0$ 时，交线为 $z = x^2$，是 $xOz$ 平面上的抛物线。当 $y = 1$ 时，交线为 $z = x^2 + 2$，依然是一条抛物线，只是顶点向上平移了 2 个单位。因此，曲面可以看作抛物线在 $y$ 轴方向平移叠加而成。",
+      "answer": "椭圆抛物面；与平面 $y=0$ 的交线为 $z=x^2$，与平面 $y=1$ 的交线为 $z=x^2+2$",
+      "scene_spec": {
+        "objects": [
+          "三维坐标系",
+          "椭圆抛物面",
+          "xOz 平面上的抛物线",
+          "平面 y=1 上的抛物线"
+        ],
+        "steps": [
+          "第一步：在三维空间中画出椭圆抛物面 $z = x^2 + 2y^2$，用蓝色半透明渲染。",
+          "第二步：高亮显示与 $xOz$ 平面（$y=0$）的截面交线，这是一条抛物线。",
+          "第三步：在 $y=1$ 处插入一个平面，并高亮显示它与曲面的交线，展示这是一条开口向上的抛物线。",
+          "第四步：用动画演示抛物线沿着 $y$ 轴平移，形成整个椭圆抛物面的过程。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "geom-031": {
+      "id": "geom-031",
+      "category": "解析几何",
+      "sub_category": "曲面与曲线",
+      "function_family": "维维安尼曲线（球面与圆柱面的交线）",
+      "visual_style": "三维曲线生成演示",
+      "efficiency_tags": [
+        "三维旋转视角",
+        "参数曲线动态描绘"
+      ],
+      "problem": "求球面 $x^2+y^2+z^2=4a^2$ 与圆柱面 $x^2+y^2=2ax$ 的交线（维维安尼曲线）的参数方程。",
+      "solution": "令 $x=a(1+\\cos t)$，$y=a\\sin t$，则 $x^2+y^2 = a^2(1+\\cos t)^2 + a^2\\sin^2 t = 2a^2(1+\\cos t) = 2a\\cdot a(1+\\cos t) = 2ax$，圆柱面方程自动满足。代入球面方程 $x^2+y^2+z^2=4a^2$ 得 $z^2 = 4a^2 - 2a^2(1+\\cos t) = 2a^2(1-\\cos t) = 4a^2\\sin^2\\frac{t}{2}$，故 $z = 2a\\sin\\frac{t}{2}$。于是交线的参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$。",
+      "answer": "维维安尼曲线，参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin(t/2)$",
+      "scene_spec": {
+        "objects": [
+          "三维直角坐标系",
+          "半透明球面 $x^2+y^2+z^2=4a^2$",
+          "圆柱面 $x^2+y^2=2ax$",
+          "高亮的维维安尼曲线",
+          "曲线上运动的参数点"
+        ],
+        "steps": [
+          "第一步：绘制三维坐标系，用蓝色半透明渲染球面 $x^2+y^2+z^2=4a^2$。",
+          "第二步：用红色半透明渲染与球面相交的圆柱面 $x^2+y^2=2ax$。",
+          "第三步：高亮两个曲面的交线，动态描绘出维维安尼曲线。",
+          "第四步：让一个参数点沿曲线运动，同步显示参数方程 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin(t/2)$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "prob-043": {
+      "id": "prob-043",
+      "category": "概率论",
+      "sub_category": "中心极限定理",
+      "function_family": "独立同分布中心极限定理",
+      "visual_style": "分屏对比与分布形态演变",
+      "efficiency_tags": [
+        "样本量滑块",
+        "直方图对比"
+      ],
+      "problem": "解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值的分布是如何变化的。",
+      "solution": "设随机变量 $X_1, X_2, \\dots, X_n$ 相互独立且同分布，具有有限的数学期望 $\\mu$ 和方差 $\\sigma^2$。中心极限定理指出，当 $n$ 充分大时，标准化样本均值 $\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}}$ 的分布近似于标准正态分布 $N(0, 1)$。直观来说，样本均值的方差为 $\\sigma^2/n$，随着 $n$ 增大，方差减小，分布变得更加集中，直方图会变高变窄，最终趋于钟形正态分布。",
+      "answer": "样本均值的标准化分布趋近于标准正态分布 $N(0,1)$，直方图变高变窄",
+      "scene_spec": {
+        "objects": [
+          "左侧原始总体分布（如均匀分布或指数分布）",
+          "右侧动态样本均值分布直方图",
+          "样本量 n 滑块",
+          "目标正态曲线"
+        ],
+        "steps": [
+          "第一步：屏幕左侧显示一个明显非正态的总体分布（例如均匀分布），明确标注其形态。",
+          "第二步：在右侧从该总体中随机抽取 n 个样本并计算均值，重复多次绘制直方图。",
+          "第三步：初始设置 n=2，右侧直方图呈现出与总体相似的粗糙形态。",
+          "第四步：动画拖动“样本量 n”滑块，将 n 逐渐增大至 5, 10, 30。",
+          "第五步：右侧的直方图动态且平滑地变高变窄，形态逐渐转变成钟形。",
+          "第六步：叠加一条红色标准正态分布曲线，展示当 n=30 时，标准化后的样本均值直方图几乎与红色曲线重合。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-060": {
+      "id": "linalg-060",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "function_family": "正定二次型",
+      "visual_style": "曲面开口方向与正定性",
+      "efficiency_tags": [
+        "顺序主子式",
+        "曲面形状判别"
+      ],
+      "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+      "solution": "写出对应的实对称矩阵 $A=\\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 0 \\\\ 1 & 0 & 3 \\end{pmatrix}$。顺序主子式：$1>0$，$\\begin{vmatrix} 1 & 1 \\\\ 1 & 2 \\end{vmatrix}=1>0$，$\\det(A)=1(6-0)-1(3-0)+1(0-2)=6-3-2=1>0$。所有顺序主子式均为正，故二次型正定。",
+      "answer": "正定",
+      "scene_spec": {
+        "objects": [
+          "三维坐标系",
+          "三维椭球面（含三个坐标轴方向的主轴）",
+          "顺序主子式判断标注"
+        ],
+        "steps": [
+          "第一步：利用 ThreeDScene 绘制二次型对应的三维椭球面，展现三维空间的变形，观察其形状。",
+          "第二步：用截面法展示曲面的开口方向。",
+          "第三步：在右侧展示三个顺序主子式的计算过程，全部为正。",
+          "第四步：高亮显示曲面所有方向都向上开口（正定），与判别结果一致。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-066": {
+      "id": "linalg-066",
+      "category": "高等代数",
+      "sub_category": "λ-矩阵",
+      "function_family": "若尔当标准形",
+      "visual_style": "矩阵块对角化",
+      "efficiency_tags": [
+        "若尔当块",
+        "相似变换"
+      ],
+      "problem": "求矩阵 $A=\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$ 的若尔当标准形。",
+      "solution": "A 已经是分块对角形式。主对角线上有一个 2×2 的若尔当块 $J_1(2)=\\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 和一个 1×1 的若尔当块 $J_2(3)=(3)$。故若尔当标准形为 $\\operatorname{diag}(J_1(2), J_2(3))$。",
+      "answer": "$\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$",
+      "scene_spec": {
+        "objects": [
+          "矩阵可视化",
+          "若尔当块高亮"
+        ],
+        "steps": [
+          "第一步：展示矩阵 A，用不同颜色标出两个若尔当块。",
+          "第二步：用动画高亮矩阵的分块结构，直观展示两个若尔当块。",
+          "第三步：高亮 2×2 的若尔当块，展示其对角线上的 1 表示该块不可对角化。",
+          "第四步：标注 1×1 的若尔当块对应特征值 3，可以单独对角化。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  "independent_math": {
+    "correct_area": "3/2",
+    "viviani_cylinder_residual": "0",
+    "viviani_sphere_residual": "0",
+    "viviani_t_pi": [
+      "0",
+      "0",
+      "2*a"
+    ],
+    "viviani_t_3pi": [
+      "0",
+      "0",
+      "-2*a"
+    ],
+    "positive_principal_minors": [
+      "1",
+      "1",
+      "1"
+    ],
+    "shear_original_lower_edge_image": "Matrix([[1], [3]])",
+    "shear_lower_edge_length": "sqrt(10)",
+    "shear_height_to_lower_edge": "sqrt(10)/10",
+    "shear_vertical_base_length": "1",
+    "paraboloid_section_y_c": "2*c**2 + x**2"
+  },
+  "test_result": {
+    "passed": 186,
+    "subtests_passed": 29,
+    "seconds": 6.13
+  },
+  "inputs_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "scope": "AST-isolated functions; fake APIs only, no process/profile/ACL changes",
+  "source": "D:\\code\\output\\claude-supervision\\closure-check-2026-10-04\\source-snapshot.py",
+  "source_sha256": "1abfcbe589b01bc9904a353af67360a12b8403fc094e5b00c01a2ad0dfaa5555",
+  "cases": [
+    {
+      "name": "handshake WAIT_FAILED rejects and closes handle",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "held": null,
+        "pid": 12345,
+        "image": null,
+        "verified": false,
+        "wait_error": 5
+      },
+      "fake_api_calls": [
+        [
+          "open",
+          1052673,
+          12345
+        ],
+        [
+          "wait",
+          101,
+          0,
+          false
+        ],
+        [
+          "close",
+          101
+        ]
+      ]
+    },
+    {
+      "name": "handshake WAIT_TIMEOUT accepts verified live handle",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "held": 101,
+        "pid": 12345,
+        "image": "D:\\Python\\python.exe",
+        "verified": true,
+        "wait_error": null
+      },
+      "fake_api_calls": [
+        [
+          "open",
+          1052673,
+          12345
+        ],
+        [
+          "wait",
+          101,
+          0,
+          false
+        ]
+      ]
+    },
+    {
+      "name": "cleanup already exited is confirmed without termination",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": false,
+        "terminate_ok": null,
+        "terminate_lasterr": null,
+        "exit_confirmed": null,
+        "wait_lasterr": null,
+        "alive_before_cleanup": false
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ]
+      ]
+    },
+    {
+      "name": "cleanup initial WAIT_FAILED records error without termination",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": false,
+        "terminate_ok": null,
+        "terminate_lasterr": null,
+        "exit_confirmed": null,
+        "wait_lasterr": 5,
+        "alive_before_cleanup": null
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ]
+      ]
+    },
+    {
+      "name": "cleanup termination success awaits exact held handle",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": true,
+        "terminate_ok": true,
+        "terminate_lasterr": null,
+        "exit_confirmed": true,
+        "wait_lasterr": null,
+        "alive_before_cleanup": true
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          false
+        ],
+        [
+          "terminate",
+          101
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "cleanup termination failure preserves native error",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": true,
+        "terminate_ok": false,
+        "terminate_lasterr": 5,
+        "exit_confirmed": null,
+        "wait_lasterr": null,
+        "alive_before_cleanup": true
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          false
+        ],
+        [
+          "terminate",
+          101
+        ]
+      ]
+    },
+    {
+      "name": "cleanup post-termination WAIT_TIMEOUT is not confirmed",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": true,
+        "terminate_ok": true,
+        "terminate_lasterr": null,
+        "exit_confirmed": false,
+        "wait_lasterr": null,
+        "alive_before_cleanup": true
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          false
+        ],
+        [
+          "terminate",
+          101
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          true
+        ]
+      ]
+    },
+    {
+      "name": "cleanup post-termination WAIT_FAILED preserves error",
+      "passed": true,
+      "error": null,
+      "observations": {
+        "terminate_attempted": true,
+        "terminate_ok": true,
+        "terminate_lasterr": null,
+        "exit_confirmed": null,
+        "wait_lasterr": 5,
+        "alive_before_cleanup": true
+      },
+      "fake_api_calls": [
+        [
+          "wait",
+          101,
+          0,
+          false
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          false
+        ],
+        [
+          "terminate",
+          101
+        ],
+        [
+          "wait",
+          101,
+          5000,
+          true
+        ]
+      ]
+    }
+  ],
+  "all_passed": true
+}

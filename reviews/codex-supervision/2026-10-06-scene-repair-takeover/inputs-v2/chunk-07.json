@@ -1,0 +1,1253 @@
+{
+  "schema": "scene-sweep-chunk-v2",
+  "standard": "Show every exact calculation; identify matrix row and column for each product; state convergence hypotheses, key bounds and limit arguments; use exact fractions and symbols.",
+  "records": [
+    {
+      "idx": 82,
+      "record": {
+        "id": "draft-c05-03",
+        "category": "数学分析",
+        "sub_category": "函数极限",
+        "concept": "函数极限",
+        "concept_id": "C05",
+        "parent_training_ids": [
+          "calc-limit-006"
+        ],
+        "problem": "求极限 $\\lim_{x\\to+\\infty}\\left(\\sqrt{x^2+2x}-x\\right)$。",
+        "solution": "分子有理化(当 $x>0$ 时):$\\sqrt{x^2+2x}-x=\\frac{(x^2+2x)-x^2}{\\sqrt{x^2+2x}+x}=\\frac{2x}{\\sqrt{x^2+2x}+x}=\\frac{2}{\\sqrt{1+\\frac2x}+1}$(分子分母同除以 $x$,$x>0$ 时 $\\sqrt{x^2+2x}=x\\sqrt{1+\\frac2x}$)。当 $x\\to+\\infty$ 时,$\\frac2x\\to0$,极限为 $\\frac{2}{\\sqrt1+1}=1$。",
+        "answer": "极限为 $1$。",
+        "method": "分子有理化(无穷减无穷消主项)",
+        "difficulty": "中等",
+        "variant_kind": "消去主项:无穷减无穷型的有理化处理",
+        "scene_spec": {
+          "objects": [
+            "板书:$\\sqrt{x^2+2x}-x$(标出两个无穷大项)",
+            "板书:有理化变形 $\\frac{2x}{\\sqrt{x^2+2x}+x}$",
+            "板书:同除 $x$ 得 $\\frac{2}{\\sqrt{1+\\frac2x}+1}$",
+            "高亮框:$1$",
+            "标签「有理化消主项」"
+          ],
+          "steps": [
+            "第一步:写出表达式,标注两无穷大项相减。",
+            "第二步:分子有理化,展示平方差变形。",
+            "第三步:分子分母同除 $x$。",
+            "第四步:令 $\\frac2x\\to0$,得极限 $1$。",
+            "第五步:总结有理化消主项的方法。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "49396318c60054593cd054755c641d061f30883c65af0f2c99a19d5754d34600",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c05-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c05-03",
+          "prior_parent_training_ids": [
+            "calc-limit-006"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "e46d13239800322634da48e753544331efe985c8fffff13eab3f614afeef94af",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c05-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "49396318c60054593cd054755c641d061f30883c65af0f2c99a19d5754d34600",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 8,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "eef1e831e434da641bd8ff6cc80a730538ba3b14ed6fcdf77cd2aff0002a1778",
+        "record_canonical_sha256": "9e7c7b0e1302b7ec8ed120f31b5080b935cd91d319b0b86002f35c475b69b05b",
+        "publisher_record_sorted_sha256": "27e5a7f55026ba9d5a8f9c16fcdd8cc42f92af072cd29c04d43264815522b81e"
+      }
+    },
+    {
+      "idx": 83,
+      "record": {
+        "id": "draft-c05-04",
+        "category": "数学分析",
+        "sub_category": "函数极限",
+        "concept": "函数极限",
+        "concept_id": "C05",
+        "parent_training_ids": [
+          "calc-limit-006"
+        ],
+        "problem": "求 $\\lim_{x\\to+\\infty}\\frac{x^3}{e^x}$ 与 $\\lim_{x\\to+\\infty}\\frac{\\ln x}{\\sqrt{x}}$，并说明它们反映的增长等级关系。",
+        "solution": "对$x\\to+\\infty$，三个指数比值均为$\\infty/\\infty$型，各阶段分母导数$e^x>0$，洛必达法则给出$\\lim x^3/e^x=\\lim3x^2/e^x=\\lim6x/e^x=\\lim6/e^x=0$。同理$\\ln x/\\sqrt x$为$\\infty/\\infty$型，$\\lim\\ln x/\\sqrt x=\\lim(1/x)/(1/(2\\sqrt x))=\\lim2/\\sqrt x=0$。另有$\\lim\\sqrt x/x^3=\\lim x^{-5/2}=0$。所以增长次序用严格比值极限表示为$\\lim x^3/e^x=\\lim\\sqrt x/x^3=\\lim\\ln x/\\sqrt x=0$，以上极限均为$x\\to+\\infty$。",
+        "answer": "两个极限均为$0$；严格增长关系为$\\lim_{x\\to+\\infty}\\frac{x^3}{e^x}=\\lim_{x\\to+\\infty}\\frac{\\sqrt x}{x^3}=\\lim_{x\\to+\\infty}\\frac{\\ln x}{\\sqrt x}=0$。",
+        "method": "洛必达法则(跨类型增长对比)",
+        "difficulty": "中等",
+        "variant_kind": "增长类型对比:指数/多项式/对数三类增长的极限与等级排序",
+        "scene_spec": {
+          "objects": [
+            "三次洛必达的精确极限链",
+            "$\\lim\\ln x/\\sqrt x=0$，$\\lim\\sqrt x/x^3=0$",
+            "图像只作示意，排序依据为比值极限"
+          ],
+          "steps": [
+            "第一步：检查无穷比无穷型和分母导数非零。",
+            "第二步：逐次洛必达计算指数比值。",
+            "第三步：计算对数比值及两个幂函数的比值。",
+            "第四步：用三个精确比值极限表达增长次序。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "da734db0ca027022ec39b3eb50dafcef9c14d95640d2ca95a18367b5002a345f",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c05-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c05-04",
+          "prior_parent_training_ids": [
+            "calc-limit-006"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "282806f7f609c5bb3e3023b4ceb949593c1657cdc1aa85390af64ddfb7ed6f75",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [
+            "增长关系用精确比值极限替代未定义的远大于符号，补洛必达适用条件"
+          ],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c05-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "da734db0ca027022ec39b3eb50dafcef9c14d95640d2ca95a18367b5002a345f",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 9,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "d9c54bf144a92a7548f36b9fe5579261215789cf794c7416931b25d08af62c6c",
+        "record_canonical_sha256": "8abc5e7c1ec8ac8245db4d4c16264b45d3b06684569d7578868e98649a799131",
+        "publisher_record_sorted_sha256": "d00c9a365addd9f480a549d23919cd0c5b94baecca535296de75ca07861b7595"
+      }
+    },
+    {
+      "idx": 84,
+      "record": {
+        "id": "draft-c05-05",
+        "category": "数学分析",
+        "sub_category": "函数极限",
+        "concept": "函数极限",
+        "concept_id": "C05",
+        "parent_training_ids": [
+          "calc-limit-006"
+        ],
+        "problem": "证明 $\\lim_{x\\to0}\\sin\\frac{1}{x}$ 不存在。",
+        "solution": "取两个趋于 $0$ 的数列:$x_n=\\frac{1}{2n\\pi}$,则 $x_n\\to0$ 且 $\\sin\\frac{1}{x_n}=\\sin(2n\\pi)=0\\to0$。再取 $y_n=\\frac{1}{2n\\pi+\\frac{\\pi}{2}}$,则 $y_n\\to0$ 且 $\\sin\\frac{1}{y_n}=\\sin(2n\\pi+\\frac{\\pi}{2})=1\\to1$。两个数列都趋于 $0$,但函数值分别趋于 $0$ 与 $1$。由海涅定理(归结原则),若 $\\lim_{x\\to0}\\sin\\frac1x$ 存在,则沿任何趋于 $0$ 的数列函数值应收敛到同一极限,矛盾。故极限不存在。",
+        "answer": "极限不存在(取 $x_n=\\frac{1}{2n\\pi}$ 与 $y_n=\\frac{1}{2n\\pi+\\frac\\pi2}$ 两列,函数值分别趋于 $0$ 与 $1$,由海涅定理得矛盾)。",
+        "method": "海涅定理反证(两列逼近不同值)",
+        "difficulty": "进阶",
+        "variant_kind": "证明型:极限不存在性的严格证明(归结原则+双数列),非计算",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:函数 $\\sin\\frac1x$ 在原点附近的振荡图像(振荡加密动画)",
+            "红色数列点:$x_n=\\frac{1}{2n\\pi}$ 处的函数值 $0$(沿 $x$ 轴)",
+            "蓝色数列点:$y_n=\\frac{1}{2n\\pi+\\frac\\pi2}$ 处的函数值 $1$(上沿)",
+            "板书:海涅定理的表述",
+            "红色标签「极限不存在」"
+          ],
+          "steps": [
+            "第一步:画出 $\\sin\\frac1x$ 的振荡图像,展示原点附近振荡无限加密。",
+            "第二步:取红色数列 $x_n=\\frac{1}{2n\\pi}$,函数值恒为 $0$。",
+            "第三步:取蓝色数列 $y_n$,函数值恒为 $1$。",
+            "第四步:引用海涅定理:若极限存在则两列函数值应同敛,矛盾。",
+            "第五步:红色标注极限不存在,完成证明。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "2f676c7027ed19bd5bdf734c999cf2870262a8e19c52a68db3244f49dd7b43f6",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c05-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c05-05",
+          "prior_parent_training_ids": [
+            "calc-limit-006"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "5f382ed8ae60f2c8bc7819f3ca6dd8f8335e968e23dd58241f6a91da800cf6c7",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c05-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "2f676c7027ed19bd5bdf734c999cf2870262a8e19c52a68db3244f49dd7b43f6",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 10,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "4559125885de7f00c705d7d0ece560447a00aa05eda2833163fdeca5c70dfda0",
+        "record_canonical_sha256": "f056526f10f0b0ab9a6809a87a10fc479237368a145d9698920632e266c54ad9",
+        "publisher_record_sorted_sha256": "f76e59120f1a373524316978d1963625599516e69cefe873859ee7b248d543b0"
+      }
+    },
+    {
+      "idx": 85,
+      "record": {
+        "id": "draft-c46-01",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "concept": "几何概型",
+        "concept_id": "C46",
+        "parent_training_ids": [
+          "prob-039"
+        ],
+        "problem": "$X,Y$相互独立且均匀分布于$[0,1]$。用单位正方形中的面积计算$P(XY\\le1/4)$，并说明积分区间的分段依据。",
+        "solution": "联合密度为单位正方形上的$1$，事件概率等于区域面积。当$0\\le x\\le1/4$，所有$0\\le y\\le1$满足$xy\\le1/4$；当$1/4<x\\le1$，须$0\\le y\\le1/(4x)$。边界面积为零，故$P=\\int_0^{1/4}1\\,dx+\\int_{1/4}^{1}\\frac1{4x}\\,dx=1/4+(\\ln4)/4=1/4+(\\ln2)/2$。分段点来自双曲线与上边界$y=1$的交点$x=1/4$；若全区间都用$1/(4x)$会超出样本空间且产生伪发散。",
+        "answer": "$P(XY\\le1/4)=\\frac14+\\frac12\\ln2$。",
+        "method": "乘积事件的双曲线区域面积",
+        "difficulty": "基础",
+        "variant_kind": "非线性边界+样本空间截断+精确对数",
+        "scene_spec": {
+          "objects": [
+            "单位正方形与$xy=1/4$",
+            "分段$x=1/4$",
+            "区域面积$1/4+(\\ln2)/2$"
+          ],
+          "steps": [
+            "第一步:写出联合均匀密度及几何事件。",
+            "第二步:求双曲线与正方形边界交点。",
+            "第三步:分段积分面积。",
+            "第四步:保留精确分数与对数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "640a93fba01e37f15d6e28ea4ed3eb0a5ffbed9af995295113cc6dd5135b6344",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c46-01",
+          "prior_parent_training_ids": [
+            "prob-039"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "f0d4a4ec93e1c2e240b652f24f327266c0a3dc62c457821e689574d79b55fe08",
+          "previous_hold_reasons": [
+            "WITHIN_BATCH_VARIANT_CLUSTER_REVIEW"
+          ],
+          "math_correction_notes": [
+            "题干补独立均匀假设；仅“随机到达”不能推出联合均匀"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c46-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "f3d76f63682646d430afe60cecf0568e75105fb09d5b8a3e73db8e8f0b9acb88",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 11,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "709b1960667de6f93d8fda6abe40191d7800a271804591cd3002327c686019a3",
+        "record_canonical_sha256": "81c8aadebb5cad609f62c304703cac48e576061b58ceee1e025f6cddedccd4bd",
+        "publisher_record_sorted_sha256": "5ebdc7c7cb846c3c0ed0be11acb1974012314560b1517b86a023e78554b8520b"
+      }
+    },
+    {
+      "idx": 86,
+      "record": {
+        "id": "draft-c46-02",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "concept": "几何概型",
+        "concept_id": "C46",
+        "parent_training_ids": [
+          "prob-039"
+        ],
+        "problem": "在单位圆盘 $x^2+y^2\\le1$ 内随机取一点(均匀分布),求该点落入内接正方形 $|x|\\le\\frac{1}{\\sqrt2}$，$|y|\\le\\frac{1}{\\sqrt2}$ 的概率。",
+        "solution": "均匀分布下,概率等于面积比。内接正方形的边长为 $\\sqrt2$($\\frac{1}{\\sqrt2}\\times2$),面积为 $(\\sqrt2)^2=2$。单位圆盘面积为 $\\pi$。故所求概率为 $\\frac{2}{\\pi}$。",
+        "answer": "概率为 $\\frac{2}{\\pi}$。",
+        "method": "面积比(圆盘内接正方形)",
+        "difficulty": "基础",
+        "variant_kind": "区域切割:圆盘内正方形子区域的面积比",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:单位圆盘(样本空间)",
+            "蓝色内接正方形 $|x|\\le\\frac{1}{\\sqrt2},|y|\\le\\frac{1}{\\sqrt2}$",
+            "正方形四个顶点落在圆周上的位置高亮(边长为 $\\sqrt2$)",
+            "板书:$\\frac{(\\sqrt2)^2}{\\pi}=\\frac{2}{\\pi}$",
+            "高亮框:$\\frac{2}{\\pi}$"
+          ],
+          "steps": [
+            "第一步:画出单位圆盘。",
+            "第二步:画出内接正方形,标出顶点。",
+            "第三步:说明正方形边长为 $\\sqrt2$,面积为 $2$。",
+            "第四步:圆盘面积为 $\\pi$,计算面积比。",
+            "第五步:高亮结论 $\\frac{2}{\\pi}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "c220978cf235b8e1868ff1c43cbc4e36d21fb75be1e28de817d4faa59167d59b",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c46-02",
+          "prior_parent_training_ids": [
+            "prob-039"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "ab03fb997d939d8e5e9133e2330034237c7d156a359bf94081af94a7a467acae",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c46-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "c220978cf235b8e1868ff1c43cbc4e36d21fb75be1e28de817d4faa59167d59b",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 12,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "b4af46a7a9f97492e6cc2fd20ffb8094bd96dc8445ab0635cc1825ced527c9f5",
+        "record_canonical_sha256": "31bfe2106ebb13ba5c6e5966459ccf926d542f2323f3d3dd975c2c7352d70a67",
+        "publisher_record_sorted_sha256": "3a0c844a0f3c5bf4520f93d61494496c7787c34a99dcb699f70a084127512f84"
+      }
+    },
+    {
+      "idx": 87,
+      "record": {
+        "id": "draft-c46-03",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "concept": "几何概型",
+        "concept_id": "C46",
+        "parent_training_ids": [
+          "prob-039"
+        ],
+        "problem": "从单位正方形均匀选取点$M=(X,Y)$。求$M$分别以$A=(0,0)$、$B=(1,0)$、$C=(0,1)$为三个点中唯一最近点的概率，证明平局不会改变结果。",
+        "solution": "比较平方距离：$MA^2\\le MB^2\\Leftrightarrow x\\le1/2$，$MA^2\\le MC^2\\Leftrightarrow y\\le1/2$，$MB^2\\le MC^2\\Leftrightarrow y\\le x$。所以$A$的区域为$[0,1/2]^2$，面积$1/4$；$B$的区域为$1/2\\le x\\le1,0\\le y\\le x$，面积$\\int_{1/2}^1x\\,dx=3/8$；$C$的区域关于$y=x$对称，面积亦为$3/8$。三面积和为$1$。平局只能位于垂直平分线$x=1/2,y=1/2,y=x$的线段上，其二维面积为零。联合分布连续且均匀，故唯一最近点的概率与非严格比较所得面积相同。",
+        "answer": "$P(A\\text{ uniquely nearest})=1/4$，$P(B\\text{ uniquely nearest})=P(C\\text{ uniquely nearest})=3/8$。",
+        "method": "三点Voronoi分区的几何概率",
+        "difficulty": "中等",
+        "variant_kind": "三个距离比较+三个区域+零测平局",
+        "scene_spec": {
+          "objects": [
+            "单位正方形及三个参考点",
+            "$x=1/2,y=1/2,y=x$",
+            "区域概率$1/4,3/8,3/8$"
+          ],
+          "steps": [
+            "第一步:把距离平方比较化成直线半平面。",
+            "第二步:交叠相应半平面得到三个区域。",
+            "第三步:求精确面积并检验和为一。",
+            "第四步:证明平局集合零测。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "5f1000ff38e9386eaeeeb7b6f84a9fe04a72974738be2da3001a83d78a7b6b55",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c46-03",
+          "prior_parent_training_ids": [
+            "prob-039"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "fa5e7234c237ea8bcedda5bd0ceb6c1bd154fa374219b4886db68f4c9abfe1b9",
+          "previous_hold_reasons": [
+            "WITHIN_BATCH_VARIANT_CLUSTER_REVIEW"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c46-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "e9370347d44c53760a8ffe957afd0874991bedd955b871a83aab52a3aa223290",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 13,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "408475bb8067f10daa57c05cffa9da805f5ec7cc6238e1b0f29e1be0c125fc2d",
+        "record_canonical_sha256": "bd9682b73e745ad4fbe1fa0a06a2364c7fbb877e944849bad8b7a7ff781137bb",
+        "publisher_record_sorted_sha256": "615e1b9b5b82679ff8ff3e07f5c2097675b5ac04ce688e482e40cdafb45f5bf8"
+      }
+    },
+    {
+      "idx": 88,
+      "record": {
+        "id": "draft-c46-04",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "concept": "几何概型",
+        "concept_id": "C46",
+        "parent_training_ids": [
+          "prob-039"
+        ],
+        "problem": "在单位正方形上取联合密度$f(x,y)=x+y$，其余地方为零。验证这是概率密度，求$P(X\\le1/2)$，并解释为什么此时不能直接用事件区域与正方形的普通面积之比。",
+        "solution": "$f\\ge0$且$\\int_0^1\\int_0^1(x+y)\\,dy\\,dx=\\int_0^1(x+1/2)\\,dx=1$，故密度有效。所求概率为$\\int_0^{1/2}\\int_0^1(x+y)\\,dy\\,dx=\\int_0^{1/2}(x+1/2)\\,dx=1/8+1/4=3/8$。事件区域的普通面积为$1/2$，但该分布不是均匀分布，所以普通面积比不是概率；正确几何表示是密度加权面积。边界线$x=1/2$零测，不影响结果。",
+        "answer": "密度归一化积分为$1$；$P(X\\le1/2)=3/8$，普通面积比$1/2$不适用。",
+        "method": "几何概率中均匀假设的适用边界",
+        "difficulty": "中等",
+        "variant_kind": "非均匀二维密度+加权面积反例",
+        "scene_spec": {
+          "objects": [
+            "单位正方形的权重$x+y$",
+            "事件$x\\le1/2$",
+            "加权面积$3/8$与普通面积$1/2$"
+          ],
+          "steps": [
+            "第一步:验证非负性与全区域归一化。",
+            "第二步:对事件区域积分密度。",
+            "第三步:比较加权概率与普通面积。",
+            "第四步:说明均匀假设与零测边界。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "1a9f045f44cb210843a51108e18c8ed431c5f35a58696fb57d7a1dc7b4e918c0",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c46-04",
+          "prior_parent_training_ids": [
+            "prob-039"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "add7f2c94b718e49a716e14762b496ee2d1203943fa81ce1b5fdbec9406390d5",
+          "previous_hold_reasons": [
+            "EXACT_FROZEN_TRANSFORM_SUBTASK"
+          ],
+          "math_correction_notes": [
+            "用联合密度与雅可比严格证明均匀性，不只验证径向分布"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c46-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "f3e56ad52993f24b5a1b4db68e1e038c12194936fdd1a4f1c6d16ab0cdaf64c0",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 14,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "3fdb65be9aa3ba5b6bf263d3979112b94a5db9bf49d87f088ccebf35c73a89cc",
+        "record_canonical_sha256": "9ff67852c98bd2fee5c9604db339ffbd24d052e4ea86b3bc80e5b8f892640a4f",
+        "publisher_record_sorted_sha256": "6c7bdd929c43be5bd93e3fd5d728b6b9aeeccb84908d0dbaaf604f206b0c3478"
+      }
+    },
+    {
+      "idx": 89,
+      "record": {
+        "id": "draft-c46-05",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "concept": "几何概型",
+        "concept_id": "C46",
+        "parent_training_ids": [
+          "prob-039"
+        ],
+        "problem": "$X,Y$相互独立且均匀分布于$[0,1]$。令$Z=\\{2X+3Y\\}$为小数部分，即$Z=2X+3Y-\\lfloor2X+3Y\\rfloor$。用单位正方形的原像面积证明$X,Z$相互独立且$Z$均匀分布于$[0,1]$，并求$P(X\\le1/3,Z\\le1/2)$。",
+        "solution": "对固定$x$和$0\\le b\\le1$，置$t=2x+3y$，则$dy=dt/3$，$t$扫过长度为$3$的区间$[2x,2x+3]$。函数$\\mathbf1_{\\{\\{t\\}\\le b\\}}$以$1$为周期，每周期积分为$b$，因而任意长度为$3$的区间积分为$3b$。故$\\int_0^1\\mathbf1_{\\{\\{2x+3y\\}\\le b\\}}\\,dy=b$。再积分$x$，对$0\\le a,b\\le1$有$P(X\\le a,Z\\le b)=\\int_0^a b\\,dx=ab$。取$a=1$得$Z$的均匀分布，乘积联合分布函数证明独立性。所求为$(1/3)(1/2)=1/6$。整数边界只有有限条直线，面积零；此结论来自精确的周期原像面积，不是抽样估计。",
+        "answer": "$P(X\\le a,Z\\le b)=ab$（$0\\le a,b\\le1$），故$X,Z$独立且均匀；$P(X\\le1/3,Z\\le1/2)=1/6$。",
+        "method": "多重环绕映射的原像面积",
+        "difficulty": "进阶",
+        "variant_kind": "三周期折返+条件截面长度+联合分布函数",
+        "scene_spec": {
+          "objects": [
+            "单位正方形与$\\{2x+3y\\}\\le b$原像条带",
+            "长度三的周期区间",
+            "联合概率$ab$",
+            "具体事件概率$1/6$"
+          ],
+          "steps": [
+            "第一步:固定$x$并作线性变量替换。",
+            "第二步:用周期性求每个纵截面的精确长度。",
+            "第三步:积分得到乘积联合分布函数。",
+            "第四步:验证独立性、边界零测及精确事件分数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-06",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "d5ac6f6e09ac31877c0443adebe313524d6b1baa54fb6f0e303cc027be37ed13",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-06-draft-c46-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-06\\draft.jsonl",
+          "source_sha256": "2685493ba0765d9a8d1f8a1be3e55595e83614f9d6861bc1b87c95e2d4aad8df",
+          "original_id": "draft-c46-05",
+          "prior_parent_training_ids": [
+            "prob-039"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "93bdf4f37bc2fb5d315566ee02e3cea8196bc2b70df5217feb981881d46ee8ad",
+          "previous_hold_reasons": [
+            "EXACT_PROBLEM_AND_METHOD"
+          ],
+          "math_correction_notes": [
+            "补Buffon投针的正长度、独立均匀模型；平面上不存在整体均匀概率分布"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v3.jsonl",
+            "sha256": "4a6de9211a9b74be83e8bdc6a6153ef4c7db3383674bb6d7832a8f0b26fc82bb",
+            "versioned_id": "codex-repair-20261005-batch-06-draft-c46-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "60d929979bd570c9483cd256755be8e4917806cdb066858bc11474de0c5410a6",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-06",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl",
+        "source_line": 15,
+        "source_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+        "source_normalized_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "ac3aa2c8e2c3f2068d6ac7f2d0a586adf8e5b9f88138cc20864be11bd2d9313f",
+        "record_canonical_sha256": "f3ec0b4f274d6327aadaa0faa6d38aa974ff2eb8449988d20afaa32c696d95a3",
+        "publisher_record_sorted_sha256": "4db7437ce332f3bf04e9f6227340a0766ef3584f650afe1668cc8974d980699a"
+      }
+    },
+    {
+      "idx": 90,
+      "record": {
+        "id": "draft-c02-01",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "concept": "无穷限反常积分",
+        "concept_id": "C02",
+        "parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "problem": "证明广义积分$\\int_1^{\\infty}\\sin(x^2)\\,dx$收敛但不绝对收敛，并给出对任意$T>R\\ge1$均成立的精确尾积分上界。无需计算积分的具体值。",
+        "solution": "令$u=x^2$，尾积分为$\\int_{R^2}^{T^2}\\sin u/(2\\sqrt u)\\,du$。置$w(u)=1/(2\\sqrt u)$，分部积分得$[-w(u)\\cos u]_{R^2}^{T^2}+\\int_{R^2}^{T^2}w^{\\prime}(u)\\cos u\\,du$。因$w$正且递减，其绝对值不超过$w(R^2)+w(T^2)+\\int_{R^2}^{T^2}|w^{\\prime}|=2w(R^2)=1/R$。由柯西准则，广义积分收敛。绝对值积分换元为$\\int_1^{\\infty}|\\sin u|/(2\\sqrt u)\\,du$。对$n\\ge1$，在$[n\\pi+\\pi/6,n\\pi+5\\pi/6]$上$|\\sin u|\\ge1/2$，故每段贡献至少$\\sqrt\\pi/(6\\sqrt{n+1})$。从$n=N$到$2N-1$的贡献至少$(\\sqrt\\pi/6)N/\\sqrt{2N}=(\\sqrt\\pi/6)\\sqrt{N/2}$，无界，因而不绝对收敛。",
+        "answer": "条件收敛；$\\left|\\int_R^T\\sin(x^2)\\,dx\\right|\\le1/R$（$T>R\\ge1$）。",
+        "method": "振荡相位广义积分的柯西尾界",
+        "difficulty": "基础",
+        "variant_kind": "平方相位换元+分部尾界+绝对积分分块下界",
+        "scene_spec": {
+          "objects": [
+            "积分尾项与$1/R$上界",
+            "$u=x^2$及权重$1/(2\\sqrt u)$",
+            "每段下界$\\sqrt\\pi/(6\\sqrt{n+1})$",
+            "条件收敛与绝对收敛的区分"
+          ],
+          "steps": [
+            "第一步:换元将振荡项与递减权重分开。",
+            "第二步:分部积分给统一精确尾界。",
+            "第三步:用柯西准则证明收敛。",
+            "第四步:用正弦远离零的区间证明绝对积分发散。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "d304f2ae550e79756b7b6e6f343d782ef1737d7a27ba4be3dcf42094957f318b",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c02-01",
+          "prior_parent_training_ids": [
+            "calc-improper-002",
+            "calc-param-improper-003"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "3b5caa8eb4385d1e4e74a7e2fb11a7c4ef57d45f33ec00f6a49e702c86d18b3d",
+          "previous_hold_reasons": [
+            "FIXED_PARAMETER_DIRECT_SUBTASK"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c02-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "f6e33b10b0f0ee50a281e3067af4023a8f1d15ba312198c0eea0d87d9a36425a",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 1,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "8e4da86fcf6b559bc8fb9da88ef1fe1254ceefed4e45965af150a76a9ae7c73b",
+        "record_canonical_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+        "publisher_record_sorted_sha256": "5d3ab848b421caeaa1f2f65bbd8c303f48718df8106fc9e9644404b67d3e6822"
+      }
+    },
+    {
+      "idx": 91,
+      "record": {
+        "id": "draft-c02-02",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "concept": "无穷限反常积分",
+        "concept_id": "C02",
+        "parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "problem": "在$[1,\\infty)$上定义$g(x)=n$，当$x\\in[n,n+2^{-n}/n]$、$n\\in\\mathbb N^+$时；其余点令$g(x)=0$。证明$g$局部黎曼可积且广义积分收敛，求精确积分值，并判断$\\lim_{x\\to\\infty}g(x)$是否存在。",
+        "solution": "每个尖峰宽度为$2^{-n}/n\\le1/2$，支撑区间互不重叠；在任意有界区间上只有有限个跳跃点，函数有界，故黎曼可积。一个完整尖峰面积为$n\\cdot2^{-n}/n=2^{-n}$，因此$\\int_1^{N+1}g=\\sum_{n=1}^N2^{-n}=1-2^{-N}$（$x=N+1$处单点值不影响积分）。由于$g\\ge0$，任意上限$R$可夹在相邻整数上限之间，积分极限存在且等于$1$。取$t_n=n+2^{-n-1}/n$，有$g(t_n)=n\\to\\infty$；取$s_n=n+3/4$，有$g(s_n)=0$。两列都趋于无穷，故函数没有有限极限，也不趋于正无穷。此例证明非负可积函数不必趋于零，也不必全局有界。",
+        "answer": "$\\int_1^{\\infty}g(x)\\,dx=1$；$\\lim_{x\\to\\infty}g(x)$不存在，且$g$不趋于零。",
+        "method": "可积无界尖峰的反例构造",
+        "difficulty": "基础",
+        "variant_kind": "局部可积+几何尖峰面积+两子列反证",
+        "scene_spec": {
+          "objects": [
+            "尖峰高度$n$与宽度$2^{-n}/n$",
+            "部分积分$1-2^{-N}$",
+            "子列$t_n,s_n$及值$n,0$"
+          ],
+          "steps": [
+            "第一步:检查尖峰互不重叠与局部有限跳跃。",
+            "第二步:计算每个尖峰的精确面积。",
+            "第三步:用非负性与整数上限夹逼得到积分。",
+            "第四步:取两条明确子列否定函数极限。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "3ff7d02c1275454c27893d77afd14ed41fc2fb3ff1e9f03650868196aae62553",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c02-02",
+          "prior_parent_training_ids": [
+            "calc-improper-002",
+            "calc-param-improper-003"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "9dae02b8edc49d02e1d74f9b092d6ac9d5759d05bb9df1684fcbbc7de8e46652",
+          "previous_hold_reasons": [
+            "FIXED_PARAMETER_DIRECT_SUBTASK"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c02-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "ba6ffb3cd70ac72e1a8952bf15b83f5e119a527f84d00da74aeb935a1203bb14",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 2,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "6d234fac41646d8277974345fdfbfb7b2a50fac8e262dee15f073250ef7ba23d",
+        "record_canonical_sha256": "f7fa64a489fd9c4eddb377dfb4be2c87c2a122e1eddfb08605a0417c45908525",
+        "publisher_record_sorted_sha256": "ee2ccd43e252c6f254a9fcac7f8b2ac13050355219aaac92db9cb3eb87a1be5a"
+      }
+    },
+    {
+      "idx": 92,
+      "record": {
+        "id": "draft-c02-03",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "concept": "无穷限反常积分",
+        "concept_id": "C02",
+        "parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "problem": "判断 $\\int_2^{+\\infty}\\frac{1}{x\\ln x}\\,dx$ 与 $\\int_2^{+\\infty}\\frac{1}{x\\ln^2 x}\\,dx$ 的敛散性，并求收敛者的值。",
+        "solution": "换元 $u=\\ln x$,$du=\\frac{dx}{x}$。第一个:$\\int_2^R\\frac{1}{x\\ln x}dx=\\int_{\\ln2}^{\\ln R}\\frac{du}{u}=\\ln(\\ln R)-\\ln(\\ln2)\\to+\\infty$,发散。第二个:$\\int_2^R\\frac{1}{x\\ln^2x}dx=\\int_{\\ln2}^{\\ln R}\\frac{du}{u^2}=\\frac{1}{\\ln2}-\\frac{1}{\\ln R}\\to\\frac{1}{\\ln2}$,收敛且值为 $\\frac{1}{\\ln2}$。",
+        "answer": "$\\int_2^{+\\infty}\\frac{1}{x\\ln x}dx$ 发散;$\\int_2^{+\\infty}\\frac{1}{x\\ln^2x}dx$ 收敛,值为 $\\frac{1}{\\ln2}$。",
+        "method": "换元化为 p 积分",
+        "difficulty": "中等",
+        "variant_kind": "边界对比:对数因子一阶与二阶的敛散分界(换元后 p 积分)",
+        "scene_spec": {
+          "objects": [
+            "板书:两个被积函数 $\\frac{1}{x\\ln x}$ 与 $\\frac{1}{x\\ln^2x}$ 并排",
+            "板书:换元 $u=\\ln x$ 的推导",
+            "坐标图:两条曲线衰减速度对比(一快一慢)",
+            "红色标签「发散」与绿色标签「收敛 $=\\frac{1}{\\ln2}$」",
+            "板书:极限过程 $\\ln(\\ln R)\\to+\\infty$ 与 $\\frac{1}{\\ln R}\\to0$"
+          ],
+          "steps": [
+            "第一步:并列写出两个积分,说明差别只在 $\\ln x$ 的幂次。",
+            "第二步:换元 $u=\\ln x$,分别化为 $\\int du/u$ 与 $\\int du/u^2$。",
+            "第三步:计算第一个的极限,$\\ln(\\ln R)\\to+\\infty$,发散。",
+            "第四步:计算第二个的极限,得 $\\frac{1}{\\ln2}$,收敛。",
+            "第五步:对照两条曲线的衰减速度,总结对数因子的敛散分界。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "8ab38227a3d052be918f15c72cf9b663436ee320e2cccc6fdb671326cd73db1a",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c02-03",
+          "prior_parent_training_ids": [
+            "calc-improper-002",
+            "calc-param-improper-003"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "6fa5958224b8363221e3f266c2aaa85204466a6256c117ab5e45f2ff754ca82a",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c02-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "8ab38227a3d052be918f15c72cf9b663436ee320e2cccc6fdb671326cd73db1a",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 3,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "17faa63771cc71476608e4c41b95d797011b9585f173ec9c27364d304a00bf64",
+        "record_canonical_sha256": "ccc9c251ebc9e97d9c5573c2efc5941620daca118a2d358de7cd32e2c5329989",
+        "publisher_record_sorted_sha256": "6078e6980d85ef6546a9359908636a54903f54a0cc353aa2da96b63fb6b8b84c"
+      }
+    },
+    {
+      "idx": 93,
+      "record": {
+        "id": "draft-c02-04",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "concept": "无穷限反常积分",
+        "concept_id": "C02",
+        "parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "problem": "设$a,b>0$。证明$\\int_0^{\\infty}(e^{-ax}-e^{-bx})/x\\,dx$收敛并求精确值；说明交换积分的依据及为什么不能把它拆成两个广义积分之差。",
+        "solution": "对$x>0$有精确恒等式$(e^{-ax}-e^{-bx})/x=\\int_a^be^{-tx}\\,dt$。若$a<b$，二重被积函数非负，Tonelli定理允许交换积分，得$\\int_a^b\\int_0^{\\infty}e^{-tx}\\,dx\\,dt=\\int_a^b1/t\\,dt=\\ln(b/a)<\\infty$；所以原积分绝对收敛。若$a>b$，交换二参数取负；若$a=b$，被积函数恒为零。亦可直接给上界：近零绝对值不超过$|b-a|$，而$R>0$后的绝对尾积分不超过$|b-a|e^{-\\min(a,b)R}/\\min(a,b)$。每个单独的$e^{-ax}/x$在零点附近与$1/x$具有同阶正下界，故从零开始积分发散；原式依赖抵消，不能写成两个未定义的发散积分之差。",
+        "answer": "对所有$a,b>0$均绝对收敛，积分精确等于$\\ln(b/a)$。",
+        "method": "参数抵消型Frullani积分",
+        "difficulty": "中等",
+        "variant_kind": "两参数抵消+Tonelli交换+零端不能拆分",
+        "scene_spec": {
+          "objects": [
+            "$(e^{-ax}-e^{-bx})/x=\\int_a^be^{-tx}\\,dt$",
+            "正二重积分交换",
+            "$\\ln(b/a)$",
+            "零端抵消与精确尾界"
+          ],
+          "steps": [
+            "第一步:把差商写成参数积分恒等式。",
+            "第二步:按参数大小处理符号并说明交换依据。",
+            "第三步:求精确对数值与收敛上界。",
+            "第四步:证明单独两项发散，解释抵消的必要性。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "1896ebd090f99936d5a8a1d15c48ad505c55f791088713f837f6233b74c7c2ef",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c02-04",
+          "prior_parent_training_ids": [
+            "calc-improper-002",
+            "calc-param-improper-003"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "a1c2ff51db93d2afc00a10f944fd6f33fff7b5803b9b8654878a236bfc1f46f5",
+          "previous_hold_reasons": [
+            "EXACT_PROBLEM_AND_METHOD"
+          ],
+          "math_correction_notes": [
+            "用严格指数下界证明边界项极限，不用增长速度的口头估算"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c02-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "4cc39f38d110508bb33693e2f8e1badc2815318b5f4b0ff0456b1a1fe2a0983d",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 4,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "67b86d1c6a6090579f97ea87f69888301ed3c75ed7add43aaac61ff23e06f509",
+        "record_canonical_sha256": "1fd4d8f3c753ed4ff200e8946609a720f9d0142c04ee87e7a34355202b802e8b",
+        "publisher_record_sorted_sha256": "72841d59d2b4c08822a06afd4a08af44818d03ac32a09982a80b05b8befb8cdf"
+      }
+    },
+    {
+      "idx": 94,
+      "record": {
+        "id": "draft-c02-05",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "concept": "无穷限反常积分",
+        "concept_id": "C02",
+        "parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "problem": "对实参数$a$，讨论$\\int_0^{\\infty}x^{a-1}/(1+x)\\,dx$的收敛性，必须同时处理零点与无穷远。并在$a=1/2$时求精确值。",
+        "solution": "在$0<x\\le1$，被积函数介于$x^{a-1}/2$与$x^{a-1}$之间；在$x\\ge1$，介于$x^{a-2}/2$与$x^{a-2}$之间。若$0<a<1$，在零端二进分块$[2^{-n-1},2^{-n}]$（$n\\ge0$）上积分不超过$2^{-a(n+1)}$；在无穷端分块$[2^n,2^{n+1}]$上积分不超过$2^{n(a-1)}$。前后两个精确几何级数的公比分别为$2^{-a}<1$、$2^{a-1}<1$，故两个端点均收敛。若$a\\le0$，在$(0,1]$被积函数不小于$1/(2x)$，零端发散；若$a\\ge1$，在$[1,\\infty)$被积函数不小于$1/(2x)$，无穷端发散。这穷尽所有实参数。$a=1/2$时令$x=t^2$，积分为$2\\int_0^{\\infty}1/(1+t^2)\\,dt=2[\\arctan t]_0^{\\infty}=\\pi$。两端分别取极限，不能只检查无穷远而忽略零端。",
+        "answer": "收敛当且仅当$0<a<1$；当$a=1/2$时积分等于$\\pi$。",
+        "method": "同一参数控制两个广义端点的二进分块",
+        "difficulty": "进阶",
+        "variant_kind": "两端二进分块+两个几何公比+特殊值换元",
+        "scene_spec": {
+          "objects": [
+            "零端$a>0$与无穷端$a<1$",
+            "参数交集$(0,1)$",
+            "$x=t^2$及特殊值$\\pi$"
+          ],
+          "steps": [
+            "第一步:分别在两个端点建立双边比较。",
+            "第二步:求两个收敛条件的交集。",
+            "第三步:含端点地证明其余参数发散。",
+            "第四步:对$a=1/2$作平方换元并精确积分。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "bcf2e008f07349fa7cf940fb360322ac1c3be853724ddc9de08e2b2b2295038a",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c02-05",
+          "prior_parent_training_ids": [
+            "calc-improper-002",
+            "calc-param-improper-003"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "d88e8be00047cb4b2654ff90f8e3130ad90bf5089f7b1945bb3655e135e24213",
+          "previous_hold_reasons": [
+            "EXACT_PARAMETRIC_PROBLEM_AND_METHOD"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c02-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "81dc3d7776b14d46ef93db76bee5af64784e02fa02f5a1244c45a65933af4011",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 5,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "16dcea3e6511f9d9524ea059394f704fdc7c5f7c39f97a857c1fbf0eeceb33c3",
+        "record_canonical_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6",
+        "publisher_record_sorted_sha256": "a0612ab885f96de3223301ad88fa0fc77932be2d4f4ba0cd6d3c6fbfc07f4f21"
+      }
+    }
+  ]
+}

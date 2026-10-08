@@ -1,0 +1,227 @@
+{
+  "checks": [
+    {
+      "id": "calc-series-015",
+      "check": "integral divergence bound",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual theorem review: n^(-1/2) decreases to 0, Leibniz implies convergence; positive integral lower bound diverges, so convergence is conditional.",
+      "candidate_record_dense_sha256": "db3225ee2a891d362ba583f7f14c3e94fc0f685b2b0a2d13567c77e19ffb06b0"
+    },
+    {
+      "id": "calc-series-020",
+      "check": "Fourier coefficients and endpoint summands",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual Dirichlet review: periodic endpoint jump average is 0; interior sum equals x. Endpoint function values are not identified with the sum.",
+      "candidate_record_dense_sha256": "20cf57f70dd99cba08b611800222848689ed68c383183287fb6c90e94dc7f2c0"
+    },
+    {
+      "id": "linalg-050",
+      "check": "determinant and rank-zero case",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual geometric review: oriented area det A, ordinary area |det A|; rank 1 gives segment and rank 0 gives point.",
+      "candidate_record_dense_sha256": "17533f999ae46e41d32845b217b14709e495e52fdbf1a7580a310ef04f6ebb96"
+    },
+    {
+      "id": "linalg-070",
+      "check": "symplectic form identity",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "In dimension 2, A^TJA=J iff det A=1; reflection preserves ordinary area but reverses the symplectic form.",
+      "candidate_record_dense_sha256": "3d768cb1f25bfe8836f3e0a54c306a1b57efa01022b02d770b4869008cab5eb7"
+    },
+    {
+      "id": "prob-038",
+      "check": "conditional probabilities",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "dbf8ce52a3e6695caee595c74927a82c3242658e76c8543811c6d921742833e2"
+    },
+    {
+      "id": "prob-039",
+      "check": "indicator expectation and exact estimator variance",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual theorem review: iid uniform indicators with success pi/4, Chebyshev gives convergence in probability; rational finite count is not pi itself.",
+      "candidate_record_dense_sha256": "9dbe554538d3b9338f7feb7e2e64e3bd07b80682711ff9219f8ae1c1b616bf04"
+    },
+    {
+      "id": "prob-042",
+      "check": "Bernoulli sample mean variance",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual theorem review: iid, 0<=p<=1, Chebyshev; fairness is extra p=1/2 assumption.",
+      "candidate_record_dense_sha256": "231cc57b8a66ce2334abcd184d2768898652a6ba5301d52f42e9b5455781904e"
+    },
+    {
+      "id": "prob-043",
+      "check": "standardized versus original mean variance",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual theorem review: iid finite positive variance CLT applies to standardized mean; original mean tends to point mass; finite normal mean law only for normal population.",
+      "candidate_record_dense_sha256": "3d28ab061d611d9fd8dc91c8fddda633ab26a51d9467d05d1c45dd1fe2120e64"
+    },
+    {
+      "id": "prob-046",
+      "check": "partition widths and exact geometric area",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual coverage review: half-open adjacent strips are disjoint and cover [0,1)^2; example illustrates area additivity without claiming its general proof.",
+      "candidate_record_dense_sha256": "6e7e805693040ec7c80d7e0eb8f3e57a23e8dbf229030d2826e1fc0532171303"
+    },
+    {
+      "id": "eval-calc-015-s3",
+      "check": "symmetric integral",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual substitution x->pi-x establishes 2I=pi*J, hence I=pi^2/4.",
+      "candidate_record_dense_sha256": "6c1677c00b99c38568b3a8062abe66e74f085972cff52ea620199860405cd3d1"
+    },
+    {
+      "id": "eval-calc-026-s3",
+      "check": "two partial derivative limits",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "7556ab2cae6b831424f32cc7581f6adca55c47d9800bf5ddf07f06e9a2980dd4"
+    },
+    {
+      "id": "eval-calc-027-s3",
+      "check": "reversed integral",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual Fubini review: continuous integrand over 0<=x<=y<=1, reversed inner interval has length y.",
+      "candidate_record_dense_sha256": "f41c6f370db5e56cd92c7d582c3c5cddaa1c1f622e55e5c866945a978fdf0a74"
+    },
+    {
+      "id": "eval-prob-007-s1",
+      "check": "exact birthday complement",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "0af54b55c1f11bd9da4a9b9320816faefcc06c6df64e3d96a94d25cf0b66c142"
+    },
+    {
+      "id": "eval-prob-007-s2",
+      "check": "exact birthday complement",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "5f7d661155bd101cc9a86a2da175221f979fee80059ce5f0f18af3d54a383183"
+    },
+    {
+      "id": "eval-prob-007-s3",
+      "check": "exact birthday complement",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "91d2d31cca4789c4fb42c90e6b5ecee97482cf5a5050710cf866d358ec9990e8"
+    },
+    {
+      "id": "eval-prob-007-s3",
+      "check": "pair second moment Cauchy bound",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual independence review: disjoint pairs and pairs with one shared individual each have joint probability 1/365^2.",
+      "candidate_record_dense_sha256": "91d2d31cca4789c4fb42c90e6b5ecee97482cf5a5050710cf866d358ec9990e8"
+    },
+    {
+      "id": "eval-prob-008-s1",
+      "check": "exact binomial tail and strict bound",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Symmetry partitions the event into k<=40 and k>=60. Strict Chebyshev comparison follows also from a positive-mass value with squared deviation >100.",
+      "candidate_record_dense_sha256": "0982cfb0f82e843cd17a3a20ed8198f0b1fcfb6b7f00e5ef41ed5d2a5c8fc5f8"
+    },
+    {
+      "id": "eval-prob-008-s2",
+      "check": "exact binomial tail and strict bound",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Symmetry partitions the event into k<=40 and k>=60. Strict Chebyshev comparison follows also from a positive-mass value with squared deviation >100.",
+      "candidate_record_dense_sha256": "c397fea7bf9d299bbb1312e2442c9aabcc8f4e65d190f9c7f65cf50d0588fde2"
+    },
+    {
+      "id": "eval-prob-008-s3",
+      "check": "exact binomial tail and strict bound",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Symmetry partitions the event into k<=40 and k>=60. Strict Chebyshev comparison follows also from a positive-mass value with squared deviation >100.",
+      "candidate_record_dense_sha256": "bc02bd1e606332f6aad28b7fe8933ce5a386d649e9c4bb8705bc9daeeb19b113"
+    },
+    {
+      "id": "test-calc-027",
+      "check": "root monotonicity and exact brackets",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual inequality review: ln2=integral_1^2 dt/t is in (1/2,1); e^2>1+2+2=5; f is strictly decreasing then increasing, so roots are 0 and unique xi in (ln2,2).",
+      "candidate_record_dense_sha256": "1497bc149eee6c997ef16d681ababa076f017e2a71adbdb6f3c3fec07fb003be"
+    },
+    {
+      "id": "test-prob-001",
+      "check": "Bayes formula",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "f5cd6a4bc46eb2985edb65aeb1ccc60be7d92c7fb1942a27b5333f9df5202fbd"
+    },
+    {
+      "id": "test-prob-002",
+      "check": "two exact binomial probabilities",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "7fd1628d75854bb5646568b975519ec4493af668876db80e0700c2203b4a37f2"
+    },
+    {
+      "id": "test-prob-005",
+      "check": "convolution density normalization and tail",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual convolution review: density is length of intersection (0,1) with (z-1,z).",
+      "candidate_record_dense_sha256": "8d68b0df8592874b50de48965aa46bce1e05ad7c09ae8484071671a19aea72b9"
+    },
+    {
+      "id": "test-prob-007",
+      "check": "exact exponential conditional survival",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "912efd196b43cd16ed0ee047e0be1d62b43801fbadd7ffb79dc2690e5580ba40"
+    },
+    {
+      "id": "test-prob-008",
+      "check": "dice moments and exact Chebyshev coefficient",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual theorem review: independence makes variance of average Var(X)/n, bound capped by 1 and tends to 0.",
+      "candidate_record_dense_sha256": "70f30f32b5482710443227dcb877ddd91075d7c89684dfd2d41f8a1d15e20f10"
+    },
+    {
+      "id": "test-prob-016",
+      "check": "weather stationary distribution",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "ff8e0e5cfdc957cad68438a74c03a177d63155899144e5be81712972ebb001f3"
+    },
+    {
+      "id": "test-prob-020",
+      "check": "uniform key position expectation",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Uniform random order is now explicit.",
+      "candidate_record_dense_sha256": "ecc59530105d64f2fdf7b2e51186b78391cd5746cd67decafa12675a5aa34660"
+    },
+    {
+      "id": "test-prob-021",
+      "check": "independent union probability",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "b5a603039c1135f511e5cc45d7813499319942cf55a2c4f4e0e6edd1b0453adf"
+    },
+    {
+      "id": "test-linalg-012",
+      "check": "Fibonacci diagonalization and tenth term",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "Manual limit review: exact ratio phi*(1-r^(n+1))/(1-r^n), |r|<1, tends to phi.",
+      "candidate_record_dense_sha256": "ed3c7931d30bdfacd4c1045785c1fee12cb6aff3f06d2790ab059d83dbb5fba2"
+    },
+    {
+      "id": "test-x-004",
+      "check": "stationary row and transposed eigenvector",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "",
+      "candidate_record_dense_sha256": "39dfa9fcaee6e0691fb74c5ca1e70041b3aace097f35ec3644ae09e7601e3d55"
+    },
+    {
+      "id": "test-x-015",
+      "check": "exact diagonalization, all-n formula and limit",
+      "result": "PASS_EXACT_CHECK",
+      "mathematical_scope": "For integer n>=0, z=4^(-n). This establishes the matrix power formula by diagonalization and its limit.",
+      "candidate_record_dense_sha256": "ecc416ffe414f244462390311dbcc15c73efc0575de80e6ff8177ea83caef9aa"
+    }
+  ],
+  "check_count": 31,
+  "distinct_reviewed_records": 30,
+  "arithmetic": "Exact integers, fractions and symbolic expressions only; no float evaluation",
+  "theorems": "Explicitly noted manual hypothesis/proof review; arithmetic checks are not claimed as complete automated theorem proofs",
+  "corrected_version_admission": "PENDING",
+  "core_scope_acceptance": "PENDING"
+}

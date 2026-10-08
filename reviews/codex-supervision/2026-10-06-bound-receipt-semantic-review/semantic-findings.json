@@ -1,0 +1,42 @@
+{
+  "status": "SEMANTIC_ACCEPTANCE_REJECTED_INDEPENDENTLY",
+  "acceptance_raw_sha256": "96aadcf6d1bffc492ab222bd6434429b668eb6e3be9a4a3eb66af25a620386ca",
+  "pairs": 296,
+  "individually_overridden": 57,
+  "regex_or_fallback_generated": 239,
+  "generic_fallback_pairs": 94,
+  "synthetic_same_core_counterexample": {
+    "problem": "将平面上点的横坐标改为 x+3y，纵坐标不动，说明单位正方形的像和面积。",
+    "old_label": {
+      "split": "test",
+      "id": "synthetic-same-shear",
+      "problem_sha256": "092d69f7a70e4a6b27a3b4c200bec1d34ba2fd199901e942a0953d5cdc5fd5d4",
+      "verdict": "DIFFERENT_CORE_TASK",
+      "reason": "查询为基变换/坐标表示;候选为具体矩阵的几何效果,求解结构不同"
+    },
+    "synthetic_diagnostic_only": true
+  },
+  "existing_validator_format_accepts_file": "claude-code",
+  "existing_validator_cannot_prove_manual_truth": true,
+  "actual_proposal_published_by_codex": false,
+  "named_findings": [
+    {
+      "split": "train",
+      "id": "linalg-058",
+      "verdict": "SAME_CORE_TRAIN_VARIANT",
+      "basis": "P=[[0,1],[1,0]], P*A*P=[[1,0],[3,1]]=E. Axis relabeling conjugates horizontal to vertical shear; point mapping, unit-square image and det=1 proof have the same structure. Same-split variant is not by itself cross-split leakage, but must not be labeled DIFFERENT_CORE_TASK."
+    },
+    {
+      "split": "test",
+      "id": "test-geom-016",
+      "verdict": "UNRESOLVED_SHARED_SHEAR_AREA_SUBTASK",
+      "basis": "Circle-to-ellipse uses inverse substitution (X-Y)^2+Y^2=1, while candidate maps vertices. Both share horizontal shear and area factor |detA|=1. Shape/coefficient differences alone cannot automatically clear the shared subtask under the strict leakage rule."
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-036",
+      "verdict": "INCORRECT_ABSENCE_REASON",
+      "basis": "Candidate explicitly computes detA=1 and area preservation. This query has an elementary-row-addition determinant subcase. Claiming the candidate has no determinant content is false; a grounded task distinction is required."
+    }
+  ]
+}

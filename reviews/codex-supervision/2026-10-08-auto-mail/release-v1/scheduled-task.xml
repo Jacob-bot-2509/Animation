@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.3" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Description>Every 10 minutes, capture Claude mail and queue bounded review in the existing Codex thread.</Description>
+    <URI>\Animation-Codex-Claude-Mail-10min</URI>
+  </RegistrationInfo>
+  <Principals>
+    <Principal id="Author">
+      <UserId>S-1-5-21-3255372660-1198139168-2246013942-1001</UserId>
+      <LogonType>InteractiveToken</LogonType>
+    </Principal>
+  </Principals>
+  <Settings>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <ExecutionTimeLimit>PT2M</ExecutionTimeLimit>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <IdleSettings>
+      <Duration>PT10M</Duration>
+      <WaitTimeout>PT1H</WaitTimeout>
+      <StopOnIdleEnd>true</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <UseUnifiedSchedulingEngine>true</UseUnifiedSchedulingEngine>
+  </Settings>
+  <Triggers>
+    <TimeTrigger>
+      <StartBoundary>2026-10-08T01:46:36+08:00</StartBoundary>
+      <Repetition>
+        <Interval>PT10M</Interval>
+        <StopAtDurationEnd>true</StopAtDurationEnd>
+      </Repetition>
+    </TimeTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe</Command>
+      <Arguments>-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "D:\Animation-Model-Training\reviews\codex-supervision\2026-10-08-auto-mail\run_mail_task.ps1"</Arguments>
+      <WorkingDirectory>D:\Animation-Model-Training</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

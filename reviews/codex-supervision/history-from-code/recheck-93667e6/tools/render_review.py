@@ -1,0 +1,179 @@
+"""数据集审阅稿渲染:MD(LaTeX) → HTML(MathJax 保护) → PDF(headless Edge)。
+
+用法:python tools/render_review.py <md文件> [--out-dir outputs/review] [--check]
+- $...$ 数学片段在 markdown 渲染前替换为占位符,渲染后再注入(避免
+  markdown-it 把公式内 _、* 误当强调符);
+- MathJax v3 tex-svg 经 jsdelivr CDN 加载,Edge 打印用 virtual-time-budget
+  等待排版完成;
+- --check:渲染后 dump DOM,统计残留的 $ 与 MathJax 错误标记(供自查)。
+"""
+from __future__ import annotations
+
+import argparse
+import html
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+
+MATHJAX_CDN = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+# 本地渲染器(阻塞加载,避免 CDN 异步竞态导致打印时公式未排版)
+MATHJAX_LOCAL = ROOT / "tools" / "assets" / "mathjax-tex-svg.js"
+
+CSS = """
+@page { size: A4; margin: 16mm 14mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif;
+       font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0; }
+h1 { font-size: 19pt; border-bottom: 2.4pt solid #1f4e79; color: #1f4e79;
+     padding-bottom: 5pt; }
+h2 { font-size: 14pt; border-left: 5pt solid #1f4e79; background: #eef3f9;
+     padding: 4pt 8pt; color: #16365c; page-break-after: avoid; }
+h3 { font-size: 11.5pt; color: #16365c; border-bottom: 1pt solid #c9d8e8;
+     padding-bottom: 2pt; margin-top: 14pt; page-break-after: avoid; }
+h3 code { background: none; }
+p { margin: 4pt 0; }
+strong { color: #14324f; }
+blockquote { background: #f5f7fa; border-left: 3pt solid #9db8d2;
+             padding: 5pt 9pt; margin: 6pt 0; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0; }
+th, td { border: 0.6pt solid #9db8d2; padding: 3.5pt 6pt; text-align: left; }
+th { background: #1f4e79; color: #fff; }
+code { font-family: Consolas, "Courier New", monospace; font-size: 9pt;
+       background: #f0f2f5; padding: 0 2pt; }
+hr { border: none; border-top: 1pt solid #dbe4ee; margin: 10pt 0; }
+.math-block { text-align: center; margin: 6pt 0; }
+"""
+
+
+def protect_math(text: str) -> tuple[str, list[tuple[str, bool]]]:
+    """把 $$..$$ 与 $..$ 片段替换为占位符。
+
+    返回(处理后文本, 片段列表);片段为 (内容, 是否行间公式)。
+    定界符在 restore 时重新加上——MathJax 靠 $ 定界符发现公式。
+    """
+    tokens: list[tuple[str, bool]] = []
+
+    def repl_display(m: re.Match) -> str:
+        tokens.append((m.group(1), True))
+        return f"@@MATH{len(tokens) - 1}@@"
+
+    def repl_inline(m: re.Match) -> str:
+        tokens.append((m.group(1), False))
+        return f"@@MATH{len(tokens) - 1}@@"
+
+    # 先保护 $$..$$(跨行),再保护 $..$(单行)
+    text = re.sub(r"\$\$(.+?)\$\$", repl_display, text, flags=re.S)
+    text = re.sub(r"\$([^$\n]+?)\$", repl_inline, text)
+    return text, tokens
+
+
+def _texify(tok: str) -> str:
+    """数学文本中的裸 < > 转 TeX 宏(带空格终止,防与后随字母连写成新命令)。
+
+    & 是 LaTeX 矩阵/分段环境的合法列分隔符,必须原样保留;
+    源码中不存在 &xxx; 形式的 HTML 实体序列,原样输出安全。
+    """
+    return tok.replace("<", r"\lt ").replace(">", r"\gt ")
+
+
+def restore_math(rendered: str, tokens: list[tuple[str, bool]]) -> str:
+    for i, (tok, display) in enumerate(tokens):
+        math = _texify(tok)
+        if display:
+            span = f'<div class="math-block">$${math}$$</div>'
+        else:
+            span = f'<span class="math">${math}$</span>'
+        rendered = rendered.replace(f"@@MATH{i}@@", span)
+    return rendered
+
+
+def build_html(md_text: str, title: str) -> str:
+    from markdown_it import MarkdownIt  # noqa: PLC0415
+
+    protected, tokens = protect_math(md_text)
+    md = MarkdownIt("commonmark", {"html": True})
+    md.enable("table")
+    body = md.render(protected)
+    body = restore_math(body, tokens)
+    # 本地阻塞脚本 + 默认排版完成后在 <title> 写入完成标记(供 check 校验)
+    mathjax_cfg = (
+        "<script>window.MathJax={tex:{inlineMath:[['$','$']],"
+        "displayMath:[['$$','$$']]},svg:{fontCache:'global'},"
+        "options:{enableMenu:false},"
+        "startup:{ready:function(){MathJax.startup.defaultReady();"
+        "MathJax.startup.promise.then(function(){"
+        "document.title='MJDONE';});}}};</script>"
+    )
+    src = MATHJAX_LOCAL.as_uri() if MATHJAX_LOCAL.exists() else MATHJAX_CDN
+    return (f"<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'>"
+            f"<title>{html.escape(title)}</title>"
+            f"<style>{CSS}</style>{mathjax_cfg}"
+            f"<script src='{src}'></script>"
+            f"</head><body>{body}</body></html>")
+
+
+def run_edge(args: list[str], timeout: int = 240) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        [EDGE, "--headless", "--disable-gpu", "--no-first-run",
+         "--user-data-dir=" + str(Path.home() / ".edge-headless-render")] + args,
+        capture_output=True, timeout=timeout)
+
+
+def check_render(html_path: Path) -> tuple[int, int]:
+    """dump DOM 检查:未排版公式数与已排版公式数(应为 0 未排版)。"""
+    r = run_edge(["--dump-dom", "--virtual-time-budget=240000",
+                  str(html_path)])
+    dom = r.stdout.decode("utf-8", "replace") + r.stderr.decode("utf-8", "replace")
+    spans = re.findall(r'<span class="math">(.*?)</span>', dom, re.S)
+    rendered = sum(1 for s in spans if "<mjx-container" in s)
+    unrendered = len(spans) - rendered
+    done = "MJDONE" in dom
+    return unrendered, rendered
+
+
+def main(argv: list[str]) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("md", type=Path)
+    ap.add_argument("--out-dir", type=Path, default=ROOT / "outputs" / "review")
+    ap.add_argument("--check", action="store_true",
+                    help="渲染后 dump DOM 自查公式残留")
+    ap.add_argument("--skip-pdf", action="store_true", help="只生成 HTML")
+    args = ap.parse_args(argv)
+
+    md_path = args.md.resolve()
+    if not md_path.exists():
+        print(f"[FAIL] 找不到 {md_path}")
+        return 1
+    md_text = md_path.read_text(encoding="utf-8")
+    title = f"{md_path.stem} 审阅稿"
+    args.out_dir.mkdir(parents=True, exist_ok=True)
+
+    html_path = args.out_dir / f"{md_path.stem}.html"
+    html_path.write_text(build_html(md_text, title), encoding="utf-8")
+    print(f"HTML → {html_path}")
+
+    if args.check:
+        unrendered, rendered = check_render(html_path)
+        print(f"[check] 已排版 {rendered} 条,未排版 {unrendered} 条")
+        if unrendered:
+            print("[WARN] 存在未排版公式,请检查!")
+
+    if args.skip_pdf:
+        return 0
+    pdf_path = args.out_dir / f"{md_path.stem}.pdf"
+    r = run_edge([f"--print-to-pdf={pdf_path}",
+                  "--virtual-time-budget=180000", str(html_path)])
+    if r.returncode != 0 or not pdf_path.exists():
+        print(f"[FAIL] PDF 生成失败: {r.stderr.decode('utf-8', 'replace')[:300]}")
+        return 1
+    print(f"PDF → {pdf_path} ({pdf_path.stat().st_size} bytes)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

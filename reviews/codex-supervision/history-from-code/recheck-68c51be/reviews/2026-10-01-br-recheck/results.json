@@ -1,0 +1,222 @@
+{
+  "head": "fa180923993dd5ab407495beda727f306e7d8aef",
+  "source_sha256": {
+    "src/animtrain/render_gate.py": "5cdb005ddb32ef87a0886c0d8be72ce181f2ba0b5b17ed9058fdac4f4d5ea886",
+    "src/animtrain/freeze.py": "31fa14e37520092b8b769eee4265c13a0348ac2879a8b8c690fc07b73d5ddc8a",
+    "tools/preflight.py": "63a1d9883ae64cea5003999915a4ca971ed30ae719da763ba8affe83f6c58a12",
+    "tools/split_data.py": "b3727d57ef44d380760fa03bbe73555b61c7d335f2caef98283e4a45949c84f8",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd"
+  },
+  "math": {
+    "Eq(1, 2)": {
+      "returned": {
+        "ok": false,
+        "status": "disproved",
+        "detail": "断言不成立: Eq(1, 2) → False(假命题)",
+        "unverified": []
+      }
+    },
+    "False": {
+      "returned": {
+        "ok": false,
+        "status": "disproved",
+        "detail": "断言不成立: False → False(假命题)",
+        "unverified": []
+      }
+    },
+    "Eq(1, 1)": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: Eq(1, 1) → True",
+        "unverified": []
+      }
+    },
+    "x": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: x → x",
+        "unverified": []
+      }
+    },
+    "x + 1": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: x + 1 → x + 1",
+        "unverified": []
+      }
+    },
+    "1": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: 1 → 1",
+        "unverified": []
+      }
+    },
+    "2": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: 2 → 2",
+        "unverified": []
+      }
+    },
+    "0": {
+      "returned": {
+        "ok": false,
+        "status": "disproved",
+        "detail": "断言不成立: 0 → 0(假命题)",
+        "unverified": []
+      }
+    },
+    "x**2 >= 0": {
+      "returned": {
+        "ok": false,
+        "status": "unproven",
+        "detail": "无法判定真假(含自由符号): x**2 >= 0 → x**2 >= 0",
+        "unverified": []
+      }
+    }
+  },
+  "locks": {
+    "missing_entries": {
+      "returned": [
+        "锁未处于 locked 状态: None(BR3)"
+      ]
+    },
+    "unlocked_empty": {
+      "returned": [
+        "锁未处于 locked 状态: False(BR3)"
+      ]
+    },
+    "missing_hash": {
+      "exception": "KeyError",
+      "detail": "'sha256'"
+    },
+    "null_path": {
+      "exception": "TypeError",
+      "detail": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+    },
+    "create_empty": {
+      "exception": "ValueError",
+      "detail": "待冻结文件列表为空 —— 空锁无效(BR3)"
+    }
+  },
+  "snapshot": {
+    "False": {
+      "exit_code": 1,
+      "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[PASS] run_snapshot: run probe 快照通过\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[FAIL] near_dup_calibrated: 近重复阈值 UNCALIBRATED(真实数据对照实验未完成)—— ready 模式必须阻断\n[PASS] render_gate: 渲染环境可用\n[PASS] math_gate: SymPy 可用\n[FAIL] ready: FAIL checks block ready: ['near_dup_calibrated']\n结论: **NOT READY —— 禁止生成训练计划,先定位缺失项**\n",
+      "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "record_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "render_check_calls": 0,
+      "math_check_calls": 0
+    },
+    "True": {
+      "exit_code": 0,
+      "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[PASS] run_snapshot: run probe 快照通过\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[PASS] render_gate: 渲染环境可用\n[PASS] math_gate: SymPy 可用\n[PASS] ready: 全部必需门禁通过,可生成可执行训练计划\n结论: READY: 可生成可执行训练计划\n",
+      "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "record_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "render_check_calls": 0,
+      "math_check_calls": 0
+    }
+  },
+  "frozen_write": {
+    "valid_lock": {
+      "outcome": {
+        "exception": "SystemExit",
+        "detail": "拒绝:C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-50ouwbfr\\output\\eval.jsonl 属于冻结数据集,无论是否 --force 都不得写入(BR5)"
+      },
+      "changed_files": []
+    },
+    "omitted_lock": {
+      "outcome": {
+        "returned": {
+          "pool": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-kcv6lglg\\input\\pool.jsonl",
+          "plan": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-kcv6lglg\\input\\plan.json",
+          "pool_n": 2,
+          "assigned": 2,
+          "rejected": 0,
+          "counts": {
+            "train": 1,
+            "eval": 1,
+            "test": 0
+          },
+          "dry_run": false,
+          "generated_at": "2026-10-01 00:11:12",
+          "split_manifest": "标准 Manifest v1 格式"
+        }
+      },
+      "changed_files": [
+        "eval.jsonl",
+        "train.jsonl"
+      ]
+    },
+    "corrupt_lock": {
+      "outcome": {
+        "returned": {
+          "pool": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-1qcihalc\\input\\pool.jsonl",
+          "plan": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-1qcihalc\\input\\plan.json",
+          "pool_n": 2,
+          "assigned": 2,
+          "rejected": 0,
+          "counts": {
+            "train": 1,
+            "eval": 1,
+            "test": 0
+          },
+          "dry_run": false,
+          "generated_at": "2026-10-01 00:11:12",
+          "split_manifest": "标准 Manifest v1 格式"
+        }
+      },
+      "changed_files": [
+        "eval.jsonl",
+        "train.jsonl"
+      ]
+    },
+    "missing_lock": {
+      "outcome": {
+        "returned": {
+          "pool": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-0d9j077m\\input\\pool.jsonl",
+          "plan": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-0d9j077m\\input\\plan.json",
+          "pool_n": 2,
+          "assigned": 2,
+          "rejected": 0,
+          "counts": {
+            "train": 1,
+            "eval": 1,
+            "test": 0
+          },
+          "dry_run": false,
+          "generated_at": "2026-10-01 00:11:12",
+          "split_manifest": "标准 Manifest v1 格式"
+        }
+      },
+      "changed_files": [
+        "eval.jsonl",
+        "train.jsonl"
+      ]
+    }
+  },
+  "isolation_mock": {
+    "result": {
+      "ok": true,
+      "status": "rendered",
+      "detail": "渲染成功",
+      "unverified": [],
+      "isolation": {
+        "shell": false,
+        "timeout_sec": 300,
+        "memory_limit_mb": null,
+        "fs_isolation": false,
+        "network_isolation": false,
+        "note": "当前隔离不完整:仅禁 shell + 超时;不可信生成代码的执行须等 fs/network/memory 隔离就位(BR6)"
+      }
+    },
+    "subprocess_calls": 1,
+    "note": "Mocked subprocess only. No actual code execution or render verification."
+  }
+}

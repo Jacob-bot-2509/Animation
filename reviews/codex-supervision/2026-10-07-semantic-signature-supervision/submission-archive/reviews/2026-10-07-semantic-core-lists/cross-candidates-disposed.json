@@ -1,0 +1,32 @@
+{
+  "schema": "cross-candidates-disposed-v1",
+  "total_candidates": 1,
+  "same_core": 1,
+  "rows": [
+    {
+      "train_id": "draft-c18-02",
+      "eval_id": "test-geom-024",
+      "eval_group": "test",
+      "train_goal": "求两平行平面距离",
+      "eval_goal": "求两平行平面距离",
+      "train_steps": [
+        "点面距离公式"
+      ],
+      "eval_steps": [
+        "点面距离公式"
+      ],
+      "train_domain": "平行平面",
+      "eval_domain": "平行平面",
+      "disposition": "UNREVIEWED",
+      "verdict": "SAME_CORE_CONFIRMED",
+      "evidence": {
+        "train_problem": "求两平行平面 π1:2x-y+2z=1 与 π2:2x-y+2z=5 之间的距离(答案4/3)",
+        "eval_problem": "求两平行平面 2x-y+2z=1 与 2x-y+2z=7 之间的距离(答案2)",
+        "shared_structure": "相同法向量(2,-1,2)、相同第一平面常数1、相同解法点面距离公式|d1-d2|/|n|,仅第二平面常数不同(5 vs 7)",
+        "train_side": "selected_draft(draft-c18-02)",
+        "eval_side": "test(test-geom-024)"
+      },
+      "action": "训练侧draft-c18-02需修订(同ID不增删题,由Codex修),与c31-01/c31-03同规;不得靠换数字排除泄漏"
+    }
+  ]
+}

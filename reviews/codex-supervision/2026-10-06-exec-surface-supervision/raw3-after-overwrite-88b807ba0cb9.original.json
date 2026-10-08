@@ -1,0 +1,88 @@
+{
+  "probe": "raw-ipc3-v1",
+  "lan_ip": "28.0.0.1",
+  "nonce": "0df67e426599",
+  "production_gate": "CLOSED",
+  "controls": {
+    "http_via_lan_ip": {
+      "rc": 0
+    },
+    "ping_self": {
+      "rc": 0,
+      "out": ""
+    },
+    "after_http_via_lan_ip": {
+      "rc": 0
+    }
+  },
+  "sandbox": {
+    "rc": 0,
+    "stdout": "{\"icmp_send\": {\"outcome\": \"sent\"}, \"icmp_reply\": {\"reply\": null}, \"open_host_event\": {\"opened\": false, \"winerror\": 5}, \"pipe_open\": {\"opened\": true, \"winerror\": 2, \"write\": false}, \"pipe_create\": {\"created\": true, \"winerror\": 87}, \"mailslot_open\": {\"opened\": true, \"winerror\": 5, \"write\": false}, \"clip_read\": null, \"certutil\": {\"rc\": 2147944650, \"out\": \"****  \\u8054\\u673a  ****\\n\\n\\nCertUtil: -URLCache \\u5931\\u8d25: 0x800708ca (WIN32: 2250 ERROR_NOT_CONNECTED)\\nCertUtil: \\u6b64\\u7f51\\u7edc\\u8fde\\u63a5\\u4e0d\\u5b58\\u5728\\u3002\\n\"}, \"powershell_fullpath\": {\"rc\": 0, \"out\": \"DENIED\\n\", \"err\": \"\"}, \"postmessage\": {\"found\": false}}",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-ee2ab7a360004d8a92c4202e32b9a64e",
+    "results": {
+      "icmp_send": {
+        "outcome": "sent"
+      },
+      "icmp_reply": {
+        "reply": null
+      },
+      "open_host_event": {
+        "opened": false,
+        "winerror": 5
+      },
+      "pipe_open": {
+        "opened": true,
+        "winerror": 2,
+        "write": false
+      },
+      "pipe_create": {
+        "created": true,
+        "winerror": 87
+      },
+      "mailslot_open": {
+        "opened": true,
+        "winerror": 5,
+        "write": false
+      },
+      "clip_read": null,
+      "certutil": {
+        "rc": 2147944650,
+        "out": "****  联机  ****\n\n\nCertUtil: -URLCache 失败: 0x800708ca (WIN32: 2250 ERROR_NOT_CONNECTED)\nCertUtil: 此网络连接不存在。\n"
+      },
+      "powershell_fullpath": {
+        "rc": 0,
+        "out": "DENIED\n",
+        "err": ""
+      },
+      "postmessage": {
+        "found": false
+      }
+    }
+  },
+  "after": {
+    "listener_hits": [
+      "('28.0.0.1', 53438)",
+      "('28.0.0.1', 53495)"
+    ],
+    "hits_before_sandbox": 1,
+    "sandbox_hit_listener": false,
+    "pipe_server_received": [],
+    "mailslot_received": [
+      [
+        "read_rc",
+        true
+      ]
+    ],
+    "window_messages": [],
+    "host_event_signaled": false,
+    "clipboard_after": "host-to-sandbox-0df67e426599",
+    "correction_note": "listener_hits 共 2 条:before 对照 1 条 + after 对照 1 条;沙箱运行期间无任何命中。原 sandbox_hit_listener=True 是把 after 对照计入所致,已修正。",
+    "hits_accounting": {
+      "total": 2,
+      "before_controls": 1,
+      "after_controls": 1,
+      "sandbox": 0
+    }
+  }
+}

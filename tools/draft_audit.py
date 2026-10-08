@@ -21,6 +21,7 @@ import json
 import re
 import sys
 from datetime import datetime, timezone
+from fractions import Fraction
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -33,13 +34,14 @@ from dataset_audit import (  # noqa: E402
     check_source_license, load_file, sha256_bytes,
 )
 from animtrain.near_dup import norm_text, shingles  # noqa: E402
+from draft_io import NORMALIZED_HASH, RAW_HASH, fingerprint, selected_path, verify_entry  # noqa: E402
 
 DRAFT_GLOB = "reviews/2026-10-05-training-diversity-drafts/batch-*/draft-codex-repair-v1.jsonl"
 ORIG_GLOB = "reviews/2026-10-05-training-diversity-drafts/batch-*/draft.jsonl"
 SELECTION = "reviews/2026-10-05-training-diversity-drafts/draft-selection.json"
 DELIVERY = ["reviews/codex-supervision/2026-10-05-batch-repair-execution/delivery-manifest.json",
             "reviews/codex-supervision/2026-10-05-remaining-batch-audit/delivery-manifest.json"]
-NEAR_DUP_THRESHOLD = 0.7
+NEAR_DUP_THRESHOLD = Fraction(7, 10)
 REQUIRED = ["id", "category", "sub_category", "problem", "solution", "answer",
             "scene_spec", "source", "license", "method", "concept_id",
             "parent_training_ids", "draft_status", "versioned_id", "revision_lineage"]
@@ -49,17 +51,17 @@ def rid_of(rec: dict) -> str:
     return str(rec.get("id") or "<no-id>")
 
 
-def jaccard_set(a: str, b: str) -> float:
+def jaccard_set(a: str, b: str) -> Fraction:
     sa, sb = shingles(a), shingles(b)
     if not sa or not sb:
-        return 0.0
-    return len(sa & sb) / len(sa | sb)
+        return Fraction(0)
+    return Fraction(len(sa & sb), len(sa | sb))
 
 
 def load_records(paths: list[Path]) -> list[dict]:
     out = []
     for p in paths:
-        for i, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+        for i, line in enumerate(p.read_text(encoding="utf-8-sig").splitlines(), 1):
             if line.strip():
                 out.append({"file": str(p.relative_to(ROOT)).replace("\\", "/"),
                             "line": i, "record": json.loads(line)})
@@ -68,7 +70,7 @@ def load_records(paths: list[Path]) -> list[dict]:
 
 def check_structure(audit: Audit, paths: list[Path]) -> None:
     for p in paths:
-        info = load_file(p)
+        info = load_file(p, allow_utf8_bom=True)
         rel = info["path"]
         for msg in info["structure_issues"]:
             sev = "hard" if ("解析失败" in msg or "非 UTF-8" in msg) else "info"
@@ -201,16 +203,16 @@ def attribute_to_repair(audit: Audit, rows: list[dict], orig_rows: list[dict]) -
            not all(step_pref.match(s) for s in new_steps):
             introduced_steps.append(rid)
     if introduced_cjk:
-        audit.add("hard", "L010", DRAFT_GLOB, "document",
+        audit.add("hard", "L010", draft_glob, "document",
                   f"{len(introduced_cjk)} 题的“公式内中文”是本次修改新引入的(原始草稿无):"
                   f"{introduced_cjk}——修复动作引入的新硬伤,须回退或改为公式外文本",
                   action="把这 3-5 题的中文移出 $...$ 或加 CJK 字体方案")
     if preexisting_cjk:
-        audit.add("quarantine", "L011", DRAFT_GLOB, "document",
+        audit.add("quarantine", "L011", draft_glob, "document",
                   f"{len(preexisting_cjk)} 题的公式内中文在原始草稿中已存在,本次未清:"
                   f"{preexisting_cjk}")
     if introduced_steps:
-        audit.add("quarantine", "V010", DRAFT_GLOB, "document",
+        audit.add("quarantine", "V010", draft_glob, "document",
                   f"{len(introduced_steps)} 题的 scene_spec.steps 在本次修改中丢失了"
                   "“第N步”前缀(原始草稿全部带前缀)", action="还原统一编号或确认新写法")
     return {"introduced_cjk": introduced_cjk, "preexisting_cjk": preexisting_cjk,
@@ -227,13 +229,21 @@ def main(argv: list[str]) -> int:
                     help="冻结 eval/test 目录或文件(可重复)")
     ap.add_argument("--drafts", default="",
                     help="草稿 glob(可选;缺省审计 codex-repair-v1)")
+    ap.add_argument("--selected", action="store_true", help="审计活动账本实际选中集(允许混合版本)")
+    ap.add_argument("--fail-on-hard", action="store_true", help="存在硬错误时返回非零")
     args = ap.parse_args(argv)
     outdir = ROOT / args.out
     outdir.mkdir(parents=True, exist_ok=True)
 
     audit = Audit()
     draft_glob = args.drafts or DRAFT_GLOB
-    draft_paths = sorted(ROOT.glob(draft_glob))
+    if args.selected:
+        selection=json.loads((ROOT/SELECTION).read_text(encoding="utf-8-sig"))
+        selection_root=ROOT/selection.get("draft_root","reviews/2026-10-05-training-diversity-drafts")
+        selection_root.resolve().relative_to(ROOT.resolve())
+        draft_paths=[selected_path(selection_root,e) for e in selection["entries"]]
+    else:
+        draft_paths = sorted(ROOT.glob(draft_glob))
     orig_paths = sorted(ROOT.glob(ORIG_GLOB))
     rows = load_records(draft_paths)
 
@@ -253,12 +263,12 @@ def main(argv: list[str]) -> int:
     ids = [rid_of(r["record"]) for r in rows]
     for i, c in collections.Counter(ids).items():
         if c > 1:
-            audit.add("hard", "I003", DRAFT_GLOB, "document",
+            audit.add("hard", "I003", draft_glob, "document",
                       f"id 在草稿集内重复 {c} 次:{i}", rid=i)
     vids = [str(r["record"].get("versioned_id")) for r in rows]
     for i, c in collections.Counter(vids).items():
         if c > 1:
-            audit.add("hard", "I004", DRAFT_GLOB, "document",
+            audit.add("hard", "I004", draft_glob, "document",
                       f"versioned_id 重复 {c} 次:{i}")
 
     # ---- 泄漏:与训练池 / 冻结 eval-test / 批次间 ----
@@ -291,7 +301,7 @@ def main(argv: list[str]) -> int:
                           f"{name}核心题干精确重叠:{rid_of(row['record'])} ↔ "
                           f"{rid_of(hit['record'])}({hit['file']})",
                           rid=rid_of(row["record"]), field="problem")
-        worst = (0.0, None, None)
+        worst = (Fraction(0), None, None)
         for row in rows:
             ps = str(row["record"].get("problem") or "")
             for rr in ref:
@@ -300,11 +310,11 @@ def main(argv: list[str]) -> int:
                     worst = (sim, row, rr)
                 if sim >= NEAR_DUP_THRESHOLD:
                     audit.add("hard", "X002", row["file"], f"line {row['line']}",
-                              f"与{name}近重复 {sim:.4f} ≥ {NEAR_DUP_THRESHOLD}:"
+                              f"与{name}近重复 {sim} ≥ {NEAR_DUP_THRESHOLD}:"
                               f"{rid_of(row['record'])} ↔ {rid_of(rr['record'])}"
                               f"({rr['file']})", rid=rid_of(row["record"]), field="problem")
-        audit.add("info", "X003", DRAFT_GLOB, "document",
-                  f"与{name}的最大题干近重复:set 口径 {worst[0]:.4f}"
+        audit.add("info", "X003", draft_glob, "document",
+                  f"与{name}的最大题干近重复:set 口径 {worst[0]}"
                   + (f"(草稿 {rid_of(worst[1]['record'])} ↔ {rid_of(worst[2]['record'])})"
                      if worst[1] else ""))
     # 批次间重复
@@ -318,15 +328,15 @@ def main(argv: list[str]) -> int:
                       rid=rid_of(row["record"]), field="problem")
         else:
             seen[h] = row
-    intra = (0.0, None, None)
+    intra = (Fraction(0), None, None)
     texts = [(str(r["record"].get("problem") or ""), r) for r in rows]
     for i in range(len(texts)):
         for j in range(i + 1, len(texts)):
             sim = jaccard_set(texts[i][0], texts[j][0])
             if sim > intra[0]:
                 intra = (sim, texts[i][1], texts[j][1])
-    audit.add("info", "X005", DRAFT_GLOB, "document",
-              f"草稿集内最大题干近重复:{intra[0]:.4f}"
+    audit.add("info", "X005", draft_glob, "document",
+              f"草稿集内最大题干近重复:{intra[0]}"
               + (f"({rid_of(intra[1]['record'])} ↔ {rid_of(intra[2]['record'])})"
                  if intra[1] else ""))
 
@@ -338,18 +348,18 @@ def main(argv: list[str]) -> int:
         o_ids = [rid_of(r["record"]) for r in orig_rows]
         n_ids = [rid_of(r["record"]) for r in rows]
         if len(o_ids) != len(n_ids):
-            audit.add("quarantine", "V001", DRAFT_GLOB, "document",
+            audit.add("quarantine", "V001", draft_glob, "document",
                       f"条数变化:原始 {len(o_ids)} → Codex 修改 {len(n_ids)}")
         missing = [i for i in o_ids if i not in set(n_ids)]
         added = [i for i in n_ids if i not in set(o_ids)]
         if missing:
-            audit.add("hard", "V002", DRAFT_GLOB, "document",
+            audit.add("hard", "V002", draft_glob, "document",
                       f"原始 id 在修改版中缺失 {len(missing)} 个:{missing[:5]}")
         if added:
-            audit.add("quarantine", "V003", DRAFT_GLOB, "document",
+            audit.add("quarantine", "V003", draft_glob, "document",
                       f"修改版新增 id {len(added)} 个:{added[:5]}")
         if not missing and not added and o_ids == n_ids:
-            audit.add("info", "V004", DRAFT_GLOB, "document",
+            audit.add("info", "V004", draft_glob, "document",
                       f"原始 id 与顺序完整保留({len(o_ids)} 条)")
         n_changed = 0
         # 按 id 对齐比较内容
@@ -359,13 +369,13 @@ def main(argv: list[str]) -> int:
             if o is not None and json.dumps(o, sort_keys=True, ensure_ascii=False) != \
                json.dumps(r["record"], sort_keys=True, ensure_ascii=False):
                 n_changed += 1
-        audit.add("info", "V005", DRAFT_GLOB, "document",
+        audit.add("info", "V005", draft_glob, "document",
                   f"与原始草稿内容不同的记录:{n_changed}/{len(rows)}")
 
     # ---- 清单哈希交叉核对 ----
     sel = ROOT / SELECTION
     if sel.exists():
-        d = json.loads(sel.read_text(encoding="utf-8"))
+        d = json.loads(sel.read_text(encoding="utf-8-sig"))
         entries = {e.get("batch"): e for e in d.get("entries", [])}
         for p in draft_paths:
             batch = p.parent.name
@@ -374,20 +384,26 @@ def main(argv: list[str]) -> int:
                 audit.add("quarantine", "V006", SELECTION, "document",
                           f"draft-selection.json 未登记 {batch}")
                 continue
-            # 账本 path 相对草稿目录;统一转成相对项目根的 posix 再比较
-            rel = p.relative_to(ROOT).as_posix()
-            expected = (Path(DRAFT_GLOB.split("/batch-")[0])
-                        / e.get("path", "")).as_posix()
-            if e.get("path") and expected != rel:
-                audit.add("info", "V011", SELECTION, batch,
-                          f"被审文件 {rel} 不是账本选中版本({e.get('path')}),跳过哈希核对")
+            # Explicit project-relative draft_root also permits isolated selector fixtures.
+            root = ROOT / d.get("draft_root", Path(DRAFT_GLOB).parent.parent.as_posix())
+            try:
+                expected = selected_path(root, e)
+            except (ValueError, TypeError) as error:
+                audit.add("hard", "V010", SELECTION, batch, str(error))
                 continue
-            actual = sha256_bytes(p.read_bytes())
-            if actual != e.get("sha256"):
-                audit.add("hard", "V007", SELECTION, batch,
-                          f"{batch} 哈希与 draft-selection.json 不符"
-                          f"(清单 {str(e.get('sha256'))[:12]}… vs 实际 {actual[:12]}…)")
-            n = len([l for l in p.read_text(encoding="utf-8").splitlines() if l.strip()])
+            if expected != p.resolve():
+                audit.add("info", "V011", SELECTION, batch,
+                          f"被审文件 {p.relative_to(ROOT).as_posix()} 不是账本选中版本({e.get('path')}),跳过哈希核对")
+                continue
+            try:
+                binding = verify_entry(p, e, d.get("hash_algorithm"))
+            except (OSError, ValueError, TypeError) as error:
+                audit.add("hard", "V007", SELECTION, batch, str(error))
+            else:
+                if not binding["raw_bytes_match_manifest"]:
+                    audit.add("info", "V013", SELECTION, batch,
+                              "规范化内容哈希相符；原始字节与归档不同（换行/BOM 等价），不代表新增准入")
+            n = len([l for l in p.read_text(encoding="utf-8-sig").splitlines() if l.strip()])
             if e.get("count") != n:
                 audit.add("hard", "V008", SELECTION, batch,
                           f"{batch} 条数与清单不符({e.get('count')} vs {n})")
@@ -427,11 +443,15 @@ def main(argv: list[str]) -> int:
             + pool_paths + ev_paths:
         if p.exists():
             b = p.read_bytes()
-            hash_files.append({"file": str(p.relative_to(ROOT)).replace("\\", "/"),
-                               "sha256": sha256_bytes(b), "size": len(b)})
+            is_draft = p in draft_paths or p in orig_paths
+            hashes = fingerprint(b) if is_draft else {"sha256": sha256_bytes(b),
+                "raw_sha256": sha256_bytes(b), "hash_algorithm": RAW_HASH}
+            hash_files.append({"file": p.relative_to(ROOT).as_posix(), **hashes, "size": len(b)})
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "tool": "tools/draft_audit.py (只读)",
+        "draft_hash_algorithm": NORMALIZED_HASH,
+        "raw_hash_listing": "file_hashes.sha256 (raw bytes; portable draft hashes are in file_hashes.json)",
         "scope": {"drafts": [str(p.relative_to(ROOT)).replace("\\", "/") for p in draft_paths],
                   "originals": [str(p.relative_to(ROOT)).replace("\\", "/") for p in orig_paths],
                   "pool": [str(p.relative_to(ROOT)).replace("\\", "/") for p in pool_paths],
@@ -452,23 +472,23 @@ def main(argv: list[str]) -> int:
         "attribution": attribution,
     }
     (outdir / "issues.jsonl").write_text(
-        "\n".join(json.dumps(i, ensure_ascii=False) for i in issues) + "\n", encoding="utf-8")
+        "\n".join(json.dumps(i, ensure_ascii=False) for i in issues) + "\n", encoding="utf-8", newline="\n")
     (outdir / "record_status.jsonl").write_text(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in status_rows) + "\n",
-        encoding="utf-8")
+        encoding="utf-8", newline="\n")
     import csv
     with (outdir / "record_status.csv").open("w", encoding="utf-8", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(status_rows[0].keys()))
         w.writeheader()
         w.writerows(status_rows)
     (outdir / "summary.json").write_text(
-        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+        json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     (outdir / "file_hashes.json").write_text(
         json.dumps({"generated_at": summary["generated_at"], "files": hash_files},
-                   ensure_ascii=False, indent=2), encoding="utf-8")
+                   ensure_ascii=False, indent=2), encoding="utf-8", newline="\n")
     (outdir / "file_hashes.sha256").write_text(
-        "\n".join(f"{h['sha256']}  {h['file']}" for h in hash_files) + "\n",
-        encoding="utf-8")
+        "\n".join(f"{h['raw_sha256']}  {h['file']}" for h in hash_files) + "\n",
+        encoding="utf-8", newline="\n")
 
     print(f"[草稿检测] 批次={len(draft_paths)} 记录={len(rows)} 原始={len(orig_rows)}")
     print(f"[严重度] {summary['severity_counts']}")
@@ -476,7 +496,7 @@ def main(argv: list[str]) -> int:
     print(f"[声明核查] admitted=true: {summary['admitted_true']} | "
           f"render_verified=true: {summary['render_verified_true']}")
     print(f"[输出] {outdir}")
-    return 0
+    return 2 if args.fail_on_hard and summary["severity_counts"].get("hard",0) else 0
 
 
 if __name__ == "__main__":

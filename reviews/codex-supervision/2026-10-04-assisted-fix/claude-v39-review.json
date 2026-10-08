@@ -1,0 +1,322 @@
+{
+  "source_sha256": "ab4ce6bad8b048496952b20d4a01ba7e1ff8e506d7abb6e26b96fe09ddb0ec3a",
+  "evidence_sha256": "97d5fdee0577b273c0430494ad06dcc8e41ba69452f4c97c66430bc8d97df1e1",
+  "overall": "PASS_LOCAL_FILE_ACL",
+  "cases": {
+    "granted_write": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "granted_read": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "denied_write": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "denied_read": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  "regressions": {
+    "cases": [
+      {
+        "name": "N1 denied_write 目标出现",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N2 denied_read 内容泄漏",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N3 控制端失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N4 令牌证据缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N5 SID 不符",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N6 授予类哈希不一致",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N7 授予类无记录",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N8 拒绝类归因非 5",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N9 拒绝类结果无法解释",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N10 沙箱未启动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N11 拒写目标状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N12 拒读泄漏状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N13 沙箱超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N14 控制超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N15 控制 spawned 非布尔",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N16 未知场景 kind",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N17 客户端自哈希缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N18 正写目标前置已存在",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N19 授予读目标被改动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N20 拒读哨兵被改动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N21 拒写探针未确认拒绝",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N22 拒读 GetLastError 缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N23 拒写缺 errno 记录",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N24 拒读缺异常类型/消息",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N25 归因矛盾",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N26 无任何 5 归因",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "P1 granted_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P2 denied_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P3 granted_read 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P4 denied_read 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P5 denied_write winerror=5 归因",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P6 denied_read winerror=5 归因",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "core_before_names": [
+    "src/animtrain/appcontainer.py",
+    "src/animtrain/win_job.py",
+    "src/animtrain/network_isolation.py"
+  ],
+  "core_after_names": [
+    "src/animtrain/appcontainer.py",
+    "src/animtrain/win_job.py",
+    "src/animtrain/network_isolation.py"
+  ],
+  "post_verify": {
+    "all_unchanged": true,
+    "checks": {
+      "python.exe": true,
+      "python313.dll": true,
+      "Lib/socket.py": true,
+      "DLLs/_socket.pyd": true,
+      "pth": true,
+      "client_file": true,
+      "script": true,
+      "core:src/animtrain/appcontainer.py": true,
+      "core:src/animtrain/win_job.py": true,
+      "core:src/animtrain/network_isolation.py": true
+    },
+    "core_modules_before": {
+      "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/network_isolation.py": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c"
+    },
+    "core_modules_after": {
+      "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/network_isolation.py": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c"
+    }
+  },
+  "evidence_written": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-evidence\\file-accept-results-1a74d39b87e4.json",
+  "sandbox": {
+    "granted_write": {
+      "outcome": "wrote",
+      "winerror": null,
+      "errno": null,
+      "exc_type": null,
+      "exc_msg": null,
+      "probe_denied": null,
+      "gle": null,
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+      }
+    },
+    "granted_read": {
+      "outcome": "read",
+      "winerror": null,
+      "errno": null,
+      "exc_type": null,
+      "exc_msg": null,
+      "probe_denied": null,
+      "gle": null,
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+      }
+    },
+    "denied_write": {
+      "outcome": "denied",
+      "winerror": null,
+      "errno": 13,
+      "exc_type": "PermissionError",
+      "exc_msg": "[Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\file-denied-1a74d39b87e4\\\\dw-sb-27738201767b41539272f3b1c5dc932f.bin'",
+      "probe_denied": true,
+      "gle": 5,
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+      }
+    },
+    "denied_read": {
+      "outcome": "denied",
+      "winerror": null,
+      "errno": 13,
+      "exc_type": "PermissionError",
+      "exc_msg": "[Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\file-denied-1a74d39b87e4\\\\sentinel.bin'",
+      "probe_denied": true,
+      "gle": 5,
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+      }
+    }
+  }
+}

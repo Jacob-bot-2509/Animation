@@ -1,0 +1,84 @@
+{
+  "missing_source_sha_pass": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "exit_code": 0
+  },
+  "eval_test_overlap_pass": {
+    "ok": true,
+    "n_entries": 2,
+    "problems": [],
+    "quarantines": [],
+    "exit_code": 0
+  },
+  "preflight_missing_inputs_pass": {
+    "ok": true,
+    "exit_code": 0,
+    "checks": [
+      {
+        "check": "gpu",
+        "ok": true,
+        "detail": "mock GPU"
+      }
+    ]
+  },
+  "model_without_weights_pass": [
+    true,
+    "模型目录齐全: D:\\Animation Model Training\\reviews\\2026-09-30-initial\\fixtures\\empty-model"
+  ],
+  "answer_zero_rejected": [
+    {
+      "sample_id": "zero",
+      "line": 1,
+      "missing": [
+        "answer"
+      ],
+      "reason": "缺失必填字段: answer"
+    }
+  ],
+  "wrong_source_line": [
+    {
+      "sample_id": "bad",
+      "line": 1,
+      "missing": [
+        "solution"
+      ],
+      "reason": "缺失必填字段: solution"
+    }
+  ],
+  "dangerous_alias_pass": {
+    "ok": true,
+    "problems": [],
+    "exit_code": 0
+  },
+  "missing_manifest_env_seed_pass": [],
+  "split_overwrites_pool": {
+    "before": "{\"id\":\"a\"}\n{\"id\":\"b\"}\n",
+    "after": "{\"id\":\"a\"}\n"
+  },
+  "split_output_scans_as_raw": {
+    "eval.jsonl": "raw",
+    "plan.json": "raw",
+    "rejected.jsonl": "raw",
+    "split_manifest.json": "raw",
+    "test.jsonl": "raw",
+    "train.jsonl": "raw"
+  },
+  "split_manifest_not_loadable": "KeyError: 'name'",
+  "manifest_parent_escape_pass": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "exit_code": 0
+  },
+  "malformed_train_pass": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "exit_code": 0
+  }
+}

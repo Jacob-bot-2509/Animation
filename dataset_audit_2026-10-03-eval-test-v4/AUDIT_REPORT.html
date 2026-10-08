@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>dataset-eval / data-test 预跑检测报告（第四轮 · 指针切换至 v2 · 2026-10-03）</h1>
+<blockquote>
+<p>工具：<code>tools/eval_test_audit.py</code>（纯标准库，只读；本轮新增 <code>--manifest</code>（活动清单）、<code>--source-dir</code>、<code>--train-dir</code> 与指针一致性检查 PTR001–PTR005）
+复现命令：
+<code>python tools/eval_test_audit.py --base data/v2 --manifest data/manifest.json --source-dir data/v2/sources --out dataset_audit_2026-10-03-eval-test-v4</code>
+项目自带门禁（只读）：<code>data_check --manifest data/manifest.json</code>、<code>freeze_data --check</code>、<code>preflight --manifest … --strict/--ready</code>、<code>eval_test_prep status/check</code>
+历史轮次：<code>…-eval-test</code>（NOT READY, hard 3）→ <code>…-v2</code>（hard 0, CONDITIONAL）→ <code>…-v3</code>（v1 复核 + v2 候选, hard 0）</p>
+</blockquote>
+<hr />
+<h2>0. 结论摘要与裁定</h2>
+<p><strong>指针已切换生效</strong>：活动清单 <code>data/manifest.json</code>（6 条目）现引用 <code>v1/raw/*</code>（train）+ <code>v2/eval</code>、<code>v2/test</code>；<code>data/v1/manifest.json</code> 还原为 v1 归档；v2 双锁重冻并绑定活动清单。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检测基目录</td>
+<td><code>data/v2</code>（活动指针所指版本）</td>
+</tr>
+<tr>
+<td>记录</td>
+<td>eval 300（100 题×3 解）+ test 150 = <strong>450</strong></td>
+</tr>
+<tr>
+<td>逐条状态</td>
+<td><strong>rejected 0 / quarantine 450 / clean 0</strong></td>
+</tr>
+<tr>
+<td><strong>我的检测</strong></td>
+<td><strong>hard 0</strong>、quarantine <strong>908</strong>、info <strong>858</strong>（共 1766 条）</td>
+</tr>
+<tr>
+<td>活动清单</td>
+<td>6 条目，4 train + 1 eval + 1 test，<strong>哈希 6/6 匹配</strong></td>
+</tr>
+<tr>
+<td>冻结锁</td>
+<td><code>data/eval-v2.lock.json</code>、<code>data/test-v2.lock.json</code>，均绑定活动清单 <code>b11def7be9…</code>，条目哈希校验通过</td>
+</tr>
+<tr>
+<td>隔离</td>
+<td>精确重叠 0；≥0.7 近重复 <strong>0</strong>；最大 <strong>0.6667</strong>（未校准阈值）</td>
+</tr>
+<tr>
+<td>镜像 <code>.json</code>↔JSONL</td>
+<td>450/450 一致</td>
+</tr>
+<tr>
+<td>行尾/哈希可复现</td>
+<td>全 LF，通过</td>
+</tr>
+<tr>
+<td><strong>项目 <code>data_check</code></strong></td>
+<td><strong>通过</strong>（6 条目 / 问题 0 / quarantine 0）</td>
+</tr>
+<tr>
+<td><strong>项目 <code>freeze_gate</code></strong></td>
+<td><strong>PASS</strong>（冻结证据绑定当前 manifest，eval/test 全量覆盖）</td>
+</tr>
+<tr>
+<td><strong>项目 <code>preflight --ready</code></strong></td>
+<td><strong>NOT READY</strong>（5 项阻断，见 §5）</td>
+</tr>
+</tbody>
+</table>
+<h3>裁定</h3>
+<ul>
+<li><strong>数据结构与指针层面：通过</strong>。指针漂移没有留下悬空引用（活动清单哈希 6/6 匹配、v2 双锁校验&quot;冻结完好&quot;、<code>data_check</code> 0 问题）。</li>
+<li><strong>仍不可引用为训练/评测数据</strong>：项目自带 <code>preflight --ready</code> 判定 <strong>NOT READY</strong>，阻断项为 <code>near_dup_calibrated</code>（近重复阈值 UNCALIBRATED）、<code>asset_evidence</code>（无资产验收证据 = 动画未经真实渲染/数学验收）、<code>exec_isolation</code>（网络隔离未实施），以及本次探针未提供的 <code>model_dir</code>、<code>run_snapshot</code>。</li>
+<li><strong>本轮新增待处理 4 项</strong>：<code>A005</code>×4（v2 有 4 条 steps 未以&quot;第N步&quot;开头）、<code>PTR005</code>（<code>eval_test_prep.py</code> 默认指针仍为 <code>data/v1</code>）、<code>D012</code>×3（文档仍写&quot;未冻结&quot;）、<code>PTR003</code>/<code>PTR004</code>（活动清单 name/generated_at 未随切换刷新，info）。</li>
+</ul>
+<hr />
+<h2>1. 范围、快照与只读保证</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>本轮对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>活动指针</td>
+<td><code>data/manifest.json</code>（2525 B，23:52:48）</td>
+</tr>
+<tr>
+<td>入口 JSONL</td>
+<td><code>data/v2/eval/dataset_eval.jsonl</code>(433369, 23:24:31)、<code>data/v2/test/dataset_test.jsonl</code>(200390, 23:24:31)</td>
+</tr>
+<tr>
+<td>镜像 JSON</td>
+<td><code>data/v2/eval/dataset_eval.json</code>(483800)、<code>data/v2/test/dataset_test.json</code>(223709)</td>
+</tr>
+<tr>
+<td>源手稿</td>
+<td><code>data/v2/sources/dataset-eval.md</code>(205684)、<code>data/v2/sources/data-test.md</code>(118713)</td>
+</tr>
+<tr>
+<td>子清单</td>
+<td><code>data/v2/eval/manifest.json</code>、<code>data/v2/test/manifest.json</code>（各 573 B）</td>
+</tr>
+<tr>
+<td>冻结锁</td>
+<td><code>data/eval-v2.lock.json</code>、<code>data/test-v2.lock.json</code></td>
+</tr>
+<tr>
+<td>训练参考池</td>
+<td><code>data/v1/raw/dataset_{calc,geom,linalg,prob}.jsonl</code>（63 条，LF）</td>
+</tr>
+<tr>
+<td>归档（不再活动）</td>
+<td><code>data/v1/manifest.json</code>、<code>data/v1/manifest-train.json</code>、<code>data/v1/{eval,test}/*</code>、<code>data/{eval,test}-v1.lock.json</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>检测快照：<code>2026-10-03T16:05:44Z</code>（= 北京时间 00:05）；18 个受检文件在检测后立即复核，哈希无变化。</li>
+<li><strong>环境说明（重要）</strong>：项目 <code>.venv</code> 的解释器位于工作区外（<code>D:\Python\python.exe</code>）。在我的沙箱（workspace-write）下该路径被拒绝访问，<code>python</code> 回退到系统解释器 3.14.7（无 manim/sympy/markdown_it）——这会让 <code>preflight</code> 的 <code>render_gate</code>/<code>math_gate</code> 出现<strong>假 FAIL</strong>。改用项目 venv（一次性放宽权限）后两项均 <strong>PASS</strong>，故 §5 采用 venv 下的权威结论。venv 本身<strong>并未损坏</strong>。</li>
+<li>只读保证：未修改任何数据、文档、清单或锁；未自动改 ID/公式；未启动训练、未下载模型、未生成动画。</li>
+</ul>
+<hr />
+<h2>2. 原始文件哈希（SHA256，本轮快照）</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th style="text-align:right">字节</th>
+<th>SHA256（前 12 位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/manifest.json</code>（活动）</td>
+<td style="text-align:right">2525</td>
+<td><code>b11def7be902</code></td>
+</tr>
+<tr>
+<td><code>data/v2/eval/dataset_eval.jsonl</code></td>
+<td style="text-align:right">433369</td>
+<td><code>8f18123fcb3f</code></td>
+</tr>
+<tr>
+<td><code>data/v2/test/dataset_test.jsonl</code></td>
+<td style="text-align:right">200390</td>
+<td><code>d4de0bb6a86f</code></td>
+</tr>
+<tr>
+<td><code>data/v2/eval/dataset_eval.json</code> / <code>test…json</code></td>
+<td style="text-align:right">483800 / 223709</td>
+<td><code>1de2df62edd0</code> / <code>15a524ceeb1b</code></td>
+</tr>
+<tr>
+<td><code>data/v2/eval/manifest.json</code> / <code>test/manifest.json</code></td>
+<td style="text-align:right">573 / 573</td>
+<td><code>8830f1d266d4</code> / <code>cd681f55f7d4</code></td>
+</tr>
+<tr>
+<td><code>data/eval-v2.lock.json</code> / <code>test-v2.lock.json</code></td>
+<td style="text-align:right">469 / 469</td>
+<td><code>1a84b5b3c723</code> / <code>24c55a096fd1</code></td>
+</tr>
+<tr>
+<td><code>data/v2/sources/dataset-eval.md</code> / <code>data-test.md</code></td>
+<td style="text-align:right">205684 / 118713</td>
+<td><code>d681996dcf54</code> / <code>d36cab40f199</code></td>
+</tr>
+<tr>
+<td><code>data/v1/raw/dataset_{calc,geom,linalg,prob}.jsonl</code></td>
+<td style="text-align:right">32908 / 18138 / 31002 / 15462</td>
+<td><code>9f862c7c6876</code> / <code>bbd5c6ad09e9</code> / <code>f83723a082b0</code> / <code>5ddd3a1c25b9</code></td>
+</tr>
+<tr>
+<td><code>data/v1/{eval,test}/README.md</code></td>
+<td style="text-align:right">282 / 258</td>
+<td><code>31012b92e42e</code> / <code>80bb3754595a</code></td>
+</tr>
+<tr>
+<td><code>.gitattributes</code></td>
+<td style="text-align:right">92</td>
+<td><code>a2dc85e2442c</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>完整清单见 <code>file_hashes.json</code> / <code>file_hashes.sha256</code>（18 个文件）。</p>
+</blockquote>
+<hr />
+<h2>3. 指针一致性检查</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PTR002</code> 活动清单是否覆盖本轮基目录</td>
+<td><strong>通过</strong>（清单含 <code>v2/eval</code>、<code>v2/test</code>）</td>
+</tr>
+<tr>
+<td>活动清单条目哈希 vs 文件</td>
+<td><strong>6/6 匹配</strong>（train 4 + eval + test）</td>
+</tr>
+<tr>
+<td>锁 ↔ 活动清单绑定</td>
+<td><strong>通过</strong>：两把 v2 锁 <code>manifest_sha256 = b11def7be9…</code> 与活动清单一致；<code>freeze_data --check</code> 均报&quot;冻结完好&quot;</td>
+</tr>
+<tr>
+<td><code>PTR003</code> 清单 name</td>
+<td>info：<code>animation-data-v1</code> 仍含 v1 字样，而 eval/test 已指向 v2</td>
+</tr>
+<tr>
+<td><code>PTR004</code> 清单 generated_at</td>
+<td>info：<code>2026-10-03 18:42:00</code> 早于其指向文件最新 mtime <code>23:24:31</code>（时间戳未随重写刷新）</td>
+</tr>
+<tr>
+<td><code>PTR005</code> 工具默认指针</td>
+<td><strong>quarantine</strong>：<code>tools/eval_test_prep.py</code> 默认 <code>--dir</code> 仍为 <code>data/v1</code>。实测 <code>status</code> 报&quot;eval-v1 锁校验通过、eval-v2 锁覆盖其他版本文件,不参与本次判定&quot;——<strong>不带参数运行时会判定归档版本</strong>，与活动指针相反</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>说明：<code>data/v1/manifest.json</code> 归档化本身正常（提交 <code>68c51be</code> 声明&quot;data/v1/manifest.json 还原为 v1 归档&quot;）；问题只在<strong>工具默认参数</strong>未随指针切换。</p>
+</blockquote>
+<hr />
+<h2>4. 独立检测结果（基目录 data/v2 + 活动清单）</h2>
+<ul>
+<li><strong>hard 0</strong>、quarantine 908、info 858（共 1766 条）。</li>
+<li>结构/字段/身份/多解组/镜像/LaTeX/隔离/冻结/清单登记：全部通过（逐项见 §6）。</li>
+<li>逐条状态：450 条全部 <code>quarantine</code>（无 rejected、无 clean）——quarantine 来自系统级项（许可证待转正、动画未验证）与少量新发现问题。</li>
+</ul>
+<h3>4.1 本轮新增发现</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">条数</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A005</code></td>
+<td style="text-align:right"><strong>4</strong></td>
+<td>v2 有 4 条记录的 <code>steps</code> 未以&quot;第N步&quot;开头（<code>eval-calc-023-s1/s2/s3</code>、<code>eval-prob-010-s2</code>）——v2 逐解法重写时的格式不一致</td>
+</tr>
+<tr>
+<td><code>PTR005</code></td>
+<td style="text-align:right">1</td>
+<td><code>eval_test_prep.py</code> 默认指针仍为 <code>data/v1</code>（见 §3）</td>
+</tr>
+<tr>
+<td><code>PTR003</code>/<code>PTR004</code></td>
+<td style="text-align:right">各 1</td>
+<td>活动清单 name / generated_at 未随切换刷新（info）</td>
+</tr>
+</tbody>
+</table>
+<h3>4.2 与第三轮相比的变化（v2 数据在 23:24 又改过一次）</h3>
+<ul>
+<li><code>data/v2/eval/dataset_eval.jsonl</code> 432636 → <strong>433369 B</strong>（objects 612 → 617，L007 100 → 101），新增 <code>A005</code>×4；</li>
+<li><code>eval-linalg-023-s3</code> 已按复查意见修正：现明确区分&quot;形式一（完整实不可约分解）&quot;与&quot;形式二（合并书写,尚未完全分解）&quot;，并给出连接恒等式证明——<strong>Lead 复核正确</strong>；</li>
+<li>其余结构与隔离结论不变。</li>
+</ul>
+<h3>4.3 仍未关闭（跨轮）</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">条数</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P002</code></td>
+<td style="text-align:right">450</td>
+<td><code>license=Internal-Research-Use-Only</code>（仅内部研究、不公开分发），训练/公开前须转正</td>
+</tr>
+<tr>
+<td><code>A008</code></td>
+<td style="text-align:right">450</td>
+<td>动画未验证（无 <code>code</code>/<code>render_status</code>/<code>code_sha256</code>），scene_spec 仍是设计稿</td>
+</tr>
+<tr>
+<td><code>D012</code></td>
+<td style="text-align:right">3</td>
+<td><code>EVAL_TEST_PREP.md</code> 与 <code>data/v1/{eval,test}/README.md</code> 仍写&quot;未冻结&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 项目自带门禁（在项目 venv 下运行，权威结论）</h2>
+<table>
+<thead>
+<tr>
+<th>门禁</th>
+<th>结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data_check --manifest data/manifest.json</code></td>
+<td><strong>通过</strong></td>
+<td>6 条目 / 问题 0 / quarantine 0</td>
+</tr>
+<tr>
+<td><code>freeze_data --check data/{eval,test}-v2.lock.json</code></td>
+<td><strong>冻结完好</strong> ×2</td>
+<td>锁结构与文件哈希一致</td>
+</tr>
+<tr>
+<td><code>preflight --strict</code> → gpu</td>
+<td>PASS</td>
+<td>RTX 5060 Laptop 8151 MiB</td>
+</tr>
+<tr>
+<td>→ data_manifest</td>
+<td>PASS</td>
+<td>6 条目,问题 0</td>
+</tr>
+<tr>
+<td>→ render_gate</td>
+<td>PASS</td>
+<td>固定 smoke 渲染成功（<strong>非资产验收证据</strong>）</td>
+</tr>
+<tr>
+<td>→ math_gate</td>
+<td>PASS</td>
+<td>固定数学 smoke 断言成立（<strong>非资产验收证据</strong>）</td>
+</tr>
+<tr>
+<td>→ freeze_gate</td>
+<td><strong>PASS</strong></td>
+<td>冻结证据绑定当前 manifest，eval/test 全量覆盖</td>
+</tr>
+<tr>
+<td>→ model_dir</td>
+<td>FAIL</td>
+<td>本次探针未提供 <code>--model</code>（非数据缺陷）</td>
+</tr>
+<tr>
+<td>→ run_snapshot</td>
+<td>FAIL</td>
+<td>本次无 <code>runs/&lt;id&gt;/run_record.json</code>（非数据缺陷）</td>
+</tr>
+<tr>
+<td>→ near_dup_calibrated</td>
+<td><strong>FAIL</strong></td>
+<td>近重复阈值仍 UNCALIBRATED（真实数据对照实验未完成）</td>
+</tr>
+<tr>
+<td>→ asset_evidence</td>
+<td><strong>FAIL</strong></td>
+<td><code>asset_evidence.json</code> 不存在：资产未经真实渲染/数学验收 → UNVERIFIED</td>
+</tr>
+<tr>
+<td>→ exec_isolation</td>
+<td><strong>FAIL</strong></td>
+<td>网络隔离未实施（现有：cwd 隔离+环境脱敏+禁 shell+超时+内存上限）</td>
+</tr>
+<tr>
+<td><code>preflight --ready</code></td>
+<td><strong>NOT READY</strong></td>
+<td>阻断：<code>model_dir</code>、<code>run_snapshot</code>、<code>near_dup_calibrated</code>、<code>asset_evidence</code>、<code>exec_isolation</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>render_gate</code>/<code>math_gate</code> 在系统 Python 下会假 FAIL（缺 manim/sympy），在项目 venv 下为 PASS——<strong>不要</strong>把沙箱/解释器差异当成数据缺陷。</p>
+</blockquote>
+<hr />
+<h2>6. 逐项检查结果</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSONL 结构（解析/空行/BOM/重复键）</td>
+<td>通过（0 异常）</td>
+</tr>
+<tr>
+<td>字段与类型（id 唯一、12/15 字段、无未知字段）</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>身份唯一性（eval 300 + test 150，跨池无交集）</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>同题多解组（100 组×3 解、题干一致、method 唯一）</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>同题多解场景互异（<code>G003</code>）</td>
+<td>通过（0 组完全相同）</td>
+</tr>
+<tr>
+<td>LaTeX（公式内 CJK/全角/<code>$</code>/括号）</td>
+<td>通过（0 硬性缺陷；<code>L006</code>×11、<code>L009</code>×7 经复核为误报降级 info）</td>
+</tr>
+<tr>
+<td>scene_spec 结构</td>
+<td>通过（450/450 含 objects+steps；<code>A005</code>×4 为步骤前缀格式，见 §4.1）</td>
+</tr>
+<tr>
+<td>镜像 <code>.json</code> ↔ JSONL</td>
+<td>通过（450/450）</td>
+</tr>
+<tr>
+<td>源手稿 ↔ 交付身份覆盖</td>
+<td>通过（100/100、150/150）</td>
+</tr>
+<tr>
+<td>与 train 隔离</td>
+<td>通过（精确 0；max 0.5915）</td>
+</tr>
+<tr>
+<td>eval ↔ test 隔离</td>
+<td>通过（精确 0；max 0.6667；≥0.7 对数 0）</td>
+</tr>
+<tr>
+<td>活动清单登记</td>
+<td>通过（6/6 哈希匹配）</td>
+</tr>
+<tr>
+<td>冻结锁</td>
+<td>通过（绑定活动清单，条目校验通过）</td>
+</tr>
+<tr>
+<td>文档状态</td>
+<td>不通过（<code>D012</code>×3：仍写&quot;未冻结&quot;）</td>
+</tr>
+<tr>
+<td>动画验证</td>
+<td>不通过（0/450）</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>不通过（450/450 内部研究许可）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. quarantine 清单（908 条）</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">条数</th>
+<th>处置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P002</code></td>
+<td style="text-align:right">450</td>
+<td>用户级：许可证转正（训练/公开前）</td>
+</tr>
+<tr>
+<td><code>A008</code></td>
+<td style="text-align:right">450</td>
+<td>用户级：过 <code>render_gate</code> 并登记 <code>code</code>/<code>render_status</code>/<code>code_sha256</code></td>
+</tr>
+<tr>
+<td><code>A005</code></td>
+<td style="text-align:right">4</td>
+<td><strong>工程级（本轮新增）</strong>：统一 v2 steps 的&quot;第N步&quot;前缀</td>
+</tr>
+<tr>
+<td><code>D012</code></td>
+<td style="text-align:right">3</td>
+<td>文档：更新 <code>EVAL_TEST_PREP.md</code> 与两个 v1 README 的冻结状态</td>
+</tr>
+<tr>
+<td><code>PTR005</code></td>
+<td style="text-align:right">1</td>
+<td><strong>指针（本轮新增）</strong>：把 <code>eval_test_prep.py</code> 默认基目录切到活动版本</td>
+</tr>
+</tbody>
+</table>
+<h2>8. info 亮点（858 条）</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">条数</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P003</code></td>
+<td style="text-align:right">450</td>
+<td><code>source=self-authored</code>（如实）</td>
+</tr>
+<tr>
+<td><code>C007</code></td>
+<td style="text-align:right">274</td>
+<td>answer 与 solution 无文本重合（纯文字结论，正常）</td>
+</tr>
+<tr>
+<td><code>L007</code></td>
+<td style="text-align:right">101</td>
+<td>双上下标（合法）</td>
+</tr>
+<tr>
+<td><code>L006</code>/<code>L009</code></td>
+<td style="text-align:right">11 / 7</td>
+<td><code>\leftarrow</code>、<code>\dfrac12</code> 误报（已复核为合法）</td>
+</tr>
+<tr>
+<td><code>X002</code></td>
+<td style="text-align:right">3</td>
+<td>三对池最大近重复（0.5915 / 0.3895 / 0.6667）</td>
+</tr>
+<tr>
+<td><code>PTR003</code>/<code>PTR004</code></td>
+<td style="text-align:right">各 1</td>
+<td>活动清单 name / generated_at 未刷新</td>
+</tr>
+<tr>
+<td><code>LK007</code>/<code>LK008</code></td>
+<td style="text-align:right">2 / 1</td>
+<td>本版本锁校验通过 / 他版本锁未参与校验</td>
+</tr>
+<tr>
+<td><code>G002</code>/<code>G003</code></td>
+<td style="text-align:right">各 1</td>
+<td>多解组 {3:100} / 场景互异通过</td>
+</tr>
+<tr>
+<td><code>MF008</code></td>
+<td style="text-align:right">1</td>
+<td>train 标签为&quot;用户拍板 provisional&quot;（如实）</td>
+</tr>
+<tr>
+<td><code>R001</code></td>
+<td style="text-align:right">1</td>
+<td>既有内容评审 64 条（A5/B31/C28）纳入交叉核对</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9. 汇总统计</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align:right">eval</th>
+<th style="text-align:right">test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记录 / 唯一身份</td>
+<td style="text-align:right">300 / 300</td>
+<td style="text-align:right">150 / 150</td>
+</tr>
+<tr>
+<td>题目数</td>
+<td style="text-align:right">100（每组 3 解）</td>
+<td style="text-align:right">150</td>
+</tr>
+<tr>
+<td>子类数</td>
+<td style="text-align:right">41</td>
+<td style="text-align:right">144</td>
+</tr>
+<tr>
+<td>objects / steps</td>
+<td style="text-align:right">617 / 1212</td>
+<td style="text-align:right">303 / 603</td>
+</tr>
+<tr>
+<td>method 数</td>
+<td style="text-align:right">263</td>
+<td style="text-align:right">—</td>
+</tr>
+<tr>
+<td>状态</td>
+<td style="text-align:right">quarantine 300</td>
+<td style="text-align:right">quarantine 150</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>板块：eval（高代 105 / 数分 90 / 几何 60 / 概率 45，按解法计）；test（数分 45 / 高代 40 / 几何 25 / 概率 25 / 跨学科 15）。</li>
+<li>严重度：hard 0、quarantine 908、info 858（共 1766）。</li>
+<li>隔离：精确重叠 0；≥0.7 近重复 0；最大 0.6667（阈值 UNCALIBRATED）。</li>
+</ul>
+<hr />
+<h2>10. 裁定与建议</h2>
+<p><strong>指针切换本身成功</strong>：活动清单、锁、哈希、<code>data_check</code>、<code>freeze_gate</code> 全部一致，独立性（train/eval/test 隔离）保持通过。</p>
+<p><strong>引用前需完成（按优先级）</strong>：</p>
+<ol>
+<li><strong>工程级收尾（本轮新增，易修）</strong>：① <code>A005</code>×4 统一 steps 前缀；② <code>PTR005</code> 把 <code>eval_test_prep.py</code> 默认基目录切到活动版本（否则默认运行会判定归档 v1）；③ <code>PTR003</code>/<code>PTR004</code> 刷新活动清单 name 与 generated_at；④ <code>D012</code> 更新文档冻结状态。</li>
+<li><strong>项目级门禁（<code>preflight --ready</code> 阻断项）</strong>：<code>near_dup_calibrated</code>（完成 0.7 阈值校准，本轮边界对 0.6667 可作样本）、<code>asset_evidence</code>（生成真实渲染/数学验收证据，替代环境 smoke）、<code>exec_isolation</code>（网络隔离）；<code>model_dir</code>/<code>run_snapshot</code> 在正式 <code>--ready</code> 需一并提供。</li>
+<li><strong>用户级决策</strong>：<code>P002</code> 许可证转正；<code>A008</code> 动画验证（450 条 scene_spec 仍为设计稿，v2 的逐解法重写尚未过 <code>render_gate</code>）。</li>
+</ol>
+<p><strong>结论</strong>：指针指向 v2 后，数据与清单/锁层面<strong>已自洽</strong>（hard 0、<code>data_check</code> 通过、<code>freeze_gate</code> PASS），但<strong>整体仍为 NOT READY</strong>——阻断来自&quot;阈值未校准 + 无资产验收证据 + 无网络隔离 + 无模型/运行快照&quot;，而非数据本身。</p>
+<hr />
+<h2>11. 产物清单</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v4/AUDIT_REPORT.md</code> / <code>.pdf</code></td>
+<td>本报告</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v4/issues.jsonl</code></td>
+<td>逐条问题（1766 条）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v4/record_status.jsonl</code> / <code>.csv</code></td>
+<td>450 条逐条状态</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v4/summary.json</code></td>
+<td>汇总（含 pointer / locks / isolation / per_split）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v4/file_hashes.json</code> / <code>.sha256</code></td>
+<td>18 个受检文件哈希</td>
+</tr>
+<tr>
+<td><code>tools/eval_test_audit.py</code></td>
+<td>只读检测工具（支持 <code>--base</code> / <code>--manifest</code> / <code>--source-dir</code> / <code>--train-dir</code>）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮为只读检测，未修改任何数据、文档、清单或锁；未自动改 ID/公式；未启动训练、未下载模型、未生成动画。</p>
+
+</body>
+</html>

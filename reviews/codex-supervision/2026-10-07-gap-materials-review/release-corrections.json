@@ -1,0 +1,55 @@
+{
+  "file": "NEWRELEASE.md",
+  "before_raw_sha256": "0ac89d3a8dddae6e3d803411b740c5dc6eb35b666c096592339ea565d27f6a41",
+  "after_raw_sha256": "5845c02f417c60b0b558ee232000e0e721f306166f691cc3b2824876e0c44cb1",
+  "changes": [
+    {
+      "before": "- 预留题池冻结：考研数学一真题 1987-2021 共 391 条完整三件套（题面+答案+解析，缺任一成分不收），与项目数据零精确重叠，记录级 SHA 绑定清单入库。",
+      "after": "- 预留候选池冻结：考研数学一真题 1987-2021 共 391 条完整三件套（题面+答案+解析，缺任一成分不收），记录级 SHA 绑定清单入库。初次核对与当时 297 条参照记录零精确重叠；完整历史材料的同题/同核心隔离及逐角色曝光仍待判定，合格候选数 UNKNOWN。"
+    },
+    {
+      "before": "- holdout v3 设计：有限题对总体抽样、超几何置信区间与 Bonferroni 联合覆盖、成员与核心族隔离、双盲标注与冲突裁决角色预注册、曝光清单证据级绑定（75739 文件 0 不匹配）。",
+      "after": "- holdout v3 设计：有限题对总体抽样、超几何置信区间与 Bonferroni 联合覆盖、成员与核心族隔离、完整题目/过程/答案盲标材料要求及冲突裁决规则已预注册。独立标注者与裁决者尚待落实；核心关联判定、抽样、标注、校准和最终验证尚未执行，状态 PENDING / UNCALIBRATED。\n- 可读历史材料索引已绑定 75739 个文件，捕获字节复核 0 不匹配；旧字节缺口由 38 项降为 36 项，2 项由换行变体精确重建。用途/版本去向记账已补充，完整历史内容和角色曝光证据仍 PENDING。见[当前缺口记录](reviews/codex-supervision/2026-10-07-gap-accounting-followup/EXPECTED_VERSION_GAPS.current.json)。"
+    },
+    {
+      "before": "- 全部证据 SHA 绑定、原始记录只增不改；污染与失败证据具名保全。",
+      "after": "- 本轮具名交付物按实际字节 SHA 绑定；历史原始证据和已交付冻结清单保全。当前仍有 36 项历史字节缺口；污染、失败与哈希声明差异分别保存核对记录。"
+    },
+    {
+      "before": "- 以上均不构成全 43 点验收：10 个网络专项与 2 个本机夹具仍待证据，F5/F6 需独立隔离会话；生产门禁 CLOSED。",
+      "after": "- 当前尚有 11 个 GAP：9 个网络项 D1、D2、D7、D8、D9、D10、D11、D12、D13，以及需独立隔离会话的 F5/F6；另有 F2/F4 两个 PARTIAL。全 43 点验收仍未完成，生产门禁 CLOSED。"
+    }
+  ],
+  "registered_status_binding": {
+    "path": "reviews/codex-supervision/2026-10-06-ipv4-joint-policy/CURRENT_STATUS.json",
+    "captured_path": "reviews/codex-supervision/2026-10-07-gap-materials-review/sources/caa6c0e41d69f562bc5ad700abed90a36d24590f15330230981e1fe7bfe26d00-CURRENT_STATUS.json",
+    "raw_sha256": "caa6c0e41d69f562bc5ad700abed90a36d24590f15330230981e1fe7bfe26d00",
+    "bytes": 6934
+  },
+  "registered_counts": {
+    "GREEN": 30,
+    "GAP": 11,
+    "PARTIAL": 2
+  },
+  "network_GAP_ids": [
+    "D1",
+    "D10",
+    "D11",
+    "D12",
+    "D13",
+    "D2",
+    "D7",
+    "D8",
+    "D9"
+  ],
+  "other_GAP_ids": [
+    "F5",
+    "F6"
+  ],
+  "PARTIAL_ids": [
+    "F2",
+    "F4"
+  ],
+  "native_retest_performed": false,
+  "correction_scope": "holdout/history evidence qualification and registered remaining-point counts"
+}

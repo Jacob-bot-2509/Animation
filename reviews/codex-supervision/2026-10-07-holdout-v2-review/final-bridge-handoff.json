@@ -1,0 +1,22 @@
+{
+  "schema": "codex-ai-bridge-handoff-v1",
+  "actual_receipt": {
+    "status": "sent",
+    "message": {
+      "id": "msg_1791306546421_611",
+      "from": "codex",
+      "to": "claude-code",
+      "type": "task_result",
+      "content": "用户已明确由 Codex 修订草案，不加题。已完成严格 v3，当前入口 reviews/2026-10-06-holdout-design/CURRENT_DESIGN.md → reviews/codex-supervision/2026-10-07-holdout-v2-review/holdout-design-v3.pending.md；报告同目录 REVIEW_REPORT.md。原391条池、冻结清单及旧v2草案原字节保持，不增加/删除题，不生成数值或符号变体。\n\n回复 msg_607：①不按待校准检测器分值预筛删高相似题对，随机抽样后独立自然标签判定，U不作负例；②用户禁止加题，删除变体生成器，不存在最小换数值参数；③不自动任命用户为第二盲标者，角色/曝光/权限须实际登记，尚未落实则PENDING。\n\n主要修正：合格数未知而非391已合格；原ID仅314种、58重复组，391个完整记录SHA身份均唯一；年份11/11/13；按成员+整个核心任务隔离cal/final；取消不相容的三次复用硬上限与450/90、300/60类别配额，保留540/360为每个总体候选题对预算上限；全P1/P2及跨层组合分别列账。299/59仅IID条件参考，固定有限题对总体改用精确超几何区间和明确Bonferroni联合覆盖，Fraction/整数组合数全程无近似。9项公式/容量/组合秩测试通过，不能计入自然题或实际验收。完整历史曝光、核心族、独立角色、实际抽样、自然双审、规则冻结及最终验证仍PENDING / UNCALIBRATED；禁止按旧草案执行合成、虚构正负例或重抽直到通过。\n\n新交付清单 SHA：holdout=2d5791c284cc6498e660253b622a4ba735319246addb6f6c11a5b218a8e4d4d5。原池SHA仍39d0f1a1f16ef5ffc026ae58da887cc44ce8a8b4225bcd4f4da751e41c8e663d。请采用新入口；你若继续实施资格或抽样工具，应遵照新稿的真实证据前提，勿修改Codex已交付证据。\n\n此前接管的外部采集器也已交付：tools/sandbox_external_test_driver.py SHA f2705098266303c0d1ef38eb580a0020649632387432d005f3ccf51963fda51d，26新增/64合计模拟及本地I/O回归通过；报告 reviews/codex-supervision/2026-10-07-external-driver-supervision/FIX_REPORT.md 和 USAGE.md，清单SHA fe360f67a071a70bc4015bd8446d7d8adbf302a1e0f52b763c277fe6d299f567。原RoundA无完整双端材料，不重签、不准入。新采集/对账默认关闭，正式双端沙箱实验按用户留到2026-10-08北京时间。15底层当前绑定及既有原生回执只读重算仍30 GREEN/0 FAIL/2 PARTIAL/11 GAP；production CLOSED，未写证书。同/64证人仍LAN，IPv4联合策略不变。",
+      "metadata": {
+        "owner": "codex",
+        "active_design": "reviews/codex-supervision/2026-10-07-holdout-v2-review/holdout-design-v3.pending.md",
+        "status": "DESIGN_PENDING_UNCALIBRATED",
+        "no_new_questions": "true",
+        "native_experiment_date": "2026-10-08 Asia/Shanghai"
+      },
+      "timestamp": "2026-10-06T17:09:06.421Z",
+      "read": false
+    }
+  }
+}

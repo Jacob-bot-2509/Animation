@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8>
+<style>
+@page { size: A4; margin: 18mm 15mm; }
+body { font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+       color: #1a1f2b; line-height: 1.65; max-width: 190mm; margin: 0 auto; }
+h1 { font-size: 1.55em; border-bottom: 3px solid #2f6fed; padding-bottom: .35em; }
+h2 { font-size: 1.2em; color: #1d4ed8; margin-top: 1.6em;
+     border-left: 4px solid #2f6fed; padding-left: .5em; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0 1.2em;
+        page-break-inside: avoid; }
+th, td { border: 1px solid #c9d4e3; padding: .45em .6em; font-size: .9em;
+         text-align: left; vertical-align: top; }
+th { background: #eef3fc; }
+code { background: #f1f4f9; padding: .05em .3em; border-radius: 3px;
+       font-family: Consolas, monospace; font-size: .92em; }
+blockquote { color: #55627a; border-left: 3px solid #9fb3d1;
+             margin: .6em 0; padding: .2em .8em; }
+ul, ol { margin: .4em 0 .8em; padding-left: 1.4em; }
+</style></head><body>
+<h1>动画模型训练项目 修复报告</h1>
+<blockquote>报告期:2026-09-29 至 2026-09-30。项目:D:\Animation Model Training。</blockquote>
+<blockquote>协作模式:Claude Code 主导实现,Codex 同步审查并处理 CLI/文档细节。</blockquote>
+<blockquote>全文数字均为实测(测试命令与提交 hash 可复核),未完成项如实标注。</blockquote>
+<h2>一、审查—修复历程总览</h2>
+<table><tr><th>轮次</th><th>审查结论</th><th>问题数</th><th>修复提交</th><th>测试结果</th></tr>
+<tr><th>首轮</th><th>BLOCKED(R1–R8)</th><th>8</th><th>b286cd3</th><th>45 → 60 passed</th></tr>
+<tr><th>二轮</th><th>BLOCKED(6 项剩余)</th><th>6</th><th>ace3d33</th><th>60 → 72 passed</th></tr>
+<tr><th>三轮</th><th>BLOCKED(4 项剩余)</th><th>4</th><th>394bcd6</th><th>72 → 84 passed + 13 subtests</th></tr>
+<tr><th>A 组</th><th>按优先级修复</th><th>2 类</th><th>407426c</th><th>84 → 93 passed + 22 subtests</th></tr>
+</table><p>提交链:28d916b(基线)→ b286cd3 → d6daf61 → ace3d33 → 394bcd6 → 407426c。</p>
+<h2>二、首轮修复(R1–R8,审查 verdict BLOCKED)</h2>
+<table><tr><th>ID</th><th>缺陷</th><th>修复</th></tr>
+<tr><th>R1</th><th>split 输出可原地覆盖 pool;四工具无写保护;run_id 可路径穿越</th><th>统一默认拒绝覆盖(--force 放行);run_id 限定 [A-Za-z0-9_-]</th></tr>
+<tr><th>R2</th><th>split_manifest 不兼容 Manifest.load;scan 把 split 产物全标 raw</th><th>改标准 Manifest v1;顺带修 rstrip 字符集 bug(train→trai)</th></tr>
+<tr><th>R3</th><th>来源/SHA 空仍 ok;坏 JSON 通过;entry.path 可越界</th><th>越界拦截;缺 SHA/来源/许可证 → quarantine 不默认通过;坏 JSON 报行号</th></tr>
+<tr><th>R4</th><th>eval/test 只与 train 比</th><th>三集合两两比对(ID + 内容哈希双重)</th></tr>
+<tr><th>R5</th><th>mock GPU 可通过;空 JSON 模型目录通过</th><th>严格模式:权重文件必须存在且非空;诊断/严格分离</th></tr>
+<tr><th>R6</th><th>import os as operating 别名绕过;未验证项宣称通过</th><th>别名解析检出;math/render 如实标 unverified</th></tr>
+<tr><th>R7</th><th>answer=0 误判缺失;行号恒为 1</th><th>仅 None/空串算缺失;报真实源行号</th></tr>
+<tr><th>R8</th><th>缺 env/manifest 路径通过;先保存后校验</th><th>env 必填;hash 必须带路径;先校验后落盘</th></tr>
+</table><h2>三、第二轮修复(6 项剩余)</h2>
+<ul>
+<li>R3 路径二次读取:approved 清单贯通全阶段,被拒 entry 绝不再读</li>
+<li>R3 坏 JSON 覆盖 eval/test(不只 train)</li>
+<li>R5 data_manifest 必须真实(unrelated 检查不得冒充);0 字节权重拒绝</li>
+<li>R8 manifest_path 不存在即报错;先校验后落盘(不占 run_id);check 验证 run_id</li>
+<li>R2 split 加 --license,不硬写 internal-generated</li>
+<li>R1 --force 也不得覆盖 pool/plan(逐项 resolve 比对)</li>
+</ul>
+<h2>四、第三轮修复(4 项剩余)</h2>
+<ul>
+<li>坏 JSON 检查按扩展名区分:.jsonl 逐行、.json 整文件(pretty JSON 不误报)</li>
+<li>null/数组/标量行结构化标记 &lt;non-object&gt;,不再 AttributeError</li>
+<li>run_record check 的 manifest 路径语义:显式 --manifest 优先,否则记录内路径</li>
+<li>split 空集合策略:无样本的 split 不写空文件不登记</li>
+</ul>
+<h2>五、A 组修复(REVIEW_BACKLOG,影响数据与评测可信度)</h2>
+<table><tr><th>ID</th><th>问题</th><th>修复</th></tr>
+<tr><th>A1-1</th><th>空 manifest 函数直调可通过</th><th>entries=[] 即失败</th></tr>
+<tr><th>A1-2</th><th>source 仅空白可通过</th><th>strip 判断 → quarantine</th></tr>
+<tr><th>A1-3</th><th>size 登记值与实际不符可通过</th><th>数据文件 size 比对</th></tr>
+<tr><th>A1-4</th><th>null 行只内部标记不报告</th><th>_find_non_object_lines 形成问题报告</th></tr>
+<tr><th>A1-5</th><th>problem=[]/solution={} 通过</th><th>空容器算缺失(0/False 仍合法)</th></tr>
+<tr><th>A2</th><th>近重复 top20 截断漏检(实现 bug)</th><th>全候选 Jaccard;自身查询实测 0.042 → 1.0</th></tr>
+</table><h2>六、Codex 并行贡献(已合并,原样保留)</h2>
+<ul>
+<li>CLI 加固:make_manifest/check_fields/check_code/data_check(空输入失败、</li>
+</ul>
+<p>  互斥参数、输入文件防覆盖、白名单路径语义)</p>
+<ul>
+<li>fs_guard valid_run_id 的 match → fullmatch(换行绕过)</li>
+<li>tests/test_cli_contracts.py、tests/test_code_alias_review.py、测试加固</li>
+<li>README / data README / .gitignore / REVIEW_BACKLOG.md 文档</li>
+</ul>
+<h2>七、遗留项(如实,未完成不宣称)</h2>
+<table><tr><th>组</th><th>内容</th><th>排期</th></tr>
+<tr><th>B1</th><th>config 实际参数/数据代码版本/seed/env/dirty 快照</th><th>正式 baseline 前</th></tr>
+<tr><th>B2</th><th>严格 preflight 聚合(L1–L5)</th><th>训练计划前</th></tr>
+<tr><th>B3</th><th>冻结 eval/test 与指标定义、逐样本结果</th><th>正式对比评测前</th></tr>
+<tr><th>B4</th><th>真实 API/数学/渲染检查与执行隔离</th><th>执行生成代码前</th></tr>
+<tr><th>B5</th><th>近重复阈值分语言/长度校准(0.7 仍 UNCALIBRATED)</th><th>真实数据隔离验收前</th></tr>
+<tr><th>B6</th><th>冻结产物写保护/原子发布/失败恢复</th><th>写入正式产物前</th></tr>
+<tr><th>C</th><th>长期备忘录(阈值校准方法、split 输出锁等)</th><th>主线完成后</th></tr>
+</table><p>训练、模型下载、依赖安装均未执行,需用户另行批准。</p>
+</body></html>

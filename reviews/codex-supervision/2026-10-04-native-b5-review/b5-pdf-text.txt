@@ -1,0 +1,199 @@
+2026/10/4 20:38                                                                         MJDONE
+
+
+
+
+    B5 近重复阈值校准报告 v2(pairwise 评估)
+
+             标注对:48(重复 11 对 / 不重复 37 对),不确定 2 对不参与
+             评估口径:每对以其自身 pairwise Jaccard 对阈值判定(修复 v1 的 query-vs-pool 自污染)
+             校准结论:UNCALIBRATED —— 网格内无阈值同时满足 recall≥0.95 且 fpr≤0.01——对照集或方法需检查,
+             当前阈值仍 UNCALIBRATED
+
+
+        网格表(0.30~0.80,步长 0.05)
+
+      阈值                TP           FP           FN             TN            precision            recall             fpr
+
+      0.3               11           15           0              22            0.4231               1.0                0.4054
+
+      0.35              11           14           0              23            0.44                 1.0                0.3784
+
+      0.4               11           14           0              23            0.44                 1.0                0.3784
+
+      0.45              11           14           0              23            0.44                 1.0                0.3784
+
+      0.5               9            3            2              34            0.75                 0.8182             0.0811
+
+      0.55              3            2            8              35            0.6                  0.2727             0.0541
+
+      0.6               2            0            9              37            1.0                  0.1818             0.0
+
+      0.65              2            0            9              37            1.0                  0.1818             0.0
+
+      0.7               1            0            10             37            1.0                  0.0909             0.0
+
+      0.75              1            0            10             37            1.0                  0.0909             0.0
+
+      0.8               0            0            11             37            None                 0.0                0.0
+
+
+
+        交错区(0.40~0.65,升序,完整题文)
+
+                     标
+      Jaccard                题目A(id)                                                      题目B(id)
+                     注
+
+                     不
+                             求级数                         的和。 (eval-calc-
+      0.4615         重                                                                    判断级数            的敛散性。 (test-calc-034)
+                     复       022)
+
+                     不
+                             判断级数                     的敛散性。 (test-calc-
+      0.4615         重                                                                    证明                      。 (test-calc-042)
+                     复       034)
+
+                     不
+                             用多种方法求级数                                 的和。
+      0.4643         重                                                                    求级数                的和。 (eval-calc-022)
+                     复       (eval-calc-011)
+
+
+
+
+file:///D:/Animation-Model-Training/data/b5-calibration-report/pdf/b5-calibration-report.html                                         1/3
+2026/10/4 20:38                                                                         MJDONE
+
+
+
+                     标
+      Jaccard               题目A(id)                                                       题目B(id)
+                     注
+
+                     不
+                            用多种方法求级数                                 的和。
+      0.4643         重                                                                    判断级数                的敛散性。 (test-calc-034)
+                     复      (eval-calc-011)
+
+                     重
+      0.4737                求极限                            。 (eval-calc-001)              求极限               。 (eval-calc-002)
+                     复
+
+                     不
+                            求级数                          的和。 (eval-calc-
+      0.4792         重                                                                    证明级数                收敛。 (eval-calc-023)
+                     复      021)
+
+                     不
+                            求级数                          的和。 (eval-calc-
+      0.48           重                                                                    判断级数                的敛散性。 (test-calc-034)
+                     复      021)
+
+                     不
+                            用矩阵方法解微分方程组                                            的      解微分方程组                         的通解。 (test-
+      0.4808         重
+                     复      通解。 (test-linalg-023)                                         linalg-027)
+
+                     不
+                            用多种方法求级数                                 的和。
+      0.4815         重                                                                    求级数                    的和。 (eval-calc-021)
+                     复      (eval-calc-011)
+
+                     重
+      0.4889                求极限                            。 (eval-calc-001)              求极限                         。 (eval-calc-004)
+                     复
+
+                     不
+                            求级数                          的和。 (eval-calc-
+      0.4898         重                                                                    求级数                      的和。 (test-calc-013)
+                     复      022)
+
+                     不
+      0.4898         重      证明级数                     收敛。 (eval-calc-023)                  证明                          。 (test-calc-042)
+                     复
+
+                     不
+                            求级数                             的和。 (test-calc-
+      0.4898         重                                                                    证明                          。 (test-calc-042)
+                     复      013)
+
+                     重
+      0.5                   求不定积分                          。 (eval-calc-013)              求不定积分                         。 (eval-calc-018)
+                     复
+
+
+                     重      求级数                          的和。 (eval-calc-
+      0.5106                                                                              求级数                      的和。 (test-calc-013)
+                     复
+                            021)
+
+
+                     重      判断反常积分                                     的敛散                判断                     的敛散性，若收敛求其值。
+      0.5246
+                     复
+                            性，若收敛求其值。 (test-calc-012)                                     (test-calc-029)
+
+
+
+
+file:///D:/Animation-Model-Training/data/b5-calibration-report/pdf/b5-calibration-report.html                                               2/3
+2026/10/4 20:38                                                                         MJDONE
+
+
+
+                     标
+      Jaccard               题目A(id)                                                       题目B(id)
+                     注
+
+
+                     重      求矩阵                            的特征值与特征向                       求矩阵                    的特征值与特征向量，并
+      0.5254
+                     复
+                            量，并将其对角化。 (eval-linalg-015)                                   判断其是否可对角化。 (eval-linalg-017)
+
+                     重
+      0.5435                求极限                            。 (eval-calc-001)              求                        。 (test-calc-040)
+                     复
+
+                                                                                          求     阶三对角行列式
+                            求      阶三对角行列式
+
+
+
+                                                                                                                        的前 6 项，并发
+                     重                                             的值（矩阵元
+      0.5478
+                     复
+
+                                                                                          现其周期规律（矩阵元素满足
+                            素满足                  ，                             ，其
+                                                                                                                     ，其余为 0）。
+                            余为 0）。 (eval-linalg-003)
+                                                                                          (test-linalg-013)
+
+                     不
+                            用多种方法求级数                                 的和。
+      0.549          重                                                                    证明级数                收敛。 (eval-calc-023)
+                     复      (eval-calc-011)
+
+                     重
+      0.5532                证明级数                     收敛。 (eval-calc-023)                  判断级数                的敛散性。 (test-calc-034)
+                     复
+
+                     不
+                            求级数                             的和。 (test-calc-
+      0.5532         重                                                                    判断级数                的敛散性。 (test-calc-034)
+                     复      013)
+
+                     不
+                            用多种方法求级数                                 的和。
+      0.58           重                                                                    求级数                     的和。 (test-calc-013)
+                     复      (eval-calc-011)
+
+
+
+
+file:///D:/Animation-Model-Training/data/b5-calibration-report/pdf/b5-calibration-report.html                                           3/3
+

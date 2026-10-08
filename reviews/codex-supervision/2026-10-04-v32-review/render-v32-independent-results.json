@@ -1,0 +1,153 @@
+{
+  "mode": "in-memory synthetic media plus existing final reports, no actual render",
+  "snapshot_sha256": "e355c96068b68d8e66ef395c680d37c75ea29dcfc710c49fb1aea0a24a62ad02",
+  "cases": [
+    {
+      "name": "partial_mp4",
+      "actual": false,
+      "expected_valid_artifact": false,
+      "holds": true
+    },
+    {
+      "name": "fake_mp4",
+      "actual": false,
+      "expected_valid_artifact": false,
+      "holds": true
+    },
+    {
+      "name": "fake_png",
+      "actual": false,
+      "expected_valid_artifact": false,
+      "holds": true
+    },
+    {
+      "name": "truncated_magic_mp4",
+      "actual": true,
+      "expected_valid_artifact": false,
+      "holds": false
+    },
+    {
+      "name": "truncated_magic_png",
+      "actual": true,
+      "expected_valid_artifact": false,
+      "holds": false
+    },
+    {
+      "name": "foreign_mp4_path",
+      "actual": true,
+      "expected_valid_artifact": false,
+      "holds": false
+    }
+  ],
+  "actual_outputs": [
+    {
+      "run": "0f77391281",
+      "index": 0,
+      "template": "unit_circle",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 1,
+      "template": "matrix",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 2,
+      "template": "sequence",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 3,
+      "template": "derivative",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 4,
+      "template": "statistics",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 5,
+      "template": "geometry",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 6,
+      "template": "graph_limit",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 7,
+      "template": "fallback",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 8,
+      "template": "unit_circle",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "0f77391281",
+      "index": 9,
+      "template": "unit_circle",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 0,
+      "template": "unit_circle",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 1,
+      "template": "matrix",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 2,
+      "template": "sequence",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 3,
+      "template": "derivative",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 4,
+      "template": "statistics",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 5,
+      "template": "geometry",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 6,
+      "template": "graph_limit",
+      "artifact_header_predicate": true
+    },
+    {
+      "run": "9658702839",
+      "index": 7,
+      "template": "fallback",
+      "artifact_header_predicate": true
+    }
+  ],
+  "limit": "magic verifies header only, not complete decode or semantics"
+}

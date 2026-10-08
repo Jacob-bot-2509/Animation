@@ -1,0 +1,162 @@
+{
+  "rejected_path_read_again": {
+    "report_ok": false,
+    "outside_read": false,
+    "problems": [
+      "../outside.jsonl: 路径越出根目录(../ 逃逸),拒绝读取"
+    ]
+  },
+  "bad_eval_accepted": {
+    "ok": false,
+    "n_entries": 1,
+    "problems": [
+      "bad-eval.jsonl:1 JSON 解析失败: Expecting value: line 1 column 1 (char 0)"
+    ],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "missing_manifest_accepted": [
+    "manifest_path 指向不存在的文件: D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\absent.json(复审 R8:缺实文件即失败)"
+  ],
+  "unrelated_check_satisfies_strict": {
+    "ok": false,
+    "exit_code": 1,
+    "checks": [
+      {
+        "check": "gpu",
+        "ok": true,
+        "detail": "mock"
+      },
+      {
+        "check": "model_dir",
+        "ok": true,
+        "detail": "mock"
+      },
+      {
+        "check": "unrelated",
+        "ok": true,
+        "detail": "not a data gate"
+      },
+      {
+        "check": "data_manifest",
+        "ok": false,
+        "detail": "严格模式必须提供真实的数据门禁(extra_checks 中名为 data_manifest 且通过)"
+      }
+    ]
+  },
+  "zero_byte_weights_pass_strict": [
+    false,
+    "模型目录无**非空**权重文件(('.safetensors', '.bin', '.gguf', '.pt', '.pth'))——仅配置 JSON/0 字节文件不得宣称就绪"
+  ],
+  "split_assumed_license": {
+    "train.jsonl": "",
+    "eval.jsonl": "",
+    "test.jsonl": "",
+    "rejected.jsonl": ""
+  },
+  "split_empty_sets_gate": {
+    "ok": false,
+    "n_entries": 4,
+    "problems": [
+      "test.jsonl: 与 eval.jsonl 文件内容完全相同(文件 hash 重叠=0 要求)"
+    ],
+    "quarantines": [
+      "train.jsonl: 许可证未标注 → quarantine,禁入训练",
+      "eval.jsonl: 许可证未标注 → quarantine,禁入训练",
+      "test.jsonl: 许可证未标注 → quarantine,禁入训练",
+      "rejected.jsonl: 许可证未标注 → quarantine,禁入训练"
+    ],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "force_plan_blocked": true,
+  "force_overwrites_input_plan": false,
+  "json_scalar_report": {
+    "exception": "AttributeError",
+    "detail": "'NoneType' object has no attribute 'get'"
+  },
+  "valid_pretty_json": {
+    "ok": false,
+    "n_entries": 1,
+    "problems": [
+      "pretty.json:1 JSON 解析失败: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "pretty.json:2 JSON 解析失败: Extra data: line 1 column 7 (char 6)",
+      "pretty.json:3 JSON 解析失败: Expecting value: line 1 column 1 (char 0)"
+    ],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "default_missing_manifest_accepted": [],
+  "e2e_cli": [
+    {
+      "command": [
+        "D:\\Animation Model Training\\.venv\\Scripts\\python.exe",
+        "D:\\Animation Model Training\\tools\\split_data.py",
+        "--pool",
+        "D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\pool.jsonl",
+        "--plan",
+        "D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\plan.json",
+        "--out",
+        "D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\output",
+        "--license",
+        "internal-generated"
+      ],
+      "cwd": "D:\\Animation Model Training",
+      "exit_code": 0,
+      "stdout": "{\"counts\": {\"train\": 1, \"eval\": 1, \"test\": 1}, \"rejected\": 0, \"split_manifest\": \"标准 Manifest v1 格式\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\Animation Model Training\\.venv\\Scripts\\python.exe",
+        "D:\\Animation Model Training\\tools\\data_check.py",
+        "--manifest",
+        "D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\output\\split_manifest.json"
+      ],
+      "cwd": "D:\\Animation Model Training",
+      "exit_code": 0,
+      "stdout": "条目 4 | 问题 0 | quarantine 0\n结论: 通过(exit_code=0)\n",
+      "stderr": ""
+    }
+  ],
+  "invalid_record_not_saved": {
+    "exit_code": 1,
+    "exists": false
+  },
+  "source_snapshot": {
+    "src\\animtrain\\__init__.py": "2a893e162e7cb718366aa4e44f691823be95d5552a37689c9ebfc0236d5f5cc0",
+    "src\\animtrain\\code_gate.py": "58d80f2246218e35202786026f1cdcd2571bf961575e8034a1c3d25836d58a65",
+    "src\\animtrain\\fields.py": "8d92e1c63bdd45c1218252466907d944816287ab38a57634c864bf9c852ad546",
+    "src\\animtrain\\fs_guard.py": "8c558c59f0f08c17bfeb510e3777f25a08e950c88f4b6ba07d15f0a77d8830e0",
+    "src\\animtrain\\manifest.py": "0e5650136b55d3f0d610091e64bbdef64348fc2ff8399b4a39a40938ff2faf8c",
+    "src\\animtrain\\near_dup.py": "771e87f2463cefe92549620e1bc444a00060844c8bcdf9ebc91a7e80ad1b84dd",
+    "src\\animtrain\\preflight.py": "3087dcc08adc5063c584422a6ed21c34a44c45482c80ac68f6df67cf385262ae",
+    "src\\animtrain\\run_record.py": "64852eb35a13afd32f5bfe87c9469dcc8569f28b8d407e97bbea40b5e77da560",
+    "src\\animtrain\\scan.py": "040dc867f7370eb6d20832aedb1253b90779aa93857e50542cf8b47bfb051828",
+    "src\\animtrain\\validate.py": "094fafa4526e35545ec2dea7126ad3c323f6cfdfaaf5b787f808f110574948af",
+    "tools\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools\\check_code.py": "a79c7f2d767c13bd71e34fa29ff99034a7805b8bfed4ed45ab9100bf40a077e7",
+    "tools\\check_fields.py": "85c21260302b0207088a472de827cbcc01f77301f1cfedf8ce2996f4b2584320",
+    "tools\\data_check.py": "df929a3f1253094730ed9db8938b5b89119c26934c6394f6aee94d64fccf5244",
+    "tools\\make_manifest.py": "a219509e0f5fb78ecdb798dfd4b307ccb5d6e43bd677e3d76e6fcdcb7b03d8bf",
+    "tools\\preflight.py": "6c1689e401d0c73e9bfae795586a122dd88a29465daafd0b2111903f8178a06d",
+    "tools\\run_record.py": "b7e9f1de8d909b2b182f19db853a3d548d360064b5c3b7277c9a221d927b75da",
+    "tools\\split_data.py": "3ecd8d69db9eebc6dd91c69a7d03b0f071cd4ff2eaaef7b5e51a27323264edfe",
+    "tests\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests\\test_code_alias_review.py": "b6d5f9841021b6d548e40d9e61baffba18739f5d19f39c8441bb0c192daf9965",
+    "tests\\test_code_gate.py": "b46ce756e5c8ed8ef7d1b7e72c29b34abb45aa0c7c49eff0d1befb5f7d593739",
+    "tests\\test_fields.py": "ddfa3efda6fd49b29635a50216180eab81bc492b64eb0dff08f396a24ea756d3",
+    "tests\\test_near_dup.py": "1c71be5566b3835d7edd08abd23cb82763b8c4d2ddd310d9ea7eda61474e7481",
+    "tests\\test_preflight.py": "62fec51a4cb75a71593923a627ab46784067df4f960944380dca3f528def2a64",
+    "tests\\test_review_fixes.py": "7d4557b5ee86eb9d8b81fbeaae2de28745031e3113649ef5ac4ac7b7b3f10354",
+    "tests\\test_review_round2.py": "afefca807451a51101985d1fb694df8ad77992275dac4a3065bdb078585a3be5",
+    "tests\\test_run_record.py": "dfa3f55da1474c75223535c3f8fd2e3d8eaf96d6efada129c33938a5083eeb78",
+    "tests\\test_split.py": "0999739ff259809a92143b9d6bcbf79511d8f18bd26022d23222ee4bdd485e03",
+    "tests\\test_validate.py": "383714a0b8ee364ad0eb26fb48e1f5aacd527ad0a1dd3935fae04e8fcff23189"
+  }
+}

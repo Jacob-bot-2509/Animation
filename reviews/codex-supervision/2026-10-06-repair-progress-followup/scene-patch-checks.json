@@ -1,0 +1,167 @@
+{
+  "time": "2026-10-06T02:02:00.075113+08:00",
+  "source": "reviews/codex-supervision/2026-10-05-three-gates/execution-9c3294e5ed7e4db89693ebf230c9635f/scene.py",
+  "source_raw_sha256": "c9f112839d0b706b555a892f1eef96407474d092258b2e1b3c311e1f9708a618",
+  "patched_source": "shear-scene-v2.py",
+  "patched_raw_sha256": "e21c9ff372911a46a8538025f6e1f4f4f4cb36371fbef7740fe47fd71c65149e",
+  "stage": "SOURCE_PATCH_PENDING_ISOLATED_RERENDER_AND_VISUAL_REVIEW",
+  "syntax_valid": true,
+  "no_float_literals": true,
+  "equal_coordinate_unit_scale": "5/4",
+  "vertical_line": "X-3Y=1/2",
+  "endpoint_checks": [
+    [
+      "-2/5",
+      "-3/10"
+    ],
+    [
+      "41/10",
+      "6/5"
+    ]
+  ],
+  "changes": [
+    {
+      "old": "height=3.9",
+      "new": "height=41/10",
+      "replacements": 1
+    },
+    {
+      "old": "x_length=7.4, y_length=2.6",
+      "new": "x_length=15/2, y_length=27/8",
+      "replacements": 1
+    },
+    {
+      "old": "MathTex(r'(%d,%d)' % p, color=WHITE)",
+      "new": "MathTex(r'(%d,%d)' % p, color=BLACK)",
+      "replacements": 1
+    },
+    {
+      "old": "color=GREEN",
+      "new": "color=GREEN_E",
+      "replacements": 2
+    },
+    {
+      "old": "vlabel = MathTex(r'X-3Y=c', color=WHITE).scale(1/2).next_to(\n            axes.c2p(4.1, 1.2), UR)",
+      "new": "vlabel = MathTex(r'X-3Y=\\frac12', color=BLACK).scale(1/2).move_to(\n            axes.c2p(15/4, 9/5))",
+      "replacements": 1
+    },
+    {
+      "old": "color=YELLOW, radius=0.07",
+      "new": "color=PURPLE, radius=7/100",
+      "replacements": 2
+    },
+    {
+      "old": "e2_label = MathTex(r'\\sqrt{10}', color=WHITE).scale(1/2).next_to(\n            axes.c2p(3, 1), UR)",
+      "new": "e2_label = MathTex(r'\\|T(0,1)\\|=\\sqrt{10}', color=BLACK).scale(1/2).move_to(\n            axes.c2p(3/2, 9/5))\n        e2_vector = Arrow(axes.c2p(0,0), axes.c2p(0,1), buff=0, color=PURPLE)\n        e2_vector_img = Arrow(axes.c2p(0,0), axes.c2p(3,1), buff=0, color=PURPLE)",
+      "replacements": 1
+    },
+    {
+      "old": "self.play(Write(caption4), Write(pa_labels))",
+      "new": "self.play(ReplacementTransform(caption3, caption4), Write(pa_labels))",
+      "replacements": 1
+    },
+    {
+      "old": "self.play(Create(vline), Create(e2_dot))",
+      "new": "self.play(FadeOut(pa_labels))\n        self.play(Create(vline), Create(e2_dot), Create(e2_vector))",
+      "replacements": 1
+    },
+    {
+      "old": "Transform(e2_dot, e2_img), Write(e2_label), run_time=1.5)",
+      "new": "Transform(e2_dot, e2_img), Transform(e2_vector, e2_vector_img),\n                  Write(e2_label), run_time=1.5)",
+      "replacements": 1
+    }
+  ],
+  "fraction_parameter_rewrites": [
+    {
+      "literal": "8.8",
+      "fraction": "44/5"
+    },
+    {
+      "literal": "0.4",
+      "fraction": "2/5"
+    },
+    {
+      "literal": "0.5",
+      "fraction": "1/2"
+    },
+    {
+      "literal": "5.5",
+      "fraction": "11/2"
+    },
+    {
+      "literal": "0.5",
+      "fraction": "1/2"
+    },
+    {
+      "literal": "2.2",
+      "fraction": "11/5"
+    },
+    {
+      "literal": "0.05",
+      "fraction": "1/20"
+    },
+    {
+      "literal": "0.2",
+      "fraction": "1/5"
+    },
+    {
+      "literal": "0.06",
+      "fraction": "3/50"
+    },
+    {
+      "literal": "0.2",
+      "fraction": "1/5"
+    },
+    {
+      "literal": "0.06",
+      "fraction": "3/50"
+    },
+    {
+      "literal": "0.06",
+      "fraction": "3/50"
+    },
+    {
+      "literal": "0.06",
+      "fraction": "3/50"
+    },
+    {
+      "literal": "0.3",
+      "fraction": "3/10"
+    },
+    {
+      "literal": "1.2",
+      "fraction": "6/5"
+    },
+    {
+      "literal": "0.9",
+      "fraction": "9/10"
+    },
+    {
+      "literal": "0.3",
+      "fraction": "3/10"
+    },
+    {
+      "literal": "3.6",
+      "fraction": "18/5"
+    },
+    {
+      "literal": "1.2",
+      "fraction": "6/5"
+    },
+    {
+      "literal": "1.5",
+      "fraction": "3/2"
+    },
+    {
+      "literal": "1.5",
+      "fraction": "3/2"
+    },
+    {
+      "literal": "1.5",
+      "fraction": "3/2"
+    }
+  ],
+  "actual_render_verified": false,
+  "production_asset_admitted": false,
+  "historical_source_modified": false
+}

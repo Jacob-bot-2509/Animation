@@ -33,27 +33,15 @@
    "answer": "$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,两个初等矩阵之积。",
    "scene_spec": {
     "objects": [
-     "题目卡片:把矩阵 $A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$ 分解为初等矩阵的乘积。",
-     "原始矩阵卡片:$A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$,高亮第一行 $(2,2)$。",
-     "行变换标注箭头①:『第一行各元乘以 $\\frac12$』,逐元演示 $2\\times\\frac12=1$、$2\\times\\frac12=1$;第二行 $(0,1)$ 保持不变。",
-     "初等矩阵卡片:$E_1'=\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}$。",
-     "结果矩阵卡片:$E_1'A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,高亮新第一行 $(1,1)$。",
-     "行变换标注箭头②:『第一行减去第二行』,逐元演示 $1-0=1$、$1-1=0$,得新第一行 $(1,0)$;第二行 $(0,1)$ 保持不变。",
-     "初等矩阵卡片:$E_2'=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$。",
-     "单位阵结果卡片:$E_2'E_1'A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$。",
-     "结论卡片:故 $A=E_1'^{-1}E_2'^{-1}$(先作用的矩阵写在右边)。",
-     "逆矩阵卡片:$E_1'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(逆变换:第一行乘 $2$);$E_2'^{-1}=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$(逆变换:第一行加第二行)。",
-     "分解式卡片:$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。",
-     "验证标注箭头:第1行×第1列、第1行×第2列、第2行×第1列、第2行×第2列,逐项标注分量乘积与对应位置 $c_{11},c_{12},c_{21},c_{22}$。",
-     "对照卡片:乘积 $=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}=A$ ✓,与原矩阵逐元重合高亮。",
-     "答案卡片:$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,两个初等矩阵之积。"
+     "把矩阵 $A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$ 分解为初等矩阵的乘积。",
+     "$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,两个初等矩阵之积。"
     ],
     "steps": [
-     "第一步:目标:对 $A$ 作行变换化单位阵;第一次行变换:第一行乘以 $\\frac12$。高亮 $A$ 第一行 $(2,2)$;逐元演示:第1列 $2\\times\\frac12=1$,第2列 $2\\times\\frac12=1$,得新第一行 $(1,1)$;第二行 $(0,1)$ 不变;对应初等矩阵 $E_1'=\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}$,结果 $E_1'A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。",
-     "第二步:第二次行变换:第一行减去第二行。高亮当前矩阵 $\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 的第一、二行;逐元演示:第1列 $1-0=1$,第2列 $1-1=0$,得新第一行 $(1,0)$;第二行 $(0,1)$ 不变;对应初等矩阵 $E_2'=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$,结果 $E_2'E_1'A=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I$;故 $A=E_1'^{-1}E_2'^{-1}$(先作用的矩阵写在右边)。",
-     "第三步:求逆矩阵。$E_1'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(逆变换:第一行乘 $2$,把『乘 $\\frac12$』还原);$E_2'^{-1}=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$(逆变换:第一行加第二行,把『减第二行』还原)。",
-     "第四步:写出分解:$A=E_1'^{-1}E_2'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。",
-     "第五步:验证:逐项标明哪一行乘哪一列。第1行×第1列:$2\\cdot1+0\\cdot0=2$,得 $c_{11}=2$;第1行×第2列:$2\\cdot1+0\\cdot1=2$,得 $c_{12}=2$;第2行×第1列:$0\\cdot1+1\\cdot0=0$,得 $c_{21}=0$;第2行×第2列:$0\\cdot1+1\\cdot1=1$,得 $c_{22}=1$;乘积 $=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}=A$ ✓。"
+     "第一步:对 $A$ 作行变换化单位阵:第一步第一行乘以 $\\frac12$,对应初等矩阵 $E_1'=\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}$,$E_1'A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$;第二步第一行减去第二行,对应 $E_2'=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$,$E_2'E_1'A=I$。",
+     "第二步:故 $A=E_1'^{-1}E_2'^{-1}$。",
+     "第三步:求逆:$E_1'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(第一行乘 $2$),$E_2'^{-1}=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$(第一行加第二行)。",
+     "第四步:故 $A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。",
+     "第五步:验证:乘积 $=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}=A$ ✓。"
     ]
    }
   },

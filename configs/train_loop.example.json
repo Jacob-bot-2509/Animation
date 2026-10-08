@@ -1,7 +1,7 @@
 {
-  "_说明": "训练循环轮次配置(提案版);超参为 Claude Code 建议值(2026-10-05 按实测 token 长度与 200+ 行数据规模修订),待用户确认后定案;确认前 train_step 仍会执行(fail-closed 检查的是字段非空)",
+  "_说明": "提案配置；hyperparameter_approval须为CONFIRMED且sha256绑定同一参数对象，确认前拒绝训练；数据多样性、资产、校准和隔离门禁仍须通过。",
   "hyperparameters": {
-    "learning_rate": 0.0002,
+    "learning_rate": "1/5000",
     "batch_size": 2,
     "gradient_accumulation_steps": 4,
     "epochs": 6,
@@ -17,7 +17,14 @@
   "eval_script": "tools/eval_step.py",
   "render_executor": null,
   "judge_script": null,
-  "targets": {"render": 1.0, "executable": 0.95},
+  "targets": {
+    "render": "1",
+    "executable": "19/20"
+  },
   "max_rounds": 8,
-  "plateau_rounds": 3
+  "plateau_rounds": 3,
+  "hyperparameter_approval": {
+    "status": "PROPOSED",
+    "sha256": null
+  }
 }

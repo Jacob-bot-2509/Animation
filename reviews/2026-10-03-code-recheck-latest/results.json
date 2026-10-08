@@ -1,0 +1,49 @@
+{
+  "source_hashes": {
+    "src/animtrain/appcontainer.py": "180f9a84103b25af88ddbfdf1a44e20b146fbff703f152f3f9472287a22cb677",
+    "src/animtrain/metrics.py": "c4da9f9ca4ad0ba36796e1b8a04c15a2fe1e8d7a13754d80883ca3a3939ffcb1",
+    "tools/preflight.py": "9018e29b659dd17a210894ebf7e7314584b2178f4e1a98aed5c6e698d8c9b153",
+    "tools/eval_test_prep.py": "24eccc39bdbdebeeb0cef3bde1b26322c0e67d219cdb6e07e64897be13b2549b",
+    "tools/make_eval_test.py": "950a0c137b308696a9d49a522c1547835d2b6d8a5e50760b532b7d042e1c59f9",
+    "src/animtrain/render_gate.py": "7b6a6da10498991f4bd3e7a667195b657a92f610af7fd457988393b24677b026",
+    "src/animtrain/net_guard.py": "d200966d9db2287640c00fe441ed45f17f1008af84eaaf47fce93642f220953d"
+  },
+  "current_lock_only": [
+    true,
+    "冻结证据绑定当前 manifest, eval/test 全量覆盖"
+  ],
+  "healthy_other_version": [
+    true,
+    "冻结证据绑定当前 manifest, eval/test 全量覆盖"
+  ],
+  "damaged_other_version": [
+    false,
+    "D:\\Animation-Model-Training\\reviews\\2026-10-03-code-recheck-latest\\probe-fixtures\\9cc229491ba641f39c3985e39f6cb90e\\other-version\\eval.jsonl: 哈希变化(冻结后不可修改;登记 6d5c85eb444b…,实际 56efa43ad422…); D:\\Animati"
+  ],
+  "unrelated_manifest_status": "[OK] eval: 已生成 1 个 JSONL\n[OK] eval: 冻结锁 eval.lock.json 校验通过(结构/覆盖/manifest 绑定一致)\n[OK] test: 未生成任何样本(如实,非失败)\n[OK] test: 未冻结(已生成未冻结;正式 freeze 需用户批准)\n",
+  "generator_frozen_overwrite": {
+    "returncode": 0,
+    "changed": true,
+    "lock_problems": [
+      "D:\\Animation-Model-Training\\reviews\\2026-10-03-code-recheck-latest\\probe-fixtures\\9cc229491ba641f39c3985e39f6cb90e\\generator-target\\eval\\dataset_eval.json: 哈希变化(冻结后不可修改;登记 3ccf1cfa8f2d…,实际 37517e5f3dc6…)",
+      "D:\\Animation-Model-Training\\reviews\\2026-10-03-code-recheck-latest\\probe-fixtures\\9cc229491ba641f39c3985e39f6cb90e\\generator-target\\eval\\dataset_eval.json: size 变化(登记 22,实际 3)"
+    ]
+  },
+  "uppercase_v1_rejected": true,
+  "metrics_nonboolean_rejected": true,
+  "execution_isolation_gate": [
+    false,
+    "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+  ],
+  "derive_sid_raw_api": {
+    "HRESULT": 0,
+    "has_sid": true,
+    "sid_bytes": 40
+  },
+  "appcontainer_sid_probe": {
+    "returned_bytes": 28,
+    "matches_system_sid": false,
+    "declared_restype": "<class 'ctypes.c_long'>"
+  },
+  "source_unchanged_during_probes": true
+}

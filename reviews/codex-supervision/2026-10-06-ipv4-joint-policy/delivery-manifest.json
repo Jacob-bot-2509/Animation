@@ -1,0 +1,750 @@
+{
+  "schema": "codex-ipv4-joint-policy-delivery-v1",
+  "created_at": "2026-10-07T00:03:21.449914+08:00",
+  "user_authorized_date": "2026-10-06",
+  "policy_id": "user-ipv4-joint-v1",
+  "public_ipv4_node_required": false,
+  "counts": {
+    "GREEN": 30,
+    "FAIL": 0,
+    "PARTIAL": 2,
+    "GAP": 11
+  },
+  "joint_evidence_complete": false,
+  "production_gate": "CLOSED",
+  "unit_tests_passed": 82,
+  "new_policy_unit_tests": 26,
+  "main_native_jobs": 8,
+  "anonymous_supplement_jobs": 1,
+  "raw_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\surface-raw-6367b72967e04ed5b36dc234764e209a.json",
+  "raw_sha256": "e9185cd8b43fa090d4e885dc90dd7df7906a9e79d5c2e86cf486ba53f0f53464",
+  "implementation_bindings": {
+    "src/animtrain/sandbox_execution.py": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+    "src/animtrain/full_surface_evidence.py": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+    "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "historical_manifests_preserved": [
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/delivery-manifest.json",
+      "sha256": "34488fb25de779fce5354fb68bfc016046a30edaaabab91e90b01d5a22604854",
+      "matched_artifacts": 194,
+      "expected_live_changes": [
+        {
+          "path": "docs/项目总览/进度看板.md",
+          "historical_sha256": "52ef830b7809ede9527f76dae1e4848f19ce25c78a905be15d5db1a0c3460d49",
+          "current_sha256": "a0242a46dec69d6178f15474d7f81639eef242a0908915fdb5f38161a2f9cde7",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "reviews/2026-10-06-exec-isolation-full-surface/FULL_SURFACE_REPORT.md",
+          "historical_sha256": "fcbf3a946408b7a2b388cd600873af3e7e1155b93ea679184df3cf5e26334202",
+          "current_sha256": "7af0bf165b5446181fa31a93b5c2c15a452377a2d4cefdf6f03598b3c851e5aa",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "reviews/2026-10-06-exec-isolation-full-surface/SAFETY_POINT_ENUMERATION.md",
+          "historical_sha256": "ed135bd717cdf41ecf0ee5d276c2f010a1327e4f07dd4c4b6363a7e76529ab30",
+          "current_sha256": "89bdc4b067020ac945c1547f778a57eb93a736a002a99c424a5a1bf398536257",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-04-live-watch/README.md",
+          "historical_sha256": "dfb777b155b70bc608fa4262bd4834069f0bd6789c2ef3218bf749f86a690db0",
+          "current_sha256": "35dc4862d363f512d2fee64aa5d63fba2af2a2a9efad5243db390612a225f9c7",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-04-live-watch/watch_claude.py",
+          "historical_sha256": "16d8be4e5ae99cf2b8b20f374a7a93a90af9eca1a456ebb83b3e44f6878fc3c8",
+          "current_sha256": "4d638607c3bc6648d0e05a2f053ea424e10a8d2dcc115127cd9c2889f43bcfa1",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/full_surface_evidence.py",
+          "historical_sha256": "46614845a95d00d159e86d7d8c92b92359bc5ab223158005f13cac8f1796d162",
+          "current_sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/isolation_evidence.py",
+          "historical_sha256": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+          "current_sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/sandbox_execution.py",
+          "historical_sha256": "2ed47814cb8466b3b108a878e14dc6a82154351b34c2d9b58d0e1148cb553d69",
+          "current_sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-witness-mail-review/delivery-manifest.json",
+      "sha256": "a05796082e5aa12eacc5270b712d4eccd7023fff0b276cd9a2f09a48f0ed9c5f",
+      "matched_artifacts": 71,
+      "expected_live_changes": [
+        {
+          "path": "reviews/codex-supervision/2026-10-04-live-watch/README.md",
+          "historical_sha256": "8dd2c6b0f352240952303f6372883908a2ec8c2b4749d935201cda790520296b",
+          "current_sha256": "35dc4862d363f512d2fee64aa5d63fba2af2a2a9efad5243db390612a225f9c7",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-04-live-watch/watch_claude.py",
+          "historical_sha256": "f2328841a2fddeda6c28b9b44b1001455e006d3be55875987a136e6ef3ae075e",
+          "current_sha256": "4d638607c3bc6648d0e05a2f053ea424e10a8d2dcc115127cd9c2889f43bcfa1",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/full_surface_evidence.py",
+          "historical_sha256": "46614845a95d00d159e86d7d8c92b92359bc5ab223158005f13cac8f1796d162",
+          "current_sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/isolation_evidence.py",
+          "historical_sha256": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+          "current_sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        },
+        {
+          "path": "src/animtrain/sandbox_execution.py",
+          "historical_sha256": "2ed47814cb8466b3b108a878e14dc6a82154351b34c2d9b58d0e1148cb553d69",
+          "current_sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+          "reason": "Live source/document updated; historical bytes preserved in source snapshots, old manifest unmodified"
+        }
+      ]
+    }
+  ],
+  "historical_evidence_resigned": false,
+  "artifacts": [
+    {
+      "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-environment.json",
+      "bytes": 857,
+      "sha256": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real\\miktex\\config\\miktexstartup.ini",
+      "bytes": 234,
+      "sha256": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "bytes": 255320,
+      "sha256": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\docs\\项目总览\\进度看板.md",
+      "bytes": 10582,
+      "sha256": "a0242a46dec69d6178f15474d7f81639eef242a0908915fdb5f38161a2f9cde7",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\FULL_SURFACE_REPORT.md",
+      "bytes": 1763,
+      "sha256": "7af0bf165b5446181fa31a93b5c2c15a452377a2d4cefdf6f03598b3c851e5aa",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\SAFETY_POINT_ENUMERATION.md",
+      "bytes": 10982,
+      "sha256": "89bdc4b067020ac945c1547f778a57eb93a736a002a99c424a5a1bf398536257",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\2026-10-06-exec-isolation-full-surface\\surface_probe_contract.py",
+      "bytes": 9295,
+      "sha256": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-live-watch\\README.md",
+      "bytes": 7631,
+      "sha256": "35dc4862d363f512d2fee64aa5d63fba2af2a2a9efad5243db390612a225f9c7",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-live-watch\\watch_claude.py",
+      "bytes": 23633,
+      "sha256": "4d638607c3bc6648d0e05a2f053ea424e10a8d2dcc115127cd9c2889f43bcfa1",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-04fcff1df5ff47fb9837c17b43b1e084\\scene.py",
+      "bytes": 586,
+      "sha256": "c42e763dae9e173f62edd9b41a09a7c078aa884efac6baaac2e4e3e263bad94a",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-04fcff1df5ff47fb9837c17b43b1e084\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-04fcff1df5ff47fb9837c17b43b1e084\\stdout.txt",
+      "bytes": 105,
+      "sha256": "0171b2e87cb71957767aaf72a8ee1db796e553faec20f2a6b6863a3729f41ea7",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-1a6a3693e9db46a1b1bdc571c56aa06d\\scene.py",
+      "bytes": 1237,
+      "sha256": "ade8a10c8dc9c4a6c25620ee37ed2ed2c8266906368198db6e50f44c658a1e25",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-1a6a3693e9db46a1b1bdc571c56aa06d\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-1a6a3693e9db46a1b1bdc571c56aa06d\\stdout.txt",
+      "bytes": 222,
+      "sha256": "e7a96867bdc2b5cad3026d1d20f5e5345aa8756f64103076c737ac82b2809e12",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-2ac50f52c3f64dd2b2454a04e464d9d0\\scene.py",
+      "bytes": 992,
+      "sha256": "d05a75fb3bf5ccfc61bf8d1a0771c557b5f66b41381c96da3a0b3d1b4e335e04",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-2ac50f52c3f64dd2b2454a04e464d9d0\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-2ac50f52c3f64dd2b2454a04e464d9d0\\stdout.txt",
+      "bytes": 465,
+      "sha256": "4e3ad441217f11d24c258221a9c16ba2f68fb16fa0678cac78485d356a0dd6c9",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-4db8b7ff09a644e98acef8cdb5a8b25b\\scene.py",
+      "bytes": 2102,
+      "sha256": "4a985e05528a8f522d48c34b939fd4d123d4352098b32f4dc7c503d7cbf1b68e",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-4db8b7ff09a644e98acef8cdb5a8b25b\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-4db8b7ff09a644e98acef8cdb5a8b25b\\stdout.txt",
+      "bytes": 416,
+      "sha256": "ba7a4c3aac0a1710d5c336b39f7dacf8ec38a5d8ef40ea67d416c03123548b4c",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-57218d61cacb45dba5e2526775e1c44a\\scene.py",
+      "bytes": 299,
+      "sha256": "190a18e84607f359eda26eded4a0b0a095cb3ca06f078db62eba3833677b87ec",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-57218d61cacb45dba5e2526775e1c44a\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-57218d61cacb45dba5e2526775e1c44a\\stdout.txt",
+      "bytes": 74,
+      "sha256": "47d124a4fd65b7683c9befaa39e49c0e7bf0fc844873138dbb56427477151e54",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-65c06bdccf8245b788c617421c6156b0\\scene.py",
+      "bytes": 733,
+      "sha256": "b99790bd7761240f3be180189df84b2db8b48669ac4d2a83ddb76df2e0f4a8cf",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-65c06bdccf8245b788c617421c6156b0\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-65c06bdccf8245b788c617421c6156b0\\stdout.txt",
+      "bytes": 47,
+      "sha256": "dc13545142fbcbee0add58441b1576775fdd918c858a6dcf9f01548e12b443ab",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7aeb39fe807348bd9dbe0017d8b16a78\\scene.py",
+      "bytes": 717,
+      "sha256": "a10e83cfd25de07dc45eb5395779fc7f0eb1b749761be60c189d0d6e765cf03b",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7aeb39fe807348bd9dbe0017d8b16a78\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-7aeb39fe807348bd9dbe0017d8b16a78\\stdout.txt",
+      "bytes": 47,
+      "sha256": "6f9389189aa842b0daef234a515ca7960407522430a6127b4ba83ca1873dc311",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d1fca99731304c9ca28e148afa4a4331\\scene.py",
+      "bytes": 3191,
+      "sha256": "47fb7e31a3310e3e9c2e3bbf20999e7bb8d77852b9562b261601db9a4e5a364e",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d1fca99731304c9ca28e148afa4a4331\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d1fca99731304c9ca28e148afa4a4331\\stdout.txt",
+      "bytes": 310,
+      "sha256": "5069ae68191a4bf0ab45f2dba0fe1197a2ac77db8b15b5a4740d4cfbdceb7995",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d485897fe73d441ca2af2f800346aeaa\\scene.py",
+      "bytes": 901,
+      "sha256": "237cee926a8266fd037938820a2b3da8fa017d00b3136b7b182ed86ed2816e0d",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d485897fe73d441ca2af2f800346aeaa\\stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-d485897fe73d441ca2af2f800346aeaa\\stdout.txt",
+      "bytes": 111,
+      "sha256": "6b83198efd78f227b0fc5531adf3d9161b518dc99a07c680bf8a357d40a63e7f",
+      "role": "actual_native_source_or_stream"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\anonymous-pipe-74cf1a9510ab4a13ad3c58c4320c1082.json",
+      "bytes": 7697,
+      "sha256": "1af9d8c642e2ad24cf75ddfa8cc60380327669921d9d2dd0604d516660162158",
+      "role": "current_anonymous_raw"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\anonymous_pipe_supplement.py",
+      "bytes": 3321,
+      "sha256": "450328ea78898e3bf903f46ebdcfe35c28a8425aacda735cf5ef0873c93e09b3",
+      "role": "actual_anonymous_generator"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-B2.json",
+      "bytes": 233354,
+      "sha256": "fbd828af6fe30b5eb963a9687f1629093f03bdd67d6e6704455a2145db9cd130",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-B3.json",
+      "bytes": 241262,
+      "sha256": "83443cb247683769513f6430ef7b65322afabcc286d53beb2fe7a5f93f71a6e9",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-fault-native.json",
+      "bytes": 164482,
+      "sha256": "ccb33cd3006c1a4fac70c879de9e60c82b861cca68e8e98cc05fb2a1c1f60a83",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-files.json",
+      "bytes": 225460,
+      "sha256": "2d788e2932227ee4deaa1897fb253bf4032bc959a1c435e91c1f32391e6c3f30",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-foundations.json",
+      "bytes": 154658,
+      "sha256": "f2f8df0e23b7eba7d8e73d1b8986b9364d12179a3b676889ab2a7c143cdc1f36",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-ipc-registry.json",
+      "bytes": 336983,
+      "sha256": "e22d49e74834233cfdd55eae0d3442c1e39331a784ad747cc1df9dc27a775a5d",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-loopback.json",
+      "bytes": 283155,
+      "sha256": "f59c8f63343ed8b66cc7f2a1a2734f23fc84bd9004306ed3e872660a067ddba5",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\checkpoint-6367b72967e04ed5b36dc234764e209a-memory.json",
+      "bytes": 248275,
+      "sha256": "c0e563909e5de7bc062866d42dbdf4c3709b6825c7069f926b765af09c97ff79",
+      "role": "current_stage_checkpoint"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\host-assignment_failure-176101fc4f8b4471a6c90983ce5fe290.stdout.txt",
+      "bytes": 128,
+      "sha256": "88203a6b80e37e793558f322d7bdd3e39fe95631c69769f68a5dbb9462a71898",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\host-lock-8f9b4346bbe14f17a00775b0e0b62ead.stdout.json",
+      "bytes": 1747,
+      "sha256": "a20464ab496e4ec5289d7bc311d39a248d701ee95404300f49c5dd51f2decd25",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\host-reparse-327a3b2a4abd4640bb07438dbda89a03.stdout.txt",
+      "bytes": 195,
+      "sha256": "a81ed959a436fb49a4d880e6f051c6a44385cfe43de57c297bbdbccff75f1f36",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\host-sid_collision-1ed5a62f780d4b83a8233a5a6b171172.stdout.txt",
+      "bytes": 102,
+      "sha256": "fc22e14359e085d85f5f686774f701849bbaf6a8f1dd8c1a065b7b422daebd05",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\host_cases.py",
+      "bytes": 6482,
+      "sha256": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\surface-raw-6367b72967e04ed5b36dc234764e209a.json",
+      "bytes": 342770,
+      "sha256": "e9185cd8b43fa090d4e885dc90dd7df7906a9e79d5c2e86cf486ba53f0f53464",
+      "role": "current_native_raw"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\CURRENT_STATUS.json",
+      "bytes": 6934,
+      "sha256": "caa6c0e41d69f562bc5ad700abed90a36d24590f15330230981e1fe7bfe26d00",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\FIX_REPORT.md",
+      "bytes": 3004,
+      "sha256": "0017506adfa2f2d8b4b82381fa6ffeba53c4d483c20dceead7ac341ac804fd04",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\POLICY.md",
+      "bytes": 5147,
+      "sha256": "bf20b1df96eba3e963eda446675c3342440a802599c94c3f23c112f798455fd2",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\anonymous-receipt.json",
+      "bytes": 770,
+      "sha256": "30fe50655af62be3adf4612f3513b50eabc3bf3ef6a39ef48570cd20ae1ccdf8",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before-manifest.json",
+      "bytes": 2396,
+      "sha256": "2da6abd29e7c4c4ae3925c59fe148630f93007dcacd743adda1712d1a42be02c",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\docs\\项目总览\\进度看板.md",
+      "bytes": 9460,
+      "sha256": "52ef830b7809ede9527f76dae1e4848f19ce25c78a905be15d5db1a0c3460d49",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\reviews\\2026-10-06-exec-isolation-full-surface\\FULL_SURFACE_REPORT.md",
+      "bytes": 1212,
+      "sha256": "fcbf3a946408b7a2b388cd600873af3e7e1155b93ea679184df3cf5e26334202",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\reviews\\2026-10-06-exec-isolation-full-surface\\SAFETY_POINT_ENUMERATION.md",
+      "bytes": 10074,
+      "sha256": "ed135bd717cdf41ecf0ee5d276c2f010a1327e4f07dd4c4b6363a7e76529ab30",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\src\\animtrain\\full_surface_evidence.py",
+      "bytes": 15340,
+      "sha256": "46614845a95d00d159e86d7d8c92b92359bc5ab223158005f13cac8f1796d162",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\src\\animtrain\\isolation_evidence.py",
+      "bytes": 5811,
+      "sha256": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\src\\animtrain\\sandbox_execution.py",
+      "bytes": 10544,
+      "sha256": "2ed47814cb8466b3b108a878e14dc6a82154351b34c2d9b58d0e1148cb553d69",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\before\\tools\\production_isolation_acceptance.py",
+      "bytes": 9283,
+      "sha256": "288b53062537dd16e3650096434357f2ffb27210a258b7f0913a4bab78e057af",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\final-inbox.json",
+      "bytes": 154,
+      "sha256": "a8d685352b5a3ff14e0bd8314f1255f808515c6b021116227236130208eb86b5",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\handoff-receipt.json",
+      "bytes": 4605,
+      "sha256": "98400fba92956df9146967a15f10977adcb10774c716f6cf34c6c3f32f3ddbbf",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\historical-preservation-check.json",
+      "bytes": 5779,
+      "sha256": "c294736d9477bbfc6882807498f8cbb870bcbd779697b5f3621f5aa13b0da93e",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\joint-envelope.template.json",
+      "bytes": 843,
+      "sha256": "80663ef9641354f3c27882eda1241d561b38b1499b0b330267eddb4ac41cd9d9",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\native-driver-receipt.json",
+      "bytes": 417,
+      "sha256": "1e9857d6f55827481e4048d6d56bba1fa156ab63969f05fb7a04ee0a5f18d023",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\native.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\native.stdout.txt",
+      "bytes": 483,
+      "sha256": "03c38983248c2e7c960a76d04f5e5b87da2de62029bc7d6c9dcb4475ab3b20bb",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\native_refresh.py",
+      "bytes": 1067,
+      "sha256": "18dc25cfdbd7b38d78d983ec950425ae5d3269d9bb4306997ac6e145a4e5577d",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\owned-fixture-private.txt",
+      "bytes": 32,
+      "sha256": "e0eee0fbc6ee558161b7012618ccab615d19a5ea022a5820e27de88bb79352fd",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\owned-fixture-victim.txt",
+      "bytes": 32,
+      "sha256": "e0eee0fbc6ee558161b7012618ccab615d19a5ea022a5820e27de88bb79352fd",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\owned-temp-cleanup.json",
+      "bytes": 1077,
+      "sha256": "eb743c6782df882ce9d0919c630e2a4d5242070e330e2537d52246ed328bac19",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\start-notice-summary.json",
+      "bytes": 1522,
+      "sha256": "9bb4efb56309fe7fd2c7efa1e91ee42660b7cda8338ef1e31933f849e5d5d6ed",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\unit-receipt.json",
+      "bytes": 513,
+      "sha256": "b4e94b1f7777f8073ededde4efa9375c7c7ba90609463b23327c10eb30c3549b",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\unit.stderr.txt",
+      "bytes": 12377,
+      "sha256": "015665e40d261ab08259cadf4d8981cb8c4e30a500b4af0105a421711de9b45d",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\unit.stdout.txt",
+      "bytes": 12261,
+      "sha256": "dff6937ce52b61725c6466e6402e891d88c1423f7bdb424d1a5ea8e56069a67c",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\user-authorization.json",
+      "bytes": 273,
+      "sha256": "b3a1e070f742797ce4e9515983c9f728b595fc5d223496b070ea79a06184661a",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\verified-source\\src\\animtrain\\full_surface_evidence.py",
+      "bytes": 20271,
+      "sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\verified-source\\src\\animtrain\\isolation_evidence.py",
+      "bytes": 7439,
+      "sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\verified-source\\src\\animtrain\\sandbox_execution.py",
+      "bytes": 10984,
+      "sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\verified-source\\tests\\test_ipv4_joint_policy.py",
+      "bytes": 11509,
+      "sha256": "559530c886c0ddfdd049d754c1816ea1ca21974b2ed55af91f4c254b968fca6a",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\verified-source\\tools\\production_isolation_acceptance.py",
+      "bytes": 10245,
+      "sha256": "227fbcf21929b47356cfddf659f4822b8c8556c2accf836088690020d978883b",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\watch-README.md.before",
+      "bytes": 7037,
+      "sha256": "8dd2c6b0f352240952303f6372883908a2ec8c2b4749d935201cda790520296b",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\watch-watch_claude.py.before",
+      "bytes": 23375,
+      "sha256": "f2328841a2fddeda6c28b9b44b1001455e006d3be55875987a136e6ef3ae075e",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-ipv4-joint-policy\\watcher-restart.json",
+      "bytes": 669,
+      "sha256": "1e4963d2e1a748d322ff41609f59590863561578b3e1578a5bf8c06796993f87",
+      "role": "delivery_artifact"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-witness-mail-review\\release\\witness_receiver_v2.exe",
+      "bytes": 8658714,
+      "sha256": "d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad",
+      "role": "unchanged_deployable_witness"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\appcontainer.py",
+      "bytes": 19530,
+      "sha256": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\full_surface_evidence.py",
+      "bytes": 20271,
+      "sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\isolation_evidence.py",
+      "bytes": 7439,
+      "sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\net_guard.py",
+      "bytes": 2725,
+      "sha256": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\network_isolation.py",
+      "bytes": 21794,
+      "sha256": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\private_profile.py",
+      "bytes": 6238,
+      "sha256": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\render_gate.py",
+      "bytes": 9579,
+      "sha256": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\sandbox_execution.py",
+      "bytes": 10984,
+      "sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\win_job.py",
+      "bytes": 12034,
+      "sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_ipv4_joint_policy.py",
+      "bytes": 11509,
+      "sha256": "559530c886c0ddfdd049d754c1816ea1ca21974b2ed55af91f4c254b968fca6a",
+      "role": "policy_regression_source"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tools\\production_isolation_acceptance.py",
+      "bytes": 10245,
+      "sha256": "227fbcf21929b47356cfddf659f4822b8c8556c2accf836088690020d978883b",
+      "role": "current_modified_source_or_document"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tools\\sandbox_surface_acceptance.py",
+      "bytes": 28818,
+      "sha256": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+      "role": "native_evidence_dependency"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tools\\sandbox_witness_receiver.py",
+      "bytes": 13428,
+      "sha256": "571f4ce31465a84147395abd9778845194ac591371234737ccf2abeebc6be75e",
+      "role": "unchanged_witness_source"
+    }
+  ],
+  "manifest_excludes_self": true,
+  "volatile_observer_logs_bound": false,
+  "final_consistency_written_after_manifest": true
+}

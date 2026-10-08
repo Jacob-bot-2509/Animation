@@ -1,0 +1,70 @@
+{
+  "native_evidence": "D:\\code\\output\\claude-supervision\\network-core-hardening-2026-10-04\\native\\loopback-73a3d431a3ed4829ab91e819c51d7027.json",
+  "native_sha256": "d2e3e0e1bd0b4dc97cb2b94677acf03892d30ca1f923e04639e0ef80cdab1a58",
+  "schema": 2,
+  "state": "COMPLETE",
+  "contract": "local-loopback-os-policy-v1",
+  "overall": "PASS_LOCAL_LOOPBACK",
+  "cases": [
+    {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "port": 59868,
+      "control_packets": 2,
+      "sandbox_packets": 0,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "sandbox_outcome": "net_timeout"
+    },
+    {
+      "transport": "udp",
+      "host": "127.0.0.1",
+      "port": 63699,
+      "control_packets": 2,
+      "sandbox_packets": 0,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "sandbox_outcome": "sent_ok"
+    },
+    {
+      "transport": "tcp",
+      "host": "::1",
+      "port": 55543,
+      "control_packets": 2,
+      "sandbox_packets": 0,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "sandbox_outcome": "net_timeout"
+    },
+    {
+      "transport": "udp",
+      "host": "::1",
+      "port": 52843,
+      "control_packets": 2,
+      "sandbox_packets": 0,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "sandbox_outcome": "sent_ok"
+    }
+  ],
+  "runtime_unchanged": true,
+  "file_hashes": {
+    "src/animtrain/network_isolation.py": "2a9a9c7283ca0b71f64fe8c35fb04e6867275040453abd773be1a6d9daf43534",
+    "tools/network_acceptance.py": "e3092da1fd44381e59aacf96ba4352381bdebb8dec15c9bbd9c9d777a10e0ace",
+    "tests/test_network_isolation.py": "702b728cbff06a8c7cc838a3537d3e954936c07e78acbf1b4db0e645ffa8b624",
+    "tests/test_network_acceptance.py": "55cfb01c28e767bca147e71d46880164385268f259cac8642d9f848c426edfee"
+  },
+  "full_tests": {
+    "tests": 392,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "network_tests": {
+    "tests": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "production_gate": "CLOSED",
+  "external_network": "UNVERIFIED",
+  "protected_files": 7,
+  "previous_native_sha256": "d2f681f0b03ff7069386ad55323fdd68d262eaaccb281470e6a21f21cd4e7680",
+  "head": "78624e12d968e8cf4a0551f3747da3197708069f"
+}

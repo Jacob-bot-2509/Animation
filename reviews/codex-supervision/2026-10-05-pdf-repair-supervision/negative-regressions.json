@@ -1,0 +1,65 @@
+{
+  "frozen_sources_from_checkpoint": true,
+  "original_project_source_not_modified": true,
+  "browser_calls_simulated": true,
+  "old_pdf_not_modified": true,
+  "cases": [
+    {
+      "case": "script-marker-not-real-title",
+      "actual_tool_returncode": 0,
+      "print_called": true,
+      "false_success": true,
+      "real_edge_launched": false,
+      "pdf_fixture_is_unmodified_copy": true,
+      "stdout": "HTML → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\script-marker-not-real-title\\review.html\nPDF → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\script-marker-not-real-title\\review.pdf (18672387 bytes)\n"
+    },
+    {
+      "case": "old-valid-pdf-after-failed-print",
+      "actual_tool_returncode": 0,
+      "print_called": true,
+      "false_success": true,
+      "real_edge_launched": false,
+      "pdf_fixture_is_unmodified_copy": true,
+      "stdout": "HTML → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\old-valid-pdf-after-failed-print\\review.html\nPDF → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\old-valid-pdf-after-failed-print\\review.pdf (18672387 bytes)\n"
+    },
+    {
+      "case": "svg-red-undefined-command",
+      "actual_tool_returncode": 0,
+      "print_called": true,
+      "false_success": true,
+      "real_edge_launched": false,
+      "pdf_fixture_is_unmodified_copy": true,
+      "stdout": "HTML → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\svg-red-undefined-command\\review.html\nPDF → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\svg-red-undefined-command\\review.pdf (18672387 bytes)\n"
+    },
+    {
+      "case": "unrendered-display-formula",
+      "actual_tool_returncode": 0,
+      "print_called": true,
+      "false_success": true,
+      "real_edge_launched": false,
+      "pdf_fixture_is_unmodified_copy": true,
+      "stdout": "HTML → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\unrendered-display-formula\\review.html\nPDF → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\unrendered-display-formula\\review.pdf (18672387 bytes)\n"
+    },
+    {
+      "case": "check-skip-pdf-warn-only",
+      "actual_tool_returncode": 0,
+      "false_success": true,
+      "stdout": "HTML → D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\skip-pdf-check\\check.html\n[check-diag] rc=0 dom_len=1820 raw_spans=1 MJDONE=True errors=0\n[check] 已排版 0 条,未排版 1 条,错误节点 0 个\n[WARN] 存在未排版公式或 MathJax 错误,请检查!\n"
+    },
+    {
+      "case": "report-hash-tamper-and-wrong-counts",
+      "actual_tool_returncode": 0,
+      "false_success": true,
+      "declares_18_batches_264_questions_for_one_tampered_report": true,
+      "stdout": "合并 1 批(选中版本)-> D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-pdf-repair-supervision\\negative-fixtures\\builder-tamper\\merged.md\n"
+    },
+    {
+      "case": "forged-expected-original-record-sha",
+      "actual_tool_returncode": 0,
+      "false_success": true,
+      "new_version_created": true,
+      "warning_only_instead_of_refusal": true,
+      "stdout": "[WARN] batch-02/draft-c33-02 记录 SHA 口径未匹配 (mine=f8f186384a8d/5dcc0b644818 vs 000000000000);补丁字段已逐字应用,记录哈希留 Codex 侧复核\nbatch-02: v5=931feb487ab1 patched=['draft-c33-02']\n选择器已更新 -> v5(4 批)\n"
+    }
+  ]
+}

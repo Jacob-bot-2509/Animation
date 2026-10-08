@@ -1,0 +1,81 @@
+test_actual_sample_counts_and_exact_output (test_b5_pairwise.TestPairwiseCalibration.test_actual_sample_counts_and_exact_output) ... FAIL
+test_empty_predictions_display_undefined (test_b5_pairwise.TestPairwiseCalibration.test_empty_predictions_display_undefined) ... ERROR
+test_inseparable_sample_has_no_fake_measurement (test_b5_pairwise.TestPairwiseCalibration.test_inseparable_sample_has_no_fake_measurement) ... ERROR
+test_recomputes_score_and_uses_exact_boundary (test_b5_pairwise.TestPairwiseCalibration.test_recomputes_score_and_uses_exact_boundary) ... ERROR
+test_separable_sample_and_full_grid (test_b5_pairwise.TestPairwiseCalibration.test_separable_sample_and_full_grid) ... ERROR
+test_unknown_labels_rejected (test_b5_pairwise.TestPairwiseCalibration.test_unknown_labels_rejected) ... ok
+
+======================================================================
+ERROR: test_empty_predictions_display_undefined (test_b5_pairwise.TestPairwiseCalibration.test_empty_predictions_display_undefined)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_pairwise.py", line 47, in test_empty_predictions_display_undefined
+    report = b5.build_report({"pairs": [
+             ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        pair("abcdef", "uvwxyz"), pair("abcdef", "uvwxyz", "不重复")]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\b5_calibrate.py", line 135, in build_report
+    raise ValueError(f"标注对引用的问题无结构化记录: {missing}")
+ValueError: 标注对引用的问题无结构化记录: ['a', 'b']
+
+======================================================================
+ERROR: test_inseparable_sample_has_no_fake_measurement (test_b5_pairwise.TestPairwiseCalibration.test_inseparable_sample_has_no_fake_measurement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_pairwise.py", line 39, in test_inseparable_sample_has_no_fake_measurement
+    report = b5.build_report({"pairs": [pair("abcdef", "abcdef"),
+             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pair("abcdef", "abcdef", "不重复")]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\b5_calibrate.py", line 135, in build_report
+    raise ValueError(f"标注对引用的问题无结构化记录: {missing}")
+ValueError: 标注对引用的问题无结构化记录: ['a', 'b']
+
+======================================================================
+ERROR: test_recomputes_score_and_uses_exact_boundary (test_b5_pairwise.TestPairwiseCalibration.test_recomputes_score_and_uses_exact_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_pairwise.py", line 22, in test_recomputes_score_and_uses_exact_boundary
+    self.assertEqual(b5.evaluate_pairs(rows, Fraction(1, 3))["tp"], 1)
+                     ^^^^^^^^^^^^^^^^^
+AttributeError: module 'b5_pairs' has no attribute 'evaluate_pairs'
+
+======================================================================
+ERROR: test_separable_sample_and_full_grid (test_b5_pairwise.TestPairwiseCalibration.test_separable_sample_and_full_grid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_pairwise.py", line 27, in test_separable_sample_and_full_grid
+    report = b5.build_report({"pairs": [
+             ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+        pair("abcdef", "abcdef"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        pair("abcdef", "uvwxyz", "不重复"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pair("abcdef", "abcdef", "不确定")]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\b5_calibrate.py", line 135, in build_report
+    raise ValueError(f"标注对引用的问题无结构化记录: {missing}")
+ValueError: 标注对引用的问题无结构化记录: ['a', 'b']
+
+======================================================================
+FAIL: test_actual_sample_counts_and_exact_output (test_b5_pairwise.TestPairwiseCalibration.test_actual_sample_counts_and_exact_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_pairwise.py", line 62, in test_actual_sample_counts_and_exact_output
+    self.assertEqual((report["pos_pairs"], report["neg_pairs"],
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      report["uncertain_pairs"]), (11, 37, 2))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (17, 31, 2) != (11, 37, 2)
+
+First differing element 0:
+17
+11
+
+- (17, 31, 2)
++ (11, 37, 2)
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.031s
+
+FAILED (failures=1, errors=4)

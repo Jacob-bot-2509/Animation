@@ -1,0 +1,1253 @@
+{
+  "schema": "scene-sweep-chunk-v2",
+  "standard": "Show every exact calculation; identify matrix row and column for each product; state convergence hypotheses, key bounds and limit arguments; use exact fractions and symbols.",
+  "records": [
+    {
+      "idx": 56,
+      "record": {
+        "id": "draft-c30-02",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式平移展开",
+        "concept_id": "C30",
+        "parent_training_ids": [
+          "linalg-052"
+        ],
+        "problem": "对$f(x)=x^4-4x^3+7x^2-6x+3$，求所有使$f(h+t)=f(h-t)$对每个实数$t$成立的实数$h$，并给关于该中心的展开。",
+        "solution": "$f(h+t)$的三次项系数为$4h-4$。若关于$t$为偶函数，该系数必为零，故$h=1$是唯一可能值。直接展开$f(1+t)=t^4+t^2+1$，所有奇次项为零，确满足$f(1+t)=f(1-t)$。因此唯一中心为$1$，平移展开$f(x)=(x-1)^4+(x-1)^2+1$。必要条件与代入验证共同给全体解，不能只检查局部导数为零而漏掉其他奇次项。",
+        "answer": "唯一中心$h=1$；$f(x)=(x-1)^4+(x-1)^2+1$。",
+        "method": "由平移奇偶性反求中心",
+        "difficulty": "基础",
+        "variant_kind": "未知中心+全部奇次系数约束",
+        "scene_spec": {
+          "objects": [
+            "函数恒等式$f(h+t)=f(h-t)$",
+            "三次系数$4h-4$",
+            "$f(1+t)=t^4+t^2+1$"
+          ],
+          "steps": [
+            "第一步:将反射对称条件解释为平移后的偶性。",
+            "第二步:用三次项系数给唯一候选中心。",
+            "第三步:完整展开验证所有奇次项消失。",
+            "第四步:给精确恒等式及穷尽性。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-04",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "92a2a0073a076ad484b92063feceee8d356d217353c1d681e953b411af1f6ed1",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "original_id": "draft-c30-02",
+          "prior_parent_training_ids": [
+            "linalg-052"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "d30d8b592e1f903b913e1d9a92e2b81f3eb9daf7142626cf6b643d3f1f27f410",
+          "previous_hold_reasons": [
+            "FINITE_TAYLOR_DEGREE_CENTER_VARIANT"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+            "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+            "versioned_id": "codex-repair-20261005-batch-04-draft-c30-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "a84668c7d7f6cfd781aafc37562a47cdcccd8df7976b5350b57a2545d9c70254",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-04",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+        "source_line": 12,
+        "source_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+        "source_normalized_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "ed6c8706a2fd0b1971c740fa3bb760059e42f13f29080ca528c01c7a5ab3d291",
+        "record_canonical_sha256": "1dfba8861a8b408a0a9f886d6681982d1074a9bc6b6d40ae407b8d0f21c236b8",
+        "publisher_record_sorted_sha256": "f592beaeefa917a75501a5ca0f66c01c8aac3104ec8ed34728ee0c240723f978"
+      }
+    },
+    {
+      "idx": 57,
+      "record": {
+        "id": "draft-c30-03",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式平移展开",
+        "concept_id": "C30",
+        "parent_training_ids": [
+          "linalg-052"
+        ],
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "solution": "若$f$非恒定且次数为$m$，首项系数为$c\\ne0$，二项式展开给$\\Delta f$的次数恰为$m-1$，首项系数为$mc$。因此在该四维空间上$\\Delta^4=0$；且$\\Delta^3(x^3)=6\\ne0$，指数恰为$4$。设$f=ax^3+bx^2+cx+d$，则$\\Delta f=3ax^2+(3a+2b)x+(a+b+c)$。与目标比较得$a=1,b=1,c=0$，而$f(0)=2$给$d=2$。故$f=x^3+x^2+2$。若两个解存在，其差被$\\Delta$消去；降阶结论说明差为常数，归一化又给常数为零，故唯一。",
+        "answer": "$\\Delta^4=0,\\Delta^3(x^3)=6$；唯一$f=x^3+x^2+2$。",
+        "method": "有限平移差分算子的逆问题",
+        "difficulty": "中等",
+        "variant_kind": "精确次数降阶+幂零指数+规范化重建",
+        "scene_spec": {
+          "objects": [
+            "$\\Delta f=f(x+1)-f(x)$",
+            "次数降阶与$\\Delta^4=0$",
+            "$f=x^3+x^2+2$"
+          ],
+          "steps": [
+            "第一步:用有限二项式展开证明精确降阶。",
+            "第二步:证明幂零指数恰为$4$。",
+            "第三步:比较差分系数求多项式。",
+            "第四步:用差分核与初值证明唯一。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-04",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "50a8fb292d72106b3c005f7b1cf208b70dde3068690bb2b92d9588da1a08003d",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "original_id": "draft-c30-03",
+          "prior_parent_training_ids": [
+            "linalg-052"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "5064bd1c41925ac8ff210d011b217668a8aea2daf25486cff981883c48731eec",
+          "previous_hold_reasons": [
+            "PARENT_TEMPLATE_REUSE"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+            "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+            "versioned_id": "codex-repair-20261005-batch-04-draft-c30-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "bd4c8507625d92dfcf6c7a96bb57d506edb1e9a205edbfb1e1f41bbc1d4979a8",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-04",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+        "source_line": 13,
+        "source_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+        "source_normalized_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "d265f84a48bbf9454354c96035916f3786a947380f6ae4d1c738f65f4afc7a4c",
+        "record_canonical_sha256": "93756fa5d40b0b2bc89f498386306319a767a25bb461490a2636f212d265a8a3",
+        "publisher_record_sorted_sha256": "88c522ccf5efb67f9f1d8465977607e65f016f877de24a6b9917a5be8676e26c"
+      }
+    },
+    {
+      "idx": 58,
+      "record": {
+        "id": "draft-c30-04",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式平移展开",
+        "concept_id": "C30",
+        "parent_training_ids": [
+          "linalg-052"
+        ],
+        "problem": "已知多项式 $f$ 在 $x=1$ 处的展开为 $f=2+3(x-1)+(x-1)^2-(x-1)^3$。求 $f$ 按 $x$ 的幂展开的标准形式，并求 $f(1)$、$f'(1)$、$f''(1)$。",
+        "solution": "令 $y=x-1$，$f=2+3y+y^2-y^3$，回代 $y=x-1$ 并展开:$2+3(x-1)+(x-1)^2-(x-1)^3=2+3x-3+(x^2-2x+1)-(x^3-3x^2+3x-1)=-x^3+4x^2-2x+1$。由展开式直接读系数:$f(1)=2$，$f'(1)=3$，$f''(1)/2!=1$ 即 $f''(1)=2$。验证:对标准形式求导 $f'(x)=-3x^2+8x-2$，$f'(1)=3$;$f''(x)=-6x+8$，$f''(1)=2$，一致。",
+        "answer": "$f=-x^3+4x^2-2x+1$;$f(1)=2$，$f'(1)=3$，$f''(1)=2$。",
+        "method": "逆向重建(展开式还原标准形式)",
+        "difficulty": "中等",
+        "variant_kind": "逆向任务:由平移展开反求标准形式与各阶导数值",
+        "scene_spec": {
+          "objects": [
+            "板书:$f=2+3(x-1)+(x-1)^2-(x-1)^3$",
+            "板书:逐项展开 $(x-1)^2$、$(x-1)^3$ 与合并过程",
+            "高亮框:$f=-x^3+4x^2-2x+1$",
+            "板书:由平移展开系数直读 $f(1),f'(1),f''(1)$",
+            "验证板书:对标准形式求导核对"
+          ],
+          "steps": [
+            "第一步:写出平移展开式,令 $y=x-1$。",
+            "第二步:逐项展开各次幂,动画归组合并。",
+            "第三步:高亮标准形式 $-x^3+4x^2-2x+1$。",
+            "第四步:由平移展开系数直读各阶导数值。",
+            "第五步:对标准形式求导验证,两路一致。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-04",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "c1bae6b43fe5e26fac328e14980a9ec307cc38908628cc9df2c709b3da7be971",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "original_id": "draft-c30-04",
+          "prior_parent_training_ids": [
+            "linalg-052"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "cefc7db9cd26a872a3675e54cf1c99f6e7da15394fec83432600e6b21d467514",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+            "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+            "versioned_id": "codex-repair-20261005-batch-04-draft-c30-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "c1bae6b43fe5e26fac328e14980a9ec307cc38908628cc9df2c709b3da7be971",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-04",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+        "source_line": 14,
+        "source_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+        "source_normalized_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "d4f280e4980a6ae98c51f43f5cd2cc58fa7d3f1c125af6d692bbbb5995514698",
+        "record_canonical_sha256": "86c7a7e7b890c7fff04633659656f40fc1b78649437e6a0480bf52f81c758f33",
+        "publisher_record_sorted_sha256": "dcdb58c0f6e17eb1a6fd82ea3241754c03a5b2c774f91980def59ee41094232f"
+      }
+    },
+    {
+      "idx": 59,
+      "record": {
+        "id": "draft-c30-05",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式平移展开",
+        "concept_id": "C30",
+        "parent_training_ids": [
+          "linalg-052"
+        ],
+        "problem": "证明非恒定实多项式没有非零实周期。再求全部满足$f(x+1)+f(x-1)=2f(x)$对所有实数$x$成立的实多项式。",
+        "solution": "设非恒定$f$次数为$m\\ge1$、首项系数$c\\ne0$。若$h\\ne0$，有限展开给$f(x+h)-f(x)$的$x^{m-1}$系数为$cmh\\ne0$，故该差不可能为零多项式，非零周期不存在。对第二个恒等式，若$m\\ge2$，$f(x+1)+f(x-1)-2f(x)$的次数恰为$m-2$，首项系数为$cm(m-1)\\ne0$，故不可能恒为零。次数至多$1$的多项式$f(x)=ax+b$直接代入均满足。因而全体解为任意实$a,b$的仿射多项式，包含常数与零多项式。以上比较的是有限多项式系数，不使用渐近近似。",
+        "answer": "非恒定实多项式无非零实周期；第二个方程的全部解为$f(x)=ax+b$（$a,b\\in\\mathbb R$）。",
+        "method": "平移恒等式的刚性与次数分类",
+        "difficulty": "进阶",
+        "variant_kind": "全次数恒等式+周期反证+中心差分核",
+        "scene_spec": {
+          "objects": [
+            "最高系数$cmh$",
+            "中心差最高系数$cm(m-1)$",
+            "全部解$f=ax+b$"
+          ],
+          "steps": [
+            "第一步:比较一次平移差的最高非零系数。",
+            "第二步:推出非恒定多项式无非零周期。",
+            "第三步:比较中心二阶差的最高非零系数。",
+            "第四步:验证并给出所有次数至多一的解。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-04",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "a9fa8e2d7f7f7a767848c100bbc2e9d62ad5e5bc0541189aa1a0effa269abed5",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+          "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+          "original_id": "draft-c30-05",
+          "prior_parent_training_ids": [
+            "linalg-052"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "1f2b736e90cde63f8b0637d3065889774361f6241d77385802cffdee93c596fb",
+          "previous_hold_reasons": [
+            "NON_POLYNOMIAL_NOT_C30",
+            "DIRECT_METHOD_REUSE"
+          ],
+          "math_correction_notes": [
+            "加精确余项和阿贝尔端点合法性，指出非多项式考点归属错误；跨集重用仍须换题"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+            "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+            "versioned_id": "codex-repair-20261005-batch-04-draft-c30-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "8ff427046c219fcdbbe95f844d90f1dc879d637b92b78461ca99d22d90463b02",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-04",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+        "source_line": 15,
+        "source_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+        "source_normalized_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "47be75493f5c0c0a9d4767221cb04fa3daac37079a6f34c479592ad4f06e47a2",
+        "record_canonical_sha256": "a65964dee715d0e9c4eb8dda7fbf8e33c945479d79b51e501be752029f968965",
+        "publisher_record_sorted_sha256": "cb88933ef066b11fa67bb9c5e385e9cef0a40852d671533efd6dde2b582f80d1"
+      }
+    },
+    {
+      "idx": 60,
+      "record": {
+        "id": "draft-c21-01",
+        "category": "解析几何",
+        "sub_category": "二次曲面",
+        "concept": "直线与二次曲面交点",
+        "concept_id": "C21",
+        "parent_training_ids": [
+          "geom-027"
+        ],
+        "problem": "求直线 $l:(t,t,2t)$ 与旋转抛物面 $z=x^2+y^2$ 的交点。",
+        "solution": "把参数式代入曲面方程:$2t=t^2+t^2=2t^2$,即 $t(t-1)=0$,解得 $t=0$ 或 $t=1$。$t=0$ 对应点 $(0,0,0)$;$t=1$ 对应点 $(1,1,2)$。验证:$(0,0,0)$ 满足 $0=0$;$(1,1,2)$ 满足 $2=1+1$。",
+        "answer": "两个交点:$(0,0,0)$ 与 $(1,1,2)$。",
+        "method": "参数代入法(二次方程求根)",
+        "difficulty": "基础",
+        "variant_kind": "曲面类型变化:旋转抛物面的参数代入(整点解,便于验证)",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系(带刻度)",
+            "蓝色旋转抛物面 $z=x^2+y^2$",
+            "红色直线 $l:(t,t,2t)$",
+            "两个黄色交点 $(0,0,0)$ 与 $(1,1,2)$",
+            "板书:代入得 $t(t-1)=0$"
+          ],
+          "steps": [
+            "第一步:画出抛物面与直线。",
+            "第二步:参数代入曲面方程,得 $2t=2t^2$。",
+            "第三步:因式分解 $t(t-1)=0$,解得两个参数值。",
+            "第四步:换算为空间点,黄色圆点标出两个交点。",
+            "第五步:分别代入验证两点在曲面上。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "adbfe95a8cfb6a594fa041e18f4e8f2932dbea2daa70703c21ba20763c3236b9",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c21-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c21-01",
+          "prior_parent_training_ids": [
+            "geom-027"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "b191a2bfe2b4508a83567f4e044501a17e940fc8ceb4ff1133b166bdd0a7d97f",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c21-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "adbfe95a8cfb6a594fa041e18f4e8f2932dbea2daa70703c21ba20763c3236b9",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 1,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "155e5975e224dc7fd4a768e8171cfff1f7849b3dea6c9d04dfc6639eca46b192",
+        "record_canonical_sha256": "9318a14be1931c5f95148901b86fbda106a3691f7ad829801a1bbb9e08f64bac",
+        "publisher_record_sorted_sha256": "db46faebf191a85e69e101a644c35cd65b82b9dbae1baef1d18af1242c7e2c2d"
+      }
+    },
+    {
+      "idx": 61,
+      "record": {
+        "id": "draft-c21-02",
+        "category": "解析几何",
+        "sub_category": "二次曲面",
+        "concept": "直线与二次曲面交点",
+        "concept_id": "C21",
+        "parent_training_ids": [
+          "geom-027"
+        ],
+        "problem": "设直线 $l_a=\\{(a,0,t):t\\in\\mathbb R\\}$。求使 $l_a$ 与球面 $x^2+y^2+z^2=4$ 相交于两点、相切、无交点的 $a$ 的取值范围，并求相切时的切点。",
+        "solution": "代入$x=a,y=0$得$t^2=4-a^2$。若$|a|<2$，两交点为$(a,0,\\sqrt{4-a^2})$与$(a,0,-\\sqrt{4-a^2})$。若$a=2$，仅有切点$(2,0,0)$；若$a=-2$，仅有切点$(-2,0,0)$。两种相切情形分别对应不同直线，每一条相切直线只有一个切点。此时直线方向$(0,0,1)$与球面法向$(a,0,0)$正交，确为相切。若$|a|>2$，无实根，故无交点。",
+        "answer": "$|a|<2$时有两个交点$(a,0,\\pm\\sqrt{4-a^2})$；$a=2$时切点$(2,0,0)$，$a=-2$时切点$(-2,0,0)$；$|a|>2$时无交点。",
+        "method": "参数代入+判别式分支(含参直线族)",
+        "difficulty": "基础",
+        "variant_kind": "含参分支:直线族与球面的切割/相切/无交三分支,判别式定界",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系(带刻度)",
+            "蓝色球面 $x^2+y^2+z^2=4$",
+            "一族竖直红色直线 $l_a$(动画:参数 $a$ 滑动)",
+            "数轴:参数 $a$ 的三个区间(两点/相切/无交)标注",
+            "两个黄色切点 $(2,0,0)$ 与 $(-2,0,0)$"
+          ],
+          "steps": [
+            "第一步:画出球面与竖直直线族 $l_a$。",
+            "第二步:代入得 $t^2=4-a^2$。",
+            "第三步:动画滑动 $a$:穿过球面时两个交点,越出球面时无交点。",
+            "第四步:高亮 $|a|=2$ 的相切情形,黄色圆点标出切点。",
+            "第五步:在数轴上汇总三个参数区间。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "5e846e60a5c239ad59574b0d26228da1ac5b9a262b444529f71fee6d1911ca70",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c21-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c21-02",
+          "prior_parent_training_ids": [
+            "geom-027"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "3e9f3ff48261ba221494e58ee660c5bb1ac5b86a708756bb7240af156b8b4677",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [
+            "明确a=±2分别仅有一个切点，补切向验证"
+          ],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c21-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "5e846e60a5c239ad59574b0d26228da1ac5b9a262b444529f71fee6d1911ca70",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 2,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "62e309082f2824bf9cb7f5f8ea23b833b4637527445f13a05ab25bf8af58acfd",
+        "record_canonical_sha256": "3abbb7c1567ea85dc2d15bb627541e71dc4e2ab49bde7b1306640479e3cffbb5",
+        "publisher_record_sorted_sha256": "4764f8d57c5ca89f1de520102b6e835757c8e8f68aa859309f2850a69fc1d7d5"
+      }
+    },
+    {
+      "idx": 62,
+      "record": {
+        "id": "draft-c21-03",
+        "category": "解析几何",
+        "sub_category": "二次曲面",
+        "concept": "直线与二次曲面交点",
+        "concept_id": "C21",
+        "parent_training_ids": [
+          "geom-027"
+        ],
+        "problem": "求直线 $l:(1+t,2t,t)$ 与双曲抛物面 $z=xy$ 的交点。",
+        "solution": "代入:$z=t$,而 $xy=(1+t)\\cdot2t=2t+2t^2$,故 $t=2t+2t^2$,即 $t(2t+1)=0$,解得 $t=0$ 或 $t=-\\frac12$。$t=0$ 对应点 $(1,0,0)$;$t=-\\frac12$ 对应点 $(\\frac12,-1,-\\frac12)$。验证:$t=0$ 时 $z=0=1\\cdot0$;$t=-\\frac12$ 时 $z=-\\frac12=\\frac12\\times(-1)$。",
+        "answer": "两个交点:$(1,0,0)$ 与 $(\\frac12,-1,-\\frac12)$。",
+        "method": "参数代入法(非正定曲面)",
+        "difficulty": "中等",
+        "variant_kind": "曲面类型变化:双曲抛物面(非正定)的代入求解,交点含负参数分支",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系(带刻度)",
+            "蓝色马鞍面 $z=xy$",
+            "红色直线 $l:(1+t,2t,t)$",
+            "两个黄色交点 $(1,0,0)$ 与 $(\\frac12,-1,-\\frac12)$",
+            "板书:$t=2t+2t^2\\Rightarrow t(2t+1)=0$"
+          ],
+          "steps": [
+            "第一步:画出马鞍面 $z=xy$ 与直线。",
+            "第二步:代入得 $t=2t+2t^2$。",
+            "第三步:因式分解得两个根 $t=0$ 与 $t=-\\frac12$。",
+            "第四步:换算为空间点,黄色圆点标出两个交点。",
+            "第五步:分别验证两点满足 $z=xy$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "d697384aa88a8246cef29ce6feaf4de56debc116d74c42e952f7c349d6083641",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c21-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c21-03",
+          "prior_parent_training_ids": [
+            "geom-027"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "b1999d0e9fa749a7adf48c8753a7ffec258fd5f110e18e7d9e4a6f799491bd63",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c21-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "d697384aa88a8246cef29ce6feaf4de56debc116d74c42e952f7c349d6083641",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 3,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "0e4ac9dae7457a8b3737a84840e6788fc46442698f463f72d5c8eee98968399e",
+        "record_canonical_sha256": "f097ab2fe940dcb95de7d97b448ad4b8b931a521429d99de6fe2d7ccd71fe6f8",
+        "publisher_record_sorted_sha256": "e5be26ad751288a9de2f224e50b4b6529ad6f81122dca7a6f8952d54bd063c07"
+      }
+    },
+    {
+      "idx": 63,
+      "record": {
+        "id": "draft-c21-04",
+        "category": "解析几何",
+        "sub_category": "二次曲面",
+        "concept": "直线与二次曲面交点",
+        "concept_id": "C21",
+        "parent_training_ids": [
+          "geom-027"
+        ],
+        "problem": "在曲面$xy=1$上，讨论直线$l_{a,b}(t)=(t,at+b,t)$（$a,b\\in\\mathbb R$）的全部交点情况。区分无交点、一个或两个交点；在二次方程重根时证明直线与曲面相切。",
+        "solution": "代入曲面得到$at^2+bt-1=0$。若$a=0,b=0$，方程无解；若$a=0,b\\ne0$，唯一$t=1/b$，交点为$(1/b,b,1/b)$。若$a\\ne0$，令$\\Delta=b^2+4a$：当$\\Delta>0$时有两个参数$t_{\\pm}=(-b\\pm\\sqrt\\Delta)/(2a)$；当$\\Delta<0$时无实交点；当$\\Delta=0$时唯一$t_0=-b/(2a)$。各点均为$(t,at+b,t)$。曲面梯度为$(y,x,0)$，在$xy=1$上永不为零。在重根交点，梯度与方向$(1,a,1)$内积为$2at_0+b=0$，故方向位于切平面；直线不是曲面上的整条直线，因为代入所得多项式常数项为$-1$。因此重根情形确为相切。直线参数由第一坐标唯一确定，故不同参数给不同交点，以上分类穷尽。",
+        "answer": "$a=b=0$无交点；$a=0,b\\ne0$一个交点$(1/b,b,1/b)$；$a\\ne0$按$\\Delta=b^2+4a$的正、零、负分别为两个交点、一个切点、无交点，参数$t_{\\pm}=(-b\\pm\\sqrt\\Delta)/(2a)$。",
+        "method": "首项退化的直线与二次曲面交点分类",
+        "difficulty": "中等",
+        "variant_kind": "参数退化+线性分支+判别式+切平面验证",
+        "scene_spec": {
+          "objects": [
+            "曲面$xy=1$与直线族",
+            "$at^2+bt-1=0$",
+            "$\\Delta=b^2+4a$与退化分支",
+            "梯度方向内积$2at+b$"
+          ],
+          "steps": [
+            "第一步:代入并先区分二次项是否为零。",
+            "第二步:穷尽常数、一次与二次方程分支。",
+            "第三步:用梯度验证重根对应相切。",
+            "第四步:排除整线包含并验证参数与交点一一对应。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "e1995605e33c9d86f3dd6777b83d509a89fa5f7b8adcdacf0608e7ecf6954388",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c21-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c21-04",
+          "prior_parent_training_ids": [
+            "geom-027"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "f240fc0d2ab1cda2b59b07c667c7dfd2aca60666b7e1889ccb5c1d43b277cfc3",
+          "previous_hold_reasons": [
+            "POSITIVE_QUADRIC_SUBSTITUTION_TEMPLATE"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c21-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "555f2b01a05e5160a82e64cfacd634b5d54f855cd7f3b39403eee4a2861918c6",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 4,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "98c5d4e84adc33a5469df4c0507afa55d8e7f1e6d565f8af0624e320a7d40aac",
+        "record_canonical_sha256": "92e10fd96617870330bce770e4efd88336a2c83eae1bb3a80b69591d7e700493",
+        "publisher_record_sorted_sha256": "a4fa3d40ae9a896fa6fbc6e0154be01eda054d3cb4e89c5f0a9fddfa7b78362d"
+      }
+    },
+    {
+      "idx": 64,
+      "record": {
+        "id": "draft-c21-05",
+        "category": "解析几何",
+        "sub_category": "二次曲面",
+        "concept": "直线与二次曲面交点",
+        "concept_id": "C21",
+        "parent_training_ids": [
+          "geom-027"
+        ],
+        "problem": "设直线 $l_m$ 过点 $(0,0,1)$ 且方向向量为 $(1,1,m)$。证明无论 $m$ 取何值,$l_m$ 与旋转抛物面 $z=x^2+y^2$ 都恰有两个交点,并说明理由。",
+        "solution": "参数化$l_m:(t,t,1+mt)$，其中$m\\in\\mathbb R$。代入曲面得$2t^2-mt-1=0$。判别式$\\Delta(m)=m^2+8\\ge8>0$，因此有两个不同实根$t_\\pm=(m\\pm\\sqrt{m^2+8})/4$，交点为$(t_\\pm,t_\\pm,1+mt_\\pm)$。参数化的第一坐标为$t$，故不同参数对应不同空间点，恰有两个交点。也可令$F_m(t)=2t^2-mt-1$，则$F_m(0)=-1<0$、$F_m(t)\\to+\\infty$（$t\\to\\pm\\infty$），说明两侧各有一交点。判别式的数值依赖$m$；独立于$m$的是其恒正性和交点个数。该结论仅针对给定方向$(1,1,m)$，不能推广到过该点的任意方向，例如竖直线仅与抛物面相交一次。",
+        "answer": "对所有$m\\in\\mathbb R$，恰有两个交点$(t_\\pm,t_\\pm,1+mt_\\pm)$，其中$t_\\pm=\\frac{m\\pm\\sqrt{m^2+8}}4$；原因是$\\Delta(m)=m^2+8\\ge8>0$。",
+        "method": "判别式恒正论证(含参直线族)",
+        "difficulty": "进阶",
+        "variant_kind": "证明型:交点个数与参数无关的普适结论(判别式恒正的严格论证+几何理由)",
+        "scene_spec": {
+          "objects": [
+            "抛物面$z=x^2+y^2$与给定方向族$(1,1,m)$",
+            "$t_\\pm=(m\\pm\\sqrt{m^2+8})/4$",
+            "判别式随$m$变化，但恒有$\\Delta(m)\\ge8>0$",
+            "结论：交点个数恒为$2$"
+          ],
+          "steps": [
+            "第一步：参数代入得$2t^2-mt-1=0$。",
+            "第二步：计算判别式并证明严格正性。",
+            "第三步：给出两个精确根及对应空间点。",
+            "第四步：改变$m$只改变交点位置，个数恒为二。",
+            "第五步：明确结论限定于该方向族，不包含竖直方向。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "3e22e0fd2ca892dc9e8a191d7e82cfa269d579d61614deac2b15d9057fbd2527",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c21-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c21-05",
+          "prior_parent_training_ids": [
+            "geom-027"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "d17aff95e5a92bd765f8c0a21a95fd48c350afaaa1f86c3c92c98b8db54b0451",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [
+            "纠正判别式与参数无关的错误，限定给定方向族并给精确根"
+          ],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c21-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "3e22e0fd2ca892dc9e8a191d7e82cfa269d579d61614deac2b15d9057fbd2527",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 5,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "01a6ecb7dadfcd9b1c25290aef8543c080a5ec22392a8d5ef2ce63fbcfe4172a",
+        "record_canonical_sha256": "20802afd0f3d9d63414590b43bf3f8daae67ad3b05ac53dcebdd5c8810e1a216",
+        "publisher_record_sorted_sha256": "d8cd2a6ccfd5d7b74c4598dab908bcfffc71c526b3f57363034c4703032ec325"
+      }
+    },
+    {
+      "idx": 65,
+      "record": {
+        "id": "draft-c28-01",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "concept": "行列式几何意义",
+        "concept_id": "C28",
+        "parent_training_ids": [
+          "linalg-050",
+          "linalg-053"
+        ],
+        "problem": "按顺序连接$A=(0,0),B=(4,0),C=(4,3),D=(2,1),E=(0,3)$形成简单多边形。用行列式计算其有向面积和普通面积，并说明以$A$为顶点的三角形扇分解为什么必须保留符号。",
+        "solution": "各边只在相邻顶点相交；在凹顶点$D$有$\\det(D-C,E-D)=-8<0$，其余非平角顶点转向为正。鞋带公式的连续行列式为$0,12,-2,6,0$，和为$16$，故有向面积$8>0$、普通面积为$8$，边界方向为逆时针。扇分解$ABC,ACD,ADE$的有向面积分别为$6,-1,3$，相加为$8$；若取每项绝对值，则得到$10$，错误地把凹口重叠区域算入。独立检验：外矩形面积为$4\\cdot3=12$，上方被挖去的三角形$CDE$底为$4$、高为$2$、面积$4$，所以多边形面积为$12-4=8$。负号是凹多边形扇分解的抵消项。",
+        "answer": "有向面积与普通面积均为$8$；有向三角形扇面积为$6,-1,3$，其和$8$，绝对值逐项相加所得$10$不正确。",
+        "method": "凹多边形有向行列式面积",
+        "difficulty": "基础",
+        "variant_kind": "凹口+有向扇分解抵消+独立几何检验",
+        "scene_spec": {
+          "objects": [
+            "五边形$ABCDE$",
+            "有向扇面积$6,-1,3$",
+            "鞋带和$16$与面积$8$"
+          ],
+          "steps": [
+            "第一步:检查简单性与凹顶点。",
+            "第二步:计算鞋带行列式和。",
+            "第三步:保留扇分解负项并解释抵消。",
+            "第四步:用矩形减凹口三角形验证。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "0a9f86c1d51311dd16c11e86ad0ab4dd935de37d20eb10bba5a0090888beb4bc",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c28-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c28-01",
+          "prior_parent_training_ids": [
+            "linalg-050",
+            "linalg-053"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "b0ffa7a6552e536bb99f6e7209b1156de9d9f025e30ad32d30b3999b3c41534e",
+          "previous_hold_reasons": [
+            "VOLUME_DETERMINANT_TEMPLATE_REVIEW"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c28-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "974a56040c97bd45161acfdcd5f68fcb599294497f677df7dbb372c23e43c0b4",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 6,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "77c60592a4bc0699088b3a7c8b9c7e610b43db12ea75aaddcbda765ee7b88388",
+        "record_canonical_sha256": "4d8a742ef5a5d576cbd61fff89e17854f2393859cfc31a904afa11ced3234511",
+        "publisher_record_sorted_sha256": "256d1793c39eda1b6f3332f0dea58073f13f83f0ac6137bea281fdb473cc0a21"
+      }
+    },
+    {
+      "idx": 66,
+      "record": {
+        "id": "draft-c28-02",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "concept": "行列式几何意义",
+        "concept_id": "C28",
+        "parent_training_ids": [
+          "linalg-050",
+          "linalg-053"
+        ],
+        "problem": "设$u=(1,-1,2)^{\\mathsf T}$、$v=(2,1,1)^{\\mathsf T}$，$A_t=I+tuv^{\\mathsf T}$。求该变换对单位立方体的体积及取向的影响。对奇异参数，证明$A_t$是投影，并求其核与像。",
+        "solution": "由行列式对列的多线性，$I+tuv^{\\mathsf T}$展开中选两列以上来自$u$的项均为零；只选第$j$列的项为$tv_ju_j$。故$\\det A_t=1+t\\sum_jv_ju_j=1+3t$。普通体积为$|1+3t|$；$t>-1/3$保取向、$t<-1/3$反取向。当$t=-1/3$时$P=I-uv^{\\mathsf T}/3$，因为$v^{\\mathsf T}u=3$，有$P^2=I-2uv^{\\mathsf T}/3+u(v^{\\mathsf T}u)v^{\\mathsf T}/9=P$。由$Pu=0$及$Px=0\\Rightarrow x=u(v^{\\mathsf T}x)/3$得$\\ker P=\\operatorname{span}\\{u\\}$。又$v^{\\mathsf T}P=0$，而若$v^{\\mathsf T}x=0$则$Px=x$，故$\\operatorname{im}P=\\{(x,y,z):2x+y+z=0\\}$，秩为$2$。立方体在该参数下压入一个平面，三维体积为零。",
+        "answer": "$\\det A_t=1+3t$，体积$|1+3t|$；奇异参数$t=-1/3$，此时$P^2=P$、$\\ker P=\\operatorname{span}\\{(1,-1,2)\\}$、$\\operatorname{im}P=\\{2x+y+z=0\\}$、秩$2$。",
+        "method": "秩一扰动的体积取向与退化投影",
+        "difficulty": "基础",
+        "variant_kind": "多线性参数行列式+取向翻转+奇异投影几何",
+        "scene_spec": {
+          "objects": [
+            "$I+tuv^{\\mathsf T}$",
+            "$1+3t$与$|1+3t|$",
+            "$P^2=P$",
+            "核直线与像平面"
+          ],
+          "steps": [
+            "第一步:用列多线性推导秩一行列式公式。",
+            "第二步:分离有向行列式与普通体积。",
+            "第三步:在唯一奇异参数检验投影恒等式。",
+            "第四步:求核、像及压缩后的维数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "12d25f4970eade8c00c7a72e127a006244a8ad58e786374b4fd03a9dc52a8d7b",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c28-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c28-02",
+          "prior_parent_training_ids": [
+            "linalg-050",
+            "linalg-053"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "557a939d4b56434190a7d855a07b736d865a3e6db9d08e8ed6d2a3c137956382",
+          "previous_hold_reasons": [
+            "EXACT_FROZEN_DETERMINANT_SUBTASK"
+          ],
+          "math_correction_notes": [
+            "把一般定向规则与本题实际负→正的方向明确对应"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c28-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "7b21417f45df9704a7549e92f7838be7e2f352db6b957ef3225c473e44ca76dc",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 7,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "523f2122934b1da8277f8b6afd397a1120c369ac125117e414f158cdb6f0aedf",
+        "record_canonical_sha256": "3d7ae03c3201b1f3c82a49682b0852dcbfe75738fda0eb9aa509636f216e9db0",
+        "publisher_record_sorted_sha256": "d27dc5aa0c6c78816030405d50c1682e24fe86f29576c4215efb82c22fb70d63"
+      }
+    },
+    {
+      "idx": 67,
+      "record": {
+        "id": "draft-c28-03",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "concept": "行列式几何意义",
+        "concept_id": "C28",
+        "parent_training_ids": [
+          "linalg-050",
+          "linalg-053"
+        ],
+        "problem": "线性变换 $T(x)=Ax$，其中 $A=\\begin{pmatrix}1&1&1\\\\0&2&1\\\\0&0&3\\end{pmatrix}$。求单位立方体在 $T$ 下的像(一个平行六面体)的体积；并求 $T^{-1}$ 对应的体积缩放因子。",
+        "solution": "线性变换把体积放大 $|\\det A|$ 倍。$A$ 为上三角矩阵,$\\det A=1\\times2\\times3=6$,故像的体积为 $1\\times6=6$。$T^{-1}$ 的矩阵为 $A^{-1}$,$\\det(A^{-1})=\\frac{1}{\\det A}=\\frac16$,故其体积缩放因子为 $\\frac16$。",
+        "answer": "像的体积为 $6$;$T^{-1}$ 的体积缩放因子为 $\\frac16$。",
+        "method": "行列式=体积缩放因子",
+        "difficulty": "中等",
+        "variant_kind": "任务变化:行列式解释为线性变换的体积因子,含逆变换的倒数关系",
+        "scene_spec": {
+          "objects": [
+            "三维示意图:单位立方体(半透明)",
+            "动画:立方体在 $T$ 下变为平行六面体(拉伸动画)",
+            "板书:$\\det A=1\\times2\\times3=6$(上三角)",
+            "高亮框:像的体积 $=6$",
+            "板书:$\\det(A^{-1})=\\frac{1}{\\det A}=\\frac16$"
+          ],
+          "steps": [
+            "第一步:画出单位立方体。",
+            "第二步:动画展示线性变换 $T$ 把立方体拉伸为平行六面体。",
+            "第三步:计算上三角行列式 $\\det A=6$。",
+            "第四步:高亮像的体积 $=1\\times6=6$。",
+            "第五步:说明逆变换的体积因子为 $\\frac16$,两因子互为倒数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "f80a274bbe4e5560475ac2d700ded4ad40d1fa614120e1abf4d0921e8d439665",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c28-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c28-03",
+          "prior_parent_training_ids": [
+            "linalg-050",
+            "linalg-053"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "c708b15b5981e75c676bb1a4a62ba32c976b67aeef16475811cfd8fb023b49e0",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c28-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "f80a274bbe4e5560475ac2d700ded4ad40d1fa614120e1abf4d0921e8d439665",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 8,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "776f7a97b56c0e6361a485e9175feea07c92514c900e0e4c01f21041baf1e56c",
+        "record_canonical_sha256": "1ddffd607dc4c956851d430ebf2dfa1589ff30ea511b10c07c4cd804f3b07a7f",
+        "publisher_record_sorted_sha256": "458f4238c02027bf19154abfb2923cd16821c506d8b8109e37d981de9da96bc1"
+      }
+    },
+    {
+      "idx": 68,
+      "record": {
+        "id": "draft-c28-04",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "concept": "行列式几何意义",
+        "concept_id": "C28",
+        "parent_training_ids": [
+          "linalg-050",
+          "linalg-053"
+        ],
+        "problem": "在$\\mathbb R^4$中，$a=(1,0,1,0)$、$b=(0,1,0,1)$、$c=(1,1,0,0)$生成三维平行多面体。用Gram行列式求其三维体积，并用正交分解独立验证；说明为什么不能把四维坐标直接拼成三阶方阵取行列式。",
+        "solution": "令$U$为以$a,b,c$为列的$4\\times3$矩阵。Gram矩阵$G=U^{\\mathsf T}U=\\begin{pmatrix}2&0&1\\\\0&2&1\\\\1&1&2\\end{pmatrix}$，$\\det G=4$，体积$V=\\sqrt{\\det G}=2$。公式来源：满列秩时作薄QR分解$U=QR$、$Q^{\\mathsf T}Q=I$，则$G=R^{\\mathsf T}R$；各正交高度乘积为$|\\det R|=\\sqrt{\\det G}$。列相关时体积与Gram行列式均为零。独立检验：$a\\perp b$且两长度均为$\\sqrt2$；$c_{\\perp}=c-a/2-b/2=(1/2,1/2,-1/2,-1/2)$与$a,b$正交且长度为$1$。底面积$2$、高$1$，故体积为$2$。原坐标矩阵是矩形，不能直接取其行列式；任意丢弃一维会改变度量与体积。",
+        "answer": "$G=\\begin{pmatrix}2&0&1\\\\0&2&1\\\\1&1&2\\end{pmatrix}$，$\\det G=4$，三维体积$V=2$；正交高度为$1$，底面积为$2$。",
+        "method": "四维空间中三维体积的Gram行列式",
+        "difficulty": "中等",
+        "variant_kind": "矩形坐标矩阵+Gram度量+正交高度验证",
+        "scene_spec": {
+          "objects": [
+            "$4\\times3$矩阵$U$与$3\\times3$矩阵$U^{\\mathsf T}U$",
+            "精确内积表",
+            "$c_{\\perp}=(1/2,1/2,-1/2,-1/2)$",
+            "底面积$2$、高度$1$；四维数据用代数板呈现"
+          ],
+          "steps": [
+            "第一步:计算全部内积得到Gram矩阵。",
+            "第二步:由薄QR说明平方体积公式。",
+            "第三步:作正交残差并计算底面积和高度。",
+            "第四步:指出矩形坐标矩阵不能直接取行列式。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-05",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "ac5838aa293c77efcf2bda73e634560b9c4605db06020e3e0e224a7fef5c4497",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c28-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+          "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+          "original_id": "draft-c28-04",
+          "prior_parent_training_ids": [
+            "linalg-050",
+            "linalg-053"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "5aa27163d4e9713776210a51263b885cef27eb2cd5e3f933cd7af90466266f6d",
+          "previous_hold_reasons": [
+            "EXACT_FROZEN_SPAN_SUBTASK"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+            "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+            "versioned_id": "codex-repair-20261005-batch-05-draft-c28-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "c73c1d979e64522c9560ac0b7b142a3ebfe2a61e2298de1982141f1a8ca8806d",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-05",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "source_line": 9,
+        "source_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "source_normalized_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "43000b974aa07bc58db048caea87f0513c065c60b8acb53b6c6bb99841231626",
+        "record_canonical_sha256": "3609cbfbeb40d5f561b53c4a184d3753070a096fd7234b1effccb152241a7808",
+        "publisher_record_sorted_sha256": "e05e2cb3f2dd862cad92ec983411d9d0380804758cb040dd2aa6dd7fda847e88"
+      }
+    }
+  ]
+}

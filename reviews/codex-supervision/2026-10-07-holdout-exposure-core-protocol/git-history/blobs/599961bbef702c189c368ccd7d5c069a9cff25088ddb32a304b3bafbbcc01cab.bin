@@ -1,0 +1,54 @@
+{
+  "probe": "ipc4-v1",
+  "nonce": "eb35119b6657",
+  "production_gate": "CLOSED",
+  "sandbox": {
+    "rc": 0,
+    "stdout": "{\"pipe_host_open\": {\"opened\": false, \"winerror\": 2}, \"pipe_sbx_create\": {\"created\": false, \"winerror\": 87}, \"mailslot\": {\"opened\": false, \"winerror\": 5}, \"section_inbound\": {\"opened\": true, \"winerror\": 2}, \"section_outbound\": {\"created\": true, \"winerror\": 0}, \"clip_open\": {\"opened\": false, \"winerror\": 5}}",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-ece531a7352f4fd284b16700f892903a",
+    "results": {
+      "pipe_host_open": {
+        "opened": false,
+        "winerror": 2
+      },
+      "pipe_sbx_create": {
+        "created": false,
+        "winerror": 87
+      },
+      "mailslot": {
+        "opened": false,
+        "winerror": 5
+      },
+      "section_inbound": {
+        "opened": true,
+        "winerror": 2
+      },
+      "section_outbound": {
+        "created": true,
+        "winerror": 0
+      },
+      "clip_open": {
+        "opened": false,
+        "winerror": 5
+      }
+    }
+  },
+  "after": {
+    "pipe_host_side": {
+      "pipe_create": "failed",
+      "winerror": 87
+    },
+    "host_connect_pipe": {
+      "open": false,
+      "winerror": 2
+    },
+    "mailslot_received": [
+      [
+        "read_rc",
+        true
+      ]
+    ],
+    "clipboard_after": "host-to-sandbox-0df67e426599"
+  }
+}

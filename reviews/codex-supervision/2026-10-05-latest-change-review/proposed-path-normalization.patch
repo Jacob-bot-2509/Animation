@@ -1,0 +1,12 @@
+--- a/tools/draft_audit.py
++++ b/tools/draft_audit.py
+@@ -375,7 +375,8 @@
+                           f"draft-selection.json 未登记 {batch}")
+                 continue
+             rel = p.relative_to(ROOT).as_posix()
+-            if e.get("path") != rel:
++            selected_path = (sel.parent / str(e.get("path") or "")).resolve()
++            if selected_path != p.resolve():
+                 audit.add("info", "V011", SELECTION, batch,
+                           f"被审文件 {rel} 不是账本选中版本({e.get('path')}),跳过哈希核对")
+                 continue

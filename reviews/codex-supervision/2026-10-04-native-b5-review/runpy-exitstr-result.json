@@ -1,0 +1,6 @@
+{
+  "case": "exitstr",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"D:\\Animation-Model-Training\\tools\\runpy.py\", line 33, in main\n    runpy.run_path(str(code), run_name=\"__main__\")\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 287, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-native-b5-review\\probe-exitstr.py\", line 1, in <module>\n    raise SystemExit(\"expected-text-exit\")\nSystemExit: expected-text-exit\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\Animation-Model-Training\\tools\\runpy.py\", line 44, in <module>\n    sys.exit(main(sys.argv[1:]))\n             ~~~~^^^^^^^^^^^^^^\n  File \"D:\\Animation-Model-Training\\tools\\runpy.py\", line 35, in main\n    return int(e.code or 0)\nValueError: invalid literal for int() with base 10: 'expected-text-exit'\n"
+}

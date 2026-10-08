@@ -1,0 +1,382 @@
+{
+ "standard": "场景呈现标准(2026-10-06 用户审阅后新增,长期执行):①不能用集合/几何视角动画表示的题,必须给出清晰细致的运算动画;②矩阵运算不能只展现过程和结果,要标明哪一行乘哪一列;③证明收敛要标注重点和细节;④所有无法用几何视角表示的计算题必须列出详细运算方法和操作过程,学生看动画就能跟着算。",
+ "records": [
+  {
+   "idx": 98,
+   "id": "draft-c04-04",
+   "concept_id": "C04",
+   "category": "数学分析",
+   "sub_category": "曲线积分",
+   "problem": "用格林公式(补边闭合)计算曲线积分 $\\int_L (x+y)\\,dx+x\\,dy$，其中 $L$ 为抛物线 $y=x^2$ 上从 $(0,0)$ 到 $(1,1)$ 的弧段。",
+   "solution": "补直线段 $L'$:从 $(1,1)$ 沿直线回到 $(0,0)$,$L+L'$ 为闭合曲线。区域 $D$ 内,$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=\\frac{\\partial x}{\\partial x}-\\frac{\\partial(x+y)}{\\partial y}=1-1=0$,故 $\\oint_{L+L'}=0$,于是 $\\int_L=-\\int_{L'}$。参数化 $L'$:$(1-t,1-t)$,$t\\in[0,1]$,$dx=dy=-dt$:$\\int_{L'}(x+y)dx+x\\,dy=\\int_0^1\\left[(2-2t)(-1)+(1-t)(-1)\\right]dt=\\int_0^1(3t-3)\\,dt=-\\frac32$。故 $\\int_L=\\frac32$。",
+   "answer": "积分值为 $\\frac32$(补边闭合,格林公式得闭合积分为零)。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:抛物线弧段 $L$(从 $(0,0)$ 到 $(1,1)$)与补边直线段(虚线)",
+     "区域 $D$(阴影)与闭合定向箭头",
+     "板书:$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=1-1=0$",
+     "板书:补边积分 $\\int_{L'}(3t-3)dt=-\\frac32$",
+     "高亮框:$\\int_L=\\frac32$"
+    ],
+    "steps": [
+     "第一步:画出抛物线弧段,并用虚线补上直线段形成闭合回路。",
+     "第二步:计算区域内的偏导差,得零。",
+     "第三步:由格林公式得闭合积分为零,故 $\\int_L=-\\int_{L'}$。",
+     "第四步:参数化补边线段并计算 $-\\frac32$。",
+     "第五步:取负得 $\\frac32$,高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 99,
+   "id": "draft-c04-05",
+   "concept_id": "C04",
+   "category": "数学分析",
+   "sub_category": "曲线积分",
+   "problem": "设$P=-2y/(x^2+y^2)+3y/((x-3)^2+y^2)$，$Q=2x/(x^2+y^2)-3(x-3)/((x-3)^2+y^2)$。取圆盘$(x-3/2)^2+y^2\\le16$，挖去以$(0,0)$、$(3,0)$为中心、半径$1/2$的两个开圆盘，得区域$D$。分别求外圆逆时针及两个内圆顺时针的积分$\\oint P\\,dx+Q\\,dy$，并验证正向总边界的Green公式。",
+   "solution": "两小圆盘互不相交且严格在大圆盘内。$P,Q$在$\\overline D$的某邻域中连续可微，直接求导得$Q_x-P_y=0$。以原点为中心的场$(-ky/r^2,kx/r^2)$沿逆时针圆的积分为$2\\pi k$，由$x=r\\cos t,y=r\\sin t$可直接得到被积表达式$k\\,dt$；顺时针则取负。第一孔中心场权重$2$，给顺时针积分$-4\\pi$；第二孔中心场权重$-3$，给顺时针积分$6\\pi$。对每个孔，另一中心的场在该孔闭圆盘附近光滑且旋度零，Green公式给其圆周积分为零。对带两孔区域正确应用Green公式，外圆积分$I_{\\rm out}$加两个顺时针内圆积分等于$0$，故$I_{\\rm out}-4\\pi+6\\pi=0$，即$I_{\\rm out}=-2\\pi$。总正向边界积分为零。不能把外圆所围实心圆盘直接用于Green公式，因为该实心盘包含两个奇点。",
+   "answer": "外圆逆时针$-2\\pi$；原点孔顺时针$-4\\pi$；$(3,0)$孔顺时针$6\\pi$；正向总边界积分为$0$。",
+   "scene_spec": {
+    "objects": [
+     "区域 $D$ 图形:大圆盘 $(x-\\frac{3}{2})^2+y^2\\le16$,挖去圆心 $(0,0)$、$(3,0)$ 半径 $\\frac{1}{2}$ 的两个开圆盘,两孔互不相交且严格在大圆盘内",
+     "定向箭头:外圆逆时针箭头、两个内孔顺时针箭头(标注:正向总边界 = 外逆 + 内顺)",
+     "奇点标记:$(0,0)$ 与 $(3,0)$ 处红色叉号及注释「奇点,分母为零」",
+     "求导板书卡片(第二步):$Q_x$ 两项、$P_y$ 两项的逐项求导过程(商法则展开式)",
+     "高亮框(第二步):$Q_x-P_y=0$,旁注「$Q_x$ 与 $P_y$ 化简式完全相同,逐项相减为零」",
+     "参数化公式卡片(第三步):$x=r\\cos t,\\ y=r\\sin t$;$dx=-r\\sin t\\,dt,\\ dy=r\\cos t\\,dt$;$P\\,dx+Q\\,dy=k(\\sin^2t+\\cos^2t)\\,dt=k\\,dt$;$\\int_0^{2\\pi}k\\,dt=2\\pi k$;顺时针取负 $-2\\pi k$",
+     "孔环流结果标注:原点孔 $-4\\pi$(自身场权重 $k=2$,顺时针取负);$(3,0)$ 孔 $6\\pi$(自身场权重 $k=-3$,顺时针取负)",
+     "零贡献注释(第四步):另一中心的场在该孔闭圆盘附近光滑且旋度为零,Green 公式给其圆周积分为 $0$",
+     "方程卡片(第五步):$I_{\\rm out}+(-4\\pi)+6\\pi=0$,即 $I_{\\rm out}-4\\pi+6\\pi=0$;解出 $I_{\\rm out}=4\\pi-6\\pi=-2\\pi$",
+     "结论高亮框:外圆逆时针 $-2\\pi$;验证正向总边界积分 $-2\\pi+(-4\\pi)+6\\pi=0$",
+     "关键点警告框:「实心盘含两个奇点,不能直接套 Green 公式;先挖孔,再在区域 $D$ 上使用 Green 公式」"
+    ],
+    "steps": [
+     "第一步:检查区域 $D$ 与场的光滑适用范围。图形上核对:两小圆盘互不相交且严格在大圆盘内,故 $P,Q$ 在 $\\overline D$ 的某邻域中连续可微。关键点:$P,Q$ 的分母 $x^2+y^2$ 与 $(x-3)^2+y^2$ 分别在 $(0,0)$ 与 $(3,0)$ 处为零,这两个奇点恰位于两孔圆心;挖孔正是为了避开奇点,实心盘包含两个奇点,不能直接套 Green 公式。",
+     "第二步:求旋度 $Q_x-P_y$,逐项求导再相减,不跳步。①对 $Q=\\frac{2x}{x^2+y^2}-\\frac{3(x-3)}{(x-3)^2+y^2}$ 关于 $x$ 求导:$\\frac{\\partial}{\\partial x}\\frac{2x}{x^2+y^2}=\\frac{2(x^2+y^2)-2x\\cdot 2x}{(x^2+y^2)^2}=\\frac{2(y^2-x^2)}{(x^2+y^2)^2}$;$\\frac{\\partial}{\\partial x}\\frac{3(x-3)}{(x-3)^2+y^2}=\\frac{3[(x-3)^2+y^2]-3(x-3)\\cdot 2(x-3)}{((x-3)^2+y^2)^2}=\\frac{3[y^2-(x-3)^2]}{((x-3)^2+y^2)^2}$,得 $Q_x=\\frac{2(y^2-x^2)}{(x^2+y^2)^2}-\\frac{3[y^2-(x-3)^2]}{((x-3)^2+y^2)^2}$。②对 $P=-\\frac{2y}{x^2+y^2}+\\frac{3y}{(x-3)^2+y^2}$ 关于 $y$ 求导:$\\frac{\\partial}{\\partial y}\\frac{-2y}{x^2+y^2}=\\frac{-2(x^2+y^2)-(-2y)\\cdot 2y}{(x^2+y^2)^2}=\\frac{2(y^2-x^2)}{(x^2+y^2)^2}$;$\\frac{\\partial}{\\partial y}\\frac{3y}{(x-3)^2+y^2}=\\frac{3[(x-3)^2+y^2]-3y\\cdot 2y}{((x-3)^2+y^2)^2}=\\frac{3[(x-3)^2-y^2]}{((x-3)^2+y^2)^2}$,得 $P_y=\\frac{2(y^2-x^2)}{(x^2+y^2)^2}+\\frac{3[(x-3)^2-y^2]}{((x-3)^2+y^2)^2}=\\frac{2(y^2-x^2)}{(x^2+y^2)^2}-\\frac{3[y^2-(x-3)^2]}{((x-3)^2+y^2)^2}$。③相减:$Q_x-P_y=\\left[\\frac{2(y^2-x^2)}{(x^2+y^2)^2}-\\frac{3[y^2-(x-3)^2]}{((x-3)^2+y^2)^2}\\right]-\\left[\\frac{2(y^2-x^2)}{(x^2+y^2)^2}-\\frac{3[y^2-(x-3)^2]}{((x-3)^2+y^2)^2}\\right]=0$,高亮「$D$ 上旋度恒为零」。",
+     "第三步:参数化各孔圆周,算自身场的环流(公式→代入→化简→积分→定号)。以原点为中心的场 $(-\\frac{ky}{x^2+y^2},\\frac{kx}{x^2+y^2})$:令 $x=r\\cos t,\\ y=r\\sin t$,则 $dx=-r\\sin t\\,dt,\\ dy=r\\cos t\\,dt$ 且 $x^2+y^2=r^2$;被积式 $P\\,dx+Q\\,dy=(-\\frac{ky}{r^2})\\,dx+(\\frac{kx}{r^2})\\,dy=\\frac{kr\\sin t\\cdot r\\sin t+kr\\cos t\\cdot r\\cos t}{r^2}\\,dt=k(\\sin^2 t+\\cos^2 t)\\,dt=k\\,dt$;逆时针一圈 $\\int_0^{2\\pi}k\\,dt=2\\pi k$,顺时针取负得 $-2\\pi k$。①原点孔:自身场权重 $k=2$,被积式化为 $2\\,dt$,逆时针积 $2\\pi\\times 2=4\\pi$,要求顺时针,得 $-4\\pi$。②$(3,0)$ 孔:以 $(3,0)$ 为新原点($u=x-3,\\ v=y$),自身场 $(\\frac{3v}{u^2+v^2},\\frac{-3u}{u^2+v^2})$ 即 $k=-3$ 的标准形,被积式化为 $-3\\,dt$,逆时针积 $2\\pi\\times(-3)=-6\\pi$,顺时针取负得 $6\\pi$。两个环流 $-4\\pi$、$6\\pi$ 分别标注到对应孔上。",
+     "第四步:求另一中心的场对各孔的贡献。①第一孔:第二中心的场 $(\\frac{3y}{(x-3)^2+y^2},-\\frac{3(x-3)}{(x-3)^2+y^2})$ 的奇点在 $(3,0)$,不在第一孔闭圆盘附近,故在该孔闭圆盘附近光滑;第二步逐项求导已示该场自身 $Q_x$ 与 $P_y$ 的对应项相等、旋度为零,由 Green 公式其沿第一孔圆周的积分为 $0$。②第二孔:同理,原点的场 $(-\\frac{2y}{x^2+y^2},\\frac{2x}{x^2+y^2})$ 奇点在 $(0,0)$,在第二孔附近光滑且旋度为零,贡献为 $0$。结论:各孔环流只由自身中心场给出。",
+     "第五步:对带两孔的 $D$ 正确应用 Green 公式并求解外环流。正向总边界 = 外圆逆时针 + 两内孔顺时针;由第二步 $Q_x-P_y=0$,外圆积分 $I_{\\rm out}$ 加两个顺时针内圆积分等于 $0$:代入第三步结果得 $I_{\\rm out}+(-4\\pi)+6\\pi=0$,即 $I_{\\rm out}-4\\pi+6\\pi=0$。解方程:$I_{\\rm out}=4\\pi-6\\pi=-2\\pi$。验证:正向总边界积分 $=(-2\\pi)+(-4\\pi)+6\\pi=0$,与 Green 公式断言一致。关键点:不能把外圆所围的实心圆盘直接用于 Green 公式,因为该实心盘包含两个奇点;必须先挖孔,再在区域 $D$ 上使用 Green 公式。"
+    ]
+   }
+  },
+  {
+   "idx": 100,
+   "id": "draft-c06-01",
+   "concept_id": "C06",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求由抛物线 $y=x^2$ 与 $y=2-x^2$ 围成的封闭图形的面积。",
+   "solution": "交点:$x^2=2-x^2$ 得 $x=\\pm1$。利用对称性,$A=\\int_{-1}^{1}\\left[(2-x^2)-x^2\\right]dx=2\\int_0^1(2-2x^2)\\,dx=2\\left.\\left(2x-\\frac{2x^3}{3}\\right)\\right|_0^1=2\\times\\frac43=\\frac83$。",
+   "answer": "面积为 $\\frac83$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:两条抛物线 $y=x^2$ 与 $y=2-x^2$",
+     "两抛物线围成的封闭区域(阴影)",
+     "两个交点 $(-1,1)$ 与 $(1,1)$ 高亮",
+     "板书:$A=2\\int_0^1(2-2x^2)dx$",
+     "高亮框:$\\frac83$"
+    ],
+    "steps": [
+     "第一步:画出两条抛物线,高亮两个交点。",
+     "第二步:阴影标出围成区域,说明上下曲线的位置。",
+     "第三步:写出积分并利用对称性简化。",
+     "第四步:计算得 $\\frac83$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 101,
+   "id": "draft-c06-02",
+   "concept_id": "C06",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求由 $y=|x|$ 与 $y=1$ 围成的封闭图形的面积。",
+   "solution": "交点:$|x|=1$ 得 $x=\\pm1$。区域关于 $y$ 轴对称,右半部分为 $0\\le x\\le1$,$|x|\\le y\\le1$。$A=2\\int_0^1(1-x)\\,dx=2\\left.\\left(x-\\frac{x^2}{2}\\right)\\right|_0^1=2\\times\\frac12=1$。",
+   "answer": "面积为 $1$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:折线 $y=|x|$ 与水平线 $y=1$",
+     "围成的三角形区域(阴影)",
+     "两个交点 $(-1,1)$ 与 $(1,1)$ 高亮",
+     "板书:$A=2\\int_0^1(1-x)dx$",
+     "高亮框:$1$"
+    ],
+    "steps": [
+     "第一步:画出折线 $y=|x|$ 与水平线,高亮交点。",
+     "第二步:阴影标出围成的等腰三角形。",
+     "第三步:利用对称性写出一半区域积分。",
+     "第四步:计算得 $1$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 102,
+   "id": "draft-c06-03",
+   "concept_id": "C06",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求由抛物线 $x=y^2$ 与直线 $y=x-2$ 围成的封闭图形的面积(按 $y$ 积分)。",
+   "solution": "交点:$y^2=y+2$,即 $y^2-y-2=0$,得 $y=-1$ 与 $y=2$。区域在 $y$ 方向的范围为 $[-1,2]$,右边界为直线 $x=y+2$,左边界为抛物线 $x=y^2$。$A=\\int_{-1}^{2}\\left[(y+2)-y^2\\right]dy=\\left.\\left(\\frac{y^2}{2}+2y-\\frac{y^3}{3}\\right)\\right|_{-1}^{2}=\\left(2+4-\\frac83\\right)-\\left(\\frac12-2+\\frac13\\right)=\\frac{10}{3}+\\frac76=\\frac92$。",
+   "answer": "面积为 $\\frac92$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:抛物线 $x=y^2$ 与直线 $y=x-2$",
+     "围成的封闭区域(阴影)",
+     "两个交点 $(1,-1)$ 与 $(4,2)$ 高亮",
+     "板书:$A=\\int_{-1}^2[(y+2)-y^2]dy$",
+     "高亮框:$\\frac92$"
+    ],
+    "steps": [
+     "第一步:画出抛物线与直线,解出交点对应的 $y$ 值。",
+     "第二步:阴影标出区域,说明按 $y$ 方向积分的原因(区域横向)。",
+     "第三步:写出左右曲线相减的积分。",
+     "第四步:计算得 $\\frac92$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 103,
+   "id": "draft-c06-04",
+   "concept_id": "C06",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求由抛物线 $y=x^2$ 与直线 $y=kx$($k>0$)围成的封闭图形的面积(用 $k$ 表示)，并求 $k=2$ 时的面积。",
+   "solution": "交点:$x^2=kx$ 得 $x=0$ 与 $x=k$。在 $[0,k]$ 上,$kx\\ge x^2$。$A(k)=\\int_0^k(kx-x^2)\\,dx=\\left.\\left(\\frac{kx^2}{2}-\\frac{x^3}{3}\\right)\\right|_0^k=\\frac{k^3}{2}-\\frac{k^3}{3}=\\frac{k^3}{6}$。当 $k=2$ 时,$A=\\frac{2^3}{6}=\\frac43$。",
+   "answer": "$A(k)=\\frac{k^3}{6}$;$k=2$ 时面积为 $\\frac43$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:抛物线 $y=x^2$ 与直线族 $y=kx$(动画:$k$ 滑动)",
+     "围成的区域(阴影随 $k$ 变化)",
+     "两个交点 $(0,0)$ 与 $(k,k^2)$ 高亮",
+     "板书:$A(k)=\\frac{k^3}{6}$",
+     "高亮框:$k=2$ 时 $\\frac43$"
+    ],
+    "steps": [
+     "第一步:动画滑动直线 $y=kx$,展示交点随 $k$ 移动。",
+     "第二步:写出积分 $\\int_0^k(kx-x^2)dx$。",
+     "第三步:计算得 $A(k)=\\frac{k^3}{6}$。",
+     "第四步:代入 $k=2$,得 $\\frac43$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 104,
+   "id": "draft-c07-01",
+   "concept_id": "C07",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求三叶玫瑰线 $r=2\\sin 3\\theta$ 的一叶所围成的面积。",
+   "solution": "一叶对应角域 $0\\le\\theta\\le\\frac{\\pi}{3}$(当 $\\theta$ 从 $0$ 到 $\\frac{\\pi}{3}$ 时,$r$ 从 $0$ 增大到 $2$ 再回到 $0$)。面积 $A=\\frac12\\int_0^{\\frac{\\pi}{3}}r^2\\,d\\theta=\\frac12\\int_0^{\\frac{\\pi}{3}}4\\sin^2 3\\theta\\,d\\theta=2\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta$。换元 $u=3\\theta$:$\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta=\\frac13\\int_0^{\\pi}\\sin^2u\\,du=\\frac13\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{6}$。故 $A=2\\times\\frac{\\pi}{6}=\\frac{\\pi}{3}$。",
+   "answer": "一叶面积为 $\\frac{\\pi}{3}$。",
+   "scene_spec": {
+    "objects": [
+     "极坐标网格",
+     "三叶玫瑰线 $r=2\\sin3\\theta$(三叶完整图)",
+     "一叶高亮(其余两叶淡化)与角域扇形示意",
+     "板书:$A=\\frac12\\int_0^{\\pi/3}4\\sin^{2}(3\\theta)\\,d\\theta$",
+     "高亮框:$\\frac{\\pi}{3}$"
+    ],
+    "steps": [
+     "第一步:画出三叶玫瑰线,高亮其中一叶。",
+     "第二步:说明该叶对应角域 $0\\le\\theta\\le\\frac\\pi3$。",
+     "第三步:写出面积公式并换元计算。",
+     "第四步:得 $\\frac{\\pi}{6}\\times2=\\frac{\\pi}{3}$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 105,
+   "id": "draft-c07-02",
+   "concept_id": "C07",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "极坐标曲线$r=2+3\\cos\\theta$具有内环。分别求内环面积、外环所围面积和两环内部区域并集的面积，说明为什么全周期的$\\frac12\\int r^2d\\theta$不等于并集面积。",
+   "solution": "令$\\beta=\\arccos(2/3)\\in(0,\\pi/2)$、$\\alpha=\\pi-\\beta$。$r\\ge0$的外环对应$-\\alpha\\le\\theta\\le\\alpha$，$r\\le0$的内环对应$\\alpha\\le\\theta\\le2\\pi-\\alpha$。$r^2/2$的原函数为$F(\\theta)=17\\theta/4+6\\sin\\theta+(9/8)\\sin2\\theta$。由$\\sin\\beta=\\sqrt5/3$、$\\sin2\\beta=4\\sqrt5/9$，内环面积为$F(2\\pi-\\alpha)-F(\\alpha)=17\\beta/2-3\\sqrt5$；外环面积为$F(\\alpha)-F(-\\alpha)=17(\\pi-\\beta)/2+3\\sqrt5$。在内环的实际方向$\\phi\\in[-\\beta,\\beta]$上，负半径转换给内环径向边界$\\rho_{\\rm in}=3\\cos\\phi-2$，外环对应$\\rho_{\\rm out}=2+3\\cos\\phi$，相差$4$；该方向区间也属于外环区间。因此内环内部包含于外环内部，并集面积就是外环面积。全周期积分为$17\\pi/2$，等于两环面积之和，把内环内部重复计算一次。",
+   "answer": "令$\\beta=\\arccos(2/3)$。内环$17\\beta/2-3\\sqrt5$；外环及并集面积均为$17(\\pi-\\beta)/2+3\\sqrt5$；全周期平方积分为$17\\pi/2$。",
+   "scene_spec": {
+    "objects": [
+     "极坐标网格与曲线 $r=2+3\\cos\\theta$:外环($r\\ge0$)与内环($r\\le0$)分别着色,标出零点 $\\theta=\\alpha$ 与 $\\theta=2\\pi-\\alpha$",
+     "定义卡:$\\beta=\\arccos(2/3)\\in(0,\\pi/2)$、$\\alpha=\\pi-\\beta$;$\\cos\\beta=2/3$、$\\sin\\beta=\\sqrt5/3$、$\\sin2\\beta=4\\sqrt5/9$",
+     "板书:平方展开 $r^2=(2+3\\cos\\theta)^2=4+12\\cos\\theta+9\\cos^2\\theta$",
+     "板书:降幂 $\\frac12r^2=2+6\\cos\\theta+\\frac94(1+\\cos2\\theta)=\\frac{17}{4}+6\\cos\\theta+\\frac94\\cos2\\theta$",
+     "板书:原函数 $F(\\theta)=\\frac{17}{4}\\theta+6\\sin\\theta+\\frac98\\sin2\\theta$",
+     "板书:内环面积 $F(2\\pi-\\alpha)-F(\\alpha)=\\frac{17}{2}(\\pi-\\alpha)-12\\sin\\alpha-\\frac94\\sin2\\alpha=\\frac{17\\beta}{2}-3\\sqrt5$",
+     "板书:外环面积 $F(\\alpha)-F(-\\alpha)=\\frac{17}{2}\\alpha+12\\sin\\alpha+\\frac94\\sin2\\alpha=\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5$",
+     "方向对比图:实际方向 $\\phi\\in[-\\beta,\\beta]$,同一径向线上并排标出内环边界 $\\rho_{\\rm in}=3\\cos\\phi-2$ 与外环边界 $\\rho_{\\rm out}=2+3\\cos\\phi$",
+     "标注箭头:$\\rho_{\\rm out}-\\rho_{\\rm in}=(2+3\\cos\\phi)-(3\\cos\\phi-2)=4$,每个方向径向差恒为 4",
+     "区间包含示意:$[-\\beta,\\beta]\\subset[-\\alpha,\\alpha]$(角域扇区高亮)",
+     "板书:全周期积分 $F(2\\pi)-F(0)=\\frac{17}{4}\\cdot2\\pi=\\frac{17\\pi}{2}$",
+     "板书:两环面积之和 $\\left(\\frac{17\\beta}{2}-3\\sqrt5\\right)+\\left(\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5\\right)=\\frac{17\\pi}{2}$",
+     "覆盖次数示意:内环内部叠加阴影,表示被全周期积分重复计数一次",
+     "高亮框:内环面积 $\\frac{17\\beta}{2}-3\\sqrt5$;外环面积与并集面积 $\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5$"
+    ],
+    "steps": [
+     "第一步:求零极径并划分参数区间。令 $\\beta=\\arccos(2/3)\\in(0,\\pi/2)$、$\\alpha=\\pi-\\beta$。①解 $r=0$:$2+3\\cos\\theta=0$ 得 $\\cos\\theta=-2/3$,在 $[0,2\\pi)$ 内两解为 $\\theta=\\arccos(-2/3)=\\alpha$ 与 $\\theta=2\\pi-\\alpha$;②判符号:在 $[-\\alpha,\\alpha]$ 上 $\\cos\\theta\\ge\\cos\\alpha=-2/3$,故 $r\\ge0$,外环对应 $-\\alpha\\le\\theta\\le\\alpha$;在 $[\\alpha,2\\pi-\\alpha]$ 上 $\\cos\\theta\\le-2/3$,故 $r\\le0$,内环对应 $\\alpha\\le\\theta\\le2\\pi-\\alpha$。图上标出两零点与两段区间。",
+     "第二步:求原函数并精确积分两环面积。①展开平方:$r^2=(2+3\\cos\\theta)^2=4+12\\cos\\theta+9\\cos^2\\theta$;②降幂 $\\cos^2\\theta=\\frac{1+\\cos2\\theta}{2}$:$\\frac12r^2=2+6\\cos\\theta+\\frac94(1+\\cos2\\theta)=\\frac{17}{4}+6\\cos\\theta+\\frac94\\cos2\\theta$;③逐项积分得原函数 $F(\\theta)=\\frac{17}{4}\\theta+6\\sin\\theta+\\frac98\\sin2\\theta$;④内环面积 $=\\frac12\\int_{\\alpha}^{2\\pi-\\alpha}r^2\\,d\\theta=F(2\\pi-\\alpha)-F(\\alpha)$:由 $\\sin(2\\pi-\\alpha)=-\\sin\\alpha$、$\\sin(4\\pi-2\\alpha)=-\\sin2\\alpha$ 得 $=\\frac{17}{2}(\\pi-\\alpha)-12\\sin\\alpha-\\frac94\\sin2\\alpha$;代入 $\\pi-\\alpha=\\beta$、$\\sin\\alpha=\\sin\\beta=\\sqrt5/3$、$\\sin2\\alpha=-\\sin2\\beta=-4\\sqrt5/9$,化简 $=\\frac{17\\beta}{2}-4\\sqrt5+\\sqrt5=\\frac{17\\beta}{2}-3\\sqrt5$;⑤外环面积 $=F(\\alpha)-F(-\\alpha)=\\frac{17}{2}\\alpha+12\\sin\\alpha+\\frac94\\sin2\\alpha$;代入 $\\alpha=\\pi-\\beta$、$\\sin\\alpha=\\sqrt5/3$、$\\sin2\\alpha=-4\\sqrt5/9$,化简 $=\\frac{17(\\pi-\\beta)}{2}+4\\sqrt5-\\sqrt5=\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5$。",
+     "第三步:把负极径换成实际方向并证明内环包含于外环。①内环以负半径描出,换方向 $\\phi=\\theta-\\pi$:当 $\\theta\\in[\\alpha,2\\pi-\\alpha]$ 时,$\\phi\\in[\\alpha-\\pi,\\pi-\\alpha]=[-\\beta,\\beta]$;②同一方向上的径向边界:点 $(r,\\theta)$ 即点 $(-r,\\phi)$,故内环边界 $\\rho_{\\rm in}=-r=-(2+3\\cos\\theta)=-2-3\\cos(\\phi+\\pi)=-2+3\\cos\\phi=3\\cos\\phi-2$;③外环在同一方向的边界 $\\rho_{\\rm out}=2+3\\cos\\phi$;④逐方向比较:$\\rho_{\\rm out}-\\rho_{\\rm in}=(2+3\\cos\\phi)-(3\\cos\\phi-2)=4>0$,每个方向内环边界都比外环边界更靠近极点;⑤方向区间包含:因 $0<\\beta<\\frac\\pi2<\\alpha$,有 $[-\\beta,\\beta]\\subset[-\\alpha,\\alpha]$,且 $[-\\alpha,\\alpha]$ 中其余方向只有外环,故内环内部 $\\subset$ 外环内部。",
+     "第四步:区分面积和与区域并集面积。①全周期积分 $\\frac12\\int_0^{2\\pi}r^2\\,d\\theta=F(2\\pi)-F(0)=\\frac{17}{4}\\cdot2\\pi+6\\sin2\\pi+\\frac98\\sin4\\pi=\\frac{17\\pi}{2}$;②两环面积之和 $=\\left(\\frac{17\\beta}{2}-3\\sqrt5\\right)+\\left(\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5\\right)=\\frac{17\\pi}{2}$,恰等于全周期积分;③由第三步,内环内部含于外环内部,故并集面积 $=$ 外环面积 $=\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5$;④列式对照:$\\frac{17\\pi}{2}$(全周期积分)$=$ 并集面积 $+\\left(\\frac{17\\beta}{2}-3\\sqrt5\\right)$(内环面积),多出的恰是内环面积——全周期积分把内环内部重复计算了一次。",
+     "第五步:高亮结论。内环面积 $\\frac{17\\beta}{2}-3\\sqrt5$;外环面积与两环内部并集面积均为 $\\frac{17(\\pi-\\beta)}{2}+3\\sqrt5$;全周期积分 $\\frac{17\\pi}{2}$ 等于两环面积之和,比并集面积多出 $\\frac{17\\beta}{2}-3\\sqrt5$,即把内环内部重复计算了一次。"
+    ]
+   }
+  },
+  {
+   "idx": 106,
+   "id": "draft-c07-03",
+   "concept_id": "C07",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求四叶玫瑰线 $r=\\cos 2\\theta$ 所围成的总面积，并说明为什么只需计算一叶再乘 $4$。",
+   "solution": "一叶对应角域 $-\\frac{\\pi}{4}\\le\\theta\\le\\frac{\\pi}{4}$(其间 $r\\ge0$ 且极径从 $0$ 出发回到 $0$)。一叶面积 $A_1=\\frac12\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos^2 2\\theta\\,d\\theta$。换元 $u=2\\theta$:$\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos^2 2\\theta\\,d\\theta=\\frac12\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\cos^2u\\,du=\\frac12\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{4}$。故 $A_1=\\frac12\\cdot\\frac{\\pi}{4}=\\frac{\\pi}{8}$。四叶互不重叠且完全对称,总面积为 $4A_1=\\frac{\\pi}{2}$。",
+   "answer": "总面积为 $\\frac{\\pi}{2}$(一叶 $\\frac{\\pi}{8}$ 乘 $4$)。",
+   "scene_spec": {
+    "objects": [
+     "极坐标网格",
+     "四叶玫瑰线 $r=\\cos2\\theta$(四叶对称图)",
+     "一叶高亮(其余淡化)与角域 $[-\\frac\\pi4,\\frac\\pi4]$ 标注",
+     "板书:一叶面积计算与乘以 $4$ 的理由",
+     "高亮框:$\\frac{\\pi}{2}$"
+    ],
+    "steps": [
+     "第一步:画出四叶玫瑰线,说明四叶对称。",
+     "第二步:高亮一叶,标出角域 $[-\\frac\\pi4,\\frac\\pi4]$。",
+     "第三步:计算一叶面积 $\\frac\\pi8$。",
+     "第四步:说明四叶互不重叠,总面积乘 $4$。",
+     "第五步:高亮结论 $\\frac\\pi2$。"
+    ]
+   }
+  },
+  {
+   "idx": 107,
+   "id": "draft-c07-04",
+   "concept_id": "C07",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求圆 $r=4\\cos\\theta$ 内部位于圆 $r=2$ 外部的区域(月牙形)的面积。",
+   "solution": "两圆交点:$4\\cos\\theta=2$ 得 $\\cos\\theta=\\frac12$,即 $\\theta=\\pm\\frac{\\pi}{3}$。所求区域由 $-\\frac{\\pi}{3}\\le\\theta\\le\\frac{\\pi}{3}$ 且 $2\\le r\\le4\\cos\\theta$ 描述。$A=\\frac12\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}\\left[(4\\cos\\theta)^2-2^2\\right]d\\theta=\\frac12\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(16\\cos^2\\theta-4)\\,d\\theta=\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(8\\cos^2\\theta-2)\\,d\\theta=\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(2+4\\cos2\\theta)\\,d\\theta=\\left.2\\theta+2\\sin2\\theta\\right|_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}=\\frac{4\\pi}{3}+2\\sqrt3$。",
+   "answer": "面积为 $\\frac{4\\pi}{3}+2\\sqrt3$。",
+   "scene_spec": {
+    "objects": [
+     "极坐标网格",
+     "圆 $r=4\\cos\\theta$(中心在 $(2,0)$)与圆 $r=2$(原点)",
+     "月牙形区域(阴影)",
+     "两个交点对应的角 $\\pm\\frac\\pi3$ 高亮",
+     "板书:$\\frac12\\int_{-\\pi/3}^{\\pi/3}[(4\\cos\\theta)^2-4]d\\theta$"
+    ],
+    "steps": [
+     "第一步:画出两个圆,标出交点对应的角 $\\pm\\frac\\pi3$。",
+     "第二步:阴影标出月牙形区域。",
+     "第三步:写出平方差被积函数并化简。",
+     "第四步:积分得 $\\frac{4\\pi}{3}+2\\sqrt3$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 108,
+   "id": "draft-c07-05",
+   "concept_id": "C07",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求双纽线 $r^2=\\cos 2\\theta$ 所围成的总面积，并说明角域的确定方式。",
+   "solution": "需 $r^2\\ge0$,即 $\\cos2\\theta\\ge0$,故角域为 $[-\\frac{\\pi}{4},\\frac{\\pi}{4}]\\cup[\\frac{3\\pi}{4},\\frac{5\\pi}{4}]$(按模 $2\\pi$ 理解,等价于 $[0,\\frac{\\pi}{4}]\\cup[\\frac{3\\pi}{4},\\frac{5\\pi}{4}]\\cup[\\frac{7\\pi}{4},2\\pi]$),两段对应两个对称的叶。右叶面积 $A_1=\\frac12\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos2\\theta\\,d\\theta=\\frac12\\left.\\frac{\\sin2\\theta}{2}\\right|_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}=\\frac12\\times1=\\frac12$。总面积 $=2A_1=1$。",
+   "answer": "总面积为 $1$(每叶 $\\frac12$,共两叶)。",
+   "scene_spec": {
+    "objects": [
+     "极坐标网格",
+     "双纽线 $r^2=\\cos2\\theta$(两叶对称图)",
+     "角域约束示意:$\\cos2\\theta\\ge0$ 的区间高亮",
+     "板书:$A_1=\\frac12\\int_{-\\pi/4}^{\\pi/4}\\cos2\\theta\\,d\\theta=\\frac12$",
+     "高亮框:总面积 $1$"
+    ],
+    "steps": [
+     "第一步:画出双纽线两叶。",
+     "第二步:由 $r^2\\ge0$ 确定角域,高亮两个有效区间。",
+     "第三步:计算右叶面积 $\\frac12$。",
+     "第四步:由对称性得总面积 $1$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 109,
+   "id": "draft-c08-01",
+   "concept_id": "C08",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "设$a>0$，摆线一拱参数方程$x=a(t-\\sin t),y=a(1-\\cos t)$，$0\\le t\\le2\\pi$。求这一拱与$x$轴围成的面积，并说明参数积分方向与封闭边界的依据。",
+   "solution": "$x^{\\prime}=a(1-\\cos t)\\ge0$，在$(0,2\\pi)$严格为正；$y\\ge0$，两端点为$(0,0)$与$(2\\pi a,0)$。因此这一拱是从左到右的单值图形，由轴上线段闭合，普通面积为$\\int y\\,dx=\\int_0^{2\\pi}a^2(1-\\cos t)^2\\,dt$。展开得$\\int_0^{2\\pi}(1-2\\cos t+\\cos^2t)dt=2\\pi+0+\\pi=3\\pi$，故面积$3\\pi a^2$。这里沿上拱从左到右的$\\int y\\,dx$给正面积；如果使用有向闭曲线公式，应同时说明此上拱方向对应顺时针闭边界，不能混用逆时针符号。轴上线段的$y\\,dx$贡献为零。",
+   "answer": "面积$3\\pi a^2$。",
+   "scene_spec": {
+    "objects": [
+     "摆线一拱与$x$轴",
+     "端点$(0,0),(2\\pi a,0)$",
+     "$x^{\\prime}=a(1-\\cos t)$",
+     "面积$3\\pi a^2$"
+    ],
+    "steps": [
+     "第一步:证明横坐标严格递增及纵坐标非负。",
+     "第二步:用两端点和轴线段确定闭合区域。",
+     "第三步:写正面积参数积分并精确积分。",
+     "第四步:核对有向边界符号与零贡献轴段。"
+    ]
+   }
+  },
+  {
+   "idx": 110,
+   "id": "draft-c08-02",
+   "concept_id": "C08",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求星形线 $\\begin{cases}x=a\\cos^3 t\\\\ y=a\\sin^3 t\\end{cases}$($a>0$)围成的面积。",
+   "solution": "星形线在第一象限的部分对应 $t$ 从 $\\frac{\\pi}{2}$ 到 $0$。第一象限面积 $A_1=\\int_{\\frac{\\pi}{2}}^{0}y\\,x'\\,dt$ 的绝对值,$x'=-3a\\cos^2t\\sin t$:$\\int_{\\frac{\\pi}{2}}^{0}(a\\sin^3t)(-3a\\cos^2t\\sin t)\\,dt=3a^2\\int_0^{\\frac{\\pi}{2}}\\sin^4t\\cos^2t\\,dt=3a^2\\cdot\\frac{(3!!\\cdot1!!)\\pi}{6!!\\cdot2}=3a^2\\cdot\\frac{3\\pi}{96}=\\frac{3\\pi a^2}{32}$。总面积为 $4A_1=\\frac{3\\pi a^2}{8}$。",
+   "answer": "面积为 $\\frac{3\\pi a^2}{8}$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系:星形线(四角星形状)与内部阴影",
+     "第一象限部分高亮,其余淡化",
+     "板书:$3a^2\\int_0^{\\pi/2}\\sin^4t\\cos^2t\\,dt$",
+     "高亮框:$\\frac{3\\pi a^2}{8}$",
+     "标签「四象限对称乘 4」"
+    ],
+    "steps": [
+     "第一步:画出星形线,阴影标出内部。",
+     "第二步:高亮第一象限部分,说明对称性。",
+     "第三步:写出第一象限的面积积分并计算。",
+     "第四步:乘以 $4$ 得总面积。",
+     "第五步:高亮结论。"
+    ]
+   }
+  },
+  {
+   "idx": 111,
+   "id": "draft-c08-03",
+   "concept_id": "C08",
+   "category": "数学分析",
+   "sub_category": "定积分应用",
+   "problem": "求笛卡尔叶形线 $x=\\frac{3t}{1+t^3}$，$y=\\frac{3t^2}{1+t^3}$($t\\ge0$)的环所围成的面积。",
+   "solution": "叶形线的环对应 $t$ 从 $0$ 到 $+\\infty$(曲线从原点出发,经第一象限后回到原点)。用面积公式 $A=\\frac12\\int_0^{+\\infty}(x\\,y'-y\\,x')\\,dt$。计算:$x'=\\frac{3(1-2t^3)}{(1+t^3)^2}$,$y'=\\frac{3t(2-t^3)}{(1+t^3)^2}$,故 $x\\,y'-y\\,x'=\\frac{9t^2(2-t^3)-9t^2(1-2t^3)}{(1+t^3)^3}=\\frac{9t^2(1+t^3)}{(1+t^3)^3}=\\frac{9t^2}{(1+t^3)^2}$。$A=\\frac12\\int_0^{+\\infty}\\frac{9t^2}{(1+t^3)^2}\\,dt=\\frac12\\left.\\left(-\\frac{3}{1+t^3}\\right)\\right|_0^{+\\infty}=\\frac12\\times3=\\frac32$。 对$t>0$有$y/x=t$，故不同有限参数对应不同非原点，曲线在此参数域无自交；$t\\downarrow0$与$t\\to+\\infty$均趋于原点，恰描绘一个环一次。上述无穷上限须理解为有限积分再取极限，原函数给出极限$3/2$。",
+   "answer": "环的面积为 $\\frac32$。",
+   "scene_spec": {
+    "objects": [
+     "平面坐标系：仅绘题定$t\\ge0$的叶形线闭环及环内阴影",
+     "动画:参数 $t$ 从 $0$ 增大,动点沿环行进",
+     "板书:$xy'-yx'=\\frac{9t^2}{(1+t^3)^2}$ 的推导",
+     "板书:广义积分 $\\frac12\\int_0^{+\\infty}$ 的计算",
+     "高亮框:$\\frac32$"
+    ],
+    "steps": [
+     "第一步:画出叶形线,阴影标出环部。",
+     "第二步:动画展示动点从原点出发画环又回到原点。",
+     "第三步:推导 $xy'-yx'$ 的化简结果。",
+     "第四步:计算广义积分得 $\\frac32$。",
+     "第五步:高亮结论。"
+    ]
+   }
+  }
+ ]
+}

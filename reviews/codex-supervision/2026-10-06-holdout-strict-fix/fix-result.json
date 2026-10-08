@@ -1,0 +1,187 @@
+{
+  "time": "2026-10-06T01:45:57.078370+08:00",
+  "reviewed_commits": [
+    "2feffe1e52169abc3e0d52683d1189150005e219",
+    "889027d0f85f65b37e04b4cacc02a08dd7f31cf1"
+  ],
+  "status": "REPAIRED_AND_VERIFIED_WITH_EXPLICIT_PENDING_ACCEPTANCE",
+  "changed_sources": [
+    "tools/holdout_contract.py",
+    "tools/build_holdout_pairs.py",
+    "tools/score_holdout.py",
+    "tools/prepare_linalg048_rewrite.py",
+    "tests/test_holdout_contract.py",
+    "tests/test_linalg048_rewrite.py"
+  ],
+  "tests_passed": 101,
+  "diagnostic": {
+    "pairs": 171,
+    "strata": {
+      "S1a_parent_derived": 59,
+      "S1b_same_sub": 32,
+      "S2_same_cat_diff_sub": 48,
+      "S3_cross_cat": 32
+    },
+    "draft_questions": 264,
+    "unique_queries": 250,
+    "query_scene_rows": 450,
+    "old_parent_question_pairs": 14,
+    "new_parent_question_pairs": 21,
+    "seven_recovered_parent_question_pairs": [
+      [
+        "geom-021",
+        "test-geom-003"
+      ],
+      [
+        "geom-027",
+        "eval-geom-011"
+      ],
+      [
+        "linalg-059",
+        "test-linalg-026"
+      ],
+      [
+        "linalg-059",
+        "test-x-007"
+      ],
+      [
+        "linalg-060",
+        "test-linalg-034"
+      ],
+      [
+        "prob-044",
+        "test-prob-001"
+      ],
+      [
+        "prob-045",
+        "test-x-002"
+      ]
+    ],
+    "data_rebuild_exact": true,
+    "labeling_status": "PENDING",
+    "calibration_eligible": false
+  },
+  "pairs": {
+    "path": "diagnostic-v2/holdout-pairs.json",
+    "raw_sha256": "52598675b61ca836b611d8ee42538eca896d33849e1940463888329459b4fb6a"
+  },
+  "candidate": {
+    "path": "linalg048-v3/candidate.json",
+    "checks": "linalg048-v3/checks.json",
+    "raw_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+    "status": "REWRITE_CANDIDATE_PENDING_FULL_SEMANTIC_AND_ASSET_REVIEW",
+    "admitted": false,
+    "render_verified": false,
+    "global_leakage_free_certified": false,
+    "math": {
+      "matrix": [
+        [
+          "1",
+          "3"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
+      "det": "1",
+      "oriented_area": "1",
+      "ordered_square_images": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0"
+        ],
+        [
+          "4",
+          "1"
+        ],
+        [
+          "3",
+          "1"
+        ]
+      ],
+      "horizontal_segment_shifts": [
+        "3/2",
+        "3"
+      ],
+      "vertical_image_slope": "1/3",
+      "e2_image_squared_norm": "10",
+      "e2_image_norm": "sqrt(10)",
+      "horizontal_line_set": "T(R x {c}) = R x {c}; bijective x -> x+3c",
+      "reviewed_math_sha256": "343dd3027d09e6a6d9bfcb9d835b335da1dcbd7f479e63d65d201203ea3858a1"
+    },
+    "population": {
+      "active_train_records": 47,
+      "active_train_files": [
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl"
+      ],
+      "unique_eval_test_questions": 250,
+      "query_scene_records": 450
+    },
+    "screened_other_question_pairs": 296,
+    "target_pair_checks": [
+      {
+        "id": "eval-linalg-015",
+        "query_problem_sha256": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "j5": "19/74",
+        "same_signature": false,
+        "semantic_verdict": "DIFFERENT_CORE_TASK_FOR_THIS_NAMED_PAIR",
+        "basis": "Candidate is area-preserving horizontal shear [[1,3],[0,1]], with fixed x-axis and moving marked points; query computes the symmetric balanced 2x2 spectral decomposition. The shear has repeated eigenvalue 1 and one eigendirection; the named symmetric query has distinct eigenvalues 3 and -1 and orthogonal eigendirections. The requested tasks and algebraic cases differ."
+      },
+      {
+        "id": "test-linalg-025",
+        "query_problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "j5": "17/89",
+        "same_signature": false,
+        "semantic_verdict": "DIFFERENT_CORE_TASK_FOR_THIS_NAMED_PAIR",
+        "basis": "Candidate is area-preserving horizontal shear [[1,3],[0,1]], with fixed x-axis and moving marked points; query computes the symmetric balanced 2x2 spectral decomposition. The shear has repeated eigenvalue 1 and one eigendirection; the named symmetric query has distinct eigenvalues 3 and -1 and orthogonal eigendirections. The requested tasks and algebraic cases differ."
+      }
+    ]
+  },
+  "preservation": {
+    "time": "2026-10-06T01:42:42.680454+08:00",
+    "head": "889027d0f85f65b37e04b4cacc02a08dd7f31cf1",
+    "source_hashes": {
+      "tools/holdout_contract.py": "b52682e093caf5b67c1b122cb8850416d4da55594d8bd0d52e4d80e28c6c73d8",
+      "tools/build_holdout_pairs.py": "34c66a0712363301524c7b521f6e4c0f0492d9113ec84a4f5f463f437c6873cb",
+      "tools/score_holdout.py": "10c0bb6f81bbe6e7af4b8f020e2e2549df88d23ec6781d74c6c551f9278ecb69",
+      "tools/prepare_linalg048_rewrite.py": "40e35e97a954f5bbb7503edca05bdcd0c68c1335a1d2248924dd43844e7b1b50",
+      "tests/test_holdout_contract.py": "2ac341440ade340684ef433ea33f2913823a095bc4ac75d2fd0e57dcac3106ea",
+      "tests/test_linalg048_rewrite.py": "73a04357823a07dd301f48d0bdcb37a764dff9dc42b1dd82140da8f5bae87195"
+    },
+    "protected_files_checked": 12219,
+    "protected_drift": [],
+    "previous_harness_sources_checked": 13,
+    "previous_harness_sources_drift": [],
+    "source_binding_drift": {
+      "candidate": [],
+      "diagnostic": []
+    },
+    "old_holdout_pairs_raw_sha256": "f3fc80f38dda4834cf7537851fdaec2ca01353394430155659e14d13abbcfeaf",
+    "old_shear_candidate_raw_sha256": "b9c797016f3e4a8d5b736f2ed7f3c0a27fa09c9b2acd6a69038144c17fa534b0",
+    "selector_raw_sha256": "6cadccf0cf60ad2eca80ed3fa20ecc3b13b1f1ea016f506a21da2e7690cdfe25",
+    "manifest_raw_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+    "final_diagnostic_pairs_raw_sha256": "52598675b61ca836b611d8ee42538eca896d33849e1940463888329459b4fb6a",
+    "final_candidate_raw_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+    "diff_check_rc": 0,
+    "watcher": {
+      "time": "2026-10-06T01:42:42.064132+08:00",
+      "head": "889027d0f85f65b37e04b4cacc02a08dd7f31cf1"
+    },
+    "invalid_score_files_absent": true
+  },
+  "pending": [
+    "Actual independent holdout design and real labeling",
+    "Full candidate semantic and animation asset acceptance",
+    "Formal new version admission; old active linalg-048 has not been replaced"
+  ],
+  "actual_model_training_run": false,
+  "changes_committed": false
+}

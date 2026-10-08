@@ -1,0 +1,52 @@
+{
+  "status": "CONTENT_PATCHES_PASS_RENDER_PUBLICATION_GUARDS_PENDING",
+  "as_of": "2026-10-05T23:28:46.346067+08:00",
+  "head": "1e9f60ba9470383b87c40f60a7667a3cc8ef5820",
+  "selected_records": 264,
+  "selected_steps": 1176,
+  "selected_versions": {
+    "codex-repair-v4-final": 14,
+    "codex-repair-v5": 4
+  },
+  "patched_records": 7,
+  "patched_fields": 12,
+  "unchanged_other_records": 257,
+  "hard_issues_in_full_selected_audit": 0,
+  "V007": 0,
+  "V011": 0,
+  "guard_false_success_cases": 7,
+  "alias_fields_to_fix": 12,
+  "new_pdf_exists": false,
+  "historical_files_checked": 12219,
+  "historical_drift": [],
+  "production_gate_ok": false,
+  "production_structural_candidates": [
+    {
+      "split": "eval",
+      "query_id": "eval-linalg-015-s1",
+      "train_id": "linalg-048",
+      "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+      "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+      "reasons": [
+        "spectrum-balanced-symmetric-2"
+      ],
+      "score": "31/75"
+    },
+    {
+      "split": "test",
+      "query_id": "test-linalg-025",
+      "train_id": "linalg-048",
+      "query_hash": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+      "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+      "reasons": [
+        "spectrum-balanced-symmetric-2"
+      ],
+      "score": "29/82"
+    }
+  ],
+  "new_unread_claude_messages_at_final_check": 0,
+  "codex_writes_scope": "This review directory only; simulated publication fixtures are isolated; actual Claude sources, drafts, selector and production files untouched",
+  "watcher_is_readonly_recorder": true,
+  "watcher_automatically_validates": false,
+  "independent_review_boundary": "Frozen code at 23:13 and 23:27 tested with mocked Edge; real v5 static DOM structurally parsed, new PDF absent so PDF visual acceptance pending."
+}

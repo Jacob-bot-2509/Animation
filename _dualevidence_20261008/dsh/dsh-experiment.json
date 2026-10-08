@@ -1,0 +1,189 @@
+{
+  "experiment": "dsh-side sandbox confinement",
+  "tool": "run_dsh_experiment.py",
+  "root": "D:\\Animation-Model-Training",
+  "interpreter": "D:\\Python Interpreter 3147\\python.exe",
+  "started_unix": 1791439536.603255,
+  "finished_unix": 1791439536.9243739,
+  "confinement": {
+    "matched": 6,
+    "total": 7,
+    "violations": [
+      "path_backslash_literal"
+    ]
+  },
+  "readiness": {
+    "matched": 0,
+    "total": 4,
+    "violations": [
+      "reviews_tree_write",
+      "project_venv_present",
+      "venv_dir_listable",
+      "miktex_runtime_readable"
+    ]
+  },
+  "cases": [
+    {
+      "case": "workspace_write_inside",
+      "dimension": "confinement",
+      "desc": "create and delete a file inside the session workspace",
+      "expect": "allowed",
+      "actual": "allowed",
+      "matched": true,
+      "returncode": 0,
+      "result": null,
+      "stdout_tail": "{\"bytes\": 6}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/workspace_write_inside/case.py"
+    },
+    {
+      "case": "read_outside_workspace",
+      "dimension": "confinement",
+      "desc": "read a plain system file outside the workspace (read-only call)",
+      "expect": "allowed",
+      "actual": "allowed",
+      "matched": true,
+      "returncode": 0,
+      "result": null,
+      "stdout_tail": "{\"bytes\": 92}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/read_outside_workspace/case.py"
+    },
+    {
+      "case": "write_outside_workspace",
+      "dimension": "confinement",
+      "desc": "attempt a write outside the workspace (must be blocked)",
+      "expect": "denied",
+      "actual": "denied",
+      "matched": true,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "PermissionError: [Errno 13] Permission denied: 'C:\\\\Windows\\\\Temp\\\\_dsh_sandbox_escape.tmp'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"PermissionError: [Errno 13] Permission denied: 'C:\\\\\\\\Windows\\\\\\\\Temp\\\\\\\\_dsh_sandbox_escape.tmp'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/write_outside_workspace/case.py"
+    },
+    {
+      "case": "write_git_metadata",
+      "dimension": "confinement",
+      "desc": "attempt a write into .git metadata (must be blocked)",
+      "expect": "denied",
+      "actual": "denied",
+      "matched": true,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "PermissionError: [Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\.git\\\\_dsh_sandbox_touch.tmp'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"PermissionError: [Errno 13] Permission denied: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\.git\\\\\\\\_dsh_sandbox_touch.tmp'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/write_git_metadata/case.py"
+    },
+    {
+      "case": "system_program_readonly",
+      "dimension": "confinement",
+      "desc": "invoke a system program read-only (cmd /c ver)",
+      "expect": "allowed",
+      "actual": "allowed",
+      "matched": true,
+      "returncode": 0,
+      "result": null,
+      "stdout_tail": "{\"rc\": 0, \"stdout\": \"Microsoft Windows [Version 10.0.26200.9550]\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/system_program_readonly/case.py"
+    },
+    {
+      "case": "path_forward_slash",
+      "dimension": "confinement",
+      "desc": "list src/animtrain with forward-slash separators",
+      "expect": "allowed",
+      "actual": "allowed",
+      "matched": true,
+      "returncode": 0,
+      "result": null,
+      "stdout_tail": "{\"entries\": 29}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/path_forward_slash/case.py"
+    },
+    {
+      "case": "path_backslash_literal",
+      "dimension": "confinement",
+      "desc": "list src/animtrain with literal backslash separators (same path)",
+      "expect": "allowed",
+      "actual": "denied",
+      "matched": false,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\\\Animation-Model-Training\\\\src\\\\animgtrain'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"FileNotFoundError: [WinError 3] \\u7cfb\\u7edf\\u627e\\u4e0d\\u5230\\u6307\\u5b9a\\u7684\\u8def\\u5f84\\u3002: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\src\\\\\\\\animgtrain'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/path_backslash_literal/case.py"
+    },
+    {
+      "case": "reviews_tree_write",
+      "dimension": "readiness",
+      "desc": "write a scratch file into reviews/codex-supervision/ (evidence deliverable location)",
+      "expect": "allowed",
+      "actual": "denied",
+      "matched": false,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "PermissionError: [Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\reviews\\\\codex-supervision\\\\2026-10-08-sandbox-dual-end\\\\evidence\\\\_dsh_privileged_probe.tmp'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"PermissionError: [Errno 13] Permission denied: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\reviews\\\\\\\\codex-supervision\\\\\\\\2026-10-08-sandbox-dual-end\\\\\\\\evidence\\\\\\\\_dsh_privileged_probe.tmp'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/reviews_tree_write/case.py"
+    },
+    {
+      "case": "project_venv_present",
+      "dimension": "readiness",
+      "desc": "project interpreter .venv/Scripts/python.exe exists and is measurable",
+      "expect": "allowed",
+      "actual": "allowed",
+      "matched": false,
+      "returncode": 0,
+      "result": null,
+      "stdout_tail": "{\"exists\": false, \"bytes\": null}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/project_venv_present/case.py"
+    },
+    {
+      "case": "venv_dir_listable",
+      "dimension": "readiness",
+      "desc": "the .venv directory itself is listable from the confined layer",
+      "expect": "allowed",
+      "actual": "denied",
+      "matched": false,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "PermissionError: [WinError 5] 拒绝访问。: 'D:\\\\Animation-Model-Training\\\\.venv'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"PermissionError: [WinError 5] \\u62d2\\u7edd\\u8bbf\\u95ee\\u3002: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\.venv'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/venv_dir_listable/case.py"
+    },
+    {
+      "case": "miktex_runtime_readable",
+      "dimension": "readiness",
+      "desc": "the sandbox MiKTeX runtime tree is readable",
+      "expect": "allowed",
+      "actual": "denied",
+      "matched": false,
+      "returncode": 7,
+      "result": {
+        "ok": false,
+        "error": "PermissionError: [WinError 5] 拒绝访问。: 'D:\\\\Animation-Model-Training\\\\.sandbox-runtime\\\\miktex-real'"
+      },
+      "stdout_tail": "__RESULT__{\"ok\": false, \"error\": \"PermissionError: [WinError 5] \\u62d2\\u7edd\\u8bbf\\u95ee\\u3002: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\.sandbox-runtime\\\\\\\\miktex-real'\"}\r\n",
+      "stderr_tail": "",
+      "script": "D:/Animation-Model-Training/_dualevidence_20261008/dsh/miktex_runtime_readable/case.py"
+    }
+  ],
+  "verdict": "FAIL"
+}

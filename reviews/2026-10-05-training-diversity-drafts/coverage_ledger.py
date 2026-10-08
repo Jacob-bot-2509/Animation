@@ -1,129 +1,117 @@
-"""批次生产账本 + 跨批重复检测器。
-
-1) 密度协调:对照 DATA_DIVERSITY_PLAN.json 的 53 考点,统计各批次已起草数,
-   列出未覆盖/未满 5 条的考点(供后续批次选题);
-2) 重复检测:对全部 batch-*/draft.jsonl 的题目做 5-gram Jaccard 相似度,
-   两两对比并对照活动 train 行,高相似对(>=0.5)人工复核,防跨批重复出题。
-
-用法: <venv>/Scripts/python.exe -X utf8 tools/runpy.py
-      reviews/2026-10-05-training-diversity-drafts/coverage_ledger.py
-"""
+"""版本明确的起草协调账本：草稿数量不等于训练验收。只读数据。"""
 from __future__ import annotations
-import json
-import re
-import sys
+import hashlib,json,re,sys
+from fractions import Fraction
 from pathlib import Path
+ROOT=next(p for p in Path(__file__).resolve().parents if (p/'configs/training_diversity_policy.json').is_file())
+DRAFTS=ROOT/'reviews/2026-10-05-training-diversity-drafts'
+sys.path.insert(0,str(ROOT/'tools'))
+from draft_io import NORMALIZED_HASH, fingerprint, selected_path, verify_entry
+THRESHOLD=Fraction(2,5)
 
-ROOT = Path(__file__).resolve().parents[2]
-DRAFTS = Path(__file__).resolve().parent
-PLAN = ROOT / "reviews/codex-supervision/2026-10-05-mail-handling/DATA_DIVERSITY_PLAN.json"
-MANIFEST = ROOT / "data/manifest.json"
-THRESHOLD = 0.5  # 题目文字 5-gram Jaccard 阈值(草稿间从严,与 B5 的 2/5 一致)
+def load_rows(path:Path)->list[dict]:
+ return [json.loads(line) for line in path.read_text(encoding='utf-8-sig').splitlines() if line.strip()]
 
+def j5(a:str,b:str)->Fraction:
+ def grams(s):
+  s=re.sub(r'\s+','',s)
+  return {s[i:i+5] for i in range(max(0,len(s)-4))}
+ ga,gb=grams(a),grams(b)
+ return Fraction(len(ga&gb),len(ga|gb)) if ga and gb else Fraction(0)
 
-def j5(a: str, b: str) -> float:
-    def grams(s: str) -> set:
-        t = re.sub(r"\s+", "", s)
-        return {t[i:i + 5] for i in range(len(t) - 4)}
-    ga, gb = grams(a), grams(b)
-    if not ga or not gb:
-        return 0.0
-    return len(ga & gb) / len(ga | gb)
+def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
-
-def load_rows(p: Path) -> list[dict]:
-    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines()
-            if l.strip()]
-
-
-def main() -> int:
-    plan = json.loads(PLAN.read_text(encoding="utf-8"))
-    groups = plan.get("concept_groups") or []
-    concepts = {g["concept_id"]: g for g in groups if isinstance(g, dict)
-                and g.get("concept_id")}
-    if not concepts:  # 结构兜底
-        recs = json.loads((PLAN.parent / "candidate-recovery"
-                           / "candidate_catalog.json").read_text(
-            encoding="utf-8"))["records"]
-        concepts = {r["concept_id"]: {"concept_id": r["concept_id"],
-                                      "concept": r["concept_id"],
-                                      "active_count": 0,
-                                      "candidate_count": 0} for r in recs}
-    # 活动计数
-    m = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    active = {}
-    for e in m["entries"]:
-        if e["split"] != "train":
-            continue
-        p = (MANIFEST.parent / e["path"]).resolve()
-        for r in load_rows(p):
-            active[r["id"]] = r
-
-    drafts = {}
-    for d in sorted(DRAFTS.glob("batch-*/draft.jsonl")):
-        for r in load_rows(d):
-            drafts[r["id"]] = r
-
-    # 1) 密度账本
-    by_concept = {}
-    for cid, c in concepts.items():
-        by_concept[cid] = {"cid": cid,
-                           "title": c.get("concept", cid),
-                           "active": int(c.get("active_count", 0) or 0),
-                           "drafted": 0}
-    for r in drafts.values():
-        cid = r.get("concept_id")
-        if cid in by_concept:
-            by_concept[cid]["drafted"] += 1
-    short = sorted((v for v in by_concept.values()
-                    if v["active"] + v["drafted"] < 5),
-                   key=lambda v: v["active"] + v["drafted"])
-    done = sorted((v for v in by_concept.values()
-                   if v["active"] + v["drafted"] >= 5),
-                  key=lambda v: v["cid"])
-    print("== 密度账本 ==")
-    print(f"考点总数 {len(by_concept)},已起草 {len(drafts)} 题,"
-          f"达标(活动+起草>=5) {len(done)} 个")
-    print("-- 未达标考点(活动+起草,按缺口排序) --")
-    for v in short:
-        print(f"  {v['cid']} {v['title']}: 活动{v['active']} + 起草{v['drafted']}"
-              f" = {v['active']+v['drafted']} (缺 {5-v['active']-v['drafted']})")
-
-    # 2) 跨批重复检测(草稿之间 + 草稿 vs 活动 train)
-    print("== 重复检测 ==")
-    pairs, same_concept = [], []
-    dlist = sorted(drafts.values(), key=lambda r: r["id"])
-    for i in range(len(dlist)):
-        for j in range(i + 1, len(dlist)):
-            s = j5(dlist[i]["problem"], dlist[j]["problem"])
-            if s >= THRESHOLD:
-                same = dlist[i].get("concept_id") == dlist[j].get("concept_id")
-                (same_concept if same else pairs).append(
-                    (s, dlist[i]["id"], dlist[j]["id"]))
-    for r in dlist:
-        for tid, tr in active.items():
-            s = j5(r["problem"], tr.get("problem", ""))
-            if s >= THRESHOLD:
-                pairs.append((s, r["id"], tid))
-    if pairs:
-        print("  [!] 跨考点/对训练的高相似对(需人工复核是否实质重复):")
-        for s, a, b in sorted(pairs, reverse=True):
-            print(f"      J5={s:.3f}  {a} <-> {b}")
+def selected_files(drafts:Path)->list[dict]:
+ selection=drafts/'draft-selection.json';explicit={};algorithm=None
+ if selection.is_file():
+  data=json.loads(selection.read_text(encoding='utf-8-sig'));algorithm=data.get('hash_algorithm')
+  for row in data['entries']:
+   batch=row['batch']
+   if batch in explicit:raise ValueError(f'duplicate selection: {batch}')
+   explicit[batch]=row
+ result=[]
+ for directory in sorted(drafts.glob('batch-*')):
+  if not directory.is_dir():continue
+  batch=directory.name
+  if batch in explicit:
+   e=explicit.pop(batch);path=selected_path(drafts,e)
+   binding=verify_entry(path,e,algorithm)
+   method='EXPLICIT_HASH_BOUND_SELECTION'
+  else:
+   candidates=[]
+   for path in directory.glob('draft*.jsonl'):
+    if path.name=='draft.jsonl':candidates.append((1,path))
     else:
-        print("  无跨考点高相似对")
-    if same_concept:
-        print("  [i] 同考点内相近对(预期:变体设计使然,已人工确认差异实质):")
-        for s, a, b in sorted(same_concept, reverse=True):
-            print(f"      J5={s:.3f}  {a} <-> {b}")
-    else:
-        print("  无同考点高相似对")
+     match=re.fullmatch(r'draft-v(\d+)\.jsonl',path.name)
+     if match:candidates.append((int(match.group(1)),path))
+   if not candidates:continue
+   if len({n for n,p in candidates})!=len(candidates):raise ValueError(f'ambiguous version: {batch}')
+   path=max(candidates,key=lambda item:item[0])[1];method='LATEST_NUMBERED_AUTHOR_DRAFT_PENDING_REVIEW';binding={**fingerprint(path.read_bytes()),'raw_bytes_match_manifest':None}
+  result.append({'batch':batch,'path':str(path.relative_to(drafts)).replace('\\','/'),**binding,'selection':method,'absolute_path':path})
+ if explicit:raise ValueError(f'missing selected batches: {sorted(explicit)}')
+ return result
 
-    # 3) 待覆盖考点(供下一批选题)
-    print("== 建议下一批(取未达标前 3) ==")
-    for v in short[:3]:
-        print(f"  {v['cid']} {v['title']}")
-    return 0
+def selected_rows(drafts:Path)->tuple[list[dict],list[dict]]:
+ files=selected_files(drafts);rows=[];seen=set()
+ for entry in files:
+  for row in load_rows(entry['absolute_path']):
+   if not isinstance(row.get('id'),str) or row['id'] in seen:raise ValueError(f'duplicate or missing question id: {row.get("id")}')
+   seen.add(row['id']);rows.append({**row,'selected_batch':entry['batch'],'selected_sha256':entry['sha256'],'selected_raw_sha256':entry['raw_sha256'],'selected_hash_algorithm':entry['hash_algorithm']})
+ return rows,files
 
+def planning_counts(concepts:list[dict],active:list[dict],drafts:list[dict],catalog:dict)->list[dict]:
+ counts={c['id']:{'concept_id':c['id'],'concept':c['name'],'active':0,'drafted':0,'math_reviewed_drafts':0,'newly_admitted':0} for c in concepts}
+ unmapped=[]
+ for row in active:
+  cid=row.get('concept_id') or catalog.get(row['id'])
+  if cid in counts:counts[cid]['active']+=1
+  else:unmapped.append(row['id'])
+ for row in drafts:
+  cid=row.get('concept_id')
+  if cid not in counts:raise ValueError(f'unknown concept id: {row["id"]}/{cid}')
+  counts[cid]['drafted']+=1
+  if row.get('strict_review',{}).get('core_math_verified') is True:counts[cid]['math_reviewed_drafts']+=1
+ # A math review or an author's admitted flag cannot admit a draft. This tool does
+ # not validate production certificates, so only manifest-active counts are used.
+ for v in counts.values():
+  v['planning_total']=v['active']+v['drafted']
+  v['formal_density_pass']=False
+  v['reason']='DRAFTS_ARE_NOT_VERSION_BOUND_ACCEPTANCE_OR_DISTINCT_STRUCTURE_EVIDENCE'
+ return list(counts.values()),unmapped
 
-if __name__ == "__main__":
-    sys.exit(main())
+def report()->dict:
+ policy=json.loads((ROOT/'configs/training_diversity_policy.json').read_text(encoding='utf-8'))
+ drafts,files=selected_rows(DRAFTS)
+ manifest_path=ROOT/'data/manifest.json';manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+ active=[]
+ for e in manifest['entries']:
+  if e['split']!='train':continue
+  path=(manifest_path.parent/e['path']).resolve()
+  if digest(path)!=e['sha256']:raise ValueError('active manifest hash mismatch')
+  active.extend(load_rows(path))
+ if len({r['id'] for r in active})!=len(active):raise ValueError('duplicate active id')
+ catalog_path=ROOT/'reviews/codex-supervision/2026-10-05-mail-handling/candidate-recovery/candidate_catalog.json'
+ catalog={r['id']:r['concept_id'] for r in json.loads(catalog_path.read_text(encoding='utf-8'))['records']}
+ counts,unmapped=planning_counts(policy['concepts'],active,drafts,catalog)
+ pairs=[]
+ for i,left in enumerate(drafts):
+  for right in drafts[i+1:]+active:
+   score=j5(left['problem'],right['problem'])
+   if score>=THRESHOLD:pairs.append({'left':left['id'],'right':right['id'],'J5':str(score),'same_concept':left.get('concept_id')==right.get('concept_id',catalog.get(right['id'])),'status':'PENDING_MANUAL_STRUCTURAL_REVIEW','text_similarity_is_not_semantic_verdict':True})
+ return {'selected_files':[{k:v for k,v in f.items() if k!='absolute_path'} for f in files],'selected_drafts':len(drafts),'active_train':len(active),'threshold':str(THRESHOLD),'concepts':counts,'unmapped_active_ids':unmapped,'candidate_pairs':pairs,'new_draft_admissions':0,'formal_density_certified':False,'missing_version_bound_acceptance':True,'requirements':{'min_reviewed_samples_per_concept':policy['min_reviewed_samples_per_concept'],'target_max_per_concept':policy['target_max_per_concept'],'min_distinct_variant_kinds_per_concept':policy['min_distinct_variant_kinds_per_concept']},'structural_detector_negative_not_proof':True}
+
+def main()->int:
+ try:data=report()
+ except (OSError,ValueError,KeyError) as error:
+  print(f'账本停止：{error}',file=sys.stderr);return 2
+ if '--json' in sys.argv:print(json.dumps(data,ensure_ascii=False,indent=2));return 0
+ print(f"选中草稿 {data['selected_drafts']} 题；活动训练 {data['active_train']} 题；本账本新增验收数 0。")
+ print('起草数量仅用于安排生产，不作为训练密度或结构多样性验收。')
+ print('考点 | 活动 | 草稿 | 草稿数学复核 | 生产规划合计')
+ for c in sorted(data['concepts'],key=lambda c:(c['planning_total'],c['concept_id'])):
+  print(f"{c['concept_id']} {c['concept']} | {c['active']} | {c['drafted']} | {c['math_reviewed_drafts']} | {c['planning_total']}")
+ print(f"文字相似候选阈值 {data['threshold']}；全部候选须人工结构复核：")
+ for p in data['candidate_pairs']:print(f"J5={p['J5']} {p['left']} <-> {p['right']}；同考点={p['same_concept']}；待复核")
+ print('形式验收未认证；数学复核、文字相似度和原始变体标签均不能代替版本绑定的准入证据。')
+ return 0
+if __name__=='__main__':raise SystemExit(main())

@@ -1,0 +1,915 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "test",
+      "id": "test-linalg-013",
+      "problem_sha256": "5f6d745766985a4414c1e7a924b9cbc91348941cec97b50c265d4cfe33a385d3",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-014",
+      "problem_sha256": "917699d279d48760d83bcd0748b4e29a6643370204f482a9042499da9b08cbe6",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-015",
+      "problem_sha256": "aa6b6eb577a223bfe5fee2c987e4db6a43a72421c8d4534d96ba07240ab8fbf9",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-016",
+      "problem_sha256": "109f2fabc01b5ffa5ea39da659c572e08423d3c4a24f1d1bb148794e282069bc",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-017",
+      "problem_sha256": "48ed27b39eacc0b7fb74db266bcdaa23dd4ad3c11374e6618a4311e0a903d958",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-018",
+      "problem_sha256": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-019",
+      "problem_sha256": "fefba401dbccebc268e49d6372fbb7cef4d5be9dcfd840158356e3236aaac9b6",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-020",
+      "problem_sha256": "f15fb750c7ec542004cce2fb1fa2d406d208d8e4252ac6ec4c8dfa91957ee6d3",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-021",
+      "problem_sha256": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-022",
+      "problem_sha256": "ba937f9a6838ce27c27b513ebf4694f57709f70022009c02427aae5817e73dd2",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-023",
+      "problem_sha256": "02d223a432d241bcaad40ada749c43f22287718c257f4974a3c1814bcf190e67",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-024",
+      "problem_sha256": "f20f474ba31485b10dcd7ab950e5e4f61fc51fa5a1a8bd2daad88b205c8c229e",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-025",
+      "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-026",
+      "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-027",
+      "problem_sha256": "7b7ea7d2bbc060fc4f665c7750712721b2a1118a8d671c480b9709f13455a2b8",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-028",
+      "problem_sha256": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-029",
+      "problem_sha256": "02a94b2af7da38f5b38e4bd25d5f5bf6517328cf6ebddc1c589d5d65df495aa7",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-030",
+      "problem_sha256": "77ed49d1c27111e93e89c6cd058e48fb6a5c545f9195baa66083a7928d2bca1d",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-031",
+      "problem_sha256": "63350d3116ba9c2be70c1a04f8e71a898c784da4d0dab6c845ed75fd4a0c2ef2",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "test",
+      "id": "test-linalg-013",
+      "problem_sha256": "5f6d745766985a4414c1e7a924b9cbc91348941cec97b50c265d4cfe33a385d3",
+      "source_records": [
+        {
+          "id": "test-linalg-013",
+          "category": "高等代数",
+          "sub_category": "三对角行列式×周期性",
+          "problem": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+          "solution": "按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\\cdot D_{n-1}-1\\cdot\\begin{vmatrix}1&1&0&\\cdots\\\\0&1&1&\\cdots\\\\\\vdots\\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\\begin{vmatrix}1&1\\\\1&1\\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\\cdots=D_n$ 由递推的线性性质）。",
+          "answer": "$D_1,\\dots,D_6=1,0,-1,-1,0,1$，周期为 6",
+          "scene_spec": {
+            "objects": [
+              "三对角矩阵结构",
+              "递推序列的循环折线"
+            ],
+            "steps": [
+              "第一步：建立高等代数·三对角行列式×周期性综合场景，呈现与三对角行列式、递推、周期性相关的核心图形。",
+              "第二步：三对角矩阵结构。",
+              "第三步：递推序列的循环折线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三对角行列式周期",
+          "visual_style": "递推循环折线",
+          "efficiency_tags": [
+            "三对角矩阵结构",
+            "递推序列的循环折线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "1dff2cc9934f9e7826127d2dfbca2659dca64e44c6013c58d68e3dca96160cc3"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-014",
+      "problem_sha256": "917699d279d48760d83bcd0748b4e29a6643370204f482a9042499da9b08cbe6",
+      "source_records": [
+        {
+          "id": "test-linalg-014",
+          "category": "高等代数",
+          "sub_category": "逆矩阵×伴随矩阵",
+          "problem": "求 $A=\\begin{pmatrix}1&0&1\\\\0&2&0\\\\1&0&2\\end{pmatrix}$ 的逆矩阵。",
+          "solution": "$\\det A=1\\cdot(2\\cdot 2-0\\cdot 0)-0+1\\cdot(0\\cdot 0-2\\cdot 1)=4-2=2$。代数余子式：$C_{11}=\\begin{vmatrix}2&0\\\\0&2\\end{vmatrix}=4$，$C_{12}=-\\begin{vmatrix}0&0\\\\1&2\\end{vmatrix}=0$，$C_{13}=\\begin{vmatrix}0&2\\\\1&0\\end{vmatrix}=-2$，$C_{21}=-\\begin{vmatrix}0&1\\\\0&2\\end{vmatrix}=0$，$C_{22}=\\begin{vmatrix}1&1\\\\1&2\\end{vmatrix}=1$，$C_{23}=-\\begin{vmatrix}1&0\\\\1&0\\end{vmatrix}=0$，$C_{31}=\\begin{vmatrix}0&1\\\\2&0\\end{vmatrix}=-2$，$C_{32}=-\\begin{vmatrix}1&1\\\\0&0\\end{vmatrix}=0$，$C_{33}=\\begin{vmatrix}1&0\\\\0&2\\end{vmatrix}=2$。$A^*=C^T=\\begin{pmatrix}4&0&-2\\\\0&1&0\\\\-2&0&2\\end{pmatrix}$。$A^{-1}=\\dfrac{A^*}{2}=\\begin{pmatrix}2&0&-1\\\\0&\\frac{1}{2}&0\\\\-1&0&1\\end{pmatrix}$。验证：$AA^{-1}=I$。",
+          "answer": "$\\begin{pmatrix}2&0&-1\\\\0&\\frac{1}{2}&0\\\\-1&0&1\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "9 个代数余子式的高亮计算",
+              "伴随矩阵转置"
+            ],
+            "steps": [
+              "第一步：建立高等代数·逆矩阵×伴随矩阵综合场景，呈现与伴随矩阵、代数余子式、三阶逆矩阵相关的核心图形。",
+              "第二步：9 个代数余子式的高亮计算。",
+              "第三步：伴随矩阵转置。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "伴随矩阵求逆",
+          "visual_style": "代数余子式高亮",
+          "efficiency_tags": [
+            "9 个代数余子式的高亮计算",
+            "伴随矩阵转置"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "9edbb3ff19bac6116bc40b114608b7f06f503efaaa1412721350e757b676bbc5"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-015",
+      "problem_sha256": "aa6b6eb577a223bfe5fee2c987e4db6a43a72421c8d4534d96ba07240ab8fbf9",
+      "source_records": [
+        {
+          "id": "test-linalg-015",
+          "category": "高等代数",
+          "sub_category": "行列式×线性相关",
+          "problem": "求 $\\lambda$ 使向量组 $(1,\\lambda,\\lambda)$、$(\\lambda,1,\\lambda)$、$(\\lambda,\\lambda,1)$ 线性相关。",
+          "solution": "三向量为行的行列式 $D=\\begin{vmatrix}1&\\lambda&\\lambda\\\\\\lambda&1&\\lambda\\\\\\lambda&\\lambda&1\\end{vmatrix}$。该矩阵 $=(1-\\lambda)I+\\lambda J$（$J$ 全 1 矩阵），特征值为 $(1-\\lambda)+3\\lambda=1+2\\lambda$（一重）与 $1-\\lambda$（二重），故 $D=(1+2\\lambda)(1-\\lambda)^2$。线性相关 $\\iff D=0\\iff\\lambda=1$ 或 $\\lambda=-\\dfrac{1}{2}$。",
+          "answer": "$\\lambda=1$ 或 $\\lambda=-\\dfrac{1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "行列式随 $\\lambda$ 变化的曲线",
+              "零点标注"
+            ],
+            "steps": [
+              "第一步：建立高等代数·行列式×线性相关综合场景，呈现与行列式判据、特征值、参数讨论相关的核心图形。",
+              "第二步：行列式随 $\\lambda$ 变化的曲线。",
+              "第三步：零点标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "参数行列式",
+          "visual_style": "零点标注",
+          "efficiency_tags": [
+            "行列式随 $\\lambda$ 变化的曲线",
+            "零点标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "06c4abb7f1dd40e9c4b86c39616730d45016aa620a86d0f4f1d74317d08f6f56"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-016",
+      "problem_sha256": "109f2fabc01b5ffa5ea39da659c572e08423d3c4a24f1d1bb148794e282069bc",
+      "source_records": [
+        {
+          "id": "test-linalg-016",
+          "category": "高等代数",
+          "sub_category": "子空间×维数公式",
+          "problem": "设 $W_1=\\{(x,y,z):x+y+z=0\\}$，$W_2=\\{(x,y,z):x=y=z\\}$。求 $\\dim(W_1\\cap W_2)$ 与 $\\dim(W_1+W_2)$，并判断是否为直和。",
+          "solution": "$W_1$ 是平面（维数 2），$W_2$ 是直线（维数 1，方向 $(1,1,1)$）。$W_1\\cap W_2$：$(t,t,t)\\in W_1$ 需 $3t=0$，即 $t=0$，故 $W_1\\cap W_2=\\{0\\}$，$\\dim=0$。由维数公式 $\\dim(W_1+W_2)=2+1-0=3$，且 $W_1\\cap W_2=\\{0\\}$，故为直和，$W_1\\oplus W_2=\\mathbb R^3$。",
+          "answer": "$\\dim(W_1\\cap W_2)=0$；$\\dim(W_1+W_2)=3$；直和",
+          "scene_spec": {
+            "objects": [
+              "平面与直线只交于原点",
+              "直和分解示意"
+            ],
+            "steps": [
+              "第一步：建立高等代数·子空间×维数公式综合场景，呈现与子空间、维数公式、直和相关的核心图形。",
+              "第二步：平面与直线只交于原点。",
+              "第三步：直和分解示意。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "子空间维数",
+          "visual_style": "平面直线直和",
+          "efficiency_tags": [
+            "平面与直线只交于原点",
+            "直和分解示意"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "22f893ea4ab3c0c3b969cf3eebc6586e1cc981b548d0d07053c0e11d29ca3ec9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-017",
+      "problem_sha256": "48ed27b39eacc0b7fb74db266bcdaa23dd4ad3c11374e6618a4311e0a903d958",
+      "source_records": [
+        {
+          "id": "test-linalg-017",
+          "category": "高等代数",
+          "sub_category": "内积×矩阵",
+          "problem": "验证 $\\langle A,B\\rangle=\\operatorname{tr}(A^TB)$ 是 $2\\times 2$ 实矩阵空间上的内积，并求 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ 的范数。",
+          "solution": "设 $A=(a_{ij})$、$B=(b_{ij})$，$\\operatorname{tr}(A^TB)=\\displaystyle\\sum_{i,j}a_{ij}b_{ij}$，即把矩阵按分量展开成 4 维向量的标准点积，故满足内积公理（对称、双线性、正定性：$\\langle A,A\\rangle=\\sum a_{ij}^2\\ge 0$ 且等号仅当 $A=0$）。$\\|A\\|=\\sqrt{\\langle A,A\\rangle}=\\sqrt{1+4+9+16}=\\sqrt{30}$。",
+          "answer": "证毕；$\\|A\\|=\\sqrt{30}$",
+          "scene_spec": {
+            "objects": [
+              "矩阵展开为 4 维向量",
+              "分量平方和"
+            ],
+            "steps": [
+              "第一步：建立高等代数·内积×矩阵综合场景，呈现与内积公理、矩阵迹、范数相关的核心图形。",
+              "第二步：矩阵展开为 4 维向量。",
+              "第三步：分量平方和。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "矩阵内积",
+          "visual_style": "分量平方和",
+          "efficiency_tags": [
+            "矩阵展开为 4 维向量",
+            "分量平方和"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "fc6bab44eac3c0260ac78207c374cdd3f039a588e9fa69b83c103f03973e37da"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-018",
+      "problem_sha256": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+      "source_records": [
+        {
+          "id": "test-linalg-018",
+          "category": "高等代数",
+          "sub_category": "幂等矩阵×秩与迹",
+          "problem": "设 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$。验证 $A^2=A$，求 $A$ 的特征值，并说明幂等矩阵满足 $\\operatorname{rank}A=\\operatorname{tr}A$。",
+          "solution": "$A^2=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}=A$。特征值：$|\\lambda I-A|=\\lambda(\\lambda-1)$，特征值 $1,0$。$\\operatorname{rank}A=1$，$\\operatorname{tr}A=1$，相等。一般地，幂等矩阵 $A^2=A$ 的特征值满足 $\\lambda^2=\\lambda$，即 $\\lambda\\in\\{0,1\\}$，且 $A$ 可对角化（最小多项式整除 $\\lambda(\\lambda-1)$，无重根；本题给定矩阵的最小多项式恰为 $\\lambda(\\lambda-1)$），非零特征值个数 $=$ 秩，特征值之和 $=$ 迹，故 $\\operatorname{rank}A=\\operatorname{tr}A$。",
+          "answer": "证毕；特征值 $1,0$；$\\operatorname{rank}A=\\operatorname{tr}A=1$",
+          "scene_spec": {
+            "objects": [
+              "投影变换的几何",
+              "特征值 $\\{0,1\\}$ 标注"
+            ],
+            "steps": [
+              "第一步：建立高等代数·幂等矩阵×秩与迹综合场景，呈现与幂等矩阵、特征值、秩与迹相关的核心图形。",
+              "第二步：投影变换的几何。",
+              "第三步：特征值 $\\{0,1\\}$ 标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂等矩阵",
+          "visual_style": "投影几何",
+          "efficiency_tags": [
+            "投影变换的几何",
+            "特征值 $\\{0,1\\}$ 标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "f78ae0828b45f0f394faaebede0e07040e23c588ffb0e0f4608171a235778f93"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-019",
+      "problem_sha256": "fefba401dbccebc268e49d6372fbb7cef4d5be9dcfd840158356e3236aaac9b6",
+      "source_records": [
+        {
+          "id": "test-linalg-019",
+          "category": "高等代数",
+          "sub_category": "矩阵交换×待定系数",
+          "problem": "求所有与 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的 $2\\times 2$ 实矩阵 $X$。",
+          "solution": "设 $X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$。$AX=\\begin{pmatrix}a+c&b+d\\\\c&d\\end{pmatrix}$，$XA=\\begin{pmatrix}a&a+b\\\\c&c+d\\end{pmatrix}$。可交换要求两矩阵相等：$a+c=a$（即 $c=0$），$b+d=a+b$（即 $a=d$），$d=c+d$（即 $c=0$，重复）。故 $X=\\begin{pmatrix}a&b\\\\0&a\\end{pmatrix}=aI+bN$（$N=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$），即与 $A$ 可交换的矩阵恰为 $A$ 的多项式 $aI+bN$。",
+          "answer": "$X=\\begin{pmatrix}a&b\\\\0&a\\end{pmatrix}$（$a,b\\in\\mathbb R$）",
+          "scene_spec": {
+            "objects": [
+              "矩阵乘法比对",
+              "参数空间示意"
+            ],
+            "steps": [
+              "第一步：建立高等代数·矩阵交换×待定系数综合场景，呈现与矩阵乘法、可交换性、待定系数相关的核心图形。",
+              "第二步：矩阵乘法比对。",
+              "第三步：参数空间示意。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "可交换矩阵族",
+          "visual_style": "参数空间",
+          "efficiency_tags": [
+            "矩阵乘法比对",
+            "参数空间示意"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3086c5fe58be848bd8fb87c0e98e7ddc1b58189d6451a0ef8c26dbf7377aa87e"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-020",
+      "problem_sha256": "f15fb750c7ec542004cce2fb1fa2d406d208d8e4252ac6ec4c8dfa91957ee6d3",
+      "source_records": [
+        {
+          "id": "test-linalg-020",
+          "category": "高等代数",
+          "sub_category": "多项式除法×余数定理",
+          "problem": "求 $f(x)=x^4-4x^2+3$ 除以 $x^2-2x$ 的余式。",
+          "solution": "设余式为 $ax+b$（除式二次，余式次数 $<2$）：$f(x)=(x^2-2x)q(x)+ax+b$。取 $x=0$：$f(0)=3=b$。取 $x=2$：$f(2)=16-16+3=3=2a+b$，故 $2a+3=3$，$a=0$。余式为 $3$。验证（长除法）：$x^4-4x^2+3=(x^2-2x)(x^2+2x)+3$（因 $(x^2-2x)(x^2+2x)=x^4-4x^2$）。",
+          "answer": "$3$",
+          "scene_spec": {
+            "objects": [
+              "长除法竖式",
+              "代入 $x=0,2$ 的快速路径"
+            ],
+            "steps": [
+              "第一步：建立高等代数·多项式除法×余数定理综合场景，呈现与多项式除法、余式定理、代入法相关的核心图形。",
+              "第二步：长除法竖式。",
+              "第三步：代入 $x=0,2$ 的快速路径。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式余式",
+          "visual_style": "长除法竖式",
+          "efficiency_tags": [
+            "长除法竖式",
+            "代入 $x=0,2$ 的快速路径"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "46f2cf3688defbb4c6032e807e8639b030285176c236bd1dba9a5218563dc081"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-021",
+      "problem_sha256": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+      "source_records": [
+        {
+          "id": "test-linalg-021",
+          "category": "高等代数",
+          "sub_category": "正交矩阵×反射",
+          "problem": "设 $A=\\begin{pmatrix}\\cos\\theta&\\sin\\theta\\\\\\sin\\theta&-\\cos\\theta\\end{pmatrix}$。证明 $A$ 是正交矩阵，求其特征值，并说明其几何意义。",
+          "solution": "$A^TA=\\begin{pmatrix}\\cos\\theta&\\sin\\theta\\\\\\sin\\theta&-\\cos\\theta\\end{pmatrix}\\begin{pmatrix}\\cos\\theta&\\sin\\theta\\\\\\sin\\theta&-\\cos\\theta\\end{pmatrix}=\\begin{pmatrix}\\cos^2\\theta+\\sin^2\\theta&\\cos\\theta\\sin\\theta-\\sin\\theta\\cos\\theta\\\\\\sin\\theta\\cos\\theta-\\cos\\theta\\sin\\theta&\\sin^2\\theta+\\cos^2\\theta\\end{pmatrix}=I$，故 $A$ 正交，且 $\\det A=-\\cos^2\\theta-\\sin^2\\theta=-1$。特征方程 $\\lambda^2-1=0$（迹为 0），特征值 $\\pm 1$。特征值 $1$ 的特征方向为 $\\left(\\cos\\dfrac{\\theta}{2},\\sin\\dfrac{\\theta}{2}\\right)$（关于此方向的直线反射），$-1$ 的特征方向与之垂直。几何上 $A$ 是关于过原点、方向为 $\\left(\\cos\\dfrac{\\theta}{2},\\sin\\dfrac{\\theta}{2}\\right)$ 的直线的镜面反射；该参数化覆盖所有轴方向，包括 $\\theta=(2k+1)\\pi$ 时的竖直轴 $x=0$（此时 $\\tan\\dfrac{\\theta}{2}$ 不存在，不能用斜截式表示）。",
+          "answer": "证毕；特征值 $\\pm 1$；关于过原点、方向 $\\left(\\cos\\dfrac{\\theta}{2},\\sin\\dfrac{\\theta}{2}\\right)$ 的直线的反射（$\\theta=(2k+1)\\pi$ 时为竖直轴 $x=0$）",
+          "scene_spec": {
+            "objects": [
+              "关于斜直线的反射",
+              "两个特征方向（不动/反向）"
+            ],
+            "steps": [
+              "第一步：建立高等代数·正交矩阵×反射综合场景，呈现与正交矩阵、反射、特征值相关的核心图形。",
+              "第二步：关于斜直线的反射。",
+              "第三步：两个特征方向（不动/反向）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "反射矩阵",
+          "visual_style": "斜直线反射",
+          "efficiency_tags": [
+            "关于斜直线的反射",
+            "两个特征方向（不动/反向）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "432f72765425323643785037e68c1b64ba842fdf8feb2fd730c44aff9d70f581"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-022",
+      "problem_sha256": "ba937f9a6838ce27c27b513ebf4694f57709f70022009c02427aae5817e73dd2",
+      "source_records": [
+        {
+          "id": "test-linalg-022",
+          "category": "高等代数",
+          "sub_category": "Cholesky 分解×正定矩阵",
+          "problem": "求正定矩阵 $A=\\begin{pmatrix}4&2\\\\2&3\\end{pmatrix}$ 的 Cholesky 分解 $A=LL^T$（$L$ 为下三角）。",
+          "solution": "设 $L=\\begin{pmatrix}l_{11}&0\\\\l_{21}&l_{22}\\end{pmatrix}$。$LL^T=\\begin{pmatrix}l_{11}^2&l_{11}l_{21}\\\\l_{11}l_{21}&l_{21}^2+l_{22}^2\\end{pmatrix}=\\begin{pmatrix}4&2\\\\2&3\\end{pmatrix}$。解得 $l_{11}=2$（取正），$l_{21}=\\dfrac{2}{2}=1$，$l_{22}^2=3-1=2$，$l_{22}=\\sqrt2$。故 $L=\\begin{pmatrix}2&0\\\\1&\\sqrt2\\end{pmatrix}$。验证：$LL^T=\\begin{pmatrix}4&2\\\\2&3\\end{pmatrix}$。",
+          "answer": "$L=\\begin{pmatrix}2&0\\\\1&\\sqrt2\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "下三角矩阵的逐列计算",
+              "平方和分解示意"
+            ],
+            "steps": [
+              "第一步：建立高等代数·Cholesky 分解×正定矩阵综合场景，呈现与Cholesky 分解、正定矩阵、三角矩阵相关的核心图形。",
+              "第二步：下三角矩阵的逐列计算。",
+              "第三步：平方和分解示意。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "Cholesky 分解",
+          "visual_style": "下三角逐列",
+          "efficiency_tags": [
+            "下三角矩阵的逐列计算",
+            "平方和分解示意"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "16cd91f545e7fab36745ca99903d3160719004e224e6c966218db3a5b99e4704"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-023",
+      "problem_sha256": "02d223a432d241bcaad40ada749c43f22287718c257f4974a3c1814bcf190e67",
+      "source_records": [
+        {
+          "id": "test-linalg-023",
+          "category": "高等代数",
+          "sub_category": "特征值×微分方程组",
+          "problem": "用矩阵方法解微分方程组 $\\begin{cases}x'=3x+y\\\\y'=x+3y\\end{cases}$ 的通解。",
+          "solution": "系数矩阵 $A=\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$。特征方程 $(\\lambda-3)^2-1=0$，$\\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\\begin{pmatrix}x\\\\y\\end{pmatrix}=c_1e^{4t}\\begin{pmatrix}1\\\\1\\end{pmatrix}+c_2e^{2t}\\begin{pmatrix}1\\\\-1\\end{pmatrix}$，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。",
+          "answer": "$x=c_1e^{4t}+c_2e^{2t}$；$y=c_1e^{4t}-c_2e^{2t}$",
+          "scene_spec": {
+            "objects": [
+              "相图与特征方向",
+              "解的轨道"
+            ],
+            "steps": [
+              "第一步：建立高等代数·特征值×微分方程组综合场景，呈现与特征值分解、线性微分方程组、矩阵指数相关的核心图形。",
+              "第二步：相图与特征方向。",
+              "第三步：解的轨道。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "微分方程组特征分解",
+          "visual_style": "相图轨道",
+          "efficiency_tags": [
+            "相图与特征方向",
+            "解的轨道"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "93dfe0b801e0f310e340449e1eeae46e4548ca35d3ff7cb25a11e2f2e9ae72bf"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-024",
+      "problem_sha256": "f20f474ba31485b10dcd7ab950e5e4f61fc51fa5a1a8bd2daad88b205c8c229e",
+      "source_records": [
+        {
+          "id": "test-linalg-024",
+          "category": "高等代数",
+          "sub_category": "行列式×共线条件",
+          "problem": "求 $t$ 使三点 $(1,2)$、$(2,4)$、$(t,6)$ 共线。",
+          "solution": "共线条件：$\\begin{vmatrix}1&2&1\\\\2&4&1\\\\t&6&1\\end{vmatrix}=0$。按第一行展开：$1\\cdot(4\\cdot 1-1\\cdot 6)-2\\cdot(2\\cdot 1-1\\cdot t)+1\\cdot(2\\cdot 6-4\\cdot t)=1\\cdot(-2)-2\\cdot(2-t)+1\\cdot(12-4t)=-2-4+2t+12-4t=6-2t=0$，故 $t=3$。（或用斜率：前两点连线 $y=2x$，$(t,6)$ 在直线上需 $6=2t$，$t=3$。）",
+          "answer": "$t=3$",
+          "scene_spec": {
+            "objects": [
+              "三点与直线",
+              "行列式为零的几何意义"
+            ],
+            "steps": [
+              "第一步：建立高等代数·行列式×共线条件综合场景，呈现与三点共线、行列式、斜率相关的核心图形。",
+              "第二步：三点与直线。",
+              "第三步：行列式为零的几何意义。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "共线行列式",
+          "visual_style": "三点直线",
+          "efficiency_tags": [
+            "三点与直线",
+            "行列式为零的几何意义"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "28414d6c6b5dea9194cb0811db153eb76474a9e262405b32ca1a30cfed1f84e6"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-025",
+      "problem_sha256": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+      "source_records": [
+        {
+          "id": "test-linalg-025",
+          "category": "高等代数",
+          "sub_category": "谱分解×对称矩阵",
+          "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+          "solution": "特征值 $\\lambda_1=3$、$\\lambda_2=-1$（test-linalg-008），单位特征向量 $u_1=\\dfrac{1}{\\sqrt2}(1,1)^T$、$u_2=\\dfrac{1}{\\sqrt2}(1,-1)^T$。$u_1u_1^T=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$u_2u_2^T=\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$。谱分解 $A=3u_1u_1^T+(-1)u_2u_2^T=\\dfrac{3}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}-\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。",
+          "answer": "$A=3u_1u_1^T-u_2u_2^T$（$u_1=\\dfrac{(1,1)^T}{\\sqrt2}$，$u_2=\\dfrac{(1,-1)^T}{\\sqrt2}$）",
+          "scene_spec": {
+            "objects": [
+              "两个投影的叠加",
+              "特征方向的分解"
+            ],
+            "steps": [
+              "第一步：建立高等代数·谱分解×对称矩阵综合场景，呈现与谱分解、特征值、正交投影相关的核心图形。",
+              "第二步：两个投影的叠加。",
+              "第三步：特征方向的分解。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "谱分解",
+          "visual_style": "投影叠加",
+          "efficiency_tags": [
+            "两个投影的叠加",
+            "特征方向的分解"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "c21d2e2d42d29e5276bec0a84a18cb2804d0fa40430c28eb950709c317db56fc"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-026",
+      "problem_sha256": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+      "source_records": [
+        {
+          "id": "test-linalg-026",
+          "category": "高等代数",
+          "sub_category": "二次型×合同变换",
+          "problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+          "solution": "$f=3\\left(x^2+\\dfrac{4}{3}xy\\right)+6y^2=3\\left(x+\\dfrac{2}{3}y\\right)^2-\\dfrac{4}{3}y^2+6y^2=3\\left(x+\\dfrac{2}{3}y\\right)^2+\\dfrac{14}{3}y^2$。令 $u=x+\\dfrac{2}{3}y$、$v=y$（可逆：$x=u-\\dfrac{2}{3}v$、$y=v$），标准形为 $3u^2+\\dfrac{14}{3}v^2$。矩阵形式：$A=\\begin{pmatrix}3&2\\\\2&6\\end{pmatrix}$，$C=\\begin{pmatrix}1&-\\frac{2}{3}\\\\0&1\\end{pmatrix}$，验证 $C^TAC=\\begin{pmatrix}3&0\\\\0&\\frac{14}{3}\\end{pmatrix}$（$AC=\\begin{pmatrix}3&0\\\\2&\\frac{14}{3}\\end{pmatrix}$，$C^T(AC)=\\begin{pmatrix}3&0\\\\0&\\frac{14}{3}\\end{pmatrix}$）。",
+          "answer": "标准形 $3u^2+\\dfrac{14}{3}v^2$；替换 $\\begin{cases}u=x+\\frac{2}{3}y\\\\v=y\\end{cases}$",
+          "scene_spec": {
+            "objects": [
+              "配方步骤的代数动画",
+              "椭圆主轴与坐标变换"
+            ],
+            "steps": [
+              "第一步：建立高等代数·二次型×合同变换综合场景，呈现与配方法、合同变换、二次型相关的核心图形。",
+              "第二步：配方步骤的代数动画。",
+              "第三步：椭圆主轴与坐标变换。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "配方法合同变换",
+          "visual_style": "椭圆主轴",
+          "efficiency_tags": [
+            "配方步骤的代数动画",
+            "椭圆主轴与坐标变换"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "9f322c5ffb0e060b07cb32ea9eeca8571fbc7b62fa6519b2f0175b6bad319305"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-027",
+      "problem_sha256": "7b7ea7d2bbc060fc4f665c7750712721b2a1118a8d671c480b9709f13455a2b8",
+      "source_records": [
+        {
+          "id": "test-linalg-027",
+          "category": "高等代数",
+          "sub_category": "若尔当形×微分方程组",
+          "problem": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。",
+          "solution": "系数矩阵 $A=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}=J_2(2)$。先解 $y'=2y$：$y=c_2e^{2t}$。代入 $x'=2x+c_2e^{2t}$：$x=e^{2t}\\left(c_1+c_2t\\right)$（常数变易，或观察特解 $x_p=c_2te^{2t}$：$x_p'-2x_p=c_2e^{2t}(1+2t)-2c_2te^{2t}=c_2e^{2t}$ 恰为强迫项）。验证：$x'=2e^{2t}(c_1+c_2t)+c_2e^{2t}=2x+y$。",
+          "answer": "$x=e^{2t}(c_1+c_2t)$；$y=c_2e^{2t}$",
+          "scene_spec": {
+            "objects": [
+              "相图的退化结点",
+              "广义特征方向"
+            ],
+            "steps": [
+              "第一步：建立高等代数·若尔当形×微分方程组综合场景，呈现与若尔当块、广义特征向量、线性微分方程相关的核心图形。",
+              "第二步：相图的退化结点。",
+              "第三步：广义特征方向。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "若尔当块微分方程",
+          "visual_style": "退化结点相图",
+          "efficiency_tags": [
+            "相图的退化结点",
+            "广义特征方向"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b2b0b651b09d1700483985e40fac1fa7d03ff7a466d6da555ebdee4a4c71d693"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-028",
+      "problem_sha256": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+      "source_records": [
+        {
+          "id": "test-linalg-028",
+          "category": "高等代数",
+          "sub_category": "复特征值×旋转",
+          "problem": "求 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ 的特征值，并说明它没有实特征向量的几何原因。",
+          "solution": "$|\\lambda I-A|=\\begin{vmatrix}\\lambda&1\\\\-1&\\lambda\\end{vmatrix}=\\lambda^2+1=0$，特征值 $\\lambda=\\pm i$（一对共轭虚数）。几何上 $A$ 是旋转 $90^\\circ$（逆时针），除零向量外任何实向量旋转后都不与原方向平行，故没有（一维的）实特征空间；只有把向量空间扩充到复数域，才有特征方向。",
+          "answer": "特征值 $\\pm i$；无实特征向量（旋转 $90^\\circ$）",
+          "scene_spec": {
+            "objects": [
+              "向量旋转 $90^\\circ$",
+              "无不变方向的演示"
+            ],
+            "steps": [
+              "第一步：建立高等代数·复特征值×旋转综合场景，呈现与复特征值、旋转、特征向量相关的核心图形。",
+              "第二步：向量旋转 $90^\\circ$。",
+              "第三步：无不变方向的演示。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "复特征值旋转",
+          "visual_style": "无不变方向",
+          "efficiency_tags": [
+            "向量旋转 $90^\\circ$",
+            "无不变方向的演示"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "821319affa52d39550784022982fc9a0294b500cd3d978022a55e378c03d9874"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-029",
+      "problem_sha256": "02a94b2af7da38f5b38e4bd25d5f5bf6517328cf6ebddc1c589d5d65df495aa7",
+      "source_records": [
+        {
+          "id": "test-linalg-029",
+          "category": "高等代数",
+          "sub_category": "最小多项式×若尔当形",
+          "problem": "求 $A=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$ 的最小多项式与若尔当标准形。",
+          "solution": "特征多项式 $(\\lambda-1)^3$。$A-I=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}=:N$，$N\\ne 0$ 且 $N^2=0$，故最小多项式 $m(\\lambda)=(\\lambda-1)^2$。秩判块结构：$\\operatorname{rank}(A-I)=1$，特征值 $1$ 的若尔当块个数 $=3-1=2$，最大块尺寸由 $m(\\lambda)$ 的因子幂给出为 2，故标准形为 $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}=A$ 本身（即 $J_2(1)\\oplus J_1(1)$）。",
+          "answer": "最小多项式 $(\\lambda-1)^2$；若尔当标准形 $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "两个若尔当块的分块高亮",
+              "幂零链长度"
+            ],
+            "steps": [
+              "第一步：建立高等代数·最小多项式×若尔当形综合场景，呈现与最小多项式、若尔当块、秩序列相关的核心图形。",
+              "第二步：两个若尔当块的分块高亮。",
+              "第三步：幂零链长度。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "最小多项式",
+          "visual_style": "幂零链长度",
+          "efficiency_tags": [
+            "两个若尔当块的分块高亮",
+            "幂零链长度"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "c328a8d6fe29756b51deb4c2eb71d8f2e5c65edda908ff78ca209e0fb1b25a06"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-030",
+      "problem_sha256": "77ed49d1c27111e93e89c6cd058e48fb6a5c545f9195baa66083a7928d2bca1d",
+      "source_records": [
+        {
+          "id": "test-linalg-030",
+          "category": "高等代数",
+          "sub_category": "线性泛函×对偶",
+          "problem": "求 $\\mathbb R^3$ 上的线性泛函 $f$，使其满足 $f(1,1,1)=3$、$f(1,0,0)=1$、$f(0,1,0)=1$。",
+          "solution": "设 $f(x,y,z)=ax+by+cz$。条件：$f(1,0,0)=a=1$；$f(0,1,0)=b=1$；$f(1,1,1)=a+b+c=3$，故 $c=3-1-1=1$。得 $f(x,y,z)=x+y+z$。",
+          "answer": "$f(x,y,z)=x+y+z$",
+          "scene_spec": {
+            "objects": [
+              "等值面（平面族）",
+              "基向量上的取值"
+            ],
+            "steps": [
+              "第一步：建立高等代数·线性泛函×对偶综合场景，呈现与线性泛函、对偶空间、待定系数相关的核心图形。",
+              "第二步：等值面（平面族）。",
+              "第三步：基向量上的取值。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "线性泛函",
+          "visual_style": "等值面平面族",
+          "efficiency_tags": [
+            "等值面（平面族）",
+            "基向量上的取值"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "03471341b040896043b6a77dd80f22560c3e6d0ff9d1ecb54c99723c33a03ea0"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-031",
+      "problem_sha256": "63350d3116ba9c2be70c1a04f8e71a898c784da4d0dab6c845ed75fd4a0c2ef2",
+      "source_records": [
+        {
+          "id": "test-linalg-031",
+          "category": "高等代数",
+          "sub_category": "行列式×线性相关",
+          "problem": "求 $\\lambda$ 使向量组 $(1,2,3)$、$(2,\\lambda,1)$、$(3,1,2)$ 线性相关。",
+          "solution": "行列式 $D=\\begin{vmatrix}1&2&3\\\\2&\\lambda&1\\\\3&1&2\\end{vmatrix}=1\\cdot(\\lambda\\cdot 2-1\\cdot 1)-2\\cdot(2\\cdot 2-1\\cdot 3)+3\\cdot(2\\cdot 1-\\lambda\\cdot 3)=(2\\lambda-1)-2\\cdot 1+3\\cdot(2-3\\lambda)=2\\lambda-1-2+6-9\\lambda=3-7\\lambda$。线性相关 $\\iff D=0\\iff\\lambda=\\dfrac{3}{7}$。",
+          "answer": "$\\lambda=\\dfrac{3}{7}$",
+          "scene_spec": {
+            "objects": [
+              "三向量随 $\\lambda$ 共面的瞬间",
+              "行列式零点"
+            ],
+            "steps": [
+              "第一步：建立高等代数·行列式×线性相关综合场景，呈现与三阶行列式、线性相关、参数相关的核心图形。",
+              "第二步：三向量随 $\\lambda$ 共面的瞬间。",
+              "第三步：行列式零点。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "参数向量组相关",
+          "visual_style": "共面瞬间",
+          "efficiency_tags": [
+            "三向量随 $\\lambda$ 共面的瞬间",
+            "行列式零点"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "ad388bda13f592fa559c9cc96658339d7e97b714b8e0791ea2691d98ad9ad709"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}

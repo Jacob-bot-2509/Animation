@@ -1,0 +1,39 @@
+{
+  "schema": "current-bound-exact-probability-witness-v1",
+  "binding": {
+    "group": "test",
+    "id": "test-prob-005",
+    "math_sha256": "19dc1c0d74f9bb55ade36c0b54ace32d7ad8e6ab623bd3cb914aee8454397049",
+    "parent_review": {
+      "line": 22,
+      "path": "reviews/codex-supervision/2026-10-07-core-verifier-followup/admission-v2/record-bindings.jsonl",
+      "record_sha256": "8d68b0df8592874b50de48965aa46bce1e05ad7c09ae8484071671a19aea72b9",
+      "sha256": "0f1f325b70d43528d5947dffc17fcb74f36aa8ef682c05cadea70ad402133714"
+    },
+    "patch_review": null,
+    "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/test/dataset_test.jsonl",
+    "record_sha256": "8d68b0df8592874b50de48965aa46bce1e05ad7c09ae8484071671a19aea72b9",
+    "source_line": 75,
+    "source_sha256": "aeb3a2ea920dc68e0e536e5cdd97d8a25f276b335b4913a675acb1f49c63310c",
+    "parent_record_sha256": "8d68b0df8592874b50de48965aa46bce1e05ad7c09ae8484071671a19aea72b9",
+    "parent_math_sha256": "19dc1c0d74f9bb55ade36c0b54ace32d7ad8e6ab623bd3cb914aee8454397049",
+    "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+  },
+  "record_math_unchanged": true,
+  "checks": [
+    {
+      "claim": "integral density = 1",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "claim": "P(X+Y > 3/2) = 1/8",
+      "actual": "1/8",
+      "expected": "1/8",
+      "pass": true
+    }
+  ],
+  "general_reason": "Independence gives convolution; f_Z(z) is the length of (0,1) intersect (z-1,z). The piecewise density is z for 0<z<1, 2-z for 1<=z<2, and zero otherwise.",
+  "scope": "EXACT_WITNESS_FOR_ONE_UNCHANGED_CURRENT_RECORD;OTHER_MATH_INHERITS_FROZEN_V3"
+}

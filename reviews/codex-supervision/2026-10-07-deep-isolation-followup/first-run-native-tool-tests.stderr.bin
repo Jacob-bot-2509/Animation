@@ -1,0 +1,47 @@
+.........E.E..E
+======================================================================
+ERROR: test_nonzero_process_not_success_even_video_present (tests.test_native_render_pilot.NativeFormulaTests.test_nonzero_process_not_success_even_video_present)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_native_render_pilot.py", line 81, in test_nonzero_process_not_success_even_video_present
+    row = n.render_one("sample", self.work(), self.record, self.binding)
+  File "D:\Animation-Model-Training\tools\native_render_pilot.py", line 106, in render_one
+    work.mkdir(exist_ok=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\Python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-08-regression-work\\native-formula-8331z6vk\\reviews\\render-sample'
+
+======================================================================
+ERROR: test_timeout_bytes_preserved_and_not_success (tests.test_native_render_pilot.NativeFormulaTests.test_timeout_bytes_preserved_and_not_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_native_render_pilot.py", line 91, in test_timeout_bytes_preserved_and_not_success
+    row = n.render_one("sample", self.work(), self.record, self.binding)
+  File "D:\Animation-Model-Training\tools\native_render_pilot.py", line 106, in render_one
+    work.mkdir(exist_ok=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\Python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-08-regression-work\\native-formula-44pcod5s\\reviews\\render-sample'
+
+======================================================================
+ERROR: test_zero_exit_without_nonempty_video_fails (tests.test_native_render_pilot.NativeFormulaTests.test_zero_exit_without_nonempty_video_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_native_render_pilot.py", line 86, in test_zero_exit_without_nonempty_video_fails
+    row = n.render_one("sample", self.work(), self.record, self.binding)
+  File "D:\Animation-Model-Training\tools\native_render_pilot.py", line 106, in render_one
+    work.mkdir(exist_ok=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\Python\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-08-regression-work\\native-formula-lfkmh1c9\\reviews\\render-sample'
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.017s
+
+FAILED (errors=3)

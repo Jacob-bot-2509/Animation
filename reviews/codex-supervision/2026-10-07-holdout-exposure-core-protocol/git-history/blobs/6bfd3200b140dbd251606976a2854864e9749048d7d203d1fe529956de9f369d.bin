@@ -1,0 +1,39 @@
+{
+  "run_record_version": 1,
+  "run_id": "demo001",
+  "kind": "dry-run",
+  "config": {
+    "file": "configs\\data_check.example.json",
+    "sha256": "2f353d6da6991109dfd09a357a3b1cf52ad370d167e7f4ad42c5c05d92e6cd48",
+    "content": {
+      "//": "示例:数据检查约定(configs 为约定集中地;实际校验读 data/manifest.json)",
+      "license_whitelist": [
+        "apache-2.0",
+        "mit",
+        "internal-generated",
+        "cc-by-sa-4.0"
+      ],
+      "splits": [
+        "raw",
+        "train",
+        "eval",
+        "test"
+      ],
+      "overlap_policy": "评测/测试与训练精确重叠零容忍(整行内容哈希)",
+      "manifest": "data/manifest.json",
+      "commands": {
+        "dry_run": "python tools/data_check.py --dry-run",
+        "make": "python tools/make_manifest.py --dir data --out data/manifest.json --name animation-data-v1 --source <来源> --license <许可证>",
+        "check": "python tools/data_check.py --manifest data/manifest.json"
+      }
+    }
+  },
+  "git_commit": "846da29b3a323b00a49918aa9c8e65b1c10039f6",
+  "manifest_hash": "2ddc1199af8fce9cfd7ec49882ea6454a0a5f6988f576058af497f7dc3fd13d9",
+  "summary": {
+    "command": "python tools/data_check.py --dry-run",
+    "created_at": "2026-09-30 00:45:43",
+    "manifest": "data/README.md"
+  },
+  "metrics": {}
+}

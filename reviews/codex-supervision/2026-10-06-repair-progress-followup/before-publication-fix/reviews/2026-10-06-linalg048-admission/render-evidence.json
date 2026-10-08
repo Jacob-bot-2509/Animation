@@ -1,0 +1,111 @@
+{
+  "schema": "linalg048-admission-render-v1",
+  "candidate_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+  "candidate_raw_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+  "active_record_sha256": "a0349178ff42a5db26005e572c239a12b8586665dfd0333318920ff2b4353dd1",
+  "manifest_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+  "math_checks": {
+    "matrix": [
+      [
+        "1",
+        "3"
+      ],
+      [
+        "0",
+        "1"
+      ]
+    ],
+    "det": "1",
+    "vertex_images": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "4",
+        "1"
+      ],
+      [
+        "3",
+        "1"
+      ]
+    ],
+    "shoelace_area": "1",
+    "segment_images_c12": [
+      "3/2",
+      "5/2"
+    ],
+    "segment_images_c1": [
+      "3",
+      "4"
+    ],
+    "vline_image": "X-3Y=c",
+    "e2_image": "(3,1)",
+    "e2_norm_squared": "10"
+  },
+  "semantic_review": "Read full problem/solution/answer and all 5 scene steps. T(x,y)=(x+3y,y): x-axis fixed; horizontal line SETS invariant with point displacement (3y,0); segments [0,1]x{c} -> [3c,1+3c]x{c}; vertical x=c -> X-3Y=c slope 1/3; unit square -> parallelogram (0,0),(1,0),(4,1),(3,1) with shoelace area 1 = det A; ||T(0,1)|| = sqrt(10) shows length not preserved. No generic geometry; five steps match the derivation one-to-one.",
+  "render": {
+    "ok": true,
+    "detail": "AppContainer 真实渲染并完整解码",
+    "frames": 233,
+    "media_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c3294e5ed7e4db89693ebf230c9635f\\media\\videos\\scene\\480p15\\ConceptScene.mp4",
+    "final_frame_png": "D:\\Animation-Model-Training\\reviews\\2026-10-06-linalg048-admission\\linalg048-final-frame-v3.png",
+    "isolation": {
+      "backend": "windows_appcontainer",
+      "shell": false,
+      "memory_limit_mb": 2048,
+      "job_assigned": true,
+      "network_isolated": true,
+      "fs_isolation": "private_per_run",
+      "parent_evidence": {
+        "token": {
+          "api_ok": true,
+          "is_appcontainer": true,
+          "capability_count": 0,
+          "sid": "S-1-15-2-816228059-3682265565-926571825-1221345825-2861623266-2788605145-190484734"
+        },
+        "memory_limit_mb": 2048,
+        "created_suspended": true,
+        "job_assigned_before_resume": true,
+        "tree_stopped": true,
+        "pid": 31092,
+        "private_profile": {
+          "profile_name": "animtrain-job-b9c813d040c94ee488a32234b5ee477a",
+          "sid": "S-1-15-2-816228059-3682265565-926571825-1221345825-2861623266-2788605145-190484734",
+          "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-b9c813d040c94ee488a32234b5ee477a\\AC",
+          "temporary_acl": [
+            {
+              "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c3294e5ed7e4db89693ebf230c9635f",
+              "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.venv",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Python",
+              "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "restored": true
+            }
+          ],
+          "cleanup_complete": true
+        }
+      }
+    }
+  }
+}

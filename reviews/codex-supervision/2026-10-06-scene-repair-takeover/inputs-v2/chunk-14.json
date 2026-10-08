@@ -1,0 +1,1151 @@
+{
+  "schema": "scene-sweep-chunk-v2",
+  "standard": "Show every exact calculation; identify matrix row and column for each product; state convergence hypotheses, key bounds and limit arguments; use exact fractions and symbols.",
+  "records": [
+    {
+      "idx": 173,
+      "record": {
+        "id": "draft-c25-05",
+        "category": "解析几何",
+        "sub_category": "空间曲线",
+        "concept": "空间交线参数化",
+        "concept_id": "C25",
+        "parent_training_ids": [
+          "geom-031"
+        ],
+        "problem": "求球$x^2+y^2+z^2=1$与抛物柱面$y=x^2$的实交线，给参数域、分支连接关系，证明交线正则且非平面。",
+        "solution": "置$x=t$，则$y=t^2$、$z=\\pm\\sqrt{1-t^2-t^4}$。根号非负等价于$|t|\\le r=\\sqrt{(\\sqrt5-1)/2}$。两图形弧在$t=\\pm r$的点$(\\pm r,r^2,0)$连接，合为一条闭曲线，不能把正负图形弧误称为两个连通分量。正则性由梯度$(2t,2t^2,2z)$与$(-2t,1,0)$线性无关证明：$z\\ne0$时明显；$z=0$时$t\\ne0$，若成比例，第一坐标给比例$-1$而第二要求$2t^2=-1$，不可能。根号图形在端点不能充当光滑参数，可在端点改用$z$及$x=\\pm\\sqrt{(-1+\\sqrt{5-4z^2})/2}$作为局部参数。若整条曲线在$Ax+By+Cz=D$中，比较同$t$的正负$z$得$C=0$；继而$At+Bt^2-D$在区间恒零，得$A=B=D=0$，矛盾。",
+        "answer": "两弧$(t,t^2,\\pm\\sqrt{1-t^2-t^4})$，$|t|\\le\\sqrt{(\\sqrt5-1)/2}$；连接为一条正则非平面闭曲线。",
+        "method": "非平面根式交线的端点与正则性",
+        "difficulty": "进阶",
+        "variant_kind": "结构改写：非平面根式交线的端点与正则性",
+        "scene_spec": {
+          "objects": [
+            "求球$x^2+y^2+z^2=1$与抛物柱面$y=x^2$的实交线，给参数域、分支连接关系，证明交线正则且非平面。",
+            "两弧$(t,t^2,\\pm\\sqrt{1-t^2-t^4})$，$|t|\\le\\sqrt{(\\sqrt5-1)/2}$；连接为一条正则非平面闭曲线。"
+          ],
+          "steps": [
+            "第一步:置$x=t$，则$y=t^2$、$z=\\pm\\sqrt{1-t^2-t^4}$。",
+            "第二步:根号非负等价于$|t|\\le r=\\sqrt{(\\sqrt5-1)/2}$。",
+            "第三步:两图形弧在$t=\\pm r$的点$(\\pm r,r^2,0)$连接，合为一条闭曲线，不能把正负图形弧误称为两个连通分量。",
+            "第四步:正则性由梯度$(2t,2t^2,2z)$与$(-2t,1,0)$线性无关证明：$z\\ne0$时明显；$z=0$时$t\\ne0$，若成比例，第一坐标给比例$-1$而第二要求$2t^2=-1$，不可能。",
+            "第五步:根号图形在端点不能充当光滑参数，可在端点改用$z$及$x=\\pm\\sqrt{(-1+\\sqrt{5-4z^2})/2}$作为局部参数。",
+            "第六步:若整条曲线在$Ax+By+Cz=D$中，比较同$t$的正负$z$得$C=0$；继而$At+Bt^2-D$在区间恒零，得$A=B=D=0$，矛盾。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c25-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "647daa4f7111d9d84ee6ac7aa71a26d04aefeed186b8e6f44b7ded922ffae66e",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c25-05",
+          "prior_parent_training_ids": [
+            "geom-031"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换同结构两圆分支变体，加入根号域、端点连接与正则性检查。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c25-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 10,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "a03b17a80c2c10c64af9fe0e09f975cd955a941a2cacabc1bfd46baa07b97441",
+        "record_canonical_sha256": "1ae8b749bde76269433d8817e3c575cd65b01796218881225dce6f9e5e6bf09a",
+        "publisher_record_sorted_sha256": "5386549c3b21e7174cfb8969ea7f4de5a33958db275bbc0b2e8647b5f53627c7"
+      }
+    },
+    {
+      "idx": 174,
+      "record": {
+        "id": "draft-c26-01",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "concept": "线性变换的几何解释",
+        "concept_id": "C26",
+        "parent_training_ids": [
+          "linalg-048"
+        ],
+        "problem": "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+        "solution": "$n\\cdot d=3$，所以$Pd=0$且$n\\cdot Px=0$；对$n\\cdot x=0$的向量有$Px=x$。因此像为$n^{\\perp}$，核为$\\operatorname{span}(d)$，$P^2=P$，秩$2$。矩阵为$\\begin{pmatrix}2/3&-2/3&1/3\\\\-1/3&1/3&1/3\\\\0&0&1\\end{pmatrix}$。核方向$d$不平行法向量$n$，矩阵也不对称，故不是Euclidean正交投影；分解$x=Px+(n\\cdot x)d/3$唯一，说明投影方向。",
+        "answer": "$\\ker P=\\operatorname{span}(1,1,0)$，$\\operatorname{im}P=n^{\\perp}$，$P^2=P$；斜投影而非Euclidean正交投影。",
+        "method": "斜投影的唯一分解",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：斜投影的唯一分解",
+        "scene_spec": {
+          "objects": [
+            "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+            "$\\ker P=\\operatorname{span}(1,1,0)$，$\\operatorname{im}P=n^{\\perp}$，$P^2=P$；斜投影而非Euclidean正交投影。"
+          ],
+          "steps": [
+            "第一步:$n\\cdot d=3$，所以$Pd=0$且$n\\cdot Px=0$；对$n\\cdot x=0$的向量有$Px=x$。",
+            "第二步:因此像为$n^{\\perp}$，核为$\\operatorname{span}(d)$，$P^2=P$，秩$2$。",
+            "第三步:矩阵为$\\begin{pmatrix}2/3&-2/3&1/3\\\\-1/3&1/3&1/3\\\\0&0&1\\end{pmatrix}$。",
+            "第四步:核方向$d$不平行法向量$n$，矩阵也不对称，故不是Euclidean正交投影；分解$x=Px+(n\\cdot x)d/3$唯一，说明投影方向。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-01",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "6d1ac85b70ef7fe07a7064e6065c8856f4ecc16a20c7bc208cf70fefc0100680",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c26-01",
+          "prior_parent_training_ids": [
+            "linalg-048"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "去掉与C24同一剪切任务，改为核与像不正交的投影结构。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c26-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 11,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "1c1bcbdc549f65ab28284df0dc60f5b4809bd7063d2b8a4b767d23386babd250",
+        "record_canonical_sha256": "e4958c415d9bdd85dc46090cd31565345d93333188be53f8334119bc1eaaa70e",
+        "publisher_record_sorted_sha256": "61577fe9a08d9aa40adef7a215e5ad00445120b5343a923fea1dbe50c5edb905"
+      }
+    },
+    {
+      "idx": 175,
+      "record": {
+        "id": "draft-c26-02",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "concept": "线性变换的几何解释",
+        "concept_id": "C26",
+        "parent_training_ids": [
+          "linalg-048"
+        ],
+        "problem": "分类所有保持两条坐标轴各自不变、并将单位圆映到自身的实线性映射$A:\\mathbb R^2\\to\\mathbb R^2$。分别给其固定点集合与定向。",
+        "solution": "两轴各自不变使矩阵为$\\operatorname{diag}(a,b)$。单位基向量在圆上，其像也必须在圆上，所以$|a|=|b|=1$；反之这四个对角矩阵均保持整个单位圆。$A=I$固定全平面且保定向；$A=-I$仅固定原点且保定向；$\\operatorname{diag}(1,-1)$固定$x$轴并反定向；$\\operatorname{diag}(-1,1)$固定$y$轴并反定向。",
+        "answer": "仅四个$\\operatorname{diag}(\\pm1,\\pm1)$；固定集合和定向如上。",
+        "method": "约束下线性圆对称的分类",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：约束下线性圆对称的分类",
+        "scene_spec": {
+          "objects": [
+            "分类所有保持两条坐标轴各自不变、并将单位圆映到自身的实线性映射$A:\\mathbb R^2\\to\\mathbb R^2$。分别给其固定点集合与定向。",
+            "仅四个$\\operatorname{diag}(\\pm1,\\pm1)$；固定集合和定向如上。"
+          ],
+          "steps": [
+            "第一步:两轴各自不变使矩阵为$\\operatorname{diag}(a,b)$。",
+            "第二步:单位基向量在圆上，其像也必须在圆上，所以$|a|=|b|=1$；反之这四个对角矩阵均保持整个单位圆。",
+            "第三步:$A=I$固定全平面且保定向；$A=-I$仅固定原点且保定向；$\\operatorname{diag}(1,-1)$固定$x$轴并反定向；$\\operatorname{diag}(-1,1)$固定$y$轴并反定向。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-02",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "abbd296242c4faa319d3a094059dc900e39e77e3b4df78ae8b3799e49c251676",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c26-02",
+          "prior_parent_training_ids": [
+            "linalg-048"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换留出集同一坐标投影矩阵，改为从几何约束恢复全部映射。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c26-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 12,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "162278cf1a42f506be08e7842a9394a2f97cd4f020073ec65362805cbd66f796",
+        "record_canonical_sha256": "a5c82e5177526bf955f2e0ff331018081f1cb00a6935cc5a3fcedbccc9c3d6a2",
+        "publisher_record_sorted_sha256": "1d2f200be2afd9b5197eb589714bbc8059e8cb79c135f3484d72f902f8656350"
+      }
+    },
+    {
+      "idx": 176,
+      "record": {
+        "id": "draft-c26-03",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "concept": "线性变换的几何解释",
+        "concept_id": "C26",
+        "parent_training_ids": [
+          "linalg-048"
+        ],
+        "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+        "solution": "$A(x,y)=(x+2y,-y)$，直接再作用给$(x,y)$，所以$A^2=I$。固定向量满足$y=0$，固定线为$x$轴；变号向量满足$x=-y$，变号线为$\\operatorname{span}(-1,1)$，两者独立但不垂直。$\\|Ae_2\\|^2=\\|(2,-1)\\|^2=5\\ne1$，因此不保距离，不是Euclidean平面反射。任意向量唯一分解为这两条线的向量，$A$保持第一分量并将第二变号，是斜分解下的线性对合。",
+        "answer": "线性对合，固定线$x$轴、变号线$y=-x$；不等距，不是Euclidean反射。",
+        "method": "对合与Euclidean反射的区别",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：对合与Euclidean反射的区别",
+        "scene_spec": {
+          "objects": [
+            "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+            "线性对合，固定线$x$轴、变号线$y=-x$；不等距，不是Euclidean反射。"
+          ],
+          "steps": [
+            "第一步:$A(x,y)=(x+2y,-y)$，直接再作用给$(x,y)$，所以$A^2=I$。",
+            "第二步:固定向量满足$y=0$，固定线为$x$轴；变号向量满足$x=-y$，变号线为$\\operatorname{span}(-1,1)$，两者独立但不垂直。",
+            "第三步:$\\|Ae_2\\|^2=\\|(2,-1)\\|^2=5\\ne1$，因此不保距离，不是Euclidean平面反射。",
+            "第四步:任意向量唯一分解为这两条线的向量，$A$保持第一分量并将第二变号，是斜分解下的线性对合。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-03",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "5e943db0ed712ed88da58f2b39eb5be244492dcb606cbd653e2ddbc3b1e8cb11",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c26-03",
+          "prior_parent_training_ids": [
+            "linalg-048"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "独立结构复核确认平衡二阶谱块可直接复用冻结谱任务，改为非正交线性对合。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c26-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 13,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "79e20df705ec1efe385d9b796d289735f9bf56bb12cdad189bc4f78a3488ee13",
+        "record_canonical_sha256": "3fdfb579c3bf218488a75c008dd2d58901f87ab10969a79fd4e3e4f1555f6e37",
+        "publisher_record_sorted_sha256": "a16d03911365e95e88b4a35626091c00d5ecbfa2b80deb3b1664e49e3df639c7"
+      }
+    },
+    {
+      "idx": 177,
+      "record": {
+        "id": "draft-c26-04",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "concept": "线性变换的几何解释",
+        "concept_id": "C26",
+        "parent_training_ids": [
+          "linalg-048"
+        ],
+        "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+        "solution": "两者像维数均为$2$。$T^2=0$且$T\\ne0$，像维数序列为$4,2,0$；$U^2(x)=(x_3,0,0,0)\\ne0$、$U^3=0$，像维数为$4,2,1,0$。相似会保持所有幂的秩或最小归零次数，故两者不相似。若一个非零幂零实或复矩阵可对角化，其对角特征值全为零，矩阵只能为零，矛盾。因此两者均不可对角化。相同一次秩不足以描述线性迭代的几何压缩。",
+        "answer": "秩均$2$；$T$二次归零，$U$三次归零，不相似，均不可对角化。",
+        "method": "几何迭代像与相似不变量",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：几何迭代像与相似不变量",
+        "scene_spec": {
+          "objects": [
+            "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+            "秩均$2$；$T$二次归零，$U$三次归零，不相似，均不可对角化。"
+          ],
+          "steps": [
+            "第一步:两者像维数均为$2$。",
+            "第二步:$T^2=0$且$T\\ne0$，像维数序列为$4,2,0$；$U^2(x)=(x_3,0,0,0)\\ne0$、$U^3=0$，像维数为$4,2,1,0$。",
+            "第三步:相似会保持所有幂的秩或最小归零次数，故两者不相似。",
+            "第四步:若一个非零幂零实或复矩阵可对角化，其对角特征值全为零，矩阵只能为零，矛盾。",
+            "第五步:因此两者均不可对角化。",
+            "第六步:相同一次秩不足以描述线性迭代的几何压缩。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-04",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "3c20767c365236c22d3bb8bfe8e88d9aa0201dccd0af65444dd7ee8ef8d3ae04",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c26-04",
+          "prior_parent_training_ids": [
+            "linalg-048"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换留出集相同的二阶Jordan块，改为同秩不同迭代压缩的四维比较。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c26-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 14,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "af6f226817ba4ddd953d150f6f9461561e0c50729892d8607c7505d2be25ccd1",
+        "record_canonical_sha256": "2c247e5f0a5729041ccb4fa2084f14e0e36cc65489c7500b700c0aa1748ad617",
+        "publisher_record_sorted_sha256": "4bca984fd1b18ac80e03bdf094e7d867566346ae5ce60803e2b4b0e99e7422ee"
+      }
+    },
+    {
+      "idx": 178,
+      "record": {
+        "id": "draft-c26-05",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "concept": "线性变换的几何解释",
+        "concept_id": "C26",
+        "parent_training_ids": [
+          "linalg-048"
+        ],
+        "problem": "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+        "solution": "$AB=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$;$BA=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。$AB\\neq BA$。几何:单位正方形在 $AB$(先伸缩、后旋转)下:伸缩把顶点映为 $(0,0),(2,0),(2,1),(0,1)$(水平长条),再旋转 $90^\\circ$ 得 $(0,0),(0,2),(-1,2),(-1,0)$(竖直长条)。在 $BA$(先旋转、后伸缩)下:旋转得 $(0,0),(0,1),(-1,1),(-1,0)$,再沿 $x$ 方向伸缩得 $(0,0),(0,1),(-2,1),(-2,0)$(水平长条)。两像不同($AB$ 的像为竖直 $1\\times2$ 长条,$BA$ 的像为水平 $2\\times1$ 长条),故矩阵乘法顺序不可交换,几何上对应「先伸缩后旋转」与「先旋转后伸缩」的不同。",
+        "answer": "$AB=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$,$BA=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$,两者不同;$AB$ 的像为竖直长条,$BA$ 的像为水平长条,几何上为「先伸缩后旋转」与「先旋转后伸缩」的差异。",
+        "method": "复合变换顺序对照",
+        "difficulty": "进阶",
+        "variant_kind": "逆变换与复合:矩阵乘法不可交换的几何对照",
+        "scene_spec": {
+          "objects": [
+            "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+            "$AB=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$,$BA=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$,两者不同;$AB$ 的像为竖直长条,$BA$ 的像为水平长条,几何上为「先伸缩后旋转」与「先旋转后伸缩」的差异。"
+          ],
+          "steps": [
+            "第一步:$AB=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$;$BA=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。",
+            "第二步:$AB\\neq BA$。",
+            "第三步:几何:单位正方形在 $AB$(先伸缩、后旋转)下:伸缩把顶点映为 $(0,0),(2,0),(2,1),(0,1)$(水平长条),再旋转 $90^\\circ$ 得 $(0,0),(0,2),(-1,2),(-1,0)$(竖直长条)。",
+            "第四步:在 $BA$(先旋转、后伸缩)下:旋转得 $(0,0),(0,1),(-1,1),(-1,0)$,再沿 $x$ 方向伸缩得 $(0,0),(0,1),(-2,1),(-2,0)$(水平长条)。",
+            "第五步:两像不同($AB$ 的像为竖直 $1\\times2$ 长条,$BA$ 的像为水平 $2\\times1$ 长条),故矩阵乘法顺序不可交换,几何上对应「先伸缩后旋转」与「先旋转后伸缩」的不同。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-12",
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "a3dc4380de79779dd86cb8cb360fa53cd72545d6d684666558c3c2ca4fe1d9ba",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+          "original_id": "draft-c26-05",
+          "prior_parent_training_ids": [
+            "linalg-048"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "独立核验AB和BA及四像顶点；非交换因子为各向异性伸缩和旋转，无冻结旋转幂任务。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+            "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+            "versioned_id": "codex-repair-20261005-batch-12-draft-c26-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-12",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl",
+        "source_line": 15,
+        "source_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+        "source_normalized_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "f19639bfc73abcc1a067ca0ee919e60f9d693c19f7daa07b35c15f7e2ee856de",
+        "record_canonical_sha256": "ba688df7b049d9d9683d03c718dea49dd0eb4b7e89a2e5c4c1583a1f80f2c591",
+        "publisher_record_sorted_sha256": "3fc0a30abe0471413eaf18ee2dfefdf511de6d8618559cb7740417948945ba3b"
+      }
+    },
+    {
+      "idx": 179,
+      "record": {
+        "id": "draft-c27-01",
+        "category": "高等代数",
+        "sub_category": "矩阵对角化",
+        "concept": "谱分解与对角化",
+        "concept_id": "C27",
+        "parent_training_ids": [
+          "linalg-049",
+          "linalg-064",
+          "linalg-068"
+        ],
+        "problem": "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+        "solution": "记$N=uv^{\\mathsf T}\\ne0$，则$N^2=\\alpha N$。若$\\alpha\\ne0$，$\\ker v^{\\mathsf T}$维数$n-1$，$u$不在其中，全空间分解为该超平面与$\\operatorname{span}(u)$的直和；$A$分别作用为$1$和$1+\\alpha$，两个不同特征值都出现，所以可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$。若$\\alpha=0$，$N^2=0$但$N\\ne0$，$A$仅有特征值$1$，最小多项式为$(\\lambda-1)^2$；若可对角化只能是$I$，与$N\\ne0$矛盾。因此非零向量产生的零内积边界导致不可对角化。",
+        "answer": "$\\alpha\\ne0$可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$；$\\alpha=0$不可，最小多项式$(\\lambda-1)^2$。",
+        "method": "秩一扰动的谱分解与边界",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：秩一扰动的谱分解与边界",
+        "scene_spec": {
+          "objects": [
+            "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+            "$\\alpha\\ne0$可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$；$\\alpha=0$不可，最小多项式$(\\lambda-1)^2$。"
+          ],
+          "steps": [
+            "第一步:记$N=uv^{\\mathsf T}\\ne0$，则$N^2=\\alpha N$。",
+            "第二步:若$\\alpha\\ne0$，$\\ker v^{\\mathsf T}$维数$n-1$，$u$不在其中，全空间分解为该超平面与$\\operatorname{span}(u)$的直和；$A$分别作用为$1$和$1+\\alpha$，两个不同特征值都出现，所以可对角化，最小多项式$(\\lambda-1)(\\lambda-1-\\alpha)$。",
+            "第三步:若$\\alpha=0$，$N^2=0$但$N\\ne0$，$A$仅有特征值$1$，最小多项式为$(\\lambda-1)^2$；若可对角化只能是$I$，与$N\\ne0$矛盾。",
+            "第四步:因此非零向量产生的零内积边界导致不可对角化。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-01",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "29ef73daa2f671f2820da7423b4107e3d0d8ae668d4d396d9f69728c1d03756c",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c27-01",
+          "prior_parent_training_ids": [
+            "linalg-049",
+            "linalg-064",
+            "linalg-068"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "消除与活动训练linalg-066同Jordan结构的改数值题，改为秩一算子参数的半单与幂零边界。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c27-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 1,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "4a727c0684fd3530c012f2c0847e4fecb0ea50fd2b3e52b6df52b67e40dde145",
+        "record_canonical_sha256": "93109f0039ded5fc20091850b6dc8bda19ebaf4c70bcd9fb0437221d5a80e031",
+        "publisher_record_sorted_sha256": "c7e082795832bafcec8cd3f68a250dcfb7567da6a0af4ae2b9e0d21ab9b8304a"
+      }
+    },
+    {
+      "idx": 180,
+      "record": {
+        "id": "draft-c27-02",
+        "category": "高等代数",
+        "sub_category": "矩阵对角化",
+        "concept": "谱分解与对角化",
+        "concept_id": "C27",
+        "parent_training_ids": [
+          "linalg-049",
+          "linalg-064",
+          "linalg-068"
+        ],
+        "problem": "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+        "solution": "特征多项式为$\\lambda^3-\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda^2+\\lambda+1)$。三根为$2$、$\\omega=(-1+i\\sqrt3)/2$、$\\overline\\omega$，互不相同。对每一根，$v_\\lambda=(1,\\lambda,\\lambda^2)^{\\mathsf T}$满足$Av_\\lambda=\\lambda v_\\lambda$。取$P=(v_2,v_\\omega,v_{\\overline\\omega})$，Vandermonde行列式为$(\\omega-2)(\\overline\\omega-2)(\\overline\\omega-\\omega)\\ne0$，故$P^{-1}AP=\\operatorname{diag}(2,\\omega,\\overline\\omega)$。若在实域可对角化，特征多项式必须分裂为实线性因子；而二次因子判别式$-3<0$，所以不能在实域对角化。数域条件不能省略。",
+        "answer": "复域可对角化，$P$与$D$如上；实域不可对角化。",
+        "method": "伴随矩阵与数域对角化",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：伴随矩阵与数域对角化",
+        "scene_spec": {
+          "objects": [
+            "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+            "复域可对角化，$P$与$D$如上；实域不可对角化。"
+          ],
+          "steps": [
+            "第一步:特征多项式为$\\lambda^3-\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda^2+\\lambda+1)$。",
+            "第二步:三根为$2$、$\\omega=(-1+i\\sqrt3)/2$、$\\overline\\omega$，互不相同。",
+            "第三步:对每一根，$v_\\lambda=(1,\\lambda,\\lambda^2)^{\\mathsf T}$满足$Av_\\lambda=\\lambda v_\\lambda$。",
+            "第四步:取$P=(v_2,v_\\omega,v_{\\overline\\omega})$，Vandermonde行列式为$(\\omega-2)(\\overline\\omega-2)(\\overline\\omega-\\omega)\\ne0$，故$P^{-1}AP=\\operatorname{diag}(2,\\omega,\\overline\\omega)$。",
+            "第五步:若在实域可对角化，特征多项式必须分裂为实线性因子；而二次因子判别式$-3<0$，所以不能在实域对角化。",
+            "第六步:数域条件不能省略。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-02",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "1e2cb9b33490c9f5bfde07d8f562d636517933e3e568396a92d86821344c9a3b",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c27-02",
+          "prior_parent_training_ids": [
+            "linalg-049",
+            "linalg-064",
+            "linalg-068"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换平衡二阶谱块的数值变体，改为三阶伴随结构与数域差异。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c27-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 2,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "ca83283bd86f35a1d4aefa2fb8f4a45facb341925de7465c4007a119d83f0f28",
+        "record_canonical_sha256": "1f3ddfd849967c728286ff398ab7b333bd9f41977f8a27d27652e99f18c54364",
+        "publisher_record_sorted_sha256": "eceffc98e80626fce00f412217f1603f3cb9357cdd78011842376ec77ba2e1fa"
+      }
+    },
+    {
+      "idx": 181,
+      "record": {
+        "id": "draft-c27-03",
+        "category": "高等代数",
+        "sub_category": "矩阵对角化",
+        "concept": "谱分解与对角化",
+        "concept_id": "C27",
+        "parent_training_ids": [
+          "linalg-049",
+          "linalg-064",
+          "linalg-068"
+        ],
+        "problem": "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+        "solution": "定义$P_0=I-A^2$、$P_+=(A^2+A)/2$、$P_-=(A^2-A)/2$。由$A^3=A$和$A^4=A^2$，直接相乘得三投影各自幂等、两两乘积零、和为$I$，且$AP_0=0,AP_+=P_+,AP_-=-P_-$。所以全空间为三个像的直和；在各像中取基便得到对角化，零维像可省略。又$A^{m+2}=A^m$对$m\\ge1$成立，故正奇数幂为$A$，正偶数幂为$A^2$。这依赖多项式恒等式及简单根结构，不是某个二阶矩阵幂的数值替换。",
+        "answer": "$P_0=I-A^2,P_\\pm=(A^2\\pm A)/2$；$A$可对角化，奇正幂$A$、偶正幂$A^2$。",
+        "method": "谱投影的多项式构造",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：谱投影的多项式构造",
+        "scene_spec": {
+          "objects": [
+            "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+            "$P_0=I-A^2,P_\\pm=(A^2\\pm A)/2$；$A$可对角化，奇正幂$A$、偶正幂$A^2$。"
+          ],
+          "steps": [
+            "第一步:定义$P_0=I-A^2$、$P_+=(A^2+A)/2$、$P_-=(A^2-A)/2$。",
+            "第二步:由$A^3=A$和$A^4=A^2$，直接相乘得三投影各自幂等、两两乘积零、和为$I$，且$AP_0=0,AP_+=P_+,AP_-=-P_-$。",
+            "第三步:所以全空间为三个像的直和；在各像中取基便得到对角化，零维像可省略。",
+            "第四步:又$A^{m+2}=A^m$对$m\\ge1$成立，故正奇数幂为$A$，正偶数幂为$A^2$。",
+            "第五步:这依赖多项式恒等式及简单根结构，不是某个二阶矩阵幂的数值替换。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-03",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "e23b70a1ba26539b6f66210b3fe4be1f123734bae95bbd4b1e8dd2d9be608587",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c27-03",
+          "prior_parent_training_ids": [
+            "linalg-049",
+            "linalg-064",
+            "linalg-068"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "去掉同一二阶矩阵在C41重复出现的对角化步骤，改为多项式恒等式与谱投影。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c27-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 3,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "83ed1ceb76b29181d051f09d245956c134e441c5ae26af2e57d709b432a403fd",
+        "record_canonical_sha256": "6867068f6a8f954c7495ea4f0b8f3459c8b3f14e1ada073101ecdfcfeb5bf700",
+        "publisher_record_sorted_sha256": "ccd59eb6362bffc01773ca78098eeb5f1da4bcb1200bfe92c103a23dac067e0f"
+      }
+    },
+    {
+      "idx": 182,
+      "record": {
+        "id": "draft-c27-04",
+        "category": "高等代数",
+        "sub_category": "矩阵对角化",
+        "concept": "谱分解与对角化",
+        "concept_id": "C27",
+        "parent_training_ids": [
+          "linalg-049",
+          "linalg-064",
+          "linalg-068"
+        ],
+        "problem": "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+        "solution": "特征值为$1,2$，对应特征向量$e_1=(1,0)$与$(k,1)$。$P=\\begin{pmatrix}1&k\\\\0&1\\end{pmatrix}$可逆且$A_kP=P\\operatorname{diag}(1,2)$，故所有$k$都可对角化。两特征线夹角$\\alpha\\in(0,\\pi/2]$满足$\\cos\\alpha=|k|/\\sqrt{k^2+1}$，所以仅$k=0$时垂直。实矩阵正交对角化为实对角阵必对称，而$A_k$对称当且仅当$k=0$；故正交对角化也当且仅当$k=0$。",
+        "answer": "所有$k$可对角化；正交对角化当且仅当$k=0$；$\\alpha=\\arccos(|k|/\\sqrt{k^2+1})$。",
+        "method": "含参特征方向分析",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：含参特征方向分析",
+        "scene_spec": {
+          "objects": [
+            "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+            "所有$k$可对角化；正交对角化当且仅当$k=0$；$\\alpha=\\arccos(|k|/\\sqrt{k^2+1})$。"
+          ],
+          "steps": [
+            "第一步:特征值为$1,2$，对应特征向量$e_1=(1,0)$与$(k,1)$。",
+            "第二步:$P=\\begin{pmatrix}1&k\\\\0&1\\end{pmatrix}$可逆且$A_kP=P\\operatorname{diag}(1,2)$，故所有$k$都可对角化。",
+            "第三步:两特征线夹角$\\alpha\\in(0,\\pi/2]$满足$\\cos\\alpha=|k|/\\sqrt{k^2+1}$，所以仅$k=0$时垂直。",
+            "第四步:实矩阵正交对角化为实对角阵必对称，而$A_k$对称当且仅当$k=0$；故正交对角化也当且仅当$k=0$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-04",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "7e1172e2319b004e6a82f3bc181d4fc215ebb2c5f363f2361989db46a7c3b43c",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c27-04",
+          "prior_parent_training_ids": [
+            "linalg-049",
+            "linalg-064",
+            "linalg-068"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "增加非正交特征方向的判据，避免只把上三角矩阵换数值。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c27-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 4,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "a35ec81a795509cb44a27d790f487e4a16a0e148eee4c5749b437d2508e5bd86",
+        "record_canonical_sha256": "4c90e80511445f7fa2265bcd892c6279a0d3e0df75d73e3b9cae6e47a3a5eefb",
+        "publisher_record_sorted_sha256": "13a19a2d90ace709739438b14060d244f0be4b00e9ccbc57f771c9ca0e1b02f9"
+      }
+    },
+    {
+      "idx": 183,
+      "record": {
+        "id": "draft-c27-05",
+        "category": "高等代数",
+        "sub_category": "矩阵对角化",
+        "concept": "谱分解与对角化",
+        "concept_id": "C27",
+        "parent_training_ids": [
+          "linalg-049",
+          "linalg-064",
+          "linalg-068"
+        ],
+        "problem": "证明：若$n$阶矩阵在数域$\\mathbb F$内有$n$个互异特征值，则在$\\mathbb F$内可对角化。",
+        "solution": "对互异$\\lambda_1,\\ldots,\\lambda_n\\in\\mathbb F$取非零特征向量$v_i$。用归纳法证明独立：若$\\sum_{i=1}^m c_iv_i=0$，施加$A-\\lambda_mI$，得到$\\sum_{i<m}c_i(\\lambda_i-\\lambda_m)v_i=0$；由归纳假设和互异性，$c_i=0$（$i<m$），再得$c_m=0$。故$n$个特征向量组成可逆矩阵$P$，$AP=P\\operatorname{diag}(\\lambda_i)$。数域内有全部特征值的条件不可省略。",
+        "answer": "证明见解法(归纳法证明不同特征值的特征向量线性无关,从而构成基)。",
+        "method": "充分条件证明(归纳法)",
+        "difficulty": "进阶",
+        "variant_kind": "结构改写：充分条件证明(归纳法)",
+        "scene_spec": {
+          "objects": [
+            "证明：若$n$阶矩阵在数域$\\mathbb F$内有$n$个互异特征值，则在$\\mathbb F$内可对角化。",
+            "证明见解法(归纳法证明不同特征值的特征向量线性无关,从而构成基)。"
+          ],
+          "steps": [
+            "第一步:对互异$\\lambda_1,\\ldots,\\lambda_n\\in\\mathbb F$取非零特征向量$v_i$。",
+            "第二步:用归纳法证明独立：若$\\sum_{i=1}^m c_iv_i=0$，施加$A-\\lambda_mI$，得到$\\sum_{i<m}c_i(\\lambda_i-\\lambda_m)v_i=0$；由归纳假设和互异性，$c_i=0$（$i<m$），再得$c_m=0$。",
+            "第三步:故$n$个特征向量组成可逆矩阵$P$，$AP=P\\operatorname{diag}(\\lambda_i)$。",
+            "第四步:数域内有全部特征值的条件不可省略。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "80b5efcd6f4e89b0f76d4c950e02f7dfa27861e2f1cd702a374242867d0e532a",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c27-05",
+          "prior_parent_training_ids": [
+            "linalg-049",
+            "linalg-064",
+            "linalg-068"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "明确互异特征值在所讨论数域内，不能误推出实矩阵必实对角化。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c27-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 5,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "9bad3467309f8a335e151cfaa45f72f2976663ffe063b5a8a85af0a366878c41",
+        "record_canonical_sha256": "b1d4feaa24c4bee07e17effca208960534abc9ccfe52b5e0a2aca46aefd25731",
+        "publisher_record_sorted_sha256": "94ccfe8a28b61a2b61ab3bca9c583bde077db7931d4a66722ad4995f163e8057"
+      }
+    },
+    {
+      "idx": 184,
+      "record": {
+        "id": "draft-c29-01",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式因式分解与根",
+        "concept_id": "C29",
+        "parent_training_ids": [
+          "linalg-051"
+        ],
+        "problem": "用$f(x)=x^4+4$说明“没有有理根”不等于“在$\\mathbb Q[x]$不可约”。给出在$\\mathbb Q,\\mathbb R,\\mathbb C$中的不可约因子，并证明。",
+        "solution": "Sophie Germain恒等式给$x^4+4=(x^2-2x+2)(x^2+2x+2)$。两个二次因子的判别式都是$-4$，在$\\mathbb Q$和$\\mathbb R$不可约，且实数$x$下$f(x)>0$，所以连实根都没有。复数根为$1\\pm i,-1\\pm i$，故复域分解为相应四个首一线性因子。无有理根只能排除一次有理因子，不能排除二次因子；四次多项式的可约性不能仅靠有理根检验决定。",
+        "answer": "$\\mathbb Q,\\mathbb R$中分解为$x^2\\mp2x+2$；$\\mathbb C$中根$\\pm1\\pm i$；没有有理根但可约。",
+        "method": "无有理根但可约的四次反例",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：无有理根但可约的四次反例",
+        "scene_spec": {
+          "objects": [
+            "用$f(x)=x^4+4$说明“没有有理根”不等于“在$\\mathbb Q[x]$不可约”。给出在$\\mathbb Q,\\mathbb R,\\mathbb C$中的不可约因子，并证明。",
+            "$\\mathbb Q,\\mathbb R$中分解为$x^2\\mp2x+2$；$\\mathbb C$中根$\\pm1\\pm i$；没有有理根但可约。"
+          ],
+          "steps": [
+            "第一步:Sophie Germain恒等式给$x^4+4=(x^2-2x+2)(x^2+2x+2)$。",
+            "第二步:两个二次因子的判别式都是$-4$，在$\\mathbb Q$和$\\mathbb R$不可约，且实数$x$下$f(x)>0$，所以连实根都没有。",
+            "第三步:复数根为$1\\pm i,-1\\pm i$，故复域分解为相应四个首一线性因子。",
+            "第四步:无有理根只能排除一次有理因子，不能排除二次因子；四次多项式的可约性不能仅靠有理根检验决定。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c29-01",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "225e62519e6b4f32b0a2abad8f84cd09a1a55c5f23cd2e4b806db2b70510cddd",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c29-01",
+          "prior_parent_training_ids": [
+            "linalg-051"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换留出集相同三次多项式，改为有理根法的适用边界与数域分解。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c29-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 6,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "4b605eff5a5c2f77c4f3d856901068e4a7d5b3e7c5bdb1dbaee89dd34a8a5e68",
+        "record_canonical_sha256": "4860b6f0c118f3c04b872b3e178c3b1d2316f6cde1494c93936c6daf9d12aa24",
+        "publisher_record_sorted_sha256": "fb2348a250cc8c77980f3922e2d984037ae3c22f085bc1f70b3fbb93d97fa490"
+      }
+    },
+    {
+      "idx": 185,
+      "record": {
+        "id": "draft-c29-02",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "concept": "多项式因式分解与根",
+        "concept_id": "C29",
+        "parent_training_ids": [
+          "linalg-051"
+        ],
+        "problem": "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+        "solution": "实系数多项式的非实根成对出现:$2-i$ 也是根,故 $f$ 含因子 $(x-(2+i))(x-(2-i))=x^2-4x+5$。用韦达定理或综合除法:设第三根为 $r$,三根之和为 $7$,故 $r=7-(2+i)-(2-i)=3$。验证:$f=(x-3)(x^2-4x+5)$,展开核对:$x^3-4x^2+5x-3x^2+12x-15=x^3-7x^2+17x-15$ ✓。全部根:$3$,$2+i$,$2-i$。",
+        "answer": "全部根:$3$,$2+i$,$2-i$。",
+        "method": "复根共轭配对+韦达定理",
+        "difficulty": "基础",
+        "variant_kind": "复根配对:已知复根求全部根(共轭+韦达)",
+        "scene_spec": {
+          "objects": [
+            "已知 $2+i$ 是实系数多项式 $f(x)=x^3-7x^2+17x-15$ 的一个根，求 $f$ 的全部根。",
+            "全部根:$3$,$2+i$,$2-i$。"
+          ],
+          "steps": [
+            "第一步:实系数多项式的非实根成对出现:$2-i$ 也是根,故 $f$ 含因子 $(x-(2+i))(x-(2-i))=x^2-4x+5$。",
+            "第二步:用韦达定理或综合除法:设第三根为 $r$,三根之和为 $7$,故 $r=7-(2+i)-(2-i)=3$。",
+            "第三步:验证:$f=(x-3)(x^2-4x+5)$,展开核对:$x^3-4x^2+5x-3x^2+12x-15=x^3-7x^2+17x-15$ ✓。",
+            "第四步:全部根:$3$,$2+i$,$2-i$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c29-02",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-13",
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "955cbd2028c4051c16cf5cc3fdaff2cbf0cdd630971646bbf05e99360cb478d6",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+          "original_id": "draft-c29-02",
+          "prior_parent_training_ids": [
+            "linalg-051"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "实系数共轭根与第三根3，精确展开(x-3)(x²-4x+5)等于原多项式。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+            "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+            "versioned_id": "codex-repair-20261005-batch-13-draft-c29-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-13",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl",
+        "source_line": 7,
+        "source_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+        "source_normalized_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "0c401b468af5c0fd011880107a8dfd564d24d302952c03546841919c4b64217b",
+        "record_canonical_sha256": "5c8d9374bf3a7484faaf5cc6360c4b9d2f09ac343dd354e0426a90a9a131bb2e",
+        "publisher_record_sorted_sha256": "11ac4570571c3905c4207cff76ae2f25108b61f20914af5dd19ec89533a4bb3d"
+      }
+    }
+  ]
+}

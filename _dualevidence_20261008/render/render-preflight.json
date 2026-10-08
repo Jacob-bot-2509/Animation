@@ -1,0 +1,54 @@
+{
+  "tool": "render_preflight",
+  "root": "D:\\Animation-Model-Training",
+  "out": "D:\\Animation-Model-Training\\_dualevidence_20261008\\render",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "checks": {
+    "project read view": {
+      "ok": false,
+      "error": "FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\\\Animation-Model-Training\\\\src\\\\animgtrain'"
+    },
+    "import appcontainer module": {
+      "ok": false,
+      "error": "ModuleNotFoundError: No module named 'animgtrain'"
+    },
+    "project interpreter visible": {
+      "ok": true,
+      "value": {
+        "path": "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "exists": false,
+        "bytes": null,
+        "scripts_dir_exists": false
+      }
+    },
+    "miktex sandbox runtime": {
+      "ok": false,
+      "error": "PermissionError: [WinError 5] 拒绝访问。: 'D:\\\\Animation-Model-Training\\\\.sandbox-runtime\\\\miktex-real'"
+    },
+    "appcontainer child process": {
+      "ok": true,
+      "value": {
+        "host_interpreter": {
+          "error": "OSError: [Errno -2147024891] AppContainer profile unavailable: HRESULT 0x80070005; provision the profile explicitly before sandbox startup"
+        },
+        "project_interpreter": {
+          "error": "OSError: [Errno -2147024891] AppContainer profile unavailable: HRESULT 0x80070005; provision the profile explicitly before sandbox startup"
+        },
+        "host_control": {
+          "returncode": 0,
+          "stdout_head": "TOKEN={\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}\r\n",
+          "stderr_head": ""
+        },
+        "workdir": "D:\\Animation-Model-Training\\_dualevidence_20261008\\render\\appcontainer-probe-ee6f4e81b6a3"
+      }
+    }
+  },
+  "blocking": [
+    "project read view",
+    "import appcontainer module",
+    "miktex sandbox runtime"
+  ],
+  "ok": false,
+  "verdict": "FAIL",
+  "project_interpreter_usable": false
+}

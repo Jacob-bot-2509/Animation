@@ -1,0 +1,114 @@
+=== draft-c27-04 ===
+{
+  "id": "draft-c27-04",
+  "category": "高等代数",
+  "sub_category": "矩阵对角化",
+  "concept": "谱分解与对角化",
+  "concept_id": "C27",
+  "parent_training_ids": [
+    "linalg-049",
+    "linalg-064",
+    "linalg-068"
+  ],
+  "problem": "求矩阵 $A=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$ 的特征值与特征向量，并讨论特征方向随参数 $k$ 的变化。",
+  "solution": "$A$ 为上三角矩阵,特征值为 $1$ 与 $2$。$\\lambda=1$:$(A-I)v=0$,即 $\\begin{pmatrix}0&k\\\\0&1\\end{pmatrix}v=0$,得 $v_2=0$,特征方向为 $(1,0)$,与 $k$ 无关。$\\lambda=2$:$(A-2I)v=0$,即 $\\begin{pmatrix}-1&k\\\\0&0\\end{pmatrix}v=0$,得 $-v_1+kv_2=0$,特征方向为 $(k,1)$。讨论:特征值不随 $k$ 改变,但特征值 $2$ 的特征方向随 $k$ 转动($k=0$ 时为 $(0,1)$,即 $y$ 轴方向;$k\\neq0$ 时倾斜);特征值 $1$ 的特征方向始终为 $x$ 轴。",
+  "answer": "特征值 $1,2$;特征方向:$(1,0)$ 与 $(k,1)$;$\\lambda=2$ 的特征方向随 $k$ 转动,$\\lambda=1$ 的固定。",
+  "method": "含参特征方向分析",
+  "difficulty": "中等",
+  "variant_kind": "特征方向随参数改变:含参矩阵的特征方向转动分析",
+  "scene_spec": {
+    "objects": [
+      "平面坐标系:特征方向向量动画($k$ 滑动)",
+      "板书:两个特征方程组的求解",
+      "高亮框:特征方向 $(1,0)$(固定)与 $(k,1)$(转动)",
+      "标签「特征值不随参数变,方向随参数转」"
+    ],
+    "steps": [
+      "第一步:读出特征值。",
+      "第二步:解两个特征方程组。",
+      "第三步:动画滑动 $k$,展示 $(k,1)$ 方向转动。",
+      "第四步:说明 $(1,0)$ 方向固定。",
+      "第五步:汇总结论。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "draft-v1-待用户审阅"
+}
+
+=== draft-c27-05 ===
+{
+  "id": "draft-c27-05",
+  "category": "高等代数",
+  "sub_category": "矩阵对角化",
+  "concept": "谱分解与对角化",
+  "concept_id": "C27",
+  "parent_training_ids": [
+    "linalg-049",
+    "linalg-064",
+    "linalg-068"
+  ],
+  "problem": "证明:若 $n$ 阶矩阵 $A$ 有 $n$ 个互不相同的特征值，则 $A$ 可对角化。",
+  "solution": "只需证明属于不同特征值的特征向量线性无关(归纳法)。$m=1$ 时显然。假设 $m-1$ 个不同特征值对应的特征向量线性无关。设 $\\lambda_1,\\dots,\\lambda_m$ 互不相同,$v_i$ 是 $\\lambda_i$ 的特征向量,若 $c_1v_1+\\cdots+c_mv_m=0$,用 $A$ 作用得 $\\lambda_1c_1v_1+\\cdots+\\lambda_mc_mv_m=0$;再用 $\\lambda_m$ 乘第一式并相减,得 $c_1(\\lambda_1-\\lambda_m)v_1+\\cdots+c_{m-1}(\\lambda_{m-1}-\\lambda_m)v_{m-1}=0$。由归纳假设 $v_1,\\dots,v_{m-1}$ 线性无关,故 $c_i(\\lambda_i-\\lambda_m)=0$,而 $\\lambda_i\\neq\\lambda_m$,得 $c_i=0$($i=1,\\dots,m-1$);回代得 $c_mv_m=0$,$c_m=0$。故 $v_1,\\dots,v_m$ 线性无关。于是 $A$ 的 $n$ 个不同特征值给出 $n$ 个线性无关的特征向量,构成一组基,$A$ 在该基下的矩阵为对角矩阵,即 $A$ 可对角化。",
+  "answer": "证明见解法(归纳法证明不同特征值的特征向量线性无关,从而构成基)。",
+  "method": "充分条件证明(归纳法)",
+  "difficulty": "进阶",
+  "variant_kind": "证明型:不同特征值充分条件的严格证明(特征向量线性无关归纳)",
+  "scene_spec": {
+    "objects": [
+      "板书:归纳假设与线性组合为零的等式",
+      "板书:用 $A$ 作用与乘以 $\\lambda_m$ 相减的运算",
+      "板书:逐项系数为零的推导",
+      "高亮框:线性无关 → 构成基 → 可对角化",
+      "标签「充分条件」"
+    ],
+    "steps": [
+      "第一步:写出归纳假设。",
+      "第二步:对线性组合等式两边用 $A$ 作用并相减。",
+      "第三步:由归纳假设得各系数为零。",
+      "第四步:说明 $n$ 个特征向量构成基。",
+      "第五步:高亮结论,完成证明。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "draft-v1-待用户审阅"
+}
+
+=== draft-c29-01 ===
+{
+  "id": "draft-c29-01",
+  "category": "高等代数",
+  "sub_category": "多项式",
+  "concept": "多项式因式分解与根",
+  "concept_id": "C29",
+  "parent_training_ids": [
+    "linalg-051"
+  ],
+  "problem": "用有理根定理将多项式 $f(x)=x^3-7x+6$ 在实数域上因式分解。",
+  "solution": "有理根定理:首项系数为 $1$,有理根必为整数且是常数项 $6$ 的因子,候选为 $\\pm1,\\pm2,\\pm3,\\pm6$。试根:$f(1)=1-7+6=0$,故 $x-1$ 是因子。综合除法:$x^3-7x+6=(x-1)(x^2+x-6)=(x-1)(x-2)(x+3)$。",
+  "answer": "$x^3-7x+6=(x-1)(x-2)(x+3)$。",
+  "method": "有理根定理+综合除法",
+  "difficulty": "基础",
+  "variant_kind": "数值结构变化:有理根试根的三次分解(与父题不同多项式)",
+  "scene_spec": {
+    "objects": [
+      "板书:$f(x)=x^3-7x+6$ 与常数项因子候选",
+      "板书:试根 $f(1)=0$ 与综合除法过程",
+      "板书:二次因子 $x^2+x-6$ 的再分解",
+      "高亮框:$(x-1)(x-2)(x+3)$",
+      "标签「有理根定理」"
+    ],
+    "steps": [
+      "第一步:列出常数项因子的候选根。",
+      "第二步:试根得 $x=1$,综合除法降次。",
+      "第三步:分解二次因子。",
+      "第四步:高亮完全分解。",
+      "第五步:汇总结论。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "draft-v1-待用户审阅"
+}
+

@@ -63,3 +63,6 @@ holdout-sources/*
 # 预留题池冻结清单可入库(仅哈希/元数据,不含题面内容)
 !holdout-sources/extracted/
 !holdout-sources/extracted/kaoyan-pool-v1-manifest.json
+
+# 沙箱执行快照路径超 Windows 长度上限(状态转储属运行时产物,非源代码),不入库
+reviews/codex-supervision/2026-10-05-three-gates/execution-*/

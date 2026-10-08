@@ -1,0 +1,119 @@
+{
+  "time": "2026-10-06T00:43:12.615814+08:00",
+  "scope": "training harness and review PDF / patch publication chain",
+  "status": "reproduced_code_defects_fixed_and_verified",
+  "source_head": "2feffe1e52169abc3e0d52683d1189150005e219",
+  "tests_passed": 76,
+  "test_suites": [
+    {
+      "name": "test_review_harness_guards.py",
+      "passed": 38,
+      "log": "test_review_harness_guards.py.delivery.log"
+    },
+    {
+      "name": "test_training_readiness_fixes.py",
+      "passed": 20,
+      "log": "test_training_readiness_fixes.py.release.log"
+    },
+    {
+      "name": "test_draft_hashes.py",
+      "passed": 18,
+      "log": "test_draft_hashes.py.release.log"
+    }
+  ],
+  "draft_audit": {
+    "batches": 18,
+    "questions": 264,
+    "scene_steps": 1176,
+    "hard": 0,
+    "V007": 0,
+    "V011": 0,
+    "quarantine_records": 264,
+    "admitted": 0,
+    "render_verified": 0,
+    "negative_sha_fixture_returncode": 2,
+    "negative_sha_fixture_hard": 1
+  },
+  "pdf": {
+    "path": "pdf-v5/draft-review-harness-v1.pdf",
+    "renderer_sha256": "6bf998cd605778d54012b496147826b28206c9e2853d9e5bfe975554026b2d27",
+    "guard_sha256": "759a0f05e0ae818ac5f6805930c3cd29666269c06cc601a5f3a64d7ade64306d",
+    "source_md_sha256": "5df760d281abad7125878411e9125167fd7696a175011c5519595d6aeade7036",
+    "static_html_sha256": "6e5a25e26136f653ca5ccfef04dbe197b78564ce43853f21f8338c4ec71ea3e2",
+    "pdf_sha256": "afb37559878033cbbe7e38f55a84532b83e464e455a4d811fb391c5ecbc80a23",
+    "formula_count": 8316,
+    "pages": 138,
+    "print_returncode": 0,
+    "fresh_target": ".draft-review-harness-v1-0666190b573c4fd6be9eee9e88fd5701.pdf",
+    "backend": "edge-cli",
+    "all_pages_visually_reviewed_as_contacts": 138,
+    "detailed_pages": [
+      1,
+      13,
+      15,
+      43,
+      90,
+      107,
+      108,
+      137,
+      138
+    ]
+  },
+  "math_content_changed_by_this_repair": false,
+  "historical_files_checked": 12219,
+  "historical_drift": [],
+  "selected_data_files_unchanged": true,
+  "selector_unchanged": true,
+  "production_gate_ok": false,
+  "remaining_training_requirements": [
+    "confirmed hyperparameter SHA required",
+    "reviewed per-item execution/render/judge protocol and genuine evidence required; R/E/M/F stay unknown until verified",
+    "formal training pool has two same-structure train-versus-eval/test leakage candidates"
+  ],
+  "production_structural_candidates": [
+    {
+      "split": "eval",
+      "query_id": "eval-linalg-015-s1",
+      "train_id": "linalg-048",
+      "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+      "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+      "reasons": [
+        "spectrum-balanced-symmetric-2"
+      ],
+      "score": "31/75"
+    },
+    {
+      "split": "test",
+      "query_id": "test-linalg-025",
+      "train_id": "linalg-048",
+      "query_hash": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+      "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+      "reasons": [
+        "spectrum-balanced-symmetric-2"
+      ],
+      "score": "29/82"
+    }
+  ],
+  "actual_training_run": false,
+  "watcher": {
+    "pid": 28352,
+    "launcher_pid": 42564,
+    "restored": true,
+    "purpose": "record-only; no automatic AI review or training admission"
+  },
+  "modified_source_files": [
+    "tools/review_guard.py",
+    "tools/render_review.py",
+    "tools/edge_print.py",
+    "tools/build_review_pdf.py",
+    "tools/publish_row_patches.py",
+    "tools/apply_row_patches_v5.py",
+    "tools/apply_row_patches_v6.py",
+    "tools/train_loop.py",
+    "tools/train_step.py",
+    "tools/eval_step.py",
+    "tools/draft_audit.py",
+    "tests/test_review_harness_guards.py",
+    "docs/TRAINING-LOOP-DESIGN.md"
+  ]
+}

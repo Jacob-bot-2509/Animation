@@ -1,0 +1,79 @@
+[
+  {
+    "case": "late_before",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Before control packet received after sandbox start"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "negative_listener",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Missing/invalid evidence: Invalid listener timestamps"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "zero_client",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "sandbox attempt outside listener lifetime"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "sid_lower",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Exemption list unknown or tested SID exempt",
+        "Exemption list unknown or tested SID exempt"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "sid_zero_padding",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Exemption list unknown or tested SID exempt",
+        "Exemption list unknown or tested SID exempt"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "probe_upper",
+    "result": {
+      "verdict": "FAIL",
+      "reasons": [
+        "Sandbox nonce received in packet payload"
+      ],
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "probe_zero_padding",
+    "result": {
+      "verdict": "FAIL",
+      "reasons": [
+        "Sandbox nonce received in packet payload"
+      ],
+      "contract": "local-loopback-os-policy-v1"
+    }
+  }
+]

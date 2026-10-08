@@ -1,0 +1,690 @@
+{
+  "schema": 2,
+  "run_id": "783928bceb5a4e72ad0d501b2888d863",
+  "scope": "Local loopback only",
+  "contract": "local-loopback-os-policy-v1",
+  "contract_history": "Replaces the WSAEACCES-10013-only contract with read-only OS policy, actual token identity and same-endpoint before/after controls; rationale: D:/code/output/claude-supervision/network-core-fix-2026-10-04/FIX_REPORT.md",
+  "baseline_evidence": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-evidence\\network-accept-results-acd319b3f814.json",
+  "command": [
+    "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+    "D:\\Animation-Model-Training\\tools\\network_acceptance.py",
+    "--baseline-evidence",
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-evidence\\network-accept-results-acd319b3f814.json",
+    "--output",
+    "D:\\code\\output\\claude-supervision\\network-core-review-fix-2026-10-04\\native"
+  ],
+  "observation_seconds_after_client_return": 20,
+  "attempts": [
+    {
+      "host": "127.0.0.1",
+      "transport": "tcp",
+      "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "nonces": {
+        "before": "f86e983a64bd4e1ba8d458c0d94f08a7",
+        "sandbox": "b43acc8babc34580b26da665b31d38c6",
+        "after": "ce8d6f9465c244929254dd861ab9abe2"
+      },
+      "clients": {
+        "before": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "127.0.0.1",
+            "60923",
+            "f86e983a64bd4e1ba8d458c0d94f08a7"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 60923,
+            "transport": "tcp",
+            "nonce": "f86e983a64bd4e1ba8d458c0d94f08a7",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230530.4324401,
+            "finished": 230530.4330302,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 60923, \"transport\": \"tcp\", \"nonce\": \"f86e983a64bd4e1ba8d458c0d94f08a7\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230530.4324401, \"finished\": 230530.4330302, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "127.0.0.1",
+            "60923",
+            "b43acc8babc34580b26da665b31d38c6"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 60923,
+            "transport": "tcp",
+            "nonce": "b43acc8babc34580b26da665b31d38c6",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "outcome": "net_timeout",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230530.4874431,
+            "finished": 230533.502963,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 60923, \"transport\": \"tcp\", \"nonce\": \"b43acc8babc34580b26da665b31d38c6\", \"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"outcome\": \"net_timeout\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230530.4874431, \"finished\": 230533.502963, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "after": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "127.0.0.1",
+            "60923",
+            "ce8d6f9465c244929254dd861ab9abe2"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 60923,
+            "transport": "tcp",
+            "nonce": "ce8d6f9465c244929254dd861ab9abe2",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230553.5541458,
+            "finished": 230553.5793212,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 60923, \"transport\": \"tcp\", \"nonce\": \"ce8d6f9465c244929254dd861ab9abe2\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230553.5541458, \"finished\": 230553.5793212, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        }
+      },
+      "packets": [
+        {
+          "hex": "6638366539383361363462643465316261386434353863306439346630386137",
+          "peer": "('127.0.0.1', 60926)",
+          "at": 230530.4331498
+        },
+        {
+          "hex": "6365386436663934363563323434393239323534646438363161623961626532",
+          "peer": "('127.0.0.1', 49681)",
+          "at": 230553.5793355
+        }
+      ],
+      "server_complete": true,
+      "server_errors": [],
+      "runtime_integrity": true,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "port": 60923,
+      "server_started": 230530.3854949,
+      "server_closed": 230553.6882949,
+      "judgment": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "host": "127.0.0.1",
+      "transport": "udp",
+      "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "nonces": {
+        "before": "3139263ce1d1480ca306ea42d3140f98",
+        "sandbox": "12d8eee81b2d49188c2a3fc0361c49c1",
+        "after": "575efff094ed45de8eb4a6c480829ae9"
+      },
+      "clients": {
+        "before": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "127.0.0.1",
+            "53119",
+            "3139263ce1d1480ca306ea42d3140f98"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 53119,
+            "transport": "udp",
+            "nonce": "3139263ce1d1480ca306ea42d3140f98",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230553.7374007,
+            "finished": 230553.738007,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 53119, \"transport\": \"udp\", \"nonce\": \"3139263ce1d1480ca306ea42d3140f98\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230553.7374007, \"finished\": 230553.738007, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "127.0.0.1",
+            "53119",
+            "12d8eee81b2d49188c2a3fc0361c49c1"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 53119,
+            "transport": "udp",
+            "nonce": "12d8eee81b2d49188c2a3fc0361c49c1",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230553.7895371,
+            "finished": 230553.7901727,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 53119, \"transport\": \"udp\", \"nonce\": \"12d8eee81b2d49188c2a3fc0361c49c1\", \"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230553.7895371, \"finished\": 230553.7901727, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "after": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "127.0.0.1",
+            "53119",
+            "575efff094ed45de8eb4a6c480829ae9"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "127.0.0.1",
+            "port": 53119,
+            "transport": "udp",
+            "nonce": "575efff094ed45de8eb4a6c480829ae9",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230573.8393025,
+            "finished": 230573.8398595,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"127.0.0.1\", \"port\": 53119, \"transport\": \"udp\", \"nonce\": \"575efff094ed45de8eb4a6c480829ae9\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230573.8393025, \"finished\": 230573.8398595, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        }
+      },
+      "packets": [
+        {
+          "hex": "3331333932363363653164313438306361333036656134326433313430663938",
+          "peer": "('127.0.0.1', 53120)",
+          "at": 230553.7380255
+        },
+        {
+          "hex": "3537356566666630393465643435646538656234613663343830383239616539",
+          "peer": "('127.0.0.1', 62021)",
+          "at": 230573.8398667
+        }
+      ],
+      "server_complete": true,
+      "server_errors": [],
+      "runtime_integrity": true,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "port": 53119,
+      "server_started": 230553.6946426,
+      "server_closed": 230573.9539043,
+      "judgment": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "host": "::1",
+      "transport": "tcp",
+      "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "nonces": {
+        "before": "f3406c0a480c47b6a684eecc11d9e775",
+        "sandbox": "ffaf9549bba447179d6ed0ba48e7f59b",
+        "after": "7b0f2445eff44d1f9988e0414d7fea9c"
+      },
+      "clients": {
+        "before": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "::1",
+            "50503",
+            "f3406c0a480c47b6a684eecc11d9e775"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 50503,
+            "transport": "tcp",
+            "nonce": "f3406c0a480c47b6a684eecc11d9e775",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230574.0028228,
+            "finished": 230574.00354,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 50503, \"transport\": \"tcp\", \"nonce\": \"f3406c0a480c47b6a684eecc11d9e775\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230574.0028228, \"finished\": 230574.00354, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "::1",
+            "50503",
+            "ffaf9549bba447179d6ed0ba48e7f59b"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 50503,
+            "transport": "tcp",
+            "nonce": "ffaf9549bba447179d6ed0ba48e7f59b",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "outcome": "net_timeout",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230574.0535824,
+            "finished": 230577.058247,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 50503, \"transport\": \"tcp\", \"nonce\": \"ffaf9549bba447179d6ed0ba48e7f59b\", \"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"outcome\": \"net_timeout\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230574.0535824, \"finished\": 230577.058247, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "after": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "tcp",
+            "::1",
+            "50503",
+            "7b0f2445eff44d1f9988e0414d7fea9c"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 50503,
+            "transport": "tcp",
+            "nonce": "7b0f2445eff44d1f9988e0414d7fea9c",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230597.1073932,
+            "finished": 230597.1251302,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 50503, \"transport\": \"tcp\", \"nonce\": \"7b0f2445eff44d1f9988e0414d7fea9c\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230597.1073932, \"finished\": 230597.1251302, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        }
+      },
+      "packets": [
+        {
+          "hex": "6633343036633061343830633437623661363834656563633131643965373735",
+          "peer": "('::1', 50504, 0, 0)",
+          "at": 230574.0036188
+        },
+        {
+          "hex": "3762306632343435656666343464316639393838653034313464376665613963",
+          "peer": "('::1', 64684, 0, 0)",
+          "at": 230597.1251813
+        }
+      ],
+      "server_complete": true,
+      "server_errors": [],
+      "runtime_integrity": true,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "port": 50503,
+      "server_started": 230573.9602931,
+      "server_closed": 230597.2338585,
+      "judgment": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "host": "::1",
+      "transport": "udp",
+      "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "nonces": {
+        "before": "efe15f25559749b3ac8549429b692435",
+        "sandbox": "536cdbb3e410440a83f6df933d5475d8",
+        "after": "7be81c3e9f31417eaec8b247e4a0dd51"
+      },
+      "clients": {
+        "before": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "::1",
+            "51497",
+            "efe15f25559749b3ac8549429b692435"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 51497,
+            "transport": "udp",
+            "nonce": "efe15f25559749b3ac8549429b692435",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230597.2904383,
+            "finished": 230597.291019,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 51497, \"transport\": \"udp\", \"nonce\": \"efe15f25559749b3ac8549429b692435\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230597.2904383, \"finished\": 230597.291019, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "::1",
+            "51497",
+            "536cdbb3e410440a83f6df933d5475d8"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 51497,
+            "transport": "udp",
+            "nonce": "536cdbb3e410440a83f6df933d5475d8",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230597.3415001,
+            "finished": 230597.3421406,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 51497, \"transport\": \"udp\", \"nonce\": \"536cdbb3e410440a83f6df933d5475d8\", \"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230597.3415001, \"finished\": 230597.3421406, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        },
+        "after": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a\\native_client.py",
+            "udp",
+            "::1",
+            "51497",
+            "7be81c3e9f31417eaec8b247e4a0dd51"
+          ],
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "host": "::1",
+            "port": 51497,
+            "transport": "udp",
+            "nonce": "7be81c3e9f31417eaec8b247e4a0dd51",
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "outcome": "sent_ok",
+            "winerror": null,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "site_absent": true,
+            "started": 230617.3903983,
+            "finished": 230617.3909868,
+            "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stdout": "{\"host\": \"::1\", \"port\": 51497, \"transport\": \"udp\", \"nonce\": \"7be81c3e9f31417eaec8b247e4a0dd51\", \"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"outcome\": \"sent_ok\", \"winerror\": null, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"socket_file\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\Lib\\\\socket.py\", \"site_absent\": true, \"started\": 230617.3903983, \"finished\": 230617.3909868, \"client_sha256\": \"781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\"}\r\n",
+          "stderr": ""
+        }
+      },
+      "packets": [
+        {
+          "hex": "6566653135663235353539373439623361633835343934323962363932343335",
+          "peer": "('::1', 51498, 0, 0)",
+          "at": 230597.2910213
+        },
+        {
+          "hex": "3762653831633365396633313431376561656338623234376534613064643531",
+          "peer": "('::1', 58286, 0, 0)",
+          "at": 230617.3910007
+        }
+      ],
+      "server_complete": true,
+      "server_errors": [],
+      "runtime_integrity": true,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "port": 51497,
+      "server_started": 230597.2468821,
+      "server_closed": 230617.49909,
+      "judgment": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    }
+  ],
+  "state": "COMPLETE",
+  "overall": "PASS_LOCAL_LOOPBACK",
+  "runtime_unchanged": true,
+  "production_gate": "CLOSED",
+  "external_network": "UNVERIFIED",
+  "sandbox_env": {
+    "SYSTEMROOT": "C:\\Windows",
+    "SystemDrive": "C:",
+    "windir": "C:\\windows",
+    "USERNAME": "Jacap",
+    "USERDOMAIN": "JACAPO",
+    "PATH": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime;C:\\Windows\\System32",
+    "TEMP": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a",
+    "TMP": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a",
+    "LOCALAPPDATA": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "APPDATA": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "USERPROFILE": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+  },
+  "work": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-work-acd319b3f814\\codex-loopback-783928bceb5a",
+  "runtime": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+  "client_sha256": "781420cea9e28d88e8639d526b4314c949ea7d6c09b95237e1b9aa2153c132e2",
+  "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+  "runtime_manifest": {
+    "python.exe": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "python313.dll": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+    "Lib/socket.py": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+    "DLLs/_socket.pyd": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259"
+  },
+  "module_sha256": "a1035c07dd00c077510562bbf38160caa2c9e1c0c11bb9870740a16e20bda2bb",
+  "tool_sha256": "ba828c9e6c94c20db006664592c12739217838f7b21100d4b1b8e942106bacb4"
+}

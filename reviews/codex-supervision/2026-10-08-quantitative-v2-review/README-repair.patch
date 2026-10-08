@@ -1,0 +1,28 @@
+--- author-README-before.md
++++ author-README-after.md
+@@ -1,14 +1,17 @@
+-# 当前视觉复核入口（2026-10-08）
++# 当前视觉复核入口（2026-10-08，v3工具修复后）
+ 
+-当前交付为 **165条记录、633页、3840×2160**。权威索引是 [DELIVERY_INDEX.jsonl](../codex-supervision/2026-10-08-glyph-review-followup/DELIVERY_INDEX.jsonl)，SHA256为 `07b4543d38599e1c30d2b515e0c2a8761e5611f771c46c75ee23b357c58b6331`。上轮已修复9条记录的22处分数数组公式，实际逐页复验其45页，该目录保持冻结。
++当前交付为 **165条记录、633页、3840×2160**。权威索引是 [DELIVERY_INDEX.jsonl](../codex-supervision/2026-10-08-glyph-review-followup/DELIVERY_INDEX.jsonl)，SHA256为 `07b4543d38599e1c30d2b515e0c2a8761e5611f771c46c75ee23b357c58b6331`。9条记录的分数数组行距修复沿用该冻结交付，本轮题号、数学正文和视频未改动。
+ 
+-本轮新证据见 [FIX_REPORT.md](../codex-supervision/2026-10-08-4k-quantitative-followup/FIX_REPORT.md)、[current-quantitative-corrected.json](../codex-supervision/2026-10-08-4k-quantitative-followup/current-quantitative-corrected.json) 和 [page-glyph-verdicts.jsonl](../codex-supervision/2026-10-08-4k-quantitative-followup/page-glyph-verdicts.jsonl)。
++本轮修复及独立证据见 [FIX_REPORT.md](../codex-supervision/2026-10-08-quantitative-v2-review/FIX_REPORT.md)、[verification-v3.json](../codex-supervision/2026-10-08-quantitative-v2-review/verification-v3.json) 和 [independent-v2-review.json](../codex-supervision/2026-10-08-quantitative-v2-review/independent-v2-review.json)。
+ 
+-- 当前633页均绑定实际PNG路径和SHA。公式区域占用包围盒高度除以该页显示项数，最小值为92像素，第十分位数（最近秩定义）为160像素，中位数为677/3像素；折算到1080行画面，最小槽位代理值为46像素。
+-- **槽位代理值不等于最小字形高度**。上标、下标、分数和矩阵内部必须依据实际图像核验，不能用槽位超过24像素推导字形全部合格。
+-- 当前同版本实际逐页证据覆盖144/633页，其中120页继承具名冻结证据，本轮新增24页。剩余489页见 [unreviewed-pages.json](../codex-supervision/2026-10-08-4k-quantitative-followup/unreviewed-pages.json)。本轮实际查看预览为2048×1152，原PNG为3840×2160，不据此签发原生最小字形尺寸证书。
+-- `readable-pages-verification-4k.json` 是此前626页版本的作者原始量化材料，保留作溯源。它未提交槽位算法及逐页SHA字段，其槽位数值与本轮具名公式区域算法不一致；不同指标不能直接互换，不能用于关闭当前633页的全量字形验收。
+-- 当前本地高清布局与页面绑定通过；**全量字形验收仍为NOT_ESTABLISHED**。概念动画NOT_EVALUATED、全局隔离NOT_ESTABLISHED、原生沙箱UNVERIFIED，production=CLOSED。单项通过不能扩展为整个项目合格。
++- `tools/visual_acceptance_verify_pages.py` 已改为原生RGB公式区域度量，不缩半、不把标题当公式、不四舍五入。像素区域、阈值、含端点包围盒及精确统计定义完整写入候选JSON；异常返回非零，要求指定新的输出路径，拒绝覆盖原件或写入冻结归档。
++- 633页的真实PNG/几何SHA、4K尺寸及顺序绑定通过；完整公式页552页、分片81页。仅552完整页计槽位代理：最小92像素，第十分位数484/3像素（最近秩），中位数219像素；最小代理折算到1080行画面为46像素。分片标NOT_APPLICABLE，不混入统计。
++- 原v2 JSON增加了真实路径/SHA和顺序配对，633页绑定经独立核对通过。但其旧源码按缩半整帧计算，包含页标题；报告还将偶数样本上中位数2897/10冒作中位数，按原已舍入值计算的正确算术中位数应为579/2。原JSON、源码与前后补丁均保留，新候选不会覆盖原件。
++- **槽位代理不等于最小字形高度，也不是符号或分片完整性认证。** 原生画布边缘墨迹检查只判结构，不能据此推导全量视觉通过。
++- 同版本实际逐页证据当前覆盖170/633页：144页继承具名证据，本轮实际新增26页（其中4页是分片，仅判可见部分，注明伴随页）。其余463页见 [unreviewed-pages.json](../codex-supervision/2026-10-08-quantitative-v2-review/unreviewed-pages.json)。逐页理由与SHA见 [page-glyph-verdicts.jsonl](../codex-supervision/2026-10-08-quantitative-v2-review/page-glyph-verdicts.jsonl)。显示预览2048×1152，原PNG3840×2160，不据此签发原生最小字形尺寸证书。
++- **当前仅本地版本绑定、结构和量化工具修复合格，全量字形仍NOT_ESTABLISHED**；概念动画NOT_EVALUATED、全局隔离NOT_ESTABLISHED、原生沙箱UNVERIFIED，production=CLOSED。
++
++`readable-pages-verification-4k.json` 属于修复前626页，`readable-pages-verification-4k-v2.json` 属于633页旧量化工具；二者为历史原始材料。当前完整算法和精确候选以本轮v3证据为准，不能混用各版统计或把结构PASS当全量字形PASS。
+ 
+ 以下为早期165视频首帧包的历史说明，其首帧和接触片入口不替代当前633页索引与逐页审查。
+ 

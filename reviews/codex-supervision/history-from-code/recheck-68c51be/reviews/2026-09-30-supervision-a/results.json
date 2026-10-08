@@ -1,0 +1,125 @@
+{
+  "empty_manifest": {
+    "ok": false,
+    "n_entries": 0,
+    "problems": [
+      "manifest 没有任何条目,无法验收(空清单不得 ok=true)"
+    ],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "null_sample": {
+    "ok": false,
+    "n_entries": 1,
+    "problems": [
+      "null.jsonl:1 样本不是 JSON 对象(null/数组/标量),结构非法(A1)"
+    ],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 1
+  },
+  "blank_source": {
+    "ok": false,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [
+      "blank.jsonl: 来源未标注(或仅空白) → quarantine,不得默认通过"
+    ],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 2
+  },
+  "null_source": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "missing_id": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "blank_id": {
+    "ok": true,
+    "n_entries": 1,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "list_id": {
+    "exception": "TypeError",
+    "detail": "cannot use 'list' as a set element (unhashable type: 'list')"
+  },
+  "object_id": {
+    "exception": "TypeError",
+    "detail": "cannot use 'dict' as a set element (unhashable type: 'dict')"
+  },
+  "empty_fields": [
+    {
+      "sample_id": "<line-1>",
+      "line": 1,
+      "missing": [
+        "problem",
+        "solution"
+      ],
+      "reason": "缺失必填字段: problem, solution"
+    }
+  ],
+  "valid_zero_answer": [],
+  "a2_original_counterexample": {
+    "similarity": 1.0,
+    "hit": {
+      "id": 20
+    }
+  },
+  "a2_matches_bruteforce": true,
+  "source_unchanged_during_probe": true,
+  "source_snapshot": {
+    "src\\animtrain\\__init__.py": "2a893e162e7cb718366aa4e44f691823be95d5552a37689c9ebfc0236d5f5cc0",
+    "src\\animtrain\\code_gate.py": "58d80f2246218e35202786026f1cdcd2571bf961575e8034a1c3d25836d58a65",
+    "src\\animtrain\\fields.py": "0427ee7765b44f5b32c1c326f84cbfab0fdde9a3aec17bad27bdccfa013f74b3",
+    "src\\animtrain\\fs_guard.py": "cd8eecdf472b1fca7c36c8aa1201b4b1a24636fecd67dc6fe1dd0842b88c248e",
+    "src\\animtrain\\manifest.py": "0e5650136b55d3f0d610091e64bbdef64348fc2ff8399b4a39a40938ff2faf8c",
+    "src\\animtrain\\near_dup.py": "b888f1a9eaea6631fd3892256940c59387b38b53beae6f6ee2ce7aa8e5314df4",
+    "src\\animtrain\\preflight.py": "3087dcc08adc5063c584422a6ed21c34a44c45482c80ac68f6df67cf385262ae",
+    "src\\animtrain\\run_record.py": "64852eb35a13afd32f5bfe87c9469dcc8569f28b8d407e97bbea40b5e77da560",
+    "src\\animtrain\\scan.py": "040dc867f7370eb6d20832aedb1253b90779aa93857e50542cf8b47bfb051828",
+    "src\\animtrain\\validate.py": "3658946b3bc2d5fc29e20f15d53177abf705e1084ad84d57445cfc86f02ee9d1",
+    "tools\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools\\check_code.py": "fdf06346ba127778a2e6756424497852bacaa63f6a049cfb4a2e9413e1a1ffe2",
+    "tools\\check_fields.py": "e2c43fff16b2164c470a09215c618257dd8ea43885b6539b9a4f41672f4c1a4f",
+    "tools\\data_check.py": "14c59dc31387fe915eab6084c0d57af860d638258519a3d0348e3d98265de12f",
+    "tools\\make_manifest.py": "a04e881928f141417fee1517127bb2c81c165eb3f0f414a10cce68158e3de1bd",
+    "tools\\preflight.py": "6c1689e401d0c73e9bfae795586a122dd88a29465daafd0b2111903f8178a06d",
+    "tools\\run_record.py": "5b2e51b90d34aa0802524bd1236c6b46b1ce3fbe0987e6c049bf57fbfa354d4d",
+    "tools\\split_data.py": "3ecd8d69db9eebc6dd91c69a7d03b0f071cd4ff2eaaef7b5e51a27323264edfe",
+    "tests\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests\\test_backlog_a.py": "eb73574a0409062d5badf7186a051a90d848fa6517975f764bdff64e7d9a8c5b",
+    "tests\\test_cli_contracts.py": "7435b28e89aa9b390b55eefcbee7769f513b1927ee3aa0b6a1138307f2382a1f",
+    "tests\\test_code_alias_review.py": "b6d5f9841021b6d548e40d9e61baffba18739f5d19f39c8441bb0c192daf9965",
+    "tests\\test_code_gate.py": "b46ce756e5c8ed8ef7d1b7e72c29b34abb45aa0c7c49eff0d1befb5f7d593739",
+    "tests\\test_fields.py": "ddfa3efda6fd49b29635a50216180eab81bc492b64eb0dff08f396a24ea756d3",
+    "tests\\test_near_dup.py": "1c71be5566b3835d7edd08abd23cb82763b8c4d2ddd310d9ea7eda61474e7481",
+    "tests\\test_preflight.py": "62fec51a4cb75a71593923a627ab46784067df4f960944380dca3f528def2a64",
+    "tests\\test_review_fixes.py": "7d4557b5ee86eb9d8b81fbeaae2de28745031e3113649ef5ac4ac7b7b3f10354",
+    "tests\\test_review_round2.py": "afefca807451a51101985d1fb694df8ad77992275dac4a3065bdb078585a3be5",
+    "tests\\test_run_id_contract.py": "2bfa9f9a3e803e6cba13a5d71003fe2f442375f8fa2e6b5af814374025ce62af",
+    "tests\\test_run_record.py": "dfa3f55da1474c75223535c3f8fd2e3d8eaf96d6efada129c33938a5083eeb78",
+    "tests\\test_split.py": "0999739ff259809a92143b9d6bcbf79511d8f18bd26022d23222ee4bdd485e03",
+    "tests\\test_validate.py": "a1f7d8d3d06b4c0938358c9fc5afcc5746671ef06727dea9f33f6ce135e6cc17"
+  },
+  "head": "407426c7dc61da0c97b7f11491759a69ebe4c511"
+}

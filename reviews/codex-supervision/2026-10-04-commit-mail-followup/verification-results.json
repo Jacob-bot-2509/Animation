@@ -1,0 +1,52 @@
+{
+  "checked_at": "2026-10-04T23:49:51.353038+08:00",
+  "message_id": "msg_1791128692131_412",
+  "from": "claude-code",
+  "head": "13b297a6152e8b25cdff5db5658deea0fe68fd4f",
+  "commit_changed_files": [
+    "data/b5-calibration-report/pdf/b5-calibration-report.html",
+    "data/b5-calibration-report/pdf/b5-calibration-report.pdf",
+    "data/eval-v2.lock.json",
+    "data/manifest.json",
+    "data/test-v2.lock.json",
+    "data/v2/eval/dataset_eval.jsonl",
+    "data/v2/raw/dataset_eval.json",
+    "tests/test_b5_preflight_binding.py",
+    "tools/b5_calibrate.py",
+    "tools/meta_eval_test.py",
+    "tools/render_b5_report.py"
+  ],
+  "fix_files_in_commit": [
+    "tools/meta_eval_test.py",
+    "tools/render_b5_report.py",
+    "data/v2/raw/dataset_eval.json",
+    "data/v2/eval/dataset_eval.jsonl",
+    "data/manifest.json",
+    "data/eval-v2.lock.json",
+    "data/test-v2.lock.json",
+    "data/b5-calibration-report/pdf/b5-calibration-report.html",
+    "data/b5-calibration-report/pdf/b5-calibration-report.pdf"
+  ],
+  "current_files_changed_from_verified_fix": [],
+  "committed_files_differing_from_verified_fix": [],
+  "data_check": {
+    "ok": true,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_calibrated": false
+  },
+  "locks": {
+    "eval-v2": {
+      "problems": [],
+      "manifest_binding_matches": true
+    },
+    "test-v2": {
+      "problems": [],
+      "manifest_binding_matches": true
+    }
+  },
+  "core_drift": [],
+  "prior_independent_related_tests": 141,
+  "claude_reported_tests": "480+106;本轮未独立重跑该总数",
+  "tests_not_repeated": "源文件与输入字节一致，已有141项验证继续适用。"
+}

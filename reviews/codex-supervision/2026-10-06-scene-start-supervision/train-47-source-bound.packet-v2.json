@@ -1,0 +1,1878 @@
+{
+  "schema": "train-full-source-review-packet-v2",
+  "status": "FULL_RECORDS_BOUND_INPUT_ONLY",
+  "records": [
+    {
+      "id": "calc-area-007",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 7,
+      "raw_line_sha256": "2c4f16b0846f0ea7deae0a0f34c2766696b5eb678a1ac8812d0a2ca958f0908f",
+      "record_canonical_sha256": "5362c761944b4748832f9807a72851917dd7076e65812d045854465c889a3795",
+      "record": {
+        "id": "calc-area-007",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "problem": "计算由抛物线 $y=x^2$ 与直线 $y=x+2$ 所围成的封闭图形的面积。",
+        "solution": "联立方程 $y=x^2$ 与 $y=x+2$ 得交点 $(-1,1)$ 和 $(2,4)$。在区间 $[-1,2]$ 内，直线 $y=x+2$ 在抛物线 $y=x^2$ 的上方，故面积 $S = \\int_{-1}^{2} [(x+2) - x^2] dx = [\\frac{x^2}{2} + 2x - \\frac{x^3}{3}]_{-1}^{2} = \\frac{9}{2}$。",
+        "answer": "$\\frac{9}{2}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色直角坐标系",
+            "蓝色抛物线 $y=x^2$",
+            "红色直线 $y=x+2$",
+            "两曲线围成的黄色半透明填充区域",
+            "沿x轴滑动的矩形面积微元"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用蓝色绘制抛物线 $y=x^2$，用红色绘制直线 $y=x+2$。",
+            "第二步：标出两曲线的交点 $(-1,1)$ 和 $(2,4)$，并将围成的封闭区域用黄色半透明填充。",
+            "第三步：在区域内绘制从下曲线到上曲线的垂直细窄矩形条，代表微元 $dS = (y_2 - y_1) dx$。",
+            "第四步：让矩形微元从左向右扫过整个区域，展示定积分的累积过程。",
+            "第五步：展示计算过程，高亮显示面积结果 $S = \\frac{9}{2}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "多项式函数（二次与一次）",
+        "visual_style": "微元扫掠",
+        "efficiency_tags": [
+          "交点标注",
+          "矩形微元滑动"
+        ]
+      }
+    },
+    {
+      "id": "calc-area-008",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 8,
+      "raw_line_sha256": "f5cca36a6b3325b8961c1711b3d1260d76f06f9eed8c7272bc288bd378951da2",
+      "record_canonical_sha256": "59fb7a78f08c354859df1793997ea06f87f39487be39186353c76a3d60ee0801",
+      "record": {
+        "id": "calc-area-008",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "function_family": "极坐标函数",
+        "visual_style": "极坐标图形与面积累积",
+        "efficiency_tags": [
+          "极坐标面积公式",
+          "非负区间"
+        ],
+        "problem": "计算由极坐标方程 $r = 2a\\cos\\theta$（$a>0$）所围成的图形的面积。",
+        "solution": "该方程表示圆心在 $(a,0)$、半径为 $a$ 的圆。在极坐标中，$r = 2a\\cos\\theta \\ge 0$，因此角度 $\\theta$ 的取值范围为 $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$。面积 $S = \\frac{1}{2} \\int_{-\\pi/2}^{\\pi/2} r^2 d\\theta = \\frac{1}{2} \\int_{-\\pi/2}^{\\pi/2} (2a\\cos\\theta)^2 d\\theta = \\frac{1}{2} \\int_{-\\pi/2}^{\\pi/2} 4a^2 \\cos^2\\theta d\\theta = 2a^2 \\int_{-\\pi/2}^{\\pi/2} \\frac{1+\\cos2\\theta}{2} d\\theta = a^2 [\\theta + \\frac{1}{2}\\sin2\\theta]_{-\\pi/2}^{\\pi/2} = a^2 [\\frac{\\pi}{2} - (-\\frac{\\pi}{2})] = \\pi a^2$。",
+        "answer": "$\\pi a^2$",
+        "scene_spec": {
+          "objects": [
+            "极坐标系",
+            "极坐标曲线 $r = 2a\\cos\\theta$ 所围成的圆形",
+            "从原点出发扫过的射线",
+            "由两条射线和一个圆弧围成的扇形微元"
+          ],
+          "steps": [
+            "第一步：绘制极坐标系，动态画出极坐标曲线 $r = 2a\\cos\\theta$，它恰好是一个过原点、圆心在 x 轴上的圆。",
+            "第二步：从原点出发，绘制一条与极轴夹角为 $\\theta$ 的射线，明确标注 $\\theta$ 的有效范围为 $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$。",
+            "第三步：让射线从 $-\\pi/2$ 逆时针扫过至 $\\pi/2$，追踪它扫过的圆形区域。",
+            "第四步：在扫过时，标出由夹角 $d\\theta$ 构成的微小扇形，展示面积微元 $\\frac{1}{2} r^2 d\\theta$。",
+            "第五步：显示最终的面积计算结果 $\\pi a^2$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "calc-area-009",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 9,
+      "raw_line_sha256": "462ad19581730a358aaa271bd7cedf4a15a57a2884002dd222f6954b66250b3a",
+      "record_canonical_sha256": "15ce0d6025f6a3cf50952947ed7c3d8eb85ddfd296b20765769f119e748c949e",
+      "record": {
+        "id": "calc-area-009",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "problem": "求摆线 $x = a(t - \\sin t), y = a(1 - \\cos t)$ 的一拱（$0 \\le t \\le 2\\pi$）与 $x$ 轴所围成的面积。",
+        "solution": "摆线的一拱与 $x$ 轴围成封闭图形。面积 $S = \\int_{0}^{2\\pi a} y dx$。将参数方程代入，得 $S = \\int_{0}^{2\\pi} a(1 - \\cos t) \\cdot d[a(t - \\sin t)] = \\int_{0}^{2\\pi} a(1 - \\cos t) \\cdot a(1 - \\cos t) dt = a^2 \\int_{0}^{2\\pi} (1 - 2\\cos t + \\cos^2 t) dt$。利用三角函数积分性质，其中 $\\cos t$ 在周期内积分为0，故 $S = a^2 \\int_{0}^{2\\pi} (1 + \\frac{1+\\cos 2t}{2}) dt = a^2 \\cdot 3\\pi = 3\\pi a^2$。",
+        "answer": "$3\\pi a^2$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色直角坐标系",
+            "蓝色摆线一拱的轨迹",
+            "摆线与x轴围成的黄色半透明区域",
+            "参数t动态变化指示点",
+            "沿x轴滚动的圆"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，在x轴上画一个沿着x轴滚动的圆。",
+            "第二步：通过圆边缘的一个固定点，随着圆滚动，动态描绘出摆线的一拱轨迹 $x = a(t - \\sin t), y = a(1 - \\cos t)$。",
+            "第三步：当圆滚过一个完整周期（$0 \\le t \\le 2\\pi$）后，摆线与x轴围成了一个封闭的拱形区域，用黄色半透明填充。",
+            "第四步：展示公式推导，强调变量替换过程，将 $y$ 和 $dx$ 均用参数 $t$ 的表达式替换。",
+            "第五步：高亮显示最终的面积结果 $3\\pi a^2$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "参数方程曲线（摆线）",
+        "visual_style": "滚动圆描迹",
+        "efficiency_tags": [
+          "圆滚动动画",
+          "轨迹动态描绘"
+        ]
+      }
+    },
+    {
+      "id": "calc-area-010",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 10,
+      "raw_line_sha256": "779e9ed44aa7b2b31a6b0de5a1752fcd20d19a6c99576e728d68d2365dd2e8be",
+      "record_canonical_sha256": "f2b0cf66178ffbe0bf3d4db809a2818ff57ebb0502e61bdfef24f9ea96b81fac",
+      "record": {
+        "id": "calc-area-010",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "function_family": "超越函数与一次函数",
+        "visual_style": "面积分割与叠加",
+        "efficiency_tags": [
+          "交点计算",
+          "分段积分"
+        ],
+        "problem": "计算由曲线 $y=\\ln x$、直线 $y=-x+e+1$ 以及 $x$ 轴围成的封闭图形的面积。",
+        "solution": "联立 $y=\\ln x$ 与 $y=-x+e+1$ 得交点为 $(e, 1)$。该封闭图形以 $x$ 轴为下边界，由两部分组成：在 $[1, e]$ 上，上边界为曲线 $y=\\ln x$；在 $[e, e+1]$ 上，上边界为直线 $y=-x+e+1$。面积 $S = \\int_1^e \\ln x dx + \\int_e^{e+1} (-x+e+1) dx$。第一项：$\\int_1^e \\ln x dx = [x\\ln x - x]_1^e = (e - e) - (0 - 1) = 1$。第二项：$\\int_e^{e+1} (-x+e+1) dx = [-\\frac{1}{2}x^2 + (e+1)x]_e^{e+1} = \\frac{1}{2}$。总面积 $S = 1 + \\frac{1}{2} = \\frac{3}{2}$。",
+        "answer": "$\\frac{3}{2}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的直角坐标系",
+            "蓝色对数曲线 $y=\\ln x$",
+            "红色直线 $y=-x+e+1$",
+            "由两条曲线和 x 轴围成的封闭区域（黄色填充）",
+            "区分 $[1,e]$ 与 $[e,e+1]$ 的分段垂直虚线",
+            "垂直微元矩形"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用蓝色画出对数曲线 $y=\\ln x$，用红色画出直线 $y=-x+e+1$。",
+            "第二步：标出交点 $(e, 1)$，以及曲线与 x 轴的交点 $(1, 0)$ 和直线与 x 轴的交点 $(e+1, 0)$。",
+            "第三步：用黄色半透明填充由曲线、直线和 x 轴围成的封闭区域，并用垂直虚线将区域分为 $[1, e]$ 和 $[e, e+1]$ 两部分。",
+            "第四步：在区域中动态绘制垂直微元，分别展示两部分面积积分 $S_1$ 和 $S_2$。",
+            "第五步：高亮显示面积计算结果 $S = \\frac{3}{2}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "calc-area-011",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 11,
+      "raw_line_sha256": "23a39630d151bc122536c4097720c6cb137e27699bea4878cf493bcd7104c534",
+      "record_canonical_sha256": "14db1d21c52d8763fa8f90ba302a9d0d13e0f19f39c41b4b4f1de10cfe62f7f0",
+      "record": {
+        "id": "calc-area-011",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "function_family": "绝对值函数",
+        "problem": "计算由曲线 $y = |x^2 - 1|$ 与直线 $y = 1$ 所围成的封闭图形的面积。",
+        "solution": "曲线 $y = |x^2 - 1|$ 与直线 $y = 1$ 的交点为 $x = 0$ 和 $x = \\pm\\sqrt{2}$。因为图形关于y轴对称，可以计算右半部分 $[0, \\sqrt{2}]$ 的面积再乘以2。当 $0 \\le x \\le 1$ 时，$y = 1 - x^2$，当 $1 \\le x \\le \\sqrt{2}$ 时，$y = x^2 - 1$。面积 $S = 2 \\left( \\int_0^1 (1 - (1-x^2)) dx + \\int_1^{\\sqrt{2}} (1 - (x^2-1)) dx \\right) = 2 \\left( \\int_0^1 x^2 dx + \\int_1^{\\sqrt{2}} (2 - x^2) dx \\right) = 2 \\left( \\frac{1}{3} + (2x - \\frac{x^3}{3})|_1^{\\sqrt{2}} \\right) = 2 \\left( \\frac{1}{3} + (2\\sqrt{2} - \\frac{2\\sqrt{2}}{3}) - (2 - \\frac{1}{3}) \\right) = 2 \\left( \\frac{1}{3} + \\frac{4\\sqrt{2}}{3} - \\frac{5}{3} \\right) = \\frac{8(\\sqrt{2}-1)}{3}$。",
+        "answer": "$\\frac{8(\\sqrt{2}-1)}{3}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色直角坐标系",
+            "红色绝对值曲线 $y=|x^2-1|$",
+            "蓝色水平直线 $y=1$",
+            "两曲线围成的黄色半透明填充区域",
+            "沿着x轴滑动的微元矩形"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用蓝色画出直线 $y=1$。",
+            "第二步：先画出抛物线 $y=x^2-1$，然后将x轴下方的部分向上翻折，形成红色的绝对值曲线 $y=|x^2-1|$。",
+            "第三步：标出交点 $x=0, \\pm\\sqrt{2}$，并用黄色半透明填充直线与绝对值曲线围成的区域。",
+            "第四步：在区域中划分两个部分：$[0,1]$ 和 $[1, \\sqrt{2}]$，分别用垂直细条扫过，展示分段积分的微元。",
+            "第五步：右侧展示对称性，乘以2，并显示最终结果 $\\frac{8(\\sqrt{2}-1)}{3}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "visual_style": "翻折构造绝对值曲线",
+        "efficiency_tags": [
+          "分段积分分色",
+          "对称性双倍展示"
+        ]
+      }
+    },
+    {
+      "id": "calc-area-013",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 13,
+      "raw_line_sha256": "e3c9dbc1568e780bcb665a350ed37a7b81f9464dd3bcb86fcef22489057a114a",
+      "record_canonical_sha256": "3186d4b0a62ce04b4235da187f3e1369111048654c16cd5e2466b78e355b27d3",
+      "record": {
+        "id": "calc-area-013",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "function_family": "复合函数",
+        "problem": "计算由曲线 $y = x e^{-x}$、直线 $x = 1$ 以及x轴围成的封闭图形的面积。",
+        "solution": "面积 $S = \\int_0^1 x e^{-x} dx$。使用分部积分法，令 $u = x$，$dv = e^{-x} dx$，则 $du = dx$，$v = -e^{-x}$。$S = [-x e^{-x}]_0^1 - \\int_0^1 (-e^{-x}) dx = -1 \\cdot e^{-1} - 0 + [-e^{-x}]_0^1 = -e^{-1} - (e^{-1} - 1) = 1 - \\frac{2}{e}$。",
+        "answer": "$1 - \\frac{2}{e}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色直角坐标系",
+            "蓝色复合曲线 $y=x e^{-x}$",
+            "x轴和直线 $x=1$",
+            "黄色半透明填充区域",
+            "沿x轴滑动的微元矩形"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用蓝色动态描绘复合函数曲线 $y = x e^{-x}$。",
+            "第二步：标记出区间 $[0, 1]$，并用黄色半透明填充曲线、直线 $x=1$ 和x轴围成的区域。",
+            "第三步：从0到1动态画出垂直细窄矩形，展示微元面积 $dS = y dx$。",
+            "第四步：画面展示分部积分的推导过程，明确 $u$ 和 $dv$ 的选择。",
+            "第五步：高亮显示最终面积结果 $1 - \\frac{2}{e}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "visual_style": "微元扫掠",
+        "efficiency_tags": [
+          "分部积分推导展示",
+          "矩形微元滑动"
+        ]
+      }
+    },
+    {
+      "id": "calc-derivative-001",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 1,
+      "raw_line_sha256": "0f6fb3cbd0c062c313954b405d9c39478ccfb4935413b48bc1b78626e1545dd0",
+      "record_canonical_sha256": "70a89019a4ed327fd7f64afc57a45099694a33da8b6a16fdc9d26cd9d3c0d671",
+      "record": {
+        "id": "calc-derivative-001",
+        "category": "数学分析",
+        "sub_category": "导数",
+        "problem": "求函数 $f(x)=x^2$ 在 $x=1$ 处的切线方程。",
+        "solution": "$f'(x)=2x$，所以 $f'(1)=2$。又因为 $f(1)=1$，所以切线方程为 $y-1=2(x-1)$，化简得 $y=2x-1$。",
+        "answer": "$y=2x-1$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色坐标轴",
+            "蓝色抛物线 $y=x^2$",
+            "位于 $(1,1)$ 处的黄色圆点（代表切点）",
+            "橙色直线 $y=2x-1$（代表切线）",
+            "右下角白色文本 $f'(x)=2x$ 和 $y=2x-1$"
+          ],
+          "steps": [
+            "第一步：动态绘制带有刻度的横纵坐标轴。",
+            "第二步：从左侧向右侧，动态绘制出蓝色抛物线 $y=x^2$。",
+            "第三步：在坐标 $(1,1)$ 的位置闪烁并显示一个黄色圆点，表示切点。",
+            "第四步：从黄色圆点处向外延伸出一条橙色直线，表示切线 $y=2x-1$。",
+            "第五步：在画面右下角，用白色字体依次显示导数公式 $f'(x)=2x$ 和切线方程 $y=2x-1$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "多项式函数（二次）",
+        "visual_style": "导数几何意义动态演示",
+        "efficiency_tags": [
+          "曲线与切线双色对比",
+          "切点高亮"
+        ]
+      }
+    },
+    {
+      "id": "calc-double-integral-004",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 4,
+      "raw_line_sha256": "9395c6a9a0de7a405672cd935b8c05efc2b203da6ff23363b190f41e0aee192b",
+      "record_canonical_sha256": "f93c07ad63dd319f3c3cd4a19c76e1e14d13b4081491fade754fcbde05c386ff",
+      "record": {
+        "id": "calc-double-integral-004",
+        "category": "数学分析",
+        "sub_category": "重积分",
+        "problem": "利用二重积分的几何意义，说明 $\\iint_D (1 - x^2 - y^2) dxdy$ 的值，其中 $D$ 是单位圆盘 $x^2 + y^2 \\le 1$。",
+        "solution": "这是一个二重积分，其几何意义是以区域 $D$ 为底，曲面 $z = 1 - x^2 - y^2$ 为顶的曲顶柱体的体积。区域 $D$ 是半径为 $1$ 的圆盘，面积为 $\\pi$。在柱坐标系下，该体积可以通过极坐标计算：$\\iint_D (1 - x^2 - y^2) dxdy = \\int_{0}^{2\\pi} d\\theta \\int_{0}^{1} (1 - r^2) r dr = 2\\pi \\left[ \\frac{r^2}{2} - \\frac{r^4}{4} \\right]_{0}^{1} = 2\\pi \\times \\frac{1}{4} = \\frac{\\pi}{2}$。",
+        "answer": "$\\frac{\\pi}{2}$",
+        "scene_spec": {
+          "objects": [
+            "三维空间直角坐标系 $O-xyz$",
+            "三维曲面 $z=1-x^2-y^2$（蓝色半透明，位于 $xOy$ 平面上方）",
+            "底部的单位圆盘区域 $D$（黄色平面）",
+            "从底面圆盘向上垂直延伸的细密立柱阵列（代表微元分割 $dxdy$）",
+            "右侧三维悬浮公式 $V = \\iint_D (1 - x^2 - y^2) dxdy = \\frac{\\pi}{2}$"
+          ],
+          "steps": [
+            "第一步：初始化三维视角，缓慢旋转镜头，展示三维坐标系 $O-xyz$ 以及底部平面上的单位圆盘区域 $D$（黄色高亮）。",
+            "第二步：从底面区域 $D$ 开始，动态向上绘制蓝色的三维曲面 $z=1-x^2-y^2$。",
+            "第三步：在底面区域 $D$ 内，生成大量细密的垂直立柱，这些立柱的顶部均与蓝色曲面相交。",
+            "第四步：镜头缓慢拉近并旋转到侧上方视角，让观众清晰看到这些由底面积和曲面高度构成的曲顶柱体。",
+            "第五步：动态展示微元叠加过程，利用动画将所有立柱的体积凝聚成一个整体的体积概念。",
+            "第六步：画面右侧悬浮显示计算过程和最终结果 $V = \\frac{\\pi}{2}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "多项式曲面（旋转抛物面）",
+        "visual_style": "曲顶柱体三维演示",
+        "efficiency_tags": [
+          "三维旋转视角",
+          "微元立柱阵列"
+        ]
+      }
+    },
+    {
+      "id": "calc-green-005",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 5,
+      "raw_line_sha256": "08a5c54eab0bfcd08460bb78e46283277bd76e761611fbef68b8dc2a832e2cec",
+      "record_canonical_sha256": "a732f0521056602044ad966ef416bdef289458a8bd6c53bb3b8ca2d316745c44",
+      "record": {
+        "id": "calc-green-005",
+        "category": "数学分析",
+        "sub_category": "格林公式",
+        "problem": "利用格林公式计算曲线积分 $\\oint_L x dy - y dx$，其中 $L$ 是正向圆周 $x^2 + y^2 = a^2$。",
+        "solution": "设 $P(x,y) = -y$，$Q(x,y) = x$。则 $\\frac{\\partial Q}{\\partial x} = 1$，$\\frac{\\partial P}{\\partial y} = -1$。由格林公式，原积分 $= \\iint_D \\left( \\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} \\right) dxdy = \\iint_D (1 - (-1)) dxdy = 2 \\iint_D dxdy$。因为 $\\iint_D dxdy$ 等于圆盘的面积 $\\pi a^2$，所以原积分 $= 2 \\pi a^2$。",
+        "answer": "$2\\pi a^2$",
+        "scene_spec": {
+          "objects": [
+            "直角坐标系",
+            "红色圆周曲线 $L$，带有逆时针方向箭头",
+            "内部区域 $D$ 的蓝色半透明填充",
+            "圆内区域的向量场箭头（代表 $P$ 和 $Q$ 的分量）",
+            "右侧文字公式 $\\oint_L P dx + Q dy = \\iint_D \\left( \\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y} \\right) dxdy$"
+          ],
+          "steps": [
+            "第一步：画出直角坐标系，用红色绘制一个以原点为圆心、半径为 $a$ 的圆形路径 $L$。",
+            "第二步：在圆的边界上添加逆时针方向的红色箭头，标出正向路径。",
+            "第三步：用蓝色半透明颜色填充圆内部的区域 $D$，代表边界 $L$ 围成的闭区域。",
+            "第四步：在圆的区域内随机绘制一些微小的向量箭头，示意在向量场中每个点的方向。",
+            "第五步：画面右侧同步展示偏导数计算推导：$\\frac{\\partial Q}{\\partial x} = 1$，$\\frac{\\partial P}{\\partial y} = -1$。",
+            "第六步：高亮显示格林公式等式，并强调左边的边界积分等价于右边区域的二重积分，最终展现结果 $2\\pi a^2$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "平面向量场",
+        "visual_style": "边界与区域联动",
+        "efficiency_tags": [
+          "方向箭头标注",
+          "公式高亮推导"
+        ]
+      }
+    },
+    {
+      "id": "calc-improper-002",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 2,
+      "raw_line_sha256": "8fd1cdc0e28bfb1cc752ae977c1ef67cb34ec335498f0eeab27550d6dc5fb7ec",
+      "record_canonical_sha256": "4553bb903bb9bc33397c21eec8d1f14108543e4dd6a9b12edeab4f60f5e389e1",
+      "record": {
+        "id": "calc-improper-002",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "function_family": "反常积分与极限",
+        "visual_style": "边界推进与面积收敛",
+        "efficiency_tags": [
+          "极限收敛",
+          "反三角函数"
+        ],
+        "problem": "判断反常积分 $\\int_0^{+\\infty} \\frac{1}{1+x^2} dx$ 是否收敛，若收敛，求其值。",
+        "solution": "该积分为无穷限反常积分。根据定义，先求变上限积分：$\\int_0^b \\frac{1}{1+x^2} dx = [\\arctan x]_0^b = \\arctan b - \\arctan 0 = \\arctan b$。再取极限：$\\lim_{b \\to +\\infty} \\arctan b = \\frac{\\pi}{2}$。因为极限存在且为有限常数，故该反常积分收敛。",
+        "answer": "$\\frac{\\pi}{2}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色坐标轴",
+            "蓝色曲线 $y=\\frac{1}{1+x^2}$",
+            "黄色半透明填充区域（代表积分面积）",
+            "向右移动的红色垂直虚线 $x=b$",
+            "右下角动态更新的公式文本 $\\lim_{b \\to +\\infty} \\arctan b = \\frac{\\pi}{2}$"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用蓝色线条画出从 $x=0$ 开始向右无限延伸的对称单峰曲线 $y=\\frac{1}{1+x^2}$。",
+            "第二步：从 $x=0$ 开始，在曲线下方动态填充黄色阴影区域，代表变上限积分 $\\int_0^b \\frac{1}{1+x^2} dx$ 的面积。",
+            "第三步：在阴影右侧添加一条红色的垂直虚线 $x=b$，并让这条虚线随着时间缓慢向右移动，代表上限 $b \\to +\\infty$ 的过程。",
+            "第四步：随着红线的移动，引导观众观察黄色阴影面积趋于稳定（不再无限增大），直观体现积分收敛。",
+            "第五步：画面右下角依次显示文字推导过程：$\\lim_{b \\to +\\infty} \\arctan b = \\frac{\\pi}{2}$，高亮最终结果。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "calc-limit-006",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 6,
+      "raw_line_sha256": "7ca6c928edf9a41c2be4efae4de7f16459d4c04d159f4f4e5ae027cc0ec75a9f",
+      "record_canonical_sha256": "4f07f35747328b445316aa043679b54c72add9b8ff7f29bb05b4751d497e30c9",
+      "record": {
+        "id": "calc-limit-006",
+        "category": "数学分析",
+        "sub_category": "极限",
+        "problem": "求极限 $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ 的值。",
+        "solution": "利用夹逼定理（Squeeze Theorem）进行几何证明。在单位圆中，设圆心角为 $x$（$0 < x < \\frac{\\pi}{2}$），比较 $\\triangle OAB$、扇形 $OAB$ 和 $\\triangle OAC$ 的面积。可以推导出不等式 $\\sin x < x < \\tan x$。同时除以 $\\sin x$ 得到 $1 < \\frac{x}{\\sin x} < \\frac{1}{\\cos x}$。取倒数得 $\\cos x < \\frac{\\sin x}{x} < 1$。由于 $\\frac{\\sin x}{x}$ 为偶函数，$x \\to 0^-$ 时结论同样成立。当 $x \\to 0$ 时，$\\cos x \\to 1$，由夹逼定理可得 $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$。",
+        "answer": "1",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色直角坐标系",
+            "单位圆（圆心在原点，半径为1）",
+            "从圆心出发的射线，交圆周于 $B$ 点，与 x 轴的夹角为 $x$",
+            "从 $A$ 点 $(1,0)$ 出发的垂直切线，交射线于 $C$ 点",
+            "从 $B$ 点向 x 轴作垂线，垂足为 $D$ 点",
+            "高亮的黄色三角形 $OAB$",
+            "高亮的蓝色扇形 $OAB$",
+            "高亮的红色三角形 $OAC$",
+            "右侧悬浮公式 $\\cos x < \\frac{\\sin x}{x} < 1$"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系和单位圆。在 x 轴上标出点 $A(1,0)$，并在原点画出一条与 x 轴正方向呈约 45 度的射线。",
+            "第二步：射线与单位圆交于点 $B$，从 $B$ 点向 x 轴作垂线，垂足为 $D$。用黄色半透明填充三角形 $OAB$。",
+            "第三步：用蓝色半透明填充由射线、x 轴与圆弧围成的扇形 $OAB$。",
+            "第四步：过点 $A$ 作垂直于 x 轴的切线，与射线交于点 $C$，用红色半透明填充三角形 $OAC$。",
+            "第五步：画面右侧展示面积比较关系：$S_{\\triangle OAB}$ $<$ 扇形 $OAB$ 面积 $<$ $S_{\\triangle OAC}$。",
+            "第六步：拖动射线使其角度 $x$ 缓慢减小，趋于 0。动态显示三个区域的面积越来越接近，最终在 $x \\to 0$ 时，三者的视觉边界几乎完全重合。",
+            "第七步：动画展示代数推导过程，高亮显示 $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "三角函数（面积比较）",
+        "visual_style": "夹逼面积比较",
+        "efficiency_tags": [
+          "三区域分色高亮",
+          "角度趋零动画"
+        ]
+      }
+    },
+    {
+      "id": "calc-param-improper-003",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 3,
+      "raw_line_sha256": "a51630f09b57a2d220a2ba2223e8aa5de899164c50e317095d8667204e167de3",
+      "record_canonical_sha256": "0b008740140446c84fe7f379472aa7b9e2a9dbd0d9c418273c6cdc47ba9be884",
+      "record": {
+        "id": "calc-param-improper-003",
+        "category": "数学分析",
+        "sub_category": "反常积分",
+        "problem": "求含参反常积分$I(\\alpha) = \\int_{0}^{+\\infty} e^{-\\alpha x}dx$的值（设$\\alpha>0$）。",
+        "solution": "$I(\\alpha) = \\lim_{b \\to +\\infty} \\int_{0}^{b} e^{-\\alpha x} dx = \\lim_{b \\to  +\\infty} \\left[  -\\frac{1}{\\alpha} e^{-\\alpha x} \\right]_{0}^{b} = \\lim_{b \\to +\\infty}  \\frac{1}{\\alpha} (1 - e^{-\\alpha b }) = \\frac{1}{\\alpha}$。",
+        "answer": "$\\frac{1}{\\alpha}$",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的白色坐标轴",
+            "随参数 $\\alpha$ 变化的衰减曲线 $y=e^{-\\alpha x}$",
+            "滑动参数$\\alpha$的滑块图形",
+            "曲线下方黄色积分区域高亮",
+            "公式文本$I(\\alpha) = \\frac{1}{\\alpha}$"
+          ],
+          "steps": [
+            "第一步：绘制坐标系，先展示$\\alpha =1$时的标准指数衰减曲线$y=e^{-x}$。",
+            "第二步：在屏幕上方显示一个“参数滑块”，动态演示改变$\\alpha$的值。",
+            "第三步：随着参数滑块的移动，曲线随之变陡或变平，展示$\\alpha$对衰减速度的影响。",
+            "第四步：在曲线下方持续保持黄色面积填充，直观展示面积随参数$\\alpha$的变化情况。",
+            "第五步：画面清晰显示推导过程$\\lim_{b\\to +\\infty} \\int_{0}^{b} e^{-\\alpha x}dx=\\frac{1}{\\alpha}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "指数函数族",
+        "visual_style": "参数滑块联动",
+        "efficiency_tags": [
+          "滑块驱动曲线变形",
+          "面积实时更新"
+        ]
+      }
+    },
+    {
+      "id": "calc-series-015",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 14,
+      "raw_line_sha256": "cddf506fa13073c92d68f622eeb559ae163af161cccfe9791a18b1a3218cd70f",
+      "record_canonical_sha256": "7e18007bb5821ba4b517ea6499165565cf63c04652b7538e60a97d976693dae3",
+      "record": {
+        "id": "calc-series-015",
+        "category": "数学分析",
+        "sub_category": "一般级数",
+        "problem": "讨论级数 $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{\\sqrt{n}}$ 的敛散性，并指出是绝对收敛还是条件收敛。",
+        "solution": "该级数为交错级数，满足 $u_n = \\frac{1}{\\sqrt{n}}$ 单调递减且 $\\lim_{n \\to \\infty} u_n = 0$，由莱布尼茨判别法知级数本身收敛。考察绝对值级数 $\\sum_{n=1}^{\\infty} \\frac{1}{\\sqrt{n}}$，这是一个 $p = 0.5 \\le 1$ 的 p 级数，发散。因此，该级数为条件收敛。",
+        "answer": "条件收敛",
+        "scene_spec": {
+          "objects": [
+            "分屏布置的两个坐标系",
+            "正负交替的柱状图",
+            "部分和振荡折线",
+            "绝对值级数柱状图",
+            "绝对值部分和发散折线"
+          ],
+          "steps": [
+            "第一步：在左侧坐标系中交替向上和向下画出正负项柱状图，展示正负交替的数学形态。",
+            "第二步：用橙色折线连接部分和 $S_n$，展示它在某一个水平线上下振荡，但最终逐渐趋向一个固定值。",
+            "第三步：在右侧坐标系中画出绝对值级数 $\\sum \\frac{1}{\\sqrt{n}}$ 的柱状图，展示其高度递减极其缓慢。",
+            "第四步：用折线展示绝对值级数的部分和轨迹，一直向右上方无限延伸，直白地证明其发散。",
+            "第五步：同时展示两幅图，对比说明“原级数收敛，但绝对值级数发散，因此条件收敛”。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "正负交替数列",
+        "visual_style": "柱状图与部分和折线对比",
+        "efficiency_tags": [
+          "正负柱分色",
+          "部分和震荡折线"
+        ]
+      }
+    },
+    {
+      "id": "calc-series-017",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 15,
+      "raw_line_sha256": "0e5294774ca6b70f73b0ea0977d6639480db1ecc5aad165c04355758e6886774",
+      "record_canonical_sha256": "bd4323dca10213b71396b4bcc8a89d477e72d5e83fe85ffcf128ced2aa71468f",
+      "record": {
+        "id": "calc-series-017",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "problem": "讨论函数项级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n^2}$ 在区间 $[-1, 1]$ 上是否一致收敛。",
+        "solution": "对任意 $x \\in [-1, 1]$，有 $|x| \\le 1$，因此 $\\left| \\frac{x^n}{n^2} \\right| \\le \\frac{1}{n^2}$。由于正项级数 $\\sum_{n=1}^{\\infty} \\frac{1}{n^2}$ 收敛（p 级数，p=2>1），根据魏尔斯特拉斯判别法（M-判别法），原函数项级数在 $[-1, 1]$ 上一致收敛。",
+        "answer": "一致收敛",
+        "scene_spec": {
+          "objects": [
+            "坐标轴",
+            "上下界直线",
+            "部分和曲线族",
+            "高项数部分和参考曲线（$N=200$）"
+          ],
+          "steps": [
+            "第一步：绘制直角坐标系，用浅灰色画出两条上下对称的界直线 $y = \\pm \\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\pm \\frac{\\pi^2}{6}$。",
+            "第二步：依次绘制前1项、前3项、前5项、前20项的部分和曲线，用不同颜色区分。",
+            "第三步：展示随着项数 $N$ 增大，部分和曲线的“波动”完全被限制在上下界直线之间。",
+            "第四步：高亮展示随着 $N$ 增大，部分和曲线在区间 $[-1,1]$ 上一致逼近极限函数（以高项数部分和 $N=200$ 作为极限函数的近似参考曲线）。",
+            "第五步：右侧展示 M-判别法的数学推导过程，强调 $\\frac{1}{n^2}$ 起到的“控制”作用。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "函数项级数（p 级数控制）",
+        "visual_style": "上下界约束带",
+        "efficiency_tags": [
+          "上下界直线",
+          "部分和族分色"
+        ]
+      }
+    },
+    {
+      "id": "calc-series-020",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 16,
+      "raw_line_sha256": "7bda6604ea0f84507559f483c5f1c87de4c67cf3fdd446deb1b02980dcc33c59",
+      "record_canonical_sha256": "c4ffe032f9fe9152e58378c08ba42d725e3b52a812c9b7434053a460d116071f",
+      "record": {
+        "id": "calc-series-020",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "visual_style": "渐进式叠加（Progressive Superposition）",
+        "efficiency_tags": [
+          "按需渲染",
+          "颜色区分谐波",
+          "避免过度堆叠"
+        ],
+        "problem": "将函数 $f(x) = x$（$-\\pi \\le x \\le \\pi$）展开为傅立叶级数。",
+        "solution": "由于 $f(x)$ 是奇函数，傅立叶系数 $a_0 = 0$，$a_n = 0$。计算正弦项系数 $b_n = \\frac{2}{\\pi} \\int_0^\\pi x \\sin(nx) dx = \\frac{2(-1)^{n+1}}{n}$。故傅立叶级数为 $f(x) \\sim 2\\sum_{n=1}^{\\infty} \\frac{(-1)^{n+1}}{n} \\sin(nx)$。",
+        "answer": "$2\\sum_{n=1}^{\\infty} \\frac{(-1)^{n+1}}{n} \\sin(nx)$",
+        "scene_spec": {
+          "objects": [
+            "黑色背景坐标系",
+            "目标直线 $y=x$（灰色半透明）",
+            "逐项正弦波（前3项红、绿、蓝，中间项快速带过）",
+            "前10项叠加的合成波形（黄色高亮）"
+          ],
+          "steps": [
+            "第一步：画出目标直线 $y=x$（灰色虚线，便于对比）。",
+            "第二步：为了视觉效率，不一次性展示所有正弦波，而是先画出第一项 $2\\sin(x)$，观察它偏离直线的距离。",
+            "第三步：采用颜色区分（红、绿、蓝）依次快速叠加第二项和第三项，中间项数（$n=4$ 到 $9$）快速带过，避免画面冗余。",
+            "第四步：直接展示前10项叠加后的合成波形（黄色粗线），高亮它与 $y=x$ 的重合度。",
+            "第五步：最后展示吉布斯现象在 $x=\\pi$ 处的尖峰，留白 0.5 秒让观众看清细节。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "傅立叶正弦级数"
+      }
+    },
+    {
+      "id": "calc-vol-012",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+      "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "source_line": 12,
+      "raw_line_sha256": "52b4be7ba438583a1842fdc9108c91deef2c2da0565cdd4714b3838fe3b8b65b",
+      "record_canonical_sha256": "3e65c3bcbf2910133c224c839ddea6f873093d2fbe2b10ffa7fb09443346d3c0",
+      "record": {
+        "id": "calc-vol-012",
+        "category": "数学分析",
+        "sub_category": "定积分的应用",
+        "function_family": "反三角函数",
+        "problem": "求曲线 $y = \\arcsin x$（$0 \\le x \\le 1$）与x轴、直线 $x=1$ 围成的图形绕x轴旋转一周所得旋转体的体积。",
+        "solution": "使用圆盘法，体积 $V = \\pi \\int_0^1 (\\arcsin x)^2 dx$。用分部积分法计算不定积分：令 $u=(\\arcsin x)^2$，$dv=dx$，则 $du=\\frac{2\\arcsin x}{\\sqrt{1-x^2}}dx$，$v=x$，于是 $\\int (\\arcsin x)^2 dx = x(\\arcsin x)^2 - \\int \\frac{2x\\arcsin x}{\\sqrt{1-x^2}} dx = x(\\arcsin x)^2 + 2\\sqrt{1-x^2}\\arcsin x - 2x$。代入上下限得 $V = \\pi [1 \\cdot (\\frac{\\pi}{2})^2 + 0 - 2] - \\pi [0 + 0 - 0] = \\pi(\\frac{\\pi^2}{4} - 2) = \\frac{\\pi^3}{4} - 2\\pi$。",
+        "answer": "$\\frac{\\pi^3}{4} - 2\\pi$",
+        "scene_spec": {
+          "objects": [
+            "二维直角坐标系",
+            "蓝色反三角函数曲线 $y=\\arcsin x$",
+            "曲线与x轴、直线 $x=1$ 围成的平面图形",
+            "三维空间",
+            "绕x轴旋转生成的三维立体",
+            "垂直于x轴的红色圆盘微元",
+            "右侧分部积分推导公式"
+          ],
+          "steps": [
+            "第一步：在二维坐标系中绘制曲线 $y = \\arcsin x$，用黄色填充它与 $x=1$ 及x轴围成的区域。",
+            "第二步：将场景切换至三维视角，展示该平面区域绕x轴旋转一周的动态过程。",
+            "第三步：旋转完成后，生成一个连续的三维旋转体。",
+            "第四步：在x轴上从0到1滑动，展示垂直于x轴的红色圆盘微元，演示 $dV = \\pi y^2 dx$。",
+            "第五步：展示定积分的分部积分计算过程，高亮最终结果 $\\frac{\\pi^3}{4} - 2\\pi$。",
+            "第六步：配合右侧公式推导，展示圆盘微元积分过程。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "visual_style": "二维转三维旋转",
+        "efficiency_tags": [
+          "旋转体生成动画",
+          "圆盘微元滑动"
+        ]
+      }
+    },
+    {
+      "id": "geom-020",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 1,
+      "raw_line_sha256": "e36f1052887479c98e40408d6d16e5321b1f4cb458b1ef8d5f2f3e7c35302b2b",
+      "record_canonical_sha256": "b5b861497fb320ad03d7d4309d6d88fe78154886d0566cc8080668cbac632a6f",
+      "record": {
+        "id": "geom-020",
+        "category": "解析几何",
+        "sub_category": "直线与平面",
+        "function_family": "空间向量与平面夹角",
+        "visual_style": "三维空间关系演示",
+        "efficiency_tags": [
+          "向量法向点积",
+          "动态扫描角度"
+        ],
+        "problem": "求直线 $l: \\frac{x-1}{2} = \\frac{y+1}{-1} = \\frac{z}{3}$ 与平面 $\\pi: 2x - y + 3z = 5$ 的夹角。",
+        "solution": "直线的方向向量为 $\\vec{s} = (2, -1, 3)$，平面的法向量为 $\\vec{n} = (2, -1, 3)$。计算两向量的点积 $\\vec{s} \\cdot \\vec{n} = 2\\times2 + (-1)\\times(-1) + 3\\times3 = 4 + 1 + 9 = 14$。两者的模长为 $|\\vec{s}| = \\sqrt{4+1+9} = \\sqrt{14}$，$|\\vec{n}| = \\sqrt{14}$。设直线与平面的夹角为 $\\theta$，则 $\\sin\\theta = \\frac{|\\vec{s} \\cdot \\vec{n}|}{|\\vec{s}||\\vec{n}|} = \\frac{14}{\\sqrt{14}\\sqrt{14}} = \\frac{14}{14} = 1$，故 $\\theta = \\frac{\\pi}{2}$，即直线与平面垂直。",
+        "answer": "$\\frac{\\pi}{2}$",
+        "scene_spec": {
+          "objects": [
+            "三维直角坐标系",
+            "蓝色平面 $\\pi$",
+            "红色直线 $l$",
+            "方向向量 $\\vec{s}$ 和法向量 $\\vec{n}$"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中画出蓝色平面 $2x - y + 3z = 5$，并绘制红色直线 $l$。",
+            "第二步：在直线上画出方向向量 $\\vec{s} = (2, -1, 3)$，在平面上画出法向量 $\\vec{n} = (2, -1, 3)$。",
+            "第三步：用动画展示 $\\vec{s}$ 和 $\\vec{n}$ 平行，直观体现直线与平面垂直的关系。",
+            "第四步：在交点处动态标注出夹角为 $90^\\circ$。",
+            "第五步：展示法向量点积和模长的计算过程，高亮结果。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-022",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 2,
+      "raw_line_sha256": "ac74f4d8e03c0da053118155e21337b1441ade7705575405a8d8918642daea78",
+      "record_canonical_sha256": "6bca30f252391153444b24b59c84ad1778152bf5e9a3632dac4d7c01ebb9e689",
+      "record": {
+        "id": "geom-022",
+        "category": "解析几何",
+        "sub_category": "直线与平面",
+        "function_family": "向量积求法向量",
+        "visual_style": "三维空间关系演示",
+        "efficiency_tags": [
+          "点法式直接写方程",
+          "排除无关变量"
+        ],
+        "problem": "求过三点 $A(1,0,0)$、$B(0,2,0)$、$C(0,0,3)$ 的平面方程。",
+        "solution": "求向量 $\\vec{AB} = (-1, 2, 0)$ 和 $\\vec{AC} = (-1, 0, 3)$。平面的法向量 $\\vec{n} = \\vec{AB} \\times \\vec{AC} = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ -1 & 2 & 0 \\\\ -1 & 0 & 3 \\end{vmatrix} = (6, 3, 2)$。由点法式方程得 $6(x-1) + 3y + 2z = 0$，化简为 $6x + 3y + 2z - 6 = 0$。",
+        "answer": "$6x + 3y + 2z - 6 = 0$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "三个点 A、B、C",
+            "向量 AB 和 AC",
+            "平面法向量 n",
+            "最终平面"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中，标出三个点 A、B、C 的位置。",
+            "第二步：画出向量 $\\vec{AB}$ 和 $\\vec{AC}$，并展示它们构成的平行四边形。",
+            "第三步：用右手定则画出垂直于平面的法向量 $\\vec{n} = (6, 3, 2)$。",
+            "第四步：展示平面是如何由这个法向量和点 A 确定的。",
+            "第五步：高亮最终平面方程。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-024",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 3,
+      "raw_line_sha256": "4a69204139e50398c9c66b08c89597f92e11d2d59ef71b7d7544bc3a73203535",
+      "record_canonical_sha256": "44f74742b6396d58e382ca51b81547a71410d8334762d4b05270bd8a0366d380",
+      "record": {
+        "id": "geom-024",
+        "category": "解析几何",
+        "sub_category": "曲面与曲线",
+        "function_family": "柱面定义与直纹性",
+        "visual_style": "动态生成与直纹面演示",
+        "efficiency_tags": [
+          "平行直线移动轨迹",
+          "三维扫描"
+        ],
+        "problem": "说明方程 $x^2 + y^2 = 4$ 在空间直角坐标系中表示什么曲面，并画出其图形。",
+        "solution": "在平面直角坐标系中，方程 $x^2 + y^2 = 4$ 表示半径为 2 的圆。在空间直角坐标系中，由于方程缺少变量 $z$，说明对于任意 $z$ 值，$xOy$ 平面上的截面都是同样的圆。因此，该方程表示一个圆柱面，其母线平行于 $z$ 轴，准线为 $xOy$ 平面上的圆 $x^2 + y^2 = 4$。",
+        "answer": "圆柱面，母线平行于 z 轴，准线为 xOy 平面上的圆",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "xOy 平面上的圆",
+            "平行于 z 轴的母线",
+            "完整的圆柱面"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中，先在 $xOy$ 平面上画出半径为 2 的蓝色圆。",
+            "第二步：在圆上任取一点，画出平行于 $z$ 轴方向的直线（母线）。",
+            "第三步：让这条母线绕着圆运动一周，其运动轨迹动态生成一个蓝色的圆柱面。",
+            "第四步：用半透明材质渲染圆柱面，展示它的直纹性质。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-026",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 4,
+      "raw_line_sha256": "93076a69dd7d8195f9434ef59c56c8b60e690fc3458cb2ab1697d634f51b29b4",
+      "record_canonical_sha256": "348c49265098b87862ea3b1a89564124ab750e50d926ba642c1754716f3c0600",
+      "record": {
+        "id": "geom-026",
+        "category": "解析几何",
+        "sub_category": "二次曲面分类",
+        "function_family": "二次曲面标准形式",
+        "visual_style": "截面法与三维立体",
+        "efficiency_tags": [
+          "截面扫描",
+          "抛物线平移"
+        ],
+        "problem": "指出方程 $z = x^2 + 2y^2$ 表示的二次曲面类型，并分析其与平面 $y = 0$ 和 $y = 1$ 的交线。",
+        "solution": "该方程为椭圆抛物面。当 $y = 0$ 时，交线为 $z = x^2$，是 $xOz$ 平面上的抛物线。当 $y = 1$ 时，交线为 $z = x^2 + 2$，依然是一条抛物线，只是顶点向上平移了 2 个单位。一般地，截面 $y=c$ 给出交线 $z=x^2+2c^2$：顶点在 $z$ 方向抬高 $2c^2$。因此，曲面可以看作截面抛物线随 $c$ 变化（顶点沿 $z$ 方向抬高 $2c^2$）叠加而成。",
+        "answer": "椭圆抛物面；与平面 $y=0$ 的交线为 $z=x^2$，与平面 $y=1$ 的交线为 $z=x^2+2$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "椭圆抛物面",
+            "xOz 平面上的抛物线",
+            "平面 y=1 上的抛物线"
+          ],
+          "steps": [
+            "第一步：在三维空间中画出椭圆抛物面 $z = x^2 + 2y^2$，用蓝色半透明渲染。",
+            "第二步：高亮显示与 $xOz$ 平面（$y=0$）的截面交线，这是一条抛物线。",
+            "第三步：在 $y=1$ 处插入一个平面，并高亮显示它与曲面的交线，展示这是一条开口向上的抛物线。",
+            "第四步：用动画演示截面抛物线 $z=x^2+2c^2$ 随 $c$ 变化：顶点沿 $y$ 轴方向平移 $c$、同时沿 $z$ 方向抬高 $2c^2$，从而扫出整个椭圆抛物面。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-028",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 5,
+      "raw_line_sha256": "adddb5bd8386078298195a1b006387c6c65d932c1922ac7ea0c4efc98eba9f7a",
+      "record_canonical_sha256": "0d057d9c18189ad4032f1d8b7025e53a6a8e9938c7282f9f8e6713f4d85a446e",
+      "record": {
+        "id": "geom-028",
+        "category": "解析几何",
+        "sub_category": "非直纹面二次曲面",
+        "function_family": "椭圆抛物面",
+        "visual_style": "直纹性反例验证",
+        "efficiency_tags": [
+          "直线与曲面交点",
+          "反证法可视化"
+        ],
+        "problem": "判断椭圆抛物面 $z = x^2 + y^2$ 是否为直纹面，并说明理由。",
+        "solution": "不是直纹面。假设它是直纹面，则曲面上存在直线。设直线过点 $(x_0, y_0, z_0)$，方向向量为 $(l, m, n)$，参数方程为 $(x_0+lt, y_0+mt, z_0+nt)$。代入曲面方程 $z=x^2+y^2$ 并整理得 $t^2(l^2+m^2)+t(2x_0l+2y_0m-n)+(x_0^2+y_0^2-z_0)=0$。若该方程对任意 $t$ 成立，则各次项系数全为零：由 $l^2+m^2=0$ 得 $l=m=0$；再由一次项系数 $2x_0l+2y_0m-n=0$ 得 $n=0$。于是方向向量为零向量，直线退化为一个点，矛盾。因此，椭圆抛物面上不存在直线，它不是直纹面。",
+        "answer": "不是直纹面",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "椭圆抛物面",
+            "尝试在曲面上放置直线",
+            "直线变成点的退化动画"
+          ],
+          "steps": [
+            "第一步：绘制椭圆抛物面 $z = x^2 + y^2$。",
+            "第二步：用动画尝试在曲面上画一条直线，展示无论如何调整方向，直线都会离开曲面。",
+            "第三步：展示反向验证——如果在方程中强行代入直线，最终会得出 $l^2 + m^2 = 0$，即直线退化为点。",
+            "第四步：对比展示单叶双曲面上的直线族，突出非直纹面的视觉差异。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-029",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 6,
+      "raw_line_sha256": "230949919c70285a0e6e9e81cc40ccf5de21768b8467d752470ecbe63af9f8ed",
+      "record_canonical_sha256": "737a94a96b717e5c60f99c53040df03d69ddc2525b625cc111a879f8210cf2ef",
+      "record": {
+        "id": "geom-029",
+        "category": "解析几何",
+        "sub_category": "等距变换与仿射变换",
+        "function_family": "等距变换（正交矩阵）",
+        "visual_style": "刚体运动",
+        "efficiency_tags": [
+          "正交矩阵验证",
+          "平移与旋转组合"
+        ],
+        "problem": "已知空间中的等距变换由正交矩阵 $A = \\begin{pmatrix} 0 & -1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix}$ 和平移向量 $\\vec{b} = (1, 2, 3)$ 定义。求点 $P(1, 0, 0)$ 变换后的坐标。",
+        "solution": "根据等距变换公式 $P' = AP + \\vec{b}$。先计算矩阵乘法：$AP = \\begin{pmatrix} 0 & -1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 1 \\end{pmatrix} \\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}$。然后加上平移向量：$P' = (0, 1, 0) + (1, 2, 3) = (1, 3, 3)$。该变换实际上是将点绕 $z$ 轴旋转 $90^\\circ$，再平移。",
+        "answer": "$(1, 3, 3)$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "原始点 P",
+            "旋转后的点",
+            "平移向量",
+            "最终点 P'"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中标出原始点 $P(1, 0, 0)$。",
+            "第二步：展示正交矩阵 $A$ 的作用，将点 $P$ 绕 $z$ 轴逆时针旋转 $90^\\circ$，到达 $(0, 1, 0)$。",
+            "第三步：显示平移向量 $\\vec{b} = (1, 2, 3)$，将旋转后的点平移，最终到达 $(1, 3, 3)$。",
+            "第四步：用动画高亮整个变换过程，区分旋转和平移的作用。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-030",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 7,
+      "raw_line_sha256": "bdd9e5df91a3dc633df38592916f3b3da1754812e42d6f690e209d153999e2b0",
+      "record_canonical_sha256": "505d525a0b6ecaf2c12cece0e92860b733fb0c9849b8eef4149c45471944cb46",
+      "record": {
+        "id": "geom-030",
+        "category": "解析几何",
+        "sub_category": "等距变换与仿射变换",
+        "function_family": "仿射变换",
+        "visual_style": "空间拉伸与压缩",
+        "efficiency_tags": [
+          "坐标缩放",
+          "形状连续变化"
+        ],
+        "problem": "说明仿射变换 $x' = 2x, y' = y, z' = z$ 将球面 $x^2 + y^2 + z^2 = 1$ 变成了什么图形。",
+        "solution": "将 $x = x'/2, y = y', z = z'$ 代入球面方程，得 $(x'/2)^2 + y'^2 + z'^2 = 1$，即 $\\frac{x'^2}{4} + y'^2 + z'^2 = 1$。这是一个椭球面，它在 $x$ 轴方向被拉伸了 2 倍，而在 $y$ 和 $z$ 轴方向保持不变。",
+        "answer": "椭球面 $\\frac{x'^2}{4} + y'^2 + z'^2 = 1$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "原始球面",
+            "拉伸过程",
+            "最终椭球面"
+          ],
+          "steps": [
+            "第一步：绘制初始的蓝色球面 $x^2 + y^2 + z^2 = 1$。",
+            "第二步：展示仿射变换的作用，保持 $y$、$z$ 坐标不变，将 $x$ 坐标乘以 2。",
+            "第三步：用动态拉伸动画，展示球面像橡皮泥一样在 $x$ 轴方向被拉长。",
+            "第四步：最终生成一个椭球面，高亮显示其方程。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-031",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+      "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "source_line": 8,
+      "raw_line_sha256": "960cc372c04f8b19d80125441055b83ee6ee596df749b2561590643c8376800b",
+      "record_canonical_sha256": "29d04a841b4ff1e6e864ebe519ae347f98270b08190c03fafbc075d80384c3d5",
+      "record": {
+        "id": "geom-031",
+        "category": "解析几何",
+        "sub_category": "曲面与曲线",
+        "function_family": "维维安尼曲线（球面与圆柱面的交线）",
+        "visual_style": "三维曲线生成演示",
+        "efficiency_tags": [
+          "三维旋转视角",
+          "参数曲线动态描绘"
+        ],
+        "problem": "求球面 $x^2+y^2+z^2=4a^2$ 与圆柱面 $x^2+y^2=2ax$ 的交线（维维安尼曲线）的参数方程（$a>0$）。",
+        "solution": "令 $x=a(1+\\cos t)$，$y=a\\sin t$，则 $x^2+y^2 = a^2(1+\\cos t)^2 + a^2\\sin^2 t = 2a^2(1+\\cos t) = 2a\\cdot a(1+\\cos t) = 2ax$，圆柱面方程自动满足。代入球面方程 $x^2+y^2+z^2=4a^2$ 得 $z^2 = 4a^2 - 2a^2(1+\\cos t) = 2a^2(1-\\cos t) = 4a^2\\sin^2\\frac{t}{2}$。取连续参数分支 $z = 2a\\sin\\frac{t}{2}$（另一分支 $z = -2a\\sin\\frac{t}{2}$ 由参数平移 $2\\pi$ 覆盖，不另取）。于是交线的参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$，其中 $0 \\le t \\le 4\\pi$ 覆盖整条曲线（$0 \\le t \\le 2\\pi$ 仅覆盖上半部分）。",
+        "answer": "维维安尼曲线，参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$，其中 $0 \\le t \\le 4\\pi$",
+        "scene_spec": {
+          "objects": [
+            "三维直角坐标系",
+            "半透明球面 $x^2+y^2+z^2=4a^2$",
+            "圆柱面 $x^2+y^2=2ax$",
+            "高亮的维维安尼曲线",
+            "曲线上运动的参数点"
+          ],
+          "steps": [
+            "第一步：绘制三维坐标系，用蓝色半透明渲染球面 $x^2+y^2+z^2=4a^2$。",
+            "第二步：用红色半透明渲染与球面相交的圆柱面 $x^2+y^2=2ax$。",
+            "第三步：高亮两个曲面的交线，动态描绘出维维安尼曲线。",
+            "第四步：让一个参数点沿曲线运动，同步显示参数方程 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$（$0 \\le t \\le 4\\pi$）。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-048",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 1,
+      "raw_line_sha256": "ab7ec0469e9e2ac5d55743e662fdc1bb3118022753121e1f7ba7f845eca96ef1",
+      "record_canonical_sha256": "79de529e40a7bb98d088a21037d3f41e2c05f45a81b2770781382126fd7e6ea0",
+      "record": {
+        "id": "linalg-048",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "function_family": "线性变换",
+        "visual_style": "空间几何图形",
+        "efficiency_tags": [
+          "几何意义",
+          "剪切变换"
+        ],
+        "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+        "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+        "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+        "scene_spec": {
+          "objects": [
+            "带有刻度的黑色坐标轴",
+            "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+            "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+            "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+            "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+          ],
+          "steps": [
+            "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+            "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+            "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+            "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+            "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-050",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 2,
+      "raw_line_sha256": "b0fe6b4b3b6663167fb99c82613e0b7d22835b1ced999f8f02d2cc7a77c3c540",
+      "record_canonical_sha256": "98555b3d4a1ae1ffba3c1649e4a98fa01e183035243184e0d83ed8675ed080bf",
+      "record": {
+        "id": "linalg-050",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "function_family": "行列式的几何意义",
+        "visual_style": "面积标尺与空间形变",
+        "efficiency_tags": [
+          "面积计算",
+          "正方形映射"
+        ],
+        "problem": "利用几何图形解释二阶行列式 $\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc$ 的几何意义。",
+        "solution": "二阶行列式 $ad - bc$ 的绝对值等于矩阵 $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$ 对应的线性变换将单位正方形映射成的平行四边形的面积。若行列式为正，表示空间保持定向；若为负，表示空间发生了翻折（定向反转）；若为0，表示空间被压缩到一条直线上，面积消失。",
+        "answer": "行列式绝对值等于变换后平行四边形的面积",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "单位正方形",
+            "变换后的平行四边形",
+            "面积数值标签"
+          ],
+          "steps": [
+            "第一步：在坐标系中画出一个单位正方形（面积为1），并标注其面积。",
+            "第二步：定义矩阵 A，应用线性变换，展示正方形变成平行四边形的动态过程。",
+            "第三步：用动态面积计算工具，标注平行四边形的底和高，实时计算其面积。",
+            "第四步：同时展示行列式的代数计算结果 $ad-bc$，高亮其绝对值与几何面积一致（行列式为有向面积，取负值时对应定向反转）。",
+            "第五步：动态展示如果行列式为0，平行四边形退化成一条线段（面积为0）。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-051",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 3,
+      "raw_line_sha256": "864f91deca946e55ae032371665d8435044bf9ce30a2eb481e5715a27b85955e",
+      "record_canonical_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "record": {
+        "id": "linalg-051",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "function_family": "因式分解与根",
+        "visual_style": "根到系数的映射",
+        "efficiency_tags": [
+          "根与因式对应",
+          "实根高亮"
+        ],
+        "problem": "设多项式 $f(x)=x^3-6x^2+11x-6$，将其因式分解并说明其根在复平面上的分布。",
+        "solution": "由有理根定理，可能的根为 $\\pm1,\\pm2,\\pm3,\\pm6$。代入得 $f(1)=0$，故 $(x-1)$ 是因式。多项式除法得 $f(x)=(x-1)(x^2-5x+6)=(x-1)(x-2)(x-3)$。三个根均为实根，在复平面上位于实轴上。",
+        "answer": "$(x-1)(x-2)(x-3)$；三个根 $1,2,3$ 均为实根，在复平面上全部位于实轴上",
+        "scene_spec": {
+          "objects": [
+            "直角坐标系（实轴）",
+            "曲线 y=f(x)",
+            "三个实根点",
+            "因式分解公式"
+          ],
+          "steps": [
+            "第一步：在坐标系中绘制三次多项式曲线 $y=x^3-6x^2+11x-6$。",
+            "第二步：在 x=1,2,3 处用黄色圆点标记曲线与 x 轴的交点，表示根的位置。",
+            "第三步：在右侧展示因式分解的代数过程，用连线将每个根与其对应的因式 $(x-1)$ 联系起来。",
+            "第四步：在数轴上展示三个根全部落在实轴上，说明该多项式无虚根。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-053",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 4,
+      "raw_line_sha256": "9ba1c9c9d538e946074e6b15376ef87503ca0a91dbe9a4d4239dc71efa6cbf18",
+      "record_canonical_sha256": "f257e2425409858699514e0beac6859df86eaa86f04a0995124e4b94e2a53ec5",
+      "record": {
+        "id": "linalg-053",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "function_family": "行列式的几何意义",
+        "visual_style": "体积缩放标尺",
+        "efficiency_tags": [
+          "单位立方体映射",
+          "有向体积"
+        ],
+        "problem": "利用几何图形解释三阶行列式 $\\begin{vmatrix} 1 & 2 & 0 \\\\ 0 & 1 & 3 \\\\ 2 & 1 & 1 \\end{vmatrix}$ 的几何意义。",
+        "solution": "计算行列式得 $1(1\\cdot1-3\\cdot1)-2(0\\cdot1-3\\cdot2)+0=1(-2)-2(-6)=-2+12=10$。该行列式的绝对值等于矩阵对应的线性变换将单位立方体映射成的平行六面体的体积。体积为 10。",
+        "answer": "10，即该行列式的绝对值等于矩阵对应线性变换将单位立方体映射成的平行六面体的体积",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "单位立方体",
+            "变换后的平行六面体",
+            "体积数值标签"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中画出一个单位立方体，标注其体积为 1。",
+            "第二步：定义矩阵 A 并应用线性变换，展示立方体被拉伸、剪切变形为平行六面体。",
+            "第三步：用动态体积计算工具，标注平行六面体的底面积和高，实时计算其体积。",
+            "第四步：同时展示行列式的代数计算结果，高亮它与几何体积结果完全一致。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-054",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 5,
+      "raw_line_sha256": "4ea17f9f0124c28b4f1d0b3daa2a6d9ceb5206aceb6fbe6bc115765a59a65984",
+      "record_canonical_sha256": "da8cdcee83888931a391155143b894ddf1cf7977f59da628e02b9ac430c56dba",
+      "record": {
+        "id": "linalg-054",
+        "category": "高等代数",
+        "sub_category": "行列式",
+        "function_family": "Cramer法则",
+        "visual_style": "行列式比值与解",
+        "efficiency_tags": [
+          "解的存在性条件",
+          "行列式为零"
+        ],
+        "problem": "利用 Cramer 法则求解线性方程组 $\\begin{cases} 2x + y = 5 \\\\ x - y = 1 \\end{cases}$，并说明行列式为零时的几何意义。",
+        "solution": "系数行列式 $D=\\begin{vmatrix} 2 & 1 \\\\ 1 & -1 \\end{vmatrix}=-3\\neq0$，方程组有唯一解。$D_x=\\begin{vmatrix} 5 & 1 \\\\ 1 & -1 \\end{vmatrix}=-6$，$D_y=\\begin{vmatrix} 2 & 5 \\\\ 1 & 1 \\end{vmatrix}=-3$，故 $x=2, y=1$。若 $D=0$，两直线平行或重合，对应无解或无穷多解。",
+        "answer": "$x=2, y=1$；当系数行列式为零时，两直线平行或重合，对应无解或无穷多解",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "两条直线",
+            "交点",
+            "行列式值的变化"
+          ],
+          "steps": [
+            "第一步：在坐标系中画出两条直线 $2x+y=5$ 和 $x-y=1$，标记它们的交点为 (2,1)。",
+            "第二步：用动画展示系数行列式 D 的计算过程。",
+            "第三步：拖动直线使其斜率变化，当 D 趋近于 0 时，展示两直线逐渐平行，交点消失。",
+            "第四步：高亮显示 D=0 时两条直线平行的几何状态，对应无解的情况。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-055",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 6,
+      "raw_line_sha256": "fa7f534ca1aa01a9ac213b279cd76c22d9e2d1597ff6f8dadcb8e01f99545bb7",
+      "record_canonical_sha256": "77f70b1591db703295a5805198a5bf7c7ca8c048364676ece5861cc622ed04cc",
+      "record": {
+        "id": "linalg-055",
+        "category": "高等代数",
+        "sub_category": "线性方程组",
+        "function_family": "解空间的几何结构",
+        "visual_style": "平面相交与解空间",
+        "efficiency_tags": [
+          "唯一解",
+          "秩的几何意义"
+        ],
+        "problem": "讨论线性方程组 $\\begin{cases} x + y + z = 1 \\\\ x - y + z = 1 \\\\ 2x + z = 2 \\end{cases}$ 解的情况。",
+        "solution": "系数矩阵的秩为 3，增广矩阵的秩也为 3，故方程组有唯一解。通过消元法：由第一式减第二式得 $2y=0 \\Rightarrow y=0$。代入第一式和第三式得 $x+z=1$ 且 $2x+z=2$，相减得 $x=1, z=0$。即解为 $(1, 0, 0)$。",
+        "answer": "唯一解，$(1, 0, 0)$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "三个平面",
+            "交点"
+          ],
+          "steps": [
+            "第一步：在三维空间中画出三个平面，用不同颜色区分。",
+            "第二步：观察三个平面的位置关系，它们相交于唯一的一点。",
+            "第三步：高亮显示这个交点，标注其坐标为 $(1, 0, 0)$。",
+            "第四步：说明系数矩阵的秩等于增广矩阵的秩且等于未知数个数，对应唯一解。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-056",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 7,
+      "raw_line_sha256": "16b44199f2bee34aa6f34f699a266f9af2cbc32b84b7b7c4992d39b9a19bd7d3",
+      "record_canonical_sha256": "34433235e65ddd6bd82e2f4ee1f823536278c3e8efd3e7854f5af18f75c17982",
+      "record": {
+        "id": "linalg-056",
+        "category": "高等代数",
+        "sub_category": "线性方程组",
+        "function_family": "齐次方程组与基础解系",
+        "visual_style": "解空间的基与维度",
+        "efficiency_tags": [
+          "基础解系",
+          "零空间可视化"
+        ],
+        "problem": "求齐次线性方程组 $\\begin{cases} x_1 + 2x_2 + x_3 = 0 \\\\ 2x_1 + 4x_2 + 2x_3 = 0 \\end{cases}$ 的基础解系。",
+        "solution": "系数矩阵的秩为 1，未知量个数为 3，故基础解系包含 $3-1=2$ 个线性无关的解向量。取自由变量 $x_2, x_3$，得基础解系 $\\xi_1=(-2,1,0)^T, \\xi_2=(-1,0,1)^T$，解空间为二维平面。",
+        "answer": "$\\xi_1=(-2,1,0)^T, \\xi_2=(-1,0,1)^T$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "解空间平面",
+            "两个基向量"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中画出解空间平面（由两个基向量张成）。",
+            "第二步：用红色箭头标出基向量 ξ₁ 和 ξ₂，展示它们线性无关。",
+            "第三步：用动画展示平面上的任意解向量都可以由这两个基向量线性组合得到。",
+            "第四步：高亮平面的维度为 2，对应基础解系中解向量的个数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-058",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 8,
+      "raw_line_sha256": "923fc30c3570261e9fbb39a813de477bc9d47cfa0aecbf76d9ae3abd076f7947",
+      "record_canonical_sha256": "0006aaf8c255cec0bae511a826ed367cf4a3d8ae95f2533b373301c30c78267d",
+      "record": {
+        "id": "linalg-058",
+        "category": "高等代数",
+        "sub_category": "矩阵",
+        "function_family": "初等变换",
+        "visual_style": "网格剪切",
+        "efficiency_tags": [
+          "行变换几何效果",
+          "面积保持"
+        ],
+        "problem": "说明初等矩阵 $E=\\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$ 对应的线性变换的几何意义。",
+        "solution": "该矩阵是将单位矩阵第二行加上第一行的 3 倍得到的初等矩阵。对应的线性变换是沿 $y$ 轴方向的剪切变换：平面上每一点的 $x$ 坐标不变，$y$ 坐标变为 $y+3x$。这是一个保持面积不变（行列式为 1）的剪切变换。",
+        "answer": "$x$ 坐标不变，$y$ 坐标变为 $y+3x$，面积不变",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "标准网格",
+            "剪切后网格",
+            "基向量变化"
+          ],
+          "steps": [
+            "第一步：画出标准网格和单位正方形。",
+            "第二步：应用初等矩阵 E 的变换，展示水平网格线发生倾斜（竖直网格线保持竖直），网格被剪切。",
+            "第三步：观察单位正方形变为平行四边形（以仍竖直的边为底，底和高均为 1），面积保持为 1。",
+            "第四步：高亮显示行列式值为 1，说明剪切变换不改变面积。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-062",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 9,
+      "raw_line_sha256": "a5a3729c7a1bb22b6ae2adfb585e5d35b9563be0cf4ef294aafd63e0e7c1037d",
+      "record_canonical_sha256": "785653fd613ab2a58a3eaa8659e338f51e7930870331cc4f9407f2d225b6f5ab",
+      "record": {
+        "id": "linalg-062",
+        "category": "高等代数",
+        "sub_category": "线性空间",
+        "function_family": "子空间的交与和",
+        "visual_style": "子空间几何关系",
+        "efficiency_tags": [
+          "维数公式",
+          "直和条件"
+        ],
+        "problem": "在 $\\mathbb{R}^3$ 中，已知子空间 $W_1=\\{(x,y,0)\\}$（xOy平面）和 $W_2=\\{(0,y,z)\\}$（yOz平面），求 $\\dim(W_1+W_2)$ 和 $\\dim(W_1\\cap W_2)$。",
+        "solution": "$W_1$ 是 xOy 平面，维数 2；$W_2$ 是 yOz 平面，维数 2。它们的交是 y 轴，维数 1。根据维数公式，$\\dim(W_1+W_2)=\\dim W_1+\\dim W_2-\\dim(W_1\\cap W_2)=2+2-1=3$。",
+        "answer": "$\\dim(W_1+W_2)=3$，$\\dim(W_1\\cap W_2)=1$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "xOy 平面",
+            "yOz 平面",
+            "交线（y 轴）"
+          ],
+          "steps": [
+            "第一步：在三维空间中画出 xOy 平面（蓝色半透明）和 yOz 平面（红色半透明）。",
+            "第二步：高亮两个平面的交线——y 轴，用黄色粗线表示。",
+            "第三步：动态展示两个平面合并张成的空间，即整个三维空间。",
+            "第四步：标注维数：W₁ 维数 2，W₂ 维数 2，交维数 1，和空间维数 3。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-063",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 10,
+      "raw_line_sha256": "b5c6b5dfcb78e72c91cfa0d21fce04c78b54840ff0f9a3b255e87befc39ce819",
+      "record_canonical_sha256": "98ce95ed5ca6af2fade511a62e543f28135747d3a8f356be90388f906468ec9a",
+      "record": {
+        "id": "linalg-063",
+        "category": "高等代数",
+        "sub_category": "线性变换",
+        "function_family": "值域与核",
+        "visual_style": "空间压缩与零空间",
+        "efficiency_tags": [
+          "核空间可视化",
+          "维数定理"
+        ],
+        "problem": "设线性变换 $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ 由 $T(x,y,z)=(x+y, y+z)$ 定义，求 $T$ 的核和值域的维数。",
+        "solution": "核 $\\ker T=\\{(x,y,z): x+y=0, y+z=0\\}=\\{(-y,y,-y)\\}$，维数为 1。由秩-零化度定理，$\\dim(\\operatorname{Im}T)=3-1=2$，值域为整个 $\\mathbb{R}^2$。",
+        "answer": "$\\dim(\\ker T)=1$，$\\dim(\\operatorname{Im}T)=2$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "核空间直线",
+            "值域平面",
+            "映射箭头"
+          ],
+          "steps": [
+            "第一步：在三维空间中画出核空间——一条过原点的直线，用红色高亮。",
+            "第二步：用箭头表示线性变换 T 将三维空间映射到二维平面。",
+            "第三步：展示三维空间中的向量被映射后，核空间中的向量被压缩到原点。",
+            "第四步：高亮值域平面（二维），标注维数为 2，验证维数定理。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-064",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 11,
+      "raw_line_sha256": "6195eb4ce22aba17327258675ef482586e39fca39ee57eb25a513d31d6b915d0",
+      "record_canonical_sha256": "1054f681c953165c301284e10ffd60b406c424a9cc8357f3449d60a467c14499",
+      "record": {
+        "id": "linalg-064",
+        "category": "高等代数",
+        "sub_category": "特征值与特征向量",
+        "function_family": "矩阵的特征分解",
+        "visual_style": "方向不变与缩放",
+        "efficiency_tags": [
+          "特定方向高亮",
+          "缩放因子"
+        ],
+        "problem": "求矩阵 $A=\\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+        "solution": "特征方程 $|\\lambda I-A|=(\\lambda-3)(\\lambda-2)=0$，特征值 $\\lambda_1=3, \\lambda_2=2$。对应特征向量：$\\lambda_1=3$ 时 $\\xi_1=(1,0)^T$；$\\lambda_2=2$ 时 $\\xi_2=(1,-1)^T$。几何上，方向 $(1,0)$ 上的向量被拉伸 3 倍，方向 $(1,-1)$ 上的向量被拉伸 2 倍。",
+        "answer": "$\\lambda_1=3$ 对应特征向量 $(1,0)^T$，$\\lambda_2=2$ 对应 $(1,-1)^T$；几何意义：变换保持这两个方向不变，分别拉伸为原来的 3 倍和 2 倍",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "标准网格",
+            "多个方向向量",
+            "特征向量高亮"
+          ],
+          "steps": [
+            "第一步：画出标准网格和几个不同方向的向量。",
+            "第二步：应用矩阵变换，展示大部分向量方向发生改变。",
+            "第三步：高亮特征向量 (1,0)，展示它方向不变，长度变为 3 倍。",
+            "第四步：高亮特征向量 (1,-1)，展示它方向不变，长度变为 2 倍。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-065",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 12,
+      "raw_line_sha256": "989ca7e2ed969c323ca34c798b2cfac96b57fd3d7d5fcfe2a9b769b3d3f14126",
+      "record_canonical_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+      "record": {
+        "id": "linalg-065",
+        "category": "高等代数",
+        "sub_category": "λ-矩阵",
+        "function_family": "不变因子与初等因子",
+        "visual_style": "矩阵对角化与因子分解",
+        "efficiency_tags": [
+          "对角线元素",
+          "初等因子分解"
+        ],
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\begin{pmatrix} \\lambda & 0 \\\\ 0 & \\lambda^2-1 \\end{pmatrix}$ 的不变因子和初等因子。",
+        "solution": "该矩阵已是对角形。一阶行列式因子 $D_1=\\gcd(\\lambda, \\lambda^2-1)=1$，二阶 $D_2=\\lambda(\\lambda^2-1)$。不变因子 $d_1=D_1=1$，$d_2=D_2/D_1=\\lambda(\\lambda^2-1)$，即不变因子为 $1, \\lambda(\\lambda^2-1)$；再将 $\\lambda(\\lambda^2-1)$ 分解为 $\\lambda(\\lambda-1)(\\lambda+1)$，得初等因子为 $\\lambda, \\lambda-1, \\lambda+1$。",
+        "answer": "不变因子 $1, \\lambda(\\lambda^2-1)$；初等因子 $\\lambda, \\lambda-1, \\lambda+1$",
+        "scene_spec": {
+          "objects": [
+            "矩阵元素展示",
+            "行列式因子计算",
+            "初等因子分解动画"
+          ],
+          "steps": [
+            "第一步：展示 λ-矩阵，用不同颜色标出对角线元素。",
+            "第二步：计算一阶行列式因子 D₁=1，用动画展示最大公因式的提取过程。",
+            "第三步：计算二阶行列式因子 D₂=λ(λ²-1)。",
+            "第四步：展示不变因子和初等因子的分解结果，用颜色块区分不同的因子。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-066",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 13,
+      "raw_line_sha256": "cb436f85780d2765a810cbc929fbd5921c2bbff9c2e2c0d541800600c7f02766",
+      "record_canonical_sha256": "037e01abf3aaf02bfee249648581a940fb51244e0989a23697bfed2191a8f4cd",
+      "record": {
+        "id": "linalg-066",
+        "category": "高等代数",
+        "sub_category": "λ-矩阵",
+        "function_family": "若尔当标准形",
+        "visual_style": "矩阵块对角化",
+        "efficiency_tags": [
+          "若尔当块",
+          "分块高亮"
+        ],
+        "problem": "求矩阵 $A=\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$ 的若尔当标准形。",
+        "solution": "A 已经是分块对角形式。主对角线上有一个 2×2 的若尔当块 $J_1(2)=\\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 和一个 1×1 的若尔当块 $J_2(3)=(3)$。故若尔当标准形为 $\\operatorname{diag}(J_1(2), J_2(3))$。",
+        "answer": "$\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$",
+        "scene_spec": {
+          "objects": [
+            "矩阵可视化",
+            "若尔当块高亮"
+          ],
+          "steps": [
+            "第一步：展示矩阵 A，用不同颜色标出两个若尔当块。",
+            "第二步：用动画高亮矩阵的分块结构，直观展示两个若尔当块。",
+            "第三步：高亮 2×2 的若尔当块，展示其主对角线为 2、超对角线上的 1 表示该块不可对角化。",
+            "第四步：标注 1×1 的若尔当块对应特征值 3，可以单独对角化。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-067",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 14,
+      "raw_line_sha256": "70e0e0e3975c34f0bbb407ebd6ef97e8b5f68a5c1ae5cfa5a0b758454d8df765",
+      "record_canonical_sha256": "308ae4734dad5650788d5605531f4ce593ab67bfaab45ee9b769190388c3ff9f",
+      "record": {
+        "id": "linalg-067",
+        "category": "高等代数",
+        "sub_category": "欧几里得空间",
+        "function_family": "正交变换",
+        "visual_style": "旋转与反射保持长度",
+        "efficiency_tags": [
+          "长度不变",
+          "夹角不变"
+        ],
+        "problem": "验证矩阵 $A=\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$ 是正交矩阵，并说明其对应的正交变换。",
+        "solution": "$A^TA=\\begin{pmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{pmatrix}\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}=I$，故 A 是正交矩阵。它对应的变换是平面上的旋转 θ 角。",
+        "answer": "A 是正交矩阵，对应旋转 θ 角",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "原始图形",
+            "旋转后图形",
+            "长度和角度标注"
+          ],
+          "steps": [
+            "第一步：在坐标系中画出一个三角形，标注其边长和角度。",
+            "第二步：应用正交变换（旋转 θ 角），展示三角形绕原点旋转。",
+            "第三步：用动态测量工具验证旋转后三角形的边长和角度完全不变。",
+            "第四步：高亮矩阵列向量是标准正交基，展示 AᵀA=I。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-069",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 15,
+      "raw_line_sha256": "938da20b45a4350246c2198bd2e576205f387308ebb5572ea7e74709be1d75d1",
+      "record_canonical_sha256": "89625d2e3cb81b2f94912a8587eb481dc854fdde1fe1250ee0ff78ba11078a73",
+      "record": {
+        "id": "linalg-069",
+        "category": "高等代数",
+        "sub_category": "双线性函数与辛空间",
+        "function_family": "对偶空间",
+        "visual_style": "线性函数与对偶基",
+        "efficiency_tags": [
+          "对偶基可视化",
+          "线性泛函"
+        ],
+        "problem": "设 $V=\\mathbb{R}^2$，$\\varepsilon_1=(1,0), \\varepsilon_2=(0,1)$ 是标准基。求对偶基 $f_1, f_2$，使得 $f_i(\\varepsilon_j)=\\delta_{ij}$。",
+        "solution": "对偶空间 $V^*$ 中的线性函数 $f$ 由其在基向量上的值唯一确定。对偶基满足 $f_1(\\varepsilon_1)=1, f_1(\\varepsilon_2)=0$；$f_2(\\varepsilon_1)=0, f_2(\\varepsilon_2)=1$。即 $f_1(x,y)=x, f_2(x,y)=y$。",
+        "answer": "$f_1(x,y)=x, f_2(x,y)=y$",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "基向量",
+            "对偶基线性函数等值线"
+          ],
+          "steps": [
+            "第一步：在二维空间中画出标准基向量 ε₁ 和 ε₂。",
+            "第二步：画出线性函数 f₁(x,y)=x 的等值线（竖直线），展示它在 ε₁ 上值为 1，在 ε₂ 上值为 0。",
+            "第三步：画出 f₂(x,y)=y 的等值线（水平线），展示其对偶性质。",
+            "第四步：高亮对偶基的克罗内克 δ 性质。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-070",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "source_line": 16,
+      "raw_line_sha256": "528463fec18b388cb55d29461f259fa63ae2a9841e65da1f25fa0b9e995f9a76",
+      "record_canonical_sha256": "3eb3f7f02129d70a1894df537a368586d723a939116aac97e76e22046db20555",
+      "record": {
+        "id": "linalg-070",
+        "category": "高等代数",
+        "sub_category": "双线性函数与辛空间",
+        "function_family": "辛空间",
+        "visual_style": "辛变换与面积保持",
+        "efficiency_tags": [
+          "辛形式",
+          "面积守恒"
+        ],
+        "problem": "在 $\\mathbb{R}^2$ 上定义辛形式 $\\omega(u,v)=u_1v_2-u_2v_1$（标准行列式形式），说明辛变换保持该形式不变的意义。",
+        "solution": "标准辛形式即二维向量的行列式。辛变换是保持 $\\omega$ 不变的线性变换，即保持任意两个向量张成的平行四边形面积不变。在二维情形下，辛变换就是行列式为 1 的线性变换。",
+        "answer": "辛变换保持面积不变",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "两个向量张成的平行四边形",
+            "辛变换后的图形"
+          ],
+          "steps": [
+            "第一步：在二维坐标系中画出两个向量 u 和 v，以及它们张成的平行四边形。",
+            "第二步：用面积标注工具计算该平行四边形的面积。",
+            "第三步：应用辛变换（行列式为 1 的矩阵），展示两个向量变化后平行四边形的面积保持不变。",
+            "第四步：高亮辛形式的代数表达式，说明其与面积的关系。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-038",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 1,
+      "raw_line_sha256": "a7e0d9dacf2a55b3d689a8aa1c976bcf5638985c46170eca3c1903209ceb4ec5",
+      "record_canonical_sha256": "9ea4a3ee9181d11913920e97c621e75a4b5bf7a7ed6c7228b36fbf461e0113d6",
+      "record": {
+        "id": "prob-038",
+        "category": "概率论",
+        "sub_category": "条件概率与独立性",
+        "function_family": "事件关系与韦恩图",
+        "visual_style": "集合运算与面积动态切割",
+        "efficiency_tags": [
+          "条件概率空间缩减",
+          "交并集高亮"
+        ],
+        "problem": "已知事件 $A$ 与 $B$ 的概率分别为 $P(A) = 0.6$，$P(B) = 0.4$，且 $P(A \\cap B) = 0.2$。求条件概率 $P(A|B)$ 和 $P(B|A)$。",
+        "solution": "根据条件概率公式，$P(A|B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{0.2}{0.4} = 0.5$。$P(B|A) = \\frac{P(A \\cap B)}{P(A)} = \\frac{0.2}{0.6} = \\frac{1}{3}$。可以直观理解为在缩减的样本空间 $B$ 或 $A$ 中，交集部分所占的比例。",
+        "answer": "$P(A|B) = 0.5$，$P(B|A) = \\frac{1}{3}$",
+        "scene_spec": {
+          "objects": [
+            "矩形样本空间（总面积对应概率 1）",
+            "蓝色圆 A（面积比例 0.6）",
+            "红色圆 B（面积比例 0.4）",
+            "交集区域（紫色，面积比例 0.2）"
+          ],
+          "steps": [
+            "第一步：画出一个正方形代表总样本空间（总面积对应概率 1），按面积比例 $0.6$、$0.4$ 画出相交的圆 A 和圆 B，交集面积比例为 $0.2$。",
+            "第二步：给交集部分涂上紫色，标注 $P(A \\cap B) = 0.2$。",
+            "第三步：动态展示“条件概率”的空间缩减过程，将圆 B 以外的区域变为灰色，强调样本空间现在变成了 B。",
+            "第四步：在缩小后的空间 B 中，高亮紫色交集部分的占比，直观展示 $P(A|B) = 0.5$。",
+            "第五步：同样地，动态演示缩小到空间 A 的情况，得出 $P(B|A) = \\frac{1}{3}$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-039",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 2,
+      "raw_line_sha256": "e93566719d7ddafcb67cf74a6873cca1eb27082af49f4e4671efa4e0088525f1",
+      "record_canonical_sha256": "916010ea92d0857c6d2e1742f923cdf7af4116c2b815fac353b326ad8c293361",
+      "record": {
+        "id": "prob-039",
+        "category": "概率论",
+        "sub_category": "几何概型",
+        "function_family": "连续均匀分布与随机投点",
+        "visual_style": "空间撒点与频率逼近",
+        "efficiency_tags": [
+          "面积比计算",
+          "大数定律直观展示"
+        ],
+        "problem": "利用几何概型的思想，说明如何通过随机投点估算圆周率 $\\pi$ 的值。",
+        "solution": "考虑边长为2的正方形内切一个半径为1的圆。正方形的面积为4，圆的面积为 $\\pi$。如果向正方形内随机投掷 $n$ 个点，点落在圆内的概率为 $P = \\frac{\\pi}{4}$。随着投掷次数 $n$ 增大，落入圆内的点频数 $m$ 与 $n$ 的比值 $\\frac{m}{n}$ 会趋近于 $\\frac{\\pi}{4}$，从而可以估算 $\\pi \\approx \\frac{4m}{n}$。",
+        "answer": "$\\pi \\approx \\frac{4m}{n}$",
+        "scene_spec": {
+          "objects": [
+            "平面直角坐标系",
+            "正方形区域",
+            "内切圆区域",
+            "随机散点",
+            "动态更新的公式"
+          ],
+          "steps": [
+            "第一步：绘制一个边长为2，中心在原点的正方形，并画出它的内切圆。",
+            "第二步：用程序生成均匀分布的随机点，让这些点像下雨一样落在正方形内。",
+            "第三步：落在圆内的点显示为蓝色，落在圆外的点显示为灰色，动态统计蓝点的个数。",
+            "第四步：右侧实时展示估算公式 $\\pi \\approx \\frac{4m}{n}$，随着点数增加，数字逐渐逼近 $3.14159...$。",
+            "第五步：对比展示理论值，直观揭示频率的稳定性和大数定律。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-040",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 3,
+      "raw_line_sha256": "94c7123237a4be80ae7a0bada232c55644ff6d5cb07589bf3b8608be214c312b",
+      "record_canonical_sha256": "8603c675ce665f2e3cda9c651e7ff29123390af943ae42c0dfb34ed87ee222c8",
+      "record": {
+        "id": "prob-040",
+        "category": "概率论",
+        "sub_category": "常见分布",
+        "function_family": "二项分布与泊松分布",
+        "visual_style": "柱状图动态逼近",
+        "efficiency_tags": [
+          "参数调整",
+          "离散分布极限"
+        ],
+        "problem": "说明当 $n$ 很大，$p$ 很小时，二项分布 $B(n, p)$ 可以近似为泊松分布 $P(\\lambda)$，其中 $\\lambda = np$。",
+        "solution": "二项分布的概率质量函数为 $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$。当 $n \\to \\infty$，$p \\to 0$ 且 $np \\to \\lambda$ 时，利用极限 $\\lim_{n \\to \\infty} (1 - \\frac{\\lambda}{n})^n = e^{-\\lambda}$，可以推导出 $P(X=k) \\to \\frac{\\lambda^k e^{-\\lambda}}{k!}$，这正是泊松分布的概率质量函数。",
+        "answer": "当 $n \\to \\infty$、$p \\to 0$ 且 $np \\to \\lambda$ 时，$B(n,p)$ 的概率质量函数趋近于泊松分布 $P(\\lambda)$ 的概率质量函数 $\\frac{\\lambda^k e^{-\\lambda}}{k!}$",
+        "scene_spec": {
+          "objects": [
+            "直角坐标系",
+            "二项分布柱状图",
+            "泊松分布理想曲线",
+            "动态变化的参数滑块"
+          ],
+          "steps": [
+            "第一步：在坐标系中绘制二项分布 $B(n,p)$ 的柱状图，初始设定 $n=10, p=0.5$。",
+            "第二步：在画面右侧引入一个滑块，拖动滑块使得 $n$ 逐渐增大（如 $n=50, 100$），同时 $p$ 逐渐减小。",
+            "第三步：保持 $\\lambda = np = 5$ 固定，展示随着 $n$ 增大柱状图中心始终位于 5、方差由 2.5 逐渐趋近 5，形态收敛到固定的泊松分布 $P(5)$。",
+            "第四步：叠加上一条红色的泊松分布理论曲线，展示当 $n$ 很大 $p$ 很小时，二项分布的柱状图顶端几乎完全与红色曲线重合，验证泊松近似。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-041",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 4,
+      "raw_line_sha256": "fc67499992b9690dedd30c92aee9a9ca361bd05c3309749fcaa166eadc5a497c",
+      "record_canonical_sha256": "eae914133e0447d5ba8da272170e4397878aaa3aafeb77f0833e5525ec03174f",
+      "record": {
+        "id": "prob-041",
+        "category": "概率论",
+        "sub_category": "常见分布",
+        "function_family": "正态分布",
+        "visual_style": "连续曲线与参数动态调整",
+        "efficiency_tags": [
+          "均值和方差几何意义",
+          "概率密度函数高亮"
+        ],
+        "problem": "分析正态分布 $X \\sim N(\\mu, \\sigma^2)$ 的概率密度函数，说明参数 $\\mu$ 和 $\\sigma$ 对曲线形状的影响。",
+        "solution": "正态分布的概率密度函数为 $f(x) = \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$。参数 $\\mu$ 是位置参数，决定曲线的对称轴位置；参数 $\\sigma$ 是尺度参数，决定曲线的陡峭程度（$\\sigma$ 越大，曲线越矮胖；$\\sigma$ 越小，曲线越高瘦）。",
+        "answer": "$\\mu$ 决定位置，$\\sigma$ 决定形状的陡峭程度",
+        "scene_spec": {
+          "objects": [
+            "直角坐标系",
+            "正态分布钟形曲线",
+            "$\\mu$ 滑块",
+            "$\\sigma$ 滑块",
+            "阴影面积高亮"
+          ],
+          "steps": [
+            "第一步：绘制标准正态分布曲线 $N(0,1)$，并高亮曲线下方面积为1。",
+            "第二步：拖动 $\\mu$ 滑块，展示曲线在水平方向上左右平移，而形状完全不变。",
+            "第三步：拖动 $\\sigma$ 滑块，展示曲线以 $\\mu$ 为中心变宽或变窄，同时高度发生反向变化以保持总面积为1。",
+            "第四步：在曲线上用阴影标记出 $\\mu \\pm \\sigma$ 区间，展示该区间的概率面积约为 $0.6827$，$\\mu \\pm 2\\sigma$ 约为 $0.9545$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-042",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 5,
+      "raw_line_sha256": "7c3b668f7bde685db53c8d61f026018419d524995eb48aa6bdc8196589d946bc",
+      "record_canonical_sha256": "3f70da56d2084427141488add9d6b5e007cdf8124c9c4ced27c2fd4dce3766c9",
+      "record": {
+        "id": "prob-042",
+        "category": "概率论",
+        "sub_category": "大数定律",
+        "function_family": "伯努利大数定律",
+        "visual_style": "动态折线与频率收敛",
+        "efficiency_tags": [
+          "动态收敛轨迹",
+          "水平极限线"
+        ],
+        "problem": "利用伯努利大数定律，说明抛硬币试验中正面出现的频率是如何随试验次数增加而趋于其概率的。",
+        "solution": "设 $X_i$ 为第 $i$ 次抛硬币的指示变量（正面为1，反面为0），$P(X_i=1) = p = 0.5$。伯努利大数定律指出，对于任意 $\\epsilon > 0$，有 $\\lim_{n \\to \\infty} P\\left( \\left| \\frac{1}{n} \\sum_{i=1}^n X_i - p \\right| < \\epsilon \\right) = 1$。即当试验次数 $n$ 趋近于无穷大时，正面出现的频率依概率收敛于其理论概率 $0.5$。",
+        "answer": "频率依概率收敛于 $0.5$",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "收敛水平线 $y=0.5$",
+            "动态折线图",
+            "不断累加的硬币图标"
+          ],
+          "steps": [
+            "第一步：在坐标系中画出横轴（试验次数 n）和纵轴（正面频率），并画一条红色的水平虚线表示极限概率 $0.5$。",
+            "第二步：模拟抛硬币过程，随着硬币不断被抛出（动态画面），折线图从左向右延伸。",
+            "第三步：折线在初始阶段（n 较小时）波动剧烈，经常上下大幅跳动。",
+            "第四步：随着试验次数 $n$ 增大（如 $n=1000, 10000$），折线震荡幅度越来越小。",
+            "第五步：最终，折线几乎紧贴并收敛于红色虚线 $y=0.5$，直观演示大数定律。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-043",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 6,
+      "raw_line_sha256": "dd304410a68a7fa40130d51efbc54e672922a7e6395da18a3ad111a8824ce4aa",
+      "record_canonical_sha256": "cf5b5f432a33417be941dbf22d12345feee9ac3baa0ffb308569403206597c69",
+      "record": {
+        "id": "prob-043",
+        "category": "概率论",
+        "sub_category": "中心极限定理",
+        "function_family": "独立同分布中心极限定理",
+        "visual_style": "分屏对比与分布形态演变",
+        "efficiency_tags": [
+          "样本量滑块",
+          "直方图对比"
+        ],
+        "problem": "解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值的分布是如何变化的。",
+        "solution": "设随机变量 $X_1, X_2, \\dots, X_n$ 相互独立且同分布，具有有限的数学期望 $\\mu$ 和方差 $\\sigma^2$。中心极限定理指出，当 $n$ 充分大时，标准化样本均值 $\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}}$ 的分布近似于标准正态分布 $N(0, 1)$。直观来说，样本均值的方差为 $\\sigma^2/n$，随着 $n$ 增大，方差减小，分布变得更加集中，直方图会变高变窄，最终趋于钟形正态分布。",
+        "answer": "样本均值 $\\bar{X}$ 的分布趋近于正态分布 $N(\\mu, \\sigma^2/n)$：随着 $n$ 增大，分布变高变窄、中心不变。",
+        "scene_spec": {
+          "objects": [
+            "左侧原始总体分布（如均匀分布或指数分布）",
+            "右侧动态样本均值分布直方图",
+            "样本量 n 滑块",
+            "目标正态曲线 $N(\\mu, \\sigma^2/n)$"
+          ],
+          "steps": [
+            "第一步：屏幕左侧显示一个明显非正态的总体分布（例如均匀分布），明确标注其形态。",
+            "第二步：在右侧从该总体中随机抽取 n 个样本并计算均值，重复多次绘制直方图。",
+            "第三步：初始设置 n=2，样本均值的直方图已呈现三角分布（Irwin–Hall 分布），与原始均匀总体明显不同。",
+            "第四步：动画拖动“样本量 n”滑块，将 n 逐渐增大至 5, 10, 30。",
+            "第五步：右侧的直方图动态且平滑地变高变窄，形态逐渐转变成钟形。",
+            "第六步：叠加红色曲线 $N(\\mu, \\sigma^2/n)$，展示当 n=30 时，样本均值直方图几乎与红色曲线重合。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "prob-046",
+      "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+      "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "source_line": 7,
+      "raw_line_sha256": "2da94440020978fe724bee1a29dd7c267fc5d99450a419d07b1b1544140063e0",
+      "record_canonical_sha256": "3a779a65b5dc2c7a3d3841d13865c4e11fa53654ebd2ab9c4729e0399591fd6c",
+      "record": {
+        "id": "prob-046",
+        "category": "概率论",
+        "sub_category": "可列可加性",
+        "function_family": "测度的可列可加性",
+        "visual_style": "无限级数面积拼图",
+        "efficiency_tags": [
+          "几何级数",
+          "极限逼近"
+        ],
+        "problem": "用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的小矩形。",
+        "solution": "将面积为 $1$ 的正方形依次分割：第一个矩形面积为 $\\frac{1}{2}$，第二个为 $\\frac{1}{4}$，第三个为 $\\frac{1}{8}$，依此类推。随着分割次数趋向无穷，矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$。这直观展示了可列可加性。",
+        "answer": "可列可加性成立：各矩形面积构成几何级数 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$，恰等于单位正方形的总面积",
+        "scene_spec": {
+          "objects": [
+            "单位正方形",
+            "不断细分的矩形区域",
+            "动态更新的概率求和公式"
+          ],
+          "steps": [
+            "第一步：画出一个面积为1的单位正方形。",
+            "第二步：先分割出一半面积（1/2）的矩形，用蓝色填充，显示部分和 $S_1 = \\frac{1}{2}$。",
+            "第三步：在剩余的空间中再分割出 1/4 面积的矩形，用绿色填充，显示部分和 $S_2 = \\frac{1}{2} + \\frac{1}{4}$。",
+            "第四步：接着不断分割出 $\\frac{1}{8}, \\frac{1}{16}, \\frac{1}{32}$ 等更小的矩形，用不同颜色区分。",
+            "第五步：随着分割次数趋向无穷，剩余未分配的面积越来越小，最终无限趋近于 $0$。",
+            "第六步：展示求和公式 $\\sum_{k=1}^{\\infty} \\frac{1}{2^k} = 1$，所有矩形面积之和等于 1，直观展示可列可加性。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    }
+  ],
+  "source_bindings": {
+    "data/manifest.json": {
+      "raw_sha256": "11b6ff941798bcdea53de08c22328b45bad1512a6773d274829f2ad7456874a7",
+      "bytes": 2996
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl": {
+      "raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "bytes": 28056
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl": {
+      "raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "bytes": 12050
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl": {
+      "raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "bytes": 22190
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl": {
+      "raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "bytes": 11845
+    },
+    "reviews/2026-10-06-core-families/core-families.pending.json": {
+      "raw_sha256": "b6e21f0a72f02d364c0ef5ba3d81518a14a5184e24eee8844d34735f493dc0ab",
+      "bytes": 11562
+    },
+    "reviews/2026-10-06-core-families/train-47-raw.json": {
+      "raw_sha256": "2dd5ad63e6426b11da44e5d9bea528b4a174f7a62e2c3650d53931250a091a41",
+      "bytes": 20810
+    }
+  },
+  "hash_algorithms": {
+    "raw_line_sha256": "sha256 UTF-8 decoded source line stripped at ends",
+    "record_canonical_sha256": "holdout_contract.object_sha(full record)"
+  },
+  "semantic_or_math_accepted": false
+}

@@ -1,0 +1,44 @@
+{
+  "name": "split-split",
+  "version": 1,
+  "generated_at": "2026-09-30 12:28:23",
+  "policy": "split 产物清单;train/eval/test 与 rejected 分离;输入 pool/plan 见各 entry.notes",
+  "entries": [
+    {
+      "path": "train.jsonl",
+      "sha256": "2bcbd00782a20f640329912a7b117c87508531adb7b909b591586a2d9143040c",
+      "size": 14,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\plan.json",
+      "license": "internal-generated",
+      "split": "train",
+      "notes": "由 split_data 生成: train.jsonl"
+    },
+    {
+      "path": "eval.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\plan.json",
+      "license": "internal-generated",
+      "split": "eval",
+      "notes": "由 split_data 生成: eval.jsonl"
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\plan.json",
+      "license": "internal-generated",
+      "split": "test",
+      "notes": "由 split_data 生成: test.jsonl"
+    },
+    {
+      "path": "rejected.jsonl",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size": 2,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-coherence\\third-round\\plan.json",
+      "license": "internal-generated",
+      "split": "raw",
+      "notes": "由 split_data 生成: rejected.jsonl"
+    }
+  ]
+}

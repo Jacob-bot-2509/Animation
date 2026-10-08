@@ -1,0 +1,490 @@
+[
+  {
+    "id": "draft-c07-03",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[2]",
+    "before": "第三步:换元(逐项):$u=2\\theta$,则 $du=2\\,d\\theta$,即 $d\\theta=\\frac12du$;上下限:$\\theta=-\\frac\\pi4\\to u=-\\frac\\pi2$,$\\theta=\\frac\\pi4\\to u=\\frac\\pi2$;故 $\\int\\cos^2(2\\theta)d\\theta=\\frac12\\int_{-\\frac\\pi2}^{\\frac\\pi2}\\cos^2u\\,du$。",
+    "after": "第三步：换元 $u=2\\theta$，$d\\theta=\\frac{1}{2}du$；上下限分别变为 $-\\frac{\\pi}{2}$、$\\frac{\\pi}{2}$。逐项写出 $\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos^2(2\\theta)\\,d\\theta=\\frac{1}{2}\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\cos^2u\\,du$；高亮两端均为定积分。",
+    "reason": "restore both limits; indefinite integral cannot equal a definite value"
+  },
+  {
+    "id": "draft-c10-05",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[2]",
+    "before": "第三步:交叉序(关键点):$S_{2m}\\le S_{2m+1}\\le S_{2l+1}$ 对一切 $m,l$ 成立(偶部分和总不超奇部分和);两序列单调有界 → 各有极限;差 $S_{2N+1}-S_{2N}=a_{2N+1}\\to0$(逐项),故两极限相同,记为 $S$。",
+    "after": "第三步：高亮真正的交叉序 $S_{2m}\\le S_{2l+1}$，对任意 $m,l\\ge0$ 成立。若 $m\\le l$，由偶子列递增得 $S_{2m}\\le S_{2l}\\le S_{2l+1}$；若 $m>l$，由奇子列递减得 $S_{2m}\\le S_{2m+1}\\le S_{2l+1}$。因此 $0=S_0\\le S_{2m}\\le S_1$，两子列单调有界；$S_{2N+1}-S_{2N}=a_{2N+1}\\to0$，故两极限相同，记为 $S$。",
+    "reason": "old odd-to-odd inequality was false for arbitrary indices; case split repairs ordering"
+  },
+  {
+    "id": "draft-c20-04",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[3]",
+    "before": "第四步:写 $x=c+h$,$n\\cdot h=0$;交叉项 $2c^{\\mathsf T}Wh=2t\\cdot n^{\\mathsf T}h=0$ 消失;截面满足 $h^{\\mathsf T}Wh=1-\\frac{6t^2}{11}$;故 $|t|>\\sqrt{\\frac{11}6}$ 为空,等号为单点,小于时为椭圆。",
+    "after": "第四步：写 $x=c+h$，$n^{\\mathsf T}h=0$。先逐分量算 $Wc=\\frac{t}{11}(6,6,6)^{\\mathsf T}=\\frac{6t}{11}n$，于是 $2c^{\\mathsf T}Wh=2(Wc)^{\\mathsf T}h=\\frac{12t}{11}n^{\\mathsf T}h=0$。截面满足 $h^{\\mathsf T}Wh=1-\\frac{6t^2}{11}$；$|t|>\\sqrt{\\frac{11}{6}}$ 时空集，等号时仅为 $c$，严格小于时为椭圆。",
+    "reason": "missing 6/11 factor in Wc"
+  },
+  {
+    "id": "draft-c20-04",
+    "kind": "missing_proof",
+    "field": "scene_spec.steps[5]",
+    "before": null,
+    "after": "第六步：高亮限制矩阵的特征方程 $\\left(\\lambda-\\frac{3}{2}\\right)\\left(\\lambda-\\frac{5}{2}\\right)-\\frac{1}{12}=\\lambda^2-4\\lambda+\\frac{11}{3}=(\\lambda-2)^2-\\frac{1}{3}=0$。故特征值为 $2\\pm\\frac{1}{\\sqrt3}$；在正交特征坐标中逐轴用 $\\lambda_j u_j^2=1-\\frac{6t^2}{11}$ 求半轴，无小数估算。",
+    "reason": "show exact roots rather than announce them"
+  },
+  {
+    "id": "draft-c34-05",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[1]",
+    "before": "第二步:逐因子相乘(逐步,高亮):$(I+ae_{12})(I+be_{23})=I+ae_{12}+be_{23}+abe_{13}$;再乘 $(I-ae_{12})$:结果 $=I+ae_{12}+be_{23}+abe_{13}-ae_{12}-a^2e_{12}^2-abe_{12}e_{23}-a^2be_{13}e_{12}=I+be_{23}+abe_{13}$(用 $e_{12}^2=0$、$e_{13}e_{12}=0$ 消去)。",
+    "after": "第二步：逐因子相乘：$(I+ae_{12})(I+be_{23})=I+ae_{12}+be_{23}+abe_{13}$。右乘 $(I-ae_{12})$ 时保持次序：$I+ae_{12}+be_{23}+abe_{13}-ae_{12}-a^2e_{12}^2-ab e_{23}e_{12}-a^2b e_{13}e_{12}=I+be_{23}+abe_{13}$。高亮 $e_{23}e_{12}=0$，不能误写为 $e_{12}e_{23}=e_{13}$。",
+    "reason": "noncommuting multiplication order was reversed"
+  },
+  {
+    "id": "draft-c48-04",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[4]",
+    "before": "第五步:验证(逐步):$a=\\frac94$ 时 $aX-Y\\sim N(\\frac94-2,\\frac{81}4\\cdot4+9)=N(\\frac14,\\frac{117}4)$;其余 $a$ 协方差非零,不独立(高亮结论)。",
+    "after": "第五步：$a=\\frac{9}{4}$ 时先高亮平方 $a^2=\\frac{81}{16}$；均值为 $aEX-EY=\\frac{9}{4}-2=\\frac{1}{4}$，方差为 $a^2\\operatorname{Var}X+\\operatorname{Var}Y=\\frac{81}{16}\\cdot4+9=\\frac{81}{4}+\\frac{36}{4}=\\frac{117}{4}$。故 $aX-Y\\sim N\\left(\\frac{1}{4},\\frac{117}{4}\\right)$；与 $S$ 联合正态且协方差为零，因而独立。其余 $a$ 的协方差非零，不独立。",
+    "reason": "a squared was 81/16, not 81/4"
+  },
+  {
+    "id": "draft-c49-05",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[3]",
+    "before": "第四步:三项控制(关键点,高亮):(i) 尾部概率(Markov):$P(\\exists i:|X_i|>M)\\le nP(|X_1|>M)\\le\\frac{n\\tau_M}M$;(ii) 截断偏差 $|E\\overline X_n-E\\overline Y_n^{(M)}|\\le\\tau_M$;(iii) 切比雪夫:$P(|\\overline Y_n^{(M)}-E\\overline Y_n^{(M)}|\\ge\\varepsilon)\\le\\frac{M^2}{n\\varepsilon^2}$。",
+    "after": "第四步：对任意 $\\varepsilon>0$，先选足够大的固定 $M$ 使 $\\tau_M<\\frac{\\varepsilon}{3}$。三角不等式把误差分为平均尾部、截断均值波动、确定性偏差；后者小于 $\\frac{\\varepsilon}{3}$。对平均尾部用 Markov：$P\\left(|\\overline X_n-\\overline Y_n^{(M)}|\\ge\\frac{\\varepsilon}{3}\\right)\\le\\frac{3\\tau_M}{\\varepsilon}$。对截断均值用切比雪夫：$P\\left(|\\overline Y_n^{(M)}-EY_1^{(M)}|\\ge\\frac{\\varepsilon}{3}\\right)\\le\\frac{9M^2}{n\\varepsilon^2}$。故 $P(|\\overline X_n-\\mu|\\ge\\varepsilon)\\le\\frac{3\\tau_M}{\\varepsilon}+\\frac{9M^2}{n\\varepsilon^2}$。",
+    "reason": "union bound for existence of a large individual term cannot control average or vanish at fixed M"
+  },
+  {
+    "id": "draft-c49-05",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[4]",
+    "before": "第五步:取极限次序(关键点,高亮):先令 $n\\to\\infty$(切比雪夫项与尾部项趋于零),再令 $M\\to\\infty$($\\tau_M\\to0$);次序不可交换;结论:$E|X_1|<\\infty$ 的独立同分布样本满足 $\\overline X_n\\xrightarrow P\\mu$,无需有限方差。",
+    "after": "第五步：高亮极限次序。对每个满足偏差条件的固定 $M$，先令 $n\\to\\infty$ 得 $\\limsup_{n\\to\\infty}P(|\\overline X_n-\\mu|\\ge\\varepsilon)\\le\\frac{3\\tau_M}{\\varepsilon}$；再令 $M\\to\\infty$，由 $\\tau_M\\to0$ 得上界为零。于是 $\\overline X_n\\xrightarrow{P}\\mu$；全程仅用 $E|X_1|<\\infty$，没有假设原变量方差有限。",
+    "reason": "correct limit order and uniform averaged-tail control"
+  },
+  {
+    "id": "draft-c25-05",
+    "kind": "missing_proof",
+    "field": "scene_spec.steps[5]",
+    "before": null,
+    "after": "第六步：补全非平面证明。若整条交线在平面 $ax+by+cz=d$ 内，代入交线上的 $(0,0,1)$、$(0,0,-1)$ 得 $c=d=0$；再代入 $(r,r^2,0)$、$(-r,r^2,0)$，其中 $r>0$，得 $ar+br^2=0$、$-ar+br^2=0$，逐式相减、相加得 $a=b=0$。这与平面法向量非零矛盾。因此交线确为非平面；前五步已证明连接性与正则性。",
+    "reason": "nonplanarity was asserted without proof"
+  },
+  {
+    "id": "draft-c17-04",
+    "kind": "missing_proof",
+    "field": "scene_spec.steps[5]",
+    "before": null,
+    "after": "第六步：补全任意给定点 $P$ 的分类。高亮过点条件 $s f_1(P)+t f_2(P)=0$：若两值均零，则 $P\\in l$，全部成员都过 $P$；否则非零解的射影比例唯一，为 $(s:t)=(f_2(P):-f_1(P))$。指定点 $(1,1,1)$ 的比例 $(2:-2)=(1:-1)$ 与前面计算一致。",
+    "reason": "general point classification was omitted"
+  },
+  {
+    "id": "draft-c26-01",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[1]",
+    "before": "第二步:核与像:当 $n\\cdot x=0$ 时 $Px=x$;当 $x\\parallel d$ 时 $Px=0$;故 $\\ker P=\\operatorname{span}(d)$,$\\operatorname{im}P=n^\\perp$;$P^2=P$,秩 $2$。",
+    "after": "第二步：完整证明核与像。$Px=0$ 当且仅当 $x=\\frac{n\\cdot x}{3}d$，即 $x\\in\\operatorname{span}(d)$；反向由 $Pd=0$ 及线性性成立。第一步给 $\\operatorname{im}P\\subset n^\\perp$；若 $y\\in n^\\perp$，则 $Py=y$，给反向包含。因此 $\\ker P=\\operatorname{span}(d)$、$\\operatorname{im}P=n^\\perp$，且 $P^2x=P(Px)=Px$，秩为 $2$。",
+    "reason": "show both inclusions for kernel/image instead of inferring equality from one direction"
+  },
+  {
+    "id": "draft-c43-03",
+    "kind": "mathematics_or_missing_proof",
+    "field": "scene_spec.steps[4]",
+    "before": "第五步:九个配对值(逐项,高亮):$\\int g_0\\cdot1\\,dx=\\frac{9\\cdot2-15\\cdot\\frac23}8=\\frac{18-10}8=1$;$\\int g_0x\\,dx=0$;$\\int g_0x^2dx=\\frac{9\\cdot\\frac23-15\\cdot\\frac25}8=\\frac{6-6}8=0$;其余六项同理,恰为 $\\delta_{ij}$。",
+    "after": "第五步：九个配对值逐项展示，所有积分均在 $[-1,1]$。第一行：$\\int g_0=\\frac{18-10}{8}=1$，$\\int g_0x=0$，$\\int g_0x^2=\\frac{6-6}{8}=0$。第二行：$\\int g_1=0$，$\\int g_1x=\\frac{3}{2}\\cdot\\frac{2}{3}=1$，$\\int g_1x^2=0$。第三行：$\\int g_2=\\frac{-30+30}{8}=0$，$\\int g_2x=0$，$\\int g_2x^2=\\frac{-10+18}{8}=1$。四个零项由奇函数在对称区间的积分为零得到；高亮完整配对矩阵为 $I_3$。",
+    "reason": "replace six unspecified same-way values with all nine actual evaluations"
+  },
+  {
+    "id": "draft-c27-04",
+    "kind": "missing_proof",
+    "field": "scene_spec.steps[5]",
+    "before": null,
+    "after": "第六步：角度边界须精确表述为两特征线的较小夹角 $0<\\alpha\\le\\frac{\\pi}{2}$；当 $k=0$ 时 $\\alpha=\\frac{\\pi}{2}$，是直角；当 $k\\ne0$ 时才是锐角。仍用 $\\alpha=\\arccos\\frac{|k|}{\\sqrt{k^2+1}}$，不把直角称为锐角。",
+    "reason": "state right-angle boundary explicitly"
+  },
+  {
+    "id": "draft-c11-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "41f3c6e024ffe15664228153fdb7078d44a06f9b8ff37e37ffcea9185e8af076",
+    "after_scene_sha256": "99c27b02d2b2201387b772782a669089f0fecd74c0bfefd6b8b5d21d9c5f5e95"
+  },
+  {
+    "id": "draft-c11-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "4a510fb1cb6fc97aa87ebe938eae7bdf12b098f52eb56d748947303c316e6881",
+    "after_scene_sha256": "b7ece5bae1e6367da1756f475cf3f00e0e59687971cbc2259c5f9737d52f9c31"
+  },
+  {
+    "id": "draft-c02-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "fe0c69e72267be1278d77615b710293e336c12cdbc1f27121de5ccabf9467098",
+    "after_scene_sha256": "5f78c123d8316a454464378f34d1aae21c9a36d7e4a3fdb2b48f290ac30f77cc"
+  },
+  {
+    "id": "draft-c04-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "d8e55f7dad802951cfeb8a5d01643ba9e216df37a9538298f20114b6f0e4976d",
+    "after_scene_sha256": "1090992a9724923576b2dfab523bd7a67cf662940db3dc5aaac9b9e3b04bc6bd"
+  },
+  {
+    "id": "draft-c06-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "1d199ea5934f11ef1ff2e95625e4b1085222c56071b2e89aa6ac73f11d9c8f9c",
+    "after_scene_sha256": "180f4b870b3955822a83807528fb291db34ff2a65904e8c0daa6bf98dca5158f"
+  },
+  {
+    "id": "draft-c12-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "a4dcb4c10f5577643832609664e0ef3b28bed0e4846cc495703d2e7859943d30",
+    "after_scene_sha256": "7a6a17d69ff7533ca5a72c0ab17a9f9cc71923018c039cbd2b6a3501787b6e05"
+  },
+  {
+    "id": "draft-c10-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "1bcb5bf8253b89039ebb1e6fac3bfcb57899e5dffc4ed108572168ff6a7a101c",
+    "after_scene_sha256": "7d7c3aff18949e52d2e09d8ac63954ba200c861bf4219f4db8383348944129d6"
+  },
+  {
+    "id": "draft-c10-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "73e15c95c0976cf60fc0d440051b3f182585e5d251e16381f885b96b8b63edc4",
+    "after_scene_sha256": "1330cae8e49f80dd3bdea0af632d4df7f2b7201efc9d6bee58b68f60a815f6f9"
+  },
+  {
+    "id": "draft-c12-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "753842fc3507d629482f7d2e0a22aa42ba907afaafe681e6d041adb0a3a4f1bd",
+    "after_scene_sha256": "ad9c45c4d8b9840ef8c1c6a83ae4b11228496ca75fb4e621a090b7e214ddc20e"
+  },
+  {
+    "id": "draft-c14-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "13ad5909df4b1a404372798ed9f0932e44e0f9f4d988073197aa5ed8a25f7ca5",
+    "after_scene_sha256": "52cba0cd749ce9708b5b6d5698624aa42328c1b107ba502b25ec3efa75f57941"
+  },
+  {
+    "id": "draft-c41-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "0dc86527065efd59d93fae70b5ea99636558a5bbc414ebc15e5cbe6c63f49867",
+    "after_scene_sha256": "887467ddc041cd496e49411078d6b9e05c3105377b3aea6fea049a722e5ae979"
+  },
+  {
+    "id": "draft-c42-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "f2b279ba74e450ef225e01b9485ca86de183adbdd70fcc63a27736ca528712ac",
+    "after_scene_sha256": "cb79b9692575bb7b156415a568a41df84c332c7e40b6efe9e6e35a7ccdd9402c"
+  },
+  {
+    "id": "draft-c07-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "be18c7712acf362a4b19ec5d6cfbf16c5dcb873af1fe477b21c042931b503e03",
+    "after_scene_sha256": "466d25fd81fb9947cc03ce468fc92ab6d550ded06e1691ac72a4c5e61dde3746"
+  },
+  {
+    "id": "draft-c49-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "7dfaa9cb4bf8a2fcd2ce922e6abaa996011cde314a51d5c978fd4d3e5c647672",
+    "after_scene_sha256": "63d014cc2c62b66ee47617bafb2640c1d9b892bb00c91436c07197b7fa2e9c5c"
+  },
+  {
+    "id": "draft-c02-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "3bc2e0aeb67873298ef55a3e47f70dc8121bcf93f7af3b29fd9db4cbf417c5ca",
+    "after_scene_sha256": "2868a5fbec71be9b7cf297de95282a7c5f8af7a22ac1460c871d46bcd122044b"
+  },
+  {
+    "id": "draft-c07-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "bf647a4055b0f212e26defffa3abd03c6b43130934052a0dc92304096c38d4c2",
+    "after_scene_sha256": "75eac78dcba42f6e64d0d714026a662df695b30498d614031add502a554053a5"
+  },
+  {
+    "id": "draft-c07-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "5575d72739760a686c20638c383951658ac700c3cbb6c2466edef3cdd82eccf6",
+    "after_scene_sha256": "c66274b87700e149f9cd04c8506ec62bb5716ecf7c1aa9eb40fd78c1964c8303"
+  },
+  {
+    "id": "draft-c10-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "4146b546fbb1fab49967760ed1a70a0d3214bf4dda09a1415dbd5fe09a4efddb",
+    "after_scene_sha256": "de68c2d60a3c5db791a562c76ac083366c82e716b2ca6a3df7415ff0b2591e36"
+  },
+  {
+    "id": "draft-c14-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "cb5ceb6ea4492d7a4a724928ba1c3fbe6b0acf7a6f82016366b9faf3592373b1",
+    "after_scene_sha256": "09f2bf778152eaf394521e050d53e82e384f9497aa1df987c36490af44ae2afc"
+  },
+  {
+    "id": "draft-c25-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "7d06a37d98f5b58fc5ee36e2da7be728bfc3f913f7270904c65226e12e4055a2",
+    "after_scene_sha256": "ae34a9fa5398ce607c95dd23c3110a34319b7291d6e7f81a97e37d876e803adb"
+  },
+  {
+    "id": "draft-c07-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "db666f05bd200a09d97338f24375f8160114d09d4f883468fe55d8d8b7f70414",
+    "after_scene_sha256": "f277dbd4c743f2047da59448f985a86cb8bee29aa814d3283cccf3ba70450ccb"
+  },
+  {
+    "id": "draft-c08-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "226e3c77a76b9646078cfd484ba546ce85c9a555ca9c83361592e83355978594",
+    "after_scene_sha256": "013bfb092ff3a19893c70a8fed5d4914e91fb2c60c8fe55577dc1080ab72513d"
+  },
+  {
+    "id": "draft-c08-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "9c8a5aaefc109f4b1c4efff182d157871e055383dc10350981be3bb6e834ea1f",
+    "after_scene_sha256": "b57eac1dfbd3b7468a30144792fe1c2752170ec567e255371fe5c1903aa205ab"
+  },
+  {
+    "id": "draft-c08-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "01b1fbddb65af95e0a8afd19057305c168935f8b9fa7215b5c0e36e83d3726f3",
+    "after_scene_sha256": "72529322e367605bae566910b8a0752578c3ec191ea135b872ac35c53226443d"
+  },
+  {
+    "id": "draft-c14-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "edff8464878f2e45adef05bfa591a7d9ba43cc9fb5fd534cc0dbb2bd48ebca73",
+    "after_scene_sha256": "335c1a3139d6713e55d466a6ec9d99a02746f643dab4f67bd257c9b5f19a5aa9"
+  },
+  {
+    "id": "draft-c26-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "ed01dbf2dc947ccf87598e2aac3cd2390be29b3abab4aa25582e61f305b90995",
+    "after_scene_sha256": "851dc769f68725eebeac0163a83924ddfa4d1c3be66135f73e26a0911522ce2b"
+  },
+  {
+    "id": "draft-c29-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "94dcf1117fffe9fbebd2a26c9fac2946de3ed235200c543b2f1ddbee88ad707f",
+    "after_scene_sha256": "f6b05d3ce5854e6c326170d9b5e688127917bfb1e9a3a7f522fd5cc68a95e804"
+  },
+  {
+    "id": "draft-c06-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "9341c027a26eaaf9013d954261bd6849a1593ca0ebfb982b65b5c41a1d3c65a4",
+    "after_scene_sha256": "a380c217962e1db5707bbb881e45e7da010b22ebaaac03d323bb78b2ec0b4310"
+  },
+  {
+    "id": "draft-c19-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "7f382c66b6f3bc9afca329232e4175e18ef8560afa56f8cfdcd67f568f987c77",
+    "after_scene_sha256": "b5f81953203409d43f368e0c2894d54d1bb331989933ffb2972caa26118c5dd4"
+  },
+  {
+    "id": "draft-c19-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "5246b159476b3193aadd519fdac5b095bcad59f13ec9eb9dd55bf029b77a23cf",
+    "after_scene_sha256": "764801578a2a8773465b091c7bd460c5e6731db9e6f51ed157b28d8ae26c4dd4"
+  },
+  {
+    "id": "draft-c20-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "334e0e99c589d423c5459d4645563ddd79dd8e40e8125f080a1eccdfdab0e359",
+    "after_scene_sha256": "01749a3444d9c7db89d88c3c6da152e50a751f064b2f6744e7ca121bdf143829"
+  },
+  {
+    "id": "draft-c20-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "9ec0e16fe227203d207cafff8af279980e60ead1eb1c16851c96c6a76cc8bec3",
+    "after_scene_sha256": "0fbc751436e3791e366965264c85a3b083515c2e0f43288ed47d51386465a18e"
+  },
+  {
+    "id": "draft-c23-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "8f39d4c6eeaff79debd16e804f82f8692ac12e75ace116c6280070451a1757c3",
+    "after_scene_sha256": "3fdf472d87727f12c2cff30c54e51f69f08a117857b927a613fc6303e5f97bb8"
+  },
+  {
+    "id": "draft-c27-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "cbb00916fa06cb95b0b5bc13f8b6393cceca242c98399d66a16f5fef2b86cceb",
+    "after_scene_sha256": "fdbadf7c0bb0bd219879512b5cf333900522bd9188f6cb999e336c2950b66222"
+  },
+  {
+    "id": "draft-c27-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "e23c425671062d686218d388ed1e4f8315403b424735f6d6c54a15a571a04382",
+    "after_scene_sha256": "def8c77e46151df45b16960386cb4dfd9691f58f971864b67c01a0a1042401f4"
+  },
+  {
+    "id": "draft-c29-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "df20bb5770a0cee9884918b57060544e943b5750311cf7a861b6572eb9cda548",
+    "after_scene_sha256": "5f40fff29b640bae247b27ffa6bcdd7f2f2c4b2b9e835846606080002aa4d85d"
+  },
+  {
+    "id": "draft-c30-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "ac89b045efdffb17b557e336931281371f557f6c292f1a0b10d772e790eb9c7b",
+    "after_scene_sha256": "1ebba8d82023fac7230490ecd2743562b7e01975bc6602d56f6ee99a87cdb45e"
+  },
+  {
+    "id": "draft-c31-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "2d1decde6612071c997f40ffff0b1f80f132c9e2a06016d1625ff98b04668fde",
+    "after_scene_sha256": "3c653304899a4bc5a281cfe689207b1bf1df1f8b2a4da5d967756f2111309070"
+  },
+  {
+    "id": "draft-c31-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "c9e12a56e6c3dea3f2b16b212126d92f47e2ca8afa9acc6e74ebccd2fd83a935",
+    "after_scene_sha256": "2498c9c099138a0b3ed28cf61b26e48a91523417c6c25cb901f6ea7afee3c961"
+  },
+  {
+    "id": "draft-c31-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "ed87e6ffebac85e1d8beda0b896e2016af9e1f5ab6c3194c8006de5073662fa7",
+    "after_scene_sha256": "5e2524aa6c5231587bbfab4eb4fd57fe6a674e0e91b4a37825a18477b62f678c"
+  },
+  {
+    "id": "draft-c34-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "d6ab049115441d45a6ddf8aa24fbba12193dc9f5fdd422110182e7da3128651d",
+    "after_scene_sha256": "6dfd1c99a36ae51739b7382135c340ee65c128a94cbc1acf196a4ba3940ff1e9"
+  },
+  {
+    "id": "draft-c35-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "c06abbfb3350150542cd55e26896d7bfd47ac3b768a766d408b4cf5496d6d785",
+    "after_scene_sha256": "197f0270dd33ee357c3dcca577f482b9538b19ecce6f790925895353f6623683"
+  },
+  {
+    "id": "draft-c39-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "7421ee8c40792e585417017de90c296a7600a65a675aba1db42acec0360dae33",
+    "after_scene_sha256": "106fed3935108bca67b2ef3bcc396a9cc64677c7121ddf3977bb44b76f6b6177"
+  },
+  {
+    "id": "draft-c42-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "b7a231b2d2fe7769a75de50af1141f53eaea2c8153d811cf1368a80bbaafc566",
+    "after_scene_sha256": "0fd1de845410d163a7a6dba771f9591631696c992e4a9211c54627d19c631562"
+  },
+  {
+    "id": "draft-c42-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "4c5ce8a126d3430b9d52b724ad2312c6ff167bf2654ce1d84ff080c564d53634",
+    "after_scene_sha256": "51c0e7e8f55bb8c5063bc07a75750cac5e2566cd308ced76cc5727784f6ff159"
+  },
+  {
+    "id": "draft-c43-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "534bcc12ed4b0c10c9e64a2352134c0b8e6c6ecd445a377815ecdb03f419994b",
+    "after_scene_sha256": "49d9c536f6420333d838444c83fa7ca698ad76028e6bc62773f217aedfbf47a1"
+  },
+  {
+    "id": "draft-c43-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "c8b1b7263e4d7f2746f27da0f0a9e1c895d00c7857164b77bf5256494c9bb155",
+    "after_scene_sha256": "65a3ba5590f3cd12b81f228fb9a62cf2efb27d280fb239a49a05658f10dc5c74"
+  },
+  {
+    "id": "draft-c43-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "c647b9fc140bcb3b1952f6970bbaf5a2c928caa1de3a9c1f130534799370ba6c",
+    "after_scene_sha256": "802896460d2336ae62b35c30146a78db5f1a310a65e704582661549e7cfc85ce"
+  },
+  {
+    "id": "draft-c44-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "b090c815fb5a2dcd1075198b4c6448b04b8b9fe9e0a0813f0bf2672bb6ee3c7b",
+    "after_scene_sha256": "8473e2e7ee4396e814c3395227a4844704c2553494028807f8702a5c90499851"
+  },
+  {
+    "id": "draft-c44-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "2ba060d87668ae967451ae507b6bd801405f3b98ed46736d396294142694d60d",
+    "after_scene_sha256": "fcbdac47ed8030014818730e8e90f196f7520b0c3dad73045f0ba756cc55a186"
+  },
+  {
+    "id": "draft-c45-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "465779b31fb5b8973b5c36598212240a9249c61b4aa8227a86c4057ea653a00b",
+    "after_scene_sha256": "1120a82c2791ce1f942e59c03f055a05f6e3664f589c309b8b9318611bba7d0b"
+  },
+  {
+    "id": "draft-c46-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "7bf8076a750a82382eaf96da0b76791256fe9378224b48e2b3a9d3cb9b543d7f",
+    "after_scene_sha256": "05bd4f39ae8c25a45fca34bd8bdf1fe85304413c53983cb93f40d1bdeb34ed37"
+  },
+  {
+    "id": "draft-c47-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "a012d22e016f1c1ec0108e30b377959d4c75cd6a78d032d01a806daa639ff709",
+    "after_scene_sha256": "f7cbb0a3c3e84f8e27bc22787ff637d1f447a210ad5628519f34ccdd029b754f"
+  },
+  {
+    "id": "draft-c47-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "0439261688f4598e9864784d34809e5ea1020a93b98c9963c871b63400affce3",
+    "after_scene_sha256": "f379cb70650b2ff2f794f544480975cf592baee2722569d1ab6b97bb1b701438"
+  },
+  {
+    "id": "draft-c47-03",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "6114af495309dd26ee0019da7b466b0b47b351ce6d621bbf3775190d3727d6cc",
+    "after_scene_sha256": "059813642f71450884b9be24812b087ddf12386afc2bc995058cbde963540492"
+  },
+  {
+    "id": "draft-c47-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "646aab59f5133b8700bfae66684172122aa55d2109e6f00a90639566b7854b5d",
+    "after_scene_sha256": "cf34c4c388e39e01abe354be45d8ec118a3c68b80ea32684bcb03d09cf3db43e"
+  },
+  {
+    "id": "draft-c47-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "5c8b6e2924ba7f5f57f42b059e129d764ef31b79341d34befcd040bb70271a2f",
+    "after_scene_sha256": "3d5cc2a4869457a7c6528b3a21b2c30c0edbc22cc8a644c2bacb31d386d11da5"
+  },
+  {
+    "id": "draft-c48-02",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "f3f9bd24fc050d7087f5976c60487676fdec14742295a68bee4aed11a5762b06",
+    "after_scene_sha256": "52b093a89dec412046bc5b5a224d18b6ee2fb1b9b33389975dd0f03382e71a1e"
+  },
+  {
+    "id": "draft-c48-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "8e7b83b45b466eca434cf5db30b088b4c80022ea68f89f6192deedf695808e00",
+    "after_scene_sha256": "ef85a99aa5c0c824d654ac59e02ff13d61e4c0f1e93a09f3009adfafcbaddf7d"
+  },
+  {
+    "id": "draft-c49-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "5126a5f7b47315e18bb38b10dc15601883f82e5431e791ccc0fdd5c062aca734",
+    "after_scene_sha256": "3dc818809a3bb42e492aff3ade845e824f267a2805d2d8d5d4180fb65d539300"
+  },
+  {
+    "id": "draft-c49-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "c4cbfd15ff7329b2057eb5e300e1c95b766a9841c3543c8ac1e05a2c49f9970e",
+    "after_scene_sha256": "d5d3900c617038ba010641b20776390ba94c13b8fddf9fb10da24498117e35ab"
+  },
+  {
+    "id": "draft-c50-01",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "f37282fef8288e7bd299ec704e8ec5d3b01e0c256ce77907477e0b39752758e1",
+    "after_scene_sha256": "7b98728d3a64e1d6b569772ad26968a01ebfb78d2b32de44269c8e2d407c0600"
+  },
+  {
+    "id": "draft-c50-04",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "ef22219e2e7b445cb2445f6cfe0271003cdee1e25e8f3ee821c15801aa96f356",
+    "after_scene_sha256": "9d9752c984486d06130abc66439880405042978d403cf55a94324a2e1a56fa2d"
+  },
+  {
+    "id": "draft-c50-05",
+    "kind": "fraction_braces",
+    "before_scene_sha256": "aef70ca415f18433c4cf7e29913ed3fec30eb1ee63e1e53e5dbc44ab42f56701",
+    "after_scene_sha256": "b62155883f68c65cb68068bdabd27062b9ee3118f6b220193b2c793507d23499"
+  }
+]

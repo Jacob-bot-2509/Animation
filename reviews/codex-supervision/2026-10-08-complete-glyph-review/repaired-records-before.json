@@ -1,0 +1,1222 @@
+[
+  {
+    "answer": "$A^n=\\begin{pmatrix}\\cos n\\theta&-\\sin n\\theta\\\\\\sin n\\theta&\\cos n\\theta\\end{pmatrix}$",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "复平面与实平面的对应",
+      "$e^{i\\theta}$ 幂的辐角累加"
+    ],
+    "function_family": "旋转矩阵幂",
+    "id": "eval-linalg-007-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "复数同构",
+    "problem": "设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。其中$n\\in\\mathbb Z_{\\ge0}$；$n=0$时按$A^0=I$。",
+    "problem_id": "eval-linalg-007",
+    "revision_lineage": {
+      "continuous_correction_reason": "明确整数次幂的n适用域",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "72892c6c92a37c65e5a5d0bbf1a6949d057f72634c3c76c78cf3936056b2f562",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-007-s3",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 263,
+          "record_version_sha256": "72892c6c92a37c65e5a5d0bbf1a6949d057f72634c3c76c78cf3936056b2f562",
+          "source_line": 216,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "7b791bcb38cccdcfe3e01948a2fa9a1a64b262202d185e07fc185a6fdef7ea8c"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "复平面与实平面的对应",
+        "$e^{i\\theta}$ 幂的辐角累加"
+      ],
+      "steps": [
+        "呈现题干及适用条件：设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。其中$n\\in\\mathbb Z_{\\ge0}$；$n=0$时按$A^0=I$。",
+        "依次呈现：复平面与实平面的对应",
+        "依次呈现：$e^{i\\theta}$ 幂的辐角累加",
+        "核对完整证明：旋转矩阵 $A$ 与复数乘法 $z\\mapsto e^{i\\theta}z$ 一一对应（$(x,y)\\mapsto(x\\cos\\theta-y\\sin\\theta,\\ x\\sin\\theta+y\\cos\\theta)$ 正是 $e^{i\\theta}(x+iy)$ 的实虚部）。旋转的复合即角度相加：$(e^{i\\theta})^n=e^{in\\theta}$，对应 $A^n=$ 旋转 $n\\theta$ 角的矩阵。",
+        "高亮结果：$A^n=\\begin{pmatrix}\\cos n\\theta&-\\sin n\\theta\\\\\\sin n\\theta&\\cos n\\theta\\end{pmatrix}$"
+      ]
+    },
+    "solution": "旋转矩阵 $A$ 与复数乘法 $z\\mapsto e^{i\\theta}z$ 一一对应（$(x,y)\\mapsto(x\\cos\\theta-y\\sin\\theta,\\ x\\sin\\theta+y\\cos\\theta)$ 正是 $e^{i\\theta}(x+iy)$ 的实虚部）。旋转的复合即角度相加：$(e^{i\\theta})^n=e^{in\\theta}$，对应 $A^n=$ 旋转 $n\\theta$ 角的矩阵。",
+    "solution_id": "eval-linalg-007-s3",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "3c1fe32a08ffd91e3bf2415d14b6dc0bf7f5748150c858694cfca781c074d76d",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "矩阵",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-007-s3",
+    "visual_style": "单位向量连续旋转"
+  },
+  {
+    "answer": "$\\lambda\\ne 1$ 且 $\\lambda\\ne-2$ 时唯一解；$\\lambda=1$ 时无穷多解；$\\lambda=-2$ 时无解",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "行列式 $D=(\\lambda+2)(\\lambda-1)^2$ 的零点标注",
+      "三种情形的分屏对照"
+    ],
+    "function_family": "含参线性方程组",
+    "id": "eval-linalg-011-s1",
+    "license": "Internal-Research-Use-Only",
+    "method": "行列式判别法",
+    "problem": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+    "problem_id": "eval-linalg-011",
+    "revision_lineage": {
+      "continuous_correction_reason": "非齐次解集应为二维仿射平面",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "3b333c4a9412cdbd07305b46628aa28b844dfc6110aaf8869c36d9d82d3e340e",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-011-s1",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 273,
+          "record_version_sha256": "3b333c4a9412cdbd07305b46628aa28b844dfc6110aaf8869c36d9d82d3e340e",
+          "source_line": 226,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "dde192611c33e50c43ed6f0860d9112869400ed5188776d88e8023997c5a6029"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "行列式 $D=(\\lambda+2)(\\lambda-1)^2$ 的零点标注",
+        "三种情形的分屏对照"
+      ],
+      "steps": [
+        "呈现题干及适用条件：讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+        "依次呈现：行列式 $D=(\\lambda+2)(\\lambda-1)^2$ 的零点标注",
+        "依次呈现：三种情形的分屏对照",
+        "核对完整证明：系数行列式 $D=\\begin{vmatrix}\\lambda&1&1\\\\1&\\lambda&1\\\\1&1&\\lambda\\end{vmatrix}$。该矩阵 $=(\\lambda-1)I+J$（$J$ 全 1 矩阵），特征值为 $(\\lambda-1)+3=\\lambda+2$ 与 $\\lambda-1$（二重），故 $D=(\\lambda+2)(\\lambda-1)^2$。当 $\\lambda\\ne 1,-2$ 时 $D\\ne 0$，由 Cramer 法则有唯一解。当 $\\lambda=1$：三个方程均为 $x+y+z=1$，无穷多解（解集为二维仿射平面）。当 $\\lambda=-2$：三式相加得 $0\\cdot(x+y+z)=1+(-2)+4=3$，即 $0=3$，矛盾，无解。",
+        "高亮结果：$\\lambda\\ne 1$ 且 $\\lambda\\ne-2$ 时唯一解；$\\lambda=1$ 时无穷多解；$\\lambda=-2$ 时无解"
+      ]
+    },
+    "solution": "系数行列式 $D=\\begin{vmatrix}\\lambda&1&1\\\\1&\\lambda&1\\\\1&1&\\lambda\\end{vmatrix}$。该矩阵 $=(\\lambda-1)I+J$（$J$ 全 1 矩阵），特征值为 $(\\lambda-1)+3=\\lambda+2$ 与 $\\lambda-1$（二重），故 $D=(\\lambda+2)(\\lambda-1)^2$。当 $\\lambda\\ne 1,-2$ 时 $D\\ne 0$，由 Cramer 法则有唯一解。当 $\\lambda=1$：三个方程均为 $x+y+z=1$，无穷多解（解集为二维仿射平面）。当 $\\lambda=-2$：三式相加得 $0\\cdot(x+y+z)=1+(-2)+4=3$，即 $0=3$，矛盾，无解。",
+    "solution_id": "eval-linalg-011-s1",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "8b336daa0b22d5d0cfddd7cd10690dbc05b1669679461e2e31305771f8d8f49a",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "线性方程组",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-011-s1",
+    "visual_style": "参数滑块三平面"
+  },
+  {
+    "answer": "$f=(x+y+z)^2+(y-z)^2+(a-2)z^2$;$f$ 正定当且仅当 $a>2$",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "$LDL^T$ 分解的三角因子展示",
+      "主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注"
+    ],
+    "function_family": "三元含参二次型标准形与正定性",
+    "id": "eval-linalg-019-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "LDLᵀ 分解",
+    "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+    "problem_id": "eval-linalg-019",
+    "scene_spec": {
+      "objects": [
+        "$LDL^T$ 分解的三角因子展示",
+        "主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注"
+      ],
+      "steps": [
+        "第一步：以LDLᵀ 分解为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+        "第二步：$LDL^T$ 分解的三角因子展示。",
+        "第三步：主子式 $\\Delta_3=a-2$ 随 $a$ 的符号变化与正定/半正定/不定三区标注。",
+        "第四步：高亮最终结果与答案。"
+      ]
+    },
+    "solution": "$f$ 的矩阵 $A$ 可作 $LDL^T$ 分解: $$A=L\\operatorname{diag}(1,1,a-2)L^T,\\qquad L=\\begin{pmatrix}1&0&0\\\\1&1&0\\\\1&-1&1\\end{pmatrix}.$$ (直接乘开验证:行列为 $1,2,0$ 与 $1,0,a$ 的交叉项分别由 $L$ 的第 2、3 行生成。)令 $(u,v,w)^T=L^T(x,y,z)^T$,得新变量 $u=x+y+z,\\ v=y-z,\\ w=z$,于是 $$f=(x,y,z)A(x,y,z)^T=(L^T(x,y,z)^T)^T\\operatorname{diag}(1,1,a-2)(L^T(x,y,z)^T)=u^2+v^2+(a-2)w^2,$$ 即标准形为 $u^2+v^2+(a-2)w^2$。再由顺序主子式($\\Delta_1=1,\\Delta_2=1,\\Delta_3=|A|=a-2$),$f$ 正定 $\\iff\\Delta_3>0\\iff a>2$——本条解法独立完成\"化标准形+判正定\"两问。边界 $a=2$ 时标准形第三项系数为 0,$f=u^2+v^2$ 半正定,零空间为 $u=v=0$,即 $x+y+z=0,\\ y=z$,也就是 $t(-2,1,1)$。",
+    "solution_id": "eval-linalg-019-s3",
+    "source": "self-authored",
+    "sub_category": "二次型",
+    "visual_style": "配方与合同变换及三维参数曲面分类"
+  },
+  {
+    "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "9 种等可能情形的枚举表格",
+      "换门胜 6 格的计数高亮"
+    ],
+    "function_family": "古典概型(三门问题)",
+    "id": "eval-prob-001-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "枚举等可能样本点",
+    "problem": "三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+    "problem_id": "eval-prob-001",
+    "revision_lineage": {
+      "continuous_correction_reason": "明确等概率、独立初选及主持人始终开羊门和提供换门条件",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "ad9853be76ef78f09386957ef0ba9184a8b1cfbc559e0b4c8282324c8793875b",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-prob-001-s3",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 200,
+          "record_version_sha256": "ad9853be76ef78f09386957ef0ba9184a8b1cfbc559e0b4c8282324c8793875b",
+          "source_line": 153,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "b5c4f752d5526c8e9021d23a0b8821aa2305e9863aef903c38ccd86a35329adb"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "9 种等可能情形的枚举表格",
+        "换门胜 6 格的计数高亮"
+      ],
+      "steps": [
+        "呈现题干及适用条件：三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+        "依次呈现：9 种等可能情形的枚举表格",
+        "依次呈现：换门胜 6 格的计数高亮",
+        "核对完整证明：车的位置（3 种）×参赛者初选（3 种）=9 种等可能情形。逐项枚举：参赛者初选=车门（3 种情形），换门必输；参赛者初选=山羊门（6 种情形），换门必赢。故换门获胜概率 $=\\dfrac{6}{9}=\\dfrac{2}{3}$。",
+        "高亮结果：换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$"
+      ]
+    },
+    "solution": "车的位置（3 种）×参赛者初选（3 种）=9 种等可能情形。逐项枚举：参赛者初选=车门（3 种情形），换门必输；参赛者初选=山羊门（6 种情形），换门必赢。故换门获胜概率 $=\\dfrac{6}{9}=\\dfrac{2}{3}$。",
+    "solution_id": "eval-prob-001-s3",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "9aa5ac124e5843bd0c8bcfa1b1fc9de4273d80a9460e9c6b4fa743437ea3190c",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "条件概率",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-prob-001-s3",
+    "visual_style": "概率条带转移"
+  },
+  {
+    "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "贝叶斯分母三项的条带分解",
+      "条件概率 $P(C_3|H_2)$ 的收缩动画"
+    ],
+    "function_family": "古典概型(三门问题)",
+    "id": "eval-prob-001-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "贝叶斯公式",
+    "problem": "三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+    "problem_id": "eval-prob-001",
+    "revision_lineage": {
+      "continuous_correction_reason": "明确等概率、独立初选及主持人始终开羊门和提供换门条件",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "9052ccee1c04879e0bc667968d2a6d66fc0a0378d5039dd728906054862f5020",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-prob-001-s2",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 199,
+          "record_version_sha256": "9052ccee1c04879e0bc667968d2a6d66fc0a0378d5039dd728906054862f5020",
+          "source_line": 152,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "559fdc65c9bbc228c521eea8f7a6de5b489d7656f7930dea84751c099d892c00"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "贝叶斯分母三项的条带分解",
+        "条件概率 $P(C_3|H_2)$ 的收缩动画"
+      ],
+      "steps": [
+        "呈现题干及适用条件：三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+        "依次呈现：贝叶斯分母三项的条带分解",
+        "依次呈现：条件概率 $P(C_3|H_2)$ 的收缩动画",
+        "核对完整证明：设参赛者选 1 号门、主持人打开 2 号门，并假设主持人在有两扇羊门可选时等概率选择（其余情形由对称性同理）。记 $C_i$=车在 $i$ 号门，$H_2$=主持人开 2 号门。则 $P(H_2|C_3)=1$（车在 3 号门时主持人只能开 2 号门），$P(H_2|C_1)=\\dfrac{1}{2}$（车在 1 号门时主持人可在 2、3 号门中等概率选择），$P(H_2|C_2)=0$（主持人不能开有车的门），$P(C_i)=\\dfrac{1}{3}$。由贝叶斯公式：$P(C_3|H_2)=\\dfrac{P(H_2|C_3)P(C_3)}{P(H_2|C_3)P(C_3)+P(H_2|C_1)P(C_1)+P(H_2|C_2)P(C_2)}=\\dfrac{1\\cdot\\frac{1}{3}}{1\\cdot\\frac{1}{3}+\\frac{1}{2}\\cdot\\frac{1}{3}+0}=\\dfrac{1/3}{1/2}=\\dfrac{2}{3}$。即主持人开 2 号门后，车在 3 号门（换门目标）的概率为 $\\dfrac{2}{3}$。注意\"总是换门\"的获胜率 $\\dfrac{2}{3}$ 其实不依赖主持人的等概率规则（见解法一）。",
+        "高亮结果：换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$"
+      ]
+    },
+    "solution": "设参赛者选 1 号门、主持人打开 2 号门，并假设主持人在有两扇羊门可选时等概率选择（其余情形由对称性同理）。记 $C_i$=车在 $i$ 号门，$H_2$=主持人开 2 号门。则 $P(H_2|C_3)=1$（车在 3 号门时主持人只能开 2 号门），$P(H_2|C_1)=\\dfrac{1}{2}$（车在 1 号门时主持人可在 2、3 号门中等概率选择），$P(H_2|C_2)=0$（主持人不能开有车的门），$P(C_i)=\\dfrac{1}{3}$。由贝叶斯公式：$P(C_3|H_2)=\\dfrac{P(H_2|C_3)P(C_3)}{P(H_2|C_3)P(C_3)+P(H_2|C_1)P(C_1)+P(H_2|C_2)P(C_2)}=\\dfrac{1\\cdot\\frac{1}{3}}{1\\cdot\\frac{1}{3}+\\frac{1}{2}\\cdot\\frac{1}{3}+0}=\\dfrac{1/3}{1/2}=\\dfrac{2}{3}$。即主持人开 2 号门后，车在 3 号门（换门目标）的概率为 $\\dfrac{2}{3}$。注意\"总是换门\"的获胜率 $\\dfrac{2}{3}$ 其实不依赖主持人的等概率规则（见解法一）。",
+    "solution_id": "eval-prob-001-s2",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "c1f140ba5054f555a8607f8f4fd6f93ccbc78672bfbab78018a99b13e5b3e29c",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "条件概率",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-prob-001-s2",
+    "visual_style": "概率条带转移"
+  },
+  {
+    "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "含参配方逐步展开",
+      "系数 $2-a^2$ 的符号区间"
+    ],
+    "function_family": "含参三元二次型正定范围",
+    "id": "eval-linalg-021-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "配方",
+    "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+    "problem_id": "eval-linalg-021",
+    "revision_lineage": {
+      "continuous_correction_reason": "系数判正定补可逆变量替换及反向必要性",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "5c7b6b5053b27a1b5de1c2ad969444347906f060f42d2bf19ccbdc307c8542b3",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-021-s2",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 304,
+          "record_version_sha256": "5c7b6b5053b27a1b5de1c2ad969444347906f060f42d2bf19ccbdc307c8542b3",
+          "source_line": 257,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "d2249bdffe09f69d0483532a1f87ddb1b87934b8f4ac6b182fda32fe162eac5b"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "含参配方逐步展开",
+        "系数 $2-a^2$ 的符号区间"
+      ],
+      "steps": [
+        "呈现题干及适用条件：设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "依次呈现：含参配方逐步展开",
+        "依次呈现：系数 $2-a^2$ 的符号区间",
+        "核对完整证明：$2\\left(x+\\dfrac{y}{2}+\\dfrac{az}{2}\\right)^2=2x^2+\\dfrac{y^2}{2}+\\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\left[\\frac{y^2}{2}-ayz+\\left(2-\\frac{a^2}{2}\\right)z^2\\right]=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\\ \\dfrac{1}{2},\\ 2-a^2$ 全正 $\\iff 2-a^2>0\\iff |a|<\\sqrt{2}$,与解法一一致。变量替换$u=x+y/2+az/2,\\ v=y-az,\\ w=z$的矩阵为上三角且行列式1，故可逆。若$2-a^2\\le0$，取非零向量$(x,y,z)=(-a,a,1)$，前两平方为零且$f=2-a^2\\le0$，因此上述条件也是必要条件。",
+        "高亮结果：$-\\sqrt{2}<a<\\sqrt{2}$"
+      ]
+    },
+    "solution": "$2\\left(x+\\dfrac{y}{2}+\\dfrac{az}{2}\\right)^2=2x^2+\\dfrac{y^2}{2}+\\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\left[\\frac{y^2}{2}-ayz+\\left(2-\\frac{a^2}{2}\\right)z^2\\right]=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\\ \\dfrac{1}{2},\\ 2-a^2$ 全正 $\\iff 2-a^2>0\\iff |a|<\\sqrt{2}$,与解法一一致。变量替换$u=x+y/2+az/2,\\ v=y-az,\\ w=z$的矩阵为上三角且行列式1，故可逆。若$2-a^2\\le0$，取非零向量$(x,y,z)=(-a,a,1)$，前两平方为零且$f=2-a^2\\le0$，因此上述条件也是必要条件。",
+    "solution_id": "eval-linalg-021-s2",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "二次型",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-021-s2",
+    "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换"
+  },
+  {
+    "answer": "$u_1=(1,1,0),\\ u_2=(1,-1,2),\\ u_3=(1,-1,-1)$；各自只允许乘非零常数。",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "按输入原顺序投影：$w_2=v_2-\\frac12v_1$",
+      "$w_3=v_3-\\frac12v_1-\\frac16(1,-1,2)$",
+      "非零倍数得到$(1,1,0),(1,-1,2),(1,-1,-1)$"
+    ],
+    "function_family": "Gram-Schmidt 正交化",
+    "id": "eval-linalg-030-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "Gram–Schmidt逐次投影",
+    "problem": "用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+    "problem_id": "eval-linalg-030",
+    "revision_lineage": {
+      "continuous_correction_reason": "题干指定GS，原解仅构造另一正交基且与答案不对应；正交化基只允许非零倍数",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "88551f5c294096a5795f93ac6a6b64a357c7f1478439bc1d0661640fcd5d2e76",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-030-s2",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 331,
+          "record_version_sha256": "88551f5c294096a5795f93ac6a6b64a357c7f1478439bc1d0661640fcd5d2e76",
+          "source_line": 284,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "9189445a15159f11b2ae6ee274afc03b04f6298232204d7653db27358c48684a"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "按输入原顺序投影：$w_2=v_2-\\frac12v_1$",
+        "$w_3=v_3-\\frac12v_1-\\frac16(1,-1,2)$",
+        "非零倍数得到$(1,1,0),(1,-1,2),(1,-1,-1)$"
+      ],
+      "steps": [
+        "呈现题干及适用条件：用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+        "依次呈现：按输入原顺序投影：$w_2=v_2-\\frac12v_1$",
+        "依次呈现：$w_3=v_3-\\frac12v_1-\\frac16(1,-1,2)$",
+        "依次呈现：非零倍数得到$(1,1,0),(1,-1,2),(1,-1,-1)$",
+        "核对完整证明：按原顺序令$v_1=(1,1,0),v_2=(1,0,1),v_3=(0,1,1)$。首先$w_1=v_1$，$w_2=v_2-\\frac{\\langle v_2,w_1\\rangle}{\\langle w_1,w_1\\rangle}w_1=(1/2,-1/2,1)$，可取非零倍数$u_2=(1,-1,2)$。随后$w_3=v_3-\\frac12w_1-\\frac16u_2=(-2/3,2/3,2/3)$，取$u_3=(-3/2)w_3=(1,-1,-1)$。三者非零且两两内积为0，故按题干指定的Gram–Schmidt得到$u_1=(1,1,0),u_2=(1,-1,2),u_3=(1,-1,-1)$。允许每个结果乘非零常数。",
+        "高亮结果：$u_1=(1,1,0),\\ u_2=(1,-1,2),\\ u_3=(1,-1,-1)$；各自只允许乘非零常数。"
+      ]
+    },
+    "solution": "按原顺序令$v_1=(1,1,0),v_2=(1,0,1),v_3=(0,1,1)$。首先$w_1=v_1$，$w_2=v_2-\\frac{\\langle v_2,w_1\\rangle}{\\langle w_1,w_1\\rangle}w_1=(1/2,-1/2,1)$，可取非零倍数$u_2=(1,-1,2)$。随后$w_3=v_3-\\frac12w_1-\\frac16u_2=(-2/3,2/3,2/3)$，取$u_3=(-3/2)w_3=(1,-1,-1)$。三者非零且两两内积为0，故按题干指定的Gram–Schmidt得到$u_1=(1,1,0),u_2=(1,-1,2),u_3=(1,-1,-1)$。允许每个结果乘非零常数。",
+    "solution_id": "eval-linalg-030-s2",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "9611e236e378b9d56228581b9cfb6727bc8d251cc7be22fcc7ba1b9a0c0e6bc2",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "线性空间",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-030-s2",
+    "visual_style": "投影减去步骤"
+  },
+  {
+    "answer": "不变因子:$1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$;初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$;$a=1$ 时为 $(\\lambda-1)^3$",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "在原参数矩阵上展示特征值合并、特征方向趋于重合",
+      "块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)"
+    ],
+    "function_family": "三阶含参λ-矩阵不变因子与初等因子",
+    "id": "eval-linalg-032-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "循环向量独立推导",
+    "problem": "设 $a\\in\\mathbb R$ 为参数,$\\lambda$-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda-a&1&0\\\\0&\\lambda-1&1\\\\0&0&\\lambda-1\\end{pmatrix}$。求 $A(\\lambda)$ 的不变因子与初等因子,并讨论 $a$ 的取值如何影响初等因子(何时两个不同根的初等因子合并、重数如何变化)。",
+    "problem_id": "eval-linalg-032",
+    "scene_spec": {
+      "objects": [
+        "在原参数矩阵上展示特征值合并、特征方向趋于重合",
+        "块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)"
+      ],
+      "steps": [
+        "第一步：以循环向量独立推导为主线，建立高等代数·λ-矩阵场景并呈现该解法的关键图形。",
+        "第二步：在原参数矩阵上展示特征值合并、特征方向趋于重合。",
+        "第三步：块结构 $J_1(a)\\oplus J_2(1)$ 向 $J_3(1)$ 的突变(全程不可对角化)。",
+        "第四步：高亮最终结果与答案。"
+      ]
+    },
+    "solution": "令 $B(a)=\\begin{pmatrix}a&-1&0\\\\0&1&-1\\\\0&0&1\\end{pmatrix}$,则 $A(\\lambda)=\\lambda I-B(a)$。取 $e_3=(0,0,1)^T$,直接计算: $$(e_3,\\ B e_3,\\ B^2 e_3)=\\begin{pmatrix}0&0&1\\\\0&-1&-2\\\\1&1&1\\end{pmatrix},\\qquad \\det=1\\neq 0,$$ 故 $\\{e_3,Be_3,B^2e_3\\}$ 构成基,$e_3$ 对所有 $a$ 都是 $B$ 的循环向量,因此 $m_B$ 的次数为 3,与特征多项式 $\\chi_B(\\lambda)=(\\lambda-a)(\\lambda-1)^2$ 相同,即 $m_B=\\chi_B$。于是 $A(\\lambda)$ 的不变因子为 $1,\\ 1,\\ (\\lambda-a)(\\lambda-1)^2$(唯一非平凡不变因子等于特征多项式)。初等因子:$a\\neq 1$ 时为 $\\lambda-a$ 与 $(\\lambda-1)^2$,对应块 $\\operatorname{diag}\\!\\bigl(a,\\,J_2(1)\\bigr)$,其中 $J_2(1)=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$;$a=1$ 时合并为 $(\\lambda-1)^3$,对应块 $J_3(1)=\\begin{pmatrix}1&1&0\\\\0&1&1\\\\0&0&1\\end{pmatrix}$。**所有参数取值下均不可对角化**($a\\neq 1$ 时已含 $J_2(1)$ 块);$a$ 从 $\\neq 1$ 变到 1 时,变化是初等因子合并、最大若尔当块由二阶升为三阶。",
+    "solution_id": "eval-linalg-032-s3",
+    "source": "self-authored",
+    "sub_category": "λ-矩阵",
+    "visual_style": "Smith等价变换与初等因子合并及若尔当块结构"
+  },
+  {
+    "answer": "$1-\\frac{365!}{335!\\,365^{30}}$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "$p_k$ 下降曲线与 $k=23$ 临界点",
+      "递推式 $p_k=p_{k-1}\\cdot\\dfrac{366-k}{365}$ 的标注"
+    ],
+    "function_family": "古典概型(生日问题)",
+    "id": "eval-prob-007-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "递推计算",
+    "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+    "problem_id": "eval-prob-007",
+    "scene_spec": {
+      "objects": [
+        "生日占位与递推乘积"
+      ],
+      "steps": [
+        "令 $q_k$ 表示前 $k$ 人生日互不相同，$q_1=1$。",
+        "给定前 $k-1$ 人互异，第 $k$ 人可选 $366-k$ 天；显示 $q_k=q_{k-1}(366-k)/365$。",
+        "显示 $q_{30}=\\prod_{k=2}^{30}(366-k)/365=365!/(335!\\,365^{30})$。",
+        "最终概率为 $1-q_{30}$，保持阶乘和分数。"
+      ]
+    },
+    "solution": "令 $q_k$ 为前 $k$ 人生日互不相同的概率。$q_1=1$；在前 $k-1$ 人生日互异的条件下，第 $k$ 人须避开 $k-1$ 天，故 $q_k=q_{k-1}\\frac{366-k}{365}$。递推得 $q_{30}=\\prod_{k=2}^{30}\\frac{366-k}{365}=\\frac{365!}{335!\\,365^{30}}$，所求概率为 $1-q_{30}$。",
+    "solution_id": "eval-prob-007-s2",
+    "source": "self-authored",
+    "sub_category": "经典概型",
+    "visual_style": "365 格占位模拟"
+  },
+  {
+    "answer": "$1-\\frac{365!}{335!\\,365^{30}}$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "435 对配对的计数高亮",
+      "期望 $\\dfrac{87}{73}\\approx1.19$ 的线性性标注"
+    ],
+    "function_family": "古典概型(生日问题)",
+    "id": "eval-prob-007-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "配对计数的精确期望视角",
+    "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+    "problem_id": "eval-prob-007",
+    "scene_spec": {
+      "objects": [
+        "配对计数",
+        "精确二阶矩下界",
+        "补事件精确概率"
+      ],
+      "steps": [
+        "定义 $N=\\sum_{i<j}I_{ij}$，有 $435$ 对，$E(N)=435/365=87/73$。",
+        "不同两对联合成功概率为 $1/365^2$，包括共享一人的情况；显示 $E(N^2)=435/365+435\\cdot434/365^2$。",
+        "由柯西不等式显示 $P(N>0)\\ge E(N)^2/E(N^2)=435/799>1/2$。",
+        "区分下界和精确值；用生日互异的序列数得 $P(N>0)=1-365!/(335!\\,365^{30})$。"
+      ]
+    },
+    "solution": "设 $N=\\sum_{1\\le i<j\\le30}I_{ij}$，其中 $I_{ij}$ 表示第 $i,j$ 人生日相同。共有 $\\binom{30}{2}=435$ 对，故 $E(N)=435/365=87/73$。不同的两对指标即使共用一人，也有联合概率 $1/365^2$；所以 $E(N^2)=435/365+435\\cdot434/365^2$。由柯西不等式，$E(N)^2=E(N\\mathbf1_{\\{N>0\\}})^2\\le E(N^2)P(N>0)$，得 $P(N>0)\\ge435/799>1/2$。这个下界不等于精确概率；精确值仍由补事件计数得到 $P(N>0)=1-\\frac{365!}{335!\\,365^{30}}$。",
+    "solution_id": "eval-prob-007-s3",
+    "source": "self-authored",
+    "sub_category": "经典概型",
+    "visual_style": "配对计数与精确概率"
+  },
+  {
+    "id": "linalg-051",
+    "category": "高等代数",
+    "sub_category": "多项式",
+    "function_family": "因式分解与根",
+    "visual_style": "根到系数的映射",
+    "efficiency_tags": [
+      "根与因式对应",
+      "实根高亮"
+    ],
+    "problem": "在实多项式空间 $\\mathbb R[x]$ 上定义前向差分算子 $\\Delta p(x)=p(x+1)-p(x)$。证明 $\\ker\\Delta$ 恰为常数多项式空间，且 $\\Delta:\\mathbb R[x]\\to\\mathbb R[x]$ 为满射；求满足 $\\Delta p(x)=3x^2+3x+1$、$p(0)=0$ 的全部多项式。",
+    "solution": "$\\Delta$ 是线性算子。若 $p(x)=a_nx^n+\\cdots$、$n\\ge1$、$a_n\\ne0$，二项式恒等式给出 $\\Delta p(x)=na_nx^{n-1}+\\cdots\\ne0$；常数多项式的差分为零，故 $\\ker\\Delta=\\mathbb R\\cdot1$。证明满射：零多项式已有原像。若目标多项式 $g$ 的次数为 $m\\ge0$、首项为 $c_mx^m$，则 $\\Delta(\\frac{c_m}{m+1}x^{m+1})$ 的首项恰为 $c_mx^m$。两者之差次数小于 $m$；对次数归纳（常数 $c$ 的原像为 $cx$）即可构造 $g$ 的原像。最后 $(x+1)^3-x^3=3x^2+3x+1$，故任意解与 $x^3$ 之差属于 $\\ker\\Delta$，即 $p=x^3+C$。由 $p(0)=0$ 得 $C=0$，所以解唯一。",
+    "answer": "$\\ker\\Delta=\\mathbb R\\cdot1$，$\\operatorname{im}\\Delta=\\mathbb R[x]$；唯一解 $p(x)=x^3$。",
+    "scene_spec": {
+      "objects": [
+        "差分箭头 $p(x)\\mapsto p(x+1)-p(x)$",
+        "首项关系 $a_nx^n\\mapsto na_nx^{n-1}$（$n\\ge1$）",
+        "次数归纳构造 $\\frac{c_m}{m+1}x^{m+1}$",
+        "恒等式 $(x+1)^3-x^3=3x^2+3x+1$"
+      ],
+      "steps": [
+        "先用二项式恒等式证明非零非常数多项式不在核中。",
+        "逐次消去目标的最高次项，证明满射。",
+        "验证 $x^3$ 的差分；由核得到全体解 $x^3+C$。",
+        "代入 $p(0)=0$ 确定 $C=0$。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "method": "差分首项次数归纳与核的唯一性",
+    "deep_core_revision": {
+      "reviewed_at": "2026-10-08T00:11:25.753852+08:00",
+      "parent_record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "parent_math_sha256": "b1d304d425ed0983b12dd27f8869bc8e5c5d9317000a00fa8d3d52a00c3ebd72",
+      "parent_core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+      "reason": "Same/embedded evaluation core removed with actual task and proof revision",
+      "new_render": "NOT_RUN",
+      "production": "CLOSED"
+    }
+  },
+  {
+    "answer": "$x=2, y=1$；当系数行列式为零时，两直线平行或重合，对应无解或无穷多解",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "解的存在性条件",
+      "行列式为零"
+    ],
+    "function_family": "Cramer法则",
+    "id": "linalg-054",
+    "license": "Internal-Research-Use-Only",
+    "problem": "利用 Cramer 法则求解线性方程组 $\\begin{cases} 2x + y = 5 \\\\ x - y = 1 \\end{cases}$，并说明行列式为零时的几何意义。",
+    "scene_spec": {
+      "objects": [
+        "原题直线 $2x+y=5$ 和 $x-y=1$",
+        "交点 $(2,1)$ 与 $D=-3,\\ D_x=-6,\\ D_y=-3$",
+        "独立示例面板：平行不重合与重合"
+      ],
+      "steps": [
+        "原题面板保持两条方程不变，以 Cramer 法则显示 $x=D_x/D=2,\\ y=D_y/D=1$。",
+        "另开明确标为“系数行列式为零的示例”的面板，不把它当作原题的继续计算。",
+        "例一 $x+y=1,\\ 2x+2y=3$：$D=0$，平行不重合，无解。",
+        "例二 $x+y=1,\\ 2x+2y=2$：$D=0$，两直线重合，解集 $\\{(t,1-t):t\\in\\mathbb R\\}$。"
+      ]
+    },
+    "solution": "系数行列式 $D=\\begin{vmatrix} 2 & 1 \\\\ 1 & -1 \\end{vmatrix}=-3\\neq0$，方程组有唯一解。$D_x=\\begin{vmatrix} 5 & 1 \\\\ 1 & -1 \\end{vmatrix}=-6$，$D_y=\\begin{vmatrix} 2 & 5 \\\\ 1 & 1 \\end{vmatrix}=-3$，故 $x=2, y=1$。若 $D=0$，两直线平行或重合，对应无解或无穷多解。",
+    "source": "self-authored",
+    "sub_category": "行列式",
+    "visual_style": "行列式比值与解"
+  },
+  {
+    "answer": "$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注",
+      "线性无关性的验证"
+    ],
+    "function_family": "正交矩阵刻画",
+    "id": "eval-linalg-035-s1",
+    "license": "Internal-Research-Use-Only",
+    "method": "分块矩阵",
+    "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+    "problem_id": "eval-linalg-035",
+    "revision_lineage": {
+      "continuous_correction_reason": "答案明确两方向充要关系",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "de526a918fc9eaf733f06abc01918c9f96c1472d8976dd2963aa8809b59ebef9",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-035-s1",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 345,
+          "record_version_sha256": "de526a918fc9eaf733f06abc01918c9f96c1472d8976dd2963aa8809b59ebef9",
+          "source_line": 298,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "2c80db99f4db937c4e1e6e3d56a35eaaa613f197ae9e5dd4b341a5156ffae9db"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注",
+        "线性无关性的验证"
+      ],
+      "steps": [
+        "呈现题干及适用条件：证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+        "依次呈现：分块 $A^TA$ 的 $(i,j)$ 元 $a_i\\cdot a_j$ 标注",
+        "依次呈现：线性无关性的验证",
+        "核对完整证明：把 $A$ 按列分块 $A=(a_1,a_2,\\dots,a_n)$。$A^TA$ 的 $(i,j)$ 元为 $a_i^Ta_j=a_i\\cdot a_j$。$A^TA=I\\iff a_i\\cdot a_j=\\delta_{ij}$ 对一切 $i,j$ 成立 $\\iff$ 列向量两两正交且都是单位向量 $\\iff$ 列向量构成标准正交基（$n$ 个两两正交的单位向量必线性无关，因若 $\\sum c_ia_i=0$ 则与 $a_j$ 作内积得 $c_j=0$）。",
+        "高亮结果：$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。"
+      ]
+    },
+    "solution": "把 $A$ 按列分块 $A=(a_1,a_2,\\dots,a_n)$。$A^TA$ 的 $(i,j)$ 元为 $a_i^Ta_j=a_i\\cdot a_j$。$A^TA=I\\iff a_i\\cdot a_j=\\delta_{ij}$ 对一切 $i,j$ 成立 $\\iff$ 列向量两两正交且都是单位向量 $\\iff$ 列向量构成标准正交基（$n$ 个两两正交的单位向量必线性无关，因若 $\\sum c_ia_i=0$ 则与 $a_j$ 作内积得 $c_j=0$）。",
+    "solution_id": "eval-linalg-035-s1",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "24d9dba8e5ab18f207cfe7f0af4e78caeac2b04a0e39bb57ad4a6deba09586d6",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "欧几里得空间",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-035-s1",
+    "visual_style": "标准正交列旋转"
+  },
+  {
+    "answer": "$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "保长性质的演示",
+      "极化恒等式的推导"
+    ],
+    "function_family": "正交矩阵刻画",
+    "id": "eval-linalg-035-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "保长⇔保内积",
+    "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+    "problem_id": "eval-linalg-035",
+    "revision_lineage": {
+      "continuous_correction_reason": "答案明确两方向充要关系",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "6eab3f5770a7a6f0d195fb51da7dab5270793ba3058314042a917546b0eb4533",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-035-s2",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 346,
+          "record_version_sha256": "6eab3f5770a7a6f0d195fb51da7dab5270793ba3058314042a917546b0eb4533",
+          "source_line": 299,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "92904062d70fd41d5b5cdf20046644442a1679026f4acb467a1bbde46e7ee74e"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "保长性质的演示",
+        "极化恒等式的推导"
+      ],
+      "steps": [
+        "呈现题干及适用条件：证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+        "依次呈现：保长性质的演示",
+        "依次呈现：极化恒等式的推导",
+        "核对完整证明：$A^TA=I\\iff$ 对任意 $x$，$|Ax|^2=(Ax)^T(Ax)=x^TA^TAx=x^Tx=|x|^2$，即 $A$ 保长。由极化恒等式 $(Ax,Ay)=\\dfrac{|A(x+y)|^2-|Ax|^2-|Ay|^2}{2}=\\dfrac{|x+y|^2-|x|^2-|y|^2}{2}=(x,y)$，保长⇒保内积。取 $x=e_i$、$y=e_j$：$(Ae_i,Ae_j)=(e_i,e_j)=\\delta_{ij}$，即列向量标准正交。反之列向量标准正交⇒$A^TA=I$ 由解法一。",
+        "高亮结果：$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。"
+      ]
+    },
+    "solution": "$A^TA=I\\iff$ 对任意 $x$，$|Ax|^2=(Ax)^T(Ax)=x^TA^TAx=x^Tx=|x|^2$，即 $A$ 保长。由极化恒等式 $(Ax,Ay)=\\dfrac{|A(x+y)|^2-|Ax|^2-|Ay|^2}{2}=\\dfrac{|x+y|^2-|x|^2-|y|^2}{2}=(x,y)$，保长⇒保内积。取 $x=e_i$、$y=e_j$：$(Ae_i,Ae_j)=(e_i,e_j)=\\delta_{ij}$，即列向量标准正交。反之列向量标准正交⇒$A^TA=I$ 由解法一。",
+    "solution_id": "eval-linalg-035-s2",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "41d5cbbd992df408d93abb89246a38e4457f7cd8c392ba52d7d408c947f729ad",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "欧几里得空间",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-035-s2",
+    "visual_style": "标准正交列旋转"
+  },
+  {
+    "answer": "$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "$a_i=Ae_i$，$a_i\\cdot a_j=e_i^TA^TAe_j$",
+      "$a_i\\cdot a_j=\\delta_{ij}$的双向等价及线性无关性证明",
+      "剪切反例说明仅凭行列式条件不充分"
+    ],
+    "function_family": "正交矩阵刻画",
+    "id": "eval-linalg-035-s3",
+    "license": "Internal-Research-Use-Only",
+    "method": "标准基像与列内积的双向证明",
+    "problem": "证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+    "problem_id": "eval-linalg-035",
+    "revision_lineage": {
+      "continuous_correction_reason": "必要条件与反例不证明题干充要性，补两方向严格推导；答案明确两方向充要关系",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "0c3f0a578ed02935a51ff805176e4ad27bbea90e2b0e14b67ca7e67fa8fe986d",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-linalg-035-s3",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 347,
+          "record_version_sha256": "0c3f0a578ed02935a51ff805176e4ad27bbea90e2b0e14b67ca7e67fa8fe986d",
+          "source_line": 300,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "46b83753d4e415b69f6521e9fffb4cfb5cf2fa3d72b20f94a32d78467d233391"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "$a_i=Ae_i$，$a_i\\cdot a_j=e_i^TA^TAe_j$",
+        "$a_i\\cdot a_j=\\delta_{ij}$的双向等价及线性无关性证明",
+        "剪切反例说明仅凭行列式条件不充分"
+      ],
+      "steps": [
+        "呈现题干及适用条件：证明：$n$ 阶实方阵 $A$ 是正交矩阵（$A^TA=I$）当且仅当 $A$ 的列向量构成 $\\mathbb R^n$ 的标准正交基。",
+        "依次呈现：$a_i=Ae_i$，$a_i\\cdot a_j=e_i^TA^TAe_j$",
+        "依次呈现：$a_i\\cdot a_j=\\delta_{ij}$的双向等价及线性无关性证明",
+        "依次呈现：剪切反例说明仅凭行列式条件不充分",
+        "核对完整证明：记标准基为$e_1,\\ldots,e_n$，$A$的列为$a_i=Ae_i$。若$A^TA=I$，则$a_i\\cdot a_j=e_i^TA^TAe_j=\\delta_{ij}$；若$\\sum_i c_i a_i=0$，分别与$a_j$取内积得$c_j=0$，所以这$n$个单位正交向量是$\\mathbb R^n$的基。反过来，若列向量构成标准正交基，则$(A^TA)_{ij}=a_i\\cdot a_j=\\delta_{ij}$，故$A^TA=I$。行列式为$\\pm1$本身不充分，例如剪切矩阵$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$的两列不正交；这个反例只是补充，不替代上述充要性证明。",
+        "高亮结果：$A^TA=I\\iff$列向量构成$\\mathbb R^n$的标准正交基。"
+      ]
+    },
+    "solution": "记标准基为$e_1,\\ldots,e_n$，$A$的列为$a_i=Ae_i$。若$A^TA=I$，则$a_i\\cdot a_j=e_i^TA^TAe_j=\\delta_{ij}$；若$\\sum_i c_i a_i=0$，分别与$a_j$取内积得$c_j=0$，所以这$n$个单位正交向量是$\\mathbb R^n$的基。反过来，若列向量构成标准正交基，则$(A^TA)_{ij}=a_i\\cdot a_j=\\delta_{ij}$，故$A^TA=I$。行列式为$\\pm1$本身不充分，例如剪切矩阵$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$的两列不正交；这个反例只是补充，不替代上述充要性证明。",
+    "solution_id": "eval-linalg-035-s3",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "96f64d7fb03b7384a042e8ae52e1e713b1e4f448d63f892923af20875a08e2e8",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "欧几里得空间",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-035-s3",
+    "visual_style": "标准正交列旋转"
+  },
+  {
+    "answer": "换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "三扇门与车、羊的随机放置",
+      "初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注"
+    ],
+    "function_family": "古典概型(三门问题)",
+    "id": "eval-prob-001-s1",
+    "license": "Internal-Research-Use-Only",
+    "method": "树状图/直接分析",
+    "problem": "三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+    "problem_id": "eval-prob-001",
+    "revision_lineage": {
+      "continuous_correction_reason": "明确等概率、独立初选及主持人始终开羊门和提供换门条件",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "cf38f53b380776d8ab02caf3e83c795669e7c6bd2d43ab535ed3292ad4d3a5b5",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-prob-001-s1",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 198,
+          "record_version_sha256": "cf38f53b380776d8ab02caf3e83c795669e7c6bd2d43ab535ed3292ad4d3a5b5",
+          "source_line": 151,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "8a6962b797338f5c619633cd90dd9257c87ac1252802f36edc1d69469888eb72"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "三扇门与车、羊的随机放置",
+        "初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注"
+      ],
+      "steps": [
+        "呈现题干及适用条件：三扇门中车的位置等概率，初选与车的位置独立。主持人知道车的位置，总从未选的门中打开一扇有羊的门，并总给出换门机会。求坚持初选和换至唯一剩余未开的门各自获车概率。",
+        "依次呈现：三扇门与车、羊的随机放置",
+        "依次呈现：初选山羊（概率 $\\dfrac{2}{3}$）与换门必赢的对应标注",
+        "核对完整证明：参赛者初始选中山羊的概率为 $\\dfrac{2}{3}$，此时主持人必须打开另一扇山羊门（他不能开车门），剩下的未开门必然是汽车，换门必赢。初始选中汽车的概率为 $\\dfrac{1}{3}$，此时换门必输。故换门获胜概率 $=\\dfrac{2}{3}\\times 1+\\dfrac{1}{3}\\times 0=\\dfrac{2}{3}$。",
+        "高亮结果：换门获胜概率为 $\\dfrac{2}{3}$，不换为 $\\dfrac{1}{3}$"
+      ]
+    },
+    "solution": "参赛者初始选中山羊的概率为 $\\dfrac{2}{3}$，此时主持人必须打开另一扇山羊门（他不能开车门），剩下的未开门必然是汽车，换门必赢。初始选中汽车的概率为 $\\dfrac{1}{3}$，此时换门必输。故换门获胜概率 $=\\dfrac{2}{3}\\times 1+\\dfrac{1}{3}\\times 0=\\dfrac{2}{3}$。",
+    "solution_id": "eval-prob-001-s1",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "98cdebe421933dd31df12f4638a512bb5ac80f035103cf0043e0904dc7557808",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "条件概率",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-prob-001-s1",
+    "visual_style": "概率条带转移"
+  },
+  {
+    "answer": "$6$",
+    "category": "概率论",
+    "efficiency_tags": [
+      "三状态转移图与概率箭头",
+      "基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注"
+    ],
+    "function_family": "马尔可夫链首达",
+    "id": "eval-prob-011-s2",
+    "license": "Internal-Research-Use-Only",
+    "method": "吸收马尔可夫链",
+    "problem": "抛均匀硬币直到连续出现两次正面（HH）为止，求所需抛掷次数的期望。",
+    "problem_id": "eval-prob-011",
+    "revision_lineage": {
+      "continuous_correction_reason": "等待时间递推和基本矩阵须先证明瞬态且期望有限",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+        "parent_record_sha256": "87f7f46c1e766031a896d39bc065792d7f9d708f48123d9efc8274d7cabd5b87",
+        "submitted_ref": {
+          "group": "eval",
+          "id": "eval-prob-011-s2",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 229,
+          "record_version_sha256": "87f7f46c1e766031a896d39bc065792d7f9d708f48123d9efc8274d7cabd5b87",
+          "source_line": 182,
+          "source_path": "data/v2/eval/dataset_eval.jsonl",
+          "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+          "task_sha256": "ba23401daec88fc8717001f57a0c63a50b289fe7c9d28dccfaaf92f6dad07b1a"
+        }
+      },
+      "version": "codex-continuous-eval-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "三状态转移图与概率箭头",
+        "基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注"
+      ],
+      "steps": [
+        "呈现题干及适用条件：抛均匀硬币直到连续出现两次正面（HH）为止，求所需抛掷次数的期望。",
+        "依次呈现：三状态转移图与概率箭头",
+        "依次呈现：基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$ 的计算标注",
+        "核对完整证明：状态 $\\{0,1,H\\}$（$H$ 为吸收态），转移矩阵 $P=\\begin{pmatrix}1/2&1/2&0\\\\1/2&0&1/2\\\\0&0&1\\end{pmatrix}$，瞬态子矩阵 $Q=\\begin{pmatrix}1/2&1/2\\\\1/2&0\\end{pmatrix}$。基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}1/2&-1/2\\\\-1/2&1\\end{pmatrix}^{-1}=4\\begin{pmatrix}1&1/2\\\\1/2&1/2\\end{pmatrix}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$（$\\det(I-Q)=\\dfrac{1}{2}-\\dfrac{1}{4}=\\dfrac{1}{4}$）。从状态 0 出发的期望步数为 $N$ 第 1 行之和 $=4+2=6$。有限性：把抛掷分成互不重叠的两次一块，每块为HH的概率$1/4$，各块独立。因此首次连续HH时间$T$满足$P(T>2k)\\le(3/4)^k$，尾和公式给出$E[T]\\le2\\sum_{k=0}^{\\infty}(3/4)^k=8<\\infty$。吸收概率为1，期望有限，所以递推及基本矩阵的期望运算有效。",
+        "高亮结果：$6$"
+      ]
+    },
+    "solution": "状态 $\\{0,1,H\\}$（$H$ 为吸收态），转移矩阵 $P=\\begin{pmatrix}1/2&1/2&0\\\\1/2&0&1/2\\\\0&0&1\\end{pmatrix}$，瞬态子矩阵 $Q=\\begin{pmatrix}1/2&1/2\\\\1/2&0\\end{pmatrix}$。基本矩阵 $N=(I-Q)^{-1}=\\begin{pmatrix}1/2&-1/2\\\\-1/2&1\\end{pmatrix}^{-1}=4\\begin{pmatrix}1&1/2\\\\1/2&1/2\\end{pmatrix}=\\begin{pmatrix}4&2\\\\2&2\\end{pmatrix}$（$\\det(I-Q)=\\dfrac{1}{2}-\\dfrac{1}{4}=\\dfrac{1}{4}$）。从状态 0 出发的期望步数为 $N$ 第 1 行之和 $=4+2=6$。有限性：把抛掷分成互不重叠的两次一块，每块为HH的概率$1/4$，各块独立。因此首次连续HH时间$T$满足$P(T>2k)\\le(3/4)^k$，尾和公式给出$E[T]\\le2\\sum_{k=0}^{\\infty}(3/4)^k=8<\\infty$。吸收概率为1，期望有限，所以递推及基本矩阵的期望运算有效。",
+    "solution_id": "eval-prob-011-s2",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "f9c2270c5186af3a5b26603feef0677963dd1113ddfabdfb3dc64ec5abdb9d01",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+    },
+    "sub_category": "随机过程",
+    "versioned_id": "codex-continuous-eval-v1-20261007-eval-prob-011-s2",
+    "visual_style": "状态转移图"
+  },
+  {
+    "answer": "椭圆 $x^2-2xy+2y^2=1$，面积 $\\pi$",
+    "category": "解析几何",
+    "efficiency_tags": [
+      "单位圆被剪切为椭圆",
+      "面积不变（$\\det A=1$）"
+    ],
+    "function_family": "线性变换下二次曲线",
+    "id": "test-geom-016",
+    "license": "Internal-Research-Use-Only",
+    "problem": "线性变换 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。",
+    "revision_lineage": {
+      "continuous_correction_reason": "场景TeX的det命令多了一个反斜杠",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "1e2e0b23a3dc93910ebbab41c28d37dd20676113ecec845cf89d6a3a1caf2678",
+        "parent_record_sha256": "4596378d62c7e56fd65247371804f83aec2c5fcd1c2f37655ebd979f8f87e6b9",
+        "submitted_ref": {
+          "group": "test",
+          "id": "test-geom-016",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 408,
+          "record_version_sha256": "4596378d62c7e56fd65247371804f83aec2c5fcd1c2f37655ebd979f8f87e6b9",
+          "source_line": 61,
+          "source_path": "data/v2/test/dataset_test.jsonl",
+          "source_raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+          "task_sha256": "475b2d53c9ea7a3d7615e68ac47de9c216bc7d58e181e9454dd6d54e5b1b68ad"
+        }
+      },
+      "version": "codex-continuous-test-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "单位圆被剪切为椭圆",
+        "面积不变（$\\det A=1$）"
+      ],
+      "steps": [
+        "呈现题干及条件：线性变换 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。",
+        "依次呈现：单位圆被剪切为椭圆",
+        "依次呈现：面积不变（$\\det A=1$）",
+        "核对完整证明：$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\\det A=1$，故椭圆面积 $=\\pi\\cdot|\\det A|=\\pi$。",
+        "高亮答案：椭圆 $x^2-2xy+2y^2=1$，面积 $\\pi$"
+      ]
+    },
+    "solution": "$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\\det A=1$，故椭圆面积 $=\\pi\\cdot|\\det A|=\\pi$。",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "6568aa5382c65012232dbfdc81f58aadf74e5b0528406c4f546ce1138c344eb4",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/independent-test-review-138.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_PROOF_AND_EXACT_EXPRESSION_REVIEW_WITH_EXACT_WITNESSES"
+    },
+    "sub_category": "线性变换×二次曲线",
+    "versioned_id": "codex-continuous-test-v1-20261007-test-geom-016",
+    "visual_style": "圆剪切为椭圆"
+  },
+  {
+    "id": "test-prob-007",
+    "category": "概率论",
+    "sub_category": "指数分布×无记忆性",
+    "problem": "某灯泡寿命 $T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)$（单位：小时，参数 $\\lambda=\\dfrac{1}{1000}$）。求 $P(T>1500\\mid T>500)$。",
+    "solution": "指数分布的生存函数为 $P(T>t)=e^{-t/1000}$（$t\\ge0$）。由于 $\\{T>1500\\}\\subseteq\\{T>500\\}$，$P(T>1500\\mid T>500)=\\frac{e^{-1500/1000}}{e^{-500/1000}}=\\frac{e^{-3/2}}{e^{-1/2}}=e^{-1}$。",
+    "answer": "$e^{-1}$",
+    "scene_spec": {
+      "objects": [
+        "生存函数的值比",
+        "条件归一化后的平移曲线"
+      ],
+      "steps": [
+        "定义 $S(t)=P(T>t)=e^{-t/1000}$，$t\\ge0$。",
+        "条件剩余寿命的生存函数为 $P(T>500+t\\mid T>500)=S(500+t)/S(500)=S(t)$。",
+        "重合的是归一化后的条件曲线；未归一化的 $S(500+t)=e^{-1/2}S(t)$ 不与 $S(t)$ 重合。",
+        "取 $t=1000$ 得所求概率 $e^{-1}$，用函数值的比，不用生存曲线下方的面积。"
+      ]
+    },
+    "function_family": "指数分布无记忆",
+    "visual_style": "生存函数右移",
+    "efficiency_tags": [
+      "生存函数曲线右移重合",
+      "条件概率的面积比"
+    ],
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  {
+    "answer": "证毕（在 $\\sigma_1,\\sigma_2>0$ 的前提下，正定 $\\iff|\\rho|<1$）",
+    "category": "跨学科",
+    "efficiency_tags": [
+      "相关系数滑块与散布图",
+      "退化情形 $\\rho=\\pm 1$"
+    ],
+    "function_family": "协方差矩阵正定",
+    "id": "test-x-010",
+    "license": "Internal-Research-Use-Only",
+    "problem": "设两随机变量的方差有限且严格为正（$\\sigma_1,\\sigma_2>0$）。证明协方差矩阵 $\\begin{pmatrix}\\sigma_1^2&\\rho\\sigma_1\\sigma_2\\\\\\rho\\sigma_1\\sigma_2&\\sigma_2^2\\end{pmatrix}$ 正定当且仅当 $|\\rho|<1$。",
+    "revision_lineage": {
+      "continuous_correction_reason": "相关系数绝对值1对应中心化线性相关，原变量为仿射关系",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "1e2e0b23a3dc93910ebbab41c28d37dd20676113ecec845cf89d6a3a1caf2678",
+        "parent_record_sha256": "7a24a2138b090fe3d7ae9e932ee067ea880ce447ff805c61d1916d59caf2795f",
+        "submitted_ref": {
+          "group": "test",
+          "id": "test-x-010",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 492,
+          "record_version_sha256": "7a24a2138b090fe3d7ae9e932ee067ea880ce447ff805c61d1916d59caf2795f",
+          "source_line": 145,
+          "source_path": "data/v2/test/dataset_test.jsonl",
+          "source_raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+          "task_sha256": "a118d15848e73c29bf12c32dd2de6dd093be65bc29d3436521b53661df7b2cf5"
+        }
+      },
+      "version": "codex-continuous-test-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "相关系数滑块与散布图",
+        "退化情形 $\\rho=\\pm 1$"
+      ],
+      "steps": [
+        "呈现题干及条件：设两随机变量的方差有限且严格为正（$\\sigma_1,\\sigma_2>0$）。证明协方差矩阵 $\\begin{pmatrix}\\sigma_1^2&\\rho\\sigma_1\\sigma_2\\\\\\rho\\sigma_1\\sigma_2&\\sigma_2^2\\end{pmatrix}$ 正定当且仅当 $|\\rho|<1$。",
+        "依次呈现：相关系数滑块与散布图",
+        "依次呈现：退化情形 $\\rho=\\pm 1$",
+        "核对完整证明：顺序主子式：$\\sigma_1^2>0$；行列式 $\\sigma_1^2\\sigma_2^2(1-\\rho^2)$。矩阵正定 $\\iff$ 两顺序主子式均为正 $\\iff 1-\\rho^2>0\\iff|\\rho|<1$。概率解释：相关系数 $|\\rho|<1$ 恰是中心化变量$X-E[X]$与$Y-E[Y]$不几乎必然线性相关（即不存在非平凡常数$a,b$使$aX+bY$几乎必然为常数）的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。",
+        "高亮答案：证毕（在 $\\sigma_1,\\sigma_2>0$ 的前提下，正定 $\\iff|\\rho|<1$）"
+      ]
+    },
+    "solution": "顺序主子式：$\\sigma_1^2>0$；行列式 $\\sigma_1^2\\sigma_2^2(1-\\rho^2)$。矩阵正定 $\\iff$ 两顺序主子式均为正 $\\iff 1-\\rho^2>0\\iff|\\rho|<1$。概率解释：相关系数 $|\\rho|<1$ 恰是中心化变量$X-E[X]$与$Y-E[Y]$不几乎必然线性相关（即不存在非平凡常数$a,b$使$aX+bY$几乎必然为常数）的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "47c224e7a6d1a67e748d57c12cdc3797b758f43dfeb0af0ff3576ba608a7fe7f",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/independent-test-review-138.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_PROOF_AND_EXACT_EXPRESSION_REVIEW_WITH_EXACT_WITNESSES"
+    },
+    "sub_category": "线性代数×概率论",
+    "versioned_id": "codex-continuous-test-v1-20261007-test-x-010",
+    "visual_style": "相关系数滑块"
+  },
+  {
+    "answer": "$D_1,\\dots,D_6=1,0,-1,-1,0,1$，周期为 6",
+    "category": "高等代数",
+    "efficiency_tags": [
+      "三对角矩阵结构",
+      "递推序列的循环折线"
+    ],
+    "function_family": "三对角行列式周期",
+    "id": "test-linalg-013",
+    "license": "Internal-Research-Use-Only",
+    "problem": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+    "revision_lineage": {
+      "continuous_correction_reason": "周期不能仅从六项观察，写出严格递推恒等式",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "1e2e0b23a3dc93910ebbab41c28d37dd20676113ecec845cf89d6a3a1caf2678",
+        "parent_record_sha256": "1dff2cc9934f9e7826127d2dfbca2659dca64e44c6013c58d68e3dca96160cc3",
+        "submitted_ref": {
+          "group": "test",
+          "id": "test-linalg-013",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 455,
+          "record_version_sha256": "1dff2cc9934f9e7826127d2dfbca2659dca64e44c6013c58d68e3dca96160cc3",
+          "source_line": 108,
+          "source_path": "data/v2/test/dataset_test.jsonl",
+          "source_raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+          "task_sha256": "5854b2096135a388e6aac006f607548345569973361313ae27d882b9a94feb4b"
+        }
+      },
+      "version": "codex-continuous-test-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "三对角矩阵结构",
+        "递推序列的循环折线"
+      ],
+      "steps": [
+        "呈现题干及条件：求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}1&1&0&\\cdots&0\\\\1&1&1&\\cdots&0\\\\0&1&1&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&\\cdots&1&1\\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+        "依次呈现：三对角矩阵结构",
+        "依次呈现：递推序列的循环折线",
+        "核对完整证明：按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\\cdot D_{n-1}-1\\cdot\\begin{vmatrix}1&1&0&\\cdots\\\\0&1&1&\\cdots\\\\\\vdots\\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\\begin{vmatrix}1&1\\\\1&1\\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\\cdots=D_n$ 由递推的线性性质）。严格周期证明：由$D_{n+2}=D_{n+1}-D_n$，得到$D_{n+3}=D_{n+2}-D_{n+1}=-D_n$，再得$D_{n+6}=-D_{n+3}=D_n$。前六个相邻有序对$(1,0),(0,-1),(-1,-1),(-1,0),(0,1),(1,1)$互不相同，所以最小正周期确为6。",
+        "高亮答案：$D_1,\\dots,D_6=1,0,-1,-1,0,1$，周期为 6"
+      ]
+    },
+    "solution": "按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\\cdot D_{n-1}-1\\cdot\\begin{vmatrix}1&1&0&\\cdots\\\\0&1&1&\\cdots\\\\\\vdots\\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\\begin{vmatrix}1&1\\\\1&1\\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\\cdots=D_n$ 由递推的线性性质）。严格周期证明：由$D_{n+2}=D_{n+1}-D_n$，得到$D_{n+3}=D_{n+2}-D_{n+1}=-D_n$，再得$D_{n+6}=-D_{n+3}=D_n$。前六个相邻有序对$(1,0),(0,-1),(-1,-1),(-1,0),(0,1),(1,1)$互不相同，所以最小正周期确为6。",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "ec6dcd975a2ac8877879d420eea0f3534ab594754c9c0ff72a0f69d8b9422d97",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/independent-test-review-138.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_PROOF_AND_EXACT_EXPRESSION_REVIEW_WITH_EXACT_WITNESSES"
+    },
+    "sub_category": "三对角行列式×周期性",
+    "versioned_id": "codex-continuous-test-v1-20261007-test-linalg-013",
+    "visual_style": "递推循环折线"
+  },
+  {
+    "answer": "$R_y(\\varphi)=\\begin{pmatrix}\\cos\\varphi&0&\\sin\\varphi\\\\0&1&0\\\\-\\sin\\varphi&0&\\cos\\varphi\\end{pmatrix}$；正交（证毕）",
+    "category": "解析几何",
+    "efficiency_tags": [
+      "绕 $y$ 轴旋转动画",
+      "列向量标准正交标注"
+    ],
+    "function_family": "旋转矩阵正交性",
+    "id": "test-geom-022",
+    "license": "Internal-Research-Use-Only",
+    "problem": "写出绕 $y$ 轴旋转角 $\\varphi$ 的旋转矩阵 $R_y(\\varphi)$，并验证它是正交矩阵。取右手直角坐标系，正角遵循绕正$y$轴的右手定则。",
+    "revision_lineage": {
+      "continuous_correction_reason": "明确空间旋转矩阵采用右手正角约定",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "1e2e0b23a3dc93910ebbab41c28d37dd20676113ecec845cf89d6a3a1caf2678",
+        "parent_record_sha256": "825e95a13642053d500042de050b31e3bc1004934741b8eb0d30f73db4c6f2fa",
+        "submitted_ref": {
+          "group": "test",
+          "id": "test-geom-022",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 414,
+          "record_version_sha256": "825e95a13642053d500042de050b31e3bc1004934741b8eb0d30f73db4c6f2fa",
+          "source_line": 67,
+          "source_path": "data/v2/test/dataset_test.jsonl",
+          "source_raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+          "task_sha256": "3513e3a9a3b8d49b22717c216edc2a6d652dee5e12f29a6577dada52361ea1c0"
+        }
+      },
+      "version": "codex-continuous-test-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "绕 $y$ 轴旋转动画",
+        "列向量标准正交标注"
+      ],
+      "steps": [
+        "呈现题干及条件：写出绕 $y$ 轴旋转角 $\\varphi$ 的旋转矩阵 $R_y(\\varphi)$，并验证它是正交矩阵。取右手直角坐标系，正角遵循绕正$y$轴的右手定则。",
+        "依次呈现：绕 $y$ 轴旋转动画",
+        "依次呈现：列向量标准正交标注",
+        "核对完整证明：绕 $y$ 轴旋转：$x'=x\\cos\\varphi+z\\sin\\varphi$，$y'=y$，$z'=-x\\sin\\varphi+z\\cos\\varphi$，故 $R_y(\\varphi)=\\begin{pmatrix}\\cos\\varphi&0&\\sin\\varphi\\\\0&1&0\\\\-\\sin\\varphi&0&\\cos\\varphi\\end{pmatrix}$。验证 $R^TR=I$：第一列与第二列点积 $0$、与第三列点积 $\\cos\\varphi\\sin\\varphi-\\sin\\varphi\\cos\\varphi=0$；各列模长 $\\cos^2\\varphi+\\sin^2\\varphi=1$、$1$、$1$。故 $R$ 正交，且 $\\det R=1$（旋转保定向）。",
+        "高亮答案：$R_y(\\varphi)=\\begin{pmatrix}\\cos\\varphi&0&\\sin\\varphi\\\\0&1&0\\\\-\\sin\\varphi&0&\\cos\\varphi\\end{pmatrix}$；正交（证毕）"
+      ]
+    },
+    "solution": "绕 $y$ 轴旋转：$x'=x\\cos\\varphi+z\\sin\\varphi$，$y'=y$，$z'=-x\\sin\\varphi+z\\cos\\varphi$，故 $R_y(\\varphi)=\\begin{pmatrix}\\cos\\varphi&0&\\sin\\varphi\\\\0&1&0\\\\-\\sin\\varphi&0&\\cos\\varphi\\end{pmatrix}$。验证 $R^TR=I$：第一列与第二列点积 $0$、与第三列点积 $\\cos\\varphi\\sin\\varphi-\\sin\\varphi\\cos\\varphi=0$；各列模长 $\\cos^2\\varphi+\\sin^2\\varphi=1$、$1$、$1$。故 $R$ 正交，且 $\\det R=1$（旋转保定向）。",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "c5266cb825e1c3f2ca4c774d922b15a72f888f2734c09076632600a5d90d954b",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/independent-test-review-138.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_PROOF_AND_EXACT_EXPRESSION_REVIEW_WITH_EXACT_WITNESSES"
+    },
+    "sub_category": "旋转矩阵×正交验证",
+    "versioned_id": "codex-continuous-test-v1-20261007-test-geom-022",
+    "visual_style": "绕轴旋转"
+  },
+  {
+    "answer": "$\\dfrac{\\pi^2}{12}$",
+    "category": "数学分析",
+    "efficiency_tags": [
+      "级数部分和逐项逼近",
+      "$\\dfrac{\\pi^2}{12}$ 与幂级数积分恒等式对照"
+    ],
+    "function_family": "对数函数幂级数积分",
+    "id": "test-calc-015",
+    "license": "Internal-Research-Use-Only",
+    "problem": "利用幂级数展开求 $\\displaystyle\\int_0^1\\frac{\\ln(1+x)}{x}\\,dx$ 的精确值。",
+    "revision_lineage": {
+      "continuous_correction_reason": "不以积分数值观察作为精确答案的依据",
+      "continuous_review_parent": {
+        "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "1e2e0b23a3dc93910ebbab41c28d37dd20676113ecec845cf89d6a3a1caf2678",
+        "parent_record_sha256": "a0cc62ee959be5f8b098ea14a803a021bf5af764a25ec35acfdc3501fc094858",
+        "submitted_ref": {
+          "group": "test",
+          "id": "test-calc-015",
+          "identity_verified": true,
+          "input_binding": "active-497-row-bindings.jsonl",
+          "input_binding_line": 362,
+          "record_version_sha256": "a0cc62ee959be5f8b098ea14a803a021bf5af764a25ec35acfdc3501fc094858",
+          "source_line": 15,
+          "source_path": "data/v2/test/dataset_test.jsonl",
+          "source_raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+          "task_sha256": "fddbb8388402000fa4403387bf6576637a4f5642230bf9ebefeb89a4bc4796d8"
+        }
+      },
+      "version": "codex-continuous-test-v1-20261007"
+    },
+    "scene_spec": {
+      "objects": [
+        "级数部分和逐项逼近",
+        "$\\dfrac{\\pi^2}{12}$ 与幂级数积分恒等式对照"
+      ],
+      "steps": [
+        "呈现题干及条件：利用幂级数展开求 $\\displaystyle\\int_0^1\\frac{\\ln(1+x)}{x}\\,dx$ 的精确值。",
+        "依次呈现：级数部分和逐项逼近",
+        "依次呈现：$\\dfrac{\\pi^2}{12}$ 与幂级数积分恒等式对照",
+        "核对完整证明：$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\\dfrac{\\ln(1+x)}{x}=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\\left|\\displaystyle\\sum_{k>N}\\dfrac{(-1)^{k-1}x^{k-1}}{k}\\right|\\le\\dfrac{x^N}{N+1}\\le\\dfrac{1}{N+1}\\to 0$（交错级数估计，对 $x\\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\\lim_{x\\to 0}\\dfrac{\\ln(1+x)}{x}=1$）。故可逐项积分：$\\displaystyle\\int_0^1\\dfrac{\\ln(1+x)}{x}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n}\\int_0^1x^{n-1}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\\zeta(2)$ 的关系：$\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}=\\eta(2)=\\left(1-2^{1-2}\\right)\\zeta(2)=\\dfrac{1}{2}\\cdot\\dfrac{\\pi^2}{6}=\\dfrac{\\pi^2}{12}$（其中 $\\zeta(2)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}=\\dfrac{\\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。",
+        "高亮答案：$\\dfrac{\\pi^2}{12}$"
+      ]
+    },
+    "solution": "$\\ln(1+x)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\\dfrac{\\ln(1+x)}{x}=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\\left|\\displaystyle\\sum_{k>N}\\dfrac{(-1)^{k-1}x^{k-1}}{k}\\right|\\le\\dfrac{x^N}{N+1}\\le\\dfrac{1}{N+1}\\to 0$（交错级数估计，对 $x\\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\\lim_{x\\to 0}\\dfrac{\\ln(1+x)}{x}=1$）。故可逐项积分：$\\displaystyle\\int_0^1\\dfrac{\\ln(1+x)}{x}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n}\\int_0^1x^{n-1}dx=\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\\zeta(2)$ 的关系：$\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{(-1)^{n-1}}{n^2}=\\eta(2)=\\left(1-2^{1-2}\\right)\\zeta(2)=\\dfrac{1}{2}\\cdot\\dfrac{\\pi^2}{6}=\\dfrac{\\pi^2}{12}$（其中 $\\zeta(2)=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^2}=\\dfrac{\\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。",
+    "source": "self-authored",
+    "strict_review": {
+      "admitted": false,
+      "core_math_verified": true,
+      "math_content_sha256": "b625a4189a0a38b8fa510989bd54a3dd02efac981e43e71c1fe3c02bf4dfa671",
+      "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/independent-test-review-138.jsonl",
+      "render_verified": false,
+      "scene_text_reviewed": true,
+      "verification_basis": "INDEPENDENT_PROOF_AND_EXACT_EXPRESSION_REVIEW_WITH_EXACT_WITNESSES"
+    },
+    "sub_category": "幂级数×定积分",
+    "versioned_id": "codex-continuous-test-v1-20261007-test-calc-015",
+    "visual_style": "逐项积分逼近"
+  }
+]

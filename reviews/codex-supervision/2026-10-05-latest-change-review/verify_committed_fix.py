@@ -1,0 +1,8 @@
+﻿from pathlib import Path
+import importlib.util,json,hashlib
+OUT=Path(__file__).resolve().parent;ROOT=OUT.parents[2];p=ROOT/'tools/draft_audit.py';spec=importlib.util.spec_from_file_location('actual_committed_binding_fix',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);before=hashlib.sha256(p.read_bytes()).hexdigest();selector=ROOT/m.SELECTION;selsha=hashlib.sha256(selector.read_bytes()).hexdigest();checks=[]
+for name,selected,expect in [('bad',OUT/'isolated-bad-binding-selector.json',1),('real',selector,0)]:
+ m.SELECTION=selected.relative_to(ROOT).as_posix();out=OUT/f'committed-fix-{name}-audit';rc=m.main(['--drafts','reviews/2026-10-05-training-diversity-drafts/batch-*/draft-codex-repair-v4-final.jsonl','--out',out.relative_to(ROOT).as_posix()]);isues=[json.loads(x) for x in (out/'issues.jsonl').read_text(encoding='utf-8').splitlines()];actual={'case':name,'V007':sum(x['code']=='V007' for x in isues),'V011':sum(x['code']=='V011' for x in isues),'hard':sum(x['severity']=='hard' for x in isues),'tool_returncode':rc};assert actual['V007']==expect and actual['hard']==expect and actual['V011']==0;checks.append(actual)
+assert hashlib.sha256(p.read_bytes()).hexdigest()==before and hashlib.sha256(selector.read_bytes()).hexdigest()==selsha
+result={'status':'COMMITTED_FIX_INDEPENDENTLY_VERIFIED','commit':'e990576','tool_sha256':before,'selector_sha256':selsha,'checks':checks,'production_data_and_tool_source_modified_by_review':False,'scope':'current draft-root-relative path contract; deliberate bad SHA and actual current selector'}
+(OUT/'committed-fix-validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False))

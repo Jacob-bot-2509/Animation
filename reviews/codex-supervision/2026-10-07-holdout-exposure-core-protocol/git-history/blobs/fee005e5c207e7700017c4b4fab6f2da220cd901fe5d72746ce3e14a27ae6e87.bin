@@ -1,0 +1,108 @@
+[
+  {
+    "id": "draft-c28-05",
+    "category": "高等代数",
+    "sub_category": "行列式",
+    "concept": "行列式几何意义",
+    "concept_id": "C28",
+    "parent_training_ids": [
+      "linalg-050",
+      "linalg-053"
+    ],
+    "problem": "证明三阶行列式的绝对值等于其三个行向量张成的平行六面体的体积。",
+    "solution": "设行向量为 $a,b,c$。向量 $b\\times c$ 的模等于以 $b,c$ 为邻边的平行四边形的面积,方向垂直于该平行四边形(即平行六面体的底面)。三阶行列式等于标量三重积:$|A|=a\\cdot(b\\times c)$。设 $a$ 与 $b\\times c$ 的夹角为 $\\theta$,则 $|a\\cdot(b\\times c)|=|a|\\,|b\\times c|\\,|\\cos\\theta|$。其中 $|b\\times c|$ 是底面积,而 $|a|\\,|\\cos\\theta|$ 恰为向量 $a$ 在底面法向 $b\\times c$ 上的投影长度,即平行六面体的高。故 $|a\\cdot(b\\times c)|=$ 底面积 $\\times$ 高 $=$ 平行六面体体积,即 $|\\det A|=$ 体积。符号方面:当 $a,b,c$ 构成右手系时行列式为正,左手系时为负,对应有向体积。",
+    "answer": "$|\\det A|=|a\\cdot(b\\times c)|=$ 底面积 $\\times$ 高 $=$ 平行六面体体积(证明见解法)。",
+    "method": "标量三重积的几何证明",
+    "difficulty": "进阶",
+    "variant_kind": "证明型:行列式等于体积的完整几何证明(底面积×高+定向符号)",
+    "scene_spec": {
+      "objects": [
+        "三维示意图:平行六面体与底面平行四边形(阴影),高线虚线",
+        "板书:$|b\\times c|=$ 底面积,$b\\times c\\perp$ 底面",
+        "板书:$|a|\\,|\\cos\\theta|=$ 高(投影长度)的几何标注",
+        "板书:行列式 $=a\\cdot(b\\times c)$(标量三重积)",
+        "高亮框:$|\\det A|=$ 底面积 $\\times$ 高 $=$ 体积"
+      ],
+      "steps": [
+        "第一步:画出平行六面体,阴影标出底面。",
+        "第二步:说明 $|b\\times c|$ 等于底面积且方向为底面法向。",
+        "第三步:标注 $a$ 在法向上的投影为高。",
+        "第四步:写出行列式等于标量三重积,把体积拆成底面积乘高。",
+        "第五步:说明符号对应右手/左手定向,完成证明。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  },
+  {
+    "id": "draft-c31-01",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "克拉默法则",
+    "concept_id": "C31",
+    "parent_training_ids": [
+      "linalg-054"
+    ],
+    "problem": "用克拉默法则解线性方程组 $\\begin{cases}x+y+z=6\\\\ x-y+z=2\\\\ x+y-z=0\\end{cases}$。",
+    "solution": "系数行列式 $D=\\begin{vmatrix}1&1&1\\\\1&-1&1\\\\1&1&-1\\end{vmatrix}=1\\times((-1)\\times(-1)-1\\times1)-1\\times(1\\times(-1)-1\\times1)+1\\times(1\\times1-(-1)\\times1)=0+2+2=4$。$D_x=\\begin{vmatrix}6&1&1\\\\2&-1&1\\\\0&1&-1\\end{vmatrix}=6\\times0-1\\times(-2)+1\\times2=4$,$x=\\frac{D_x}{D}=1$。$D_y=\\begin{vmatrix}1&6&1\\\\1&2&1\\\\1&0&-1\\end{vmatrix}=1\\times(-2)-6\\times(-2)+1\\times(-2)=8$,$y=\\frac{D_y}{D}=2$。$D_z=\\begin{vmatrix}1&1&6\\\\1&-1&2\\\\1&1&0\\end{vmatrix}=1\\times(-2)-1\\times(-2)+6\\times2=12$,$z=\\frac{D_z}{D}=3$。验证:$1+2+3=6$,$1-2+3=2$,$1+2-3=0$。",
+    "answer": "$x=1$,$y=2$,$z=3$。",
+    "method": "克拉默法则(三阶)",
+    "difficulty": "基础",
+    "variant_kind": "维数变化:三阶方程组的克拉默求解(替代父题二阶)",
+    "scene_spec": {
+      "objects": [
+        "板书:方程组与系数行列式 $D=4$",
+        "三个高亮框:$D_x=4$、$D_y=8$、$D_z=12$ 的行列式",
+        "板书:比值 $x=1,y=2,z=3$",
+        "验证板书:逐式代入核对",
+        "标签「唯一解」"
+      ],
+      "steps": [
+        "第一步:写出方程组与系数行列式 $D$,展示其计算。",
+        "第二步:依次计算 $D_x$、$D_y$、$D_z$,高亮替换列的来源。",
+        "第三步:由比值公式得 $x=1,y=2,z=3$。",
+        "第四步:逐式代入验证。",
+        "第五步:标注方程组有唯一解。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  },
+  {
+    "id": "draft-c31-02",
+    "category": "高等代数",
+    "sub_category": "线性方程组",
+    "concept": "克拉默法则",
+    "concept_id": "C31",
+    "parent_training_ids": [
+      "linalg-054"
+    ],
+    "problem": "用克拉默法则讨论方程组 $\\begin{cases}ax+y=1\\\\ x+ay=1\\end{cases}$ 的解随参数 $a$ 的变化;唯一解时给出解,奇异时说明无解或无穷多解。",
+    "solution": "系数行列式 $D=a^2-1=(a-1)(a+1)$。当 $a\\neq\\pm1$ 时,$D_x=\\begin{vmatrix}1&1\\\\1&a\\end{vmatrix}=a-1$,$D_y=\\begin{vmatrix}a&1\\\\1&1\\end{vmatrix}=a-1$,故唯一解 $x=y=\\frac{a-1}{a^2-1}=\\frac{1}{a+1}$。当 $a=1$ 时,两个方程都化为 $x+y=1$,同一条直线,无穷多解。当 $a=-1$ 时,方程为 $-x+y=1$ 与 $x-y=1$,两者相加得 $0=2$,矛盾,无解。",
+    "answer": "$a\\neq\\pm1$ 时唯一解 $x=y=\\frac{1}{a+1}$;$a=1$ 时无穷多解($x+y=1$);$a=-1$ 时无解。",
+    "method": "克拉默法则+奇异分支(秩/初等变换判解)",
+    "difficulty": "基础",
+    "variant_kind": "含参奇异分支:唯一解/无穷多解/无解三分支的完整讨论",
+    "scene_spec": {
+      "objects": [
+        "板书:$D=(a-1)(a+1)$ 的因式分解",
+        "数轴:奇异点 $a=-1$ 与 $a=1$ 红色标记,区间标注唯一解",
+        "板书:唯一解 $x=y=\\frac{1}{a+1}$",
+        "板书:$a=1$ 时两直线重合(无穷多解)示意",
+        "板书:$a=-1$ 时两直线平行(无解)示意"
+      ],
+      "steps": [
+        "第一步:计算系数行列式并因式分解。",
+        "第二步:在数轴标出奇异点,非奇异区间给唯一解公式。",
+        "第三步:计算 $D_x,D_y$,得 $x=y=\\frac{1}{a+1}$。",
+        "第四步:$a=1$ 时展示两方程化为同一直线,无穷多解。",
+        "第五步:$a=-1$ 时展示两直线平行无交,无解;汇总三分支。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  }
+]

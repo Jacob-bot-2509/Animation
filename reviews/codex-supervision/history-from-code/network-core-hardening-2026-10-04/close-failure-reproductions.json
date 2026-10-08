@@ -1,0 +1,100 @@
+[
+  {
+    "version": "before",
+    "record": {
+      "host": "127.0.0.1",
+      "transport": "udp",
+      "expected_sid": "S-1-15-2-123",
+      "nonces": {
+        "before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sandbox": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "after": "cccccccccccccccccccccccccccccccc"
+      },
+      "clients": {},
+      "packets": [],
+      "server_complete": false,
+      "server_errors": [
+        "TypeError('client failed')",
+        "RuntimeError('join failed')"
+      ],
+      "runtime_integrity": false,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "cleanup_ok": true,
+        "sids": []
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "cleanup_ok": true,
+        "sids": []
+      },
+      "port": 12345,
+      "server_started": 0,
+      "integrity_error": "FileNotFoundError(2, 'No such file or directory')",
+      "judgment": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "Runtime/client integrity not confirmed",
+          "Receiver failed, unknown or unfinished",
+          "Missing/invalid evidence: 'server_closed'"
+        ],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    }
+  },
+  {
+    "version": "after",
+    "record": {
+      "host": "127.0.0.1",
+      "transport": "udp",
+      "expected_sid": "S-1-15-2-123",
+      "nonces": {
+        "before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sandbox": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "after": "cccccccccccccccccccccccccccccccc"
+      },
+      "clients": {},
+      "packets": [
+        {
+          "hex": "6262626262626262626262626262626262626262626262626262626262626262",
+          "at": 5
+        }
+      ],
+      "server_complete": false,
+      "server_errors": [
+        "TypeError('client failed')",
+        "RuntimeError('join failed')",
+        "receiver error"
+      ],
+      "runtime_integrity": false,
+      "contract": "local-loopback-os-policy-v1",
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "cleanup_ok": true,
+        "sids": []
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "cleanup_ok": true,
+        "sids": []
+      },
+      "port": 12345,
+      "server_started": 0,
+      "server_closed": 30,
+      "integrity_error": "FileNotFoundError(2, 'No such file or directory')",
+      "judgment": {
+        "verdict": "FAIL",
+        "reasons": [
+          "Sandbox nonce received in packet payload"
+        ],
+        "contract": "local-loopback-os-policy-v1"
+      }
+    }
+  }
+]

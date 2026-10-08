@@ -1,0 +1,9 @@
+from manim import *
+FORMULAS = ['x = a(t - \\sin t), y = a(1 - \\cos t)', '0 \\le t \\le 2\\pi', 'x', 'a>0', 'S = \\int_{0}^{2\\pi a} y dx', 'S = \\int_{0}^{2\\pi} a(1 - \\cos t) \\cdot d[a(t - \\sin t)] = \\int_{0}^{2\\pi} a(1 - \\cos t) \\cdot a(1 - \\cos t) dt = a^2 \\int_{0}^{2\\pi} (1 - 2\\cos t + \\cos^2 t) dt', '\\cos t', 'S = a^2 \\int_{0}^{2\\pi} (1 + \\frac{1+\\cos 2t}{2}) dt = a^2 \\cdot 3\\pi = 3\\pi a^2', '3\\pi a^2', 'y', 'dx', 't']
+class ConceptScene(Scene):
+    def construct(self):
+        maths = [MathTex(formula) for formula in FORMULAS]
+        group = VGroup(*maths).arrange(DOWN, buff=1/4)
+        group.scale(min((config.frame_width-1)/group.width, (config.frame_height-1)/group.height))
+        self.add(group)
+        self.wait(1/5)

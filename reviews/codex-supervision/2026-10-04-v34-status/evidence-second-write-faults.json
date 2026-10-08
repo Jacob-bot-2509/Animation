@@ -1,0 +1,1247 @@
+{
+  "simulation_only": true,
+  "faults": {
+    "all_second_fail": {
+      "rc": 0,
+      "stdout_record": {
+        "schema": 3,
+        "run_id": "000000000000",
+        "contract": "local-file-acl-v1",
+        "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+        "state": "COMPLETE",
+        "overall": "PASS_LOCAL_FILE_ACL",
+        "production_gate": "CLOSED",
+        "command": [
+          "/runtime/python.exe",
+          "review"
+        ],
+        "work": "/support/file-work-000000000000",
+        "denied_dir": "/support/file-denied-000000000000",
+        "negative_regressions": {
+          "cases": [
+            {
+              "name": "N1 denied_write 目标出现",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N2 denied_read 内容泄漏",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N3 控制端失败",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N4 令牌证据缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N5 SID 不符",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N6 授予类哈希不一致",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N7 授予类无记录",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N8 拒绝类 winerror 非 5",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N9 拒绝类结果无法解释",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N10 沙箱未启动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N11 拒写目标状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N12 拒读泄漏状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N13 沙箱超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N14 控制超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N15 控制 spawned 非布尔",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N16 未知场景 kind",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N17 客户端自哈希缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N18 正写目标前置已存在",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N19 授予读目标被改动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N20 拒读哨兵被改动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "P1 granted_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P2 denied_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P3 granted_read 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P4 denied_read 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            }
+          ],
+          "all_hold": true
+        },
+        "runtime": "/runtime/python.exe",
+        "profile": "/profile",
+        "expected_sid": "S-1-15-2-1",
+        "pre_granted_acl": [
+          [
+            "/runtime",
+            "read"
+          ],
+          [
+            "/support/file-work-000000000000",
+            "read_write"
+          ]
+        ],
+        "allowed_dirs": [],
+        "sandbox_env": {
+          "SYSTEMROOT": "C:\\Windows",
+          "SystemDrive": "C:",
+          "windir": "C:\\windows",
+          "USERNAME": "Jacap",
+          "USERDOMAIN": "JACAPO",
+          "PATH": "/runtime;C:\\Windows\\System32",
+          "TEMP": "/support/file-work-000000000000",
+          "TMP": "/support/file-work-000000000000",
+          "LOCALAPPDATA": "/profile",
+          "APPDATA": "/profile",
+          "USERPROFILE": "/profile",
+          "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+        },
+        "runtime_manifest": {
+          "python.exe": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "python313.dll": "7bcf8929be22e0e9eb20752c42b249b59319cb65d94fbb9366b97759c9736efb",
+          "Lib/socket.py": "8e395fddc8102a0e05957595c435fa178a391731d6ef8a9c198eabfac57efa0c",
+          "DLLs/_socket.pyd": "98ff97a7d415e4f2c1babfe33d16c054833e06d4399f5604c6b97fa2a1e12384"
+        },
+        "core_manifest_before": {
+          "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+        },
+        "runtime_pth": "Lib\nDLLs\n.\n",
+        "runtime_pth_ok": true,
+        "source_hashes": {
+          "script_sha256": "86f6a5fc839ebf25e367670f1fe75c40ac0269f182067d8992cb564819c0cccc",
+          "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+        },
+        "case": {
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "raw": {
+            "captured": "measured"
+          }
+        },
+        "post_verify": {
+          "all_unchanged": true,
+          "checks": {
+            "python.exe": true,
+            "python313.dll": true,
+            "Lib/socket.py": true,
+            "DLLs/_socket.pyd": true,
+            "pth": true,
+            "client_file": true,
+            "script": true,
+            "core:src/animtrain/appcontainer.py": true,
+            "core:src/animtrain/win_job.py": true,
+            "core:src/animtrain/network_isolation.py": true
+          },
+          "core_modules_before": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          },
+          "core_modules_after": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          }
+        },
+        "evidence_written": "/evidence/file-accept-results-000000000000.json",
+        "stdout_only": false
+      },
+      "persisted_records": {
+        "/evidence/file-accept-results-000000000000.json": {
+          "schema": 3,
+          "run_id": "000000000000",
+          "contract": "local-file-acl-v1",
+          "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+          "state": "COMPLETE",
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "production_gate": "CLOSED",
+          "command": [
+            "/runtime/python.exe",
+            "review"
+          ],
+          "work": "/support/file-work-000000000000",
+          "denied_dir": "/support/file-denied-000000000000",
+          "negative_regressions": {
+            "cases": [
+              {
+                "name": "N1 denied_write 目标出现",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N2 denied_read 内容泄漏",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N3 控制端失败",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N4 令牌证据缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N5 SID 不符",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N6 授予类哈希不一致",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N7 授予类无记录",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N8 拒绝类 winerror 非 5",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N9 拒绝类结果无法解释",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N10 沙箱未启动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N11 拒写目标状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N12 拒读泄漏状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N13 沙箱超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N14 控制超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N15 控制 spawned 非布尔",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N16 未知场景 kind",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N17 客户端自哈希缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N18 正写目标前置已存在",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N19 授予读目标被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N20 拒读哨兵被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "P1 granted_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P2 denied_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P3 granted_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P4 denied_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              }
+            ],
+            "all_hold": true
+          },
+          "runtime": "/runtime/python.exe",
+          "profile": "/profile",
+          "expected_sid": "S-1-15-2-1",
+          "pre_granted_acl": [
+            [
+              "/runtime",
+              "read"
+            ],
+            [
+              "/support/file-work-000000000000",
+              "read_write"
+            ]
+          ],
+          "allowed_dirs": [],
+          "sandbox_env": {
+            "SYSTEMROOT": "C:\\Windows",
+            "SystemDrive": "C:",
+            "windir": "C:\\windows",
+            "USERNAME": "Jacap",
+            "USERDOMAIN": "JACAPO",
+            "PATH": "/runtime;C:\\Windows\\System32",
+            "TEMP": "/support/file-work-000000000000",
+            "TMP": "/support/file-work-000000000000",
+            "LOCALAPPDATA": "/profile",
+            "APPDATA": "/profile",
+            "USERPROFILE": "/profile",
+            "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+          },
+          "runtime_manifest": {
+            "python.exe": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "python313.dll": "7bcf8929be22e0e9eb20752c42b249b59319cb65d94fbb9366b97759c9736efb",
+            "Lib/socket.py": "8e395fddc8102a0e05957595c435fa178a391731d6ef8a9c198eabfac57efa0c",
+            "DLLs/_socket.pyd": "98ff97a7d415e4f2c1babfe33d16c054833e06d4399f5604c6b97fa2a1e12384"
+          },
+          "core_manifest_before": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          },
+          "runtime_pth": "Lib\nDLLs\n.\n",
+          "runtime_pth_ok": true,
+          "source_hashes": {
+            "script_sha256": "86f6a5fc839ebf25e367670f1fe75c40ac0269f182067d8992cb564819c0cccc",
+            "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+          },
+          "case": {
+            "overall": "PASS_LOCAL_FILE_ACL",
+            "raw": {
+              "captured": "measured"
+            }
+          },
+          "post_verify": {
+            "all_unchanged": true,
+            "checks": {
+              "python.exe": true,
+              "python313.dll": true,
+              "Lib/socket.py": true,
+              "DLLs/_socket.pyd": true,
+              "pth": true,
+              "client_file": true,
+              "script": true,
+              "core:src/animtrain/appcontainer.py": true,
+              "core:src/animtrain/win_job.py": true,
+              "core:src/animtrain/network_isolation.py": true
+            },
+            "core_modules_before": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            },
+            "core_modules_after": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            }
+          },
+          "evidence_written": null,
+          "stdout_only": true
+        }
+      },
+      "stderr": "Evidence write failed (primary+fallback): PermissionError('fallback denied')\n"
+    },
+    "second_fallback": {
+      "rc": 0,
+      "stdout_record": {
+        "schema": 3,
+        "run_id": "000000000000",
+        "contract": "local-file-acl-v1",
+        "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+        "state": "COMPLETE",
+        "overall": "PASS_LOCAL_FILE_ACL",
+        "production_gate": "CLOSED",
+        "command": [
+          "/runtime/python.exe",
+          "review"
+        ],
+        "work": "/support/file-work-000000000000",
+        "denied_dir": "/support/file-denied-000000000000",
+        "negative_regressions": {
+          "cases": [
+            {
+              "name": "N1 denied_write 目标出现",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N2 denied_read 内容泄漏",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N3 控制端失败",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N4 令牌证据缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N5 SID 不符",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N6 授予类哈希不一致",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N7 授予类无记录",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N8 拒绝类 winerror 非 5",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N9 拒绝类结果无法解释",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N10 沙箱未启动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N11 拒写目标状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N12 拒读泄漏状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N13 沙箱超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N14 控制超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N15 控制 spawned 非布尔",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N16 未知场景 kind",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N17 客户端自哈希缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N18 正写目标前置已存在",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N19 授予读目标被改动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N20 拒读哨兵被改动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "P1 granted_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P2 denied_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P3 granted_read 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P4 denied_read 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            }
+          ],
+          "all_hold": true
+        },
+        "runtime": "/runtime/python.exe",
+        "profile": "/profile",
+        "expected_sid": "S-1-15-2-1",
+        "pre_granted_acl": [
+          [
+            "/runtime",
+            "read"
+          ],
+          [
+            "/support/file-work-000000000000",
+            "read_write"
+          ]
+        ],
+        "allowed_dirs": [],
+        "sandbox_env": {
+          "SYSTEMROOT": "C:\\Windows",
+          "SystemDrive": "C:",
+          "windir": "C:\\windows",
+          "USERNAME": "Jacap",
+          "USERDOMAIN": "JACAPO",
+          "PATH": "/runtime;C:\\Windows\\System32",
+          "TEMP": "/support/file-work-000000000000",
+          "TMP": "/support/file-work-000000000000",
+          "LOCALAPPDATA": "/profile",
+          "APPDATA": "/profile",
+          "USERPROFILE": "/profile",
+          "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+        },
+        "runtime_manifest": {
+          "python.exe": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "python313.dll": "7bcf8929be22e0e9eb20752c42b249b59319cb65d94fbb9366b97759c9736efb",
+          "Lib/socket.py": "8e395fddc8102a0e05957595c435fa178a391731d6ef8a9c198eabfac57efa0c",
+          "DLLs/_socket.pyd": "98ff97a7d415e4f2c1babfe33d16c054833e06d4399f5604c6b97fa2a1e12384"
+        },
+        "core_manifest_before": {
+          "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+        },
+        "runtime_pth": "Lib\nDLLs\n.\n",
+        "runtime_pth_ok": true,
+        "source_hashes": {
+          "script_sha256": "86f6a5fc839ebf25e367670f1fe75c40ac0269f182067d8992cb564819c0cccc",
+          "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+        },
+        "case": {
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "raw": {
+            "captured": "measured"
+          }
+        },
+        "post_verify": {
+          "all_unchanged": true,
+          "checks": {
+            "python.exe": true,
+            "python313.dll": true,
+            "Lib/socket.py": true,
+            "DLLs/_socket.pyd": true,
+            "pth": true,
+            "client_file": true,
+            "script": true,
+            "core:src/animtrain/appcontainer.py": true,
+            "core:src/animtrain/win_job.py": true,
+            "core:src/animtrain/network_isolation.py": true
+          },
+          "core_modules_before": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          },
+          "core_modules_after": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          }
+        },
+        "evidence_written": "/support/fallback-file-accept-results-000000000000.json",
+        "stdout_only": false
+      },
+      "persisted_records": {
+        "/evidence/file-accept-results-000000000000.json": {
+          "schema": 3,
+          "run_id": "000000000000",
+          "contract": "local-file-acl-v1",
+          "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+          "state": "COMPLETE",
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "production_gate": "CLOSED",
+          "command": [
+            "/runtime/python.exe",
+            "review"
+          ],
+          "work": "/support/file-work-000000000000",
+          "denied_dir": "/support/file-denied-000000000000",
+          "negative_regressions": {
+            "cases": [
+              {
+                "name": "N1 denied_write 目标出现",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N2 denied_read 内容泄漏",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N3 控制端失败",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N4 令牌证据缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N5 SID 不符",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N6 授予类哈希不一致",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N7 授予类无记录",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N8 拒绝类 winerror 非 5",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N9 拒绝类结果无法解释",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N10 沙箱未启动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N11 拒写目标状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N12 拒读泄漏状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N13 沙箱超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N14 控制超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N15 控制 spawned 非布尔",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N16 未知场景 kind",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N17 客户端自哈希缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N18 正写目标前置已存在",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N19 授予读目标被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N20 拒读哨兵被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "P1 granted_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P2 denied_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P3 granted_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P4 denied_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              }
+            ],
+            "all_hold": true
+          },
+          "runtime": "/runtime/python.exe",
+          "profile": "/profile",
+          "expected_sid": "S-1-15-2-1",
+          "pre_granted_acl": [
+            [
+              "/runtime",
+              "read"
+            ],
+            [
+              "/support/file-work-000000000000",
+              "read_write"
+            ]
+          ],
+          "allowed_dirs": [],
+          "sandbox_env": {
+            "SYSTEMROOT": "C:\\Windows",
+            "SystemDrive": "C:",
+            "windir": "C:\\windows",
+            "USERNAME": "Jacap",
+            "USERDOMAIN": "JACAPO",
+            "PATH": "/runtime;C:\\Windows\\System32",
+            "TEMP": "/support/file-work-000000000000",
+            "TMP": "/support/file-work-000000000000",
+            "LOCALAPPDATA": "/profile",
+            "APPDATA": "/profile",
+            "USERPROFILE": "/profile",
+            "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+          },
+          "runtime_manifest": {
+            "python.exe": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "python313.dll": "7bcf8929be22e0e9eb20752c42b249b59319cb65d94fbb9366b97759c9736efb",
+            "Lib/socket.py": "8e395fddc8102a0e05957595c435fa178a391731d6ef8a9c198eabfac57efa0c",
+            "DLLs/_socket.pyd": "98ff97a7d415e4f2c1babfe33d16c054833e06d4399f5604c6b97fa2a1e12384"
+          },
+          "core_manifest_before": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          },
+          "runtime_pth": "Lib\nDLLs\n.\n",
+          "runtime_pth_ok": true,
+          "source_hashes": {
+            "script_sha256": "86f6a5fc839ebf25e367670f1fe75c40ac0269f182067d8992cb564819c0cccc",
+            "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+          },
+          "case": {
+            "overall": "PASS_LOCAL_FILE_ACL",
+            "raw": {
+              "captured": "measured"
+            }
+          },
+          "post_verify": {
+            "all_unchanged": true,
+            "checks": {
+              "python.exe": true,
+              "python313.dll": true,
+              "Lib/socket.py": true,
+              "DLLs/_socket.pyd": true,
+              "pth": true,
+              "client_file": true,
+              "script": true,
+              "core:src/animtrain/appcontainer.py": true,
+              "core:src/animtrain/win_job.py": true,
+              "core:src/animtrain/network_isolation.py": true
+            },
+            "core_modules_before": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            },
+            "core_modules_after": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            }
+          },
+          "evidence_written": null,
+          "stdout_only": true
+        },
+        "/support/fallback-file-accept-results-000000000000.json": {
+          "schema": 3,
+          "run_id": "000000000000",
+          "contract": "local-file-acl-v1",
+          "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+          "state": "COMPLETE",
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "production_gate": "CLOSED",
+          "command": [
+            "/runtime/python.exe",
+            "review"
+          ],
+          "work": "/support/file-work-000000000000",
+          "denied_dir": "/support/file-denied-000000000000",
+          "negative_regressions": {
+            "cases": [
+              {
+                "name": "N1 denied_write 目标出现",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N2 denied_read 内容泄漏",
+                "verdict": "FAIL",
+                "expect": "FAIL",
+                "holds": true
+              },
+              {
+                "name": "N3 控制端失败",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N4 令牌证据缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N5 SID 不符",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N6 授予类哈希不一致",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N7 授予类无记录",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N8 拒绝类 winerror 非 5",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N9 拒绝类结果无法解释",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N10 沙箱未启动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N11 拒写目标状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N12 拒读泄漏状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N13 沙箱超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N14 控制超时状态未知",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N15 控制 spawned 非布尔",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N16 未知场景 kind",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N17 客户端自哈希缺失",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N18 正写目标前置已存在",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N19 授予读目标被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "N20 拒读哨兵被改动",
+                "verdict": "UNVERIFIED",
+                "expect": "UNVERIFIED",
+                "holds": true
+              },
+              {
+                "name": "P1 granted_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P2 denied_write 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P3 granted_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              },
+              {
+                "name": "P4 denied_read 基线",
+                "verdict": "PASS",
+                "expect": "PASS",
+                "holds": true
+              }
+            ],
+            "all_hold": true
+          },
+          "runtime": "/runtime/python.exe",
+          "profile": "/profile",
+          "expected_sid": "S-1-15-2-1",
+          "pre_granted_acl": [
+            [
+              "/runtime",
+              "read"
+            ],
+            [
+              "/support/file-work-000000000000",
+              "read_write"
+            ]
+          ],
+          "allowed_dirs": [],
+          "sandbox_env": {
+            "SYSTEMROOT": "C:\\Windows",
+            "SystemDrive": "C:",
+            "windir": "C:\\windows",
+            "USERNAME": "Jacap",
+            "USERDOMAIN": "JACAPO",
+            "PATH": "/runtime;C:\\Windows\\System32",
+            "TEMP": "/support/file-work-000000000000",
+            "TMP": "/support/file-work-000000000000",
+            "LOCALAPPDATA": "/profile",
+            "APPDATA": "/profile",
+            "USERPROFILE": "/profile",
+            "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+          },
+          "runtime_manifest": {
+            "python.exe": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "python313.dll": "7bcf8929be22e0e9eb20752c42b249b59319cb65d94fbb9366b97759c9736efb",
+            "Lib/socket.py": "8e395fddc8102a0e05957595c435fa178a391731d6ef8a9c198eabfac57efa0c",
+            "DLLs/_socket.pyd": "98ff97a7d415e4f2c1babfe33d16c054833e06d4399f5604c6b97fa2a1e12384"
+          },
+          "core_manifest_before": {
+            "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+          },
+          "runtime_pth": "Lib\nDLLs\n.\n",
+          "runtime_pth_ok": true,
+          "source_hashes": {
+            "script_sha256": "86f6a5fc839ebf25e367670f1fe75c40ac0269f182067d8992cb564819c0cccc",
+            "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+            "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+            "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+          },
+          "case": {
+            "overall": "PASS_LOCAL_FILE_ACL",
+            "raw": {
+              "captured": "measured"
+            }
+          },
+          "post_verify": {
+            "all_unchanged": true,
+            "checks": {
+              "python.exe": true,
+              "python313.dll": true,
+              "Lib/socket.py": true,
+              "DLLs/_socket.pyd": true,
+              "pth": true,
+              "client_file": true,
+              "script": true,
+              "core:src/animtrain/appcontainer.py": true,
+              "core:src/animtrain/win_job.py": true,
+              "core:src/animtrain/network_isolation.py": true
+            },
+            "core_modules_before": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            },
+            "core_modules_after": {
+              "src/animtrain/appcontainer.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/win_job.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+              "src/animtrain/network_isolation.py": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2"
+            }
+          },
+          "evidence_written": "/evidence/file-accept-results-000000000000.json",
+          "stdout_only": false
+        }
+      },
+      "stderr": ""
+    }
+  }
+}

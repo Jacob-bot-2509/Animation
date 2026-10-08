@@ -1,0 +1,52 @@
+{
+  "profile": "codex-fixed-sandbox-16bf17a1dcdc4eb8",
+  "work": "D:\\code\\output\\claude-supervision\\sandbox-fix-2026-10-04\\native-work-f8q0z51b",
+  "runtime": "D:\\code\\output\\claude-supervision\\fix-2026-10-04\\appcontainer-probe-wenbjyjh\\runtime",
+  "checks": {
+    "inherited_handle": {
+      "token_is_appcontainer": true,
+      "stdin_eof": true,
+      "direct_errno": 13,
+      "inherited_read_ok": false,
+      "inherited_error": -1073741816,
+      "inherited_invalid_handle": true,
+      "inherited_bytes": "",
+      "returncode": 0,
+      "stderr_capture": true
+    },
+    "timeout_tree": {
+      "timed_out": true,
+      "stdout": "{\"child_pid\": 48636}\r\n",
+      "stderr": "",
+      "child_pid": 48636,
+      "child_image_matches": true,
+      "child_observed_alive_before_cleanup": true,
+      "held_child_handle_signaled_after_return": true
+    },
+    "normal_root_exit_tree": {
+      "returncode": 0,
+      "stdout": "{\"child_pid\": 18156}\r\n",
+      "child_pid": 18156,
+      "child_image_matches": true,
+      "child_observed_alive_before_cleanup": true,
+      "held_child_handle_signaled_after_return": true
+    },
+    "assignment_fail_closed": {
+      "child_code_executed": false
+    },
+    "parent_handle_count": {
+      "before": 179,
+      "after": 179,
+      "delta": 0
+    },
+    "capture_temp_files_left": []
+  },
+  "create_hresult": 0,
+  "status": "PASS_TWO_FIXES_ONLY",
+  "delete_hresult": 0,
+  "profile_exists_after_cleanup": false,
+  "source_sha256": {
+    "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c"
+  }
+}

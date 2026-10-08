@@ -69,6 +69,11 @@ def main(argv: list[str]) -> int:
     if not sweep.get("candidates"):
         print("[FAIL] 候选配置列表为空")
         return 2
+    for candidate in sweep['candidates']:
+        approval_error=ts.hyperparameter_approval_error(candidate)
+        if approval_error:
+            print('[FAIL] Candidate '+str(candidate.get('name','unnamed'))+': '+approval_error)
+            return 2
     work = ROOT / "runs" / ("hp-sweep-" + datetime.now().strftime("%Y%m%d-%H%M%S"))
     work.mkdir(parents=True, exist_ok=True)
     manifest = Path(sweep.get("dataset_manifest", "data/manifest.json"))
@@ -83,7 +88,8 @@ def main(argv: list[str]) -> int:
 
     # 门禁自检一次(前置;任何候选训练前)
     run_id = uuid.uuid4().hex[:12]
-    ok, tail = gate_ready(run_id)
+    gate_config=dict(sweep);gate_config["_config_path"]=str(args.config.resolve())
+    ok, tail = gate_ready(run_id,gate_config)
     if not ok:
         print(f"[FAIL] 门禁未 ready,扫参停止(不绕过): {tail}")
         return 2
@@ -97,6 +103,7 @@ def main(argv: list[str]) -> int:
         cdir = work / name
         cdir.mkdir(parents=True, exist_ok=True)
         cfg = {"hyperparameters": cand["hyperparameters"],
+               "hyperparameter_approval": cand["hyperparameter_approval"],
                "model_path": str(model_dir),
                "dataset_manifest": str(manifest),
                "render_executor": sweep.get("render_executor"),
@@ -104,6 +111,7 @@ def main(argv: list[str]) -> int:
         cfg_path = cdir / "rounds-config.json"
         cfg_path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2),
                             encoding="utf-8")
+        cfg["_config_path"]=str(cfg_path.resolve())
         print(f"[sweep] 候选 {i}/{len(sweep['candidates'])}: {name} 训练中…")
         trained = ts.train(cfg, cdir, run_id + "-" + name[:8])
         if trained.get("status") != "TRAINED":
@@ -118,6 +126,7 @@ def main(argv: list[str]) -> int:
             encoding="utf-8")) if (cdir / "eval-report.json").exists() else {}
         results.append({"name": name, "status": "OK" if rc == 0 else "EVAL_FAILED",
                         "hyperparameters": cand["hyperparameters"],
+                        "hyperparameter_approval": cand["hyperparameter_approval"],
                         "metrics": {k: v for k, v in report.items()
                                     if k in ("executable", "render", "math",
                                              "fidelity", "total_questions")},
@@ -152,13 +161,14 @@ def main(argv: list[str]) -> int:
     (work / "sweep-report.md").write_text("\n".join(md), encoding="utf-8")
     if winner:
         winner_cfg = {"hyperparameters": ranked[0]["hyperparameters"],
+                      "hyperparameter_approval": ranked[0]["hyperparameter_approval"],
                       "model_path": str(model_dir),
                       "dataset_manifest": str(manifest),
                       "train_script": "tools/train_step.py",
                       "eval_script": "tools/eval_step.py",
                       "render_executor": sweep.get("render_executor"),
                       "judge_script": sweep.get("judge_script"),
-                      "targets": {"render": 1.0, "executable": 0.95},
+                      "targets": {"render": "1", "executable": "19/20"},
                       "max_rounds": 8, "plateau_rounds": 3,
                       "_说明": "扫参胜者配置,正式训练循环使用"}
         winner_path = Path(sweep.get("output_winner",

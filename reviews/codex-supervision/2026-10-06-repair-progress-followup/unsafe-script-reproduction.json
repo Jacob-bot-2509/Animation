@@ -1,0 +1,47 @@
+{
+  "purpose": "Isolated synthetic old-script reproduction only; NOT real labels/acceptance",
+  "results": [
+    {
+      "case": "forged-ok-accepted",
+      "returncode": 0,
+      "canonical_fixture_files_changed": [
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "data/manifest.json",
+        "data/asset_evidence.json",
+        "data/eval-v2.lock.json",
+        "data/test-v2.lock.json"
+      ],
+      "only_render_ok_boolean_supplied": true,
+      "production_files_modified": false,
+      "tail": "nsafe-script-reproduction\\\\forged-ok-accepted\\\\reviews\\\\admission\\\\render-evidence.json\"\n}\nrescreen: {\"compared_pairs\": 15, \"structural_candidates\": [], \"signature_equal_count\": 1, \"signature_equal_ids\": [\"linalg-063\"]}\n"
+    },
+    {
+      "case": "screen-failure-after-write",
+      "returncode": 1,
+      "canonical_fixture_files_changed": [
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "data/manifest.json",
+        "data/asset_evidence.json",
+        "data/eval-v2.lock.json",
+        "data/test-v2.lock.json"
+      ],
+      "only_render_ok_boolean_supplied": true,
+      "production_files_modified": false,
+      "tail": " remain: ['linalg-050', 'linalg-051', 'linalg-053', 'linalg-054', 'linalg-055', 'linalg-056', 'linalg-058', 'linalg-062', 'linalg-063', 'linalg-064', 'linalg-065', 'linalg-066', 'linalg-067', 'linalg-069', 'linalg-070']\n"
+    },
+    {
+      "case": "existing-report-after-write",
+      "returncode": 1,
+      "canonical_fixture_files_changed": [
+        "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "data/manifest.json",
+        "data/asset_evidence.json",
+        "data/eval-v2.lock.json",
+        "data/test-v2.lock.json"
+      ],
+      "only_render_ok_boolean_supplied": true,
+      "production_files_modified": false,
+      "tail": "[FAIL] apply report exists\n"
+    }
+  ]
+}

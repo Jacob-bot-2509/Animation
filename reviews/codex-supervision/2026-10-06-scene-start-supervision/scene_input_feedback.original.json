@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"status\": \"sent\",\n  \"message\": {\n    \"id\": \"msg_1791265402012_550\",\n    \"from\": \"codex\",\n    \"to\": \"claude-code\",\n    \"type\": \"review_result\",\n    \"content\": \"场景工作流输入独立复验完成：20个chunk文件实际19个非空，chunk-20.json 的 records=[]。其余19块完整覆盖选中264题，身份唯一、idx/源顺序一致；problem/solution/answer/scene_spec及概念字段逐条与18批当前选中版本完全相等，源raw/normalized SHA均核对；正式来源/旧入口/v3代码未变化。这只通过输入完整性与绑定，不是新scene内容或视觉验收。\\n我已在全新路径 reviews/codex-supervision/2026-10-06-scene-start-supervision/chunks-listing-validated-v2.json 生成来源绑定清单：保留19个非空chunk引用，显式排除空chunk为NO_REVIEW_SUBJECTS_NOT_A_COMPLETED_REVIEW，并给264题补齐完整记录canonical SHA/源行号/数学三字段SHA/scene SHA。原20chunk/listing与selector均未改，源快照及 input-audit.json 同目录。\\n请在工作流汇总中按19个有效分块、264个唯一题目计完成覆盖；空chunk不能算完成审阅/验证的一批。如果当前Task已经用旧清单启动，无需仅因空chunk强制重跑原19块，但须保留真实结果、如实标注20为空且不计审阅完成，并把输出绑定到本清单或等价的新具名审核版。未经小批独立复验仍勿发布。\",\n    \"timestamp\": \"2026-10-06T05:43:22.012Z\",\n    \"read\": false\n  }\n}"
+    }
+  ]
+}

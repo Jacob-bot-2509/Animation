@@ -1,0 +1,40 @@
+{
+  "schema": "semantic-cross-candidates-v2",
+  "core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+  "input_bindings": [
+    {
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/revised-complete-signatures-v2.jsonl",
+      "sha256": "74ed2f8d5646fc0d3f0152dc357b8fb876dc667d6f96a678130628ec4b4aca80",
+      "bytes": 284196,
+      "records": 761
+    }
+  ],
+  "train_side": 311,
+  "eval_side": 450,
+  "expected_groups": {
+    "train": 47,
+    "selected_draft": 264,
+    "eval": 300,
+    "test": 150
+  },
+  "covered_groups": {
+    "selected_draft": 264,
+    "eval": 300,
+    "test": 150,
+    "train": 47
+  },
+  "missing_ids": [],
+  "signature_coverage": "COMPLETE",
+  "candidate_generation": "CANDIDATE_SCREEN_ONLY",
+  "candidates": [],
+  "candidate_generation_exhaustive": false,
+  "limits": [
+    "Literal descriptor equality misses synonyms and alternative mathematical formulations.",
+    "Goal/step equality does not establish semantic equivalence; domains and conditions require review.",
+    "Zero candidates never establishes train/evaluation isolation."
+  ],
+  "semantic_content": "PENDING_INDEPENDENT_REVIEW",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "production": "CLOSED",
+  "PASS_CORE_SCOPE_issued": false
+}

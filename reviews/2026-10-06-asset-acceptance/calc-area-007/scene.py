@@ -14,10 +14,17 @@ def area_slice_vertices(x, dx=Fraction(1, 12)):
 
 class ConceptScene(Scene):
     def construct(self):
+        # Compile every TeX object before constructing Pango Text captions.
+        # The observed portable MiKTeX/Pango mixed path fails when TeX is deferred.
         title = MathTex('y=x^2', r'\quad', 'y=x+2').to_edge(UP)
+        left_label = MathTex('(-1,1)')
+        right_label = MathTex('(2,4)')
+        formula = MathTex(r'S=\int_{-1}^{2}(x+2-x^2)\,dx',
+                          r'=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^{2}',
+                          r'=\frac{9}{2}').scale_to_fit_width(config.frame_width-6/5).to_edge(DOWN)
         self.play(Write(title))
         axes = Axes(x_range=[-2, 4, 1], y_range=[-2, 6, 1],
-                    x_length=33/5, y_length=19/5).shift(RIGHT + DOWN*9/20)
+                    x_length=33/5, y_length=19/5, axis_config={'color':WHITE}).shift(RIGHT + DOWN*9/20)
         curve = axes.plot(lambda x: x**2, x_range=[-3/2, 27/10, 1/100], color=BLUE)
         line = axes.plot(lambda x: x+2, x_range=[-3/2, 27/10, 1/100], color=RED)
         captions = VGroup(*[
@@ -29,8 +36,8 @@ class ConceptScene(Scene):
         self.play(Create(axes), Create(curve), Create(line), FadeIn(captions[0]))
         points = VGroup(Dot(axes.c2p(-1, 1), color=YELLOW),
                         Dot(axes.c2p(2, 4), color=YELLOW))
-        labels = VGroup(MathTex('(-1,1)').scale(11/20).next_to(points[0], DL, buff=3/25),
-                        MathTex('(2,4)').scale(11/20).next_to(points[1], UR, buff=3/25))
+        labels = VGroup(left_label.scale(11/20).next_to(points[0], DL, buff=3/25),
+                        right_label.scale(11/20).next_to(points[1], UR, buff=3/25))
         self.play(FadeIn(points), Write(labels), FadeIn(captions[1]))
         area = axes.get_area(curve, x_range=[-1, 2], bounded_graph=line,
                              color=YELLOW, opacity=9/20)
@@ -46,8 +53,5 @@ class ConceptScene(Scene):
         self.play(FadeIn(captions[3]))
         self.play(value.animate.set_value(2), run_time=9/2)
         self.remove(micro_element)
-        formula = MathTex(r'S=\int_{-1}^{2}(x+2-x^2)\,dx',
-                          r'=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^{2}',
-                          r'=\frac{9}{2}').scale_to_fit_width(config.frame_width-6/5).to_edge(DOWN)
         self.play(Write(formula), FadeIn(captions[4]))
         self.wait(4/5)

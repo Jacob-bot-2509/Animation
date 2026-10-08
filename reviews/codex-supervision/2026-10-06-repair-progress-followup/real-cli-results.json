@@ -1,0 +1,20 @@
+[
+  {
+    "name": "build-current-diagnostic",
+    "returncode": 0,
+    "expected_returncode": 0,
+    "stdout": "{\"pairs\": 171, \"draft_questions\": 264, \"unique_query_questions\": 250, \"query_scene_records\": 450, \"strata\": {\"S1a_parent_derived\": 59, \"S1b_same_sub\": 32, \"S2_same_cat_diff_sub\": 48, \"S3_cross_cat\": 32}, \"independence\": {\"status\": \"DEVELOPMENT_DERIVED\", \"calibration_eligible\": false, \"reason\": \"Sampling uses development labels and draft parent lineage; previously reviewed draft problems are not an untouched holdout.\"}, \"labeling_status\": \"PENDING\", \"out\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\codex-supervision\\\\2026-10-06-repair-progress-followup\\\\diagnostic-current-v3\\\\holdout-pairs.json\"}"
+  },
+  {
+    "name": "reject-old-admission-receipt",
+    "returncode": 2,
+    "expected_returncode": 2,
+    "stdout": "[FAIL] bound v2 render receipt required; old/unbound receipt rejected"
+  },
+  {
+    "name": "reject-unreviewed-scene",
+    "returncode": 2,
+    "expected_returncode": 2,
+    "stdout": "[FAIL] scene is not the reviewed revision"
+  }
+]

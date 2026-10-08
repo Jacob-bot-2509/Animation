@@ -1,0 +1,23 @@
+{
+  "_说明": "训练循环轮次配置(提案版);超参为 Claude Code 建议默认值,待用户确认后定案;确认前 train_step 仍会执行(fail-closed 检查的是字段非空)",
+  "hyperparameters": {
+    "learning_rate": 0.0002,
+    "batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "epochs": 3,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_length": 2048,
+    "quantization": "4bit",
+    "seed": 42
+  },
+  "model_path": ".models/qwen3-4b",
+  "dataset_manifest": "data/manifest.json",
+  "train_script": "tools/train_step.py",
+  "eval_script": "tools/eval_step.py",
+  "render_executor": null,
+  "judge_script": null,
+  "targets": {"render": 1.0, "executable": 0.95},
+  "max_rounds": 8,
+  "plateau_rounds": 3
+}

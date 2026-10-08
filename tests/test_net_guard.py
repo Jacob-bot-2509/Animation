@@ -75,10 +75,12 @@ class TestNetShim(unittest.TestCase):
     def test_isolation_state_network_honest(self):
         """msg_259:_socket 可绕过 shim → network_isolation 必须为 False,
         python_socket_guard 只标 best-effort,不得冒充 B4 验收。"""
-        st = _isolation_state()
+        from unittest import mock
+        with mock.patch("animtrain.sandbox_execution.check_certificate", return_value=(False, "生产隔离尚未联合验收")):
+            st = _isolation_state()
         self.assertIs(st["network_isolation"], False)
-        self.assertIs(st["python_socket_guard"], True)
-        self.assertIn("best-effort", st["note"])
+        self.assertIs(st["python_socket_guard"], False)
+        self.assertIn("联合验收", st["note"])
 
 
 if __name__ == "__main__":

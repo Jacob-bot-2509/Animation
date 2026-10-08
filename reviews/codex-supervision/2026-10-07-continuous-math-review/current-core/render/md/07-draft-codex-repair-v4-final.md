@@ -1,0 +1,793 @@
+## draft-c35-01
+
+problem
+
+用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。
+
+solution
+
+先对含 $x$ 的项配方：$x^2+4xy+3y^2=(x+2y)^2-y^2$，故 $f=(x+2y)^2-y^2+z^2$。令 $u=x+2y$，$v=y$，$w=z$，则 $f=u^2-v^2+w^2$ 为标准形；线性替换为 $x=u-2v$，$y=v$，$z=w$，其系数矩阵 $\begin{pmatrix}1&-2&0\\0&1&0\\0&0&1\end{pmatrix}$ 的行列式为 $1\neq0$，可逆。正惯性指数 $2$，负惯性指数 $1$，秩 $3$。因负惯性指数非零，二次型不定(非正定)。令 $C=\begin{pmatrix}1&-2&0\\0&1&0\\0&0&1\end{pmatrix}$，有 $C^{\mathsf T}AC=\operatorname{diag}(1,-1,1)$。$\det C=1$，$(n_+,n_-,n_0)=(2,1,0)$。既有正方向又有负方向才推出不定：$f(1,0,0)=1>0$、$f(-2,1,0)=-1<0$。
+
+answer
+
+标准形 $u^2-v^2+w^2$，替换 $x=u-2v,y=v,z=w$;正惯性指数 $2$，负惯性指数 $1$，秩 $3$，不定。
+
+scene_spec.objects[0]
+
+板书:$f=x^2+4xy+3y^2+z^2$
+
+scene_spec.objects[1]
+
+板书:配方步骤 $x^2+4xy+3y^2=(x+2y)^2-y^2$
+
+scene_spec.objects[2]
+
+板书:标准形 $u^2-v^2+w^2$ 与替换矩阵
+
+scene_spec.objects[3]
+
+高亮框:惯性指数 $(2,1,0)$、秩 $3$
+
+scene_spec.objects[4]
+
+标签「不定(非正定)」
+
+scene_spec.steps[0]
+
+第一步:写出二次型,标出含 $x$ 的交叉项。
+
+scene_spec.steps[1]
+
+第二步:逐步配方:$(x+2y)^2-y^2+z^2$,展示配平过程。
+
+scene_spec.steps[2]
+
+第三步:引入新变量 $u,v,w$,写出可逆替换矩阵并验证行列式非零。
+
+scene_spec.steps[3]
+
+第四步:高亮标准形 $u^2-v^2+w^2$ 与惯性指数 $(2,1,0)$、秩 $3$。
+
+scene_spec.steps[4]
+
+第五步：由$n_+=2>0$且$n_-=1>0$，或一正一负两个见证，严格推出不定。
+
+## draft-c35-02
+
+problem
+
+对四元二次型$f=(x_1-x_2)^2+2(x_2-x_3)^2+3(x_3-x_4)^2$，给出可逆线性替换、合同标准形及惯性；再证明将$f$限制在$V=\{x:x_4=0\}$上后成为正定型。
+
+solution
+
+令$u_1=x_1-x_2,u_2=x_2-x_3,u_3=x_3-x_4,w=x_4$。反解为$x_4=w,x_3=u_3+w,x_2=u_2+u_3+w,x_1=u_1+u_2+u_3+w$，故替换可逆。标准形为$u_1^2+2u_2^2+3u_3^2+0w^2$；再伸缩$v_1=u_1,v_2=\sqrt2u_2,v_3=\sqrt3u_3$得规范形$v_1^2+v_2^2+v_3^2+0w^2$。全空间的秩为$3$，惯性为$(3,0,1)$，核为$\operatorname{span}\{(1,1,1,1)\}$。若$x\in V$且$f(x)=0$，三个平方均为零，故$x=c(1,1,1,1)$；第四坐标为零又给$c=0$，故$x=0$。因此$f|_V$正定；$\dim V=3$，其惯性为$(3,0,0)$。亦可在新坐标中写约束$w=0$，三个差分坐标仍独立，标准形保留三个正平方。
+
+answer
+
+全空间标准形$u_1^2+2u_2^2+3u_3^2+0w^2$，秩$3$、惯性$(3,0,1)$；限制在$V$上正定，惯性$(3,0,0)$。
+
+scene_spec.objects[0]
+
+四元二次型及差分坐标
+
+scene_spec.objects[1]
+
+核$\operatorname{span}(1,1,1,1)$
+
+scene_spec.objects[2]
+
+固定端点$x_4=w=0$
+
+scene_spec.objects[3]
+
+全空间与限制空间的惯性对照
+
+scene_spec.steps[0]
+
+第一步:定义差分坐标并给反解。
+
+scene_spec.steps[1]
+
+第二步:写出标准形和规范形。
+
+scene_spec.steps[2]
+
+第三步:计算核、秩与三元惯性。
+
+scene_spec.steps[3]
+
+第四步:将约束代入，证明核与约束空间只交于零，得到限制正定。
+
+## draft-c35-03
+
+problem
+
+求使二次型 $f(x,y)=x^2+2xy+ay^2$ 的秩为 $1$ 的参数 $a$ 的值；并分别求 $a=0$、$a=1$、$a=2$ 时的标准形与正负惯性指数。
+
+solution
+
+令 $u=x+y,v=y$，则 $f=u^2+(a-1)v^2$，对应 $C=\begin{pmatrix}1&-1\\0&1\end{pmatrix}$ 满足 $C^{\mathsf T}AC=\operatorname{diag}(1,a-1)$，$\det C=1$。因 $A_{11}=1\ne0$，$\operatorname{rank}A\ge1$；$\det A=a-1$，故秩为$1$当且仅当$a=1$。$a=0$时标准形$u^2-v^2$、惯性三元组$(1,1,0)$、秩$2$；$a=1$时$u^2+0v^2$、惯性三元组$(1,0,1)$、秩$1$；$a=2$时$u^2+v^2$、惯性三元组$(2,0,0)$、秩$2$。
+
+answer
+
+$a=1\iff\operatorname{rank}A=1$。$a=0,1,2$的标准形分别为$u^2-v^2,u^2+0v^2,u^2+v^2$；惯性三元组$(n_+,n_-,n_0)$分别为$(1,1,0),(1,0,1),(2,0,0)$。
+
+scene_spec.objects[0]
+
+板书:$f=x^2+2xy+ay^2$ 与矩阵 $A=\begin{pmatrix}1&1\\1&a\end{pmatrix}$
+
+scene_spec.objects[1]
+
+板书:$\det A=a-1$,秩为 $1$ 当且仅当 $a=1$
+
+scene_spec.objects[2]
+
+数轴:$a=1$ 处退化边界标记
+
+scene_spec.objects[3]
+
+三个分支板书:$a=0$、$a=1$、$a=2$ 的配方与惯性指数
+
+scene_spec.objects[4]
+
+标签:「不定：惯性(1,1,0)」「退化：惯性(1,0,1)」「正定：惯性(2,0,0)」
+
+scene_spec.steps[0]
+
+第一步:写出矩阵,计算 $\det A=a-1$。
+
+scene_spec.steps[1]
+
+第二步:说明秩为 $1$ 的条件,在数轴标出 $a=1$ 边界。
+
+scene_spec.steps[2]
+
+第三步:展示 $a=0$ 分支:$(x+y)^2-y^2$,惯性 $(1,1,0)$,不定。
+
+scene_spec.steps[3]
+
+第四步:展示 $a=1$ 分支:$(x+y)^2$,惯性 $(1,0,1)$,退化。
+
+scene_spec.steps[4]
+
+第五步:展示 $a=2$ 分支:$(x+y)^2+y^2$,惯性 $(2,0,0)$,正定;汇总三分支。
+
+## draft-c35-04
+
+problem
+
+用配方法将二次型 $f(x,y,z)=x^2-y^2+2xz+2yz$ 化为标准形，写出可逆线性替换，并求正负惯性指数与秩。
+
+solution
+
+先对含 $x$ 的项配方：$x^2+2xz=(x+z)^2-z^2$，于是 $f=(x+z)^2-z^2-y^2+2yz=(x+z)^2-(y^2-2yz+z^2)=(x+z)^2-(y-z)^2$。令 $u=x+z$，$v=y-z$，$w=z$，则标准形为 $u^2-v^2$($w$ 不出现，退化)；反解得线性替换 $x=u-w$，$y=v+w$，$z=w$，系数矩阵 $\begin{pmatrix}1&0&-1\\0&1&1\\0&0&1\end{pmatrix}$ 行列式为 $1$，可逆。正惯性指数 $1$，负惯性指数 $1$，秩 $2$。对应 $C^{\mathsf T}AC=\operatorname{diag}(1,-1,0)$，故惯性三元组为 $(1,1,1)$。不出现的第三变量是一个零方向，不能把零惯性指数写成$0$。
+
+answer
+
+标准形 $u^2-v^2+0w^2$；$x=u-w,y=v+w,z=w$；$(n_+,n_-,n_0)=(1,1,1)$，秩$2$。
+
+scene_spec.objects[0]
+
+板书:$f=x^2-y^2+2xz+2yz$
+
+scene_spec.objects[1]
+
+板书:第一步配方 $x^2+2xz=(x+z)^2-z^2$
+
+scene_spec.objects[2]
+
+板书:合并 $-(y^2-2yz+z^2)=-(y-z)^2$
+
+scene_spec.objects[3]
+
+高亮框:标准形 $u^2-v^2$ 与替换矩阵 $\begin{pmatrix}1&0&-1\\0&1&1\\0&0&1\end{pmatrix}$
+
+scene_spec.objects[4]
+
+标签「惯性 $(1,1,1)$,秩 $2$(退化)」
+
+scene_spec.steps[0]
+
+第一步:写出二次型,标出含 $x$ 与含 $y$ 的交叉项。
+
+scene_spec.steps[1]
+
+第二步:对 $x$ 配方得 $(x+z)^2-z^2$,剩余项高亮。
+
+scene_spec.steps[2]
+
+第三步:合并剩余项为 $-(y-z)^2$,展示完全平方差。
+
+scene_spec.steps[3]
+
+第四步:写出新变量替换与可逆矩阵,验证行列式。
+
+scene_spec.steps[4]
+
+第五步:高亮标准形 $u^2-v^2$,标注惯性 $(1,1,1)$ 与秩 $2$ 的退化结构。
+
+## draft-c35-05
+
+problem
+
+判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy$ 与 $g(x,y,z)=2x^2+3y^2+4z^2$ 是否合同，并说明理由；若合同，构造可逆矩阵 $C$ 使 $C^{\mathsf{T}}AC=B$。
+
+solution
+
+配方：$f=(x+y)^2+y^2+3z^2$，正惯性指数 $3$，正定；$g=2x^2+3y^2+4z^2$，正惯性指数 $3$，正定。由惯性定理，两者惯性指数相同，故合同(都与 $I_3$ 合同，由合同关系的传递性)。构造：令 $M_f=\begin{pmatrix}1&1&0\\0&1&0\\0&0&\sqrt3\end{pmatrix}$，则 $f=(M_fx)^{\mathsf{T}}(M_fx)$，即 $A=M_f^{\mathsf{T}}M_f$;令 $M_g=\mathrm{diag}(\sqrt2,\sqrt3,2)$，则 $B=M_g^{\mathsf{T}}M_g$。于是 $B=(M_f^{-1}M_g)^{\mathsf{T}}A(M_f^{-1}M_g)$，取 $C=M_f^{-1}M_g=\begin{pmatrix}1&-1&0\\0&1&0\\0&0&\frac{1}{\sqrt3}\end{pmatrix}\begin{pmatrix}\sqrt2&0&0\\0&\sqrt3&0\\0&0&2\end{pmatrix}=\begin{pmatrix}\sqrt2&-\sqrt3&0\\0&\sqrt3&0\\0&0&\frac{2}{\sqrt3}\end{pmatrix}$。验证:$C^{\mathsf{T}}AC=\mathrm{diag}(2,3,4)=B$(逐项相乘核对),且 $\det C=2\sqrt2\neq0$。
+
+answer
+
+合同(两者均正定,惯性指数 $(3,0,0)$);$C=\begin{pmatrix}\sqrt2&-\sqrt3&0\\0&\sqrt3&0\\0&0&\frac{2}{\sqrt3}\end{pmatrix}$。
+
+scene_spec.objects[0]
+
+板书:$f=(x+y)^2+y^2+3z^2$ 与 $g=2x^2+3y^2+4z^2$ 的配方
+
+scene_spec.objects[1]
+
+高亮框:两者惯性指数均为 $(3,0,0)$
+
+scene_spec.objects[2]
+
+板书:$M_f$、$M_g$ 的定义与 $C=M_f^{-1}M_g$ 的计算
+
+scene_spec.objects[3]
+
+高亮框:$C=\begin{pmatrix}\sqrt2&-\sqrt3&0\\0&\sqrt3&0\\0&0&\frac{2}{\sqrt3}\end{pmatrix}$
+
+scene_spec.objects[4]
+
+验证板书:$C^{\mathsf{T}}AC=\mathrm{diag}(2,3,4)$
+
+scene_spec.steps[0]
+
+第一步:分别配方 $f$ 与 $g$,得两者惯性指数均为 $(3,0,0)$。
+
+scene_spec.steps[1]
+
+第二步:由惯性定理判定合同,并说明传递性理由。
+
+scene_spec.steps[2]
+
+第三步:构造平方根因子矩阵 $M_f$ 与 $M_g$。
+
+scene_spec.steps[3]
+
+第四步:计算 $C=M_f^{-1}M_g$,高亮结果并验证 $\det C\neq0$。
+
+scene_spec.steps[4]
+
+第五步:展示验证 $C^{\mathsf{T}}AC=B$,完成构造。
+
+## draft-c37-01
+
+problem
+
+在 $\mathbb R^3$ 中，求从标准基 $\varepsilon_1,\varepsilon_2,\varepsilon_3$ 到基 $\eta_1=(1,1,0)$，$\eta_2=(0,1,1)$，$\eta_3=(1,0,1)$ 的过渡矩阵，并求向量 $\alpha=(1,2,3)$ 在基 $\eta_1,\eta_2,\eta_3$ 下的坐标。
+
+solution
+
+约定基矩阵 $B_\eta=B_\varepsilon P$，$P$的第$j$列为$[\eta_j]_\varepsilon$，故$[v]_\varepsilon=P[v]_\eta$、$[v]_\eta=P^{-1}[v]_\varepsilon$；换基改变坐标，不改变向量$v$。过渡矩阵以新基向量在旧基下的坐标作列：$P=\begin{pmatrix}1&0&1\\1&1&0\\0&1&1\end{pmatrix}$。求 $\alpha$ 的新坐标即解 $P\xi=\alpha$。由增广消元(或直接求逆)得 $P^{-1}=\frac12\begin{pmatrix}1&1&-1\\-1&1&1\\1&-1&1\end{pmatrix}$，故 $\xi=P^{-1}\alpha=\frac12(1+2-3,\,-1+2+3,\,1-2+3)=\frac12(0,4,2)=(0,2,1)$。验证:$0\cdot\eta_1+2\eta_2+1\cdot\eta_3=2(0,1,1)+(1,0,1)=(1,2,3)=\alpha$。
+
+answer
+
+过渡矩阵 $P=\begin{pmatrix}1&0&1\\1&1&0\\0&1&1\end{pmatrix}$;$\alpha$ 在新基下的坐标为 $(0,2,1)$。
+
+scene_spec.objects[0]
+
+板书:新基向量 $\eta_1=(1,1,0)$、$\eta_2=(0,1,1)$、$\eta_3=(1,0,1)$
+
+scene_spec.objects[1]
+
+板书:过渡矩阵 $P$(列向量排列动画)
+
+scene_spec.objects[2]
+
+板书:$P^{-1}=\frac12\begin{pmatrix}1&1&-1\\-1&1&1\\1&-1&1\end{pmatrix}$ 的消元过程
+
+scene_spec.objects[3]
+
+高亮框:$\xi=P^{-1}\alpha=(0,2,1)$
+
+scene_spec.objects[4]
+
+验证板书:$0\eta_1+2\eta_2+\eta_3=(1,2,3)$
+
+scene_spec.steps[0]
+
+第一步:写出三个新基向量,按列拼成过渡矩阵 $P$。
+
+scene_spec.steps[1]
+
+第二步:展示增广矩阵消元求 $P^{-1}$。
+
+scene_spec.steps[2]
+
+第三步:计算 $\xi=P^{-1}\alpha$,得新坐标 $(0,2,1)$。
+
+scene_spec.steps[3]
+
+第四步:高亮结果。
+
+scene_spec.steps[4]
+
+第五步:展示验证:新坐标的线性组合还原 $\alpha$。
+
+## draft-c37-02
+
+problem
+
+在次数不超过 $2$ 的实系数多项式空间 $V$ 中，求从基 $\{1,x,x^2\}$ 到基 $\{1,\,x-1,\,(x-1)^2\}$ 的过渡矩阵，并求 $p(x)=2x^2+3x+4$ 在新基下的坐标。
+
+solution
+
+约定基矩阵 $B_\eta=B_\varepsilon P$，$P$的第$j$列为$[\eta_j]_\varepsilon$，故$[v]_\varepsilon=P[v]_\eta$、$[v]_\eta=P^{-1}[v]_\varepsilon$；换基改变坐标，不改变向量$v$。新基各元素在旧基 $\{1,x,x^2\}$ 下的坐标：$1=(1,0,0)$，$x-1=(-1,1,0)$，$(x-1)^2=x^2-2x+1=(1,-2,1)$。故过渡矩阵 $P=\begin{pmatrix}1&-1&1\\0&1&-2\\0&0&1\end{pmatrix}$。$p$ 在旧基下的坐标为 $(4,3,2)$。解 $P\xi=(4,3,2)^{\mathsf T}$：由回代得 $P^{-1}=\begin{pmatrix}1&1&1\\0&1&2\\0&0&1\end{pmatrix}$，故 $\xi=(4+3+2,\,3+4,\,2)=(9,7,2)$。验证:$9\cdot1+7(x-1)+2(x-1)^2=9+7x-7+2x^2-4x+2=2x^2+3x+4=p(x)$。
+
+answer
+
+过渡矩阵 $P=\begin{pmatrix}1&-1&1\\0&1&-2\\0&0&1\end{pmatrix}$;$p$ 在新基下的坐标为 $(9,7,2)$。
+
+scene_spec.objects[0]
+
+板书:旧基 $\{1,x,x^2\}$ 与新基 $\{1,x-1,(x-1)^2\}$
+
+scene_spec.objects[1]
+
+板书:新基元素的旧坐标展开(如 $(x-1)^2=x^2-2x+1$)
+
+scene_spec.objects[2]
+
+板书:过渡矩阵 $P=\begin{pmatrix}1&-1&1\\0&1&-2\\0&0&1\end{pmatrix}$
+
+scene_spec.objects[3]
+
+高亮框:$\xi=(9,7,2)$
+
+scene_spec.objects[4]
+
+验证板书:$9+7(x-1)+2(x-1)^2=2x^2+3x+4$
+
+scene_spec.steps[0]
+
+第一步:写出新旧两组基,展开 $(x-1)^2=x^2-2x+1$。
+
+scene_spec.steps[1]
+
+第二步:把新基元素坐标按列拼成过渡矩阵 $P$。
+
+scene_spec.steps[2]
+
+第三步:写出 $p$ 的旧坐标 $(4,3,2)$,回代求解新坐标。
+
+scene_spec.steps[3]
+
+第四步:高亮新坐标 $(9,7,2)$。
+
+scene_spec.steps[4]
+
+第五步:展示验证:新坐标线性组合还原 $p(x)$。
+
+## draft-c37-03
+
+problem
+
+在实对称$2\times2$矩阵空间中，取旧基$E_1=\begin{pmatrix}1&0\\0&0\end{pmatrix},E_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},E_3=\begin{pmatrix}0&0\\0&1\end{pmatrix}$；新基$\eta_1=I_2,\eta_2=\operatorname{diag}(1,-1),\eta_3=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$。求过渡矩阵、$T=\begin{pmatrix}3&2\\2&1\end{pmatrix}$的新坐标，并在内积$\langle U,V\rangle=\operatorname{tr}(UV)$下求新基Gram矩阵，核对$\|T\|^2$。
+
+solution
+
+约定$B_\eta=B_EP$，即$P$的列是新基在旧基下的坐标。于是$P=\begin{pmatrix}1&1&1\\0&0&1\\1&-1&-1\end{pmatrix}$，$\det P=2\ne0$。旧坐标为$(3,2,1)^{\mathsf T}$，解$P\xi=(3,2,1)^{\mathsf T}$得$\xi=(2,-1,2)^{\mathsf T}$；代回$2\eta_1-\eta_2+2\eta_3=T$。旧基Gram矩阵$G_E=\operatorname{diag}(1,2,1)$，故$G_\eta=P^{\mathsf T}G_EP=\begin{pmatrix}2&0&0\\0&2&2\\0&2&4\end{pmatrix}$。新坐标不能直接用欧氏坐标平方和；实际$\xi^{\mathsf T}G_\eta\xi=8+2-8+16=18$，与$\operatorname{tr}(T^2)=3^2+2\cdot2^2+1^2=18$一致。
+
+answer
+
+$P=\begin{pmatrix}1&1&1\\0&0&1\\1&-1&-1\end{pmatrix}$，$[T]_\eta=(2,-1,2)^{\mathsf T}$；$G_\eta=\begin{pmatrix}2&0&0\\0&2&2\\0&2&4\end{pmatrix}$，$\|T\|^2=18$。
+
+scene_spec.objects[0]
+
+旧基与新基的矩阵对象
+
+scene_spec.objects[1]
+
+$[T]_E=P[T]_\eta$
+
+scene_spec.objects[2]
+
+$G_\eta=P^{\mathsf T}G_EP$
+
+scene_spec.objects[3]
+
+范数平方$18$的双核对
+
+scene_spec.steps[0]
+
+第一步:以列坐标定义过渡矩阵并验证可逆。
+
+scene_spec.steps[1]
+
+第二步:解新坐标并重建矩阵对象。
+
+scene_spec.steps[2]
+
+第三步:通过$P^{\mathsf T}G_EP$变换Gram矩阵。
+
+scene_spec.steps[3]
+
+第四步:用新坐标和原矩阵分别计算同一范数。
+
+## draft-c37-04
+
+problem
+
+在 $\mathbb R^2$ 中，设从标准基 $\varepsilon$ 到基 $\eta=\{\eta_1=(1,1),\eta_2=(1,-1)\}$ 的过渡矩阵为 $P$，从 $\eta$ 到基 $\zeta=\{\zeta_1=(2,1),\zeta_2=(1,2)\}$ 的过渡矩阵为 $Q$。求 $P$、$Q$ 与从 $\varepsilon$ 到 $\zeta$ 的过渡矩阵，并验证后者等于 $PQ$；若向量 $\alpha$ 在基 $\zeta$ 下的坐标为 $(1,1)$，求 $\alpha$ 在标准基下的坐标。
+
+solution
+
+约定基矩阵 $B_\eta=B_\varepsilon P$，$P$的第$j$列为$[\eta_j]_\varepsilon$，故$[v]_\varepsilon=P[v]_\eta$、$[v]_\eta=P^{-1}[v]_\varepsilon$；换基改变坐标，不改变向量$v$。$P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$。求 $Q$：把 $\zeta_1=(2,1)$ 写成 $\eta$ 的组合，解 $(2,1)=a(1,1)+b(1,-1)$ 得 $a=\frac32,b=\frac12$;$\zeta_2=(1,2)=c(1,1)+d(1,-1)$ 得 $c=\frac32,d=-\frac12$。故 $Q=\begin{pmatrix}\frac32&\frac32\\\frac12&-\frac12\end{pmatrix}$。于是 $\varepsilon\to\zeta$ 的过渡矩阵 $R=PQ=\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}\frac32&\frac32\\\frac12&-\frac12\end{pmatrix}=\begin{pmatrix}2&1\\1&2\end{pmatrix}$，恰为 $\zeta_1,\zeta_2$ 在标准基下的坐标按列排列，验证正确。$\alpha=1\cdot\zeta_1+1\cdot\zeta_2=(3,3)$。
+
+answer
+
+$P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$，$Q=\begin{pmatrix}\frac32&\frac32\\\frac12&-\frac12\end{pmatrix}$，$\varepsilon\to\zeta$ 的过渡矩阵为 $\begin{pmatrix}2&1\\1&2\end{pmatrix}=PQ$;$\alpha$ 在标准基下为 $(3,3)$。
+
+scene_spec.objects[0]
+
+三组基示意图:$\varepsilon$、$\eta$、$\zeta$ 与两个箭头($P$、$Q$)
+
+scene_spec.objects[1]
+
+板书:$Q$ 的求法(把 $\zeta_1,\zeta_2$ 用 $\eta$ 组合)
+
+scene_spec.objects[2]
+
+板书:矩阵乘法 $PQ=\begin{pmatrix}2&1\\1&2\end{pmatrix}$
+
+scene_spec.objects[3]
+
+高亮框:$\varepsilon\to\zeta$ 过渡矩阵恰为 $\zeta$ 基向量坐标排列(自验证)
+
+scene_spec.objects[4]
+
+板书:$\alpha=\zeta_1+\zeta_2=(3,3)$
+
+scene_spec.steps[0]
+
+第一步:画出三组基与过渡箭头 $P$、$Q$。
+
+scene_spec.steps[1]
+
+第二步:解方程组求 $Q$(把 $\zeta$ 向量用 $\eta$ 表示)。
+
+scene_spec.steps[2]
+
+第三步:矩阵乘法 $PQ$,得 $\varepsilon\to\zeta$ 的过渡矩阵。
+
+scene_spec.steps[3]
+
+第四步:高亮自验证:结果正是 $\zeta_1,\zeta_2$ 的标准坐标排列。
+
+scene_spec.steps[4]
+
+第五步:计算 $\alpha$ 的标准坐标 $(3,3)$,汇总结论。
+
+## draft-c37-05
+
+problem
+
+证明 $\{1+x+x^2,\ 1-x+x^2,\ x-x^2\}$ 是次数不超过 $2$ 的多项式空间的一组基，并求 $p(x)=x^2$ 在这组基下的坐标。
+
+solution
+
+约定基矩阵 $B_\eta=B_\varepsilon P$，$P$的第$j$列为$[\eta_j]_\varepsilon$，故$[v]_\varepsilon=P[v]_\eta$、$[v]_\eta=P^{-1}[v]_\varepsilon$；换基改变坐标，不改变向量$v$。把三个多项式在基 $\{1,x,x^2\}$ 下的坐标按列排列：$M=\begin{pmatrix}1&1&0\\1&-1&1\\1&1&-1\end{pmatrix}$。计算 $\det M=1\times((-1)\times(-1)-1\times1)-1\times(1\times(-1)-1\times1)+0=0-(-2)=2\neq0$，故三个向量线性无关；空间维数为 $3$，故构成一组基。求 $p=x^2$ 的坐标即解 $M\xi=(0,0,1)^{\mathsf T}$。由伴随矩阵法(或消元)得 $M^{-1}=\begin{pmatrix}0&\frac12&\frac12\\1&-\frac12&-\frac12\\1&0&-1\end{pmatrix}$，故 $\xi=M^{-1}(0,0,1)^{\mathsf T}=(\frac12,-\frac12,-1)$。验证:$\frac12(1+x+x^2)-\frac12(1-x+x^2)-(x-x^2)=(\frac12-\frac12)+(\frac x2+\frac x2-x)+(\frac{x^2}2-\frac{x^2}2+x^2)=x^2$。
+
+answer
+
+三个多项式线性无关(行列式 $2\neq0$),构成一组基;$p=x^2$ 的坐标为 $(\frac12,-\frac12,-1)$。
+
+scene_spec.objects[0]
+
+板书:三个多项式及其旧坐标向量
+
+scene_spec.objects[1]
+
+板书:坐标矩阵 $M=\begin{pmatrix}1&1&0\\1&-1&1\\1&1&-1\end{pmatrix}$ 与行列式计算 $\det M=2$
+
+scene_spec.objects[2]
+
+板书:$M^{-1}$ 的求法
+
+scene_spec.objects[3]
+
+高亮框:$\xi=(\frac12,-\frac12,-1)$
+
+scene_spec.objects[4]
+
+验证板书:$\frac12(1+x+x^2)-\frac12(1-x+x^2)-(x-x^2)=x^2$
+
+scene_spec.steps[0]
+
+第一步:写出三个多项式,提取它们在旧基下的坐标列。
+
+scene_spec.steps[1]
+
+第二步:计算坐标矩阵行列式 $\det M=2\neq0$,判定线性无关。
+
+scene_spec.steps[2]
+
+第三步:由维数论证构成一组基。
+
+scene_spec.steps[3]
+
+第四步:解 $M\xi=(0,0,1)^{\mathsf T}$,得 $\xi=(\frac12,-\frac12,-1)$。
+
+scene_spec.steps[4]
+
+第五步:展示验证:坐标组合展开恰为 $x^2$。
+
+## draft-c16-01
+
+problem
+
+判断直线 $l_1$：过点 $(1,0,0)$、方向 $(1,1,0)$ 与直线 $l_2$：过点 $(0,1,0)$、方向 $(1,-1,0)$ 的位置关系；若相交，求交点与夹角。
+
+solution
+
+参数化 $l_1$:$(1,0,0)+t(1,1,0)$，$l_2$:$(0,1,0)+s(1,-1,0)$。联立 $1+t=s$，$t=1-s$，$0=0$，解得 $t=0,s=1$，交点为 $(1,0,0)$(也在 $l_2$ 上:$(0,1,0)+(1,-1,0)=(1,0,0)$)。方向向量内积 $(1,1,0)\cdot(1,-1,0)=1-1+0=0$，故两直线垂直，夹角为 $\frac\pi2$。
+
+answer
+
+相交于 $(1,0,0)$,夹角 $\frac\pi2$(方向向量正交)。
+
+scene_spec.objects[0]
+
+三维坐标系(带刻度)
+
+scene_spec.objects[1]
+
+红色直线 $l_1$(过 $(1,0,0)$,方向 $(1,1,0)$)
+
+scene_spec.objects[2]
+
+蓝色直线 $l_2$(过 $(0,1,0)$,方向 $(1,-1,0)$)
+
+scene_spec.objects[3]
+
+黄色圆点:交点 $(1,0,0)$
+
+scene_spec.objects[4]
+
+直角标记:两直线夹角 $\frac{π}{2}$
+
+scene_spec.steps[0]
+
+第一步:画出三维坐标系与两条直线。
+
+scene_spec.steps[1]
+
+第二步:写出参数方程并联立,展示解 $t=0,s=1$。
+
+scene_spec.steps[2]
+
+第三步:标出黄色交点 $(1,0,0)$ 并闪烁。
+
+scene_spec.steps[3]
+
+第四步:计算方向向量内积 $(1,1,0)\cdot(1,-1,0)=0$。
+
+scene_spec.steps[4]
+
+第五步:标出直角记号,结论:相交且垂直。
+
+## draft-c16-02
+
+problem
+
+求两平行直线 $l_1$：过点 $(1,2,3)$、方向 $(1,1,1)$ 与 $l_2$：过点 $(2,3,3)$、方向 $(1,1,1)$ 之间的距离。
+
+solution
+
+记 $v=(1,1,1)$、$\Delta=P_2-P_1=(1,1,0)$。$\Delta\notin\operatorname{span}\{v\}$，两线平行不重合。连接向量写为 $\Delta+\tau v$，距离平方 $\|\Delta+\tau v\|^2=\|v\|^2(\tau+\frac{\Delta\cdot v}{\|v\|^2})^2+\|\Delta\|^2-\frac{(\Delta\cdot v)^2}{\|v\|^2}=3(\tau+\frac23)^2+\frac23$。故$d^2=\frac23$、$d=\frac{\sqrt6}3$。与叉积恒等式 $\|\Delta\times v\|^2=\|\Delta\|^2\|v\|^2-(\Delta\cdot v)^2=2$ 一致。
+
+answer
+
+距离为 $\frac{\sqrt6}{3}$。
+
+scene_spec.objects[0]
+
+三维坐标系(带刻度)
+
+scene_spec.objects[1]
+
+两条平行橙色直线 $l_1$ 与 $l_2$(标注方向 $(1,1,1)$)
+
+scene_spec.objects[2]
+
+向量箭头 $P_2-P_1=(1,1,0)$
+
+scene_spec.objects[3]
+
+板书:叉积计算 $(1,1,0)\times(1,1,1)=(1,-1,0)$
+
+scene_spec.objects[4]
+
+高亮框:距离 $\frac{\sqrt6}{3}$
+
+scene_spec.steps[0]
+
+第一步:画出两条平行直线与方向向量。
+
+scene_spec.steps[1]
+
+第二步:验证平行不重合($P_2-P_1$ 不平行于方向)。
+
+scene_spec.steps[2]
+
+第三步:展示距离公式与叉积计算。
+
+scene_spec.steps[3]
+
+第四步:求模长之比得 $\sqrt2/\sqrt3$。
+
+scene_spec.steps[4]
+
+第五步:化简为 $\frac{\sqrt6}{3}$,高亮结论。
+
+## draft-c16-03
+
+problem
+
+求异面直线 $l_1$：$x$ 轴 与 $l_2$：过点 $(0,1,1)$、方向 $(0,1,0)$ 的公垂线方程、两个垂足与两直线间的距离。
+
+solution
+
+两线点为 $A=(t,0,0)$、$B=(0,1+s,1)$，连接向量 $B-A=(-t,1+s,1)$。公垂线方向与两个方向向量均正交，故平行于 $(0,0,1)$；于是 $t=0,s=-1$，垂足为 $(0,0,0)$、$(0,0,1)$，公垂线为 $\{(0,0,z):z\in\mathbb R\}$。对任意$t,s$，$\|B-A\|^2=t^2+(1+s)^2+1\ge1$，且等号仅在$t=0,s=-1$成立，因此最短距离精确为$1$。
+
+answer
+
+公垂线为 $z$ 轴 $\{(0,0,z)\}$;垂足 $(0,0,0)$ 与 $(0,0,1)$;距离为 $1$。
+
+scene_spec.objects[0]
+
+三维坐标系(带刻度)
+
+scene_spec.objects[1]
+
+红色直线 $l_1$($x$ 轴)
+
+scene_spec.objects[2]
+
+蓝色直线 $l_2$(过 $(0,1,1)$,方向 $(0,1,0)$)
+
+scene_spec.objects[3]
+
+绿色公垂线($z$ 轴),两个黄色垂足 $(0,0,0)$ 与 $(0,0,1)$
+
+scene_spec.objects[4]
+
+板书:$B-A=(-t,1+s,1)\parallel(0,0,1)$
+
+scene_spec.steps[0]
+
+第一步:画出两条异面直线与它们的参数化。
+
+scene_spec.steps[1]
+
+第二步:计算公垂线方向 $n=d_1\times d_2=(0,0,1)$。
+
+scene_spec.steps[2]
+
+第三步:设垂足,令连接向量平行于 $n$,解出 $t=0,s=-1$。
+
+scene_spec.steps[3]
+
+第四步:标出绿色公垂线与两个黄色垂足。
+
+scene_spec.steps[4]
+
+第五步:距离 $|AB|=1$,并用混合积公式交叉验证。
+
+## draft-c16-04
+
+problem
+
+求两条异面直线 $l_1:(t,t,0)$ 与 $l_2:(s,0,1-s)$ 上动点之间距离的最小值(即两直线间的距离)。
+
+solution
+
+令 $F(t,s)=(s-t)^2+t^2+(1-s)^2=2t^2-2ts+2s^2-2s+1$。驻点条件 $\partial_tF=4t-2s=0$、$\partial_sF=4s-2t-2=0$ 给出 $(t,s)=(\frac13,\frac23)$。令 $u=t-\frac13,v=s-\frac23$，则 $F=\frac13+2u^2-2uv+2v^2=\frac13+u^2+v^2+(u-v)^2\ge\frac13$；等号当且仅当$u=v=0$。因此唯一全局最小距离为$\sqrt{\frac13}=\frac{\sqrt3}{3}$，在给定参数对处取得。
+
+answer
+
+最小距离为 $\frac{\sqrt3}{3}$(在 $t=\frac13,s=\frac23$ 处取得)。
+
+scene_spec.objects[0]
+
+三维坐标系(带刻度)
+
+scene_spec.objects[1]
+
+两条异面直线 $l_1$ 与 $l_2$ 的参数化标注
+
+scene_spec.objects[2]
+
+两个滑动的动点 $A(t,t,0)$ 与 $B(s,0,1-s)$ 与连线
+
+scene_spec.objects[3]
+
+板书:距离平方 $|AB|^2=(s-t)^2+t^2+(1-s)^2$ 与偏导方程组
+
+scene_spec.objects[4]
+
+高亮框:最小值点 $t=\frac13,s=\frac23$ 与距离 $\frac{\sqrt3}{3}$
+
+scene_spec.steps[0]
+
+第一步:画出两条异面直线,标注动点参数化。
+
+scene_spec.steps[1]
+
+第二步:写出距离平方表达式。
+
+scene_spec.steps[2]
+
+第三步:求偏导并解方程组,得 $t=\frac13,s=\frac23$。
+
+scene_spec.steps[3]
+
+第四步:滑动动点到最小值位置,显示最短连线。
+
+scene_spec.steps[4]
+
+第五步：展示$F-\frac13=u^2+v^2+(u-v)^2\ge0$，等号仅在$u=v=0$；这证明全局最小，不能只凭驻点判断。
+
+## draft-c16-05
+
+problem
+
+证明两条异面直线有且仅有一条公垂线，并写出公垂线方向与两直线间距离的公式。
+
+solution
+
+设 $l_1:P_1+td_1$，$l_2:P_2+sd_2$ 异面，则 $d_1,d_2$ 不平行(否则共面)，故 $n=d_1\times d_2\neq0$，且 $n\perp d_1,d_2$。任何公垂线与 $l_1,l_2$ 都垂直，其方向必平行于 $n$。设公垂线连接 $A=P_1+t_1d_1$ 与 $B=P_2+t_2d_2$，则 $B-A\perp d_1,d_2$，即 $(P_2-P_1+t_2d_2-t_1d_1)\cdot d_1=0$ 且 $\cdot d_2=0$，得关于 $(t_1,t_2)$ 的线性方程组，系数矩阵 $\begin{pmatrix}-|d_1|^2&d_1\cdot d_2\\-d_1\cdot d_2&|d_2|^2\end{pmatrix}$ 的行列式为 $-|d_1|^2|d_2|^2+(d_1\cdot d_2)^2=-|d_1\times d_2|^2\neq0$，故存在唯一解 $(t_1,t_2)$，即公垂线存在且唯一。距离即两垂足间距离：$d=\frac{|(P_2-P_1)\cdot(d_1\times d_2)|}{|d_1\times d_2|}$。令 $r=B-A$。由$r\perp d_1,d_2$知$r=\lambda n$，又$r\cdot n=(P_2-P_1)\cdot n$，故$\|r\|=\frac{|(P_2-P_1)\cdot n|}{\|n\|}$。任意其他点对的连接向量为$r+sd_2-td_1$，且两项正交，因此$\|r+sd_2-td_1\|^2=\|r\|^2+\|sd_2-td_1\|^2\ge\|r\|^2$。$d_1,d_2$线性无关，等号只在$s=t=0$成立，故该连接段确为唯一最短段。
+
+answer
+
+公垂线唯一,方向为 $n=d_1\times d_2$;距离公式 $d=\frac{|(P_2-P_1)\cdot(d_1\times d_2)|}{|d_1\times d_2|}$(证明见解法)。
+
+scene_spec.objects[0]
+
+三维示意图:两条异面直线 $l_1,l_2$ 与方向向量
+
+scene_spec.objects[1]
+
+板书:公垂线方向 $n=d_1\times d_2$ 的垂直性
+
+scene_spec.objects[2]
+
+板书:连接向量条件 $(B-A)\perp d_1,d_2$ 与线性方程组
+
+scene_spec.objects[3]
+
+高亮框:系数行列式 $-|d_1\times d_2|^2\neq0$(唯一解)
+
+scene_spec.objects[4]
+
+板书:距离公式 $d=\frac{|(P_2-P_1)\cdot n|}{|n|}$
+
+scene_spec.steps[0]
+
+第一步:画出两条异面直线,说明方向向量不平行。
+
+scene_spec.steps[1]
+
+第二步:论证公垂线方向必为 $n=d_1\times d_2$。
+
+scene_spec.steps[2]
+
+第三步:设两垂足,写出垂直条件得到关于参数对的线性方程组。
+
+scene_spec.steps[3]
+
+第四步:高亮系数行列式非零,得唯一解,即存在且唯一。
+
+scene_spec.steps[4]
+
+第五步:由唯一公垂线给出距离公式,完成证明。

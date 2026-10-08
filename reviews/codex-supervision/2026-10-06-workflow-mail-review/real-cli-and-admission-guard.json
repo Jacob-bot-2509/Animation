@@ -1,0 +1,43 @@
+{
+  "cli": [
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "tools/finalize_linalg048_review.py",
+        "--workflow-result",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-workflow-mail-review\\provenance\\workflow-result.original.json",
+        "--journal",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-workflow-mail-review\\provenance\\workflow-journal.original.jsonl",
+        "--out",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-workflow-mail-review\\review-workflow-validated-v2.json"
+      ],
+      "returncode": 0,
+      "stdout": "COVERAGE_VERIFIED_PENDING_PROTOCOL_AND_INDEPENDENT_REVIEW {'DIFFERENT_CORE_TASK': 295, 'SAME_CORE_TRAIN_VARIANT': 1, 'SAME_CORE_CROSS_SPLIT': 0, 'UNCERTAIN': 0}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-B",
+        "tools/split_review_packet.py",
+        "--out",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-workflow-mail-review\\bound-chunks-v2"
+      ],
+      "returncode": 0,
+      "stdout": "PENDING chunks: 16 subjects: 296\n",
+      "stderr": ""
+    }
+  ],
+  "review_schema": "linalg048-semantic-review-workflow-v2",
+  "review_counts": {
+    "DIFFERENT_CORE_TASK": 295,
+    "SAME_CORE_TRAIN_VARIANT": 1,
+    "SAME_CORE_CROSS_SPLIT": 0,
+    "UNCERTAIN": 0
+  },
+  "review_accepted": false,
+  "training_admitted": false,
+  "actual_manual_guard_rejected_workflow": true,
+  "guard_reason": "bound manual acceptance v2 required"
+}

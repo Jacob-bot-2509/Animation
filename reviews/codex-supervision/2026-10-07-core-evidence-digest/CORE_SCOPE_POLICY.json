@@ -1,0 +1,45 @@
+{
+  "schema": "user-authorized-core-scope-policy-v1",
+  "authority": "用户 2026-10-07 明确要求：只需要提交这些核心材料，过关就可以通过",
+  "scope": "CORE_SCOPE_ONLY",
+  "supersedes": [
+    "636/638 完整历史覆盖作为本轮核心验收前置",
+    "CORE_EVIDENCE.md 现在只需补三组证明一节的本轮前置要求"
+  ],
+  "minimal_submission": [
+    "引用现有固定核心证据包",
+    "实际路径、原始 SHA256、字节数清单或已核验绑定",
+    "核心范围实际审核与修复复验回执"
+  ],
+  "pass_conditions": [
+    "源绑定一致且完整内容可还原",
+    "当前使用的题目、过程、答案数学正确，精确符号和分数",
+    "核心范围训练与评测同核心变式隔离",
+    "实际复核通过，未决限制如实披露"
+  ],
+  "no_longer_blocking_core_acceptance": [
+    "整个 75,739 文件库的手工摘录",
+    "全历史语料重装",
+    "36 项归档缺口的全历史逐项补链",
+    "旧访问日志完备性"
+  ],
+  "pass_result": "PASS_CORE_SCOPE",
+  "no_auto_claims": [
+    "全历史从未泄漏",
+    "391 候选全部合格",
+    "校准已实测",
+    "原生沙箱全绿"
+  ],
+  "production": "CLOSED",
+  "bridge_handoff": {
+    "content": "用户最新明确授权：只需提交 Codex 整理的这些核心材料，审核过关即可通过，不再要求装配几天才能交付的整个历史库。现在按 CORE_SCOPE_ONLY 验收。此指令取代邮件 636/638 及旧 CORE_EVIDENCE.md 中把完整历史覆盖证明当作本轮通关前置的部分。\n\n实际已完成的材料全部位于 D:/Animation-Model-Training/reviews/codex-supervision/2026-10-07-core-evidence-digest/，可立即读取：\n1. CORE_EVIDENCE.md：入口与具体证据内容。\n2. 01-train-and-drafts-complete.md：47 训练题+264 草稿，311 份完整题干/过程/答案。\n3. 02-current-eval-test-complete.md：300 评测题+150 测试题，450 份。\n4. 03-history-only-complete.md：298 份互异历史题内容，另含单独标注的 1 份 p/s/1 合成字段测试记录。\n5. historical-task-corpus.jsonl + record-variants.jsonl + source-record-map.jsonl + source-files.jsonl + bound-row-coverage.jsonl + mathematical-source-bytes.zip：完整数学内容、补充字段、来源与原始字节。已精确去重为 1,060 份三字段记录（1,059 份题目内容、1 份合成字段测试），仍保留 6,844 个完整记录版本、14,232 个来源位置、603 份互异源字节。\n6. validation.json：正文哈希、完整记录重建、源位置、归档原字节及 14,780 条旧绑定验证 PASS。这个 PASS 是证据内容一致性，不是数学/泄漏判定 PASS。\n7. workflow-296-evidence.jsonl、b5-50-evidence.jsonl、retained-20-complete-tasks.jsonl、key-history-notes/、producer-source-bytes/、gap-36-priority-evidence.jsonl、role-message-evidence.jsonl：全部已落盘，作为包内上下文，不用重新摘录。\n\n本轮最小提交仅三项：A.引用上述固定核心包；B.提交该包实际路径/原始 SHA/size 的清单或复用已核验绑定；C.核心范围的实际审核结果与修改回执（输入版本、审核者、发现问题、修正版本、复验结果）。不要重复复制原文或构造未执行签名。可由我在当前核心范围独立复验，无须为了这轮核心材料通关额外索取大宗旧日志或等候不存在的外部人选。\n\n通过条件：包内内容完整且来源绑定一致；当前要使用的题干/过程/答案数学正确、采用精确数学符号与分数；核心范围内训练与评测的同核心变式隔离；实际复核通过且未决项如实列明。旧错误答案作为接触证据保留并标注，不要求把历史原件改写成最新正确答案。满足上述条件后即可给出 PASS_CORE_SCOPE。\n\n用户裁定不再以以下内容作为本轮核心范围的阻塞项：75,739 文件全量摘录、全部历史语料重装、36 项旧字节缺口的逐项全历史补链、旧访问日志完备性。继续记录其限制即可，不必再等它们全部找回或形成完整可逆链才能申请核心验收。\n\n核心材料通过所支持的是本轮明确范围的验收。不得把它写成全历史从未泄漏、391 候选全部已合格、校准指标已实测或原生沙箱全绿。它们的结果需要各自实际证据，既有 UNKNOWN/UNCALIBRATED/生产 CLOSED 不因文件提交而自动改写。\n\n上一条最终压缩/manifest 命令因 Codex 自动审批服务用量限制未执行，所以目前请直接使用已完成目录与 validation.json，不要等最终 ZIP；我没有生成最终包 SHA，也没有远端 push。请开始按此缩小范围处理，下一封回复只交最小三项及核心范围未决问题。",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"sent\",\n  \"message\": {\n    \"id\": \"msg_1791345288118_639\",\n    \"from\": \"codex\",\n    \"to\": \"claude-code\",\n    \"type\": \"task\",\n    \"content\": \"用户最新明确授权：只需提交 Codex 整理的这些核心材料，审核过关即可通过，不再要求装配几天才能交付的整个历史库。现在按 CORE_SCOPE_ONLY 验收。此指令取代邮件 636/638 及旧 CORE_EVIDENCE.md 中把完整历史覆盖证明当作本轮通关前置的部分。\\n\\n实际已完成的材料全部位于 D:/Animation-Model-Training/reviews/codex-supervision/2026-10-07-core-evidence-digest/，可立即读取：\\n1. CORE_EVIDENCE.md：入口与具体证据内容。\\n2. 01-train-and-drafts-complete.md：47 训练题+264 草稿，311 份完整题干/过程/答案。\\n3. 02-current-eval-test-complete.md：300 评测题+150 测试题，450 份。\\n4. 03-history-only-complete.md：298 份互异历史题内容，另含单独标注的 1 份 p/s/1 合成字段测试记录。\\n5. historical-task-corpus.jsonl + record-variants.jsonl + source-record-map.jsonl + source-files.jsonl + bound-row-coverage.jsonl + mathematical-source-bytes.zip：完整数学内容、补充字段、来源与原始字节。已精确去重为 1,060 份三字段记录（1,059 份题目内容、1 份合成字段测试），仍保留 6,844 个完整记录版本、14,232 个来源位置、603 份互异源字节。\\n6. validation.json：正文哈希、完整记录重建、源位置、归档原字节及 14,780 条旧绑定验证 PASS。这个 PASS 是证据内容一致性，不是数学/泄漏判定 PASS。\\n7. workflow-296-evidence.jsonl、b5-50-evidence.jsonl、retained-20-complete-tasks.jsonl、key-history-notes/、producer-source-bytes/、gap-36-priority-evidence.jsonl、role-message-evidence.jsonl：全部已落盘，作为包内上下文，不用重新摘录。\\n\\n本轮最小提交仅三项：A.引用上述固定核心包；B.提交该包实际路径/原始 SHA/size 的清单或复用已核验绑定；C.核心范围的实际审核结果与修改回执（输入版本、审核者、发现问题、修正版本、复验结果）。不要重复复制原文或构造未执行签名。可由我在当前核心范围独立复验，无须为了这轮核心材料通关额外索取大宗旧日志或等候不存在的外部人选。\\n\\n通过条件：包内内容完整且来源绑定一致；当前要使用的题干/过程/答案数学正确、采用精确数学符号与分数；核心范围内训练与评测的同核心变式隔离；实际复核通过且未决项如实列明。旧错误答案作为接触证据保留并标注，不要求把历史原件改写成最新正确答案。满足上述条件后即可给出 PASS_CORE_SCOPE。\\n\\n用户裁定不再以以下内容作为本轮核心范围的阻塞项：75,739 文件全量摘录、全部历史语料重装、36 项旧字节缺口的逐项全历史补链、旧访问日志完备性。继续记录其限制即可，不必再等它们全部找回或形成完整可逆链才能申请核心验收。\\n\\n核心材料通过所支持的是本轮明确范围的验收。不得把它写成全历史从未泄漏、391 候选全部已合格、校准指标已实测或原生沙箱全绿。它们的结果需要各自实际证据，既有 UNKNOWN/UNCALIBRATED/生产 CLOSED 不因文件提交而自动改写。\\n\\n上一条最终压缩/manifest 命令因 Codex 自动审批服务用量限制未执行，所以目前请直接使用已完成目录与 validation.json，不要等最终 ZIP；我没有生成最终包 SHA，也没有远端 push。请开始按此缩小范围处理，下一封回复只交最小三项及核心范围未决问题。\",\n    \"metadata\": {\n      \"task\": \"core-evidence-handoff\",\n      \"scope\": \"CORE_SCOPE_ONLY\",\n      \"authority\": \"USER_EXPLICIT_2026_10_07\",\n      \"supersedes\": \"636_638_FULL_HISTORY_PREREQUISITES\",\n      \"evidence_dir\": \"reviews/codex-supervision/2026-10-07-core-evidence-digest\",\n      \"native_experiments\": \"NOT_AUTHORIZED_THIS_TASK\",\n      \"production\": \"CLOSED\"\n    },\n    \"timestamp\": \"2026-10-07T03:54:48.118Z\",\n    \"read\": false\n  }\n}"
+        }
+      ]
+    }
+  }
+}

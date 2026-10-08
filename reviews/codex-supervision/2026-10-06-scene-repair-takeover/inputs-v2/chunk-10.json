@@ -1,0 +1,1123 @@
+{
+  "schema": "scene-sweep-chunk-v2",
+  "standard": "Show every exact calculation; identify matrix row and column for each product; state convergence hypotheses, key bounds and limit arguments; use exact fractions and symbols.",
+  "records": [
+    {
+      "idx": 121,
+      "record": {
+        "id": "draft-c10-03",
+        "category": "数学分析",
+        "sub_category": "级数",
+        "concept": "交错级数与绝对收敛",
+        "concept_id": "C10",
+        "parent_training_ids": [
+          "calc-series-015"
+        ],
+        "problem": "说明级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n(2+(-1)^n)}{n}$ 发散，并解释莱布尼茨判别法为何不能使用。",
+        "solution": "第$2k-1$项为$-1/(2k-1)$，第$2k$项为$3/(2k)$，成对和为$(4k-3)/[2k(2k-1)]\\ge1/(2k)$。所以$S_{2N}\\ge\\frac12\\sum_{k=1}^N1/k\\to+\\infty$；$S_{2N+1}=S_{2N}-1/(2N+1)\\to+\\infty$。振幅也不递减：$1/(2k-1)<3/(2k)$。因此不能用莱布尼茨判别法，级数发散到$+\\infty$。",
+        "answer": "级数发散(拆成 $2\\sum(-1)^n/n+\\sum1/n$,收敛+发散);莱布尼茨判别法因通项绝对值不单调而不可用。",
+        "method": "拆项分析(单调性条件的必要性)",
+        "difficulty": "中等",
+        "variant_kind": "单调性不满足:莱布尼茨条件失效的反例辨析",
+        "scene_spec": {
+          "objects": [
+            "说明级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n(2+(-1)^n)}{n}$ 发散，并解释莱布尼茨判别法为何不能使用。",
+            "级数发散(拆成 $2\\sum(-1)^n/n+\\sum1/n$,收敛+发散);莱布尼茨判别法因通项绝对值不单调而不可用。"
+          ],
+          "steps": [
+            "第一步:第$2k-1$项为$-1/(2k-1)$，第$2k$项为$3/(2k)$，成对和为$(4k-3)/[2k(2k-1)]\\ge1/(2k)$。",
+            "第二步:所以$S_{2N}\\ge\\frac12\\sum_{k=1}^N1/k\\to+\\infty$；$S_{2N+1}=S_{2N}-1/(2N+1)\\to+\\infty$。",
+            "第三步:振幅也不递减：$1/(2k-1)<3/(2k)$。",
+            "第四步:因此不能用莱布尼茨判别法，级数发散到$+\\infty$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c10-03",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "272e990af3d0ccf22774d5dda4ff6295afc36f738b40d94c29d53d7d69ad4ccf",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c10-03",
+          "prior_parent_training_ids": [
+            "calc-series-015"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "改用有限成对部分和下界，避免把发散无穷和当成数相加。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c10-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 3,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "601e5bdb48329e4346f729e766eef76327c6e6b8cc8c47c4cf7a2139c0a9e161",
+        "record_canonical_sha256": "1cc61a6c74792f77ff3908012d30c081ca0992b9cfafbad43521f2c07bd1dd5c",
+        "publisher_record_sorted_sha256": "157368401fd0bb4a06ffaeda9080d4ff0e8b4c9e527668f3de1c46e3c6b0bed1"
+      }
+    },
+    {
+      "idx": 122,
+      "record": {
+        "id": "draft-c10-04",
+        "category": "数学分析",
+        "sub_category": "级数",
+        "concept": "交错级数与绝对收敛",
+        "concept_id": "C10",
+        "parent_training_ids": [
+          "calc-series-015"
+        ],
+        "problem": "对$S=\\sum_{n\\ge1}(-1)^{n-1}/3^n$，求精确余项$R_N=S-S_N$；求使实际误差严格小于$1/2500$的最小$N$，再求只使用莱布尼茨界即可保证该条件的最小$N$。",
+        "solution": "几何级数给$S=1/4$、$S_N=(1-(-1/3)^N)/4$，故$R_N=(-1)^N/(4\\cdot3^N)$。实际误差条件等价于$3^N>625$；$3^5=243<625<729=3^6$，最小$N=6$。莱布尼茨界为$|R_N|\\le3^{-(N+1)}$，仅依此保证严格小于$1/2500$需$3^{N+1}>2500$；$3^7=2187<2500<6561=3^8$，最小$N=7$。$S_6=182/729$、$R_6=1/2916$，均为精确分数。界给出的充分条件不能冒充实际最小项数。",
+        "answer": "$R_N=(-1)^N/(4\\cdot3^N)$；实际最小$N=6$，仅用莱布尼茨界的最小$N=7$。",
+        "method": "精确误差与判别法界的区别",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：精确误差与判别法界的区别",
+        "scene_spec": {
+          "objects": [
+            "对$S=\\sum_{n\\ge1}(-1)^{n-1}/3^n$，求精确余项$R_N=S-S_N$；求使实际误差严格小于$1/2500$的最小$N$，再求只使用莱布尼茨界即可保证该条件的最小$N$。",
+            "$R_N=(-1)^N/(4\\cdot3^N)$；实际最小$N=6$，仅用莱布尼茨界的最小$N=7$。"
+          ],
+          "steps": [
+            "第一步:几何级数给$S=1/4$、$S_N=(1-(-1/3)^N)/4$，故$R_N=(-1)^N/(4\\cdot3^N)$。",
+            "第二步:实际误差条件等价于$3^N>625$；$3^5=243<625<729=3^6$，最小$N=6$。",
+            "第三步:莱布尼茨界为$|R_N|\\le3^{-(N+1)}$，仅依此保证严格小于$1/2500$需$3^{N+1}>2500$；$3^7=2187<2500<6561=3^8$，最小$N=7$。",
+            "第四步:$S_6=182/729$、$R_6=1/2916$，均为精确分数。",
+            "第五步:界给出的充分条件不能冒充实际最小项数。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c10-04",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "8a9670bd314504f0252327f115be9c7144aa6e742d97d2a5a591fca3a2d168d1",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c10-04",
+          "prior_parent_training_ids": [
+            "calc-series-015"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "删除小数估算，改为精确余项与充分界的严格最小项数比较。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c10-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 4,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "1091d0de2b71d3cc9a8b1e72ca3596c7dfca2d6cfe15c639f43bc62713bb0e9b",
+        "record_canonical_sha256": "a03bb1cb99e0efecd128bdaa85a67de2561e7aaeeabb6f60fdb26c6964143d6a",
+        "publisher_record_sorted_sha256": "6715003ae4b6f382ff6a85cd4f451e649e9b07055bbe0327e9d02e78c778ce07"
+      }
+    },
+    {
+      "idx": 123,
+      "record": {
+        "id": "draft-c10-05",
+        "category": "数学分析",
+        "sub_category": "级数",
+        "concept": "交错级数与绝对收敛",
+        "concept_id": "C10",
+        "parent_training_ids": [
+          "calc-series-015"
+        ],
+        "problem": "证明莱布尼茨判别法:若 $a_n$ 单调递减趋于 $0$,则交错级数 $\\sum_{n=1}^{\\infty}(-1)^{n+1}a_n$ 收敛,且其和 $S$ 满足 $|S-S_N|\\le a_{N+1}$。",
+        "solution": "设$a_n\\ge0$、$a_{n+1}\\le a_n$且$a_n\\to0$，$S_N=\\sum_{n=1}^N(-1)^{n-1}a_n$。偶部分和递增，奇部分和递减，且$S_{2m}\\le S_{2l+1}$对一切$m,l$成立；两序列有界并有极限，差$S_{2N+1}-S_{2N}=a_{2N+1}\\to0$，故极限相同，记为$S$。由夹逼，对任意$N$有$0\\le(-1)^N(S-S_N)\\le a_{N+1}$，所以$|S-S_N|\\le a_{N+1}$。该证明只涉及有限部分和及其极限。",
+        "answer": "证明见解法(偶子列单调有界、奇子列同极限;余项 $|S-S_N|\\le a_{N+1}$)。",
+        "method": "单调有界定理(收敛性与余项界证明)",
+        "difficulty": "进阶",
+        "variant_kind": "证明型:莱布尼茨判别法的严格证明与余项估计推导",
+        "scene_spec": {
+          "objects": [
+            "证明莱布尼茨判别法:若 $a_n$ 单调递减趋于 $0$,则交错级数 $\\sum_{n=1}^{\\infty}(-1)^{n+1}a_n$ 收敛,且其和 $S$ 满足 $|S-S_N|\\le a_{N+1}$。",
+            "证明见解法(偶子列单调有界、奇子列同极限;余项 $|S-S_N|\\le a_{N+1}$)。"
+          ],
+          "steps": [
+            "第一步:设$a_n\\ge0$、$a_{n+1}\\le a_n$且$a_n\\to0$，$S_N=\\sum_{n=1}^N(-1)^{n-1}a_n$。",
+            "第二步:偶部分和递增，奇部分和递减，且$S_{2m}\\le S_{2l+1}$对一切$m,l$成立；两序列有界并有极限，差$S_{2N+1}-S_{2N}=a_{2N+1}\\to0$，故极限相同，记为$S$。",
+            "第三步:由夹逼，对任意$N$有$0\\le(-1)^N(S-S_N)\\le a_{N+1}$，所以$|S-S_N|\\le a_{N+1}$。",
+            "第四步:该证明只涉及有限部分和及其极限。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c10-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "b8291ccf6acb6544efd7f06a5eae6a554e4ef0960558afe6f49f9f4d952c7d66",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c10-05",
+          "prior_parent_training_ids": [
+            "calc-series-015"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "补全奇偶部分和夹逼及带符号余项证明。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c10-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 5,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "19d75fbd23757e391396a95e11c10b6a245ec7a7c01da5e5f626a5f6c2ac985d",
+        "record_canonical_sha256": "e59fc902c5c69e5c05477ec24409b60d026bee0283c1849d7610521adea44105",
+        "publisher_record_sorted_sha256": "c4f7406dc73c943002f878030d71b65eb555c9672e2d46a59ab463ce91056fda"
+      }
+    },
+    {
+      "idx": 124,
+      "record": {
+        "id": "draft-c12-01",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "concept": "函数项级数一致收敛",
+        "concept_id": "C12",
+        "parent_training_ids": [
+          "calc-series-017"
+        ],
+        "problem": "证明函数项级数 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛。",
+        "solution": "用魏尔斯特拉斯 $M$ 判别法:对一切 $x\\in\\mathbb R$,$\\left|\\frac{\\sin nx}{n^2}\\right|\\le\\frac{1}{n^2}=M_n$,而 $\\sum_{n=1}^{\\infty}M_n=\\sum\\frac{1}{n^2}$ 收敛。故级数在 $\\mathbb R$ 上一致收敛(且绝对一致收敛)。",
+        "answer": "在 $\\mathbb R$ 上一致收敛($M$ 判别法,$M_n=\\frac{1}{n^2}$)。",
+        "method": "魏尔斯特拉斯 M 判别法",
+        "difficulty": "基础",
+        "variant_kind": "方法变化:三角函数的 M 判别法(与幂级数父题不同)",
+        "scene_spec": {
+          "objects": [
+            "证明函数项级数 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛。",
+            "在 $\\mathbb R$ 上一致收敛($M$ 判别法,$M_n=\\frac{1}{n^2}$)。"
+          ],
+          "steps": [
+            "第一步:用魏尔斯特拉斯 $M$ 判别法:对一切 $x\\in\\mathbb R$,$\\left|\\frac{\\sin nx}{n^2}\\right|\\le\\frac{1}{n^2}=M_n$,而 $\\sum_{n=1}^{\\infty}M_n=\\sum\\frac{1}{n^2}$ 收敛。",
+            "第二步:故级数在 $\\mathbb R$ 上一致收敛(且绝对一致收敛)。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-01",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "b317f15885ba72c3ef93b4ea9043aec8296fc856dcb5053e383f1789f47c18b4",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c12-01",
+          "prior_parent_training_ids": [
+            "calc-series-017"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "sin项的统一上界1/n²可和，M判别适用全实轴；不求冻结Basel常数。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c12-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 6,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "967db8de939be743e256873135736b196a9734e57e4b2dc7b9d56f1537d02cec",
+        "record_canonical_sha256": "56ee34e9be90290d1542f584d6aa96d45dd56584e6238cd117dba15bac830e45",
+        "publisher_record_sorted_sha256": "17c81707d063c554dd648381b4f516811fbc1e9842ac9b4cbf9b440c714dfa3b"
+      }
+    },
+    {
+      "idx": 125,
+      "record": {
+        "id": "draft-c12-02",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "concept": "函数项级数一致收敛",
+        "concept_id": "C12",
+        "parent_training_ids": [
+          "calc-series-017"
+        ],
+        "problem": "证明 $\\sum_{n=0}^{\\infty}x^n$ 在 $[-\\frac12,\\frac12]$ 上一致收敛，并说明在 $(-1,1)$ 上不一致收敛。",
+        "solution": "在$[-1/2,1/2]$上，$|x^n|\\le2^{-n}$，由M判别法一致收敛。在$(-1,1)$上点态和为$1/(1-x)$；从$n=0$到$N$的部分和尾项为$x^{N+1}/(1-x)$。对每个固定$N$，令$x\\to1^{-}$，尾项趋于$+\\infty$，其上确界为$+\\infty$，故不一致收敛。",
+        "answer": "在 $[-\\frac12,\\frac12]$ 上一致收敛($M$ 判别法);在 $(-1,1)$ 上不一致收敛($\\sup|S_N-S|$ 不趋于 $0$)。",
+        "method": "M 判别法+上确界判别(一致与不一致对照)",
+        "difficulty": "基础",
+        "variant_kind": "一致与逐点区别:同一级数在缩小区间与开区间上的收敛性对照",
+        "scene_spec": {
+          "objects": [
+            "证明 $\\sum_{n=0}^{\\infty}x^n$ 在 $[-\\frac12,\\frac12]$ 上一致收敛，并说明在 $(-1,1)$ 上不一致收敛。",
+            "在 $[-\\frac12,\\frac12]$ 上一致收敛($M$ 判别法);在 $(-1,1)$ 上不一致收敛($\\sup|S_N-S|$ 不趋于 $0$)。"
+          ],
+          "steps": [
+            "第一步:在$[-1/2,1/2]$上，$|x^n|\\le2^{-n}$，由M判别法一致收敛。",
+            "第二步:在$(-1,1)$上点态和为$1/(1-x)$；从$n=0$到$N$的部分和尾项为$x^{N+1}/(1-x)$。",
+            "第三步:对每个固定$N$，令$x\\to1^{-}$，尾项趋于$+\\infty$，其上确界为$+\\infty$，故不一致收敛。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-02",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "c06897f80a79850c46dd4610eca0991951886ca8afca507407618f116f177d27",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c12-02",
+          "prior_parent_training_ids": [
+            "calc-series-017"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "用每个固定部分和的尾项上确界证明非一致收敛，去掉不必要渐近估算。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c12-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 7,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "6e304b58330cbf85e9651551d5713bb8feeddd49c28ad97b78a158b48124091f",
+        "record_canonical_sha256": "ca93bac77d000919f94838eab50f31721deaaa8b97f950dbf2f336a4a4dfff9e",
+        "publisher_record_sorted_sha256": "3ec3d497862a4fa8a472b735ec57552d3e75a658f24ac9415b9051f891039493"
+      }
+    },
+    {
+      "idx": 126,
+      "record": {
+        "id": "draft-c12-03",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "concept": "函数项级数一致收敛",
+        "concept_id": "C12",
+        "parent_training_ids": [
+          "calc-series-017"
+        ],
+        "problem": "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+        "solution": "几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。块和不能一致趋于零，因此在整个开区间不一致收敛。",
+        "answer": "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。",
+        "method": "一致Dirichlet与移动点反例",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：一致Dirichlet与移动点反例",
+        "scene_spec": {
+          "objects": [
+            "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+            "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。"
+          ],
+          "steps": [
+            "第一步:几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。",
+            "第二步:对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。",
+            "第三步:反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。",
+            "第四步:块和不能一致趋于零，因此在整个开区间不一致收敛。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-03",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "ca758f532c54dccbceca09d3cad49200746c9283be371730cfd2467747ae48f7",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c12-03",
+          "prior_parent_training_ids": [
+            "calc-series-017"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换对数生成函数变体，改为一致Dirichlet界与移动点柯西反例。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c12-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 8,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "095bd2f85090601855914184180d3bf22aaef1dc492da53e624dff1f5841e11d",
+        "record_canonical_sha256": "b1874be77016e0317e77bf963edfc25cbda8d586939279b00192773e531637aa",
+        "publisher_record_sorted_sha256": "51251e819814a417dafa51371ba87cdaaee27255618b683f3a21d393b7d87689"
+      }
+    },
+    {
+      "idx": 127,
+      "record": {
+        "id": "draft-c12-04",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "concept": "函数项级数一致收敛",
+        "concept_id": "C12",
+        "parent_training_ids": [
+          "calc-series-017"
+        ],
+        "problem": "固定$0<r<1$。证明$F_r(x)=\\sum_{n=0}^{\\infty}r^n\\cos(nx)$在实轴上一致绝对收敛，求其和函数，并严格求$\\int_0^\\pi F_r(x)\\,dx$。",
+        "solution": "$|r^n\\cos(nx)|\\le r^n$，几何级数可和，故在实轴上一致绝对收敛。取$\\sum r^ne^{inx}=1/(1-re^{ix})$的实部，得$F_r(x)=(1-r\\cos x)/(1-2r\\cos x+r^2)$；分母为$|1-re^{ix}|^2\\ge(1-r)^2>0$。一致收敛允许在$[0,\\pi]$逐项积分，常数项贡献$\\pi$，每个$n\\ge1$的积分$r^n[\\sin(nx)/n]_0^\\pi=0$，故积分为$\\pi$。",
+        "answer": "$F_r(x)=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$，一致绝对收敛，积分$\\pi$。",
+        "method": "复几何级数实部与一致积分",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：复几何级数实部与一致积分",
+        "scene_spec": {
+          "objects": [
+            "固定$0<r<1$。证明$F_r(x)=\\sum_{n=0}^{\\infty}r^n\\cos(nx)$在实轴上一致绝对收敛，求其和函数，并严格求$\\int_0^\\pi F_r(x)\\,dx$。",
+            "$F_r(x)=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$，一致绝对收敛，积分$\\pi$。"
+          ],
+          "steps": [
+            "第一步:$|r^n\\cos(nx)|\\le r^n$，几何级数可和，故在实轴上一致绝对收敛。",
+            "第二步:取$\\sum r^ne^{inx}=1/(1-re^{ix})$的实部，得$F_r(x)=(1-r\\cos x)/(1-2r\\cos x+r^2)$；分母为$|1-re^{ix}|^2\\ge(1-r)^2>0$。",
+            "第三步:一致收敛允许在$[0,\\pi]$逐项积分，常数项贡献$\\pi$，每个$n\\ge1$的积分$r^n[\\sin(nx)/n]_0^\\pi=0$，故积分为$\\pi$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-04",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "259f92517ceb8fd810be209e30103fd6ff2d24bb2d2943e1f59524cbd3664dce",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c12-04",
+          "prior_parent_training_ids": [
+            "calc-series-017"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换留出集的完整对数求和任务，改为周期核闭式与交换积分。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c12-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 9,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "d2a6c3934f0f4c8edd0706b54d47f5a08cac84dc6a9238f3213f475f1485cd64",
+        "record_canonical_sha256": "4830e209a44c3718efe48e582cdb50ff2d9c1f909ff26b7fd9f85e7840141a82",
+        "publisher_record_sorted_sha256": "3d30161604734b61a2ef0d2d2310b0b8d2aa07b24bfeff9eca4c1bb5ff0a6c2b"
+      }
+    },
+    {
+      "idx": 128,
+      "record": {
+        "id": "draft-c12-05",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "concept": "函数项级数一致收敛",
+        "concept_id": "C12",
+        "parent_training_ids": [
+          "calc-series-017"
+        ],
+        "problem": "证明函数列 $f_n(x)=n^2x(1-x^2)^n$($0\\le x\\le1$)逐点收敛于 $0$，但 $\\int_0^1f_n(x)\\,dx$ 不趋于 $0$；由此说明逐点收敛不足以保证极限与积分交换，并指出一致收敛为何是充分条件。",
+        "solution": "$f_n(x)=n^2x(1-x^2)^n$在$[0,1]$逐点趋于零：端点直接为零，对$0<x<1$令$q=1-x^2<1$，$n^2q^n$的相邻比趋于$q<1$，故趋零。换元$u=1-x^2$给$\\int_0^1f_n(x)dx=n^2/[2(n+1)]\\ge n/4\\to\\infty$。由于$f_n\\ge0$且区间长度为$1$，$\\sup f_n\\ge\\int f_n\\ge n/4$，所以不可能一致趋零，也不能交换极限与积分。",
+        "answer": "逐点极限$0$，非一致收敛；$\\int_0^1f_n=n^2/[2(n+1)]\\to+\\infty$，不能交换极限与积分。",
+        "method": "反例构造(逐点收敛+积分不可交换)",
+        "difficulty": "进阶",
+        "variant_kind": "反例型:逐点收敛不足以保证积分交换的经典反例与充分条件说明",
+        "scene_spec": {
+          "objects": [
+            "证明函数列 $f_n(x)=n^2x(1-x^2)^n$($0\\le x\\le1$)逐点收敛于 $0$，但 $\\int_0^1f_n(x)\\,dx$ 不趋于 $0$；由此说明逐点收敛不足以保证极限与积分交换，并指出一致收敛为何是充分条件。",
+            "逐点极限$0$，非一致收敛；$\\int_0^1f_n=n^2/[2(n+1)]\\to+\\infty$，不能交换极限与积分。"
+          ],
+          "steps": [
+            "第一步:$f_n(x)=n^2x(1-x^2)^n$在$[0,1]$逐点趋于零：端点直接为零，对$0<x<1$令$q=1-x^2<1$，$n^2q^n$的相邻比趋于$q<1$，故趋零。",
+            "第二步:换元$u=1-x^2$给$\\int_0^1f_n(x)dx=n^2/[2(n+1)]\\ge n/4\\to\\infty$。",
+            "第三步:由于$f_n\\ge0$且区间长度为$1$，$\\sup f_n\\ge\\int f_n\\ge n/4$，所以不可能一致趋零，也不能交换极限与积分。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "2fdde915f73d27ba37349e7ab319e1701730366665184b52beeb648f46043c38",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c12-05",
+          "prior_parent_training_ids": [
+            "calc-series-017"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "删去极大值渐近估算，用精确积分下界证明非一致收敛。",
+          "substantive_rewrite": false,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c12-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 10,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "cb138d168f4139225daffa4cd7b253e7b8de380650a7ef099c09dec4a5b497a9",
+        "record_canonical_sha256": "176401803e3a73ba9427aed054679f2c7c06753773079c4080768f170da23b78",
+        "publisher_record_sorted_sha256": "fd43383c196a488fb0cfae5107a9edbf45809557e1409fec069d5955ad771b34"
+      }
+    },
+    {
+      "idx": 129,
+      "record": {
+        "id": "draft-c14-01",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "concept": "傅立叶展开",
+        "concept_id": "C14",
+        "parent_training_ids": [
+          "calc-series-020"
+        ],
+        "problem": "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+        "solution": "$f$为偶函数，故$b_n=0$。$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。",
+        "answer": "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。",
+        "method": "积化和差与绝对一致收敛",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：积化和差与绝对一致收敛",
+        "scene_spec": {
+          "objects": [
+            "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+            "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。"
+          ],
+          "steps": [
+            "第一步:$f$为偶函数，故$b_n=0$。",
+            "第二步:$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。",
+            "第三步:用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。",
+            "第四步:故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。",
+            "第五步:因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。",
+            "第六步:$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-01",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "5d415d2e745ca6a8658490d1b648cba8534846059ca77a6d82d7b56d8292f30a",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c14-01",
+          "prior_parent_training_ids": [
+            "calc-series-020"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "移除留出集Basel求和子任务，改为非多项式周期函数与一致性证明。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c14-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 11,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "bada621273e0c2fbd835e0470720b0852e2181c03bf078ae20dde3337eb2069e",
+        "record_canonical_sha256": "69d24a29a265dba997a9a11791cb71db854961817dd02787118e3527b41a4b3b",
+        "publisher_record_sorted_sha256": "5d7ddfe47c34ce886616cd1832e539ba05d02b86b72910b44ba639c05aeb42d4"
+      }
+    },
+    {
+      "idx": 130,
+      "record": {
+        "id": "draft-c14-02",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "concept": "傅立叶展开",
+        "concept_id": "C14",
+        "parent_training_ids": [
+          "calc-series-020"
+        ],
+        "problem": "求$f(x)=x(\\pi-x)$在$[0,\\pi]$的半区间正弦展开，并说明周期奇延拓的端点值和收敛方式。",
+        "solution": "$b_n=(2/\\pi)\\int_0^\\pi x(\\pi-x)\\sin(nx)dx$。两次分部积分，端点$f(0)=f(\\pi)=0$且$f^{\\prime\\prime}=-2$，得积分$2[1-(-1)^n]/n^3$，所以$b_n=4[1-(-1)^n]/(\\pi n^3)$。故$f(x)=(8/\\pi)\\sum_{k\\ge0}\\sin((2k+1)x)/(2k+1)^3$。奇延拓在$0,\\pm\\pi$左右极限都为零，连续、分段光滑；Dirichlet定理在每点取实际值。系数绝对可和，故周期展开全实轴一致绝对收敛。",
+        "answer": "$x(\\pi-x)=\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$；端点为零，一致绝对收敛。",
+        "method": "零端点半区间展开",
+        "difficulty": "基础",
+        "variant_kind": "结构改写：零端点半区间展开",
+        "scene_spec": {
+          "objects": [
+            "求$f(x)=x(\\pi-x)$在$[0,\\pi]$的半区间正弦展开，并说明周期奇延拓的端点值和收敛方式。",
+            "$x(\\pi-x)=\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$；端点为零，一致绝对收敛。"
+          ],
+          "steps": [
+            "第一步:$b_n=(2/\\pi)\\int_0^\\pi x(\\pi-x)\\sin(nx)dx$。",
+            "第二步:两次分部积分，端点$f(0)=f(\\pi)=0$且$f^{\\prime\\prime}=-2$，得积分$2[1-(-1)^n]/n^3$，所以$b_n=4[1-(-1)^n]/(\\pi n^3)$。",
+            "第三步:故$f(x)=(8/\\pi)\\sum_{k\\ge0}\\sin((2k+1)x)/(2k+1)^3$。",
+            "第四步:奇延拓在$0,\\pm\\pi$左右极限都为零，连续、分段光滑；Dirichlet定理在每点取实际值。",
+            "第五步:系数绝对可和，故周期展开全实轴一致绝对收敛。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-02",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "3eb0456375168c300a88627ca7281b99df7959c5a1e1d1989b5d6ead452022ed",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c14-02",
+          "prior_parent_training_ids": [
+            "calc-series-020"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换与留出集相同的线性锯齿Fourier系列，改为零端点二次函数及立方衰减。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c14-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 12,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "0d01e47191920865edd6af52d2735d4aae61518f9d0aeb207213a9767e395002",
+        "record_canonical_sha256": "4c0cb20c0ad8bb97f7081bdefeedc792636184ba38122d1954e95873483748fa",
+        "publisher_record_sorted_sha256": "a14e7c3dbc46a25aba1d0840591c69d0c3caff7550d883ea2c7af28c14fef420"
+      }
+    },
+    {
+      "idx": 131,
+      "record": {
+        "id": "draft-c14-03",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "concept": "傅立叶展开",
+        "concept_id": "C14",
+        "parent_training_ids": [
+          "calc-series-020"
+        ],
+        "problem": "将$2\\pi$周期方波$f(x)=0$（$-\\pi<x<0$）、$f(x)=1$（$0<x<\\pi$）展开为Fourier级数；跳点$x\\in\\pi\\mathbb Z$处定义$f(x)=0$。说明非跳点及跳点的级数取值。",
+        "solution": "$a_0=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\,dx=\\frac1\\pi\\int_0^{\\pi}1\\,dx=1$。$a_n=\\frac1\\pi\\int_0^{\\pi}\\cos nx\\,dx=\\frac{\\sin n\\pi}{n\\pi}=0$($n\\ge1$)。$b_n=\\frac1\\pi\\int_0^{\\pi}\\sin nx\\,dx=\\frac{1-\\cos n\\pi}{n\\pi}=\\frac{1-(-1)^n}{n\\pi}$,即奇数项 $b_{2k-1}=\\frac{2}{(2k-1)\\pi}$,偶数项为 $0$。故在非跳点 $f(x)=\\frac12+\\frac{2}{\\pi}\\sum_{k=1}^{\\infty}\\frac{\\sin(2k-1)x}{2k-1}$。在间断点 $x=0,\\pm\\pi$ 处,由狄利克雷定理,级数和为左右极限的平均值 $\\frac{0+1}{2}=\\frac12$。",
+        "answer": "非跳点上$f(x)=\\frac12+\\frac2\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{2k+1}$；在$x\\in\\pi\\mathbb Z$，级数和为$1/2$，与任意指定单点值无关。",
+        "method": "分段函数展开+间断点取值",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：分段函数展开+间断点取值",
+        "scene_spec": {
+          "objects": [
+            "将$2\\pi$周期方波$f(x)=0$（$-\\pi<x<0$）、$f(x)=1$（$0<x<\\pi$）展开为Fourier级数；跳点$x\\in\\pi\\mathbb Z$处定义$f(x)=0$。说明非跳点及跳点的级数取值。",
+            "非跳点上$f(x)=\\frac12+\\frac2\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{2k+1}$；在$x\\in\\pi\\mathbb Z$，级数和为$1/2$，与任意指定单点值无关。"
+          ],
+          "steps": [
+            "第一步:$a_0=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\,dx=\\frac1\\pi\\int_0^{\\pi}1\\,dx=1$。",
+            "第二步:$a_n=\\frac1\\pi\\int_0^{\\pi}\\cos nx\\,dx=\\frac{\\sin n\\pi}{n\\pi}=0$($n\\ge1$)。",
+            "第三步:$b_n=\\frac1\\pi\\int_0^{\\pi}\\sin nx\\,dx=\\frac{1-\\cos n\\pi}{n\\pi}=\\frac{1-(-1)^n}{n\\pi}$,即奇数项 $b_{2k-1}=\\frac{2}{(2k-1)\\pi}$,偶数项为 $0$。",
+            "第四步:故在非跳点 $f(x)=\\frac12+\\frac{2}{\\pi}\\sum_{k=1}^{\\infty}\\frac{\\sin(2k-1)x}{2k-1}$。",
+            "第五步:在间断点 $x=0,\\pm\\pi$ 处,由狄利克雷定理,级数和为左右极限的平均值 $\\frac{0+1}{2}=\\frac12$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-03",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "4323222394cd5f27c76eafd85c991d6edc6f57397fa67535d68ad234abbfcf00",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c14-03",
+          "prior_parent_training_ids": [
+            "calc-series-020"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "区分实际定义的跳点值与Fourier左右平均值。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c14-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 13,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "6eb5fed7bb888885f1ca4c0467f8a0c43bfe833e007c31203ec2f3be2cc145ec",
+        "record_canonical_sha256": "adccb789d42b170f33b9edab7bd8d8e4857c3731814d0e9e40257ef1083fd48c",
+        "publisher_record_sorted_sha256": "a6900411aaef46f34232b0d8c6ba68a8d03afccdfd1683c8ec82a9f2365da08f"
+      }
+    },
+    {
+      "idx": 132,
+      "record": {
+        "id": "draft-c14-04",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "concept": "傅立叶展开",
+        "concept_id": "C14",
+        "parent_training_ids": [
+          "calc-series-020"
+        ],
+        "problem": "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+        "solution": "若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。",
+        "answer": "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。",
+        "method": "Fourier平移作用与系数不变量",
+        "difficulty": "中等",
+        "variant_kind": "结构改写：Fourier平移作用与系数不变量",
+        "scene_spec": {
+          "objects": [
+            "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+            "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。"
+          ],
+          "steps": [
+            "第一步:若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。",
+            "第二步:这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。",
+            "第三步:本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-04",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "3e01d7b0e655444dd558204de190e6db71320c81d676bd987bfce281bf8bf3e6",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c14-04",
+          "prior_parent_training_ids": [
+            "calc-series-020"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "替换相位改变的锯齿数值变体，改为系数变换及逐频率不变量。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c14-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 14,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "3c919a10b8f72cb472e85a8fb887ac526bc6fa395ed1819965910eee6f00038f",
+        "record_canonical_sha256": "6f4c2da2a76c7aafe9f5f5895793b35f5614d7889883f5c466ab201ba15aa24a",
+        "publisher_record_sorted_sha256": "4a089416a77fcd3ced4438d8802181953d5423436297ba1c4a9f75e005c3344e"
+      }
+    },
+    {
+      "idx": 133,
+      "record": {
+        "id": "draft-c14-05",
+        "category": "数学分析",
+        "sub_category": "傅立叶级数",
+        "concept": "傅立叶展开",
+        "concept_id": "C14",
+        "parent_training_ids": [
+          "calc-series-020"
+        ],
+        "problem": "令$f(x)=\\cos x$，$g(x)=\\cos x$（$x\\notin2\\pi\\mathbb Z$），而$g(x)=5$（$x\\in2\\pi\\mathbb Z$）。比较两者的Fourier系数与在$x=0$处的级数和。为什么系数相同不保证处处相同？",
+        "solution": "在一个周期内，两函数只在有限点不同，这些点对积分无贡献，所以Fourier系数完全相同：$a_1=1$，其他系数为零，两者级数均为$\\cos x$。在$0$处级数和为$1$，等于左右极限平均值，而$g(0)=5$。Fourier积分无法辨识零测集上的取值；在此例两函数几乎处处相等，却不处处相等。没有连续性等附加条件，不能从系数相同推出逐点相同。",
+        "answer": "系数相同，级数均为$\\cos x$；在$0$处和$1\\ne g(0)=5$。",
+        "method": "Fourier单点值不可辨识性",
+        "difficulty": "进阶",
+        "variant_kind": "结构改写：Fourier单点值不可辨识性",
+        "scene_spec": {
+          "objects": [
+            "令$f(x)=\\cos x$，$g(x)=\\cos x$（$x\\notin2\\pi\\mathbb Z$），而$g(x)=5$（$x\\in2\\pi\\mathbb Z$）。比较两者的Fourier系数与在$x=0$处的级数和。为什么系数相同不保证处处相同？",
+            "系数相同，级数均为$\\cos x$；在$0$处和$1\\ne g(0)=5$。"
+          ],
+          "steps": [
+            "第一步:在一个周期内，两函数只在有限点不同，这些点对积分无贡献，所以Fourier系数完全相同：$a_1=1$，其他系数为零，两者级数均为$\\cos x$。",
+            "第二步:在$0$处级数和为$1$，等于左右极限平均值，而$g(0)=5$。",
+            "第三步:Fourier积分无法辨识零测集上的取值；在此例两函数几乎处处相等，却不处处相等。",
+            "第四步:没有连续性等附加条件，不能从系数相同推出逐点相同。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c14-05",
+        "admitted": false,
+        "animation_render_verified": false,
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-09",
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "math_content_sha256": "d23ac33b44bf3633bd77d4737e885c8c00cd05a4379f1d9ed9ab52cf597f8324",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+        },
+        "revision_lineage": {
+          "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+          "original_id": "draft-c14-05",
+          "prior_parent_training_ids": [
+            "calc-series-020"
+          ],
+          "historical_risk_not_reset": true,
+          "version": "codex-repair-v4-final",
+          "math_correction_notes": "去掉同一方波的振幅变体，改为零测集修改与点态唯一性的边界。",
+          "substantive_rewrite": true,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+            "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+            "versioned_id": "codex-repair-20261005-batch-09-draft-c14-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": null,
+            "evidence": null
+          }
+        }
+      },
+      "binding": {
+        "batch": "batch-09",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+        "source_line": 15,
+        "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+        "source_normalized_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "198e74f04055861d3168636489d8bc13c2031e4142e63499c63b67476ed15cbf",
+        "record_canonical_sha256": "c8831f45318a2d48b99b4663814dacd5fdaf22ecef1b1ea2203b47445050ad1b",
+        "publisher_record_sorted_sha256": "872e0bafd7704d2a6a16a5068687c73b50c2fa1ee4c56cd6358c312dce22eaa4"
+      }
+    }
+  ]
+}

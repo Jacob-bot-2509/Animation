@@ -67,7 +67,7 @@ from animtrain import appcontainer as ac  # noqa: E402
 SUPPORT = Path(__file__).resolve().parent
 # 复查方授权可复用的独立运行时(msg_306);只读复制,不授权原 D:\Python/.venv
 CODEX_RUNTIME = Path(
-    r"D:\code\output\claude-supervision\fix-2026-10-04"
+    r"D:\Animation-Model-Training\reviews\codex-supervision\history-from-code\fix-2026-10-04"
     r"\appcontainer-probe-wenbjyjh\runtime")
 NET_RUNTIME = SUPPORT / "net-runtime"
 EVIDENCE = SUPPORT / "net-evidence"

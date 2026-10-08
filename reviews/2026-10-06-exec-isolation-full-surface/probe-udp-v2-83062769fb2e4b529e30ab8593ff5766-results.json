@@ -1,0 +1,213 @@
+{
+  "schema": "exec-surface-bounded-probe-v2",
+  "probe": "udp",
+  "run_id": "83062769fb2e4b529e30ab8593ff5766",
+  "status": "UNVERIFIED",
+  "production_gate": "CLOSED",
+  "certificate_written": false,
+  "full_surface_accepted": false,
+  "native_executed": true,
+  "transport_verified": true,
+  "safety_points": {
+    "D7": "UNKNOWN",
+    "D8": "UNKNOWN",
+    "D9": "UNKNOWN",
+    "D10": "UNKNOWN"
+  },
+  "controls": {
+    "owned_loopback_udp_v4": {
+      "before": {
+        "received_exactly_once": true
+      },
+      "after": {
+        "received_exactly_once": true
+      }
+    },
+    "owned_loopback_udp_v6": {
+      "before": {
+        "received_exactly_once": true
+      },
+      "after": {
+        "received_exactly_once": true
+      }
+    }
+  },
+  "fixture_errors": {},
+  "scoped_results": {
+    "owned_loopback_udp_v4": {
+      "endpoint": [
+        "127.0.0.1",
+        65211
+      ],
+      "nonces": {
+        "before": "605680414c1e4768b4c64df94816e414",
+        "sandbox": "8ad003084ece4c1ba626ca205d92c1fb",
+        "after": "c4c32f4c641f44d59fcc6b159828a4a8"
+      },
+      "packets": [
+        "605680414c1e4768b4c64df94816e414",
+        "c4c32f4c641f44d59fcc6b159828a4a8"
+      ],
+      "complete": true,
+      "errors": [],
+      "observation_ns": 25169083100,
+      "verdict": "BOUNDED_NO_DELIVERY"
+    },
+    "owned_loopback_udp_v6": {
+      "endpoint": [
+        "::1",
+        65213,
+        0,
+        0
+      ],
+      "nonces": {
+        "before": "e6f61e3d2d804e2e84e918f67efb9995",
+        "sandbox": "dc124cf97f6740beb3c53a70e4982052",
+        "after": "6af60b63d877412db79d1e08d3fb1e2b"
+      },
+      "packets": [
+        "e6f61e3d2d804e2e84e918f67efb9995",
+        "6af60b63d877412db79d1e08d3fb1e2b"
+      ],
+      "complete": true,
+      "errors": [],
+      "observation_ns": 25169087700,
+      "verdict": "BOUNDED_NO_DELIVERY"
+    }
+  },
+  "clipboard_accessed": false,
+  "implementation_before": {
+    "src/animtrain/sandbox_execution.py": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+    "reviews/2026-10-06-exec-isolation-full-surface/fix_ipc3_accounting.py": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+    "reviews/2026-10-06-exec-isolation-full-surface/host_section_debug.py": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_exe_ipc_fs.py": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc4.py": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc5.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc6.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_raw_ipc3.py": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_udp_external.py": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880"
+  },
+  "native_requested": true,
+  "generated_source": "import json,_socket,time\nr={}\ntargets={'owned_loopback_udp_v4': {'family': 2, 'endpoint': ('127.0.0.1', 65211), 'nonce': '8ad003084ece4c1ba626ca205d92c1fb'}, 'owned_loopback_udp_v6': {'family': 23, 'endpoint': ('::1', 65213, 0, 0), 'nonce': 'dc124cf97f6740beb3c53a70e4982052'}}\n\ndef failure(exc):\n    number=getattr(exc,'winerror',None)\n    return {'outcome':'os_denied' if number in (5,10013) else 'error',\n            'winerror':number,'errno':getattr(exc,'errno',None),\n            'error_type':type(exc).__name__,'detail':str(exc)}\n\nfor name,item in targets.items():\n    sock=None;started=time.monotonic_ns()\n    try:\n        sock=_socket.socket(item['family'],_socket.SOCK_DGRAM)\n        sock.sendto(item['nonce'].encode('ascii'),tuple(item['endpoint']))\n        r[name]={'outcome':'sent'}\n    except OSError as exc:r[name]=failure(exc)\n    finally:\n        if sock is not None:sock.close()\n    r[name]['elapsed_ns']=time.monotonic_ns()-started\nprint(json.dumps(r),flush=True)\n",
+  "generated_source_canonical_sha256": "9a95ecb6cd3e2fe78c6c6d1802eb40cc61118a309ee76621e450258c5b2969b8",
+  "native_attempted": true,
+  "transport": {
+    "rc": 0,
+    "stdout": "{\"owned_loopback_udp_v4\": {\"outcome\": \"sent\", \"elapsed_ns\": 585200}, \"owned_loopback_udp_v6\": {\"outcome\": \"sent\", \"elapsed_ns\": 240200}}\r\n",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4",
+    "source_sha256": "a865d684afda786c7de377332c9918c0a92887377c9b1182b1bfb2d2e2505f8d",
+    "command": [
+      "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\scene.py"
+    ],
+    "parent_evidence": {
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-79162216-965065615-2269433796-53825210-3994024156-3128259947-1061143910"
+      },
+      "memory_limit_mb": 2048,
+      "created_suspended": true,
+      "job_assigned_before_resume": true,
+      "tree_stopped": true,
+      "pid": 27012,
+      "private_profile": {
+        "profile_name": "animtrain-job-2369d8a2619f4f7a8be1611a33af7ad6",
+        "sid": "S-1-15-2-79162216-965065615-2269433796-53825210-3994024156-3128259947-1061143910",
+        "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-2369d8a2619f4f7a8be1611a33af7ad6\\AC",
+        "temporary_acl": [
+          {
+            "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4",
+            "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.venv",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Python",
+            "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "restored": true
+          }
+        ],
+        "cleanup_complete": true
+      }
+    }
+  },
+  "raw_streams": {
+    "stdout": {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\stdout.txt",
+      "raw_sha256": "2d5b01cef6ad7d7c4207ffa5ca85074cef7de5b372f40522fffc3f33b0e3df2d",
+      "bytes": 138
+    },
+    "stderr": {
+      "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-76658872cece4ed8b32e78ad770872f4\\stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "observations": {
+    "owned_loopback_udp_v4": {
+      "outcome": "sent",
+      "elapsed_ns": 585200
+    },
+    "owned_loopback_udp_v6": {
+      "outcome": "sent",
+      "elapsed_ns": 240200
+    }
+  },
+  "required_fixtures": [
+    "controlled external IPv4/IPv6 receiver with exact nonce controls",
+    "independent LAN peer",
+    "controlled uncached DNS endpoint/capture"
+  ],
+  "implementation_after": {
+    "src/animtrain/sandbox_execution.py": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3",
+    "reviews/2026-10-06-exec-isolation-full-surface/fix_ipc3_accounting.py": "548bd94622fc1026fe78a243e2f508f71fc52cbe4fffe1fcc34cc18e122d7f6c",
+    "reviews/2026-10-06-exec-isolation-full-surface/host_section_debug.py": "12f341f0f1a546e127af17336eb3f22d2814ae0cc48cf58d6a9a4a885dc03b42",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_exe_ipc_fs.py": "7a2011c74529756b92185658e7ac66c11018794af91d3efec9ee63736d39f5a9",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc4.py": "8f41534a6adf4bcc499f88645ce2e7628c5a29f61c07fb83876794a327d44f8f",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc5.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_ipc6.py": "49843d0ca80b0289ff1feefcdd4c0de7f0045479461c82c17264f10993c0875d",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_raw_ipc3.py": "2f2adc898178dc14c6820573cf7255c02a2b7bc53d1d9c0abc5f8ac08fa18c44",
+    "reviews/2026-10-06-exec-isolation-full-surface/probe_udp_external.py": "82f42f7bb7869c29a6fa81eb40fc364122f266a6ef0558634e453be029f09424",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880"
+  },
+  "implementation_unchanged": true
+}

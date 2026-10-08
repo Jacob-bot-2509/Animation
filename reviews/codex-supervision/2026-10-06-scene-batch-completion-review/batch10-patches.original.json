@@ -1,0 +1,91 @@
+{
+ "schema": "scene-patches-batch-v1",
+ "status": "PENDING_CODEX_REVIEW",
+ "normalization": "sorted-json-default-separators",
+ "records": [
+  {
+   "batch": "batch-18",
+   "id": "draft-c50-03",
+   "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+   "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+   "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+   "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+   "expected_record_sha256": "847298b6cc18845e6305df565218a7e2c37c7c9834c55c6e07d06ae096ec4377",
+   "new_math_content_sha256": "313a758ce56f3f46d4beb46bc28f5b97310c4a06a9c3a532346905091057157f",
+   "fields": {
+    "scene_spec": {
+     "objects": [
+      "题面卡:$\\operatorname{Exp}(1)$ 和 $S_{100}>110$ 的精确式与极限",
+      "板书一:密度 $\\frac{e^{-s}s^{n-1}}{(n-1)!}$ 与分部积分递推",
+      "高亮框:关键点——递推 $T_n(t)=\\frac{e^{-t}t^{n-1}}{(n-1)!}+T_{n-1}(t)$ 逐次累加",
+      "板书二:泊松等价的分布律对照",
+      "结论卡:精确尾 $e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$;极限 $1-\\Phi(a)$"
+     ],
+     "steps": [
+      "第一步:密度:卷积或归纳给 $S_n$ 的密度 $f_n(s)=\\frac{e^{-s}s^{n-1}}{(n-1)!}$($s>0$)。",
+      "第二步:尾积分递推(逐步,高亮):记 $T_n(t)=\\int_t^\\infty\\frac{e^{-s}s^{n-1}}{(n-1)!}ds$;分部积分:$\\int_t^\\infty e^{-s}s^{n-1}ds=[-e^{-s}s^{n-1}]_t^\\infty+(n-1)\\int_t^\\infty e^{-s}s^{n-2}ds=e^{-t}t^{n-1}+(n-1)\\int_t^\\infty e^{-s}s^{n-2}ds$;除以 $(n-1)!$ 得 $T_n(t)=\\frac{e^{-t}t^{n-1}}{(n-1)!}+T_{n-1}(t)$;$T_1(t)=e^{-t}$。",
+      "第三步:递推展开(逐步):从 $T_1$ 逐次递推到 $T_{100}$,每步累加一项 $\\frac{e^{-t}t^k}{k!}$;故 $T_{100}(110)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$;即 $P(S_{100}>110)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$(高亮)。",
+      "第四步:泊松等价(依据,高亮):泊松分布律 $P(\\operatorname{Pois}(110)\\le99)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$,与上式逐项相同。",
+      "第五步:极限(逐步):$EX_i=\\operatorname{Var}X_i=1$;CLT 给 $\\frac{S_n-n}{\\sqrt n}\\Rightarrow N(0,1)$;故 $\\lim P(S_n>n+a\\sqrt n)=\\lim P(\\frac{S_n-n}{\\sqrt n}>a)=1-\\Phi(a)$;注意:该定理不提供 $n=100$ 的误差大小,不能凭未验证小数宣称有限误差很小(高亮)。"
+     ]
+    }
+   }
+  },
+  {
+   "batch": "batch-18",
+   "id": "draft-c50-04",
+   "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+   "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+   "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+   "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+   "expected_record_sha256": "662a4dbce1eabc2639c8e3f0f49ba8a67704899932d2c17b981981a02db9a32b",
+   "new_math_content_sha256": "f44c230ae0c52c2f971b283d637927d0c56119dbd3a8bf0a812a3d8052fc7e71",
+   "fields": {
+    "scene_spec": {
+     "objects": [
+      "题面卡:$B(n,\\frac12)$ 的整数阈值与半单位移动",
+      "板书一:精确概率 $2^{-100}\\sum_{j=0}^{55}\\binom{100}j$",
+      "高亮框:关键点——事件等价 $\\{X_n\\le k\\}=\\{X_n\\le k+\\frac12\\}$",
+      "板书二:$|z_n-a|\\le\\frac2{\\sqrt n}$ 与半单位移动增 $\\frac1{\\sqrt n}$ 的推导",
+      "结论卡:两个标准化阈值均给极限 $\\Phi(a)$"
+     ],
+     "steps": [
+      "第一步:精确概率:$P(X_{100}\\le55)=2^{-100}\\sum_{j=0}^{55}\\binom{100}j$。",
+      "第二步:半单位移动(事件等价,高亮):$X_n$ 只取整数,故对整数 $k$:$\\{X_n\\le k\\}=\\{X_n\\le k+\\frac12\\}$,只是事件等价,不改变概率。",
+      "第三步:标准化:$Z_n=\\frac{X_n-n/2}{\\sqrt n/2}$,CLT 给 $Z_n\\Rightarrow N(0,1)$;对 $k_n=\\lfloor n/2+a\\sqrt n/2\\rfloor$,记阈值 $z_n=\\frac{k_n-n/2}{\\sqrt n/2}$。",
+      "第四步:阈值估计(推导,高亮):$|z_n-a|=\\frac{|k_n-(n/2+a\\sqrt n/2)|}{\\sqrt n/2}\\le\\frac1{\\sqrt n/2}=\\frac2{\\sqrt n}$(取整误差不超过 $1$);移动半单位后阈值增加 $\\frac{1/2}{\\sqrt n/2}=\\frac1{\\sqrt n}$;二者都趋于 $a$。",
+      "第五步:夹逼(逐步,高亮):对固定 $\\varepsilon>0$,最终 $z_n\\in(a-\\varepsilon,a+\\varepsilon)$;于是 $P(Z_n\\le a-\\varepsilon)\\le P(X_n\\le k_n)\\le P(Z_n\\le a+\\varepsilon)$;两边取极限得 $\\Phi(a-\\varepsilon)\\le\\liminf\\le\\limsup\\le\\Phi(a+\\varepsilon)$;由 $\\Phi$ 的连续性令 $\\varepsilon\\to0$,得极限 $\\Phi(a)$;有限事件等价不能推出其概率等于正态 CDF,连续性论证才是极限依据。"
+     ]
+    }
+   }
+  },
+  {
+   "batch": "batch-18",
+   "id": "draft-c50-05",
+   "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+   "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+   "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+   "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+   "expected_record_sha256": "751e18db97320e1d3f0e4a50b24a0409715aa9b268d6cb5d55902c74534a608b",
+   "new_math_content_sha256": "3e0aeb21a1fc8affd2db247cd72b966808e015e08b95814a781a4f31af025ede",
+   "fields": {
+    "scene_spec": {
+     "objects": [
+      "题面卡:柯西反例——去掉矩条件后样本均值不集中",
+      "板书一:经典 CLT 的充分矩条件与标准化",
+      "高亮框:关键点——特征函数 $(e^{-|t|/n})^n=e^{-|t|}$,样本均值仍为标准柯西",
+      "板书二:$P(|\\overline X_n|\\le1)=\\frac12$ 与 $P(|\\overline X_n-c|\\le\\frac\\pi8)\\le\\frac14$",
+      "结论卡:反例只说明充分性,不能推断所有 CLT 的必要条件"
+     ],
+     "steps": [
+      "第一步:经典条件(高亮):$EX=\\mu$、$0<\\operatorname{Var}X=\\sigma^2<\\infty$,标准化为 $\\frac{\\sum X_i-n\\mu}{\\sigma\\sqrt n}$;零方差是退化情形。",
+      "第二步:柯西的矩:标准柯西的 $E|X|$ 与 $EX^2$ 发散,均值不存在;特征函数(逐步):$\\phi(t)=\\frac1\\pi\\int_{-\\infty}^{\\infty}\\frac{e^{itx}}{1+x^2}dx=e^{-|t|}$。",
+      "第三步:样本均值特征函数(逐步,高亮):独立和的特征函数相乘:$\\phi_{\\overline X_n}(t)=(\\phi(t/n))^n=(e^{-|t|/n})^n=e^{-|t|}$;故 $\\overline X_n$ 仍为标准柯西(高亮核心结论)。",
+      "第四步:不集中到零(逐步):$P(|\\overline X_n|\\le1)=P(|X|\\le1)=\\frac2\\pi\\int_0^1\\frac{dx}{1+x^2}=\\frac2\\pi\\cdot\\frac\\pi4=\\frac12$,对所有 $n$ 成立。",
+      "第五步:不集中到任何常数(逐步):密度 $f\\le\\frac1\\pi$,故 $P(|\\overline X_n-c|\\le\\frac\\pi8)\\le\\frac1\\pi\\cdot\\frac{2\\pi}8=\\frac14$;反例的逻辑范围:只说明有限正方差是经典 $\\sqrt n$ 规范化 CLT 的充分假设,不能由该反例推断所有 CLT 形式的必要条件(高亮)。"
+     ]
+    }
+   }
+  }
+ ]
+}

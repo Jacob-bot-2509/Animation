@@ -1,0 +1,66 @@
+{
+  "schema": "semantic-cross-candidates-v2",
+  "core_manifest_sha256": "972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22",
+  "input_bindings": [
+    {
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/received-complete-signatures.jsonl",
+      "sha256": "5b11f8dd892877e5039ea3b072d1eda590d33e4a8a34ac6b6684145e9c55b773",
+      "bytes": 278322,
+      "records": 761
+    }
+  ],
+  "train_side": 311,
+  "eval_side": 450,
+  "expected_groups": {
+    "train": 47,
+    "selected_draft": 264,
+    "eval": 300,
+    "test": 150
+  },
+  "covered_groups": {
+    "selected_draft": 264,
+    "eval": 300,
+    "test": 150,
+    "train": 47
+  },
+  "missing_ids": [],
+  "signature_coverage": "COMPLETE",
+  "candidate_generation": "CANDIDATE_SCREEN_ONLY",
+  "candidates": [
+    {
+      "train_id": "draft-c18-02",
+      "eval_id": "test-geom-024",
+      "eval_group": "test",
+      "train_record_sha256": "8e3197f933a35a03c9a6f8046fad796ee5f53c8f8c959d30e574b0e609be6f94",
+      "eval_record_sha256": "123ab6b21b539d6dc85fbf99c2aa67e1737a40773f68edfa8a1108df6d1b83de",
+      "train_goal": "求两平行平面距离",
+      "eval_goal": "求两平行平面距离",
+      "train_steps": [
+        "点面距离公式"
+      ],
+      "eval_steps": [
+        "点面距离公式"
+      ],
+      "train_domain": "平行平面",
+      "eval_domain": "平行平面",
+      "train_conditions": [
+        "法向量相同"
+      ],
+      "eval_conditions": [
+        "法向量"
+      ],
+      "disposition": "UNREVIEWED",
+      "candidate_basis": "EXACT_GOAL_AND_UNORDERED_STEP_DESCRIPTORS"
+    }
+  ],
+  "candidate_generation_exhaustive": false,
+  "limits": [
+    "Literal descriptor equality misses synonyms and alternative mathematical formulations.",
+    "Goal/step equality does not establish semantic equivalence; domains and conditions require review.",
+    "Zero candidates never establishes train/evaluation isolation."
+  ],
+  "semantic_content": "PENDING_INDEPENDENT_REVIEW",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "production": "CLOSED",
+  "PASS_CORE_SCOPE_issued": false
+}

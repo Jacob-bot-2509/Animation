@@ -1,0 +1,471 @@
+{
+  "checked_at": "2026-10-06T15:05:15.096524+08:00",
+  "old_inputs_restored_and_readonly": 21,
+  "original_scene_results_preserved": 18,
+  "new_nonempty_input_chunks": 20,
+  "input_records": 264,
+  "active_selector_unchanged": true,
+  "old_native_source_bindings_verified": 32,
+  "old_receipt_raw_sha256": "4e81d921f2fb3ad5e90ab8e7372fa898203441bf8011008774f2d1b45cfbee25",
+  "protocol_v3_sources_unchanged": true,
+  "stage_candidate_records": 264,
+  "stage_changed_scenes": 53,
+  "all_stage_math_three_fields_equal_sources": true,
+  "candidate_acceptance_flags_closed": true,
+  "new_math_candidate_records": 47,
+  "math_corrections_applied_to_new_version": 9,
+  "original_math_sources_unchanged": true,
+  "sample_three_proof_content_unchanged": true,
+  "regression_tests_passed": 39,
+  "exact_formula_checks": 32,
+  "full_scene_math_and_visual_acceptance": false,
+  "production_gate": "CLOSED",
+  "assets": "1/497 NOT READY",
+  "training_started": false,
+  "source_bindings": {
+    "data/asset_evidence.json": {
+      "raw_sha256": "d5163af3900c37091f65eefaa40a9c27c8152abbb2cf9b319a3a7d917bba7bb1",
+      "bytes": 548582
+    },
+    "data/eval-v2.lock.json": {
+      "raw_sha256": "28414fba61ac9bff5953e60ae8f699c58d05fc39734678127268934f7228d0f0",
+      "bytes": 726
+    },
+    "data/manifest.json": {
+      "raw_sha256": "11b6ff941798bcdea53de08c22328b45bad1512a6773d274829f2ad7456874a7",
+      "bytes": 2996
+    },
+    "data/test-v2.lock.json": {
+      "raw_sha256": "4f95184c920c6e3a58efbf968a94080387d2352862a9f42ba0f8e6b8298c5dbc",
+      "bytes": 726
+    },
+    "data/v2/eval/dataset_eval.jsonl": {
+      "raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+      "bytes": 442378
+    },
+    "data/v2/test/dataset_test.jsonl": {
+      "raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+      "bytes": 200390
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl": {
+      "raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "bytes": 28056
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl": {
+      "raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "bytes": 12050
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl": {
+      "raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "bytes": 22190
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl": {
+      "raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "bytes": 11845
+    },
+    "reviews/2026-10-05-training-diversity-drafts/draft-selection.json": {
+      "raw_sha256": "6cadccf0cf60ad2eca80ed3fa20ecc3b13b1f1ea016f506a21da2e7690cdfe25",
+      "bytes": 26369
+    },
+    "reviews/2026-10-06-linalg048-admission/v3-receipt-bound/receipt.json": {
+      "raw_sha256": "4e81d921f2fb3ad5e90ab8e7372fa898203441bf8011008774f2d1b45cfbee25",
+      "bytes": 160975
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-01.json": {
+      "raw_sha256": "01b4d665e838bb92d09aa330d138d264b6ccc883a65e14939c020d04895701e3",
+      "bytes": 28289
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-02.json": {
+      "raw_sha256": "d9c423dc16e8f488ac7ee2759c3e6a32baa12bf3937c550a3e57e2f7d8e4327d",
+      "bytes": 26591
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-03.json": {
+      "raw_sha256": "309b6694421bcba6ac306a741dc326432b20a69f6fe5a5246793a59a0382375e",
+      "bytes": 26719
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-04.json": {
+      "raw_sha256": "9429c9299ff8dff33a984d5b2b0d79167f620ce85389b84a1da112de805b3fc8",
+      "bytes": 21874
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-05.json": {
+      "raw_sha256": "70a336c6cfb79cf27499685017c93dffcdac7f3f6bcd1579432b745db07bc582",
+      "bytes": 20622
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-06.json": {
+      "raw_sha256": "55923a1c9f0233f3f3b4fe32b11f050f8593b5ce9fd570872e4e1de018188f7d",
+      "bytes": 21292
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-07.json": {
+      "raw_sha256": "9e263da4c080a4a8cb67e4b4c0b826319a251045904729b80a82c4782d8bbe8f",
+      "bytes": 20823
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-08.json": {
+      "raw_sha256": "8c67c2b34d5eff38d0550a9819b28aac4158a499b38a5e0f0140cd562db332d4",
+      "bytes": 20954
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-09.json": {
+      "raw_sha256": "835abe0b670cea1414c1aa21401ef2a240c26bf2a7669772686ce3047aa63196",
+      "bytes": 23376
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-10.json": {
+      "raw_sha256": "2081fe1301cd689f55b3d32b1bd95c47a9852147b75cc4106186790c71948e62",
+      "bytes": 24593
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-11.json": {
+      "raw_sha256": "01076885ee9116b5dd08675b115b249010cdf835b94fa268c0de70334f2d549c",
+      "bytes": 24128
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-12.json": {
+      "raw_sha256": "758f456c9c425241ba316d30e8d704ca16d11231ac12f32deb8708a109e5781b",
+      "bytes": 23789
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-13.json": {
+      "raw_sha256": "b4860d7ce2a9d123e670d0697de9df4fac6602aedeaf172acd9f30f1fd5bb27e",
+      "bytes": 26481
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-14.json": {
+      "raw_sha256": "66159e9173633ef81cda2e9c86147e4bdf765a0682ffc6582b759e5d6812c776",
+      "bytes": 21125
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-15.json": {
+      "raw_sha256": "93e61bbef4fa5c0e8cf37c56085372173b0486ccb51e1a8bfb747af06a75ca3e",
+      "bytes": 25372
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-16.json": {
+      "raw_sha256": "efed0da28eac079ba8bebe2a05b7ead483ce61c8f297fe5691d672a340662850",
+      "bytes": 28954
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-17.json": {
+      "raw_sha256": "41a55e01afbf5e0b3fa12521a6814f5434f7d48ad685f8f12231feb69b87a043",
+      "bytes": 23726
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-18.json": {
+      "raw_sha256": "5d3a0ed34f589b0bfc7ae27de29edd7efeb69a6f3a73377572416edd58df96ee",
+      "bytes": 24267
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-19.json": {
+      "raw_sha256": "2902fb77cf78a7d6b52b982e4862c92e782851ffb73133fca22aca69a162e72a",
+      "bytes": 23033
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/chunk-20.json": {
+      "raw_sha256": "4ac4355d0d5f57fa860036b3ee6a2e1d41bd9286b7fe2d11bc48de08f6dd6b00",
+      "bytes": 436
+    },
+    "reviews/2026-10-06-scene-standard-sweep/chunks/listing.json": {
+      "raw_sha256": "8e19c80101cede83728a2d0cddf0503f1f397bb4b20f7d1e1ee0b0d15a603fb3",
+      "bytes": 1909
+    },
+    "reviews/codex-supervision/2026-10-05-three-gates/execution-64ba8747d92b41e384b9f125ad6167c9/bootstrap.py": {
+      "raw_sha256": "f398edbbc081a4b35c52e0da405c79cdb1b0ccc9ea6c367d2a1ed809d066dcee",
+      "bytes": 534
+    },
+    "reviews/codex-supervision/2026-10-05-three-gates/execution-64ba8747d92b41e384b9f125ad6167c9/media/videos/scene/480p15/ConceptScene.mp4": {
+      "raw_sha256": "da928b2d6d48185f3627b7c8e14549092cd530dd14a6bda870530c8b5e7d2f98",
+      "bytes": 266889
+    },
+    "reviews/codex-supervision/2026-10-05-three-gates/execution-64ba8747d92b41e384b9f125ad6167c9/scene.py": {
+      "raw_sha256": "c412d36f240bd9a20d8895d6e0ada00dc2695f9d3764867a9807357596e1b4dc",
+      "bytes": 4242
+    },
+    "reviews/codex-supervision/2026-10-05-three-gates/execution-64ba8747d92b41e384b9f125ad6167c9/stderr.txt": {
+      "raw_sha256": "b884af0f1037289eb0cf73a4bceb1427fe4e61c70ebe48de48d3fe2ec157fa6d",
+      "bytes": 3038
+    },
+    "reviews/codex-supervision/2026-10-05-three-gates/execution-64ba8747d92b41e384b9f125ad6167c9/stdout.txt": {
+      "raw_sha256": "23609ab83a770c58d812015d0e9995a797eb0e183951ab11260380390ca798ed",
+      "bytes": 22707
+    },
+    "reviews/codex-supervision/2026-10-06-holdout-strict-fix/linalg048-v3/candidate.json": {
+      "raw_sha256": "8d30d09d5f1dd5b7c72f429ee5670680f2a84a953fbebd57d8372bfbca56e169",
+      "bytes": 2903
+    },
+    "reviews/codex-supervision/2026-10-06-protocol-v3-mail-followup/delivery-manifest.json": {
+      "raw_sha256": "c02cb8db244332804b173f00c69d28f196a76ab7d470b73894f8d7477e6339aa",
+      "bytes": 5648
+    },
+    "reviews/codex-supervision/2026-10-06-repair-progress-followup/shear-scene-v2.py": {
+      "raw_sha256": "e21c9ff372911a46a8538025f6e1f4f4f4cb36371fbef7740fe47fd71c65149e",
+      "bytes": 4164
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/exact-math-verification.json": {
+      "raw_sha256": "6c9c19df40f1d3078723998751a07b023685ffaeb38d01108ded1efbabc2c879",
+      "bytes": 5247
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/math-corrected-v1/dataset_calc.jsonl": {
+      "raw_sha256": "9de79a5d2171b2ac00c07cc5a3dea5f27e4e783b11bb98bb8064d5ddcb24ca10",
+      "bytes": 35552
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/math-corrected-v1/dataset_geom.jsonl": {
+      "raw_sha256": "08e6257db4e41c80c4a53953178a5df0125c0e5821f094a0e8e7ec6a5d67a257",
+      "bytes": 15549
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/math-corrected-v1/dataset_linalg.jsonl": {
+      "raw_sha256": "2c977c78d12f5eb107f065edf279973d344c180fde5d1c7f241b0c54bd0a0cf4",
+      "bytes": 30236
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/math-corrected-v1/dataset_prob.jsonl": {
+      "raw_sha256": "fb3eeba175e0c7653626cd047c6e7dd48fd1d4b14ec1cfe89be9f0db0ad95183",
+      "bytes": 17133
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/math-correction-receipt.json": {
+      "raw_sha256": "33c0a0bc6bc5281f513bf17fdda3de2a178f4700b9703bdcce7465e7cbcc0ef9",
+      "bytes": 36274
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-01.json": {
+      "raw_sha256": "01b4d665e838bb92d09aa330d138d264b6ccc883a65e14939c020d04895701e3",
+      "bytes": 28289
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-02.json": {
+      "raw_sha256": "d9c423dc16e8f488ac7ee2759c3e6a32baa12bf3937c550a3e57e2f7d8e4327d",
+      "bytes": 26591
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-03.json": {
+      "raw_sha256": "309b6694421bcba6ac306a741dc326432b20a69f6fe5a5246793a59a0382375e",
+      "bytes": 26719
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-04.json": {
+      "raw_sha256": "9429c9299ff8dff33a984d5b2b0d79167f620ce85389b84a1da112de805b3fc8",
+      "bytes": 21874
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-05.json": {
+      "raw_sha256": "70a336c6cfb79cf27499685017c93dffcdac7f3f6bcd1579432b745db07bc582",
+      "bytes": 20622
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-06.json": {
+      "raw_sha256": "55923a1c9f0233f3f3b4fe32b11f050f8593b5ce9fd570872e4e1de018188f7d",
+      "bytes": 21292
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-07.json": {
+      "raw_sha256": "9e263da4c080a4a8cb67e4b4c0b826319a251045904729b80a82c4782d8bbe8f",
+      "bytes": 20823
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-08.json": {
+      "raw_sha256": "8c67c2b34d5eff38d0550a9819b28aac4158a499b38a5e0f0140cd562db332d4",
+      "bytes": 20954
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-09.json": {
+      "raw_sha256": "835abe0b670cea1414c1aa21401ef2a240c26bf2a7669772686ce3047aa63196",
+      "bytes": 23376
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-10.json": {
+      "raw_sha256": "2081fe1301cd689f55b3d32b1bd95c47a9852147b75cc4106186790c71948e62",
+      "bytes": 24593
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-11.json": {
+      "raw_sha256": "01076885ee9116b5dd08675b115b249010cdf835b94fa268c0de70334f2d549c",
+      "bytes": 24128
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-12.json": {
+      "raw_sha256": "758f456c9c425241ba316d30e8d704ca16d11231ac12f32deb8708a109e5781b",
+      "bytes": 23789
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-13.json": {
+      "raw_sha256": "b4860d7ce2a9d123e670d0697de9df4fac6602aedeaf172acd9f30f1fd5bb27e",
+      "bytes": 26481
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-14.json": {
+      "raw_sha256": "66159e9173633ef81cda2e9c86147e4bdf765a0682ffc6582b759e5d6812c776",
+      "bytes": 21125
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-15.json": {
+      "raw_sha256": "93e61bbef4fa5c0e8cf37c56085372173b0486ccb51e1a8bfb747af06a75ca3e",
+      "bytes": 25372
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-16.json": {
+      "raw_sha256": "efed0da28eac079ba8bebe2a05b7ead483ce61c8f297fe5691d672a340662850",
+      "bytes": 28954
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-17.json": {
+      "raw_sha256": "41a55e01afbf5e0b3fa12521a6814f5434f7d48ad685f8f12231feb69b87a043",
+      "bytes": 23726
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-18.json": {
+      "raw_sha256": "5d3a0ed34f589b0bfc7ae27de29edd7efeb69a6f3a73377572416edd58df96ee",
+      "bytes": 24267
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-19.json": {
+      "raw_sha256": "2902fb77cf78a7d6b52b982e4862c92e782851ffb73133fca22aca69a162e72a",
+      "bytes": 23033
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/chunk-20.json": {
+      "raw_sha256": "4ac4355d0d5f57fa860036b3ee6a2e1d41bd9286b7fe2d11bc48de08f6dd6b00",
+      "bytes": 436
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/original-inputs/listing.json": {
+      "raw_sha256": "8e19c80101cede83728a2d0cddf0503f1f397bb4b20f7d1e1ee0b0d15a603fb3",
+      "bytes": 1909
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/restore-plan.json": {
+      "raw_sha256": "c77e9ad436109402165a27a0497d4db1f6eaf85cc007b2034b17c290bac74abd",
+      "bytes": 9293
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-01/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "1364b27a2703b7cf2484241912253c87ab4dedee3d5ec1680adb6a5f5d64c2f4",
+      "bytes": 79836
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-02/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "ac0e2d93ad99ec57759d47c84cb9f8f0a543617392f5adf7d1576328d871a31d",
+      "bytes": 96925
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-03/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "fd1d5b4afeeaf46d9e86794c3782d53b4711c33c66b2eb1e4351762380852ccd",
+      "bytes": 78867
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-04/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "480237e3b4ab41f4e05eff5eed070e6a8db4d633819625664e8ff46f48ba9503",
+      "bytes": 72881
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-05/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "88af84e091620dbda6013c1eacfd41a6928275d3561733078e04d3a368eaa1b5",
+      "bytes": 72925
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-06/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "0f82a9aa232d93970919c4e69bb30776dc25bea566cec0b870c14f370e502f4d",
+      "bytes": 52998
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-07/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "76fd8cbc0e4620d564e61bb2ab1bb2af5c5298d443f793fb951f22ae952af40b",
+      "bytes": 59681
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-08/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "1cc42aeb47cd68e3a6a2e21fabdcdbdea268e84c3ac5323467e0cd3e4c38768f",
+      "bytes": 57308
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-09/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "0ffd7925a78be94f28f3252cb4076e75b08f3ea63333de493a2008a54f3bce1e",
+      "bytes": 61595
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-10/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "3c77a25da47e747ccd6664b91f3e48a1b9b22bd50425b3c115713ba53d18654e",
+      "bytes": 53154
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-11/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "6c91bd7ab0d0d92e3efc513aba2a9dcefedecac795fbd4fd3778c1cfa5e18f8a",
+      "bytes": 50632
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-12/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "d8bf16267dfe1aa298f8833cd322f4da4fb1f827fbb4028e85747190697a6778",
+      "bytes": 50402
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-13/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "8b21b70bac737e7aaaad4c8941dc38b4c4bcc30d4c54bda180e5cc15f3fed741",
+      "bytes": 51031
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-14/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "172d61646616e0faa375a8e55d2257ba0a60128afbfa409738a916f97ce048cb",
+      "bytes": 55933
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-15/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "5b1dbe6c2d98d0b1ea3a30541bf9e8e58f551d6d9fd15bae0132ca4e62dfc052",
+      "bytes": 56107
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-16/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "da7b60850b96fe4953d4cce9080f61c46f53f2a94ba1aa2da928f9ca56ca5f62",
+      "bytes": 48860
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-17/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "39225db4139717454940ac5138198fe8e43d1277ea8ec13d8d8efedc65807110",
+      "bytes": 48906
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/batch-18/draft-codex-scene-repair-v4.jsonl": {
+      "raw_sha256": "32e917d5d6412cbc77f414287a3d11ec72183923ab26ff14f645f6966271242a",
+      "bytes": 38286
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-53-v4/draft-selection.candidate.json": {
+      "raw_sha256": "38924bbecbbe49055293cc0372e8f022f892a7d8930d0fa102c571858f1b4360",
+      "bytes": 19298
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/scene-candidates-corrected-v4.json": {
+      "raw_sha256": "d876beab5b798591c9c585157d568b9e1b98f16c756dce777410cd666001a26b",
+      "bytes": 276041
+    },
+    "reviews/codex-supervision/2026-10-06-scene-repair-takeover/suite-final-result.json": {
+      "raw_sha256": "30bb3def716dc41a7a52e9060f24897679394d1b5ae2b6dfd2534783cea063f7",
+      "bytes": 356
+    },
+    "reviews/codex-supervision/2026-10-06-scene-start-supervision/scene-sample-codex-corrections-v1.pending.json": {
+      "raw_sha256": "8d8d20ea55296b49f6c4833d5ca981a852e2aebd007022023436767b0efceec8",
+      "bytes": 18763
+    },
+    "src/animtrain/appcontainer.py": {
+      "raw_sha256": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+      "bytes": 19432
+    },
+    "src/animtrain/isolation_evidence.py": {
+      "raw_sha256": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+      "bytes": 5811
+    },
+    "src/animtrain/kp_rule.py": {
+      "raw_sha256": "d14ce7fa089dc19005a4645d73d6cd91c45a6da962a4a42af711cfdd00713be2",
+      "bytes": 2685
+    },
+    "src/animtrain/near_dup.py": {
+      "raw_sha256": "b888f1a9eaea6631fd3892256940c59387b38b53beae6f6ee2ce7aa8e5314df4",
+      "bytes": 3125
+    },
+    "src/animtrain/network_isolation.py": {
+      "raw_sha256": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+      "bytes": 21794
+    },
+    "src/animtrain/private_profile.py": {
+      "raw_sha256": "5c7fa93acbc5f9c7cb489b34a664c9e8da5f03c69b51cd67e28472b0593d25bf",
+      "bytes": 5898
+    },
+    "src/animtrain/sandbox_execution.py": {
+      "raw_sha256": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+      "bytes": 9773
+    },
+    "src/animtrain/structural_leakage.py": {
+      "raw_sha256": "81382303878e8658e5c6c27834119857bb7adc6a542c109a76169d3f71874169",
+      "bytes": 4913
+    },
+    "src/animtrain/validate.py": {
+      "raw_sha256": "a42b234f1f4f2f0cd770046111361b5b2a0566ebf8d26bc2477fa9c4cc23ca1f",
+      "bytes": 23193
+    },
+    "src/animtrain/win_job.py": {
+      "raw_sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "bytes": 12034
+    },
+    "tests/test_linalg048_admission_guards.py": {
+      "raw_sha256": "88efc42b1aec05ca5eeff54f4291a200e1d399c09f9214a5f1659e0bc421781e",
+      "bytes": 14640
+    },
+    "tests/test_linalg048_protocol_v3.py": {
+      "raw_sha256": "0f170c884f1fc7d9dba2b36cccc909d9f7f35ae99701e992833d6a2cff254d3d",
+      "bytes": 17568
+    },
+    "tools/admit_linalg048_v3.py": {
+      "raw_sha256": "843f421c47e6414c4bbbaf7dff5de3b467c5970f181e0bee44b3758bbbfbaca8",
+      "bytes": 10624
+    },
+    "tools/apply_linalg048_admission.py": {
+      "raw_sha256": "5e66b8a421e7519c644a781cc4d48378c388b7dbac64eba0b9dd5e0454a61765",
+      "bytes": 7999
+    },
+    "tools/apply_linalg048_admission_v3.py": {
+      "raw_sha256": "70a7145bc66ef7fd1c20bfa3b065719a2eefbeddb46c1a59ab72edfbd59405ad",
+      "bytes": 6163
+    },
+    "tools/build_holdout_pairs.py": {
+      "raw_sha256": "34c66a0712363301524c7b521f6e4c0f0492d9113ec84a4f5f463f437c6873cb",
+      "bytes": 13130
+    },
+    "tools/draft_io.py": {
+      "raw_sha256": "172592042690d542c0218b8d6c4784f3580d3179f4d5e276173eab6d0053f2ac",
+      "bytes": 4674
+    },
+    "tools/holdout_contract.py": {
+      "raw_sha256": "b52682e093caf5b67c1b122cb8850416d4da55594d8bd0d52e4d80e28c6c73d8",
+      "bytes": 6208
+    },
+    "tools/linalg048_protocol_v3.py": {
+      "raw_sha256": "4aaa849a1c2bd87d2a562f4c9fe3c4b700e2f2f0dad447a16c9a1715cd1a3446",
+      "bytes": 9289
+    },
+    "tools/prepare_linalg048_rewrite.py": {
+      "raw_sha256": "40e35e97a954f5bbb7503edca05bdcd0c68c1335a1d2248924dd43844e7b1b50",
+      "bytes": 12802
+    }
+  }
+}

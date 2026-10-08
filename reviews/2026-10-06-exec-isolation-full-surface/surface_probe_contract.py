@@ -39,7 +39,7 @@ def classify_delivery(state, packets, nonces, complete, observation_ns):
         return 'UNKNOWN'
     if state.get('outcome') == 'os_denied' and state.get('winerror') == 10013:
         return 'SCOPED_PASS'
-    if state.get('outcome') in ('sent', 'error', 'completed'):
+    if state.get('outcome') in ('sent', 'completed'):
         return 'BOUNDED_NO_DELIVERY'
     return 'UNKNOWN'
 

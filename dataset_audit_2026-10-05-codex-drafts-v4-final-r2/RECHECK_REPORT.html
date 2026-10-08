@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>修复后复检报告（草稿 v4-final + 全量渲染链 · 2026-10-05 第三轮）</h1>
+<blockquote>
+<p>本轮修复内容（依提交）：</p>
+<ul>
+<li><code>e990576</code> 修 <code>tools/draft_audit.py</code> 的 <strong>V011 守卫失效</strong>（账本 path 与项目根相对路径基准不一致 → 哈希核对恒被跳过）</li>
+<li><code>1e9f60b</code> 修<strong>审阅稿 PDF 渲染链</strong>（Edge 改 <code>as_uri</code> + 独立临时 profile、两段式打印、放宽 rc 判据），并新增<strong>错误节点</strong>统计</li>
+<li>账本 <code>draft-selection.json</code> 升级为 <strong>schema 2</strong>：声明 <code>hash_algorithm=sha256-utf8-sig-splitlines-lf-v1</code>，每条附 <code>raw_sha256</code>；<code>.gitattributes</code> 对草稿声明 <code>-text !eol</code>（保留原始字节）
+复现：
+<code>python tools/draft_audit.py --out &lt;dir&gt; --drafts &quot;reviews/2026-10-05-training-diversity-drafts/batch-*/draft-codex-repair-v4-final.jsonl&quot; --pool data/v2/train/leakage-isolated-v3-2026-10-05 --eval-test data/v2/eval/dataset_eval.jsonl --eval-test data/v2/test/dataset_test.jsonl</code>
+<code>python tools/render_review.py &lt;render-pack&gt;.md --out-dir &lt;dir&gt; --check --skip-pdf</code></li>
+</ul>
+</blockquote>
+<hr />
+<h2>0. 结论</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>草稿 v4-final（264 题）</td>
+<td><strong>hard 0</strong>、quarantine 528、info 1044；rejected 0</td>
+</tr>
+<tr>
+<td>上一轮的 2 项发现</td>
+<td><strong>均已修复并复核通过</strong>（V011 守卫、账本哈希口径）</td>
+</tr>
+<tr>
+<td>账本 schema 2 独立核对</td>
+<td><strong>18/18 全项通过</strong>（规范化哈希 / 原始哈希 / 上游来源 / 报告 / 计数 / 路径）</td>
+</tr>
+<tr>
+<td>全量公式渲染（新渲染链）</td>
+<td>824 条记录、<strong>16,539 条公式、未排版 0</strong>（<code>MJDONE=True</code>）</td>
+</tr>
+<tr>
+<td>新「错误节点」指标</td>
+<td><strong>恒定 2 → 页面基线，不是公式错误</strong>（探针验证，见 §3）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 上一轮 2 项发现的复核</h2>
+<h3>1.1 V011 守卫失效 → 已修复</h3>
+<ul>
+<li>上一轮：18 条 <code>V011</code> info 称&quot;被审文件不是账本选中版本…跳过哈希核对&quot;（两条路径其实指向同一文件），导致 <code>V007</code>（哈希不符）/<code>V008</code>（条数不符）<strong>从未执行</strong>。</li>
+<li>本轮：<code>V011</code> <strong>0 条</strong>；<code>V007</code>/<code>V008</code> <strong>0 条</strong> → 账本核对<strong>真正执行且通过</strong>。</li>
+<li>工具修复方式（<code>e990576</code>）：把账本 <code>path</code>（相对草稿目录）统一折算为<strong>相对项目根</strong>的 posix 路径再比较。</li>
+</ul>
+<h3>1.2 账本哈希与行尾（复现性）→ 已修复</h3>
+<ul>
+<li>上一轮：账本 sha256 绑定 <strong>CRLF 字节</strong>，而 <code>.gitattributes</code> 声明 <code>*.jsonl eol=lf</code> → clone 后账本哈希失效。</li>
+<li>本轮：
+<ul>
+<li>账本升级 <strong>schema 2</strong>，顶层与每条均声明 <code>hash_algorithm = sha256-utf8-sig-splitlines-lf-v1</code>，即 <strong>UTF-8(BOM 去除) → <code>splitlines()</code> → LF 连接</strong>（无末换行）的规范化哈希；原始字节哈希另存 <code>raw_sha256</code> 供归档；</li>
+<li><code>.gitattributes</code> 对 <code>reviews/.../batch-*/draft*.jsonl</code> 与 <code>staged/*.jsonl</code> 声明 <strong><code>-text !eol</code></strong>（提交/检出都不做换行转换 → 字节稳定）；</li>
+<li>另有 <code>migration</code> 段指向历史哈希目录证据（<code>2026-10-05-draft-hash-compatibility/historical-hash-catalog.json</code>）。</li>
+</ul>
+</li>
+<li><strong>Lead 独立核对（不依赖其工具）</strong>：我用 <code>sha256(&quot;\n&quot;.join(raw.decode(&quot;utf-8-sig&quot;).splitlines()).encode())</code> 重算，<strong>18/18 与账本 <code>sha256</code> 完全一致</strong>；同时逐条核对：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>核对项</th>
+<th>通过</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规范化哈希（草稿）</td>
+<td><strong>18/18</strong></td>
+</tr>
+<tr>
+<td>原始字节哈希 <code>raw_sha256</code></td>
+<td><strong>18/18</strong></td>
+</tr>
+<tr>
+<td>上游来源 <code>source_sha256</code>（v3）</td>
+<td><strong>18/18</strong></td>
+</tr>
+<tr>
+<td>报告 <code>report_sha256</code>（<code>DRAFT_REPORT-…md</code>）</td>
+<td><strong>18/18</strong></td>
+</tr>
+<tr>
+<td>条数 <code>count</code></td>
+<td><strong>18/18</strong></td>
+</tr>
+<tr>
+<td>路径存在（<code>root_path</code>/<code>source_path</code>/<code>root_report_path</code>）</td>
+<td><strong>18/18</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>明细口径示例（batch-01）：账本 <code>df5893421e6a…</code> = LF+去末换行的规范化哈希；<code>raw_sha256 = e52c6ac7de59…</code> = 当前 CRLF 字节。二者<strong>同时登记</strong>，因此既保证 clone 后可复现，也保留归档字节可追溯。</li>
+</ul>
+<blockquote>
+<p>说明：草稿文件本身<strong>仍是 CRLF</strong>（<code>.gitattributes</code> 现明确 <code>-text !eol</code> 保留字节），故 <code>S002</code>×18（&quot;含 CR&quot;）保留为 info，<strong>属既定策略，不是缺陷</strong>。</p>
+</blockquote>
+<hr />
+<h2>2. 草稿 v4-final 复检结果（264 题）</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态</td>
+<td>rejected <strong>0</strong> / quarantine 264 / clean 0</td>
+</tr>
+<tr>
+<td>严重度</td>
+<td><strong>hard 0</strong> / quarantine <strong>528</strong> / info <strong>1044</strong>（共 1572）</td>
+</tr>
+<tr>
+<td>quarantine 构成</td>
+<td><code>P002</code>×264（license=Internal-Research-Use-Only）、<code>A008</code>×264（动画未验证）</td>
+</tr>
+<tr>
+<td>info 主要项</td>
+<td><code>L009</code>×343（<code>\frac</code> 单 token，合法）、<code>P003</code>×264、<code>C007</code>×257、<code>L007</code>×154、<code>S002</code>×18（CRLF，既定策略）、<code>X003</code>×2、<code>X005</code>×1、<code>C008</code>×2、<code>V004</code>/<code>V005</code>/<code>V009</code> 各 1</td>
+</tr>
+<tr>
+<td>与上一轮差异</td>
+<td><strong>仅少 <code>V011</code>×18</strong>；其余代码分布完全一致（题目内容未变）</td>
+</tr>
+<tr>
+<td>泄漏</td>
+<td>训练池精确 0 / 最大 0.4177；eval-test 精确 0 / 0.4186；集内精确 0 / 0.4528</td>
+</tr>
+<tr>
+<td>声明</td>
+<td><code>admitted=true</code> 0、<code>animation_render_verified=true</code> 0</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>264 id 唯一、264 versioned_id 唯一、与原始草稿 id+顺序 100% 保留</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 全量渲染复核（使用<strong>修复后的</strong>渲染链）</h2>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th style="text-align:right">记录</th>
+<th style="text-align:right">已排版</th>
+<th style="text-align:right">未排版</th>
+<th style="text-align:right">错误节点</th>
+<th style="text-align:right">耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1 raw</td>
+<td style="text-align:right">63</td>
+<td style="text-align:right">884</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1.9s</td>
+</tr>
+<tr>
+<td>v2 train 池</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">693</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1.6s</td>
+</tr>
+<tr>
+<td>v2 eval</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">4540</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">6.3s</td>
+</tr>
+<tr>
+<td>v2 test</td>
+<td style="text-align:right">150</td>
+<td style="text-align:right">2106</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3.3s</td>
+</tr>
+<tr>
+<td>草稿 v4-final</td>
+<td style="text-align:right">264</td>
+<td style="text-align:right">8316</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">10s</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align:right"><strong>824</strong></td>
+<td style="text-align:right"><strong>16,539</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">~23s</td>
+</tr>
+</tbody>
+</table>
+<p>所有页面 <code>MJDONE=True</code>（MathJax 完成排版）。</p>
+<h3>3.1 新增「错误节点」指标：恒定 2，属页面基线（Lead 探针验证）</h3>
+<p>新 <code>check_render</code> 统计 <code>data-mjx-error</code> + <code>&lt;mjx-merror</code> + <code>data-mml-node=&quot;merror&quot;</code> 的出现次数。我用两个最小探针复核其灵敏度：</p>
+<table>
+<thead>
+<tr>
+<th>探针</th>
+<th>内容</th>
+<th style="text-align:right">已排版</th>
+<th style="text-align:right">未排版</th>
+<th style="text-align:right">错误节点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok.md</code></td>
+<td>2 条正常公式</td>
+<td style="text-align:right">1（同段合并）</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right"><strong>2</strong></td>
+</tr>
+<tr>
+<td><code>broken.md</code></td>
+<td>含故意写坏的 <code>$\frac{1}{$</code></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right"><strong>1</strong></td>
+<td style="text-align:right"><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>结论：</p>
+<ol>
+<li><strong>「错误节点」有恒定基线 2</strong>（单公式页面也是 2），来自页面/注入样式中的 MathJax 错误选择器文本，<strong>不能反映真实公式错误</strong>；</li>
+<li><strong>「未排版」指标是灵敏的</strong>：故意写坏的公式被准确计为 1 条未排版，而正常公式不计；</li>
+<li>因此本轮全量数据的有效结论是 <strong>未排版 0</strong>；建议把错误节点改为&quot;仅统计 <code>&lt;mjx-container&gt;</code> 内的 <code>mjx-merror</code> 元素&quot;或扣除基线，否则该数字会长期显示 2 而被误读。</li>
+</ol>
+<hr />
+<h2>4. 裁定与建议</h2>
+<ol>
+<li><strong>上一轮两项发现均已闭环</strong>：V011 守卫生效（账本校验真跑且通过）、账本哈希口径改为 EOL 无关的规范化哈希 + 原始字节归档，clone 后可复现。</li>
+<li><strong>草稿内容层无新增问题</strong>：hard 0、无泄漏、id 全保留、声明如实；剩余 528 条 quarantine 仍全是<strong>用户级</strong>项（<code>P002</code> 许可证转正、<code>A008</code> 动画验证）。</li>
+<li><strong>公式排版全量通过</strong>：824 条记录 / 16,539 条公式 / 未排版 0（用修复后的渲染链复测）。</li>
+<li><strong>建议修一处指标口径</strong>：<code>check_render</code> 的&quot;错误节点&quot;含恒定基线 2，宜改为容器内计数或扣除基线（本轮已用探针证明其当前不具判别力）。</li>
+<li>另一层&quot;渲染验收&quot;仍待推进：<code>data/asset_evidence.json</code> 为 497 条中 <strong>1 条</strong>已验证、状态 <strong>NOT READY</strong>（与公式排版无关）。</li>
+</ol>
+<hr />
+<h2>5. 产物</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset_audit_2026-10-05-codex-drafts-v4-final-r2/</code></td>
+<td>草稿复检输出（<code>issues.jsonl</code>、<code>summary.json</code>、<code>record_status.*</code>、<code>file_hashes.*</code>）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-05-render-check-r2/</code></td>
+<td>渲染复检（<code>render-results.json</code>、<code>render/</code>、<code>probe/</code> 探针）</td>
+</tr>
+<tr>
+<td><code>_ledger2.py</code> / <code>_ledger3.py</code> / <code>_ident.py</code></td>
+<td>账本规范化口径识别与 18 项独立核对脚本</td>
+</tr>
+<tr>
+<td>本报告 <code>RECHECK_REPORT.md</code> / <code>.pdf</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：只读检查；未修改草稿、数据、账本或工具；所有写入均在本工作区目录内；未启动训练、未下载模型、未生成动画。</p>
+
+</body>
+</html>

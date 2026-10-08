@@ -1,0 +1,1098 @@
+{
+  "generated_at": "2026-10-02T17:14:43+00:00",
+  "tool": "tools/dataset_audit.py (只读)",
+  "contract": "DATASET_SCHEMA.md",
+  "scope": {
+    "jsonl": [
+      "data/v1/raw/dataset_calc.jsonl",
+      "data/v1/raw/dataset_geom.jsonl",
+      "data/v1/raw/dataset_linalg.jsonl",
+      "data/v1/raw/dataset_prob.jsonl"
+    ],
+    "json": [
+      "dataset_calc.json",
+      "dataset_geom.json",
+      "dataset_linalg.json",
+      "dataset_prob.json"
+    ],
+    "source_docs": [
+      "dataset.md"
+    ],
+    "excluded": [
+      "reviews/** fixtures(合成审查夹具,不参与训练)",
+      ".venv/**, runs/**, data 下其他非 dataset_* 文件"
+    ]
+  },
+  "totals": {
+    "pool_records_jsonl": 63,
+    "unique_ids_jsonl": 63,
+    "json_container_records": 63,
+    "all_records_incl_mirrors": 126
+  },
+  "severity_counts": {
+    "info": 131,
+    "hard": 4,
+    "quarantine": 144
+  },
+  "issue_code_counts": {
+    "A008": 63,
+    "C007": 30,
+    "I020": 1,
+    "K-AMBIG": 7,
+    "K-ANS-WEAK": 10,
+    "K-CLASS": 1,
+    "K-CONFLICT": 1,
+    "K-FORMAT": 3,
+    "K-HASH-EOL": 1,
+    "K-LICENSE-DIST": 1,
+    "K-META-CONFLICT": 5,
+    "K-NEAR-DUP": 1,
+    "K-SPEC-CONFLICT": 8,
+    "K-TEXT": 1,
+    "K-VERIFIED-OK": 1,
+    "L007": 1,
+    "M002": 1,
+    "M010": 1,
+    "MF000": 1,
+    "P002": 63,
+    "P003": 63,
+    "S002": 9,
+    "S005": 4,
+    "SRC004": 1,
+    "SRC008": 1
+  },
+  "record_status_counts": {
+    "candidate": 63
+  },
+  "per_file": [
+    {
+      "file": "data/v1/raw/dataset_calc.jsonl",
+      "format": "jsonl",
+      "n_records": 19,
+      "sha256": "17a06617201c6954de5644b97338c1e36a563972d292cbb323428711bdb09fb9",
+      "size": 32500,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 42,
+      "info": 26,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "K-SPEC-CONFLICT",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_geom.jsonl",
+      "format": "jsonl",
+      "n_records": 12,
+      "sha256": "b29eae9e1f514e44f843b9752a409b1344933ea809c24ad7147aa36cc4afe172",
+      "size": 17928,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 25,
+      "info": 22,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "K-SPEC-CONFLICT",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_linalg.jsonl",
+      "format": "jsonl",
+      "n_records": 23,
+      "sha256": "ce3762a82576bef9d3f1b062e3a1ce475a39eeff5449a7238fbc5277ef37c68f",
+      "size": 30191,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 55,
+      "info": 49,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "K-ANS-WEAK",
+        "K-CLASS",
+        "K-CONFLICT",
+        "K-NEAR-DUP",
+        "K-SPEC-CONFLICT",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_prob.jsonl",
+      "format": "jsonl",
+      "n_records": 9,
+      "sha256": "144f3b69679799f96707bc66dd806a57f1fe36a46a387b8acd49180e2233a74f",
+      "size": 15167,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 20,
+      "info": 23,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "K-AMBIG",
+        "K-ANS-WEAK",
+        "P002"
+      ]
+    },
+    {
+      "file": "dataset_calc.json",
+      "format": "json-array",
+      "n_records": 19,
+      "sha256": "40a9a34deb90d538461f9726e555506b8e190a1796c2a31e641789ac419b66fc",
+      "size": 32524,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_geom.json",
+      "format": "json-array",
+      "n_records": 12,
+      "sha256": "b128e761529dcc64e3659f38b2f68d9c158cea8463d170094b8c27c6d558c866",
+      "size": 17945,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_linalg.json",
+      "format": "json-array",
+      "n_records": 23,
+      "sha256": "f34d4af73a7e093102e4f6bc7d470becb3314d0fc8267ec69e726020620639ba",
+      "size": 30219,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_prob.json",
+      "format": "json-array",
+      "n_records": 9,
+      "sha256": "306291f3a1e462580288f5c84d5151cd8421e8be794a0684ba6b3d18e0f798f6",
+      "size": 15181,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset.md",
+      "format": "jsonl-text(doc)",
+      "n_records": 63,
+      "sha256": "fa03ed3917736604c239a00cfeaa39657927aef48b9302b61c96177e6726249c",
+      "size": 95910,
+      "entry_status": "clean",
+      "hard": 0,
+      "quarantine": 0,
+      "info": 3,
+      "hard_codes": [],
+      "quarantine_codes": []
+    }
+  ],
+  "distribution": {
+    "category": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "category_share": {
+      "数学分析": 0.3016,
+      "解析几何": 0.1905,
+      "高等代数": 0.3651,
+      "概率论": 0.1429
+    },
+    "sub_category": {
+      "数学分析/一般级数": 1,
+      "数学分析/傅立叶级数": 1,
+      "数学分析/函数项级数": 2,
+      "数学分析/反常积分": 2,
+      "数学分析/定积分的应用": 7,
+      "数学分析/导数": 1,
+      "数学分析/幂级数": 1,
+      "数学分析/极限": 1,
+      "数学分析/格林公式": 1,
+      "数学分析/正项级数": 1,
+      "数学分析/重积分": 1,
+      "概率论/中心极限定理": 1,
+      "概率论/几何概型": 1,
+      "概率论/可列可加性": 1,
+      "概率论/大数定律": 1,
+      "概率论/常见分布": 2,
+      "概率论/条件概率与独立性": 1,
+      "概率论/贝叶斯公式": 1,
+      "概率论/随机变量函数的分布": 1,
+      "解析几何/二次曲面分类": 2,
+      "解析几何/曲面与曲线": 2,
+      "解析几何/直线与平面": 4,
+      "解析几何/等距变换与仿射变换": 2,
+      "解析几何/非直纹面二次曲面": 2,
+      "高等代数/λ-矩阵": 2,
+      "高等代数/二次型": 2,
+      "高等代数/双线性函数与辛空间": 2,
+      "高等代数/多项式": 2,
+      "高等代数/欧几里得空间": 2,
+      "高等代数/特征值与特征向量": 1,
+      "高等代数/矩阵": 2,
+      "高等代数/线性变换": 3,
+      "高等代数/线性方程组": 2,
+      "高等代数/线性空间": 2,
+      "高等代数/行列式": 3
+    },
+    "per_file_category": {
+      "data/v1/raw/dataset_calc.jsonl": {
+        "数学分析": 19
+      },
+      "data/v1/raw/dataset_geom.jsonl": {
+        "解析几何": 12
+      },
+      "data/v1/raw/dataset_linalg.jsonl": {
+        "高等代数": 23
+      },
+      "data/v1/raw/dataset_prob.jsonl": {
+        "概率论": 9
+      }
+    },
+    "split_roles": {
+      "raw": 63,
+      "train": 0,
+      "eval": 0,
+      "test": 0,
+      "rejected": 0,
+      "note": "data/v1 下只有 raw/,无 train/eval/test/rejected 目录;样本角色=候选(raw)"
+    },
+    "license": {
+      "Internal-Research-Use-Only": 63
+    },
+    "source": {
+      "self-authored": 63
+    },
+    "scene_spec": {
+      "records": 63,
+      "objects_total": 270,
+      "steps_total": 291,
+      "objects_min": 2,
+      "objects_max": 9,
+      "steps_min": 4,
+      "steps_max": 7,
+      "animation_verified": 0
+    }
+  },
+  "duplicates": {
+    "ids": {
+      "duplicate_id_same_content": [],
+      "duplicate_id_conflict": []
+    },
+    "exact": {
+      "problem": [],
+      "scene_spec": []
+    },
+    "near_dups_threshold_0.7": [],
+    "top_pairs": [
+      {
+        "a": "linalg-049",
+        "b": "linalg-064",
+        "jaccard": 0.6981,
+        "ratio": 0.9615
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-068",
+        "jaccard": 0.4545,
+        "ratio": 0.7021
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-068",
+        "jaccard": 0.4098,
+        "ratio": 0.68
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-049",
+        "jaccard": 0.3521,
+        "ratio": 0.6545
+      },
+      {
+        "a": "linalg-057",
+        "b": "linalg-068",
+        "jaccard": 0.3279,
+        "ratio": 0.6737
+      },
+      {
+        "a": "calc-area-010",
+        "b": "calc-area-013",
+        "jaccard": 0.3261,
+        "ratio": 0.8116
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-057",
+        "jaccard": 0.3108,
+        "ratio": 0.7027
+      },
+      {
+        "a": "calc-series-016",
+        "b": "calc-series-017",
+        "jaccard": 0.3103,
+        "ratio": 0.619
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-057",
+        "jaccard": 0.3,
+        "ratio": 0.7619
+      },
+      {
+        "a": "linalg-066",
+        "b": "linalg-068",
+        "jaccard": 0.3,
+        "ratio": 0.6957
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-066",
+        "jaccard": 0.2941,
+        "ratio": 0.6667
+      },
+      {
+        "a": "linalg-050",
+        "b": "linalg-053",
+        "jaccard": 0.2838,
+        "ratio": 0.7706
+      },
+      {
+        "a": "linalg-064",
+        "b": "linalg-068",
+        "jaccard": 0.2698,
+        "ratio": 0.6596
+      },
+      {
+        "a": "linalg-057",
+        "b": "linalg-066",
+        "jaccard": 0.2535,
+        "ratio": 0.6214
+      },
+      {
+        "a": "calc-series-016",
+        "b": "calc-series-018",
+        "jaccard": 0.25,
+        "ratio": 0.5714
+      }
+    ]
+  },
+  "mirror_json_vs_jsonl": {
+    "pairs": 63,
+    "identical": 63,
+    "mismatched": []
+  },
+  "id_numbering": {
+    "calc": {
+      "count": 19,
+      "min": 1,
+      "max": 20,
+      "missing_numbers": [
+        14
+      ]
+    }
+  },
+  "source_doc_coverage": {
+    "source_doc": [
+      "dataset.md"
+    ],
+    "source_records": 63,
+    "source_unique_ids": 63,
+    "pool_ids": 63,
+    "dropped_ids": [],
+    "dropped_categories": {},
+    "unmatched_pool_ids": [],
+    "source_category_counts": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "概率论": 9,
+      "高等代数": 23
+    },
+    "content_compared": 63,
+    "content_diff_ids": []
+  },
+  "manifest": {
+    "path": "data/v1/manifest.json",
+    "n_entries": 4,
+    "hash_ok": 4,
+    "hash_bad": [],
+    "missing_pool_files": [],
+    "splits": {
+      "raw": 4
+    },
+    "acceptance_claim": false,
+    "policy": "数据门禁:未标注许可证/source 的条目进 quarantine;评测/测试与训练精确重叠零容忍"
+  },
+  "content_review": {
+    "file": "dataset_audit_2026-10-03-v3/content_findings.jsonl",
+    "n": 40,
+    "by_severity": {
+      "quarantine": 18,
+      "info": 22
+    },
+    "items": [
+      {
+        "id": null,
+        "file": "data/v1/manifest.json",
+        "locator": "document",
+        "severity": "quarantine",
+        "code": "K-LICENSE-DIST",
+        "field": "license/git",
+        "message": "许可证与分发范围冲突待确认:样本 license=Internal-Research-Use-Only(语义为“仅限内部研究使用、不公开分发、后续转正”),但 data/v1/raw/*.jsonl 已于提交 61e7922 入库,且该提交已在 origin/main(github.com/Jacob-bot-2509/Animation);.gitignore 以“用户授权 2026-10-03”加了 !data/v1/raw/*.jsonl 例外。若远端仓库为公开,则与“不公开分发”冲突。",
+        "evidence": "license: Internal-Research-Use-Only | git remote origin=https://github.com/Jacob-bot-2509/Animation.git | origin/main=61e7922(含数据) | local ahead 2 提交(7071de3/bccefd0 未推送)",
+        "verification": "Lead 读取 git remote/ls-files/rev-list;尝试联网核验仓库可见性被网络策略拦截(github.com 解析为非公网地址),故需用户确认仓库为私有",
+        "verified_by": "Lead",
+        "suggested_action": "确认远端仓库可见性;若为公开,先撤下数据或完成许可证转正,再推送后续提交"
+      },
+      {
+        "id": "linalg-048",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 1",
+        "severity": "quarantine",
+        "code": "K-CONFLICT",
+        "field": "solution/scene_spec",
+        "message": "部分修复:A=[[2,1],[1,2]] 对称正定(特征值 3、1,特征向量 (1,1)、(1,-1)),是沿正交特征方向的纯拉伸;solution 现已写“沿 (1,1) 方向拉伸”,但仍接“其余方向发生剪切形变”,scene 第二步仍为“网格线随着拉伸发生剪切变形”,与 answer“沿 (1,1) 方向拉伸”不完全一致。",
+        "evidence": "整个二维平面沿 $(1,1)$ 方向拉伸，其余方向发生剪切形变 | steps: 网格线随着拉伸发生剪切变形",
+        "verification": "Lead 独立复核(sympy):特征值 3(1,1)、1(-1,1),无剪切分量",
+        "verified_by": "Lead",
+        "suggested_action": "人工改为“沿 (1,1) 拉伸 3 倍、(1,-1) 方向不变”并同步第二步"
+      },
+      {
+        "id": "geom-025",
+        "file": "data/v1/raw/dataset_geom.jsonl",
+        "locator": "line 6",
+        "severity": "info",
+        "code": "K-ANS-WEAK",
+        "field": "answer/solution",
+        "message": "已部分修复:answer 补为“单叶双曲面，平行于 xOy 平面的截面为圆”,但仍未给出截面圆半径 √(1+k²);solution 的“沙漏”比喻依旧(z=0 处腰圆半径 1,不收细成点)。",
+        "evidence": "answer: 单叶双曲面，平行于 xOy 平面的截面为圆 | solution: 呈现出两头大、中间细的“沙漏”形状",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工补半径 √(1+k²) 并斟酌比喻"
+      },
+      {
+        "id": "prob-043",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 6",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "scene_spec.steps[2]",
+        "message": "CLT 口径已修(step6 改叠 N(μ,σ²/n)、answer 改为 X̄→N(μ,σ²/n));残留一处:n=2 且总体为均匀分布时,样本均值的密度是三角分布(Irwin–Hall),不是“与总体相似的粗糙形态”。",
+        "evidence": "第三步：初始设置 n=2，右侧直方图呈现出与总体相似的粗糙形态。",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工改为“呈三角形分布,已明显不同于总体形态”"
+      },
+      {
+        "id": "calc-vol-012",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 12",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.steps[4]/[5]+objects",
+        "message": "部分修复:steps 第五/六步承诺“展示定积分的分部积分计算过程/圆盘微元积分过程”,但 solution 只给出最终原函数 $\\int(\\arcsin x)^2dx=x(\\arcsin x)^2+2\\sqrt{1-x^2}\\arcsin x-2x$(正确),没有换元与分部积分中间步骤;objects 六项中无任何公式/推导文本元素,且第五、六步内容重复。",
+        "evidence": "第五步：展示定积分的分部积分计算过程…| 第六步：配合右侧公式推导，展示圆盘微元积分过程。",
+        "verification": "Lead 原文核对 + calc 评审(体积 π³/4−2π=1.4683839 数值复核正确)",
+        "verified_by": "Lead + calc 评审子代理",
+        "suggested_action": "人工补推导步骤或删除该承诺并去重"
+      },
+      {
+        "id": "calc-series-017",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 16",
+        "severity": "info",
+        "code": "K-META-CONFLICT",
+        "field": "visual_style/efficiency_tags",
+        "message": "步骤已改好(“界直线 y=±π²/6”,\\sum 补了上下限),但 visual_style 仍为“包络线约束带”、efficiency_tags 仍含“上下包络线”,与正文口径不一致。",
+        "evidence": "steps: 两条上下对称的界直线 $y = \\pm \\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\pm \\frac{\\pi^2}{6}$ | visual_style: 包络线约束带",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工同步元数据措辞"
+      },
+      {
+        "id": "linalg-058",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 11",
+        "severity": "info",
+        "code": "K-META-CONFLICT",
+        "field": "visual_style/efficiency_tags",
+        "message": "动画步骤已修正(水平网格线倾斜、竖直网格线保持竖直);元数据仍不符:visual_style=“网格剪切与缩放”但无缩放(det=1),efficiency_tags 含“行列式值变化”但 det 恒为 1。",
+        "evidence": "steps: 展示水平网格线发生倾斜（竖直网格线保持竖直） | visual_style: 网格剪切与缩放 | tags: 行列式值变化",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工同步元数据"
+      },
+      {
+        "id": "linalg-066",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 19",
+        "severity": "info",
+        "code": "K-META-CONFLICT",
+        "field": "efficiency_tags",
+        "message": "步骤已改为可演示的“高亮分块结构/超对角线上的 1”,但 efficiency_tags 仍含“相似变换”,与实际动画内容不符。",
+        "evidence": "steps: 用动画高亮矩阵的分块结构…超对角线上的 1 表示该块不可对角化 | tags: ['若尔当块', '相似变换']",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工同步标签"
+      },
+      {
+        "id": "linalg-064",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 17",
+        "severity": "quarantine",
+        "code": "K-CLASS",
+        "field": "sub_category/function_family",
+        "message": "分类口径交叉:linalg-064 sub_category=“线性变换”/function_family=“特征值与特征向量”,与同题型的 linalg-049(sub=特征值与特征向量)口径不一致,上一轮登记未关闭。",
+        "evidence": "linalg-064: sub=线性变换, fam=特征值与特征向量 | linalg-049: sub=特征值与特征向量",
+        "verification": "Lead 原文核对 + linalg 评审",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工统一分类口径"
+      },
+      {
+        "id": "linalg-050",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 3",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "scene_spec.steps[4]",
+        "message": "有向面积口径已修(step4 改为“绝对值与几何面积一致,负值对应定向反转”);残留:step5 称行列式为 0 时“平行四边形退化成一条线段”,秩 0(零矩阵)时像退化为一点。",
+        "evidence": "第五步：动态展示如果行列式为0，平行四边形退化成一条线段（面积为0）。",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead",
+        "suggested_action": "人工补“秩≤1,极端情形退化为一点”"
+      },
+      {
+        "id": "linalg-049",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 2",
+        "severity": "quarantine",
+        "code": "K-NEAR-DUP",
+        "field": "problem",
+        "message": "近重复卡在阈值两侧(项目实现 set 口径 0.698113 <0.7;多重集口径 0.714286 ≥0.7):linalg-049 与 linalg-064 题干模板逐字相同,仅矩阵不同。0.7 仍为未校准初值。",
+        "evidence": "求矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。vs linalg-064(矩阵 [[3,1],[0,2]])",
+        "verification": "Lead 独立复核(项目实现/多重集/原始字符集三种口径)",
+        "verified_by": "Lead",
+        "suggested_action": "人工决定是否保留同模板题,并明确 5-gram 去重口径"
+      },
+      {
+        "id": "prob-046",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 9",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 仍为裸数字“1，即所有事件概率之和为1”:answer 内 0 个 $,未写出 $\\sum_{k=1}^{\\infty}2^{-k}=1$;且“事件概率”与题干/objects 的“单位正方形/矩形面积”口径不一致,判分终答不自包含(solution/steps 已有通式)。",
+        "evidence": "answer: 1，即所有事件概率之和为1 | solution: $\\sum_{k=1}^{\\infty} \\frac{1}{2^k}$，其和为 $1$",
+        "verification": "Lead 原文核对 + prob 评审",
+        "verified_by": "Lead + prob 评审子代理",
+        "suggested_action": "人工补数学模式通式并把表述改为“矩形面积之和”"
+      },
+      {
+        "id": "prob-046",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 9",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "problem↔answer",
+        "message": "题干是“展示”型任务,answer 以“1”作答,缺与任务匹配的判定表述;step4 只写“无限趋近于 0”,未写部分和极限。",
+        "evidence": "problem: 用几何图形直观展示可列可加性 | answer: 1，即所有事件概率之和为1",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工定死问法或补“所有矩形面积之和=1”"
+      },
+      {
+        "id": "prob-043",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 6",
+        "severity": "quarantine",
+        "code": "K-AMBIG",
+        "field": "scene_spec.steps[1]",
+        "message": "“重复多次”未定重复次数 M 与是否独立重复,直方图形状无统计保证;step3 的 n 由 2 直接跳到 5。",
+        "evidence": "第二步：…随机抽取 n 个样本并计算均值，重复多次绘制直方图。",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工写明“独立重复 M 次(如 M≥10000)”"
+      },
+      {
+        "id": "prob-041",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 4",
+        "severity": "info",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 只答“μ 决定位置、σ 决定形状”,未覆盖题干“分析概率密度函数”的要求(solution 中有完整密度式)。",
+        "evidence": "answer: $\\mu$ 决定位置，$\\sigma$ 决定形状的陡峭程度",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工斟酌 answer 粒度"
+      },
+      {
+        "id": "prob-044",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 7",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "problem/solution",
+        "message": "并列括号已删(部分修复),但“特异度”术语仍未出现在任何字段(solution 只写“灵敏度/假阳性率”)。",
+        "evidence": "problem: 对于未患病者检测出阴性的概率为 99%，相应地假阳性率为 1%",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工补“特异度 99%”术语"
+      },
+      {
+        "id": "prob-045",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 8",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "solution",
+        "message": "中间步骤 $P(0<X\\le\\sqrt{y})$ 在 y→1 时上端触及区间端点,与题设开区间 (0,1) 的 ≤/< 口径混用(结论正确)。",
+        "evidence": "$F_Y(y) = P(0 < X \\le \\sqrt{y}) = \\sqrt{y}$（当 $0 < y < 1$）",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工统一开闭区间写法"
+      },
+      {
+        "id": "prob-038",
+        "file": "data/v1/raw/dataset_prob.jsonl",
+        "locator": "line 1",
+        "severity": "info",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.steps[0]",
+        "message": "“用圆面积表示概率”与“正方形内相交圆”难以同时按面积等比成立,缺“数值标注优先/面积非严格等比”的口径说明。",
+        "evidence": "第一步：…用圆的面积来表示事件概率（面积与概率成正比）",
+        "verification": "Lead 原文核对",
+        "verified_by": "prob 评审子代理",
+        "suggested_action": "人工补口径说明"
+      },
+      {
+        "id": "geom-026",
+        "file": "data/v1/raw/dataset_geom.jsonl",
+        "locator": "line 7",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.steps[3]",
+        "message": "动画生成叙述与曲面方程不符:纯沿 y 轴平移 z=x² 只会得到抛物柱面 z=x²;要生成 z=x²+2y²,截面 y=c 必须整体上移 2c²(顶点沿 z=2y² 移动)。answer/solution 的类型与两条交线本身正确。 geom 评审主张升为 hard,Lead 判定为 quarantine(表述不精确,非结论/答案错误)。",
+        "evidence": "第四步：用动画演示抛物线沿着 $y$ 轴平移，形成整个椭圆抛物面的过程。",
+        "verification": "Lead 复核:z=x² 沿 y 平移得柱面,与 z=x²+2y² 不同",
+        "verified_by": "Lead + geom 评审子代理",
+        "suggested_action": "人工改述为“顶点沿 z=2y² 移动 + 截面随 y 上移”"
+      },
+      {
+        "id": "geom-031",
+        "file": "data/v1/raw/dataset_geom.jsonl",
+        "locator": "line 12",
+        "severity": "info",
+        "code": "K-VERIFIED-OK",
+        "field": "solution",
+        "message": "geom 评审子代理把“（$0\\le t\\le 2\\pi$ 仅覆盖上半部分）”判为假命题(hard),Lead 复核后**判定该指控不成立**:参数式满足两曲面方程,且 [0,2π] 上 z=2a·sin(t/2)∈[0,2a](仅上半支),而下半支的点 (0,0,-2a)(t=3π)确实在交线上但不属于 [0,2π] 的像,故 [0,2π] 不能覆盖整条曲线,原数据表述正确。",
+        "evidence": "数据:其中 $0 \\le t \\le 4\\pi$ 覆盖整条曲线（$0 \\le t \\le 2\\pi$ 仅覆盖上半部分）| Lead 数值:[0,2π] 的 z 范围 [0,2a];[0,4π] 的 z 范围 [-2a,2a];(0,0,-2a) 满足球面与圆柱面方程",
+        "verification": "Lead 独立复核(sympy + 数值):曲面方程残差恒为 0;t=3π 给出 (0,0,-2a) 属于交线但不属于 [0,2π] 像",
+        "verified_by": "Lead",
+        "suggested_action": "无需修改(评审方的 hard 建议已驳回,见本报告 §6.4)"
+      },
+      {
+        "id": "geom-031",
+        "file": "data/v1/raw/dataset_geom.jsonl",
+        "locator": "line 12",
+        "severity": "info",
+        "code": "K-FORMAT",
+        "field": "answer",
+        "message": "answer 写 $z=2a\\sin(t/2)$,solution 写 $z=2a\\sin\\frac{t}{2}$,同一表达式两种记法(数学等价)。",
+        "evidence": "answer: $z=2a\\sin(t/2)$ | solution: $z = 2a\\sin\\frac{t}{2}$",
+        "verification": "Lead 原文核对",
+        "verified_by": "geom 评审子代理",
+        "suggested_action": "人工统一记法"
+      },
+      {
+        "id": null,
+        "file": "data/v1/manifest.json",
+        "locator": "document",
+        "severity": "quarantine",
+        "code": "K-HASH-EOL",
+        "field": "sha256/line-endings",
+        "message": "哈希绑定的行尾不可复现:manifest 与 file_hashes 记录的 sha256 基于工作区 CRLF 字节,而 git(core.autocrlf=true、无 .gitattributes)存储的是 LF 版本;LF 归一化后内容逐字节相同(git status 干净),但在 Linux/macOS 或 core.autocrlf=input 的克隆上文件为 LF,sha256 将不匹配,data_check/manifest 校验会失败。",
+        "evidence": "core.autocrlf=true;无 .gitattributes;disk 与 HEAD blob 字节差 = 行数(calc 32481→32500,+19;geom +12;linalg +23;prob +9;manifest +43);LF 归一化后完全一致",
+        "verification": "Lead 用 git cat-file 与本地文件逐文件比对",
+        "verified_by": "Lead",
+        "suggested_action": "增加 .gitattributes(如 * text=auto eol=lf 或对数据文件 -text 固定字节),并让 manifest 哈希绑定规范化内容"
+      },
+      {
+        "id": "geom-030",
+        "file": "data/v1/raw/dataset_geom.jsonl",
+        "locator": "line 11",
+        "severity": "info",
+        "code": "K-AMBIG",
+        "field": "scene_spec.steps[1]",
+        "message": "“保持 y、z 坐标不变,将 x 坐标乘以 2”未点明“点坐标伸展 / 像空间压缩”的方向歧义(answer $\\frac{x'^2}{4}+y'^2+z'^2=1$ 正确)。",
+        "evidence": "第一步：…展示仿射变换的作用，保持 $y$、$z$ 坐标不变，将 $x$ 坐标乘以 2",
+        "verification": "Lead 原文核对",
+        "verified_by": "geom 评审子代理",
+        "suggested_action": "人工补一句方向说明"
+      },
+      {
+        "id": "calc-param-improper-003",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 3",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.objects vs steps",
+        "message": "objects 登记“不同衰减速率的三条曲线(如 α=0.5, 1, 2)”,但 steps 第一步只画 α=1 一条曲线,第三/四步是同一条曲线随滑块变形,全程无“三条曲线并存”镜头;steps 第四步的黄色面积填充也未登记进 objects“积分区域高亮”。",
+        "evidence": "objects[1]: 不同衰减速率的三条曲线(如$\\alpha = 0.5, 1, 2$) | steps[0]: 先展示$\\alpha =1$时的标准指数衰减曲线",
+        "verification": "Lead 原文核对 + calc 评审",
+        "verified_by": "Lead + calc 评审子代理",
+        "suggested_action": "人工二选一:改 objects 为“一条随滑块变形的曲线”,或补一步“α=0.5/1/2 并列定格”"
+      },
+      {
+        "id": "calc-series-017",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 16",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.objects[3]/steps[3]",
+        "message": "objects 要求绘制“极限函数曲线”,但全记录未给出该极限函数表达式(级数和为 Li₂(x)=Σxⁿ/n²,无初等闭式),steps 第四步只说“逼近极限函数”,动画生成器无法确定该曲线。",
+        "evidence": "objects: 极限函数曲线 | 第四步：高亮展示所有部分和曲线在区间 $[-1, 1]$ 上均匀地、一致地逼近极限函数。",
+        "verification": "Lead 原文核对 + calc 评审",
+        "verified_by": "Lead + calc 评审子代理",
+        "suggested_action": "人工标注为 Li₂(x) 或改为只画部分和曲线族+上下界带"
+      },
+      {
+        "id": "calc-series-017",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 16",
+        "severity": "info",
+        "code": "K-FORMAT",
+        "field": "solution",
+        "message": "“(p 级数，p=2>1)”中的 > 位于数学模式之外(其余记录已把 </> 纳入 $...$),风格不一致(无渲染风险)。",
+        "evidence": "由于正项级数 $\\sum_{n=1}^{\\infty} \\frac{1}{n^2}$ 收敛（p 级数，p=2>1）",
+        "verification": "Lead 原文核对",
+        "verified_by": "calc 评审子代理",
+        "suggested_action": "人工改为 $p=2>1$"
+      },
+      {
+        "id": "calc-series-020",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 19",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.objects[2] vs steps[2][3]",
+        "message": "objects 只登记“前3项正弦波(红、绿、蓝)”,而 steps 第三/四步要求出现第 4–9 次谐波与“前10项叠加后的合成波形”,objects 未登记;且“快速带过”与“直接展示前10项”措辞仍有轻微张力。",
+        "evidence": "objects[2]: 前3项正弦波（红、绿、蓝） | steps[3]: 直接展示前10项叠加后的合成波形（黄色粗线）",
+        "verification": "Lead 原文核对 + calc 评审",
+        "verified_by": "Lead + calc 评审子代理",
+        "suggested_action": "人工统一 objects 谐波项数与 steps 措辞"
+      },
+      {
+        "id": "calc-series-015",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 14",
+        "severity": "info",
+        "code": "K-TEXT",
+        "field": "scene_spec.steps",
+        "message": "用字与登记不一致:“震荡”应为“振荡”;“某一个水平线”宜作“某一条水平线”;objects 缺“双面板/分屏”“橙色折线”登记,objects[3]“绝对值发散曲线”与 steps 的柱状图/折线不对应。",
+        "evidence": "部分和震荡折线…在某一个水平线上下震荡 | objects[3]: 绝对值发散曲线",
+        "verification": "Lead 原文核对",
+        "verified_by": "calc 评审子代理",
+        "suggested_action": "人工改字并补齐 objects 登记"
+      },
+      {
+        "id": "calc-improper-002",
+        "file": "data/v1/raw/dataset_calc.jsonl",
+        "locator": "line 2",
+        "severity": "info",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.objects[4] vs steps[4]",
+        "message": "位置描述不一致:objects 写“右下角动态更新的公式文本”,steps 第五步写“画面右侧依次显现文字推导过程”。",
+        "evidence": "objects[4]: 右下角动态更新的公式文本… | 第五步：画面右侧依次显现文字推导过程",
+        "verification": "Lead 原文核对",
+        "verified_by": "calc 评审子代理",
+        "suggested_action": "人工统一位置表述"
+      },
+      {
+        "id": "linalg-049",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 2",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 未答题面第二问:题干要求“并说明其几何意义”,answer 只给特征值与特征向量(与已修的 051/053/059 同类,本轮新发现)。",
+        "evidence": "problem: …并说明其几何意义。| answer: 特征值 3 和 1，对应特征向量 (1,1) 和 (1,-1)",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工补几何结论(沿 (1,1) 拉伸 3 倍、(1,-1) 长度不变)"
+      },
+      {
+        "id": "linalg-052",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 5",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 未答题面第二问:题干要求“并说明展开式的意义”,answer 只给泰勒展开式。",
+        "evidence": "problem: …并说明展开式的意义。| answer: $1+3(x-1)+3(x-1)^2+(x-1)^3$",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工补“系数由 x=1 处各阶导数决定”"
+      },
+      {
+        "id": "linalg-054",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 7",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 未答题面第二问:题干要求“并说明行列式为零时的几何意义”,answer 只给 x=2, y=1(solution 已有“平行或重合/无解或无穷多解”)。",
+        "evidence": "problem: …并说明行列式为零时的几何意义。| answer: $x=2, y=1$",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工补几何结论(及 D→0 的参数化说明)"
+      },
+      {
+        "id": "linalg-057",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 10",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 未答题面第二问:题干要求“并说明可逆性的几何意义”,answer 只给逆矩阵。",
+        "evidence": "problem: …并说明可逆性的几何意义。| answer: $A^{-1}=\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工补“不将空间压缩到更低维度、存在逆变换复原”"
+      },
+      {
+        "id": "linalg-064",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 17",
+        "severity": "quarantine",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 未答题面第二问:题干要求“并说明其几何意义”,answer 只给特征值与特征向量(与 linalg-049 同模板同缺口)。",
+        "evidence": "problem: …并说明其几何意义。| answer: $\\lambda_1=3$ 对应 $(1,0)^T$，$\\lambda_2=2$ 对应 $(1,-1)^T$",
+        "verification": "Lead 原文核对",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工补几何意义"
+      },
+      {
+        "id": "linalg-051",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 4",
+        "severity": "quarantine",
+        "code": "K-SPEC-CONFLICT",
+        "field": "scene_spec.objects vs steps",
+        "message": "坐标系自相矛盾:objects 只有“复平面坐标系”,steps[0..2] 却要在实平面绘制三次多项式曲线 y=x³−6x²+11x−6 并标 x 轴交点(复平面中实值函数图像只落在实轴)。",
+        "evidence": "objects[0]: 复平面坐标系 | steps[0]: 在坐标系中绘制三次多项式曲线 y=x^3-6x^2+11x-6",
+        "verification": "Lead 原文核对 + linalg 评审",
+        "verified_by": "Lead + linalg 评审子代理",
+        "suggested_action": "人工拆为“实直角坐标系(曲线)+复平面(三个根)”双面板并同步 objects"
+      },
+      {
+        "id": "linalg-053",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 6",
+        "severity": "info",
+        "code": "K-META-CONFLICT",
+        "field": "visual_style/efficiency_tags",
+        "message": "元数据仍是二维口径:visual_style=“面积缩放标尺”、tags=[“单位正方形映射”,“有向面积”],但该题是三阶行列式/体积。",
+        "evidence": "visual_style: 面积缩放标尺 | tags: ['单位正方形映射', '有向面积']",
+        "verification": "Lead 原文核对",
+        "verified_by": "linalg 评审子代理",
+        "suggested_action": "人工改“单位立方体映射/有向体积”"
+      },
+      {
+        "id": "linalg-060",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 13",
+        "severity": "info",
+        "code": "K-META-CONFLICT",
+        "field": "visual_style",
+        "message": "元数据残留“曲面开口方向与正定性”:内容已改为 f=1 闭椭球,“开口方向”对闭曲面无意义。",
+        "evidence": "visual_style: 曲面开口方向与正定性",
+        "verification": "Lead 原文核对",
+        "verified_by": "linalg 评审子代理",
+        "suggested_action": "人工改词"
+      },
+      {
+        "id": "linalg-068",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 21",
+        "severity": "info",
+        "code": "K-ANS-WEAK",
+        "field": "answer",
+        "message": "answer 只给 $Q^TAQ=\\operatorname{diag}(3,1)$,未给正交矩阵 Q(题面要求“正交对角化”,solution 已给)。",
+        "evidence": "answer: $Q^TAQ=\\operatorname{diag}(3,1)$",
+        "verification": "Lead 原文核对",
+        "verified_by": "linalg 评审子代理",
+        "suggested_action": "人工补 Q"
+      },
+      {
+        "id": "linalg-051",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 4",
+        "severity": "info",
+        "code": "K-FORMAT",
+        "field": "scene_spec.steps[0]",
+        "message": "数学模式外裸写“y=x^3-6x^2+11x-6”(同文件其它处用 $...$),按字面渲染 '^'。",
+        "evidence": "第一步：在坐标系中绘制三次多项式曲线 y=x^3-6x^2+11x-6",
+        "verification": "Lead 原文核对",
+        "verified_by": "linalg 评审子代理",
+        "suggested_action": "人工放入 $...$"
+      },
+      {
+        "id": "linalg-048",
+        "file": "data/v1/raw/dataset_linalg.jsonl",
+        "locator": "line 1",
+        "severity": "info",
+        "code": "K-ANS-WEAK",
+        "field": "problem",
+        "message": "题材复用观察:linalg-048/049/068 共用矩阵 A=[[2,1],[1,2]](049 又与 064 同模板),建议评估多样性;三题内容不同,不构成重复题。",
+        "evidence": "048/049/068 的 problem 均含 A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}",
+        "verification": "Lead 原文核对",
+        "verified_by": "linalg 评审子代理",
+        "suggested_action": "人工评估题材多样性(勿自动改)"
+      }
+    ]
+  },
+  "acceptance": {
+    "data_dir": "data/v1",
+    "manifests": [
+      "data\\v1\\manifest.json"
+    ],
+    "formal_splits": [],
+    "doc_claims": [
+      {
+        "file": "README.md",
+        "line": 48,
+        "marker": "READY",
+        "text": "- **正式 READY 尚缺当前资产验收证据缺失时的显式阻断**。固定 MathTex/数学样例是环境诊断，不能替代当前数据或产物验收；不能仅凭 CLI 的 READY 开始训练。"
+      },
+      {
+        "file": "PROGRESS.md",
+        "line": 32,
+        "marker": "READY",
+        "text": "1. Claude Code 补正式 READY 的当前资产验收证据缺失阻断；环境样例仅标环境诊断。"
+      },
+      {
+        "file": "DATASET_REVIEW.md",
+        "line": 8,
+        "marker": "已验收",
+        "text": "- 状态: **clean**(候选数据集,**不是已验收训练集**)"
+      },
+      {
+        "file": "DATASET_REVIEW.md",
+        "line": 21,
+        "marker": "训练就绪",
+        "text": "- clean 不代表训练就绪;真实数据验收以全链路结果为准。"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 67,
+        "marker": "verified",
+        "text": "- 验证后状态才可升级:code 过 render_gate、render_status=verified、"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 73,
+        "marker": "已验收",
+        "text": "- **candidate ≠ 已验收训练集**:入场检查 clean 只说明数据契约通过,"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 74,
+        "marker": "已验收",
+        "text": "manifest 生成只登记事实,均不代表数据已验收。"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 78,
+        "marker": "READY",
+        "text": "preflight READY;在此之前保持 candidate/UNVERIFIED 语义。"
+      },
+      {
+        "file": "data/README.md",
+        "line": 9,
+        "marker": "验收通过",
+        "text": "make_manifest 的 --out 必须位于 --dir 根目录，默认拒绝覆盖且不提供 --force。使用新的版本目录保留历史清单。扫描按首层 raw/train/eval/test 目录推断角色，当前还会登记其他文件；应人工核对，不能把生成清单当验收通过。"
+      },
+      {
+        "file": "PIPELINE_PLAN.md",
+        "line": 26,
+        "marker": "训练就绪",
+        "text": "1. 基础设施：合成样例/配置 → 全链路 dry-run 与反例报告；所有适用 L0–L6 通过才申请下一阶段。合成通过不等于训练就绪。"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 46,
+        "marker": "READY",
+        "text": "## 3. eval/test 冻结与 READY 证据目录规范"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 51,
+        "marker": "READY",
+        "text": "- READY(freeze_gate)要求:当前 manifest 的 eval/test **全量**被锁"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 53,
+        "marker": "READY",
+        "text": "无锁/部分覆盖/无关锁/坏锁/绑定不一致 → NOT READY"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 55,
+        "marker": "READY",
+        "text": "在 READY 输出中明确标识非资产验收证据"
+      },
+      {
+        "file": "REVIEW_BACKLOG.md",
+        "line": 28,
+        "marker": "训练就绪",
+        "text": "| B2 | 严格 preflight 聚合所需门禁；诊断/静态通过不得等于训练就绪 | BR1 聚合、快照哈希及冻结证据覆盖/强制绑定通过；资产验收证据缺失尚无显式 UNVERIFIED 阻断（BR4-b 剩余） | 生成真实可执行训练计划前 |"
+      },
+      {
+        "file": "REVIEW_BACKLOG.md",
+        "line": 31,
+        "marker": "READY",
+        "text": "| B5 | 近重复阈值的分语言/长度校准 | 方法框架已实现；未校准状态已传播并阻断 READY；正式分语言/长度校准待真实数据 | 真实数据隔离验收前；不把 0.7 当已验证阈值 |"
+      }
+    ],
+    "record_level_claims": [],
+    "verdict": "未发现候选数据被标注为已验收训练数据:样本位于 data/v1/raw/(raw 角色)、无 train/eval/test 拆分;manifest(data/v1/manifest.json)已登记且 split=raw、未声明验收/训练就绪。文档中出现的 READY/验收字样均为'尚未就绪'的否定式表述",
+    "manifest_acceptance_claim": false,
+    "animation_verified_over_total": "0/63",
+    "doc_notes": [
+      "DATASET_REVIEW.md 声明总状态 = clean",
+      "DATASET_REVIEW.md 样本总数 = 63",
+      "DATASET_SCHEMA.md scene_spec 齐备条数 = 63",
+      "DATASET_SCHEMA.md license 条数 = 63"
+    ]
+  }
+}

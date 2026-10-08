@@ -1,0 +1,849 @@
+{
+  "head": "0123c931d3512ea6b7e0bbb15df7c69dfa2cd412",
+  "real_input_hashes": {
+    "data/v1/raw/dataset_calc.jsonl": "65d9c9255cd6ac1ee6200917b630882a7d974e787829f46a159c2dc16af75def",
+    "data/v1/raw/dataset_geom.jsonl": "109d993d8dfd8ed347911a996074ae2b75b38fcf300417e9a06bb8a557cf5ddb",
+    "data/v1/raw/dataset_linalg.jsonl": "f5065a536130cf055708a9911d43089ed38e0da6a5f5d363210e20ae1a2a4616",
+    "data/v1/raw/dataset_prob.jsonl": "9af0e647c5ae8a732232cb081a08f3ed8747ff11c331b619ff510c0086abc556"
+  },
+  "source_hashes": {
+    "src/animtrain/__init__.py": "49cff126acefffb5c90647fa30c5cca10ede76d004e404d28fa71900163967d3",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd",
+    "src/animtrain/calibrate.py": "e2fde0c49b7ec747370ae6577f659a8b1f078595bb90856be0f7756a221f55dc",
+    "src/animtrain/code_gate.py": "58d80f2246218e35202786026f1cdcd2571bf961575e8034a1c3d25836d58a65",
+    "src/animtrain/dataset_intake.py": "3e3cf3c1f610e552c7e9612b6e2185d37e81d30e9a4586aec78e7a121da10c17",
+    "src/animtrain/fields.py": "0427ee7765b44f5b32c1c326f84cbfab0fdde9a3aec17bad27bdccfa013f74b3",
+    "src/animtrain/freeze.py": "80234f07f86246323e29a472e359d74ce5e48406d4bde98df07a16b9501d99a3",
+    "src/animtrain/fs_guard.py": "cd8eecdf472b1fca7c36c8aa1201b4b1a24636fecd67dc6fe1dd0842b88c248e",
+    "src/animtrain/manifest.py": "9f0062f75ae923e8b9579620d946dbf83f46889a65eb4532d24a04b1f9cdb816",
+    "src/animtrain/near_dup.py": "b888f1a9eaea6631fd3892256940c59387b38b53beae6f6ee2ce7aa8e5314df4",
+    "src/animtrain/preflight.py": "94808a072c1e11f8da074066a59d8d28953f3323ca0a3c6ee21860b8cb5e2d92",
+    "src/animtrain/render_gate.py": "04b07c10f82b10bd91a814de28f72196e9bbdd5002be4d9b1a30ecf8c19a91fc",
+    "src/animtrain/run_record.py": "cf0a0d8ce355cb84990ddb1b308f3a05387ccf96aa6099431252f5ca048afa2c",
+    "src/animtrain/scan.py": "040dc867f7370eb6d20832aedb1253b90779aa93857e50542cf8b47bfb051828",
+    "src/animtrain/validate.py": "6b24d557f748cb45061db5aa35ffde3450e7e91a30da8c9c8ee17e095017d808",
+    "tools/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/check_code.py": "fdf06346ba127778a2e6756424497852bacaa63f6a049cfb4a2e9413e1a1ffe2",
+    "tools/check_fields.py": "e2c43fff16b2164c470a09215c618257dd8ea43885b6539b9a4f41672f4c1a4f",
+    "tools/data_check.py": "14c59dc31387fe915eab6084c0d57af860d638258519a3d0348e3d98265de12f",
+    "tools/dataset_intake.py": "ebc81e786909f4c71929a8a45453b694476bdda8947dd45453a4e76c03f507ac",
+    "tools/freeze_data.py": "fa10b23faee33d042304cf076af553b387834a99c8b42d26791153bb86e9506b",
+    "tools/make_manifest.py": "a04e881928f141417fee1517127bb2c81c165eb3f0f414a10cce68158e3de1bd",
+    "tools/preflight.py": "08955f0c9bdd15e9dcf235024ac85e04b09b073ab79d64c8216e0d5dcb31fb44",
+    "tools/run_record.py": "76f27fdc1a4f6f72db3e9d316b27bd41fdafa63212380f1b8732d50cc18ede3d",
+    "tools/split_data.py": "435d7ed974907c7cdfc91a2571f2e5e2e8192097571f33f79681e6a3c6078c53"
+  },
+  "G1_entry_disagreement": {
+    "train.txt": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train.txt: 数据格式仅支持 JSONL(.jsonl);.txt 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\train.txt",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "train.txt: 非 .jsonl 文件不能作为样本入口(JSONL 一行一对象);请先 convert 转换"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": null
+    },
+    "empty.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "empty.jsonl: 数据文件为空(空样本入口不得 ok=true)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] empty.jsonl: 数据文件为空(空样本入口不得 ok=true)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\empty.jsonl",
+        "n_records": 0,
+        "categories": {},
+        "problems": [
+          "empty.jsonl: 没有有效样本行(空 JSONL/空输入不得 ok=true)"
+        ],
+        "quarantines": [],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [],
+      "fields_cli": {
+        "exit_code": 0,
+        "stdout": "必填字段 ['problem', 'solution', 'answer'] | 缺失 0 行\n"
+      }
+    },
+    "idonly.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] idonly.jsonl:1 样本缺核心正文字段 problem/solution(A6:仅 id 的样本不得通过)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\idonly.jsonl",
+        "n_records": 1,
+        "categories": {},
+        "problems": [
+          "line 1: 缺关键字段 category, sub_category, problem, solution, scene_spec, source, license(id=one)"
+        ],
+        "quarantines": [
+          "line 1: 缺 answer(id=one,候选数据:判分字段待补齐)",
+          "line 1: 可选元数据缺/空: function_family, visual_style, efficiency_tags(id=one,candidate 语义)"
+        ],
+        "id_lines": {
+          "one": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": [
+        {
+          "sample_id": "one",
+          "line": 1,
+          "missing": [
+            "problem",
+            "solution",
+            "answer"
+          ],
+          "reason": "缺失必填字段: problem, solution, answer"
+        }
+      ]
+    },
+    "duplicate.jsonl": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "data_check_cli": {
+        "exit_code": 1,
+        "stdout": "条目 1 | 问题 1 | quarantine 0\n  [FAIL] train 内 ID 重复: id=one(duplicate.jsonl:1, duplicate.jsonl:2)(A6:同集合样本 ID 必须唯一)\n结论: **不通过**(exit_code=1)\n"
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\duplicate.jsonl",
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=one 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "one": [
+            1,
+            2
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      },
+      "fields": []
+    },
+    "same_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 1,
+        "problems": [
+          "train 内 ID 重复: id=dup(one.jsonl:1, one.jsonl:2)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名": [
+            1,
+            [
+              "one.jsonl: id=dup 在行 1, 2 冲突:同一 ID 对应不同内容;真实数据由用户确认后改 ID,不得静默改名"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "same_split_cross_file": {
+      "core_manifest": {
+        "ok": false,
+        "n_entries": 2,
+        "problems": [
+          "train 内 ID 重复: id=dup(left.jsonl:1, right.jsonl:1)(A6:同集合样本 ID 必须唯一)"
+        ],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 1
+      },
+      "intake": {
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+        ],
+        "quarantines": [],
+        "problem_groups": {
+          "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍": [
+            1,
+            [
+              "id=dup 跨文件重复(C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\left.jsonl:1, C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\right.jsonl:1):全局 ID 唯一性,跨文件零容忍"
+            ]
+          ]
+        },
+        "quarantine_groups": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    }
+  },
+  "G2_frozen_overwrite": {
+    "convert": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_data": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\report_data\\eval.jsonl: A7 冻结保护:目标已被冻结锁 eval.lock.json 覆盖,拒绝写入(--force 不能绕过)\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    },
+    "report_lock": {
+      "outcome": {
+        "exit_code": 2,
+        "stdout": "  数学分析: 1 条\n样本 1 | problems 0 | quarantine 0 | status=clean\n[FAIL] 无法写入报告 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-review-qs4emrjt\\report_lock\\eval.lock.json: A7 冻结保护:拒绝覆盖冻结锁文件(*.lock.json),--force 不能绕过\n"
+      },
+      "target_changed": false,
+      "lock_changed": false,
+      "source_unchanged": true,
+      "post_lock_problems": []
+    }
+  },
+  "G3_same_task_different_metadata": {
+    "same_task_fields": [
+      "problem",
+      "solution",
+      "answer",
+      "scene_spec"
+    ],
+    "different_fields": [
+      "id",
+      "function_family"
+    ],
+    "core_manifest": {
+      "ok": false,
+      "n_entries": 2,
+      "problems": [
+        "train 与 eval 精确重叠 1 个样本(零容忍,前项目 20/20 污染教训)",
+        "same_task_eval.jsonl:1 与训练样本近重复(5-gram Jaccard 1.000 ≥ 0.7,命中 same_task_train.jsonl:1)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    },
+    "intake": {
+      "n_records": 2,
+      "categories": {
+        "数学分析": 2
+      },
+      "problems": [],
+      "quarantines": [],
+      "problem_groups": {},
+      "quarantine_groups": {},
+      "ok": true,
+      "status": "clean",
+      "exit_code": 0
+    },
+    "whole_json_jaccard": 0.04743833017077799
+  },
+  "G4_field_shapes": [
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [],
+          "steps": []
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "scene_spec": {
+          "objects": [
+            null
+          ],
+          "steps": [
+            false
+          ]
+        }
+      },
+      "problems": [
+        "line 1: scene_spec.objects/steps 必须为非空字符串列表(G4 类型契约)"
+      ],
+      "quarantines": []
+    },
+    {
+      "case": {
+        "category": [
+          "wrong"
+        ],
+        "sub_category": {
+          "x": 1
+        },
+        "source": {
+          "bad": 1
+        },
+        "function_family": true,
+        "visual_style": 17,
+        "efficiency_tags": "not-a-list"
+      },
+      "problems": [
+        "line 1: category 不是字符串(list)",
+        "line 1: sub_category 不是字符串(dict)",
+        "line 1: source 不是字符串(dict)"
+      ],
+      "quarantines": []
+    }
+  ],
+  "known_B2_core_ready_missing_assets": {
+    "ok": true,
+    "ready": true,
+    "exit_code": 0,
+    "checks": [
+      {
+        "check": "gpu",
+        "ok": true,
+        "detail": "synthetic GPU"
+      },
+      {
+        "check": "model_dir",
+        "ok": true,
+        "detail": "synthetic model"
+      },
+      {
+        "check": "data_manifest",
+        "ok": true,
+        "detail": "synthetic data"
+      },
+      {
+        "check": "run_snapshot",
+        "ok": true,
+        "detail": "synthetic record"
+      },
+      {
+        "check": "ready",
+        "ok": true,
+        "detail": "全部必需门禁通过,可生成可执行训练计划"
+      }
+    ]
+  },
+  "current_real_intake": {
+    "n_records": 63,
+    "categories": {
+      "数学分析": 19,
+      "解析几何": 12,
+      "高等代数": 23,
+      "概率论": 9
+    },
+    "problems": [],
+    "quarantines": [],
+    "problem_groups": {},
+    "quarantine_groups": {},
+    "ok": true,
+    "status": "clean",
+    "exit_code": 0
+  },
+  "current_real_manifest": {
+    "ok": true,
+    "n_entries": 4,
+    "problems": [],
+    "quarantines": [],
+    "near_dup_threshold": 0.7,
+    "near_dup_calibrated": false,
+    "exit_code": 0
+  },
+  "real_inputs_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  },
+  "source_unchanged": {
+    "src/animtrain/__init__.py": true,
+    "src/animtrain/atomic_write.py": true,
+    "src/animtrain/calibrate.py": true,
+    "src/animtrain/code_gate.py": true,
+    "src/animtrain/dataset_intake.py": true,
+    "src/animtrain/fields.py": true,
+    "src/animtrain/freeze.py": true,
+    "src/animtrain/fs_guard.py": true,
+    "src/animtrain/manifest.py": true,
+    "src/animtrain/near_dup.py": true,
+    "src/animtrain/preflight.py": true,
+    "src/animtrain/render_gate.py": true,
+    "src/animtrain/run_record.py": true,
+    "src/animtrain/scan.py": true,
+    "src/animtrain/validate.py": true,
+    "tools/__init__.py": true,
+    "tools/check_code.py": true,
+    "tools/check_fields.py": true,
+    "tools/data_check.py": true,
+    "tools/dataset_intake.py": true,
+    "tools/freeze_data.py": true,
+    "tools/make_manifest.py": true,
+    "tools/preflight.py": true,
+    "tools/run_record.py": true,
+    "tools/split_data.py": true
+  },
+  "baseline_tests": {
+    "before_codex_patch": 200,
+    "after_codex_patch": 206,
+    "subtests": 29,
+    "seconds": 6.67
+  },
+  "edge_test_before": {
+    "failed": 5,
+    "passed": 1
+  },
+  "residual_A6": {
+    "body_containers": {
+      "manifest": {
+        "ok": true,
+        "n_entries": 1,
+        "problems": [],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 0
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-recheck-ztkgbgso\\body_containers\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [
+          "line 1: problem 不是字符串(list)",
+          "line 1: solution 不是字符串(dict)"
+        ],
+        "quarantines": [],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    },
+    "missing_answer": {
+      "manifest": {
+        "ok": true,
+        "n_entries": 1,
+        "problems": [],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 0
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-recheck-ztkgbgso\\missing_answer\\train.jsonl",
+        "n_records": 1,
+        "categories": {
+          "数学分析": 1
+        },
+        "problems": [],
+        "quarantines": [
+          "line 1: 缺 answer(id=fixture-001,候选数据:判分字段待补齐)"
+        ],
+        "id_lines": {
+          "fixture-001": [
+            1
+          ]
+        },
+        "ok": false,
+        "status": "candidate",
+        "exit_code": 2
+      }
+    },
+    "sample_id_duplicate": {
+      "manifest": {
+        "ok": true,
+        "n_entries": 1,
+        "problems": [],
+        "quarantines": [],
+        "near_dup_threshold": 0.7,
+        "near_dup_calibrated": false,
+        "exit_code": 0
+      },
+      "intake": {
+        "file": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-global-recheck-ztkgbgso\\sample_id_duplicate\\train.jsonl",
+        "n_records": 2,
+        "categories": {
+          "数学分析": 2
+        },
+        "problems": [
+          "line 1: 缺关键字段 id(id=<no-id>)",
+          "line 2: 缺关键字段 id(id=<no-id>)"
+        ],
+        "quarantines": [
+          "line 1: 非正式字段 ['sample_id'](id=<no-id>,正式字段见 DATASET_SCHEMA.md)",
+          "line 2: 非正式字段 ['sample_id'](id=<no-id>,正式字段见 DATASET_SCHEMA.md)"
+        ],
+        "id_lines": {},
+        "ok": false,
+        "status": "rejected",
+        "exit_code": 1
+      }
+    }
+  },
+  "edge_A7": {
+    "target_lock": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:拒绝写入冻结锁路径(*.lock.json)，--force 不能绕过"
+      },
+      "target_changed": false
+    },
+    "empty_marker": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:锁 eval.lock.json 无效或已变化，fail-closed 拒绝写入: 锁 entries 为空或缺失 —— 空锁无效(BR3)"
+      },
+      "target_changed": false
+    },
+    "wrong_version": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:锁 eval.lock.json 无效或已变化，fail-closed 拒绝写入: 锁版本不支持: 999"
+      },
+      "target_changed": false
+    },
+    "unlocked_marker": {
+      "outcome": {
+        "exception": "ValueError",
+        "detail": "A7 冻结保护:锁 eval.lock.json 无效或已变化，fail-closed 拒绝写入: 锁未处于 locked 状态: False(BR3)"
+      },
+      "target_changed": false
+    }
+  },
+  "optional_meta_type": {
+    "function_family": {
+      "problems": [],
+      "quarantines": []
+    },
+    "visual_style": {
+      "problems": [],
+      "quarantines": []
+    },
+    "efficiency_tags": {
+      "problems": [],
+      "quarantines": []
+    }
+  },
+  "v6_binding": {
+    "count": 63,
+    "status": {
+      "candidate": 63
+    },
+    "hash_mismatches": []
+  },
+  "mirror_arrays": {
+    "dataset_calc.jsonl": true,
+    "dataset_geom.jsonl": true,
+    "dataset_linalg.jsonl": true,
+    "dataset_prob.jsonl": true
+  },
+  "doc_matches": true,
+  "record_snapshot": {
+    "geom-026": {
+      "id": "geom-026",
+      "category": "解析几何",
+      "sub_category": "二次曲面分类",
+      "function_family": "二次曲面标准形式",
+      "visual_style": "截面法与三维立体",
+      "efficiency_tags": [
+        "截面扫描",
+        "抛物线平移"
+      ],
+      "problem": "指出方程 $z = x^2 + 2y^2$ 表示的二次曲面类型，并分析其与平面 $y = 0$ 和 $y = 1$ 的交线。",
+      "solution": "该方程为椭圆抛物面。当 $y = 0$ 时，交线为 $z = x^2$，是 $xOz$ 平面上的抛物线。当 $y = 1$ 时，交线为 $z = x^2 + 2$，依然是一条抛物线，只是顶点向上平移了 2 个单位。一般地，截面 $y=c$ 给出交线 $z=x^2+2c^2$：顶点在 $z$ 方向抬高 $2c^2$。因此，曲面可以看作截面抛物线随 $c$ 变化（顶点沿 $z$ 方向抬高 $2c^2$）叠加而成。",
+      "answer": "椭圆抛物面；与平面 $y=0$ 的交线为 $z=x^2$，与平面 $y=1$ 的交线为 $z=x^2+2$",
+      "scene_spec": {
+        "objects": [
+          "三维坐标系",
+          "椭圆抛物面",
+          "xOz 平面上的抛物线",
+          "平面 y=1 上的抛物线"
+        ],
+        "steps": [
+          "第一步：在三维空间中画出椭圆抛物面 $z = x^2 + 2y^2$，用蓝色半透明渲染。",
+          "第二步：高亮显示与 $xOz$ 平面（$y=0$）的截面交线，这是一条抛物线。",
+          "第三步：在 $y=1$ 处插入一个平面，并高亮显示它与曲面的交线，展示这是一条开口向上的抛物线。",
+          "第四步：用动画演示截面抛物线 $z=x^2+2c^2$ 随 $c$ 变化：顶点沿 $y$ 轴方向平移 $c$、同时沿 $z$ 方向抬高 $2c^2$，从而扫出整个椭圆抛物面。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "geom-031": {
+      "id": "geom-031",
+      "category": "解析几何",
+      "sub_category": "曲面与曲线",
+      "function_family": "维维安尼曲线（球面与圆柱面的交线）",
+      "visual_style": "三维曲线生成演示",
+      "efficiency_tags": [
+        "三维旋转视角",
+        "参数曲线动态描绘"
+      ],
+      "problem": "求球面 $x^2+y^2+z^2=4a^2$ 与圆柱面 $x^2+y^2=2ax$ 的交线（维维安尼曲线）的参数方程（$a>0$）。",
+      "solution": "令 $x=a(1+\\cos t)$，$y=a\\sin t$，则 $x^2+y^2 = a^2(1+\\cos t)^2 + a^2\\sin^2 t = 2a^2(1+\\cos t) = 2a\\cdot a(1+\\cos t) = 2ax$，圆柱面方程自动满足。代入球面方程 $x^2+y^2+z^2=4a^2$ 得 $z^2 = 4a^2 - 2a^2(1+\\cos t) = 2a^2(1-\\cos t) = 4a^2\\sin^2\\frac{t}{2}$。取连续参数分支 $z = 2a\\sin\\frac{t}{2}$（另一分支 $z = -2a\\sin\\frac{t}{2}$ 由参数平移 $2\\pi$ 覆盖，不另取）。于是交线的参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$，其中 $0 \\le t \\le 4\\pi$ 覆盖整条曲线（$0 \\le t \\le 2\\pi$ 仅覆盖上半部分）。",
+      "answer": "维维安尼曲线，参数方程为 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$，其中 $0 \\le t \\le 4\\pi$",
+      "scene_spec": {
+        "objects": [
+          "三维直角坐标系",
+          "半透明球面 $x^2+y^2+z^2=4a^2$",
+          "圆柱面 $x^2+y^2=2ax$",
+          "高亮的维维安尼曲线",
+          "曲线上运动的参数点"
+        ],
+        "steps": [
+          "第一步：绘制三维坐标系，用蓝色半透明渲染球面 $x^2+y^2+z^2=4a^2$。",
+          "第二步：用红色半透明渲染与球面相交的圆柱面 $x^2+y^2=2ax$。",
+          "第三步：高亮两个曲面的交线，动态描绘出维维安尼曲线。",
+          "第四步：让一个参数点沿曲线运动，同步显示参数方程 $x=a(1+\\cos t)$，$y=a\\sin t$，$z=2a\\sin\\frac{t}{2}$（$0 \\le t \\le 4\\pi$）。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-058": {
+      "id": "linalg-058",
+      "category": "高等代数",
+      "sub_category": "矩阵",
+      "function_family": "初等变换",
+      "visual_style": "网格剪切",
+      "efficiency_tags": [
+        "行变换几何效果",
+        "面积保持"
+      ],
+      "problem": "说明初等矩阵 $E=\\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$ 对应的线性变换的几何意义。",
+      "solution": "该矩阵是将单位矩阵第二行加上第一行的 3 倍得到的初等矩阵。对应的线性变换是沿 $y$ 轴方向的剪切变换：平面上每一点的 $x$ 坐标不变，$y$ 坐标变为 $y+3x$。这是一个保持面积不变（行列式为 1）的剪切变换。",
+      "answer": "$x$ 坐标不变，$y$ 坐标变为 $y+3x$，面积不变",
+      "scene_spec": {
+        "objects": [
+          "二维坐标系",
+          "标准网格",
+          "剪切后网格",
+          "基向量变化"
+        ],
+        "steps": [
+          "第一步：画出标准网格和单位正方形。",
+          "第二步：应用初等矩阵 E 的变换，展示水平网格线发生倾斜（竖直网格线保持竖直），网格被剪切。",
+          "第三步：观察单位正方形变为平行四边形（以仍竖直的边为底，底和高均为 1），面积保持为 1。",
+          "第四步：高亮显示行列式值为 1，说明剪切变换不改变面积。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-060": {
+      "id": "linalg-060",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "function_family": "正定二次型",
+      "visual_style": "等值面闭合性与正定性",
+      "efficiency_tags": [
+        "顺序主子式",
+        "曲面形状判别"
+      ],
+      "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+      "solution": "写出对应的实对称矩阵 $A=\\begin{pmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 0 \\\\ 1 & 0 & 3 \\end{pmatrix}$。顺序主子式：$1>0$，$\\begin{vmatrix} 1 & 1 \\\\ 1 & 2 \\end{vmatrix}=1>0$，$\\det(A)=1(6-0)-1(3-0)+1(0-2)=6-3-2=1>0$。所有顺序主子式均为正，故二次型正定。",
+      "answer": "正定",
+      "scene_spec": {
+        "objects": [
+          "三维坐标系",
+          "三维椭球面 $f=1$（主轴方向与坐标轴不重合）",
+          "顺序主子式判断标注"
+        ],
+        "steps": [
+          "第一步：利用 ThreeDScene 绘制二次型 $f=1$ 的等值面——三维椭球面，展现三维空间的变形，观察其形状。",
+          "第二步：用截面法展示椭球面的三个主轴截面（闭曲面，各方向有界）。",
+          "第三步：在右侧展示三个顺序主子式的计算过程，全部为正。",
+          "第四步：高亮显示顺序主子式全为正、椭球面闭合有界，与正定判别结果一致。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "linalg-066": {
+      "id": "linalg-066",
+      "category": "高等代数",
+      "sub_category": "λ-矩阵",
+      "function_family": "若尔当标准形",
+      "visual_style": "矩阵块对角化",
+      "efficiency_tags": [
+        "若尔当块",
+        "分块高亮"
+      ],
+      "problem": "求矩阵 $A=\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$ 的若尔当标准形。",
+      "solution": "A 已经是分块对角形式。主对角线上有一个 2×2 的若尔当块 $J_1(2)=\\begin{pmatrix} 2 & 1 \\\\ 0 & 2 \\end{pmatrix}$ 和一个 1×1 的若尔当块 $J_2(3)=(3)$。故若尔当标准形为 $\\operatorname{diag}(J_1(2), J_2(3))$。",
+      "answer": "$\\begin{pmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 3 \\end{pmatrix}$",
+      "scene_spec": {
+        "objects": [
+          "矩阵可视化",
+          "若尔当块高亮"
+        ],
+        "steps": [
+          "第一步：展示矩阵 A，用不同颜色标出两个若尔当块。",
+          "第二步：用动画高亮矩阵的分块结构，直观展示两个若尔当块。",
+          "第三步：高亮 2×2 的若尔当块，展示其主对角线为 2、超对角线上的 1 表示该块不可对角化。",
+          "第四步：标注 1×1 的若尔当块对应特征值 3，可以单独对角化。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "prob-043": {
+      "id": "prob-043",
+      "category": "概率论",
+      "sub_category": "中心极限定理",
+      "function_family": "独立同分布中心极限定理",
+      "visual_style": "分屏对比与分布形态演变",
+      "efficiency_tags": [
+        "样本量滑块",
+        "直方图对比"
+      ],
+      "problem": "解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值的分布是如何变化的。",
+      "solution": "设随机变量 $X_1, X_2, \\dots, X_n$ 相互独立且同分布，具有有限的数学期望 $\\mu$ 和方差 $\\sigma^2$。中心极限定理指出，当 $n$ 充分大时，标准化样本均值 $\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}}$ 的分布近似于标准正态分布 $N(0, 1)$。直观来说，样本均值的方差为 $\\sigma^2/n$，随着 $n$ 增大，方差减小，分布变得更加集中，直方图会变高变窄，最终趋于钟形正态分布。",
+      "answer": "样本均值 $\\bar{X}$ 的分布趋近于正态分布 $N(\\mu, \\sigma^2/n)$：随着 $n$ 增大，分布变高变窄、中心不变。",
+      "scene_spec": {
+        "objects": [
+          "左侧原始总体分布（如均匀分布或指数分布）",
+          "右侧动态样本均值分布直方图",
+          "样本量 n 滑块",
+          "目标正态曲线 $N(\\mu, \\sigma^2/n)$"
+        ],
+        "steps": [
+          "第一步：屏幕左侧显示一个明显非正态的总体分布（例如均匀分布），明确标注其形态。",
+          "第二步：在右侧从该总体中随机抽取 n 个样本并计算均值，重复多次绘制直方图。",
+          "第三步：初始设置 n=2，样本均值的直方图已呈现三角分布（Irwin–Hall 分布），与原始均匀总体明显不同。",
+          "第四步：动画拖动“样本量 n”滑块，将 n 逐渐增大至 5, 10, 30。",
+          "第五步：右侧的直方图动态且平滑地变高变窄，形态逐渐转变成钟形。",
+          "第六步：叠加红色曲线 $N(\\mu, \\sigma^2/n)$，展示当 n=30 时，样本均值直方图几乎与红色曲线重合。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  "source_consistent": {
+    "src/animtrain/__init__.py": true,
+    "src/animtrain/atomic_write.py": true,
+    "src/animtrain/calibrate.py": true,
+    "src/animtrain/code_gate.py": true,
+    "src/animtrain/dataset_intake.py": true,
+    "src/animtrain/fields.py": true,
+    "src/animtrain/freeze.py": true,
+    "src/animtrain/fs_guard.py": true,
+    "src/animtrain/manifest.py": true,
+    "src/animtrain/near_dup.py": true,
+    "src/animtrain/preflight.py": true,
+    "src/animtrain/render_gate.py": true,
+    "src/animtrain/run_record.py": true,
+    "src/animtrain/scan.py": true,
+    "src/animtrain/validate.py": true,
+    "tools/__init__.py": true,
+    "tools/check_code.py": true,
+    "tools/check_fields.py": true,
+    "tools/data_check.py": true,
+    "tools/dataset_intake.py": true,
+    "tools/freeze_data.py": true,
+    "tools/make_manifest.py": true,
+    "tools/preflight.py": true,
+    "tools/run_record.py": true,
+    "tools/split_data.py": true
+  },
+  "real_still_unchanged": {
+    "data/v1/raw/dataset_calc.jsonl": true,
+    "data/v1/raw/dataset_geom.jsonl": true,
+    "data/v1/raw/dataset_linalg.jsonl": true,
+    "data/v1/raw/dataset_prob.jsonl": true
+  }
+}

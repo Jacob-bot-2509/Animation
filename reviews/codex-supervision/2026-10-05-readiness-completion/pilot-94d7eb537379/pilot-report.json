@@ -1,0 +1,41 @@
+{
+  "manifest_sha256": "41b7204adb47dd0bbe13dee40d409b0456e5d8eb85a307fd94640dfaf9243ed5",
+  "tool_sha256": "ac0ee9594d8cf4820c85128aeef2f6b75f2e382f5dfcf23cc15c3a3b876e8385",
+  "template_sha256": "3bd1e87ac4d8c390484156150f5a1eb5ef7007f2f370fceda75648a6aabf9c32",
+  "format": "mp4",
+  "scope": "Actual reviewed templates in AppContainer; no math/semantic/whole-dataset acceptance claim",
+  "production_gate": "CLOSED",
+  "records": [
+    {
+      "id": "eval-calc-001-s2",
+      "input_sha256": "e00e7f3fe2baeb6e421857fa1badc59a5116fd073ababad04175792ae4c31962",
+      "template": "graph_limit",
+      "math": "UNVERIFIED",
+      "ok": false,
+      "command": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "manim",
+        "render",
+        "-ql",
+        "--format=mp4",
+        "--media_dir",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-readiness-completion\\pilot-94d7eb537379\\scene-000\\media",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-readiness-completion\\pilot-94d7eb537379\\scene-000\\scene.py",
+        "PilotScene"
+      ],
+      "scene_sha256": "42cd46d166b70f6f16a736f15430a6410e231c498993996ff4dd2c23a47795ab",
+      "rc": 1,
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+      },
+      "error": "ValueError('Manim failed; see stdout/stderr')"
+    }
+  ]
+}

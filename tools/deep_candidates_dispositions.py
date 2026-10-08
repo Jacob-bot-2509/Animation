@@ -1,98 +1,88 @@
-"""深层候选逐对裁决:DIFFERENT_CORE(附数学区别) 或 NEEDS_CODEX(边界交裁决)."""
+"""Validate explicit version-bound pair decisions; never certify global isolation."""
 from __future__ import annotations
-import hashlib
+
+import argparse
+from collections import Counter
 import json
 from pathlib import Path
+import sys
 
-ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reviews/2026-10-07-semantic-core-lists"
+if str(Path(__file__).resolve().parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+import deep_isolation_candidates as deep
+core = deep.core
 
-
-def digest(data: bytes) -> str:
-    return hashlib.sha256(data).hexdigest()
-
-
-VERDICTS = {
-    ("draft-c36-03", "eval-linalg-021-s1"): (
-        "NEEDS_CODEX",
-        "同目标'求二次型正定参数范围'+同族+共享'顺序主子式';结构差异:训练侧参数在对角z²系数"
-        "(Δ3=a→a>0),评测侧参数在交叉项xz(Δ3=2-a²→|a|<√2);训练侧另要求a=0半正定/a<0不定的退化讨论。"
-        "按c31从宽原则交Codex裁决"),
-    ("draft-c36-03", "eval-linalg-021-s2"): (
-        "NEEDS_CODEX",
-        "同目标同族;训练侧顺序主子式,评测侧配方——方法不同但任务同型、阈值同型(|a|<常数)。交裁决"),
-    ("draft-c36-03", "eval-linalg-021-s3"): (
-        "NEEDS_CODEX",
-        "同目标同族;训练侧顺序主子式,评测侧Schur补。任务同型。交裁决"),
-    ("linalg-051", "eval-linalg-022-s1"): (
-        "NEEDS_CODEX",
-        "同目标'多项式因式分解'+同族+共享'有理根定理';差异:训练侧三次(x³-6x²+11x-6,根1,2,3)"
-        "且多要求根分布讨论,评测侧四次(x⁴+2x³-7x²-8x+12,根1,2,-2,-3)。方法完全可迁移,交裁决"),
-    ("draft-c02-01", "eval-calc-019-s1"): (
-        "DIFFERENT_CORE",
-        "训练侧为振荡型反常积分(Fresnel)条件收敛+尾界证明;评测侧为指数衰减反常积分求值。"
-        "核心对象(振荡vs指数)与任务(证明+界vs求值)均不同,仅共享'分部积分'这一泛用步骤"),
-    ("draft-c30-01", "eval-linalg-024-s3"): (
-        "DIFFERENT_CORE",
-        "训练侧:由零点重数条件构造多项式(整除性+定常数);评测侧:已知多项式按x-1展开(泰勒)。"
-        "任务方向相反,仅共享'换元展开'泛用步骤"),
-    ("draft-c35-01", "eval-linalg-021-s2"): (
-        "DIFFERENT_CORE",
-        "训练侧:化标准形+求惯性指数(无参数);评测侧:求正定参数范围(含参)。目标不同,仅共享'配方'"),
-    ("draft-c35-03", "eval-linalg-021-s2"): (
-        "DIFFERENT_CORE",
-        "训练侧:求秩为1的参数+各参数标准形;评测侧:求正定参数范围。目标与判定量(秩vs正定)不同"),
-    ("draft-c35-04", "eval-linalg-021-s2"): (
-        "DIFFERENT_CORE",
-        "训练侧:化标准形+惯性(无参退化);评测侧:求正定参数范围。目标不同"),
-    ("draft-c36-04", "eval-linalg-021-s2"): (
-        "DIFFERENT_CORE",
-        "训练侧:判断半正定与秩(无参);评测侧:求正定参数范围(含参)。目标不同"),
-    ("draft-c36-05", "eval-linalg-021-s1"): (
-        "DIFFERENT_CORE",
-        "训练侧:构造反例(顺序主子式非负但非半正定);评测侧:判正定参数范围。任务相反(构造vs判定)"),
-    ("draft-c37-05", "eval-linalg-026-s1"): (
-        "DIFFERENT_CORE",
-        "训练侧:证向量组为基+求坐标;评测侧:判断线性相关性。目标不同,仅共享'行列式'"),
-}
-
-
-def main() -> int:
-    cand = json.loads((OUT / "deep-candidates-v1.json").read_text(encoding="utf-8-sig"))
-    rows = []
-    missing = []
-    for c in cand["candidates"]:
-        key = (c["train_id"], c["eval_id"])
-        v = VERDICTS.get(key)
-        if v is None:
-            missing.append(key)
-            continue
-        rows.append({**c, "verdict": v[0], "pairwise_reason": v[1]})
-    # 第二梯队 11 对也须有裁决(与第一梯队 3 对并集)
+def disposed(candidate_path, expected_sha256, decisions_path, out_path):
+    raw = core.checked_path(candidate_path, core.ROOT).read_bytes()
+    if core.digest(raw) != expected_sha256:
+        raise ValueError("Candidate submission hash mismatch")
+    candidate = core.read_json(raw)
+    if candidate.get("core_manifest_sha256") != core.CORE_MANIFEST_SHA256:
+        raise ValueError("Candidate refers to a different current core")
+    inputs = candidate["input_bindings"]
+    if len(inputs) != 1:
+        raise ValueError("Exactly one complete signature input required")
+    sig_path = core.checked_path(core.ROOT / inputs[0]["path"], core.ROOT)
+    sigs, actual_inputs, records = deep.population(sig_path)
+    expected = deep.build_report(sigs, actual_inputs, records)
+    generator_hash = core.digest(Path(deep.__file__).read_bytes())
+    expected["generator_sha256"] = generator_hash
+    if candidate != expected:
+        raise ValueError("Candidate content/source/counts differ from actual recomputation")
+    decision_raw = core.checked_path(decisions_path, core.ROOT).read_bytes()
+    decision_doc = core.read_json(decision_raw)
+    if decision_doc.get("candidate_sha256") != expected_sha256:
+        raise ValueError("Decision document not bound to submitted candidate version")
+    by_pair = {(c["train_id"], c["eval_id"]): c for c in candidate["candidates"]}
+    seen, rows = set(), []
+    for d in decision_doc["rows"]:
+        key = (d["train_id"], d["eval_id"])
+        if key in seen or key not in by_pair:
+            raise ValueError("Duplicate/unknown decision pair")
+        seen.add(key)
+        c = by_pair[key]
+        for f in ("train_record_sha256", "eval_record_sha256"):
+            if d.get(f) != c[f]:
+                raise ValueError("Decision record version mismatch")
+        if d.get("verdict") not in ("SAME_CORE", "DIFFERENT_CORE", "NEEDS_REVIEW"):
+            raise ValueError("Invalid decision verdict")
+        reason = d.get("pairwise_reason")
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError("Nonempty independent mathematical reason required")
+        rows.append({**c, "disposition": d["verdict"], "pairwise_reason": reason})
+    if seen != set(by_pair):
+        raise ValueError("Missing candidate pair dispositions")
+    counts = Counter(r["disposition"] for r in rows)
     report = {
-        "schema": "deep-candidates-disposed-v1",
-        "family_pairs_total": cand["family_pairs_total"],
-        "flagged_pairs": len(rows),
-        "needs_codex": sum(1 for r in rows if r["verdict"] == "NEEDS_CODEX"),
-        "different_core": sum(1 for r in rows if r["verdict"] == "DIFFERENT_CORE"),
-        "missing_dispositions": [list(k) for k in missing],
-        "rows": rows,
-        "honest_coverage": (
-            "1131 同族跨集配对经(同义目标组∨步骤Jaccard≥0.5)得3对高信号+11对二梯队=14对已逐对裁决;"
-            "其余1117对签名层面目标组不同且Jaccard<0.25,已由签名逐对计算排除,未逐对写理由;"
-            "跨族同义核心(不同sub_category的几何↔代数改写)不在此通道覆盖内,如实保留风险"),
+        "schema": "deep-candidates-disposed-v2", "core_manifest_sha256": core.CORE_MANIFEST_SHA256,
+        "candidate_binding": {"path": candidate_path.relative_to(core.ROOT).as_posix(), "sha256": expected_sha256},
+        "decision_binding": {"path": decisions_path.relative_to(core.ROOT).as_posix(), "sha256": core.digest(decision_raw)},
+        "disposer_sha256": core.digest(Path(__file__).read_bytes()),
+        "family_pairs_total": candidate["family_pairs_total"], "flagged_pairs": len(rows),
+        "same_core": counts["SAME_CORE"], "different_core": counts["DIFFERENT_CORE"], "needs_review": counts["NEEDS_REVIEW"],
+        "family_pairs_not_flagged": candidate["family_pairs_not_flagged"],
+        "nonflagged_semantic_verdict": "NOT_REVIEWED",
+        "outside_family_pairs_not_screened": candidate["outside_family_pairs_not_screened"],
+        "rows": rows, "decision_packaging": "PASS_VERSION_BOUND_DECISION_PACKAGING",
+        "independent_reason_correctness": "REQUIRES_SEPARATE_REVIEW_RECEIPT",
+        "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED", "PASS_CORE_SCOPE_issued": False,
     }
-    out = OUT / "deep-candidates-disposed-v1.json"
-    with out.open("w", encoding="utf-8", newline="\n") as f:
-        json.dump(report, f, ensure_ascii=False, indent=2)
-        f.write("\n")
-    b = out.read_bytes()
-    print(f"裁决: {len(rows)} 对 (NEEDS_CODEX {report['needs_codex']}, DIFFERENT_CORE {report['different_core']})")
-    if missing:
-        print("缺裁决:", missing)
-    print(f"回执: {out.relative_to(ROOT)}  sha256={digest(b)}  bytes={len(b)}")
-    return 0
+    core.publish(out_path, {"deep-candidates-disposed.json": core.encoded(report)})
+    print(json.dumps({k: report[k] for k in ("flagged_pairs", "same_core", "different_core", "needs_review", "semantic_isolation")}, ensure_ascii=False))
+    return 3 if counts["SAME_CORE"] or counts["NEEDS_REVIEW"] else 0
 
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--candidates", type=Path, required=True)
+    parser.add_argument("--candidate-sha256", required=True)
+    parser.add_argument("--decisions", type=Path, required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    args = parser.parse_args(argv)
+    try:
+        return disposed(args.candidates.absolute(), args.candidate_sha256, args.decisions.absolute(), args.out)
+    except (ValueError, KeyError, TypeError, IndexError, OSError) as exc:
+        print(json.dumps({"status": "FAIL_BOUND_PAIR_DISPOSITIONS", "error": str(exc), "semantic_isolation": "NOT_ESTABLISHED", "production": "CLOSED"}, ensure_ascii=False))
+        return 2
 
 if __name__ == "__main__":
     raise SystemExit(main())

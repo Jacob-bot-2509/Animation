@@ -1,0 +1,1267 @@
+{
+  "schema": "scene-sweep-chunk-v2",
+  "standard": "Show every exact calculation; identify matrix row and column for each product; state convergence hypotheses, key bounds and limit arguments; use exact fractions and symbols.",
+  "records": [
+    {
+      "idx": 95,
+      "record": {
+        "id": "draft-c04-01",
+        "category": "数学分析",
+        "sub_category": "曲线积分",
+        "concept": "格林公式",
+        "concept_id": "C04",
+        "parent_training_ids": [
+          "calc-green-005"
+        ],
+        "problem": "用格林公式求 $\\oint_L x^2\\,dy$，其中 $L$ 为以 $(0,0),(1,0),(0,1)$ 为顶点的三角形正向边界，并直接计算验证。",
+        "solution": "格林公式:$\\oint_L x^2\\,dy=\\iint_D 2x\\,dxdy$。区域 $D$:$0\\le y\\le1$,$0\\le x\\le1-y$。$\\iint_D 2x\\,dxdy=\\int_0^1\\int_0^{1-y}2x\\,dx\\,dy=\\int_0^1(1-y)^2\\,dy=\\frac13$。直接验证:底边 $y=0$ 上 $dy=0$ 贡献为 $0$;竖边 $x=0$ 上 $x^2=0$ 贡献为 $0$;斜边 $x=1-y$($y$ 从 $0$ 到 $1$):$\\int_0^1(1-y)^2\\,dy=\\frac13$。两法一致。",
+        "answer": "积分值为 $\\frac13$(格林公式与直接计算一致)。",
+        "method": "格林公式(非对称区域)+直接验证",
+        "difficulty": "基础",
+        "variant_kind": "区域变化:三角形非对称区域的格林公式应用与双算法互验",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:三角形区域(阴影)与正向边界箭头",
+            "板书:格林公式 $\\oint x^2\\,dy=\\iint 2x\\,dxdy$",
+            "板书:$\\int_0^1(1-y)^2dy=\\frac13$",
+            "动画:沿三边的直接积分贡献分解(两零一非零)",
+            "高亮框:$\\frac13$(两法一致)"
+          ],
+          "steps": [
+            "第一步:画出三角形与逆时针边界箭头。",
+            "第二步:应用格林公式化为二重积分并计算。",
+            "第三步:直接积分:展示底边与竖边贡献为零。",
+            "第四步:展示斜边积分 $(1-y)^2$ 的贡献为 $\\frac13$。",
+            "第五步:对照两法结果,高亮一致。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "a3704420c58e1e5ee2c91a5c894a97f227345dbedfe9ec1973221aacca6191eb",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c04-01",
+          "prior_parent_training_ids": [
+            "calc-green-005"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "637702946f36bb919a3ade1a6a1eb80c029b9d442c2ccc967c98f841996dca41",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c04-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "a3704420c58e1e5ee2c91a5c894a97f227345dbedfe9ec1973221aacca6191eb",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 6,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "6157c9e11124ba3d9be902264f9bc2477ab143abd20524839f3518b832c4c4d9",
+        "record_canonical_sha256": "bc3bf1ca3a3cf22c2ce835315fe1b80204bb04099f347b575da389ea2d75ad85",
+        "publisher_record_sorted_sha256": "523103f03f045bb5d9cd90f2c4339daa8247cbfecbdafc309be587c74b84963c"
+      }
+    },
+    {
+      "idx": 96,
+      "record": {
+        "id": "draft-c04-02",
+        "category": "数学分析",
+        "sub_category": "曲线积分",
+        "concept": "格林公式",
+        "concept_id": "C04",
+        "parent_training_ids": [
+          "calc-green-005"
+        ],
+        "problem": "求 $\\oint_L y\\,dx$，其中 $L$ 为逆时针单位圆周；并说明若沿顺时针方向积分，结果如何变化。",
+        "solution": "格林公式:$\\oint_L y\\,dx=\\iint_D(0-1)\\,dxdy=-\\iint_D 1\\,dxdy=-A$,其中 $A$ 为区域面积。单位圆面积 $A=\\pi$,故逆时针积分为 $-\\pi$。若改为顺时针,格林公式需取负号(或等价地区域定向反转),结果为 $+\\pi$。",
+        "answer": "逆时针为 $-\\pi$;顺时针为 $+\\pi$(符号随定向反转)。",
+        "method": "格林公式+方向反转",
+        "difficulty": "基础",
+        "variant_kind": "方向反转:边界定向对曲线积分符号的影响",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:单位圆盘(阴影)与逆时针箭头",
+            "板书:$\\oint y\\,dx=\\iint(0-1)dxdy=-A$",
+            "高亮框:逆时针 $=-\\pi$",
+            "动画:箭头切换为顺时针,符号翻转为 $+\\pi$",
+            "标签「定向决定符号」"
+          ],
+          "steps": [
+            "第一步:画出单位圆与逆时针定向箭头。",
+            "第二步:应用格林公式得 $-A=-\\pi$。",
+            "第三步:高亮逆时针结果。",
+            "第四步:动画切换为顺时针定向,说明格林公式取负。",
+            "第五步:汇总:定向反转则符号反转。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "6a41ce2f144f943a3f8cb66af63191bb599831ff820c1043419936767cdebe2f",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c04-02",
+          "prior_parent_training_ids": [
+            "calc-green-005"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "e1e73ccea526be8711ccd5bcc51fde6f3c4fd1d95b2d5d6541ea5b4e90f35609",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c04-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "6a41ce2f144f943a3f8cb66af63191bb599831ff820c1043419936767cdebe2f",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 7,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "167f019631d17bbdedab39f9262b5d524b74c72f575b3475199f394c782016b2",
+        "record_canonical_sha256": "97f5a4815740d7ae9199c77d0ca3fb5dee0b16c44544a12abbfbd241e97963ed",
+        "publisher_record_sorted_sha256": "8cfe21df028665f8b5a880a24f01dde0258d8cba527886a4a2f87e187a570a53"
+      }
+    },
+    {
+      "idx": 97,
+      "record": {
+        "id": "draft-c04-03",
+        "category": "数学分析",
+        "sub_category": "曲线积分",
+        "concept": "格林公式",
+        "concept_id": "C04",
+        "parent_training_ids": [
+          "calc-green-005"
+        ],
+        "problem": "用格林公式求 $\\oint_L -y^3\\,dx+x^3\\,dy$，其中 $L$ 为圆环 $1\\le x^2+y^2\\le4$ 的边界(外圆逆时针、内圆顺时针)，并说明内外圆方向相反的原因。",
+        "solution": "格林公式(区域 $D$ 为圆环):$\\oint_L -y^3dx+x^3dy=\\iint_D\\left(\\frac{\\partial}{\\partial x}x^3-\\frac{\\partial}{\\partial y}(-y^3)\\right)dxdy=\\iint_D(3x^2+3y^2)\\,dxdy=3\\iint_D r^2\\cdot r\\,dr\\,d\\theta=3\\int_0^{2\\pi}d\\theta\\int_1^2r^3\\,dr=3\\times2\\pi\\times\\frac{2^4-1^4}{4}=\\frac{45\\pi}{2}$。方向:为使区域 $D$ 总在边界的左侧(正向),外边界须逆时针、内边界须顺时针。",
+        "answer": "积分值为 $\\frac{45\\pi}{2}$;外逆内顺保证区域在边界左侧(正向)。",
+        "method": "格林公式(有洞区域)",
+        "difficulty": "中等",
+        "variant_kind": "有洞区域:圆环的格林公式应用与多连通区域定向规则",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:圆环区域(阴影)与外逆内顺的边界箭头",
+            "板书:被积函数偏导差 $3x^2+3y^2$",
+            "板书:极坐标计算 $3\\times2\\pi\\times\\frac{15}{4}$",
+            "高亮框:$\\frac{45\\pi}{2}$",
+            "标签「多连通区域:外逆内顺」"
+          ],
+          "steps": [
+            "第一步:画出圆环与两条边界曲线,标注外逆内顺箭头。",
+            "第二步:写出偏导差 $3x^2+3y^2$ 的二重积分。",
+            "第三步:极坐标化并计算径向积分。",
+            "第四步:高亮结果 $\\frac{45\\pi}{2}$。",
+            "第五步:说明多连通区域正向规则(区域在边界左侧)。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "137a698851d5cb7bddfa3877a0c0f51d36cf77e0997a9f001dc2fcdaca31f1fc",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c04-03",
+          "prior_parent_training_ids": [
+            "calc-green-005"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "f3cdb78697d8ca4043d18f90fcd1d988659df953f2a67788f357059364e9fc8b",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c04-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "137a698851d5cb7bddfa3877a0c0f51d36cf77e0997a9f001dc2fcdaca31f1fc",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 8,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "4eb991aa4f1b90fa292256419b7751271bbd1165d1511a3ce4a5029a9e8d6957",
+        "record_canonical_sha256": "1b3244edd9a2bc0e589e0c638195617f6c13dc7a2872c98ba288aa491da0cf69",
+        "publisher_record_sorted_sha256": "b37624b0bd516e786145ef43f644ec4d3a26c007d2268e1d578a809aa88bfc47"
+      }
+    },
+    {
+      "idx": 98,
+      "record": {
+        "id": "draft-c04-04",
+        "category": "数学分析",
+        "sub_category": "曲线积分",
+        "concept": "格林公式",
+        "concept_id": "C04",
+        "parent_training_ids": [
+          "calc-green-005"
+        ],
+        "problem": "用格林公式(补边闭合)计算曲线积分 $\\int_L (x+y)\\,dx+x\\,dy$，其中 $L$ 为抛物线 $y=x^2$ 上从 $(0,0)$ 到 $(1,1)$ 的弧段。",
+        "solution": "补直线段 $L'$:从 $(1,1)$ 沿直线回到 $(0,0)$,$L+L'$ 为闭合曲线。区域 $D$ 内,$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=\\frac{\\partial x}{\\partial x}-\\frac{\\partial(x+y)}{\\partial y}=1-1=0$,故 $\\oint_{L+L'}=0$,于是 $\\int_L=-\\int_{L'}$。参数化 $L'$:$(1-t,1-t)$,$t\\in[0,1]$,$dx=dy=-dt$:$\\int_{L'}(x+y)dx+x\\,dy=\\int_0^1\\left[(2-2t)(-1)+(1-t)(-1)\\right]dt=\\int_0^1(3t-3)\\,dt=-\\frac32$。故 $\\int_L=\\frac32$。",
+        "answer": "积分值为 $\\frac32$(补边闭合,格林公式得闭合积分为零)。",
+        "method": "补边法(非闭合曲线+格林公式)",
+        "difficulty": "中等",
+        "variant_kind": "适用条件:非闭合曲线补边闭合后应用格林公式",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:抛物线弧段 $L$(从 $(0,0)$ 到 $(1,1)$)与补边直线段(虚线)",
+            "区域 $D$(阴影)与闭合定向箭头",
+            "板书:$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=1-1=0$",
+            "板书:补边积分 $\\int_{L'}(3t-3)dt=-\\frac32$",
+            "高亮框:$\\int_L=\\frac32$"
+          ],
+          "steps": [
+            "第一步:画出抛物线弧段,并用虚线补上直线段形成闭合回路。",
+            "第二步:计算区域内的偏导差,得零。",
+            "第三步:由格林公式得闭合积分为零,故 $\\int_L=-\\int_{L'}$。",
+            "第四步:参数化补边线段并计算 $-\\frac32$。",
+            "第五步:取负得 $\\frac32$,高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "5926dab4985e1f88c1a4d75332dcf17a4945abcfa03dffbed8106c50e5e585bd",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c04-04",
+          "prior_parent_training_ids": [
+            "calc-green-005"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "fee155aff29dd6522edc4fe88d0427c8ac8a21e61079bda4af90a0b6a495b351",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c04-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "5926dab4985e1f88c1a4d75332dcf17a4945abcfa03dffbed8106c50e5e585bd",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 9,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "83857256693ec88029b4d2bc9a960fdf44c129fc1086187da5d020cfd4569733",
+        "record_canonical_sha256": "703c07373ad0f6d810b40a03910d3da0143513ea3367d0a55cdf0f8a71728c42",
+        "publisher_record_sorted_sha256": "11dec3acb43dc657789ebfb3bfb0eed3aae835b728e5b3edf88be61ad41fe908"
+      }
+    },
+    {
+      "idx": 99,
+      "record": {
+        "id": "draft-c04-05",
+        "category": "数学分析",
+        "sub_category": "曲线积分",
+        "concept": "格林公式",
+        "concept_id": "C04",
+        "parent_training_ids": [
+          "calc-green-005"
+        ],
+        "problem": "设$P=-2y/(x^2+y^2)+3y/((x-3)^2+y^2)$，$Q=2x/(x^2+y^2)-3(x-3)/((x-3)^2+y^2)$。取圆盘$(x-3/2)^2+y^2\\le16$，挖去以$(0,0)$、$(3,0)$为中心、半径$1/2$的两个开圆盘，得区域$D$。分别求外圆逆时针及两个内圆顺时针的积分$\\oint P\\,dx+Q\\,dy$，并验证正向总边界的Green公式。",
+        "solution": "两小圆盘互不相交且严格在大圆盘内。$P,Q$在$\\overline D$的某邻域中连续可微，直接求导得$Q_x-P_y=0$。以原点为中心的场$(-ky/r^2,kx/r^2)$沿逆时针圆的积分为$2\\pi k$，由$x=r\\cos t,y=r\\sin t$可直接得到被积表达式$k\\,dt$；顺时针则取负。第一孔中心场权重$2$，给顺时针积分$-4\\pi$；第二孔中心场权重$-3$，给顺时针积分$6\\pi$。对每个孔，另一中心的场在该孔闭圆盘附近光滑且旋度零，Green公式给其圆周积分为零。对带两孔区域正确应用Green公式，外圆积分$I_{\\rm out}$加两个顺时针内圆积分等于$0$，故$I_{\\rm out}-4\\pi+6\\pi=0$，即$I_{\\rm out}=-2\\pi$。总正向边界积分为零。不能把外圆所围实心圆盘直接用于Green公式，因为该实心盘包含两个奇点。",
+        "answer": "外圆逆时针$-2\\pi$；原点孔顺时针$-4\\pi$；$(3,0)$孔顺时针$6\\pi$；正向总边界积分为$0$。",
+        "method": "多连通区域Green公式与奇点环流",
+        "difficulty": "进阶",
+        "variant_kind": "两孔正向边界+两中心环流+适用域检查",
+        "scene_spec": {
+          "objects": [
+            "大圆盘及两个孔",
+            "外逆时针、内顺时针箭头",
+            "环流$-4\\pi,6\\pi,-2\\pi$",
+            "总边界与奇点不可填补提示"
+          ],
+          "steps": [
+            "第一步:检查区域与场的光滑适用范围。",
+            "第二步:求旋度并直接参数化各奇点自身环流。",
+            "第三步:对另一中心的光滑场求零贡献。",
+            "第四步:把两个顺时针内边界纳入Green公式求外环流。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "d5c9af21288c02fbd8351842897468c86d70da45d76778240cb7ee4d1c5a10d2",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-05",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c04-05",
+          "prior_parent_training_ids": [
+            "calc-green-005"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "d11934a63d5fc42bdde4a7927f721f2a4611561a20b6534b0a18248ef78d36ab",
+          "previous_hold_reasons": [
+            "EXACT_PROBLEM_AND_METHOD"
+          ],
+          "math_correction_notes": [
+            "补正向一次遍历及椭圆半轴正性，避免符号和退化情形错误"
+          ],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c04-05"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "ddc3ff92ce7a83951cb67a97b5e3bda2eff83608bc841459741c48925d66dfa9",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 10,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "96633cfe3d7aaf018f7f5794ce361fc4f57d0254c67d3cacd43a60e958f08870",
+        "record_canonical_sha256": "7ccf50cd13a448dd57901200d59fdfe62df3a269b49fa0741ef078bd08899b57",
+        "publisher_record_sorted_sha256": "209cdc5983629dceccaa9591523657793dedb15b0601c02dc8bbdec55e89aee8"
+      }
+    },
+    {
+      "idx": 100,
+      "record": {
+        "id": "draft-c06-01",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "直角坐标面积与分段",
+        "concept_id": "C06",
+        "parent_training_ids": [
+          "calc-area-007",
+          "calc-area-010",
+          "calc-area-011",
+          "calc-area-013"
+        ],
+        "problem": "求由抛物线 $y=x^2$ 与 $y=2-x^2$ 围成的封闭图形的面积。",
+        "solution": "交点:$x^2=2-x^2$ 得 $x=\\pm1$。利用对称性,$A=\\int_{-1}^{1}\\left[(2-x^2)-x^2\\right]dx=2\\int_0^1(2-2x^2)\\,dx=2\\left.\\left(2x-\\frac{2x^3}{3}\\right)\\right|_0^1=2\\times\\frac43=\\frac83$。",
+        "answer": "面积为 $\\frac83$。",
+        "method": "上下曲线相减(对称简化)",
+        "difficulty": "基础",
+        "variant_kind": "曲线组合变化:两条抛物线围成的对称区域",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:两条抛物线 $y=x^2$ 与 $y=2-x^2$",
+            "两抛物线围成的封闭区域(阴影)",
+            "两个交点 $(-1,1)$ 与 $(1,1)$ 高亮",
+            "板书:$A=2\\int_0^1(2-2x^2)dx$",
+            "高亮框:$\\frac83$"
+          ],
+          "steps": [
+            "第一步:画出两条抛物线,高亮两个交点。",
+            "第二步:阴影标出围成区域,说明上下曲线的位置。",
+            "第三步:写出积分并利用对称性简化。",
+            "第四步:计算得 $\\frac83$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "1d634448d9c2a263f9931b9c3089bb3a16188985af1ab701486009149124c589",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c06-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c06-01",
+          "prior_parent_training_ids": [
+            "calc-area-007",
+            "calc-area-010",
+            "calc-area-011",
+            "calc-area-013"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "063bbf30ccb4ab85f6ccf2812b3b5e38f00df6caf376fb80f9e08aa77861502b",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c06-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "1d634448d9c2a263f9931b9c3089bb3a16188985af1ab701486009149124c589",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 11,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "73f7ed5906b9ec55601d966528d7c44cf6bb1b16dec11d47ef2108628255ce2c",
+        "record_canonical_sha256": "e13d2805407da196c52cea9594c8fe6a1d070ea58873515cb0988d3e4f0a49ce",
+        "publisher_record_sorted_sha256": "f9ff252cb9a1e88dfc17c196c6288aabd763c45d72667f4ec8406a778d89ccdc"
+      }
+    },
+    {
+      "idx": 101,
+      "record": {
+        "id": "draft-c06-02",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "直角坐标面积与分段",
+        "concept_id": "C06",
+        "parent_training_ids": [
+          "calc-area-007",
+          "calc-area-010",
+          "calc-area-011",
+          "calc-area-013"
+        ],
+        "problem": "求由 $y=|x|$ 与 $y=1$ 围成的封闭图形的面积。",
+        "solution": "交点:$|x|=1$ 得 $x=\\pm1$。区域关于 $y$ 轴对称,右半部分为 $0\\le x\\le1$,$|x|\\le y\\le1$。$A=2\\int_0^1(1-x)\\,dx=2\\left.\\left(x-\\frac{x^2}{2}\\right)\\right|_0^1=2\\times\\frac12=1$。",
+        "answer": "面积为 $1$。",
+        "method": "绝对值分段+对称性",
+        "difficulty": "基础",
+        "variant_kind": "绝对值函数与水平线的围成区域(分段后对称简化)",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:折线 $y=|x|$ 与水平线 $y=1$",
+            "围成的三角形区域(阴影)",
+            "两个交点 $(-1,1)$ 与 $(1,1)$ 高亮",
+            "板书:$A=2\\int_0^1(1-x)dx$",
+            "高亮框:$1$"
+          ],
+          "steps": [
+            "第一步:画出折线 $y=|x|$ 与水平线,高亮交点。",
+            "第二步:阴影标出围成的等腰三角形。",
+            "第三步:利用对称性写出一半区域积分。",
+            "第四步:计算得 $1$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "adb1fd3b2ca4fc4252b803e7104f17f933eae2f16e00038278bfb603ccf42c76",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c06-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c06-02",
+          "prior_parent_training_ids": [
+            "calc-area-007",
+            "calc-area-010",
+            "calc-area-011",
+            "calc-area-013"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "22e67d8ea195faa3413f1e5e11a492cd12940e11d8b4a7b2edaf3aa2b6267211",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c06-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "adb1fd3b2ca4fc4252b803e7104f17f933eae2f16e00038278bfb603ccf42c76",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 12,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "749a3c68ac7e4c00f6a70fc796e5d44da56dc2dd8427dcc625d594acb06a97ab",
+        "record_canonical_sha256": "5e461b6526adaa3b2984d9feaa243eebeeb74ba1636e14c169ed2f7903f38743",
+        "publisher_record_sorted_sha256": "0d26f3bc83af046cae9e6ef8933bb054a3dcf21b0cf744da8e6e199008f24788"
+      }
+    },
+    {
+      "idx": 102,
+      "record": {
+        "id": "draft-c06-03",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "直角坐标面积与分段",
+        "concept_id": "C06",
+        "parent_training_ids": [
+          "calc-area-007",
+          "calc-area-010",
+          "calc-area-011",
+          "calc-area-013"
+        ],
+        "problem": "求由抛物线 $x=y^2$ 与直线 $y=x-2$ 围成的封闭图形的面积(按 $y$ 积分)。",
+        "solution": "交点:$y^2=y+2$,即 $y^2-y-2=0$,得 $y=-1$ 与 $y=2$。区域在 $y$ 方向的范围为 $[-1,2]$,右边界为直线 $x=y+2$,左边界为抛物线 $x=y^2$。$A=\\int_{-1}^{2}\\left[(y+2)-y^2\\right]dy=\\left.\\left(\\frac{y^2}{2}+2y-\\frac{y^3}{3}\\right)\\right|_{-1}^{2}=\\left(2+4-\\frac83\\right)-\\left(\\frac12-2+\\frac13\\right)=\\frac{10}{3}+\\frac76=\\frac92$。",
+        "answer": "面积为 $\\frac92$。",
+        "method": "按 y 积分(左右曲线相减)",
+        "difficulty": "中等",
+        "variant_kind": "积分方向变化:横向区域的按 y 积分路径",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:抛物线 $x=y^2$ 与直线 $y=x-2$",
+            "围成的封闭区域(阴影)",
+            "两个交点 $(1,-1)$ 与 $(4,2)$ 高亮",
+            "板书:$A=\\int_{-1}^2[(y+2)-y^2]dy$",
+            "高亮框:$\\frac92$"
+          ],
+          "steps": [
+            "第一步:画出抛物线与直线,解出交点对应的 $y$ 值。",
+            "第二步:阴影标出区域,说明按 $y$ 方向积分的原因(区域横向)。",
+            "第三步:写出左右曲线相减的积分。",
+            "第四步:计算得 $\\frac92$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "9960d22ab6da6895e740a3e2a63c3fff1a9d23e0a8adb997238b709cc0b69054",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c06-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c06-03",
+          "prior_parent_training_ids": [
+            "calc-area-007",
+            "calc-area-010",
+            "calc-area-011",
+            "calc-area-013"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "132cd2edef59ba7b83c3a70af618f02e544cc72f1a0ed9f5ee6fb1658a24e767",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c06-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "9960d22ab6da6895e740a3e2a63c3fff1a9d23e0a8adb997238b709cc0b69054",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 13,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "30a4d7c3b936e7a4459c4a18b0bf0f73beae47f81ce50cd124aa59bdf25739b7",
+        "record_canonical_sha256": "3db651451c0fbbf76a2cfd2590db7e71542cae38c04cd68e242ee38eac8fa1f7",
+        "publisher_record_sorted_sha256": "f483ddf933984b37a8efb2b9fd783e3d5469adbc04bbf9323ce9f5a355e4d908"
+      }
+    },
+    {
+      "idx": 103,
+      "record": {
+        "id": "draft-c06-04",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "直角坐标面积与分段",
+        "concept_id": "C06",
+        "parent_training_ids": [
+          "calc-area-007",
+          "calc-area-010",
+          "calc-area-011",
+          "calc-area-013"
+        ],
+        "problem": "求由抛物线 $y=x^2$ 与直线 $y=kx$($k>0$)围成的封闭图形的面积(用 $k$ 表示)，并求 $k=2$ 时的面积。",
+        "solution": "交点:$x^2=kx$ 得 $x=0$ 与 $x=k$。在 $[0,k]$ 上,$kx\\ge x^2$。$A(k)=\\int_0^k(kx-x^2)\\,dx=\\left.\\left(\\frac{kx^2}{2}-\\frac{x^3}{3}\\right)\\right|_0^k=\\frac{k^3}{2}-\\frac{k^3}{3}=\\frac{k^3}{6}$。当 $k=2$ 时,$A=\\frac{2^3}{6}=\\frac43$。",
+        "answer": "$A(k)=\\frac{k^3}{6}$;$k=2$ 时面积为 $\\frac43$。",
+        "method": "含参面积(交点随参数变化)",
+        "difficulty": "中等",
+        "variant_kind": "参数依赖:交点与面积均随参数变化的含参面积公式",
+        "scene_spec": {
+          "objects": [
+            "平面坐标系:抛物线 $y=x^2$ 与直线族 $y=kx$(动画:$k$ 滑动)",
+            "围成的区域(阴影随 $k$ 变化)",
+            "两个交点 $(0,0)$ 与 $(k,k^2)$ 高亮",
+            "板书:$A(k)=\\frac{k^3}{6}$",
+            "高亮框:$k=2$ 时 $\\frac43$"
+          ],
+          "steps": [
+            "第一步:动画滑动直线 $y=kx$,展示交点随 $k$ 移动。",
+            "第二步:写出积分 $\\int_0^k(kx-x^2)dx$。",
+            "第三步:计算得 $A(k)=\\frac{k^3}{6}$。",
+            "第四步:代入 $k=2$,得 $\\frac43$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-07",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "c5c5c8813284e2da8a1dba5e844bc139781daba093e163e38bb1ef868c46164c",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c06-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+          "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+          "original_id": "draft-c06-04",
+          "prior_parent_training_ids": [
+            "calc-area-007",
+            "calc-area-010",
+            "calc-area-011",
+            "calc-area-013"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "7d38401571b6ef8797556823824c3940d200626b97cb54e15f716921239a06d8",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+            "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+            "versioned_id": "codex-repair-20261005-batch-07-draft-c06-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "c5c5c8813284e2da8a1dba5e844bc139781daba093e163e38bb1ef868c46164c",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-07",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+        "source_line": 14,
+        "source_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+        "source_normalized_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "5acc57eb903ef6057d02cd75e170c897c322ae09c8f744111731524d0eca21d9",
+        "record_canonical_sha256": "f170fc0239863bc16e4f28b6b26bb1ea67fea127a3801dd85fc25c05cad39f9e",
+        "publisher_record_sorted_sha256": "963edfb2f8b4971563c4a5f629082a4c6b77547aef4a7683f84d8e7339c79db1"
+      }
+    },
+    {
+      "idx": 104,
+      "record": {
+        "id": "draft-c07-01",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "极坐标面积",
+        "concept_id": "C07",
+        "parent_training_ids": [
+          "calc-area-008"
+        ],
+        "problem": "求三叶玫瑰线 $r=2\\sin 3\\theta$ 的一叶所围成的面积。",
+        "solution": "一叶对应角域 $0\\le\\theta\\le\\frac{\\pi}{3}$(当 $\\theta$ 从 $0$ 到 $\\frac{\\pi}{3}$ 时,$r$ 从 $0$ 增大到 $2$ 再回到 $0$)。面积 $A=\\frac12\\int_0^{\\frac{\\pi}{3}}r^2\\,d\\theta=\\frac12\\int_0^{\\frac{\\pi}{3}}4\\sin^2 3\\theta\\,d\\theta=2\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta$。换元 $u=3\\theta$:$\\int_0^{\\frac{\\pi}{3}}\\sin^2 3\\theta\\,d\\theta=\\frac13\\int_0^{\\pi}\\sin^2u\\,du=\\frac13\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{6}$。故 $A=2\\times\\frac{\\pi}{6}=\\frac{\\pi}{3}$。",
+        "answer": "一叶面积为 $\\frac{\\pi}{3}$。",
+        "method": "极坐标面积公式(单瓣角域)",
+        "difficulty": "基础",
+        "variant_kind": "多瓣区域:玫瑰线单叶面积(角域确定)",
+        "scene_spec": {
+          "objects": [
+            "极坐标网格",
+            "三叶玫瑰线 $r=2\\sin3\\theta$(三叶完整图)",
+            "一叶高亮(其余两叶淡化)与角域扇形示意",
+            "板书:$A=\\frac12\\int_0^{\\pi/3}4\\sin^{2}(3\\theta)\\,d\\theta$",
+            "高亮框:$\\frac{\\pi}{3}$"
+          ],
+          "steps": [
+            "第一步:画出三叶玫瑰线,高亮其中一叶。",
+            "第二步:说明该叶对应角域 $0\\le\\theta\\le\\frac\\pi3$。",
+            "第三步:写出面积公式并换元计算。",
+            "第四步:得 $\\frac{\\pi}{6}\\times2=\\frac{\\pi}{3}$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-08",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "4eb51823b1be115272a8e83d56f6a7c1b6a939606a5c1bfe7548ff55e0259e1c",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-01",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "original_id": "draft-c07-01",
+          "prior_parent_training_ids": [
+            "calc-area-008"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "1446ce58780f23d3dd537a62a1508e4daf7a79236fd7b430513e2bdc8243d0c2",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+            "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+            "versioned_id": "codex-repair-20261005-batch-08-draft-c07-01"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "74c25d4ad8e88d0f69e8c73d25f3e845cfd1a7e275bdc7ae1360a266a8f48d0a",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-08",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl",
+        "source_line": 1,
+        "source_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+        "source_normalized_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "a2665a4cb34218fa1c3779c15396063573fd0fbec5cfe41063bab5d788cc6fab",
+        "record_canonical_sha256": "df72b48697324c1bf8857c05cb839d683582f4937ea5441b53b8170570e90669",
+        "publisher_record_sorted_sha256": "49777fce24c3bca26142f66912b5dac4dc65afbb462ce49524d3bc72565dd1de"
+      }
+    },
+    {
+      "idx": 105,
+      "record": {
+        "id": "draft-c07-02",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "极坐标面积",
+        "concept_id": "C07",
+        "parent_training_ids": [
+          "calc-area-008"
+        ],
+        "problem": "极坐标曲线$r=2+3\\cos\\theta$具有内环。分别求内环面积、外环所围面积和两环内部区域并集的面积，说明为什么全周期的$\\frac12\\int r^2d\\theta$不等于并集面积。",
+        "solution": "令$\\beta=\\arccos(2/3)\\in(0,\\pi/2)$、$\\alpha=\\pi-\\beta$。$r\\ge0$的外环对应$-\\alpha\\le\\theta\\le\\alpha$，$r\\le0$的内环对应$\\alpha\\le\\theta\\le2\\pi-\\alpha$。$r^2/2$的原函数为$F(\\theta)=17\\theta/4+6\\sin\\theta+(9/8)\\sin2\\theta$。由$\\sin\\beta=\\sqrt5/3$、$\\sin2\\beta=4\\sqrt5/9$，内环面积为$F(2\\pi-\\alpha)-F(\\alpha)=17\\beta/2-3\\sqrt5$；外环面积为$F(\\alpha)-F(-\\alpha)=17(\\pi-\\beta)/2+3\\sqrt5$。在内环的实际方向$\\phi\\in[-\\beta,\\beta]$上，负半径转换给内环径向边界$\\rho_{\\rm in}=3\\cos\\phi-2$，外环对应$\\rho_{\\rm out}=2+3\\cos\\phi$，相差$4$；该方向区间也属于外环区间。因此内环内部包含于外环内部，并集面积就是外环面积。全周期积分为$17\\pi/2$，等于两环面积之和，把内环内部重复计算一次。",
+        "answer": "令$\\beta=\\arccos(2/3)$。内环$17\\beta/2-3\\sqrt5$；外环及并集面积均为$17(\\pi-\\beta)/2+3\\sqrt5$；全周期平方积分为$17\\pi/2$。",
+        "method": "负极径内环的面积与覆盖重数",
+        "difficulty": "基础",
+        "variant_kind": "负极径换向+两个闭环+嵌套并集去重",
+        "scene_spec": {
+          "objects": [
+            "$r=2+3\\cos\\theta$及零点",
+            "$\\beta=\\arccos(2/3)$",
+            "内环实际极径$3\\cos\\phi-2$",
+            "两环面积与覆盖次数"
+          ],
+          "steps": [
+            "第一步:求零极径并划分两环参数区间。",
+            "第二步:精确积分两环分别的面积。",
+            "第三步:把负极径换成实际方向并证明内环包含。",
+            "第四步:区分面积和与区域并集面积。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-08",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "7636c1e689d2be7f89f2eed1815edb473ba3ec9b78832d12cef821f291b5b517",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-02",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "original_id": "draft-c07-02",
+          "prior_parent_training_ids": [
+            "calc-area-008"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "eebb61a33085e12ab27534d16ff10a254b01d2dee897e29e7817a269b4d672a3",
+          "previous_hold_reasons": [
+            "EXACT_PROBLEM_AND_METHOD"
+          ],
+          "math_correction_notes": [],
+          "revised_in_place": true,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+            "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+            "versioned_id": "codex-repair-20261005-batch-08-draft-c07-02"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "cc6cb6f334743a5a805d890b5272d349da6453c80d03f37f9c48f5cf11b07bfd",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-08",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl",
+        "source_line": 2,
+        "source_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+        "source_normalized_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "5b339f9e509b9927594661b9d4cc3b6dc3b8ea4d790eb22d80be9eb478fbb934",
+        "record_canonical_sha256": "3a4b077ec5ebc4490416bc5268abb82ecc8746031cd5b25f4eab768299fc7104",
+        "publisher_record_sorted_sha256": "5f15763d4af77b7bad593afcd05061b3f79b02ee97b9704a3ed9bbcaad029cf1"
+      }
+    },
+    {
+      "idx": 106,
+      "record": {
+        "id": "draft-c07-03",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "极坐标面积",
+        "concept_id": "C07",
+        "parent_training_ids": [
+          "calc-area-008"
+        ],
+        "problem": "求四叶玫瑰线 $r=\\cos 2\\theta$ 所围成的总面积，并说明为什么只需计算一叶再乘 $4$。",
+        "solution": "一叶对应角域 $-\\frac{\\pi}{4}\\le\\theta\\le\\frac{\\pi}{4}$(其间 $r\\ge0$ 且极径从 $0$ 出发回到 $0$)。一叶面积 $A_1=\\frac12\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos^2 2\\theta\\,d\\theta$。换元 $u=2\\theta$:$\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\cos^2 2\\theta\\,d\\theta=\\frac12\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\cos^2u\\,du=\\frac12\\cdot\\frac{\\pi}{2}=\\frac{\\pi}{4}$。故 $A_1=\\frac12\\cdot\\frac{\\pi}{4}=\\frac{\\pi}{8}$。四叶互不重叠且完全对称,总面积为 $4A_1=\\frac{\\pi}{2}$。",
+        "answer": "总面积为 $\\frac{\\pi}{2}$(一叶 $\\frac{\\pi}{8}$ 乘 $4$)。",
+        "method": "极坐标面积公式(多瓣对称)",
+        "difficulty": "中等",
+        "variant_kind": "多瓣区域:四叶玫瑰的对称简化与覆盖次数说明",
+        "scene_spec": {
+          "objects": [
+            "极坐标网格",
+            "四叶玫瑰线 $r=\\cos2\\theta$(四叶对称图)",
+            "一叶高亮(其余淡化)与角域 $[-\\frac\\pi4,\\frac\\pi4]$ 标注",
+            "板书:一叶面积计算与乘以 $4$ 的理由",
+            "高亮框:$\\frac{\\pi}{2}$"
+          ],
+          "steps": [
+            "第一步:画出四叶玫瑰线,说明四叶对称。",
+            "第二步:高亮一叶,标出角域 $[-\\frac\\pi4,\\frac\\pi4]$。",
+            "第三步:计算一叶面积 $\\frac\\pi8$。",
+            "第四步:说明四叶互不重叠,总面积乘 $4$。",
+            "第五步:高亮结论 $\\frac\\pi2$。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-08",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "2eea3f9f76d3f5fe7fbf277bb6c17ed71f13e726c89dfa4f9ab3a00b1571ab39",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-03",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "original_id": "draft-c07-03",
+          "prior_parent_training_ids": [
+            "calc-area-008"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "d1633baed2107ddddf8a60becc61be999cced1703b2cb7d303fa054e1245ae0e",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+            "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+            "versioned_id": "codex-repair-20261005-batch-08-draft-c07-03"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "2eea3f9f76d3f5fe7fbf277bb6c17ed71f13e726c89dfa4f9ab3a00b1571ab39",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-08",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl",
+        "source_line": 3,
+        "source_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+        "source_normalized_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "5fd5f27bbc85923fc7a9f6a4168dfe35e4ccad1a1c64ddcb10f46ee512661023",
+        "record_canonical_sha256": "bb8fbfe8bacbc459ad0d055871cec8d60c4662dc7711c8729e38d260b057b890",
+        "publisher_record_sorted_sha256": "237989cf1104a22190078f5d1b3b672f64c58fba9270551a0e5093746021bfc9"
+      }
+    },
+    {
+      "idx": 107,
+      "record": {
+        "id": "draft-c07-04",
+        "category": "数学分析",
+        "sub_category": "定积分应用",
+        "concept": "极坐标面积",
+        "concept_id": "C07",
+        "parent_training_ids": [
+          "calc-area-008"
+        ],
+        "problem": "求圆 $r=4\\cos\\theta$ 内部位于圆 $r=2$ 外部的区域(月牙形)的面积。",
+        "solution": "两圆交点:$4\\cos\\theta=2$ 得 $\\cos\\theta=\\frac12$,即 $\\theta=\\pm\\frac{\\pi}{3}$。所求区域由 $-\\frac{\\pi}{3}\\le\\theta\\le\\frac{\\pi}{3}$ 且 $2\\le r\\le4\\cos\\theta$ 描述。$A=\\frac12\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}\\left[(4\\cos\\theta)^2-2^2\\right]d\\theta=\\frac12\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(16\\cos^2\\theta-4)\\,d\\theta=\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(8\\cos^2\\theta-2)\\,d\\theta=\\int_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}(2+4\\cos2\\theta)\\,d\\theta=\\left.2\\theta+2\\sin2\\theta\\right|_{-\\frac{\\pi}{3}}^{\\frac{\\pi}{3}}=\\frac{4\\pi}{3}+2\\sqrt3$。",
+        "answer": "面积为 $\\frac{4\\pi}{3}+2\\sqrt3$。",
+        "method": "内外曲线相减(交叠区域)",
+        "difficulty": "中等",
+        "variant_kind": "内外曲线交叠:两圆交叠的月牙形区域(平方差被积函数)",
+        "scene_spec": {
+          "objects": [
+            "极坐标网格",
+            "圆 $r=4\\cos\\theta$(中心在 $(2,0)$)与圆 $r=2$(原点)",
+            "月牙形区域(阴影)",
+            "两个交点对应的角 $\\pm\\frac\\pi3$ 高亮",
+            "板书:$\\frac12\\int_{-\\pi/3}^{\\pi/3}[(4\\cos\\theta)^2-4]d\\theta$"
+          ],
+          "steps": [
+            "第一步:画出两个圆,标出交点对应的角 $\\pm\\frac\\pi3$。",
+            "第二步:阴影标出月牙形区域。",
+            "第三步:写出平方差被积函数并化简。",
+            "第四步:积分得 $\\frac{4\\pi}{3}+2\\sqrt3$。",
+            "第五步:高亮结论。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+        "strict_review": {
+          "core_math_verified": true,
+          "exact_expression_required": true,
+          "rational_numbers": "fractions_or_integers",
+          "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+          "render_verified": false,
+          "admitted": false,
+          "source_batch": "batch-08",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "text_math_fields_reviewed": true,
+          "scene_text_reviewed": true,
+          "math_content_sha256": "a7ec4a1933a1fa662afdcebdb5c1bfc9dfd8fc15f723decc3ebaa018811fd5f1",
+          "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+          "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+          "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+        },
+        "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "versioned_id": "codex-repair-v4-final-20261005-batch-08-draft-c07-04",
+        "revision_lineage": {
+          "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-08\\draft.jsonl",
+          "source_sha256": "1d0950f73fad698178bef910eec1c19d5303cfe6bdabbcd76bddab903f05e44b",
+          "original_id": "draft-c07-04",
+          "prior_parent_training_ids": [
+            "calc-area-008"
+          ],
+          "historical_risk_not_reset": true,
+          "prior_corrected_record_sha256": "c1fa2e5dd83fc86ecd28bf4fc68d01add0f9685677f5f5b1999f95a41463e8cf",
+          "previous_hold_reasons": [],
+          "math_correction_notes": [],
+          "revised_in_place": false,
+          "version": "codex-repair-v4-final",
+          "additional_recheck_reason": null,
+          "previous_selected_version": {
+            "version": "codex-repair-v3",
+            "path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v3.jsonl",
+            "sha256": "fbf98d77f0e7235115c88e39e2c27d729194836ffd938b76adb6daefcf476c99",
+            "versioned_id": "codex-repair-20261005-batch-08-draft-c07-04"
+          },
+          "previous_math_review_binding": {
+            "math_content_sha256": "a7ec4a1933a1fa662afdcebdb5c1bfc9dfd8fc15f723decc3ebaa018811fd5f1",
+            "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+          }
+        },
+        "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+        "admitted": false,
+        "animation_render_verified": false
+      },
+      "binding": {
+        "batch": "batch-08",
+        "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl",
+        "source_line": 4,
+        "source_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+        "source_normalized_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+        "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+        "raw_line_sha256": "13ea81582e46f452d308863560e072f91816aebc54ef8493c9c1545b8bdbce19",
+        "record_canonical_sha256": "afc9a843b407b391b464757c97aaa09b62464f9b97e362bd4f54d1d5d0526000",
+        "publisher_record_sorted_sha256": "c5723080de9733058308f77c8acbfe2dc7de9473fd2c915ccc2479570bba4b06"
+      }
+    }
+  ]
+}

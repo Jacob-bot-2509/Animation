@@ -1,0 +1,33 @@
+{
+  "schema": "exact-finite-pair-bound-verification-v1",
+  "time": "2026-10-07T00:58:11.729589+08:00",
+  "command": [
+    ".venv/Scripts/python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_finite_pair_bounds"
+  ],
+  "cwd": "reviews/codex-supervision/2026-10-07-holdout-v2-review",
+  "returncode": 0,
+  "tests_passed": 9,
+  "exact_tail_coverage_scope": {
+    "N": "1..8",
+    "m": "0..N",
+    "K": "0..N",
+    "alpha": "1/20",
+    "all_observation_counts_enumerated": true
+  },
+  "integer_combination_unranking_scope": "N=0..8, every m, every combination rank",
+  "allocation_scope": "every positive capacity triple in {1,2,3,4}^3 and budgets 0..sum(capacities)+2",
+  "natural_questions_added": 0,
+  "dataset_samples_drawn": 0,
+  "source_sha256": "ca7392915f3802ce384daa9c753f12eb2806fe6c60068cad60193182aad047c5",
+  "tests_sha256": "39ae534b5194b270742922e3852121e361db4cdb0f1b1d14a110045e82dab382",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "5c57bf5fe8ea533a655a3432cda4dc07b3286b4b246132b4a2bd43be4599acef",
+  "unit_tests_only_not_dataset_acceptance": true
+}

@@ -18,14 +18,19 @@ from __future__ import annotations
 import ctypes
 import subprocess
 import sys
+import uuid
 from ctypes import wintypes
 from pathlib import Path
+
+from .win_job import WindowsJob
 
 APPCONTAINER_NAME = "animtrain-render-sandbox"
 
 _PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES = 0x00020009
+_PROC_THREAD_ATTRIBUTE_HANDLE_LIST = 0x00020002
 _EXTENDED_STARTUPINFO_PRESENT = 0x00080000
 _CREATE_UNICODE_ENVIRONMENT = 0x00000400
+_CREATE_SUSPENDED = 0x00000004
 _STARTF_USESTDHANDLES = 0x00000100
 _GRANT_ACCESS = 1  # ACCESS_MODE: NOT_USED=0, GRANT=1, SET=2, DENY=3
 _SUB_CONTAINERS_AND_OBJECTS_INHERIT = 0x3
@@ -38,6 +43,7 @@ _GENERIC_EXECUTE = 0x20000000
 _GENERIC_ALL = 0x10000000
 _INVALID_HANDLE_VALUE = wintypes.HANDLE(-1).value
 _WAIT_TIMEOUT = 0x00000102
+_WAIT_OBJECT_0 = 0
 
 
 class _SECURITY_CAPABILITIES(ctypes.Structure):
@@ -143,7 +149,11 @@ _k32.WaitForSingleObject.restype = wintypes.DWORD
 _k32.GetExitCodeProcess.argtypes = [wintypes.HANDLE, ctypes.POINTER(wintypes.DWORD)]
 _k32.GetExitCodeProcess.restype = wintypes.BOOL
 _k32.TerminateProcess.argtypes = [wintypes.HANDLE, wintypes.UINT]
+_k32.TerminateProcess.restype = wintypes.BOOL
+_k32.ResumeThread.argtypes = [wintypes.HANDLE]
+_k32.ResumeThread.restype = wintypes.DWORD
 _k32.CloseHandle.argtypes = [wintypes.HANDLE]
+_k32.CloseHandle.restype = wintypes.BOOL
 _k32.LocalFree.argtypes = [_LPV]
 
 
@@ -158,11 +168,11 @@ def _sid_sddl(sid: bytes) -> str:
     return out
 
 
-def appcontainer_sid() -> bytes:
+def appcontainer_sid(name: str = APPCONTAINER_NAME) -> bytes:
     """Copy the system-derived SID and release its allocation with FreeSid."""
     sid = wintypes.LPVOID()
     hr = _u32.DeriveAppContainerSidFromAppContainerName(
-        APPCONTAINER_NAME, ctypes.byref(sid))
+        name, ctypes.byref(sid))
     if hr < 0:
         raise OSError(hr, f"DeriveAppContainerSid failed: HRESULT 0x{hr & 0xffffffff:08X}")
     if not sid.value:
@@ -234,92 +244,183 @@ def appcontainer_profile_path(sid: bytes) -> Path:
 
 def run_appcontainer(args: list[str], *, cwd: Path, env: dict,
                      allowed_dirs: list[tuple[Path, bool]],
-                     timeout_ms: int = 300_000) -> subprocess.CompletedProcess:
+                     timeout_ms: int = 300_000,
+                     verify_identity: bool = False,
+                     profile_name: str | None = None) -> subprocess.CompletedProcess:
     """在 AppContainer 中启动子进程并同步等待,捕获 stdout/stderr。
 
     allowed_dirs: [(目录, 是否可写)] —— 逐目录追加 ACE。
-    输出重定向到 cwd 下临时文件(D 盘路径),读取后清理。
+    Only explicit standard handles are inherited. Create suspended, assign to
+    a kill-on-close JobObject, then resume. Kill and await all descendants on
+    timeout, failure, and root exit. TimeoutExpired includes captured output.
     """
     if sys.platform != "win32":
         raise OSError("AppContainer 仅 Windows 可用")
-    sid = appcontainer_sid()
+    if not args:
+        raise ValueError("args must not be empty")
+    if not isinstance(timeout_ms, int) or not 0 <= timeout_ms < 0xffffffff:
+        raise ValueError("timeout_ms must be a finite nonnegative DWORD")
+    sid = appcontainer_sid() if profile_name is None else appcontainer_sid(profile_name)
     appcontainer_profile_path(sid)  # Fail before modifying any directory ACLs.
     cwd.mkdir(parents=True, exist_ok=True)
     for path, write in allowed_dirs:
         grant_dir_access(path, sid, write)
     # 输出重定向文件(可继承句柄)
-    out_f = cwd / f".ac-out-{id(args)}.tmp"
-    err_f = cwd / f".ac-err-{id(args)}.tmp"
+    tag = uuid.uuid4().hex
+    out_f = cwd / f".ac-out-{tag}.tmp"
+    err_f = cwd / f".ac-err-{tag}.tmp"
     sa = _SECURITY_ATTRIBUTES()
     sa.nLength = ctypes.sizeof(_SECURITY_ATTRIBUTES)
     sa.bInheritHandle = True
 
-    def _mk_handle(p: Path) -> wintypes.HANDLE:
-        h = _k32.CreateFileW(str(p), _GENERIC_WRITE, 3,  # FILE_SHARE_READ|WRITE
-                             ctypes.byref(sa), 2,  # CREATE_ALWAYS
+    def _mk_handle(p: str, access: int, disposition: int) -> wintypes.HANDLE:
+        h = _k32.CreateFileW(p, access, 3,  # FILE_SHARE_READ|WRITE
+                             ctypes.byref(sa), disposition,
                              0x80,  # FILE_ATTRIBUTE_NORMAL
                              None)
         if h == _INVALID_HANDLE_VALUE:
             raise OSError(ctypes.get_last_error(), f"CreateFile 失败: {p}")
         return h
 
-    h_out = _mk_handle(out_f)
-    h_err = _mk_handle(err_f)
-    si = _STARTUPINFOEXW()
-    si.StartupInfo.cb = ctypes.sizeof(_STARTUPINFOEXW)
-    si.StartupInfo.dwFlags = _STARTF_USESTDHANDLES
-    si.StartupInfo.hStdOutput = h_out
-    si.StartupInfo.hStdError = h_err
+    handles = []
+    owned_files = []
+    attr_list = None
+    attr_initialized = False
+    job = None
+    pi = _PROCESS_INFORMATION()
+    assigned = False
+    tree_stopped = False
+
+    def _close_stdio() -> None:
+        while handles:
+            h = handles.pop()
+            if not _k32.CloseHandle(h):
+                raise ctypes.WinError(ctypes.get_last_error())
+
+    def _stop_tree() -> None:
+        nonlocal tree_stopped
+        if assigned:
+            job.terminate_and_wait()
+        else:
+            # Assignment failed: the root is still suspended and cannot spawn.
+            if not _k32.TerminateProcess(pi.hProcess, 1):
+                raise ctypes.WinError(ctypes.get_last_error())
+        wait = _k32.WaitForSingleObject(pi.hProcess, 5000)
+        if wait != _WAIT_OBJECT_0:
+            raise OSError(f"AppContainer cleanup wait failed: {wait}")
+        tree_stopped = True
+
     try:
+        h_in = _mk_handle("NUL", _GENERIC_READ, 3)  # OPEN_EXISTING
+        handles.append(h_in)
+        h_out = _mk_handle(str(out_f), _GENERIC_WRITE, 1)  # CREATE_NEW
+        handles.append(h_out)
+        owned_files.append(out_f)
+        h_err = _mk_handle(str(err_f), _GENERIC_WRITE, 1)
+        handles.append(h_err)
+        owned_files.append(err_f)
+        si = _STARTUPINFOEXW()
+        si.StartupInfo.cb = ctypes.sizeof(_STARTUPINFOEXW)
+        si.StartupInfo.dwFlags = _STARTF_USESTDHANDLES
+        si.StartupInfo.hStdInput = h_in
+        si.StartupInfo.hStdOutput = h_out
+        si.StartupInfo.hStdError = h_err
         attr_size = ctypes.c_size_t()
-        _k32.InitializeProcThreadAttributeList(None, 1, 0, ctypes.byref(attr_size))
+        _k32.InitializeProcThreadAttributeList(None, 2, 0, ctypes.byref(attr_size))
+        if not attr_size.value:
+            raise ctypes.WinError(ctypes.get_last_error())
         attr_list = ctypes.create_string_buffer(attr_size.value)
-        if not _k32.InitializeProcThreadAttributeList(attr_list, 1, 0,
+        if not _k32.InitializeProcThreadAttributeList(attr_list, 2, 0,
                                                       ctypes.byref(attr_size)):
             raise OSError(ctypes.get_last_error(),
                           "InitializeProcThreadAttributeList 失败")
+        attr_initialized = True
+        sid_buffer = ctypes.create_string_buffer(sid)
         caps = _SECURITY_CAPABILITIES()
-        caps.AppContainerSid = ctypes.cast(ctypes.create_string_buffer(sid),
-                                           wintypes.LPVOID)
+        caps.AppContainerSid = ctypes.cast(sid_buffer, wintypes.LPVOID)
         if not _k32.UpdateProcThreadAttribute(
                 attr_list, 0, _PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES,
                 ctypes.byref(caps), ctypes.sizeof(caps), None, None):
-            _k32.DeleteProcThreadAttributeList(attr_list)
             raise OSError(ctypes.get_last_error(), "UpdateProcThreadAttribute 失败")
+        inherited_handles = (wintypes.HANDLE * 3)(h_in, h_out, h_err)
+        if not _k32.UpdateProcThreadAttribute(
+                attr_list, 0, _PROC_THREAD_ATTRIBUTE_HANDLE_LIST,
+                ctypes.cast(inherited_handles, _LPV), ctypes.sizeof(inherited_handles),
+                None, None):
+            raise ctypes.WinError(ctypes.get_last_error())
         si.lpAttributeList = ctypes.cast(attr_list, wintypes.LPVOID)
-        env_lines = "".join(f"{k}={v}\0" for k, v in env.items()) + "\0"
+        env_lines = "".join(f"{k}={v}\0" for k, v in sorted(
+            env.items(), key=lambda item: item[0].upper())) + "\0"
         env_block = ctypes.create_unicode_buffer(env_lines)
-        pi = _PROCESS_INFORMATION()
-        cmdline = subprocess.list2cmdline(args)
+        cmdline = ctypes.create_unicode_buffer(subprocess.list2cmdline(args))
+        job = WindowsJob(2048)
         ok = _k32.CreateProcessW(
-            None, ctypes.c_wchar_p(cmdline), None, None, True,
-            _EXTENDED_STARTUPINFO_PRESENT | _CREATE_UNICODE_ENVIRONMENT,
+            None, cmdline, None, None, True,
+            _EXTENDED_STARTUPINFO_PRESENT | _CREATE_UNICODE_ENVIRONMENT | _CREATE_SUSPENDED,
             ctypes.cast(env_block, wintypes.LPVOID), str(cwd),
             ctypes.byref(si), ctypes.byref(pi))
         create_error = ctypes.get_last_error() if not ok else 0
-        _k32.DeleteProcThreadAttributeList(attr_list)
         if not ok:
             raise ctypes.WinError(create_error)
-        _k32.CloseHandle(h_out)
-        _k32.CloseHandle(h_err)
+        job.assign_handle(pi.hProcess)
+        assigned = True
+        parent_token = None
+        if verify_identity:
+            from .network_isolation import token_identity
+            parent_token = token_identity(pi.hProcess)
+            if not (parent_token.get("api_ok") is True
+                    and parent_token.get("is_appcontainer") is True
+                    and type(parent_token.get("capability_count")) is int
+                    and parent_token["capability_count"] == 0
+                    and parent_token.get("sid") == _sid_sddl(sid)):
+                raise OSError("Suspended child token mismatch; refusing to resume")
+        if _k32.ResumeThread(pi.hThread) == 0xffffffff:
+            raise ctypes.WinError(ctypes.get_last_error())
+        _close_stdio()
         rc_wait = _k32.WaitForSingleObject(pi.hProcess, timeout_ms)
         if rc_wait == _WAIT_TIMEOUT:
-            _k32.TerminateProcess(pi.hProcess, 1)
-            _k32.CloseHandle(pi.hThread)
-            _k32.CloseHandle(pi.hProcess)
-            raise subprocess.TimeoutExpired(args, timeout_ms / 1000)
+            _stop_tree()
+            error = subprocess.TimeoutExpired(args, timeout_ms / 1000,
+                output=out_f.read_bytes(), stderr=err_f.read_bytes())
+            if verify_identity:
+                error.parent_evidence = {"token": parent_token, "memory_limit_mb": 2048,
+                    "created_suspended": True, "job_assigned_before_resume": True,
+                    "inherited_handle_count": 3,
+                    "tree_stopped": tree_stopped, "pid": pi.dwProcessId}
+            raise error
+        if rc_wait != _WAIT_OBJECT_0:
+            raise OSError(ctypes.get_last_error(), f"AppContainer wait failed: {rc_wait}")
         exit_code = wintypes.DWORD()
-        _k32.GetExitCodeProcess(pi.hProcess, ctypes.byref(exit_code))
-        _k32.CloseHandle(pi.hThread)
-        _k32.CloseHandle(pi.hProcess)
-        out = out_f.read_bytes() if out_f.exists() else b""
-        err = err_f.read_bytes() if err_f.exists() else b""
-        out_f.unlink(missing_ok=True)
-        err_f.unlink(missing_ok=True)
-        return subprocess.CompletedProcess(args, exit_code.value, out, err)
+        if not _k32.GetExitCodeProcess(pi.hProcess, ctypes.byref(exit_code)):
+            raise ctypes.WinError(ctypes.get_last_error())
+        _stop_tree()  # A root that exited must not leave background workers.
+        out = out_f.read_bytes()
+        err = err_f.read_bytes()
+        result = subprocess.CompletedProcess(args, exit_code.value, out, err)
+        if verify_identity:
+            result.parent_evidence = {
+                "token": parent_token, "memory_limit_mb": 2048,
+                "created_suspended": True, "job_assigned_before_resume": True,
+                    "inherited_handle_count": 3,
+                "tree_stopped": tree_stopped, "pid": pi.dwProcessId,
+            }
+        return result
     finally:
-        for h in (h_out, h_err):
+        try:
+            if pi.hProcess and not tree_stopped:
+                _stop_tree()
+        finally:
             try:
-                _k32.CloseHandle(h)
-            except Exception:
-                pass
+                if job is not None:
+                    job.close()  # KILL_ON_JOB_CLOSE is a final cleanup fallback.
+            finally:
+                if attr_initialized:
+                    _k32.DeleteProcThreadAttributeList(attr_list)
+                for h in (pi.hThread, pi.hProcess):
+                    if h:
+                        _k32.CloseHandle(h)
+                try:
+                    _close_stdio()
+                finally:
+                    for p in owned_files:
+                        p.unlink(missing_ok=True)

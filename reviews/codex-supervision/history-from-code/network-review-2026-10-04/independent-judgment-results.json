@@ -1,0 +1,118 @@
+{
+  "reviewed_source_sha256": "3e9c8a0b3cad5d64e7d72926000b4b7df127df3ec2415134c64704394bfe020b",
+  "cases": [
+    {
+      "name": "sandbox_nonzero_exit",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "sandbox_not_spawned",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "receiver_unknown",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "receiver_failure",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "tcp_sent_without_receive",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "udp_send_no_explicit_block",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": false
+    },
+    {
+      "name": "delivered_despite_invalid_control",
+      "expected": "FAIL",
+      "actual": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "控制端异常(未启动/rc!=0/超时/未送达/nonce 不匹配)"
+        ]
+      },
+      "holds": false
+    },
+    {
+      "name": "blocked_baseline",
+      "expected": "PASS",
+      "actual": {
+        "verdict": "PASS",
+        "reasons": []
+      },
+      "holds": true
+    },
+    {
+      "name": "refused_connection",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "沙箱结果无法解释(outcome=net_error, winerror=10061)"
+        ]
+      },
+      "holds": true
+    },
+    {
+      "name": "probe_token_failure",
+      "expected": "UNVERIFIED",
+      "actual": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "TokenIsAppContainer=29 证据缺失或 API 失败"
+        ]
+      },
+      "holds": true
+    }
+  ],
+  "holds": 3,
+  "total": 10,
+  "raw_bytes_serialization": {
+    "supported": false,
+    "error": "Object of type bytes is not JSON serializable"
+  },
+  "client_compiles": true,
+  "token_groups_class2_used": true,
+  "source_hashes": {
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\network_acceptance.py": "3e9c8a0b3cad5d64e7d72926000b4b7df127df3ec2415134c64704394bfe020b",
+    "D:\\Animation-Model-Training\\src\\animtrain\\appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+    "D:\\Animation-Model-Training\\src\\animtrain\\win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "D:\\Animation-Model-Training\\tests\\test_appcontainer_lifecycle.py": "fd1f92c4c932f8c1905f851d82c09663032b215a5763a2666bf294c8608cf972",
+    "D:\\Animation-Model-Training\\tests\\test_win_job_cleanup.py": "c7322bc48b0d17aa4be5293e2690794ced0465667b9ac650a31dfccc17fac213",
+    "D:\\Animation-Model-Training\\src\\animtrain\\render_gate.py": "7b6a6da10498991f4bd3e7a667195b657a92f610af7fd457988393b24677b026"
+  },
+  "scope": "AST-only; no client/server, profile, ACL or child process created"
+}

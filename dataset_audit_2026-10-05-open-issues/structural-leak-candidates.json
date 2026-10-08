@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-10-05T15:25:00Z",
+  "source": "python tools/data_check.py --manifest data/manifest.json",
+  "gate": "结构泄漏候选（structural-candidates-v4）须逐对人工复核",
+  "detector": {
+    "rule": "structure-candidates-v4",
+    "implementation_sha256_12": "81382303878e",
+    "population_pairs_screened": 11750,
+    "candidates": 2,
+    "note": "签名不同或低文字相似度不能自动判为不泄漏；候选对须语义复核"
+  },
+  "pairs": [
+    {
+      "pair_id": 1,
+      "reason": "spectrum-balanced-symmetric-2",
+      "score": "31/75",
+      "query": {
+        "side": "eval",
+        "ids": ["eval-linalg-015-s1"],
+        "signature": ["高等代数", "特征值对角化"],
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。"
+      },
+      "train": {
+        "side": "train",
+        "ids": ["linalg-048"],
+        "signature": ["高等代数", "其他[线性变换]"],
+        "problem": "已知矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，分析它对应的线性变换对二维平面产生的几何影响。"
+      },
+      "lead_note": "两矩阵同为“对角元相等 + 非对角元相等”的对称模板，特征向量同为 (1,1)、(1,-1)；但特征值不同：[[1,2],[2,1]] 为 {3,-1}，[[2,1],[1,2]] 为 {3,1}。任务也不同（对角化 / 谱分解 vs 几何意义）。是否构成泄漏需人工判定。"
+    },
+    {
+      "pair_id": 2,
+      "reason": "spectrum-balanced-symmetric-2",
+      "score": "29/82",
+      "query": {
+        "side": "test",
+        "ids": ["test-linalg-025"],
+        "signature": ["高等代数", "其他[谱分解×对称矩阵]"],
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。"
+      },
+      "train": {
+        "side": "train",
+        "ids": ["linalg-048"],
+        "signature": ["高等代数", "其他[线性变换]"],
+        "problem": "已知矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，分析它对应的线性变换对二维平面产生的几何影响。"
+      },
+      "lead_note": "与第 1 对同源：eval/test 两条都使用 [[1,2],[2,1]]，train 侧同为 linalg-048 的 [[2,1],[1,2]]。宜与第 1 对合并决策（改题或接受）。"
+    }
+  ],
+  "blocking": {
+    "data_check": "不通过 (exit_code=2)",
+    "quarantine_count": 1,
+    "quarantine_message": "结构泄漏候选 2 对须逐对复核；签名不同或低文字相似度不能自动判为不泄漏"
+  },
+  "not_modified": "本文件为只读复核记录；未修改任何数据、清单或工具。"
+}

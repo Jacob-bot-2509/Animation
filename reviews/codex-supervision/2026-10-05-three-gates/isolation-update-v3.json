@@ -1,0 +1,50 @@
+{
+  "removed": [
+    {
+      "record": {
+        "id": "calc-series-018",
+        "category": "数学分析",
+        "sub_category": "函数项级数",
+        "problem": "已知级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n}$ 在 $(-1, 1)$ 内收敛，求其和函数，并求该级数逐项求导和逐项积分后的结果。",
+        "solution": "和函数 $S(x) = -\\ln(1-x)$。逐项求导：$S'(x) = \\sum_{n=1}^{\\infty} x^{n-1} = \\frac{1}{1-x}$。逐项积分：$\\int_0^x S(t) dt = \\sum_{n=1}^{\\infty} \\frac{x^{n+1}}{n(n+1)} = (1-x)\\ln(1-x) + x$。",
+        "answer": "和函数 $S(x) = -\\ln(1-x)$，逐项求导得 $\\frac{1}{1-x}$，逐项积分得 $(1-x)\\ln(1-x) + x$",
+        "scene_spec": {
+          "objects": [
+            "分屏布置的三个坐标系",
+            "原级数曲线 $-\\ln(1-x)$",
+            "求导后曲线 $\\frac{1}{1-x}$",
+            "积分后曲线 $(1-x)\\ln(1-x)+x$",
+            "对应的级数公式"
+          ],
+          "steps": [
+            "第一步：屏幕分为上中下三个面板，同时展示原级数、逐项求导级数、逐项积分级数。",
+            "第二步：在上方面板绘制曲线 $y = -\\ln(1-x)$，标注出这是原级数的和函数。",
+            "第三步：在中方面板绘制双曲线 $y = \\frac{1}{1-x}$，用动画展示它正是对上方曲线求导的结果。",
+            "第四步：在下方面板绘制曲线 $y = (1-x)\\ln(1-x) + x$，用动画展示它正是对上方曲线积分的结果。",
+            "第五步：用亮色线条在三个面板之间传递，强调“求导”和“积分”在几何图像上的对应关系。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only",
+        "function_family": "幂级数与对数函数",
+        "visual_style": "三面板求导积分对应",
+        "efficiency_tags": [
+          "分屏布局",
+          "曲线联动传递"
+        ]
+      },
+      "original_line_hex": "7b226964223a202263616c632d7365726965732d303138222c202263617465676f7279223a2022e695b0e5ada6e58886e69e90222c20227375625f63617465676f7279223a2022e587bde695b0e9a1b9e7baa7e695b0222c202270726f626c656d223a2022e5b7b2e79fa5e7baa7e695b020245c5c73756d5f7b6e3d317d5e7b5c5c696e6674797d205c5c667261637b785e6e7d7b6e7d2420e59ca82024282d312c2031292420e58685e694b6e6959befbc8ce6b182e585b6e5928ce587bde695b0efbc8ce5b9b6e6b182e8afa5e7baa7e695b0e98090e9a1b9e6b182e5afbce5928ce98090e9a1b9e7a7afe58886e5908ee79a84e7bb93e69e9ce38082222c2022736f6c7574696f6e223a2022e5928ce587bde695b0202453287829203d202d5c5c6c6e28312d782924e38082e98090e9a1b9e6b182e5afbcefbc9a245327287829203d205c5c73756d5f7b6e3d317d5e7b5c5c696e6674797d20785e7b6e2d317d203d205c5c667261637b317d7b312d787d24e38082e98090e9a1b9e7a7afe58886efbc9a245c5c696e745f305e782053287429206474203d205c5c73756d5f7b6e3d317d5e7b5c5c696e6674797d205c5c667261637b785e7b6e2b317d7d7b6e286e2b31297d203d2028312d78295c5c6c6e28312d7829202b207824e38082222c2022616e73776572223a2022e5928ce587bde695b0202453287829203d202d5c5c6c6e28312d782924efbc8ce98090e9a1b9e6b182e5afbce5be9720245c5c667261637b317d7b312d787d24efbc8ce98090e9a1b9e7a7afe58886e5be97202428312d78295c5c6c6e28312d7829202b207824222c20227363656e655f73706563223a207b226f626a65637473223a205b22e58886e5b18fe5b883e7bdaee79a84e4b889e4b8aae59d90e6a087e7b3bb222c2022e58e9fe7baa7e695b0e69bb2e7babf20242d5c5c6c6e28312d782924222c2022e6b182e5afbce5908ee69bb2e7babf20245c5c667261637b317d7b312d787d24222c2022e7a7afe58886e5908ee69bb2e7babf202428312d78295c5c6c6e28312d78292b7824222c2022e5afb9e5ba94e79a84e7baa7e695b0e585ace5bc8f225d2c20227374657073223a205b22e7acace4b880e6ada5efbc9ae5b18fe5b995e58886e4b8bae4b88ae4b8ade4b88be4b889e4b8aae99da2e69dbfefbc8ce5908ce697b6e5b195e7a4bae58e9fe7baa7e695b0e38081e98090e9a1b9e6b182e5afbce7baa7e695b0e38081e98090e9a1b9e7a7afe58886e7baa7e695b0e38082222c2022e7acace4ba8ce6ada5efbc9ae59ca8e4b88ae696b9e99da2e69dbfe7bb98e588b6e69bb2e7babf202479203d202d5c5c6c6e28312d782924efbc8ce6a087e6b3a8e587bae8bf99e698afe58e9fe7baa7e695b0e79a84e5928ce587bde695b0e38082222c2022e7acace4b889e6ada5efbc9ae59ca8e4b8ade696b9e99da2e69dbfe7bb98e588b6e58f8ce69bb2e7babf202479203d205c5c667261637b317d7b312d787d24efbc8ce794a8e58aa8e794bbe5b195e7a4bae5ae83e6ada3e698afe5afb9e4b88ae696b9e69bb2e7babfe6b182e5afbce79a84e7bb93e69e9ce38082222c2022e7acace59b9be6ada5efbc9ae59ca8e4b88be696b9e99da2e69dbfe7bb98e588b6e69bb2e7babf202479203d2028312d78295c5c6c6e28312d7829202b207824efbc8ce794a8e58aa8e794bbe5b195e7a4bae5ae83e6ada3e698afe5afb9e4b88ae696b9e69bb2e7babfe7a7afe58886e79a84e7bb93e69e9ce38082222c2022e7acace4ba94e6ada5efbc9ae794a8e4baaee889b2e7babfe69da1e59ca8e4b889e4b8aae99da2e69dbfe4b98be997b4e4bca0e98092efbc8ce5bcbae8b083e2809ce6b182e5afbce2809de5928ce2809ce7a7afe58886e2809de59ca8e587a0e4bd95e59bbee5838fe4b88ae79a84e5afb9e5ba94e585b3e7b3bbe38082225d7d2c2022736f75726365223a202273656c662d617574686f726564222c20226c6963656e7365223a2022496e7465726e616c2d52657365617263682d5573652d4f6e6c79222c202266756e6374696f6e5f66616d696c79223a2022e5b982e7baa7e695b0e4b88ee5afb9e695b0e587bde695b0222c202276697375616c5f7374796c65223a2022e4b889e99da2e69dbfe6b182e5afbce7a7afe58886e5afb9e5ba94222c2022656666696369656e63795f74616773223a205b22e58886e5b18fe5b883e5b180222c2022e69bb2e7babfe88194e58aa8e4bca0e98092225d7d0d0a",
+      "source_path": "D:\\Animation-Model-Training\\data\\v2\\train\\leakage-isolated-v2-2026-10-05\\dataset_calc.jsonl",
+      "source_sha256": "9f0746301a1c7df71b3c3cf6c85001dd2f0cafa0e8ec7863985e0cd8be190633"
+    }
+  ],
+  "removed_this_revision": [
+    "calc-series-018"
+  ],
+  "previous_manifest_sha256": "c1f18378ca2b28df5629c908070cc68498dea00977c62c196d6946734954f500",
+  "manifest_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+  "train_after": 47,
+  "total_after": 497,
+  "eval_test_bytes_unchanged": true,
+  "definition": "用户已确认的结构复用泄漏隔离"
+}

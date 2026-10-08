@@ -1,0 +1,180 @@
+{
+  "schema": "production-joint-raw-v1",
+  "implementation_sha256": {
+    "src/animtrain/sandbox_execution.py": "1c1afaee366122d893e840e38fcc9bbe14471a6e66094e7f9d0567ae52e7edb7",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "5c7fa93acbc5f9c7cb489b34a664c9e8da5f03c69b51cd67e28472b0593d25bf",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "probe_sha256": "e1bc5e8d5ae0f780ddd5e798459f1180c60cb7c1be317c6b69fe8dd6af34469d",
+  "records": {
+    "local_network": {
+      "transport": {
+        "rc": 0,
+        "stdout": "{\"tcp_loopback_v4\": {\"outcome\": \"error\", \"winerror\": null}, \"tcp_loopback_v6\": {\"outcome\": \"error\", \"winerror\": null}, \"udp_loopback_v4\": {\"outcome\": \"sent\"}, \"udp_loopback_v6\": {\"outcome\": \"sent\"}}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-8a06e3285708471da1c03343b0369c79",
+        "source_sha256": "5ee0fd474d08f5e140c8a73073d01139f703569590a0103cc0d32f21b81ed404",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-8a06e3285708471da1c03343b0369c79\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-1697215124-640039632-2340929280-3554543712-921168307-104597482-2512358313"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 3868,
+          "private_profile": {
+            "profile_name": "animtrain-job-ec1e507c2e834eff86b9797b01891247",
+            "sid": "S-1-15-2-1697215124-640039632-2340929280-3554543712-921168307-104597482-2512358313",
+            "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-ec1e507c2e834eff86b9797b01891247\\AC",
+            "temporary_acl": [
+              {
+                "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-8a06e3285708471da1c03343b0369c79",
+                "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Animation-Model-Training\\.venv",
+                "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+                "restored": true
+              },
+              {
+                "path": "D:\\Python",
+                "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+                "restored": true
+              }
+            ],
+            "cleanup_complete": true
+          }
+        }
+      },
+      "before": {
+        "tcp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "eff376af4bc1426f9b9ec15965d1ac7d"
+        },
+        "tcp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "a023347d997049fda8944bbd3b122d77"
+        },
+        "udp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "c8bc44d2afd9483d9dbaa2e822cb4d6b"
+        },
+        "udp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "46170fdd5bdb47ad83580d5c95cb0d74"
+        }
+      },
+      "after": {
+        "tcp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "218c49444dc847afa47bfc8b03d0ccb0"
+        },
+        "tcp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "57ce00aee5ff4612869fbae8590e8ac2"
+        },
+        "udp_loopback_v4": {
+          "outcome": "sent",
+          "nonce": "53042e45b3cc42919f0d293241d55a0b"
+        },
+        "udp_loopback_v6": {
+          "outcome": "sent",
+          "nonce": "636dfebc07fc4b0a9ee9cb863dfb496d"
+        }
+      },
+      "nonces": {
+        "before": {
+          "tcp_loopback_v4": "eff376af4bc1426f9b9ec15965d1ac7d",
+          "tcp_loopback_v6": "a023347d997049fda8944bbd3b122d77",
+          "udp_loopback_v4": "c8bc44d2afd9483d9dbaa2e822cb4d6b",
+          "udp_loopback_v6": "46170fdd5bdb47ad83580d5c95cb0d74"
+        },
+        "sandbox": {
+          "tcp_loopback_v4": "dcde5f00dda64cb88a9430082573a258",
+          "tcp_loopback_v6": "e11bef4d5db04f3ea6374938d9bf9457",
+          "udp_loopback_v4": "a92d0810f77c45bdbd2fe506b02f86d1",
+          "udp_loopback_v6": "3ad816dca0fd466781e164dd92fc427c"
+        },
+        "after": {
+          "tcp_loopback_v4": "218c49444dc847afa47bfc8b03d0ccb0",
+          "tcp_loopback_v6": "57ce00aee5ff4612869fbae8590e8ac2",
+          "udp_loopback_v4": "53042e45b3cc42919f0d293241d55a0b",
+          "udp_loopback_v6": "636dfebc07fc4b0a9ee9cb863dfb496d"
+        }
+      },
+      "packets": {
+        "tcp_loopback_v4": [
+          {
+            "hex": "6566663337366166346263313432366639623965633135393635643161633764",
+            "at": 1791137549.9767551
+          },
+          {
+            "hex": "3231386334393434346463383437616661343762666338623033643063636230",
+            "at": 1791137598.3084776
+          }
+        ],
+        "tcp_loopback_v6": [
+          {
+            "hex": "6130323333343764393937303439666461383934346262643362313232643737",
+            "at": 1791137549.9769614
+          },
+          {
+            "hex": "3537636530306165653566663436313238363966626165383539306538616332",
+            "at": 1791137598.3088372
+          }
+        ],
+        "udp_loopback_v4": [
+          {
+            "hex": "6338626334346432616664393438336439646261613265383232636234643662",
+            "at": 1791137549.9770617
+          },
+          {
+            "hex": "3533303432653435623363633432393139663064323933323431643535613062",
+            "at": 1791137598.3090022
+          }
+        ],
+        "udp_loopback_v6": [
+          {
+            "hex": "3436313730666464356264623437616438333538306435633935636230643734",
+            "at": 1791137549.9771814
+          },
+          {
+            "hex": "3633366466656263303766633462306139656539636238363364666234393664",
+            "at": 1791137598.3091447
+          }
+        ]
+      },
+      "observation_seconds": 20,
+      "receiver_complete": true
+    }
+  },
+  "production_gate": "CLOSED",
+  "complete": true,
+  "implementation_unchanged": true
+}

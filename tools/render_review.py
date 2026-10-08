@@ -30,13 +30,14 @@ html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 body { font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif;
        font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0; }
 h1 { font-size: 19pt; border-bottom: 2.4pt solid #1f4e79; color: #1f4e79;
-     padding-bottom: 5pt; }
+     padding-bottom: 5pt; page-break-after: avoid; }
 h2 { font-size: 14pt; border-left: 5pt solid #1f4e79; background: #eef3f9;
      padding: 4pt 8pt; color: #16365c; page-break-after: avoid; }
 h3 { font-size: 11.5pt; color: #16365c; border-bottom: 1pt solid #c9d8e8;
      padding-bottom: 2pt; margin-top: 14pt; page-break-after: avoid; }
 h3 code { background: none; }
 p { margin: 4pt 0; }
+p:has(> strong:only-child) { page-break-after: avoid; break-after: avoid-page; }
 strong { color: #14324f; }
 blockquote { background: #f5f7fa; border-left: 3pt solid #9db8d2;
              padding: 5pt 9pt; margin: 6pt 0; }
@@ -47,6 +48,9 @@ code { font-family: Consolas, "Courier New", monospace; font-size: 9pt;
        background: #f0f2f5; padding: 0 2pt; }
 hr { border: none; border-top: 1pt solid #dbe4ee; margin: 10pt 0; }
 .math-block { text-align: center; margin: 6pt 0; }
+.math { display: inline-block; max-width: 100%; vertical-align: middle; }
+mjx-container[jax="SVG"] { max-width: 100%; }
+mjx-container[jax="SVG"] > svg { max-width: 100%; height: auto; }
 """
 
 
@@ -119,7 +123,7 @@ def build_html(md_text: str, title: str) -> str:
 
 def run_edge(args: list[str], timeout: int = 240) -> subprocess.CompletedProcess:
     import tempfile
-    with tempfile.TemporaryDirectory(prefix='edge-headless-') as profile:
+    with tempfile.TemporaryDirectory(prefix='edge-headless-',ignore_cleanup_errors=True) as profile:
         return subprocess.run([EDGE,'--headless=new','--disable-gpu','--no-first-run',
             '--disable-extensions','--allow-file-access-from-files','--user-data-dir='+profile]+args,
             capture_output=True,timeout=timeout,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
@@ -130,6 +134,7 @@ from review_guard import verify_dom, validate_pdf
 
 def checked_dom(html_path,expected_inline,expected_display):
     cp=run_edge(['--dump-dom','--virtual-time-budget=240000',html_path.resolve().as_uri()])
+    if cp.returncode != 0: raise ValueError(f'browser DOM check exited {cp.returncode}')
     dom=cp.stdout.decode('utf-8','strict')
     verify_dom(dom,expected_inline,expected_display)
     return dom
@@ -166,15 +171,22 @@ def main(argv):
         with static_path.open('x',encoding='utf-8',newline='\n') as f: f.write(static)
         last=''
         for attempt in (1,2):
-            # 本机 Edge 无头打印拒绝写 D: 盘目标(实测),先在 C: 临时目录打印再拷贝
+            # 本机 CLI 直接写项目 D: 路径曾静默失败；先用用户临时目录，CDP 流另已实测可直写 D:。
             fresh=Path(tempfile.gettempdir())/f'.{args.md.stem}-{uuid.uuid4().hex}.pdf'
             try:
-                cp=run_edge([f'--print-to-pdf={fresh}','--no-pdf-header-footer','--virtual-time-budget=1000',static_path.resolve().as_uri()])
+                if attempt==1:
+                    cp=run_edge([f'--print-to-pdf={fresh}','--no-pdf-header-footer','--virtual-time-budget=1000',static_path.resolve().as_uri()],timeout=60)
+                    backend='edge-cli'
+                else:
+                    from edge_print import print_static_to_pdf
+                    print_static_to_pdf(static_path,fresh,EDGE,inline,display)
+                    cp=subprocess.CompletedProcess([],0,b'',b'');backend='edge-cdp-stream'
+                if cp.returncode != 0: raise ValueError(f'PDF printer exited {cp.returncode}')
                 pages=validate_pdf(fresh)
                 with pdf_path.open('xb') as f: f.write(fresh.read_bytes())
-                payload={'source_md_sha256':hashlib.sha256(source).hexdigest(),'static_html_sha256':hashlib.sha256(static_path.read_bytes()).hexdigest(),
+                payload={'renderer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'guard_sha256':hashlib.sha256((ROOT/'tools/review_guard.py').read_bytes()).hexdigest(),'source_md_sha256':hashlib.sha256(source).hexdigest(),'static_html_sha256':hashlib.sha256(static_path.read_bytes()).hexdigest(),
                     'pdf_sha256':hashlib.sha256(pdf_path.read_bytes()).hexdigest(),'formula_count':len(tokens),'pages':pages,
-                    'print_returncode':cp.returncode,'fresh_target':fresh.name}
+                    'print_returncode':cp.returncode,'fresh_target':fresh.name,'backend':backend}
                 with receipt.open('x',encoding='utf-8',newline='\n') as f: f.write(json.dumps(payload,ensure_ascii=False,indent=2)+'\n')
                 print(f'PDF → {pdf_path} ({pages} pages)'); return 0
             except (OSError,ValueError,subprocess.SubprocessError) as exc: last=str(exc)

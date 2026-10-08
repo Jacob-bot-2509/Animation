@@ -1,0 +1,915 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "test",
+      "id": "test-linalg-032",
+      "problem_sha256": "3973e60262c136a0edc51142b843dd8621ca5a392c68f3161d39c9421fee4230",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-033",
+      "problem_sha256": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-034",
+      "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-035",
+      "problem_sha256": "d4f7f0a0e72ea78d10e9c4118f84eecce12a870b1aec6e076ae6df9c6a3fea90",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-036",
+      "problem_sha256": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-037",
+      "problem_sha256": "d1a6c9ae435a534c1471fb0d33400e1fd62c6f06339cbd5a65c58e30a43d8e65",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-038",
+      "problem_sha256": "19d9d99da30da957cbecea447903c224f91ebe160d7dbec85eabf8486ab15bbf",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-039",
+      "problem_sha256": "f60f734d6cc49bc90085be131ced538e09a8d2e477a88833f445f6b31c87c6f8",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-040",
+      "problem_sha256": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-001",
+      "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-002",
+      "problem_sha256": "3056097af8b564ebe93c7763732f8cce5ab31461295e15f7dbbee9e77a25cb15",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-003",
+      "problem_sha256": "fc2b2034b382479b1093d3d25819f69702ad0918c67cb31e7bd373ceb178e040",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-004",
+      "problem_sha256": "d4f6148983ced91bdf7b62af926b2fccf405a9056d8d69f4f9645f27eb7f0f3b",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-005",
+      "problem_sha256": "e292aa403cf5de61745877ca0e86d5e2c7749ab094c3dc721342663f112de1b3",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-006",
+      "problem_sha256": "f0f3976c388292db2769515dea7795845fff25afc377aabc4d4e22a06dcf4f3f",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-007",
+      "problem_sha256": "178a5cd1c54a391adc84cbb047f823e2a33d70775f7b8425eb3e89c09c9abfdb",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-008",
+      "problem_sha256": "66804f3fa51772d47f91e05d1f28f451e61f1f9b067656f75d8b9cc0482a83af",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-009",
+      "problem_sha256": "e950c2eb5c911637c6a71ba6c78f09f6d4f5d6c215ee09dcfe38394cfc7d8e78",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-prob-010",
+      "problem_sha256": "01a0b17cb298da7ce7a1e9d53da101fc60b61635ee39364c90de5457c4808c55",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "test",
+      "id": "test-linalg-032",
+      "problem_sha256": "3973e60262c136a0edc51142b843dd8621ca5a392c68f3161d39c9421fee4230",
+      "source_records": [
+        {
+          "id": "test-linalg-032",
+          "category": "高等代数",
+          "sub_category": "秩不等式×证明",
+          "problem": "证明 $\\operatorname{rank}(A+B)\\le\\operatorname{rank}A+\\operatorname{rank}B$，并举出等号成立的例子。",
+          "solution": "列空间 $\\operatorname{col}(A+B)\\subseteq\\operatorname{col}(A)+\\operatorname{col}(B)$（$A+B$ 的每列都是 $A$ 与 $B$ 对应列之和，落在两列空间的和中）。故 $\\operatorname{rank}(A+B)=\\dim\\operatorname{col}(A+B)\\le\\dim(\\operatorname{col}(A)+\\operatorname{col}(B))\\le\\dim\\operatorname{col}(A)+\\dim\\operatorname{col}(B)=\\operatorname{rank}A+\\operatorname{rank}B$。等号例子：$A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$、$B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$，$\\operatorname{rank}A=\\operatorname{rank}B=1$，$A+B=I$，$\\operatorname{rank}(A+B)=2=1+1$。",
+          "answer": "证毕；等号例 $A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$、$B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "列空间包含关系",
+              "等号例的对照"
+            ],
+            "steps": [
+              "第一步：建立高等代数·秩不等式×证明综合场景，呈现与秩不等式、子空间、列空间相关的核心图形。",
+              "第二步：列空间包含关系。",
+              "第三步：等号例的对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "秩不等式",
+          "visual_style": "列空间包含",
+          "efficiency_tags": [
+            "列空间包含关系",
+            "等号例的对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "68791ea3288ee68efd29c3ea260baee9e03a6f7859fc295a76df5360144cd02c"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-033",
+      "problem_sha256": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+      "source_records": [
+        {
+          "id": "test-linalg-033",
+          "category": "高等代数",
+          "sub_category": "幂等矩阵×特征值证明",
+          "problem": "证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。",
+          "solution": "设 $Av=\\lambda v$（$v\\ne 0$）。则 $A^2v=A(Av)=A(\\lambda v)=\\lambda Av=\\lambda^2v$。由 $A^2=A$ 得 $\\lambda^2v=\\lambda v$，即 $(\\lambda^2-\\lambda)v=0$。因 $v\\ne 0$，$\\lambda^2-\\lambda=0$，$\\lambda\\in\\{0,1\\}$。",
+          "answer": "证毕",
+          "scene_spec": {
+            "objects": [
+              "投影的\"两次作用=一次\"",
+              "特征值 $\\{0,1\\}$"
+            ],
+            "steps": [
+              "第一步：建立高等代数·幂等矩阵×特征值证明综合场景，呈现与幂等矩阵、特征值、证明相关的核心图形。",
+              "第二步：投影的\"两次作用=一次\"。",
+              "第三步：特征值 $\\{0,1\\}$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂等特征值证明",
+          "visual_style": "投影两次作用",
+          "efficiency_tags": [
+            "投影的\"两次作用=一次\"",
+            "特征值 $\\{0,1\\}$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "91379edee29c8882ecb7d41632a4b0bd1b0558e04df21446a868b51f3494f571"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-034",
+      "problem_sha256": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+      "source_records": [
+        {
+          "id": "test-linalg-034",
+          "category": "高等代数",
+          "sub_category": "正交对角化×二次曲面分类",
+          "problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+          "solution": "二次项矩阵 $A=\\begin{pmatrix}3&1&0\\\\1&3&0\\\\0&0&1\\end{pmatrix}$。$2\\times 2$ 块 $\\begin{pmatrix}3&1\\\\1&3\\end{pmatrix}$ 的特征方程 $(\\lambda-3)^2-1=0$，特征值 $4,2$；第三个特征值为 $1$。全为正，故曲面为椭球面：$\\dfrac{u^2}{1/4}+\\dfrac{v^2}{1/2}+z^2=1$（主轴沿特征方向，半轴 $\\dfrac{1}{2},\\dfrac{1}{\\sqrt2},1$）。",
+          "answer": "椭球面（特征值 $4,2,1$ 全正）",
+          "scene_spec": {
+            "objects": [
+              "椭球面与三个主轴",
+              "特征方向旋转到主轴"
+            ],
+            "steps": [
+              "第一步：建立高等代数·正交对角化×二次曲面分类综合场景，呈现与正交对角化、特征值、二次曲面分类相关的核心图形。",
+              "第二步：椭球面与三个主轴。",
+              "第三步：特征方向旋转到主轴。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "二次曲面分类",
+          "visual_style": "主轴旋转",
+          "efficiency_tags": [
+            "椭球面与三个主轴",
+            "特征方向旋转到主轴"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "fe8e9288dff59c74e38984116e0904146056829b4f777959c1ba81f5c0c05a6c"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-035",
+      "problem_sha256": "d4f7f0a0e72ea78d10e9c4118f84eecce12a870b1aec6e076ae6df9c6a3fea90",
+      "source_records": [
+        {
+          "id": "test-linalg-035",
+          "category": "高等代数",
+          "sub_category": "行列式×多项式",
+          "problem": "把 $D(x)=\\begin{vmatrix}1&x&x^2\\\\1&2&4\\\\1&3&9\\end{vmatrix}$ 看成 $x$ 的多项式并因式分解。",
+          "solution": "这是范德蒙德行列式（三个点的范德蒙德型），$D(x)=(2-x)(3-x)(3-2)=(2-x)(3-x)=x^2-5x+6=(x-2)(x-3)$。验证：$x=2$ 时第一、二行相同，$D=0$；$x=3$ 时第一、三行相同，$D=0$；$x=0$ 时 $D=\\begin{vmatrix}1&0&0\\\\1&2&4\\\\1&3&9\\end{vmatrix}=18-12=6$，与 $(0-2)(0-3)=6$ 一致。",
+          "answer": "$(x-2)(x-3)$",
+          "scene_spec": {
+            "objects": [
+              "行列式随 $x$ 变化的曲线",
+              "两个零点"
+            ],
+            "steps": [
+              "第一步：建立高等代数·行列式×多项式综合场景，呈现与范德蒙德行列式、多项式、因式分解相关的核心图形。",
+              "第二步：行列式随 $x$ 变化的曲线。",
+              "第三步：两个零点。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "范德蒙德多项式",
+          "visual_style": "零点曲线",
+          "efficiency_tags": [
+            "行列式随 $x$ 变化的曲线",
+            "两个零点"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "d46b44f2b89bf353c794d648fae3a48102ef73592bfac4bbd246671b61c59226"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-036",
+      "problem_sha256": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+      "source_records": [
+        {
+          "id": "test-linalg-036",
+          "category": "高等代数",
+          "sub_category": "初等矩阵×行列式",
+          "problem": "求三类初等矩阵的行列式：交换两行、某行乘以 $k$（$k\\ne 0$）、某行加到另一行（三类变换均涉及两不同行）。",
+          "solution": "交换两行的初等矩阵 $P_{ij}$：由单位矩阵交换两行得到，$\\det P_{ij}=-1$（一次对换改变符号）。第 $i$ 行乘 $k$ 的初等矩阵 $D_i(k)$：对角线第 $i$ 元为 $k$，$\\det D_i(k)=k$。第 $i$ 行加到第 $j$ 行的初等矩阵 $E_{ij}$：下（上）三角且对角线全 1，$\\det E_{ij}=1$。相应地对任意方阵 $B$：$\\det(P_{ij}B)=-\\det B$，$\\det(D_i(k)B)=k\\det B$，$\\det(E_{ij}B)=\\det B$。",
+          "answer": "$-1$；$k$；$1$",
+          "scene_spec": {
+            "objects": [
+              "三类行变换对行列式的影响",
+              "单位矩阵的变形"
+            ],
+            "steps": [
+              "第一步：建立高等代数·初等矩阵×行列式综合场景，呈现与初等矩阵、行列式性质相关的核心图形。",
+              "第二步：三类行变换对行列式的影响。",
+              "第三步：单位矩阵的变形。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "初等矩阵行列式",
+          "visual_style": "行变换效果",
+          "efficiency_tags": [
+            "三类行变换对行列式的影响",
+            "单位矩阵的变形"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "cf7e078bb6e9ee65c110c6ff687ea18abad71c232a261f5fee5bb4ca62b0e726"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-037",
+      "problem_sha256": "d1a6c9ae435a534c1471fb0d33400e1fd62c6f06339cbd5a65c58e30a43d8e65",
+      "source_records": [
+        {
+          "id": "test-linalg-037",
+          "category": "高等代数",
+          "sub_category": "线性变换×矩阵表示",
+          "problem": "求微分算子 $T(f)=f'$ 在多项式空间 $P_2$（次数 $\\le 2$，基 $1,x,x^2$）下的矩阵。",
+          "solution": "对基作用：$T(1)=0=0\\cdot 1+0\\cdot x+0\\cdot x^2$；$T(x)=1=1\\cdot 1+0\\cdot x+0\\cdot x^2$；$T(x^2)=2x=0\\cdot 1+2\\cdot x+0\\cdot x^2$。坐标列为 $(0,0,0)^T$、$(1,0,0)^T$、$(0,2,0)^T$，故矩阵 $\\begin{pmatrix}0&1&0\\\\0&0&2\\\\0&0&0\\end{pmatrix}$。验证：对 $f=a+bx+cx^2$（坐标 $(a,b,c)^T$），$Tf=b+2cx$，坐标 $(b,2c,0)^T$，矩阵乘法 $\\begin{pmatrix}0&1&0\\\\0&0&2\\\\0&0&0\\end{pmatrix}\\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix}=\\begin{pmatrix}b\\\\2c\\\\0\\end{pmatrix}$，一致。",
+          "answer": "$\\begin{pmatrix}0&1&0\\\\0&0&2\\\\0&0&0\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "基向量被微分的映射",
+              "矩阵-坐标乘法验证"
+            ],
+            "steps": [
+              "第一步：建立高等代数·线性变换×矩阵表示综合场景，呈现与线性变换的矩阵、微分、基相关的核心图形。",
+              "第二步：基向量被微分的映射。",
+              "第三步：矩阵-坐标乘法验证。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "线性变换矩阵表示",
+          "visual_style": "基向量微分",
+          "efficiency_tags": [
+            "基向量被微分的映射",
+            "矩阵-坐标乘法验证"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "264d96784849355fe9369db9b8a9ac1ed3cb596aff3566eecd5c1923a8eab935"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-038",
+      "problem_sha256": "19d9d99da30da957cbecea447903c224f91ebe160d7dbec85eabf8486ab15bbf",
+      "source_records": [
+        {
+          "id": "test-linalg-038",
+          "category": "高等代数",
+          "sub_category": "秩×可逆性",
+          "problem": "证明：若 $A$ 可逆，则 $\\operatorname{rank}(A^2)=\\operatorname{rank}A$；并举出 $A$ 不可逆时该结论不成立的例子。",
+          "solution": "$A$ 可逆时 $A^2$ 也可逆（$\\det(A^2)=(\\det A)^2\\ne 0$），两者秩都等于 $n$（满秩），故相等。不可逆的反例：$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$，$\\operatorname{rank}A=1$，$A^2=0$，$\\operatorname{rank}(A^2)=0\\ne 1$。",
+          "answer": "证毕；反例 $A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "幂零变换的逐步退化",
+              "秩的变化链"
+            ],
+            "steps": [
+              "第一步：建立高等代数·秩×可逆性综合场景，呈现与秩、可逆性、反例相关的核心图形。",
+              "第二步：幂零变换的逐步退化。",
+              "第三步：秩的变化链。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "秩与可逆性",
+          "visual_style": "幂零退化链",
+          "efficiency_tags": [
+            "幂零变换的逐步退化",
+            "秩的变化链"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "4ae6dc82121af9bae6deedb3b7b5ba2f0b8373ef6b3ca326f8e9c12464cf75ca"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-039",
+      "problem_sha256": "f60f734d6cc49bc90085be131ced538e09a8d2e477a88833f445f6b31c87c6f8",
+      "source_records": [
+        {
+          "id": "test-linalg-039",
+          "category": "高等代数",
+          "sub_category": "二次型×惯性指数",
+          "problem": "求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。",
+          "solution": "矩阵 $A=\\begin{pmatrix}3&2&0\\\\2&-2&0\\\\0&0&-1\\end{pmatrix}$。$2\\times 2$ 块 $\\begin{pmatrix}3&2\\\\2&-2\\end{pmatrix}$：迹 $1$、行列式 $-10$，特征方程 $\\lambda^2-\\lambda-10=0$，特征值 $\\dfrac{1\\pm\\sqrt{41}}{2}$，即一正一负；第三个特征值 $-1$。故正惯性指数 $1$、负惯性指数 $2$（符号差 $-1$）。等值曲面 $f=1$ 为双叶双曲面（一个正方向、两个负方向）。",
+          "answer": "正惯性指数 $1$、负惯性指数 $2$；$f=1$ 为双叶双曲面（$f=-1$ 为单叶双曲面，$f=0$ 为锥面）",
+          "scene_spec": {
+            "objects": [
+              "双叶双曲面的三维图",
+              "惯性指数标注"
+            ],
+            "steps": [
+              "第一步：建立高等代数·二次型×惯性指数综合场景，呈现与惯性指数、特征值、二次曲面分类相关的核心图形。",
+              "第二步：双叶双曲面的三维图。",
+              "第三步：惯性指数标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "惯性指数分类",
+          "visual_style": "双叶双曲面",
+          "efficiency_tags": [
+            "双叶双曲面的三维图",
+            "惯性指数标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "687e70f54e27469998cacf68c146d2ab0f359f26ac46ab8a400b0c683cd8c2a2"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-040",
+      "problem_sha256": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+      "source_records": [
+        {
+          "id": "test-linalg-040",
+          "category": "高等代数",
+          "sub_category": "图论×特征值",
+          "problem": "求四顶点圈 $C_4$ 的邻接矩阵及其特征值。",
+          "solution": "$C_4$ 的邻接矩阵 $A=\\begin{pmatrix}0&1&0&1\\\\1&0&1&0\\\\0&1&0&1\\\\1&0&1&0\\end{pmatrix}$。解方程 $Av=\\lambda v$：由对称性，特征向量可取 $(1,1,1,1)^T$（$A(1,1,1,1)^T=(2,2,2,2)^T=2(1,1,1,1)^T$，特征值 $2$）、$(1,-1,1,-1)^T$（验证 $A(1,-1,1,-1)^T=(-2,2,-2,2)^T=-2(1,-1,1,-1)^T$，特征值 $-2$）、$(1,0,-1,0)^T$（$A(1,0,-1,0)^T=(0,0,0,0)^T$，特征值 $0$）、$(0,1,0,-1)^T$（同样为 $0$）。故特征值为 $2,0,0,-2$（图是二部图，谱关于 0 对称）。",
+          "answer": "邻接矩阵 $A=\\begin{pmatrix}0&1&0&1\\\\1&0&1&0\\\\0&1&0&1\\\\1&0&1&0\\end{pmatrix}$；特征值 $2,0,0,-2$",
+          "scene_spec": {
+            "objects": [
+              "圈图与邻接矩阵",
+              "四个特征向量的模式"
+            ],
+            "steps": [
+              "第一步：建立高等代数·图论×特征值综合场景，呈现与邻接矩阵、图的谱、对称矩阵相关的核心图形。",
+              "第二步：圈图与邻接矩阵。",
+              "第三步：四个特征向量的模式。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "图的谱",
+          "visual_style": "特征向量模式",
+          "efficiency_tags": [
+            "圈图与邻接矩阵",
+            "四个特征向量的模式"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "5162cbdd960cae58b817ae45b16dcf3177504e5346c34d6fc92c09ebba057f20"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-001",
+      "problem_sha256": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+      "source_records": [
+        {
+          "id": "test-prob-001",
+          "category": "概率论",
+          "sub_category": "全概率公式×贝叶斯公式",
+          "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+          "solution": "记 $A_1$=来自第一车间，$A_2$=来自第二车间，$B$=次品。$P(A_1)=0.6$，$P(A_2)=0.4$，$P(B|A_1)=0.02$，$P(B|A_2)=0.03$。由全概率公式 $P(B)=0.6\\times 0.02+0.4\\times 0.03=0.012+0.012=0.024$。由贝叶斯公式 $P(A_1|B)=\\dfrac{P(B|A_1)P(A_1)}{P(B)}=\\dfrac{0.012}{0.024}=\\dfrac{1}{2}$。",
+          "answer": "$\\dfrac{1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "两车间分支的面积图",
+              "次品分支的重新归一化"
+            ],
+            "steps": [
+              "第一步：建立概率论·全概率公式×贝叶斯公式综合场景，呈现与全概率公式、贝叶斯公式、条件概率相关的核心图形。",
+              "第二步：两车间分支的面积图。",
+              "第三步：次品分支的重新归一化。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "贝叶斯推断",
+          "visual_style": "面积分支图",
+          "efficiency_tags": [
+            "两车间分支的面积图",
+            "次品分支的重新归一化"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b71644bf95ccd80a1401a084ac1c5045af303224a899bd470569cee7cf6302b9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-002",
+      "problem_sha256": "3056097af8b564ebe93c7763732f8cce5ab31461295e15f7dbbee9e77a25cb15",
+      "source_records": [
+        {
+          "id": "test-prob-002",
+          "category": "概率论",
+          "sub_category": "二项分布×组合计数",
+          "problem": "设 $X\\sim B\\!\\left(10,\\dfrac{3}{10}\\right)$。求 $P(X=3)$ 与 $P(X\\le 1)$ 的精确值。",
+          "solution": "$P(X=k)=\\binom{10}{k}\\left(\\dfrac{3}{10}\\right)^k\\left(\\dfrac{7}{10}\\right)^{10-k}$。$P(X=3)=\\binom{10}{3}\\cdot 0.3^3\\cdot 0.7^7=120\\times 0.027\\times 0.0823543=0.266827932$。$P(X\\le 1)=P(X=0)+P(X=1)=0.7^{10}+10\\times 0.3\\times 0.7^9=0.0282475249+3\\times 0.040353607=0.0282475249+0.121060821=0.1493083459=\\dfrac{1493083459}{10^{10}}$。",
+          "answer": "$P(X=3)=0.266827932$；$P(X\\le 1)=0.1493083459$",
+          "scene_spec": {
+            "objects": [
+              "二项分布柱状图",
+              "目标柱高亮"
+            ],
+            "steps": [
+              "第一步：建立概率论·二项分布×组合计数综合场景，呈现与二项分布、组合数、概率质量函数相关的核心图形。",
+              "第二步：二项分布柱状图。",
+              "第三步：目标柱高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "二项分布精确计算",
+          "visual_style": "柱状图高亮",
+          "efficiency_tags": [
+            "二项分布柱状图",
+            "目标柱高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "cc5d397098b4722681b09ff983220e0b87ee58db3fbe548e23be34930f1bfcfa"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-003",
+      "problem_sha256": "fc2b2034b382479b1093d3d25819f69702ad0918c67cb31e7bd373ceb178e040",
+      "source_records": [
+        {
+          "id": "test-prob-003",
+          "category": "概率论",
+          "sub_category": "期望×方差×指示变量",
+          "problem": "用指示变量法推导 $X\\sim B(n,p)$ 的期望与方差。",
+          "solution": "设 $X=\\displaystyle\\sum_{i=1}^{n}X_i$，其中 $X_i$ 为第 $i$ 次试验成功的指示变量（独立，$P(X_i=1)=p$）。$E[X_i]=p$，由期望线性性 $E[X]=np$。$\\operatorname{Var}(X_i)=E[X_i^2]-p^2=p-p^2=p(1-p)$。由独立性 $\\operatorname{Var}(X)=\\displaystyle\\sum_{i=1}^{n}\\operatorname{Var}(X_i)=np(1-p)$（独立变量的方差可加）。",
+          "answer": "$E[X]=np$；$\\operatorname{Var}(X)=np(1-p)$",
+          "scene_spec": {
+            "objects": [
+              "指示变量拆解动画",
+              "方差可加性的示意"
+            ],
+            "steps": [
+              "第一步：建立概率论·期望×方差×指示变量综合场景，呈现与指示变量、期望线性性、方差、独立性相关的核心图形。",
+              "第二步：指示变量拆解动画。",
+              "第三步：方差可加性的示意。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "二项分布数字特征",
+          "visual_style": "指示变量拆解",
+          "efficiency_tags": [
+            "指示变量拆解动画",
+            "方差可加性的示意"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "e2e367bde625732ee7e25b98f1024b33802e65c10a82a0fe4d2a05beef441f41"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-004",
+      "problem_sha256": "d4f6148983ced91bdf7b62af926b2fccf405a9056d8d69f4f9645f27eb7f0f3b",
+      "source_records": [
+        {
+          "id": "test-prob-004",
+          "category": "概率论",
+          "sub_category": "连续分布×分布函数",
+          "problem": "设 $X$ 的密度为 $f(x)=3x^2$（$0<x<1$）。求 $X$ 的分布函数、$P\\!\\left(X>\\dfrac{1}{2}\\right)$ 与 $E[X]$。",
+          "solution": "分布函数 $F(x)=\\displaystyle\\int_0^x3t^2dt=x^3$（$0<x<1$；$x\\le 0$ 时为 0，$x\\ge 1$ 时为 1）。$P\\!\\left(X>\\dfrac{1}{2}\\right)=1-F\\!\\left(\\dfrac{1}{2}\\right)=1-\\dfrac{1}{8}=\\dfrac{7}{8}$。$E[X]=\\displaystyle\\int_0^1x\\cdot 3x^2dx=3\\int_0^1x^3dx=\\dfrac{3}{4}$。",
+          "answer": "$F(x)=\\begin{cases}0,&x\\le 0\\\\x^3,&0<x<1\\\\1,&x\\ge 1\\end{cases}$；$P\\!\\left(X>\\dfrac12\\right)=\\dfrac{7}{8}$；$E[X]=\\dfrac{3}{4}$",
+          "scene_spec": {
+            "objects": [
+              "密度与分布函数曲线对照",
+              "概率面积高亮"
+            ],
+            "steps": [
+              "第一步：建立概率论·连续分布×分布函数综合场景，呈现与连续型随机变量、分布函数、分段函数积分相关的核心图形。",
+              "第二步：密度与分布函数曲线对照。",
+              "第三步：概率面积高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "连续分布函数",
+          "visual_style": "密度与分布对照",
+          "efficiency_tags": [
+            "密度与分布函数曲线对照",
+            "概率面积高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2b467a80db8b2793f38a57c8aeb27a083f316dd66c9b54033454542d52a80f13"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-005",
+      "problem_sha256": "e292aa403cf5de61745877ca0e86d5e2c7749ab094c3dc721342663f112de1b3",
+      "source_records": [
+        {
+          "id": "test-prob-005",
+          "category": "概率论",
+          "sub_category": "卷积×三角分布",
+          "problem": "设 $X,Y$ 独立同分布于 $U(0,1)$，求 $Z=X+Y$ 的密度与 $P(Z>1.5)$。",
+          "solution": "$f_Z(z)=\\displaystyle\\int_0^1 f_X(x)f_Y(z-x)dx=\\int_0^1\\mathbf 1_{[0,1]}(z-x)dx$。当 $0<z<1$：$f_Z(z)=\\displaystyle\\int_0^z dx=z$；当 $1\\le z<2$：$f_Z(z)=\\displaystyle\\int_{z-1}^1 dx=2-z$；其余为 0（三角分布）。$P(Z>1.5)=\\displaystyle\\int_{1.5}^{2}(2-z)dz=\\left[2z-\\dfrac{z^2}{2}\\right]_{1.5}^{2}=\\left(4-2\\right)-\\left(3-\\dfrac{2.25}{2}\\right)=2-(3-1.125)=0.125=\\dfrac{1}{8}$。",
+          "answer": "$f_Z(z)=z$（$0<z<1$），$f_Z(z)=2-z$（$1\\le z<2$），其余 $z$ 处为 $0$；$P(Z>1.5)=\\dfrac{1}{8}$",
+          "scene_spec": {
+            "objects": [
+              "卷积滑动的矩形面积",
+              "三角密度与尾部高亮"
+            ],
+            "steps": [
+              "第一步：建立概率论·卷积×三角分布综合场景，呈现与卷积、三角分布、分段积分相关的核心图形。",
+              "第二步：卷积滑动的矩形面积。",
+              "第三步：三角密度与尾部高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "卷积三角分布",
+          "visual_style": "矩形滑动",
+          "efficiency_tags": [
+            "卷积滑动的矩形面积",
+            "三角密度与尾部高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "70cca724eb2ea9a29a922fadde7690fc9adf91d379814299ff7883989554ccfc"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-006",
+      "problem_sha256": "f0f3976c388292db2769515dea7795845fff25afc377aabc4d4e22a06dcf4f3f",
+      "source_records": [
+        {
+          "id": "test-prob-006",
+          "category": "概率论",
+          "sub_category": "泊松分布×级数",
+          "problem": "设 $X\\sim\\operatorname{Poisson}(4)$。求 $P(X=2)$ 与 $P(X\\ge 1)$ 的精确表达式。",
+          "solution": "$P(X=k)=\\dfrac{4^ke^{-4}}{k!}$。$P(X=2)=\\dfrac{16e^{-4}}{2}=8e^{-4}$。$P(X\\ge 1)=1-P(X=0)=1-e^{-4}$（$P(X=0)=\\dfrac{4^0e^{-4}}{0!}=e^{-4}$）。",
+          "answer": "$P(X=2)=8e^{-4}$；$P(X\\ge 1)=1-e^{-4}$",
+          "scene_spec": {
+            "objects": [
+              "泊松柱状图",
+              "尾部概率高亮"
+            ],
+            "steps": [
+              "第一步：建立概率论·泊松分布×级数综合场景，呈现与泊松分布、对立事件、指数级数相关的核心图形。",
+              "第二步：泊松柱状图。",
+              "第三步：尾部概率高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "泊松分布概率",
+          "visual_style": "尾部高亮",
+          "efficiency_tags": [
+            "泊松柱状图",
+            "尾部概率高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "156669020f385afd590c82be85cf17dddfc8484e04c8c9e9ba598e91f3629328"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-007",
+      "problem_sha256": "178a5cd1c54a391adc84cbb047f823e2a33d70775f7b8425eb3e89c09c9abfdb",
+      "source_records": [
+        {
+          "id": "test-prob-007",
+          "category": "概率论",
+          "sub_category": "指数分布×无记忆性",
+          "problem": "某灯泡寿命 $T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)$（单位：小时，参数 $\\lambda=\\dfrac{1}{1000}$）。求 $P(T>1500\\mid T>500)$。",
+          "solution": "指数分布无记忆性：$P(T>s+t\\mid T>s)=P(T>t)=e^{-\\lambda t}$。取 $s=500$、$t=1000$：$P(T>1500\\mid T>500)=P(T>1000)=e^{-1000/1000}=e^{-1}$。直接验证：$P(T>1500)=e^{-1.5}$，$P(T>500)=e^{-0.5}$，比值 $=\\dfrac{e^{-1.5}}{e^{-0.5}}=e^{-1}$。",
+          "answer": "$e^{-1}$",
+          "scene_spec": {
+            "objects": [
+              "生存函数曲线右移重合",
+              "条件概率的面积比"
+            ],
+            "steps": [
+              "第一步：建立概率论·指数分布×无记忆性综合场景，呈现与指数分布、无记忆性、条件概率相关的核心图形。",
+              "第二步：生存函数曲线右移重合。",
+              "第三步：条件概率的面积比。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数分布无记忆",
+          "visual_style": "生存函数右移",
+          "efficiency_tags": [
+            "生存函数曲线右移重合",
+            "条件概率的面积比"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "bb99c2504e68177265c28d319c33f6b40659f5711be3ba01073999ed59083822"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-008",
+      "problem_sha256": "66804f3fa51772d47f91e05d1f28f451e61f1f9b067656f75d8b9cc0482a83af",
+      "source_records": [
+        {
+          "id": "test-prob-008",
+          "category": "概率论",
+          "sub_category": "切比雪夫×大数定律",
+          "problem": "掷均匀骰子 $n$ 次，设 $\\bar X_n$ 为平均点数。用切比雪夫不等式给出 $P\\!\\left(|\\bar X_n-3.5|\\ge 0.1\\right)$ 的上界，并说明 $n\\to\\infty$ 时该概率趋于 $0$（弱大数定律）。",
+          "solution": "单次点数 $X$：$E[X]=\\dfrac{7}{2}$，$\\operatorname{Var}(X)=\\dfrac{35}{12}$。$\\bar X_n$ 的方差 $=\\dfrac{35}{12n}$。由切比雪夫不等式 $P\\!\\left(|\\bar X_n-E[\\bar X_n]|\\ge\\varepsilon\\right)\\le\\dfrac{\\operatorname{Var}(\\bar X_n)}{\\varepsilon^2}$，取 $\\varepsilon=0.1$：$P\\!\\left(|\\bar X_n-3.5|\\ge 0.1\\right)\\le\\dfrac{35/12n}{0.01}=\\dfrac{35}{0.12n}=\\dfrac{875}{3n}$（$\\approx\\dfrac{291.67}{n}$）。概率不超过 1，完整上界为 $\\min\\left\\{1,\\dfrac{875}{3n}\\right\\}$。当 $n\\to\\infty$ 时上界趋于 $0$，故概率趋于 $0$（弱大数定律：样本均值依概率收敛于期望）。",
+          "answer": "上界 $\\min\\left\\{1,\\dfrac{875}{3n}\\right\\}$；$n\\to\\infty$ 时趋于 $0$",
+          "scene_spec": {
+            "objects": [
+              "样本均值轨迹收敛于 3.5",
+              "上界随 $n$ 衰减曲线"
+            ],
+            "steps": [
+              "第一步：建立概率论·切比雪夫×大数定律综合场景，呈现与切比雪夫不等式、弱大数定律、均匀分布数字特征相关的核心图形。",
+              "第二步：样本均值轨迹收敛于 3.5。",
+              "第三步：上界随 $n$ 衰减曲线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "切比雪夫与大数定律",
+          "visual_style": "均值轨迹收敛",
+          "efficiency_tags": [
+            "样本均值轨迹收敛于 3.5",
+            "上界随 $n$ 衰减曲线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "0b86f10c29d3741feccacfb0e6f8dfc5026f10e5d84ac63b7919268c90966b1e"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-009",
+      "problem_sha256": "e950c2eb5c911637c6a71ba6c78f09f6d4f5d6c215ee09dcfe38394cfc7d8e78",
+      "source_records": [
+        {
+          "id": "test-prob-009",
+          "category": "概率论",
+          "sub_category": "正态分布×线性变换",
+          "problem": "设 $X\\sim N(2,3)$（均值 2、方差 3），$Y=2X-1$。求 $Y$ 的分布与 $P(Y>3)$。",
+          "solution": "正态分布在线性变换下仍为正态：$E[Y]=2E[X]-1=3$，$\\operatorname{Var}(Y)=4\\operatorname{Var}(X)=12$，故 $Y\\sim N(3,12)$。标准化 $Z=\\dfrac{Y-3}{\\sqrt{12}}\\sim N(0,1)$。$P(Y>3)=P\\!\\left(Z>\\dfrac{3-3}{\\sqrt{12}}\\right)=P(Z>0)=\\dfrac{1}{2}$（标准正态关于 0 对称）。",
+          "answer": "$Y\\sim N(3,12)$；$P(Y>3)=\\dfrac{1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "线性变换前后密度曲线",
+              "对称性与 $1/2$ 面积"
+            ],
+            "steps": [
+              "第一步：建立概率论·正态分布×线性变换综合场景，呈现与正态分布线性变换、标准化、分布函数相关的核心图形。",
+              "第二步：线性变换前后密度曲线。",
+              "第三步：对称性与 $1/2$ 面积。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "正态线性变换",
+          "visual_style": "密度曲线平移缩放",
+          "efficiency_tags": [
+            "线性变换前后密度曲线",
+            "对称性与 $1/2$ 面积"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "aedfc2c16147d0b573b3d49f06cfbae4d2d0daf9669f969dee3db51850d9c48f"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-prob-010",
+      "problem_sha256": "01a0b17cb298da7ce7a1e9d53da101fc60b61635ee39364c90de5457c4808c55",
+      "source_records": [
+        {
+          "id": "test-prob-010",
+          "category": "概率论",
+          "sub_category": "协方差×相关系数",
+          "problem": "设 $X\\sim U(0,1)$，$Y=X^2$。求 $\\operatorname{Cov}(X,Y)$ 与相关系数 $\\rho(X,Y)$。",
+          "solution": "$E[X]=\\dfrac{1}{2}$，$E[X^2]=\\dfrac{1}{3}$，$E[X^3]=\\dfrac{1}{4}$，$E[X^4]=\\dfrac{1}{5}$。$\\operatorname{Cov}(X,Y)=E[X^3]-E[X]E[X^2]=\\dfrac{1}{4}-\\dfrac{1}{2}\\cdot\\dfrac{1}{3}=\\dfrac{1}{4}-\\dfrac{1}{6}=\\dfrac{1}{12}$。$\\operatorname{Var}(X)=\\dfrac{1}{12}$，$\\operatorname{Var}(Y)=E[X^4]-(E[X^2])^2=\\dfrac{1}{5}-\\dfrac{1}{9}=\\dfrac{4}{45}$。$\\rho=\\dfrac{\\operatorname{Cov}}{\\sqrt{\\operatorname{Var}(X)\\operatorname{Var}(Y)}}=\\dfrac{1/12}{\\sqrt{\\frac{1}{12}\\cdot\\frac{4}{45}}}=\\dfrac{1/12}{\\sqrt{1/135}}=\\dfrac{\\sqrt{135}}{12}=\\dfrac{3\\sqrt{15}}{12}=\\dfrac{\\sqrt{15}}{4}$。",
+          "answer": "$\\operatorname{Cov}(X,Y)=\\dfrac{1}{12}$；$\\rho=\\dfrac{\\sqrt{15}}{4}$",
+          "scene_spec": {
+            "objects": [
+              "$y=x^2$ 上的散点",
+              "正相关的可视化"
+            ],
+            "steps": [
+              "第一步：建立概率论·协方差×相关系数综合场景，呈现与协方差、相关系数、均匀分布相关的核心图形。",
+              "第二步：$y=x^2$ 上的散点。",
+              "第三步：正相关的可视化。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "协方差相关系数",
+          "visual_style": "散布图",
+          "efficiency_tags": [
+            "$y=x^2$ 上的散点",
+            "正相关的可视化"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "fe9aa3018ba8b2dfd27d0b6178fd2bfa5f68c797c83ac327d5b12f42c2d64136"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}

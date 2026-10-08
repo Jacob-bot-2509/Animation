@@ -1,0 +1,141 @@
+{
+  "round": "d9-lan-v4",
+  "endpoint": {
+    "bind": "192.168.1.83",
+    "udp_port": 49001,
+    "tcp_port": 49002,
+    "family": "2"
+  },
+  "host_identity": {
+    "hostname": "Jacapo",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "nonces": {
+    "udp": {
+      "before": "99ab8c0d0c454a2091565d47d58f099c",
+      "sandbox": "d3279f64cf2846919782cd3188c4f494",
+      "after": "83e506bd183146ef97d995f54d590e9b"
+    },
+    "tcp": {
+      "before": "55177cf41eda415d868dbd8ce26ea8cb",
+      "sandbox": "0fcea69992c549daab64034d0452a910",
+      "after": "143628999fea480fa29a4b9d242cde29"
+    }
+  },
+  "started_utc": 1791302903.7312694,
+  "phases": {
+    "before_udp": {
+      "result": {
+        "outcome": "sent"
+      },
+      "started_utc": 1791302911.1027718,
+      "finished_utc": 1791302911.103528
+    },
+    "before_tcp": {
+      "result": {
+        "outcome": "connected"
+      },
+      "started_utc": 1791302911.1035302,
+      "finished_utc": 1791302911.1191943
+    },
+    "after_udp": {
+      "result": {
+        "outcome": "sent"
+      },
+      "started_utc": 1791302957.2306116,
+      "finished_utc": 1791302957.2307646
+    },
+    "after_tcp": {
+      "result": {
+        "outcome": "connected"
+      },
+      "started_utc": 1791302957.2307665,
+      "finished_utc": 1791302957.247871
+    }
+  },
+  "route": {
+    "rc": 0,
+    "out": ""
+  },
+  "sender_interfaces": {
+    "path": "reviews\\2026-10-06-sandbox-external-tests\\interfaces-d9-lan-v4-7d90c2407a5a41999ead96cfb37ea025.txt",
+    "sha256": "b9a7fe8c73f753488a6e72244ffe8868623e0e94267f267cadb16935b4492623",
+    "rc": 0,
+    "stderr": "",
+    "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+  },
+  "sandbox": {
+    "rc": 0,
+    "stdout": "{\"udp\": {\"outcome\": \"sent\"}, \"tcp\": {\"outcome\": \"denied\", \"winerror\": 10013, \"err\": \"PermissionError\"}}",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6571290fb73f46ed9045b1e07f14e2e3",
+    "source_sha256": "d72528b90cb74e89adefff6a8313a0931355f72c14e7fe63f0c1b05f8c88ec52",
+    "command": [
+      "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6571290fb73f46ed9045b1e07f14e2e3\\scene.py"
+    ],
+    "parent_evidence": {
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-1941525386-1178902595-731353233-1317795781-1149673387-2570749478-2460461984"
+      },
+      "memory_limit_mb": 2048,
+      "created_suspended": true,
+      "job_assigned_before_resume": true,
+      "inherited_handle_count": 3,
+      "tree_stopped": true,
+      "pid": 14480,
+      "private_profile": {
+        "profile_name": "animtrain-job-1688e5043e1b419e94fe853ce82ec97d",
+        "sid": "S-1-15-2-1941525386-1178902595-731353233-1317795781-1149673387-2570749478-2460461984",
+        "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-1688e5043e1b419e94fe853ce82ec97d\\AC",
+        "temporary_acl": [
+          {
+            "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-6571290fb73f46ed9045b1e07f14e2e3",
+            "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.venv",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Python",
+            "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "restored": true
+          }
+        ],
+        "cleanup_complete": true
+      }
+    },
+    "started_utc": 1791302911.1232605,
+    "finished_utc": 1791302936.2304132,
+    "results": {
+      "udp": {
+        "outcome": "sent"
+      },
+      "tcp": {
+        "outcome": "denied",
+        "winerror": 10013,
+        "err": "PermissionError"
+      }
+    }
+  },
+  "observation_seconds": 21,
+  "finished_utc": 1791302957.247874
+}

@@ -1,0 +1,1184 @@
+{
+  "schema": "leakage-policy-reassessment-proposal-v1",
+  "status": "DRAFT_AWAITING_USER_CONFIRMATION",
+  "source_messages": [
+    "msg_429",
+    "msg_430",
+    "msg_431",
+    "msg_432"
+  ],
+  "latest_message_supersedes_replacement_proposal": true,
+  "policy_is_forwarded_not_directly_confirmed_in_this_session": true,
+  "proposal_only_data_unchanged": true,
+  "manifest_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+  "historical_sources_sha256": {
+    "leakage-population.json": "3e0454c0ecf59aaa6ed90367954c372a9f3cb5de33074b7c23e784defe4e4909",
+    "independent-leakage-labels-v2.json": "0b71e3e319d182605935d5479780aaf5cc9385b0f32cde6544d72ff11df90c5e",
+    "cross-signature-leakage-findings.json": "8700880784f78fb270cf0d81331b060fc6b1e366fc1a6b10601f8c08a191fcff"
+  },
+  "reviewer": "Codex independent full problem/solution review",
+  "user_confirmed_individual_labels": false,
+  "pairs": [
+    {
+      "pair_id": "ce90de7faa642b5ba735",
+      "query_id": "eval-geom-001-s1",
+      "train_id": "geom-023",
+      "query_problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "train_problem": "求点 $P(2, 1, 3)$ 到平面 $\\pi: 2x - y + 2z + 1 = 0$ 的距离，并求点 $P$ 在平面 $\\pi$ 上的投影点。",
+      "query_hash": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+      "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+      "query_sources": [
+        {
+          "id": "eval-geom-001-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 91,
+          "row_sha256": "04fa8d514411a71b98dc65e3bae7a2407fa446a73d290abe1574197678b09ea7"
+        },
+        {
+          "id": "eval-geom-001-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 92,
+          "row_sha256": "a48921f4f6b71b2f29676851f26722db6e06bb370e5adfba2c2f12cc4a443cd8"
+        },
+        {
+          "id": "eval-geom-001-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 93,
+          "row_sha256": "21f63afd49f5da5252e387d9a3193349be6c1f8d2223d527e957c3bca5adc2e1"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "geom-023",
+          "path": "v1\\raw\\dataset_geom.jsonl",
+          "line": 4,
+          "row_sha256": "182eeeba1e6616916b2e025d4a749dc3ccad0c8de7aedba07100bde7616d8774"
+        }
+      ],
+      "signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "点到平面距离子任务相同，仅改变点/平面参数；训练题还给投影点，已包含评测核心算法。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "9ca9c4f459daa0152efd",
+      "query_id": "eval-geom-007-s1",
+      "train_id": "geom-025",
+      "query_problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+      "train_problem": "指出方程 $x^2 + y^2 - z^2 = 1$ 表示的二次曲面类型，并说明其与平面 $z = k$ 的交线形状。",
+      "query_hash": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+      "train_hash": "d33851438983252131b83e5a8935c43d200b29feda38f985fc4b2e18958fbb3e",
+      "query_sources": [
+        {
+          "id": "eval-geom-007-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 109,
+          "row_sha256": "458cec4bbd26753e11ecec9303dde331fbc7a055d49d0e13f752c38301453484"
+        },
+        {
+          "id": "eval-geom-007-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 110,
+          "row_sha256": "61a5903f8a9c05ef18fefeb2377ca376f8838e62ce36f0466024664fa13a5fe0"
+        },
+        {
+          "id": "eval-geom-007-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 111,
+          "row_sha256": "8900e7d6a24a87ad69cb45ca71f5b78c376cbc6322bcc95da15c77cbb778d313"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "geom-025",
+          "path": "v1\\raw\\dataset_geom.jsonl",
+          "line": 6,
+          "row_sha256": "238b45135db590e2d0fc090a1671cfb45029715af083838859bd2897a1640bea"
+        }
+      ],
+      "signature": [
+        "解析几何",
+        "其他[二次曲面分类]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "同为已对角形式单叶双曲面判型及截面分析，仅改系数和坐标轴排列。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "d98eeea26b47de9adfa7",
+      "query_id": "eval-linalg-005-s1",
+      "train_id": "linalg-057",
+      "query_problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+      "train_problem": "已知矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}$，求其逆矩阵，并说明可逆性的几何意义。",
+      "query_hash": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+      "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+      "query_sources": [
+        {
+          "id": "eval-linalg-005-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 208,
+          "row_sha256": "3a5d8232a06322b3ae8046f987ec6a42a26a4ec11f6686febfcc4c88e561bc12"
+        },
+        {
+          "id": "eval-linalg-005-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 209,
+          "row_sha256": "718b3173469ec6e454cb49df237eb37d70c1b483d6215b885c5e212faa27ec65"
+        },
+        {
+          "id": "eval-linalg-005-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 210,
+          "row_sha256": "b4b66c4295580b1b3d41e17076a533a355bde780a654e6160c65732abf58ee0a"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-057",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 10,
+          "row_sha256": "e0b1a36235d45e1e191fae9f4c7f76e24744f4ed275363e18fbf1c5f3b062dc7"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "其他[矩阵]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "均为具体可逆二阶矩阵求逆，仅改变矩阵元素；训练解释扩展不改变求逆核心。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "d5ed5dedf59ee56a39e8",
+      "query_id": "eval-linalg-008-s1",
+      "train_id": "linalg-057",
+      "query_problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+      "train_problem": "已知矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}$，求其逆矩阵，并说明可逆性的几何意义。",
+      "query_hash": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+      "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+      "query_sources": [
+        {
+          "id": "eval-linalg-008-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 217,
+          "row_sha256": "5c1bc1a83ac68c358609f604a5be916313f70730b38243ebe0bc2f185da5e643"
+        },
+        {
+          "id": "eval-linalg-008-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 218,
+          "row_sha256": "a47d43ed09608c30e0b89ba3ebf806117e0f797d558c304e332a23341486a2b2"
+        },
+        {
+          "id": "eval-linalg-008-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 219,
+          "row_sha256": "c3ae28c59cad941949997be31346bc56a8b82ff1b9bc949374ba11082b43007e"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-057",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 10,
+          "row_sha256": "e0b1a36235d45e1e191fae9f4c7f76e24744f4ed275363e18fbf1c5f3b062dc7"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "其他[矩阵]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "具体可逆二阶矩阵求逆核心相同；行列式与秩可在同一计算中直接获得。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "c782e69c49f50db5244a",
+      "query_id": "eval-linalg-015-s1",
+      "train_id": "linalg-049",
+      "query_problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "train_problem": "求矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+      "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+      "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+      "query_sources": [
+        {
+          "id": "eval-linalg-015-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 238,
+          "row_sha256": "ddd70b70737f27e7039b7e62aef8f2518f5043291de682ae94f0b6bd9e5877d1"
+        },
+        {
+          "id": "eval-linalg-015-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 239,
+          "row_sha256": "f95a18f003384abce0bd7922c0eb83b6d5fa5d05ceb7775c26b974380037c9c2"
+        },
+        {
+          "id": "eval-linalg-015-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 240,
+          "row_sha256": "8b82d8c9fda575b13f4ffe93ffbcf256d36bfce871a5e1ea69441fe41d4c607e"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-049",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 2,
+          "row_sha256": "c51331748d327ee9dddd633d4637b1f1fd26faa574b4290abe6fe46d2d6f39f2"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "均为二阶对称矩阵 [[u,v],[v,u]] 的谱分解，特征方向固定，仅更换系数。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "e576ba8556c51c2e76a7",
+      "query_id": "eval-linalg-015-s1",
+      "train_id": "linalg-068",
+      "query_problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "train_problem": "将实对称矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 正交对角化。",
+      "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+      "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+      "query_sources": [
+        {
+          "id": "eval-linalg-015-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 238,
+          "row_sha256": "ddd70b70737f27e7039b7e62aef8f2518f5043291de682ae94f0b6bd9e5877d1"
+        },
+        {
+          "id": "eval-linalg-015-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 239,
+          "row_sha256": "f95a18f003384abce0bd7922c0eb83b6d5fa5d05ceb7775c26b974380037c9c2"
+        },
+        {
+          "id": "eval-linalg-015-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 240,
+          "row_sha256": "8b82d8c9fda575b13f4ffe93ffbcf256d36bfce871a5e1ea69441fe41d4c607e"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-068",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 21,
+          "row_sha256": "0345c3fd92dff5d47456b026e060ce25d5fb8a08f604776545a86396df66fb5f"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "均为二阶对称矩阵 [[u,v],[v,u]] 的对角化，固定主轴与计算结构相同。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "ed6d4f946182a39e8654",
+      "query_id": "eval-linalg-024-s1",
+      "train_id": "linalg-052",
+      "query_problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "train_problem": "将多项式 $f(x)=x^3$ 在 $x=1$ 处按泰勒公式展开，并说明展开式的意义。",
+      "query_hash": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+      "train_hash": "b2982137b6d440528641c506ad8ccd6cb09da9549797d2d9cb77ebc57ee88c2f",
+      "query_sources": [
+        {
+          "id": "eval-linalg-024-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 265,
+          "row_sha256": "d59d1fef1ecd5629615786792c82b1253ca75e54edf1c7bd6daf458419811f67"
+        },
+        {
+          "id": "eval-linalg-024-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 266,
+          "row_sha256": "f59bf65c4354c7ad6c14e1f5de9541e880954d8f8f9446ebe3baa9bf2c170805"
+        },
+        {
+          "id": "eval-linalg-024-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 267,
+          "row_sha256": "80ffd9ff9ebd648cfcba0d5d64b3b15f10c7ed6dcd59211cb4989723a034a4bc"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-052",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 5,
+          "row_sha256": "53ae89b81b06c9cfae2b3df9f30bdbfb9558be65f670b087f316697df5a9cb60"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "其他[多项式]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "均为三次多项式在 x=1 的泰勒展开，仅改变多项式系数。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "pair_id": "84183de062ca0715654d",
+      "query_id": "eval-linalg-028-s1",
+      "train_id": "linalg-061",
+      "query_problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+      "train_problem": "在 $\\mathbb{R}^2$ 中，已知旧基 $\\varepsilon_1=(1,0), \\varepsilon_2=(0,1)$，新基 $\\eta_1=(1,1), \\eta_2=(-1,1)$。求从旧基到新基的过渡矩阵，并求向量 $\\alpha=(3,1)$ 在新基下的坐标。",
+      "query_hash": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+      "train_hash": "14521070b1a093fa069ac243bd6c88bafd6696791f72ae617cdffd9f078c9b09",
+      "query_sources": [
+        {
+          "id": "eval-linalg-028-s1",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 277,
+          "row_sha256": "85770903c760b3f65df95bc3901ba12ff83be9395ed71e3968de56727178b5ff"
+        },
+        {
+          "id": "eval-linalg-028-s2",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 278,
+          "row_sha256": "8cae251b6c8fdd6dccd0c2e479be90b52842a487cf254ce8d565c6ad174c7ac3"
+        },
+        {
+          "id": "eval-linalg-028-s3",
+          "path": "v2\\eval\\dataset_eval.jsonl",
+          "line": 279,
+          "row_sha256": "07f0924d4785035fa56c6633e677572168774458458becc3d3cc9cd566c341f0"
+        }
+      ],
+      "train_sources": [
+        {
+          "id": "linalg-061",
+          "path": "v1\\raw\\dataset_linalg.jsonl",
+          "line": 14,
+          "row_sha256": "7712cbe1959084923139e3852f3ad6395c0f1cc18a90fa0b15cf0bc2de76c84a"
+        }
+      ],
+      "signature": [
+        "高等代数",
+        "其他[线性空间]"
+      ],
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "reason": "均给出二维新基与向量，解同一二阶坐标变换方程，仅改变基向量和待表示向量。 按窄口径仍可保留同一解题链，仅重算数值；没有必须重组的边界/维数/任务分支。"
+    },
+    {
+      "query_id": "eval-calc-011-s1",
+      "train_id": "calc-series-016",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n \\cdot 2^n}$ 的收敛域及和函数。",
+      "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+      "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+      "query_row_sha256": "a9f6927e6b57342f90cdc3afe946747da22b4b554f183175b1abdeee995e9bd9",
+      "train_row_sha256": "0e61c7a8407d485fba8c52ebb87b0181bbc6ef8c4511096c0391f73e26bad211",
+      "j5": "17/63",
+      "query_signature": [
+        "数学分析",
+        "级数求和"
+      ],
+      "train_signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "label": "泄漏",
+      "reason": "训练已给含参数幂级数和函数；令 x=1 即覆盖评测同一求和任务。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "5c18d4892f83c885b3ce",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "数学分析",
+        "级数敛散"
+      ]
+    },
+    {
+      "query_id": "test-calc-013",
+      "train_id": "calc-series-019",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "train_problem": "判断正项级数 $\\sum_{n=1}^{\\infty} \\frac{1}{n^2+n}$ 的敛散性，若收敛，求其和。",
+      "query_hash": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+      "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+      "query_row_sha256": "0f158ed91c52123f11d884f0cea469d57ca4224caf76a4ab63e3a9819fc4b055",
+      "train_row_sha256": "37eb1c294e8fd5c6ba4846dcee6f0a5b6c86b0a2c58d67a5dc5e9e9d508cd3b4",
+      "j5": "7/29",
+      "query_signature": [
+        "数学分析",
+        "级数求和"
+      ],
+      "train_signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "label": "泄漏",
+      "reason": "1/[n(n+1)] 改为 1/[n(n+2)]，仅常数间距改变，均为部分分式裂项求和。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "c41cfb96416b83be580a",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "数学分析",
+        "级数敛散"
+      ]
+    },
+    {
+      "query_id": "test-geom-003",
+      "train_id": "geom-021",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "train_problem": "求异面直线 $l_1: \\frac{x-1}{1} = \\frac{y}{-1} = \\frac{z+1}{2}$ 与 $l_2: \\frac{x}{2} = \\frac{y+1}{1} = \\frac{z-1}{1}$ 之间的距离。",
+      "query_hash": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+      "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+      "query_row_sha256": "a27f6829a3a47e5fed9332a8510d76907b7f5f99783b4c57e2941134addbe812",
+      "train_row_sha256": "22a9b4b6aa5b13208dfd1a88db6b6f711a7cdd2e0451b3745a7875fa712dc5da",
+      "j5": "3/55",
+      "query_signature": [
+        "解析几何",
+        "其他[异面直线×公垂线]"
+      ],
+      "train_signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ],
+      "label": "泄漏",
+      "reason": "两条异面直线距离，方向/点仅换数值及参数写法，仍为同一混合积除以叉积长度。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "dd70b0ed3ed14187f21d",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ]
+    },
+    {
+      "query_id": "eval-geom-011-s1",
+      "train_id": "geom-027",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "train_problem": "判断直线 $l: \\frac{x-1}{1} = \\frac{y-2}{2} = \\frac{z-3}{3}$ 与椭球面 $x^2 + \\frac{y^2}{4} + \\frac{z^2}{9} = 1$ 是否有交点，若有，求交点的个数。",
+      "query_hash": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+      "train_hash": "c9b6325a77e2dfde5766b6a07d7fd6d0bb24b24dec4d3a9818d57bb30470087d",
+      "query_row_sha256": "2264f37e7fe1ffe74b69759006f088cc3a2c81168dbfc8b6d7e8be38373fdefa",
+      "train_row_sha256": "8c8b9e9ae167001b99c59bdc4f63e659d91760393c96620d709d0410e5acb8c0",
+      "j5": "2/109",
+      "query_signature": [
+        "解析几何",
+        "其他[曲面与曲线]"
+      ],
+      "train_signature": [
+        "解析几何",
+        "其他[非直纹面二次曲面]"
+      ],
+      "label": "泄漏",
+      "reason": "正定对角二次曲面由椭球系数改为球面系数，直线代入产生二次方程、判别式及根的结构一致。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "30f0d80d7232aa2a836c",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "解析几何",
+        "其他[非直纹面二次曲面]"
+      ]
+    },
+    {
+      "query_id": "test-linalg-026",
+      "train_id": "linalg-059",
+      "query_problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+      "train_problem": "将二次型 $f(x,y)=2x^2+2xy+2y^2$ 化为标准形，并确定其正负惯性指数。",
+      "query_hash": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+      "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+      "query_row_sha256": "922a140c19226f22ba9ead9f3f14840887af085c4148a849b87411fb2dc331d9",
+      "train_row_sha256": "dc2df46a5c6f5f68ea268ef9888dfc7eb983098e5dc3b078e7fcf73e868c9062",
+      "j5": "4/69",
+      "query_signature": [
+        "高等代数",
+        "其他[二次型×合同变换]"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "同为二元正定二次型标准化，仅系数改变，完成平方并作可逆线性替换。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "8848ddce4ff07015d4d8",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ]
+    },
+    {
+      "query_id": "test-x-007",
+      "train_id": "linalg-059",
+      "query_problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+      "train_problem": "将二次型 $f(x,y)=2x^2+2xy+2y^2$ 化为标准形，并确定其正负惯性指数。",
+      "query_hash": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+      "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+      "query_row_sha256": "f2f6148ad1e3ae399d36e0852539140a2e7470dde2971a39d1577cc1bcb7ba17",
+      "train_row_sha256": "dc2df46a5c6f5f68ea268ef9888dfc7eb983098e5dc3b078e7fcf73e868c9062",
+      "j5": "0",
+      "query_signature": [
+        "跨学科",
+        "特征值对角化"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "训练是配方/合同标准形与惯性，评测新增特征方向及几何主轴解释，不能只据同为二次型判换数题。此对建议不泄漏，但该训练记录还有 test-linalg-026 的直接换系数对，因此记录暂仍维持隔离。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "9f6f2f497c77be56df75",
+      "previous_label": "泄漏",
+      "proposed_label": "不泄漏",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ]
+    },
+    {
+      "query_id": "test-linalg-034",
+      "train_id": "linalg-060",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "train_problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+      "query_hash": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+      "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+      "query_row_sha256": "8bdb71f029aed6f16d058439f8dc9f411000ae373e4681521d16cdc9f2182092",
+      "train_row_sha256": "33f75fceb538d86e9649bd70377125a66b36fdf1aa826335143148e53a9101ae",
+      "j5": "4/55",
+      "query_signature": [
+        "高等代数",
+        "其他[正交对角化×二次曲面分类]"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "训练仅用顺序主子式判断正定；评测用谱信息将二次型联系到椭球曲面。几何分类及主轴/半轴解释属于跨任务新增推理，建议不泄漏并恢复该训练记录。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "71953cd84312da4d146e",
+      "previous_label": "泄漏",
+      "proposed_label": "不泄漏",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ]
+    },
+    {
+      "query_id": "test-prob-001",
+      "train_id": "prob-044",
+      "query_problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+      "train_problem": "某种疾病的患病率为 0.1%（即千分之一）。有一种检测方法，对于患病者检测出阳性的概率为 99%，对于未患病者检测出阴性的概率为 99%，相应地假阳性率为 1%。若某人检测结果为阳性，求他实际患病的概率。",
+      "query_hash": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+      "train_hash": "ef359c8c6615596da21a6e3367becc6d19aa088a8121cff4b3081af2aab069c0",
+      "query_row_sha256": "ce830e5bb73b2e8ac95698257885eac8e224643d2ad9657a0c11cbe316417fef",
+      "train_row_sha256": "d1fbf095b57e7099e08794b3f90efe6b6a80d0b159551a2388c4e1a56ec23864",
+      "j5": "0",
+      "query_signature": [
+        "概率论",
+        "其他[全概率公式×贝叶斯公式]"
+      ],
+      "train_signature": [
+        "概率论",
+        "其他[贝叶斯公式]"
+      ],
+      "label": "泄漏",
+      "reason": "二元隐类别的贝叶斯后验，题干换成车间并改变先验/似然数字，计算结构相同。 窄口径核对：仍为直接换数/符号或一般公式的直接代值，没有新增实质任务分支。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "38353d5a25a07f3a65fa",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "概率论",
+        "其他[贝叶斯公式]"
+      ]
+    },
+    {
+      "query_id": "test-x-002",
+      "train_id": "prob-045",
+      "query_problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+      "train_problem": "设随机变量 $X$ 服从区间 $(0, 1)$ 上的均匀分布，求 $Y = X^2$ 的概率密度函数。",
+      "query_hash": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+      "train_hash": "1b9fe3c51cb70bb3f811c2dcc8ea76de4f37bd1467077fb656fdcd07069065db",
+      "query_row_sha256": "32a171b7c7306e955a264106b816bf8a43da8f5fb85920d02803f7cf494258ee",
+      "train_row_sha256": "6d92a3772bfd5bf0d32d62bc6ccc138f0b792824ded59cb1b976073a716f3100",
+      "j5": "0",
+      "query_signature": [
+        "跨学科",
+        "其他[概率论×微积分]"
+      ],
+      "train_signature": [
+        "概率论",
+        "其他[随机变量函数的分布]"
+      ],
+      "label": "泄漏",
+      "reason": "训练只求平方变换的密度；评测为平方根变换并要求期望，新增对新密度的积分与原变量验证，不只是把原密度公式换几个数字，建议不泄漏并恢复。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离",
+      "pair_id": "24f8de8d99627e8a9f66",
+      "previous_label": "泄漏",
+      "proposed_label": "不泄漏",
+      "signature": [
+        "概率论",
+        "其他[随机变量函数的分布]"
+      ]
+    },
+    {
+      "scope": "新增独立题文核对；未在228对开发标签中。该单例只证明漏检，不代表总体校准。",
+      "manifest_sha256": "c1f18378ca2b28df5629c908070cc68498dea00977c62c196d6946734954f500",
+      "detector_sha256_before_new_label": "347e497139780913345d956ce6979d74bdc782bdf61c863684332964563dfc44",
+      "query_id": "eval-calc-011-s1",
+      "train_id": "calc-series-018",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "train_problem": "已知级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n}$ 在 $(-1, 1)$ 内收敛，求其和函数，并求该级数逐项求导和逐项积分后的结果。",
+      "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+      "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+      "query_row_sha256": "a9f6927e6b57342f90cdc3afe946747da22b4b554f183175b1abdeee995e9bd9",
+      "train_row_sha256": "4f8cd3cbacb45a2a7df7d671f690b4575c64a343ac93904e6e961cf925c91d0c",
+      "label": "泄漏",
+      "reason": "eval-calc-011-s1明确指定“代入对数展开式”，训练和函数直接令 x=1/2 即得答案；多方法题的其他方法不消除这条方法记录的直接覆盖。",
+      "reviewer": "Codex",
+      "user_confirmed_individual_label": false,
+      "prediction_before_new_label": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "29/94",
+        "rule": "structure-candidates-v1"
+      },
+      "independent_acceptance": "FAIL: known-development 17/17 does not certify newly reviewed direct-evaluation pair",
+      "pair_id": "5ad53aa80f9c80eb0d96",
+      "previous_label": "泄漏",
+      "proposed_label": "泄漏",
+      "signature": [
+        "数学分析",
+        "函数项级数"
+      ]
+    }
+  ],
+  "boundary_pairs": [
+    {
+      "pair_id": "d3705a43e739a3c1590e",
+      "split": "eval",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "j5": "22/73",
+      "intersection": 22,
+      "union": 73,
+      "band": 2,
+      "query": {
+        "hash": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+        "sources": [
+          {
+            "id": "eval-linalg-019-s1",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 250,
+            "row_sha256": "0d572c16b821ce55c602a50fb2c2091453e8fc4df8d9fb5721fe2e4b75042f64"
+          },
+          {
+            "id": "eval-linalg-019-s2",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 251,
+            "row_sha256": "e3477916f10a61ce549ff5c0fe3c73157fbdc8bd4820c2f3804888c27c5040a0"
+          },
+          {
+            "id": "eval-linalg-019-s3",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 252,
+            "row_sha256": "2cd33156c6162429028cf9c3185071681347b4d118077c08f0db4240ac5c0a45"
+          }
+        ]
+      },
+      "train": {
+        "hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+        "sources": [
+          {
+            "id": "linalg-060",
+            "path": "v1\\raw\\dataset_linalg.jsonl",
+            "line": 13,
+            "row_sha256": "33f75fceb538d86e9649bd70377125a66b36fdf1aa826335143148e53a9101ae"
+          }
+        ]
+      },
+      "previous_label": "不泄漏",
+      "proposed_label": "不泄漏",
+      "reason": "固定 a=3 的真假判断，升级为 a 的全范围、标准形和退化边界；需解参数不等式并识别 a=2 分支，建议不泄漏。"
+    },
+    {
+      "pair_id": "5115d5bba7918a55ac52",
+      "split": "eval",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "j5": "11/78",
+      "intersection": 11,
+      "union": 78,
+      "band": 0,
+      "query": {
+        "hash": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "sources": [
+          {
+            "id": "eval-linalg-021-s1",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 256,
+            "row_sha256": "ca4b2cdb231f0887e437a69c482eb9711c7019d0cde054c5ae97cdf2843f4a0e"
+          },
+          {
+            "id": "eval-linalg-021-s2",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 257,
+            "row_sha256": "ed0d98ee77045854d286f9840e81a99436025abcfbd739b3fbfe819ab8b6b869"
+          },
+          {
+            "id": "eval-linalg-021-s3",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 258,
+            "row_sha256": "233107d06b987866cf4c43787d7666341c733969cce586646af665a69c317417"
+          }
+        ]
+      },
+      "train": {
+        "hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+        "sources": [
+          {
+            "id": "linalg-060",
+            "path": "v1\\raw\\dataset_linalg.jsonl",
+            "line": 13,
+            "row_sha256": "33f75fceb538d86e9649bd70377125a66b36fdf1aa826335143148e53a9101ae"
+          }
+        ]
+      },
+      "previous_label": "不泄漏",
+      "proposed_label": "不泄漏",
+      "reason": "交叉项系数成为变量 a，需推导 2-a^2>0 的双侧范围，不能套回固定系数真假答案，建议不泄漏。"
+    },
+    {
+      "pair_id": "0a3012c2767f40a8106a",
+      "split": "eval",
+      "signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "j5": "21/82",
+      "intersection": 21,
+      "union": 82,
+      "band": 1,
+      "query": {
+        "hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "problem": "讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+        "sources": [
+          {
+            "id": "eval-calc-025-s1",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 73,
+            "row_sha256": "5aebc132efdb89fbf532906796768b616afda8b364685f01046a65157d6b078a"
+          },
+          {
+            "id": "eval-calc-025-s2",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 74,
+            "row_sha256": "c5cedc72cc5844da032422eb3116a0e796e1b252ee314df8fe95ae4398f8d7cb"
+          },
+          {
+            "id": "eval-calc-025-s3",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 75,
+            "row_sha256": "ea3a7c9f42ecc723b15a4bda11d54e3bb73cf5d60bae9466bfbad8de10309993"
+          }
+        ]
+      },
+      "train": {
+        "hash": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+        "problem": "讨论级数 $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{\\sqrt{n}}$ 的敛散性，并指出是绝对收敛还是条件收敛。",
+        "sources": [
+          {
+            "id": "calc-series-015",
+            "path": "v1\\raw\\dataset_calc.jsonl",
+            "line": 14,
+            "row_sha256": "cddf506fa13073c92d68f622eeb559ae163af161cccfe9791a18b1a3218cd70f"
+          }
+        ]
+      },
+      "previous_label": "不泄漏",
+      "proposed_label": "不泄漏",
+      "reason": "sqrt(n) 替换为 ln(n) 改变函数增长类别；绝对收敛判断从 p 级数改为对数与调和级数的比较，需要新论证，建议不泄漏。"
+    },
+    {
+      "pair_id": "6ca1964ef1b6663fac80",
+      "split": "eval",
+      "signature": [
+        "高等代数",
+        "其他[线性变换]"
+      ],
+      "j5": "14/99",
+      "intersection": 14,
+      "union": 99,
+      "band": 0,
+      "query": {
+        "hash": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "sources": [
+          {
+            "id": "eval-linalg-029-s1",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 280,
+            "row_sha256": "b305ec6842f3efa59b0173c1de1b794ac7d19868762cd6824d002ef165232e79"
+          },
+          {
+            "id": "eval-linalg-029-s2",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 281,
+            "row_sha256": "88b04e62f59df1cd72f02e49a266e3666c1379759db94ca7d006017ae8a9f225"
+          },
+          {
+            "id": "eval-linalg-029-s3",
+            "path": "v2\\eval\\dataset_eval.jsonl",
+            "line": 282,
+            "row_sha256": "7ddbbed1266852fbd5dc2922b04207d1359dde5ea02ea5f4739a9567967eed99"
+          }
+        ]
+      },
+      "train": {
+        "hash": "646f829ce7994212ac56cce77b28e62403b6a064af9932023d462eba0b35b8c7",
+        "problem": "设线性变换 $T:\\mathbb{R}^3\\to\\mathbb{R}^2$ 由 $T(x,y,z)=(x+y, y+z)$ 定义，求 $T$ 的核和值域的维数。",
+        "sources": [
+          {
+            "id": "linalg-063",
+            "path": "v1\\raw\\dataset_linalg.jsonl",
+            "line": 16,
+            "row_sha256": "b5c6b5dfcb78e72c91cfa0d21fce04c78b54840ff0f9a3b255e87befc39ce819"
+          }
+        ]
+      },
+      "previous_label": "不泄漏",
+      "proposed_label": "不泄漏",
+      "reason": "R^3→R^2 的有核映射变为 R^2→R^2 的可逆映射，核维数从1变0，需重建矩阵和秩-零度关系，建议不泄漏。"
+    }
+  ],
+  "training_records": [
+    {
+      "id": "geom-023",
+      "signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ],
+      "pairs": [
+        "ce90de7faa642b5ba735"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-geom-001-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "geom-025",
+      "signature": [
+        "解析几何",
+        "其他[二次曲面分类]"
+      ],
+      "pairs": [
+        "9ca9c4f459daa0152efd"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-geom-007-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-057",
+      "signature": [
+        "高等代数",
+        "其他[矩阵]"
+      ],
+      "pairs": [
+        "d98eeea26b47de9adfa7",
+        "d5ed5dedf59ee56a39e8"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-linalg-005-s1",
+        "eval-linalg-008-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-049",
+      "signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "pairs": [
+        "c782e69c49f50db5244a"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-linalg-015-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-068",
+      "signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "pairs": [
+        "e576ba8556c51c2e76a7"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-linalg-015-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-052",
+      "signature": [
+        "高等代数",
+        "其他[多项式]"
+      ],
+      "pairs": [
+        "ed6d4f946182a39e8654"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-linalg-024-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-061",
+      "signature": [
+        "高等代数",
+        "其他[线性空间]"
+      ],
+      "pairs": [
+        "84183de062ca0715654d"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-linalg-028-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "calc-series-016",
+      "signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "pairs": [
+        "5c18d4892f83c885b3ce"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-calc-011-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "calc-series-019",
+      "signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "pairs": [
+        "c41cfb96416b83be580a"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "test-calc-013"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "geom-021",
+      "signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ],
+      "pairs": [
+        "dd70b0ed3ed14187f21d"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "test-geom-003"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "geom-027",
+      "signature": [
+        "解析几何",
+        "其他[非直纹面二次曲面]"
+      ],
+      "pairs": [
+        "30f0d80d7232aa2a836c"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-geom-011-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-059",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "pairs": [
+        "8848ddce4ff07015d4d8",
+        "9f6f2f497c77be56df75"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "test-linalg-026"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "linalg-060",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "pairs": [
+        "71953cd84312da4d146e"
+      ],
+      "proposed_action": "恢复",
+      "blocking_queries": [],
+      "reason": "本次重新核对的关联对均为实质任务升级，建议恢复；须用户确认与全量数据检查后才改清单。"
+    },
+    {
+      "id": "prob-044",
+      "signature": [
+        "概率论",
+        "其他[贝叶斯公式]"
+      ],
+      "pairs": [
+        "38353d5a25a07f3a65fa"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "test-prob-001"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    },
+    {
+      "id": "prob-045",
+      "signature": [
+        "概率论",
+        "其他[随机变量函数的分布]"
+      ],
+      "pairs": [
+        "24f8de8d99627e8a9f66"
+      ],
+      "proposed_action": "恢复",
+      "blocking_queries": [],
+      "reason": "本次重新核对的关联对均为实质任务升级，建议恢复；须用户确认与全量数据检查后才改清单。"
+    },
+    {
+      "id": "calc-series-018",
+      "signature": [
+        "数学分析",
+        "函数项级数"
+      ],
+      "pairs": [
+        "5ad53aa80f9c80eb0d96"
+      ],
+      "proposed_action": "维持隔离",
+      "blocking_queries": [
+        "eval-calc-011-s1"
+      ],
+      "reason": "至少一对仍可直接套解；其他不泄漏对不能解除该记录的剩余冲突。"
+    }
+  ],
+  "symbolic_checks": {
+    "eval_linalg_019_minor_determinants": [
+      "1",
+      "1",
+      "a - 2"
+    ],
+    "eval_linalg_019_range": "a>2",
+    "eval_linalg_019_standard_form_verified": true,
+    "eval_linalg_021_minor_determinants": [
+      "2",
+      "1",
+      "2 - a**2"
+    ],
+    "eval_linalg_021_range": "-sqrt(2)<a<sqrt(2)",
+    "linear_map_train_kernel_dim": 1,
+    "linear_map_eval_kernel_dim": 0
+  },
+  "proposed_restore_ids": [
+    "linalg-060",
+    "prob-045"
+  ],
+  "proposed_isolated_ids": [
+    "geom-023",
+    "geom-025",
+    "linalg-057",
+    "linalg-049",
+    "linalg-068",
+    "linalg-052",
+    "linalg-061",
+    "calc-series-016",
+    "calc-series-019",
+    "geom-021",
+    "geom-027",
+    "linalg-059",
+    "prob-044",
+    "calc-series-018"
+  ],
+  "hypothetical_counts_if_approved": {
+    "train": 49,
+    "eval": 300,
+    "test": 150,
+    "total": 499
+  },
+  "calibrated": false,
+  "no_replacement_questions_drafted": true,
+  "unchanged_files_sha256": {
+    "data\\manifest.json": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+    "data\\eval-v2.lock.json": "335d8b3f7338f53276ce8f76903fa7da0d03ed906ab07d5bf37f9a062e87c728",
+    "data\\test-v2.lock.json": "f84704df7fd5f8d8ebd258c76c519d5678a6c74ed5c0e0292586a38b6609c091",
+    "data\\asset_evidence.json": "dba614f78e18aeb5f19223f217abf4d044911d7ce78b5d19a5c08c31b3fd608d",
+    "src\\animtrain\\structural_leakage.py": "e6de8472e57ef58193d866c55cfba82757f98a8990b10fe6e48e787d93c3e27b",
+    "data\\b5-annotation-set\\b5-annotation-set.json": "3cf74c43ad734017787c305605ac00d96f983ddc794c0f4c0fa8c42390ef3560",
+    "reviews\\codex-supervision\\2026-10-05-readiness-completion\\independent-leakage-labels-v2.json": "0b71e3e319d182605935d5479780aaf5cc9385b0f32cde6544d72ff11df90c5e",
+    "data\\v2\\train\\leakage-isolated-v3-2026-10-05\\dataset_calc.jsonl": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+    "data\\v2\\train\\leakage-isolated-v3-2026-10-05\\dataset_geom.jsonl": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+    "data\\v2\\train\\leakage-isolated-v3-2026-10-05\\dataset_linalg.jsonl": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4",
+    "data\\v2\\train\\leakage-isolated-v3-2026-10-05\\dataset_prob.jsonl": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+    "data\\v2\\eval\\dataset_eval.jsonl": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+    "data\\v2\\test\\dataset_test.jsonl": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a"
+  }
+}

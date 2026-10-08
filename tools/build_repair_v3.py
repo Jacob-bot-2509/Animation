@@ -9,6 +9,7 @@ import hashlib
 import json
 import sys
 from pathlib import Path
+from draft_io import require_legacy_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
@@ -20,6 +21,7 @@ C01_02_FIX = ("batch-01", "draft-c01-02", "scene_spec",
 
 
 def main() -> int:
+    require_legacy_selection(SEL)
     sel = json.loads(SEL.read_text(encoding="utf-8"))
     selmap = {e["batch"]: e for e in sel["entries"]}
     patches = json.loads(PATCHES.read_text(encoding="utf-8"))

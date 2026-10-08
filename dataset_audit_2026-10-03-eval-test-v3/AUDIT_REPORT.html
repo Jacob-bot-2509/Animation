@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>dataset-eval / data-test 预跑检测报告（第三轮 · 2026-10-03）</h1>
+<blockquote>
+<p>工具：<code>tools/eval_test_audit.py</code>（纯标准库，只读；本轮新增 <code>--base</code> 支持对 v1/v2 两版候选分别检测，并新增同题多解场景互异性、基目录清单/锁归属检查）
+复现命令：
+<code>python tools/eval_test_audit.py --base data/v1 --out dataset_audit_2026-10-03-eval-test-v3-v1</code>
+<code>python tools/eval_test_audit.py --base data/v2 --out dataset_audit_2026-10-03-eval-test-v3-v2</code>
+项目自带预检（只读）：<code>python tools/eval_test_prep.py check --eval data/v1/eval --test data/v1/test --train-dir data/v1/raw</code> → exit 0
+契约依据：<code>DATASET_SCHEMA.md</code>、<code>EVAL_TEST_PREP.md</code>；证据：两个输出目录的 <code>issues.jsonl</code> / <code>summary.json</code> / <code>record_status.*</code> / <code>file_hashes.*</code>
+历史轮次：第一轮 <code>dataset_audit_2026-10-03-eval-test/</code>（NOT READY, hard 3）、第二轮 <code>…-v2/</code>（CONDITIONAL PASS, hard 0）</p>
+</blockquote>
+<hr />
+<h2>0. 结论摘要与裁定</h2>
+<p>本轮出现两个候选版本，<strong>分别检测</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><strong>v1</strong>（已冻结 19:25，不可变）</th>
+<th><strong>v2</strong>（22:09 新候选，待用户批准切换）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入口</td>
+<td><code>data/v1/{eval,test}/dataset_{eval,test}.jsonl</code></td>
+<td><code>data/v2/{eval,test}/dataset_{eval,test}.jsonl</code></td>
+</tr>
+<tr>
+<td>记录数</td>
+<td>300 + 150 = <strong>450</strong></td>
+<td>300 + 150 = <strong>450</strong></td>
+</tr>
+<tr>
+<td>逐条状态</td>
+<td>rejected 0 / quarantine 450 / clean 0</td>
+<td>rejected 0 / quarantine 450 / clean 0</td>
+</tr>
+<tr>
+<td><strong>hard</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>quarantine</td>
+<td><strong>1353</strong></td>
+<td><strong>904</strong></td>
+</tr>
+<tr>
+<td>info</td>
+<td>833</td>
+<td>855</td>
+</tr>
+<tr>
+<td>隔离（精确/近重复）</td>
+<td>0 / max 0.6667</td>
+<td>0 / max 0.6667</td>
+</tr>
+<tr>
+<td>冻结锁</td>
+<td>2 个，绑定 <code>data/v1/manifest.json</code>（校验通过）</td>
+<td>2 个，绑定 v2 子清单（校验通过）</td>
+</tr>
+<tr>
+<td>行尾/哈希可复现</td>
+<td><strong>已修</strong>（全 LF）</td>
+<td><strong>已修</strong>（全 LF）</td>
+</tr>
+<tr>
+<td>清单条目契约</td>
+<td><strong>已修</strong>（子清单仅登记 JSONL，split=eval/test）</td>
+<td>子清单合规，但<strong>无顶层清单</strong></td>
+</tr>
+<tr>
+<td>元数据 tag 卫生</td>
+<td><strong>未修</strong>（450 条 <code>&quot;- &quot;</code> 前缀残留）</td>
+<td><strong>已修</strong>（0 条）</td>
+</tr>
+<tr>
+<td>scene_spec</td>
+<td>v1 通用场景（objects 1200 / steps 1500）</td>
+<td><strong>逐解法重写</strong>（objects 612 / steps 1212，同题 3 解法场景互异 100/100）</td>
+</tr>
+</tbody>
+</table>
+<h3>裁定</h3>
+<ul>
+<li><strong>v1：复核通过，四项必清中三项已清</strong>（W001 行尾/哈希、MF005+MF009 清单条目、D011 手稿状态）。<code>F011</code>（450 条 tag 前缀残留）未清，但 v1 已冻结不可变，<strong>由 v2 取代</strong>；<code>D012</code>（文档仍写&quot;未冻结&quot;）为仓库级待办。</li>
+<li><strong>v2：硬门禁全部通过，可作为替代候选</strong>；切换引用前仍需：① <strong>顶层 manifest 登记</strong>（<code>MF011</code>）+ 用户批准切换；② <code>A008</code> 动画验证（0/450）；③ <code>P002</code> 许可证转正（450）；④ <code>D012</code> 文档状态更新（3）。</li>
+</ul>
+<hr />
+<h2>1. 范围、快照与只读保证</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入口 JSONL</td>
+<td><code>data/v1/eval/dataset_eval.jsonl</code>(465152)、<code>data/v1/test/dataset_test.jsonl</code>(201290)</td>
+<td><code>data/v2/eval/dataset_eval.jsonl</code>(432636)、<code>data/v2/test/dataset_test.jsonl</code>(200390)</td>
+</tr>
+<tr>
+<td>镜像 JSON</td>
+<td><code>…/dataset_eval.json</code>(524255)、<code>…/dataset_test.json</code>(224609)</td>
+<td><code>…/dataset_eval.json</code>(483003)、<code>…/dataset_test.json</code>(223709)</td>
+</tr>
+<tr>
+<td>子清单</td>
+<td><code>data/v1/{eval,test}/manifest.json</code>(563×2)</td>
+<td><code>data/v2/{eval,test}/manifest.json</code>(573×2)</td>
+</tr>
+<tr>
+<td>顶层清单</td>
+<td><code>data/v1/manifest.json</code>(2573)、<code>manifest-train.json</code>(2105)</td>
+<td><strong>不存在</strong>（MF011）</td>
+</tr>
+<tr>
+<td>冻结锁</td>
+<td><code>data/{eval,test}-v1.lock.json</code></td>
+<td><code>data/{eval,test}-v2.lock.json</code></td>
+</tr>
+<tr>
+<td>来源手稿（共用）</td>
+<td><code>dataset-eval.md</code>(205335)、<code>data-test.md</code>(118713)</td>
+<td>同左</td>
+</tr>
+<tr>
+<td>训练参考池</td>
+<td><code>data/v1/raw/dataset_{calc,geom,linalg,prob}.jsonl</code>（63 条，已 LF）</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>快照时间：v1 运行 <code>2026-10-03T14:14:18Z</code>、v2 运行 <code>2026-10-03T14:14:19Z</code>（= 北京时间 22:14）；两个输出目录在运行后立即复核，受检文件哈希无变化。</li>
+<li>只读保证：未修改任何数据、文档、清单或锁；未自动改 ID/公式；未启动训练、未下载模型、未生成动画。</li>
+</ul>
+<hr />
+<h2>2. 原始文件哈希（SHA256，本轮快照）</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th style="text-align:right">字节</th>
+<th>SHA256（前 12 位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/v1/eval/dataset_eval.jsonl</code></td>
+<td style="text-align:right">465152</td>
+<td><code>9e5b7355606d</code></td>
+</tr>
+<tr>
+<td><code>data/v1/test/dataset_test.jsonl</code></td>
+<td style="text-align:right">201290</td>
+<td><code>e1ba1eb49dd7</code></td>
+</tr>
+<tr>
+<td><code>data/v1/eval/manifest.json</code> / <code>test/manifest.json</code></td>
+<td style="text-align:right">563 / 563</td>
+<td><code>81a3e052ab06</code> / <code>1a15e8ca525b</code></td>
+</tr>
+<tr>
+<td><code>data/eval-v1.lock.json</code> / <code>test-v1.lock.json</code></td>
+<td style="text-align:right">469 / 469</td>
+<td><code>597f5f5b0f4b</code> / <code>01767d21555d</code></td>
+</tr>
+<tr>
+<td><code>data/v2/eval/dataset_eval.jsonl</code></td>
+<td style="text-align:right">432636</td>
+<td><code>8ff7044a0c48</code></td>
+</tr>
+<tr>
+<td><code>data/v2/test/dataset_test.jsonl</code></td>
+<td style="text-align:right">200390</td>
+<td><code>d4de0bb6a86f</code></td>
+</tr>
+<tr>
+<td><code>data/v2/eval/manifest.json</code> / <code>test/manifest.json</code></td>
+<td style="text-align:right">573 / 573</td>
+<td><code>a92d80727398</code> / <code>cd681f55f7d4</code></td>
+</tr>
+<tr>
+<td><code>data/eval-v2.lock.json</code> / <code>test-v2.lock.json</code></td>
+<td style="text-align:right">469 / 469</td>
+<td><code>e8d3fafc62fd</code> / <code>fa98d15f7db3</code></td>
+</tr>
+<tr>
+<td><code>data/v1/raw/dataset_{calc,geom,linalg,prob}.jsonl</code></td>
+<td style="text-align:right">32908 / 18138 / 31002 / 15462</td>
+<td>见 <code>file_hashes.json</code></td>
+</tr>
+<tr>
+<td><code>dataset-eval.md</code> / <code>data-test.md</code></td>
+<td style="text-align:right">205335 / 118713</td>
+<td>见 <code>file_hashes.json</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>完整清单：v1 运行 19 个文件、v2 运行 17 个文件（v2 无顶层清单/无 v2 README）。见各自 <code>file_hashes.json</code>。</p>
+</blockquote>
+<hr />
+<h2>3. 上一轮（第二轮）四项建议必清的验收</h2>
+<table>
+<thead>
+<tr>
+<th>上一轮项</th>
+<th>本轮状态</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>W001</code> 记录哈希绑定 CRLF 而 <code>.gitattributes</code> 声明 <code>eol=lf</code></td>
+<td><strong>已修复</strong></td>
+<td>提交 <code>a8f5071</code>「全量数据/清单/锁 LF 落盘 + 索引重规范化，两个 manifest 哈希按 LF 字节重算」；本轮实测：raw JSONL、v1/v2 JSONL、各级 manifest、锁<strong>CRLF 计数全为 0</strong>；fresh clone 复现见提交 <code>738d175</code></td>
+</tr>
+<tr>
+<td><code>MF005</code> split 语义冲突（子清单标 <code>raw</code>）</td>
+<td><strong>已修复</strong></td>
+<td><code>data/v1/{eval,test}/manifest.json</code> 现只登记 JSONL 且 <code>split=eval</code>/<code>test</code></td>
+</tr>
+<tr>
+<td><code>MF009</code> 子清单把 <code>.json</code> 数组容器登记为数据条目</td>
+<td><strong>已修复</strong></td>
+<td>子清单条目从 3 条（含 <code>.json</code> 与 README）降为 1 条（仅 JSONL）；<code>M002</code> 仅剩&quot;镜像&quot;info</td>
+</tr>
+<tr>
+<td><code>F011</code> efficiency_tags 残留 <code>&quot;- &quot;</code> 前缀</td>
+<td><strong>v1 未清 / v2 已清</strong></td>
+<td>v1：450 条仍带前缀（数据冻结不可变）；v2：0 条（提交 <code>c599006</code> 修生成器、<code>4fe0152</code> 清理数据）</td>
+</tr>
+<tr>
+<td><code>D011</code>/<code>D012</code> 文档仍写&quot;未冻结&quot;</td>
+<td><strong>部分修复</strong></td>
+<td><code>dataset-eval.md</code>/<code>data-test.md</code> 已去除&quot;未冻结/草稿&quot;字样；<code>EVAL_TEST_PREP.md</code>（6 处）与 <code>data/v1/{eval,test}/README.md</code>（标题）仍写&quot;未冻结&quot; → 本轮 <code>D012</code>×3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. v2 候选专项核验（Lead 独立复核）</h2>
+<h3>4.1 v1 → v2 差异范围（逐字段比对 450 条）</h3>
+<table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align:right">记录数</th>
+<th>差异字段命中</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eval</td>
+<td style="text-align:right">300</td>
+<td><code>scene_spec</code> 300、<code>efficiency_tags</code> 300、<code>solution</code> <strong>1</strong></td>
+</tr>
+<tr>
+<td>test</td>
+<td style="text-align:right">150</td>
+<td><code>scene_spec</code> 150、<code>efficiency_tags</code> 150</td>
+</tr>
+</tbody>
+</table>
+<p>→ v2 是<strong>纯 scene_spec/元数据修订</strong>（外加 1 条解法补全）；<code>id</code>、<code>problem</code>、<code>answer</code>、<code>category</code>、<code>source</code>、<code>license</code> 与 v1 逐条相同，<strong>未引入新题目</strong>，故隔离结论与 v1 一致。</p>
+<h3>4.2 逐解法 scene_spec（用户批准的 v2 核心改动）</h3>
+<ul>
+<li>eval：100 个 problem_id、每组 3 个解法，<strong>scene_spec 完全相同的组数 = 0</strong>；首步文本完全相同的组数 = 0 → &quot;逐解法场景&quot;落实（<code>G003</code> info 通过）。</li>
+<li>规模：eval objects 总计 <strong>612</strong>（每条 1–3）、steps 总计 <strong>1212</strong>（每条 3–5）；test objects 303 / steps 603。相比 v1（1200/1500）明显精简，符合&quot;解法专属动画要点&quot;的定位。</li>
+<li>无空 objects/steps；450/450 均含两列表。</li>
+</ul>
+<h3>4.3 v2 对既有内容问题的处理</h3>
+<ul>
+<li><code>eval-linalg-023-s3</code>（上一轮内容评审 A 级关联项）已改为<strong>自包含</strong>：先给出实数域分解的两种形式，再用平方差恒等式连接并证明，<code>Lead 复核</code>式子正确（$(x^2+1)^2-(\sqrt2x)^2=x^4+1$）。</li>
+<li>上一轮 5 条 A 级（<code>test-prob-002</code>、<code>eval-calc-006</code>、<code>eval-linalg-023</code>、<code>test-linalg-021</code>、<code>test-x-011</code>）在 v2 中仍保持已修正状态（v2 未改动 problem/solution/answer，除上述 1 条）。</li>
+</ul>
+<h3>4.4 仍需补齐（v2）</h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MF011</code></td>
+<td>v2 只有子清单+锁，<strong>无顶层 <code>data/v2/manifest.json</code></strong> → 切换引用时需顶层登记，把 train/eval/test 绑到同一份清单并重冻</td>
+</tr>
+<tr>
+<td><code>A008</code>×450</td>
+<td>动画仍未验证：v2 同样无 <code>code</code>/<code>render_status</code>/<code>code_sha256</code>，scene_spec 仍是设计稿</td>
+</tr>
+<tr>
+<td><code>P002</code>×450</td>
+<td><code>license=Internal-Research-Use-Only</code>（仅内部研究、不公开分发），训练/公开前须转正</td>
+</tr>
+<tr>
+<td><code>D012</code>×3</td>
+<td><code>EVAL_TEST_PREP.md</code> 与 <code>data/v1/{eval,test}/README.md</code> 仍写&quot;未冻结&quot;</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 硬门禁逐项结果（v1 / v2）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>门禁</th>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1</td>
+<td>JSONL 结构（解析/空行/BOM/重复键）</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>必需字段/类型/未知字段</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>身份唯一性（eval 300 + test 150，跨池无交集）</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G4</td>
+<td>同题多解组约束（100 组×3 解、题干一致、method 唯一）</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G5</td>
+<td>answer 可判分性</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G6</td>
+<td>LaTeX（公式内 CJK/全角/<code>$</code>/括号）</td>
+<td>通过（0 硬性）</td>
+<td>通过（0 硬性）</td>
+</tr>
+<tr>
+<td>G7</td>
+<td>scene_spec 结构</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G8</td>
+<td>镜像 <code>.json</code> ↔ JSONL 一致</td>
+<td>通过（450/450）</td>
+<td>通过（450/450）</td>
+</tr>
+<tr>
+<td>G9</td>
+<td>与 train 隔离</td>
+<td>通过（精确 0；max 0.5915）</td>
+<td>通过（同左）</td>
+</tr>
+<tr>
+<td>G10</td>
+<td>eval ↔ test 隔离</td>
+<td>通过（精确 0；max <strong>0.6667</strong>；≥0.7 对数 0）</td>
+<td>通过（同左）</td>
+</tr>
+<tr>
+<td>G11</td>
+<td>manifest 登记</td>
+<td>通过（顶层+子清单）</td>
+<td><strong>子清单通过，顶层缺失（MF011）</strong></td>
+</tr>
+<tr>
+<td>G12</td>
+<td>冻结锁校验（结构/条目哈希/manifest 绑定）</td>
+<td>通过</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G13</td>
+<td>元数据完备性</td>
+<td>通过（513/513 齐全）</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G14</td>
+<td>元数据卫生（tag 前缀）</td>
+<td><strong>不通过</strong>（F011×450）</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G15</td>
+<td>行尾/哈希可复现</td>
+<td><strong>通过</strong></td>
+<td>通过</td>
+</tr>
+<tr>
+<td>G16</td>
+<td>文档状态一致</td>
+<td>不通过（D012×3）</td>
+<td>不通过（D012×3）</td>
+</tr>
+<tr>
+<td>G17</td>
+<td>动画验证</td>
+<td>不通过（0/450）</td>
+<td>不通过（0/450）</td>
+</tr>
+<tr>
+<td>G18</td>
+<td>许可证</td>
+<td>不通过（内部研究）</td>
+<td>不通过（内部研究）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 隔离检测</h2>
+<table>
+<thead>
+<tr>
+<th>池对</th>
+<th style="text-align:right">精确重叠</th>
+<th style="text-align:right">最大 5-gram Jaccard（set）</th>
+<th style="text-align:right">≥0.7 对数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>train ↔ eval</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.5915（<code>linalg-067</code> vs <code>eval-linalg-007-s1</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>train ↔ test</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.3895（<code>linalg-067</code> vs <code>test-linalg-021</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>eval ↔ test</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.6667（<code>eval-calc-023-s1</code> vs <code>test-calc-013</code>）</td>
+<td style="text-align:right">0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>v1 与 v2 的题目文本完全相同，故两张表的数值一致。</li>
+<li>边界对（0.6667）经 Lead 复核为<strong>结构性相似</strong>（共用 LaTeX 脚手架；一题&quot;证明 Σ1/n² 收敛&quot;、一题&quot;求 Σ1/(n(n+2)) 的和&quot;，任务与级数均不同），非题面泄漏；阈值 0.7 仍标 UNCALIBRATED，建议纳入校准。</li>
+<li><strong>门禁盲区仍未关闭</strong>：<code>tools/eval_test_prep.py check</code> 的 eval↔test 比较仍只用&quot;核心正文哈希 + ID&quot;，不做组间近重复（第三轮仍无变化）。</li>
+</ul>
+<hr />
+<h2>7. 逐条问题清单</h2>
+<h3>7.1 硬伤：<strong>v1 0 条、v2 0 条</strong></h3>
+<h3>7.2 quarantine</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">v1</th>
+<th style="text-align:right">v2</th>
+<th>内容</th>
+<th>处置建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P002</code></td>
+<td style="text-align:right">450</td>
+<td style="text-align:right">450</td>
+<td><code>license=Internal-Research-Use-Only</code></td>
+<td>训练/公开前转正（用户级）</td>
+</tr>
+<tr>
+<td><code>A008</code></td>
+<td style="text-align:right">450</td>
+<td style="text-align:right">450</td>
+<td>动画未验证（无 code/render_status/code_sha256）</td>
+<td>过 <code>render_gate</code> 后登记（用户级）</td>
+</tr>
+<tr>
+<td><code>F011</code></td>
+<td style="text-align:right"><strong>450</strong></td>
+<td style="text-align:right">0</td>
+<td>efficiency_tags 残留 <code>&quot;- &quot;</code> 前缀</td>
+<td>v2 已清；v1 不再改（被取代）</td>
+</tr>
+<tr>
+<td><code>D012</code></td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td><code>EVAL_TEST_PREP.md</code> + <code>data/v1/{eval,test}/README.md</code> 写&quot;未冻结&quot;</td>
+<td>更新文档（仓库级）</td>
+</tr>
+<tr>
+<td><code>MF011</code></td>
+<td style="text-align:right">0</td>
+<td style="text-align:right"><strong>1</strong></td>
+<td>v2 无顶层 manifest</td>
+<td>批准切换后顶层登记并重冻</td>
+</tr>
+<tr>
+<td>合计</td>
+<td style="text-align:right"><strong>1353</strong></td>
+<td style="text-align:right"><strong>904</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 info（v1 833 / v2 855）</h3>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th style="text-align:right">v1</th>
+<th style="text-align:right">v2</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P003</code></td>
+<td style="text-align:right">450</td>
+<td style="text-align:right">450</td>
+<td><code>source=self-authored</code>（如实）</td>
+</tr>
+<tr>
+<td><code>C007</code></td>
+<td style="text-align:right">274</td>
+<td style="text-align:right">274</td>
+<td>answer 与 solution 无文本重合（纯文字结论，正常）</td>
+</tr>
+<tr>
+<td><code>L007</code></td>
+<td style="text-align:right">86</td>
+<td style="text-align:right">100</td>
+<td>双上下标（<code>x_1^2</code> 类，合法）</td>
+</tr>
+<tr>
+<td><code>L006</code></td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">11</td>
+<td><code>\leftarrow</code> 被 <code>\left</code> 规则误报（复核为误报）</td>
+</tr>
+<tr>
+<td><code>L009</code></td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">7</td>
+<td><code>\frac32</code>/<code>\dfrac12</code> 单 token 参数（合法 TeX，复核为误报）</td>
+</tr>
+<tr>
+<td><code>X002</code></td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+<td>三对池最大近重复（0.5915 / 0.3895 / 0.6667）</td>
+</tr>
+<tr>
+<td><code>M002</code></td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2</td>
+<td><code>.json</code> 仅作镜像（入场工具只选 <code>*.jsonl</code>）</td>
+</tr>
+<tr>
+<td><code>LK007</code>/<code>LK008</code></td>
+<td style="text-align:right">2/1</td>
+<td style="text-align:right">2/1</td>
+<td>本基目录锁校验通过 / 其他基目录锁未校验</td>
+</tr>
+<tr>
+<td><code>G002</code>/<code>G003</code></td>
+<td style="text-align:right">1/1</td>
+<td style="text-align:right">1/1</td>
+<td>多解组 {3:100} / 场景互异性通过</td>
+</tr>
+<tr>
+<td><code>C008</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td><code>A^2=A</code> 恒等演示（复核为误报）</td>
+</tr>
+<tr>
+<td><code>MF008</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td>train 标签为&quot;用户拍板 provisional&quot;（如实）</td>
+</tr>
+<tr>
+<td><code>R001</code></td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td>既有内容评审 64 条（A5/B31/C28）纳入交叉核对</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. 汇总统计</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align:right">v1</th>
+<th style="text-align:right">v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eval / test 记录</td>
+<td style="text-align:right">300 / 150</td>
+<td style="text-align:right">300 / 150</td>
+</tr>
+<tr>
+<td>唯一身份</td>
+<td style="text-align:right">300 / 150</td>
+<td style="text-align:right">300 / 150</td>
+</tr>
+<tr>
+<td>题目数</td>
+<td style="text-align:right">100（每组 3 解）/ 150</td>
+<td style="text-align:right">100（每组 3 解）/ 150</td>
+</tr>
+<tr>
+<td>子类数</td>
+<td style="text-align:right">41 / 144</td>
+<td style="text-align:right">41 / 144</td>
+</tr>
+<tr>
+<td>objects / steps</td>
+<td style="text-align:right">1200 / 1500（eval）、303 / 603（test）</td>
+<td style="text-align:right"><strong>612 / 1212</strong>（eval）、303 / 603（test）</td>
+</tr>
+<tr>
+<td>method 数</td>
+<td style="text-align:right">263</td>
+<td style="text-align:right">263</td>
+</tr>
+<tr>
+<td>状态</td>
+<td style="text-align:right">rejected 0 / quarantine 450 / clean 0</td>
+<td style="text-align:right">rejected 0 / quarantine 450 / clean 0</td>
+</tr>
+<tr>
+<td>动画验证</td>
+<td style="text-align:right">0/450</td>
+<td style="text-align:right">0/450</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>板块：eval（高代 105 / 数分 90 / 几何 60 / 概率 45，按解法计）；test（数分 45 / 高代 40 / 几何 25 / 概率 25 / 跨学科 15）。</li>
+</ul>
+<hr />
+<h2>9. 裁定与建议</h2>
+<ol>
+<li><strong>v1 完成使命</strong>：第二轮所列 W001/MF005/MF009/D011 均已修复并复核；剩下的 F011 属数据内容问题，v1 已冻结不可变，<strong>不再回改</strong>（保留其历史版本价值）。文档 <code>D012</code> 建议在最终切换时一并更新。</li>
+<li><strong>v2 可进入&quot;批准切换&quot;流程</strong>：结构与字段、身份、多解组、LaTeX、镜像、隔离、冻结锁、元数据卫生全部通过（hard 0）。切换前需完成：
+<ul>
+<li>① <strong>顶层 manifest 登记</strong>：在 <code>data/v2/manifest.json</code> 里把 train（raw 63）+ eval + test 绑成同一份清单，重建双锁（当前锁只绑子清单）；</li>
+<li>② <strong>用户批准</strong>引用切换（v2 notes 已注明&quot;切换引用需用户批准&quot;）；</li>
+<li>③ 动画验证（<code>A008</code> 450）：过 <code>render_gate</code> → 登记 <code>code</code>/<code>render_status=verified</code>/<code>code_sha256</code>；</li>
+<li>④ 许可证转正（<code>P002</code> 450）。</li>
+</ul>
+</li>
+<li><strong>门禁能力建议</strong>：给 <code>eval_test_prep.py check</code> 补 eval↔test 近重复比较；并对 0.7 阈值做一次校准（0.6667 边界对可作校准样本）。</li>
+<li><strong>不建议</strong>在完成 ①–④ 前把 v2（或 v1）当作正式训练/评测数据引用；<code>manifest-train.json</code> 的 <code>split=train</code> 仍为 provisional（notes 如实注明未验收）。</li>
+</ol>
+<hr />
+<h2>10. 产物清单</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v3/AUDIT_REPORT.md</code> / <code>.pdf</code></td>
+<td>本报告（合并 v1 复核 + v2 候选裁定）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v3-v1/</code></td>
+<td>v1 检测输出：<code>issues.jsonl</code>(2186)、<code>summary.json</code>、<code>record_status.*</code>、<code>file_hashes.*</code></td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-03-eval-test-v3-v2/</code></td>
+<td>v2 检测输出：<code>issues.jsonl</code>(1759)、<code>summary.json</code>、<code>record_status.*</code>、<code>file_hashes.*</code></td>
+</tr>
+<tr>
+<td><code>tools/eval_test_audit.py</code></td>
+<td>只读检测工具（支持 <code>--base</code>，可复现）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮为只读预跑检测，未修改任何数据、文档、清单或锁；未自动改 ID/公式；未启动训练、未下载模型、未生成动画。</p>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""calc-area-007 受控渲染:走生产同款 AppContainer 传输(render_check trusted),
+证据写入 render-evidence.json,绝不覆盖。"""
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+import sys
+sys.path.insert(0, str(ROOT / "src"))
+
+from animtrain.render_gate import render_check
+
+HERE = Path(__file__).parent
+SCENE = HERE / "scene.py"
+OUT = HERE / "render-evidence.json"
+if OUT.exists():
+    raise ValueError("preserve previous evidence")
+
+code = SCENE.read_text(encoding="utf-8")
+result = render_check(code, trusted=True)
+result["scene_source_sha256"] = hashlib.sha256(code.encode("utf-8")).hexdigest()
+OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+print("ok:", result.get("ok"))
+print("status:", result.get("status"))
+print("output:", result.get("output"))
+print("media:", result.get("media") or result.get("media_path"))
+print("evidence:", OUT)

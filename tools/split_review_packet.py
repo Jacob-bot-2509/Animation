@@ -1,52 +1,64 @@
-"""Split the pending review packet into self-contained per-chunk files for
-the workflow review agents (each agent reads one small file)."""
+"""Publish fresh, source-bound chunks joined by subject identity."""
 from __future__ import annotations
-
-import hashlib
-import json
-import sys
+import argparse
 from pathlib import Path
-
+import sys
 ROOT = Path(__file__).resolve().parents[1]
-PACKET = (ROOT / "reviews/codex-supervision/2026-10-06-bound-receipt-semantic-review"
-          / "pending-review-packet.json")
-OUT = ROOT / "reviews/2026-10-06-linalg048-admission/v3-receipt-bound/review-chunks"
-CHUNK = 19
-NCHUNKS = 16
-LABEL_RULE = ("核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述"
-              "即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。")
+sys.path[:0] = [str(ROOT / "tools"), str(ROOT / "src")]
+from holdout_contract import Snapshot, LABEL_RULE, write_new_json
+from finalize_linalg048_review import PACKET_SHA, read_bound_packet, validate_packet, subject_key
 
 
-def main() -> int:
+def make_chunks(packet, chunk_size=19, expected_size=296):
+    if type(chunk_size) is not int or chunk_size < 1:
+        raise ValueError("positive integer chunk size required")
+    _, material = validate_packet(packet, expected_size)
+    pairs = packet["semantic_pairs"]
+    return [{"schema": "linalg048-semantic-review-chunk-v2",
+             "packet_raw_sha256": PACKET_SHA, "definition": LABEL_RULE,
+             "candidate": packet["candidate"], "pairs": pairs[i:i+chunk_size],
+             "material": [material[subject_key(s)] for s in pairs[i:i+chunk_size]]}
+            for i in range(0, len(pairs), chunk_size)]
+
+
+def publish_chunks(out, chunk_size=19):
+    out = Path(out).resolve()
+    if not out.is_relative_to(ROOT) or out.exists():
+        raise ValueError("fresh project chunk directory required")
+    snapshot = Snapshot(ROOT)
+    packet = read_bound_packet(snapshot)
+    chunks = make_chunks(packet, chunk_size)
+    for rel in ("tools/split_review_packet.py", "tools/finalize_linalg048_review.py"):
+        snapshot.read(ROOT / rel)
+    snapshot.check_unchanged()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.mkdir(exist_ok=False)
+    files = {}
+    for i, chunk in enumerate(chunks, 1):
+        name = f"chunk-{i:02d}.json"
+        files[name] = write_new_json(out / name, chunk, snapshot)
+    listing = {"schema": "linalg048-review-chunk-listing-v2",
+               "packet_raw_sha256": PACKET_SHA, "chunk_count": len(chunks),
+               "subject_count": len(packet["semantic_pairs"]),
+               "source_record_count": sum(len(m["source_records"]) for m in packet["review_material"]),
+               "files": files, "source_bindings": snapshot.bindings(),
+               "accepted": False, "training_admitted": False}
+    write_new_json(out / "listing.json", listing, snapshot)
+    return listing
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--chunk-size", type=int, default=19)
+    args = ap.parse_args(argv)
     try:
-        d = json.loads(PACKET.read_text("utf-8"))
-        if len(d["semantic_pairs"]) != 296 or len(d["review_material"]) != 296:
-            raise ValueError("unexpected packet size")
-        if OUT.exists() and any(OUT.glob("*.json")):
-            raise ValueError("chunks exist; use a fresh directory")
-        OUT.mkdir(parents=True, exist_ok=True)
-        idx = 0
-        for ci in range(NCHUNKS):
-            pairs = d["semantic_pairs"][idx:idx + CHUNK]
-            mat = d["review_material"][idx:idx + CHUNK]
-            idx += CHUNK
-            (OUT / f"chunk-{ci + 1:02d}.json").write_text(
-                json.dumps({"candidate": d["candidate"],
-                            "definition": LABEL_RULE,
-                            "pairs": pairs, "material": mat},
-                           ensure_ascii=False, indent=1) + "\n",
-                encoding="utf-8", newline="\n")
-        listing = {f.name: hashlib.sha256(f.read_bytes()).hexdigest()
-                   for f in sorted(OUT.glob("*.json"))}
-        (OUT / "listing.json").write_text(
-            json.dumps(listing, indent=2) + "\n", encoding="utf-8", newline="\n")
-        print("chunks:", len(listing), "| pairs covered:",
-              sum(len(json.loads((OUT / f).read_text("utf-8"))["pairs"])
-                  for f in listing))
+        result = publish_chunks(args.out, args.chunk_size)
+        print("PENDING chunks:", result["chunk_count"], "subjects:", result["subject_count"])
         return 0
-    except Exception as exc:
+    except (ValueError, OSError, KeyError, TypeError) as exc:
         print("[FAIL]", exc)
-        return 1
+        return 2
 
 
 if __name__ == "__main__":

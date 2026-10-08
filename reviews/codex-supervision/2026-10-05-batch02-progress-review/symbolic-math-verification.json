@@ -1,0 +1,273 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "draft-c11-01",
+      "check": "root logarithm limit",
+      "value": "-1",
+      "expected": "-1",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-01",
+      "check": "endpoint exponent limit",
+      "value": "1/2",
+      "expected": "1/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "coefficient ratio limit",
+      "value": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "endpoint divergence",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "coefficient split",
+      "value": "1/(n*(n + 1))",
+      "expected": "-1/(n + 1) + 1/n",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "sum original point removable",
+      "value": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "right endpoint limit",
+      "value": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "left endpoint value",
+      "value": "1 - 2*log(2)",
+      "expected": "1 - 2*log(2)",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "first six formal coefficients",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "ratio limit",
+      "value": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "first six exponential coefficients",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-05",
+      "check": "derivative matches alternating log",
+      "value": "-1/(x + 1)",
+      "expected": "-1/(x + 1)",
+      "pass": true
+    },
+    {
+      "id": "draft-c11-05",
+      "check": "Abel endpoint",
+      "value": "-log(2)",
+      "expected": "-log(2)",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-01",
+      "check": "left product",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-01",
+      "check": "right product",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-02",
+      "check": "determinant factor",
+      "value": "-a**3 + 3*a - 2",
+      "expected": "-(a - 1)**2*(a + 2)",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-02",
+      "check": "inverse at zero",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-03",
+      "check": "right block inverse",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-03",
+      "check": "left block inverse",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-04",
+      "check": "all left inverses",
+      "value": "Matrix([[1, 0], [0, 1]])",
+      "expected": "Matrix([[1, 0], [0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-04",
+      "check": "all right inverses",
+      "value": "Matrix([[1, 0], [0, 1]])",
+      "expected": "Matrix([[1, 0], [0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "nilpotent order",
+      "value": "Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])",
+      "expected": "Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "finite inverse",
+      "value": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "pass": true
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "determinant",
+      "value": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-01",
+      "check": "total likelihood",
+      "value": "27/1000",
+      "expected": "27/1000",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-01",
+      "check": "posterior 1",
+      "value": "10/27",
+      "expected": "10/27",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-01",
+      "check": "posterior 2",
+      "value": "1/3",
+      "expected": "1/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-01",
+      "check": "posterior 3",
+      "value": "8/27",
+      "expected": "8/27",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-01",
+      "check": "posterior sum",
+      "value": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "degenerate mixture unconditional independence fails",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "coin unconditional independence",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "coin conditional independence fails",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-03",
+      "check": "first posterior",
+      "value": "11/122",
+      "expected": "11/122",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-03",
+      "check": "second posterior",
+      "value": "363/400",
+      "expected": "363/400",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-03",
+      "check": "exact improvement",
+      "value": "19943/24400",
+      "expected": "19943/24400",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-04",
+      "check": "normalization",
+      "value": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-04",
+      "check": "posterior mean",
+      "value": "2/3",
+      "expected": "2/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-05",
+      "check": "odds identity",
+      "value": "h1*h2*p/((h1*h2*p + k1*k2*(1 - p))*(-h1*h2*p/(h1*h2*p + k1*k2*(1 - p)) + 1))",
+      "expected": "h1*h2*p/(k1*k2*(1 - p))",
+      "pass": true
+    },
+    {
+      "id": "draft-c51-05",
+      "check": "numeric odds",
+      "value": "363/37",
+      "expected": "363/37",
+      "pass": true
+    }
+  ],
+  "count": 39,
+  "manual_scope": [
+    "endpoint tests using alternating/p-series",
+    "uniform convergence on closed interval for c11-03",
+    "conditional independence and Bayesian odds assumptions"
+  ],
+  "not_render_or_production_validation": true
+}

@@ -1,0 +1,2884 @@
+[
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-07",
+      "id": "draft-c02-01",
+      "expected_selected_path": "batch-07/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+      "expected_selected_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "expected_record_sha256": "5d3ab848b421caeaa1f2f65bbd8c303f48718df8106fc9e9644404b67d3e6822",
+      "new_math_content_sha256": "2401d0bf84a7bb23cb70a1fb27a15c72f903328462765cf0c08b1bf0f4331adb",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:证明 $\\int_1^{\\infty}\\sin(x^2)\\,dx$ 收敛但不绝对收敛",
+            "板书一:换元 $u=x^2$ 得 $\\int_{R^2}^{T^2}\\frac{\\sin u}{2\\sqrt u}\\,du$,权重 $w(u)=\\frac{1}{2\\sqrt u}$",
+            "板书二:分部积分 $[-w\\cos u]_{R^2}^{T^2}+\\int w'\\cos u\\,du$ 与放缩链",
+            "高亮框:关键点 1——$w$ 正且递减,$\\int|w'|=w(R^2)-w(T^2)$;关键点 2——$[n\\pi+\\frac{\\pi}{6},n\\pi+\\frac{5\\pi}{6}]$ 上 $|\\sin u|\\ge\\frac12$",
+            "结论卡:$|\\int_R^T\\sin(x^2)dx|\\le\\frac1R$,条件收敛"
+          ],
+          "steps": [
+            "第一步:换元 $u=x^2$:尾积分化为 $\\int_{R^2}^{T^2}\\frac{\\sin u}{2\\sqrt u}\\,du$;标注振荡项 $\\sin u$ 与递减权重 $w(u)=\\frac{1}{2\\sqrt u}$。",
+            "第二步:分部积分:逐项写出 $\\int w\\sin u\\,du=[-w\\cos u]_{R^2}^{T^2}+\\int_{R^2}^{T^2}w'(u)\\cos u\\,du$;绝对值 $\\le w(R^2)+w(T^2)+\\int|w'|$;关键点:因 $w$ 递减,$\\int|w'|=w(R^2)-w(T^2)$,故总界 $=2w(R^2)=\\frac1R$(高亮逐项放缩)。",
+            "第三步:用柯西准则(关键点):对任意 $T'>T\\ge R\\ge1$,$|\\int_T^{T'}\\sin(x^2)dx|\\le\\frac1T\\to0$,与 $T'$ 无关且随 $T$ 收缩;故广义积分收敛。",
+            "第四步:绝对值积分换元为 $\\int_1^{\\infty}\\frac{|\\sin u|}{2\\sqrt u}\\,du$;关键点:在每个 $[n\\pi+\\frac{\\pi}{6},n\\pi+\\frac{5\\pi}{6}]$ 上 $|\\sin u|\\ge\\frac12$(高亮区间选取)。",
+            "第五步:每段贡献 $\\ge\\frac12\\cdot\\frac{1}{2\\sqrt{(n+1)\\pi}}\\cdot\\frac{2\\pi}{3}=\\frac{\\sqrt\\pi}{6\\sqrt{n+1}}$;从 $n=N$ 到 $2N-1$ 共 $N$ 段,和 $\\ge\\frac{\\sqrt\\pi}{6}\\cdot\\frac{N}{\\sqrt{2N}}=\\frac{\\sqrt\\pi}{6}\\sqrt{\\frac N2}\\to\\infty$;结论:不绝对收敛,条件收敛,尾界 $\\frac1R$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-07",
+      "id": "draft-c04-04",
+      "expected_selected_path": "batch-07/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+      "expected_selected_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "expected_record_sha256": "11dec3acb43dc657789ebfb3bfb0eed3aae835b728e5b3edf88be61ad41fe908",
+      "new_math_content_sha256": "37ec1d54bae495dc9d946a37c6d5902e07ac668c61fbf7c05e61becf53655ad1",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "坐标系:抛物线弧 $L$($y=x^2$,从 $(0,0)$ 到 $(1,1)$)与虚线补边 $L'$",
+            "板书一:$\\frac{\\partial Q}{\\partial x}=\\frac{\\partial(x)}{\\partial x}=1$,$\\frac{\\partial P}{\\partial y}=\\frac{\\partial(x+y)}{\\partial y}=1$",
+            "板书二:参数化 $x=y=1-t$,$dx=dy=-dt$,代入得 $\\int_0^1(3t-3)dt$",
+            "板书三:原函数 $\\frac{3t^2}{2}-3t$ 与上下限代入 $-\\frac32$",
+            "结论卡:$\\int_L=\\frac32$"
+          ],
+          "steps": [
+            "第一步:画出抛物线弧 $L$:从 $(0,0)$ 沿 $y=x^2$ 到 $(1,1)$;虚线补直线段 $L'$:从 $(1,1)$ 沿直线回到 $(0,0)$,构成闭合回路 $L+L'$。",
+            "第二步:逐项求偏导(高亮):$\\frac{\\partial Q}{\\partial x}=\\frac{\\partial(x)}{\\partial x}=1$;$\\frac{\\partial P}{\\partial y}=\\frac{\\partial(x+y)}{\\partial y}=1$;故 $\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=1-1=0$。",
+            "第三步:由格林公式:$\\oint_{L+L'}=\\iint_D 0\\,dxdy=0$,故 $\\int_L=-\\int_{L'}$。",
+            "第四步:参数化补边:$x=y=1-t$,$t:0\\to1$,则 $dx=dy=-dt$;逐项代入:$P=x+y=2-2t$,$Q=x=1-t$;得 $\\int_{L'}=\\int_0^1[(2-2t)(-1)+(1-t)(-1)]dt=\\int_0^1(3t-3)dt$。",
+            "第五步:求原函数 $\\int(3t-3)dt=\\frac{3t^2}{2}-3t$;代入上下限:$[\\frac{3t^2}{2}-3t]_0^1=\\frac32-3=-\\frac32$;取负得 $\\int_L=-(-\\frac32)=\\frac32$,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-07",
+      "id": "draft-c06-01",
+      "expected_selected_path": "batch-07/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+      "expected_selected_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "expected_record_sha256": "f9ff252cb9a1e88dfc17c196c6288aabd763c45d72667f4ec8406a778d89ccdc",
+      "new_math_content_sha256": "2cb2418a07fb7c8de0a1bb47e413643820bc742991087e4f3d062d70b17b34bf",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "坐标系:抛物线 $y=x^2$ 与 $y=2-x^2$,交点 $x=\\pm1$ 高亮",
+            "阴影区域与上下曲线标注($2-x^2\\ge x^2$)",
+            "板书:$A=2\\int_0^1(2-2x^2)dx$(对称性)",
+            "板书:原函数 $2x-\\frac{2x^3}{3}$ 与上下限代入",
+            "结论卡:$A=\\frac83$"
+          ],
+          "steps": [
+            "第一步:画出 $y=x^2$ 与 $y=2-x^2$;解交点:$x^2=2-x^2$ 得 $x^2=1$,$x=\\pm1$,高亮两交点。",
+            "第二步:阴影标出围成区域;标注区间内上曲线为 $2-x^2$、下曲线为 $x^2$,被积函数取差。",
+            "第三步:写出积分 $A=\\int_{-1}^{1}[(2-x^2)-x^2]dx$;被积函数 $2-2x^2$ 为偶函数,对称性得 $A=2\\int_0^1(2-2x^2)dx$。",
+            "第四步:逐项求原函数:$\\int 2\\,dx=2x$,$\\int 2x^2\\,dx=\\frac{2x^3}{3}$;故原函数为 $2x-\\frac{2x^3}{3}$。",
+            "第五步:代入上下限:$[2x-\\frac{2x^3}{3}]_0^1=(2-\\frac23)-0=\\frac43$;乘对称因子:$A=2\\times\\frac43=\\frac83$,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-02",
+      "id": "draft-c11-01",
+      "expected_selected_path": "batch-02/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "c35466ddbd8e00667192dda11affad838cef30b7782014d794ccf0e1b11593cc",
+      "expected_selected_raw_sha256": "fc452babbd4d0e70583703759186527f6fc2631f1b875e4b49e13c5a3ba4168f",
+      "expected_record_sha256": "a43fae6ef2ad436459765b1a84b5a7289a048654fe853b774e1252566c788fe9",
+      "new_math_content_sha256": "625efeafc34599c952b5b1757b610eb8225afdc4fe5963120e33b46fd39edd48",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$\\sum_{n=1}^{\\infty}(\\frac{n}{n+1})^{n^2}x^n$ 的收敛域",
+            "板书一:关键不等式 $u\\le-\\ln(1-u)\\le\\frac{u}{1-u}$ 及其积分来源",
+            "板书二:夹逼链 $\\frac{n}{n+1}\\le-n\\ln(1-u_n)\\le1$ 与 $\\sqrt[n]{a_n}\\to e^{-1}$",
+            "数轴:收敛区间 $(-e,e)$ 与端点检查",
+            "结论卡:收敛域 $(-e,e)$,端点通项 $|a_ne^n|\\to e^{1/2}\\ne0$"
+          ],
+          "steps": [
+            "第一步:写出通项 $a_n=(\\frac{n}{n+1})^{n^2}$,说明用根值法;设 $u_n=\\frac1{n+1}$,则 $a_n=(1-u_n)^{n^2}$。",
+            "第二步:展示关键不等式(高亮):对 $0<u<1$,$u\\le-\\ln(1-u)\\le\\frac{u}{1-u}$(来源:$-\\ln(1-u)=\\int_0^u\\frac{dt}{1-t}$,被积函数介于 $1$ 与 $\\frac1{1-u}$ 之间);取 $u=u_n$ 得夹逼链 $\\frac{n}{n+1}\\le-n\\ln(1-u_n)\\le1$。",
+            "第三步:于是 $n\\ln(1-u_n)\\to-1$,即 $\\sqrt[n]{a_n}=(1-\\frac1{n+1})^n\\to e^{-1}$;收敛半径 $R=e$;数轴画出 $(-e,e)$。",
+            "第四步:端点检查(关键点):展开 $-\\ln(1-u)=u+\\frac{u^2}{2}+r(u)$,余项估计 $0\\le r(u)=\\sum_{k\\ge3}\\frac{u^k}{k}\\le\\frac{u^3}{3(1-u)}$;取 $u=u_n$ 得 $n^2r(u_n)\\to0$。",
+            "第五步:逐项代入 $x=\\pm e$:$n+n^2\\ln(1-u_n)=n-\\frac{n^2}{n+1}-\\frac{n^2}{2(n+1)^2}-n^2r(u_n)\\to1-\\frac12=\\frac12$;故 $|a_ne^n|\\to e^{1/2}\\ne0$,通项不趋于零,两端点发散;收敛域为 $(-e,e)$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-02",
+      "id": "draft-c11-04",
+      "expected_selected_path": "batch-02/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "c35466ddbd8e00667192dda11affad838cef30b7782014d794ccf0e1b11593cc",
+      "expected_selected_raw_sha256": "fc452babbd4d0e70583703759186527f6fc2631f1b875e4b49e13c5a3ba4168f",
+      "expected_record_sha256": "a2dc7c42bcad0e3a08dfa561f13de3108a774110b4417ae3ac68b9a227ad4643",
+      "new_math_content_sha256": "d2b6a76dae23d5169b899aa6961a8a11bf6de3d068aebabb9dd327fe97435581",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "板书一:特征方程 $\\lambda^2=\\lambda+2$ 与根 $2,-1$",
+            "板书二:初值代入 $a_0=1,a_1=0$ 得 $a_n=\\frac{2^n+2(-1)^n}{3}$",
+            "板书三:拆和 $S(x)=\\frac1{3(1-2x)}+\\frac2{3(1+x)}=\\frac{1-x}{1-x-2x^2}$",
+            "端点检查卡:$x=\\pm\\frac12$ 通项趋于 $\\frac13\\ne0$",
+            "结论卡:收敛域 $(-\\frac12,\\frac12)$,$S(\\frac14)=\\frac65$"
+          ],
+          "steps": [
+            "第一步:解递推(逐步):设 $a_n=\\lambda^n$ 代入得 $\\lambda^n=\\lambda^{n-1}+2\\lambda^{n-2}$,即特征方程 $\\lambda^2=\\lambda+2$;因式分解 $\\lambda^2-\\lambda-2=(\\lambda-2)(\\lambda+1)=0$,根为 $2,-1$。",
+            "第二步:通解 $a_n=c_1 2^n+c_2(-1)^n$;初值代入:$a_0=c_1+c_2=1$,$a_1=2c_1-c_2=0$;解得 $c_1=\\frac13,c_2=\\frac23$,故 $a_n=\\frac{2^n+2(-1)^n}{3}$;验证 $n=2$:$a_2=a_1+2a_0=2$ 与公式 $\\frac{4+2}{3}=2$ 一致(高亮)。",
+            "第三步:拆成两个几何级数:$S(x)=\\frac13\\sum(2x)^n+\\frac23\\sum(-x)^n$;收敛条件 $|2x|<1$ 且 $|x|<1$,即 $|x|<\\frac12$;通分求和:$\\frac{1}{3(1-2x)}+\\frac{2}{3(1+x)}=\\frac{(1+x)+2(1-2x)}{3(1-2x)(1+x)}=\\frac{3-3x}{3(1-x-2x^2)}=\\frac{1-x}{1-x-2x^2}$。",
+            "第四步:端点检查(逐项):$x=\\frac12$ 时 $a_n(\\frac12)^n=\\frac{2^n+2(-1)^n}{3\\cdot2^n}=\\frac13+\\frac{2(-1)^n}{3\\cdot2^n}\\to\\frac13\\ne0$;$x=-\\frac12$ 时 $|a_n(-\\frac12)^n|=|\\frac{(-1)^n+2(\\frac12)^n}{3}|\\to\\frac13\\ne0$;两端通项均不趋于零,发散。",
+            "第五步:收敛域为 $(-\\frac12,\\frac12)$;计算 $S(\\frac14)$:代入和函数 $\\frac{1-\\frac14}{1-\\frac14-2\\cdot\\frac1{16}}=\\frac{3/4}{5/8}=\\frac34\\times\\frac85=\\frac65$(逐步分数运算,高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c12-01",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "17c81707d063c554dd648381b4f516811fbc1e9842ac9b4cbf9b440c714dfa3b",
+      "new_math_content_sha256": "ff4a8206b108ec2d777f5bd67a033f5cc01679cbf1704c173dd91fc914039f84",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:证 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛",
+            "板书一:逐项核对 $|\\frac{\\sin nx}{n^2}|\\le\\frac1{n^2}=M_n$",
+            "高亮框:关键点 1——放缩依据 $|\\sin nx|\\le1$ 对一切 $x$ 成立;关键点 2——$\\sum\\frac1{n^2}$ 为 $p=2>1$ 的 $p$-级数,收敛",
+            "板书二:$M$ 判别法结论与绝对一致收敛说明",
+            "总结卡:对一切 $x$ 有 $|f_n(x)|\\le M_n$ 且 $\\sum M_n<\\infty$ $\\Rightarrow$ 一致收敛"
+          ],
+          "steps": [
+            "第一步:写出目标:证明 $\\sum\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛;采用魏尔斯特拉斯 $M$ 判别法。",
+            "第二步:逐项放缩(高亮关键点 1):对一切 $x\\in\\mathbb R$,$|\\sin nx|\\le1$,故 $|\\frac{\\sin nx}{n^2}|=\\frac{|\\sin nx|}{n^2}\\le\\frac1{n^2}=:M_n$;板书逐项核对 $|f_n(x)|\\le M_n$。",
+            "第三步:验证 $\\sum M_n$(高亮关键点 2):$\\sum_{n=1}^{\\infty}\\frac1{n^2}$ 是 $p=2>1$ 的 $p$-级数,收敛。",
+            "第四步:由 $M$ 判别法,级数在 $\\mathbb R$ 上一致收敛;且 $\\sum|f_n|$ 亦一致收敛,故绝对一致收敛。",
+            "第五步:总结板书:条件「对一切 $x$ 有 $|f_n(x)|\\le M_n$」+「$\\sum M_n<\\infty$」两栏打勾,推出一致收敛,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-11",
+      "id": "draft-c23-01",
+      "expected_selected_path": "batch-11/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "49f5c268c99a8d947244c6d8eee5117d617ae52bc81a116da2b20a09735af2ac",
+      "expected_selected_raw_sha256": "34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea",
+      "expected_record_sha256": "876e482e5dc86aa0c57c0858807c26c5f039b3abe5ec1de7fe19c7c276725977",
+      "new_math_content_sha256": "fbdc1a5f2b5610b45fb23d00401be6e408ab4c7582d472aa02a8b148e8d37fb3",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}0&1&0\\\\-1&0&0\\\\0&0&1\\end{pmatrix}$ 与 $A^{\\mathsf T}=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$",
+            "行×列计算卡:$A^{\\mathsf T}b$ 三行分量逐项乘积",
+            "板书:$T^{-1}(x)=A^{\\mathsf T}x+(2,-1,-3)$",
+            "验证卡:$T(T^{-1}(x))=x$",
+            "结论卡:$T^{-1}(x,y,z)=(-y+2,\\,x-1,\\,z-3)$"
+          ],
+          "steps": [
+            "第一步:$A$ 为正交矩阵(行向量单位正交),等距变换的逆为 $T^{-1}(x)=A^{\\mathsf T}x-A^{\\mathsf T}b$;写出 $A^{\\mathsf T}=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+            "第二步:逐行×列计算 $A^{\\mathsf T}b$(高亮分量乘积):第1行×列:$0\\cdot1+(-1)\\cdot2+0\\cdot3=-2$;第2行×列:$1\\cdot1+0\\cdot2+0\\cdot3=1$;第3行×列:$0\\cdot1+0\\cdot2+1\\cdot3=3$;得 $A^{\\mathsf T}b=(-2,1,3)$。",
+            "第三步:代入公式:$T^{-1}(x)=A^{\\mathsf T}x-(-2,1,3)=A^{\\mathsf T}x+(2,-1,-3)$。",
+            "第四步:验证:$T(T^{-1}(x))=A(A^{\\mathsf T}x-A^{\\mathsf T}b)+b=AA^{\\mathsf T}x-AA^{\\mathsf T}b+b=x-b+b=x$ ✓(用正交性 $AA^{\\mathsf T}=I$)。",
+            "第五步:写分量形式:$T^{-1}(x,y,z)=(-y+2,\\,x-1,\\,z-3)$,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c24-03",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "c2ede14fe2536c3bcb877aaa1a09de74b05e883c6c3c28168b21a62c555a3a70",
+      "new_math_content_sha256": "8a9dd2025fbe6b5e07248c64fb3c3e87f981ae25ac5281923a067b3bb56c35c3",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A_t=\\begin{pmatrix}1&2\\\\t&t^2\\end{pmatrix}$,参数 $t$ 数轴标出 $0,2$",
+            "板书一:$\\det A_t=1\\cdot t^2-2\\cdot t=t(t-2)$",
+            "板书二:逆矩阵 $\\frac{1}{t(t-2)}\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$ 与余子式来源",
+            "奇异分析卡:$t=0$ 与 $t=2$ 的像集、相容条件、纤维",
+            "结论卡:核方向 $(-2,1)$,两种奇异像方向不同"
+          ],
+          "steps": [
+            "第一步:逐分量计算行列式:$\\det A_t=\\begin{vmatrix}1&2\\\\t&t^2\\end{vmatrix}=1\\cdot t^2-2\\cdot t=t(t-2)$;可逆当且仅当 $t\\ne0,2$(高亮)。",
+            "第二步:伴随矩阵法求逆:余子式 $M_{11}=t^2,M_{12}=t,M_{21}=2,M_{22}=1$;代数余子式转置得 $\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$;故 $A_t^{-1}=\\frac{1}{t(t-2)}\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$。",
+            "第三步:$t=0$ 代入:$A_0=\\begin{pmatrix}1&2\\\\0&0\\end{pmatrix}$,$T_0(x,y)=b+(x+2y,0)$;像集为 $b+\\operatorname{span}(1,0)$;相容条件 $v=b_2$;满足条件的原像由 $x+2y=s$ 解得 $x=s-2y$,纤维为 $(s-2r,r)$,$r\\in\\mathbb R$。",
+            "第四步:$t=2$ 代入:$A_2=\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$,$T_2(x,y)=b+(x+2y,2x+4y)=b+(x+2y)(1,2)$;像集为 $b+\\operatorname{span}(1,2)$;相容条件 $v-b_2=2s$($s=u-b_1$)。",
+            "第五步:核方向:解齐次方程 $x+2y=0$ 得核 $=\\operatorname{span}(-2,1)$;两种奇异像方向不同,必须分别检查两个退化值,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c26-03",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "a16d03911365e95e88b4a35626091c00d5ecbfa2b80deb3b1664e49e3df639c7",
+      "new_math_content_sha256": "3a5181ed33bdf97006f53fcb65c6684b5c2b2a5e27618c88921515deb0f492eb",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$",
+            "逐分量代入卡:$A(A(x,y))=(x,y)$ 的完整计算",
+            "固定线/变号线板:$x$ 轴与 $\\operatorname{span}(-1,1)$,斜分解示意",
+            "范数卡:$\\|Ae_2\\|^2=2^2+(-1)^2=5\\ne1$",
+            "结论卡:线性对合但不是 Euclidean 反射"
+          ],
+          "steps": [
+            "第一步:证明 $A^2=I$(逐分量,高亮):$A(x,y)=(x+2y,-y)$;再作用一次:$A(A(x,y))=A(x+2y,-y)=((x+2y)+2(-y),-(-y))=(x,y)$;故 $A^2=I$。",
+            "第二步:求固定线:解 $A(x,y)=(x,y)$ 得方程组 $\\begin{cases}x+2y=x\\\\-y=y\\end{cases}$,即 $y=0$;固定线为 $x$ 轴。",
+            "第三步:求变号线:解 $A(x,y)=-(x,y)$ 得 $\\begin{cases}x+2y=-x\\\\-y=-y\\end{cases}$,即 $x=-y$;变号线为 $\\operatorname{span}(-1,1)$;两方向向量 $(1,0)$ 与 $(-1,1)$ 点积为 $-1\\ne0$,不垂直(高亮)。",
+            "第四步:验证不等距:取 $e_2=(0,1)$,$\\|Ae_2\\|^2=\\|(2,-1)\\|^2=2^2+(-1)^2=5\\ne1=\\|e_2\\|^2$;故不保距离,不是 Euclidean 平面反射。",
+            "第五步:任意向量唯一分解为两线分量之和,$A$ 固定第一分量、将第二分量变号 → 斜分解下的线性对合;结论:线性对合不一定是等距变换。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 1,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c27-04",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "13a19a2d90ace709739438b14060d244f0be4b00e9ccbc57f771c9ca0e1b02f9",
+      "new_math_content_sha256": "3ef41391ecb3c767f7007ca8e73b8552a2cc5a776c19e7cf44bf0743c63d27aa",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$",
+            "特征值板:$\\det(A_k-\\lambda I)=(1-\\lambda)(2-\\lambda)$,特征值 $1,2$",
+            "行×列验算卡:$A_kP$ 与 $P\\operatorname{diag}(1,2)$ 的四项分量乘积",
+            "夹角推导板:$\\langle e_1,(k,1)\\rangle=k$,$\\cos\\alpha=\\frac{|k|}{\\sqrt{k^2+1}}$",
+            "结论卡:所有 $k$ 可对角化;正交对角化当且仅当 $k=0$"
+          ],
+          "steps": [
+            "第一步:求特征值:$\\det(A_k-\\lambda I)=\\begin{vmatrix}1-\\lambda&k\\\\0&2-\\lambda\\end{vmatrix}=(1-\\lambda)(2-\\lambda)$;特征值为 $1,2$。",
+            "第二步:求特征向量:$\\lambda=1$:解 $(A_k-I)v=0$,即 $\\begin{pmatrix}0&k\\\\0&1\\end{pmatrix}v=0$,得 $v=e_1=(1,0)$;$\\lambda=2$:解 $(A_k-2I)v=0$,即 $-x+ky=0$,得 $v=(k,1)$。",
+            "第三步:验算对角化(逐行×列,高亮):$P=\\begin{pmatrix}1&k\\\\0&1\\end{pmatrix}$;$A_kP$ 第1行×第1列:$1\\cdot1+k\\cdot0=1$;第1行×第2列:$1\\cdot k+k\\cdot1=2k$;第2行×第1列:$0\\cdot1+2\\cdot0=0$;第2行×第2列:$0\\cdot k+2\\cdot1=2$;得 $A_kP=\\begin{pmatrix}1&2k\\\\0&2\\end{pmatrix}=P\\operatorname{diag}(1,2)$;$\\det P=1$,故所有 $k$ 可对角化。",
+            "第四步:夹角公式(逐项):两特征线方向 $e_1=(1,0)$ 与 $(k,1)$;点积 $\\langle e_1,(k,1)\\rangle=1\\cdot k+0\\cdot1=k$;模长 $\\|(k,1)\\|=\\sqrt{k^2+1}$,$\\|e_1\\|=1$;故 $\\cos\\alpha=\\frac{|k|}{1\\cdot\\sqrt{k^2+1}}$;仅 $k=0$ 时 $\\cos\\alpha=0$,垂直。",
+            "第五步:正交对角化判定:实矩阵可正交对角化为实对角阵必对称;而 $A_k^{\\mathsf T}=\\begin{pmatrix}1&0\\\\k&2\\end{pmatrix}$ 与 $A_k$ 相等当且仅当 $k=0$;故正交对角化当且仅当 $k=0$,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c10-01",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "04f5f4ca04c4d6a2a5e2115e1e701cb116d5477a8fd20cf8dc477eaa58939c5e",
+      "new_math_content_sha256": "74118c3d492ec5ba77356ac2eab2d359629055127b8f1baf3c7f7fdcfaa677df",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "通项卡:奇项 $u_{2k-1}=\\frac1k>0$、偶项 $u_{2k}=-\\frac1k+2^{-k}<0$",
+            "部分和板书:$S_{2N}=1-2^{-N}$、$S_{2N+1}=1-2^{-N}+\\frac1{N+1}$ 逐项累加",
+            "高亮框:关键点 1——成对求和化为几何级数;关键点 2——绝对值级数含 $2\\sum1/k$ 发散",
+            "反例卡:$|u_4|=\\frac14<\\frac13=|u_5|$,绝对值不单调",
+            "结论卡:条件收敛,和 $1$;单调性是充分条件而非必要条件"
+          ],
+          "steps": [
+            "第一步:逐项写出:奇项 $u_{2k-1}=\\frac1k>0$;偶项 $u_{2k}=-\\frac1k+2^{-k}$;关键点:由 $2^k>k$ 得 $2^{-k}<\\frac1k$,故偶项为负,正负交错(高亮)。",
+            "第二步:逐项累加部分和(关键点:奇偶成对求和):$S_{2N}=\\sum_{k=1}^N(\\frac1k-\\frac1k+2^{-k})=\\sum_{k=1}^N2^{-k}=1-2^{-N}$(几何级数);$S_{2N+1}=S_{2N}+u_{2N+1}=1-2^{-N}+\\frac1{N+1}$;两式均趋于 $1$。",
+            "第三步:绝对值级数逐项对照:$\\sum_{n=1}^{2N}|u_n|=2\\sum_{k=1}^N\\frac1k-\\sum_{k=1}^N2^{-k}=2\\sum_{k=1}^N\\frac1k-1+2^{-N}$;关键点:调和级数发散、几何部分和有界,故该和趋于 $+\\infty$。",
+            "第四步:结论:级数收敛但绝对值级数发散 → 条件收敛,和为 $1$(高亮)。",
+            "第五步:单调性检查(关键点):$|u_4|=\\frac14<\\frac13=|u_5|$,绝对值不单调;莱布尼茨的单调条件是充分条件,不是必要条件;高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c10-03",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "157368401fd0bb4a06ffaeda9080d4ff0e8b4c9e527668f3de1c46e3c6b0bed1",
+      "new_math_content_sha256": "51598bcfe17736c41e85dc336419e8fc601f0c9d3f1ecb8c9bcbd8198ecc9b93",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "通项拆解卡:$n=2k-1$ 项为 $-\\frac1{2k-1}$、$n=2k$ 项为 $\\frac3{2k}$",
+            "成对和板书:$\\frac{4k-3}{2k(2k-1)}\\ge\\frac1{2k}$ 的放缩依据",
+            "高亮框:关键点 1——$S_{2N}\\ge\\frac12\\sum1/k\\to+\\infty$;关键点 2——振幅 $\\frac1{2k-1}<\\frac3{2k}$ 不递减",
+            "莱布尼茨检查卡:单调条件不满足",
+            "结论卡:级数发散到 $+\\infty$"
+          ],
+          "steps": [
+            "第一步:逐项计算通项:$n=2k-1$ 时 $\\frac{(-1)^n(2+(-1)^n)}n=\\frac{(-1)(2-1)}{2k-1}=-\\frac1{2k-1}$;$n=2k$ 时 $=\\frac{(1)(2+1)}{2k}=\\frac3{2k}$(高亮拆解)。",
+            "第二步:成对求和(逐项):第 $k$ 对和 $=\\frac3{2k}-\\frac1{2k-1}=\\frac{3(2k-1)-2k}{2k(2k-1)}=\\frac{4k-3}{2k(2k-1)}$;放缩(关键点):$4k-3\\ge2k-1$ 对 $k\\ge1$ 成立,故 $\\ge\\frac1{2k}$。",
+            "第三步:部分和下界(关键点):$S_{2N}=\\sum_{k=1}^N\\frac{4k-3}{2k(2k-1)}\\ge\\sum_{k=1}^N\\frac1{2k}=\\frac12\\sum_{k=1}^N\\frac1k\\to+\\infty$。",
+            "第四步:奇部分和:$S_{2N+1}=S_{2N}+u_{2N+1}=S_{2N}-\\frac1{2N+1}\\to+\\infty$;故级数发散到 $+\\infty$。",
+            "第五步:莱布尼茨为何不可用(关键点):振幅不递减:$\\frac1{2k-1}<\\frac3{2k}$(因 $2k<6k-3$,即 $4k-3>0$);通项绝对值不单调,莱布尼茨前提不满足,高亮结论。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c12-03",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "51251e819814a417dafa51371ba87cdaaee27255618b683f3a21d393b7d87689",
+      "new_math_content_sha256": "ecf57be037030697d156c9f6cc57380fde111335ef4e0c2fdf55e64dc785b385",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$\\sum\\sin(nx)/n$ 在 $[\\delta,2\\pi-\\delta]$ 一致、在 $(0,2\\pi)$ 不一致",
+            "板书一:几何求和恒等式 $2\\sin\\frac x2\\sum_{n=p}^q\\sin(nx)=\\cos((p-\\frac12)x)-\\cos((q+\\frac12)x)$",
+            "板书二:Abel 分部求和展开 $S_q/q+\\sum_{k=p}^{q-1}S_k(\\frac1k-\\frac1{k+1})$ 与放缩",
+            "高亮框:关键点 1——界与 $x,q$ 无关→一致柯西准则;关键点 2——$x_N=\\frac{\\pi}{4N}$ 使块和为常数 $\\frac{\\sqrt2}4$",
+            "结论卡:闭区间一致收敛;开区间不一致收敛"
+          ],
+          "steps": [
+            "第一步:几何求和恒等式(逐步推导):两端乘 $2\\sin\\frac x2$ 并逐项积化和差:$2\\sin\\frac x2\\sum_{n=p}^q\\sin(nx)=\\sum_{n=p}^q[\\cos((n-\\frac12)x)-\\cos((n+\\frac12)x)]=\\cos((p-\\frac12)x)-\\cos((q+\\frac12)x)$;取绝对值 $\\le2$,故 $|\\sum_{n=p}^q\\sin(nx)|\\le\\frac1{|\\sin(x/2)|}$。",
+            "第二步:在 $[\\delta,2\\pi-\\delta]$ 上(关键点):$|\\sin(x/2)|\\ge\\sin(\\delta/2)$,故任意正弦块 $\\le\\frac1{\\sin(\\delta/2)}$,与 $p,q,x$ 无关(高亮)。",
+            "第三步:Abel 分部求和(逐项展开):记 $S_k=\\sum_{n=p}^k\\sin(nx)$,则 $\\sum_{n=p}^q\\frac{\\sin(nx)}n=\\frac{S_q}{q}+\\sum_{k=p}^{q-1}S_k(\\frac1k-\\frac1{k+1})$;逐项取绝对值:$\\le\\frac1{q\\sin(\\delta/2)}+\\sum_{k=p}^{q-1}\\frac1{\\sin(\\delta/2)}(\\frac1k-\\frac1{k+1})=\\frac1{p\\sin(\\delta/2)}$。",
+            "第四步:该界与 $x,q$ 无关且随 $p\\to\\infty$ 收缩(关键点)→ 满足一致柯西准则;故在 $[\\delta,2\\pi-\\delta]$ 上一致收敛。",
+            "第五步:反例(关键点:选取意图是让整块正弦都大):取 $x_N=\\frac{\\pi}{4N}$;对 $N+1\\le n\\le2N$,$\\frac{\\pi}4<nx_N\\le\\frac{\\pi}2$,故 $\\sin(nx_N)\\ge\\frac{\\sqrt2}2$ 且 $\\frac1n\\ge\\frac1{2N}$;该块和 $\\ge N\\cdot\\frac{\\sqrt2}2\\cdot\\frac1{2N}=\\frac{\\sqrt2}4$;块和不一致趋于零 → 在 $(0,2\\pi)$ 上不一致收敛。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c14-01",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "5d7ddfe47c34ce886616cd1832e539ba05d02b86b72910b44ba639c05aeb42d4",
+      "new_math_content_sha256": "ee85dfbbc77a0396df266abbce18d642a1acce40187124915aff44bced6517ac",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "函数卡:$f(x)=|\\sin x|$ 的图像与偶函数标记",
+            "板书一:$a_0=\\frac2\\pi\\int_0^\\pi\\sin x\\,dx=\\frac4\\pi$ 的逐项计算",
+            "板书二:积化和差 $2\\sin x\\cos(nx)=\\sin((n+1)x)-\\sin((n-1)x)$ 与 $a_{2k}=-\\frac4{\\pi(4k^2-1)}$ 推导",
+            "高亮框:关键点 1——$n=1$ 时分母为零,单独直接积分得 $0$;关键点 2——$4k^2-1\\ge3k^2$ 的 M 判别放缩",
+            "结论卡:$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$,全实轴一致绝对收敛"
+          ],
+          "steps": [
+            "第一步:$f$ 为偶函数,故 $b_n=0$;常数项(逐项):$a_0=\\frac2\\pi\\int_0^\\pi\\sin x\\,dx=\\frac2\\pi[-\\cos x]_0^\\pi=\\frac2\\pi(1-(-1))=\\frac4\\pi$。",
+            "第二步:积化和差(逐步):$2\\sin x\\cos(nx)=\\sin((n+1)x)-\\sin((n-1)x)$;对 $n\\ne1$,$\\int_0^\\pi\\sin x\\cos(nx)dx=\\frac12[-\\frac{\\cos((n+1)x)}{n+1}+\\frac{\\cos((n-1)x)}{n-1}]_0^\\pi$;代入上下限:$n=2k$ 时得 $-\\frac2{4k^2-1}$,故 $a_{2k}=\\frac2\\pi\\cdot(-\\frac2{4k^2-1})=-\\frac4{\\pi(4k^2-1)}$;$n$ 为奇数(且 $n\\ne1$)时两端抵消得 $0$。",
+            "第三步:关键点:$n=1$ 时通式分母为零,必须单独直接积分:$\\int_0^\\pi\\sin x\\cos x\\,dx=\\frac12\\int_0^\\pi\\sin(2x)dx=\\frac12[-\\frac{\\cos2x}{2}]_0^\\pi=0$(高亮:不能代入含零分母的通式)。",
+            "第四步:写出展开:$f(x)=\\frac{a_0}{2}-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$。",
+            "第五步:M 判别(关键点):$4k^2-1\\ge3k^2$(因 $k^2\\ge1$),故 $|\\frac{\\cos(2kx)}{4k^2-1}|\\le\\frac1{3k^2}$ 且 $\\sum\\frac1{3k^2}$ 收敛 → 全实轴一致绝对收敛;$f$ 连续且分段光滑,Dirichlet 定理给每点 Fourier 和 $=f$;端点与尖点处左右值相同,无跳跃取值问题。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c26-04",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "4bca984fd1b18ac80e03bdf094e7d867566346ae5ce60803e2b4b0e99e7422ee",
+      "new_math_content_sha256": "f6fab8733dbc5aa67e9b7d9bdab5b7a5d12e91b92020df192ea46ece54fffaf1",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "映射卡:$T(x)=(x_3,x_4,0,0)$ 与 $U(x)=(x_2,x_3,0,0)$",
+            "迭代板书:$T^2=0$、$U^2\\ne0$、$U^3=0$ 的逐分量代入",
+            "像维数链:卡:$4\\to2\\to0$ 与 $4\\to2\\to1\\to0$ 的柱状图对照",
+            "高亮框:关键点——相似保持所有幂的秩/最小归零次数;非零幂零矩阵不可对角化",
+            "结论卡:秩均 $2$;不相似;均不可对角化"
+          ],
+          "steps": [
+            "第一步:求一次像:对 $x=(x_1,x_2,x_3,x_4)$,$T(x)=(x_3,x_4,0,0)$ 的像为后两坐标自由的平面;$U(x)=(x_2,x_3,0,0)$ 的像为前两坐标自由的平面;两者像维数均为 $2$;像维数序列起点 $4,2$(高亮)。",
+            "第二步:逐分量迭代(高亮):$T^2(x)=T(x_3,x_4,0,0)=(0,0,0,0)$,故 $T^2=0$ 而 $T\\ne0$;像维数 $4\\to2\\to0$,最小归零次数为 $2$。",
+            "第三步:逐分量迭代:$U^2(x)=U(x_2,x_3,0,0)=(x_3,0,0,0)\\ne0$(第三坐标残留);$U^3(x)=U(x_3,0,0,0)=(0,0,0,0)$;像维数 $4\\to2\\to1\\to0$,最小归零次数为 $3$。",
+            "第四步:不相似(关键点):相似变换保持所有幂的秩,即保持最小归零次数;$T$ 二次归零、$U$ 三次归零,故不相似(高亮)。",
+            "第五步:不可对角化(关键点):若非零幂零矩阵可对角化,特征值全为零,对角化结果只能为零矩阵,矛盾;故两者均不可对角化;相同一次秩不足以描述线性迭代的几何压缩。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c27-01",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "c7e082795832bafcec8cd3f68a250dcfb7567da6a0af4ae2b9e0d21ab9b8304a",
+      "new_math_content_sha256": "3d14afab826dccbe2ac8d30f838e25e5e00badc15b6f9f6c29ff5fe9986faa44",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=I+uv^{\\mathsf T}$,$\\alpha=v^{\\mathsf T}u$",
+            "板书一:$N^2=(uv^{\\mathsf T})(uv^{\\mathsf T})=u(v^{\\mathsf T}u)v^{\\mathsf T}=\\alpha N$ 的逐项推导",
+            "直和分解图:$\\mathbb R^n=\\ker v^{\\mathsf T}\\oplus\\operatorname{span}(u)$($\\alpha\\ne0$)",
+            "作用计算卡:$Ax=x$(超平面)与 $Au=(1+\\alpha)u$ 的逐项代入",
+            "结论卡:$\\alpha\\ne0$ 可对角化;$\\alpha=0$ 不可,最小多项式 $(\\lambda-1)^2$"
+          ],
+          "steps": [
+            "第一步:计算 $N^2$(逐项,高亮):$N^2=(uv^{\\mathsf T})(uv^{\\mathsf T})=u(v^{\\mathsf T}u)v^{\\mathsf T}=u\\alpha v^{\\mathsf T}=\\alpha uv^{\\mathsf T}=\\alpha N$(关键点:矩阵乘法结合律,标量 $\\alpha$ 提出)。",
+            "第二步:$\\alpha\\ne0$ 情形:超平面 $\\ker v^{\\mathsf T}$ 维数 $n-1$;验证 $u\\notin\\ker v^{\\mathsf T}$:因 $v^{\\mathsf T}u=\\alpha\\ne0$;故全空间分解为直和 $\\mathbb R^n=\\ker v^{\\mathsf T}\\oplus\\operatorname{span}(u)$。",
+            "第三步:逐项作用(高亮):$x\\in\\ker v^{\\mathsf T}$ 时 $Ax=x+u(v^{\\mathsf T}x)=x+u\\cdot0=x$,作用为特征值 $1$;$Au=u+u(v^{\\mathsf T}u)=u+\\alpha u=(1+\\alpha)u$,作用为特征值 $1+\\alpha$。",
+            "第四步:两个不同特征值 $1$ 与 $1+\\alpha$ 都出现 → 可对角化;最小多项式为 $(\\lambda-1)(\\lambda-1-\\alpha)$(高亮)。",
+            "第五步:$\\alpha=0$ 情形:$N^2=0$ 但 $N\\ne0$;$A=I+N$ 特征值全为 $1$;最小多项式为 $(\\lambda-1)^2$;若可对角化只能 $A=I$,与 $N\\ne0$ 矛盾(关键点);故不可对角化。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c41-02",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "5998bfea9724c8ca186b0d2ead7c8d197b9eb91da3100f02f9a600014c300561",
+      "new_math_content_sha256": "698037fa8240857f8f1420553fbff9713ab67ace7c85dd04385985f6696acc94",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$B=\\begin{pmatrix}1&-2\\\\2&1\\end{pmatrix}$,$A=\\begin{pmatrix}B&I_2\\\\0&B\\end{pmatrix}$",
+            "板书一:特征多项式 $\\lambda^2-2\\lambda+5=0$ 与求根 $1\\pm2i$",
+            "广义向量卡:$(A-\\lambda_\\pm I)w_\\pm=v_\\pm$ 的分块验证",
+            "板书二:$[(\\lambda-1)^2+4]^2$ 的逐步展开",
+            "结论卡:Jordan 形式 $J_2(1+2i)\\oplus J_2(1-2i)$,实最小多项式 $[(\\lambda-1)^2+4]^2$,不可对角化"
+          ],
+          "steps": [
+            "第一步:求 $B$ 的特征值(逐步):特征多项式 $\\det(B-\\lambda I)=\\begin{vmatrix}1-\\lambda&-2\\\\2&1-\\lambda\\end{vmatrix}=(1-\\lambda)^2+4=\\lambda^2-2\\lambda+5$;解 $\\lambda^2-2\\lambda+5=0$:求根公式 $\\lambda=\\frac{2\\pm\\sqrt{4-20}}2=1\\pm2i$(高亮)。",
+            "第二步:求特征向量:对 $\\lambda_+=1+2i$,解 $(B-\\lambda_+I)q=0$:即 $\\begin{pmatrix}-2i&-2\\\\2&-2i\\end{pmatrix}q=0$,$-2iq_1-2q_2=0$;取 $q_+=(1,-i)^{\\mathsf T}$;共轭得 $q_-=(1,i)^{\\mathsf T}$。",
+            "第三步:构造广义特征向量(分块逐项验证):令 $v_\\pm=(q_\\pm,0)$、$w_\\pm=(0,q_\\pm)$;$(A-\\lambda_\\pm I)w_\\pm=((B-\\lambda_\\pm I)\\cdot0+I_2q_\\pm,\\,0)=(q_\\pm,0)=v_\\pm$;且 $(A-\\lambda_\\pm I)v_\\pm=((B-\\lambda_\\pm I)q_\\pm,0)=(0,0)$(高亮两级链)。",
+            "第四步:$q_+,q_-$ 独立,故 $v_+,w_+,v_-,w_-$ 四向量组成复基;每个根一个二阶块 → Jordan 形式 $J_2(1+2i)\\oplus J_2(1-2i)$。",
+            "第五步:复最小多项式 $=(\\lambda-1-2i)^2(\\lambda-1+2i)^2$;逐步展开:$\\lambda-1-2i$ 与 $\\lambda-1+2i$ 相乘 $=(\\lambda-1)^2+4$;故实最小多项式 $=[(\\lambda-1)^2+4]^2$;两个二阶块 → 不可对角化(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c42-04",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "02730ff483216fe741c7aed647b100148586270c6629bbc1a5bbd26fbdd8d630",
+      "new_math_content_sha256": "ceeec1c62934099a78728a76ca5f7c29739aac372c2559077ee8aebe6c056e38",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}\\frac12&\\frac{\\sqrt3}{2}&0\\\\-\\frac{\\sqrt3}{2}&\\frac12&0\\\\0&0&-1\\end{pmatrix}$",
+            "正交验证板:三列模长与两两内积的逐项计算",
+            "特征多项式板:$(\\lambda+1)(\\lambda^2-\\lambda+1)$ 的展开与求根",
+            "几何解释图:$z$ 轴旋转 $-\\pi/3$ 与 $xy$ 平面反射",
+            "结论卡:正交,$\\det A=-1$;复合变换;无非零逐点固定向量"
+          ],
+          "steps": [
+            "第一步:列向量正交性验证(逐项):三列 $c_1=(\\frac12,-\\frac{\\sqrt3}2,0)$,$c_2=(\\frac{\\sqrt3}2,\\frac12,0)$,$c_3=(0,0,-1)$;模长:$\\|c_1\\|^2=\\frac14+\\frac34=1$,$\\|c_2\\|^2=\\frac34+\\frac14=1$,$\\|c_3\\|^2=1$;两两内积:$\\langle c_1,c_2\\rangle=\\frac12\\cdot\\frac{\\sqrt3}2+(-\\frac{\\sqrt3}2)\\cdot\\frac12+0=0$,$\\langle c_1,c_3\\rangle=0$,$\\langle c_2,c_3\\rangle=0$;故 $A^{\\mathsf T}A=I$,正交(高亮)。",
+            "第二步:行列式:$\\det A=\\det(R(-\\pi/3))\\cdot(-1)=1\\cdot(-1)=-1$(分块:前两维是旋转块)。",
+            "第三步:特征多项式(逐步):$\\det(A-\\lambda I)=[(\\frac12-\\lambda)^2+\\frac34](-1-\\lambda)=(\\lambda^2-\\lambda+1)(-1-\\lambda)$;求根:$\\lambda=-1$,以及 $\\lambda=\\frac{1\\pm\\sqrt{1-4}}2=\\frac12\\pm\\frac{\\sqrt3}2i$(高亮)。",
+            "第四步:几何解释:前两维块为绕 $z$ 轴旋转 $-\\pi/3$,第三维 $-1$ 为关于 $xy$ 平面的反射;两者作用在不同坐标上,可交换 → 复合变换。",
+            "第五步:关键点:特征值无 $1$,故无非零逐点固定向量;但 $z$ 轴仍是旋转因子的轴、作为集合被整个变换保持,轴上点变号;「没有逐点固定轴」不等于「复合中没有旋转轴」(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c07-01",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "49777fce24c3bca26142f66912b5dac4dc65afbb462ce49524d3bc72565dd1de",
+      "new_math_content_sha256": "ed61d3b3464189c93c9bb2b8db58440a5b1fbf4a49ed812bfe06574b45988934",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "极坐标图:三叶玫瑰线 $r=2\\sin3\\theta$ 的一叶阴影",
+            "角域标注卡:$0\\le\\theta\\le\\frac{\\pi}{3}$,叶的生成过程",
+            "板书:$A=\\frac12\\int_0^{\\frac{\\pi}{3}}4\\sin^2(3\\theta)d\\theta=2\\int_0^{\\frac{\\pi}{3}}\\sin^2(3\\theta)d\\theta$",
+            "换元板书:$u=3\\theta$、$du=3d\\theta$、$\\int_0^\\pi\\sin^2u\\,du=\\frac\\pi2$",
+            "结论卡:$A=\\frac{\\pi}{3}$"
+          ],
+          "steps": [
+            "第一步:确定一叶的角域(高亮):当 $\\theta$ 从 $0$ 到 $\\frac{\\pi}3$,$3\\theta$ 从 $0$ 到 $\\pi$,$r=2\\sin3\\theta$ 从 $0$ 增大到 $2$ 再回到 $0$,恰描出一叶。",
+            "第二步:极坐标面积公式:$A=\\frac12\\int_0^{\\frac{\\pi}{3}}r^2\\,d\\theta=\\frac12\\int_0^{\\frac{\\pi}{3}}4\\sin^2(3\\theta)\\,d\\theta$;系数整理:$\\frac12\\times4=2$,得 $A=2\\int_0^{\\frac{\\pi}{3}}\\sin^2(3\\theta)\\,d\\theta$。",
+            "第三步:换元(逐项):$u=3\\theta$,则 $du=3\\,d\\theta$,即 $d\\theta=\\frac13du$;上下限:$\\theta=0\\to u=0$,$\\theta=\\frac{\\pi}{3}\\to u=\\pi$;故 $A=\\frac23\\int_0^\\pi\\sin^2u\\,du$。",
+            "第四步:计算定积分(逐步):半角公式 $\\sin^2u=\\frac{1-\\cos2u}{2}$;原函数 $\\frac{u}{2}-\\frac{\\sin2u}{4}$;代入:$[\\frac{u}{2}-\\frac{\\sin2u}{4}]_0^\\pi=\\frac{\\pi}{2}$。",
+            "第五步:合起来:$A=\\frac23\\times\\frac{\\pi}{2}=\\frac{\\pi}{3}$(逐步分数乘法,高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 2,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c49-03",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "a9af9e4b2c82ba9600409223bb4f394d580bc5a20ada5b0d26ddf6a0156c745e",
+      "new_math_content_sha256": "bf5f5df4c60cdd0108e5dd5d409479eadffe8e94a7210a35eef030aca2ac6cb3",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$Y_n=\\sum_iw_{n,i}X_i$ 的 $L^2$ 收敛充要条件",
+            "板书一:$EY_n=\\frac12$、$\\operatorname{Var}Y_n=\\frac1{12}\\sum_iw_{n,i}^2$ 的依据标注",
+            "高亮框:关键点 1——$(\\max w)^2\\le\\sum w^2\\le\\max w$(依据 $w_i^2\\le w_i\\cdot\\max w$);关键点 2——平方和公式 $\\sum i^2=\\frac{n(n+1)(2n+1)}6$",
+            "板书二:指定权代入的中间式与 Chebyshev 上界",
+            "结论卡:充要条件 $\\sum_iw_{n,i}^2\\to0$;$n=100$ 上界 $\\frac{67}{606}$"
+          ],
+          "steps": [
+            "第一步:依据标注(高亮):$EX_i=\\frac12$、$\\operatorname{Var}X_i=\\operatorname{Var}U(0,1)=\\frac1{12}$、$\\sum_iw_{n,i}=1$;故 $EY_n=\\sum_iw_{n,i}EX_i=\\frac12$;$\\operatorname{Var}Y_n=\\sum_iw_{n,i}^2\\operatorname{Var}X_i=\\frac1{12}\\sum_iw_{n,i}^2$;且 $E|Y_n-\\frac12|^2=\\operatorname{Var}Y_n$($EY_n=\\frac12$)。",
+            "第二步:$L^2$ 收敛判据:$Y_n\\xrightarrow{L^2}\\frac12$ 当且仅当 $E|Y_n-\\frac12|^2\\to0$,即 $\\sum_iw_{n,i}^2\\to0$。",
+            "第三步:不等式链(逐项依据,关键点):$(\\max_iw_{n,i})^2\\le\\sum_iw_{n,i}^2$(最大项小于平方和);又 $w_{n,i}^2\\le w_{n,i}\\cdot\\max_iw_{n,i}$,求和得 $\\sum_iw_{n,i}^2\\le\\max_iw_{n,i}\\sum_iw_{n,i}=\\max_iw_{n,i}$;故充要条件等价于 $\\max_iw_{n,i}\\to0$。",
+            "第四步:指定权代入(逐项):$w_{n,i}=\\frac{2i}{n(n+1)}$;$\\sum_iw_{n,i}^2=\\frac4{n^2(n+1)^2}\\sum_{i=1}^ni^2=\\frac4{n^2(n+1)^2}\\cdot\\frac{n(n+1)(2n+1)}6=\\frac{2(2n+1)}{3n(n+1)}$(关键点:平方和公式);方差 $=\\frac1{12}\\cdot\\frac{2(2n+1)}{3n(n+1)}=\\frac{2n+1}{18n(n+1)}$。",
+            "第五步:Chebyshev(逐步):$P(|Y_n-\\frac12|\\ge\\frac1{10})\\le\\frac{\\operatorname{Var}Y_n}{(1/10)^2}=100\\cdot\\frac{2n+1}{18n(n+1)}=\\frac{50(2n+1)}{9n(n+1)}$;与 $1$ 取小得 $\\min\\{1,\\frac{50(2n+1)}{9n(n+1)}\\}$;$n=100$ 代入:$\\frac{50\\cdot201}{9\\cdot100\\cdot101}=\\frac{10050}{90900}=\\frac{67}{606}$(逐项化简,高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-07",
+      "id": "draft-c02-04",
+      "expected_selected_path": "batch-07/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+      "expected_selected_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "expected_record_sha256": "72841d59d2b4c08822a06afd4a08af44818d03ac32a09982a80b05b8befb8cdf",
+      "new_math_content_sha256": "0b2cc7375b964446cea733dc2c244048e7ce22793d3a9c0d80debcfa097a0be5",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "恒等式卡:$(e^{-ax}-e^{-bx})/x=\\int_a^b e^{-tx}\\,dt$ 的推导",
+            "板书一:内层积分 $[-\\frac{e^{-tx}}t]_0^\\infty=\\frac1t$ 与外层 $[\\ln t]_a^b$",
+            "高亮框:关键点——Tonelli 交换依据(非负);尾界依据 $|e^{-u}-e^{-v}|\\le|u-v|$",
+            "参数处理卡:$a>b$ 交换取负、$a=b$ 恒零",
+            "结论卡:绝对收敛,值 $\\ln\\frac ba$;不能拆成两个发散积分之差"
+          ],
+          "steps": [
+            "第一步:精确恒等式(逐步):对 $x>0$,$\\int_a^b e^{-tx}\\,dt=[-\\frac{e^{-tx}}x]_a^b=\\frac{e^{-ax}-e^{-bx}}x$(高亮)。",
+            "第二步:$a<b$ 情形:二重被积函数 $e^{-tx}$ 非负 → Tonelli 定理允许交换积分(关键点:非负性);内层逐项:$\\int_0^\\infty e^{-tx}\\,dx=[-\\frac{e^{-tx}}t]_0^\\infty=\\frac1t$。",
+            "第三步:外层逐项:$\\int_a^b\\frac1t\\,dt=[\\ln t]_a^b=\\ln b-\\ln a=\\ln\\frac ba<\\infty$;故原积分绝对收敛,值为 $\\ln\\frac ba$(高亮)。",
+            "第四步:参数处理:$a>b$ 时交换 $a,b$ 并取负(仍为 $\\ln\\frac ba$);$a=b$ 时被积函数恒为零。",
+            "第五步:直接上界与不可拆分(关键点):近零处 $|(e^{-ax}-e^{-bx})/x|=|\\int_a^be^{-tx}dt|\\le|b-a|$;尾部由 $|e^{-u}-e^{-v}|\\le|u-v|$ 得 $|e^{-ax}-e^{-bx}|\\le|a-b|xe^{-\\min(a,b)x}$,故尾积分 $\\le|b-a|\\cdot\\frac{e^{-\\min(a,b)R}}{\\min(a,b)}$;单独 $\\int_0^\\infty e^{-ax}/x\\,dx$ 在 $0$ 附近发散,不能拆成两个积分之差(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c07-03",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "237989cf1104a22190078f5d1b3b672f64c58fba9270551a0e5093746021bfc9",
+      "new_math_content_sha256": "9a4903ac7aaa5a02b3b15f27088c67f890949ba2358da24373e4edccc658f9c4",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "极坐标图:四叶玫瑰线 $r=\\cos2\\theta$ 与一叶阴影",
+            "角域标注卡:一叶对应 $-\\frac{\\pi}4\\le\\theta\\le\\frac{\\pi}4$",
+            "板书:$A_1=\\frac12\\int\\cos^2(2\\theta)d\\theta$ 与换元 $u=2\\theta$",
+            "原函数板:$\\frac u2+\\frac{\\sin2u}4$ 与代入 $\\frac\\pi2$",
+            "结论卡:一叶 $\\frac\\pi8$,总面积 $4\\times\\frac\\pi8=\\frac\\pi2$"
+          ],
+          "steps": [
+            "第一步:确定一叶角域(高亮):当 $-\\frac\\pi4\\le\\theta\\le\\frac\\pi4$ 时 $2\\theta\\in[-\\frac\\pi2,\\frac\\pi2]$,$r=\\cos2\\theta\\ge0$ 且极径从 $0$ 出发回到 $0$,描出一叶;四叶由四段对称生成 → 总面积 $=4A_1$。",
+            "第二步:极坐标面积公式:$A_1=\\frac12\\int_{-\\frac\\pi4}^{\\frac\\pi4}\\cos^2(2\\theta)\\,d\\theta$。",
+            "第三步:换元(逐项):$u=2\\theta$,则 $du=2\\,d\\theta$,即 $d\\theta=\\frac12du$;上下限:$\\theta=-\\frac\\pi4\\to u=-\\frac\\pi2$,$\\theta=\\frac\\pi4\\to u=\\frac\\pi2$;故 $\\int\\cos^2(2\\theta)d\\theta=\\frac12\\int_{-\\frac\\pi2}^{\\frac\\pi2}\\cos^2u\\,du$。",
+            "第四步:计算(逐步):半角公式 $\\cos^2u=\\frac{1+\\cos2u}2$;原函数 $\\frac u2+\\frac{\\sin2u}4$;代入:$[\\frac u2+\\frac{\\sin2u}4]_{-\\frac\\pi2}^{\\frac\\pi2}=\\frac\\pi4+\\frac\\pi4=\\frac\\pi2$;故 $A_1=\\frac12\\cdot\\frac12\\cdot\\frac\\pi2=\\frac\\pi8$。",
+            "第五步:总面积 $A=4A_1=4\\times\\frac\\pi8=\\frac\\pi2$(逐步乘法,高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c07-04",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "c5723080de9733058308f77c8acbfe2dc7de9473fd2c915ccc2479570bba4b06",
+      "new_math_content_sha256": "e304bca0a3db184d9177e3043995d6f995af807e4e114279e91540fb17b4c7b8",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "极坐标图:圆 $r=4\\cos\\theta$ 与圆 $r=2$,月牙区域阴影",
+            "交点卡:$\\cos\\theta=\\frac12$,$\\theta=\\pm\\frac\\pi3$",
+            "板书:$A=\\frac12\\int[(4\\cos\\theta)^2-2^2]d\\theta$ 与半角化简",
+            "原函数板:$\\theta+\\sin2\\theta$ 与上下限代入",
+            "结论卡:$A=\\frac{4\\pi}3+2\\sqrt3$"
+          ],
+          "steps": [
+            "第一步:求交点(高亮):$4\\cos\\theta=2$ 得 $\\cos\\theta=\\frac12$,即 $\\theta=\\pm\\frac\\pi3$;所求区域由 $-\\frac\\pi3\\le\\theta\\le\\frac\\pi3$ 且 $2\\le r\\le4\\cos\\theta$ 描述。",
+            "第二步:面积公式:$A=\\frac12\\int_{-\\frac\\pi3}^{\\frac\\pi3}[(4\\cos\\theta)^2-2^2]d\\theta=\\frac12\\int_{-\\frac\\pi3}^{\\frac\\pi3}(16\\cos^2\\theta-4)d\\theta$。",
+            "第三步:化简(逐项):提出 $4$:$=\\frac12\\cdot4\\int(4\\cos^2\\theta-1)d\\theta=2\\int(4\\cos^2\\theta-1)d\\theta$;半角公式 $\\cos^2\\theta=\\frac{1+\\cos2\\theta}2$:$4\\cos^2\\theta-1=2(1+\\cos2\\theta)-1=1+2\\cos2\\theta$(高亮)。",
+            "第四步:求原函数:$\\int(1+2\\cos2\\theta)d\\theta=\\theta+\\sin2\\theta$;代入上下限:$[\\theta+\\sin2\\theta]_{-\\frac\\pi3}^{\\frac\\pi3}=(\\frac\\pi3+\\frac{\\sqrt3}2)-(-\\frac\\pi3-\\frac{\\sqrt3}2)=\\frac{2\\pi}3+\\sqrt3$。",
+            "第五步:乘系数:$A=2(\\frac{2\\pi}3+\\sqrt3)=\\frac{4\\pi}3+2\\sqrt3$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c10-04",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "6715003ae4b6f382ff6a85cd4f451e649e9b07055bbe0327e9d02e78c778ce07",
+      "new_math_content_sha256": "515b2abf676c9319fe2f0720243a3d2ba682b08fe88ba5820518db9cbac18801",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$S=\\sum_{n\\ge1}(-1)^{n-1}/3^n$ 的精确余项与最小 $N$",
+            "板书一:$S=\\frac14$、$S_N=\\frac{1-(-1/3)^N}4$、$R_N=\\frac{(-1)^N}{4\\cdot3^N}$",
+            "高亮框:关键点 1——比较链 $3^5=243<625<729=3^6$;关键点 2——比较链 $3^7=2187<2500<6561=3^8$",
+            "分数验证板:$S_6=\\frac{182}{729}$、$R_6=\\frac1{2916}$",
+            "结论卡:实际最小 $N=6$;仅用莱布尼茨界的最小 $N=7$"
+          ],
+          "steps": [
+            "第一步:求 $S$ 与 $S_N$(逐项):$S$ 是首项 $\\frac13$、公比 $-\\frac13$ 的几何级数:$S=\\frac{1/3}{1-(-1/3)}=\\frac{1/3}{4/3}=\\frac14$;$S_N=\\frac{(1/3)(1-(-1/3)^N)}{1-(-1/3)}=\\frac{1-(-1/3)^N}4$。",
+            "第二步:精确余项:$R_N=S-S_N=\\frac14-\\frac{1-(-1/3)^N}4=\\frac{(-1/3)^N}4=\\frac{(-1)^N}{4\\cdot3^N}$。",
+            "第三步:实际误差条件:$|R_N|=\\frac1{4\\cdot3^N}<\\frac1{2500}$ 等价于 $3^N>625$;关键比较链(高亮):$3^5=243<625<729=3^6$,故实际最小 $N=6$。",
+            "第四步:莱布尼茨界:$|R_N|\\le|u_{N+1}|=3^{-(N+1)}$;仅用此界保证 $<\\frac1{2500}$ 需 $3^{N+1}>2500$;关键比较链(高亮):$3^7=2187<2500<6561=3^8$,故最小 $N=7$。",
+            "第五步:精确分数验证(逐项):$S_6=\\frac{1-(-1/3)^6}4=\\frac{1-\\frac1{729}}4=\\frac{728}{4\\cdot729}=\\frac{182}{729}$;$R_6=\\frac1{4\\cdot3^6}=\\frac1{2916}$;结论:界给的充分条件不能冒充实际最小项数(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c10-05",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "c4f7406dc73c943002f878030d71b65eb555c9672e2d46a59ab463ce91056fda",
+      "new_math_content_sha256": "f7cca5da4458ab9c33efefe142301de81944c21a595507840a98db75cd4b4c13",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:莱布尼茨判别法($a_n$ 递减趋于 $0$)",
+            "板书一:$S_{2m+2}-S_{2m}=a_{2m+1}-a_{2m+2}\\ge0$ 与 $S_{2m+3}-S_{2m+1}=-a_{2m+2}+a_{2m+3}\\le0$",
+            "高亮框:关键点 1——偶部分和递增、奇部分和递减且 $S_{2m}\\le S_{2l+1}$;关键点 2——$S_{2N+1}-S_{2N}=a_{2N+1}\\to0$",
+            "夹逼板:$0\\le(-1)^N(S-S_N)\\le a_{N+1}$",
+            "结论卡:级数收敛且 $|S-S_N|\\le a_{N+1}$"
+          ],
+          "steps": [
+            "第一步:写出条件:$a_n\\ge0$ 且 $a_{n+1}\\le a_n$、$a_n\\to0$;部分和 $S_N=\\sum_{n=1}^N(-1)^{n-1}a_n$。",
+            "第二步:单调性(逐项,高亮):$S_{2m+2}-S_{2m}=a_{2m+1}-a_{2m+2}\\ge0$,偶部分和递增;$S_{2m+3}-S_{2m+1}=-a_{2m+2}+a_{2m+3}\\le0$,奇部分和递减。",
+            "第三步:交叉序(关键点):$S_{2m}\\le S_{2m+1}\\le S_{2l+1}$ 对一切 $m,l$ 成立(偶部分和总不超奇部分和);两序列单调有界 → 各有极限;差 $S_{2N+1}-S_{2N}=a_{2N+1}\\to0$(逐项),故两极限相同,记为 $S$。",
+            "第四步:夹逼(关键点):由 $S_{2N}\\le S\\le S_{2N+1}$ 得 $0\\le S-S_{2N}\\le a_{2N+1}$;由 $S_{2N+2}\\le S\\le S_{2N+1}$ 得 $0\\le S_{2N+1}-S\\le a_{2N+2}$;统一写成 $0\\le(-1)^N(S-S_N)\\le a_{N+1}$。",
+            "第五步:结论:$|S-S_N|\\le a_{N+1}$,交错级数收敛且余项受下一项控制;该证明只涉及有限部分和及其极限(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c14-02",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "a14e7c3dbc46a25aba1d0840591c69d0c3caff7550d883ea2c7af28c14fef420",
+      "new_math_content_sha256": "97d70731907026611e5cb932a6c77f49502c3fb4bfd860d605f827b9794350af",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "函数卡:$f(x)=x(\\pi-x)$ 在 $[0,\\pi]$ 与周期奇延拓示意",
+            "板书一:两次分部积分的逐次计算与边界项代入",
+            "高亮框:关键点 1——边界项 $f(0)=f(\\pi)=0$;关键点 2——$|b_n|\\le\\frac8{\\pi n^3}$ 与 $p$-级数比较",
+            "展开板:$\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$",
+            "结论卡:端点为零,全实轴一致绝对收敛"
+          ],
+          "steps": [
+            "第一步:正弦展开公式:$b_n=\\frac2\\pi\\int_0^\\pi x(\\pi-x)\\sin(nx)\\,dx$;边界项:奇延拓下 $f(0)=f(\\pi)=0$(高亮)。",
+            "第二步:两次分部积分(逐次):第一次($u=x(\\pi-x)$,$dv=\\sin(nx)dx$):边界项 $[-\\frac{x(\\pi-x)\\cos(nx)}n]_0^\\pi=0$,剩 $\\frac1n\\int_0^\\pi(\\pi-2x)\\cos(nx)dx$;第二次($u=\\pi-2x$,$dv=\\frac{\\cos(nx)}n dx$):边界项 $[\\frac{(\\pi-2x)\\sin(nx)}{n^2}]_0^\\pi=0$,剩 $\\frac2{n^2}\\int_0^\\pi\\sin(nx)dx=\\frac2{n^2}\\cdot\\frac{1-(-1)^n}n=\\frac{2[1-(-1)^n]}{n^3}$。",
+            "第三步:代入系数:$b_n=\\frac2\\pi\\cdot\\frac{2[1-(-1)^n]}{n^3}=\\frac{4[1-(-1)^n]}{\\pi n^3}$;$n$ 偶时 $b_n=0$;$n=2k+1$ 时 $b_{2k+1}=\\frac8{\\pi(2k+1)^3}$。",
+            "第四步:写出展开:$f(x)=\\sum_{n\\ge1}b_n\\sin(nx)=\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$。",
+            "第五步:收敛方式(关键点):奇延拓在 $0,\\pm\\pi$ 处左右极限都为零,连续且分段光滑 → Dirichlet 定理每点取实际值;系数绝对可和:$|b_n|\\le\\frac8{\\pi n^3}$ 且 $\\sum\\frac1{n^3}$ 收敛(高亮比较),故周期展开全实轴一致绝对收敛。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c25-04",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "c12b8cc652f399c9ed00fa3f646adff14abca1d80a1610de8440dab1b956eaaa",
+      "new_math_content_sha256": "e6245afd25cee4591906aeaf105d44eb29fc63a3dfcb3925063ba6d28a64361b",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:柱面 $x^2+y^2=4$ 与抛物柱面 $z=x^2$ 的交线",
+            "参数化板书:$x=2\\cos t,y=2\\sin t,z=4\\cos^2t$",
+            "平面代入板:$2A\\cos t+2B\\sin t+2C\\cos2t+(2C-D)=0$ 与半角变换",
+            "高亮框:关键点——正交消去:$\\int\\cos^2t=\\pi$ 等四项积分逐项为零",
+            "结论卡:$A=B=C=D=0$ 矛盾,交线非平面"
+          ],
+          "steps": [
+            "第一步:参数化(逐项):圆柱 $x^2+y^2=4$ 给 $x=2\\cos t,y=2\\sin t$;代入 $z=x^2$ 得 $z=4\\cos^2t$;故完整交线为 $(2\\cos t,2\\sin t,4\\cos^2t)$,$0\\le t<2\\pi$。",
+            "第二步:反设(关键点):若整条交线在平面 $Ax+By+Cz=D$ 中,代入得 $2A\\cos t+2B\\sin t+4C\\cos^2t=D$ 对一切 $t$;半角变换 $4\\cos^2t=2(1+\\cos2t)$:$2A\\cos t+2B\\sin t+2C\\cos2t+(2C-D)=0$(高亮)。",
+            "第三步:正交消去(逐项):两边乘 $\\cos t$ 并在 $[0,2\\pi)$ 积分:$\\int_0^{2\\pi}\\cos^2t\\,dt=\\pi$,$\\int\\sin t\\cos t\\,dt=0$,$\\int\\cos2t\\cos t\\,dt=0$,$\\int\\cos t\\,dt=0$;得 $2A\\pi=0$,即 $A=0$。",
+            "第四步:同理逐项:乘 $1$ 积分得 $2\\pi(2C-D)=0$;乘 $\\sin t$ 得 $2B\\pi=0$,即 $B=0$;乘 $\\cos2t$ 得 $2C\\pi=0$,即 $C=0$;再代回得 $D=0$。",
+            "第五步:结论:$A=B=C=D=0$ 不是平面方程(平面要求系数不全为零),矛盾;故交线不包含于任何平面,是非平面闭交线(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c25-05",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "5386549c3b21e7174cfb8969ea7f4de5a33958db275bbc0b2e8647b5f53627c7",
+      "new_math_content_sha256": "d9307db1227403dee3a88677ca00c73a694a574d5888abf150f7adb3c67abed2",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:球面与抛物柱面的实交线(两弧连接)",
+            "不等式板书:令 $s=t^2$,$s^2+s-1\\le0\\Rightarrow s\\le\\frac{\\sqrt5-1}2$",
+            "高亮框:关键点 1——端点 $z=0$ 处两弧连接为一条闭曲线;关键点 2——梯度成比例导出的矛盾",
+            "端点参数板:消元解 $s=\\frac{-1+\\sqrt{5-4z^2}}2$",
+            "结论卡:正则非平面闭曲线"
+          ],
+          "steps": [
+            "第一步:参数化:$x=t$,$y=t^2$,$z=\\pm\\sqrt{1-t^2-t^4}$;解不等式(逐步):$1-t^2-t^4\\ge0$;令 $s=t^2\\ge0$,得 $s^2+s-1\\le0$;方程 $s^2+s-1=0$ 的根为 $\\frac{-1\\pm\\sqrt5}2$,取正根 $s\\le\\frac{\\sqrt5-1}2$;故 $|t|\\le r=\\sqrt{\\frac{\\sqrt5-1}2}$(高亮)。",
+            "第二步:分支连接(关键点):两弧在 $t=\\pm r$ 处汇于 $(\\pm r,r^2,0)$(此时 $z=0$);正负两弧合为一条闭曲线,不能误称两个连通分量。",
+            "第三步:正则性:$z\\ne0$ 时,球面梯度 $(2t,2t^2,2z)$ 与柱面梯度 $(-2t,1,0)$ 显然线性无关(第三分量结构不同)。",
+            "第四步:$z=0$ 情形(关键点):此时 $t\\ne0$;若两梯度成比例,设 $(2t,2t^2,0)=\\lambda(-2t,1,0)$:第一坐标给 $\\lambda=-1$,第二坐标要求 $2t^2=\\lambda=-1$,但 $2t^2\\ge0$,矛盾;故线性无关。",
+            "第五步:端点光滑参数(关键点):根号图形在端点不可作光滑参数;改以 $z$ 为参数:消元 $y=x^2$ 代入球面得 $x^2+x^4+z^2=1$;令 $s=x^2$,解 $s^2+s+(z^2-1)=0$ 得 $s=\\frac{-1+\\sqrt{5-4z^2}}2$(取正根),即 $x=\\pm\\sqrt{\\frac{-1+\\sqrt{5-4z^2}}2}$;故交线为正则非平面闭曲线(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c41-01",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "fc690fac96b6b7983b94612236ad71f948331f18da6a82ee55764a1b038cde3a",
+      "new_math_content_sha256": "03818effbcb36973fd920322c563768094c1bdf1eb478bca77f171472ffc2fb9",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "张量作用卡:$(J_2(0)\\otimes I_2)e_{ij}$ 与 $(I_2\\otimes J_2(0))e_{ij}$ 的规则",
+            "基向量作用板:$Ne_{11}=0,Ne_{12}=Ne_{21}=e_{11},Ne_{22}=e_{12}+e_{21}$",
+            "迭代板:$N^2e_{22}=2e_{11}$、$N^3=0$,秩链 $4,2,1,0$",
+            "链验证卡:$Nv_3=v_2,Nv_2=v_1,Nv_1=Nw=0$",
+            "结论卡:$P$ 如上,$J_3(0)\\oplus J_1(0)$"
+          ],
+          "steps": [
+            "第一步:张量作用规则(高亮):$J_2(0)$ 把 $e_2$ 送到 $e_1$、$e_1$ 送到 $0$;故 $(J_2(0)\\otimes I_2)e_{ij}=e_{i-1,j}$($i=2$ 时,$i=1$ 时为零),$(I_2\\otimes J_2(0))e_{ij}=e_{i,j-1}$;逐项:$Ne_{11}=0$;$Ne_{12}=e_{11}$;$Ne_{21}=e_{11}$;$Ne_{22}=e_{12}+e_{21}$。",
+            "第二步:逐次作用(逐项):$N^2e_{22}=N(e_{12}+e_{21})=e_{11}+e_{11}=2e_{11}\\ne0$;$N^3e_{22}=N(2e_{11})=0$;其余基向量至多两次归零;故秩链为 $4,2,1,0$($\\operatorname{Im}N=\\operatorname{span}(e_{11},e_{12}+e_{21})$ 维数 $2$,$\\operatorname{Im}N^2=\\operatorname{span}(e_{11})$ 维数 $1$,高亮)。",
+            "第三步:构造链并逐项验证(高亮):$v_3=e_{22}$,$v_2=e_{12}+e_{21}$,$v_1=2e_{11}$,$w=e_{12}-e_{21}$;$Nv_3=v_2$;$Nv_2=e_{11}+e_{11}=2e_{11}=v_1$;$Nv_1=0$;$Nw=e_{11}-e_{11}=0$。",
+            "第四步:写出换基矩阵:按列 $(v_1,v_2,v_3,w)$:列1$=2e_{11}=(2,0,0,0)$;列2$=e_{12}+e_{21}=(0,1,1,0)$;列3$=e_{22}=(0,0,0,1)$;列4$=w=(0,1,-1,0)$;$P=\\begin{pmatrix}2&0&0&0\\\\0&1&0&1\\\\0&1&0&-1\\\\0&0&1&0\\end{pmatrix}$。",
+            "第五步:结论:长度 $3$ 的链给一个 $3$ 阶块,陪一个 $1$ 阶块,故 Jordan 形式为 $J_3(0)\\oplus J_1(0)$(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 3,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c41-04",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "7390b1a9c693ceef56e3bc2e9e3a966f7b1a10446c0d17ebdd372d69cdffd5a0",
+      "new_math_content_sha256": "beb5a78db8f017ada38dd59649e264a968613dcfa68fc7bac15cba9ecc20d43a",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}4&2&1\\\\0&4&3\\\\0&0&4\\end{pmatrix}$ 与 $N=A-4I$",
+            "行×列计算卡:$v_2=Nv_3$ 与 $v_1=Nv_2$ 的分量乘积",
+            "行列式卡:$\\det P=6\\cdot3\\cdot1=18$(对角元乘积)",
+            "链验证板:$AP$ 各列与 $J_3(4)$ 的列对应",
+            "结论卡:$J_3(4)$,最小多项式 $(\\lambda-4)^3$"
+          ],
+          "steps": [
+            "第一步:令 $N=A-4I=\\begin{pmatrix}0&2&1\\\\0&0&3\\\\0&0&0\\end{pmatrix}$;取 $v_3=e_3$;计算 $v_2=Nv_3$(逐行×列,高亮):第1行×列:$0\\cdot0+2\\cdot0+1\\cdot1=1$;第2行×列:$0\\cdot0+0\\cdot0+3\\cdot1=3$;第3行×列:$0$;得 $v_2=(1,3,0)^{\\mathsf T}$。",
+            "第二步:计算 $v_1=Nv_2$(逐行×列,高亮):第1行×列:$0\\cdot1+2\\cdot3+1\\cdot0=6$;第2行×列:$0$;第3行×列:$0$;得 $v_1=(6,0,0)^{\\mathsf T}$;且 $Nv_1=0$(第一列全零,逐项验证)。",
+            "第三步:构造 $P=(v_1,v_2,v_3)=\\begin{pmatrix}6&1&0\\\\0&3&0\\\\0&0&1\\end{pmatrix}$;$P$ 为上三角,行列式 $=6\\cdot3\\cdot1=18\\ne0$(对角元乘积,高亮),故可逆。",
+            "第四步:链关系验证(逐列,高亮):$AP$ 的第1列 $=Av_1=Nv_1+4v_1=4v_1$;第2列 $=Av_2=Nv_2+4v_2=v_1+4v_2$;第3列 $=Av_3=Nv_3+4v_3=v_2+4v_3$;故 $AP=P\\begin{pmatrix}4&1&0\\\\0&4&1\\\\0&0&4\\end{pmatrix}$,即 $P^{-1}AP=J_3(4)$。",
+            "第五步:结论:Jordan 形式 $J_3(4)$;最小多项式 $(\\lambda-4)^3$;验证 $N^2\\ne0$(如 $N^2v_3=v_1\\ne0$)且 $N^3=0$;全部由链构造得出,不是直接读现成块(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c07-05",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "acbb3962e2e7adaf9c67f9d9b7bc092e02f47d84b1b399fbc84e0664a4968daf",
+      "new_math_content_sha256": "0b90bd7871ce150b8581120a52c65503010a37539c6d452cf50b4de97dc65bdf",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "极坐标图:双纽线 $r^2=\\cos2\\theta$ 两叶",
+            "角域卡:$\\cos2\\theta\\ge0$ 的区间划分 $[-\\frac\\pi4,\\frac\\pi4]\\cup[\\frac{3\\pi}4,\\frac{5\\pi}4]$",
+            "板书:$A_1=\\frac12\\int_{-\\frac\\pi4}^{\\frac\\pi4}\\cos2\\theta\\,d\\theta$ 与原函数 $\\frac{\\sin2\\theta}2$",
+            "高亮框:关键点——$[\\frac{\\sin2\\theta}2]_{-\\frac\\pi4}^{\\frac\\pi4}=1$ 的上下限代入",
+            "结论卡:每叶 $\\frac12$,总面积 $1$"
+          ],
+          "steps": [
+            "第一步:确定角域(高亮):需 $r^2=\\cos2\\theta\\ge0$,即 $2\\theta\\in[-\\frac\\pi2,\\frac\\pi2]$ 模 $2\\pi$;故 $\\theta\\in[-\\frac\\pi4,\\frac\\pi4]\\cup[\\frac{3\\pi}4,\\frac{5\\pi}4]$,两段对应两个对称的叶。",
+            "第二步:右叶面积公式:$A_1=\\frac12\\int_{-\\frac\\pi4}^{\\frac\\pi4}r^2\\,d\\theta=\\frac12\\int_{-\\frac\\pi4}^{\\frac\\pi4}\\cos2\\theta\\,d\\theta$。",
+            "第三步:求原函数(逐项):$\\int\\cos2\\theta\\,d\\theta=\\frac{\\sin2\\theta}2$;代入上下限(高亮):$[\\frac{\\sin2\\theta}2]_{-\\frac\\pi4}^{\\frac\\pi4}=\\frac{\\sin\\frac\\pi2}2-\\frac{\\sin(-\\frac\\pi2)}2=\\frac12+\\frac12=1$。",
+            "第四步:每叶面积:$A_1=\\frac12\\cdot1=\\frac12$。",
+            "第五步:两叶全等,总面积 $A=2A_1=2\\times\\frac12=1$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c08-01",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "4f254a65873a5e6d811f93287348cb9601a917feea7acef2fa65b45748e1b66a",
+      "new_math_content_sha256": "51b2c19868b27d7446aed7b26cf4d03ab6e13606d432facc5c111e563b4c74aa",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "参数图:摆线一拱($0\\le t\\le2\\pi$)与 $x$ 轴围成区域",
+            "方向依据卡:$x'=a(1-\\cos t)\\ge0$、两端点 $(0,0)$ 与 $(2\\pi a,0)$",
+            "板书:$A=\\int_0^{2\\pi}a(1-\\cos t)\\cdot a(1-\\cos t)\\,dt$ 的代入",
+            "展开板:$(1-\\cos t)^2=1-2\\cos t+\\cos^2t$ 与逐项积分",
+            "结论卡:$A=3\\pi a^2$"
+          ],
+          "steps": [
+            "第一步:方向与闭边界依据(高亮):$x'=a(1-\\cos t)\\ge0$ 且在 $(0,2\\pi)$ 严格为正;$y\\ge0$,两端点为 $(0,0)$ 与 $(2\\pi a,0)$;故这一拱是从左到右的单值图形,由轴上线段闭合。",
+            "第二步:面积公式(逐项代入):$A=\\int y\\,dx=\\int_0^{2\\pi}y(t)x'(t)\\,dt=\\int_0^{2\\pi}a(1-\\cos t)\\cdot a(1-\\cos t)\\,dt=a^2\\int_0^{2\\pi}(1-\\cos t)^2\\,dt$。",
+            "第三步:展开(逐项):$(1-\\cos t)^2=1-2\\cos t+\\cos^2t$;半角公式 $\\cos^2t=\\frac{1+\\cos2t}2$(高亮)。",
+            "第四步:逐项积分:$\\int_0^{2\\pi}1\\,dt=2\\pi$;$\\int_0^{2\\pi}\\cos t\\,dt=0$;$\\int_0^{2\\pi}\\cos^2t\\,dt=\\pi$(半角);合计 $2\\pi+0+\\pi=3\\pi$。",
+            "第五步:结论:$A=a^2\\cdot3\\pi=3\\pi a^2$;沿上拱从左到右的 $\\int y\\,dx$ 给正面积(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c08-02",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "86736cc9b98a97d2e9a2ab3872312f410dd297420d9c1f57cfa00c5cba902e3c",
+      "new_math_content_sha256": "983d0e051b05b33507299ad1e0ef60ce9212a146bd3b4f36c24a80a058bb6950",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "参数图:星形线 $x=a\\cos^3t,y=a\\sin^3t$ 与第一象限部分",
+            "求导板书:$x'=-3a\\cos^2t\\sin t$ 的逐项求导",
+            "积分板书:$3a^2\\int_0^{\\frac\\pi2}\\sin^4t\\cos^2t\\,dt$ 的符号整理",
+            "高亮框:关键点——Wallis 公式 $\\frac{(3!!\\cdot1!!)\\pi}{6!!\\cdot2}=\\frac{3\\pi}{96}$",
+            "结论卡:第一象限 $\\frac{3\\pi a^2}{32}$,总面积 $\\frac{3\\pi a^2}8$"
+          ],
+          "steps": [
+            "第一步:第一象限部分对应 $t$ 从 $\\frac\\pi2$ 到 $0$;求导(逐项):$x'=\\frac{d}{dt}(a\\cos^3t)=3a\\cos^2t\\cdot(-\\sin t)=-3a\\cos^2t\\sin t$(高亮)。",
+            "第二步:面积积分(逐项代入):$A_1=|\\int_{\\frac\\pi2}^0y\\,x'\\,dt|=|\\int_{\\frac\\pi2}^0(a\\sin^3t)(-3a\\cos^2t\\sin t)\\,dt|$;翻转上下限消去负号:$=3a^2\\int_0^{\\frac\\pi2}\\sin^4t\\cos^2t\\,dt$。",
+            "第三步:Wallis 公式(关键点,高亮):$\\int_0^{\\frac\\pi2}\\sin^4t\\cos^2t\\,dt=\\frac{(3!!\\cdot1!!)\\pi}{6!!\\cdot2}=\\frac{3\\pi}{96}$。",
+            "第四步:第一象限面积:$A_1=3a^2\\cdot\\frac{3\\pi}{96}=\\frac{3\\pi a^2}{32}$。",
+            "第五步:星形线四象限对称,总面积 $A=4A_1=\\frac{3\\pi a^2}8$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-08",
+      "id": "draft-c08-03",
+      "expected_selected_path": "batch-08/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0ab02c40e68eb8bc4402997b62b06bc83665781a2c7b2b15b99f6f061e15ebc3",
+      "expected_selected_raw_sha256": "7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f",
+      "expected_record_sha256": "7763112fd986f08da360cd81bdcf6de525e2a328a36a23567d59f795937b8dab",
+      "new_math_content_sha256": "13de0626f2208d3a7e6af76bf3b1a1de986625451bdebcc5b964ad7100312d54",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "参数图:笛卡尔叶形线的环($t$ 从 $0$ 到 $+\\infty$)",
+            "求导板书:$x'=\\frac{3(1-2t^3)}{(1+t^3)^2}$、$y'=\\frac{3t(2-t^3)}{(1+t^3)^2}$ 的商法则",
+            "化简板书:$xy'-yx'=\\frac{9t^2}{(1+t^3)^2}$ 的分子相减与约分",
+            "高亮框:关键点——换元 $u=1+t^3$,$3\\int_1^\\infty\\frac{du}{u^2}=3$",
+            "结论卡:$A=\\frac32$"
+          ],
+          "steps": [
+            "第一步:环对应 $t$ 从 $0$ 到 $+\\infty$;面积公式 $A=\\frac12\\int_0^{\\infty}(xy'-yx')\\,dt$。",
+            "第二步:逐项求导(商法则,高亮):$x'=\\frac{3(1+t^3)-3t\\cdot3t^2}{(1+t^3)^2}=\\frac{3(1-2t^3)}{(1+t^3)^2}$;$y'=\\frac{6t(1+t^3)-3t^2\\cdot3t^2}{(1+t^3)^2}=\\frac{3t(2-t^3)}{(1+t^3)^2}$。",
+            "第三步:叉积化简(逐项):$xy'-yx'=\\frac{3t\\cdot3t(2-t^3)-3t^2\\cdot3(1-2t^3)}{(1+t^3)^3}=\\frac{9t^2(2-t^3-1+2t^3)}{(1+t^3)^3}=\\frac{9t^2}{(1+t^3)^2}$(高亮分子相减与约分)。",
+            "第四步:广义积分(逐项,关键点):$A=\\frac12\\int_0^\\infty\\frac{9t^2}{(1+t^3)^2}dt$;换元 $u=1+t^3$,$du=3t^2\\,dt$:$\\int_0^\\infty\\frac{9t^2}{(1+t^3)^2}dt=3\\int_1^\\infty\\frac{du}{u^2}=3[-\\frac1u]_1^\\infty=3(0-(-1))=3$。",
+            "第五步:结论:$A=\\frac12\\cdot3=\\frac32$(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-09",
+      "id": "draft-c14-04",
+      "expected_selected_path": "batch-09/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f08bc2a5f684fdcd6b1c1080f3d880cf90da752babcdaf5be33776d8d7d6ac09",
+      "expected_selected_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "expected_record_sha256": "4a089416a77fcd3ced4438d8802181953d5423436297ba1c4a9f75e005c3344e",
+      "new_math_content_sha256": "c5dd2fd73b1b2b86b5552a71fce7708bf8237890eed1066423a3340fc000761b",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "函数卡:$f(x)=3+2\\cos x-\\sin(2x)$ 的系数读出",
+            "板书一:平移系数变换 $a_n'=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n'=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$ 的加法公式推导",
+            "高亮框:关键点——平方和展开中交叉项 $\\pm2a_nb_n\\sin\\cos$ 抵消",
+            "板书二:$\\alpha=\\frac\\pi3$ 的逐项代入",
+            "结论卡:$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}2\\cos2x+\\frac12\\sin2x$"
+          ],
+          "steps": [
+            "第一步:读出 $f$ 的系数:$a_0=6$(常数项 $3$)、$a_1=2$、$b_2=-1$,其余为零(高亮)。",
+            "第二步:一般平移公式(加法公式推导,高亮):$g(x)=f(x-\\alpha)$;对频率 $n$ 的项 $a_n\\cos(n(x-\\alpha))+b_n\\sin(n(x-\\alpha))$ 展开:$a_n[\\cos nx\\cos(n\\alpha)+\\sin nx\\sin(n\\alpha)]+b_n[\\sin nx\\cos(n\\alpha)-\\cos nx\\sin(n\\alpha)]$;合并得 $a_n'=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$,$b_n'=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$;常数项不变。",
+            "第三步:平方和不变(逐步):$(a_n')^2+(b_n')^2=[a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)]^2+[a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)]^2=a_n^2(\\cos^2+\\sin^2)+b_n^2(\\sin^2+\\cos^2)+2a_nb_n(\\sin\\cos-\\sin\\cos)=a_n^2+b_n^2$(关键点:交叉项抵消,高亮)。",
+            "第四步:代入 $\\alpha=\\frac\\pi3$(逐项):$a_1'=2\\cos\\frac\\pi3=2\\cdot\\frac12=1$;$b_1'=2\\sin\\frac\\pi3=2\\cdot\\frac{\\sqrt3}2=\\sqrt3$;$a_2'=-b_2\\sin\\frac{2\\pi}3=-(-1)\\cdot\\frac{\\sqrt3}2=\\frac{\\sqrt3}2$;$b_2'=b_2\\cos\\frac{2\\pi}3=(-1)\\cdot(-\\frac12)=\\frac12$;常数项仍为 $3$。",
+            "第五步:写出 $g(x)=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}2\\cos2x+\\frac12\\sin2x$;各频率 $a_n^2+b_n^2$ 不变(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-10",
+      "id": "draft-c17-04",
+      "expected_selected_path": "batch-10/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f758a67a2f2af52cc8e1cbc1206589aa4c86a175f89e63dc453d189af4b74078",
+      "expected_selected_raw_sha256": "dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e",
+      "expected_record_sha256": "69da5dda637fff55ee6b8881278c17ea0868f8f8c1d5a6fbc9d298a433e8b843",
+      "new_math_content_sha256": "d842560a372c07174d773dac9780afd420324a15813256cf3387d13405d1a710",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:两平面 $f_1=0$、$f_2=0$ 及其交线 $l$",
+            "法向量卡:$n_1=(1,1,1)$、$n_2=(1,-1,2)$ 线性无关",
+            "平面束板书:$sf_1+tf_2=0$,$(s,t)\\ne(0,0)$,比例标识同一平面",
+            "高亮框:关键点——齐次表示包含 $f_2=0$,而 $f_1+\\lambda f_2$ 会遗漏它",
+            "结论卡:过 $(1,1,1)$ 的成员为 $f_1-f_2=2y-z-1=0$"
+          ],
+          "steps": [
+            "第一步:法向量 $n_1=(1,1,1)$、$n_2=(1,-1,2)$ 不成比例,线性无关;任何包含交线 $l$ 的平面,其法向量必属于 $\\operatorname{span}(n_1,n_2)$(高亮)。",
+            "第二步:全部平面:$sf_1+tf_2=0$,$(s,t)\\ne(0,0)$;比例 $(s:t)$ 标识同一平面;该齐次表示包含 $f_2=0$(取 $s=0,t=1$),而 $f_1+\\lambda f_2$ 形式会遗漏它(关键点)。",
+            "第三步:过点条件(逐项代入):$P=(1,1,1)$:$f_1(P)=1+1+1-1=2$;$f_2(P)=1-1+2\\cdot1=2$(高亮)。",
+            "第四步:解比例:$sf_1(P)+tf_2(P)=2s+2t=0$,即 $s=-t$;取 $(s:t)=(1:-1)$。",
+            "第五步:所求平面:$f_1-f_2=0$,逐项相减:$(x+y+z-1)-(x-y+2z)=2y-z-1$,即 $2y-z-1=0$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c26-01",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "61577fe9a08d9aa40adef7a215e5ad00445120b5343a923fea1dbe50c5edb905",
+      "new_math_content_sha256": "541bc8cdb0f11c4ce4f51c1a327ccbee0650f949f2c7d63ca7260084c5250e51",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:平面 $n\\cdot x=0$、方向 $d$ 与斜投影示意",
+            "验证卡:$n\\cdot d=3$、$Pd=0$、$n\\cdot Px=0$ 的逐项计算",
+            "矩阵推导板:$Pe_1,Pe_2,Pe_3$ 三列逐分量计算",
+            "高亮框:关键点——核方向 $d$ 不平行 $n$ 且矩阵不对称 → 斜投影",
+            "结论卡:$P=\\begin{pmatrix}\\frac23&-\\frac23&\\frac13\\\\-\\frac13&\\frac13&\\frac13\\\\0&0&1\\end{pmatrix}$,分解 $x=Px+\\frac{(n\\cdot x)d}3$"
+          ],
+          "steps": [
+            "第一步:验证投影性质(逐项,高亮):$n\\cdot d=(1,2,-1)\\cdot(1,1,0)=1+2+0=3$;$Pd=d-\\frac{(n\\cdot d)d}3=d-d=0$;$n\\cdot Px=n\\cdot x-\\frac{(n\\cdot d)(n\\cdot x)}3=n\\cdot x-n\\cdot x=0$。",
+            "第二步:核与像:当 $n\\cdot x=0$ 时 $Px=x$;当 $x\\parallel d$ 时 $Px=0$;故 $\\ker P=\\operatorname{span}(d)$,$\\operatorname{im}P=n^\\perp$;$P^2=P$,秩 $2$。",
+            "第三步:逐列求矩阵(逐分量,高亮):$Pe_1=e_1-\\frac{(n\\cdot e_1)d}3=(1,0,0)-\\frac{(1,1,0)}3=(\\frac23,-\\frac13,0)$;$Pe_2=(0,1,0)-\\frac{(2,2,0)}3=(-\\frac23,\\frac13,0)$;$Pe_3=(0,0,1)-\\frac{(-1,-1,0)}3=(\\frac13,\\frac13,1)$;得 $P=\\begin{pmatrix}\\frac23&-\\frac23&\\frac13\\\\-\\frac13&\\frac13&\\frac13\\\\0&0&1\\end{pmatrix}$。",
+            "第四步:判定(关键点):核方向 $d=(1,1,0)$ 不平行法向量 $n=(1,2,-1)$,且矩阵不对称;故是沿 $d$ 到 $n^\\perp$ 的斜投影,不是 Euclidean 正交投影(高亮)。",
+            "第五步:分解唯一性:$x=Px+\\frac{(n\\cdot x)d}3$,第一项在 $n^\\perp$、第二项在核中,说明投影方向(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-12",
+      "id": "draft-c26-05",
+      "expected_selected_path": "batch-12/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "5edd5b7fe5449b490b163f2c83cb5598497bb70dca4d6621754292b26f21b403",
+      "expected_selected_raw_sha256": "acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89",
+      "expected_record_sha256": "3fc0a30abe0471413eaf18ee2dfefdf511de6d8618559cb7740417948945ba3b",
+      "new_math_content_sha256": "9dd1a9a5d4b09249bb0098946857a6db2ac4594c674e9d049d9a345e8b4aa1fa",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$)、$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(伸缩)",
+            "行×列计算卡:$AB$ 与 $BA$ 各四项分量乘积",
+            "单位正方形像对照图:$AB$ 的像与 $BA$ 的像",
+            "高亮框:关键点——$(1,2)$ 位置 $-1\\ne-2$、$(2,1)$ 位置 $2\\ne1$",
+            "结论卡:$AB\\ne BA$,几何作用不同"
+          ],
+          "steps": [
+            "第一步:计算 $AB$(逐行×列,高亮):第1行×第1列:$0\\cdot2+(-1)\\cdot0=0$;第1行×第2列:$0\\cdot0+(-1)\\cdot1=-1$;第2行×第1列:$1\\cdot2+0\\cdot0=2$;第2行×第2列:$1\\cdot0+0\\cdot1=0$;得 $AB=\\begin{pmatrix}0&-1\\\\2&0\\end{pmatrix}$。",
+            "第二步:计算 $BA$(逐行×列,高亮):第1行×第1列:$2\\cdot0+0\\cdot1=0$;第1行×第2列:$2\\cdot(-1)+0\\cdot0=-2$;第2行×第1列:$0\\cdot0+1\\cdot1=1$;第2行×第2列:$0\\cdot(-1)+1\\cdot0=0$;得 $BA=\\begin{pmatrix}0&-2\\\\1&0\\end{pmatrix}$。",
+            "第三步:$AB\\ne BA$:比较 $(1,2)$ 位置 $-1\\ne-2$、$(2,1)$ 位置 $2\\ne1$(高亮)。",
+            "第四步:$AB$ 的几何作用(先伸缩后旋转):单位正方形顶点像为 $(0,0),(0,2),(-1,2),(-1,0)$,横向放置的矩形(逐顶点标注)。",
+            "第五步:$BA$ 的几何作用(先旋转后伸缩):像为 $(0,0),(0,1),(-2,1),(-2,0)$,竖向放置的矩形;两种作用次序的像不同(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c29-02",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "11ac4570571c3905c4207cff76ae2f25108b61f20914af5dd19ec89533a4bb3d",
+      "new_math_content_sha256": "27d44bbad9b32d3129be97f0b7296ca45e35ebb8cfe59db99e623cc37e7cabfe",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$f(x)=x^3-7x^2+17x-15$ 与已知根 $2+i$",
+            "板书一:共轭根成对与因子展开 $((x-2)-i)((x-2)+i)$",
+            "高亮框:关键点——$i^2=-1$ 使常数项 $+1$",
+            "板书二:韦达定理 $r=7-(2+i)-(2-i)=3$",
+            "验证板:$(x-3)(x^2-4x+5)$ 展开逐项核对"
+          ],
+          "steps": [
+            "第一步:共轭成对(关键点,高亮):实系数多项式的非实根成对出现,故 $2-i$ 也是根。",
+            "第二步:因子展开(逐步):$(x-(2+i))(x-(2-i))=((x-2)-i)((x-2)+i)=(x-2)^2-i^2=x^2-4x+4+1=x^2-4x+5$(关键点:$i^2=-1$ 使常数项为 $+1$,高亮)。",
+            "第三步:韦达定理:三次根之和 $=7$;设第三根为 $r$,则 $r=7-(2+i)-(2-i)=7-4=3$。",
+            "第四步:验证展开(逐项):$(x-3)(x^2-4x+5)=x^3-4x^2+5x-3x^2+12x-15=x^3-7x^2+17x-15=f(x)$ ✓。",
+            "第五步:全部根:$3,2+i,2-i$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 4,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c29-03",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "d92683cdedc6bd31928501b5c821a387a8549ad5c26c027d51e0d4607968cbb2",
+      "new_math_content_sha256": "0413be92be572637f5c105795b435d9117b621ebe38108c1f810de6137330af3",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$f=x^4-4x^3+6x^2-4x+1$ 与二项式系数对照",
+            "长除法板书:$f'$ 除 $f$ 得商 $\\frac{x-1}4$、余 $0$ 的逐步演算",
+            "高亮框:关键点——$\\gcd(f,f')=(x-1)^3$,商 $x-1$ 给唯一不同根",
+            "导数代入板:$f^{(j)}(1)=0$($j=0,1,2,3$)、$f^{(4)}(1)=24$",
+            "结论卡:$x=1$ 是四重根"
+          ],
+          "steps": [
+            "第一步:识别(逐项对照):系数 $1,-4,6,-4,1$ 恰为 $(x-1)^4$ 的二项式展开;故 $f=(x-1)^4$,$f'=4(x-1)^3$(高亮)。",
+            "第二步:欧几里得长除法(逐步):用 $f'=4x^3-12x^2+12x-4$ 除 $f$:商为 $\\frac{x-1}4$;验算:$(x-1)\\cdot\\frac{f'}4=(x-1)(x^3-3x^2+3x-1)=x^4-4x^3+6x^2-4x+1=f$,余数为 $0$;故首一最大公因子 $\\gcd(f,f')=(x-1)^3$(高亮演算)。",
+            "第三步:商:$f/\\gcd=x-1$,唯一不同根为 $x=1$。",
+            "第四步:逐阶导数代入(高亮):$f'(1)=4\\cdot0^3=0$;$f''(x)=12(x-1)^2$,故 $f''(1)=0$;$f'''(x)=24(x-1)$,故 $f'''(1)=0$;$f^{(4)}(x)=24$,故 $f^{(4)}(1)=24\\ne0$。",
+            "第五步:结论:$x=1$ 的重数恰为 $4$(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-07",
+      "id": "draft-c06-02",
+      "expected_selected_path": "batch-07/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "2498f5de7e7934ae81847088a605b771c052d60f703a76101112a78be25716eb",
+      "expected_selected_raw_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894",
+      "expected_record_sha256": "0d26f3bc83af046cae9e6ef8933bb054a3dcf21b0cf744da8e6e199008f24788",
+      "new_math_content_sha256": "89ecef6e6d335befa7055ca8591b16b6f6707da4a9a291871317a98cd62a84b2",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "坐标系:$y=|x|$ 与 $y=1$ 围成区域的阴影与交点 $\\pm1$",
+            "板书:$A=2\\int_0^1(1-x)dx$ 的对称性说明",
+            "原函数板:$x-\\frac{x^2}2$ 与上下限代入",
+            "结论卡:$A=1$"
+          ],
+          "steps": [
+            "第一步:求交点:$|x|=1$ 得 $x=\\pm1$;区域关于 $y$ 轴对称(高亮)。",
+            "第二步:右半部分:$0\\le x\\le1$,上界 $y=1$、下界 $y=|x|=x$;故 $A=2\\int_0^1(1-x)\\,dx$。",
+            "第三步:逐项求原函数:$\\int(1-x)\\,dx=x-\\frac{x^2}2$。",
+            "第四步:代入上下限:$[x-\\frac{x^2}2]_0^1=(1-\\frac12)-0=\\frac12$。",
+            "第五步:乘对称因子:$A=2\\times\\frac12=1$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-10",
+      "id": "draft-c19-03",
+      "expected_selected_path": "batch-10/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f758a67a2f2af52cc8e1cbc1206589aa4c86a175f89e63dc453d189af4b74078",
+      "expected_selected_raw_sha256": "dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e",
+      "expected_record_sha256": "eecd28b29e5fb46728173e0817cb963074f16d5d239fb113987947418d616821",
+      "new_math_content_sha256": "291ed4140978c4e1fe741f2dc613e79b9588f1c18b8933ecfeae341e03c50b42",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:柱面 $x^2+y^2=1$ 与平面 $z=2x$ 的截线",
+            "投影卡:消去 $z$ 得 $xy$ 平面内的单位圆周",
+            "正交基板:$e_1=(0,1,0)$ 与 $e_2=\\frac{(1,0,2)}{\\sqrt5}$",
+            "高亮框:关键点——点积 $\\eta=\\sin t$、$\\xi=\\sqrt5\\cos t$ 的逐项计算",
+            "结论卡:平面 $z=2x$ 内半轴 $\\sqrt5$ 与 $1$ 的椭圆"
+          ],
+          "steps": [
+            "第一步:交线为方程组 $\\begin{cases}x^2+y^2=1\\\\z=2x\\end{cases}$;投影到 $xy$ 平面:消去 $z$ 得 $x^2+y^2=1$ 且 $-1\\le x\\le1$——投影是单位圆周(高亮)。",
+            "第二步:交线上每点满足 $z=2x$,位于平面 $z=2x$ 内;参数化 $(\\cos t,\\sin t,2\\cos t)$。",
+            "第三步:平面内取正交基:$e_1=(0,1,0)$;$e_2=\\frac{(1,0,2)}{\\sqrt5}$(模长 $\\sqrt{1+4}=\\sqrt5$,且与 $e_1$ 正交,高亮)。",
+            "第四步:逐项点积(高亮):$\\eta=(\\cos t,\\sin t,2\\cos t)\\cdot e_1=\\sin t$;$\\xi=(\\cos t,\\sin t,2\\cos t)\\cdot e_2=\\frac{\\cos t+4\\cos t}{\\sqrt5}=\\sqrt5\\cos t$。",
+            "第五步:代入验证:$\\eta^2+\\frac{\\xi^2}5=\\sin^2t+\\cos^2t=1$;故交线是该平面内半轴为 $\\sqrt5$ 与 $1$ 的椭圆(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-10",
+      "id": "draft-c19-04",
+      "expected_selected_path": "batch-10/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f758a67a2f2af52cc8e1cbc1206589aa4c86a175f89e63dc453d189af4b74078",
+      "expected_selected_raw_sha256": "dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e",
+      "expected_record_sha256": "dd08cd44db775eba93c9e3be12fc3b3bc79102bcc5c75cd28f00b09443e5db9f",
+      "new_math_content_sha256": "633c71e4763cef4ed1cb4006b4a1962a1b25479eeeec99fa4f250c94191e551b",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "四个方程卡:$x^2+y^2+z^2=0$、$x^2+y^2=0$、$x^2+y^2=1$、系统 $\\{x^2+y^2=1,2x^2+2y^2=2\\}$",
+            "维数标注图:单点/直线/柱面",
+            "梯度板书:$\\nabla(x^2+y^2+z^2)=(2x,2y,2z)$ 等的逐项求导",
+            "高亮框:关键点——Jacobian 两行 $(2x,2y,0)$ 与 $(4x,4y,0)$ 成比例,秩 1",
+            "结论卡:维数 $0,1,2,2$;满秩正则点才可用 $3-r$"
+          ],
+          "steps": [
+            "第一步:前三式分析(逐项):$x^2+y^2+z^2=0$:非负平方和为 $0$,仅单点 $(0,0,0)$,维数 $0$;$x^2+y^2=0$:仅 $x=y=0$,是 $z$ 轴,维数 $1$;$x^2+y^2=1$:圆柱面,维数 $2$(高亮)。",
+            "第二步:第四系统:$2x^2+2y^2=2$ 是第一个方程的 $2$ 倍,两方程等价;集合仍是圆柱面,维数 $2$。",
+            "第三步:梯度(逐项求导,高亮):$\\nabla(x^2+y^2+z^2)=(2x,2y,2z)$,在零集单点处 $=(0,0,0)$,退化;$\\nabla(x^2+y^2)=(2x,2y,0)$,在 $z$ 轴上 $=(0,0,0)$,退化;$\\nabla(x^2+y^2-1)=(2x,2y,0)$,在圆柱面上非零,正则。",
+            "第四步:Jacobian 检查(关键点):第四系统两行 $(2x,2y,0)$ 与 $(4x,4y,0)$ 成比例,秩为 $1$;只有一个独立约束(高亮)。",
+            "第五步:结论(高亮):对 $r$ 个 $C^1$ 方程,只有在某解附近 Jacobian 行满秩 $r$ 时,隐函数定理才保证局部维数 $3-r$;方程个数不能替代独立性与正则性检查。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-10",
+      "id": "draft-c19-05",
+      "expected_selected_path": "batch-10/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f758a67a2f2af52cc8e1cbc1206589aa4c86a175f89e63dc453d189af4b74078",
+      "expected_selected_raw_sha256": "dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e",
+      "expected_record_sha256": "51dffcf70c6c56281d77f5aa8806d78a1327dc08385fcd4864f4e3ea6845ad73",
+      "new_math_content_sha256": "6f16603beae8662231d522e86b7aac09aa8861f2cfb9e2d835d86eb05c99e038",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:平移不变 ⟺ $v\\cdot\\nabla F\\equiv0$",
+            "板书一:链式法则 $\\frac d{dt}F(x+tv)=\\nabla F(x+tv)\\cdot v$ 的逐项展开",
+            "板书二:$h(t)=F(x+tv)$ 与 $h'(t)=0$ 的求导",
+            "高亮框:关键点——零集沿 $v$ 整条直线不变(母线)",
+            "反例卡:$F=x^2+y^2$、$x^2+y^2+1$、$F=0$ 三个不含 $z$ 的例子"
+          ],
+          "steps": [
+            "第一步:必要性(链式法则逐项,高亮):$\\frac d{dt}F(x+tv)=\\partial_1F\\cdot v_1+\\partial_2F\\cdot v_2+\\partial_3F\\cdot v_3=\\nabla F(x+tv)\\cdot v$;若对一切 $t$ 平移不变,左端恒为零;令 $t=0$ 得 $v\\cdot\\nabla F(x)=0$。",
+            "第二步:充分性:固定 $x$,令 $h(t)=F(x+tv)$;则 $h'(t)=v\\cdot\\nabla F(x+tv)=0$ 处处成立(高亮求导);故 $h$ 恒定,即平移不变。",
+            "第三步:零集结构:零集沿 $v$ 的整条直线不变,这些直线是母线。",
+            "第四步:正则柱面条件(关键点):零集非空且在零集上 $\\nabla F\\ne0$ → 隐函数定理给局部二维正则曲面,母线为上述直线(高亮)。",
+            "第五步:反例(高亮):只知道不含 $z$ 不自动保证二维曲面:$F=x^2+y^2$ 的零集仅为 $z$ 轴;$F=x^2+y^2+1$ 的零集为空;$F=0$ 的零集为全空间;必须区分平移不变集合与正则二维柱面。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-11",
+      "id": "draft-c20-03",
+      "expected_selected_path": "batch-11/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "49f5c268c99a8d947244c6d8eee5117d617ae52bc81a116da2b20a09735af2ac",
+      "expected_selected_raw_sha256": "34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea",
+      "expected_record_sha256": "795c92739f81465962cb92fdca232d5536b242cd4d302b597b55b40b97e80378",
+      "new_math_content_sha256": "5f48ff397eafbb2934a0afe861c1550ee03985d053a381f5f136a7e22550e001",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$xy+tz^2=1$($t\\in\\mathbb R$)的分类",
+            "正交替换板:$u=\\frac{x+y}{\\sqrt2}$、$v=\\frac{-x+y}{\\sqrt2}$ 的单位长与正交验证",
+            "代入展开板:$u^2-v^2=2xy$ 的平方展开与相减",
+            "高亮框:关键点——$t=0$ 时秩由 $3$ 降为 $2$",
+            "结论卡:$t>0$ 单叶、$t<0$ 双叶、$t=0$ 双曲柱面"
+          ],
+          "steps": [
+            "第一步:正交替换验证(逐项,高亮):两列模长:$\\frac1{(\\sqrt2)^2}+\\frac1{(\\sqrt2)^2}=1$;内积:$\\frac1{\\sqrt2}\\cdot(-\\frac1{\\sqrt2})+\\frac1{\\sqrt2}\\cdot\\frac1{\\sqrt2}=0$;故 $u,v$ 是正交坐标替换。",
+            "第二步:代入展开(逐项):$u^2=\\frac{x^2+2xy+y^2}2$,$v^2=\\frac{x^2-2xy+y^2}2$;相减得 $u^2-v^2=2xy$,即 $xy=\\frac{u^2-v^2}2$;方程化为 $\\frac{u^2}2-\\frac{v^2}2+tz^2=1$(高亮)。",
+            "第三步:$t>0$:正平方两项($u^2,z^2$)、负平方一项($v^2$)→ 单叶双曲面。",
+            "第四步:$t<0$:正平方一项、负平方两项 → 双叶双曲面。",
+            "第五步:$t=0$(关键点):方程 $\\frac{u^2}2-\\frac{v^2}2=1$ 与 $z$ 无关 → 沿 $z$ 方向的双曲柱面;二次型秩由 $3$ 降为 $2$;分类依据惯性与正右端,不凭系数符号猜测(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-11",
+      "id": "draft-c20-04",
+      "expected_selected_path": "batch-11/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "49f5c268c99a8d947244c6d8eee5117d617ae52bc81a116da2b20a09735af2ac",
+      "expected_selected_raw_sha256": "34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea",
+      "expected_record_sha256": "2137e2eacd3e49249a8649caa0a9b05b008e9f4ddb330bd928ca8fac3a813d38",
+      "new_math_content_sha256": "64810500ca238a273afd818a077117517c886bfbaddfc45a88acf880fcedba83",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:椭球与平面 $x+y+z=t$ 的截面",
+            "板书一:$W^{-1}n=(1,\\frac12,\\frac13)$、$n^{\\mathsf T}W^{-1}n=\\frac{11}6$ 的逐项计算",
+            "板书二:$c^{\\mathsf T}Wc=\\frac{6t^2}{11}$ 的逐项代入",
+            "高亮框:关键点——切向基 $e=(1,-1,0)/\\sqrt2$、$f=(1,1,-2)/\\sqrt6$ 的限制矩阵行×列计算",
+            "结论卡:阈值 $|t|=\\sqrt{\\frac{11}6}$;半轴 $\\sqrt{\\frac{1-6t^2/11}{2\\mp1/\\sqrt3}}$"
+          ],
+          "steps": [
+            "第一步:记 $W=\\operatorname{diag}(1,2,3)$、$n=(1,1,1)$;平面上二次型的最小点为 $c=\\frac{tW^{-1}n}{n^{\\mathsf T}W^{-1}n}$。",
+            "第二步:逐项计算(高亮):$W^{-1}n=(1,\\frac12,\\frac13)$;$n^{\\mathsf T}W^{-1}n=1+\\frac12+\\frac13=\\frac{11}6$;故 $c=\\frac{t}{11/6}(1,\\frac12,\\frac13)=\\frac{t}{11}(6,3,2)$。",
+            "第三步:逐项代入:$c^{\\mathsf T}Wc=\\frac{t^2}{121}(36+2\\cdot9+3\\cdot4)=\\frac{t^2}{121}\\cdot66=\\frac{6t^2}{11}$(高亮)。",
+            "第四步:写 $x=c+h$,$n\\cdot h=0$;交叉项 $2c^{\\mathsf T}Wh=2t\\cdot n^{\\mathsf T}h=0$ 消失;截面满足 $h^{\\mathsf T}Wh=1-\\frac{6t^2}{11}$;故 $|t|>\\sqrt{\\frac{11}6}$ 为空,等号为单点,小于时为椭圆。",
+            "第五步:半轴(逐分量行×列,高亮):切向正交基 $e=(1,-1,0)/\\sqrt2$、$f=(1,1,-2)/\\sqrt6$;$e^{\\mathsf T}We=\\frac{1+2}{2}=\\frac32$;$e^{\\mathsf T}Wf=\\frac{1-2+0}{\\sqrt2\\sqrt6}=-\\frac1{2\\sqrt3}$;$f^{\\mathsf T}Wf=\\frac{1+2+12}6=\\frac52$;限制矩阵特征值为 $2\\pm\\frac1{\\sqrt3}$,半轴 $\\sqrt{\\frac{1-6t^2/11}{2\\mp1/\\sqrt3}}$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-11",
+      "id": "draft-c23-05",
+      "expected_selected_path": "batch-11/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "49f5c268c99a8d947244c6d8eee5117d617ae52bc81a116da2b20a09735af2ac",
+      "expected_selected_raw_sha256": "34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea",
+      "expected_record_sha256": "e376043ea795dd2707a40c69a268cd53f24e9faca08cb3f49e03ca0fe6e5da4a",
+      "new_math_content_sha256": "f199a59de627b2777f2295fd15f41de9db9129da6fe8f2abaed877aef1813a10",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "空间图:绕平行于 $z$ 轴的直线旋转 $90^\\circ$ 复合沿轴平移",
+            "分解板书:$b_\\parallel=(0,0,3)$、$b_\\perp=(1,2,0)$ 的逐项计算",
+            "消元板书:方程组 $p_1+p_2=1$、$-p_1+p_2=2$ 的求解",
+            "高亮框:关键点——$(I-A)p$ 第1、2行的分量乘积验证",
+            "结论卡:$p=(-\\frac12,\\frac32,0)$,螺旋运动"
+          ],
+          "steps": [
+            "第一步:旋转轴方向 $v=(0,0,1)$;分解 $b$(逐项,高亮):$b_\\parallel=(b\\cdot v)v=3\\cdot(0,0,1)=(0,0,3)$;$b_\\perp=b-b_\\parallel=(1,2,0)$。",
+            "第二步:写出 $I-A=\\begin{pmatrix}1&1&0\\\\-1&1&0\\\\0&0&0\\end{pmatrix}$;在 $v^\\perp$ 上解 $(I-A)p=b_\\perp$:即 $p_1+p_2=1$,$-p_1+p_2=2$。",
+            "第三步:消元(逐步,高亮):两式相加得 $2p_2=3$,故 $p_2=\\frac32$;代回第一式:$p_1=1-\\frac32=-\\frac12$;取 $p=(-\\frac12,\\frac32,0)$。",
+            "第四步:验证(逐行×列,高亮):$(I-A)p$ 第1行×列:$1\\cdot(-\\frac12)+1\\cdot\\frac32+0\\cdot0=1$;第2行×列:$(-1)\\cdot(-\\frac12)+1\\cdot\\frac32+0=2$;第3行×列:$0$;得 $(1,2,0)=b_\\perp$ ✓。",
+            "第五步:结论:$T$ = 绕过 $p=(-\\frac12,\\frac32,0)$ 且平行于 $z$ 轴的直线旋转 $90^\\circ$,复合沿 $z$ 轴平移 $(0,0,3)$——一个螺旋运动(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c27-02",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "eceffc98e80626fce00f412217f1603f3cb9357cdd78011842376ec77ba2e1fa",
+      "new_math_content_sha256": "33490796eab8c869e289f8c6afda45e2596611c54f57c0061227bafaa22a3d93",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$",
+            "板书一:$|\\lambda I-A|$ 按第一行展开的余子式过程",
+            "高亮框:关键点——$Av_\\lambda$ 第三分量 $2+\\lambda+\\lambda^2$ 用特征方程 $\\lambda^3=\\lambda^2+\\lambda+2$ 化简",
+            "特征根板:$2$、$\\omega=\\frac{-1+i\\sqrt3}2$、$\\bar\\omega$",
+            "结论卡:复域可对角化;实域不可"
+          ],
+          "steps": [
+            "第一步:特征多项式(按第一行展开,逐步):$|\\lambda I-A|=\\begin{vmatrix}\\lambda&-1&0\\\\0&\\lambda&-1\\\\-2&-1&\\lambda-1\\end{vmatrix}=\\lambda(\\lambda(\\lambda-1)-1)-(-1)(0\\cdot(\\lambda-1)-(-1)(-2))=\\lambda(\\lambda^2-\\lambda-1)-2=\\lambda^3-\\lambda^2-\\lambda-2$(高亮余子式展开)。",
+            "第二步:因式分解:验证 $\\lambda=2$ 是根($8-4-2-2=0$);除以 $\\lambda-2$ 得商 $\\lambda^2+\\lambda+1$;三根为 $2$、$\\omega=\\frac{-1+i\\sqrt3}2$、$\\bar\\omega$,互不相同。",
+            "第三步:特征向量验证(逐分量,高亮):取 $v_\\lambda=(1,\\lambda,\\lambda^2)^{\\mathsf T}$;$Av_\\lambda$ 第1分量 $=\\lambda$,第2分量 $=\\lambda^2$,第3分量 $=2+\\lambda+\\lambda^2$;由特征方程 $\\lambda^3=\\lambda^2+\\lambda+2$ 得第3分量 $=\\lambda^3=\\lambda\\cdot\\lambda^2$;故 $Av_\\lambda=\\lambda v_\\lambda$。",
+            "第四步:取 $P=(v_2,v_\\omega,v_{\\bar\\omega})$,则 $AP=P\\operatorname{diag}(2,\\omega,\\bar\\omega)$;三根互异 → 复域可对角化。",
+            "第五步:实域判定(关键点):特征多项式有非实根 $\\omega,\\bar\\omega$;实矩阵在 $\\mathbb R$ 上对角化要求特征值全实,故实域不可对角化(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c27-03",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "ccd59eb6362bffc01773ca78098eeb5f1da4bcb1200bfe92c103a23dac067e0f",
+      "new_math_content_sha256": "b5404fd03aab70e0ad4c899b0a15d6e8eeabfecdd4cea4af30ddf977936dc284",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$A^3=A$ 的谱投影构造",
+            "板书一:$P_0=I-A^2$、$P_\\pm=\\frac{A^2\\pm A}2$ 的幂等展开",
+            "高亮框:关键点——$A^4=A^2$ 的推导与两两乘积零的逐项展开",
+            "作用板:$AP_0=0$、$AP_+=P_+$、$AP_-=-P_-$",
+            "结论卡:可对角化;奇正幂 $A$、偶正幂 $A^2$"
+          ],
+          "steps": [
+            "第一步:定义 $P_0=I-A^2$、$P_+=\\frac{A^2+A}2$、$P_-=\\frac{A^2-A}2$;关键恒等式:$A^3=A$,且左乘 $A$ 得 $A^4=A^2$(高亮)。",
+            "第二步:幂等性(逐项展开,高亮):$P_0^2=(I-A^2)^2=I-2A^2+A^4=I-2A^2+A^2=I-A^2=P_0$;$P_+^2=\\frac{A^4+2A^3+A^2}4=\\frac{A^2+2A+A^2}4=\\frac{A^2+A}2=P_+$;$P_-^2=\\frac{A^4-2A^3+A^2}4=\\frac{A^2-2A+A^2}4=\\frac{A^2-A}2=P_-$。",
+            "第三步:两两乘积与和(逐项):$P_0P_+=\\frac{(I-A^2)(A^2+A)}2=\\frac{A^2+A-A^4-A^3}2=\\frac{A^2+A-A^2-A}2=0$;$P_+P_-=\\frac{(A^2+A)(A^2-A)}4=\\frac{A^4-A^2}4=0$;同理 $P_0P_-=0$;$P_0+P_++P_-=I$(高亮)。",
+            "第四步:作用(逐项):$AP_0=A-A^3=A-A=0$;$AP_+=\\frac{A^3+A^2}2=\\frac{A+A^2}2=P_+$;$AP_-=\\frac{A^3-A^2}2=\\frac{A-A^2}2=-P_-$;故全空间为三个像的直和,各像取基得对角化,零维像省略。",
+            "第五步:幂(逐步,高亮):由 $A^3=A$ 左乘 $A^{m-1}$ 得 $A^{m+2}=A^{m-1}A^3=A^m$($m\\ge1$);故正奇数幂为 $A$、正偶数幂为 $A^2$;这依赖多项式恒等式与简单根结构,不是数值替换。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 5,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c27-05",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "94ccfe8a28b61a2b61ab3bca9c583bde077db7931d4a66722ad4995f163e8057",
+      "new_math_content_sha256": "17e03fce48d47f37be47ccd28e8fc2d8b530bb0fde985fa6bf85c49da3fe270a",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$n$ 阶矩阵在数域 $\\mathbb F$ 内有 $n$ 个互异特征值",
+            "板书一:施加 $A-\\lambda_mI$ 的逐向量计算",
+            "高亮框:关键点 1——$(A-\\lambda_mI)v_m=0$;关键点 2——$c_mv_m=0$ 且 $v_m\\ne0$ 推出 $c_m=0$",
+            "归纳图:奠基 $m=1$ 与归纳步",
+            "结论卡:$AP=P\\operatorname{diag}(\\lambda_i)$,在 $\\mathbb F$ 内可对角化"
+          ],
+          "steps": [
+            "第一步:取互异 $\\lambda_1,\\ldots,\\lambda_n\\in\\mathbb F$ 与各自的非零特征向量 $v_i$;目标:用归纳法证明 $v_1,\\ldots,v_n$ 线性无关。",
+            "第二步:归纳奠基:$m=1$:单个非零向量 $v_1$ 线性无关(高亮)。",
+            "第三步:归纳步(逐步,高亮):设 $\\sum_{i=1}^mc_iv_i=0$;两端施加 $A-\\lambda_mI$:对 $i<m$,$(A-\\lambda_mI)v_i=Av_i-\\lambda_mv_i=(\\lambda_i-\\lambda_m)v_i$;而 $(A-\\lambda_mI)v_m=Av_m-\\lambda_mv_m=\\lambda_mv_m-\\lambda_mv_m=0$;得 $\\sum_{i<m}c_i(\\lambda_i-\\lambda_m)v_i=0$。",
+            "第四步:由归纳假设($v_1,\\ldots,v_{m-1}$ 无关)与互异性 $\\lambda_i-\\lambda_m\\ne0$,得 $c_i=0$($i<m$);代回原式得 $c_mv_m=0$;因 $v_m\\ne0$,故 $c_m=0$(关键点,高亮)。",
+            "第五步:结论:$n$ 个特征向量线性无关,构成可逆矩阵 $P$,且 $AP=P\\operatorname{diag}(\\lambda_i)$;故在 $\\mathbb F$ 内可对角化;前提是数域 $\\mathbb F$ 内有全部 $n$ 个特征值(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c29-05",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "9f5709c2921c5bcf6971f08ac2a2cabc131f9bf634caef0d7f64722b1d243688",
+      "new_math_content_sha256": "496d54078753a0d651d9363c0b5b902f81f25040279b9570b37e5084088e6853",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:三次韦达定理与构造题",
+            "板书一:逐步相乘 $(x-\\alpha)(x-\\beta)=x^2-(\\alpha+\\beta)x+\\alpha\\beta$ 再乘 $(x-\\gamma)$ 的逐项合并",
+            "高亮框:关键点——两两积和项 $\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha$ 的来源",
+            "板书二:系数比较 $\\alpha+\\beta+\\gamma=-p$ 等三条",
+            "构造板:根 $2,-1,\\frac12$ 的三项代入与验证"
+          ],
+          "steps": [
+            "第一步:设首一三次多项式 $f(x)=x^3+px^2+qx+r$ 的根为 $\\alpha,\\beta,\\gamma$,则 $f(x)=(x-\\alpha)(x-\\beta)(x-\\gamma)$。",
+            "第二步:逐步相乘(高亮):先 $(x-\\alpha)(x-\\beta)=x^2-(\\alpha+\\beta)x+\\alpha\\beta$;再乘 $(x-\\gamma)$:$(x^2-(\\alpha+\\beta)x+\\alpha\\beta)(x-\\gamma)=x^3-(\\alpha+\\beta)x^2+\\alpha\\beta x-\\gamma x^2+\\gamma(\\alpha+\\beta)x-\\alpha\\beta\\gamma=x^3-(\\alpha+\\beta+\\gamma)x^2+(\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha)x-\\alpha\\beta\\gamma$(关键点:$x$ 项来自 $\\alpha\\beta+\\gamma\\alpha+\\gamma\\beta$,即两两积和)。",
+            "第三步:比较系数:$x^2$ 项:$\\alpha+\\beta+\\gamma=-p$;$x$ 项:$\\alpha\\beta+\\beta\\gamma+\\gamma\\alpha=q$;常数项:$\\alpha\\beta\\gamma=-r$。",
+            "第四步:构造(逐步代入):根 $2,-1,\\frac12$:根和 $=2-1+\\frac12=\\frac32$,故 $p=-\\frac32$;两两积和 $=2\\cdot(-1)+(-1)\\cdot\\frac12+\\frac12\\cdot2=-2-\\frac12+1=-\\frac32$,故 $q=-\\frac32$;根积 $=2\\cdot(-1)\\cdot\\frac12=-1$,故 $r=1$。",
+            "第五步:故 $f(x)=x^3-\\frac32x^2-\\frac32x+1$;验证 $x=2$:$8-6-3+1=0$ ✓(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-04",
+      "id": "draft-c30-01",
+      "expected_selected_path": "batch-04/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+      "expected_selected_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+      "expected_record_sha256": "e8b73cb7ca90608fbc83c976cc8d431fab5971193319c4614ffdbc8327bc8938",
+      "new_math_content_sha256": "49b971a00feb7fd2f7e2a3c5a742d74b1fa8f8ed648cacce675e37e612c526ab",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:三重零点 $x=1$、二重零点 $x=2$、$f(0)=1$",
+            "板书一:$f=c(x-1)^3(x-2)^2$ 的因子依据",
+            "高亮框:关键点——$f(0)=c(-1)^3(-2)^2=-4c=1$ 的代入",
+            "平移展开板:$(u-1)^2=u^2-2u+1$ 与逐项乘除",
+            "结论卡:$f=-\\frac{u^5}4+\\frac{u^4}2-\\frac{u^3}4$,解唯一"
+          ],
+          "steps": [
+            "第一步:零点重数给 $(x-1)^3(x-2)^2\\mid f$;由次数不超过 $5$,得 $f=c(x-1)^3(x-2)^2$。",
+            "第二步:代入(逐步,高亮):$f(0)=c(-1)^3(-2)^2=c\\cdot(-1)\\cdot4=-4c$;条件 $f(0)=1$ 给 $-4c=1$,即 $c=-\\frac14$。",
+            "第三步:换元 $u=x-1$:则 $(x-2)^2=(u-1)^2=u^2-2u+1$(逐项展开)。",
+            "第四步:逐项相乘:$f=-\\frac14u^3(u^2-2u+1)=-\\frac14(u^5-2u^4+u^3)=-\\frac{u^5}4+\\frac{u^4}2-\\frac{u^3}4$(高亮)。",
+            "第五步:唯一性(关键点):$c\\ne0$ 且两个因子互素,故重数分别恰为 $3$ 与 $2$;常数被唯一确定,解唯一(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-04",
+      "id": "draft-c30-03",
+      "expected_selected_path": "batch-04/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a010c1fc95fdfab01a65f8b9b24dc8de05a7957088fa7d9d21a2cd5cb6593551",
+      "expected_selected_raw_sha256": "49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a",
+      "expected_record_sha256": "88c522ccf5efb67f9f1d8465977607e65f016f877de24a6b9917a5be8676e26c",
+      "new_math_content_sha256": "f201c9b4d7e4e9925fbc690cd38ea3582255556400d2aaa5eb6971e1138d4482",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$\\Delta f(x)=f(x+1)-f(x)$ 在次数≤3空间上",
+            "板书一:二项式展开 $(x+1)^m=x^m+mx^{m-1}+\\cdots$ 与首项抵消",
+            "高亮框:关键点——$x^{m-1}$ 项系数 $mc\\ne0$ 来自哪一项",
+            "板书二:$\\Delta(x^3)=3x^2+3x+1$ 等逐项差分",
+            "比较板:方程组 $3a=3$、$3a+2b=5$、$a+b+c=2$ 的逐步回代"
+          ],
+          "steps": [
+            "第一步:降阶证明(逐步,高亮):设 $f$ 首项 $cx^m$;二项式展开 $(x+1)^m=x^m+mx^{m-1}+\\cdots$;$\\Delta f$ 中 $x^m$ 项 $c-c=0$ 抵消;而 $x^{m-1}$ 项仅由 $c(x+1)^m$ 展开贡献,系数为 $mc\\ne0$(关键点:只有 $(x+1)^m$ 的 $mx^{m-1}$ 项贡献 $x^{m-1}$ 系数);故 $\\deg\\Delta f=m-1$。",
+            "第二步:在次数≤3空间上连续四次 $\\Delta$ 必降为 $0$:$\\Delta^4=0$;且 $\\Delta^3(x^3)=3\\cdot2\\cdot1=6\\ne0$(三次降阶后为常数),故指数恰为 $4$(高亮)。",
+            "第三步:设 $f=ax^3+bx^2+cx+d$;逐项差分(高亮):$\\Delta(x^3)=(x+1)^3-x^3=3x^2+3x+1$;$\\Delta(x^2)=2x+1$;$\\Delta x=1$;$\\Delta1=0$;故 $\\Delta f=3ax^2+(3a+2b)x+(a+b+c)$。",
+            "第四步:比较系数(逐步回代,高亮):$3a=3$ → $a=1$;$3a+2b=5$ → $3+2b=5$ → $b=1$;$a+b+c=2$ → $1+1+c=2$ → $c=0$。",
+            "第五步:$f(0)=2$ 给 $d=2$;故 $f=x^3+x^2+2$;若另有一解,差满足 $\\Delta g=0$ 且 $g(0)=0$,只能 $g=0$,解唯一(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-05",
+      "id": "draft-c31-03",
+      "expected_selected_path": "batch-05/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+      "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+      "expected_record_sha256": "b426eebc7299845f421fb7fd81e4eabc3c89a5815079978efd52d9fb54710d1c",
+      "new_math_content_sha256": "0580cff9f7d04552d1d97b46004d052afd70ba5f707cb2a9ae212e26b6e84e12",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "方程组卡:$x+y+z=1$、$x+y+2z=2$、$x+2y+az=3$",
+            "板书一:$D$ 按第一行展开的余子式逐项",
+            "板书二:$D_x,D_y,D_z$ 三个替换行列式的逐项展开",
+            "高亮框:关键点——$D=-1$ 与 $a$ 无关,对一切 $a$ 唯一解",
+            "结论卡:$x=a-3$,$y=3-a$,$z=1$"
+          ],
+          "steps": [
+            "第一步:系数行列式(按第一行展开,逐项,高亮):$D=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(a-2)+1\\cdot(2-1)=a-4-a+2+1=-1$;与 $a$ 无关且非零 → 对一切 $a$ 有唯一解。",
+            "第二步:$D_x$(逐项展开):$\\begin{vmatrix}1&1&1\\\\2&1&2\\\\3&2&a\\end{vmatrix}=1\\cdot(a-4)-1\\cdot(2a-6)+1\\cdot(4-3)=a-4-2a+6+1=-a+3$。",
+            "第三步:$D_y$(逐项展开):$\\begin{vmatrix}1&1&1\\\\1&2&2\\\\1&3&a\\end{vmatrix}=1\\cdot(2a-6)-1\\cdot(a-2)+1\\cdot(3-2)=2a-6-a+2+1=a-3$。",
+            "第四步:$D_z$(逐项展开):$\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&3\\end{vmatrix}=1\\cdot(3-4)-1\\cdot(3-2)+1\\cdot(2-1)=-1-1+1=-1$。",
+            "第五步:克拉默公式(逐步比值,高亮):$x=\\frac{D_x}D=\\frac{-a+3}{-1}=a-3$;$y=\\frac{D_y}D=\\frac{a-3}{-1}=3-a$;$z=\\frac{D_z}D=\\frac{-1}{-1}=1$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-05",
+      "id": "draft-c31-04",
+      "expected_selected_path": "batch-05/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+      "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+      "expected_record_sha256": "14ed1b1c797d57b0534e3147cd31321e1271d2a4c12bda7c073ba804a150794a",
+      "new_math_content_sha256": "3f7a19e1ea2606e019a7c17c8eeaf5ce34c0cf7c51a2598e95d7e16ceb1f7830",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "方程组卡:$kx+y=1$、$x+ky=k$",
+            "板书一:$D=k^2-1=(k-1)(k+1)$ 的对角乘积相减",
+            "高亮框:关键点——$D_x=1\\cdot k-k\\cdot1=0$、$D_y=k^2-1$ 的分量乘积",
+            "比值板:$x=\\frac0D=0$、$y=\\frac DD=1$",
+            "奇异讨论卡:$k=1$ 与 $k=-1$ 的退化方程"
+          ],
+          "steps": [
+            "第一步:系数行列式(对角乘积相减,高亮):$D=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=(k-1)(k+1)$。",
+            "第二步:$k\\ne\\pm1$ 时(逐项):$D_x=\\begin{vmatrix}1&1\\\\k&k\\end{vmatrix}=1\\cdot k-1\\cdot k=0$;$D_y=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k\\cdot k-1\\cdot1=k^2-1=D$(高亮)。",
+            "第三步:比值(逐步代入):$x=\\frac{D_x}D=\\frac0D=0$;$y=\\frac{D_y}D=\\frac DD=1$。",
+            "第四步:$k=1$:两方程均为 $x+y=1$,退化为同一直线,无穷多解(高亮)。",
+            "第五步:$k=-1$:方程为 $-x+y=1$ 与 $x-y=-1$;第二个是第一个的 $-1$ 倍,同一直线,无穷多解(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-05",
+      "id": "draft-c31-05",
+      "expected_selected_path": "batch-05/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "f71c1491ee4475718e87d4699383dcd6f49de2932b77a7a4431549e8182a7cfb",
+      "expected_selected_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+      "expected_record_sha256": "cee2990afa3e846f949a69e4ee9a5070c116e2b315e64c6ca57b9bc1ca5b6c04",
+      "new_math_content_sha256": "d2715d148b558349fc1327628408018bbe0649d2ca39013ba2cd1fbf785ea979",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:克拉默公式的证明",
+            "板书一:$(A\\,\\mathrm{adj}(A))_{ij}=\\sum_{k=1}^na_{ik}A_{jk}$ 的第i行×第j列书写",
+            "高亮框:关键点——$i=j$ 按行展开得 $D$;$i\\ne j$ 异行展开为 $0$",
+            "板书二:$A^{-1}=\\frac1D\\mathrm{adj}(A)$ 与解的表达式",
+            "结论卡:$x_j=\\frac{D_j}D$"
+          ],
+          "steps": [
+            "第一步:记 $A_{ij}$ 为代数余子式,伴随矩阵 $\\mathrm{adj}(A)=(A_{ji})$(注意转置排列,高亮)。",
+            "第二步:第 $i$ 行×第 $j$ 列(高亮书写):$(A\\,\\mathrm{adj}(A))_{ij}=\\sum_{k=1}^na_{ik}A_{jk}$。",
+            "第三步:分两种情形(关键点):$i=j$ 时是第 $i$ 行按行展开:$\\sum_ka_{ik}A_{ik}=\\det A=D$;$i\\ne j$ 时是异行展开:$\\sum_ka_{ik}A_{jk}=0$(引用按行展开公式与异行展开为零,高亮)。",
+            "第四步:故 $A\\,\\mathrm{adj}(A)=DI$;因 $D\\ne0$,得 $A^{-1}=\\frac1D\\mathrm{adj}(A)$;方程组解为 $x=A^{-1}b$。",
+            "第五步:第 $j$ 个分量(逐步,高亮):$x_j=\\frac1D\\sum_k(\\mathrm{adj}(A))_{jk}b_k=\\frac1D\\sum_kA_{kj}b_k=\\frac{D_j}D$($D_j$ 是把第 $j$ 列换成 $b$ 后按第 $j$ 列展开的行列式)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-13",
+      "id": "draft-c32-02",
+      "expected_selected_path": "batch-13/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0f05cf0229b13fdfb05e78a3611442fd9bc561ef0b8745c0db574b4f5a500181",
+      "expected_selected_raw_sha256": "37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6",
+      "expected_record_sha256": "5790728c48441fe4dfe9d8ccc054dcdf2894528dbbb735ab6321a22036e531e3",
+      "new_math_content_sha256": "352ff36adf12aa321d7299bc511171af979c82e1c44c23b449b0d1eab7eb4c1b",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$V=\\{x\\in\\mathbb R^4:\\sum x_i=0,\\sum ix_i=0\\}$",
+            "板书一:约束行 $(1,1,1,1)$ 与 $(0,1,2,3)$ 的秩判断",
+            "高亮框:关键点——$v,w$ 代入两个约束的逐项验算",
+            "消元板:$y_1+y_2=0$ 与 $y_1+2y_2=0$ 的求解",
+            "结论卡:基 $(1,-2,1,0),(0,1,-2,1)$,维数 $2$"
+          ],
+          "steps": [
+            "第一步:约束行 $(1,1,1,1)$ 与 $(0,1,2,3)$ 不成比例,秩为 $2$;故 $\\dim V=4-2=2$。",
+            "第二步:验证 $v=(1,-2,1,0)$(逐项,高亮):$\\sum x_i=1-2+1+0=0$;$\\sum ix_i=0\\cdot1+1\\cdot(-2)+2\\cdot1+3\\cdot0=0$;$w=(0,1,-2,1)$:$\\sum x_i=0+1-2+1=0$;$\\sum ix_i=0+1\\cdot1+2\\cdot(-2)+3\\cdot1=0$。",
+            "第三步:独立性(高亮):若 $c_1v+c_2w=0$,首坐标给 $c_1=0$,末坐标给 $c_2=0$;故 $v,w$ 线性无关。",
+            "第四步:张成(逐步):任取解 $y$;作 $y-x_0v-x_3w$,其首末坐标都变为零。",
+            "第五步:剩余两坐标满足 $y_1+y_2=0$ 与 $y_1+2y_2=0$;消元(高亮):两式相减得 $y_2=0$,回代得 $y_1=0$;故差为零,即 $y=x_0v+x_3w$,$v,w$ 张成全部解。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c34-01",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "18c05dba090236e18bc625edba93ea90520ca4b7b6ad1555ab2e8ed0fd497d45",
+      "new_math_content_sha256": "31d5ad13425ecb027bb27a9565e58050475aa268b3faf6f045f5f3cf4b7fe05c",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$E=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\0&0&5\\end{pmatrix}$ 与符号元矩阵 $A=(a_{ij})$",
+            "板书一:$(EA)_{ij}=\\sum_kE_{ik}A_{kj}$ 的行×列机制",
+            "高亮框:关键点——$E$ 仅对角元非零,故 $(EA)_{3j}=5A_{3j}$、$(AE)_{i3}=5A_{i3}$",
+            "演示板:左乘后第三行乘 5、右乘后第三列乘 5 的逐元素对照",
+            "结论卡:倍乘型初等矩阵;左乘行操作、右乘列操作"
+          ],
+          "steps": [
+            "第一步:行×列机制(高亮):$(EA)_{ij}=\\sum_kE_{ik}A_{kj}$;因 $E$ 仅对角元非零($E_{11}=E_{22}=1,E_{33}=5$)。",
+            "第二步:左乘逐项:$i\\ne3$ 时 $(EA)_{ij}=1\\cdot A_{ij}=A_{ij}$,其余行不变;$i=3$ 时 $(EA)_{3j}=5\\cdot A_{3j}$,第三行乘以 $5$(高亮)。",
+            "第三步:右乘逐项:$(AE)_{ij}=\\sum_kA_{ik}E_{kj}$;$j\\ne3$ 时 $(AE)_{ij}=A_{ij}$;$j=3$ 时 $(AE)_{i3}=5\\cdot A_{i3}$,第三列乘以 $5$(高亮)。",
+            "第四步:符号元演示(逐元素):左乘后 $EA=\\begin{pmatrix}a_{11}&a_{12}&a_{13}\\\\a_{21}&a_{22}&a_{23}\\\\5a_{31}&5a_{32}&5a_{33}\\end{pmatrix}$;右乘后 $AE=\\begin{pmatrix}a_{11}&a_{12}&5a_{13}\\\\a_{21}&a_{22}&5a_{23}\\\\a_{31}&a_{32}&5a_{33}\\end{pmatrix}$(逐格对照)。",
+            "第五步:结论:$E$ 是单位矩阵把第三行(列)乘以 $5$ 得到的倍乘型初等矩阵;左乘作用于行、右乘作用于列(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c34-02",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "d10b3277a88e33069a686e04529337e705aee4f5d6ca23c9f1ceb90cd804ccf0",
+      "new_math_content_sha256": "6050a80d11154cbca2b88868ac5129f779297531e76546191982340577506947",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "构造卡:把第二行加到第一行的初等矩阵 $E$",
+            "板书一:$EA$ 第1行 $=1\\cdot A_{1j}+1\\cdot A_{2j}$ 的行×列机制",
+            "高亮框:关键点——$E^{-1}$ 对应第一行减去第二行",
+            "验证板:$EE^{-1}=I$ 的九项分量乘积",
+            "结论卡:$E$ 与 $E^{-1}$ 的矩阵"
+          ],
+          "steps": [
+            "第一步:构造机制(高亮):要求 $(EA)_{1j}=\\sum_kE_{1k}A_{kj}=1\\cdot A_{1j}+1\\cdot A_{2j}=$ 第1行+第2行;故 $E=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+            "第二步:逆操作:把第一行减去第二行,即 $E^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+            "第三步:验证第1行(逐行×列,高亮):第1行×第1列:$1\\cdot1+1\\cdot0+0\\cdot0=1$;第1行×第2列:$1\\cdot(-1)+1\\cdot1+0\\cdot0=0$;第1行×第3列:$0$。",
+            "第四步:验证第2、3行(逐项):第2行×各列:$0\\cdot1+1\\cdot0+0=0$、$0\\cdot(-1)+1\\cdot1+0=1$、$0$;第3行×各列:$0,0,1\\cdot1$;得 $EE^{-1}=I$(高亮)。",
+            "第五步:结论:$E^{-1}$ 对应的操作是「把第一行减去第二行」(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 6,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c34-03",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "ae2729b8de07c4158cf7c6c56a49299a898e65a19776f1d2bc09a0616dfde09b",
+      "new_math_content_sha256": "d08e7f45ea7e281383d754acbf2b237e62ee34e26c8606bd9991a9e869172504",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "操作卡:先交换第一、二行,再将(新的)第一行乘以 $2$",
+            "矩阵卡:$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$、$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$",
+            "高亮框:关键点——先作用的矩阵写在右边:复合为 $P_2P_1$",
+            "行×列计算板:$P_2P_1$ 的九项分量乘积",
+            "作用演示板:对符号元矩阵逐步做两次行变换并对照"
+          ],
+          "steps": [
+            "第一步:写出 $P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$(交换1、2行),$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$(第1行乘2)。",
+            "第二步:顺序(关键点,高亮):先做 $P_1$ 后做 $P_2$,对应左乘 $P_2P_1$——先作用的矩阵写在右边。",
+            "第三步:乘法(逐行×列,高亮):第1行 $(2,0,0)$:×第1列 $(0,1,0)^{\\mathsf T}=2\\cdot0+0\\cdot1+0\\cdot0=0$;×第2列 $(1,0,0)^{\\mathsf T}=2\\cdot1=2$;×第3列 $=0$;第2行 $(0,1,0)$:×第1列 $=1$、×第2列 $=0$、×第3列 $=0$;第3行:×第3列 $=1$;得 $P_2P_1=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+            "第四步:作用验证(逐步):对 $A=\\begin{pmatrix}a&b&c\\\\d&e&f\\\\g&h&i\\end{pmatrix}$:先 $P_1A=\\begin{pmatrix}d&e&f\\\\a&b&c\\\\g&h&i\\end{pmatrix}$(交换1、2行);再 $P_2(P_1A)=\\begin{pmatrix}2d&2e&2f\\\\a&b&c\\\\g&h&i\\end{pmatrix}$(第1行乘2);与 $(P_2P_1)A$ 一致(高亮)。",
+            "第五步:结论:复合行变换矩阵为 $P_2P_1=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,先交换第一、二行,再把新的第一行乘以 $2$(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c34-05",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "899fd69d38e0633bf89f7e829afd100b1f3e7558d9038642bc4f7f31f3e339c9",
+      "new_math_content_sha256": "06afe3b1b6b36eb4072d8f66f746e671ec0c51bff9e7279487ed3d6d6bfd7eec",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$E_{ij}(a)=I+ae_{ij}$ 的四因子复合与逆",
+            "板书一:乘法规则 $e_{ij}e_{kl}=\\delta_{jk}e_{il}$ 与关键事实 $e_{12}e_{23}=e_{13}$、$e_{23}e_{12}=0$",
+            "高亮框:关键点——$e_{13}$ 项经 $e_{12}e_{23}$ 积累系数 $ab$",
+            "板书二:逆公式 $(I+ae_{ij})(I-ae_{ij})=I$ 的展开验证",
+            "验证卡:$a=\\frac23,b=\\frac34$ 代入得 $ab=\\frac12$"
+          ],
+          "steps": [
+            "第一步:乘法规则(高亮):$e_{ij}e_{kl}=\\delta_{jk}e_{il}$;关键事实:$e_{12}e_{23}=e_{13}$ 而 $e_{23}e_{12}=0$;各相关平方为零:$e_{12}^2=e_{23}^2=e_{13}^2=0$。",
+            "第二步:逐因子相乘(逐步,高亮):$(I+ae_{12})(I+be_{23})=I+ae_{12}+be_{23}+abe_{13}$;再乘 $(I-ae_{12})$:结果 $=I+ae_{12}+be_{23}+abe_{13}-ae_{12}-a^2e_{12}^2-abe_{12}e_{23}-a^2be_{13}e_{12}=I+be_{23}+abe_{13}$(用 $e_{12}^2=0$、$e_{13}e_{12}=0$ 消去)。",
+            "第三步:再乘 $(I-be_{23})$:$(I+be_{23}+abe_{13})(I-be_{23})=I+be_{23}+abe_{13}-be_{23}-b^2e_{23}^2-ab^2e_{13}e_{23}=I+abe_{13}$;故复合 $=E_{13}(ab)$(关键点:$e_{13}$ 项经 $e_{12}e_{23}=e_{13}$ 积累系数 $ab$,高亮)。",
+            "第四步:逆公式验证(逐项):$(I+ae_{ij})(I-ae_{ij})=I+ae_{ij}-ae_{ij}-a^2e_{ij}^2=I$(因 $e_{ij}^2=0$);故 $E_{ij}(a)^{-1}=E_{ij}(-a)$,最终逆为 $E_{13}(-ab)$。",
+            "第五步:代入验证(逐步):$a=\\frac23,b=\\frac34$:$ab=\\frac23\\cdot\\frac34=\\frac12$;复合为 $E_{13}(\\frac12)=I+\\frac12e_{13}$,$(1,3)$ 元为 $\\frac12$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-03",
+      "id": "draft-c35-02",
+      "expected_selected_path": "batch-03/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "b36e4d0e09ac40de05dff2067b79a82e1ce3c376df687479767d4b3f25487cc0",
+      "expected_selected_raw_sha256": "cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac",
+      "expected_record_sha256": "79d9e4c3a9425d9f6879ed198712dcee10697200982304332498a7ae36931e3d",
+      "new_math_content_sha256": "83acdf7b4ea90e787c96872d4ff5f9285e52981b6a0a4e274ae1f21c266bae6c",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$f=(x_1-x_2)^2+2(x_2-x_3)^2+3(x_3-x_4)^2$ 的替换与惯性",
+            "板书一:替换 $u_1=x_1-x_2$ 等与反解的逐步代入",
+            "高亮框:关键点——上三角反解保证替换可逆",
+            "板书二:标准形与伸缩 $v_2=\\sqrt2u_2$、$v_3=\\sqrt3u_3$",
+            "限制卡:$V=\\{x:x_4=0\\}$ 上逐项归零得正定"
+          ],
+          "steps": [
+            "第一步:作替换:$u_1=x_1-x_2$,$u_2=x_2-x_3$,$u_3=x_3-x_4$,$w=x_4$。",
+            "第二步:反解(逐步代入,高亮):$x_4=w$;$x_3=u_3+x_4=u_3+w$;$x_2=u_2+x_3=u_2+u_3+w$;$x_1=u_1+x_2=u_1+u_2+u_3+w$;上三角结构保证替换可逆。",
+            "第三步:标准形:$f=u_1^2+2u_2^2+3u_3^2+0w^2$;再伸缩(逐项):$v_1=u_1$,$v_2=\\sqrt2u_2$(因 $(\\sqrt2u_2)^2=2u_2^2$),$v_3=\\sqrt3u_3$;得规范形 $v_1^2+v_2^2+v_3^2+0w^2$。",
+            "第四步:全空间结论:秩为 $3$,惯性为 $(3,0,1)$(3 正、0 负、1 零,高亮)。",
+            "第五步:限制在 $V=\\{x:x_4=0\\}$:此时 $u_3=x_3$;$f|_V=(x_1-x_2)^2+2(x_2-x_3)^2+3x_3^2$;若其为零,逐项得 $x_3=0$、$x_2=0$、$x_1=0$;故限制后为正定型(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-03",
+      "id": "draft-c35-05",
+      "expected_selected_path": "batch-03/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "b36e4d0e09ac40de05dff2067b79a82e1ce3c376df687479767d4b3f25487cc0",
+      "expected_selected_raw_sha256": "cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac",
+      "expected_record_sha256": "525c9280f25732d669c00a82b2b62a59c5d093d64381cb7d47b43d3de98c086a",
+      "new_math_content_sha256": "c8087fd6ae4ffe6b538aaedc9a4b9c6e5e866384c6ac565948d3fd4ad297397c",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$f=x^2+2y^2+3z^2+2xy$ 与 $g=2x^2+3y^2+4z^2$ 的合同判定",
+            "板书一:配方 $f=(x+y)^2+y^2+3z^2$ 与 $g=(\\sqrt2x)^2+(\\sqrt3y)^2+(2z)^2$",
+            "高亮框:关键点——惯性指数同为 $(3,0,0)$,由惯性定理合同",
+            "行×列计算板:$C=M_f^{-1}M_g$ 与 $C^{\\mathsf T}AC=B$ 的逐项验证",
+            "结论卡:$C=\\begin{pmatrix}\\sqrt2&-\\sqrt3&0\\\\0&\\sqrt3&0\\\\0&0&\\frac2{\\sqrt3}\\end{pmatrix}$"
+          ],
+          "steps": [
+            "第一步:配方(逐步,高亮):$f=x^2+2xy+2y^2+3z^2=(x+y)^2+y^2+3z^2$,正惯性指数 $3$,正定;$g=(\\sqrt2x)^2+(\\sqrt3y)^2+(2z)^2$,正惯性指数 $3$,正定。",
+            "第二步:由惯性定理,两者惯性指数同为 $(3,0,0)$,故合同(都与 $I_3$ 合同,由合同关系的传递性,高亮)。",
+            "第三步:构造(逐项):由配方取 $M_f=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&\\sqrt3\\end{pmatrix}$($M_fx=(x+y,y,\\sqrt3z)$),则 $A=M_f^{\\mathsf T}M_f$;$M_g=\\operatorname{diag}(\\sqrt2,\\sqrt3,2)$,则 $B=M_g^{\\mathsf T}M_g$。",
+            "第四步:计算 $C=M_f^{-1}M_g$(逐行×列,高亮):$M_f^{-1}=\\begin{pmatrix}1&-1&0\\\\0&1&0\\\\0&0&\\frac1{\\sqrt3}\\end{pmatrix}$;第1行×第1列:$1\\cdot\\sqrt2+(-1)\\cdot0+0=\\sqrt2$;第1行×第2列:$1\\cdot0+(-1)\\cdot\\sqrt3+0=-\\sqrt3$;第1行×第3列:$0$;第2行:$0,\\sqrt3,0$;第3行:$0,0,\\frac2{\\sqrt3}$。",
+            "第五步:验证 $C^{\\mathsf T}AC=B$(逐项行×列,高亮):先算 $AC$:第1行×第1列 $=\\sqrt2$、第1行×第2列 $=0$、第2行×第2列 $=-\\sqrt3+2\\sqrt3=\\sqrt3$、第3行×第3列 $=3\\cdot\\frac2{\\sqrt3}=2\\sqrt3$;再算 $C^{\\mathsf T}(AC)$:对角依次为 $\\sqrt2\\cdot\\sqrt2=2$、$\\sqrt3\\cdot\\sqrt3=3$、$\\frac2{\\sqrt3}\\cdot2\\sqrt3=4$,非对角为零;得 $\\operatorname{diag}(2,3,4)=B$ ✓。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c38-01",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "c24ef0b4e0b877947e34a1f8df5434aa643b34448f6e0b8d1b5abf3b3cb8a25e",
+      "new_math_content_sha256": "a559a4999ccb157313882d676751800e049afa140e0db993eb48a4bef910993a",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$ 的直和与投影",
+            "板书一:分解 $(a,b)=(a,Ma)+(0,b-Ma)$ 的逐项验证",
+            "高亮框:关键点——交为零来自第一坐标唯一性",
+            "板书二:$P^2=P$ 的两次作用代入与核像求解",
+            "结论卡:$\\mathbb R^4=U\\oplus V$,核 $V$、像 $U$,维数均 $2$"
+          ],
+          "steps": [
+            "第一步:和为全空间(逐项,高亮):任意 $(a,b)=(a,Ma)+(0,b-Ma)$;第一项 $(a,Ma)$ 属 $U$,第二项 $(0,b-Ma)$ 属 $V$。",
+            "第二步:交为零:若 $(a,Ma)=(0,b)$,第一坐标给 $a=0$,于是 $Ma=0$,再由第二坐标给 $b=0$;故交为 $\\{0\\}$,分解唯一。",
+            "第三步:投影 $P(a,b)=(a,Ma)$;两次作用(逐步,高亮):$P(P(a,b))=P(a,Ma)=(a,Ma)=P(a,b)$,故 $P^2=P$。",
+            "第四步:核(逐步):$P(a,b)=(0,0)$ 当且仅当 $a=0$(第一坐标),$b$ 任意;故 $\\ker P=V$;像:$P$ 的值域即 $\\{(a,Ma)\\}=U$。",
+            "第五步:维数:$\\dim U=\\dim V=2$;不需要 $M$ 可逆——图空间与竖直空间互补来自第一坐标的唯一性(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c38-02",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "0d97a72678146f661277851a77cbfffabf39e0ac985f76ce31426b47a6449df0",
+      "new_math_content_sha256": "bbcca7c5fa081802d7a8a9fd1f0084395a6d3dffc1f1d7fcf07f41cf5e9fdd6b",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$U$ 偶多项式与 $V$ 被 $(x-1)^2$ 整除的空间",
+            "板书一:$f(1)=a+b+c=0$ 与 $f'(1)=2b+4c=0$ 的代入",
+            "高亮框:关键点——求导代入 $f'=2bx+4cx^3$ 在 $x=1$",
+            "消元板:$b=-2c$、$a=c$ 与展开 $c(x^2-1)^2$",
+            "结论卡:交维数 $1$,和 $=$ 全空间,非直和"
+          ],
+          "steps": [
+            "第一步:基底:$U=\\operatorname{span}(1,x^2,x^4)$,维数 $3$;$V=(x-1)^2\\mathbb R[x]_{\\le2}$,维数 $3$。",
+            "第二步:交的方程:设 $f=a+bx^2+cx^4\\in V$;须 $f(1)=0$:$a+b+c=0$;且 $f'(1)=0$(逐步求导,高亮):$f'=2bx+4cx^3$,代入 $x=1$ 得 $2b+4c=0$。",
+            "第三步:消元(逐步,高亮):$2b+4c=0$ 给 $b=-2c$;代入 $a+b+c=0$:$a-2c+c=0$ 给 $a=c$;故 $f=c-2cx^2+cx^4=c(1-2x^2+x^4)=c(x^2-1)^2$。",
+            "第四步:故 $U\\cap V=\\operatorname{span}((x^2-1)^2)$,维数 $1$。",
+            "第五步:和:$3+3-1=5$,等于环境维数,故 $U+V=\\mathbb R[x]_{\\le4}$;交非零 → 不是直和(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c39-01",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "b4c74e07f4a56490288cc065e627f5ffab5cff872d9c07fe45a32cc7bd098db7",
+      "new_math_content_sha256": "243075efa43564acdf659b5b952baf8511db10abeed91de6c18e448518325d48",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$T(X)=AX-XA$,$A=\\operatorname{diag}(1,3)$",
+            "板书一:$AX$ 与 $XA$ 的逐项乘法与相减",
+            "高亮框:关键点——$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$ 的得出",
+            "板书二:$T^2$ 在像上的逐项计算",
+            "结论卡:核=对角矩阵、像=零对角矩阵,直和,非正交投影"
+          ],
+          "steps": [
+            "第一步:逐项乘法(高亮):$AX=\\operatorname{diag}(1,3)X=\\begin{pmatrix}a&b\\\\3c&3d\\end{pmatrix}$;$XA=\\begin{pmatrix}a&3b\\\\c&3d\\end{pmatrix}$;相减得 $T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。",
+            "第二步:核:$T(X)=0$ 当且仅当 $b=c=0$,即 $X$ 为对角矩阵;基 $e_{11},e_{22}$,维数 $2$。",
+            "第三步:像:零对角矩阵全体,基 $e_{12},e_{21}$,维数 $2$,故秩 $2$。",
+            "第四步:直和:每个矩阵唯一分解为对角部分加零对角部分,交为零;故 $M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$(高亮)。",
+            "第五步:$T^2$ 在像上(逐步,高亮):$T(\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix})=\\begin{pmatrix}0&2\\cdot2b\\\\2\\cdot2c&0\\end{pmatrix}=\\begin{pmatrix}0&4b\\\\4c&0\\end{pmatrix}$;即 $T^2|_{\\operatorname{im}T}=4I$;而在核上 $T=0$;分解非正交,不能把 $T$ 说成正交投影。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-14",
+      "id": "draft-c39-03",
+      "expected_selected_path": "batch-14/draft-codex-repair-v6.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "954aceb40a53abd484d86d64b2317a98bad863e6c4886112806ff39dc1c22fc8",
+      "expected_selected_raw_sha256": "509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb",
+      "expected_record_sha256": "9b67cb7c56c2ee76275dd83218607c603190e66494406186741b380bd0c0e2ff",
+      "new_math_content_sha256": "c126fab91ccf013b2f56f5658a8ebdbc34245936558c88384ccbae313ded6952",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$,$Tf=(f(0),f(1),f(-1))$",
+            "板书一:因子定理——三节点为零 $\\Rightarrow$ 被 $x(x-1)(x+1)$ 整除",
+            "高亮框:关键点——右逆 $R$ 的逐点代入验证",
+            "验证板:$x=0,1,-1$ 三处取值 $a,b,c$",
+            "结论卡:核 $\\operatorname{span}(x^3-x)$,像 $\\mathbb R^3$,秩 $3$"
+          ],
+          "steps": [
+            "第一步:核(关键点:因子定理,高亮):$f\\in\\ker T$ 当且仅当 $f$ 在 $0,1,-1$ 三点为零;由因子定理 $f$ 被 $x(x-1)(x+1)$ 整除;次数≤3 → $f=c\\,x(x-1)(x+1)=c(x^3-x)$;故 $\\ker T=\\operatorname{span}(x^3-x)$,维数 $1$。",
+            "第二步:构造右逆:$R(a,b,c)=a(1-x^2)+b\\frac{x(x+1)}2+c\\frac{x(x-1)}2$。",
+            "第三步:逐点代入验证(高亮):$x=0$:$R=a(1-0)+0+0=a$;$x=1$:$R=0+b\\cdot\\frac{1\\cdot2}2+0=b$;$x=-1$:$R=0+0+c\\cdot\\frac{(-1)(-2)}2=c$。",
+            "第四步:故 $TR=I_{\\mathbb R^3}$,像为全部 $\\mathbb R^3$,秩 $3$;与核维数 $4-3=1$ 一致。",
+            "第五步:结论:显式右逆证明满射,不依赖仅报维数(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c40-01",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "f5e442bcf10b268ffb031bcf01e40bbf436d6d85fffc9c9d647126c04b8c806f",
+      "new_math_content_sha256": "bfc998645519ce3e3c7bc55ae1efdbe66b3b58d339bbd897afd4b5c7acd709db",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$A(\\lambda)=\\operatorname{diag}(f,f^2)$ 与 $B(\\lambda)=\\operatorname{diag}(1,f^3)$,$f=\\lambda-1$",
+            "板书一:一阶子式集合 $\\{f,f^2\\}$ 与 $\\{1,f^3\\}$ 的首一 gcd",
+            "高亮框:关键点——不变因子 $(f,f^2)$ 与 $(1,f^3)$ 不同,不等价",
+            "板书二:$a\\ne1$ 与 $a=1$ 代入的秩核对照",
+            "结论卡:$a=1$ 时秩分别 $0,1$;行列式相同不足以确定核"
+          ],
+          "steps": [
+            "第一步:一阶子式(逐项,高亮):$A$ 的一阶子式集合为 $\\{f,f^2\\}$,首一 gcd $=f$;$B$ 的一阶子式集合为 $\\{1,f^3\\}$,首一 gcd $=1$。",
+            "第二步:不变因子:$A$:$d_1=f$,$d_2=f^3/f=f^2$,即 $(f,f^2)$;$B$:$d_1=1$,$d_2=f^3$,即 $(1,f^3)$;不同 → 不多项式可逆等价(行列式同为 $f^3$ 但不变因子不同,高亮)。",
+            "第三步:有理函数域 $\\mathbb R(\\lambda)$:$f=\\lambda-1\\ne0$ 是可逆元,两矩阵秩 $2$、核零;多项式环中核也零(环无零因子)。",
+            "第四步:代入(逐项):$a\\ne1$ 时两者仍秩 $2$、核零;$a=1$ 时 $A(1)=\\operatorname{diag}(0,0)=0$,秩 $0$、核 $\\mathbb R^2$;$B(1)=\\operatorname{diag}(1,0)$;解 $B(1)v=0$:第一分量 $v_1=0$、$v_2$ 自由,故 $\\ker B(1)=\\operatorname{span}(e_2)$,秩 $1$(高亮)。",
+            "第五步:结论:行列式相同不足以确定特殊参数下的核与秩(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c40-04",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "6ec3c8d4a1ddcbe17b1b3663063dcfb61f70ceeec3773fd3cf82a77417c97d3e",
+      "new_math_content_sha256": "1019672927b22d146637cad7eeab60e18ea3ff37f1f3458bb85ac7a5813d1b0f",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$A(\\lambda)=\\operatorname{diag}(\\lambda+1,\\lambda(\\lambda+1),(\\lambda+1)^2(\\lambda-2))$ 的因子",
+            "板书一:$D_1$ 取最小指数的逐项 gcd",
+            "板书二:二阶子式(两两乘积)与 $D_2$ 的取最小指数",
+            "高亮框:关键点——$D_3$ 的对角元连乘展开",
+            "结论卡:$D_1=\\lambda+1$,$D_2=(\\lambda+1)^2$,$D_3=\\lambda(\\lambda+1)^4(\\lambda-2)$"
+          ],
+          "steps": [
+            "第一步:一阶行列式因子(逐项 gcd,高亮):各对角元 $\\lambda+1$、$\\lambda(\\lambda+1)$、$(\\lambda+1)^2(\\lambda-2)$;对每个根取最小指数:$D_1=\\lambda+1$。",
+            "第二步:二阶子式(对角情形即两两乘积):$\\lambda(\\lambda+1)^2$、$(\\lambda+1)^3(\\lambda-2)$、$\\lambda(\\lambda+1)^3(\\lambda-2)$;逐项取最小指数:$D_2=(\\lambda+1)^2$(高亮)。",
+            "第三步:三阶:$D_3=\\det A=(\\lambda+1)\\cdot\\lambda(\\lambda+1)\\cdot(\\lambda+1)^2(\\lambda-2)=\\lambda(\\lambda+1)^4(\\lambda-2)$(逐步连乘,高亮)。",
+            "第四步:不变因子(逐步比值):$d_1=D_1=\\lambda+1$;$d_2=D_2/D_1=\\lambda+1$;$d_3=D_3/D_2=\\lambda(\\lambda+1)^2(\\lambda-2)$。",
+            "第五步:初等因子:把各不变因子分解为互异根幂:$\\lambda+1$、$\\lambda+1$、$\\lambda$、$(\\lambda+1)^2$、$\\lambda-2$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 7,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c42-02",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "d9dd28a9b5661b2f2af2ebd70beb83058b1ebfa3803d26924b72ad1cef530609",
+      "new_math_content_sha256": "6d200af955ee4e201b12a1ae2b52b113e2e491ed4fecc592444dc825c1477af7",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "矩阵卡:$R_x=\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&1&0\\end{pmatrix}$、$R_y=\\begin{pmatrix}0&0&1\\\\0&1&0\\\\-1&0&0\\end{pmatrix}$",
+            "行×列计算板:$R_xR_y$ 与 $R_yR_x$ 的九项分量乘积",
+            "高亮框:关键点——迹 $0$ 与 $\\operatorname{tr}R=1+2\\cos\\theta$ 给 $\\theta=\\frac{2\\pi}3$",
+            "固定向量板:解 $(R-I)x=0$ 得轴方向",
+            "结论卡:两乘积不同,轴 $(1,1,1)$ 与 $(1,1,-1)$,角均 $\\frac{2\\pi}3$"
+          ],
+          "steps": [
+            "第一步:计算 $R_xR_y$(逐行×列,高亮):第1行×第1列:$1\\cdot0+0\\cdot0+0\\cdot(-1)=0$;第1行×第2列:$0$;第1行×第3列:$1\\cdot1=1$;第2行×第1列:$0+0+(-1)(-1)=1$;第2行×第2列:$0$;第2行×第3列:$0$;第3行×第1列:$0$;第3行×第2列:$1\\cdot1=1$;第3行×第3列:$0$;得 $R_xR_y=\\begin{pmatrix}0&0&1\\\\1&0&0\\\\0&1&0\\end{pmatrix}$。",
+            "第二步:计算 $R_yR_x$(逐行×列,高亮):第1行×第1列:$0$;第1行×第2列:$1\\cdot1=1$;第1行×第3列:$0$;第2行×第1列:$0$;第2行×第2列:$0$;第2行×第3列:$1\\cdot(-1)=-1$;第3行×第1列:$(-1)\\cdot1=-1$;第3行×第2列:$0$;第3行×第3列:$0$;得 $R_yR_x=\\begin{pmatrix}0&1&0\\\\0&0&-1\\\\-1&0&0\\end{pmatrix}$。",
+            "第三步:两乘积不同(高亮);两者均正交、行列式 $1$、迹 $0$;由 $\\operatorname{tr}R=1+2\\cos\\theta$:$\\cos\\theta=-\\frac12$,即 $\\theta=\\frac{2\\pi}3$。",
+            "第四步:求固定向量(逐步,高亮):解 $(R_xR_y-I)x=0$:$\\begin{pmatrix}-1&0&1\\\\1&-1&0\\\\0&1&-1\\end{pmatrix}x=0$ 给 $x_1=x_3,x_2=x_3$,固定向量方向 $(1,1,1)$;同理 $(R_yR_x-I)x=0$ 给 $(1,1,-1)$。",
+            "第五步:结论:轴分别为 $(1,1,1)/\\sqrt3$ 与 $(1,1,-1)/\\sqrt3$,右手角均为 $\\frac{2\\pi}3$;三维不同轴旋转不交换(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-15",
+      "id": "draft-c42-03",
+      "expected_selected_path": "batch-15/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "0bc1f459ce2f2e20b344ef237f7af7bc5bab481380d3c988d57c07c42045b7ce",
+      "expected_selected_raw_sha256": "1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a",
+      "expected_record_sha256": "9ae439d720544c92def87b6e9baa13b5f5ce4eb8e5b3e59244fb08d0c4ba003c",
+      "new_math_content_sha256": "a335fac80caa68261b932eebc18e2060c9a823277ca4c2b61debe4ef9e9b8a65",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:将 $u$ 映到 $v$ 的过原点平面反射的分类",
+            "板书一:$\\|u-v\\|^2=2(\\|u\\|^2-u\\cdot v)$ 与 $2(n\\cdot u)n=u-v$ 的推导",
+            "高亮框:关键点——法线必平行 $u-v$ 给唯一性",
+            "板书二:$u-v=(-1,1,0)$、$\\|u-v\\|=\\sqrt2$ 的代入",
+            "结论卡:$H=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$(交换 $x,y$)"
+          ],
+          "steps": [
+            "第一步:必要性:反射保持范数,故 $\\|u\\|=\\|v\\|$ 是必要条件。",
+            "第二步:若 $u\\ne v$ 且等范数,令 $n=\\frac{u-v}{\\|u-v\\|}$;关键恒等式(逐步,高亮):$\\|u-v\\|^2=\\|u\\|^2+\\|v\\|^2-2u\\cdot v=2(\\|u\\|^2-u\\cdot v)$;而 $(u-v)\\cdot u=\\|u\\|^2-u\\cdot v=\\frac{\\|u-v\\|^2}2$;故 $2(n\\cdot u)n=2\\cdot\\frac{(u-v)\\cdot u}{\\|u-v\\|^2}(u-v)=u-v$。",
+            "第三步:故 $H=I-2nn^{\\mathsf T}$ 满足 $Hu=u-2(n\\cdot u)n=u-(u-v)=v$。",
+            "第四步:唯一性(关键点):任何满足条件的反射都有 $u-v=2(n\\cdot u)n$,法线必平行 $u-v$,故矩阵唯一;$u=v\\ne0$ 时有无穷多种;$u\\ne v$ 但范数不等则无解(高亮)。",
+            "第五步:具体计算(逐步,高亮):$u=(1,2,2)$,$v=(2,1,2)$:$u-v=(-1,1,0)$,$\\|u-v\\|=\\sqrt{1+1}=\\sqrt2$;$n=\\frac{(-1,1,0)}{\\sqrt2}$;$nn^{\\mathsf T}=\\frac12\\begin{pmatrix}1&-1&0\\\\-1&1&0\\\\0&0&0\\end{pmatrix}$;$H=I-2nn^{\\mathsf T}=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,即交换 $x,y$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c43-01",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "e0b5a0a3f759d645618ab29619ee74a3e6c3017fc5ae7679381a5eb0640cebbc",
+      "new_math_content_sha256": "aad7b8f96b37fbb3d5d8bc30b5a556ca5015aa31e5da67c4dd57fd969c0974cd",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:基 $\\eta_1=(1,1)$、$\\eta_2=(1,-1)$ 的对偶基",
+            "板书一:$f_1(\\eta_1)=a+b=1$、$f_1(\\eta_2)=a-b=0$ 的方程组",
+            "高亮框:关键点——两式相加得 $2a=1$",
+            "板书二:$f_2$ 的方程组与消元",
+            "验证板:四个配对值的代入"
+          ],
+          "steps": [
+            "第一步:设 $f_1(x,y)=ax+by$;条件代入:$f_1(\\eta_1)=f_1(1,1)=a+b=1$;$f_1(\\eta_2)=f_1(1,-1)=a-b=0$。",
+            "第二步:消元(逐步,高亮):两式相加:$2a=1$,即 $a=\\frac12$;回代:$b=1-a=\\frac12$;故 $f_1(x,y)=\\frac{x+y}2$。",
+            "第三步:设 $f_2(x,y)=cx+dy$;条件代入:$f_2(\\eta_1)=c+d=0$;$f_2(\\eta_2)=c-d=1$。",
+            "第四步:消元(逐步,高亮):相加:$2c=1$,即 $c=\\frac12$;回代:$d=-c=-\\frac12$;故 $f_2(x,y)=\\frac{x-y}2$。",
+            "第五步:验证(逐项):$f_1(\\eta_1)=\\frac{1+1}2=1$,$f_1(\\eta_2)=\\frac{1-1}2=0$;$f_2(\\eta_1)=\\frac{1-1}2=0$,$f_2(\\eta_2)=\\frac{1-(-1)}2=1$(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c43-02",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "611c9c5bf97d1ef6695f5e2779993164c5877fb4c26b8fc10eb120fedeb3b010",
+      "new_math_content_sha256": "797ecef28da93736397aee267433096e0229720ec37e9f87a98e51b6f09d2af3",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:三个节点值的线性泛函分类",
+            "板书一:$(1,0,2)+(0,2,1)=(1,2,3)$ 的逐分量相加",
+            "高亮框:关键点——只有两个独立条件,解空间一维",
+            "板书二:$\\alpha+2\\gamma=2$、$2\\beta+\\gamma=-1$ 的移项求解",
+            "结论卡:$a=1$ 才有解;全部 $f_t=(2-2t)x-\\frac{1+t}2y+tz$"
+          ],
+          "steps": [
+            "第一步:逐分量相加(高亮):$(1,0,2)+(0,2,1)=(1,2,3)$;线性性要求 $f(1,2,3)=f(1,0,2)+f(0,2,1)=2+(-1)=1$;故 $a\\ne1$ 无解,$a=1$ 才可能有解。",
+            "第二步:设 $f(x,y,z)=\\alpha x+\\beta y+\\gamma z$;代入条件(逐步):$f(1,0,2)=\\alpha+2\\gamma=2$;$f(0,2,1)=2\\beta+\\gamma=-1$。",
+            "第三步:只有两个独立条件,解空间一维;取 $\\gamma=t$ 为自由参数(关键点,高亮);移项求解:$\\alpha=2-2t$;$2\\beta=-1-t$,即 $\\beta=\\frac{-1-t}2$。",
+            "第四步:全部解:$f_t(x,y,z)=(2-2t)x-\\frac{1+t}2y+tz$,$t\\in\\mathbb R$。",
+            "第五步:验证(逐项代入):$f_t(1,0,2)=(2-2t)+2t=2$;$f_t(0,2,1)=2\\cdot\\frac{-1-t}2+t=-1$;不唯一的原因:两个独立输入只张成二维,不构成三维基(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c43-03",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "0508d0667e15d95d88b0ebac10b2ab5f0a8ee4f3908315e8e75d5f2b822b6de7",
+      "new_math_content_sha256": "e260d89b6a2376f0d47cc60653c0d1c0374158b8195fddc668b9b65a154f309d",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:对偶多项式 $g_0,g_1,g_2$ 与九个配对值",
+            "板书一:$G_{ij}=\\int_{-1}^1x^{i+j}dx$ 的逐项计算",
+            "高亮框:关键点——$CG=I$ 的逐行×列验算",
+            "板书二:$g_0,g_1,g_2$ 的系数与表达式",
+            "验证板:九个配对值的逐项积分"
+          ],
+          "steps": [
+            "第一步:矩阵 $G_{ij}=\\int_{-1}^1x^{i+j}dx$;逐项计算(高亮):$G_{00}=2$;$G_{01}=G_{10}=0$;$G_{02}=G_{20}=\\frac23$;$G_{11}=\\frac23$;$G_{12}=G_{21}=0$;$G_{22}=\\frac25$;得 $G=\\begin{pmatrix}2&0&\\frac23\\\\0&\\frac23&0\\\\\\frac23&0&\\frac25\\end{pmatrix}$。",
+            "第二步:配对条件:$f_i(x^j)=\\int_{-1}^1g_i(x)x^jdx=\\delta_{ij}$;若 $g_i$ 的系数为矩阵 $C$ 的第 $i$ 行,则 $CG=I$。",
+            "第三步:解 $C=G^{-1}$ 并逐行×列验算 $CG=I$(高亮):第1行×第1列:$\\frac98\\cdot2+(-\\frac{15}8)\\cdot\\frac23=\\frac94-\\frac54=1$;第1行×第3列:$\\frac98\\cdot\\frac23-\\frac{15}8\\cdot\\frac25=\\frac34-\\frac34=0$;第2行×第2列:$\\frac32\\cdot\\frac23=1$;第3行×第1列:$-\\frac{15}8\\cdot2+\\frac{45}8\\cdot\\frac23=0$;第3行×第3列:$-\\frac{15}8\\cdot\\frac23+\\frac{45}8\\cdot\\frac25=1$。",
+            "第四步:故 $g_0=\\frac{9-15x^2}8$,$g_1=\\frac{3x}2$,$g_2=\\frac{-15+45x^2}8$。",
+            "第五步:九个配对值(逐项,高亮):$\\int g_0\\cdot1\\,dx=\\frac{9\\cdot2-15\\cdot\\frac23}8=\\frac{18-10}8=1$;$\\int g_0x\\,dx=0$;$\\int g_0x^2dx=\\frac{9\\cdot\\frac23-15\\cdot\\frac25}8=\\frac{6-6}8=0$;其余六项同理,恰为 $\\delta_{ij}$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c44-01",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "47d24674166096fa087832d0cc3734078b83b3801d50779c6a1d8d503dbbc97c",
+      "new_math_content_sha256": "a1ab1c72e11b8c170d2bc171409fda73da05d32a5be04c221e758ca904b14406",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:块剪切 $S_B=\\begin{pmatrix}I_2&B\\\\0&I_2\\end{pmatrix}$ 何时保持 $\\omega$",
+            "板书一:$JS_B$ 与 $S_B^{\\mathsf T}(JS_B)$ 的分块乘法过程",
+            "高亮框:关键点——右下块 $B^{\\mathsf T}-B$ 的得出",
+            "板书二:$B$ 的转置与对称性检验",
+            "结论卡:充要条件 $B$ 对称;行列式 $1$ 不能替代辛条件"
+          ],
+          "steps": [
+            "第一步:分块乘法(逐步,高亮):$S_B^{\\mathsf T}JS_B=\\begin{pmatrix}I_2&0\\\\B^{\\mathsf T}&I_2\\end{pmatrix}\\begin{pmatrix}0&I_2\\\\-I_2&0\\end{pmatrix}\\begin{pmatrix}I_2&B\\\\0&I_2\\end{pmatrix}$;先算 $JS_B=\\begin{pmatrix}0&I_2\\\\-I_2&-B\\end{pmatrix}$;再算 $S_B^{\\mathsf T}(JS_B)$:左上块 $=I_2\\cdot0+0\\cdot(-I_2)=0$;右上块 $=I_2\\cdot I_2+0\\cdot(-B)=I_2$;左下块 $=B^{\\mathsf T}\\cdot0+I_2\\cdot(-I_2)=-I_2$;右下块 $=B^{\\mathsf T}\\cdot I_2+I_2\\cdot(-B)=B^{\\mathsf T}-B$。",
+            "第二步:保持形式当且仅当 $S_B^{\\mathsf T}JS_B=J$,即 $B^{\\mathsf T}-B=0$,即 $B$ 对称(高亮)。",
+            "第三步:指定 $B$ 的对称性检验(逐步):$B=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}$,$B^{\\mathsf T}=\\begin{pmatrix}1&2\\\\2&-1\\end{pmatrix}=B$;故该 $S_B$ 保持 $\\omega$。",
+            "第四步:行列式:所有 $S_B$ 的 $\\det S_B=1$,但不对称 $B$ 不保持形式。",
+            "第五步:结论(高亮):四维情形不能以行列式 $1$ 替代辛条件。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c44-02",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "2d09dbc4424f23f3c5f6414a20e90de530fbdea44524fbd6ae14be1319d04452",
+      "new_math_content_sha256": "d2f88887f3e11f12bc93aac508cc7b63f33fe63cf303c31f33997619595be5c8",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$A=\\operatorname{diag}(2,1,1,\\frac12)$ 保体积但不辛",
+            "板书一:$\\det A=2\\cdot1\\cdot1\\cdot\\frac12=1$",
+            "高亮框:关键点——$Ae_1=2e_1$ 与双线性给 $\\omega(Ae_1,Ae_3)=2$",
+            "板书二:$Ae_4=\\frac12e_4$ 给 $\\omega(e_2,Ae_4)=\\frac12$",
+            "结论卡:二维行列式 $1$ 足够,四维不够"
+          ],
+          "steps": [
+            "第一步:行列式(逐项):$\\det A=2\\cdot1\\cdot1\\cdot\\frac12=1$;故 $A$ 保体积。",
+            "第二步:形式值检验(逐步,高亮):$Ae_1=2e_1$;$\\omega(Ae_1,Ae_3)=\\omega(2e_1,e_3)=2\\omega(e_1,e_3)=2\\cdot1=2$(用双线性);而 $\\omega(e_1,e_3)=1$;故 $A$ 不保持辛形式。",
+            "第三步:另一配对(逐步):$Ae_4=\\frac12e_4$;$\\omega(e_2,Ae_4)=\\omega(e_2,\\frac12e_4)=\\frac12\\omega(e_2,e_4)=\\frac12$(从 $1$ 变到 $\\frac12$,高亮)。",
+            "第四步:二维对照:标准二维交替形式满足 $A^{\\mathsf T}J_2A=(\\det A)J_2$,故二维行列式 $1$ 足够。",
+            "第五步:结论(高亮):四维需要每对配对坐标及交叉项同时满足 $A^{\\mathsf T}JA=J$;保体积不必保持辛形式。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c44-03",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "e1be67a4d88a7e0666ddcaf9d85da9fce607f36a204f6dd949506d1aac473d14",
+      "new_math_content_sha256": "02fd9623e6142e813dbceb232ee1c54b34a2f6e8a356e417e4e9969e03ff4119",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:对角矩阵 $A=\\operatorname{diag}(a,b,c,d)$ 的辛分类",
+            "板书一:$(A^{\\mathsf T}JA)_{13}=ac$、$(A^{\\mathsf T}JA)_{24}=bd$ 的分量乘法",
+            "高亮框:关键点——充要条件 $ac=bd=1$",
+            "检验板:$2\\cdot\\frac12=1$ 与 $2\\cdot\\frac12=1$",
+            "结论卡:指定矩阵为辛矩阵;仅行列式 $1$ 不足"
+          ],
+          "steps": [
+            "第一步:计算 $A^{\\mathsf T}JA$(逐分量,高亮):$(A^{\\mathsf T}JA)_{13}=a\\cdot1\\cdot c=ac$;$(A^{\\mathsf T}JA)_{31}=-ac$;$(A^{\\mathsf T}JA)_{24}=b\\cdot1\\cdot d=bd$;$(A^{\\mathsf T}JA)_{42}=-bd$;其余为零。",
+            "第二步:保持形式当且仅当 $ac=1$ 且 $bd=1$,即 $a,b\\ne0$ 且 $c=\\frac1a,d=\\frac1b$(高亮)。",
+            "第三步:检验指定数据(逐项):$ac=2\\cdot\\frac12=1$;$bd=2\\cdot\\frac12=1$;故该 $A$ 为辛矩阵。",
+            "第四步:行列式:条件自动给 $\\det A=ac\\cdot bd=1$;但仅 $\\det A=1$ 不足——例如配对系数分别为 $2$ 与 $\\frac12$ 时行列式仍为 $1$ 却不是辛矩阵。",
+            "第五步:结论(高亮):辛条件要求两个配对各自为 $1$,不是只看行列式。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c44-04",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "e288dba8286fd86ece426eac0f0163cfdae3851c69769f94fc3f2eca54c6f536",
+      "new_math_content_sha256": "6f19198a4f04ecaaddfba2036fe28c28ab1e1e9553e2b7320db6b92a39a3cddd",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$\\omega(u,v)=(u\\times v)\\cdot e_1$ 的交替性与退化",
+            "板书一:叉积三分量展开与点乘 $e_1$ 取第一分量",
+            "高亮框:关键点——$\\omega(u,u)=u_2u_3-u_3u_2=0$",
+            "板书二:取 $v=e_3,e_2$ 解核的代入",
+            "结论卡:核 $\\operatorname{span}(e_1)$,秩 $2$,退化"
+          ],
+          "steps": [
+            "第一步:叉积展开(逐步,高亮):$u\\times v=(u_2v_3-u_3v_2,\\,u_3v_1-u_1v_3,\\,u_1v_2-u_2v_1)$;点乘 $e_1=(1,0,0)$ 只取第一分量:$\\omega(u,v)=u_2v_3-u_3v_2$。",
+            "第二步:交替性:表达式对两变量分别线性(行列式形式);且 $\\omega(u,u)=u_2u_3-u_3u_2=0$,故交替(高亮)。",
+            "第三步:核(逐步):若 $\\omega(u,v)=0$ 对所有 $v$:取 $v=e_3$:$\\omega(u,e_3)=u_2\\cdot1-u_3\\cdot0=u_2$,得 $u_2=0$;取 $v=e_2$:$\\omega(u,e_2)=u_2\\cdot0-u_3\\cdot1=-u_3$,得 $u_3=0$。",
+            "第四步:反过来 $u_2=u_3=0$ 时对所有 $v$ 有 $\\omega(u,v)=0$;故核 $=\\operatorname{span}(e_1)$,秩为 $2$。",
+            "第五步:结论(高亮):形式退化,不是辛形式。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-16",
+      "id": "draft-c45-04",
+      "expected_selected_path": "batch-16/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "a0127b1c5c9dfa3362ddd1b6ad19cf350dd02a267c80f0b95487050bd4a83d58",
+      "expected_selected_raw_sha256": "ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a",
+      "expected_record_sha256": "da3f00b199fb0e0394f3701104cf5087a03f6852fc09b52239ce0679c7a5c621",
+      "new_math_content_sha256": "c0e7f83dfb1d48f3049f5ac8a8ce48f1b5400ff62f4cfc62ae0aba0c2637fd35",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:条件概率存在性分类",
+            "板书一:全概率公式 $P(A)=qu+(1-q)v$",
+            "高亮框:关键点——$qu+(1-q)v$ 是 $u,v$ 的凸组合",
+            "板书二:$q=\\frac{p-v}{u-v}$ 的移项求解与 $q\\in(0,1)$ 验证",
+            "结论卡:指定数据不可能;区间内任意值可实现"
+          ],
+          "steps": [
+            "第一步:记 $u=P(A\\mid B)$,$v=P(A\\mid B^c)$,$q=P(B)\\in(0,1)$;全概率公式:$P(A)=qu+(1-q)v$。",
+            "第二步:凸组合(关键点,高亮):$qu+(1-q)v$ 是 $u,v$ 的凸组合,权重 $q,1-q$ 均在 $(0,1)$;若 $u\\ne v$,则 $P(A)$ 严格位于 $\\min(u,v)$ 与 $\\max(u,v)$ 之间;若 $u=v$,等于共同值。",
+            "第三步:指定数据检验:$u=\\frac9{10}$,$v=\\frac45$,可行区间为 $(\\frac45,\\frac9{10})$;而 $P(A)=\\frac1{10}$ 不在其中 → 不可能。",
+            "第四步:可实现性(逐步,高亮):任何严格介于两者之间的 $p$,由 $p=qu+(1-q)v$ 移项:$q(u-v)=p-v$,即 $q=\\frac{p-v}{u-v}$;验证 $q\\in(0,1)$:由 $v<p<u$ 得 $p-v>0$ 且 $p-v<u-v$。",
+            "第五步:构造:取四原子概率 $qu,q(1-u),(1-q)v,(1-q)(1-v)$ 即得所需事件(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 8,
+    "patch": {
+      "batch": "batch-06",
+      "id": "draft-c46-04",
+      "expected_selected_path": "batch-06/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "379187cf99ddc9b60fd3f3b267b11dd29591678ebc19fe8c3d966a8cf4230816",
+      "expected_selected_raw_sha256": "a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c",
+      "expected_record_sha256": "6c7bdd929c43be5bd93e3fd5d728b6b9aeeccb84908d0dbaaf604f206b0c3478",
+      "new_math_content_sha256": "b575258230f72658618ffe44f2a7b051178ae7815c34d5557f2c088b4f761fb2",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$f(x,y)=x+y$ 在单位正方形上的概率",
+            "板书一:归一化积分的逐项计算",
+            "高亮框:关键点——$P(X\\le\\frac12)=\\int_0^{\\frac12}(x+\\frac12)dx=\\frac38$",
+            "对照板:普通面积比 $\\frac12$ 与密度加权结果 $\\frac38$",
+            "结论卡:非均匀分布用密度加权面积"
+          ],
+          "steps": [
+            "第一步:归一化(逐项,高亮):$f\\ge0$;$\\int_0^1\\int_0^1(x+y)\\,dy\\,dx=\\int_0^1[xy+\\frac{y^2}2]_0^1dx=\\int_0^1(x+\\frac12)dx=[\\frac{x^2}2+\\frac x2]_0^1=1$;故密度有效。",
+            "第二步:所求概率(逐项):$P(X\\le\\frac12)=\\int_0^{\\frac12}\\int_0^1(x+y)\\,dy\\,dx=\\int_0^{\\frac12}(x+\\frac12)\\,dx$。",
+            "第三步:求值(逐步):$[\\frac{x^2}2+\\frac x2]_0^{\\frac12}=\\frac18+\\frac14=\\frac38$(高亮)。",
+            "第四步:对照:事件区域 $\\{x\\le\\frac12\\}$ 的普通面积为 $\\frac12$,但该分布不是均匀分布,面积比 $\\frac12\\ne\\frac38$。",
+            "第五步:结论(高亮):正确的几何表示是密度加权面积,不能直接用区域与正方形的普通面积之比。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c47-01",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "0a671bfa412ee9325e045ac7c4e2fc7e10b58841888aecb5d39d70a133d0b04c",
+      "new_math_content_sha256": "ecfe32acbc90bbfc7de76dc588a396cd5a52dbf767d44c139e6b3762eea7d0e0",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:两组彩票的精确概率与稀有事件极限",
+            "板书一:卷积和四项的逐项对应(j=0,1,2,3 各由哪两组相乘)",
+            "高亮框:关键点——点概率极限的依据 $(1-\\frac1n)^n\\to e^{-1}$",
+            "板书二:有限和可交换极限的四项逐项取极限",
+            "结论卡:极限 $\\frac92e^{-3}$"
+          ],
+          "steps": [
+            "第一步:分布:$X\\sim B(1000,\\frac1{1000})$,$Y\\sim B(1000,\\frac1{500})$,且独立。",
+            "第二步:卷积和(逐项对应,高亮):$P(X+Y=3)=\\sum_{j=0}^3P(X=j)P(Y=3-j)$;$j=0$:第一组 $\\binom{1000}0(\\frac1{1000})^0(\\frac{999}{1000})^{1000}$ 与第二组 $\\binom{1000}3(\\frac1{500})^3(\\frac{499}{500})^{997}$ 相乘;$j=1,2,3$ 同理逐项列出。",
+            "第三步:极限族:$n\\ge3$,$X_n\\sim B(n,\\frac1n)$,$Y_n\\sim B(n,\\frac2n)$;固定 $j$:$P(X_n=j)=\\binom nj(\\frac1n)^j(1-\\frac1n)^{n-j}\\to\\frac{e^{-1}}{j!}$。",
+            "第四步:极限依据(逐步,高亮):$\\binom nj(\\frac1n)^j=\\frac{n(n-1)\\cdots(n-j+1)}{j!\\,n^j}\\to\\frac1{j!}$;$(1-\\frac1n)^n\\to e^{-1}$;$(1-\\frac1n)^{-j}\\to1$;同理 $P(Y_n=3-j)\\to\\frac{e^{-2}2^{3-j}}{(3-j)!}$。",
+            "第五步:有限和可交换极限(关键点):四项有限和逐项取极限:$P\\to\\sum_{j=0}^3\\frac{e^{-1}}{j!}\\cdot\\frac{e^{-2}2^{3-j}}{(3-j)!}=e^{-3}\\sum_{j=0}^3\\frac{2^{3-j}}{j!(3-j)!}=e^{-3}\\cdot\\frac{(1+2)^3}{3!}=\\frac{27}6e^{-3}=\\frac92e^{-3}$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c47-02",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "332c893c77622e12642eb1db0fd9faf067ecb478c003cd086b04517339b5701a",
+      "new_math_content_sha256": "0cd615fc40127f46f107524acde8d92f70e9276f8c14cc6ec6f85a0a270386ee",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$P(X=0)=(99/100)^{100}$ 与 $e^{-1}$ 的严格比较",
+            "板书一:$-\\ln(1-x)=\\int_0^x\\frac{dt}{1-t}$ 与被积函数逐点比较",
+            "高亮框:关键点——$x<-\\ln(1-x)<\\frac{x}{1-x}$ 的推导",
+            "板书二:$x=\\frac1{100}$ 代入并乘 $100$ 的中间运算",
+            "结论卡:$e^{-100/99}<P<e^{-1}$,误差 $<e^{-1}(1-e^{-1/99})$"
+          ],
+          "steps": [
+            "第一步:精确值:$P(X=0)=(1-\\frac1{100})^{100}=(\\frac{99}{100})^{100}$。",
+            "第二步:双侧不等式(推导,高亮):对 $0<x<1$,$-\\ln(1-x)=\\int_0^x\\frac{dt}{1-t}$;被积函数满足 $1\\le\\frac1{1-t}\\le\\frac1{1-x}$(逐点比较);积分得 $x<-\\ln(1-x)<\\frac{x}{1-x}$(严格,因被积函数严格)。",
+            "第三步:代入(逐步):$x=\\frac1{100}$:$\\frac1{100}<-\\ln\\frac{99}{100}<\\frac{1/100}{99/100}=\\frac1{99}$;乘 $100$:$100\\cdot\\frac1{100}=1$,$100\\cdot\\frac1{99}=\\frac{100}{99}$;得 $1<-\\ln P<\\frac{100}{99}$,即 $-\\frac{100}{99}<\\ln P<-1$(高亮中间运算)。",
+            "第四步:取指数:$e^{-100/99}<P(X=0)<e^{-1}$。",
+            "第五步:误差界(逐步):$0<e^{-1}-P<e^{-1}-e^{-100/99}=e^{-1}(1-e^{-\\frac1{99}})$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c47-03",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "758248dba1433979c05aba587757e96105fde8c086b26023e66b5f60603a9cfb",
+      "new_math_content_sha256": "879b8078abbd2506bb640137fcc164a09ad82e5b748f16162cf8e34f6994afc9",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:泊松逼近定理($np\\to\\lambda$ 时二项点概率趋于泊松)",
+            "板书一:点概率改写 $\\frac{(np_n)^k}{k!}\\prod_{j=0}^{k-1}(1-\\frac jn)(1-p_n)^{n-k}$",
+            "高亮框:关键点——前两因子的极限依据",
+            "板书二:夹逼 $-\\frac{p_n}{1-p_n}\\le\\ln(1-p_n)\\le-p_n$ 的推导",
+            "结论卡:$\\frac{\\lambda^k}{k!}e^{-\\lambda}$"
+          ],
+          "steps": [
+            "第一步:条件:$k$ 固定,$p_n\\in[0,1]$ 且 $np_n\\to\\lambda>0$;则 $p_n\\to0$,最终 $0<p_n<1$。",
+            "第二步:点概率改写(逐步,高亮):$P(X=k)=\\binom nkp_n^k(1-p_n)^{n-k}$;组合数展开 $\\binom nk=\\frac{n(n-1)\\cdots(n-k+1)}{k!}$ 得 $=\\frac{(np_n)^k}{k!}\\cdot\\prod_{j=0}^{k-1}(1-\\frac jn)\\cdot(1-p_n)^{n-k}$(空乘积为 $1$)。",
+            "第三步:前两因子(依据,高亮):$(np_n)^k\\to\\lambda^k$(由 $np_n\\to\\lambda$);$\\prod_{j=0}^{k-1}(1-\\frac jn)\\to1$(有限个因子,每个都趋于 $1$)。",
+            "第四步:第三因子(夹逼,高亮):由 $\\ln(1+t)\\le t$ 与 $\\ln(1-t)\\ge\\frac{-t}{1-t}$ 得 $-\\frac{p_n}{1-p_n}\\le\\ln(1-p_n)\\le-p_n$;乘 $(n-k)$ 后两端分别趋于 $-\\lambda$(因 $np_n\\to\\lambda$、$p_n\\to0$);故 $(1-p_n)^{n-k}\\to e^{-\\lambda}$。",
+            "第五步:三因子相乘:$P(X=k)\\to\\frac{\\lambda^k}{k!}e^{-\\lambda}$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c47-04",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "eeb0fc7c2811c6bd5f013cad5b8c3929acc3f0b1d282f1bf1e9d8fe95a73acc9",
+      "new_math_content_sha256": "a5a6efc516c63b1ed6e64f4ee0389d9269c9d255626fdc439dccd2a656941dbe",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$X\\sim B(2,\\frac12)$ 与 $Y\\sim\\operatorname{Pois}(1)$ 的全变差",
+            "板书一:均值方差对照(均值均 $1$,方差 $\\frac12$ 与 $1$)",
+            "高亮框:关键点——$2<e<3$ 导出逐点比较",
+            "板书二:正差项 $k=1,2$ 与负差项 $k=0,k\\ge3$ 的逐项求和",
+            "结论卡:$d_{TV}=\\frac34-\\frac3{2e}>0$"
+          ],
+          "steps": [
+            "第一步:均值:两者均值均为 $1$;方差:$B(2,\\frac12)$ 为 $2\\cdot\\frac12\\cdot\\frac12=\\frac12$;$\\operatorname{Pois}(1)$ 为 $1$。",
+            "第二步:逐点比较(推导,高亮):由 $2<e<3$:$k=0$:$e<4$ 给 $e^{-1}>\\frac14$;$k=1$:$e>2$ 给 $\\frac12>e^{-1}$;$k=2$:$e>2$ 给 $\\frac14>\\frac1{2e}$;$k\\ge3$:只有泊松分布有正质量。",
+            "第三步:正差项求和(逐步):正差出现在 $k=1$:$(\\frac12-e^{-1})$ 与 $k=2$:$(\\frac14-\\frac1{2e})$;负差出现在 $k=0$ 与 $k\\ge3$。",
+            "第四步:总正差等于总负差(关键点):两分布总质量均为 $1$;故全变差 $=\\frac12\\sum|P_X-P_Y|=$ 正差之和 $=\\frac12-e^{-1}+\\frac14-\\frac1{2e}=\\frac34-\\frac3{2e}$(逐项合并,高亮)。",
+            "第五步:结论:$d_{TV}=\\frac34-\\frac3{2e}>0$;相同均值不足以保证同分布(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c47-05",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "0cb8a273e65b9e277224373d9ef3ab9cad291d4ef294635ffdefe320cab94a09",
+      "new_math_content_sha256": "068fa793809892730965c70dddab668c70b6b97a56d2a9b569ba8219d7cab6be",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$B(50,\\frac1{50})$ 与 $\\operatorname{Pois}(1)$ 的 $\\le2$ 概率比较",
+            "板书一:$k=0,1,2$ 三项的具体系数与提取公因子",
+            "高亮框:关键点——通分 $\\frac{2401+2450+1225}{2500}=\\frac{1519}{625}$",
+            "板书二:泊松三项求和 $\\frac5{2e}$ 与比值表达式",
+            "结论卡:不等式链给比值 $>1$"
+          ],
+          "steps": [
+            "第一步:三项相加(逐步,高亮):$P(X\\le2)=\\sum_{k=0}^2\\binom{50}k(\\frac1{50})^k(\\frac{49}{50})^{50-k}$;$k=0$:$(\\frac{49}{50})^{50}$;$k=1$:$50\\cdot\\frac1{50}(\\frac{49}{50})^{49}=(\\frac{49}{50})^{49}$;$k=2$:$\\binom{50}2(\\frac1{50})^2(\\frac{49}{50})^{48}=\\frac{49}{100}(\\frac{49}{50})^{48}$。",
+            "第二步:提取公因子并通分(逐步):$P(X\\le2)=(\\frac{49}{50})^{48}[(\\frac{49}{50})^2+\\frac{49}{50}+\\frac{49}{100}]$;$(\\frac{49}{50})^2=\\frac{2401}{2500}$,$\\frac{49}{50}=\\frac{2450}{2500}$,$\\frac{49}{100}=\\frac{1225}{2500}$;和 $=\\frac{2401+2450+1225}{2500}=\\frac{6076}{2500}=\\frac{1519}{625}$(高亮通分);故 $P(X\\le2)=\\frac{1519}{625}(\\frac{49}{50})^{48}$。",
+            "第三步:泊松值(逐步):$P(Y\\le2)=e^{-1}+e^{-1}+\\frac{e^{-1}}2=\\frac5{2e}$。",
+            "第四步:比值(逐步):$\\frac{P(X\\le2)}{P(Y\\le2)}=\\frac{\\frac{1519}{625}(\\frac{49}{50})^{48}}{\\frac5{2e}}=e(\\frac{49}{50})^{48}\\cdot\\frac{3038}{3125}$;取对数:$=\\ln\\frac{3038}{3125}+48\\ln\\frac{49}{50}+1$。",
+            "第五步:不等式证明(关键点,高亮):对 $0<x<1$,$\\ln(1-x)\\ge-x-\\frac{x^2}{2(1-x)}$,且 $\\ln(1-y)>-\\frac y{1-y}$;取 $x=\\frac1{50}$:$48\\ln\\frac{49}{50}\\ge-\\frac{24}{25}-\\frac{12}{1225}$;取 $y=\\frac{87}{3125}$:$\\ln\\frac{3038}{3125}>-\\frac{87}{3038}$;合计 $>1-\\frac{24}{25}-\\frac{12}{1225}-\\frac{87}{3038}=\\frac{37}{1225}-\\frac{87}{3038}>0$;故比值 $>1$,即 $P(X\\le2)>P(Y\\le2)$(比较由不等式证明,不查小数表)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c48-02",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "18626e7f03c9b9a1236d86d3fb4372a3e4c957cb24e48c4b2c0b887555526244",
+      "new_math_content_sha256": "c4438df0bb4a27c2c22cbc85268583e9d4907b6842939e2e34d7bab5ce972023",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:标准正态的双侧尾界",
+            "板书一:$I=\\int_k^\\infty\\phi(t)dt$ 与上界放缩 $t/k>1$",
+            "高亮框:关键点——分部积分 $I=\\frac{\\phi(k)}k-\\int\\frac{\\phi(t)}{t^2}dt$",
+            "板书二:$\\frac1{t^2}<\\frac1{k^2}$ 与移项解出下界",
+            "结论卡:$\\frac{2k\\phi(k)}{k^2+1}<P(|Z|>k)<\\frac{2\\phi(k)}k$"
+          ],
+          "steps": [
+            "第一步:由对称性:$P(|Z|\\le k)=2\\Phi(k)-1$;记尾积分 $I=\\int_k^\\infty\\phi(t)dt$。",
+            "第二步:上界(逐步,高亮):区间上 $t/k>1$,故 $\\phi(t)<(t/k)\\phi(t)$;积分得 $I<\\frac1k\\int_k^\\infty t\\phi(t)dt$;因 $\\phi'(t)=-t\\phi(t)$,右端 $=\\frac1k[\\phi(k)-\\phi(\\infty)]=\\frac{\\phi(k)}k$。",
+            "第三步:下界(分部积分逐步,高亮):由 $\\frac d{dt}(-\\frac{\\phi(t)}t)=(1+\\frac1{t^2})\\phi(t)$ 得 $I=[-\\frac{\\phi(t)}t]_k^\\infty-\\int_k^\\infty\\frac{\\phi(t)}{t^2}dt=\\frac{\\phi(k)}k-\\int_k^\\infty\\frac{\\phi(t)}{t^2}dt$。",
+            "第四步:放缩(关键点):区间上 $t>k$ 给 $t^2>k^2$,即 $\\frac1{t^2}<\\frac1{k^2}$;故 $\\int_k^\\infty\\frac{\\phi(t)}{t^2}dt<\\frac{I}{k^2}$;代入得 $I>\\frac{\\phi(k)}k-\\frac{I}{k^2}$;移项(逐步):$I(1+\\frac1{k^2})>\\frac{\\phi(k)}k$,即 $I>\\frac{k\\phi(k)}{k^2+1}$(高亮移项)。",
+            "第五步:乘 $2$ 得双侧尾界:$\\frac{2k\\phi(k)}{k^2+1}<P(|Z|>k)<\\frac{2\\phi(k)}k$(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c48-04",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "53ce37ab33e1613c03f3b1850ec6437654d345aa57fe57c09398d24d0648899d",
+      "new_math_content_sha256": "75b424d9cf35aa20500c8309855a870d4962a862aab4ad3a8d7f36faa75f5b92",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$S=X+Y$、$T=2X-Y$ 的分布与独立性",
+            "板书一:均值方差的逐项计算",
+            "高亮框:关键点——协方差双线性展开 $2\\operatorname{Var}X-\\operatorname{Var}Y=8-9=-1$",
+            "板书二:联合正态下独立 ⟺ 协方差为零",
+            "结论卡:$S\\sim N(3,13)$,$T\\sim N(0,25)$,不独立;唯一 $a=\\frac94$"
+          ],
+          "steps": [
+            "第一步:均值方差(逐项,高亮):$ES=EX+EY=1+2=3$;$\\operatorname{Var}S=4+9=13$(独立,无交叉项);$ET=2EX-EY=2-2=0$;$\\operatorname{Var}T=4\\cdot4+9=25$;故 $S\\sim N(3,13)$,$T\\sim N(0,25)$,从而 $P(T>0)=\\frac12$。",
+            "第二步:协方差(双线性展开,高亮):$\\operatorname{Cov}(S,T)=\\operatorname{Cov}(X+Y,2X-Y)=2\\operatorname{Cov}(X,X)-\\operatorname{Cov}(X,Y)+2\\operatorname{Cov}(Y,X)-\\operatorname{Cov}(Y,Y)$;独立性给 $\\operatorname{Cov}(X,Y)=0$;故 $=2\\operatorname{Var}X-\\operatorname{Var}Y=8-9=-1\\ne0$,不独立。",
+            "第三步:判定方法:$(S,aX-Y)$ 是 $(X,Y)$ 的线性变换,联合正态;联合正态下独立等价于协方差为零(高亮)。",
+            "第四步:求 $a$:$\\operatorname{Cov}(X+Y,aX-Y)=a\\operatorname{Var}X-\\operatorname{Var}Y=4a-9$;令 $4a-9=0$,得唯一 $a=\\frac94$。",
+            "第五步:验证(逐步):$a=\\frac94$ 时 $aX-Y\\sim N(\\frac94-2,\\frac{81}4\\cdot4+9)=N(\\frac14,\\frac{117}4)$;其余 $a$ 协方差非零,不独立(高亮结论)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c49-04",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "1359b84577e21f78302f46a8dce3c567ee6c16c952cb73e03add447463b69f45",
+      "new_math_content_sha256": "365fde0d1f68221de2bb9c9358830388735cc2ae0eb429bc4535d5137c979745",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:切比雪夫大数定律(两两不相关+方差一致有界)",
+            "板书一:方差展开 $\\frac1{n^2}\\sum_i\\operatorname{Var}X_i+\\frac1{n^2}\\sum_{i\\ne j}\\operatorname{Cov}(X_i,X_j)$",
+            "高亮框:关键点——交叉项因两两不相关逐项消失",
+            "板书二:切比雪夫代入与 $\\frac C{n\\varepsilon^2}$",
+            "结论卡:$\\frac1n\\sum(X_i-EX_i)\\xrightarrow P0$"
+          ],
+          "steps": [
+            "第一步:令 $S_n=\\frac1n\\sum_{i=1}^n(X_i-EX_i)$;则 $ES_n=0$。",
+            "第二步:方差展开(逐项,高亮):$\\operatorname{Var}S_n=\\frac1{n^2}\\sum_i\\operatorname{Var}X_i+\\frac1{n^2}\\sum_{i\\ne j}\\operatorname{Cov}(X_i,X_j)$;两两不相关给 $\\operatorname{Cov}(X_i,X_j)=0$($i\\ne j$),交叉项逐项消失(高亮演示)。",
+            "第三步:界:$\\operatorname{Var}S_n=\\frac1{n^2}\\sum_{i=1}^n\\operatorname{Var}X_i\\le\\frac{nC}{n^2}=\\frac Cn$。",
+            "第四步:切比雪夫:对任意 $\\varepsilon>0$,$P(|S_n|\\ge\\varepsilon)\\le\\frac{\\operatorname{Var}S_n}{\\varepsilon^2}\\le\\frac C{n\\varepsilon^2}$。",
+            "第五步:收敛(关键点,高亮):$\\varepsilon$ 任意固定,$n\\to\\infty$ 时 $\\frac C{n\\varepsilon^2}\\to0$,概率界收缩;故 $S_n\\xrightarrow P0$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-17",
+      "id": "draft-c49-05",
+      "expected_selected_path": "batch-17/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "71ecfc09565b8384d3137b944779838b8a11b7ec84f72b1a77e0d0c556a20d3f",
+      "expected_selected_raw_sha256": "231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d",
+      "expected_record_sha256": "0af1b85f4df8e0a19bd04af453a1bea2dc973c518496e503fa2d3103c5cff4c8",
+      "new_math_content_sha256": "0b83a9a6690e3ec99f72f5027d025e1e97634eaee7656c536060c6c5060ec475",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:无有限方差的样本均值依概率收敛",
+            "板书一:截断 $Y_i^{(M)}=X_i\\mathbf1_{|X_i|\\le M}$ 与 $\\tau_M\\to0$",
+            "高亮框:关键点——三项控制:尾部概率(Markov)、截断偏差、切比雪夫",
+            "板书二:三项放缩依据逐项标注",
+            "结论卡:先 $n\\to\\infty$ 后 $M\\to\\infty$,$\\overline X_n\\xrightarrow P\\mu$"
+          ],
+          "steps": [
+            "第一步:截断:$Y_i^{(M)}=X_i\\mathbf1_{|X_i|\\le M}$;$\\tau_M=E[|X_1|\\mathbf1_{|X_1|>M}]\\to0$(由 $E|X_1|<\\infty$,高亮)。",
+            "第二步:截断偏差(逐步,高亮):$|EY_1^{(M)}-\\mu|=|E[X_1\\mathbf1_{|X_1|>M}]|\\le\\tau_M$;$E|\\overline X_n-\\overline Y_n^{(M)}|\\le\\frac1n\\sum_iE|X_i-Y_i^{(M)}|=\\tau_M$。",
+            "第三步:截断方差(依据):独立性给 $\\operatorname{Var}(\\overline Y_n^{(M)})=\\frac1{n^2}\\sum_i\\operatorname{Var}Y_i^{(M)}\\le\\frac{M^2}n$(因 $|Y|\\le M$ 给 $\\operatorname{Var}Y\\le EY^2\\le M^2$)。",
+            "第四步:三项控制(关键点,高亮):(i) 尾部概率(Markov):$P(\\exists i:|X_i|>M)\\le nP(|X_1|>M)\\le\\frac{n\\tau_M}M$;(ii) 截断偏差 $|E\\overline X_n-E\\overline Y_n^{(M)}|\\le\\tau_M$;(iii) 切比雪夫:$P(|\\overline Y_n^{(M)}-E\\overline Y_n^{(M)}|\\ge\\varepsilon)\\le\\frac{M^2}{n\\varepsilon^2}$。",
+            "第五步:取极限次序(关键点,高亮):先令 $n\\to\\infty$(切比雪夫项与尾部项趋于零),再令 $M\\to\\infty$($\\tau_M\\to0$);次序不可交换;结论:$E|X_1|<\\infty$ 的独立同分布样本满足 $\\overline X_n\\xrightarrow P\\mu$,无需有限方差。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 9,
+    "patch": {
+      "batch": "batch-18",
+      "id": "draft-c50-01",
+      "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+      "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+      "expected_record_sha256": "b53a420c64da084315b97521139edab395be8647d06eacc0413eaa2762d4a774",
+      "new_math_content_sha256": "f4c8df5abf7a9b65cf39378ba317541fcb0f2242e5c0b55382ecc6115339587a",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:均匀和 $S_{100}>55$ 的精确概率与 CLT 极限",
+            "板书一:单纯形体积与容斥展开的 k=0,1,2 各项",
+            "高亮框:关键点——$S_{100}$ 与 $100-S_{100}$ 同分布且无原子",
+            "板书二:代入 $n=100,s=45$ 的求和式",
+            "结论卡:极限 $1-\\Phi(a)$"
+          ],
+          "steps": [
+            "第一步:单纯形体积(逐步,高亮):$0\\le s\\le1$ 时 $P(S_n\\le s)$ 为非负单纯形体积 $\\frac{s^n}{n!}$;对一般 $s$ 用容斥扣除坐标超过 $1$ 的区域。",
+            "第二步:容斥展开(逐项):$k=0$:单纯形体积 $\\frac{s^n}{n!}$;$k=1$:扣除一个坐标超 $1$ 的区域(平移后仍为单纯形,体积 $\\frac{(s-1)^n}{n!}$),共 $\\binom n1$ 个;$k=2$:加回两个坐标同时超 $1$ 的交,依此类推;得 $P(S_n\\le s)=\\frac1{n!}\\sum_{k=0}^{\\lfloor s\\rfloor}(-1)^k\\binom nk(s-k)^n$($0\\le s\\le n$,高亮)。",
+            "第三步:对称性(推导,高亮):每个 $X_i$ 与 $1-X_i$ 同分布,故 $S_{100}$ 与 $100-S_{100}$ 同分布,且连续分布无原子;于是 $P(S_{100}>55)=P(100-S_{100}<45)=P(S_{100}<45)=P(S_{100}\\le45)$。",
+            "第四步:代入 $n=100$,$s=45$($\\lfloor45\\rfloor=45$):$P(S_{100}\\le45)=\\frac1{100!}\\sum_{k=0}^{45}(-1)^k\\binom{100}k(45-k)^{100}$。",
+            "第五步:极限(逐步,高亮):$EX_i=\\frac12$,$\\operatorname{Var}X_i=\\frac1{12}$;中心极限定理给 $\\frac{S_n-n/2}{\\sqrt{n/12}}\\Rightarrow N(0,1)$;故 $\\lim_{n\\to\\infty}P(S_n>n/2+a\\sqrt{n/12})=P(Z>a)=1-\\Phi(a)$。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 10,
+    "patch": {
+      "batch": "batch-18",
+      "id": "draft-c50-03",
+      "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+      "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+      "expected_record_sha256": "847298b6cc18845e6305df565218a7e2c37c7c9834c55c6e07d06ae096ec4377",
+      "new_math_content_sha256": "313a758ce56f3f46d4beb46bc28f5b97310c4a06a9c3a532346905091057157f",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$\\operatorname{Exp}(1)$ 和 $S_{100}>110$ 的精确式与极限",
+            "板书一:密度 $\\frac{e^{-s}s^{n-1}}{(n-1)!}$ 与分部积分递推",
+            "高亮框:关键点——递推 $T_n(t)=\\frac{e^{-t}t^{n-1}}{(n-1)!}+T_{n-1}(t)$ 逐次累加",
+            "板书二:泊松等价的分布律对照",
+            "结论卡:精确尾 $e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$;极限 $1-\\Phi(a)$"
+          ],
+          "steps": [
+            "第一步:密度:卷积或归纳给 $S_n$ 的密度 $f_n(s)=\\frac{e^{-s}s^{n-1}}{(n-1)!}$($s>0$)。",
+            "第二步:尾积分递推(逐步,高亮):记 $T_n(t)=\\int_t^\\infty\\frac{e^{-s}s^{n-1}}{(n-1)!}ds$;分部积分:$\\int_t^\\infty e^{-s}s^{n-1}ds=[-e^{-s}s^{n-1}]_t^\\infty+(n-1)\\int_t^\\infty e^{-s}s^{n-2}ds=e^{-t}t^{n-1}+(n-1)\\int_t^\\infty e^{-s}s^{n-2}ds$;除以 $(n-1)!$ 得 $T_n(t)=\\frac{e^{-t}t^{n-1}}{(n-1)!}+T_{n-1}(t)$;$T_1(t)=e^{-t}$。",
+            "第三步:递推展开(逐步):从 $T_1$ 逐次递推到 $T_{100}$,每步累加一项 $\\frac{e^{-t}t^k}{k!}$;故 $T_{100}(110)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$;即 $P(S_{100}>110)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$(高亮)。",
+            "第四步:泊松等价(依据,高亮):泊松分布律 $P(\\operatorname{Pois}(110)\\le99)=e^{-110}\\sum_{k=0}^{99}\\frac{110^k}{k!}$,与上式逐项相同。",
+            "第五步:极限(逐步):$EX_i=\\operatorname{Var}X_i=1$;CLT 给 $\\frac{S_n-n}{\\sqrt n}\\Rightarrow N(0,1)$;故 $\\lim P(S_n>n+a\\sqrt n)=\\lim P(\\frac{S_n-n}{\\sqrt n}>a)=1-\\Phi(a)$;注意:该定理不提供 $n=100$ 的误差大小,不能凭未验证小数宣称有限误差很小(高亮)。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 10,
+    "patch": {
+      "batch": "batch-18",
+      "id": "draft-c50-04",
+      "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+      "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+      "expected_record_sha256": "662a4dbce1eabc2639c8e3f0f49ba8a67704899932d2c17b981981a02db9a32b",
+      "new_math_content_sha256": "f44c230ae0c52c2f971b283d637927d0c56119dbd3a8bf0a812a3d8052fc7e71",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:$B(n,\\frac12)$ 的整数阈值与半单位移动",
+            "板书一:精确概率 $2^{-100}\\sum_{j=0}^{55}\\binom{100}j$",
+            "高亮框:关键点——事件等价 $\\{X_n\\le k\\}=\\{X_n\\le k+\\frac12\\}$",
+            "板书二:$|z_n-a|\\le\\frac2{\\sqrt n}$ 与半单位移动增 $\\frac1{\\sqrt n}$ 的推导",
+            "结论卡:两个标准化阈值均给极限 $\\Phi(a)$"
+          ],
+          "steps": [
+            "第一步:精确概率:$P(X_{100}\\le55)=2^{-100}\\sum_{j=0}^{55}\\binom{100}j$。",
+            "第二步:半单位移动(事件等价,高亮):$X_n$ 只取整数,故对整数 $k$:$\\{X_n\\le k\\}=\\{X_n\\le k+\\frac12\\}$,只是事件等价,不改变概率。",
+            "第三步:标准化:$Z_n=\\frac{X_n-n/2}{\\sqrt n/2}$,CLT 给 $Z_n\\Rightarrow N(0,1)$;对 $k_n=\\lfloor n/2+a\\sqrt n/2\\rfloor$,记阈值 $z_n=\\frac{k_n-n/2}{\\sqrt n/2}$。",
+            "第四步:阈值估计(推导,高亮):$|z_n-a|=\\frac{|k_n-(n/2+a\\sqrt n/2)|}{\\sqrt n/2}\\le\\frac1{\\sqrt n/2}=\\frac2{\\sqrt n}$(取整误差不超过 $1$);移动半单位后阈值增加 $\\frac{1/2}{\\sqrt n/2}=\\frac1{\\sqrt n}$;二者都趋于 $a$。",
+            "第五步:夹逼(逐步,高亮):对固定 $\\varepsilon>0$,最终 $z_n\\in(a-\\varepsilon,a+\\varepsilon)$;于是 $P(Z_n\\le a-\\varepsilon)\\le P(X_n\\le k_n)\\le P(Z_n\\le a+\\varepsilon)$;两边取极限得 $\\Phi(a-\\varepsilon)\\le\\liminf\\le\\limsup\\le\\Phi(a+\\varepsilon)$;由 $\\Phi$ 的连续性令 $\\varepsilon\\to0$,得极限 $\\Phi(a)$;有限事件等价不能推出其概率等于正态 CDF,连续性论证才是极限依据。"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "batch_number": 10,
+    "patch": {
+      "batch": "batch-18",
+      "id": "draft-c50-05",
+      "expected_selected_path": "batch-18/draft-codex-repair-v4-final.jsonl",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_selected_sha256": "6adf807ee8dd355fa7f0bb703e03c72ee40d58773a919a76135fb336476b51a4",
+      "expected_selected_raw_sha256": "1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4",
+      "expected_record_sha256": "751e18db97320e1d3f0e4a50b24a0409715aa9b268d6cb5d55902c74534a608b",
+      "new_math_content_sha256": "3e0aeb21a1fc8affd2db247cd72b966808e015e08b95814a781a4f31af025ede",
+      "fields": {
+        "scene_spec": {
+          "objects": [
+            "题面卡:柯西反例——去掉矩条件后样本均值不集中",
+            "板书一:经典 CLT 的充分矩条件与标准化",
+            "高亮框:关键点——特征函数 $(e^{-|t|/n})^n=e^{-|t|}$,样本均值仍为标准柯西",
+            "板书二:$P(|\\overline X_n|\\le1)=\\frac12$ 与 $P(|\\overline X_n-c|\\le\\frac\\pi8)\\le\\frac14$",
+            "结论卡:反例只说明充分性,不能推断所有 CLT 的必要条件"
+          ],
+          "steps": [
+            "第一步:经典条件(高亮):$EX=\\mu$、$0<\\operatorname{Var}X=\\sigma^2<\\infty$,标准化为 $\\frac{\\sum X_i-n\\mu}{\\sigma\\sqrt n}$;零方差是退化情形。",
+            "第二步:柯西的矩:标准柯西的 $E|X|$ 与 $EX^2$ 发散,均值不存在;特征函数(逐步):$\\phi(t)=\\frac1\\pi\\int_{-\\infty}^{\\infty}\\frac{e^{itx}}{1+x^2}dx=e^{-|t|}$。",
+            "第三步:样本均值特征函数(逐步,高亮):独立和的特征函数相乘:$\\phi_{\\overline X_n}(t)=(\\phi(t/n))^n=(e^{-|t|/n})^n=e^{-|t|}$;故 $\\overline X_n$ 仍为标准柯西(高亮核心结论)。",
+            "第四步:不集中到零(逐步):$P(|\\overline X_n|\\le1)=P(|X|\\le1)=\\frac2\\pi\\int_0^1\\frac{dx}{1+x^2}=\\frac2\\pi\\cdot\\frac\\pi4=\\frac12$,对所有 $n$ 成立。",
+            "第五步:不集中到任何常数(逐步):密度 $f\\le\\frac1\\pi$,故 $P(|\\overline X_n-c|\\le\\frac\\pi8)\\le\\frac1\\pi\\cdot\\frac{2\\pi}8=\\frac14$;反例的逻辑范围:只说明有限正方差是经典 $\\sqrt n$ 规范化 CLT 的充分假设,不能由该反例推断所有 CLT 形式的必要条件(高亮)。"
+          ]
+        }
+      }
+    }
+  }
+]

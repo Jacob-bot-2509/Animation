@@ -1,0 +1,753 @@
+{
+  "simulation_only": true,
+  "cases": [
+    {
+      "parsed_data_variant": "empty_mapping",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {},
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "empty_mapping",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {},
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\"}\n{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": false
+      }
+    },
+    {
+      "parsed_data_variant": "null",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": null,
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "null",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'NoneType' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "empty_list",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": [],
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "empty_list",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "nonempty_list",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "nonempty_list",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "integer",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'int' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "integer",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'int' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "false",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": false,
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "false",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'bool' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "nonempty_string",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'str' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "nonempty_string",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'str' object has no attribute 'get'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_int",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'int' object has no attribute 'lower'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_int",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'int' object has no attribute 'lower'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_list",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'lower'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_list",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'lower'\")"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_mismatch",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "content_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": false
+      }
+    },
+    {
+      "parsed_data_variant": "hash_mismatch",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "content_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\"}\n{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": false
+      }
+    },
+    {
+      "parsed_data_variant": "hash_null",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "hash_null",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\"}\n{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": false
+      }
+    },
+    {
+      "parsed_data_variant": "bad_token",
+      "earlier_nonmatching_hash": false,
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "holds": true,
+      "raw": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": [
+              "bad"
+            ]
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "{\"content_hash\": \"2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358\"}"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "content_leaked": true,
+        "leak_source": "client_reported_hash_match"
+      }
+    },
+    {
+      "parsed_data_variant": "bad_token",
+      "earlier_nonmatching_hash": true,
+      "expected": "FAIL",
+      "actual": "UNVERIFIED",
+      "holds": false,
+      "raw": {
+        "exception": "AttributeError(\"'list' object has no attribute 'get'\")"
+      }
+    }
+  ]
+}

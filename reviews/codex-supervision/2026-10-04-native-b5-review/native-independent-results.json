@@ -1,0 +1,277 @@
+{
+  "evidence_sha256": "6d017f7fac2a728d516eddfbcac84195d9aff394aa0764c32bdc36bdece0b432",
+  "script_sha256": "8d8902d92ca8b700cd14182190709314834aeff05b457dea4ced5034ab488a71",
+  "run_id": "a41cc68655fd",
+  "overall": "UNVERIFIED",
+  "production_gate": "CLOSED",
+  "cases": {
+    "granted_write": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "granted_read": {
+      "verdict": "PASS",
+      "reasons": [],
+      "contract": "local-file-acl-v1"
+    },
+    "denied_write": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "非明确拒绝 winerror=None(仅接受 5=ACCESS_DENIED)"
+      ],
+      "contract": "local-file-acl-v1"
+    },
+    "denied_read": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "非明确拒绝 winerror=None(仅接受 5=ACCESS_DENIED)"
+      ],
+      "contract": "local-file-acl-v1"
+    }
+  },
+  "evidence_path_consistent": true,
+  "selftest_count": 24,
+  "selftests_hold": true,
+  "attestation": [
+    {
+      "case": "granted_write",
+      "side": "control",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "wrote",
+      "winerror": null
+    },
+    {
+      "case": "granted_write",
+      "side": "sandbox",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "wrote",
+      "winerror": null
+    },
+    {
+      "case": "granted_read",
+      "side": "control",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "read",
+      "winerror": null
+    },
+    {
+      "case": "granted_read",
+      "side": "sandbox",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "read",
+      "winerror": null
+    },
+    {
+      "case": "denied_write",
+      "side": "control",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "wrote",
+      "winerror": null
+    },
+    {
+      "case": "denied_write",
+      "side": "sandbox",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "denied",
+      "winerror": null
+    },
+    {
+      "case": "denied_read",
+      "side": "control",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "read",
+      "winerror": null
+    },
+    {
+      "case": "denied_read",
+      "side": "sandbox",
+      "raw_json_matches_data": true,
+      "spawned_bool": true,
+      "rc": 0,
+      "not_timed_out": true,
+      "api_ok": true,
+      "token_valid": true,
+      "client_sha_actual_matches": true,
+      "exe_sha_actual_matches": true,
+      "site_absent": true,
+      "outcome": "denied",
+      "winerror": null
+    }
+  ],
+  "filesystem_checks": [
+    {
+      "name": "granted_write:ctrl",
+      "actual_sha": "bc782e50a8116d9ab3d3a4fbef67491ca8ed40904870e941a0e6fd9a07294779",
+      "expected_sha": "bc782e50a8116d9ab3d3a4fbef67491ca8ed40904870e941a0e6fd9a07294779",
+      "match": true
+    },
+    {
+      "name": "granted_write:sb",
+      "actual_sha": "9a97e9cf8630c1b35f54d057b28757791257f4a86d32610af39b74b50a72a605",
+      "expected_sha": "9a97e9cf8630c1b35f54d057b28757791257f4a86d32610af39b74b50a72a605",
+      "match": true
+    },
+    {
+      "name": "granted_read",
+      "actual_sha": "ff51591a16d2ebef861d8f9f740399d4524218d2bc54e761cdc7c2f7dad276dc",
+      "expected_sha": "ff51591a16d2ebef861d8f9f740399d4524218d2bc54e761cdc7c2f7dad276dc",
+      "match": true,
+      "recorded_stable": true
+    },
+    {
+      "name": "denied_write",
+      "sb_target_exists_now": false,
+      "recorded_created": false,
+      "control_removed": true
+    },
+    {
+      "name": "denied_read",
+      "actual_sha": "613f2e4e59726d161b45e1468dd8c1333294bde81ee314214f53d8701eb0bd24",
+      "expected_sha": "613f2e4e59726d161b45e1468dd8c1333294bde81ee314214f53d8701eb0bd24",
+      "match": true,
+      "recorded_stable": true
+    }
+  ],
+  "runtime": {
+    "python.exe": {
+      "expected": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+      "current": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+      "unchanged": true
+    },
+    "python313.dll": {
+      "expected": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+      "current": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+      "unchanged": true
+    },
+    "Lib/socket.py": {
+      "expected": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+      "current": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+      "unchanged": true
+    },
+    "DLLs/_socket.pyd": {
+      "expected": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259",
+      "current": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259",
+      "unchanged": true
+    }
+  },
+  "core11_current_vs_approved_baseline": {
+    "src/animtrain/network_isolation.py": {
+      "expected": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c",
+      "current": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c",
+      "unchanged": true
+    },
+    "tools/network_acceptance.py": {
+      "expected": "e3092da1fd44381e59aacf96ba4352381bdebb8dec15c9bbd9c9d777a10e0ace",
+      "current": "e3092da1fd44381e59aacf96ba4352381bdebb8dec15c9bbd9c9d777a10e0ace",
+      "unchanged": true
+    },
+    "tests/test_network_isolation.py": {
+      "expected": "702b728cbff06a8c7cc838a3537d3e954936c07e78acbf1b4db0e645ffa8b624",
+      "current": "702b728cbff06a8c7cc838a3537d3e954936c07e78acbf1b4db0e645ffa8b624",
+      "unchanged": true
+    },
+    "tests/test_network_acceptance.py": {
+      "expected": "55cfb01c28e767bca147e71d46880164385268f259cac8642d9f848c426edfee",
+      "current": "55cfb01c28e767bca147e71d46880164385268f259cac8642d9f848c426edfee",
+      "unchanged": true
+    },
+    "src/animtrain/appcontainer.py": {
+      "expected": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "current": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "unchanged": true
+    },
+    "src/animtrain/win_job.py": {
+      "expected": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "current": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "unchanged": true
+    },
+    "tests/test_appcontainer_lifecycle.py": {
+      "expected": "fd1f92c4c932f8c1905f851d82c09663032b215a5763a2666bf294c8608cf972",
+      "current": "fd1f92c4c932f8c1905f851d82c09663032b215a5763a2666bf294c8608cf972",
+      "unchanged": true
+    },
+    "tests/test_win_job_cleanup.py": {
+      "expected": "c7322bc48b0d17aa4be5293e2690794ced0465667b9ac650a31dfccc17fac213",
+      "current": "c7322bc48b0d17aa4be5293e2690794ced0465667b9ac650a31dfccc17fac213",
+      "unchanged": true
+    },
+    "src/animtrain/render_gate.py": {
+      "expected": "7b6a6da10498991f4bd3e7a667195b657a92f610af7fd457988393b24677b026",
+      "current": "7b6a6da10498991f4bd3e7a667195b657a92f610af7fd457988393b24677b026",
+      "unchanged": true
+    },
+    "tools/isolation_acceptance.py": {
+      "expected": "2aa62f1627e531dd0a2e87ba67c27e8955e57c1fe8533d5c01550147aa7b832f",
+      "current": "2aa62f1627e531dd0a2e87ba67c27e8955e57c1fe8533d5c01550147aa7b832f",
+      "unchanged": true
+    },
+    "reviews/2026-10-04-acceptance-support/network_acceptance.py": {
+      "expected": "75cbcd4934e35537ba8920c0fc38b3f1efa6f907417bb2708e5413eed056cf3e",
+      "current": "75cbcd4934e35537ba8920c0fc38b3f1efa6f907417bb2708e5413eed056cf3e",
+      "unchanged": true
+    }
+  },
+  "core_modules_recorded_before_after": [
+    "src/animtrain/appcontainer.py",
+    "src/animtrain/win_job.py",
+    "src/animtrain/network_isolation.py"
+  ],
+  "limitation": "The original JSON records only 3 core modules pre/post; current 11 checks cannot recreate missing run-time before evidence. Parent rc=2 currently attested by Bridge only."
+}

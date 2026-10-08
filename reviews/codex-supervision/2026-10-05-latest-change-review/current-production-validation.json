@@ -1,0 +1,69 @@
+{
+  "ok": false,
+  "n_entries": 6,
+  "problems": [],
+  "quarantines": [
+    "结构泄漏候选 2 对须逐对复核；签名不同或低文字相似度不能自动判为不泄漏"
+  ],
+  "structural_screen": {
+    "rule": "structure-candidates-v4",
+    "implementation_sha256": "81382303878e8658e5c6c27834119857bb7adc6a542c109a76169d3f71874169",
+    "candidates": [
+      {
+        "split": "eval",
+        "query_id": "eval-linalg-015-s1",
+        "train_id": "linalg-048",
+        "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+        "reasons": [
+          "spectrum-balanced-symmetric-2"
+        ],
+        "score": "31/75"
+      },
+      {
+        "split": "test",
+        "query_id": "test-linalg-025",
+        "train_id": "linalg-048",
+        "query_hash": "d0889025edd38d043be6ccbaabf473ddc88a657d157cc537431e76b8887ba035",
+        "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+        "reasons": [
+          "spectrum-balanced-symmetric-2"
+        ],
+        "score": "29/82"
+      }
+    ],
+    "calibrated": false,
+    "unmatched": "UNKNOWN"
+  },
+  "near_dup_rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+  "near_dup_threshold": 0.4,
+  "near_dup_calibrated": false,
+  "near_dup_calibration": {
+    "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+    "threshold": "2/5",
+    "note": "组合规则缺少独立标签和匹配校准证据(UNCALIBRATED);B5 模块+题型签名与执行规则不同,不能解除 ready 阻断;组合屏报告自报 calibrated 不能替代独立验收"
+  },
+  "b5_signature_calibration": {
+    "reported_calibrated": true,
+    "rule": "考点签名一致(模块+题型)",
+    "threshold": "1",
+    "tp": 17,
+    "fp": 0,
+    "fn": 0,
+    "tn": 31,
+    "note": "考点网格选定阈值 1(考点签名完全一致),召回率=1,误报率=0"
+  },
+  "leakage_screen_report": {
+    "reported_calibrated": false,
+    "rule": "考点签名一致 AND 5-gram Jaccard达阈值",
+    "threshold": "2/5",
+    "tp": 16,
+    "fp": 0,
+    "fn": 1,
+    "tn": 31,
+    "recall_all_labels": "16/17",
+    "domain_recall": null,
+    "note": "报告自报诊断未验证;不得作为 ready 校准证明"
+  },
+  "exit_code": 2
+}

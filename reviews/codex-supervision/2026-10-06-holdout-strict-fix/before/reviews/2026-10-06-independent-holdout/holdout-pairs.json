@@ -1,0 +1,1960 @@
+{
+  "schema": "holdout-pairs-v1",
+  "created": "2026-10-06",
+  "seed": 20261006,
+  "sampling": "metadata-stratified; NO similarity scores; strata hidden from labeler",
+  "labeling_rule": "独立标注:本质考点+数学对象/题型/目标及求解结构均不变的文本变体=泄漏;共享知识点本身不算泄漏",
+  "labeler": "codex-independent; conflicts -> user adjudication",
+  "pairs": [
+    {
+      "pair_id": "42ecb01d305cdd4a4d3b",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c18-05",
+        "problem": "证明空间中任意一点$P$到平面$\\pi=\\{X:n\\cdot X=c\\}$（$n\\ne0$）的最近点存在且唯一，并推导正交投影及距离公式。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "7b220c439f24af8b5f72",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c18-02",
+        "problem": "求两平行平面 $\\pi_1:2x-y+2z=1$ 与 $\\pi_2:2x-y+2z=5$ 之间的距离。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "f15292aa65ed0b10f92d",
+      "query": {
+        "id": "eval-geom-001",
+        "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c18-03",
+        "problem": "求过点 $P(1,2,3)$ 且垂直于方向 $v=(2,1,-1)$ 的平面方程；并求该平面与过原点、方向为 $v$ 的直线的交点。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "524c207f8f6bebfc61d5",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c20-04",
+        "problem": "椭球$x^2+2y^2+3z^2=1$与平面$x+y+z=t$相交。求截面中心、全部空集或退化情形，以及非退化截面的精确半轴长。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "9743cc5c996ad785651a",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c20-01",
+        "problem": "指出方程 $z=x^2-y^2$ 表示的二次曲面类型，并分别说明其与平面 $z=0$、$z=1$、$z=-1$ 的交线形状。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "013d7ad7a2e7812a95b2",
+      "query": {
+        "id": "eval-geom-007",
+        "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c20-05",
+        "problem": "用正交变换(旋转)判断方程 $x^2+2xy+y^2+z=0$ 表示的曲面类型。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "505866b5451c148d6b00",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-02",
+        "problem": "求使矩阵 $A=\\begin{pmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{pmatrix}$ 可逆的参数 $a$ 的取值范围；并求 $a=0$ 时的逆矩阵。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "acdfa18354472f1d92ba",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-03",
+        "problem": "用分块方法求矩阵 $M=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\0&0&2\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "ce194a17cd5f8d9a785e",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-04",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$ 的一个左逆与矩阵 $B=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 的一个右逆，并说明这两种单边逆的区别与不唯一性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "789fd7b4fc46abef7152",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-03",
+        "problem": "用分块方法求矩阵 $M=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\0&0&2\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "4efea0072b3f48397628",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-05",
+        "problem": "令加权循环矩阵$C=\\begin{pmatrix}0&2&0\\\\0&0&3\\\\1/6&0&0\\end{pmatrix}$，$A_t=I-tC$，$t\\in\\mathbb R$。用矩阵多项式恒等式求全部可逆参数及逆矩阵。在唯一奇异参数下，求$A_tx=b$的相容条件与全部解。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "7faaddbceca6356fd52b",
+      "query": {
+        "id": "eval-linalg-008",
+        "problem": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$、$A$ 的秩与 $A^{-1}$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-04",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$ 的一个左逆与矩阵 $B=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 的一个右逆，并说明这两种单边逆的区别与不唯一性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "343ae55c83a34583bb61",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-03",
+        "problem": "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "918e1ae1cfd45ea1b40c",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-01",
+        "problem": "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "e5e3b6ae5723eeb46ffa",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-02",
+        "problem": "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "05092b3e8b70b78353a4",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-04",
+        "problem": "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "c88e6971a6d5493e2dac",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c30-04",
+        "problem": "已知多项式 $f$ 在 $x=1$ 处的展开为 $f=2+3(x-1)+(x-1)^2-(x-1)^3$。求 $f$ 按 $x$ 的幂展开的标准形式，并求 $f(1)$、$f'(1)$、$f''(1)$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "9296af8d692e336a2d47",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c30-03",
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "36d831650263c2f83d92",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c30-01",
+        "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "1a149eb0e20140025cf0",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-02",
+        "problem": "在次数不超过 $2$ 的实系数多项式空间 $V$ 中，求从基 $\\{1,x,x^2\\}$ 到基 $\\{1,\\,x-1,\\,(x-1)^2\\}$ 的过渡矩阵，并求 $p(x)=2x^2+3x+4$ 在新基下的坐标。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "cc5aa181e615614ae1ee",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-03",
+        "problem": "在实对称$2\\times2$矩阵空间中，取旧基$E_1=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},E_2=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},E_3=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$；新基$\\eta_1=I_2,\\eta_2=\\operatorname{diag}(1,-1),\\eta_3=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。求过渡矩阵、$T=\\begin{pmatrix}3&2\\\\2&1\\end{pmatrix}$的新坐标，并在内积$\\langle U,V\\rangle=\\operatorname{tr}(UV)$下求新基Gram矩阵，核对$\\|T\\|^2$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "b28865ad169b497e985f",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-05",
+        "problem": "证明 $\\{1+x+x^2,\\ 1-x+x^2,\\ x-x^2\\}$ 是次数不超过 $2$ 的多项式空间的一组基，并求 $p(x)=x^2$ 在这组基下的坐标。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "fa0120e736bc36cb5b6d",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c11-03",
+        "problem": "设$S(x)=\\sum_{n=0}^{\\infty}x^{2^n}$。求其收敛域，证明$S(x)=x+S(x^2)$；并证明在$(-1,1)$上，满足该方程、在$0$处连续且$S(0)=0$的函数唯一。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "1e3e993066e33c7ead6c",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c11-02",
+        "problem": "把$f(x)=1/(1+x^2)$在$x=1$处展开为$\\sum_{n=0}^{\\infty}c_n(x-1)^n$。求系数的显式式、收敛半径和实收敛域，严格检查两个端点，并解释为什么相邻系数比值法不适用。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "c498da8d623346952397",
+      "query": {
+        "id": "eval-calc-011",
+        "problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c11-05",
+        "problem": "设$a_n=\\binom{2n}{n}/4^n$，$S(x)=\\sum_{n=0}^{\\infty}a_nx^n$。由系数递推推导$S$满足的微分方程，求和函数与实收敛域，并严格处理两个端点。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "06d10dc98d1a3f1751fd",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c13-03",
+        "problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{n}{(n+1)!}$ 的和。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "929feab4d115f2ec2217",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c13-05",
+        "problem": "证明不存在有理函数 $R\\in\\mathbb R(t)$ 使 $\\frac1{t^2+1}=R(t)-R(t+1)$。由此说明该级数不能用这类有理函数裂项直接求和。再用精确不等式证明 $S=\\sum_{n=1}^{\\infty}\\frac1{n^2+1}<2$。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "480eb4524978dc3a5d77",
+      "query": {
+        "id": "test-calc-013",
+        "problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c13-02",
+        "problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}$ 的和。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "ce481e8796bc37305d8f",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-05",
+        "problem": "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "f5992694a66caec7cc78",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-04",
+        "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "8c1ba1e1723d6be9717c",
+      "query": {
+        "id": "eval-linalg-015",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-01",
+        "problem": "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "9e2ad08cc18360490088",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-02",
+        "problem": "分类所有保持两条坐标轴各自不变、并将单位圆映到自身的实线性映射$A:\\mathbb R^2\\to\\mathbb R^2$。分别给其固定点集合与定向。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "95f208377863ec143057",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-03",
+        "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "6bb44ef7d4232eb17fd8",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-01",
+        "problem": "令$n=(1,2,-1)$、$d=(1,1,0)$，定义$P(x)=x-(n\\cdot x)d/3$。求矩阵、核与像，证明其为沿$d$投影到$n\\cdot x=0$的斜投影，判断是否为Euclidean正交投影。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "7e9fcd6dc68c00192bd0",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-05",
+        "problem": "证明：若$n$阶矩阵在数域$\\mathbb F$内有$n$个互异特征值，则在$\\mathbb F$内可对角化。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "0494b033fb8639cf519f",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-03",
+        "problem": "设实矩阵$A$满足$A^3=A$。不用先求坐标特征向量，构造对应特征值$0,1,-1$的谱投影，证明$A$可对角化，并给所有正整数幂。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "2475694e18c9dde699d9",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-04",
+        "problem": "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "499a2fd5dd3cca3b7665",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-02",
+        "problem": "求实矩阵$A=\\begin{pmatrix}0&1&0\\\\0&0&1\\\\2&1&1\\end{pmatrix}$在$\\mathbb C$上的对角化，并判断它能否在$\\mathbb R$上对角化。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "806e301cf57a84918212",
+      "query": {
+        "id": "test-linalg-025",
+        "problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c27-01",
+        "problem": "设$n\\ge2$、$u,v\\in\\mathbb R^n$均非零，$A=I+uv^{\\mathsf T}$。用$\\alpha=v^{\\mathsf T}u$分类其可对角化性并求最小多项式；必须处理$\\alpha=0$而$uv^{\\mathsf T}\\ne0$的情况。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "09780130d595d3859bad",
+      "query": {
+        "id": "eval-calc-006",
+        "problem": "求函数 $y=\\ln(x+\\sqrt{x^2+a^2})$（$a>0$）的导数，并说明其反函数。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c01-01",
+        "problem": "求曲线 $y=x^3-3x^2+2$ 上切线平行于 $x$ 轴的所有点，并写出各点处的切线方程。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "d82e23e57b401543695b",
+      "query": {
+        "id": "eval-calc-007",
+        "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c01-05",
+        "problem": "求抛物线 $y=x^2$ 与 $y=-x^2+2x+1$ 的公切线；若不存在，请说明理由。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "80b0ea4ecf1bd22a0351",
+      "query": {
+        "id": "eval-calc-020",
+        "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c02-04",
+        "problem": "设$a,b>0$。证明$\\int_0^{\\infty}(e^{-ax}-e^{-bx})/x\\,dx$收敛并求精确值；说明交换积分的依据及为什么不能把它拆成两个广义积分之差。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "9276f2d5dda0fb70419a",
+      "query": {
+        "id": "eval-calc-020",
+        "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c02-02",
+        "problem": "在$[1,\\infty)$上定义$g(x)=n$，当$x\\in[n,n+2^{-n}/n]$、$n\\in\\mathbb N^+$时；其余点令$g(x)=0$。证明$g$局部黎曼可积且广义积分收敛，求精确积分值，并判断$\\lim_{x\\to\\infty}g(x)$是否存在。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "03531f5b24ba25fae5f7",
+      "query": {
+        "id": "eval-calc-024",
+        "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c11-04",
+        "problem": "设$a_0=1,a_1=0$，$a_n=a_{n-1}+2a_{n-2}$（$n\\ge2$）。求幂级数$S(x)=\\sum_{n=0}^{\\infty}a_nx^n$的收敛域与和函数，并求$S(1/4)$。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "e4c926a0817b334b1444",
+      "query": {
+        "id": "eval-calc-024",
+        "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c11-01",
+        "problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\left(\\frac{n}{n+1}\\right)^{n^2}x^n$ 的收敛域。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "622b43bafc7cf58dd69e",
+      "query": {
+        "id": "eval-linalg-029",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-05",
+        "problem": "设 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$(旋转 $90^\\circ$),$B=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(沿 $x$ 方向伸缩)。计算 $AB$ 与 $BA$，并用单位正方形的像说明两者对应的几何作用不同。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "152d696b5c3576c1400b",
+      "query": {
+        "id": "eval-linalg-029",
+        "problem": "设线性变换 $T:\\mathbb R^2\\to\\mathbb R^2$ 为 $T(x,y)=(x+2y,2x+y)$。求 $\\ker T$ 与 $\\operatorname{Im}T$，并说明其维数关系。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c26-04",
+        "problem": "在$\\mathbb R^4$中比较$T(x)=(x_3,x_4,0,0)$与$U(x)=(x_2,x_3,0,0)$。求迭代像维数与最小归零次数，证明它们虽秩相同却不相似，并判断可否对角化。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "4dc0ef36cc28b5ffffec",
+      "query": {
+        "id": "eval-linalg-004",
+        "problem": "计算 $n=3$ 时行列式 $D=\\begin{vmatrix}a+b&a&a\\\\a&a+b&a\\\\a&a&a+b\\end{vmatrix}$，并推广到 $n$ 阶。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c28-05",
+        "problem": "证明三阶行列式的绝对值等于其三个行向量张成的平行六面体的体积。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "94a3bfd7587c271e0cc8",
+      "query": {
+        "id": "eval-linalg-003",
+        "problem": "求 $n$ 阶三对角行列式 $D_n=\\begin{vmatrix}2&1&0&\\cdots&0\\\\1&2&1&\\cdots&0\\\\0&1&2&\\cdots&0\\\\\\vdots&&&\\ddots&\\vdots\\\\0&0&0&\\cdots&2\\end{vmatrix}$ 的值（矩阵元素满足 $a_{ii}=2$，$a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c28-02",
+        "problem": "设$u=(1,-1,2)^{\\mathsf T}$、$v=(2,1,1)^{\\mathsf T}$，$A_t=I+tuv^{\\mathsf T}$。求该变换对单位立方体的体积及取向的影响。对奇异参数，证明$A_t$是投影，并求其核与像。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "6d4610178865374f80b8",
+      "query": {
+        "id": "eval-linalg-022",
+        "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c29-05",
+        "problem": "证明三次多项式的根与系数关系(韦达定理)，并构造一个以 $2$、$-1$、$\\frac12$ 为根的首一三次多项式。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "b86236174b563c85e55f",
+      "query": {
+        "id": "eval-linalg-024",
+        "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c29-05",
+        "problem": "证明三次多项式的根与系数关系(韦达定理)，并构造一个以 $2$、$-1$、$\\frac12$ 为根的首一三次多项式。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "7d57eb35cbdf5b055121",
+      "query": {
+        "id": "eval-linalg-023",
+        "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c30-03",
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "c0164538bfdf4bf6fa53",
+      "query": {
+        "id": "eval-linalg-022",
+        "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c30-03",
+        "problem": "在次数不超过$3$的实多项式空间上定义$\\Delta f(x)=f(x+1)-f(x)$。证明$\\Delta^4=0$但$\\Delta^3\\ne0$，并求满足$\\Delta f=3x^2+5x+2$、$f(0)=2$的全部$f$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "d0bd72a13223a9013c00",
+      "query": {
+        "id": "eval-linalg-013",
+        "problem": "求齐次线性方程组 $x_1+x_2+x_3+x_4=0$ 的基础解系与通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c31-03",
+        "problem": "用克拉默法则求方程组 $\\begin{cases}x+y+z=1\\\\ x+y+2z=2\\\\ x+2y+az=3\\end{cases}$ 的解，并说明解与参数 $a$ 的关系。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "df89f2b7f107d63df3df",
+      "query": {
+        "id": "eval-linalg-012",
+        "problem": "求参数 $a$ 使齐次线性方程组 $\\begin{cases}ax+y+z=0\\\\x+ay+z=0\\\\x+y+az=0\\end{cases}$ 有非零解，并求各情形下的解空间。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c31-04",
+        "problem": "用克拉默法则解方程组 $\\begin{cases}kx+y=1\\\\ x+ky=k\\end{cases}$($k$ 为参数),并讨论奇异情形($D=0$)时的解。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "55ce369d6d513c0aede1",
+      "query": {
+        "id": "eval-linalg-013",
+        "problem": "求齐次线性方程组 $x_1+x_2+x_3+x_4=0$ 的基础解系与通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c32-02",
+        "problem": "求$V=\\{x\\in\\mathbb R^4:\\sum_{i=0}^3x_i=0,\\ \\sum_{i=0}^3i x_i=0\\}$的基与维数，证明给出的基张成全部解。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "b5d31ced80668f9c6694",
+      "query": {
+        "id": "eval-linalg-011",
+        "problem": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c32-04",
+        "problem": "对实参数$a,b$，分类系统$x+y=1,\\ ax+y=b$的全部解，并写出每种解集的维数或为空。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "d35f5d495a6b9c280a05",
+      "query": {
+        "id": "eval-linalg-009",
+        "problem": "用分块方法计算 $M=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\0&0&3\\end{pmatrix}$ 的行列式。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-02",
+        "problem": "求使矩阵 $A=\\begin{pmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{pmatrix}$ 可逆的参数 $a$ 的取值范围；并求 $a=0$ 时的逆矩阵。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "1d3c41ef7826fabca21f",
+      "query": {
+        "id": "eval-linalg-007",
+        "problem": "设 $A=\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}$，求 $A^n$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-04",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$ 的一个左逆与矩阵 $B=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 的一个右逆，并说明这两种单边逆的区别与不唯一性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "ccc5455f96fe666fbf8e",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c34-03",
+        "problem": "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "eea45f8bd8a4d062c6e0",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c34-05",
+        "problem": "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "7315a2e3e30c9a972c90",
+      "query": {
+        "id": "eval-linalg-019",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,将二次型 $f(x,y,z)=x^2+2y^2+az^2+2xy+2xz$ 化为标准形,并讨论 $a$ 取何值时 $f$ 正定。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "8467b3f9264332c4772a",
+      "query": {
+        "id": "eval-linalg-020",
+        "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c35-04",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2-y^2+2xz+2yz$ 化为标准形，写出可逆线性替换，并求正负惯性指数与秩。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "26a0cbacfe85d2c98d11",
+      "query": {
+        "id": "eval-linalg-021",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c36-05",
+        "problem": "构造一个三阶实对称矩阵 $A$，使其所有顺序主子式均非负，但 $A$ 不是半正定的，并给出验证。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "00cccec93ed9253c7c0b",
+      "query": {
+        "id": "eval-linalg-021",
+        "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c36-01",
+        "problem": "本题正定矩阵指实对称且二次型对所有非零实向量为正的矩阵。设 $A$ 为 $n$ 阶正定矩阵。证明 $A^{-1}$ 也是正定矩阵；并举出两个正定矩阵，其乘积不是正定矩阵的例子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "412842b7ccdf6fba927d",
+      "query": {
+        "id": "eval-linalg-026",
+        "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-03",
+        "problem": "在实对称$2\\times2$矩阵空间中，取旧基$E_1=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},E_2=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},E_3=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$；新基$\\eta_1=I_2,\\eta_2=\\operatorname{diag}(1,-1),\\eta_3=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。求过渡矩阵、$T=\\begin{pmatrix}3&2\\\\2&1\\end{pmatrix}$的新坐标，并在内积$\\langle U,V\\rangle=\\operatorname{tr}(UV)$下求新基Gram矩阵，核对$\\|T\\|^2$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "7c563e3271889a8f37e1",
+      "query": {
+        "id": "eval-linalg-027",
+        "problem": "求 $\\mathbb R^3$ 中子空间 $W=\\operatorname{span}\\{(1,1,0),(0,1,1)\\}$ 的正交补 $W^\\perp$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-03",
+        "problem": "在实对称$2\\times2$矩阵空间中，取旧基$E_1=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},E_2=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},E_3=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$；新基$\\eta_1=I_2,\\eta_2=\\operatorname{diag}(1,-1),\\eta_3=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$。求过渡矩阵、$T=\\begin{pmatrix}3&2\\\\2&1\\end{pmatrix}$的新坐标，并在内积$\\langle U,V\\rangle=\\operatorname{tr}(UV)$下求新基Gram矩阵，核对$\\|T\\|^2$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "52a4e0e4482e4e671125",
+      "query": {
+        "id": "eval-linalg-026",
+        "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c38-01",
+        "problem": "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "9fdc916e0c7b543863e7",
+      "query": {
+        "id": "eval-linalg-026",
+        "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c38-03",
+        "problem": "在实$2\\times2$矩阵空间中，令$U$为对称矩阵、$V$为迹为零的矩阵。给出交空间的基、两空间与和的维数，并显式证明和为全空间。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "4ddc0177bdf375ee8432",
+      "query": {
+        "id": "eval-prob-002",
+        "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c45-04",
+        "problem": "说明是否存在满足 $P(A|B)=\\frac{9}{10}$，$P(A|\\bar B)=\\frac45$，且 $P(A)=\\frac{1}{10}$ 的事件 $A,B$($0<P(B)<1$)；并说明一般情形下 $P(A)$ 必须满足什么约束。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "36f78964a7812257f1cd",
+      "query": {
+        "id": "eval-prob-001",
+        "problem": "三门问题：参赛者在三扇门中选择一扇（其中一扇后有汽车，另两扇后是山羊）。主持人（知道车在哪）打开另一扇有山羊的门，给参赛者一次换门机会。问换门获胜的概率是多少？并解释原因。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c45-03",
+        "problem": "独立地抛两枚公平硬币。记 $A=${第一枚正面},$B=${第二枚正面},$C=${两枚同面}。证明 $A,B,C$ 两两独立但整体不独立。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "af0c7814249a7a766629",
+      "query": {
+        "id": "eval-calc-008",
+        "problem": "证明：当 $x>0$ 时，$e^x>1+x$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c10-02",
+        "problem": "设$b_n=1/\\sqrt{n(n+1)}$，$a_n=b_n+(-1)^n/[n(n+1)]$。证明$a_n>0$、$a_n$不单调，且$\\sum_{n\\ge1}(-1)^na_n$条件收敛。说明绝对可和扰动为何不破坏交错级数的收敛。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "64e97c728edbf3e7e81e",
+      "query": {
+        "id": "eval-calc-010",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c10-05",
+        "problem": "证明莱布尼茨判别法:若 $a_n$ 单调递减趋于 $0$,则交错级数 $\\sum_{n=1}^{\\infty}(-1)^{n+1}a_n$ 收敛,且其和 $S$ 满足 $|S-S_N|\\le a_{N+1}$。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "2ce38be847a0ef20c192",
+      "query": {
+        "id": "eval-calc-021",
+        "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c08-02",
+        "problem": "求星形线 $\\begin{cases}x=a\\cos^3 t\\\\ y=a\\sin^3 t\\end{cases}$($a>0$)围成的面积。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "a1ff3a44b92306838395",
+      "query": {
+        "id": "eval-calc-016",
+        "problem": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c05-04",
+        "problem": "求 $\\lim_{x\\to+\\infty}\\frac{x^3}{e^x}$ 与 $\\lim_{x\\to+\\infty}\\frac{\\ln x}{\\sqrt{x}}$，并说明它们反映的增长等级关系。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "d02b775240996a518407",
+      "query": {
+        "id": "eval-calc-010",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{e^x-e^{\\sin x}}{x-\\sin x}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c14-01",
+        "problem": "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "80a4fc6eb924cfe6c328",
+      "query": {
+        "id": "test-calc-009",
+        "problem": "求曲线 $x=t^2,\\ y=t^3$（$0\\le t\\le 1$）的弧长。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c08-04",
+        "problem": "求李萨如曲线 $\\begin{cases}x=\\cos t\\\\ y=\\sin 2t\\end{cases}$ 的两个环各自的面积与总面积，并说明沿全周期 $[0,2\\pi]$ 的有向积分为何为零。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "01dc5d89b54adec709d8",
+      "query": {
+        "id": "eval-calc-004",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{x^3}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c06-02",
+        "problem": "求由 $y=|x|$ 与 $y=1$ 围成的封闭图形的面积。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "4778ca567f5d35f48474",
+      "query": {
+        "id": "eval-calc-012",
+        "problem": "求 $\\tan 15^\\circ$ 的精确值。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c04-05",
+        "problem": "设$P=-2y/(x^2+y^2)+3y/((x-3)^2+y^2)$，$Q=2x/(x^2+y^2)-3(x-3)/((x-3)^2+y^2)$。取圆盘$(x-3/2)^2+y^2\\le16$，挖去以$(0,0)$、$(3,0)$为中心、半径$1/2$的两个开圆盘，得区域$D$。分别求外圆逆时针及两个内圆顺时针的积分$\\oint P\\,dx+Q\\,dy$，并验证正向总边界的Green公式。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "cbe793de57a3f81194a2",
+      "query": {
+        "id": "eval-calc-022",
+        "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c13-02",
+        "problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}$ 的和。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "46e4a42a78846365a2ab",
+      "query": {
+        "id": "eval-calc-020",
+        "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c06-02",
+        "problem": "求由 $y=|x|$ 与 $y=1$ 围成的封闭图形的面积。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "0ffd97950744418a2615",
+      "query": {
+        "id": "eval-calc-024",
+        "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c01-04",
+        "problem": "求过点 $P(1,-2)$ 且与抛物线 $y=x^2-2x$ 相切的所有直线的方程，并写出各切点坐标。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "0c44b317757a33f0abdb",
+      "query": {
+        "id": "eval-calc-013",
+        "problem": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c13-03",
+        "problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{n}{(n+1)!}$ 的和。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "99323b924cfe51645e00",
+      "query": {
+        "id": "test-prob-024",
+        "problem": "证明泊松分布的概率质量函数归一化：$\\displaystyle\\sum_{k=0}^{\\infty}\\frac{\\lambda^ke^{-\\lambda}}{k!}=1$，并用阶乘矩求 $\\operatorname{Var}(X)$（$X\\sim\\operatorname{Poisson}(\\lambda)$）。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c52-01",
+        "problem": "设随机变量 $X$ 的概率密度为 $f_X(x)=2x\\ (0<x<1)$，其余为 $0$。求 $Y=3X+1$ 的概率密度函数。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "e8c22c34c627c1ffee0d",
+      "query": {
+        "id": "eval-prob-007",
+        "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c46-01",
+        "problem": "$X,Y$相互独立且均匀分布于$[0,1]$。用单位正方形中的面积计算$P(XY\\le1/4)$，并说明积分区间的分段依据。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "e3dff0d986cae98fa4d0",
+      "query": {
+        "id": "eval-prob-008",
+        "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c52-03",
+        "problem": "设随机变量 $X$ 服从区间 $(-1,2)$ 上的均匀分布，求 $Y=X^2$ 的概率密度函数，并指出密度分段的分界点。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "c377c129977ee63c927c",
+      "query": {
+        "id": "test-prob-006",
+        "problem": "设 $X\\sim\\operatorname{Poisson}(4)$。求 $P(X=2)$ 与 $P(X\\ge 1)$ 的精确表达式。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c46-02",
+        "problem": "在单位圆盘 $x^2+y^2\\le1$ 内随机取一点(均匀分布),求该点落入内接正方形 $|x|\\le\\frac{1}{\\sqrt2}$，$|y|\\le\\frac{1}{\\sqrt2}$ 的概率。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "d1a3c5eddb7e3e7fc330",
+      "query": {
+        "id": "eval-prob-015",
+        "problem": "掷一枚均匀骰子，设 $X$ 为点数。求 $E[X]$ 与 $\\operatorname{Var}(X)$。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c46-01",
+        "problem": "$X,Y$相互独立且均匀分布于$[0,1]$。用单位正方形中的面积计算$P(XY\\le1/4)$，并说明积分区间的分段依据。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "2c7081c1264e6449b8b0",
+      "query": {
+        "id": "eval-prob-007",
+        "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c45-04",
+        "problem": "说明是否存在满足 $P(A|B)=\\frac{9}{10}$，$P(A|\\bar B)=\\frac45$，且 $P(A)=\\frac{1}{10}$ 的事件 $A,B$($0<P(B)<1$)；并说明一般情形下 $P(A)$ 必须满足什么约束。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "caa12ed9542a899d59bb",
+      "query": {
+        "id": "eval-prob-009",
+        "problem": "设 $X,Y$ 相互独立且均服从 $\\operatorname{Exp}(1)$，求 $Z=\\min(X,Y)$ 的分布。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c46-03",
+        "problem": "从单位正方形均匀选取点$M=(X,Y)$。求$M$分别以$A=(0,0)$、$B=(1,0)$、$C=(0,1)$为三个点中唯一最近点的概率，证明平局不会改变结果。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "5783a7588b7c3fb6918a",
+      "query": {
+        "id": "eval-prob-007",
+        "problem": "房间里随机聚集 30 个人（假设生日在一年 365 天中等可能且相互独立）。求至少有两人生日相同的概率。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c47-05",
+        "problem": "对$X\\sim B(50,1/50)$，精确求$P(X\\le2)$并证明它严格大于$P(Y\\le2)$，其中$Y\\sim\\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "6449bbc5eddff00ccbfb",
+      "query": {
+        "id": "test-prob-018",
+        "problem": "设 $X\\sim\\operatorname{Exp}(\\lambda)$。求 $E[e^{tX}]$ 的收敛条件与表达式。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c45-05",
+        "problem": "证明:给定事件 $B$($P(B)>0$)，条件概率 $P(\\cdot|B)$ 是样本空间上的概率测度，并推导全概率公式。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "c5dcbfc6357a7cc31194",
+      "query": {
+        "id": "test-prob-007",
+        "problem": "某灯泡寿命 $T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)$（单位：小时，参数 $\\lambda=\\dfrac{1}{1000}$）。求 $P(T>1500\\mid T>500)$。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c49-02",
+        "problem": "说明依概率收敛与几乎必然收敛的区别，并说明大数定律(频率趋于概率)属于哪一种收敛。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "d7c5382fc0a6c2b2bd60",
+      "query": {
+        "id": "test-prob-001",
+        "problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c53-02",
+        "problem": "独立地抛两枚公平硬币。用互斥事件的拆分与可加性求「至少一枚正面朝上」的概率。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "1a961937e288c4a63bfa",
+      "query": {
+        "id": "eval-geom-009",
+        "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c17-04",
+        "problem": "设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "e5f560ebbf5cbb572467",
+      "query": {
+        "id": "eval-geom-013",
+        "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c20-05",
+        "problem": "用正交变换(旋转)判断方程 $x^2+2xy+y^2+z=0$ 表示的曲面类型。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "f46fa6294c06fe5cfb78",
+      "query": {
+        "id": "eval-geom-009",
+        "problem": "求椭球面 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}+z^2=1$ 与平面 $x=1$ 的交线方程，并说明其形状。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c22-04",
+        "problem": "设实二次曲面$F(x)=x^{\\mathsf T}Ax+2b^{\\mathsf T}x+c=0$，$A=A^{\\mathsf T}$。证明$p+td$（$d\\ne0$）整条直线在曲面上的充要条件，并据此说明正定或负定$A$为何不允许母线。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "84975932af6b06c6439e",
+      "query": {
+        "id": "eval-geom-013",
+        "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c23-03",
+        "problem": "分析等距变换$T(x,y,z)=(x+2,4-y,z)$：说明其几何类型，求固定点集合、逆变换及$T^2$，并证明它保持距离。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "99267362a897de1e56bd",
+      "query": {
+        "id": "eval-geom-020",
+        "problem": "判断四点 $A(1,2,3)$、$B(2,3,4)$、$C(3,5,7)$、$D(2,4,6)$ 是否共面。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c23-01",
+        "problem": "求等距变换 $T(x)=Ax+b$ 的逆变换，其中 $A=\\begin{pmatrix}0&1&0\\\\-1&0&0\\\\0&0&1\\end{pmatrix}$，$b=(1,2,3)$。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "1c247e049da063981891",
+      "query": {
+        "id": "test-geom-023",
+        "problem": "求球面 $x^2+y^2+z^2=4$ 在点 $(1,1,\\sqrt2)$ 处的单位外法向量。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c21-03",
+        "problem": "求直线 $l:(1+t,2t,t)$ 与双曲抛物面 $z=xy$ 的交点。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "01f88c34a537d3379b62",
+      "query": {
+        "id": "eval-geom-010",
+        "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c23-02",
+        "problem": "证明:若 $A$ 为正交矩阵,则等距变换 $T(x)=Ax+b$ 保持任意两点间的距离,即 $\\|T(x)-T(y)\\|=\\|x-y\\|$。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "cc2d559150d0ac128770",
+      "query": {
+        "id": "test-geom-024",
+        "problem": "求两平行平面 $2x-y+2z=1$ 与 $2x-y+2z=7$ 之间的距离。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c19-05",
+        "problem": "设$F\\in C^1(\\mathbb R^3)$，$v\\ne0$。证明$F(x+tv)=F(x)$对所有$x,t$成立，当且仅当$v\\cdot\\nabla F(x)=0$处处成立。说明零集何时为正则柱面，为什么“不含某变量”并不自动保证二维曲面。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "c5e3bfaf6c4e95b2e4a1",
+      "query": {
+        "id": "eval-geom-013",
+        "problem": "求曲面 $z=x^2+y^2$ 在点 $(1,1,2)$ 处的切平面与法线方程。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c19-02",
+        "problem": "求以 $xy$ 平面内的圆 $x^2+y^2=1$($z=0$)为准线、母线平行于直线 $l$:方向 $(1,1,1)$ 的柱面方程。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "5e479542ab19ff79689a",
+      "query": {
+        "id": "eval-geom-014",
+        "problem": "求椭圆 $\\dfrac{x^2}{4}+\\dfrac{y^2}{9}=1$ 在点 $\\left(\\sqrt{2},\\dfrac{3}{\\sqrt{2}}\\right)$ 处的切线方程。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c16-02",
+        "problem": "求两平行直线 $l_1$：过点 $(1,2,3)$、方向 $(1,1,1)$ 与 $l_2$：过点 $(2,3,3)$、方向 $(1,1,1)$ 之间的距离。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "0fc4af14a4a0fea95301",
+      "query": {
+        "id": "eval-geom-017",
+        "problem": "已知 $\\vec a=(1,2,2)$，$\\vec b=(-2,1,2)$，求 $\\vec a$ 与 $\\vec b$ 的夹角余弦及 $\\vec a$ 在 $\\vec b$ 上的投影向量。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c19-03",
+        "problem": "求柱面 $x^2+y^2=1$ 与平面 $z=2x$ 的交线方程及其在 $xy$ 平面上的投影，并说明该交线是什么曲线。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "27eaecdd13b8ba20ed29",
+      "query": {
+        "id": "test-geom-009",
+        "problem": "求点 $(2,1)$ 绕原点逆时针旋转 $90^\\circ$ 后的坐标，以及向量 $(3,4)$ 在方向 $(1,1)$ 上的投影向量。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c20-05",
+        "problem": "用正交变换(旋转)判断方程 $x^2+2xy+y^2+z=0$ 表示的曲面类型。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "4b39bb43f497e0456287",
+      "query": {
+        "id": "eval-linalg-014",
+        "problem": "设 $a\\in\\mathbb R\\setminus\\{0\\}$ 为参数,求矩阵 $A=\\begin{pmatrix}1&a&0\\\\a&1&a\\\\0&a&1\\end{pmatrix}$ 的特征值与特征向量,并求正交矩阵 $Q$,使 $Q^TAQ$ 为对角矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c40-02",
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda&1\\\\0&\\lambda\\end{pmatrix}$ 的行列式因子、不变因子与初等因子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "3397c414ceb79de192da",
+      "query": {
+        "id": "eval-linalg-022",
+        "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c33-03",
+        "problem": "用分块方法求矩阵 $M=\\begin{pmatrix}2&1&1\\\\1&1&0\\\\0&0&2\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "a772b17bb211fbdbd233",
+      "query": {
+        "id": "test-linalg-026",
+        "problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c38-04",
+        "problem": "设 $U,V$ 是 $\\mathbb R^5$ 的子空间，$\\dim U=3$，$\\dim V=2$。求 $\\dim(U\\cap V)$ 的可能取值范围，并说明每种取值对应的 $\\dim(U+V)$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "96f3bcc0a49ce0464919",
+      "query": {
+        "id": "test-linalg-032",
+        "problem": "证明 $\\operatorname{rank}(A+B)\\le\\operatorname{rank}A+\\operatorname{rank}B$，并举出等号成立的例子。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c39-01",
+        "problem": "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "31c6cbc3ea7449886c60",
+      "query": {
+        "id": "eval-linalg-028",
+        "problem": "在 $\\mathbb R^2$ 中，求向量 $\\alpha=(2,3)$ 在基 $\\beta_1=(1,2)$、$\\beta_2=(1,1)$ 下的坐标。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c40-04",
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\mathrm{diag}(\\lambda+1,\\,\\lambda(\\lambda+1),\\,(\\lambda+1)^2(\\lambda-2))$ 的行列式因子、不变因子与初等因子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "b2fc580cf82b178f9456",
+      "query": {
+        "id": "eval-linalg-023",
+        "problem": "分别在复数域与实数域上分解 $x^8-1$。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c43-01",
+        "problem": "设 $\\mathbb R^2$ 的基为 $\\eta_1=(1,1)$，$\\eta_2=(1,-1)$。求对偶基 $f_1,f_2$，使 $f_i(\\eta_j)=\\delta_{ij}$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "4aa280466471b10e9ad5",
+      "query": {
+        "id": "test-linalg-005",
+        "problem": "已知 3 阶方阵 $A$ 的特征值为 $1,2,3$。求 $\\operatorname{tr}A$、$\\det A$、$\\operatorname{tr}(A^2)$ 及 $A^{-1}$ 的特征值。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c32-01",
+        "problem": "求$\\mathbb R^5$中满足$x_{i+2}-2x_{i+1}+x_i=0$（$i=1,2,3$）的子空间的基与维数，并证明解的表达式完整。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "e6d08495a61fc55e3242",
+      "query": {
+        "id": "eval-linalg-031",
+        "problem": "设 4 阶矩阵 $A$ 的最小多项式为 $m_A(\\lambda)=(\\lambda-2)^2(\\lambda-3)$,且 $\\operatorname{tr}(A)=9$。求 $A$ 的所有可能若尔当标准形,并说明最小多项式如何决定各若尔当块的最大阶数。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c37-04",
+        "problem": "在 $\\mathbb R^2$ 中，设从标准基 $\\varepsilon$ 到基 $\\eta=\\{\\eta_1=(1,1),\\eta_2=(1,-1)\\}$ 的过渡矩阵为 $P$，从 $\\eta$ 到基 $\\zeta=\\{\\zeta_1=(2,1),\\zeta_2=(1,2)\\}$ 的过渡矩阵为 $Q$。求 $P$、$Q$ 与从 $\\varepsilon$ 到 $\\zeta$ 的过渡矩阵，并验证后者等于 $PQ$；若向量 $\\alpha$ 在基 $\\zeta$ 下的坐标为 $(1,1)$，求 $\\alpha$ 在标准基下的坐标。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "8654bc181ffc0ded26f8",
+      "query": {
+        "id": "eval-linalg-011",
+        "problem": "讨论含参数线性方程组 $\\begin{cases}\\lambda x+y+z=1\\\\x+\\lambda y+z=\\lambda\\\\x+y+\\lambda z=\\lambda^2\\end{cases}$ 的解的情况。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c36-05",
+        "problem": "构造一个三阶实对称矩阵 $A$，使其所有顺序主子式均非负，但 $A$ 不是半正定的，并给出验证。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "2b84fc84d1d2dd11ed33",
+      "query": {
+        "id": "eval-linalg-030",
+        "problem": "用 Gram–Schmidt 正交化方法把向量组 $(1,1,0),(1,0,1),(0,1,1)$ 化为正交向量组。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c44-02",
+        "problem": "在同一标准四维辛形式$J$下，证明保体积不必保持辛形式：检验$A=\\operatorname{diag}(2,1,1,1/2)$，给具体反例向量，并解释二维与四维的差异。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "8cfaddb9bfd99f227f4c",
+      "query": {
+        "id": "eval-linalg-001",
+        "problem": "计算范德蒙德行列式 $\\begin{vmatrix}1&1&1\\\\a&b&c\\\\a^2&b^2&c^2\\end{vmatrix}$，并求 $a=1,b=2,c=3$ 时的值。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c35-01",
+        "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "ef8cf7cb7eb6c315b408",
+      "query": {
+        "id": "eval-linalg-013",
+        "problem": "求齐次线性方程组 $x_1+x_2+x_3+x_4=0$ 的基础解系与通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c35-05",
+        "problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy$ 与 $g(x,y,z)=2x^2+3y^2+4z^2$ 是否合同，并说明理由；若合同，构造可逆矩阵 $C$ 使 $C^{\\mathsf{T}}AC=B$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "58b293154e1d89600c68",
+      "query": {
+        "id": "eval-geom-010",
+        "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c38-04",
+        "problem": "设 $U,V$ 是 $\\mathbb R^5$ 的子空间，$\\dim U=3$，$\\dim V=2$。求 $\\dim(U\\cap V)$ 的可能取值范围，并说明每种取值对应的 $\\dim(U+V)$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "0899f4457e681cbd5e2b",
+      "query": {
+        "id": "eval-calc-019",
+        "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c53-05",
+        "problem": "设$P$为σ代数上的非负、规范化、有限可加函数。证明可列可加性与下连续性等价。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "1b7f95b91edb09a41031",
+      "query": {
+        "id": "eval-calc-007",
+        "problem": "设星形线参数方程为 $x=a\\cos^3 t$，$y=a\\sin^3 t$（$a>0$，$0\\le t\\le 2\\pi$），求 $\\dfrac{dy}{dx}$ 与 $\\dfrac{d^2y}{dx^2}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c40-04",
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\mathrm{diag}(\\lambda+1,\\,\\lambda(\\lambda+1),\\,(\\lambda+1)^2(\\lambda-2))$ 的行列式因子、不变因子与初等因子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "2269f4e020a5a02e22ad",
+      "query": {
+        "id": "test-geom-022",
+        "problem": "写出绕 $y$ 轴旋转角 $\\varphi$ 的旋转矩阵 $R_y(\\varphi)$，并验证它是正交矩阵。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c49-04",
+        "problem": "证明切比雪夫大数定律:若随机变量序列 $X_1,X_2,\\dots$ 两两不相关，且存在常数 $C$ 使 $Var(X_i)\\le C$ 对一切 $i$ 成立，则 $\\frac{1}{n}\\sum_{i=1}^{n}(X_i-EX_i)\\xrightarrow{P}0$。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "64af5f2216eea56245f8",
+      "query": {
+        "id": "test-linalg-027",
+        "problem": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c03-05",
+        "problem": "用变量替换 $u=x+y$，$v=x-y$ 求二重积分 $\\iint_D (x+y)\\,dxdy$，其中 $D=[0,1]\\times[0,1]$。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "05a218554014fe42a724",
+      "query": {
+        "id": "eval-linalg-020",
+        "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c17-05",
+        "problem": "推导平面的截距式方程，并求过点 $P(1,2,3)$ 且在三坐标轴上的截距都相等且不为零(即平面不过原点)的平面方程。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "8c3aaa21cb5e290e3f46",
+      "query": {
+        "id": "eval-linalg-020",
+        "problem": "判断二次型 $f(x,y)=x^2-4xy+4y^2$ 的类型（正定/半正定/不定/负定）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c20-04",
+        "problem": "椭球$x^2+2y^2+3z^2=1$与平面$x+y+z=t$相交。求截面中心、全部空集或退化情形，以及非退化截面的精确半轴长。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "533be617407bdef7ab33",
+      "query": {
+        "id": "eval-geom-020",
+        "problem": "判断四点 $A(1,2,3)$、$B(2,3,4)$、$C(3,5,7)$、$D(2,4,6)$ 是否共面。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c47-05",
+        "problem": "对$X\\sim B(50,1/50)$，精确求$P(X\\le2)$并证明它严格大于$P(Y\\le2)$，其中$Y\\sim\\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "207c0a1d5ad5acd61dde",
+      "query": {
+        "id": "eval-calc-015",
+        "problem": "求定积分 $\\displaystyle I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2 x}\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c50-01",
+        "problem": "设独立$X_i\\sim U(0,1)$，$S_n=\\sum_{i=1}^nX_i$。精确求$P(S_{100}>55)$；另对固定实$a$求$\\lim_{n\\to\\infty}P(S_n>n/2+a\\sqrt{n/12})$。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "456a7c7bb2aa9ea153d6",
+      "query": {
+        "id": "eval-calc-002",
+        "problem": "求极限 $\\displaystyle\\lim_{x\\to 0^+} x^x$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c40-02",
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda&1\\\\0&\\lambda\\end{pmatrix}$ 的行列式因子、不变因子与初等因子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "4bb61e245dbd7c7fa127",
+      "query": {
+        "id": "eval-geom-019",
+        "problem": "求两平面 $\\pi_1:x+y+z=1$ 与 $\\pi_2:x+2y+3z=6$ 的交线方程。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c39-01",
+        "problem": "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "ef98b8a4859d49929e36",
+      "query": {
+        "id": "eval-calc-017",
+        "problem": "求定积分 $\\displaystyle I=\\int_0^1\\frac{\\ln(1+x)}{1+x^2}\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c16-05",
+        "problem": "证明两条异面直线有且仅有一条公垂线，并写出公垂线方向与两直线间距离的公式。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "8d5195519aa7be5ac3a2",
+      "query": {
+        "id": "eval-calc-015",
+        "problem": "求定积分 $\\displaystyle I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2 x}\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c49-05",
+        "problem": "证明独立同分布且$E|X_1|<\\infty$时样本均值依概率收敛到$\\mu=EX_1$，无需有限方差。证明必须说明截断偏差和尾部概率怎样分别控制。",
+        "category": "概率论"
+      }
+    },
+    {
+      "pair_id": "489b915a45c8ec8b4cfd",
+      "query": {
+        "id": "test-calc-024",
+        "problem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\frac{\\sqrt[n]{n!}}{n}$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c30-01",
+        "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "358cf19756eb6dfc6f5f",
+      "query": {
+        "id": "eval-geom-008",
+        "problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+        "category": "解析几何"
+      },
+      "train": {
+        "id": "draft-c02-05",
+        "problem": "对实参数$a$，讨论$\\int_0^{\\infty}x^{a-1}/(1+x)\\,dx$的收敛性，必须同时处理零点与无穷远。并在$a=1/2$时求精确值。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "ff913a1f0a313828efb2",
+      "query": {
+        "id": "eval-calc-014",
+        "problem": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c26-02",
+        "problem": "分类所有保持两条坐标轴各自不变、并将单位圆映到自身的实线性映射$A:\\mathbb R^2\\to\\mathbb R^2$。分别给其固定点集合与定向。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "fa0f3478aba14a970fea",
+      "query": {
+        "id": "eval-calc-005",
+        "problem": "求函数 $y=x^x$（$x>0$）的导数。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c33-04",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&0\\\\0&1\\\\1&1\\end{pmatrix}$ 的一个左逆与矩阵 $B=\\begin{pmatrix}1&0&1\\\\0&1&1\\end{pmatrix}$ 的一个右逆，并说明这两种单边逆的区别与不唯一性。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "fe6e3aad4c975f1dce62",
+      "query": {
+        "id": "eval-prob-002",
+        "problem": "三个盒子：甲盒装 2 枚金币，乙盒装 2 枚银币，丙盒装 1 金 1 银。随机选一个盒子再从中随机摸出一枚硬币，发现是金币。问：该盒子中另一枚硬币也是金币的概率是多少？",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c08-03",
+        "problem": "求笛卡尔叶形线 $x=\\frac{3t}{1+t^3}$，$y=\\frac{3t^2}{1+t^3}$($t\\ge0$)的环所围成的面积。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "eca215a836033df0feca",
+      "query": {
+        "id": "eval-prob-005",
+        "problem": "设 $X\\sim U(0,1)$（区间 $(0,1)$ 上的均匀分布），求 $Y=-\\ln X$ 的分布。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c10-03",
+        "problem": "说明级数 $\\sum_{n=1}^{\\infty}\\frac{(-1)^n(2+(-1)^n)}{n}$ 发散，并解释莱布尼茨判别法为何不能使用。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "b6f92bd144185f418a6b",
+      "query": {
+        "id": "eval-linalg-006",
+        "problem": "设 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$，求 $A^n$（$n$ 为正整数）。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c23-04",
+        "problem": "取单位法向量$n=(2,-1,2)/3$，两平面$n\\cdot x=1$、$n\\cdot x=5/2$。求先关于前者、再关于后者反射的复合，说明逆序、固定点和两平面间距。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "84a2340f2f88d64c1a44",
+      "query": {
+        "id": "test-linalg-027",
+        "problem": "解微分方程组 $\\begin{cases}x'=2x+y\\\\y'=2y\\end{cases}$ 的通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c25-02",
+        "problem": "求两圆柱面 $x^2+y^2=1$ 与 $y^2+z^2=1$ 的交线的参数方程，并说明交线由几支组成、在何处相接。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "d8291655a6be971eaaa5",
+      "query": {
+        "id": "eval-calc-014",
+        "problem": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c40-03",
+        "problem": "分别求 $A(\\lambda)=\\mathrm{diag}(\\lambda,\\lambda-1)$ 与 $B(\\lambda)=\\mathrm{diag}(\\lambda,\\lambda)$ 的不变因子与初等因子，并说明两者结构差异的原因。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "8b0bd1bce1c4dd3f4496",
+      "query": {
+        "id": "eval-calc-027",
+        "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c41-03",
+        "problem": "设四阶矩阵 $A$ 的特征值全为 $2$，且 $\\dim\\ker(A-2I)=2$，$\\dim\\ker(A-2I)^2=3$，$\\dim\\ker(A-2I)^3=4$。求 $A$ 的若尔当标准形。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "91b46b7d393a2789d74a",
+      "query": {
+        "id": "eval-linalg-005",
+        "problem": "求矩阵 $A=\\begin{pmatrix}3&2\\\\4&3\\end{pmatrix}$ 的逆矩阵。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c13-02",
+        "problem": "求级数 $\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}$ 的和。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "11d20acad3653a61c463",
+      "query": {
+        "id": "eval-linalg-025",
+        "problem": "设 $f(x)=x^5+x+1$。求 $f(x)$ 除以 $x-1$ 的余式，以及除以 $x^2+1$ 的余式。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c01-03",
+        "problem": "已知参数曲线 $\\begin{cases}x=t^2\\\\ y=t^3-3t\\end{cases}$。求曲线在 $t=2$ 对应点处的切线方程，并求出曲线上所有水平切线与竖直切线。其中参数 $t$ 取遍实数。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "2b50bd22ab24d274e36b",
+      "query": {
+        "id": "eval-prob-010",
+        "problem": "$n$ 个人各带一顶帽子，帽子随机打乱后每人随机取回一顶（全排列等可能）。求取到自己帽子的人数的期望，并说明该期望不依赖 $n$ 的原因。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c40-02",
+        "problem": "求 λ-矩阵 $A(\\lambda)=\\begin{pmatrix}\\lambda&1\\\\0&\\lambda\\end{pmatrix}$ 的行列式因子、不变因子与初等因子。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "49fe33f0de21590b9d69",
+      "query": {
+        "id": "eval-linalg-013",
+        "problem": "求齐次线性方程组 $x_1+x_2+x_3+x_4=0$ 的基础解系与通解。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c02-01",
+        "problem": "证明广义积分$\\int_1^{\\infty}\\sin(x^2)\\,dx$收敛但不绝对收敛，并给出对任意$T>R\\ge1$均成立的精确尾积分上界。无需计算积分的具体值。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "5d291d1b1f4babb0ad9d",
+      "query": {
+        "id": "test-calc-027",
+        "problem": "证明方程 $e^x=2x+1$ 恰有两个实根，并给出两个根所在的区间。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c40-01",
+        "problem": "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "d90f74c4bc9914c332ab",
+      "query": {
+        "id": "eval-calc-026",
+        "problem": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+        "category": "数学分析"
+      },
+      "train": {
+        "id": "draft-c24-05",
+        "problem": "证明可逆仿射变换 $T(x)=Ax+b$ 把直线映成直线、把平行直线映成平行直线、保持共线三点的简单比，并说明圆在一般仿射变换下为何变成椭圆。",
+        "category": "解析几何"
+      }
+    },
+    {
+      "pair_id": "2c7743f64eb5452313be",
+      "query": {
+        "id": "eval-prob-005",
+        "problem": "设 $X\\sim U(0,1)$（区间 $(0,1)$ 上的均匀分布），求 $Y=-\\ln X$ 的分布。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c39-05",
+        "problem": "证明秩-零度定理:若 $T:V\\to W$ 是有限维线性空间之间的线性映射，则 $\\dim V=\\dim\\ker T+\\dim\\mathrm{im}\\,T$。",
+        "category": "高等代数"
+      }
+    },
+    {
+      "pair_id": "aff4842e2bb0a118e5a8",
+      "query": {
+        "id": "eval-linalg-010",
+        "problem": "求矩阵 $A=\\begin{pmatrix}1&1&2\\\\2&1&3\\\\1&2&3\\end{pmatrix}$ 的秩。",
+        "category": "高等代数"
+      },
+      "train": {
+        "id": "draft-c02-03",
+        "problem": "判断 $\\int_2^{+\\infty}\\frac{1}{x\\ln x}\\,dx$ 与 $\\int_2^{+\\infty}\\frac{1}{x\\ln^2 x}\\,dx$ 的敛散性，并求收敛者的值。",
+        "category": "数学分析"
+      }
+    },
+    {
+      "pair_id": "ff08e7bebf599fe6df8d",
+      "query": {
+        "id": "test-prob-007",
+        "problem": "某灯泡寿命 $T\\sim\\operatorname{Exp}\\!\\left(\\dfrac{1}{1000}\\right)$（单位：小时，参数 $\\lambda=\\dfrac{1}{1000}$）。求 $P(T>1500\\mid T>500)$。",
+        "category": "概率论"
+      },
+      "train": {
+        "id": "draft-c19-01",
+        "problem": "说明方程 $y^2=2x$ 在空间直角坐标系中表示什么曲面，并指出它与 $xy$ 平面内的曲线 $y^2=2x$ 的区别。",
+        "category": "解析几何"
+      }
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "scope": "Pure predicates, DLL export lookup, and fake cleanup API only; no native processes launched",
+  "three_source_hashes_match": true,
+  "core_unchanged": true,
+  "gate_unchanged": true,
+  "six_negative_regressions": {
+    "cases": [
+      {
+        "name": "N1 正对照启动失败",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N2 哨兵不匹配",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N3 未真正超时",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N4 返回时未清理(人工清理后退出)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N5 WAIT_FAILED 不得判活(仅 WAIT_TIMEOUT 判活)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N6 沙箱子进程异常退出(rc!=0)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "a1_recomputed": {
+    "blocked": true,
+    "control_good": true,
+    "sandbox_blocked": true
+  },
+  "a2_recomputed": {
+    "passed": true,
+    "timeout_ok": true,
+    "exit_ok": true
+  },
+  "remaining_error_api": {
+    "kernel32_exports_get_last_error": false,
+    "referenced_lines": [
+      329,
+      473,
+      465,
+      275,
+      440
+    ]
+  },
+  "remaining_cleanup_wait": {
+    "observed_fake_calls": [
+      {
+        "call": "Wait",
+        "timeout_ms": 0
+      },
+      {
+        "call": "Wait",
+        "timeout_ms": 5000
+      },
+      {
+        "call": "Wait",
+        "timeout_ms": 0
+      },
+      {
+        "call": "Terminate"
+      }
+    ],
+    "cleanup_record": {
+      "terminate_attempted": true,
+      "terminate_ok": true,
+      "terminate_lasterr": null,
+      "wait_lasterr": null,
+      "alive_before_cleanup": true
+    },
+    "wait_after_terminate": false
+  }
+}

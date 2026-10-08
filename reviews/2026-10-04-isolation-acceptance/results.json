@@ -1,0 +1,56 @@
+{
+  "profile": {
+    "hresult": 0,
+    "profile": "skipped",
+    "already_exists": true
+  },
+  "P1_tcp_loopback": {
+    "desc": "本机 TCP 回环(回归)",
+    "control_out": "TOKEN_APPCONTAINER=False ok=1/1\r\nCONNECTED\r\n",
+    "sandbox_out": "TOKEN_APPCONTAINER=False ok=1/1\r\nBLOCKED:[WinError 10061] 由于目标计算机积极拒绝，无法连接。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P2_tcp_external": {
+    "desc": "外网 TCP(8.8.8.8:53)",
+    "control_out": "CONNECTED\r\n",
+    "sandbox_out": "BLOCKED:[WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P3_udp_sendto": {
+    "desc": "UDP sendto(本机回环监听)",
+    "control_out": "SENT\r\n",
+    "sandbox_out": "SENT\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P3b_udp_external": {
+    "desc": "UDP sendto(外网 8.8.8.8:53)",
+    "control_out": "SENT\r\n",
+    "sandbox_out": "SENT\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P4_ipv6": {
+    "desc": "IPv6 ::1 连接",
+    "control_out": "CONNECTED\r\n",
+    "sandbox_out": "BLOCKED:[WinError 10061] 由于目标计算机积极拒绝，无法连接。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P5_subprocess_inherit": {
+    "desc": "子进程树令牌继承",
+    "control_out": "CHILD_RC=0\r\nCHILD_CONNECTED\r\n\r\n\r\n",
+    "sandbox_out": "CHILD_RC=2\r\n\r\nthon.exe: can't open file 'C:\\\\Users\\\\Jacap\\\\AppData\\\\Local\\\\Packages\\\\animtrain-render-sandbox\\\\AC\\\\Packages\\\\animtrain-render-sandbox\\\\AC\\\\Temp\\\\child_probe.py': [Errno 2] No such file or directory\r\n\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P7_timeout_terminate": {
+    "desc": "超时终止(5s vs sleep 60)",
+    "control_out": "",
+    "sandbox_out": "",
+    "sandbox_err": "TIMEOUT_EXPIRED",
+    "sandbox_rc": -9
+  }
+}

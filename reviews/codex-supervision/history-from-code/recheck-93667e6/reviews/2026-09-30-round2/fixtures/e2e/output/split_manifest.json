@@ -1,0 +1,44 @@
+{
+  "name": "split-output",
+  "version": 1,
+  "generated_at": "2026-09-30 10:17:03",
+  "policy": "split 产物清单;train/eval/test 与 rejected 分离;输入 pool/plan 见各 entry.notes",
+  "entries": [
+    {
+      "path": "train.jsonl",
+      "sha256": "dec2614d8f8d13e0e8a5a30e7ae5ffc6404083d5cdb0656d66d58c26ed202d48",
+      "size": 16,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\plan.json",
+      "license": "internal-generated",
+      "split": "train",
+      "notes": "由 split_data 生成: train.jsonl"
+    },
+    {
+      "path": "eval.jsonl",
+      "sha256": "ebc394defbf81b9475e716dcb1e38e2063577f228fe6a71fdb8146cb1531b0c6",
+      "size": 15,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\plan.json",
+      "license": "internal-generated",
+      "split": "eval",
+      "notes": "由 split_data 生成: eval.jsonl"
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "0c59ea394e9f30af6b1df72ba501205ca2ca401862e3cab1c6d8e7d25f8151bb",
+      "size": 16,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\plan.json",
+      "license": "internal-generated",
+      "split": "test",
+      "notes": "由 split_data 生成: test.jsonl"
+    },
+    {
+      "path": "rejected.jsonl",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size": 2,
+      "source": "split:pool=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\pool.jsonl plan=D:\\Animation Model Training\\reviews\\2026-09-30-round2\\fixtures\\e2e\\plan.json",
+      "license": "internal-generated",
+      "split": "raw",
+      "notes": "由 split_data 生成: rejected.jsonl"
+    }
+  ]
+}

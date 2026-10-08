@@ -1,0 +1,44 @@
+{
+  "scope": "synthetic mutations of real workflow; no synthetic data selected",
+  "cases": [
+    {
+      "synthetic_mutation": "duplicate",
+      "old_returncode": 0,
+      "old_artifact_claimed_counts": {
+        "DIFFERENT_CORE_TASK": 295,
+        "SAME_CORE_TRAIN_VARIANT": 1,
+        "SAME_CORE_CROSS_SPLIT": 0,
+        "UNCERTAIN": 0
+      },
+      "fixed_validator_rejected": true,
+      "fixed_error": "duplicate or extra workflow subject",
+      "fake_files_published": false
+    },
+    {
+      "synthetic_mutation": "extra",
+      "old_returncode": 0,
+      "old_artifact_claimed_counts": {
+        "DIFFERENT_CORE_TASK": 295,
+        "SAME_CORE_TRAIN_VARIANT": 1,
+        "SAME_CORE_CROSS_SPLIT": 0,
+        "UNCERTAIN": 0
+      },
+      "fixed_validator_rejected": true,
+      "fixed_error": "duplicate or extra workflow subject",
+      "fake_files_published": false
+    },
+    {
+      "synthetic_mutation": "wrong-counts",
+      "old_returncode": 0,
+      "old_artifact_claimed_counts": {
+        "DIFFERENT_CORE_TASK": 1000,
+        "SAME_CORE_TRAIN_VARIANT": 1,
+        "SAME_CORE_CROSS_SPLIT": 0,
+        "UNCERTAIN": 0
+      },
+      "fixed_validator_rejected": true,
+      "fixed_error": "workflow counts mismatch",
+      "fake_files_published": false
+    }
+  ]
+}

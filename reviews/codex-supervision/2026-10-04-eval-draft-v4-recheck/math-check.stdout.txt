@@ -1,0 +1,143 @@
+{
+  "014": {
+    "answer_correct": true,
+    "charpoly": "-(lambda - 1)*(2*a**2 - lambda**2 + 2*lambda - 1)",
+    "Q_orthogonal": true,
+    "diagonalization_verified": true
+  },
+  "019": {
+    "answer_correct": true,
+    "determinant": "a - 2",
+    "coordinate_C": "Matrix([[1, -1, -2], [0, 1, 1], [0, 0, 1]])",
+    "after_first_elimination": "Matrix([[1, 0, 0], [0, 1, -1], [0, -1, a - 1]])",
+    "required_second_elimination_verified": "R3+=R2 and C3+=C2",
+    "positive_definite": "a>2",
+    "boundary_kernel": "[Matrix([\n[-2],\n[ 1],\n[ 1]])]"
+  },
+  "021": {
+    "answer_correct": true,
+    "positive_definite": "-sqrt(2)<a<sqrt(2)",
+    "boundary_rank": 2,
+    "boundary_inertia": [
+      2,
+      0,
+      1
+    ],
+    "f_equal_1_boundary_surface": "elliptic cylinder, not elliptic paraboloid",
+    "boundary_zero_vector": "(-a,a,1) for a=±sqrt(2)"
+  },
+  "031": {
+    "answer_correct": true,
+    "v2_written_answer_order": 5,
+    "v2_written_answer_trace": 11,
+    "correct_answer": "diag(J2(2),2,3)",
+    "correct_order": 4,
+    "correct_trace": 9,
+    "eigenvalue_multiplicities": [
+      [
+        3,
+        1
+      ]
+    ],
+    "unique_partition_at_2": [
+      2,
+      1
+    ]
+  },
+  "032": {
+    "answer_correct": true,
+    "invariant_factors": [
+      "1",
+      "1",
+      "(lambda-a)*(lambda-1)^2"
+    ],
+    "elementary_factors_a_ne_1": [
+      "lambda-a",
+      "(lambda-1)^2"
+    ],
+    "elementary_factors_a_eq_1": [
+      "(lambda-1)^3"
+    ],
+    "Smith_row_column_steps_correct": true,
+    "diagonalizable_for_any_a": false,
+    "repeated_elementary_factor_for_any_a": true,
+    "corresponding_constant_matrix": "Matrix([[a, -1, 0], [0, 1, -1], [0, 0, 1]])"
+  },
+  "v3_additions": {
+    "014_restricted_matrix_correct": true,
+    "014_P_transpose_equals_Q": true,
+    "019_two_step_C_product_correct": true,
+    "021_Schur_complement": "2-a^2",
+    "032_independent_Jordan_method_cyclic_vector": "e3",
+    "032_cyclic_basis_determinant": "1"
+  },
+  "v4_additions": {
+    "019_LDL_factorization_correct": true,
+    "019_new_variables_verified": true,
+    "019_invertible_variable_change": true,
+    "032_cyclic_basis_matches_draft": true,
+    "032_cyclic_determinant": "1"
+  },
+  "replacement_constraints": [
+    {
+      "problem_id": "eval-linalg-014",
+      "signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "same_signature_train_rows": 3,
+      "max_j5": "10/57",
+      "closest_train": "v1\\raw\\dataset_linalg.jsonl:2",
+      "closest_id": "linalg-049",
+      "below_2_5": true
+    },
+    {
+      "problem_id": "eval-linalg-019",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "same_signature_train_rows": 2,
+      "max_j5": "22/73",
+      "closest_train": "v1\\raw\\dataset_linalg.jsonl:13",
+      "closest_id": "linalg-060",
+      "below_2_5": true
+    },
+    {
+      "problem_id": "eval-linalg-021",
+      "signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "same_signature_train_rows": 2,
+      "max_j5": "11/78",
+      "closest_train": "v1\\raw\\dataset_linalg.jsonl:13",
+      "closest_id": "linalg-060",
+      "below_2_5": true
+    },
+    {
+      "problem_id": "eval-linalg-031",
+      "signature": [
+        "高等代数",
+        "其他[λ-矩阵]"
+      ],
+      "same_signature_train_rows": 2,
+      "max_j5": "2/69",
+      "closest_train": "v1\\raw\\dataset_linalg.jsonl:18",
+      "closest_id": "linalg-065",
+      "below_2_5": true
+    },
+    {
+      "problem_id": "eval-linalg-032",
+      "signature": [
+        "高等代数",
+        "其他[λ-矩阵]"
+      ],
+      "same_signature_train_rows": 2,
+      "max_j5": "33/145",
+      "closest_train": "v1\\raw\\dataset_linalg.jsonl:18",
+      "closest_id": "linalg-065",
+      "below_2_5": true
+    }
+  ]
+}

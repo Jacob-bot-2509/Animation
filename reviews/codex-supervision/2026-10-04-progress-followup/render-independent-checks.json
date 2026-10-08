@@ -1,0 +1,117 @@
+{
+  "snapshot_sha256": "67ace2bcd5add61a4e74aadac4722699985ff654c798c1b546e985532a49d655",
+  "mode": "AST mock process + read-only dataset; no actual subprocess rendering",
+  "empty_rc0_mock": {
+    "template": "fallback",
+    "scene_sha256": "b59ec52a0d1749ba25baa3c0784e2216153acfb44c6011380fec38d4830daf63",
+    "rc": 0,
+    "out_tail": "",
+    "media": [],
+    "artifact_ok": false,
+    "ok": false,
+    "command": [
+      "mock-python",
+      "-X",
+      "utf8",
+      "-m",
+      "manim",
+      "render",
+      "-ql",
+      "--format=mp4",
+      "--media_dir",
+      "/mock/scene.py",
+      "/mock/scene.py",
+      "PilotScene"
+    ]
+  },
+  "artifact_cases": [
+    {
+      "name": "empty",
+      "actual": false,
+      "expected": false,
+      "holds": true,
+      "media": []
+    },
+    {
+      "name": "zero",
+      "actual": false,
+      "expected": false,
+      "holds": true,
+      "media": [
+        {
+          "path": "images/scene/PilotScene.png",
+          "size": 0
+        }
+      ]
+    },
+    {
+      "name": "wrong_fmt",
+      "actual": false,
+      "expected": false,
+      "holds": true,
+      "media": [
+        {
+          "path": "images/scene/PilotScene.png",
+          "size": 1
+        }
+      ]
+    },
+    {
+      "name": "only_tex",
+      "actual": false,
+      "expected": false,
+      "holds": true,
+      "media": [
+        {
+          "path": "Tex/a.svg",
+          "size": 1
+        }
+      ]
+    },
+    {
+      "name": "partial_only",
+      "actual": true,
+      "expected": false,
+      "holds": false,
+      "media": [
+        {
+          "path": "videos/scene/480p15/partial_movie_files/PilotScene/123.mp4",
+          "size": 123
+        }
+      ]
+    },
+    {
+      "name": "final_metadata",
+      "actual": true,
+      "expected": true,
+      "holds": true,
+      "media": [
+        {
+          "path": "videos/scene/480p15/PilotScene.mp4",
+          "size": 123
+        }
+      ]
+    }
+  ],
+  "picked_templates": [
+    "derivative",
+    "fallback",
+    "geometry",
+    "graph_limit",
+    "matrix",
+    "sequence",
+    "statistics",
+    "unit_circle"
+  ],
+  "missing_templates": [],
+  "template_population": {
+    "unit_circle": 62,
+    "graph_limit": 16,
+    "sequence": 34,
+    "derivative": 55,
+    "statistics": 69,
+    "geometry": 77,
+    "matrix": 117,
+    "fallback": 20
+  }
+}

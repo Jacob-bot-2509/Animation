@@ -1,0 +1,79 @@
+[
+  {
+    "case": "expected_sid",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Missing/invalid evidence: Invalid expected AppContainer SID"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "policy_before",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Missing/invalid evidence: Policy query is not an object"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "nonce",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Invalid/ambiguous nonces"
+      ],
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "client",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Missing/invalid evidence: sandbox client is not an object"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "data",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Missing/invalid evidence: sandbox client data is not an object"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "server_errors",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Receiver failed, unknown or unfinished"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  },
+  {
+    "case": "packet_at",
+    "result": {
+      "verdict": "UNVERIFIED",
+      "reasons": [
+        "Packet outside listener lifetime or invalid timestamp",
+        "before packet predates its client"
+      ],
+      "scope": "Only tested local endpoints/window; not external networking or production isolation",
+      "contract": "local-loopback-os-policy-v1"
+    }
+  }
+]

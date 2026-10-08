@@ -14,6 +14,7 @@ import re
 import shutil
 import sys
 from pathlib import Path
+from draft_io import require_legacy_selection
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
@@ -109,6 +110,7 @@ def apply_fixes(rows: list[dict]) -> dict:
 
 
 def main() -> int:
+    require_legacy_selection(DRAFTS / "draft-selection.json")
     summary = {}
     for batch in sorted(PRISTINE):
         staged_dir = STAGED_08 if int(batch.split("-")[1]) <= 8 else STAGED_18

@@ -1,0 +1,122 @@
+{
+  "raw_native_file": "D:\\code\\output\\claude-supervision\\network-core-fix-2026-10-04\\native\\loopback-1a3670144c604100a8afd797d290806f.json",
+  "overall": "PASS_LOCAL_LOOPBACK",
+  "runtime_unchanged": true,
+  "rows": [
+    {
+      "transport": "tcp",
+      "host": "127.0.0.1",
+      "port": 50388,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "packet_count": 2,
+      "same_endpoint": true,
+      "child_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "capability_count": 0,
+      "policy_api_ok": true,
+      "exemptions_before": [],
+      "exemptions_after": [],
+      "control_nonces_received": true,
+      "sandbox_nonce_received": false,
+      "server_complete": true,
+      "runtime_integrity": true
+    },
+    {
+      "transport": "udp",
+      "host": "127.0.0.1",
+      "port": 56422,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "packet_count": 2,
+      "same_endpoint": true,
+      "child_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "capability_count": 0,
+      "policy_api_ok": true,
+      "exemptions_before": [],
+      "exemptions_after": [],
+      "control_nonces_received": true,
+      "sandbox_nonce_received": false,
+      "server_complete": true,
+      "runtime_integrity": true
+    },
+    {
+      "transport": "tcp",
+      "host": "::1",
+      "port": 49247,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "packet_count": 2,
+      "same_endpoint": true,
+      "child_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "capability_count": 0,
+      "policy_api_ok": true,
+      "exemptions_before": [],
+      "exemptions_after": [],
+      "control_nonces_received": true,
+      "sandbox_nonce_received": false,
+      "server_complete": true,
+      "runtime_integrity": true
+    },
+    {
+      "transport": "udp",
+      "host": "::1",
+      "port": 50805,
+      "verdict": "PASS_LOCAL_LOOPBACK",
+      "packet_count": 2,
+      "same_endpoint": true,
+      "child_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+      "capability_count": 0,
+      "policy_api_ok": true,
+      "exemptions_before": [],
+      "exemptions_after": [],
+      "control_nonces_received": true,
+      "sandbox_nonce_received": false,
+      "server_complete": true,
+      "runtime_integrity": true
+    }
+  ],
+  "core_checks": [
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\appcontainer.py",
+      "match": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\win_job.py",
+      "match": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_appcontainer_lifecycle.py",
+      "match": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_win_job_cleanup.py",
+      "match": true
+    }
+  ],
+  "gate_sha256": "7b6a6da10498991f4bd3e7a667195b657a92f610af7fd457988393b24677b026",
+  "gate_unchanged": true,
+  "retired_entry_exit_code": 2,
+  "retired_entry_json": {
+    "verdict": "UNVERIFIED",
+    "retired": true,
+    "production_gate": "CLOSED",
+    "reason": "Legacy token-class and original-toolchain ACL probes are disabled.",
+    "replacement": "tools/network_acceptance.py --baseline-evidence <reviewed-json> --output <evidence-dir>",
+    "scope": "Replacement verifies local loopback only; full isolation remains unverified."
+  },
+  "final_files": [
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\network_isolation.py",
+      "sha256": "d85565e0a50f9583aa88f4f19bae74ea77e572b9ae7821a74001c47f3efb5e91"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tools\\network_acceptance.py",
+      "sha256": "ff2a75fab65d2f7732cf017afbb5abfabdba60322c599ff61431334a21ed32b6"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_network_isolation.py",
+      "sha256": "a334edcbff20bbc31b6695a82b64cf13c83d3f63897b47cce9e5f3f4cbe1d705"
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tools\\isolation_acceptance.py",
+      "sha256": "2aa62f1627e531dd0a2e87ba67c27e8955e57c1fe8533d5c01550147aa7b832f"
+    }
+  ]
+}

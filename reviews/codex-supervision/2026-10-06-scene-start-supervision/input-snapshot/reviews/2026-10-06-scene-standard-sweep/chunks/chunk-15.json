@@ -1,0 +1,316 @@
+{
+ "standard": "场景呈现标准(2026-10-06 用户审阅后新增,长期执行):①不能用集合/几何视角动画表示的题,必须给出清晰细致的运算动画;②矩阵运算不能只展现过程和结果,要标明哪一行乘哪一列;③证明收敛要标注重点和细节;④所有无法用几何视角表示的计算题必须列出详细运算方法和操作过程,学生看动画就能跟着算。",
+ "records": [
+  {
+   "idx": 196,
+   "id": "draft-c34-03",
+   "concept_id": "C34",
+   "category": "高等代数",
+   "sub_category": "矩阵",
+   "problem": "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+   "solution": "$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。先做 $P_1$ 后做 $P_2$ 对应左乘 $P_2P_1$(先作用的矩阵写在右边):$P_2P_1=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。复合矩阵把第二行换到第一行并乘以 $2$。",
+   "answer": "复合变换矩阵为$\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，它是两个初等矩阵的乘积。",
+   "scene_spec": {
+    "objects": [
+     "先交换第一、二行，再将第一行乘以$2$。写出这一复合行变换的矩阵（初等矩阵的乘积），并验证作用顺序。",
+     "复合变换矩阵为$\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，它是两个初等矩阵的乘积。"
+    ],
+    "steps": [
+     "第一步:$P_1=\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$P_2=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$。",
+     "第二步:先做 $P_1$ 后做 $P_2$ 对应左乘 $P_2P_1$(先作用的矩阵写在右边):$P_2P_1=\\begin{pmatrix}2&0&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}0&1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}=\\begin{pmatrix}0&2&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$。",
+     "第三步:复合矩阵把第二行换到第一行并乘以 $2$。"
+    ]
+   }
+  },
+  {
+   "idx": 197,
+   "id": "draft-c34-04",
+   "concept_id": "C34",
+   "category": "高等代数",
+   "sub_category": "矩阵",
+   "problem": "把矩阵 $A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$ 分解为初等矩阵的乘积。",
+   "solution": "对 $A$ 作行变换化单位阵:第一步第一行乘以 $\\frac12$,对应初等矩阵 $E_1'=\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}$,$E_1'A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$;第二步第一行减去第二行,对应 $E_2'=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$,$E_2'E_1'A=I$。故 $A=E_1'^{-1}E_2'^{-1}$。求逆:$E_1'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(第一行乘 $2$),$E_2'^{-1}=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$(第一行加第二行)。故 $A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。验证:乘积 $=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}=A$ ✓。",
+   "answer": "$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,两个初等矩阵之积。",
+   "scene_spec": {
+    "objects": [
+     "把矩阵 $A=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}$ 分解为初等矩阵的乘积。",
+     "$A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$,两个初等矩阵之积。"
+    ],
+    "steps": [
+     "第一步:对 $A$ 作行变换化单位阵:第一步第一行乘以 $\\frac12$,对应初等矩阵 $E_1'=\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}$,$E_1'A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$;第二步第一行减去第二行,对应 $E_2'=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$,$E_2'E_1'A=I$。",
+     "第二步:故 $A=E_1'^{-1}E_2'^{-1}$。",
+     "第三步:求逆:$E_1'^{-1}=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}$(第一行乘 $2$),$E_2'^{-1}=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$(第一行加第二行)。",
+     "第四步:故 $A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$。",
+     "第五步:验证:乘积 $=\\begin{pmatrix}2&2\\\\0&1\\end{pmatrix}=A$ ✓。"
+    ]
+   }
+  },
+  {
+   "idx": 198,
+   "id": "draft-c34-05",
+   "concept_id": "C34",
+   "category": "高等代数",
+   "sub_category": "矩阵",
+   "problem": "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+   "solution": "矩阵单位满足$e_{ij}e_{kl}=\\delta_{jk}e_{il}$，特别是$e_{12}e_{23}=e_{13}$而$e_{23}e_{12}=0$，各相关平方为零。逐因子相乘，前三因子为$I+b e_{23}+ab e_{13}$，再乘$I-b e_{23}$得$I+ab e_{13}$。$E_{ij}(a)^{-1}=E_{ij}(-a)$，所以最终逆为$E_{13}(-ab)$。代入两分数得$ab=1/2$，复合为$\\begin{pmatrix}1&0&1/2\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，逆将$1/2$改为$-1/2$。该交换子显示倍加变换的顺序通常不可交换。",
+   "answer": "交换子$E_{13}(ab)$，逆$E_{13}(-ab)$；指定参数的非对角项$1/2$。",
+   "scene_spec": {
+    "objects": [
+     "记$E_{ij}(a)=I+a e_{ij}$（$i\\ne j$），其中$e_{ij}$为三阶矩阵单位。证明$E_{12}(a)E_{23}(b)E_{12}(-a)E_{23}(-b)=E_{13}(ab)$，求逆矩阵，并用$a=2/3,b=3/4$精确验证。",
+     "交换子$E_{13}(ab)$，逆$E_{13}(-ab)$；指定参数的非对角项$1/2$。"
+    ],
+    "steps": [
+     "第一步:矩阵单位满足$e_{ij}e_{kl}=\\delta_{jk}e_{il}$，特别是$e_{12}e_{23}=e_{13}$而$e_{23}e_{12}=0$，各相关平方为零。",
+     "第二步:逐因子相乘，前三因子为$I+b e_{23}+ab e_{13}$，再乘$I-b e_{23}$得$I+ab e_{13}$。",
+     "第三步:$E_{ij}(a)^{-1}=E_{ij}(-a)$，所以最终逆为$E_{13}(-ab)$。",
+     "第四步:代入两分数得$ab=1/2$，复合为$\\begin{pmatrix}1&0&1/2\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，逆将$1/2$改为$-1/2$。",
+     "第五步:该交换子显示倍加变换的顺序通常不可交换。"
+    ]
+   }
+  },
+  {
+   "idx": 199,
+   "id": "draft-c38-01",
+   "concept_id": "C38",
+   "category": "高等代数",
+   "sub_category": "线性空间",
+   "problem": "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+   "solution": "$(a,b)=(a,Ma)+(0,b-Ma)$，第一项属$U$、第二项属$V$，故和为全空间。若$(a,Ma)=(0,b)$，则$a=0,b=0$，交为零，分解唯一。投影$P(a,b)=(a,Ma)$，$P^2=P$，核$V$、像$U$，两者维数均$2$。不需要$M$可逆；图空间与竖直空间的互补来自第一坐标的唯一性。",
+   "answer": "$\\mathbb R^4=U\\oplus V$；$P(a,b)=(a,Ma)$，核$V$、像$U$，维数均$2$。",
+   "scene_spec": {
+    "objects": [
+     "设$M:\\mathbb R^2\\to\\mathbb R^2$任意线性映射，在$\\mathbb R^2\\times\\mathbb R^2$中取$U=\\{(a,Ma)\\}$、$V=\\{(0,b)\\}$。证明全空间是$U\\oplus V$，求投影到$U$沿$V$的表达式及核、像、维数。",
+     "$\\mathbb R^4=U\\oplus V$；$P(a,b)=(a,Ma)$，核$V$、像$U$，维数均$2$。"
+    ],
+    "steps": [
+     "第一步:$(a,b)=(a,Ma)+(0,b-Ma)$，第一项属$U$、第二项属$V$，故和为全空间。",
+     "第二步:若$(a,Ma)=(0,b)$，则$a=0,b=0$，交为零，分解唯一。",
+     "第三步:投影$P(a,b)=(a,Ma)$，$P^2=P$，核$V$、像$U$，两者维数均$2$。",
+     "第四步:不需要$M$可逆；图空间与竖直空间的互补来自第一坐标的唯一性。"
+    ]
+   }
+  },
+  {
+   "idx": 200,
+   "id": "draft-c38-02",
+   "concept_id": "C38",
+   "category": "高等代数",
+   "sub_category": "线性空间",
+   "problem": "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+   "solution": "$U=\\operatorname{span}(1,x^2,x^4)$，维数$3$；$V=(x-1)^2\\mathbb R[x]_{\\le2}$，维数$3$。若$f=a+bx^2+cx^4\\in V$，须$f(1)=f^{\\prime}(1)=0$，即$a+b+c=0,2b+4c=0$，得$f=c(x^2-1)^2$。故交为该一维空间。和的维数$3+3-1=5$，等于环境维数，所以和为全部$\\mathbb R[x]_{\\le4}$。交非零，故不是直和。",
+   "answer": "交$\\operatorname{span}(x^2-1)^2$，维数$1$；和为五维全空间，非直和。",
+   "scene_spec": {
+    "objects": [
+     "在$\\mathbb R[x]_{\\le4}$中，令$U$为偶多项式，$V$为被$(x-1)^2$整除的多项式。求$U\\cap V$、$U+V$及维数，判断和是否直和。",
+     "交$\\operatorname{span}(x^2-1)^2$，维数$1$；和为五维全空间，非直和。"
+    ],
+    "steps": [
+     "第一步:$U=\\operatorname{span}(1,x^2,x^4)$，维数$3$；$V=(x-1)^2\\mathbb R[x]_{\\le2}$，维数$3$。",
+     "第二步:若$f=a+bx^2+cx^4\\in V$，须$f(1)=f^{\\prime}(1)=0$，即$a+b+c=0,2b+4c=0$，得$f=c(x^2-1)^2$。",
+     "第三步:故交为该一维空间。",
+     "第四步:和的维数$3+3-1=5$，等于环境维数，所以和为全部$\\mathbb R[x]_{\\le4}$。",
+     "第五步:交非零，故不是直和。"
+    ]
+   }
+  },
+  {
+   "idx": 201,
+   "id": "draft-c38-03",
+   "concept_id": "C38",
+   "category": "高等代数",
+   "sub_category": "线性空间",
+   "problem": "在实$2\\times2$矩阵空间中，令$U$为对称矩阵、$V$为迹为零的矩阵。给出交空间的基、两空间与和的维数，并显式证明和为全空间。",
+   "solution": "$U$维数$3$，$V$维数$3$。交中矩阵为$\\begin{pmatrix}a&b\\\\b&-a\\end{pmatrix}$，基为$\\operatorname{diag}(1,-1)$与$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，维数$2$。对任意$A$，分解$A=(\\operatorname{tr}A/2)I+[A-(\\operatorname{tr}A/2)I]$，前项对称、后项无迹，故和为全空间，维数$4$。交非零，所以分解成任意$U,V$成分不唯一，也不是直和。",
+   "answer": "$\\dim U=\\dim V=3$，交维数$2$、基如上，和为四维全空间，非直和。",
+   "scene_spec": {
+    "objects": [
+     "在实$2\\times2$矩阵空间中，令$U$为对称矩阵、$V$为迹为零的矩阵。给出交空间的基、两空间与和的维数，并显式证明和为全空间。",
+     "$\\dim U=\\dim V=3$，交维数$2$、基如上，和为四维全空间，非直和。"
+    ],
+    "steps": [
+     "第一步:$U$维数$3$，$V$维数$3$。",
+     "第二步:交中矩阵为$\\begin{pmatrix}a&b\\\\b&-a\\end{pmatrix}$，基为$\\operatorname{diag}(1,-1)$与$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，维数$2$。",
+     "第三步:对任意$A$，分解$A=(\\operatorname{tr}A/2)I+[A-(\\operatorname{tr}A/2)I]$，前项对称、后项无迹，故和为全空间，维数$4$。",
+     "第四步:交非零，所以分解成任意$U,V$成分不唯一，也不是直和。"
+    ]
+   }
+  },
+  {
+   "idx": 202,
+   "id": "draft-c38-04",
+   "concept_id": "C38",
+   "category": "高等代数",
+   "sub_category": "线性空间",
+   "problem": "设 $U,V$ 是 $\\mathbb R^5$ 的子空间，$\\dim U=3$，$\\dim V=2$。求 $\\dim(U\\cap V)$ 的可能取值范围，并说明每种取值对应的 $\\dim(U+V)$。",
+   "solution": "$\\dim(U+V)=3+2-\\dim(U\\cap V)\\le5$，交维数为$0,1,2$之一，和维数对应$5,4,3$。固定$U=\\operatorname{span}(e_1,e_2,e_3)$，分别取$V=\\operatorname{span}(e_4,e_5)$、$\\operatorname{span}(e_1,e_4)$、$\\operatorname{span}(e_1,e_2)$，便逐一达到这些可能。",
+   "answer": "$\\dim(U\\cap V)\\in\\{0,1,2\\}$,对应 $\\dim(U+V)=5,4,3$。",
+   "scene_spec": {
+    "objects": [
+     "设 $U,V$ 是 $\\mathbb R^5$ 的子空间，$\\dim U=3$，$\\dim V=2$。求 $\\dim(U\\cap V)$ 的可能取值范围，并说明每种取值对应的 $\\dim(U+V)$。",
+     "$\\dim(U\\cap V)\\in\\{0,1,2\\}$,对应 $\\dim(U+V)=5,4,3$。"
+    ],
+    "steps": [
+     "第一步:$\\dim(U+V)=3+2-\\dim(U\\cap V)\\le5$，交维数为$0,1,2$之一，和维数对应$5,4,3$。",
+     "第二步:固定$U=\\operatorname{span}(e_1,e_2,e_3)$，分别取$V=\\operatorname{span}(e_4,e_5)$、$\\operatorname{span}(e_1,e_4)$、$\\operatorname{span}(e_1,e_2)$，便逐一达到这些可能。"
+    ]
+   }
+  },
+  {
+   "idx": 203,
+   "id": "draft-c38-05",
+   "concept_id": "C38",
+   "category": "高等代数",
+   "sub_category": "线性空间",
+   "problem": "证明维数公式:若 $U,V$ 是有限维线性空间 $W$ 的子空间，则 $\\dim(U+V)=\\dim U+\\dim V-\\dim(U\\cap V)$。",
+   "solution": "取交空间基$u_1,\\ldots,u_k$，分别扩充为$U$的基$u_i,p_j$与$V$的基$u_i,q_l$。合并列表张成$U+V$。若$\\sum a_iu_i+\\sum b_jp_j+\\sum c_lq_l=0$，则$\\sum b_jp_j$同时属于$U$与$V$，属于交空间；由$U$基独立得$b_j=0$，再由$V$基得$a_i=c_l=0$。因此合并列表是基，其长度为$\\dim U+\\dim V-\\dim(U\\cap V)$，得到维数公式。",
+   "answer": "证明见解法(交的基延拓为两子空间的基,拼接组构成 $U+V$ 的基)。",
+   "scene_spec": {
+    "objects": [
+     "证明维数公式:若 $U,V$ 是有限维线性空间 $W$ 的子空间，则 $\\dim(U+V)=\\dim U+\\dim V-\\dim(U\\cap V)$。",
+     "证明见解法(交的基延拓为两子空间的基,拼接组构成 $U+V$ 的基)。"
+    ],
+    "steps": [
+     "第一步:取交空间基$u_1,\\ldots,u_k$，分别扩充为$U$的基$u_i,p_j$与$V$的基$u_i,q_l$。",
+     "第二步:合并列表张成$U+V$。",
+     "第三步:若$\\sum a_iu_i+\\sum b_jp_j+\\sum c_lq_l=0$，则$\\sum b_jp_j$同时属于$U$与$V$，属于交空间；由$U$基独立得$b_j=0$，再由$V$基得$a_i=c_l=0$。",
+     "第四步:因此合并列表是基，其长度为$\\dim U+\\dim V-\\dim(U\\cap V)$，得到维数公式。"
+    ]
+   }
+  },
+  {
+   "idx": 204,
+   "id": "draft-c39-01",
+   "concept_id": "C39",
+   "category": "高等代数",
+   "sub_category": "线性映射",
+   "problem": "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+   "solution": "对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。",
+   "answer": "核为对角矩阵，像为零对角矩阵，秩$2$；$M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$。",
+   "scene_spec": {
+    "objects": [
+     "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+     "核为对角矩阵，像为零对角矩阵，秩$2$；$M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$。"
+    ],
+    "steps": [
+     "第一步:对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。",
+     "第二步:所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。",
+     "第三步:两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。",
+     "第四步:$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。"
+    ]
+   }
+  },
+  {
+   "idx": 205,
+   "id": "draft-c39-02",
+   "concept_id": "C39",
+   "category": "高等代数",
+   "sub_category": "线性映射",
+   "problem": "设 $T:\\mathbb R^2\\to\\mathbb R^3$ 由 $T(x,y)=(x+y,\\,x-y,\\,2x)$ 定义。判断 $T$ 是否单射、是否满射，并求核与像的维数。",
+   "solution": "核:解 $x+y=0,x-y=0,2x=0$,得 $x=y=0$,故 $\\ker T=\\{0\\}$,$\\dim\\ker T=0$,由秩-零度定理 $\\dim\\mathrm{im}\\,T=2-0=2$。单射:核为 $\\{0\\}$ ⟺ 单射,故 $T$ 单射。满射:像的维数 $2<3$,故 $T$ 非满射(像是 $\\mathbb R^3$ 中由 $T(1,0)=(1,1,2)$ 与 $T(0,1)=(1,-1,0)$ 张成的平面)。",
+   "answer": "单射但非满射;$\\ker T=\\{0\\}$(维数 $0$),$\\dim\\mathrm{im}\\,T=2$。",
+   "scene_spec": {
+    "objects": [
+     "设 $T:\\mathbb R^2\\to\\mathbb R^3$ 由 $T(x,y)=(x+y,\\,x-y,\\,2x)$ 定义。判断 $T$ 是否单射、是否满射，并求核与像的维数。",
+     "单射但非满射;$\\ker T=\\{0\\}$(维数 $0$),$\\dim\\mathrm{im}\\,T=2$。"
+    ],
+    "steps": [
+     "第一步:核:解 $x+y=0,x-y=0,2x=0$,得 $x=y=0$,故 $\\ker T=\\{0\\}$,$\\dim\\ker T=0$,由秩-零度定理 $\\dim\\mathrm{im}\\,T=2-0=2$。",
+     "第二步:单射:核为 $\\{0\\}$ ⟺ 单射,故 $T$ 单射。",
+     "第三步:满射:像的维数 $2<3$,故 $T$ 非满射(像是 $\\mathbb R^3$ 中由 $T(1,0)=(1,1,2)$ 与 $T(0,1)=(1,-1,0)$ 张成的平面)。"
+    ]
+   }
+  },
+  {
+   "idx": 206,
+   "id": "draft-c39-03",
+   "concept_id": "C39",
+   "category": "高等代数",
+   "sub_category": "线性映射",
+   "problem": "定义$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$，$Tf=(f(0),f(1),f(-1))$。求核、像与秩，给出证明满射的显式右逆。",
+   "solution": "核中$f$在$0,1,-1$三个不同节点为零，因此被$x(x-1)(x+1)$整除；度数最多$3$，故核$\\operatorname{span}(x^3-x)$。对$(a,b,c)\\in\\mathbb R^3$，定义$R(a,b,c)=a(1-x^2)+b x(x+1)/2+c x(x-1)/2$，三个节点的值依次为$a,b,c$，所以$TR=I$。故像为全部$\\mathbb R^3$，秩$3$、核维数$1$，右逆证明满射不依赖仅报维数。",
+   "answer": "核$\\operatorname{span}(x^3-x)$；像$\\mathbb R^3$、秩$3$；右逆$R(a,b,c)=a(1-x^2)+\\frac b2x(x+1)+\\frac c2x(x-1)$。",
+   "scene_spec": {
+    "objects": [
+     "定义$T:\\mathbb R[x]_{\\le3}\\to\\mathbb R^3$，$Tf=(f(0),f(1),f(-1))$。求核、像与秩，给出证明满射的显式右逆。",
+     "核$\\operatorname{span}(x^3-x)$；像$\\mathbb R^3$、秩$3$；右逆$R(a,b,c)=a(1-x^2)+\\frac b2x(x+1)+\\frac c2x(x-1)$。"
+    ],
+    "steps": [
+     "第一步:核中$f$在$0,1,-1$三个不同节点为零，因此被$x(x-1)(x+1)$整除；度数最多$3$，故核$\\operatorname{span}(x^3-x)$。",
+     "第二步:对$(a,b,c)\\in\\mathbb R^3$，定义$R(a,b,c)=a(1-x^2)+b x(x+1)/2+c x(x-1)/2$，三个节点的值依次为$a,b,c$，所以$TR=I$。",
+     "第三步:故像为全部$\\mathbb R^3$，秩$3$、核维数$1$，右逆证明满射不依赖仅报维数。"
+    ]
+   }
+  },
+  {
+   "idx": 207,
+   "id": "draft-c39-04",
+   "concept_id": "C39",
+   "category": "高等代数",
+   "sub_category": "线性映射",
+   "problem": "设 $T:\\mathbb R^3\\to\\mathbb R^3$ 由 $T(x,y,z)=(x+y,\\,y+z,\\,0)$ 定义。求 $T^2$ 的表达式，并比较 $T$ 与 $T^2$ 的核与像。",
+   "solution": "$T^2(x,y,z)=T(x+y,\\,y+z,\\,0)=((x+y)+(y+z),\\,(y+z)+0,\\,0)=(x+2y+z,\\,y+z,\\,0)$。核:$T$ 的核:$x+y=0,y+z=0$,得 $(x,-x,x)$,$\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$。$T^2$ 的核:$x+2y+z=0,y+z=0$。由第二式 $z=-y$,代入第一式得 $x+2y-y=x+y=0$,故与 $\\ker T$ 相同的条件,$\\ker T^2=\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$。像:$T$ 的像由 $T(1,0,0)=(1,0,0)$,$T(0,1,0)=(1,1,0)$,$T(0,0,1)=(0,1,0)$ 张成,即 $\\{(a,b,0)\\}$,维数 $2$。$T^2$ 的像由 $T^2(1,0,0)=(1,0,0)$,$T^2(0,0,1)=(1,1,0)$ 张成($T^2(0,1,0)=(2,1,0)=(1,0,0)+(1,1,0)$),也是 $\\{(a,b,0)\\}$,维数 $2$。故 $\\ker T^2=\\ker T$ 且 $\\mathrm{im}\\,T^2=\\mathrm{im}\\,T$(本例中复合映射的核与像均不变)。",
+   "answer": "$T^2(x,y,z)=(x+2y+z,\\,y+z,\\,0)$;$\\ker T^2=\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$,$\\mathrm{im}\\,T^2=\\mathrm{im}\\,T=\\{(a,b,0)\\}$。",
+   "scene_spec": {
+    "objects": [
+     "设 $T:\\mathbb R^3\\to\\mathbb R^3$ 由 $T(x,y,z)=(x+y,\\,y+z,\\,0)$ 定义。求 $T^2$ 的表达式，并比较 $T$ 与 $T^2$ 的核与像。",
+     "$T^2(x,y,z)=(x+2y+z,\\,y+z,\\,0)$;$\\ker T^2=\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$,$\\mathrm{im}\\,T^2=\\mathrm{im}\\,T=\\{(a,b,0)\\}$。"
+    ],
+    "steps": [
+     "第一步:$T^2(x,y,z)=T(x+y,\\,y+z,\\,0)=((x+y)+(y+z),\\,(y+z)+0,\\,0)=(x+2y+z,\\,y+z,\\,0)$。",
+     "第二步:核:$T$ 的核:$x+y=0,y+z=0$,得 $(x,-x,x)$,$\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$。",
+     "第三步:$T^2$ 的核:$x+2y+z=0,y+z=0$。",
+     "第四步:由第二式 $z=-y$,代入第一式得 $x+2y-y=x+y=0$,故与 $\\ker T$ 相同的条件,$\\ker T^2=\\ker T=\\mathrm{span}\\{(1,-1,1)\\}$。",
+     "第五步:像:$T$ 的像由 $T(1,0,0)=(1,0,0)$,$T(0,1,0)=(1,1,0)$,$T(0,0,1)=(0,1,0)$ 张成,即 $\\{(a,b,0)\\}$,维数 $2$。",
+     "第六步:$T^2$ 的像由 $T^2(1,0,0)=(1,0,0)$,$T^2(0,0,1)=(1,1,0)$ 张成($T^2(0,1,0)=(2,1,0)=(1,0,0)+(1,1,0)$),也是 $\\{(a,b,0)\\}$,维数 $2$。",
+     "第七步:故 $\\ker T^2=\\ker T$ 且 $\\mathrm{im}\\,T^2=\\mathrm{im}\\,T$(本例中复合映射的核与像均不变)。"
+    ]
+   }
+  },
+  {
+   "idx": 208,
+   "id": "draft-c39-05",
+   "concept_id": "C39",
+   "category": "高等代数",
+   "sub_category": "线性映射",
+   "problem": "证明秩-零度定理:若 $T:V\\to W$ 是有限维线性空间之间的线性映射，则 $\\dim V=\\dim\\ker T+\\dim\\mathrm{im}\\,T$。",
+   "solution": "取 $\\ker T$ 的一组基 $v_1,\\dots,v_k$,延拓为 $V$ 的基 $v_1,\\dots,v_k,v_{k+1},\\dots,v_n$(故 $\\dim V=n$)。下证 $T(v_{k+1}),\\dots,T(v_n)$ 是 $\\mathrm{im}\\,T$ 的一组基。张成:任意 $y\\in\\mathrm{im}\\,T$,存在 $x=\\sum_{i=1}^{n}c_iv_i$ 使 $y=T(x)=\\sum_{i=1}^{n}c_iT(v_i)=\\sum_{i=k+1}^{n}c_iT(v_i)$(前 $k$ 项为零,因 $v_i\\in\\ker T$)。线性无关:若 $\\sum_{i=k+1}^{n}d_iT(v_i)=0$,则 $T\\left(\\sum_{i=k+1}^{n}d_iv_i\\right)=0$,即 $\\sum_{i=k+1}^{n}d_iv_i\\in\\ker T$,它可仅由 $v_1,\\dots,v_k$ 表出;但 $V$ 的基表示唯一,故 $d_{k+1}=\\cdots=d_n=0$。于是 $\\dim\\mathrm{im}\\,T=n-k$,即 $\\dim V=n=k+(n-k)=\\dim\\ker T+\\dim\\mathrm{im}\\,T$。",
+   "answer": "证明见解法(核的基延拓到全空间,核外基向量的像构成像的基)。",
+   "scene_spec": {
+    "objects": [
+     "证明秩-零度定理:若 $T:V\\to W$ 是有限维线性空间之间的线性映射，则 $\\dim V=\\dim\\ker T+\\dim\\mathrm{im}\\,T$。",
+     "证明见解法(核的基延拓到全空间,核外基向量的像构成像的基)。"
+    ],
+    "steps": [
+     "第一步:取 $\\ker T$ 的一组基 $v_1,\\dots,v_k$,延拓为 $V$ 的基 $v_1,\\dots,v_k,v_{k+1},\\dots,v_n$(故 $\\dim V=n$)。",
+     "第二步:下证 $T(v_{k+1}),\\dots,T(v_n)$ 是 $\\mathrm{im}\\,T$ 的一组基。",
+     "第三步:张成:任意 $y\\in\\mathrm{im}\\,T$,存在 $x=\\sum_{i=1}^{n}c_iv_i$ 使 $y=T(x)=\\sum_{i=1}^{n}c_iT(v_i)=\\sum_{i=k+1}^{n}c_iT(v_i)$(前 $k$ 项为零,因 $v_i\\in\\ker T$)。",
+     "第四步:线性无关:若 $\\sum_{i=k+1}^{n}d_iT(v_i)=0$,则 $T\\left(\\sum_{i=k+1}^{n}d_iv_i\\right)=0$,即 $\\sum_{i=k+1}^{n}d_iv_i\\in\\ker T$,它可仅由 $v_1,\\dots,v_k$ 表出;但 $V$ 的基表示唯一,故 $d_{k+1}=\\cdots=d_n=0$。",
+     "第五步:于是 $\\dim\\mathrm{im}\\,T=n-k$,即 $\\dim V=n=k+(n-k)=\\dim\\ker T+\\dim\\mathrm{im}\\,T$。"
+    ]
+   }
+  },
+  {
+   "idx": 209,
+   "id": "draft-c40-01",
+   "concept_id": "C40",
+   "category": "高等代数",
+   "sub_category": "λ矩阵",
+   "problem": "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+   "solution": "两者行列式都为$f^3$，但一阶子式首一gcd分别为$f$与$1$，不变因子分别$f,f^2$与$1,f^3$，所以不unimodular等价。在有理函数域$\\mathbb R(\\lambda)$，$f$是可逆非零元素，两矩阵秩都为$2$、核都为零；在多项式环中核也都为零，因为环无零因子。在实数$a\\ne1$代入时两者仍秩$2$、核零。代入$a=1$，$A(1)=0$，秩$0$、核$\\mathbb R^2$；$B(1)=\\operatorname{diag}(1,0)$，秩$1$、核$\\operatorname{span}(e_2)$。同一行列式零点及其阶数不能确定特殊参数的核维数，通用域的核也不能直接代入当作特殊核。",
+   "answer": "不等价；一般域及$a\\ne1$均秩$2$，$a=1$时秩分别$0,1$；行列式相同不足以确定特殊核。",
+   "scene_spec": {
+    "objects": [
+     "令$f=\\lambda-1$，$A(\\lambda)=\\operatorname{diag}(f,f^2)$、$B(\\lambda)=\\operatorname{diag}(1,f^3)$。两矩阵行列式相同，判断是否多项式可逆等价；比较在有理函数域与代入实参数后的秩、核，说明行列式为何不足。",
+     "不等价；一般域及$a\\ne1$均秩$2$，$a=1$时秩分别$0,1$；行列式相同不足以确定特殊核。"
+    ],
+    "steps": [
+     "第一步:两者行列式都为$f^3$，但一阶子式首一gcd分别为$f$与$1$，不变因子分别$f,f^2$与$1,f^3$，所以不unimodular等价。",
+     "第二步:在有理函数域$\\mathbb R(\\lambda)$，$f$是可逆非零元素，两矩阵秩都为$2$、核都为零；在多项式环中核也都为零，因为环无零因子。",
+     "第三步:在实数$a\\ne1$代入时两者仍秩$2$、核零。",
+     "第四步:代入$a=1$，$A(1)=0$，秩$0$、核$\\mathbb R^2$；$B(1)=\\operatorname{diag}(1,0)$，秩$1$、核$\\operatorname{span}(e_2)$。",
+     "第五步:同一行列式零点及其阶数不能确定特殊参数的核维数，通用域的核也不能直接代入当作特殊核。"
+    ]
+   }
+  }
+ ]
+}

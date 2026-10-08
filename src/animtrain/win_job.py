@@ -13,6 +13,7 @@ from __future__ import annotations
 import ctypes
 import subprocess
 import sys
+import time
 from ctypes import wintypes
 
 if sys.platform != "win32":
@@ -54,6 +55,40 @@ else:
     _JOB_OBJECT_LIMIT_JOB_MEMORY = 0x00000200
     _JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000
     _JobObjectExtendedLimitInformation = 9
+    _JobObjectBasicAccountingInformation = 1
+    _JobObjectBasicProcessIdList = 3
+
+    class _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION(ctypes.Structure):
+        _fields_ = [("TotalUserTime", ctypes.c_longlong),
+                    ("TotalKernelTime", ctypes.c_longlong),
+                    ("ThisPeriodTotalUserTime", ctypes.c_longlong),
+                    ("ThisPeriodTotalKernelTime", ctypes.c_longlong),
+                    ("TotalPageFaultCount", wintypes.DWORD),
+                    ("TotalProcesses", wintypes.DWORD),
+                    ("ActiveProcesses", wintypes.DWORD),
+                    ("TotalTerminatedProcesses", wintypes.DWORD)]
+
+    _kernel32.CreateJobObjectW.argtypes = [wintypes.LPVOID, wintypes.LPCWSTR]
+    _kernel32.CreateJobObjectW.restype = wintypes.HANDLE
+    _kernel32.SetInformationJobObject.argtypes = [
+        wintypes.HANDLE, ctypes.c_int, wintypes.LPVOID, wintypes.DWORD]
+    _kernel32.SetInformationJobObject.restype = wintypes.BOOL
+    _kernel32.QueryInformationJobObject.argtypes = [
+        wintypes.HANDLE, ctypes.c_int, wintypes.LPVOID, wintypes.DWORD,
+        ctypes.POINTER(wintypes.DWORD)]
+    _kernel32.QueryInformationJobObject.restype = wintypes.BOOL
+    _kernel32.AssignProcessToJobObject.argtypes = [wintypes.HANDLE, wintypes.HANDLE]
+    _kernel32.AssignProcessToJobObject.restype = wintypes.BOOL
+    _kernel32.TerminateJobObject.argtypes = [wintypes.HANDLE, wintypes.UINT]
+    _kernel32.TerminateJobObject.restype = wintypes.BOOL
+    _kernel32.CloseHandle.argtypes = [wintypes.HANDLE]
+    _kernel32.CloseHandle.restype = wintypes.BOOL
+    _kernel32.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    _kernel32.OpenProcess.restype = wintypes.HANDLE
+    _kernel32.IsProcessInJob.argtypes = [wintypes.HANDLE, wintypes.HANDLE, ctypes.POINTER(wintypes.BOOL)]
+    _kernel32.IsProcessInJob.restype = wintypes.BOOL
+    _kernel32.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+    _kernel32.WaitForSingleObject.restype = wintypes.DWORD
 
     def _assign_process(job_handle: int, proc_handle: int) -> int:
         """模块级间接调用(便于测试注入失败);返回 0 = 失败。"""
@@ -82,15 +117,19 @@ else:
                 _JobObjectExtendedLimitInformation,
                 ctypes.byref(info), ctypes.sizeof(info))
             if not ok:
-                raise OSError("SetInformationJobObject 失败: "
-                              f"{ctypes.get_last_error()}")
+                error = ctypes.get_last_error()
+                self.close()
+                raise ctypes.WinError(error)
             # 回读验证:限制确实生效才敢宣称内存隔离
             readback = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION()
             ok2 = _kernel32.QueryInformationJobObject(
                 wintypes.HANDLE(self._handle),
                 _JobObjectExtendedLimitInformation,
                 ctypes.byref(readback), ctypes.sizeof(readback), None)
-            if not ok2 or readback.ProcessMemoryLimit != limit:
+            if (not ok2 or readback.ProcessMemoryLimit != limit
+                    or readback.JobMemoryLimit != limit
+                    or readback.BasicLimitInformation.LimitFlags != info.BasicLimitInformation.LimitFlags):
+                self.close()
                 raise OSError("Job 内存限制回读验证失败 —— 不宣称内存隔离")
             self.assigned: list[int] = []
 
@@ -101,6 +140,10 @@ else:
             错误码 5 绝不意味着"新 job 已接管",吞错即假隔离。
             """
             handle = getattr(popen, "_handle", None)
+            self.assign_handle(handle)
+
+        def assign_handle(self, handle: int) -> None:
+            """Assign a native process handle before its suspended thread resumes."""
             if not handle:
                 raise OSError("无法取得子进程句柄,不能挂入 job")
             ok = _assign_process(self._handle, handle)
@@ -111,9 +154,82 @@ else:
 
         def terminate(self) -> None:
             """终止 job 内全部进程(超时/异常清理,含子进程树)。"""
-            _kernel32.TerminateJobObject(wintypes.HANDLE(self._handle), 1)
+            if not _kernel32.TerminateJobObject(wintypes.HANDLE(self._handle), 1):
+                raise ctypes.WinError(ctypes.get_last_error())
+
+        def wait_empty(self, timeout_ms: int = 5000) -> None:
+            """Wait for the job's entire process tree, not just its root, to exit."""
+            deadline = time.monotonic() + timeout_ms / 1000
+            while True:
+                info = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION()
+                if not _kernel32.QueryInformationJobObject(
+                        wintypes.HANDLE(self._handle), _JobObjectBasicAccountingInformation,
+                        ctypes.byref(info), ctypes.sizeof(info), None):
+                    raise ctypes.WinError(ctypes.get_last_error())
+                if info.ActiveProcesses == 0:
+                    return
+                if time.monotonic() >= deadline:
+                    raise TimeoutError("Job process tree did not exit during cleanup")
+                time.sleep(0.01)
+
+        def terminate_and_wait(self, timeout_ms: int = 5000) -> None:
+            """Keep member handles to await termination beyond job accounting.
+
+            ActiveProcesses can reach zero before a member's process handle is
+            signaled. Holding verified member handles also avoids PID reuse.
+            TerminateJobObject stops the whole job, including racing children.
+            """
+            handles = []
+            deadline = time.monotonic() + timeout_ms / 1000
+            try:
+                capacity = 16
+                while True:
+                    class ProcessIds(ctypes.Structure):
+                        _fields_ = [("Assigned", wintypes.DWORD), ("Count", wintypes.DWORD),
+                                    ("Ids", ctypes.c_size_t * capacity)]
+                    info = ProcessIds()
+                    if _kernel32.QueryInformationJobObject(
+                            wintypes.HANDLE(self._handle), _JobObjectBasicProcessIdList,
+                            ctypes.byref(info), ctypes.sizeof(info), None):
+                        break
+                    error = ctypes.get_last_error()
+                    if error != 234:  # ERROR_MORE_DATA
+                        raise ctypes.WinError(error)
+                    if time.monotonic() >= deadline:
+                        raise TimeoutError("Job member enumeration exceeded cleanup deadline")
+                    capacity = max(capacity * 2, info.Assigned)
+                for pid in info.Ids[:info.Count]:
+                    handle = _kernel32.OpenProcess(0x100000 | 0x1000, False, pid)
+                    if not handle:
+                        error = ctypes.get_last_error()
+                        if error == 87:  # Member already exited; no live PID.
+                            continue
+                        raise ctypes.WinError(error)
+                    member = wintypes.BOOL()
+                    try:
+                        if not _kernel32.IsProcessInJob(
+                                handle, wintypes.HANDLE(self._handle), ctypes.byref(member)):
+                            raise ctypes.WinError(ctypes.get_last_error())
+                        if member.value:
+                            handles.append(handle)
+                            handle = None
+                    finally:
+                        if handle:
+                            _kernel32.CloseHandle(handle)
+                self.terminate()
+                self.wait_empty(max(0, int((deadline - time.monotonic()) * 1000)))
+                for handle in handles:
+                    remaining = max(0, int((deadline - time.monotonic()) * 1000))
+                    wait = _kernel32.WaitForSingleObject(handle, remaining)
+                    if wait != 0:
+                        raise OSError(f"Job member termination wait failed: {wait}")
+            finally:
+                for handle in handles:
+                    _kernel32.CloseHandle(handle)
 
         def close(self) -> None:
             if getattr(self, "_handle", None):
-                _kernel32.CloseHandle(wintypes.HANDLE(self._handle))
+                handle = self._handle
                 self._handle = None
+                if not _kernel32.CloseHandle(wintypes.HANDLE(handle)):
+                    raise ctypes.WinError(ctypes.get_last_error())

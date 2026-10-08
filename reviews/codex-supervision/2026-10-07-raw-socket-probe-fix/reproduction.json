@@ -1,0 +1,28 @@
+{
+  "local_reproduction": {
+    "reproduced": true,
+    "error_type": "TypeError",
+    "detail": "'_socket.socket' object does not support the context manager protocol",
+    "before_network_io": true
+  },
+  "original_failure_receipts": [
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/sender.json",
+      "sha256": "538e3b0b9343bb6c441d9bfa021871ba8ea377b15f3212e6cbd42d4e780bf38c",
+      "round": "v6-2026-10-07-a",
+      "transport_rc": 1,
+      "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c1a8763240545758f7449ac64cf01f8\\scene.py\", line 9, in <module>\r\n    with _socket.socket(family,_socket.SOCK_DGRAM if protocol==\"udp\" else _socket.SOCK_STREAM) as s:\r\n         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nTypeError: '_socket.socket' object does not support the context manager protocol\r\n",
+      "complete": true,
+      "production_gate": "CLOSED"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/sender.json",
+      "sha256": "d80a7484885e110c2d650c295d7ef4ffa15be7aabbc9a00dd3453591fc0911f9",
+      "round": "lan-2026-10-07-a",
+      "transport_rc": 1,
+      "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-f6cf598bae6d433d80a0c97e635743e7\\scene.py\", line 9, in <module>\r\n    with _socket.socket(family,_socket.SOCK_DGRAM if protocol==\"udp\" else _socket.SOCK_STREAM) as s:\r\n         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nTypeError: '_socket.socket' object does not support the context manager protocol\r\n",
+      "complete": true,
+      "production_gate": "CLOSED"
+    }
+  ]
+}

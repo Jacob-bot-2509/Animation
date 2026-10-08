@@ -1,0 +1,67 @@
+{
+  "active_train_records": 47,
+  "unique_query_records": 250,
+  "queries_by_split": {
+    "eval": 100,
+    "test": 150
+  },
+  "raw_P1_pairs": 11750,
+  "raw_P2_pairs": 1081,
+  "prior_296_review_subjects_cover_all_current_query_members": true,
+  "prior_296_review_subjects_cover_all_current_train_members": true,
+  "eligible_P1_under_member_exclusion_contract": 0,
+  "eligible_P2_under_member_exclusion_contract": 0,
+  "binomial_one_sided_confidence": {
+    "confidence": "19/20",
+    "false_positive_target": "1/100",
+    "zero_errors_min_negative_n": 299,
+    "zero_errors_n250_target_certifiable": false,
+    "recall_target": "19/20",
+    "all_detected_min_positive_n": 59,
+    "m20_not_sufficient": true,
+    "caution": "Analytic iid Bernoulli benchmark only; not a stratified finite-population certification."
+  },
+  "source_bindings": {
+    "data/eval-v2.lock.json": {
+      "raw_sha256": "28414fba61ac9bff5953e60ae8f699c58d05fc39734678127268934f7228d0f0",
+      "bytes": 726
+    },
+    "data/manifest.json": {
+      "raw_sha256": "11b6ff941798bcdea53de08c22328b45bad1512a6773d274829f2ad7456874a7",
+      "bytes": 2996
+    },
+    "data/test-v2.lock.json": {
+      "raw_sha256": "4f95184c920c6e3a58efbf968a94080387d2352862a9f42ba0f8e6b8298c5dbc",
+      "bytes": 726
+    },
+    "data/v2/eval/dataset_eval.jsonl": {
+      "raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+      "bytes": 442378
+    },
+    "data/v2/test/dataset_test.jsonl": {
+      "raw_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a",
+      "bytes": 200390
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl": {
+      "raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+      "bytes": 28056
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl": {
+      "raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+      "bytes": 12050
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl": {
+      "raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "bytes": 22190
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl": {
+      "raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+      "bytes": 11845
+    },
+    "reviews/2026-10-06-linalg048-admission/v3-receipt-bound/receipt.json": {
+      "raw_sha256": "4e81d921f2fb3ad5e90ab8e7372fa898203441bf8011008774f2d1b45cfbee25",
+      "bytes": 160975
+    }
+  },
+  "holdout_design_raw_sha256": "3860fb67f60af62846c67d54b3430539371a37f2038954f921ca56640ece87e7"
+}

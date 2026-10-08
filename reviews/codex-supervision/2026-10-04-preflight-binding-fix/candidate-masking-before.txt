@@ -1,0 +1,43 @@
+test_b5_status_is_informational_and_separate (test_b5_preflight_binding.TestB5PreflightBinding.test_b5_status_is_informational_and_separate) ... FAIL
+test_cli_explains_executed_rule_and_b5_mismatch (test_b5_preflight_binding.TestB5PreflightBinding.test_cli_explains_executed_rule_and_b5_mismatch) ... ok
+test_current_real_report_cannot_certify_fivegram (test_b5_preflight_binding.TestB5PreflightBinding.test_current_real_report_cannot_certify_fivegram) ... ok
+test_custom_threshold_is_reported_without_reusing_signature_status (test_b5_preflight_binding.TestB5PreflightBinding.test_custom_threshold_is_reported_without_reusing_signature_status) ... ok
+test_missing_or_malformed_evidence_stays_uncalibrated (test_b5_preflight_binding.TestB5PreflightBinding.test_missing_or_malformed_evidence_stays_uncalibrated) ... ok
+test_ready_blocked_with_all_other_checks_passing (test_b5_preflight_binding.TestB5PreflightBinding.test_ready_blocked_with_all_other_checks_passing) ... ok
+test_same_numeric_threshold_does_not_match_rules (test_b5_preflight_binding.TestB5PreflightBinding.test_same_numeric_threshold_does_not_match_rules) ... ok
+test_signature_candidates_not_hidden_by_global_best (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_candidates_not_hidden_by_global_best) ... 
+  test_signature_candidates_not_hidden_by_global_best (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_candidates_not_hidden_by_global_best) (missing_category=False) ... FAIL
+  test_signature_candidates_not_hidden_by_global_best (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_candidates_not_hidden_by_global_best) (missing_category=True) ... FAIL
+test_signature_report_cannot_certify_fivegram (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_report_cannot_certify_fivegram) ... ok
+
+======================================================================
+FAIL: test_b5_status_is_informational_and_separate (test_b5_preflight_binding.TestB5PreflightBinding.test_b5_status_is_informational_and_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_preflight_binding.py", line 61, in test_b5_status_is_informational_and_separate
+    self.assertIn("签名一致", rep["near_dup_rule"])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '签名一致' not found in '5-gram Jaccard'
+
+======================================================================
+FAIL: test_signature_candidates_not_hidden_by_global_best (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_candidates_not_hidden_by_global_best) (missing_category=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_preflight_binding.py", line 113, in test_signature_candidates_not_hidden_by_global_best
+    self.assertEqual(len(hits), 1, rep["problems"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : []
+
+======================================================================
+FAIL: test_signature_candidates_not_hidden_by_global_best (test_b5_preflight_binding.TestB5PreflightBinding.test_signature_candidates_not_hidden_by_global_best) (missing_category=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_b5_preflight_binding.py", line 113, in test_signature_candidates_not_hidden_by_global_best
+    self.assertEqual(len(hits), 1, rep["problems"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : []
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.056s
+
+FAILED (failures=3)

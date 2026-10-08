@@ -1,0 +1,357 @@
+{
+  "head": "cd9fff6094b8fe176225c6a0882bec36ca23d243",
+  "cli_cases": {
+    "matching": {
+      "ok": true,
+      "ready": true,
+      "exit_code": 0,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": true,
+          "detail": "冻结证据绑定当前 manifest, eval/test 全量覆盖"
+        },
+        {
+          "check": "ready",
+          "ok": true,
+          "detail": "全部必需门禁通过,可生成可执行训练计划"
+        }
+      ]
+    },
+    "missing_binding": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "锁 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-evidence-dyx9xeuf\\data\\frozen.lock.json 缺少有效 manifest_sha256 绑定，不能作为冻结证据"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    },
+    "wrong_binding": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "锁 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-evidence-ofoffw8t\\data\\frozen.lock.json 绑定 manifest 000000000000… 与当前 1538454b5eb8… 不一致"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    },
+    "unrelated": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "eval/test 部分未冻结(2 个文件未被任何锁覆盖)"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    },
+    "partial": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "eval/test 部分未冻结(1 个文件未被任何锁覆盖)"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    },
+    "corrupt": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "发现无法识别的锁标记 1 个: C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-evidence-g2ylsy7u\\data\\frozen.lock.json; 无冻结锁 —— eval/test 必须先冻结(BR4-b)"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    },
+    "no_lock": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "run probe 快照通过"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "2 条目,问题 0,quarantine 0"
+        },
+        {
+          "check": "render_gate",
+          "ok": true,
+          "detail": "真实渲染证据: rendered — mock smoke"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "真实数学断言: verified — mock smoke"
+        },
+        {
+          "check": "freeze_gate",
+          "ok": false,
+          "detail": "无冻结锁 —— eval/test 必须先冻结(BR4-b)"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['freeze_gate']"
+        }
+      ]
+    }
+  },
+  "source_sha256": {
+    "src/animtrain/freeze.py": "80234f07f86246323e29a472e359d74ce5e48406d4bde98df07a16b9501d99a3",
+    "tools/preflight.py": "08955f0c9bdd15e9dcf235024ac85e04b09b073ab79d64c8216e0d5dcb31fb44",
+    "tools/split_data.py": "435d7ed974907c7cdfc91a2571f2e5e2e8192097571f33f79681e6a3c6078c53",
+    "tests/test_preflight_evidence_review.py": "008927409bf5d53fe619f8a0875470bfe996c27b06867f7fb9cdd9ffc5b3daf4"
+  },
+  "frozen_write": {
+    "omitted_valid": {
+      "exception": "SystemExit",
+      "detail": "拒绝:C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-r4-zo1hc68i\\output\\eval.jsonl 属于冻结数据集,无论是否 --force 都不得写入(BR5)",
+      "changed_outputs": []
+    },
+    "omitted_corrupt": {
+      "exception": "SystemExit",
+      "detail": "拒绝:发现无法识别的锁标记 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-r4-p5mjbel4\\output\\frozen.lock.json —— 可能是损坏的冻结锁,必须 fail closed(BR5)",
+      "changed_outputs": []
+    },
+    "nonstandard_name": {
+      "exception": "ValueError",
+      "detail": "冻结锁必须命名为 *.lock.json(统一发现约定),实际: freeze.json",
+      "changed_outputs": []
+    }
+  }
+}

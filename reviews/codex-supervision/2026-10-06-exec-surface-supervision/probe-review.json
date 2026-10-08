@@ -1,0 +1,75 @@
+{
+  "schema": "codex-exec-surface-initial-review-v1",
+  "reviewed_at": "2026-10-06T18:09:28.815026+08:00",
+  "status": "NOT_ACCEPTED",
+  "scope": "Initial enumeration and first exploratory UDP/DNS result only; no full-surface acceptance",
+  "enumeration": {
+    "total": 43,
+    "original_GREEN": 28,
+    "original_GAP": 14,
+    "original_PARTIAL": 1,
+    "not_GREEN": 15,
+    "code_unit_or_document_only_marked_GREEN": [
+      "A8",
+      "A9",
+      "B5",
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "exhaustiveness_certified": false
+  },
+  "probe_results": [
+    {
+      "id": "D7",
+      "observed": {
+        "outcome": "sent"
+      },
+      "verdict": "UNKNOWN",
+      "reason": "sendto returned; no external receiver, matching nonce receipt or healthy external before/after controls"
+    },
+    {
+      "id": "D8",
+      "observed": {
+        "outcome": "sent"
+      },
+      "verdict": "UNKNOWN",
+      "reason": "same lack of independent external IPv6 evidence"
+    },
+    {
+      "id": "D9",
+      "observed": {
+        "outcome": "sent"
+      },
+      "verdict": "UNKNOWN",
+      "reason": "destination is a host-local interface, not an independently identified LAN peer; receiver nonce/window and completion are not fully bound"
+    },
+    {
+      "id": "D10",
+      "observed": {
+        "outcome": "failed",
+        "errno": 11001,
+        "err": "gaierror"
+      },
+      "verdict": "UNKNOWN",
+      "reason": "resolver error 11001 is not explicit permission denial or captured no-egress; fixed domain and cache effects are not separated"
+    }
+  ],
+  "missing_transport_fields": [
+    "parent_evidence",
+    "command",
+    "source_sha256"
+  ],
+  "raw_probe_sha256": "47cd8f572558bc4a856e1f5fa4d8af854a9d7bdbd96788319d951b7b38792f49",
+  "raw_probe_source_sha256": "d11c760c1f2dd649fd7ceb900a7dffcfea72ec8259d58479628574c6120e3ef0",
+  "executed_scene_sha256": "45efa8eb2a1f473af7f4199ca2b0100bfc154c26b4c48b973c6428be75cf17d8",
+  "originals_preserved": true,
+  "source_review_messages": [
+    "msg_1791280889429_578",
+    "msg_1791281162911_579"
+  ],
+  "new_native_probe_executed_by_codex": false,
+  "production_gate": "CLOSED",
+  "candidate_admitted": false,
+  "training_started": false
+}

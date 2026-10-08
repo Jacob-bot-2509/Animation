@@ -16,6 +16,7 @@ import hashlib
 import json
 import sys
 import time
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,12 +63,12 @@ def training_example(tokenizer,row,max_length):
                             method=row.get('method','常规解法'))
     target=json.dumps(spec,ensure_ascii=False,separators=(',',':'))
     user=[{'role':'user','content':prompt}]
-    # transformers 4.51:tokenize=True 返回 BatchEncoding,必须取 ["input_ids"]
+    # Explicit return_dict stabilizes the tokenizer boundary across installed versions.
     prefix=tokenizer.apply_chat_template(user,tokenize=True,add_generation_prompt=True,
-                                         enable_thinking=False)["input_ids"]
+                                         enable_thinking=False,return_dict=True)["input_ids"]
     full=tokenizer.apply_chat_template(user+[{'role':'assistant','content':target}],
                                        tokenize=True,add_generation_prompt=False,
-                                       enable_thinking=False)["input_ids"]
+                                       enable_thinking=False,return_dict=True)["input_ids"]
     if not isinstance(prefix,list) or not isinstance(full,list) or full[:len(prefix)]!=prefix:
         raise ValueError('Chat template has no reproducible assistant boundary')
     if len(full)>max_length:raise ValueError('Complete supervised scene_spec exceeds max_seq_length')
@@ -93,22 +94,46 @@ def training_collator(tokenizer):
 
 def check_hyperparameters(config: dict) -> list[str]:
     hp = config.get("hyperparameters") or {}
+    if not isinstance(hp,dict):return ["hyperparameters object"]
     required = ("learning_rate", "batch_size", "gradient_accumulation_steps",
                 "epochs", "lora_r", "lora_alpha", "max_seq_length",
                 "quantization", "seed")
     return [k for k in required if hp.get(k) is None]
 
 
+def hyperparameter_approval_error(config: dict) -> str | None:
+    """Only a confirmed, hash-bound parameter set may reach model loading."""
+    approval=config.get('hyperparameter_approval')
+    if not isinstance(approval,dict) or approval.get('status')!='CONFIRMED':
+        return 'Hyperparameters are a proposal; a confirmed parameter hash is required'
+    hp=config.get('hyperparameters')
+    if not isinstance(hp,dict):return 'Hyperparameters are missing or invalid'
+    missing=check_hyperparameters(config)
+    if missing:return 'Missing hyperparameters: '+str(missing)
+    for key in ('batch_size','gradient_accumulation_steps','epochs','lora_r','lora_alpha','max_seq_length'):
+        if type(hp[key]) is not int or hp[key]<=0:return 'Invalid positive integer hyperparameter: '+key
+    if type(hp['seed']) is not int or hp['seed']<0:return 'Invalid seed'
+    try:
+        if not 0<Fraction(str(hp['learning_rate']))<1:return 'Invalid learning_rate'
+    except (ValueError,ZeroDivisionError,TypeError):return 'Invalid learning_rate'
+    if hp['quantization'] not in ('4bit','nf4','4-bit'):return 'Unreviewed quantization'
+    payload=json.dumps(hp,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf-8')
+    if approval.get('sha256')!=hashlib.sha256(payload).hexdigest():
+        return 'Confirmed hyperparameter hash is missing or stale'
+    return None
+
+
 def train(config: dict, work: Path, run_id: str) -> dict:
-    from tools.train_loop import gate_ready
+    from tools.train_loop import gate_ready,project_path,adapter_hash
     ready,detail=gate_ready(run_id,config)
     if not ready:return {"status":"REFUSED","reason":"Training gate closed: "+detail}
     missing=check_hyperparameters(config)
     if missing:return {"status":"REFUSED","reason":"Missing hyperparameters: "+str(missing)}
+    approval_error=hyperparameter_approval_error(config)
+    if approval_error:return {'status':'REFUSED','reason':approval_error}
     hp = config["hyperparameters"]
-    manifest = Path(config.get("dataset_manifest",
-                               str(ROOT / "data/manifest.json")))
-    model_dir = Path(config.get("model_path", str(ROOT / ".models/qwen3-4b")))
+    manifest = project_path(config.get("dataset_manifest","data/manifest.json"))
+    model_dir = project_path(config.get("model_path",".models/qwen3-4b"))
     if not model_dir.exists():
         return {"status": "REFUSED", "reason": f"模型目录不存在: {model_dir}"}
     rows = load_train_rows(manifest)
@@ -173,7 +198,7 @@ def train(config: dict, work: Path, run_id: str) -> dict:
         num_train_epochs=int(hp["epochs"]),
         per_device_train_batch_size=int(hp["batch_size"]),
         gradient_accumulation_steps=int(hp["gradient_accumulation_steps"]),
-        learning_rate=float(hp["learning_rate"]),
+        learning_rate=float(Fraction(str(hp["learning_rate"]))),
         lr_scheduler_type="cosine", warmup_ratio=0.05,
         logging_steps=1, save_strategy="no", bf16=True,
         report_to=[], seed=int(hp["seed"]),
@@ -186,6 +211,8 @@ def train(config: dict, work: Path, run_id: str) -> dict:
     tok.save_pretrained(str(adapter_out))
     manifest_out = {
         "status": "TRAINED", "run_id": run_id,
+        "config_sha256": _sha(Path(config["_config_path"])),
+        "manifest_sha256": _sha(manifest), "adapter_sha256": adapter_hash(adapter_out),
         "train_rows": len(rows), "truncated_rows": truncated,
         "model_path": str(model_dir),
         "model_sha256": _sha(model_dir / "config.json"),
@@ -210,6 +237,10 @@ def main(argv: list[str]) -> int:
     missing = check_hyperparameters(config)
     if missing:
         print(f"[FAIL] 超参未定案({missing}),训练步拒绝执行(fail-closed)")
+        return 2
+    approval_error=hyperparameter_approval_error(config)
+    if approval_error:
+        print('[FAIL] '+approval_error)
         return 2
     args.work.mkdir(parents=True, exist_ok=True)
     out = train(config, args.work, args.run_id)

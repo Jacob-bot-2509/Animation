@@ -1,0 +1,99 @@
+{
+  "source_hashes": {
+    "src/animtrain/publish.py": "0d1626dd9dbfb640c5734003769c9a4913f3745800eba2a3b3a6013274df2a23",
+    "src/animtrain/preflight.py": "6ac7d24055498001cbeb585ffefb3b66617d6bf0ff7492a4d02730a2338c84c0",
+    "src/animtrain/render_gate.py": "6e005545f015fe5405ef15af275a895509a4cd61cc33d347eefb2d04e06736b7",
+    "tools/eval_test_prep.py": "fc01590fae58d7a8df909f569c967ee50e415d8f2d30251435dfb7cf133e5d50",
+    "tools/preflight.py": "be05c1943bd24ede78feaa871f7df5b33984a071e4917db974a51192ff0406f0"
+  },
+  "results": [
+    {
+      "case": "publish_crash_new_file",
+      "expected": "rollback removes newly-created file",
+      "target_remains": true,
+      "journal_remains": false,
+      "report": {
+        "recovered": true,
+        "actions": []
+      }
+    },
+    {
+      "case": "publish_cleanup_failure",
+      "expected": "both original files preserved or committed together",
+      "a": null,
+      "b": "oldB",
+      "journal_remains": false
+    },
+    {
+      "case": "publish_backup_collision",
+      "expected": "existing backup collision rejected without deletion",
+      "backup_preserved": false,
+      "target_created": true
+    },
+    {
+      "case": "publish_recover_frozen",
+      "expected": "frozen target must not change",
+      "target": "different",
+      "report": {
+        "recovered": true,
+        "actions": [
+          "回滚 frozen.jsonl"
+        ]
+      }
+    },
+    {
+      "case": "publish_corrupt_journal",
+      "expected": "reject malformed journal and keep recovery evidence",
+      "journal_preserved": false,
+      "report": {
+        "recovered": true,
+        "actions": []
+      }
+    },
+    {
+      "case": "publish_duplicate_target",
+      "expected": "reject duplicate target or preserve original on rollback",
+      "target": null
+    },
+    {
+      "case": "asset_self_reported_coverage",
+      "data_gate_exit": 0,
+      "expected": "3 records without per-asset evidence must not pass as 1/1",
+      "accepted": true,
+      "detail": "资产验收证据绑定当前 manifest,覆盖 1/1 条"
+    },
+    {
+      "case": "ready_missing_required_gates",
+      "expected": "missing asset/freeze/calibration/isolation checks block READY",
+      "ready": true,
+      "checks": [
+        "gpu",
+        "model_dir",
+        "data_manifest",
+        "run_snapshot",
+        "ready"
+      ]
+    },
+    {
+      "case": "eval_schema",
+      "expected": "documented eval schema accepted",
+      "exit_code": 1,
+      "stdout": "[FAIL] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpjfifg2uo\\candidate\\a.jsonl: 入场检查 rejected(problems 1)\n  [FAIL] a.jsonl: line 1: 缺关键字段 id(id=<no-id>)\n结论: 隔离检查不通过,1 个问题\n",
+      "stderr": ""
+    },
+    {
+      "case": "eval_duplicates",
+      "expected": "cross-file duplicate IDs rejected",
+      "exit_code": 0,
+      "stdout": "[WARN] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpoxgo_11p\\candidate\\a.jsonl: 入场检查 candidate(quarantine 1,不阻断隔离检查)\n[WARN] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpoxgo_11p\\candidate\\b.jsonl: 入场检查 candidate(quarantine 1,不阻断隔离检查)\n[OK] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpoxgo_11p\\candidate: 入场检查与 train 隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    },
+    {
+      "case": "eval_missing_train",
+      "expected": "missing reference train blocks isolation PASS",
+      "exit_code": 0,
+      "stdout": "[WARN] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpx_wquklr\\candidate\\a.jsonl: 入场检查 candidate(quarantine 1,不阻断隔离检查)\n[OK] C:\\Users\\Jacap\\AppData\\Local\\Temp\\tmpx_wquklr\\candidate: 入场检查与 train 隔离检查通过(近重复阈值 0.7 UNCALIBRATED)\n",
+      "stderr": ""
+    }
+  ]
+}

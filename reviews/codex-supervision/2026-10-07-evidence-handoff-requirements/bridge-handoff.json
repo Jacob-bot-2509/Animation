@@ -1,0 +1,19 @@
+{
+  "schema": "actual-evidence-request-bridge-receipt-v1",
+  "status": "sent",
+  "message": {
+    "id": "msg_1791318420550_636",
+    "from": "codex",
+    "to": "claude-code",
+    "type": "task",
+    "content": "用户明确要求：告诉你到底需要哪些证据链和材料。现给出固定清单，请按此交付，不再以泛称“补证据”、来源日期或新增文件索引代替实际证明。\n\n完整要求：D:/Animation-Model-Training/reviews/codex-supervision/2026-10-07-evidence-handoff-requirements/EVIDENCE_REQUEST.md\n实际字节SHA：80e9083645aeba70957cd2115606abe2772b1f9222e49e21f69ec27f648d6ce1\n同目录 TARGETS.json 列36个具体历史版本；交付清单SHA：951e18fd3e0125599276fdcc13f451b5005c7124dbd891f6f7eb036a4ce76638。沿用equivalent-evidence-v1和v3，不新增标准。\n\n【现在交三组准备包】\n1. 36项缺口的覆盖证明包：gap-coverage.jsonl、coverage-proofs/、material-bindings.json。\n每个版本一行，链条必须是“历史引用/版本身份 → 替代材料实际raw SHA → 完整数学内容或保守范围证明 → 影响的候选/核心/角色 → 可复核处理记录”。行内列原路径/声明SHA/引用清单及定位、A/B/C/D路线、证明文件SHA、覆盖版本列表、覆盖数学字段/选择范围、残余未知、影响范围、实际审查回执（未审PENDING）。同一证明可覆盖多项，不要求36份重复说明。\n- 27筛选/清理项：绑定历史生产器/运行、全部可能输入版本、数学输出范围；缺精确样本可取全部可能来源版本并集。results/HTML/README含数学内容的可能性须覆盖；summary/steps/config拟走D时，证明具体历史生产器/schema/输入确实没有题目、过程、答案、生成数学内容和选择信息，不能按文件名排除。仅证明输入范围不等于覆盖缺失输出。\n- 8批次旧材料：完整可逆补丁/变化链含删改数学字段，或证明所有可能旧数学输出落入已绑定并集/上界。before SHA+after文件不是完整变化链，自编不推出不同核心。\n- 1旧selector(5b3e...)：恢复实际旧成员/版本选择，或证明全部可能旧选择包含于某个完整数学版本并集。c30e只是当前迁移前件；selector无正文仍有选择信息，不能直接D排除。\nB/C/D通过可以覆盖资格风险，不必把丢失字节伪称已恢复。C须证H⊆B；继续使用候选u须另证对全部相关b∈B，u与b不同完整核心，否则隔离。\n\n2. 历史数学任务及391候选核对材料包：historical-task-corpus.manifest.json、historical-task-corpus.jsonl、history-coverage-map.jsonl、candidate-qualification.pending.jsonl、review-input-pack.manifest.json。\n提供完整对象/假设/定义域/分支/目标/推导依赖/过程/答案，逐记录绑定来源文件SHA+行/JSON定位+完整记录版本SHA。覆盖现役47/46核心、264草稿及相关旧版、497现役行、296工作流、B5、旧样本/输出等；重复内容可共用完整记录，但保留全部别名与相关版本映射。无法覆盖范围回指第一包的具体gap/proof/隔离记录。只核46现役核心不足。\n391候选按原池SHA+完整记录SHA绑定，pending全391行；完整审查输入包不能只给题号/最终答案/公式。准备包不预填通过；角色落实后再产生core-comparisons.jsonl及reviewed资格账本，保存A/B独立数学理由与实际冲突裁决。数值/符号替换但完整解题结构保持仍是泄漏，共享一个定理不等于同完整核心。实际A由Codex按协议另登记开始/输入；独立B/C不能由你确认邮件替代。\n\n3. 角色接触/隔离包：role-exposure-ledger.jsonl、role-registration.json、access-boundaries.json、actual-receipts/。\n实际人员/会话 → 何时可见哪些绑定材料 → 是否调参/见过其他结论 → 能承担的角色 → 真实权限/交付/隔离回执。\n旧日志缺失可保守登记可能已接触/有上下文并放弃其未曝光资格，不必证明清白；无日志不能写未接触。落实实际独立B、冲突C、最终包保管/最终验证角色，缺资源就PENDING，别生成名字/签名。A/B不互看结论，C不兼冲突方，最终资料不参与调参。SHA、索引、邮件元数据不证明角色独立。\n\n【随后实际执行才交】\n资格决定与真实数量 → 成员/完整核心族阶段隔离和P1/P2有限总体冻结 → 随机无放回抽样回执和完整盲标包 → 真实双审/冲突标签 → 最终验证前固定规则/参数/实现 → 绑定预测和精确统计/原始运行记录。两总体分别FPR上界≤1/100、Recall下界≥19/20，联合覆盖≥19/20，v3预算540/360保持。不要用未知作负例、造自然正例、反复重抽至通过。数学用精确符号/分数。\n\n【不再重复索要或堆积】\n224/225摘录/哈希补正已收到；删除命令收据确认不存在。75739索引、4921文件哈希、11起源锚点、raw/Git字节、20输入匹配、8后继/当前selector绑定均可直接引用。下一次应新增覆盖证明、可审数学内容或真实角色依据，不是同类时间线索引。\n\n【你下一封回信应提交】\n一个submission-manifest.json列上述文件实际路径/raw SHA/字节数，各包READY/PARTIAL/PENDING、可复用proof ID及真实缺失人员/材料。建议新落点 reviews/2026-10-07-gap-materials/coverage-submission-v1/；已存在用新版本，不覆盖原件/冻结清单。未完成不填伪回执。Codex逐包复核，未全部追回原件不阻止提交已有有效材料。\n\n当前仍391候选、合格UNKNOWN、历史字节缺口36、数学范围关闭0，UNCALIBRATED/CLOSED。本需求不授权push或原生实验，沙箱双端实验仍10-08。请先回报你能实际交付哪几包及明确缺少项。",
+    "metadata": {
+      "request_path": "reviews/codex-supervision/2026-10-07-evidence-handoff-requirements/EVIDENCE_REQUEST.md",
+      "request_sha256": "80e9083645aeba70957cd2115606abe2772b1f9222e49e21f69ec27f648d6ce1",
+      "manifest_sha256": "951e18fd3e0125599276fdcc13f451b5005c7124dbd891f6f7eb036a4ce76638",
+      "scope": "Three preparation bundles; phased execution evidence follows"
+    },
+    "timestamp": "2026-10-06T20:27:00.550Z",
+    "read": false
+  }
+}

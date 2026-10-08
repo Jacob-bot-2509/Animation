@@ -50,116 +50,22 @@ def check_sympy_available() -> tuple[bool, str]:
 
 def render_check(code: str, python: str | None = None,
                  trusted: bool = False) -> dict:
-    """执行隔离渲染:独立子进程跑 manim,超时/退出码/stderr 捕获。
+    """Production transport: AppContainer only, no host-process fallback.
 
-    返回 {ok, status, detail, unverified};环境缺失 → unverified。
-    不伪造成功:任何失败/超时都是失败。
-
-    BR6 复验:隔离不完整(fs/network/memory 未实施)时,默认拒绝执行
-    不可信代码 —— trusted=False 直接阻断;只有可信固定样例
-    (项目内审查过的模板)可以 trusted=True 执行。
+    Generated code remains closed until the exact transport passes joint acceptance.
+    Trusted fixed probes use the same transport without pretending to certify it.
     """
+    from .sandbox_execution import check_certificate, render_scene
     if not trusted:
-        return {"ok": False, "status": "unverified",
-                "detail": "隔离不完整(fs 完整隔离未实施,现有 cwd_only 基础隔离),"
-                          "拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
-                "unverified": ["render_isolation"]}
-    ok_manim, msg = check_manim_available()
-    if not ok_manim:
-        return {"ok": False, "status": "unverified", "detail": msg,
+        accepted, detail = check_certificate()
+        if not accepted:
+            return {"ok": False, "status": "unverified", "detail": detail,
+                    "unverified": ["render_isolation"]}
+    available, detail = check_manim_available()
+    if not available:
+        return {"ok": False, "status": "unverified", "detail": detail,
                 "unverified": ["render"]}
-    py = python or sys.executable
-    # ffmpeg 位于项目约定目录 D:\Settings\ffmpeg\bin(用户 2026-09-30 指定)
-    ffmpeg_bin = Path(r"D:\Settings\ffmpeg\bin")
-    env = _sanitized_env(str(ffmpeg_bin) if ffmpeg_bin.is_dir() else None)
-    # B4:Windows 下把子进程挂入带内存上限的 job(整树受限:latex/dvisvgm 同受);
-    # job 不可用 → job=None,如实保持"内存隔离未实施"
-    job = None
-    if sys.platform == "win32" and WindowsJob is not None:
-        try:
-            job = WindowsJob(RENDER_MEM_MB)
-        except OSError:
-            job = None
-    job_assigned = False
-    network_isolated = False
-    with tempfile.TemporaryDirectory() as d:
-        scene = Path(d) / "scene.py"
-        scene.write_text(code, encoding="utf-8")
-        # B4:网络 best-effort guard(封堵高层 Python socket API + 死代理环境)。
-        # 如实:非不可绕过边界(OS 级网络隔离未实施),仅作为纵深防御;
-        # shim 写入失败必须 fail-closed(与 job 挂入失败同口径)。
-        try:
-            shim_dir = net_guard.write_network_shim(Path(d) / "netshim")
-            env = net_guard.network_isolation_env(env, shim_dir)
-            network_isolated = True
-        except OSError as exc:
-            if job is not None:
-                job.close()
-            return {"ok": False, "status": "exec_error",
-                    "detail": f"网络 guard shim 写入失败(fail-closed): {exc}",
-                    "unverified": ["render_isolation"],
-                    "isolation": {**_isolation_state(),
-                                  "network_isolated": False}}
-        try:
-            proc = subprocess.Popen(
-                [py, "-m", "manim", "-ql", "--media_dir", str(Path(d) / "out"),
-                 str(scene), "ConceptScene"],
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                text=True, encoding="utf-8", errors="replace", env=env,
-                # 实测定位(2026-10-01):dvisvgm 3.6 在 cwd 路径含空格时
-                # 崩溃(Windows API error 87,退出码 0xFFFFFFFC),manim 内部
-                # 调 dvisvgm 继承本进程 cwd。项目根路径带空格,故 cwd 必须
-                # 设为无空格的临时目录。scene/media 均在此目录内,不受影响。
-                cwd=d)
-            if job is not None:
-                # GS5:挂入失败必须 fail-closed —— kill/wait 已启动进程,
-                # 绝不带着"未受限"的子进程继续渲染
-                try:
-                    job.assign(proc)
-                    job_assigned = True
-                except OSError as exc:
-                    proc.kill()
-                    proc.wait()
-                    job.close()
-                    return {"ok": False, "status": "exec_error",
-                            "detail": f"内存隔离 job 挂入失败(fail-closed): {exc}",
-                            "unverified": ["render_isolation"],
-                            "isolation": {**_isolation_state(),
-                                          "job_assigned": False}}
-            try:
-                out, err = proc.communicate(timeout=RENDER_TIMEOUT_SEC)
-            except subprocess.TimeoutExpired:
-                if job is not None:
-                    job.terminate()  # 整树终止,不留孤儿 latex/dvisvgm
-                proc.kill()
-                proc.communicate()
-                raise
-        except subprocess.TimeoutExpired:
-            if job is not None:
-                job.close()
-            return {"ok": False, "status": "timeout",
-                    "detail": f"渲染超时(>{RENDER_TIMEOUT_SEC}s)", "unverified": [],
-                    "isolation": {**_isolation_state(),
-                                  "job_assigned": job_assigned}}
-        except OSError as exc:
-            if job is not None:
-                job.close()
-            return {"ok": False, "status": "exec_error",
-                    "detail": f"无法启动渲染进程: {exc}", "unverified": []}
-    if job is not None:
-        job.close()
-    iso = {**_isolation_state(), "job_assigned": job_assigned,
-           "network_isolated": network_isolated,
-           # msg_218:能力(probe 可用)与本轮实际限额分开 —— 本轮未挂 job 时
-           # memory_limit_mb 如实为 None,不得把能力探针当本轮内存证据
-           "memory_limit_mb": RENDER_MEM_MB if job_assigned else None}
-    if proc.returncode != 0:
-        return {"ok": False, "status": "failed",
-                "detail": f"渲染失败(退出码 {proc.returncode}): "
-                          f"{(err or '')[-500:]}", "unverified": [],
-                "isolation": iso}
-    return {"ok": True, "status": "rendered",
-            "detail": "渲染成功", "unverified": [], "isolation": iso}
+    return render_scene(code, python=python)
 
 
 # BR2 数学断言契约(复验收紧):
@@ -229,28 +135,23 @@ def _sanitized_env(extra_path: str | None = None) -> dict:
 
 
 def _isolation_state() -> dict:
-    """BR6/B4 隔离状态如实报告(调用方必须检查后再宣称安全执行)。"""
-    mem: int | None = None
+    """Report joint acceptance separately from OS transport availability."""
+    from .sandbox_execution import check_certificate
+    accepted, detail = check_certificate()
+    mem = None
     if sys.platform == "win32" and WindowsJob is not None:
         try:
-            probe = WindowsJob(16)  # 轻量探针:能建 job 才宣称内存隔离
+            probe = WindowsJob(16)
             probe.close()
             mem = RENDER_MEM_MB
         except OSError:
-            mem = None
-    return {"shell": False, "timeout_sec": RENDER_TIMEOUT_SEC,
-            "env_sanitized": True,      # 密钥类变量剔除(尽力,非完整隔离)
-            "fs_isolation": "cwd_only",  # cwd=无空格临时目录(基础文件系统隔离)
-            "memory_limit_mb": mem,     # Windows job object(可用时);否则 None
-            "network_isolation": False,  # OS 级网络边界未实施(msg_259 实测:
-            #                               _socket 可绕过 shim,不可宣称验收)
-            "python_socket_guard": True,  # best-effort:shim 封堵高层 socket API,
-            #                               非不可绕过边界,不构成 B4 网络隔离验收
-            "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时"
-                    f" + 内存上限 {mem or '未实施'} + Python socket 出口 guard"
-                    "(best-effort,可被 _socket 等底层接口绕过,已实测;"
-                    "不作为网络隔离验收证据);OS 级网络边界未实施,"
-                    "不可信生成代码的执行仍被拒绝(B4)"}
+            pass
+    return {"backend": "windows_appcontainer", "shell": False,
+            "timeout_sec": RENDER_TIMEOUT_SEC, "env_sanitized": True,
+            "fs_isolation": "private_per_run" if accepted else "shared_explicit_acl",
+            "memory_limit_mb": mem, "network_isolation": accepted,
+            "python_socket_guard": False, "joint_accepted": accepted,
+            "note": detail}
 
 
 def math_check(expr: str) -> dict:

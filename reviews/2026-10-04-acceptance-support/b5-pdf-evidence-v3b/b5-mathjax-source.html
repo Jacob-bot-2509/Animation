@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'><title>B5 近重复阈值校准报告</title><style>
+@page { size: A4; margin: 16mm 14mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif;
+       font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0; }
+h1 { font-size: 19pt; border-bottom: 2.4pt solid #1f4e79; color: #1f4e79;
+     padding-bottom: 5pt; }
+h2 { font-size: 14pt; border-left: 5pt solid #1f4e79; background: #eef3f9;
+     padding: 4pt 8pt; color: #16365c; page-break-after: avoid; }
+h3 { font-size: 11.5pt; color: #16365c; border-bottom: 1pt solid #c9d8e8;
+     padding-bottom: 2pt; margin-top: 14pt; page-break-after: avoid; }
+h3 code { background: none; }
+p { margin: 4pt 0; }
+strong { color: #14324f; }
+blockquote { background: #f5f7fa; border-left: 3pt solid #9db8d2;
+             padding: 5pt 9pt; margin: 6pt 0; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0; }
+th, td { border: 0.6pt solid #9db8d2; padding: 3.5pt 6pt; text-align: left; }
+th { background: #1f4e79; color: #fff; }
+code { font-family: Consolas, "Courier New", monospace; font-size: 9pt;
+       background: #f0f2f5; padding: 0 2pt; }
+hr { border: none; border-top: 1pt solid #dbe4ee; margin: 10pt 0; }
+.math-block { text-align: center; margin: 6pt 0; }
+</style><script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'},options:{enableMenu:false},startup:{ready:function(){MathJax.startup.defaultReady();MathJax.startup.promise.then(function(){document.documentElement.dataset.mathjaxReady='true';});}}};</script><script src='file:///D:/Animation-Model-Training/tools/assets/mathjax-tex-svg.js'></script><style>
+body { font-size: 9pt; line-height: 1.55; }
+h1 { font-size: 17pt; }
+table { table-layout: fixed; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; page-break-inside: avoid; }
+.grid th, .grid td { text-align: center; padding: 4pt 2pt; }
+.grid th:nth-child(1) { width: 13%; }
+.grid th:nth-child(n+2):nth-child(-n+5) { width: 9%; }
+.grid th:nth-child(n+6) { width: 17%; }
+.pairs th:nth-child(1) { width: 13%; }
+.pairs th:nth-child(2) { width: 12%; }
+.pairs th:nth-child(n+3) { width: 37.5%; }
+.pairs td:nth-child(-n+2) { white-space: nowrap; text-align: center; }
+.pairs td { overflow-wrap: anywhere; padding: 5pt 4pt; }
+.revision th:nth-child(1) { width: 34%; }
+.revision th:nth-child(2), .revision th:nth-child(3) { width: 13%; }
+.revision th:nth-child(4) { width: 40%; }
+.revision td { overflow-wrap: anywhere; }
+.uncertain th:nth-child(1), .uncertain th:nth-child(2) { width: 44%; }
+.uncertain th:nth-child(3) { width: 12%; }
+.uncertain td { overflow-wrap: anywhere; }
+.uncertain td:last-child { white-space: nowrap; }
+mjx-container { font-size: 100% !important; max-width: 100%; }
+</style></head><body><h1>B5 近重复阈值校准报告 v3(本质考点规则)</h1>
+<ul>
+<li>判重依据:用户确认(2026-10-04)= 题目<strong>本质考点</strong>,粒度=模块+题型</li>
+<li>考点签名:(category, 题型);题型由题文动词分类,结构化字段兜底</li>
+<li>有效标注:48 对,其中重复 17 对、不重复 31 对;不确定 2 对排除。</li>
+<li>目标:召回率≥19/20,误报率≤1/100。</li>
+<li>结论:<strong>考点网格选定阈值 1(考点签名完全一致),召回率=1,误报率=0</strong>(TP 17,FP 0,FN 0,TN 31)</li>
+<li>范围:仅评估当前标注样本;分层采样不构成总体性能保证。</li>
+</ul>
+<h2>考点网格(离散取值 0 / 1/3 / 1)</h2>
+<table class="grid">
+<thead>
+<tr>
+<th>阈值</th>
+<th>TP</th>
+<th>FP</th>
+<th>FN</th>
+<th>TN</th>
+<th>精确率</th>
+<th>召回率</th>
+<th>误报率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>17</td>
+<td>31</td>
+<td>0</td>
+<td>0</td>
+<td>17/48</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1/3</td>
+<td>17</td>
+<td>18</td>
+<td>0</td>
+<td>13</td>
+<td>17/35</td>
+<td>1</td>
+<td>18/31</td>
+</tr>
+<tr>
+<td>1</td>
+<td>17</td>
+<td>0</td>
+<td>0</td>
+<td>31</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>精确率=TP/(TP+FP),召回率=TP/(TP+FN),误报率=FP/(FP+TN)。分母为零时显示“未定义”。</p>
+<h2>全对证据(48 对;J5 为文字 5-gram Jaccard,仅对照)</h2>
+<table class="pairs">
+<thead>
+<tr>
+<th>J5(文字)</th>
+<th>标注</th>
+<th>题目A(考点)</th>
+<th>题目B(考点)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16/21</td>
+<td>重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^2}{2^n}$</span> 的和。 (eval-calc-022;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>2/3</td>
+<td>不重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>29/50</td>
+<td>重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$</span> 的和。 (eval-calc-011;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>26/47</td>
+<td>重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>26/47</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>28/51</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$</span> 的和。 (eval-calc-011;考点:数学分析 级数求和)</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>86/157</td>
+<td>重复</td>
+<td>求 <span class="math">$n$</span> 阶三对角行列式 <span class="math">$D_n=\begin{vmatrix}2&1&0&\cdots&0\\1&2&1&\cdots&0\\0&1&2&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&0&\cdots&2\end{vmatrix}$</span> 的值（矩阵元素满足 <span class="math">$a_{ii}=2$</span>，<span class="math">$a_{i,i+1}=a_{i+1,i}=1$</span>，其余为 0）。 (eval-linalg-003;考点:高等代数 三对角行列式)</td>
+<td>求 <span class="math">$n$</span> 阶三对角行列式 <span class="math">$D_n=\begin{vmatrix}1&1&0&\cdots&0\\1&1&1&\cdots&0\\0&1&1&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&\cdots&1&1\end{vmatrix}$</span> 的前 6 项，并发现其周期规律（矩阵元素满足 <span class="math">$a_{ii}=a_{i,i+1}=a_{i+1,i}=1$</span>，其余为 0）。 (test-linalg-013;考点:高等代数 三对角行列式)</td>
+</tr>
+<tr>
+<td>25/46</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^2}$</span>。 (eval-calc-001;考点:数学分析 极限计算)</td>
+<td>求 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x-\frac{x^2}{2}}{x^4}$</span>。 (test-calc-040;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>31/59</td>
+<td>重复</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$</span> 的特征值与特征向量，并将其对角化。 (eval-linalg-015;考点:高等代数 特征值对角化)</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$</span> 的特征值与特征向量，并判断其是否可对角化。 (eval-linalg-017;考点:高等代数 特征值对角化)</td>
+</tr>
+<tr>
+<td>32/61</td>
+<td>重复</td>
+<td>判断反常积分 <span class="math">$\displaystyle\int_1^{+\infty}\frac{dx}{x(1+x)}$</span> 的敛散性，若收敛求其值。 (test-calc-012;考点:数学分析 反常积分)</td>
+<td>判断 <span class="math">$\displaystyle\int_1^{+\infty}\frac{\ln x}{x^2}\,dx$</span> 的敛散性，若收敛求其值。 (test-calc-029;考点:数学分析 反常积分)</td>
+</tr>
+<tr>
+<td>24/47</td>
+<td>重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>1/2</td>
+<td>重复</td>
+<td>求不定积分 <span class="math">$\displaystyle\int x^2e^x\,dx$</span>。 (eval-calc-013;考点:数学分析 不定积分)</td>
+<td>求不定积分 <span class="math">$\displaystyle\int x\arctan x\,dx$</span>。 (eval-calc-018;考点:数学分析 不定积分)</td>
+</tr>
+<tr>
+<td>24/49</td>
+<td>重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^2}{2^n}$</span> 的和。 (eval-calc-022;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>24/49</td>
+<td>不重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+<td>证明 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln 2$</span>。 (test-calc-042;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>24/49</td>
+<td>重复</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$</span> 的和。 (test-calc-013;考点:数学分析 级数求和)</td>
+<td>证明 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln 2$</span>。 (test-calc-042;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>22/45</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^2}$</span>。 (eval-calc-001;考点:数学分析 极限计算)</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{\sin x-\tan x}{x^3}$</span>。 (eval-calc-004;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>13/27</td>
+<td>重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$</span> 的和。 (eval-calc-011;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>25/52</td>
+<td>重复</td>
+<td>用矩阵方法解微分方程组 <span class="math">$\begin{cases}x'=3x+y\\y'=x+3y\end{cases}$</span> 的通解。 (test-linalg-023;考点:高等代数 微分方程组)</td>
+<td>解微分方程组 <span class="math">$\begin{cases}x'=2x+y\\y'=2y\end{cases}$</span> 的通解。 (test-linalg-027;考点:高等代数 微分方程组)</td>
+</tr>
+<tr>
+<td>12/25</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>23/48</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>9/19</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x^2}$</span>。 (eval-calc-001;考点:数学分析 极限计算)</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0^+} x^x$</span>。 (eval-calc-002;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>13/28</td>
+<td>重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$</span> 的和。 (eval-calc-011;考点:数学分析 级数求和)</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^2}{2^n}$</span> 的和。 (eval-calc-022;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>13/28</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\cdot 2^n}$</span> 的和。 (eval-calc-011;考点:数学分析 级数求和)</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>6/13</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^2}{2^n}$</span> 的和。 (eval-calc-022;考点:数学分析 级数求和)</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+</tr>
+<tr>
+<td>6/13</td>
+<td>不重复</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$</span> 的敛散性。 (test-calc-034;考点:数学分析 级数敛散)</td>
+<td>证明 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln 2$</span>。 (test-calc-042;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>13/76</td>
+<td>不重复</td>
+<td>讨论反常积分 <span class="math">$\displaystyle\int_1^{+\infty}\frac{dx}{x^p}$</span>（<span class="math">$p\gt 0$</span>）的敛散性，并求其收敛时的值。 (eval-calc-020;考点:数学分析 反常积分)</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+</tr>
+<tr>
+<td>19/62</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{e^x-e^{\sin x}}{x-\sin x}$</span>。 (eval-calc-010;考点:数学分析 极限计算)</td>
+<td>设 <span class="math">$f$</span> 二阶可导且 <span class="math">$f(0)=f'(0)=0$</span>，求 <span class="math">$\displaystyle\lim_{x\to 0}\frac{f(x)}{x^2}$</span>。 (test-calc-007;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>13/80</td>
+<td>不重复</td>
+<td>设 <span class="math">$A=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$</span>，求 <span class="math">$A^n$</span>。 (eval-linalg-007;考点:高等代数 其他[矩阵])</td>
+<td>用级数定义计算矩阵指数 <span class="math">$e^{A}$</span>，其中 <span class="math">$A=\begin{pmatrix}0&\pi\\-\pi&0\end{pmatrix}$</span>。 (test-x-012;考点:跨学科 级数求和)</td>
+</tr>
+<tr>
+<td>14/71</td>
+<td>不重复</td>
+<td>设 <span class="math">$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$</span>，求 <span class="math">$A^n$</span>（<span class="math">$n$</span> 为正整数）。 (eval-linalg-006;考点:高等代数 其他[矩阵])</td>
+<td>解矩阵方程 <span class="math">$AX=B$</span>，其中 <span class="math">$A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$</span>，<span class="math">$B=\begin{pmatrix}3\\3\end{pmatrix}$</span>。 (test-linalg-002;考点:高等代数 其他[矩阵方程×逆矩阵])</td>
+</tr>
+<tr>
+<td>13/67</td>
+<td>不重复</td>
+<td>判断反常积分 <span class="math">$\displaystyle\int_1^{+\infty}\frac{dx}{x(1+x)}$</span> 的敛散性，若收敛求其值。 (test-calc-012;考点:数学分析 反常积分)</td>
+<td>求 <span class="math">$\displaystyle\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}$</span>。 (test-calc-024;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>13/69</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>判断 <span class="math">$\displaystyle\int_1^{+\infty}\frac{\ln x}{x^2}\,dx$</span> 的敛散性，若收敛求其值。 (test-calc-029;考点:数学分析 反常积分)</td>
+</tr>
+<tr>
+<td>15/88</td>
+<td>不重复</td>
+<td>求 <span class="math">$A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$</span> 的谱分解 <span class="math">$A=\lambda_1u_1u_1^T+\lambda_2u_2u_2^T$</span>。 (test-linalg-025;考点:高等代数 其他[谱分解×对称矩阵])</td>
+<td>求 <span class="math">$A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$</span> 的特征值，并说明它没有实特征向量的几何原因。 (test-linalg-028;考点:高等代数 特征值对角化)</td>
+</tr>
+<tr>
+<td>11/72</td>
+<td>不重复</td>
+<td>求不定积分 <span class="math">$\displaystyle\int\frac{dx}{(x^2+a^2)^2}$</span>（<span class="math">$a\gt 0$</span>）。 (eval-calc-016;考点:数学分析 不定积分)</td>
+<td>判断 <span class="math">$\displaystyle\int_1^{+\infty}\frac{\ln x}{x^2}\,dx$</span> 的敛散性，若收敛求其值。 (test-calc-029;考点:数学分析 反常积分)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n}{2^n}$</span> 的和。 (eval-calc-021;考点:数学分析 级数求和)</td>
+<td>求 <span class="math">$A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$</span> 的最小多项式与若尔当标准形。 (test-linalg-029;考点:高等代数 其他[最小多项式×若尔当形])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>讨论含参数线性方程组 <span class="math">$\begin{cases}\lambda x+y+z=1\\x+\lambda y+z=\lambda\\x+y+\lambda z=\lambda^2\end{cases}$</span> 的解的情况。 (eval-linalg-011;考点:高等代数 其他[线性方程组])</td>
+<td>证明：若 <span class="math">$A^2=A$</span>，则 <span class="math">$A$</span> 的特征值只能是 <span class="math">$0$</span> 或 <span class="math">$1$</span>。 (test-linalg-033;考点:高等代数 特征值对角化)</td>
+</tr>
+<tr>
+<td>1/10</td>
+<td>不重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{n\to\infty}n^2\left(1-\cos\frac{1}{n}\right)$</span>。 (test-calc-002;考点:数学分析 极限计算)</td>
+<td>求 <span class="math">$\displaystyle I=\int_0^1\!\!\int_y^1\frac{x}{1+x^2}\,dx\,dy$</span>。 (test-calc-019;考点:数学分析 其他[重积分×交换次序])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}3&2\\4&3\end{pmatrix}$</span> 的逆矩阵。 (eval-linalg-005;考点:高等代数 其他[矩阵])</td>
+<td>验证幂级数 <span class="math">$y=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$</span> 满足微分方程 <span class="math">$y'=y$</span> 及初值 <span class="math">$y(0)=1$</span>。 (test-calc-014;考点:数学分析 常微分方程)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求点 <span class="math">$P(1,2,-1)$</span> 到平面 <span class="math">$\pi:2x-y+2z=3$</span> 的距离。 (eval-geom-001;考点:解析几何 其他[直线与平面])</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$</span> 的最小多项式与若尔当标准形。 (eval-linalg-031;考点:高等代数 其他[λ-矩阵])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>判断两条直线 <span class="math">$l_1:\dfrac{x-1}{2}=\dfrac{y+1}{1}=\dfrac{z-2}{-1}$</span> 与 <span class="math">$l_2:\dfrac{x+1}{1}=\dfrac{y-2}{2}=\dfrac{z}{1}$</span> 的位置关系。 (eval-geom-002;考点:解析几何 其他[直线与平面])</td>
+<td>设 <span class="math">$A=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$</span>，求 <span class="math">$A^n$</span>。 (eval-linalg-007;考点:高等代数 其他[矩阵])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求不定积分 <span class="math">$\displaystyle\int\dfrac{dx}{\sin x}$</span>，并说明不同形式答案的等价性。 (eval-calc-014;考点:数学分析 不定积分)</td>
+<td>判断二次型 <span class="math">$f=x^2+2y^2+3z^2+2xy+2xz+4yz$</span> 是否正定。 (eval-linalg-021;考点:高等代数 其他[二次型])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>指出方程 <span class="math">$4x^2-y^2+z^2=1$</span> 表示的二次曲面类型，并用截面法说明其形状。 (eval-geom-007;考点:解析几何 其他[二次曲面分类])</td>
+<td>证明方程 <span class="math">$e^x=2x+1$</span> 恰有两个实根，并给出两个根所在的区间。 (test-calc-027;考点:数学分析 其他[零点定理×中值定理])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>设 <span class="math">$z=x^y$</span>（<span class="math">$x\gt 0$</span>），求 <span class="math">$z$</span> 在点 <span class="math">$(1,2)$</span> 处的两个偏导数。 (eval-calc-026;考点:数学分析 其他[多元函数微分])</td>
+<td>掷一枚均匀骰子得 <span class="math">$X$</span> 分；若 <span class="math">$X=6$</span> 则可再掷一次并将点数累加。求总得分的期望。 (test-prob-025;考点:概率论 其他[期望×博弈模型])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>说明曲面 <span class="math">$z=xy$</span> 的类型，并验证它是直纹面。 (eval-geom-010;考点:解析几何 其他[曲面与曲线])</td>
+<td>设 <span class="math">$X\sim B\!\left(100,\dfrac{1}{2}\right)$</span>。用切比雪夫不等式给出 <span class="math">$P(\|X-50\|\ge 10)$</span> 的上界，并与精确值比较。 (eval-prob-008;考点:概率论 其他[大数定律])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求参数 <span class="math">$a$</span> 使齐次线性方程组 <span class="math">$\begin{cases}ax+y+z=0\\x+ay+z=0\\x+y+az=0\end{cases}$</span> 有非零解，并求各情形下的解空间。 (eval-linalg-012;考点:高等代数 其他[线性方程组])</td>
+<td>求点 <span class="math">$P(1,2,3)$</span> 到直线 <span class="math">$l:x=1+t,\ y=1+2t,\ z=1+3t$</span> 的距离与垂足坐标。 (test-geom-002;考点:解析几何 其他[点到直线×投影])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求椭球面 <span class="math">$\dfrac{x^2}{4}+\dfrac{y^2}{9}+z^2=1$</span> 与平面 <span class="math">$x=1$</span> 的交线方程，并说明其形状。 (eval-geom-009;考点:解析几何 其他[曲面与曲线])</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{n\to\infty}n^2\left(1-\cos\frac{1}{n}\right)$</span>。 (test-calc-002;考点:数学分析 极限计算)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>求二重积分 <span class="math">$\displaystyle I=\iint_D(x^2+y^2)\,dA$</span>，其中 <span class="math">$D=\{(x,y):x^2+y^2\le 2y\}$</span>。 (eval-calc-028;考点:数学分析 其他[重积分])</td>
+<td>求曲线 <span class="math">$y=x^2$</span> 在原点处的曲率，以及曲线 <span class="math">$y=\ln x$</span> 在 <span class="math">$(1,0)$</span> 处的曲率。 (test-calc-032;考点:数学分析 其他[曲率×导数])</td>
+</tr>
+<tr>
+<td>1/91</td>
+<td>不重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}$</span> 收敛。 (eval-calc-023;考点:数学分析 级数敛散)</td>
+<td>设 <span class="math">$X\sim B\!\left(100,\dfrac{1}{2}\right)$</span>。用切比雪夫不等式给出 <span class="math">$P(\|X-50\|\ge 10)$</span> 的上界，并与精确值比较。 (eval-prob-008;考点:概率论 其他[大数定律])</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不重复</td>
+<td>判断反常积分 <span class="math">$\displaystyle\int_1^{+\infty}\frac{dx}{x(1+x)}$</span> 的敛散性，若收敛求其值。 (test-calc-012;考点:数学分析 反常积分)</td>
+<td>求所有与 <span class="math">$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$</span> 可交换的 <span class="math">$2\times 2$</span> 实矩阵 <span class="math">$X$</span>。 (test-linalg-019;考点:高等代数 其他[矩阵交换×待定系数])</td>
+</tr>
+</tbody>
+</table>
+<h2>标注裁决(规则冲突对,用户逐项确认按规则改判)</h2>
+<table class="revision">
+<thead>
+<tr>
+<th>对</th>
+<th>原标注</th>
+<th>改判</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eval-calc-023 × test-calc-013</td>
+<td>重复</td>
+<td>不重复</td>
+<td>敛散判别×级数求和,规则→不重复</td>
+</tr>
+<tr>
+<td>eval-calc-011 × test-calc-013</td>
+<td>不重复</td>
+<td>重复</td>
+<td>级数求和×级数求和,规则→重复</td>
+</tr>
+<tr>
+<td>eval-calc-022 × test-calc-013</td>
+<td>不重复</td>
+<td>重复</td>
+<td>级数求和×级数求和,规则→重复</td>
+</tr>
+<tr>
+<td>test-calc-013 × test-calc-042</td>
+<td>不重复</td>
+<td>重复</td>
+<td>级数求和×级数求和(求值),规则→重复</td>
+</tr>
+<tr>
+<td>eval-calc-011 × eval-calc-021</td>
+<td>不重复</td>
+<td>重复</td>
+<td>级数求和×级数求和,规则→重复</td>
+</tr>
+<tr>
+<td>eval-calc-011 × eval-calc-022</td>
+<td>不重复</td>
+<td>重复</td>
+<td>级数求和×级数求和,规则→重复</td>
+</tr>
+<tr>
+<td>test-linalg-023 × test-linalg-027</td>
+<td>不重复</td>
+<td>重复</td>
+<td>微分方程组×微分方程组,规则→重复</td>
+</tr>
+<tr>
+<td>eval-calc-010 × test-calc-007</td>
+<td>不重复</td>
+<td>重复</td>
+<td>极限计算×极限计算,规则→重复</td>
+</tr>
+</tbody>
+</table>
+<h2>5-gram 对照网格(3/10 至 4/5,步长 1/20)</h2>
+<p>v2 已证文字 5-gram 区分不了标注(应 msg_376 独立复验一致),此处仅作对照,不参与校准结论。</p>
+<table class="grid">
+<thead>
+<tr>
+<th>阈值</th>
+<th>TP</th>
+<th>FP</th>
+<th>FN</th>
+<th>TN</th>
+<th>精确率</th>
+<th>召回率</th>
+<th>误报率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3/10</td>
+<td>17</td>
+<td>9</td>
+<td>0</td>
+<td>22</td>
+<td>17/26</td>
+<td>1</td>
+<td>9/31</td>
+</tr>
+<tr>
+<td>7/20</td>
+<td>16</td>
+<td>9</td>
+<td>1</td>
+<td>22</td>
+<td>16/25</td>
+<td>16/17</td>
+<td>9/31</td>
+</tr>
+<tr>
+<td>2/5</td>
+<td>16</td>
+<td>9</td>
+<td>1</td>
+<td>22</td>
+<td>16/25</td>
+<td>16/17</td>
+<td>9/31</td>
+</tr>
+<tr>
+<td>9/20</td>
+<td>16</td>
+<td>9</td>
+<td>1</td>
+<td>22</td>
+<td>16/25</td>
+<td>16/17</td>
+<td>9/31</td>
+</tr>
+<tr>
+<td>1/2</td>
+<td>9</td>
+<td>3</td>
+<td>8</td>
+<td>28</td>
+<td>3/4</td>
+<td>9/17</td>
+<td>3/31</td>
+</tr>
+<tr>
+<td>11/20</td>
+<td>3</td>
+<td>2</td>
+<td>14</td>
+<td>29</td>
+<td>3/5</td>
+<td>3/17</td>
+<td>2/31</td>
+</tr>
+<tr>
+<td>3/5</td>
+<td>1</td>
+<td>1</td>
+<td>16</td>
+<td>30</td>
+<td>1/2</td>
+<td>1/17</td>
+<td>1/31</td>
+</tr>
+<tr>
+<td>13/20</td>
+<td>1</td>
+<td>1</td>
+<td>16</td>
+<td>30</td>
+<td>1/2</td>
+<td>1/17</td>
+<td>1/31</td>
+</tr>
+<tr>
+<td>7/10</td>
+<td>1</td>
+<td>0</td>
+<td>16</td>
+<td>31</td>
+<td>1</td>
+<td>1/17</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3/4</td>
+<td>1</td>
+<td>0</td>
+<td>16</td>
+<td>31</td>
+<td>1</td>
+<td>1/17</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4/5</td>
+<td>0</td>
+<td>0</td>
+<td>17</td>
+<td>31</td>
+<td>未定义</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2>不确定对(不参与校准,仅规则预测)</h2>
+<table class="uncertain">
+<thead>
+<tr>
+<th>题目A(考点)</th>
+<th>题目B(考点)</th>
+<th>规则预测</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$</span> 的特征值与特征向量，并将其对角化。 (eval-linalg-015;考点:高等代数 特征值对角化)</td>
+<td>求所有与 <span class="math">$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$</span> 可交换的 <span class="math">$2\times 2$</span> 实矩阵 <span class="math">$X$</span>。 (test-linalg-019;考点:高等代数 其他[矩阵交换×待定系数])</td>
+<td>不重复</td>
+</tr>
+<tr>
+<td>设 <span class="math">$X\sim\operatorname{Poisson}(\lambda)$</span>，求 <span class="math">$E[X^2]$</span>，并由此求 <span class="math">$\operatorname{Var}(X)$</span>。 (eval-prob-006;考点:概率论 其他[数字特征])</td>
+<td>设 <span class="math">$X\sim\operatorname{Exp}(1)$</span>。证明 <span class="math">$E[X^n]=n!$</span>。 (test-x-009;考点:跨学科 其他[概率论×微积分])</td>
+<td>不重复</td>
+</tr>
+</tbody>
+</table>
+</body></html>

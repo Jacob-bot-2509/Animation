@@ -1,0 +1,106 @@
+{
+  "scope": "Pure predicate replay and fake API fault injection only; no native processes launched",
+  "source_hashes_match": true,
+  "core_files": [
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\appcontainer.py",
+      "matches_verified_fix": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\src\\animtrain\\win_job.py",
+      "matches_verified_fix": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_appcontainer_lifecycle.py",
+      "matches_verified_fix": true
+    },
+    {
+      "path": "D:\\Animation-Model-Training\\tests\\test_win_job_cleanup.py",
+      "matches_verified_fix": true
+    }
+  ],
+  "recorded_a1_recomputed": {
+    "blocked": true,
+    "control_good": true,
+    "sandbox_blocked": true
+  },
+  "recorded_a2_recomputed": {
+    "passed": true,
+    "timeout_ok": true,
+    "exit_ok": true
+  },
+  "four_negative_regressions": {
+    "cases": [
+      {
+        "name": "N1 正对照启动失败",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N2 哨兵不匹配",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N3 未真正超时",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      },
+      {
+        "name": "N4 返回时未清理(人工清理后退出)",
+        "expect_pass": false,
+        "actual_pass": false,
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "extra_a2_mutation_rejections": [
+    {
+      "case": "timeout.timed_out",
+      "actual_pass": false
+    },
+    {
+      "case": "timeout.token_ok",
+      "actual_pass": false
+    },
+    {
+      "case": "timeout.thread_finished",
+      "actual_pass": false
+    },
+    {
+      "case": "timeout.signaled_at_return",
+      "actual_pass": false
+    },
+    {
+      "case": "normal_exit.rc",
+      "actual_pass": false
+    },
+    {
+      "case": "normal_exit.ack_received",
+      "actual_pass": false
+    },
+    {
+      "case": "normal_exit.token_ok",
+      "actual_pass": false
+    },
+    {
+      "case": "normal_exit.thread_finished",
+      "actual_pass": false
+    },
+    {
+      "case": "normal_exit.signaled_at_return",
+      "actual_pass": false
+    }
+  ],
+  "remaining_handshake_fault": {
+    "wait_result": "WAIT_FAILED=0xFFFFFFFF",
+    "expected_verified": false,
+    "actual_verified": true
+  },
+  "a1_sandbox_rc_in_predicate_signature": false,
+  "gate_unchanged": true
+}

@@ -244,28 +244,16 @@
    "answer": "$P=\\begin{pmatrix}1&1&1\\\\0&0&1\\\\1&-1&-1\\end{pmatrix}$，$[T]_\\eta=(2,-1,2)^{\\mathsf T}$；$G_\\eta=\\begin{pmatrix}2&0&0\\\\0&2&2\\\\0&2&4\\end{pmatrix}$，$\\|T\\|^2=18$。",
    "scene_spec": {
     "objects": [
-     "旧基矩阵卡片:$E_1=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},E_2=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix},E_3=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix}$",
-     "新基矩阵卡片:$\\eta_1=I_2,\\eta_2=\\operatorname{diag}(1,-1),\\eta_3=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$",
-     "坐标列板书:$\\eta_1=1E_1+0E_2+1E_3$、$\\eta_2=1E_1+0E_2-1E_3$、$\\eta_3=1E_1+1E_2-1E_3$ 与坐标列 $(1,0,1)^{\\mathsf T},(1,0,-1)^{\\mathsf T},(1,1,-1)^{\\mathsf T}$ 按列拼装动画",
-     "过渡矩阵卡片:$P=\\begin{pmatrix}1&1&1\\\\0&0&1\\\\1&-1&-1\\end{pmatrix}$",
-     "行列式展开板书:$\\det P=1\\times[0\\times(-1)-1\\times(-1)]-0\\times[1\\times(-1)-1\\times(-1)]+1\\times[1\\times1-1\\times0]=1\\times1-0\\times0+1\\times1=1+0+1=2$",
-     "高亮框:$\\det P=2\\ne0$,过渡矩阵可逆",
-     "增广矩阵板书:$\\left(\\begin{array}{ccc|c}1&1&1&3\\\\0&0&1&2\\\\1&-1&-1&1\\end{array}\\right)$ 与行操作标注箭头($R_3\\leftarrow R_3-R_1$、$R_3\\leftarrow-\\frac12R_3$、$R_2\\leftrightarrow R_3$)",
-     "回代过程板书与高亮框:$\\xi=(2,-1,2)^{\\mathsf T}$",
-     "代回验证板书:$2\\eta_1-\\eta_2+2\\eta_3$ 逐项矩阵加法,得 $T=\\begin{pmatrix}3&2\\\\2&1\\end{pmatrix}$",
-     "旧基Gram矩阵板书:$G_E=\\operatorname{diag}(1,2,1)$,附 $\\operatorname{tr}(E_1^2)=1$、$\\operatorname{tr}(E_2^2)=2$、$\\operatorname{tr}(E_3^2)=1$、交叉项为 $0$ 的核对",
-     "$P^{\\mathsf T}G_EP$ 乘法动画:逐项「第i行×第j列」标注($g_{11}$ 至 $g_{33}$ 九个分量的计算式)",
-     "高亮框:$G_\\eta=\\begin{pmatrix}2&0&0\\\\0&2&2\\\\0&2&4\\end{pmatrix}$",
-     "范数核对第一路板书:$\\xi^{\\mathsf T}G_\\eta\\xi=2^2\\times2+(-1)^2\\times2+2\\times(-1)\\times2\\times2+2^2\\times4=8+2-8+16=18$",
-     "范数核对第二路板书:$\\operatorname{tr}(T^2)=3^2+2\\cdot2^2+1^2=9+8+1=18$",
-     "结论高亮框:$\\|T\\|^2=18$ 与警示注释「新坐标不能直接用欧氏坐标平方和,须带 Gram 矩阵」"
+     "旧基与新基的矩阵对象",
+     "$[T]_E=P[T]_\\eta$",
+     "$G_\\eta=P^{\\mathsf T}G_EP$",
+     "范数平方$18$的双核对"
     ],
     "steps": [
-     "第一步:写出旧基与新基,把 $\\eta_1=I_2,\\eta_2=\\operatorname{diag}(1,-1),\\eta_3=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ 写成旧基组合 $\\eta_1=1E_1+0E_2+1E_3$、$\\eta_2=1E_1+0E_2-1E_3$、$\\eta_3=1E_1+1E_2-1E_3$,坐标列 $(1,0,1)^{\\mathsf T},(1,0,-1)^{\\mathsf T},(1,1,-1)^{\\mathsf T}$ 按列拼成过渡矩阵 $P=\\begin{pmatrix}1&1&1\\\\0&0&1\\\\1&-1&-1\\end{pmatrix}$;验证可逆:按第1列展开 $\\det P=1\\times[0\\times(-1)-1\\times(-1)]-0\\times[1\\times(-1)-1\\times(-1)]+1\\times[1\\times1-1\\times0]=1\\times1-0\\times0+1\\times1=1+0+1=2\\ne0$。",
-     "第二步:解 $P\\xi=(3,2,1)^{\\mathsf T}$ 求新坐标。写增广矩阵 $\\left(\\begin{array}{ccc|c}1&1&1&3\\\\0&0&1&2\\\\1&-1&-1&1\\end{array}\\right)$,行操作 $R_3\\leftarrow R_3-R_1$ 得 $\\left(\\begin{array}{ccc|c}1&1&1&3\\\\0&0&1&2\\\\0&-2&-2&-2\\end{array}\\right)$,再 $R_3\\leftarrow-\\frac12R_3$ 得 $\\left(\\begin{array}{ccc|c}1&1&1&3\\\\0&0&1&2\\\\0&1&1&1\\end{array}\\right)$,交换 $R_2\\leftrightarrow R_3$ 得阶梯形 $\\left(\\begin{array}{ccc|c}1&1&1&3\\\\0&1&1&1\\\\0&0&1&2\\end{array}\\right)$;回代:$\\xi_3=2$、$\\xi_2=1-2=-1$、$\\xi_1=3-(-1)-2=2$,得 $\\xi=(2,-1,2)^{\\mathsf T}$。",
-     "第三步:代回验证 $2\\eta_1-\\eta_2+2\\eta_3=T$:逐项相加 $\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}+\\begin{pmatrix}-1&0\\\\0&1\\end{pmatrix}+\\begin{pmatrix}2&2\\\\2&-2\\end{pmatrix}$,各位置 $2-1+2=3$、$0+0+2=2$、$0+0+2=2$、$2+1-2=1$,恰得 $T=\\begin{pmatrix}3&2\\\\2&1\\end{pmatrix}$。",
-     "第四步:求新基Gram矩阵。旧基下 $G_E=\\operatorname{diag}(1,2,1)$:因 $\\operatorname{tr}(E_1^2)=1$、$\\operatorname{tr}(E_2^2)=2$、$\\operatorname{tr}(E_3^2)=1$,交叉项 $\\operatorname{tr}(E_iE_j)=0$($i\\ne j$)。先算 $G_EP$:第1行乘 $1$、第2行乘 $2$、第3行乘 $1$,得 $\\begin{pmatrix}1&1&1\\\\0&0&2\\\\1&-1&-1\\end{pmatrix}$;再算 $G_\\eta=P^{\\mathsf T}G_EP$,逐项标明哪一行乘哪一列:第1行×第1列 $1\\times1+0\\times0+1\\times1=2$,得 $g_{11}=2$;第1行×第2列 $1\\times1+0\\times0+1\\times(-1)=0$,得 $g_{12}=0$;第1行×第3列 $1\\times1+0\\times2+1\\times(-1)=0$,得 $g_{13}=0$;第2行×第1列 $1\\times1+0\\times0+(-1)\\times1=0$,得 $g_{21}=0$;第2行×第2列 $1\\times1+0\\times0+(-1)\\times(-1)=2$,得 $g_{22}=2$;第2行×第3列 $1\\times1+0\\times2+(-1)\\times(-1)=2$,得 $g_{23}=2$;第3行×第1列 $1\\times1+1\\times0+(-1)\\times1=0$,得 $g_{31}=0$;第3行×第2列 $1\\times1+1\\times0+(-1)\\times(-1)=2$,得 $g_{32}=2$;第3行×第3列 $1\\times1+1\\times2+(-1)\\times(-1)=4$,得 $g_{33}=4$;故 $G_\\eta=\\begin{pmatrix}2&0&0\\\\0&2&2\\\\0&2&4\\end{pmatrix}$。",
-     "第五步:范数双核对 $\\|T\\|^2$。警示:新坐标不能直接用欧氏坐标平方和,须带 Gram 矩阵。第一路:$\\xi^{\\mathsf T}G_\\eta\\xi=\\xi_1^2g_{11}+\\xi_2^2g_{22}+2\\xi_2\\xi_3g_{23}+\\xi_3^2g_{33}$(因 $g_{12}=g_{13}=0$)$=2^2\\times2+(-1)^2\\times2+2\\times(-1)\\times2\\times2+2^2\\times4=8+2-8+16=18$;第二路:由内积定义 $\\|T\\|^2=\\langle T,T\\rangle=\\operatorname{tr}(T^2)$,逐项 $3^2+2\\cdot2^2+1^2=9+8+1=18$;两路一致,$\\|T\\|^2=18$。"
+     "第一步:以列坐标定义过渡矩阵并验证可逆。",
+     "第二步:解新坐标并重建矩阵对象。",
+     "第三步:通过$P^{\\mathsf T}G_EP$变换Gram矩阵。",
+     "第四步:用新坐标和原矩阵分别计算同一范数。"
     ]
    }
   },

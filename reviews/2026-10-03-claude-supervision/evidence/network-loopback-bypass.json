@@ -1,0 +1,39 @@
+{
+  "head": "71195d9236c1e1af0884403e8e6597aaa42a9874",
+  "scope": "localhost loopback only; no external network or user data",
+  "results": [
+    {
+      "probe": "normal_socket",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import socket; s=socket.socket(); s.connect(('127.0.0.1',49300)); print('CONNECTED')\n                                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\code\\output\\claude-supervision\\network-probe-ln0x24_t\\sitecustomize.py\", line 7, in _blocked\n    raise ConnectionError(_MARKER)\nConnectionError: B4-network-isolation: blocked\n"
+    },
+    {
+      "probe": "builtin_socket",
+      "returncode": 0,
+      "stdout": "CONNECTED\n",
+      "stderr": ""
+    }
+  ],
+  "preflight_exec_isolation": [
+    true,
+    "执行隔离已验收: {'shell': False, 'timeout_sec': 300, 'env_sanitized': True, 'fs_isolation': 'cwd_only', 'memory_limit_mb': 2048, 'network_isolation': True, 'note': '当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时 + 内存上限 2048 + 网络隔离(Python socket 出口封堵 connect/connect_ex/sendto/getaddrinfo + 死代理,仅约束本进程族;OS 级沙箱需管理员权限,不在范围);fs 完整隔离未实施(仅 cwd_only),不可信生成代码仍被拒绝(B4)'}"
+  ],
+  "isolation_state": {
+    "shell": false,
+    "timeout_sec": 300,
+    "env_sanitized": true,
+    "fs_isolation": "cwd_only",
+    "memory_limit_mb": 2048,
+    "network_isolation": true,
+    "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时 + 内存上限 2048 + 网络隔离(Python socket 出口封堵 connect/connect_ex/sendto/getaddrinfo + 死代理,仅约束本进程族;OS 级沙箱需管理员权限,不在范围);fs 完整隔离未实施(仅 cwd_only),不可信生成代码仍被拒绝(B4)"
+  },
+  "untrusted_render_rejected": {
+    "ok": false,
+    "status": "unverified",
+    "detail": "隔离不完整(fs 完整隔离未实施,现有 cwd_only 基础隔离),拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
+    "unverified": [
+      "render_isolation"
+    ]
+  }
+}

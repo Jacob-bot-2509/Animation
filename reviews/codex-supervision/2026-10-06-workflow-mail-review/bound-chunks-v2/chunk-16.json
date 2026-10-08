@@ -1,0 +1,547 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "test",
+      "id": "test-x-005",
+      "problem_sha256": "f86cfe14862427fd7f52f66a664ac5acf4d67fed80dcb952af925ee1378908ac",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-006",
+      "problem_sha256": "2d6b9239617a8b0e04ee0a8c67bfe6055a30dde5d9b53c757c298bc6626c5e1a",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-007",
+      "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-008",
+      "problem_sha256": "41561f553d3dbb550a4e032fd8ae9db3a08e6d26529fbdfed7798f6b9171a3c8",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-009",
+      "problem_sha256": "129299fe92064ab0296962860db94832aeb5226b8ae6461a70ea99fe3d2bb39a",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-010",
+      "problem_sha256": "d4c2d8c0ee524969fdb3808f753eaad099c7eb2da00177a30f9ffd7edac29c3c",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-011",
+      "problem_sha256": "9cdd3ebfe6775dc5e4449f8f39b7e9f302232d13d5793200296e08d4786cc0e4",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-012",
+      "problem_sha256": "9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-013",
+      "problem_sha256": "c18c98ea035371c2ed48f969b07a422cf3f46ebf8df2209e339704380db1a7b1",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-014",
+      "problem_sha256": "2691ab324dff745695efec03ff95ecb11afc92cb7f1bc8732fe3148796b8a203",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-x-015",
+      "problem_sha256": "6f102bc9723f09636976cc68dedb63edd318fb2d0856a343b6f9bbb9fa345e27",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "test",
+      "id": "test-x-005",
+      "problem_sha256": "f86cfe14862427fd7f52f66a664ac5acf4d67fed80dcb952af925ee1378908ac",
+      "source_records": [
+        {
+          "id": "test-x-005",
+          "category": "跨学科",
+          "sub_category": "解析几何×微积分",
+          "problem": "用长为 $l$ 的围栏围一个矩形区域（一边靠墙不需围栏），求最大面积。",
+          "solution": "设垂直墙的边长为 $x$，则平行墙的边长为 $l-2x$（$0<x<\\dfrac{l}{2}$）。面积 $A=x(l-2x)=lx-2x^2$。$A'=l-4x=0$，$x=\\dfrac{l}{4}$；$A''=-4<0$，为最大值。$A_{\\max}=\\dfrac{l}{4}\\cdot\\left(l-\\dfrac{l}{2}\\right)=\\dfrac{l^2}{8}$。",
+          "answer": "$\\dfrac{l^2}{8}$（$x=\\dfrac{l}{4}$ 时）",
+          "scene_spec": {
+            "objects": [
+              "矩形随 $x$ 变形",
+              "面积抛物线与顶点"
+            ],
+            "steps": [
+              "第一步：建立跨学科·解析几何×微积分综合场景，呈现与二次函数最值、几何建模、导数相关的核心图形。",
+              "第二步：矩形随 $x$ 变形。",
+              "第三步：面积抛物线与顶点。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "围栏面积最值",
+          "visual_style": "矩形变形抛物线",
+          "efficiency_tags": [
+            "矩形随 $x$ 变形",
+            "面积抛物线与顶点"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "a89bcc46f2b71a1df0436ec8d4b2ebc9970d8b5ccb1559265e6a23eb067f4733"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-006",
+      "problem_sha256": "2d6b9239617a8b0e04ee0a8c67bfe6055a30dde5d9b53c757c298bc6626c5e1a",
+      "source_records": [
+        {
+          "id": "test-x-006",
+          "category": "跨学科",
+          "sub_category": "概率论×解析几何",
+          "problem": "Bertrand 悖论：在单位圆中\"随机取一条弦\"，求弦长大于 $\\sqrt3$ 的概率，分别按三种取法计算（随机端点、随机半径中点、随机中点）。",
+          "solution": "弦长 $>\\sqrt3\\iff$ 弦到圆心的距离 $<\\dfrac{1}{2}$（半弦长 $\\sqrt{1-d^2}>\\dfrac{\\sqrt3}{2}\\iff d<\\dfrac{1}{2}$）。（1）随机端点：两端点在圆周上均匀独立，等价于固定一端后另一端随机，另一端点对应的圆心角 $\\theta\\in[0,2\\pi)$ 均匀。弦长为 $2\\sin\\dfrac{\\theta}{2}$（$\\theta\\in[0,\\pi]$ 时递增、$[\\pi,2\\pi]$ 时递减），故 $2\\sin\\dfrac{\\theta}{2}>\\sqrt3\\iff\\dfrac{\\theta}{2}\\in\\left(\\dfrac{\\pi}{3},\\dfrac{2\\pi}{3}\\right)\\iff\\theta\\in\\left(\\dfrac{2\\pi}{3},\\dfrac{4\\pi}{3}\\right)$，有利角长 $\\dfrac{4\\pi}{3}-\\dfrac{2\\pi}{3}=\\dfrac{2\\pi}{3}$，概率 $=\\dfrac{2\\pi/3}{2\\pi}=\\dfrac{1}{3}$。（2）随机半径中点：在一条半径上均匀取中点再作垂直弦，弦到圆心距离 $<\\dfrac{1}{2}$ 的概率 $=\\dfrac{1}{2}$。（3）随机中点：中点在圆内均匀分布，$d<\\dfrac{1}{2}$ 对应半径为 $\\dfrac{1}{2}$ 的小圆，面积比 $=\\dfrac{\\pi/4}{\\pi}=\\dfrac{1}{4}$。三种取法给出三个不同答案，说明\"随机\"必须先明确概率空间。",
+          "answer": "$\\dfrac{1}{3}$、$\\dfrac{1}{2}$、$\\dfrac{1}{4}$（取决于取法）",
+          "scene_spec": {
+            "objects": [
+              "三种取弦方式并排演示",
+              "有利区域高亮"
+            ],
+            "steps": [
+              "第一步：建立跨学科·概率论×解析几何综合场景，呈现与几何概型、概率空间定义、建模相关的核心图形。",
+              "第二步：三种取弦方式并排演示。",
+              "第三步：有利区域高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "几何概型三种取法",
+          "visual_style": "三法并排演示",
+          "efficiency_tags": [
+            "三种取弦方式并排演示",
+            "有利区域高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "92edc3082f119f0d6ca46b9adf9bd872f79f6612bdf7ca413b7b5ffde4fae708"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-007",
+      "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+      "source_records": [
+        {
+          "id": "test-x-007",
+          "category": "跨学科",
+          "sub_category": "线性代数×解析几何",
+          "problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+          "solution": "矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。特征方程 $(\\lambda-1)^2-4=0$，特征值 $\\lambda_1=3$、$\\lambda_2=-1$（一正一负），故曲线为双曲线。特征向量：$\\lambda=3$ 对应 $(1,1)^T$（主轴），$\\lambda=-1$ 对应 $(1,-1)^T$。正交变换 $u=\\dfrac{x+y}{\\sqrt2}$、$v=\\dfrac{x-y}{\\sqrt2}$ 后方程为 $3u^2-v^2=1$，即 $\\dfrac{u^2}{1/3}-v^2=1$，是双曲线，实轴沿 $y=x$ 方向。",
+          "answer": "双曲线；主轴沿 $y=x$ 与 $y=-x$ 方向，标准形 $3u^2-v^2=1$",
+          "scene_spec": {
+            "objects": [
+              "双曲线与两主轴",
+              "旋转到标准位置"
+            ],
+            "steps": [
+              "第一步：建立跨学科·线性代数×解析几何综合场景，呈现与二次曲线分类、特征值、主轴相关的核心图形。",
+              "第二步：双曲线与两主轴。",
+              "第三步：旋转到标准位置。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "二次曲线特征值分类",
+          "visual_style": "双曲线主轴旋转",
+          "efficiency_tags": [
+            "双曲线与两主轴",
+            "旋转到标准位置"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2c2fa45927e3c2716ec5185ddd809972ba500c1a79279951ac29e4cd5da58f08"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-008",
+      "problem_sha256": "41561f553d3dbb550a4e032fd8ae9db3a08e6d26529fbdfed7798f6b9171a3c8",
+      "source_records": [
+        {
+          "id": "test-x-008",
+          "category": "跨学科",
+          "sub_category": "解析几何×微积分",
+          "problem": "求由 $y=x^2$ 与 $y=\\sqrt{x}$ 围成的区域的面积。",
+          "solution": "交点：$x^2=\\sqrt{x}$，即 $x^4=x$，$x(x^3-1)=0$，$x=0$ 或 $x=1$。在 $[0,1]$ 上 $\\sqrt{x}\\ge x^2$。面积 $S=\\displaystyle\\int_0^1(\\sqrt{x}-x^2)dx=\\left[\\dfrac{2}{3}x^{3/2}-\\dfrac{x^3}{3}\\right]_0^1=\\dfrac{2}{3}-\\dfrac{1}{3}=\\dfrac{1}{3}$。",
+          "answer": "$\\dfrac{1}{3}$",
+          "scene_spec": {
+            "objects": [
+              "两曲线围成的叶片形区域",
+              "微元扫掠"
+            ],
+            "steps": [
+              "第一步：建立跨学科·解析几何×微积分综合场景，呈现与定积分、曲线交点、面积相关的核心图形。",
+              "第二步：两曲线围成的叶片形区域。",
+              "第三步：微元扫掠。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "曲线围成面积",
+          "visual_style": "叶片形区域",
+          "efficiency_tags": [
+            "两曲线围成的叶片形区域",
+            "微元扫掠"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "5ea73e0d6fbc0f1f4f33a3560523286420cf39d588d21afe99eeef88c24907d0"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-009",
+      "problem_sha256": "129299fe92064ab0296962860db94832aeb5226b8ae6461a70ea99fe3d2bb39a",
+      "source_records": [
+        {
+          "id": "test-x-009",
+          "category": "跨学科",
+          "sub_category": "概率论×微积分",
+          "problem": "设 $X\\sim\\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。",
+          "solution": "设 $n\\in\\{0,1,2,\\dots\\}$。$E[X^n]=\\displaystyle\\int_0^{\\infty}x^ne^{-x}dx$。记 $I_n=\\displaystyle\\int_0^{\\infty}x^ne^{-x}dx$。$I_0=\\displaystyle\\int_0^{\\infty}e^{-x}dx=1$ 单独计算；$n\\ge 1$ 时用分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\\left[-x^ne^{-x}\\right]_0^{\\infty}+n\\displaystyle\\int_0^{\\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（$n\\ge 1$ 时边界项 $x^ne^{-x}\\big|_0^\\infty$ 为 0）。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\\Gamma(n+1)$）。",
+          "answer": "证毕；$E[X^n]=n!$",
+          "scene_spec": {
+            "objects": [
+              "分部积分的递推链",
+              "矩的阶乘增长"
+            ],
+            "steps": [
+              "第一步：建立跨学科·概率论×微积分综合场景，呈现与指数分布、Γ 函数、分部积分相关的核心图形。",
+              "第二步：分部积分的递推链。",
+              "第三步：矩的阶乘增长。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数分布矩递推",
+          "visual_style": "分部积分递推链",
+          "efficiency_tags": [
+            "分部积分的递推链",
+            "矩的阶乘增长"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3bf9d4e2336decf85b5259b93b01ecb5d22de4815db85b1c3b1f614d50164445"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-010",
+      "problem_sha256": "d4c2d8c0ee524969fdb3808f753eaad099c7eb2da00177a30f9ffd7edac29c3c",
+      "source_records": [
+        {
+          "id": "test-x-010",
+          "category": "跨学科",
+          "sub_category": "线性代数×概率论",
+          "problem": "设两随机变量的方差有限且严格为正（$\\sigma_1,\\sigma_2>0$）。证明协方差矩阵 $\\begin{pmatrix}\\sigma_1^2&\\rho\\sigma_1\\sigma_2\\\\\\rho\\sigma_1\\sigma_2&\\sigma_2^2\\end{pmatrix}$ 正定当且仅当 $|\\rho|<1$。",
+          "solution": "顺序主子式：$\\sigma_1^2>0$；行列式 $\\sigma_1^2\\sigma_2^2(1-\\rho^2)$。矩阵正定 $\\iff$ 两顺序主子式均为正 $\\iff 1-\\rho^2>0\\iff|\\rho|<1$。概率解释：相关系数 $|\\rho|<1$ 恰是\"两个随机变量不几乎必然线性相关\"的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。",
+          "answer": "证毕（在 $\\sigma_1,\\sigma_2>0$ 的前提下，正定 $\\iff|\\rho|<1$）",
+          "scene_spec": {
+            "objects": [
+              "相关系数滑块与散布图",
+              "退化情形 $\\rho=\\pm 1$"
+            ],
+            "steps": [
+              "第一步：建立跨学科·线性代数×概率论综合场景，呈现与协方差矩阵、正定性、行列式相关的核心图形。",
+              "第二步：相关系数滑块与散布图。",
+              "第三步：退化情形 $\\rho=\\pm 1$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "协方差矩阵正定",
+          "visual_style": "相关系数滑块",
+          "efficiency_tags": [
+            "相关系数滑块与散布图",
+            "退化情形 $\\rho=\\pm 1$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "7a24a2138b090fe3d7ae9e932ee067ea880ce447ff805c61d1916d59caf2795f"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-011",
+      "problem_sha256": "9cdd3ebfe6775dc5e4449f8f39b7e9f302232d13d5793200296e08d4786cc0e4",
+      "source_records": [
+        {
+          "id": "test-x-011",
+          "category": "跨学科",
+          "sub_category": "解析几何×线性代数",
+          "problem": "证明：平面上关于两条过原点直线的（线性）反射的复合是旋转。以关于 $x$ 轴和关于直线 $y=x$ 的两次反射为例，求复合变换矩阵并识别其几何意义。",
+          "solution": "关于 $x$ 轴的反射 $R_1=\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}$，关于 $y=x$ 的反射 $R_2=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$。复合（先 $R_1$ 后 $R_2$）$R_2R_1=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$，这是逆时针旋转 $90^\\circ$ 的矩阵（$\\det=1$）。一般地，两个线性反射矩阵（正交、$\\det=-1$）之积是正交矩阵且 $\\det=1$，即旋转。注意：对一般的平面镜面反射，两轴相交时复合为绕交点旋转 $2\\varphi$（$\\varphi$ 为两轴夹角），两轴平行时复合为平移——本题限定线性反射（轴过原点）才恒得旋转。",
+          "answer": "复合矩阵 $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$（逆时针旋转 $90^\\circ$）",
+          "scene_spec": {
+            "objects": [
+              "两次反射的连续动画",
+              "合成出旋转"
+            ],
+            "steps": [
+              "第一步：建立跨学科·解析几何×线性代数综合场景，呈现与反射矩阵、矩阵乘法、旋转相关的核心图形。",
+              "第二步：两次反射的连续动画。",
+              "第三步：合成出旋转。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "反射复合旋转",
+          "visual_style": "两次反射动画",
+          "efficiency_tags": [
+            "两次反射的连续动画",
+            "合成出旋转"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "468bb39c88a9b88554e35ef041fb886a1900c115c185391ba2f416ceb4b63d23"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-012",
+      "problem_sha256": "9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099",
+      "source_records": [
+        {
+          "id": "test-x-012",
+          "category": "跨学科",
+          "sub_category": "线性代数×微积分",
+          "problem": "用级数定义计算矩阵指数 $e^{A}$，其中 $A=\\begin{pmatrix}0&\\pi\\\\-\\pi&0\\end{pmatrix}$。",
+          "solution": "记 $J=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，则 $A=\\pi J$，且 $J^2=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$。故 $A^2=-\\pi^2I$，$A^3=-\\pi^3J$，$A^4=\\pi^4I$，一般地 $A^{2k}=(-1)^k\\pi^{2k}I$，$A^{2k+1}=(-1)^k\\pi^{2k+1}J$。$e^{A}=\\displaystyle\\sum_{k=0}^{\\infty}\\left[\\dfrac{(-1)^k\\pi^{2k}}{(2k)!}I+\\dfrac{(-1)^k\\pi^{2k+1}}{(2k+1)!}J\\right]=\\cos\\pi\\cdot I+\\sin\\pi\\cdot J=-I+0\\cdot J=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$（$\\cos\\pi=-1$，$\\sin\\pi=0$）。即 $e^{A}=-I$，对应旋转 $\\pi$ 角（欧拉公式的矩阵版 $e^{i\\pi}=-1$）。",
+          "answer": "$e^{A}=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$",
+          "scene_spec": {
+            "objects": [
+              "旋转 $\\pi$ 的动画",
+              "矩阵版欧拉公式"
+            ],
+            "steps": [
+              "第一步：建立跨学科·线性代数×微积分综合场景，呈现与矩阵指数、级数、旋转矩阵相关的核心图形。",
+              "第二步：旋转 $\\pi$ 的动画。",
+              "第三步：矩阵版欧拉公式。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "矩阵指数欧拉公式",
+          "visual_style": "旋转 π 动画",
+          "efficiency_tags": [
+            "旋转 $\\pi$ 的动画",
+            "矩阵版欧拉公式"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "5d3c7acc5981c47914b1e8c9e361eecee6d51597046397116e5c19266cb66e33"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-013",
+      "problem_sha256": "c18c98ea035371c2ed48f969b07a422cf3f46ebf8df2209e339704380db1a7b1",
+      "source_records": [
+        {
+          "id": "test-x-013",
+          "category": "跨学科",
+          "sub_category": "概率论×数论",
+          "problem": "随机取一个正整数（在 $1$ 到 $N$ 中等可能，$N\\to\\infty$ 取极限），求它能被 2 或 3 整除的概率。",
+          "solution": "在 $\\{1,\\dots,N\\}$ 中，能被 2 整除的约有 $\\dfrac{N}{2}$ 个、能被 3 整除的约 $\\dfrac{N}{3}$ 个、能被 6 整除的约 $\\dfrac{N}{6}$ 个。由容斥原理，能被 2 或 3 整除的个数约 $\\dfrac{N}{2}+\\dfrac{N}{3}-\\dfrac{N}{6}=\\dfrac{2N}{3}$。概率 $=\\dfrac{2N/3}{N}=\\dfrac{2}{3}$（令 $N\\to\\infty$，即自然密度）。",
+          "answer": "$\\dfrac{2}{3}$",
+          "scene_spec": {
+            "objects": [
+              "数轴上 2、3 的倍数标记",
+              "容斥的双色重叠"
+            ],
+            "steps": [
+              "第一步：建立跨学科·概率论×数论综合场景，呈现与容斥原理、整除性、极限相关的核心图形。",
+              "第二步：数轴上 2、3 的倍数标记。",
+              "第三步：容斥的双色重叠。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "整除容斥概率",
+          "visual_style": "倍数标记容斥",
+          "efficiency_tags": [
+            "数轴上 2、3 的倍数标记",
+            "容斥的双色重叠"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2c8474c819b9c2bfad77b3d5226b2e1776083aca99219d7118858cb51b558fb4"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-014",
+      "problem_sha256": "2691ab324dff745695efec03ff95ecb11afc92cb7f1bc8732fe3148796b8a203",
+      "source_records": [
+        {
+          "id": "test-x-014",
+          "category": "跨学科",
+          "sub_category": "解析几何×微积分",
+          "problem": "求悬链线 $y=a\\cosh\\dfrac{x}{a}$（$0\\le x\\le b$）的弧长，其中 $a,b>0$。",
+          "solution": "$y'=\\sinh\\dfrac{x}{a}$。弧长 $L=\\displaystyle\\int_0^b\\sqrt{1+\\sinh^2\\dfrac{x}{a}}\\,dx=\\int_0^b\\cosh\\dfrac{x}{a}\\,dx=\\left[a\\sinh\\dfrac{x}{a}\\right]_0^b=a\\sinh\\dfrac{b}{a}$（用到 $1+\\sinh^2u=\\cosh^2u$）。",
+          "answer": "$a\\sinh\\dfrac{b}{a}$",
+          "scene_spec": {
+            "objects": [
+              "悬链线与其弧长",
+              "$\\cosh$ 与 $\\sinh$ 的关系"
+            ],
+            "steps": [
+              "第一步：建立跨学科·解析几何×微积分综合场景，呈现与双曲函数、弧长公式、导数相关的核心图形。",
+              "第二步：悬链线与其弧长。",
+              "第三步：$\\cosh$ 与 $\\sinh$ 的关系。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "悬链线弧长",
+          "visual_style": "双曲函数弧长",
+          "efficiency_tags": [
+            "悬链线与其弧长",
+            "$\\cosh$ 与 $\\sinh$ 的关系"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b25bce719f32b3dc311060a243780e51e62b28be815ec554c26fe9c121db0c51"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-x-015",
+      "problem_sha256": "6f102bc9723f09636976cc68dedb63edd318fb2d0856a343b6f9bbb9fa345e27",
+      "source_records": [
+        {
+          "id": "test-x-015",
+          "category": "跨学科",
+          "sub_category": "概率论×线性代数×级数",
+          "problem": "设马尔可夫链的转移矩阵 $P=\\begin{pmatrix}0.5&0.5\\\\0.25&0.75\\end{pmatrix}$。用对角化求 $P^n$，并求 $n\\to\\infty$ 时的极限矩阵。",
+          "solution": "特征方程 $|\\lambda I-P|=(\\lambda-0.5)(\\lambda-0.75)-0.125=\\lambda^2-1.25\\lambda+0.25=0$，判别式 $1.5625-1=0.5625=\\left(\\dfrac{3}{4}\\right)^2$，特征值 $\\lambda=\\dfrac{1.25\\pm 0.75}{2}$，即 $\\lambda_1=1$、$\\lambda_2=\\dfrac{1}{4}$。$\\lambda_1=1$ 的特征向量：解 $(P-I)v=0$，即 $\\begin{pmatrix}-0.5&0.5\\\\0.25&-0.25\\end{pmatrix}v=0$，得 $v_1=(1,1)^T$。$\\lambda_2=\\dfrac{1}{4}$ 的特征向量：解 $\\left(P-\\dfrac{1}{4}I\\right)v=0$，即 $\\begin{pmatrix}0.25&0.5\\\\0.25&0.5\\end{pmatrix}v=0$，得 $v_2=(2,-1)^T$（验证 $Pv_2=(0.5,-0.25)=\\dfrac{1}{4}v_2$）。取 $Q=\\begin{pmatrix}1&2\\\\1&-1\\end{pmatrix}$，$\\det Q=-3$，$Q^{-1}=-\\dfrac{1}{3}\\begin{pmatrix}-1&-2\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}\\frac{1}{3}&\\frac{2}{3}\\\\\\frac{1}{3}&-\\frac{1}{3}\\end{pmatrix}$。则 $P=Q\\begin{pmatrix}1&0\\\\0&\\frac{1}{4}\\end{pmatrix}Q^{-1}$，$P^n=Q\\begin{pmatrix}1&0\\\\0&4^{-n}\\end{pmatrix}Q^{-1}$。令 $n\\to\\infty$：$4^{-n}\\to 0$，故 $P^n\\to Q\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}Q^{-1}=\\begin{pmatrix}1&2\\\\1&-1\\end{pmatrix}\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}\\begin{pmatrix}\\frac{1}{3}&\\frac{2}{3}\\\\\\frac{1}{3}&-\\frac{1}{3}\\end{pmatrix}=\\begin{pmatrix}1&0\\\\1&0\\end{pmatrix}\\begin{pmatrix}\\frac{1}{3}&\\frac{2}{3}\\\\\\frac{1}{3}&-\\frac{1}{3}\\end{pmatrix}=\\begin{pmatrix}\\frac{1}{3}&\\frac{2}{3}\\\\\\frac{1}{3}&\\frac{2}{3}\\end{pmatrix}$。极限矩阵每行均为稳态分布 $\\left(\\dfrac{1}{3},\\dfrac{2}{3}\\right)$（与 $\\pi=\\pi P$ 直接解 $0.5\\pi_1=0.25\\pi_2$ 即 $\\pi_2=2\\pi_1$ 的结果一致）。",
+          "answer": "$P^n=\\dfrac{1}{3}\\begin{pmatrix}1+2\\cdot4^{-n}&2-2\\cdot4^{-n}\\\\1-4^{-n}&2+4^{-n}\\end{pmatrix}$；$\\lim_{n\\to\\infty}P^n=\\begin{pmatrix}\\frac{1}{3}&\\frac{2}{3}\\\\\\frac{1}{3}&\\frac{2}{3}\\end{pmatrix}$",
+          "scene_spec": {
+            "objects": [
+              "$P^n$ 随 $n$ 收敛的动画",
+              "稳态分布行重复结构"
+            ],
+            "steps": [
+              "第一步：建立跨学科·概率论×线性代数×级数综合场景，呈现与对角化、矩阵极限、稳态分布相关的核心图形。",
+              "第二步：$P^n$ 随 $n$ 收敛的动画。",
+              "第三步：稳态分布行重复结构。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "马尔可夫链对角化",
+          "visual_style": "矩阵幂收敛",
+          "efficiency_tags": [
+            "$P^n$ 随 $n$ 收敛的动画",
+            "稳态分布行重复结构"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "9996309cd96ef70ee8f0ad99dbd510c8272fd25c32ccd0ded84a4e65dc941f40"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}

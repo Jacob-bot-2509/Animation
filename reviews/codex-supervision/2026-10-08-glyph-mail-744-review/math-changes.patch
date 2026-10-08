@@ -1,0 +1,16 @@
+--- record-before.json
++++ record-after.json
+@@ -41,11 +41,11 @@
+       "呈现题干及适用条件：求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+       "依次呈现：水平圆环的外、内半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+       "依次呈现：环形截面随 $y$ 扫掠",
+-      "核对完整证明：绕 $y$ 轴时取水平圆盘：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆盘外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2y-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
++      "核对完整证明：绕 $y$ 轴时取水平圆环：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆环外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
+       "高亮结果：$2\\pi^2$"
+     ]
+   },
+-  "solution": "绕 $y$ 轴时取水平圆盘：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆盘外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2y-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
++  "solution": "绕 $y$ 轴时取水平圆环：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆环外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
+   "solution_id": "eval-calc-030-s3",
+   "source": "self-authored",
+   "strict_review": {

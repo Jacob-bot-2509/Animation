@@ -1,0 +1,124 @@
+{
+  "schema": "exact-alternating-projection-proof-v1",
+  "id": "draft-c18-02",
+  "record_sha256": "71ec413023c4b697a22f5236f23152b24824f2b1b2b742edfcb1ef7628801389",
+  "math_sha256": "5914f26ab8b4ee1b4f124422f6c820daec1028911879340d0a3c75df12100232",
+  "source_sha256": "9521198544281f96e62466080d8d2475c1582693618903c742bdd81410b04adc",
+  "proof_script_sha256": "eb42de7b60cf62a77158649d192bb4935863290fcdd9876246471efc420af9ab",
+  "symbolic_checks": [
+    {
+      "name": "B1 symmetric",
+      "passed": true
+    },
+    {
+      "name": "B1 idempotent",
+      "passed": true
+    },
+    {
+      "name": "B2 symmetric",
+      "passed": true
+    },
+    {
+      "name": "B2 idempotent",
+      "passed": true
+    },
+    {
+      "name": "B1 image lies in x=0",
+      "passed": true
+    },
+    {
+      "name": "B2 image lies in x+y=0",
+      "passed": true
+    },
+    {
+      "name": "B1 displacement normal",
+      "passed": true
+    },
+    {
+      "name": "B2 displacement normal",
+      "passed": true
+    },
+    {
+      "name": "ordered composition",
+      "passed": true
+    },
+    {
+      "name": "first iterate",
+      "passed": true
+    },
+    {
+      "name": "power induction base",
+      "passed": true
+    },
+    {
+      "name": "power induction step",
+      "passed": true
+    },
+    {
+      "name": "positive-index iterate",
+      "passed": true
+    },
+    {
+      "name": "zero-index must use identity",
+      "passed": true
+    },
+    {
+      "name": "initial squared error",
+      "passed": true
+    },
+    {
+      "name": "positive-index squared error",
+      "passed": true
+    },
+    {
+      "name": "componentwise exact limit",
+      "passed": true
+    },
+    {
+      "name": "intersection projector",
+      "passed": true
+    },
+    {
+      "name": "equal-input branch reaches at step one",
+      "passed": true
+    },
+    {
+      "name": "non-idempotence witness first",
+      "passed": true
+    },
+    {
+      "name": "non-idempotence witness second",
+      "passed": true
+    },
+    {
+      "name": "non-idempotence difference",
+      "passed": true
+    }
+  ],
+  "symbolic_passed": 22,
+  "manual_real_domain_implications": [
+    {
+      "name": "finite termination at index zero",
+      "argument": "Over R, a^2+b^2=0 iff a=b=0."
+    },
+    {
+      "name": "first arrival at index one",
+      "argument": "If a=b!=0, P0 is outside the common line but P1=Q."
+    },
+    {
+      "name": "no finite arrival when a!=b",
+      "argument": "For every integer n>=1, 2^n>0 and |b-a|>0; exact error is positive."
+    },
+    {
+      "name": "Euclidean error from square",
+      "argument": "The norm is the nonnegative square root: |b-a|/2^n."
+    }
+  ],
+  "math_content": "PASS_EXACT_REVISED_TASK",
+  "scene_text": "PASS_MATCHES_EXACT_TASK",
+  "signature_isolation": "NOT_ESTABLISHED",
+  "visual": "NOT_REVIEWED",
+  "native": "UNVERIFIED",
+  "production": "CLOSED",
+  "PASS_CORE_SCOPE_issued": false
+}

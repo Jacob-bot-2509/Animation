@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'><title>b5-calibration-report 审阅稿</title><style>
+@page { size: A4; margin: 16mm 14mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif;
+       font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0; }
+h1 { font-size: 19pt; border-bottom: 2.4pt solid #1f4e79; color: #1f4e79;
+     padding-bottom: 5pt; }
+h2 { font-size: 14pt; border-left: 5pt solid #1f4e79; background: #eef3f9;
+     padding: 4pt 8pt; color: #16365c; page-break-after: avoid; }
+h3 { font-size: 11.5pt; color: #16365c; border-bottom: 1pt solid #c9d8e8;
+     padding-bottom: 2pt; margin-top: 14pt; page-break-after: avoid; }
+h3 code { background: none; }
+p { margin: 4pt 0; }
+strong { color: #14324f; }
+blockquote { background: #f5f7fa; border-left: 3pt solid #9db8d2;
+             padding: 5pt 9pt; margin: 6pt 0; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0; }
+th, td { border: 0.6pt solid #9db8d2; padding: 3.5pt 6pt; text-align: left; }
+th { background: #1f4e79; color: #fff; }
+code { font-family: Consolas, "Courier New", monospace; font-size: 9pt;
+       background: #f0f2f5; padding: 0 2pt; }
+hr { border: none; border-top: 1pt solid #dbe4ee; margin: 10pt 0; }
+.math-block { text-align: center; margin: 6pt 0; }
+</style><script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'},options:{enableMenu:false},startup:{ready:function(){MathJax.startup.defaultReady();MathJax.startup.promise.then(function(){document.title='MJDONE';});}}};</script><script src='file:///D:/Animation-Model-Training/tools/assets/mathjax-tex-svg.js'></script></head><body><h1>B5 近重复阈值校准报告</h1>
+<ul>
+<li>标注对:48(重复 11 对 / 不重复 37 对),不确定 2 对不参与</li>
+<li>默认目标:recall≥0.95 且 fpr≤0.01</li>
+<li>校准结论:<strong>UNCALIBRATED —— 网格内无阈值同时满足 recall≥0.95 且 fpr≤0.01—— 对照集或方法需检查,当前阈值仍 UNCALIBRATED</strong></li>
+</ul>
+<h2>权衡表(细网格)</h2>
+<table>
+<thead>
+<tr>
+<th>阈值</th>
+<th>TP</th>
+<th>FP</th>
+<th>FN</th>
+<th>TN</th>
+<th>precision</th>
+<th>recall</th>
+<th>fpr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.3</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.35</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.45</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.55</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.65</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.7</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>22</td>
+<td>74</td>
+<td>0</td>
+<td>0</td>
+<td>0.2292</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>F1 最优权衡点:阈值 0.3(precision=0.2292,recall=1.0,fpr=1.0)——仅供参考,非验收口径。</p>
+<h2>交错区(0.40~0.65,升序)</h2>
+<table>
+<thead>
+<tr>
+<th>Jaccard</th>
+<th>标注</th>
+<th>题目A(id)</th>
+<th>题目B(id)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.4615</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^ (eval-calc-022) | 判断级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4615</td>
+<td>不重复</td>
+<td>判断级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034) | 证明 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{ (test-calc-042)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4643</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{ (eval-calc-011) | 求级数 $</span>\displaystyle S=\sum_{n=1}^{\infty}\frac{n^ (eval-calc-022)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4643</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{ (eval-calc-011) | 判断级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4737</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x (eval-calc-001) | 求极限 $</span>\displaystyle\lim_{x\to 0^+} x^x$。 (eval-calc-002)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4792</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n} (eval-calc-021) | 证明级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{1}{n (eval-calc-023)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.48</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n} (eval-calc-021) | 判断级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4808</td>
+<td>不重复</td>
+<td>用矩阵方法解微分方程组 <span class="math">$\begin{cases}x'=3x+y\\y'=x+3y\end{c (test-linalg-023) | 解微分方程组 $</span>\begin{cases}x'=2x+y\y'=2y\end{cases}$  (test-linalg-027)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4815</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{ (eval-calc-011) | 求级数 $</span>\displaystyle S=\sum_{n=1}^{\infty}\frac{n} (eval-calc-021)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4889</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x (eval-calc-001) | 求极限 $</span>\displaystyle\lim_{x\to 0}\frac{\sin x-\tan (eval-calc-004)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4898</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n^ (eval-calc-022) | 求级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{1}{n( (test-calc-013)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4898</td>
+<td>不重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n (eval-calc-023) | 证明 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{ (test-calc-042)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.4898</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n( (test-calc-013) | 证明 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{ (test-calc-042)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>重复</td>
+<td>求不定积分 <span class="math">$\displaystyle\int x^2e^x\,dx$</span>。 (eval-calc-013)</td>
+<td>求不定积分 <span class="math">$\displaystyle\int x\arctan x\,dx$</span>。 (eval-calc-018)</td>
+</tr>
+<tr>
+<td>0.5106</td>
+<td>重复</td>
+<td>求级数 <span class="math">$\displaystyle S=\sum_{n=1}^{\infty}\frac{n} (eval-calc-021) | 求级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{1}{n( (test-calc-013)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5246</td>
+<td>重复</td>
+<td>判断反常积分 <span class="math">$\displaystyle\int_1^{+\infty}\frac{dx}{x (test-calc-012) | 判断 $</span>\displaystyle\int_1^{+\infty}\frac{\ln x}{x^ (test-calc-029)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5254</td>
+<td>重复</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$</span> 的特征 (eval-linalg-015)</td>
+<td>求矩阵 <span class="math">$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$</span> 的特征 (eval-linalg-017)</td>
+</tr>
+<tr>
+<td>0.5435</td>
+<td>重复</td>
+<td>求极限 <span class="math">$\displaystyle\lim_{x\to 0}\frac{1-\cos x}{x (eval-calc-001) | 求 $</span>\displaystyle\lim_{x\to 0}\frac{1-\cos x-\fra (test-calc-040)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5478</td>
+<td>重复</td>
+<td>求 <span class="math">$n$</span> 阶三对角行列式 <span class="math">$D_n=\begin{vmatrix}2&1&0&\cdots&0 (eval-linalg-003) | 求 $</span>n<span class="math">$ 阶三对角行列式 $</span>D_n=\begin{vmatrix}1&amp;1&amp;0&amp;\cdots&amp;0 (test-linalg-013)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.549</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{ (eval-calc-011) | 证明级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{1}{n (eval-calc-023)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5532</td>
+<td>重复</td>
+<td>证明级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n (eval-calc-023) | 判断级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5532</td>
+<td>不重复</td>
+<td>求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n( (test-calc-013) | 判断级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{n!}{ (test-calc-034)</td>
+<td></td>
+</tr>
+<tr>
+<td>0.58</td>
+<td>不重复</td>
+<td>用多种方法求级数 <span class="math">$\displaystyle\sum_{n=1}^{\infty}\frac{ (eval-calc-011) | 求级数 $</span>\displaystyle\sum_{n=1}^{\infty}\frac{1}{n( (test-calc-013)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</body></html>

@@ -1,0 +1,209 @@
+{
+  "status": "PASS_CORE_VALUES",
+  "records": 15,
+  "checks": [
+    {
+      "id": "draft-c01-01",
+      "check": "first point value",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-01",
+      "check": "second point value",
+      "actual": "-2",
+      "expected": "-2",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-02",
+      "check": "on ellipse",
+      "actual": "8",
+      "expected": "8",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-02",
+      "check": "implicit slope",
+      "actual": "-1/2",
+      "expected": "-1/2",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-03",
+      "check": "slope at2",
+      "actual": "9/4",
+      "expected": "9/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-03",
+      "check": "y at2",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-03",
+      "check": "self intersection x",
+      "actual": "3",
+      "expected": "3",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-03",
+      "check": "self intersection y+",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-03",
+      "check": "self intersection y-",
+      "actual": "0",
+      "expected": "0",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-04",
+      "check": "tangent parameter polynomial",
+      "actual": "-a**2 + 2*a - (1 - a)*(2*a - 2) - 2",
+      "expected": "a**2 - 2*a",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-05",
+      "check": "common tangent obstruction",
+      "actual": "c**2 + (1 - c)**2 + 1",
+      "expected": "2*c**2 - 2*c + 2",
+      "pass": true
+    },
+    {
+      "id": "draft-c01-05",
+      "check": "discriminant",
+      "actual": "-3",
+      "expected": "-3",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-01",
+      "check": "completion of squares",
+      "actual": "8*y**2/3 + 3*(x - y/3)**2",
+      "expected": "3*x**2 - 2*x*y + 3*y**2",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-02",
+      "check": "exact spectrum positive",
+      "actual": "{2: 1, 2 - sqrt(2): 1, sqrt(2) + 2: 1}",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-03",
+      "check": "parameter determinant",
+      "actual": "a",
+      "expected": "a",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-03",
+      "check": "standard form",
+      "actual": "a*z**2 + y**2 + (x + y)**2",
+      "expected": "a*z**2 + x**2 + 2*x*y + 2*y**2",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-04",
+      "check": "rank",
+      "actual": "2",
+      "expected": "2",
+      "pass": true
+    },
+    {
+      "id": "draft-c36-05",
+      "check": "negative witness",
+      "actual": "-2",
+      "expected": "-2",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-01",
+      "check": "Jacobian density",
+      "actual": "2*y/9 - 2/9",
+      "expected": "2*y/9 - 2/9",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-01",
+      "check": "normalization",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-02",
+      "check": "normalization",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-03",
+      "check": "first mass",
+      "actual": "2/3",
+      "expected": "2/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-03",
+      "check": "second mass",
+      "actual": "1/3",
+      "expected": "1/3",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-04",
+      "check": "mixed expectation",
+      "actual": "3/4",
+      "expected": "3/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-04",
+      "check": "total mass",
+      "actual": "1",
+      "expected": "1",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-05",
+      "check": "central probability",
+      "actual": "3/4",
+      "expected": "3/4",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-05",
+      "check": "right tail probability",
+      "actual": "1/8",
+      "expected": "1/8",
+      "pass": true
+    },
+    {
+      "id": "draft-c52-05",
+      "check": "slanted segment length",
+      "actual": "sqrt(2)*Abs(z)",
+      "expected": "sqrt(2)*Abs(z)",
+      "pass": true
+    }
+  ],
+  "core_values_correct": true,
+  "original_scene_errors": [
+    "draft-c01-03 false self-intersections",
+    "draft-c52-05 slanted-length factor sqrt2 missing"
+  ],
+  "density_boundary_and_mixed_precision_fixes": true,
+  "no_render_execution": true,
+  "not_admission": true
+}

@@ -1,0 +1,81 @@
+{
+  "id": "draft-c18-02",
+  "category": "解析几何",
+  "sub_category": "平面",
+  "concept": "点到平面距离与投影",
+  "concept_id": "C18",
+  "parent_training_ids": [
+    "geom-023"
+  ],
+  "problem": "求两平行平面 $\\pi_1:2x-y+2z=1$ 与 $\\pi_2:2x-y+2z=5$ 之间的距离。",
+  "solution": "两平面法向量相同，为平行平面。取 $\\pi_1$ 上一点(如 $P_1=(0,-1,0)$:代入 $0-(-1)+0=1$)，点 $P_1$ 到 $\\pi_2$ 的有向距离为 $\\frac{2\\times0-(-1)+2\\times0-5}{\\sqrt{4+1+4}}=\\frac{-4}{3}$，绝对值 $\\frac43$ 即两平面间距离。(亦可用公式 $\\frac{|d_1-d_2|}{\\sqrt{a^2+b^2+c^2}}=\\frac{|1-5|}{3}=\\frac43$。)",
+  "answer": "距离为 $\\frac43$。",
+  "method": "平行平面距离(常数项差/法向量模)",
+  "difficulty": "基础",
+  "variant_kind": "对象变化:点到平面推广为两平行平面间距离",
+  "scene_spec": {
+    "objects": [
+      "三维坐标系(带刻度)",
+      "两个半透明平行平面(蓝色与橙色)",
+      "绿色垂线段连接两平面(标注长度 $\\frac43$)",
+      "法向量箭头 $n=(2,-1,2)$",
+      "板书:$\\frac{|1-5|}{\\sqrt{4+1+4}}=\\frac43$"
+    ],
+    "steps": [
+      "第一步:画出两个平行平面,显示共同法向量 $(2,-1,2)$。",
+      "第二步:取 $\\pi_1$ 上一点 $P_1=(0,-1,0)$,计算其到 $\\pi_2$ 的有向距离。",
+      "第三步:展示常数项差公式 $\\frac{|d_1-d_2|}{|n|}$。",
+      "第四步:画出两平面间的绿色垂线段。",
+      "第五步:高亮结论 $\\frac43$。"
+    ]
+  },
+  "source": "self-authored",
+  "license": "Internal-Research-Use-Only",
+  "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+  "strict_review": {
+    "core_math_verified": true,
+    "exact_expression_required": true,
+    "rational_numbers": "fractions_or_integers",
+    "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+    "render_verified": false,
+    "admitted": false,
+    "source_batch": "batch-04",
+    "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+    "text_math_fields_reviewed": true,
+    "scene_text_reviewed": true,
+    "math_content_sha256": "7f7259db375b192f8446524e81b14ccd7169d45e93b6427fc1ccbad39e059ec3",
+    "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+    "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+    "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+  },
+  "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+  "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c18-02",
+  "revision_lineage": {
+    "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+    "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+    "original_id": "draft-c18-02",
+    "prior_parent_training_ids": [
+      "geom-023"
+    ],
+    "historical_risk_not_reset": true,
+    "prior_corrected_record_sha256": "93b50ededb503998291ec37bfdd1851a6cd4135a95fa5ac458bf3a1bc144e4ab",
+    "previous_hold_reasons": [],
+    "math_correction_notes": [],
+    "revised_in_place": false,
+    "version": "codex-repair-v4-final",
+    "additional_recheck_reason": null,
+    "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+      "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+      "versioned_id": "codex-repair-20261005-batch-04-draft-c18-02"
+    },
+    "previous_math_review_binding": {
+      "math_content_sha256": "7f7259db375b192f8446524e81b14ccd7169d45e93b6427fc1ccbad39e059ec3",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+    }
+  },
+  "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+  "admitted": false,
+  "animation_render_verified": false
+}

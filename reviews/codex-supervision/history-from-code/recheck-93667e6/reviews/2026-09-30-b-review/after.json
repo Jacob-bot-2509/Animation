@@ -1,0 +1,248 @@
+{
+  "head": "a81223ea46def98b16699fc45ba058b9d7e393ec",
+  "source_sha256": {
+    "src/animtrain/preflight.py": "94808a072c1e11f8da074066a59d8d28953f3323ca0a3c6ee21860b8cb5e2d92",
+    "src/animtrain/render_gate.py": "d120702509a16977eaf522aeeb6dd609ffe2e277c67341b67bf12e3d14e0a5fc",
+    "src/animtrain/freeze.py": "4a6a474a9432d3fce05085201009f150fc9362e888fe79d60295dcea5e40516c",
+    "tools/preflight.py": "490f30774ec00850df5d7298c9a1e153aff164ff5dd7a4925e5fe06e2045854a",
+    "tools/split_data.py": "3ecd8d69db9eebc6dd91c69a7d03b0f071cd4ff2eaaef7b5e51a27323264edfe",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd"
+  },
+  "ready_cases": {
+    "extra_failure": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "render_gate",
+          "ok": false,
+          "detail": "render failed"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['render_gate']"
+        }
+      ]
+    },
+    "duplicate_failure": {
+      "ok": false,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "data_manifest",
+          "ok": false,
+          "detail": "bad"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "later"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "FAIL checks block ready: ['data_manifest']"
+        }
+      ]
+    },
+    "duplicate_unverified": {
+      "ok": true,
+      "ready": false,
+      "exit_code": 1,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "pending",
+          "unverified": [
+            "math"
+          ]
+        },
+        {
+          "check": "math_gate",
+          "ok": true,
+          "detail": "later"
+        },
+        {
+          "check": "ready",
+          "ok": false,
+          "detail": "UNVERIFIED 项阻止 ready: ['math_gate'](渲染/数学未验证不得装 PASS)"
+        }
+      ]
+    },
+    "all_pass": {
+      "ok": true,
+      "ready": true,
+      "exit_code": 0,
+      "checks": [
+        {
+          "check": "gpu",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "model_dir",
+          "ok": true,
+          "detail": "mock"
+        },
+        {
+          "check": "data_manifest",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "run_snapshot",
+          "ok": true,
+          "detail": "synthetic"
+        },
+        {
+          "check": "ready",
+          "ok": true,
+          "detail": "全部必需门禁通过,可生成可执行训练计划"
+        }
+      ]
+    }
+  },
+  "math": {
+    "Eq(1, 2)": {
+      "ok": true,
+      "status": "verified",
+      "detail": "SymPy 化简: Eq(1, 2) = False",
+      "unverified": []
+    },
+    "False": {
+      "ok": true,
+      "status": "verified",
+      "detail": "SymPy 化简: False = False",
+      "unverified": []
+    },
+    "1": {
+      "ok": true,
+      "status": "verified",
+      "detail": "SymPy 化简: 1 = 1",
+      "unverified": []
+    },
+    "Eq(1, 1)": {
+      "ok": true,
+      "status": "verified",
+      "detail": "SymPy 化简: Eq(1, 1) = True",
+      "unverified": []
+    }
+  },
+  "freeze": {
+    "missing_entries": [],
+    "unlocked_empty": [],
+    "empty_created": []
+  },
+  "a1_json": {
+    "train": {
+      "ok": false,
+      "n_entries": 1,
+      "problems": [
+        "sample.json: 数据格式仅支持 JSONL(.jsonl);.json 注册为 train 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    },
+    "eval": {
+      "ok": false,
+      "n_entries": 1,
+      "problems": [
+        "sample.json: 数据格式仅支持 JSONL(.jsonl);.json 注册为 eval 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    },
+    "test": {
+      "ok": false,
+      "n_entries": 1,
+      "problems": [
+        "sample.json: 数据格式仅支持 JSONL(.jsonl);.json 注册为 test 不被接受 —— 请转 JSONL 或改 split 为 raw(A1 格式边界)"
+      ],
+      "quarantines": [],
+      "near_dup_threshold": 0.7,
+      "near_dup_calibrated": false,
+      "exit_code": 1
+    }
+  },
+  "stale_snapshot_with_mocked_other_gates": {
+    "exit_code": 0,
+    "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[PASS] run_snapshot: run probe 快照通过\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[PASS] ready: 全部必需门禁通过,可生成可执行训练计划\n结论: READY: 可生成可执行训练计划\n",
+    "record_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b"
+  },
+  "frozen_split_force": {
+    "changed": true,
+    "post_write_check": [
+      "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-frozen-split-wnqk65o6\\output\\eval.jsonl: 哈希变化(冻结后不可修改;登记 bfbe6ee14c90…,实际 6851ccf1e1b2…)"
+    ],
+    "note": "Write succeeded; only a later explicit lock check detected the damage."
+  }
+}

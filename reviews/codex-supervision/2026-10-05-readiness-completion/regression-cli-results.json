@@ -1,0 +1,58 @@
+[
+  {
+    "command": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ],
+    "rc": 0,
+    "tail": "ile <_io.BufferedReader name=3>\r\n  if method() is not None:\r\nResourceWarning: Enable tracemalloc to get the object allocation traceback\r\nD:\\Python\\Lib\\unittest\\case.py:606: ResourceWarning: unclosed file <_io.BufferedReader name=4>\r\n  if method() is not None:\r\nResourceWarning: Enable tracemalloc to get the object allocation traceback\r\n.......\r\n----------------------------------------------------------------------\r\nRan 438 tests in 10.748s\r\n\r\nOK\r\n"
+  },
+  {
+    "command": [
+      "tools/data_check.py",
+      "--manifest",
+      "data/manifest.json"
+    ],
+    "rc": 0,
+    "tail": "条目 6 | 问题 0 | quarantine 0\r\n结论: 通过(exit_code=0)\r\n"
+  },
+  {
+    "command": [
+      "tools/dataset_intake.py",
+      "check",
+      "D:\\Animation-Model-Training\\data\\v2\\train\\leakage-isolated-2026-10-05\\dataset_calc.jsonl",
+      "D:\\Animation-Model-Training\\data\\v2\\train\\leakage-isolated-2026-10-05\\dataset_geom.jsonl",
+      "D:\\Animation-Model-Training\\data\\v2\\train\\leakage-isolated-2026-10-05\\dataset_linalg.jsonl",
+      "D:\\Animation-Model-Training\\data\\v2\\train\\leakage-isolated-2026-10-05\\dataset_prob.jsonl",
+      "D:\\Animation-Model-Training\\data\\v2\\eval\\dataset_eval.jsonl",
+      "D:\\Animation-Model-Training\\data\\v2\\test\\dataset_test.jsonl"
+    ],
+    "rc": 0,
+    "tail": "文件 6 | 条目 506 | problems 0 | quarantine 0 | status=clean\r\n"
+  },
+  {
+    "command": [
+      "tools/freeze_data.py",
+      "--check",
+      "data/eval-v2.lock.json",
+      "--manifest",
+      "data/manifest.json"
+    ],
+    "rc": 0,
+    "tail": "冻结完好\r\n"
+  },
+  {
+    "command": [
+      "tools/freeze_data.py",
+      "--check",
+      "data/test-v2.lock.json",
+      "--manifest",
+      "data/manifest.json"
+    ],
+    "rc": 0,
+    "tail": "冻结完好\r\n"
+  }
+]

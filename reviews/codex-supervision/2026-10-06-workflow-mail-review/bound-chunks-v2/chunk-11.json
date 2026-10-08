@@ -1,0 +1,918 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "test",
+      "id": "test-calc-045",
+      "problem_sha256": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-001",
+      "problem_sha256": "da4d3d8109be156e8b9bb65ba0dcd428b4b15f03df0c2c5532ffa8cda7ab998d",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-002",
+      "problem_sha256": "5f93ca34242ed1c47db511c24783767496f764cbfb12cc8bf001da1fb6802a81",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-003",
+      "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-004",
+      "problem_sha256": "3da455ca832c4280e23325592813dc7e876d11da7d851a809ffb9f51eead8a07",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-005",
+      "problem_sha256": "4b7a96674d27384c1d4c179bc9a1390df1a22ac4bb3a1c516ab9cd3a8e8f39cd",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-006",
+      "problem_sha256": "42ccc4e914f2cb3ed2368d2ce5b6556a092dca7ca35ce108f1dfc846633d3eef",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-007",
+      "problem_sha256": "70e78d555526cbf2dcc917a4f282d73a4fa4b38ac778d0af008db54f53b8d391",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-008",
+      "problem_sha256": "cfbdb658b72bcb758357811ce3bc9eece5fece74ba521dc7810e51a2e513fe57",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-009",
+      "problem_sha256": "f01c61b5e71a7d704b2e40d4055f6beaa2411079b6e303e315472377f9677afd",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-010",
+      "problem_sha256": "e0f5156af7863a8c61a304eecfb3edd9dfb3d5f7b374be260dc709a5135c82a3",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-011",
+      "problem_sha256": "4921a0abb80e06a007611ddd0cc47d90d5f3b49b1b431b255f5260417cb24981",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-012",
+      "problem_sha256": "83c3adf2a3e8eca5b4ac72597cca0a686d06a1fff732623995c9e84216301f10",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-013",
+      "problem_sha256": "cf724069a0ba515431d9f66b26b825a6c0bac7b7d8af6f1c4321349b03a1c6f0",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-014",
+      "problem_sha256": "4c947ad397e63be1ed6abcb3c8ded7d9070a2fa5726ab73e4e5f858a3db65454",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-015",
+      "problem_sha256": "784a0c2739652b130d9677c163a0be4112505964389ca8ad8f0627bafcffd331",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-016",
+      "problem_sha256": "5341d6583f22e36e87c32cd820af3c66883dff9bab112ccb6d9edb1f9e8dba8a",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-017",
+      "problem_sha256": "5108c1ce981dab3945f4ed3aa8704c822fc2597df77ed63d9f32fc3cb3c70d1f",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "test",
+      "id": "test-geom-018",
+      "problem_sha256": "ca0f1339344f26e7ec8af1c3f0926bd107cede8026aed373d0a63e673ab14039",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "test",
+      "id": "test-calc-045",
+      "problem_sha256": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+      "source_records": [
+        {
+          "id": "test-calc-045",
+          "category": "数学分析",
+          "sub_category": "中值定理×极限",
+          "problem": "求 $\\displaystyle\\lim_{x\\to+\\infty}x^2\\left(2^{1/x}-2^{1/(x+1)}\\right)$。",
+          "solution": "对 $f(t)=2^t$ 在 $\\left[\\dfrac{1}{x+1},\\dfrac{1}{x}\\right]$ 上用拉格朗日中值定理：$2^{1/x}-2^{1/(x+1)}=f'(\\xi)\\left(\\dfrac{1}{x}-\\dfrac{1}{x+1}\\right)=2^\\xi\\ln 2\\cdot\\dfrac{1}{x(x+1)}$，其中 $\\dfrac{1}{x+1}<\\xi<\\dfrac{1}{x}$。故原式 $=\\lim_{x\\to\\infty}x^2\\cdot 2^\\xi\\ln 2\\cdot\\dfrac{1}{x(x+1)}=\\lim_{x\\to\\infty}\\dfrac{x^2}{x(x+1)}\\cdot 2^\\xi\\ln 2$。当 $x\\to+\\infty$ 时 $\\xi\\to 0^+$，$2^\\xi\\to 1$，$\\dfrac{x^2}{x(x+1)}\\to 1$，故极限为 $\\ln 2$。",
+          "answer": "$\\ln 2$",
+          "scene_spec": {
+            "objects": [
+              "$y=2^t$ 上两点随 $x\\to\\infty$ 靠拢",
+              "中值点 $\\xi\\to 0$ 的标注"
+            ],
+            "steps": [
+              "第一步：建立数学分析·中值定理×极限综合场景，呈现与拉格朗日中值定理、指数函数、极限相关的核心图形。",
+              "第二步：$y=2^t$ 上两点随 $x\\to\\infty$ 靠拢。",
+              "第三步：中值点 $\\xi\\to 0$ 的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数函数中值极限",
+          "visual_style": "两点靠拢",
+          "efficiency_tags": [
+            "$y=2^t$ 上两点随 $x\\to\\infty$ 靠拢",
+            "中值点 $\\xi\\to 0$ 的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2613a38d25c0c42dc6ce12e11223af7457c1e03570ecbaca58123edff68ff1a7"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-001",
+      "problem_sha256": "da4d3d8109be156e8b9bb65ba0dcd428b4b15f03df0c2c5532ffa8cda7ab998d",
+      "source_records": [
+        {
+          "id": "test-geom-001",
+          "category": "解析几何",
+          "sub_category": "空间直线×平面",
+          "problem": "求两直线 $l_1:\\begin{cases}x=1+t\\\\y=2-t\\\\z=t\\end{cases}$ 与 $l_2:\\begin{cases}x=2+s\\\\y=1+2s\\\\z=1+s\\end{cases}$ 的交点，并求过两直线的平面方程。",
+          "solution": "求交点：$\\begin{cases}1+t=2+s\\\\2-t=1+2s\\\\t=1+s\\end{cases}$。由第三式 $t=1+s$，代入第一式：$1+1+s=2+s$ 恒等；代入第二式：$2-(1+s)=1+2s$，即 $1-s=1+2s$，$s=0$，$t=1$。交点为 $(2,1,1)$。两直线方向：$\\vec{s_1}=(1,-1,1)$，$\\vec{s_2}=(1,2,1)$。过两直线的平面法向量 $\\vec n=\\vec{s_1}\\times\\vec{s_2}=((-1)\\cdot 1-1\\cdot 2,\\ 1\\cdot 1-1\\cdot 1,\\ 1\\cdot 2-(-1)\\cdot 1)=(-3,0,3)$，取 $(1,0,-1)$。平面方程：$(x-2)-(z-1)=0$，即 $x-z=1$。",
+          "answer": "交点 $(2,1,1)$；平面 $x-z=1$",
+          "scene_spec": {
+            "objects": [
+              "两直线相交的三维视图",
+              "法向量叉积方向",
+              "平面贴合两直线"
+            ],
+            "steps": [
+              "第一步：建立解析几何·空间直线×平面综合场景，呈现与空间直线参数方程、叉积、平面方程相关的核心图形。",
+              "第二步：两直线相交的三维视图。",
+              "第三步：法向量叉积方向。",
+              "第四步：平面贴合两直线。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "空间直线相交",
+          "visual_style": "交点与共面",
+          "efficiency_tags": [
+            "两直线相交的三维视图",
+            "法向量叉积方向",
+            "平面贴合两直线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "79aebecc9f68af1f6e4f6fb5a1028dc65cd0117e5bc030c215700f6f238c9170"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-002",
+      "problem_sha256": "5f93ca34242ed1c47db511c24783767496f764cbfb12cc8bf001da1fb6802a81",
+      "source_records": [
+        {
+          "id": "test-geom-002",
+          "category": "解析几何",
+          "sub_category": "点到直线×投影",
+          "problem": "求点 $P(1,2,3)$ 到直线 $l:x=1+t,\\ y=1+2t,\\ z=1+3t$ 的距离与垂足坐标。",
+          "solution": "直线上取点 $P_0(1,1,1)$、方向 $\\vec s=(1,2,3)$。$\\overrightarrow{P_0P}=(0,1,2)$。叉积 $\\overrightarrow{P_0P}\\times\\vec s=(1\\cdot 3-2\\cdot 2,\\ 2\\cdot 1-0\\cdot 3,\\ 0\\cdot 2-1\\cdot 1)=(-1,2,-1)$，模 $\\sqrt{6}$；$|\\vec s|=\\sqrt{14}$。距离 $d=\\dfrac{\\sqrt6}{\\sqrt{14}}=\\sqrt{\\dfrac{3}{7}}$。垂足参数 $t^*=\\dfrac{\\overrightarrow{P_0P}\\cdot\\vec s}{|\\vec s|^2}=\\dfrac{0+2+6}{14}=\\dfrac{4}{7}$，垂足 $Q=\\left(1+\\dfrac{4}{7},1+\\dfrac{8}{7},1+\\dfrac{12}{7}\\right)=\\left(\\dfrac{11}{7},\\dfrac{15}{7},\\dfrac{19}{7}\\right)$。",
+          "answer": "距离 $\\sqrt{\\dfrac{3}{7}}$；垂足 $\\left(\\dfrac{11}{7},\\dfrac{15}{7},\\dfrac{19}{7}\\right)$",
+          "scene_spec": {
+            "objects": [
+              "直线与垂线段",
+              "叉积平行四边形的面积分解"
+            ],
+            "steps": [
+              "第一步：建立解析几何·点到直线×投影综合场景，呈现与叉积距离公式、正交投影、参数方程相关的核心图形。",
+              "第二步：直线与垂线段。",
+              "第三步：叉积平行四边形的面积分解。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "空间点线距离投影",
+          "visual_style": "垂线段与叉积",
+          "efficiency_tags": [
+            "直线与垂线段",
+            "叉积平行四边形的面积分解"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "43613eb7e94996b67eb0f5ef6a966f2b58ee125effcbe8257ab7c20a0c7f4de9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-003",
+      "problem_sha256": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+      "source_records": [
+        {
+          "id": "test-geom-003",
+          "category": "解析几何",
+          "sub_category": "异面直线×公垂线",
+          "problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+          "solution": "$\\vec{s_1}=(1,2,1)$，$\\vec{s_2}=(2,-1,2)$，取点 $P_1=(1,0,3)\\in l_1$、$P_2=(0,1,0)\\in l_2$。公垂线方向 $\\vec n=\\vec{s_1}\\times\\vec{s_2}=(2\\cdot 2-1\\cdot(-1),\\ 1\\cdot 2-1\\cdot 2,\\ 1\\cdot(-1)-2\\cdot 2)=(5,0,-5)$，取 $(1,0,-1)$。$\\overrightarrow{P_1P_2}=(-1,1,-3)$。距离 $d=\\dfrac{|\\overrightarrow{P_1P_2}\\cdot\\vec n|}{|\\vec n|}=\\dfrac{|-1-0+3|}{\\sqrt2}=\\dfrac{2}{\\sqrt2}=\\sqrt2$。",
+          "answer": "$\\sqrt2$",
+          "scene_spec": {
+            "objects": [
+              "两异面直线与公垂线段",
+              "方向向量叉积"
+            ],
+            "steps": [
+              "第一步：建立解析几何·异面直线×公垂线综合场景，呈现与混合积、叉积、公垂线方向相关的核心图形。",
+              "第二步：两异面直线与公垂线段。",
+              "第三步：方向向量叉积。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "异面直线距离",
+          "visual_style": "公垂线段",
+          "efficiency_tags": [
+            "两异面直线与公垂线段",
+            "方向向量叉积"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "61c65b4bf9ab263b29378a2ce542e1364a235a208d4720d38e12283ccc19f37e"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-004",
+      "problem_sha256": "3da455ca832c4280e23325592813dc7e876d11da7d851a809ffb9f51eead8a07",
+      "source_records": [
+        {
+          "id": "test-geom-004",
+          "category": "解析几何",
+          "sub_category": "平面×球面",
+          "problem": "判断平面 $x+2y+2z=3$ 与球面 $x^2+y^2+z^2=1$ 的位置关系，若相切求切点。",
+          "solution": "球心 $O(0,0,0)$ 到平面的距离 $d=\\dfrac{|0+0+0-3|}{\\sqrt{1+4+4}}=\\dfrac{3}{3}=1$，等于球半径 $1$，故平面与球面相切。切点在球心到平面的垂线上：$\\overrightarrow{OQ}$ 沿法向量 $(1,2,2)$，且 $|OQ|=1$，$Q=\\dfrac{1}{3}(1,2,2)=\\left(\\dfrac{1}{3},\\dfrac{2}{3},\\dfrac{2}{3}\\right)$。验证在平面上：$\\dfrac{1}{3}+\\dfrac{4}{3}+\\dfrac{4}{3}=\\dfrac{9}{3}=3$。",
+          "answer": "相切，切点 $\\left(\\dfrac{1}{3},\\dfrac{2}{3},\\dfrac{2}{3}\\right)$",
+          "scene_spec": {
+            "objects": [
+              "球与平面相切",
+              "半径与切点的垂直关系"
+            ],
+            "steps": [
+              "第一步：建立解析几何·平面×球面综合场景，呈现与点到平面距离、球面方程、相切条件相关的核心图形。",
+              "第二步：球与平面相切。",
+              "第三步：半径与切点的垂直关系。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "平面与球面相切",
+          "visual_style": "半径与切点",
+          "efficiency_tags": [
+            "球与平面相切",
+            "半径与切点的垂直关系"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "26ecb025782bd9ee91ecab91e9d6cfb6150c979bb0f6502961384bb8b716d61a"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-005",
+      "problem_sha256": "4b7a96674d27384c1d4c179bc9a1390df1a22ac4bb3a1c516ab9cd3a8e8f39cd",
+      "source_records": [
+        {
+          "id": "test-geom-005",
+          "category": "解析几何",
+          "sub_category": "曲面×切平面",
+          "problem": "求曲面 $z=\\dfrac{x^2}{4}+y^2$ 在点 $(2,1,2)$ 处的切平面方程。",
+          "solution": "$z_x=\\dfrac{x}{2}$，$z_y=2y$。在 $(2,1)$ 处 $z_x=1$、$z_y=2$。切平面：$z-2=1\\cdot(x-2)+2\\cdot(y-1)$，即 $z=x+2y-2$。验证切点在平面上：$2=2+2-2$。",
+          "answer": "$z=x+2y-2$",
+          "scene_spec": {
+            "objects": [
+              "椭圆抛物面与切平面贴合",
+              "两条切方向"
+            ],
+            "steps": [
+              "第一步：建立解析几何·曲面×切平面综合场景，呈现与偏导数、切平面、梯度相关的核心图形。",
+              "第二步：椭圆抛物面与切平面贴合。",
+              "第三步：两条切方向。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "曲面切平面",
+          "visual_style": "切平面贴合",
+          "efficiency_tags": [
+            "椭圆抛物面与切平面贴合",
+            "两条切方向"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "9c831dd238313eb57057f2d28dc7f000d760b6937ced940a420ddb25d886d960"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-006",
+      "problem_sha256": "42ccc4e914f2cb3ed2368d2ce5b6556a092dca7ca35ce108f1dfc846633d3eef",
+      "source_records": [
+        {
+          "id": "test-geom-006",
+          "category": "解析几何",
+          "sub_category": "空间曲线×法平面",
+          "problem": "求曲线 $x=t,\\ y=t^2,\\ z=t^3$ 在 $t=1$ 处的切线与法平面方程。",
+          "solution": "$\\vec r'(t)=(1,2t,3t^2)$，在 $t=1$ 处切向量 $(1,2,3)$，切点 $(1,1,1)$。切线：$\\dfrac{x-1}{1}=\\dfrac{y-1}{2}=\\dfrac{z-1}{3}$。法平面：$1\\cdot(x-1)+2\\cdot(y-1)+3\\cdot(z-1)=0$，即 $x+2y+3z=6$。",
+          "answer": "切线 $\\dfrac{x-1}{1}=\\dfrac{y-1}{2}=\\dfrac{z-1}{3}$；法平面 $x+2y+3z=6$",
+          "scene_spec": {
+            "objects": [
+              "三次挠曲线与切线",
+              "法平面垂直于切线"
+            ],
+            "steps": [
+              "第一步：建立解析几何·空间曲线×法平面综合场景，呈现与空间曲线切向量、法平面、参数求导相关的核心图形。",
+              "第二步：三次挠曲线与切线。",
+              "第三步：法平面垂直于切线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "空间曲线法平面",
+          "visual_style": "切线法平面",
+          "efficiency_tags": [
+            "三次挠曲线与切线",
+            "法平面垂直于切线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "af185f3b2332f6d4a61b93e1b22c9918f9bb0f986c22d453fb2b83b224e927c0"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-007",
+      "problem_sha256": "70e78d555526cbf2dcc917a4f282d73a4fa4b38ac778d0af008db54f53b8d391",
+      "source_records": [
+        {
+          "id": "test-geom-007",
+          "category": "解析几何",
+          "sub_category": "混合积×体积",
+          "problem": "求以 $O(0,0,0)$、$A(1,2,0)$、$B(2,0,1)$、$C(0,1,2)$ 为顶点的四面体体积。",
+          "solution": "$V=\\dfrac{1}{6}\\left|\\det(\\overrightarrow{OA},\\overrightarrow{OB},\\overrightarrow{OC})\\right|=\\dfrac{1}{6}\\left|\\begin{vmatrix}1&2&0\\\\2&0&1\\\\0&1&2\\end{vmatrix}\\right|$。行列式 $=1\\cdot(0\\cdot 2-1\\cdot 1)-2\\cdot(2\\cdot 2-1\\cdot 0)+0=1\\cdot(-1)-2\\cdot 4=-9$。$V=\\dfrac{9}{6}=\\dfrac{3}{2}$。",
+          "answer": "$\\dfrac{3}{2}$",
+          "scene_spec": {
+            "objects": [
+              "四面体与平行六面体",
+              "混合积的体积意义"
+            ],
+            "steps": [
+              "第一步：建立解析几何·混合积×体积综合场景，呈现与混合积、平行六面体、行列式相关的核心图形。",
+              "第二步：四面体与平行六面体。",
+              "第三步：混合积的体积意义。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "四面体体积",
+          "visual_style": "平行六面体",
+          "efficiency_tags": [
+            "四面体与平行六面体",
+            "混合积的体积意义"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "ca40899411bff5f9e82a47c5b58341cc206a841393153bb24d5af6dfde2677eb"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-008",
+      "problem_sha256": "cfbdb658b72bcb758357811ce3bc9eece5fece74ba521dc7810e51a2e513fe57",
+      "source_records": [
+        {
+          "id": "test-geom-008",
+          "category": "解析几何",
+          "sub_category": "向量×三角形面积",
+          "problem": "求以 $A(1,0)$、$B(0,1)$、$C(2,3)$ 为顶点的三角形面积。",
+          "solution": "平面中三角形面积 $S=\\dfrac{1}{2}\\left|\\det(\\overrightarrow{AB},\\overrightarrow{AC})\\right|$。$\\overrightarrow{AB}=(-1,1)$，$\\overrightarrow{AC}=(1,3)$。$\\det=(-1)\\cdot 3-1\\cdot 1=-4$。$S=\\dfrac{1}{2}\\cdot 4=2$。",
+          "answer": "$2$",
+          "scene_spec": {
+            "objects": [
+              "三角形与叉积平行四边形",
+              "面积标注"
+            ],
+            "steps": [
+              "第一步：建立解析几何·向量×三角形面积综合场景，呈现与叉积面积公式、行列式相关的核心图形。",
+              "第二步：三角形与叉积平行四边形。",
+              "第三步：面积标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "平面三角形面积",
+          "visual_style": "叉积平行四边形",
+          "efficiency_tags": [
+            "三角形与叉积平行四边形",
+            "面积标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "8e807f9545a3f43046c6ef9e3eac4502bf2b6d3358e72e284e5100f0454ddd73"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-009",
+      "problem_sha256": "f01c61b5e71a7d704b2e40d4055f6beaa2411079b6e303e315472377f9677afd",
+      "source_records": [
+        {
+          "id": "test-geom-009",
+          "category": "解析几何",
+          "sub_category": "旋转×投影",
+          "problem": "求点 $(2,1)$ 绕原点逆时针旋转 $90^\\circ$ 后的坐标，以及向量 $(3,4)$ 在方向 $(1,1)$ 上的投影向量。",
+          "solution": "旋转 $90^\\circ$：$(x,y)\\mapsto(-y,x)$，$(2,1)\\mapsto(-1,2)$。投影：方向单位向量 $\\vec u=\\dfrac{1}{\\sqrt2}(1,1)$，投影 $=((3,4)\\cdot\\vec u)\\vec u=\\dfrac{7}{\\sqrt2}\\cdot\\dfrac{1}{\\sqrt2}(1,1)=\\left(\\dfrac{7}{2},\\dfrac{7}{2}\\right)$。",
+          "answer": "$(-1,2)$；$\\left(\\dfrac{7}{2},\\dfrac{7}{2}\\right)$",
+          "scene_spec": {
+            "objects": [
+              "旋转动画",
+              "投影垂线"
+            ],
+            "steps": [
+              "第一步：建立解析几何·旋转×投影综合场景，呈现与旋转矩阵、正交投影、点积相关的核心图形。",
+              "第二步：旋转动画。",
+              "第三步：投影垂线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "旋转与投影",
+          "visual_style": "旋转与投影垂线",
+          "efficiency_tags": [
+            "旋转动画",
+            "投影垂线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "02d0086df9a30cfbed0ee3661fdbb263b996f8da020cd7de27444112604f22d1"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-010",
+      "problem_sha256": "e0f5156af7863a8c61a304eecfb3edd9dfb3d5f7b374be260dc709a5135c82a3",
+      "source_records": [
+        {
+          "id": "test-geom-010",
+          "category": "解析几何",
+          "sub_category": "二次曲线×面积",
+          "problem": "求椭圆 $\\dfrac{x^2}{9}+\\dfrac{y^2}{16}=1$ 的面积。",
+          "solution": "椭圆是半径为 3 的圆沿 $y$ 轴拉伸 $\\dfrac{4}{3}$ 倍的像：$S=\\pi\\cdot 3\\cdot 4=12\\pi$。或用定积分：$S=4\\displaystyle\\int_0^3 4\\sqrt{1-\\dfrac{x^2}{9}}\\,dx=16\\int_0^3\\sqrt{1-\\dfrac{x^2}{9}}\\,dx$。换元 $x=3\\sin t$（$dx=3\\cos t\\,dt$，$t:0\\to\\dfrac{\\pi}{2}$）：$S=16\\cdot 3\\displaystyle\\int_0^{\\pi/2}\\cos^2t\\,dt=48\\cdot\\dfrac{\\pi}{4}=12\\pi$（$\\int_0^{\\pi/2}\\cos^2t\\,dt=\\dfrac{\\pi}{4}$）。直接公式 $S=\\pi ab=\\pi\\cdot 3\\cdot 4=12\\pi$。",
+          "answer": "$12\\pi$",
+          "scene_spec": {
+            "objects": [
+              "圆到椭圆的拉伸",
+              "面积公式标注"
+            ],
+            "steps": [
+              "第一步：建立解析几何·二次曲线×面积综合场景，呈现与椭圆面积公式、仿射变换、积分相关的核心图形。",
+              "第二步：圆到椭圆的拉伸。",
+              "第三步：面积公式标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "椭圆面积",
+          "visual_style": "圆到椭圆拉伸",
+          "efficiency_tags": [
+            "圆到椭圆的拉伸",
+            "面积公式标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "797c36e57799d46e3dfb6da79305851fada183471bf6b65a1a983d5f67ec2ab4"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-011",
+      "problem_sha256": "4921a0abb80e06a007611ddd0cc47d90d5f3b49b1b431b255f5260417cb24981",
+      "source_records": [
+        {
+          "id": "test-geom-011",
+          "category": "解析几何",
+          "sub_category": "空间直线×坐标面",
+          "problem": "求直线 $\\dfrac{x-2}{1}=\\dfrac{y+1}{2}=\\dfrac{z-3}{-1}$ 与三个坐标面的交点。",
+          "solution": "参数化 $x=2+t,\\ y=-1+2t,\\ z=3-t$。与 $xOy$ 面（$z=0$）：$3-t=0$，$t=3$，交点 $(5,5,0)$。与 $yOz$ 面（$x=0$）：$2+t=0$，$t=-2$，交点 $(0,-5,5)$。与 $xOz$ 面（$y=0$）：$-1+2t=0$，$t=\\dfrac{1}{2}$，交点 $\\left(\\dfrac{5}{2},0,\\dfrac{5}{2}\\right)$。",
+          "answer": "$(5,5,0)$；$(0,-5,5)$；$\\left(\\dfrac{5}{2},0,\\dfrac{5}{2}\\right)$",
+          "scene_spec": {
+            "objects": [
+              "直线穿过三个坐标面",
+              "交点标注"
+            ],
+            "steps": [
+              "第一步：建立解析几何·空间直线×坐标面综合场景，呈现与空间直线参数方程、坐标面相关的核心图形。",
+              "第二步：直线穿过三个坐标面。",
+              "第三步：交点标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "直线与坐标面交点",
+          "visual_style": "三坐标面交点",
+          "efficiency_tags": [
+            "直线穿过三个坐标面",
+            "交点标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "84e7681c6ea246b2bec0c3185c61774512cfcf8ca73562371f6ff3f1fe3ab676"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-012",
+      "problem_sha256": "83c3adf2a3e8eca5b4ac72597cca0a686d06a1fff732623995c9e84216301f10",
+      "source_records": [
+        {
+          "id": "test-geom-012",
+          "category": "解析几何",
+          "sub_category": "三重积×混合积",
+          "problem": "设 $\\vec a=(1,0,1)$、$\\vec b=(0,1,1)$、$\\vec c=(1,1,0)$，求 $\\vec a\\cdot(\\vec b\\times\\vec c)$ 与 $\\vec a\\times\\vec b\\cdot\\vec c$，并比较。",
+          "solution": "先算 $\\vec b\\times\\vec c$：$\\vec b=(0,1,1)$，$\\vec c=(1,1,0)$，叉积 $=(1\\cdot 0-1\\cdot 1,\\ 1\\cdot 1-0\\cdot 0,\\ 0\\cdot 1-1\\cdot 1)=(-1,1,-1)$。故 $\\vec a\\cdot(\\vec b\\times\\vec c)=1\\cdot(-1)+0\\cdot 1+1\\cdot(-1)=-2$。再算 $\\vec a\\times\\vec b$：$(0\\cdot 1-1\\cdot 1,\\ 1\\cdot 0-1\\cdot 1,\\ 1\\cdot 1-0\\cdot 0)=(-1,-1,1)$。故 $(\\vec a\\times\\vec b)\\cdot\\vec c=(-1)\\cdot 1+(-1)\\cdot 1+1\\cdot 0=-2$。两者相等，符合混合积的轮换对称性 $\\vec a\\cdot(\\vec b\\times\\vec c)=\\vec b\\cdot(\\vec c\\times\\vec a)=\\vec c\\cdot(\\vec a\\times\\vec b)$；该值也等于行列式 $\\begin{vmatrix}1&0&1\\\\0&1&1\\\\1&1&0\\end{vmatrix}=1\\cdot(1\\cdot 0-1\\cdot 1)-0\\cdot(0\\cdot 0-1\\cdot 1)+1\\cdot(0\\cdot 1-1\\cdot 1)=-1-1=-2$。",
+          "answer": "均为 $-2$",
+          "scene_spec": {
+            "objects": [
+              "三向量与平行六面体",
+              "混合积的轮换对称"
+            ],
+            "steps": [
+              "第一步：建立解析几何·三重积×混合积综合场景，呈现与混合积、轮换对称性、行列式相关的核心图形。",
+              "第二步：三向量与平行六面体。",
+              "第三步：混合积的轮换对称。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "混合积轮换",
+          "visual_style": "平行六面体",
+          "efficiency_tags": [
+            "三向量与平行六面体",
+            "混合积的轮换对称"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2785b65d5dc395c17a0f564e7de56c1cbfeb7815b74a7c28a5fd9f905d067bd6"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-013",
+      "problem_sha256": "cf724069a0ba515431d9f66b26b825a6c0bac7b7d8af6f1c4321349b03a1c6f0",
+      "source_records": [
+        {
+          "id": "test-geom-013",
+          "category": "解析几何",
+          "sub_category": "球面×截面圆",
+          "problem": "求球面 $x^2+y^2+z^2=4$ 与平面 $z=\\sqrt2$ 的交线方程，并将其参数化。",
+          "solution": "代入 $z=\\sqrt2$：$x^2+y^2+2=4$，即 $x^2+y^2=2$。交线为平面 $z=\\sqrt2$ 上的圆，半径 $\\sqrt2$，圆心 $(0,0,\\sqrt2)$。参数化：$x=\\sqrt2\\cos t$，$y=\\sqrt2\\sin t$，$z=\\sqrt2$，$t\\in[0,2\\pi]$。",
+          "answer": "$\\begin{cases}x^2+y^2=2\\\\z=\\sqrt2\\end{cases}$；参数化 $(x,y,z)=(\\sqrt2\\cos t,\\sqrt2\\sin t,\\sqrt2)$",
+          "scene_spec": {
+            "objects": [
+              "平面截球的截面圆",
+              "参数点沿圆运动"
+            ],
+            "steps": [
+              "第一步：建立解析几何·球面×截面圆综合场景，呈现与截面圆、参数方程、圆相关的核心图形。",
+              "第二步：平面截球的截面圆。",
+              "第三步：参数点沿圆运动。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "球面截面圆",
+          "visual_style": "截面圆参数化",
+          "efficiency_tags": [
+            "平面截球的截面圆",
+            "参数点沿圆运动"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "8d7e385a188a9e0e327aca0decdc60bd7d70fe6c61bf5a941036813921094c91"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-014",
+      "problem_sha256": "4c947ad397e63be1ed6abcb3c8ded7d9070a2fa5726ab73e4e5f858a3db65454",
+      "source_records": [
+        {
+          "id": "test-geom-014",
+          "category": "解析几何",
+          "sub_category": "直纹面×双曲抛物面",
+          "problem": "证明曲面 $z=x^2-y^2$ 是直纹面，并写出其直母线族。",
+          "solution": "$z=x^2-y^2=(x+y)(x-y)$。对任意常数 $c$，直线 $\\begin{cases}x+y=c\\\\z=c(x-y)\\end{cases}$ 上每点满足 $z=(x+y)(x-y)=c(x-y)$，故整条直线在曲面上；同理 $\\begin{cases}x-y=c\\\\z=c(x+y)\\end{cases}$ 也是直母线族。每点处恰有两条直母线通过，故 $z=x^2-y^2$ 是直纹面（双曲抛物面）。",
+          "answer": "证毕；直母线族 $\\begin{cases}x+y=c\\\\z=c(x-y)\\end{cases}$ 与 $\\begin{cases}x-y=c\\\\z=c(x+y)\\end{cases}$",
+          "scene_spec": {
+            "objects": [
+              "马鞍面上的直线网格",
+              "两族直母线"
+            ],
+            "steps": [
+              "第一步：建立解析几何·直纹面×双曲抛物面综合场景，呈现与直纹面、因式分解、直线族相关的核心图形。",
+              "第二步：马鞍面上的直线网格。",
+              "第三步：两族直母线。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "双曲抛物面直纹",
+          "visual_style": "马鞍面直线网格",
+          "efficiency_tags": [
+            "马鞍面上的直线网格",
+            "两族直母线"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "ae411b1ed87ddb9848a89244f06e85c4957b51e1bcda522ecec170223f857ee2"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-015",
+      "problem_sha256": "784a0c2739652b130d9677c163a0be4112505964389ca8ad8f0627bafcffd331",
+      "source_records": [
+        {
+          "id": "test-geom-015",
+          "category": "解析几何",
+          "sub_category": "曲面×条件极值",
+          "problem": "求曲面 $xyz=1$（$x,y,z>0$）上到原点距离最近的点及最短距离。",
+          "solution": "求 $d^2=x^2+y^2+z^2$ 在 $xyz=1$ 下的最小值。由均值不等式 $x^2+y^2+z^2\\ge 3\\sqrt[3]{x^2y^2z^2}=3\\sqrt[3]{(xyz)^2}=3$，等号当且仅当 $x^2=y^2=z^2$，即 $x=y=z=1$（$xyz=1$）。故最近点为 $(1,1,1)$，最短距离 $\\sqrt3$。",
+          "answer": "最近点 $(1,1,1)$，距离 $\\sqrt3$",
+          "scene_spec": {
+            "objects": [
+              "曲面 $xyz=1$ 与原点",
+              "最短距离线段"
+            ],
+            "steps": [
+              "第一步：建立解析几何·曲面×条件极值综合场景，呈现与条件极值、均值不等式、距离相关的核心图形。",
+              "第二步：曲面 $xyz=1$ 与原点。",
+              "第三步：最短距离线段。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "曲面距离条件极值",
+          "visual_style": "最短距离线段",
+          "efficiency_tags": [
+            "曲面 $xyz=1$ 与原点",
+            "最短距离线段"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b716eb372ee68aca11b7bdddbf1a5de233f1a5230747d3cb7aef7bfd9622d24b"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-016",
+      "problem_sha256": "5341d6583f22e36e87c32cd820af3c66883dff9bab112ccb6d9edb1f9e8dba8a",
+      "source_records": [
+        {
+          "id": "test-geom-016",
+          "category": "解析几何",
+          "sub_category": "线性变换×二次曲线",
+          "problem": "线性变换 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。",
+          "solution": "$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\\det A=1$，故椭圆面积 $=\\pi\\cdot|\\det A|=\\pi$。",
+          "answer": "椭圆 $x^2-2xy+2y^2=1$，面积 $\\pi$",
+          "scene_spec": {
+            "objects": [
+              "单位圆被剪切为椭圆",
+              "面积不变（$\\det A=1$）"
+            ],
+            "steps": [
+              "第一步：建立解析几何·线性变换×二次曲线综合场景，呈现与线性变换、二次曲线、行列式相关的核心图形。",
+              "第二步：单位圆被剪切为椭圆。",
+              "第三步：面积不变（$\\det A=1$）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "线性变换下二次曲线",
+          "visual_style": "圆剪切为椭圆",
+          "efficiency_tags": [
+            "单位圆被剪切为椭圆",
+            "面积不变（$\\det A=1$）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "4596378d62c7e56fd65247371804f83aec2c5fcd1c2f37655ebd979f8f87e6b9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-017",
+      "problem_sha256": "5108c1ce981dab3945f4ed3aa8704c822fc2597df77ed63d9f32fc3cb3c70d1f",
+      "source_records": [
+        {
+          "id": "test-geom-017",
+          "category": "解析几何",
+          "sub_category": "曲率×曲率半径",
+          "problem": "求抛物线 $y=x^2$ 在顶点处的曲率与曲率半径，并说明顶点处曲率最大的原因。",
+          "solution": "$\\kappa(x)=\\dfrac{|y''|}{(1+y'^2)^{3/2}}=\\dfrac{2}{(1+4x^2)^{3/2}}$。在顶点 $x=0$：$\\kappa=2$，曲率半径 $R=\\dfrac{1}{2}$。$\\kappa(x)$ 在 $x=0$ 处最大（分母在 $x=0$ 最小），因顶点处曲线\"弯得最急\"。",
+          "answer": "$\\kappa=2$；$R=\\dfrac{1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "密切圆在顶点处贴合",
+              "曲率随 $x$ 减小"
+            ],
+            "steps": [
+              "第一步：建立解析几何·曲率×曲率半径综合场景，呈现与曲率公式、极值、抛物线相关的核心图形。",
+              "第二步：密切圆在顶点处贴合。",
+              "第三步：曲率随 $x$ 减小。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "抛物线曲率",
+          "visual_style": "顶点密切圆",
+          "efficiency_tags": [
+            "密切圆在顶点处贴合",
+            "曲率随 $x$ 减小"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "dd219ac8f001b474032ba04222e929b6207902eba27086bef61ad2030a55ce01"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-018",
+      "problem_sha256": "ca0f1339344f26e7ec8af1c3f0926bd107cede8026aed373d0a63e673ab14039",
+      "source_records": [
+        {
+          "id": "test-geom-018",
+          "category": "解析几何",
+          "sub_category": "平面束×定点",
+          "problem": "求过直线 $l:\\begin{cases}x+y-1=0\\\\x+z-2=0\\end{cases}$ 且过点 $(0,0,0)$ 的平面方程。",
+          "solution": "过 $l$ 的平面束为 $(x+y-1)+\\lambda(x+z-2)=0$。代入点 $(0,0,0)$：$-1-2\\lambda=0$，$\\lambda=-\\dfrac{1}{2}$。代入：$(x+y-1)-\\dfrac{1}{2}(x+z-2)=0$，即 $x+y-1-\\dfrac{x}{2}-\\dfrac{z}{2}+1=0$，$\\dfrac{x}{2}+y-\\dfrac{z}{2}=0$，$x+2y-z=0$。",
+          "answer": "$x+2y-z=0$",
+          "scene_spec": {
+            "objects": [
+              "平面束绕直线旋转",
+              "扫过定点"
+            ],
+            "steps": [
+              "第一步：建立解析几何·平面束×定点综合场景，呈现与平面束、参数代入、平面方程相关的核心图形。",
+              "第二步：平面束绕直线旋转。",
+              "第三步：扫过定点。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "平面束过定点",
+          "visual_style": "平面束旋转",
+          "efficiency_tags": [
+            "平面束绕直线旋转",
+            "扫过定点"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "c91f722cd1bfb875ae9fb872d543926c728c55797f2ca867c720498f2e638fe3"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}

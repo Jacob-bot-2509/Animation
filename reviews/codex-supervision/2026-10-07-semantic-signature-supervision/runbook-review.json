@@ -1,0 +1,71 @@
+{
+  "source_commit": "f0600dbfcc170135988fdf908dd7a4affe8d5869",
+  "input_bindings": [
+    {
+      "path": "reviews/2026-10-07-witness-runbook.md",
+      "archived_path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/runbook-inputs/reviews/2026-10-07-witness-runbook.md",
+      "sha256": "407d2825a2ca8091e5a1f0bfb4cd36af296e65dfeb502a2f4b47a70445f01541",
+      "bytes": 2415
+    },
+    {
+      "path": "tools/sandbox_external_test_driver.py",
+      "archived_path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/runbook-inputs/tools/sandbox_external_test_driver.py",
+      "sha256": "99324c8a5343ab1379f290f1c9b2b46f70ae13e3a3f346e23249f6c1bc236292",
+      "bytes": 24767
+    },
+    {
+      "path": "tools/sandbox_witness_receiver.py",
+      "archived_path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/runbook-inputs/tools/sandbox_witness_receiver.py",
+      "sha256": "571f4ce31465a84147395abd9778845194ac591371234737ccf2abeebc6be75e",
+      "bytes": 13428
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-witness-mail-review/release/witness_receiver_v2.exe",
+      "sha256": "d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad",
+      "bytes": 8658714,
+      "archived_in": "prior frozen witness-mail-review release; referenced by full digest"
+    }
+  ],
+  "validated_flags": {
+    "sandbox_witness_receiver.py": [
+      "--bind",
+      "--log",
+      "--output",
+      "--seconds",
+      "--selftest",
+      "--serve",
+      "--tcp-port",
+      "--udp-port"
+    ],
+    "sandbox_external_test_driver.py": [
+      "--bind",
+      "--execute-native",
+      "--observe-seconds",
+      "--out",
+      "--protocol",
+      "--receiver-log",
+      "--receiver-rc",
+      "--receiver-summary",
+      "--reconcile",
+      "--round",
+      "--scope",
+      "--tcp-port",
+      "--udp-port"
+    ]
+  },
+  "fixed_issues": [
+    "8-character SHA prefix replaced by full digest",
+    "selftest success criterion corrected to JSON failures and rc",
+    "receiver must listen before connectivity check",
+    "LISTENING corrected to actual JSON kind listening",
+    "PowerShell immediate LASTEXITCODE capture replaces cmd errorlevel syntax",
+    "complete receiver summary/log/rc handoff and full reconcile flags",
+    "per-round nonce count corrected from 9 to 6",
+    "external global IPv6 must actually be outside sender LAN/prefix",
+    "fresh per-round paths and actual full observation window"
+  ],
+  "qualification": "PASS_REPAIRED_RUNBOOK_STATIC_CONTRACT",
+  "experiment_executed_this_review": false,
+  "native": "UNVERIFIED",
+  "production": "CLOSED"
+}

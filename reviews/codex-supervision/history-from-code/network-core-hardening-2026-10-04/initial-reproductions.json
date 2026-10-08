@@ -1,0 +1,94 @@
+{
+  "judgment_cases": [
+    {
+      "case": "late_before",
+      "result": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "negative_listener",
+      "result": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "zero_client",
+      "result": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "sid_lower",
+      "result": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "Exemption list unknown or tested SID exempt",
+          "Exemption list unknown or tested SID exempt"
+        ],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "sid_zero_padding",
+      "result": {
+        "verdict": "PASS_LOCAL_LOOPBACK",
+        "reasons": [],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "probe_upper",
+      "result": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "Unattributed network data"
+        ],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    },
+    {
+      "case": "probe_zero_padding",
+      "result": {
+        "verdict": "UNVERIFIED",
+        "reasons": [
+          "Unattributed network data"
+        ],
+        "scope": "Only tested local endpoints/window; not external networking or production isolation",
+        "contract": "local-loopback-os-policy-v1"
+      }
+    }
+  ],
+  "sid_api_cases": [
+    {
+      "input": "S-1-15-2-123-456",
+      "api_ok": true,
+      "error": null,
+      "canonical": "S-1-15-2-123-456"
+    },
+    {
+      "input": "s-1-15-2-123-456",
+      "api_ok": true,
+      "error": null,
+      "canonical": "S-1-15-2-123-456"
+    },
+    {
+      "input": "S-1-15-2-00123-00456",
+      "api_ok": true,
+      "error": null,
+      "canonical": "S-1-15-2-123-456"
+    }
+  ]
+}

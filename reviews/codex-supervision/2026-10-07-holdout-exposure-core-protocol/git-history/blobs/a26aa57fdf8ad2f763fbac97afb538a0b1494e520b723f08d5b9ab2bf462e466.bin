@@ -1,0 +1,40 @@
+__pycache__/
+*.pyc
+data/raw/
+data/train/
+data/eval/
+data/test/
+*.log
+.venv/
+.env
+checkpoints/
+outputs/
+
+# Secrets and local configuration
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+# Real model/data assets (review fixtures remain tracked explicitly)
+/models/
+/.models/
+*.safetensors
+*.gguf
+pytorch_model*.bin
+checkpoint-*/
+/data/**/*.jsonl
+/data/**/*.parquet
+*.mp4
+*.mov
+*.webm
+# Local caches, environments, IDE and bridge scratch
+.pytest_cache/
+.cache/
+venv/
+.vscode/
+.idea/
+.bridge_tmp/
+
+# 正式样本入口 JSONL 入库(用户授权 2026-10-03;真实大资产仍不入库)
+!data/v1/raw/*.jsonl

@@ -1,0 +1,207 @@
+{
+  "time": "2026-10-05T13:36:09.826658+08:00",
+  "scope": "新增逐题与方法核对；不是随机独立留出校准，后续规则使用即成为开发例",
+  "manifest_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+  "detector_sha256_before": "e6de8472e57ef58193d866c55cfba82757f98a8990b10fe6e48e787d93c3e27b",
+  "new_pairs": [
+    {
+      "train_id": "linalg-048",
+      "query_id": "eval-linalg-015-s1",
+      "train_source": {
+        "path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "line": 1,
+        "sha256": "26162c347c464a98a38cdb56a995e084fd7479fffdaec8c6c9024139329915bd",
+        "file_sha256": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4"
+      },
+      "query_source": {
+        "path": "data/v2/eval/dataset_eval.jsonl",
+        "line": 238,
+        "sha256": "2384c69e87fbc54f1f17ec1778655366b7123f962f03ca4eaad859ab5b5ac6fb",
+        "file_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866"
+      },
+      "train_problem": "已知矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，分析它对应的线性变换对二维平面产生的几何影响。",
+      "train_solution": "该矩阵对应的线性变换将标准基向量 $\\vec{e_1} = (1,0)$ 映射为 $(2,1)$，$\\vec{e_2} = (0,1)$ 映射为 $(1,2)$。该矩阵为对称矩阵，特征值为 $3$ 和 $1$，对应正交特征方向 $(1,1)$ 与 $(1,-1)$：变换是沿这两个方向的纯拉伸（无剪切），沿 $(1,1)$ 方向拉伸为原来的 3 倍，沿 $(1,-1)$ 方向保持不变。为了具体分析，可以计算其行列式 $\\det(A) = 2\\times2 - 1\\times1 = 3$，说明变换后单位正方形的面积扩大为原来的3倍。",
+      "query_problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "query_method": "特征方程",
+      "query_solution": "$|\\lambda I-A|=\\begin{vmatrix}\\lambda-1&-2\\\\-2&\\lambda-1\\end{vmatrix}=(\\lambda-1)^2-4=\\lambda^2-2\\lambda-3=(\\lambda-3)(\\lambda+1)$，$\\lambda=3,-1$。$\\lambda=3$：$(3I-A)v=0$，即 $\\begin{pmatrix}2&-2\\\\-2&2\\end{pmatrix}v=0$，$v=(1,1)^T$。$\\lambda=-1$：$(-I-A)v=0$，即 $\\begin{pmatrix}-2&-2\\\\-2&-2\\end{pmatrix}v=0$，$v=(1,-1)^T$。",
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为[[u,v],[v,u]]二阶对称矩阵，固定方向(1,1)/(1,-1)，特征值u+v/u-v；训练已给完整谱信息。仅更换系数并将现成特征方向装入P/Q/投影外积，没有新的重根、维数、参数或退化分支。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "31/75",
+        "rule": "structure-candidates-v2"
+      },
+      "train_signature": [
+        "高等代数",
+        "其他[线性变换]"
+      ],
+      "query_signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "active_training": true
+    },
+    {
+      "train_id": "linalg-048",
+      "query_id": "eval-linalg-015-s3",
+      "train_source": {
+        "path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "line": 1,
+        "sha256": "26162c347c464a98a38cdb56a995e084fd7479fffdaec8c6c9024139329915bd",
+        "file_sha256": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4"
+      },
+      "query_source": {
+        "path": "data/v2/eval/dataset_eval.jsonl",
+        "line": 240,
+        "sha256": "5c155f5314530c6598a9e910e3abf46c4793ac1d9e0e919038d8f241de216f1c",
+        "file_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866"
+      },
+      "train_problem": "已知矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，分析它对应的线性变换对二维平面产生的几何影响。",
+      "train_solution": "该矩阵对应的线性变换将标准基向量 $\\vec{e_1} = (1,0)$ 映射为 $(2,1)$，$\\vec{e_2} = (0,1)$ 映射为 $(1,2)$。该矩阵为对称矩阵，特征值为 $3$ 和 $1$，对应正交特征方向 $(1,1)$ 与 $(1,-1)$：变换是沿这两个方向的纯拉伸（无剪切），沿 $(1,1)$ 方向拉伸为原来的 3 倍，沿 $(1,-1)$ 方向保持不变。为了具体分析，可以计算其行列式 $\\det(A) = 2\\times2 - 1\\times1 = 3$，说明变换后单位正方形的面积扩大为原来的3倍。",
+      "query_problem": "求矩阵 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的特征值与特征向量，并将其对角化。",
+      "query_method": "对称矩阵正交对角化",
+      "query_solution": "归一化特征向量 $q_1=\\dfrac{1}{\\sqrt2}(1,1)^T$、$q_2=\\dfrac{1}{\\sqrt2}(1,-1)^T$（自动正交），取 $Q=\\dfrac{1}{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$（$Q$ 为正交矩阵，$Q^{-1}=Q^T$）。$Q^TAQ=\\begin{pmatrix}3&0\\\\0&-1\\end{pmatrix}$，验证：$Q^TAQ=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}=\\dfrac{1}{2}\\begin{pmatrix}3&3\\\\-1&1\\end{pmatrix}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}=\\dfrac{1}{2}\\begin{pmatrix}6&0\\\\0&-2\\end{pmatrix}$。",
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为[[u,v],[v,u]]二阶对称矩阵，固定方向(1,1)/(1,-1)，特征值u+v/u-v；训练已给完整谱信息。仅更换系数并将现成特征方向装入P/Q/投影外积，没有新的重根、维数、参数或退化分支。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "31/75",
+        "rule": "structure-candidates-v2"
+      },
+      "train_signature": [
+        "高等代数",
+        "其他[线性变换]"
+      ],
+      "query_signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "active_training": true
+    },
+    {
+      "train_id": "linalg-048",
+      "query_id": "test-linalg-025",
+      "train_source": {
+        "path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "line": 1,
+        "sha256": "26162c347c464a98a38cdb56a995e084fd7479fffdaec8c6c9024139329915bd",
+        "file_sha256": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4"
+      },
+      "query_source": {
+        "path": "data/v2/test/dataset_test.jsonl",
+        "line": 120,
+        "sha256": "2854903db735df9dca8bbaf5e100bba08e6e3f6edb7fa32fd56cc8967a51d962",
+        "file_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a"
+      },
+      "train_problem": "已知矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$，分析它对应的线性变换对二维平面产生的几何影响。",
+      "train_solution": "该矩阵对应的线性变换将标准基向量 $\\vec{e_1} = (1,0)$ 映射为 $(2,1)$，$\\vec{e_2} = (0,1)$ 映射为 $(1,2)$。该矩阵为对称矩阵，特征值为 $3$ 和 $1$，对应正交特征方向 $(1,1)$ 与 $(1,-1)$：变换是沿这两个方向的纯拉伸（无剪切），沿 $(1,1)$ 方向拉伸为原来的 3 倍，沿 $(1,-1)$ 方向保持不变。为了具体分析，可以计算其行列式 $\\det(A) = 2\\times2 - 1\\times1 = 3$，说明变换后单位正方形的面积扩大为原来的3倍。",
+      "query_problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+      "query_method": null,
+      "query_solution": "特征值 $\\lambda_1=3$、$\\lambda_2=-1$（test-linalg-008），单位特征向量 $u_1=\\dfrac{1}{\\sqrt2}(1,1)^T$、$u_2=\\dfrac{1}{\\sqrt2}(1,-1)^T$。$u_1u_1^T=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$u_2u_2^T=\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$。谱分解 $A=3u_1u_1^T+(-1)u_2u_2^T=\\dfrac{3}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}-\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。",
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为[[u,v],[v,u]]二阶对称矩阵，固定方向(1,1)/(1,-1)，特征值u+v/u-v；训练已给完整谱信息。仅更换系数并将现成特征方向装入P/Q/投影外积，没有新的重根、维数、参数或退化分支。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "29/82",
+        "rule": "structure-candidates-v2"
+      },
+      "train_signature": [
+        "高等代数",
+        "其他[线性变换]"
+      ],
+      "query_signature": [
+        "高等代数",
+        "其他[谱分解×对称矩阵]"
+      ],
+      "active_training": true
+    },
+    {
+      "train_id": "linalg-049",
+      "query_id": "test-linalg-025",
+      "train_source": {
+        "path": "reviews/codex-supervision/2026-10-05-mail-handling/candidate-recovery/dataset_linalg.jsonl",
+        "line": 2,
+        "sha256": "c1768731bcc8b4d3934dcf4898a2fa818c63db1167782c3c80d8e1616cdab2b7",
+        "file_sha256": "f4ec39a65631b21c7c3667aaea8a3c0dd4d40e06b663a3b88dbee9b88e4c78f9"
+      },
+      "query_source": {
+        "path": "data/v2/test/dataset_test.jsonl",
+        "line": 120,
+        "sha256": "2854903db735df9dca8bbaf5e100bba08e6e3f6edb7fa32fd56cc8967a51d962",
+        "file_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a"
+      },
+      "train_problem": "求矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+      "train_solution": "特征方程为 $|\\lambda I - A| = (\\lambda - 2)^2 - 1 = 0$，解得特征值 $\\lambda_1 = 3, \\lambda_2 = 1$。对于 $\\lambda_1 = 3$，解方程 $(3I - A)x = 0$ 得特征向量 $(1, 1)^T$。对于 $\\lambda_2 = 1$，解得特征向量 $(1, -1)^T$。几何上，整个空间在变换时，特征向量 $(1,1)$ 的方向保持不变，长度拉伸为原来的3倍；特征向量 $(1,-1)$ 的方向也保持不变，长度保持为原来的1倍。",
+      "query_problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+      "query_method": null,
+      "query_solution": "特征值 $\\lambda_1=3$、$\\lambda_2=-1$（test-linalg-008），单位特征向量 $u_1=\\dfrac{1}{\\sqrt2}(1,1)^T$、$u_2=\\dfrac{1}{\\sqrt2}(1,-1)^T$。$u_1u_1^T=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$u_2u_2^T=\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$。谱分解 $A=3u_1u_1^T+(-1)u_2u_2^T=\\dfrac{3}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}-\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。",
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为[[u,v],[v,u]]二阶对称矩阵，固定方向(1,1)/(1,-1)，特征值u+v/u-v；训练已给完整谱信息。仅更换系数并将现成特征方向装入P/Q/投影外积，没有新的重根、维数、参数或退化分支。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "2/5",
+        "rule": "structure-candidates-v2"
+      },
+      "train_signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "query_signature": [
+        "高等代数",
+        "其他[谱分解×对称矩阵]"
+      ],
+      "active_training": false
+    },
+    {
+      "train_id": "linalg-068",
+      "query_id": "test-linalg-025",
+      "train_source": {
+        "path": "reviews/codex-supervision/2026-10-05-mail-handling/candidate-recovery/dataset_linalg.jsonl",
+        "line": 21,
+        "sha256": "046fb0213ec56508885335e26a8371ae4f7f913734664fe6ad3b75bdd01cb2bc",
+        "file_sha256": "f4ec39a65631b21c7c3667aaea8a3c0dd4d40e06b663a3b88dbee9b88e4c78f9"
+      },
+      "query_source": {
+        "path": "data/v2/test/dataset_test.jsonl",
+        "line": 120,
+        "sha256": "2854903db735df9dca8bbaf5e100bba08e6e3f6edb7fa32fd56cc8967a51d962",
+        "file_sha256": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a"
+      },
+      "train_problem": "将实对称矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 正交对角化。",
+      "train_solution": "特征值 $\\lambda_1=3$ 对应特征向量 $(1,1)^T/\\sqrt{2}$，$\\lambda_2=1$ 对应 $(1,-1)^T/\\sqrt{2}$。两个特征向量正交。正交矩阵 $Q=\\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$，$Q^TAQ=\\operatorname{diag}(3,1)$。",
+      "query_problem": "求 $A=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$ 的谱分解 $A=\\lambda_1u_1u_1^T+\\lambda_2u_2u_2^T$。",
+      "query_method": null,
+      "query_solution": "特征值 $\\lambda_1=3$、$\\lambda_2=-1$（test-linalg-008），单位特征向量 $u_1=\\dfrac{1}{\\sqrt2}(1,1)^T$、$u_2=\\dfrac{1}{\\sqrt2}(1,-1)^T$。$u_1u_1^T=\\dfrac{1}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$，$u_2u_2^T=\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$。谱分解 $A=3u_1u_1^T+(-1)u_2u_2^T=\\dfrac{3}{2}\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}-\\dfrac{1}{2}\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}=\\begin{pmatrix}1&2\\\\2&1\\end{pmatrix}$。",
+      "review_label": "DIRECT_TEMPLATE_OVERLAP",
+      "reason": "同为[[u,v],[v,u]]二阶对称矩阵，固定方向(1,1)/(1,-1)，特征值u+v/u-v；训练已给完整谱信息。仅更换系数并将现成特征方向装入P/Q/投影外积，没有新的重根、维数、参数或退化分支。",
+      "prediction_before": {
+        "candidate": false,
+        "coverage": "UNKNOWN",
+        "reasons": [],
+        "score": "29/66",
+        "rule": "structure-candidates-v2"
+      },
+      "train_signature": [
+        "高等代数",
+        "特征值对角化"
+      ],
+      "query_signature": [
+        "高等代数",
+        "其他[谱分解×对称矩阵]"
+      ],
+      "active_training": false
+    }
+  ],
+  "new_pair_count": 5,
+  "calibrated": false,
+  "source_labels_unchanged": true,
+  "counts_note": "旧15对为旧复核代表方法记录，本次按具体方法ID新增5对，不声称已穷举所有方法组合"
+}

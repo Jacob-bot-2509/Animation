@@ -1,0 +1,1419 @@
+{
+  "simulation_only": true,
+  "snapshot_sha256": "da3dc4cf4bb1a6e1944b34ba10c033894c6efe155d635369452bb0d54b71ee87",
+  "builtin": {
+    "cases": [
+      {
+        "name": "N1 denied_write 目标出现",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N2 denied_read 内容泄漏",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N3 控制端失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N4 令牌证据缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N5 SID 不符",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N6 授予类哈希不一致",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N7 授予类无记录",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N8 拒绝类 winerror 非 5",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N9 拒绝类结果无法解释",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N10 沙箱未启动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N11 拒写目标状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N12 拒读泄漏状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N13 沙箱超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N14 控制超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N15 控制 spawned 非布尔",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N16 未知场景 kind",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N17 客户端自哈希缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "P1 granted_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P2 denied_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P3 denied_read 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "case_baseline": {
+    "cases": {
+      "granted_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "granted_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      }
+    },
+    "raw": {
+      "granted_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-ctrl-00000000000000000000000000000001.bin",
+            "00000000000000000000000000000001"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-sb-00000000000000000000000000000002.bin",
+            "00000000000000000000000000000002"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/work/gw-ctrl-00000000000000000000000000000001.bin",
+        "sb_target": "/work/gw-sb-00000000000000000000000000000002.bin",
+        "sb_pre_exists": false,
+        "ctrl_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "ctrl_expected_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "sb_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187",
+        "sb_expected_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+      },
+      "granted_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/work/granted-read.bin",
+        "expected_sha256": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_before": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_after": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+      },
+      "denied_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-sb-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+        "ctrl_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "ctrl_expected_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "sb_target": "/denied/dw-sb-00000000000000000000000000000004.bin"
+      },
+      "denied_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+      }
+    },
+    "overall": "PASS_LOCAL_FILE_ACL"
+  },
+  "case_read_mutation": {
+    "cases": {
+      "granted_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "granted_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      }
+    },
+    "raw": {
+      "granted_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-ctrl-00000000000000000000000000000001.bin",
+            "00000000000000000000000000000001"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-sb-00000000000000000000000000000002.bin",
+            "00000000000000000000000000000002"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/work/gw-ctrl-00000000000000000000000000000001.bin",
+        "sb_target": "/work/gw-sb-00000000000000000000000000000002.bin",
+        "sb_pre_exists": false,
+        "ctrl_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "ctrl_expected_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "sb_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187",
+        "sb_expected_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+      },
+      "granted_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/work/granted-read.bin",
+        "expected_sha256": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_before": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_after": "2d01a7233d4227589d1ce7d52a0002d4ecee2337588da360a95a5d5e8b8d5c6d"
+      },
+      "denied_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-sb-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+        "ctrl_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "ctrl_expected_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "sb_target": "/denied/dw-sb-00000000000000000000000000000004.bin"
+      },
+      "denied_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+      }
+    },
+    "overall": "PASS_LOCAL_FILE_ACL"
+  },
+  "case_preexisting_no_write": {
+    "cases": {
+      "granted_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "granted_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      }
+    },
+    "raw": {
+      "granted_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-ctrl-00000000000000000000000000000001.bin",
+            "00000000000000000000000000000001"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/work/gw-sb-00000000000000000000000000000002.bin",
+            "00000000000000000000000000000002"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/work/gw-ctrl-00000000000000000000000000000001.bin",
+        "sb_target": "/work/gw-sb-00000000000000000000000000000002.bin",
+        "sb_pre_exists": true,
+        "ctrl_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "ctrl_expected_sha256": "e0cca2965509df678c8064f5e0b9076016fa752f88a6c749768db83479450cc5",
+        "sb_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187",
+        "sb_expected_sha256": "d2b1f1d83f0ad4f52dec8a1e2091f5c94ffad00ed3528362353fbe97aacd0187"
+      },
+      "granted_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/work/granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/work/granted-read.bin",
+        "expected_sha256": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_before": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6",
+        "hash_after": "19d8d35c06ab2cb2ae937b5b8dd4c8570a15280b813e6f0c534b258c9954c7c6"
+      },
+      "denied_write": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "wrote",
+            "content_hash": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "write",
+            "/denied/dw-sb-00000000000000000000000000000004.bin",
+            "00000000000000000000000000000004"
+          ],
+          "raw_out": "mock"
+        },
+        "ctrl_target": "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+        "ctrl_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "ctrl_expected_sha256": "a20248c7f641bea3ab7e1640ea5ac3a6b69d2d209ccc6df16e9677f0069b35dc",
+        "sb_target": "/denied/dw-sb-00000000000000000000000000000004.bin"
+      },
+      "denied_read": {
+        "control": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": null,
+            "outcome": "read",
+            "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "sandbox": {
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "sid": "S-1-15-2-1"
+            },
+            "client_sha256": "client",
+            "exe_sha256": "exe",
+            "site_absent": true,
+            "executable": "/runtime/python.exe",
+            "winerror": 5,
+            "outcome": "denied",
+            "content_hash": null
+          },
+          "command": [
+            "/runtime/python.exe",
+            "-X",
+            "utf8",
+            "/work/client.py",
+            "read",
+            "/denied/sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "raw_out": "mock"
+        },
+        "target": "/denied/sentinel.bin",
+        "expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_before": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+        "hash_after": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+      }
+    },
+    "overall": "PASS_LOCAL_FILE_ACL"
+  },
+  "case_fail_lost_after_error": {
+    "error": "RuntimeError('later read failure after denied-write breakthrough')",
+    "calls": [
+      {
+        "target": "/work/gw-ctrl-00000000000000000000000000000001.bin",
+        "sandbox": false,
+        "operation": "write"
+      },
+      {
+        "target": "/work/gw-sb-00000000000000000000000000000002.bin",
+        "sandbox": true,
+        "operation": "write"
+      },
+      {
+        "target": "/work/granted-read.bin",
+        "sandbox": false,
+        "operation": "read"
+      },
+      {
+        "target": "/work/granted-read.bin",
+        "sandbox": true,
+        "operation": "read"
+      },
+      {
+        "target": "/denied/dw-ctrl-00000000000000000000000000000004.bin",
+        "sandbox": false,
+        "operation": "write"
+      },
+      {
+        "target": "/denied/dw-sb-00000000000000000000000000000004.bin",
+        "sandbox": true,
+        "operation": "write"
+      },
+      {
+        "target": "/denied/sentinel.bin",
+        "sandbox": false,
+        "operation": "read"
+      },
+      {
+        "target": "/denied/sentinel.bin",
+        "sandbox": true,
+        "operation": "read"
+      }
+    ],
+    "breakthrough_file_exists": true,
+    "returned_partial_record": false
+  },
+  "main_selftest_false": {
+    "exit_code": 2,
+    "evidence": {
+      "/evidence/file-accept-results-000000000000.json": {
+        "schema": 2,
+        "run_id": "000000000000",
+        "contract": "local-file-acl-v1",
+        "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+        "state": "COMPLETE",
+        "overall": "PASS_LOCAL_FILE_ACL",
+        "production_gate": "CLOSED",
+        "command": [
+          "/runtime/python.exe",
+          "review"
+        ],
+        "work": "/support/file-work-000000000000",
+        "denied_dir": "/support/file-denied-000000000000",
+        "runtime": "/runtime/python.exe",
+        "profile": "/profile",
+        "expected_sid": "S-1-15-2-1",
+        "pre_granted_acl": [
+          [
+            "/runtime",
+            "read"
+          ],
+          [
+            "/support/file-work-000000000000",
+            "read_write"
+          ]
+        ],
+        "allowed_dirs": [],
+        "sandbox_env": {
+          "SYSTEMROOT": "C:\\Windows",
+          "SystemDrive": "C:",
+          "windir": "C:\\windows",
+          "USERNAME": "Jacap",
+          "USERDOMAIN": "JACAPO",
+          "PATH": "/runtime;C:\\Windows\\System32",
+          "TEMP": "/support/file-work-000000000000",
+          "TMP": "/support/file-work-000000000000",
+          "LOCALAPPDATA": "/profile",
+          "APPDATA": "/profile",
+          "USERPROFILE": "/profile",
+          "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+        },
+        "negative_regressions": {
+          "all_hold": false,
+          "cases": [
+            {
+              "holds": false
+            }
+          ]
+        },
+        "runtime_pth": "Lib\nDLLs\n.\n",
+        "runtime_pth_ok": true,
+        "source_hashes": {
+          "script_sha256": "da3dc4cf4bb1a6e1944b34ba10c033894c6efe155d635369452bb0d54b71ee87",
+          "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+        },
+        "case": {
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "raw": {
+            "measured": "payload"
+          }
+        }
+      }
+    },
+    "native_calls": [],
+    "simulated_events": [
+      [
+        "mkdir",
+        "/evidence"
+      ],
+      [
+        "mkdir",
+        "/support/file-work-000000000000"
+      ],
+      [
+        "mkdir",
+        "/support/file-denied-000000000000"
+      ],
+      [
+        "grant",
+        "/runtime",
+        false
+      ],
+      [
+        "grant",
+        "/support/file-work-000000000000",
+        true
+      ]
+    ],
+    "case_calls": [
+      "case-called"
+    ]
+  },
+  "main_post_runtime_change": {
+    "exit_code": 0,
+    "evidence": {
+      "/evidence/file-accept-results-000000000000.json": {
+        "schema": 2,
+        "run_id": "000000000000",
+        "contract": "local-file-acl-v1",
+        "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+        "state": "COMPLETE",
+        "overall": "PASS_LOCAL_FILE_ACL",
+        "production_gate": "CLOSED",
+        "command": [
+          "/runtime/python.exe",
+          "review"
+        ],
+        "work": "/support/file-work-000000000000",
+        "denied_dir": "/support/file-denied-000000000000",
+        "runtime": "/runtime/python.exe",
+        "profile": "/profile",
+        "expected_sid": "S-1-15-2-1",
+        "pre_granted_acl": [
+          [
+            "/runtime",
+            "read"
+          ],
+          [
+            "/support/file-work-000000000000",
+            "read_write"
+          ]
+        ],
+        "allowed_dirs": [],
+        "sandbox_env": {
+          "SYSTEMROOT": "C:\\Windows",
+          "SystemDrive": "C:",
+          "windir": "C:\\windows",
+          "USERNAME": "Jacap",
+          "USERDOMAIN": "JACAPO",
+          "PATH": "/runtime;C:\\Windows\\System32",
+          "TEMP": "/support/file-work-000000000000",
+          "TMP": "/support/file-work-000000000000",
+          "LOCALAPPDATA": "/profile",
+          "APPDATA": "/profile",
+          "USERPROFILE": "/profile",
+          "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+        },
+        "negative_regressions": {
+          "cases": [
+            {
+              "name": "N1 denied_write 目标出现",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N2 denied_read 内容泄漏",
+              "verdict": "FAIL",
+              "expect": "FAIL",
+              "holds": true
+            },
+            {
+              "name": "N3 控制端失败",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N4 令牌证据缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N5 SID 不符",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N6 授予类哈希不一致",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N7 授予类无记录",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N8 拒绝类 winerror 非 5",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N9 拒绝类结果无法解释",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N10 沙箱未启动",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N11 拒写目标状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N12 拒读泄漏状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N13 沙箱超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N14 控制超时状态未知",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N15 控制 spawned 非布尔",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N16 未知场景 kind",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "N17 客户端自哈希缺失",
+              "verdict": "UNVERIFIED",
+              "expect": "UNVERIFIED",
+              "holds": true
+            },
+            {
+              "name": "P1 granted_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P2 denied_write 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            },
+            {
+              "name": "P3 denied_read 基线",
+              "verdict": "PASS",
+              "expect": "PASS",
+              "holds": true
+            }
+          ],
+          "all_hold": true
+        },
+        "runtime_pth": "Lib\nDLLs\n.\n",
+        "runtime_pth_ok": true,
+        "source_hashes": {
+          "script_sha256": "da3dc4cf4bb1a6e1944b34ba10c033894c6efe155d635369452bb0d54b71ee87",
+          "appcontainer_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "win_job_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "network_isolation_sha256": "a12e88e5e6bc19e41fa2a12df7419122e8cb6b257f10c2f49e1dcb567e11b0c2",
+          "runtime_python_sha256": "2f7e281ac635c8e6a38ddb85882fd8a2c6f64bd4c9a79b2df9b750955407d518",
+          "client_file_sha256": "c95a8003f8e31ca7c96d94835fc67ccc659dc587648903ab8feacb688fb5851f"
+        },
+        "case": {
+          "overall": "PASS_LOCAL_FILE_ACL",
+          "raw": {
+            "measured": "payload"
+          }
+        }
+      }
+    },
+    "native_calls": [],
+    "simulated_events": [
+      [
+        "mkdir",
+        "/evidence"
+      ],
+      [
+        "mkdir",
+        "/support/file-work-000000000000"
+      ],
+      [
+        "mkdir",
+        "/support/file-denied-000000000000"
+      ],
+      [
+        "grant",
+        "/runtime",
+        false
+      ],
+      [
+        "grant",
+        "/support/file-work-000000000000",
+        true
+      ]
+    ],
+    "case_calls": [
+      "case-called"
+    ]
+  },
+  "main_error": {
+    "exit_code": 2,
+    "evidence": {
+      "/evidence/file-accept-error-000000000000.json": {
+        "state": "ERROR",
+        "overall": "UNVERIFIED",
+        "production_gate": "CLOSED",
+        "contract": "local-file-acl-v1",
+        "error": "RuntimeError('case failed with measured partial data')",
+        "traceback": "Traceback (most recent call last):\n  File \"<v2-ast>\", line 531, in main\n  File \"D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-04-file-v2-review\\reproduce_file_v2.py\", line 74, in trial\n    if mode=='error':raise RuntimeError('case failed with measured partial data')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: case failed with measured partial data\n",
+        "command": [
+          "/runtime/python.exe",
+          "review"
+        ],
+        "run_id": "000000000000",
+        "partial_results_keys": [
+          "schema",
+          "run_id",
+          "contract",
+          "scope",
+          "state",
+          "overall",
+          "production_gate",
+          "command",
+          "work",
+          "denied_dir",
+          "runtime",
+          "profile",
+          "expected_sid",
+          "pre_granted_acl",
+          "allowed_dirs",
+          "sandbox_env",
+          "negative_regressions",
+          "runtime_pth",
+          "runtime_pth_ok",
+          "source_hashes"
+        ]
+      }
+    },
+    "native_calls": [],
+    "simulated_events": [
+      [
+        "mkdir",
+        "/evidence"
+      ],
+      [
+        "mkdir",
+        "/support/file-work-000000000000"
+      ],
+      [
+        "mkdir",
+        "/support/file-denied-000000000000"
+      ],
+      [
+        "grant",
+        "/runtime",
+        false
+      ],
+      [
+        "grant",
+        "/support/file-work-000000000000",
+        true
+      ]
+    ],
+    "case_calls": [
+      "case-called"
+    ]
+  }
+}

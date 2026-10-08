@@ -1,0 +1,100 @@
+{
+  "unique_formulas": [
+    "N=\\sum_{1\\le i<j\\le30}I_{ij}",
+    "I_{ij}",
+    "i,j",
+    "\\binom{30}{2}=435",
+    "E(N)=435/365=87/73",
+    "1/365^2",
+    "E(N^2)=435/365+435\\cdot434/365^2",
+    "E(N)^2=E(N\\mathbf1_{\\{N>0\\}})^2\\le E(N^2)P(N>0)",
+    "P(N>0)\\ge435/799>1/2",
+    "P(N>0)=1-\\frac{365!}{335!\\,365^{30}}",
+    "1-\\frac{365!}{335!\\,365^{30}}",
+    "N=\\sum_{i<j}I_{ij}",
+    "435",
+    "P(N>0)\\ge E(N)^2/E(N^2)=435/799>1/2",
+    "P(N>0)=1-365!/(335!\\,365^{30})"
+  ],
+  "source_occurrences": [
+    {
+      "field": "solution",
+      "formula": "N=\\sum_{1\\le i<j\\le30}I_{ij}"
+    },
+    {
+      "field": "solution",
+      "formula": "I_{ij}"
+    },
+    {
+      "field": "solution",
+      "formula": "i,j"
+    },
+    {
+      "field": "solution",
+      "formula": "\\binom{30}{2}=435"
+    },
+    {
+      "field": "solution",
+      "formula": "E(N)=435/365=87/73"
+    },
+    {
+      "field": "solution",
+      "formula": "1/365^2"
+    },
+    {
+      "field": "solution",
+      "formula": "E(N^2)=435/365+435\\cdot434/365^2"
+    },
+    {
+      "field": "solution",
+      "formula": "E(N)^2=E(N\\mathbf1_{\\{N>0\\}})^2\\le E(N^2)P(N>0)"
+    },
+    {
+      "field": "solution",
+      "formula": "P(N>0)\\ge435/799>1/2"
+    },
+    {
+      "field": "solution",
+      "formula": "P(N>0)=1-\\frac{365!}{335!\\,365^{30}}"
+    },
+    {
+      "field": "answer",
+      "formula": "1-\\frac{365!}{335!\\,365^{30}}"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 0,
+      "formula": "N=\\sum_{i<j}I_{ij}"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 0,
+      "formula": "435"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 0,
+      "formula": "E(N)=435/365=87/73"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 1,
+      "formula": "1/365^2"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 1,
+      "formula": "E(N^2)=435/365+435\\cdot434/365^2"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 2,
+      "formula": "P(N>0)\\ge E(N)^2/E(N^2)=435/799>1/2"
+    },
+    {
+      "field": "scene_spec.steps",
+      "index": 3,
+      "formula": "P(N>0)=1-365!/(335!\\,365^{30})"
+    }
+  ]
+}

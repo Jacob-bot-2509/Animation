@@ -1,0 +1,537 @@
+{
+  "generated_at": "2026-10-02T16:12:48+00:00",
+  "tool": "tools/dataset_audit.py (只读)",
+  "contract": "DATASET_SCHEMA.md",
+  "scope": {
+    "jsonl": [
+      "data/v1/raw/dataset_calc.jsonl",
+      "data/v1/raw/dataset_geom.jsonl",
+      "data/v1/raw/dataset_linalg.jsonl",
+      "data/v1/raw/dataset_prob.jsonl"
+    ],
+    "json": [
+      "dataset_calc.json",
+      "dataset_geom.json",
+      "dataset_linalg.json",
+      "dataset_prob.json"
+    ],
+    "source_docs": [
+      "dataset.md"
+    ],
+    "excluded": [
+      "reviews/** fixtures(合成审查夹具,不参与训练)",
+      ".venv/**, runs/**, data 下其他非 dataset_* 文件"
+    ]
+  },
+  "totals": {
+    "pool_records_jsonl": 63,
+    "unique_ids_jsonl": 63,
+    "json_container_records": 63,
+    "all_records_incl_mirrors": 126
+  },
+  "severity_counts": {
+    "info": 100,
+    "hard": 5,
+    "quarantine": 132
+  },
+  "issue_code_counts": {
+    "A008": 63,
+    "C007": 26,
+    "C009": 1,
+    "I020": 1,
+    "L007": 1,
+    "M001": 1,
+    "M002": 1,
+    "M010": 1,
+    "M011": 1,
+    "M012": 1,
+    "P002": 63,
+    "P003": 63,
+    "S002": 9,
+    "S005": 4,
+    "SRC004": 1
+  },
+  "record_status_counts": {
+    "candidate": 63
+  },
+  "per_file": [
+    {
+      "file": "data/v1/raw/dataset_calc.jsonl",
+      "format": "jsonl",
+      "n_records": 19,
+      "sha256": "c4aa6ecbacab1e3f3a9ca047080200ee16b78435b24690bca4851c93f11911da",
+      "size": 32314,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 39,
+      "info": 21,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "C007",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_geom.jsonl",
+      "format": "jsonl",
+      "n_records": 11,
+      "sha256": "0f033af96a29bb01074fb05b9e30e54a2e7c4fec0d2b4b448d7fe19874f80db8",
+      "size": 15742,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 22,
+      "info": 14,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_linalg.jsonl",
+      "format": "jsonl",
+      "n_records": 23,
+      "sha256": "7921e0769a2b4b353ef2ab528c51e04712cf265efd40107248ec63c99eb14bf0",
+      "size": 29374,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 48,
+      "info": 38,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "C007",
+        "P002"
+      ]
+    },
+    {
+      "file": "data/v1/raw/dataset_prob.jsonl",
+      "format": "jsonl",
+      "n_records": 10,
+      "sha256": "e4e1e003d114172e45f41c2b25e72997addaf4f65be44c5e87cb7e87f5de063e",
+      "size": 16239,
+      "entry_status": "candidate",
+      "hard": 0,
+      "quarantine": 22,
+      "info": 17,
+      "hard_codes": [],
+      "quarantine_codes": [
+        "A008",
+        "C007",
+        "C009",
+        "P002"
+      ]
+    },
+    {
+      "file": "dataset_calc.json",
+      "format": "json-array",
+      "n_records": 19,
+      "sha256": "e37fbdabc3b927d57042030353fc827dcc11ba551cfd9cd050e63fe3ecf9defd",
+      "size": 32338,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_geom.json",
+      "format": "json-array",
+      "n_records": 11,
+      "sha256": "3f6d4dd875028ecfb1347832c61e3ddf0095bdc69552f46f614e70b414030019",
+      "size": 15758,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_linalg.json",
+      "format": "json-array",
+      "n_records": 23,
+      "sha256": "5ab230e7ea8b52f8cc764da1987a6cbbd87e64b74ddfdce18feb093aae6a5771",
+      "size": 29402,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset_prob.json",
+      "format": "json-array",
+      "n_records": 10,
+      "sha256": "7fa60144794cb8959e81db426330ca48c872ecbd690ff4554170b3ae2de582bf",
+      "size": 16254,
+      "entry_status": "rejected",
+      "hard": 1,
+      "quarantine": 0,
+      "info": 1,
+      "hard_codes": [
+        "S005"
+      ],
+      "quarantine_codes": []
+    },
+    {
+      "file": "dataset.md",
+      "format": "source-doc",
+      "n_records": 0,
+      "sha256": "466b28517fb8e38324f3b4ce7356500497cea42653226d22bfc61ee3f815500f",
+      "size": 93793,
+      "entry_status": "clean",
+      "hard": 0,
+      "quarantine": 0,
+      "info": 2,
+      "hard_codes": [],
+      "quarantine_codes": []
+    }
+  ],
+  "distribution": {
+    "category": {
+      "数学分析": 19,
+      "解析几何": 11,
+      "高等代数": 23,
+      "概率论": 10
+    },
+    "category_share": {
+      "数学分析": 0.3016,
+      "解析几何": 0.1746,
+      "高等代数": 0.3651,
+      "概率论": 0.1587
+    },
+    "sub_category": {
+      "数学分析/一般级数": 1,
+      "数学分析/傅立叶级数": 1,
+      "数学分析/函数项级数": 2,
+      "数学分析/反常积分": 2,
+      "数学分析/定积分的应用": 7,
+      "数学分析/导数": 1,
+      "数学分析/幂级数": 1,
+      "数学分析/极限": 1,
+      "数学分析/格林公式": 1,
+      "数学分析/正项级数": 1,
+      "数学分析/重积分": 1,
+      "概率论/中心极限定理": 1,
+      "概率论/几何概型": 1,
+      "概率论/可列可加性": 1,
+      "概率论/大数定律": 1,
+      "概率论/常见分布": 2,
+      "概率论/条件概率与独立性": 1,
+      "概率论/概率的公理化定义": 1,
+      "概率论/贝叶斯公式": 1,
+      "概率论/随机变量函数的分布": 1,
+      "解析几何/二次曲面分类": 2,
+      "解析几何/曲面与曲线": 1,
+      "解析几何/直线与平面": 4,
+      "解析几何/等距变换与仿射变换": 2,
+      "解析几何/非直纹面二次曲面": 2,
+      "高等代数/λ-矩阵": 2,
+      "高等代数/二次型": 2,
+      "高等代数/双线性函数与辛空间": 2,
+      "高等代数/多项式": 2,
+      "高等代数/欧几里得空间": 2,
+      "高等代数/特征值与特征向量": 1,
+      "高等代数/矩阵": 2,
+      "高等代数/线性变换": 3,
+      "高等代数/线性方程组": 2,
+      "高等代数/线性空间": 2,
+      "高等代数/行列式": 3
+    },
+    "per_file_category": {
+      "data/v1/raw/dataset_calc.jsonl": {
+        "数学分析": 19
+      },
+      "data/v1/raw/dataset_geom.jsonl": {
+        "解析几何": 11
+      },
+      "data/v1/raw/dataset_linalg.jsonl": {
+        "高等代数": 23
+      },
+      "data/v1/raw/dataset_prob.jsonl": {
+        "概率论": 10
+      }
+    },
+    "split_roles": {
+      "raw": 63,
+      "train": 0,
+      "eval": 0,
+      "test": 0,
+      "rejected": 0,
+      "note": "data/v1 下只有 raw/,无 train/eval/test/rejected 目录;样本角色=候选(raw)"
+    },
+    "license": {
+      "Internal-Research-Use-Only": 63
+    },
+    "source": {
+      "self-authored": 63
+    },
+    "scene_spec": {
+      "records": 63,
+      "objects_total": 268,
+      "steps_total": 290,
+      "objects_min": 3,
+      "objects_max": 9,
+      "steps_min": 4,
+      "steps_max": 7,
+      "animation_verified": 0
+    }
+  },
+  "duplicates": {
+    "ids": {
+      "duplicate_id_same_content": [],
+      "duplicate_id_conflict": []
+    },
+    "exact": {
+      "problem": [],
+      "scene_spec": []
+    },
+    "near_dups_threshold_0.7": [],
+    "top_pairs": [
+      {
+        "a": "linalg-049",
+        "b": "linalg-064",
+        "jaccard": 0.6981,
+        "ratio": 0.9615
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-068",
+        "jaccard": 0.4545,
+        "ratio": 0.7021
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-068",
+        "jaccard": 0.4098,
+        "ratio": 0.68
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-049",
+        "jaccard": 0.3521,
+        "ratio": 0.6545
+      },
+      {
+        "a": "linalg-057",
+        "b": "linalg-068",
+        "jaccard": 0.3279,
+        "ratio": 0.6737
+      },
+      {
+        "a": "calc-area-010",
+        "b": "calc-area-013",
+        "jaccard": 0.3261,
+        "ratio": 0.8116
+      },
+      {
+        "a": "linalg-048",
+        "b": "linalg-057",
+        "jaccard": 0.3108,
+        "ratio": 0.7027
+      },
+      {
+        "a": "calc-series-016",
+        "b": "calc-series-017",
+        "jaccard": 0.3103,
+        "ratio": 0.619
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-057",
+        "jaccard": 0.3,
+        "ratio": 0.7619
+      },
+      {
+        "a": "linalg-066",
+        "b": "linalg-068",
+        "jaccard": 0.3,
+        "ratio": 0.6957
+      },
+      {
+        "a": "linalg-049",
+        "b": "linalg-066",
+        "jaccard": 0.2941,
+        "ratio": 0.6667
+      },
+      {
+        "a": "linalg-050",
+        "b": "linalg-053",
+        "jaccard": 0.2838,
+        "ratio": 0.7706
+      },
+      {
+        "a": "linalg-064",
+        "b": "linalg-068",
+        "jaccard": 0.2698,
+        "ratio": 0.6596
+      },
+      {
+        "a": "linalg-057",
+        "b": "linalg-066",
+        "jaccard": 0.2535,
+        "ratio": 0.6214
+      },
+      {
+        "a": "calc-series-016",
+        "b": "calc-series-018",
+        "jaccard": 0.25,
+        "ratio": 0.5714
+      }
+    ]
+  },
+  "mirror_json_vs_jsonl": {
+    "pairs": 63,
+    "identical": 63,
+    "mismatched": []
+  },
+  "id_numbering": {
+    "calc": {
+      "count": 19,
+      "min": 1,
+      "max": 20,
+      "missing_numbers": [
+        14
+      ]
+    }
+  },
+  "source_doc_coverage": {
+    "source_doc": [
+      "dataset.md"
+    ],
+    "source_records": 63,
+    "source_unique_ids": 63,
+    "pool_ids": 63,
+    "dropped_ids": [],
+    "dropped_categories": {},
+    "unmatched_pool_ids": [],
+    "source_category_counts": {
+      "数学分析": 19,
+      "解析几何": 11,
+      "概率论": 10,
+      "高等代数": 23
+    }
+  },
+  "content_review": {
+    "file": null,
+    "n": 0,
+    "by_severity": {},
+    "items": []
+  },
+  "acceptance": {
+    "manifests": [],
+    "formal_splits": [],
+    "record_level_claims": [],
+    "doc_claims": [
+      {
+        "file": "README.md",
+        "line": 48,
+        "marker": "READY",
+        "text": "- **正式 READY 尚缺当前资产验收证据缺失时的显式阻断**。固定 MathTex/数学样例是环境诊断，不能替代当前数据或产物验收；不能仅凭 CLI 的 READY 开始训练。"
+      },
+      {
+        "file": "PROGRESS.md",
+        "line": 32,
+        "marker": "READY",
+        "text": "1. Claude Code 补正式 READY 的当前资产验收证据缺失阻断；环境样例仅标环境诊断。"
+      },
+      {
+        "file": "DATASET_REVIEW.md",
+        "line": 8,
+        "marker": "已验收",
+        "text": "- 状态: **clean**(候选数据集,**不是已验收训练集**)"
+      },
+      {
+        "file": "DATASET_REVIEW.md",
+        "line": 21,
+        "marker": "训练就绪",
+        "text": "- clean 不代表训练就绪;真实数据验收以全链路结果为准。"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 65,
+        "marker": "verified",
+        "text": "- 验证后状态才可升级:code 过 render_gate、render_status=verified、"
+      },
+      {
+        "file": "DATASET_SCHEMA.md",
+        "line": 71,
+        "marker": "已验收",
+        "text": "- **candidate ≠ 已验收**:进正式 manifest 前仍需用户确认(license 证据、"
+      },
+      {
+        "file": "data/README.md",
+        "line": 9,
+        "marker": "验收通过",
+        "text": "make_manifest 的 --out 必须位于 --dir 根目录，默认拒绝覆盖且不提供 --force。使用新的版本目录保留历史清单。扫描按首层 raw/train/eval/test 目录推断角色，当前还会登记其他文件；应人工核对，不能把生成清单当验收通过。"
+      },
+      {
+        "file": "PIPELINE_PLAN.md",
+        "line": 26,
+        "marker": "训练就绪",
+        "text": "1. 基础设施：合成样例/配置 → 全链路 dry-run 与反例报告；所有适用 L0–L6 通过才申请下一阶段。合成通过不等于训练就绪。"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 46,
+        "marker": "READY",
+        "text": "## 3. eval/test 冻结与 READY 证据目录规范"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 51,
+        "marker": "READY",
+        "text": "- READY(freeze_gate)要求:当前 manifest 的 eval/test **全量**被锁"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 53,
+        "marker": "READY",
+        "text": "无锁/部分覆盖/无关锁/坏锁/绑定不一致 → NOT READY"
+      },
+      {
+        "file": "NEXT_CYCLE_PLAN.md",
+        "line": 55,
+        "marker": "READY",
+        "text": "在 READY 输出中明确标识非资产验收证据"
+      },
+      {
+        "file": "REVIEW_BACKLOG.md",
+        "line": 3,
+        "marker": "READY",
+        "text": "更新时间：2026-10-01。独立复验 cd9fff6（含 a4eb3b9），加 Codex 强制锁绑定小修：144 tests + 29 subtests 通过。BR5 已知写保护反例在约定命名/发现范围关闭；BR4-b 当前 manifest 冻结覆盖与绑定通过，缺绑定放行已补。剩余是正式 READY 缺当前资…"
+      },
+      {
+        "file": "REVIEW_BACKLOG.md",
+        "line": 25,
+        "marker": "训练就绪",
+        "text": "| B2 | 严格 preflight 聚合所需门禁；诊断/静态通过不得等于训练就绪 | BR1 聚合、快照哈希及冻结证据覆盖/强制绑定通过；资产验收证据缺失尚无显式 UNVERIFIED 阻断（BR4-b 剩余） | 生成真实可执行训练计划前 |"
+      },
+      {
+        "file": "REVIEW_BACKLOG.md",
+        "line": 28,
+        "marker": "READY",
+        "text": "| B5 | 近重复阈值的分语言/长度校准 | 方法框架已实现；未校准状态已传播并阻断 READY；正式分语言/长度校准待真实数据 | 真实数据隔离验收前；不把 0.7 当已验证阈值 |"
+      }
+    ],
+    "doc_notes": [
+      "DATASET_REVIEW.md 声明总状态 = clean",
+      "DATASET_REVIEW.md 样本总数 = 63",
+      "DATASET_SCHEMA.md scene_spec 齐备条数 = 64",
+      "DATASET_SCHEMA.md license 条数 = 63",
+      "DATASET_SCHEMA.md schema 引用的审查结论 = rejected/3/87"
+    ],
+    "verdict": "未发现候选数据被标注为已验收训练数据:样本位于 data/v1/raw/(raw 角色)、无 manifest、无 train/eval/test 拆分",
+    "animation_verified_over_total": "0/63"
+  }
+}

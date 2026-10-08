@@ -13,6 +13,7 @@ def main():
     if len(matches)!=1:raise ValueError('Source ID missing or duplicated')
     original=matches[0];candidate=copy.deepcopy(original)
     candidate['scene_spec']['steps']=STEPS
+    candidate['scene_spec']['objects'][0]='带有刻度的白色直角坐标系'
     if len(STEPS)!=5 or any(len(step)>28 for step in STEPS):raise ValueError('Navigation layout invalid')
     for field in ('problem','solution','answer'):
         if candidate[field].encode('utf-8')!=original[field].encode('utf-8'):raise ValueError('Math field drift: '+field)

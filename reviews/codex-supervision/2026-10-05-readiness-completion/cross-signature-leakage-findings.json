@@ -1,0 +1,223 @@
+{
+  "manifest_sha256": "41b7204adb47dd0bbe13dee40d409b0456e5d8eb85a307fd94640dfaf9243ed5",
+  "scope": "补查原同签名候选未覆盖的153个评测/测试题文，并与全部56条活动训练题文对照；不依赖签名相等过滤",
+  "leakage_pairs": [
+    {
+      "query_id": "eval-calc-011-s1",
+      "train_id": "calc-series-016",
+      "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+      "train_problem": "求幂级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n \\cdot 2^n}$ 的收敛域及和函数。",
+      "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+      "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+      "query_row_sha256": "a9f6927e6b57342f90cdc3afe946747da22b4b554f183175b1abdeee995e9bd9",
+      "train_row_sha256": "0e61c7a8407d485fba8c52ebb87b0181bbc6ef8c4511096c0391f73e26bad211",
+      "j5": "17/63",
+      "query_signature": [
+        "数学分析",
+        "级数求和"
+      ],
+      "train_signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "label": "泄漏",
+      "reason": "训练已给含参数幂级数和函数；令 x=1 即覆盖评测同一求和任务。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-calc-013",
+      "train_id": "calc-series-019",
+      "query_problem": "求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n(n+2)}$ 的和。",
+      "train_problem": "判断正项级数 $\\sum_{n=1}^{\\infty} \\frac{1}{n^2+n}$ 的敛散性，若收敛，求其和。",
+      "query_hash": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+      "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+      "query_row_sha256": "0f158ed91c52123f11d884f0cea469d57ca4224caf76a4ab63e3a9819fc4b055",
+      "train_row_sha256": "37eb1c294e8fd5c6ba4846dcee6f0a5b6c86b0a2c58d67a5dc5e9e9d508cd3b4",
+      "j5": "7/29",
+      "query_signature": [
+        "数学分析",
+        "级数求和"
+      ],
+      "train_signature": [
+        "数学分析",
+        "级数敛散"
+      ],
+      "label": "泄漏",
+      "reason": "1/[n(n+1)] 改为 1/[n(n+2)]，仅常数间距改变，均为部分分式裂项求和。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-geom-003",
+      "train_id": "geom-021",
+      "query_problem": "求异面直线 $l_1:\\begin{cases}x=1+t\\\\y=2t\\\\z=3+t\\end{cases}$ 与 $l_2:\\begin{cases}x=2s\\\\y=1-s\\\\z=2s\\end{cases}$ 之间的距离。",
+      "train_problem": "求异面直线 $l_1: \\frac{x-1}{1} = \\frac{y}{-1} = \\frac{z+1}{2}$ 与 $l_2: \\frac{x}{2} = \\frac{y+1}{1} = \\frac{z-1}{1}$ 之间的距离。",
+      "query_hash": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+      "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+      "query_row_sha256": "a27f6829a3a47e5fed9332a8510d76907b7f5f99783b4c57e2941134addbe812",
+      "train_row_sha256": "22a9b4b6aa5b13208dfd1a88db6b6f711a7cdd2e0451b3745a7875fa712dc5da",
+      "j5": "3/55",
+      "query_signature": [
+        "解析几何",
+        "其他[异面直线×公垂线]"
+      ],
+      "train_signature": [
+        "解析几何",
+        "其他[直线与平面]"
+      ],
+      "label": "泄漏",
+      "reason": "两条异面直线距离，方向/点仅换数值及参数写法，仍为同一混合积除以叉积长度。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "eval-geom-011-s1",
+      "train_id": "geom-027",
+      "query_problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "train_problem": "判断直线 $l: \\frac{x-1}{1} = \\frac{y-2}{2} = \\frac{z-3}{3}$ 与椭球面 $x^2 + \\frac{y^2}{4} + \\frac{z^2}{9} = 1$ 是否有交点，若有，求交点的个数。",
+      "query_hash": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+      "train_hash": "c9b6325a77e2dfde5766b6a07d7fd6d0bb24b24dec4d3a9818d57bb30470087d",
+      "query_row_sha256": "2264f37e7fe1ffe74b69759006f088cc3a2c81168dbfc8b6d7e8be38373fdefa",
+      "train_row_sha256": "8c8b9e9ae167001b99c59bdc4f63e659d91760393c96620d709d0410e5acb8c0",
+      "j5": "2/109",
+      "query_signature": [
+        "解析几何",
+        "其他[曲面与曲线]"
+      ],
+      "train_signature": [
+        "解析几何",
+        "其他[非直纹面二次曲面]"
+      ],
+      "label": "泄漏",
+      "reason": "正定对角二次曲面由椭球系数改为球面系数，直线代入产生二次方程、判别式及根的结构一致。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-linalg-026",
+      "train_id": "linalg-059",
+      "query_problem": "将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。",
+      "train_problem": "将二次型 $f(x,y)=2x^2+2xy+2y^2$ 化为标准形，并确定其正负惯性指数。",
+      "query_hash": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+      "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+      "query_row_sha256": "922a140c19226f22ba9ead9f3f14840887af085c4148a849b87411fb2dc331d9",
+      "train_row_sha256": "dc2df46a5c6f5f68ea268ef9888dfc7eb983098e5dc3b078e7fcf73e868c9062",
+      "j5": "4/69",
+      "query_signature": [
+        "高等代数",
+        "其他[二次型×合同变换]"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "同为二元正定二次型标准化，仅系数改变，完成平方并作可逆线性替换。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-x-007",
+      "train_id": "linalg-059",
+      "query_problem": "用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。",
+      "train_problem": "将二次型 $f(x,y)=2x^2+2xy+2y^2$ 化为标准形，并确定其正负惯性指数。",
+      "query_hash": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+      "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+      "query_row_sha256": "f2f6148ad1e3ae399d36e0852539140a2e7470dde2971a39d1577cc1bcb7ba17",
+      "train_row_sha256": "dc2df46a5c6f5f68ea268ef9888dfc7eb983098e5dc3b078e7fcf73e868c9062",
+      "j5": "0",
+      "query_signature": [
+        "跨学科",
+        "特征值对角化"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "二元二次型谱分解/标准形核心相同，仅系数改变；惯性指数直接给双曲线类型。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-linalg-034",
+      "train_id": "linalg-060",
+      "query_problem": "判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。",
+      "train_problem": "判断二次型 $f(x,y,z)=x^2+2y^2+3z^2+2xy+2xz$ 是否正定。",
+      "query_hash": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+      "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+      "query_row_sha256": "8bdb71f029aed6f16d058439f8dc9f411000ae373e4681521d16cdc9f2182092",
+      "train_row_sha256": "33f75fceb538d86e9649bd70377125a66b36fdf1aa826335143148e53a9101ae",
+      "j5": "4/55",
+      "query_signature": [
+        "高等代数",
+        "其他[正交对角化×二次曲面分类]"
+      ],
+      "train_signature": [
+        "高等代数",
+        "其他[二次型]"
+      ],
+      "label": "泄漏",
+      "reason": "三元常系数二次型判正定核心相同；正定直接确定等值面为椭球，矩阵元素只改数值。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-prob-001",
+      "train_id": "prob-044",
+      "query_problem": "两车间各承担总产量的 $60\\%$ 与 $40\\%$，次品率分别为 $2\\%$ 与 $3\\%$。随机抽取一件产品发现是次品，求它来自第一车间的概率。",
+      "train_problem": "某种疾病的患病率为 0.1%（即千分之一）。有一种检测方法，对于患病者检测出阳性的概率为 99%，对于未患病者检测出阴性的概率为 99%，相应地假阳性率为 1%。若某人检测结果为阳性，求他实际患病的概率。",
+      "query_hash": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+      "train_hash": "ef359c8c6615596da21a6e3367becc6d19aa088a8121cff4b3081af2aab069c0",
+      "query_row_sha256": "ce830e5bb73b2e8ac95698257885eac8e224643d2ad9657a0c11cbe316417fef",
+      "train_row_sha256": "d1fbf095b57e7099e08794b3f90efe6b6a80d0b159551a2388c4e1a56ec23864",
+      "j5": "0",
+      "query_signature": [
+        "概率论",
+        "其他[全概率公式×贝叶斯公式]"
+      ],
+      "train_signature": [
+        "概率论",
+        "其他[贝叶斯公式]"
+      ],
+      "label": "泄漏",
+      "reason": "二元隐类别的贝叶斯后验，题干换成车间并改变先验/似然数字，计算结构相同。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    },
+    {
+      "query_id": "test-x-002",
+      "train_id": "prob-045",
+      "query_problem": "设 $X\\sim U(0,1)$，求 $Y=\\sqrt{X}$ 的密度与 $E[Y]$。",
+      "train_problem": "设随机变量 $X$ 服从区间 $(0, 1)$ 上的均匀分布，求 $Y = X^2$ 的概率密度函数。",
+      "query_hash": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+      "train_hash": "1b9fe3c51cb70bb3f811c2dcc8ea76de4f37bd1467077fb656fdcd07069065db",
+      "query_row_sha256": "32a171b7c7306e955a264106b816bf8a43da8f5fb85920d02803f7cf494258ee",
+      "train_row_sha256": "6d92a3772bfd5bf0d32d62bc6ccc138f0b792824ded59cb1b976073a716f3100",
+      "j5": "0",
+      "query_signature": [
+        "跨学科",
+        "其他[概率论×微积分]"
+      ],
+      "train_signature": [
+        "概率论",
+        "其他[随机变量函数的分布]"
+      ],
+      "label": "泄漏",
+      "reason": "区间(0,1)均匀变量的单调幂函数变换，指数2改为1/2，密度求解结构相同；期望为由密度直接积分的扩展。",
+      "reviewer": "Codex",
+      "definition_source": "2026-10-05 用户确认：同核心结构仅换数值需跨集合隔离"
+    }
+  ],
+  "additional_train_ids": [
+    "calc-series-016",
+    "calc-series-019",
+    "geom-021",
+    "geom-027",
+    "linalg-059",
+    "linalg-060",
+    "prob-044",
+    "prob-045"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "Only evaluating captured Boolean predicates; no process or sandbox launched",
+  "counterexamples": [
+    {
+      "case": "A1 positive control failed, sandbox emits invalid-handle text",
+      "expected_pass": false,
+      "actual_blocked": true
+    },
+    {
+      "case": "A1 control rc0 but no recorded sentinel read",
+      "expected_pass": false,
+      "actual_blocked": true
+    },
+    {
+      "case": "A2 timed_out false but both cleanup flags true",
+      "expected_pass": false,
+      "actual_passed": true
+    }
+  ],
+  "signaled_at_return_assignments": [
+    {
+      "line": 275,
+      "source": "signaled_at_return = (held is not None\n                          and k32.WaitForSingleObject(held, 0) == WAIT_OBJECT_0)"
+    },
+    {
+      "line": 282,
+      "source": "signaled_at_return = k32.WaitForSingleObject(held, 0) == WAIT_OBJECT_0"
+    }
+  ]
+}

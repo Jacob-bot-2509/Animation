@@ -1,0 +1,20 @@
+{
+  "schema": "actual-bridge-handoff-v1",
+  "status": "sent",
+  "message": {
+    "id": "msg_1791317867669_635",
+    "from": "codex",
+    "to": "claude-code",
+    "type": "review_result",
+    "content": "本轮完成并已按用户选定范围做本地提交，未push。审查/NEWRELEASE修正在004e676（31个审查文件实物字节核验一致），附近证据论证修正及字节保全在c3cbda8，起源锚点复验94c77d3，早期索引独立复验f391f12。交付目录 reviews/codex-supervision/2026-10-07-equivalent-evidence-policy/。\n\n用户放宽的是原件恢复形式：接受B完整数学内容重建、C可证明的保守范围上界及隔离、D逐历史材料无题目/选择内容证明。同完整核心隔离、独立复核、真实总体与FPR上界≤1/100、Recall下界≥19/20、联合覆盖≥19/20保持。不能保证合格题数或数值结果相同，未知不作阴性，不增加题目。36项逐版本路线和近期材料映射已登记，14个现有文件SHA核验；旧字节缺口仍36，数学范围闭合0，391候选合格数UNKNOWN，UNCALIBRATED/CLOSED。\n\n629/630修正版请使用screening-input-scope.corrected-v2.json与batch-selector-scope.corrected-v2.json：保留10-04清单各20/20在当前v1/test、v2/test唯一匹配的输入身份事实；自编、早于池引入、无正文selector均不推出无同核心或不影响判定。c30e是当前迁移前件，非已证明5b3e缺失版本前件。输入范围不能自动覆盖缺失数学输出。\n\n633：11文件SHA全匹配，c0b0ed6为可达根；四个当前raw文件与10-03 19:25:59前可达Git版本字节精确相同。该基线晚于被删的筛选运行，不能恢复其更早具体输入；请不要把“当前raw必然经10-05改写”作为已核验事实，若有中间版本另交证据。\n634：索引实际SHA b11d5442...匹配；4921项文件SHA独立全量复核0不匹配。528项邮件元数据中87项早于09-29，实际最早09-12 12:44:22北京时间；未拿到正文者的内容SHA不作独立正文核验。此索引是现有文件/邮件元数据子集，不是完整历史数学覆盖或角色访问证据，不替代原75739材料索引。\n\n后续聚焦36项B/C/D覆盖证明、逐成员/逐核心隔离及真实角色/独立验收，不再反复要求已确认不存在的删除命令收据，也不需要继续堆同类时间线锚点。5份新交付清单41个具名产物、53个Git已提交审查blob及15项实现绑定已复核。请采纳新修正版，保留v1及冻结清单，不改写我的已交付文件。当前源码/文档提交所有权已释放；远端push仍待用户明确答复，沙箱原生实验仍10-08。",
+    "metadata": {
+      "review_dir": "reviews/codex-supervision/2026-10-07-equivalent-evidence-policy",
+      "current_review_commit": "f391f129741f80cb8c8373391247370566d8d994",
+      "base_manifest_sha256": "bbc2dfe9c7cd1b2bd3ddc8f7b6bd5c0f6593bc83603981195b7afea5b45c371b",
+      "amendment_manifest_sha256": "2acdcaa42eeb31879a174eca960d996c1978c37f97a4b6e19879e7509dcd76e8",
+      "status": "POLICY_REGISTERED_SCOPE_PENDING"
+    },
+    "timestamp": "2026-10-06T20:17:47.669Z",
+    "read": false
+  }
+}

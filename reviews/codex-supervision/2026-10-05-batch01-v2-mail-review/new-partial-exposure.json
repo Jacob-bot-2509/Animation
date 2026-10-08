@@ -1,0 +1,14 @@
+{
+  "draft_id": "draft-c52-05",
+  "draft_sha256": "592604adc88816bf3bc8b9313e3b8a0dd31c2fa5d5be9bb211e057196909e596",
+  "query_id": "test-prob-004",
+  "query_raw_row_sha256": "a103945c239da52e178567a47e9fc3c46700e2733996f64f375208f2bade0f54",
+  "shared_exact_density": "3x^2 on (0,1)",
+  "shared_core_result": "CDF=x^3",
+  "label": "EXACT_FROZEN_DISTRIBUTION_PARTIAL_TASK_EXPOSURE",
+  "full_method_overlap_claimed": false,
+  "reason": "CDF is an explicit held-out subtask; v2 does not explicitly compute held-out tail probability or mean",
+  "action": "replace candidate target before admission",
+  "source_problem": "设 $X$ 的密度为 $f(x)=3x^2$（$0<x<1$）。求 $X$ 的分布函数、$P\\!\\left(X>\\dfrac{1}{2}\\right)$ 与 $E[X]$。",
+  "source_solution": "分布函数 $F(x)=\\displaystyle\\int_0^x3t^2dt=x^3$（$0<x<1$；$x\\le 0$ 时为 0，$x\\ge 1$ 时为 1）。$P\\!\\left(X>\\dfrac{1}{2}\\right)=1-F\\!\\left(\\dfrac{1}{2}\\right)=1-\\dfrac{1}{8}=\\dfrac{7}{8}$。$E[X]=\\displaystyle\\int_0^1x\\cdot 3x^2dx=3\\int_0^1x^3dx=\\dfrac{3}{4}$。"
+}

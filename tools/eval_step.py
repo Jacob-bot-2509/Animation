@@ -19,10 +19,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0]=[str(ROOT),str(ROOT/"src")]
 
 GEN_PROMPT = (
     "你是数学动画规划师。根据题目与解法,输出动画规划 JSON(scene_spec),"
-    "格式:{\"objects\": [\"...\"], \"steps\": [\"...\"]}。\n"
+    "格式:{{\"objects\": [\"...\"], \"steps\": [\"...\"]}}。\n"
     "要求:objects/steps 均为非空字符串列表;公式用 $...$ 包裹;"
     "steps 覆盖解法全部关键推理步骤;只输出 JSON,不要解释。\n"
     "题目:{problem}\n解法({method}):{solution}\n")
@@ -37,7 +38,9 @@ def load_eval_rows(manifest: Path) -> list[dict]:
         p = (manifest.parent / e["path"]).resolve()
         for line in p.read_text(encoding="utf-8").splitlines():
             if line.strip():
-                rows.append(json.loads(line))
+                row=json.loads(line)
+                row['_split']=e['split']
+                rows.append(row)
     return rows
 
 
@@ -79,7 +82,9 @@ def generate(adapter: Path, model_dir: Path, rows: list[dict],
         prompt = GEN_PROMPT.format(problem=r.get("problem", ""),
                                    solution=r.get("solution", ""),
                                    method=r.get("method", "常规解法"))
-        inputs = tok(prompt, return_tensors="pt").to(model.device)
+        inputs = tok.apply_chat_template([{'role':'user','content':prompt}],
+                    tokenize=True,add_generation_prompt=True,enable_thinking=False,
+                    return_tensors='pt',return_dict=True).to(model.device)
         with torch.no_grad():
             out = model.generate(**inputs, max_new_tokens=1024,
                                  do_sample=False)
@@ -91,7 +96,8 @@ def generate(adapter: Path, model_dir: Path, rows: list[dict],
             spec = {"_raw": text[:200]}
         results.append({"row_index": i,
                         "problem_id": r.get("problem_id") or r.get("id"),
-                        "split": "eval" if "problem_id" in r else "test",
+                        "sample_id": r["id"],
+                        "split": r["_split"],
                         "spec": spec, "schema_ok": schema_ok(spec),
                         "raw_len": len(text)})
         if (i + 1) % 50 == 0:
@@ -100,53 +106,37 @@ def generate(adapter: Path, model_dir: Path, rows: list[dict],
 
 
 def render_check(config: dict, work: Path, results: list[dict]) -> dict:
-    """渲染成功率:render_executor 未接线时如实 UNVERIFIED。"""
-    exe = config.get("render_executor")
-    if not exe:
-        return {"status": "UNVERIFIED",
-                "reason": "渲染执行器未接线(生产渲染链验收后配置 render_executor),"
-                          "渲染成功率如实 UNVERIFIED,不伪造"}
-    cp = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / exe),
-                         "--specs", str(work / "generated-specs.json")],
-                        capture_output=True, timeout=3600 * 4)
-    return {"status": "OK" if cp.returncode == 0 else "FAILED",
-            "rc": cp.returncode,
-            "detail": (cp.stdout or b"").decode("utf-8", "replace")[:200]}
+    return {'status':'UNVERIFIED','reason':'Per-question isolated evidence protocol is not connected; arbitrary executors are refused before launch'}
 
 
 def judge(config: dict, work: Path, results: list[dict]) -> dict:
-    """数学正确率/画面忠实度:judge_script 未接线时如实 UNVERIFIED。"""
-    j = config.get("judge_script")
-    if not j:
-        return {"status": "UNVERIFIED",
-                "reason": "独立判定器未接线(judge_script),"
-                          "数学/忠实度如实 UNVERIFIED,不伪造"}
-    cp = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / j),
-                         "--specs", str(work / "generated-specs.json")],
-                        capture_output=True, timeout=3600 * 4)
-    return {"status": "OK" if cp.returncode == 0 else "FAILED",
-            "rc": cp.returncode,
-            "detail": (cp.stdout or b"").decode("utf-8", "replace")[:200]}
+    return {'status':'UNVERIFIED','reason':'Per-question isolated evidence protocol is not connected; arbitrary executors are refused before launch'}
 
 
-def aggregate(results: list[dict], render: dict, judge: dict) -> dict:
-    n = len(results)
-    total = n or 1
-    return {
-        "total_questions": n,
-        "render": {"rate": None, "detail": render["reason"]}
-        if render["status"] == "UNVERIFIED" else render,
-        "executable": {"rate": round(sum(1 for r in results
-                                         if r["schema_ok"]) / total, 4),
-                       "passed": sum(1 for r in results if r["schema_ok"]),
-                       "total": n},
-        "math": {"rate": None, "detail": judge["reason"]}
-        if judge["status"] == "UNVERIFIED" else judge,
-        "fidelity": {"rate": None, "detail": judge["reason"]}
-        if judge["status"] == "UNVERIFIED" else judge,
-        "failures": [{"problem_id": r["problem_id"], "row_index": r["row_index"],
-                      "raw": r["spec"].get("_raw", "")[:120]}
-                     for r in results if not r["schema_ok"]][:20]}
+def aggregate(results: list[dict], render: dict, judged: dict) -> dict:
+    """Schema diagnostics are separate from execution; no rc-only metrics.
+    Per-asset render/judge integration has not been agreed or implemented.
+    Keep R/E/M/F UNVERIFIED, report schema by question and split using exact fractions.
+    """
+    from fractions import Fraction
+    groups={}
+    for row in results:
+        key=(row['split'],row['problem_id'])
+        groups.setdefault(key,[]).append(row['schema_ok'] is True)
+    def diagnostic(split=None):
+        values=[all(flags) for (sp,_),flags in groups.items() if split is None or sp==split]
+        n=len(values);passed=sum(values)
+        return {'rate':str(Fraction(passed,n)) if n else None,'passed':passed,'total':n}
+    unknown={'status':'UNVERIFIED','rate':None,
+             'detail':'No agreed, bound per-question execution/math/semantic evidence; executor rc alone is insufficient'}
+    return {'total_questions':len(groups),'total_samples':len(results),
+            'schema':diagnostic(), 'by_split':{sp:{'total_questions':diagnostic(sp)['total'],
+                'schema':diagnostic(sp),**{k:dict(unknown) for k in ('render','executable','math','fidelity')}}
+                for sp in ('eval','test')},
+            **{k:dict(unknown) for k in ('render','executable','math','fidelity')},
+            'executor_diagnostics':{'render':render,'judge':judged},
+            'failures':[{'problem_id':r['problem_id'],'sample_id':r['sample_id'],
+                         'row_index':r['row_index']} for r in results if not r['schema_ok']]}
 
 
 def main(argv: list[str]) -> int:
@@ -165,14 +155,19 @@ def run(config_path: Path, work: Path, adapter: Path, run_id: str,
         subset: Path | None = None) -> int:
     """可复用入口:扫参器直接调用;subset 只过滤评测行,不进入训练。"""
     config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["_config_path"]=str(config_path.resolve())
+    from tools.train_loop import gate_ready,project_path,adapter_hash,_sha
+    ready,detail=gate_ready(run_id,config)
+    if not ready:
+        print('[FAIL] Evaluation gate closed: '+detail)
+        return 2
     hp = config.get("hyperparameters") or {}
     if hp.get("quantization") is None:
         print("[FAIL] 量化方案未定案,评测步拒绝执行(fail-closed)")
         return 2
     work.mkdir(parents=True, exist_ok=True)
-    manifest = Path(config.get("dataset_manifest",
-                               str(ROOT / "data/manifest.json")))
-    model_dir = Path(config.get("model_path", str(ROOT / ".models/qwen3-4b")))
+    manifest = project_path(config.get("dataset_manifest","data/manifest.json"))
+    model_dir = project_path(config.get("model_path",".models/qwen3-4b"))
     rows = load_eval_rows(manifest)
     if subset is not None:
         keep = json.loads(subset.read_text(encoding="utf-8"))
@@ -186,18 +181,22 @@ def run(config_path: Path, work: Path, adapter: Path, run_id: str,
             return 2
     results = generate(adapter, model_dir, rows, work, hp)
     (work / "generated-specs.json").write_text(
-        json.dumps([{"problem_id": r["problem_id"], "split": r["split"],
+        json.dumps([{"problem_id": r["problem_id"], "split": r["split"], "sample_id":r["sample_id"],
                      "spec": r["spec"], "schema_ok": r["schema_ok"],
                      "raw_len": r["raw_len"]} for r in results],
                    ensure_ascii=False, indent=2), encoding="utf-8")
     render = render_check(config, work, results)
-    judge = judge(config, work, results)
-    summary = aggregate(results, render, judge)
+    judged = judge(config, work, results)
+    summary = aggregate(results, render, judged)
     summary["run_id"] = run_id
+    summary["bindings"] = {"config_sha256":_sha(config_path),"manifest_sha256":_sha(manifest),
+        "training_manifest_sha256":_sha(work/"training-manifest.json"),
+        "generated_specs_sha256":_sha(work/"generated-specs.json"),"adapter_sha256":adapter_hash(adapter)}
     (work / "eval-report.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
-    return 0
+    # Execution/semantic protocol remains unconnected; never report round success.
+    return 2
 
 
 if __name__ == "__main__":

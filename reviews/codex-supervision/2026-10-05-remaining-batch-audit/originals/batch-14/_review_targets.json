@@ -1,0 +1,104 @@
+[
+  {
+    "id": "draft-c38-05",
+    "category": "高等代数",
+    "sub_category": "线性空间",
+    "concept": "子空间和与交",
+    "concept_id": "C38",
+    "parent_training_ids": [
+      "linalg-062"
+    ],
+    "problem": "证明维数公式:若 $U,V$ 是有限维线性空间 $W$ 的子空间，则 $\\dim(U+V)=\\dim U+\\dim V-\\dim(U\\cap V)$。",
+    "solution": "取 $U\\cap V$ 的一组基 $u_1,\\dots,u_k$($k=\\dim(U\\cap V)$)。把它分别延拓为 $U$ 的基 $u_1,\\dots,u_k,p_1,\\dots,p_r$ 与 $V$ 的基 $u_1,\\dots,u_k,q_1,\\dots,q_s$(其中 $r=\\dim U-k$,$s=\\dim V-k$)。下证向量组 $u_1,\\dots,u_k,p_1,\\dots,p_r,q_1,\\dots,q_s$ 是 $U+V$ 的一组基。张成:任意 $w\\in U+V$ 可写为 $w=u+v$($u\\in U,v\\in V$),两者均可由上述向量组线性表出,故整个组张成 $U+V$。线性无关:设 $(\\sum\\alpha_iu_i+\\sum\\beta_jp_j)+(\\sum\\alpha_i'u_i+\\sum\\gamma_lq_l)=0$,令 $x=\\sum\\alpha_iu_i+\\sum\\beta_jp_j\\in U$,则 $x=-\\sum\\alpha_i'u_i-\\sum\\gamma_lq_l\\in V$,故 $x\\in U\\cap V$。于是 $x$ 可仅由 $u_1,\\dots,u_k$ 表出,但 $x$ 作为 $U$ 中元素用 $U$ 的基表示唯一,故 $\\beta_j=0$;同理 $\\gamma_l=0$,回代得 $\\sum(\\alpha_i+\\alpha_i')u_i=0$,由线性无关得 $\\alpha_i+\\alpha_i'=0$。于是该向量组线性无关。故 $\\dim(U+V)=k+r+s=(k+r)+(k+s)-k=\\dim U+\\dim V-\\dim(U\\cap V)$。",
+    "answer": "证明见解法(交的基延拓为两子空间的基,拼接组构成 $U+V$ 的基)。",
+    "method": "基延拓法证明维数公式",
+    "difficulty": "进阶",
+    "variant_kind": "证明型:维数公式的基延拓严格证明",
+    "scene_spec": {
+      "objects": [
+        "板书:$U\\cap V$ 的基与分别延拓示意图",
+        "板书:拼接向量组张成 $U+V$ 的论证",
+        "板书:线性无关性(交向量双重表示唯一)的论证",
+        "高亮框:$\\dim(U+V)=\\dim U+\\dim V-\\dim(U\\cap V)$"
+      ],
+      "steps": [
+        "第一步:取交的基并延拓到两子空间。",
+        "第二步:证明拼接组张成 $U+V$。",
+        "第三步:证明拼接组线性无关。",
+        "第四步:计数得维数公式。",
+        "第五步:高亮结论,完成证明。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  },
+  {
+    "id": "draft-c39-01",
+    "category": "高等代数",
+    "sub_category": "线性映射",
+    "concept": "线性映射核与像",
+    "concept_id": "C39",
+    "parent_training_ids": [
+      "linalg-063"
+    ],
+    "problem": "设线性变换 $T:\\mathbb R^3\\to\\mathbb R^3$ 由 $T(x,y,z)=(x-y,\\,y-z,\\,z-x)$ 定义。求 $T$ 的核、像与各自的维数。",
+    "solution": "核:解 $x-y=0,y-z=0,z-x=0$,得 $x=y=z$,故 $\\ker T=\\mathrm{span}\\{(1,1,1)\\}$,$\\dim\\ker T=1$。像:由秩-零度定理 $\\dim\\mathrm{im}\\,T=3-1=2$。像的方程:三个分量之和 $(x-y)+(y-z)+(z-x)=0$,故像包含于平面 $u+v+w=0$;两者维数均为 $2$,故 $\\mathrm{im}\\,T=\\{u+v+w=0\\}$。",
+    "answer": "$\\\\ker T=\\\\mathrm{span}\\\\{(1,1,1)\\\\}$(维数 $1$);$\\\\mathrm{im}\\\\,T=\\\\{u+v+w=0\\\\}$(维数 $2$)。",
+    "method": "解核方程+秩零度定像",
+    "difficulty": "基础",
+    "variant_kind": "数值结构变化:三变量循环差的核与像(与 R³→R² 父题不同)",
+    "scene_spec": {
+      "objects": [
+        "三维示意图:直线 $x=y=z$(核,红色)与平面 $u+v+w=0$(像,蓝色)",
+        "板书:核方程的求解",
+        "板书:像的方程与维数推导",
+        "高亮框:核维数 $1$,像维数 $2$"
+      ],
+      "steps": [
+        "第一步:解核方程,得对角线直线。",
+        "第二步:高亮核。",
+        "第三步:推导像的方程与维数。",
+        "第四步:高亮像平面。",
+        "第五步:汇总结论。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  },
+  {
+    "id": "draft-c39-02",
+    "category": "高等代数",
+    "sub_category": "线性映射",
+    "concept": "线性映射核与像",
+    "concept_id": "C39",
+    "parent_training_ids": [
+      "linalg-063"
+    ],
+    "problem": "设 $T:\\mathbb R^2\\to\\mathbb R^3$ 由 $T(x,y)=(x+y,\\,x-y,\\,2x)$ 定义。判断 $T$ 是否单射、是否满射，并求核与像的维数。",
+    "solution": "核:解 $x+y=0,x-y=0,2x=0$,得 $x=y=0$,故 $\\ker T=\\{0\\}$,$\\dim\\ker T=0$,由秩-零度定理 $\\dim\\mathrm{im}\\,T=2-0=2$。单射:核为 $\\{0\\}$ ⟺ 单射,故 $T$ 单射。满射:像的维数 $2<3$,故 $T$ 非满射(像是 $\\mathbb R^3$ 中由 $T(1,0)=(1,1,2)$ 与 $T(0,1)=(1,-1,0)$ 张成的平面)。",
+    "answer": "单射但非满射;$\\\\ker T=\\\\{0\\\\}$(维数 $0$),$\\\\dim\\\\mathrm{im}\\\\,T=2$。",
+    "method": "单射满射判定(核与秩零度)",
+    "difficulty": "基础",
+    "variant_kind": "非单射/非满射:低维到高维映射的单射性与非满射性判定",
+    "scene_spec": {
+      "objects": [
+        "三维示意图:平面像(由两个像向量张成)与原点",
+        "板书:核方程求解(仅零解)",
+        "板书:秩零度 $\\dim\\mathrm{im}=2$",
+        "高亮框:「单射,非满射」"
+      ],
+      "steps": [
+        "第一步:解核方程,得核为零。",
+        "第二步:由秩零度得像维数 $2$。",
+        "第三步:画出像平面。",
+        "第四步:判断单射(核零)与非满射(像维数<3)。",
+        "第五步:高亮结论。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "draft-v1-待用户审阅"
+  }
+]

@@ -1,0 +1,192 @@
+{
+  "head": "d90d13e4424e5b53aa763071c2cb0f5a975176cb",
+  "source_sha256": {
+    "src/animtrain/render_gate.py": "04b07c10f82b10bd91a814de28f72196e9bbdd5002be4d9b1a30ecf8c19a91fc",
+    "src/animtrain/freeze.py": "31fa14e37520092b8b769eee4265c13a0348ac2879a8b8c690fc07b73d5ddc8a",
+    "tools/preflight.py": "850b2fd9e65ed30a27246c658307acc0f92a0def4098d6535eb702daf9207f6e",
+    "tools/split_data.py": "7e4a8645a9d4ead1eb1dd0526346cd311102fb7e103b238a8319b9210eb53ec7",
+    "src/animtrain/atomic_write.py": "873adea628ab6588c81f24137f12612ae95da2a15da89e707e72ee6d0fc2debd"
+  },
+  "math": {
+    "Eq(1, 2)": {
+      "returned": {
+        "ok": false,
+        "status": "disproved",
+        "detail": "断言不成立: Eq(1, 2) → False(假命题)",
+        "unverified": []
+      }
+    },
+    "False": {
+      "returned": {
+        "ok": false,
+        "status": "disproved",
+        "detail": "断言不成立: False → False(假命题)",
+        "unverified": []
+      }
+    },
+    "Eq(1, 1)": {
+      "returned": {
+        "ok": true,
+        "status": "verified",
+        "detail": "断言成立: Eq(1, 1)",
+        "unverified": []
+      }
+    },
+    "x": {
+      "returned": {
+        "ok": false,
+        "status": "invalid",
+        "detail": "非布尔断言: x → x(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)",
+        "unverified": []
+      }
+    },
+    "x + 1": {
+      "returned": {
+        "ok": false,
+        "status": "invalid",
+        "detail": "非布尔断言: x + 1 → x + 1(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)",
+        "unverified": []
+      }
+    },
+    "1": {
+      "returned": {
+        "ok": false,
+        "status": "invalid",
+        "detail": "非布尔断言: 1 → 1(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)",
+        "unverified": []
+      }
+    },
+    "2": {
+      "returned": {
+        "ok": false,
+        "status": "invalid",
+        "detail": "非布尔断言: 2 → 2(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)",
+        "unverified": []
+      }
+    },
+    "0": {
+      "returned": {
+        "ok": false,
+        "status": "invalid",
+        "detail": "非布尔断言: 0 → 0(只接受 Eq/Ne/不等式/布尔表达式;数字不是断言)",
+        "unverified": []
+      }
+    },
+    "x**2 >= 0": {
+      "returned": {
+        "ok": false,
+        "status": "unproven",
+        "detail": "无法判定真假(含自由符号): x**2 >= 0 → x**2 >= 0",
+        "unverified": []
+      }
+    }
+  },
+  "locks": {
+    "missing_entries": {
+      "returned": [
+        "锁未处于 locked 状态: None(BR3)"
+      ]
+    },
+    "unlocked_empty": {
+      "returned": [
+        "锁未处于 locked 状态: False(BR3)"
+      ]
+    },
+    "missing_hash": {
+      "exception": "KeyError",
+      "detail": "'sha256'"
+    },
+    "null_path": {
+      "exception": "TypeError",
+      "detail": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'"
+    },
+    "create_empty": {
+      "exception": "ValueError",
+      "detail": "待冻结文件列表为空 —— 空锁无效(BR3)"
+    }
+  },
+  "snapshot": {
+    "False": {
+      "exit_code": 1,
+      "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[FAIL] run_snapshot: run probe 快照未过: manifest hash 不可复现(记录 000000000000…,实际 27d9a834c6a3…)\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[FAIL] near_dup_calibrated: 近重复阈值 UNCALIBRATED(真实数据对照实验未完成)—— ready 模式必须阻断\n[PASS] render_gate: 渲染环境可用\n[PASS] math_gate: SymPy 可用\n[FAIL] ready: FAIL checks block ready: ['run_snapshot', 'near_dup_calibrated']\n结论: **NOT READY —— 禁止生成训练计划,先定位缺失项**\n",
+      "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "record_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "render_check_calls": 0,
+      "math_check_calls": 0
+    },
+    "True": {
+      "exit_code": 1,
+      "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[FAIL] run_snapshot: run probe 快照未过: manifest hash 不可复现(记录 000000000000…,实际 27d9a834c6a3…)\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[PASS] render_gate: 渲染环境可用\n[PASS] math_gate: SymPy 可用\n[FAIL] ready: FAIL checks block ready: ['run_snapshot']\n结论: **NOT READY —— 禁止生成训练计划,先定位缺失项**\n",
+      "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "record_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "render_check_calls": 0,
+      "math_check_calls": 0
+    },
+    "matching_hash": {
+      "exit_code": 0,
+      "output": "[PASS] gpu: mock\n[PASS] model_dir: mock\n[PASS] run_snapshot: run probe 快照通过\n[PASS] data_manifest: 1 条目,问题 0,quarantine 0\n[PASS] render_gate: 渲染环境可用\n[PASS] math_gate: SymPy 可用\n[PASS] ready: 全部必需门禁通过,可生成可执行训练计划\n结论: READY: 可生成可执行训练计划\n",
+      "actual_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "record_hash": "27d9a834c6a38c2db795e6afb4a37f19163691e5b67ccea1791e0498dcaecf8b",
+      "render_check_calls": 0,
+      "math_check_calls": 0
+    }
+  },
+  "frozen_write": {
+    "valid_lock": {
+      "outcome": {
+        "exception": "SystemExit",
+        "detail": "拒绝:C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-qs1xdqpw\\output\\eval.jsonl 属于冻结数据集,无论是否 --force 都不得写入(BR5)"
+      },
+      "changed_files": []
+    },
+    "omitted_lock": {
+      "outcome": {
+        "returned": {
+          "pool": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-y6bbm76x\\input\\pool.jsonl",
+          "plan": "C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-y6bbm76x\\input\\plan.json",
+          "pool_n": 2,
+          "assigned": 2,
+          "rejected": 0,
+          "counts": {
+            "train": 1,
+            "eval": 1,
+            "test": 0
+          },
+          "dry_run": false,
+          "generated_at": "2026-10-01 00:26:17",
+          "split_manifest": "标准 Manifest v1 格式"
+        }
+      },
+      "changed_files": [
+        "eval.jsonl",
+        "train.jsonl"
+      ]
+    },
+    "corrupt_lock": {
+      "outcome": {
+        "exception": "SystemExit",
+        "detail": "拒绝:冻结锁校验未过 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-pz78x2wl\\output\\frozen.lock.json: 锁不可读: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)(fail closed)"
+      },
+      "changed_files": []
+    },
+    "missing_lock": {
+      "outcome": {
+        "exception": "SystemExit",
+        "detail": "拒绝:冻结锁不存在 C:\\Users\\Jacap\\AppData\\Local\\Temp\\codex-freeze-recheck-3j4s50i8\\output\\does-not-exist.lock.json(fail closed,不可靠的锁视为写入阻断)"
+      },
+      "changed_files": []
+    }
+  },
+  "isolation_mock": {
+    "result": {
+      "ok": false,
+      "status": "unverified",
+      "detail": "隔离不完整(fs/network/memory 未实施),拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
+      "unverified": [
+        "render_isolation"
+      ]
+    },
+    "subprocess_calls": 0,
+    "note": "Mocked subprocess only. No actual code execution or render verification."
+  }
+}

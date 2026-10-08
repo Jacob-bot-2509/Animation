@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""二分:4 个 TeX 对象(标题+2标签+公式),无其他元素——验证'第4次latex失败'假设。"""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+import sys
+sys.path.insert(0, str(ROOT / "src"))
+
+from animtrain.render_gate import render_check
+
+CODE = r'''
+from manim import *
+
+class ConceptScene(Scene):
+    def construct(self):
+        title = MathTex('y=x^2', r'\quad', 'y=x+2').to_edge(UP)
+        l1 = MathTex('(-1,1)').scale(0.55)
+        l2 = MathTex('(2,4)').scale(0.55)
+        formula = MathTex(
+            r'S=\int_{-1}^{2}\big((x+2)-x^2\big)\,dx',
+            r'=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^{2}',
+            r'=\frac{9}{2}',
+        ).to_edge(DOWN)
+        self.play(Write(title))
+        self.play(FadeIn(l1), FadeIn(l2))
+        self.play(Write(formula))
+        self.wait(0.5)
+'''
+
+result = render_check(CODE, trusted=True)
+Path(__file__).with_name("bisect-four-tex.json").write_text(
+    json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+print("ok:", result.get("ok"), "| status:", result.get("status"))
+print("output:", result.get("output"))

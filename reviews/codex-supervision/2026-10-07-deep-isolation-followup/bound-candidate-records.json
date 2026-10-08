@@ -1,0 +1,1352 @@
+[
+  {
+    "binding": {
+      "group": "train",
+      "id": "linalg-051",
+      "math_sha256": "b1d304d425ed0983b12dd27f8869bc8e5c5d9317000a00fa8d3d52a00c3ebd72",
+      "parent_review": {
+        "line": 16,
+        "path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/independent-review-38.jsonl",
+        "record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+        "sha256": "f034c974b6aa363be5d670cba5013461492bb31e49fe3ebf7a0bec375cac269b"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+      "record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "source_line": 3,
+      "source_sha256": "247ef2e60921a6af38d986cb60fa9f7c0e58eb6b16f69ad46b48c1ff30397cdf"
+    },
+    "record": {
+      "id": "linalg-051",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "function_family": "因式分解与根",
+      "visual_style": "根到系数的映射",
+      "efficiency_tags": [
+        "根与因式对应",
+        "实根高亮"
+      ],
+      "problem": "设多项式 $f(x)=x^3-6x^2+11x-6$，将其因式分解并说明其根在复平面上的分布。",
+      "solution": "由有理根定理，可能的根为 $\\pm1,\\pm2,\\pm3,\\pm6$。代入得 $f(1)=0$，故 $(x-1)$ 是因式。多项式除法得 $f(x)=(x-1)(x^2-5x+6)=(x-1)(x-2)(x-3)$。三个根均为实根，在复平面上位于实轴上。",
+      "answer": "$(x-1)(x-2)(x-3)$；三个根 $1,2,3$ 均为实根，在复平面上全部位于实轴上",
+      "scene_spec": {
+        "objects": [
+          "直角坐标系（实轴）",
+          "曲线 y=f(x)",
+          "三个实根点",
+          "因式分解公式"
+        ],
+        "steps": [
+          "第一步：在坐标系中绘制三次多项式曲线 $y=x^3-6x^2+11x-6$。",
+          "第二步：在 x=1,2,3 处用黄色圆点标记曲线与 x 轴的交点，表示根的位置。",
+          "第三步：在右侧展示因式分解的代数过程，用连线将每个根与其对应的因式 $(x-1)$ 联系起来。",
+          "第四步：在数轴上展示三个根全部落在实轴上，说明该多项式无虚根。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c36-03",
+      "math_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+      "parent_review": {
+        "line": 177,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "source_line": 8,
+      "source_sha256": "6d006f76c18488760d1cd394e2e3960e00bbc81c9d9ac01d7df186fc88f552bc"
+    },
+    "record": {
+      "id": "draft-c36-03",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型正定性",
+      "concept_id": "C36",
+      "parent_training_ids": [
+        "linalg-060"
+      ],
+      "problem": "求使二次型 $f(x,y,z)=x^2+2xy+2y^2+az^2$ 正定的参数 $a$ 的取值范围，并讨论 $a=0$ 与 $a<0$ 时二次型的情形。",
+      "solution": "二次型对应矩阵 $A=\\begin{pmatrix}1&1&0\\\\1&2&0\\\\0&0&a\\end{pmatrix}$。顺序主子式：$\\Delta_1=1>0$，$\\Delta_2=1\\times2-1\\times1=1>0$，$\\Delta_3=\\det A=1\\times(2a-0)-1\\times(a-0)+0=a$。正定当且仅当三个顺序主子式全为正，故 $a>0$。当 $a=0$ 时，$f=x^2+2xy+2y^2=(x+y)^2+y^2\\geq 0$，且 $f(0,0,1)=0$，存在非零解，故半正定但非正定。当 $a<0$ 时，取 $(x,y,z)=(0,0,1)$ 得 $f(0,0,1)=a<0$，同时取 $(1,0,0)$ 得 $f(1,0,0)=1>0$，既有正值又有负值，故二次型不定。",
+      "answer": "正定当且仅当 $a>0$；$a=0$ 时半正定非正定；$a<0$ 时不定。",
+      "method": "顺序主子式法(含参)",
+      "difficulty": "中等",
+      "variant_kind": "参数范围:顺序主子式得参数不等式,边界 $a=0$ 与负参数情形的完整讨论",
+      "scene_spec": {
+        "objects": [
+          "板书:二次型 $f=x^2+2xy+2y^2+az^2$ 与其矩阵 $A=\\begin{pmatrix}1&1&0\\\\1&2&0\\\\0&0&a\\end{pmatrix}$",
+          "三个高亮框:顺序主子式 $\\Delta_1=1$、$\\Delta_2=1$、$\\Delta_3=a$",
+          "数轴:原点处边界点 $a=0$,三个区间标注「正定」「半正定」「不定」",
+          "板书:$a=0$ 时配方 $(x+y)^2+y^2$ 与零解 $(0,0,1)$",
+          "板书:$a<0$ 时代入 $(0,0,1)$ 与 $(1,0,0)$ 得负值 $a$ 与正值 $1$"
+        ],
+        "steps": [
+          "第一步:写出二次型对应的矩阵 $A$。",
+          "第二步:依次计算顺序主子式 $\\Delta_1=1$、$\\Delta_2=1$、$\\Delta_3=a$,高亮显示。",
+          "第三步:由全正条件得 $a>0$,在数轴上标出正定区间。",
+          "第四步:讨论边界 $a=0$:配方得 $(x+y)^2+y^2\\geq0$,且 $(0,0,1)$ 为非零零解,半正定非正定。",
+          "第五步:$a<0$ 时分别代入 $(0,0,1)$ 与 $(1,0,0)$ 得负值 $a$ 与正值 $1$,确认不定;汇总各分支。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-01",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-01-draft-c36-03",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-01\\draft-v3.jsonl",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "original_id": "draft-c36-03",
+        "prior_parent_training_ids": [
+          "linalg-060"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "ac12e1968e1a152ef382149dc8978b8100e6d0fcf2c86f558fc5333805f272fc",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v3.jsonl",
+          "sha256": "df24843855a0521eef32abdc174c9cd1c51c5bd70d1d9425b77dd5de18afdf6f",
+          "versioned_id": "codex-repair-20261005-batch-01-draft-c36-03"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c36-04",
+      "math_sha256": "42d0d3e042daa2dbd8435b681bb7b7c10378a8673f8d92788ec74a60671cb3e9",
+      "parent_review": {
+        "line": 178,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "source_line": 9,
+      "source_sha256": "6d006f76c18488760d1cd394e2e3960e00bbc81c9d9ac01d7df186fc88f552bc"
+    },
+    "record": {
+      "id": "draft-c36-04",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型正定性",
+      "concept_id": "C36",
+      "parent_training_ids": [
+        "linalg-060"
+      ],
+      "problem": "判断二次型 $f(x,y,z)=(x-y)^2+2(y-z)^2$ 是否正定；若不正定，判断其是否半正定，并求该二次型的秩。",
+      "solution": "由表达式可见 $f\\geq 0$ 恒成立。$f=0$ 当且仅当 $x-y=0$ 且 $y-z=0$，即 $x=y=z$，存在非零解(如 $(1,1,1)$)，故半正定但非正定。展开得 $f=x^2-2xy+3y^2-4yz+2z^2$，对应矩阵 $A=\\begin{pmatrix}1&-1&0\\\\-1&3&-2\\\\0&-2&2\\end{pmatrix}$。计算 $\\det A=1\\times(3\\times2-(-2)\\times(-2))-(-1)\\times((-1)\\times2-0)+0=2-2=0$，而二阶主子式 $\\det\\begin{pmatrix}1&-1\\\\-1&3\\end{pmatrix}=2\\neq0$，故秩为 $2$(零度为 $3-2=1$，与零空间 $\\{(t,t,t)\\}$ 一致)。令 $T=\\begin{pmatrix}1&-1&0\\\\0&1&-1\\end{pmatrix}$、$D=\\operatorname{diag}(1,2)$，则 $A=T^{\\mathsf T}DT$。$\\ker A=\\ker T=\\operatorname{span}\\{(1,1,1)^{\\mathsf T}\\}$，故 $\\operatorname{rank}A=2$，惯性三元组为 $(n_+,n_-,n_0)=(2,0,1)$。",
+      "answer": "不正定；半正定；秩为 $2$。",
+      "method": "配方法+零空间分析+主子式定秩",
+      "difficulty": "中等",
+      "variant_kind": "边界任务:正定判定推广到半正定边界与秩的计算(零解非平凡)",
+      "scene_spec": {
+        "objects": [
+          "板书:二次型 $f=(x-y)^2+2(y-z)^2$ 与展开式 $x^2-2xy+3y^2-4yz+2z^2$",
+          "板书:矩阵 $A=\\begin{pmatrix}1&-1&0\\\\-1&3&-2\\\\0&-2&2\\end{pmatrix}$",
+          "高亮框:$f=0$ 的解集 $x=y=z$(非零解 $(1,1,1)$)",
+          "板书:$\\det A=0$ 与二阶主子式 $2\\neq0$,秩 $=2$",
+          "黄色标签「半正定·非正定」与「秩 $2$」"
+        ],
+        "steps": [
+          "第一步:写出平方和形式,说明 $f\\geq0$ 恒成立。",
+          "第二步:求解 $f=0$:得 $x=y=z$,存在非零解 $(1,1,1)$,故非正定。",
+          "第三步:展开为 $x^2-2xy+3y^2-4yz+2z^2$,写出矩阵 $A$。",
+          "第四步:计算 $\\det A=0$ 与二阶主子式 $2\\neq0$,得秩为 $2$。",
+          "第五步:汇总:半正定非正定、秩 $2$,并指出零空间为 $\\{(t,t,t)\\}$ 与秩-零度一致。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-01",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "42d0d3e042daa2dbd8435b681bb7b7c10378a8673f8d92788ec74a60671cb3e9",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-01-draft-c36-04",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-01\\draft-v3.jsonl",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "original_id": "draft-c36-04",
+        "prior_parent_training_ids": [
+          "linalg-060"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "39795d71c46b6dd863182e26b9b2c57bfc085712d7a48b680ea75ae90986f825",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "明确秩、核与惯性三元组，区分半正定与正定"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v3.jsonl",
+          "sha256": "df24843855a0521eef32abdc174c9cd1c51c5bd70d1d9425b77dd5de18afdf6f",
+          "versioned_id": "codex-repair-20261005-batch-01-draft-c36-04"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "42d0d3e042daa2dbd8435b681bb7b7c10378a8673f8d92788ec74a60671cb3e9",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c36-05",
+      "math_sha256": "d5ab42fce06cdbb2dcd62990ba11e16cadc8cdae8ead5c57c933258497596d78",
+      "parent_review": {
+        "line": 179,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "source_line": 10,
+      "source_sha256": "6d006f76c18488760d1cd394e2e3960e00bbc81c9d9ac01d7df186fc88f552bc"
+    },
+    "record": {
+      "id": "draft-c36-05",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型正定性",
+      "concept_id": "C36",
+      "parent_training_ids": [
+        "linalg-060"
+      ],
+      "problem": "构造一个三阶实对称矩阵 $A$，使其所有顺序主子式均非负，但 $A$ 不是半正定的，并给出验证。",
+      "solution": "取 $A=\\begin{pmatrix}0&0&1\\\\0&0&1\\\\1&1&0\\end{pmatrix}$。顺序主子式：$\\Delta_1=0$，$\\Delta_2=\\det\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}=0$，$\\Delta_3=\\det A=0\\times(0\\times0-1\\times1)-0+1\\times(0\\times1-0\\times1)=0$，全部非负。但取 $x=(1,0,-1)^{\\mathsf{T}}$，则 $x^{\\mathsf{T}}Ax=2x_1x_3+2x_2x_3=2\\times1\\times(-1)+0=-2<0$，故 $A$ 非半正定。特征值验证：$|A-\\lambda I|=-\\lambda(\\lambda^2-2)$，特征值为 $0$、$-\\sqrt{2}$、$\\sqrt{2}$，含负特征值 $-\\sqrt{2}$，与结论一致。要点：顺序主子式非负不是半正定的充分条件，半正定要求所有主子式非负(如本例二、三行二、三列主子式为 $\\det\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}=-1<0$)。",
+      "answer": "$A=\\begin{pmatrix}0&0&1\\\\0&0&1\\\\1&1&0\\end{pmatrix}$；顺序主子式全为 $0$(非负)，但 $x=(1,0,-1)^{\\mathsf{T}}$ 使 $x^{\\mathsf{T}}Ax=-2<0$，且特征值含 $-\\sqrt{2}$，故非半正定。",
+      "method": "反例构造+二次型验证",
+      "difficulty": "进阶",
+      "variant_kind": "反例构造:说明顺序主子式非负不足以保证半正定(区分顺序主子式与全部主子式)",
+      "scene_spec": {
+        "objects": [
+          "板书:矩阵 $A=\\begin{pmatrix}0&0&1\\\\0&0&1\\\\1&1&0\\end{pmatrix}$",
+          "高亮框:顺序主子式 $\\Delta_1=\\Delta_2=\\Delta_3=0$(均非负)",
+          "板书:$x^{\\mathsf{T}}Ax=2x_1x_3+2x_2x_3$ 与代入 $x=(1,0,-1)^{\\mathsf{T}}$ 得 $-2<0$",
+          "数轴:特征值 $0$、$\\pm\\sqrt{2}$,负侧红色标记 $\\sqrt{2}$ 的相反数",
+          "红色警示文本「顺序主子式非负 $\\neq$ 半正定」"
+        ],
+        "steps": [
+          "第一步:在黑板上写出所构造的矩阵 $A$。",
+          "第二步:依次计算三个顺序主子式,均为非负,高亮显示。",
+          "第三步:写出 $x^{\\mathsf{T}}Ax=2x_1x_3+2x_2x_3$,取 $x=(1,0,-1)^{\\mathsf{T}}$ 代入得 $-2<0$。",
+          "第四步:展示特征多项式 $-\\lambda(\\lambda^2-2)$ 与特征值 $0$、$\\pm\\sqrt{2}$,负特征值红色标记。",
+          "第五步:红色警示总结:顺序主子式非负不足以保证半正定,半正定需全部主子式非负。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-01",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "d5ab42fce06cdbb2dcd62990ba11e16cadc8cdae8ead5c57c933258497596d78",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-01-draft-c36-05",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-01\\draft-v3.jsonl",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "original_id": "draft-c36-05",
+        "prior_parent_training_ids": [
+          "linalg-060"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "94bfdaa22a9b2d2496d842cb9d4c4c08f86c5998b8598fd03355d963e811e697",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v3.jsonl",
+          "sha256": "df24843855a0521eef32abdc174c9cd1c51c5bd70d1d9425b77dd5de18afdf6f",
+          "versioned_id": "codex-repair-20261005-batch-01-draft-c36-05"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "d5ab42fce06cdbb2dcd62990ba11e16cadc8cdae8ead5c57c933258497596d78",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c35-01",
+      "math_sha256": "6f8f2dcc8b5672288d94588a7d14d8557538df6b85b44f32e4e64011036b0004",
+      "parent_review": {
+        "line": 170,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "source_line": 1,
+      "source_sha256": "10e548568d85f3d3037515e21605eca58c0e2a07315a591c43c191f3b2320f6e"
+    },
+    "record": {
+      "id": "draft-c35-01",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型标准形与惯性",
+      "concept_id": "C35",
+      "parent_training_ids": [
+        "linalg-059"
+      ],
+      "problem": "用配方法将二次型 $f(x,y,z)=x^2+4xy+3y^2+z^2$ 化为标准形，写出所用的可逆线性替换，并求其正负惯性指数、秩与正定性。",
+      "solution": "先对含 $x$ 的项配方：$x^2+4xy+3y^2=(x+2y)^2-y^2$，故 $f=(x+2y)^2-y^2+z^2$。令 $u=x+2y$，$v=y$，$w=z$，则 $f=u^2-v^2+w^2$ 为标准形；线性替换为 $x=u-2v$，$y=v$，$z=w$，其系数矩阵 $\\begin{pmatrix}1&-2&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$ 的行列式为 $1\\neq0$，可逆。正惯性指数 $2$，负惯性指数 $1$，秩 $3$。因负惯性指数非零，二次型不定(非正定)。令 $C=\\begin{pmatrix}1&-2&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$，有 $C^{\\mathsf T}AC=\\operatorname{diag}(1,-1,1)$。$\\det C=1$，$(n_+,n_-,n_0)=(2,1,0)$。既有正方向又有负方向才推出不定：$f(1,0,0)=1>0$、$f(-2,1,0)=-1<0$。",
+      "answer": "标准形 $u^2-v^2+w^2$，替换 $x=u-2v,y=v,z=w$;正惯性指数 $2$，负惯性指数 $1$，秩 $3$，不定。",
+      "method": "配方法+惯性指数",
+      "difficulty": "基础",
+      "variant_kind": "判别对象变化:三元不定二次型的配方标准化(正负惯性均非零)",
+      "scene_spec": {
+        "objects": [
+          "板书:$f=x^2+4xy+3y^2+z^2$",
+          "板书:配方步骤 $x^2+4xy+3y^2=(x+2y)^2-y^2$",
+          "板书:标准形 $u^2-v^2+w^2$ 与替换矩阵",
+          "高亮框:惯性指数 $(2,1,0)$、秩 $3$",
+          "标签「不定(非正定)」"
+        ],
+        "steps": [
+          "第一步:写出二次型,标出含 $x$ 的交叉项。",
+          "第二步:逐步配方:$(x+2y)^2-y^2+z^2$,展示配平过程。",
+          "第三步:引入新变量 $u,v,w$,写出可逆替换矩阵并验证行列式非零。",
+          "第四步:高亮标准形 $u^2-v^2+w^2$ 与惯性指数 $(2,1,0)$、秩 $3$。",
+          "第五步：由$n_+=2>0$且$n_-=1>0$，或一正一负两个见证，严格推出不定。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "6f8f2dcc8b5672288d94588a7d14d8557538df6b85b44f32e4e64011036b0004",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c35-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "original_id": "draft-c35-01",
+        "prior_parent_training_ids": [
+          "linalg-059"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "88c2192c6c4044fcdc6fdb731e5c18138771c8c899f0c15f1be098afd988333a",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "补合同矩阵等式和一正一负见证，避免仅由负项推出不定"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c35-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "6f8f2dcc8b5672288d94588a7d14d8557538df6b85b44f32e4e64011036b0004",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c35-03",
+      "math_sha256": "ba1281f464ff8bbe076971e033c1dd4e417fe446078a4c05ad236e9f7b284a11",
+      "parent_review": {
+        "line": 172,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "source_line": 3,
+      "source_sha256": "10e548568d85f3d3037515e21605eca58c0e2a07315a591c43c191f3b2320f6e"
+    },
+    "record": {
+      "admitted": false,
+      "animation_render_verified": false,
+      "answer": "$a=1\\iff\\operatorname{rank}A=1$。$a=0,1,2$的标准形分别为$u^2-v^2,u^2+0v^2,u^2+v^2$；惯性三元组$(n_+,n_-,n_0)$分别为$(1,1,0),(1,0,1),(2,0,0)$。",
+      "category": "高等代数",
+      "concept": "二次型标准形与惯性",
+      "concept_id": "C35",
+      "difficulty": "中等",
+      "draft_status": "codex-continuous-draft-v1-20261007-NOT-ADMITTED",
+      "id": "draft-c35-03",
+      "license": "Internal-Research-Use-Only",
+      "method": "含参配方+退化分支(秩随参数变化)",
+      "parent_training_ids": [
+        "linalg-059"
+      ],
+      "problem": "求使二次型 $f(x,y)=x^2+2xy+ay^2$ 的秩为 $1$ 的参数 $a$ 的值；并分别求 $a=0$、$a=1$、$a=2$ 时的标准形与正负惯性指数。",
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "revision_lineage": {
+        "additional_recheck_reason": null,
+        "continuous_correction_reason": "场景标签统一使用(正,负,零)三元惯性，与正文及后续步骤保持一致。",
+        "continuous_review_parent": {
+          "record_version_sha256": "f06541b3a1a2c53f12c06983bcf8a1315fad9a72af83b170582f0527169858d9",
+          "source_line": 3,
+          "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+          "source_raw_sha256": "cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac",
+          "strict_review": {
+            "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE",
+            "admitted": false,
+            "core_math_verified": true,
+            "exact_expression_required": true,
+            "math_content_sha256": "8e3ce012bef4fe3e863a2d0d7697843549f753195c32b82edbe0f3bc9821cb31",
+            "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+            "rational_numbers": "fractions_or_integers",
+            "render_verified": false,
+            "scene_text_reviewed": true,
+            "source_batch": "batch-03",
+            "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+            "text_math_fields_reviewed": true,
+            "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+            "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+          },
+          "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c35-03"
+        },
+        "historical_risk_not_reset": true,
+        "math_correction_notes": [
+          "修秩亏分支零惯性指数并补rank≥1的依据"
+        ],
+        "original_id": "draft-c35-03",
+        "previous_hold_reasons": [],
+        "previous_math_review_binding": {
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json",
+          "math_content_sha256": "8e3ce012bef4fe3e863a2d0d7697843549f753195c32b82edbe0f3bc9821cb31"
+        },
+        "previous_selected_version": {
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "version": "codex-repair-v3",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c35-03"
+        },
+        "prior_corrected_record_sha256": "6d1f23db9394682a61075644f61787680d4abfd77e7ed51b66aae3bf757ea522",
+        "prior_parent_training_ids": [
+          "linalg-059"
+        ],
+        "revised_in_place": false,
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "version": "codex-continuous-draft-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "板书:$f=x^2+2xy+ay^2$ 与矩阵 $A=\\begin{pmatrix}1&1\\\\1&a\\end{pmatrix}$",
+          "板书:$\\det A=a-1$,秩为 $1$ 当且仅当 $a=1$",
+          "数轴:$a=1$ 处退化边界标记",
+          "三个分支板书:$a=0$、$a=1$、$a=2$ 的配方与惯性指数",
+          "标签:「不定：惯性(1,1,0)」「退化：惯性(1,0,1)」「正定：惯性(2,0,0)」"
+        ],
+        "steps": [
+          "第一步:写出矩阵,计算 $\\det A=a-1$。",
+          "第二步:说明秩为 $1$ 的条件,在数轴标出 $a=1$ 边界。",
+          "第三步:展示 $a=0$ 分支:$(x+y)^2-y^2$,惯性 $(1,1,0)$,不定。",
+          "第四步:展示 $a=1$ 分支:$(x+y)^2$,惯性 $(1,0,1)$,退化。",
+          "第五步:展示 $a=2$ 分支:$(x+y)^2+y^2$,惯性 $(2,0,0)$,正定;汇总三分支。"
+        ]
+      },
+      "solution": "令 $u=x+y,v=y$，则 $f=u^2+(a-1)v^2$，对应 $C=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$ 满足 $C^{\\mathsf T}AC=\\operatorname{diag}(1,a-1)$，$\\det C=1$。因 $A_{11}=1\\ne0$，$\\operatorname{rank}A\\ge1$；$\\det A=a-1$，故秩为$1$当且仅当$a=1$。$a=0$时标准形$u^2-v^2$、惯性三元组$(1,1,0)$、秩$2$；$a=1$时$u^2+0v^2$、惯性三元组$(1,0,1)$、秩$1$；$a=2$时$u^2+v^2$、惯性三元组$(2,0,0)$、秩$2$。",
+      "source": "self-authored",
+      "strict_review": {
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE",
+        "admitted": false,
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "math_content_sha256": "ba1281f464ff8bbe076971e033c1dd4e417fe446078a4c05ad236e9f7b284a11",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "rational_numbers": "fractions_or_integers",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "verification_basis": "INDEPENDENT_PROBLEM_PROOF_ANSWER_AND_SCENE_TEXT_REVIEW_PLUS_EXACT_WITNESSES"
+      },
+      "sub_category": "二次型",
+      "variant_kind": "参数边界:秩亏条件与三个参数分支的惯性全谱(不定/退化/正定)",
+      "versioned_id": "codex-continuous-draft-v1-20261007-draft-c35-03"
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c35-04",
+      "math_sha256": "7067bdfc780bfe35f58f8cae5e631e876721ff364c0f42b315ad4e114c886ab8",
+      "parent_review": {
+        "line": 173,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "source_line": 4,
+      "source_sha256": "10e548568d85f3d3037515e21605eca58c0e2a07315a591c43c191f3b2320f6e"
+    },
+    "record": {
+      "id": "draft-c35-04",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型标准形与惯性",
+      "concept_id": "C35",
+      "parent_training_ids": [
+        "linalg-059"
+      ],
+      "problem": "用配方法将二次型 $f(x,y,z)=x^2-y^2+2xz+2yz$ 化为标准形，写出可逆线性替换，并求正负惯性指数与秩。",
+      "solution": "先对含 $x$ 的项配方：$x^2+2xz=(x+z)^2-z^2$，于是 $f=(x+z)^2-z^2-y^2+2yz=(x+z)^2-(y^2-2yz+z^2)=(x+z)^2-(y-z)^2$。令 $u=x+z$，$v=y-z$，$w=z$，则标准形为 $u^2-v^2$($w$ 不出现，退化)；反解得线性替换 $x=u-w$，$y=v+w$，$z=w$，系数矩阵 $\\begin{pmatrix}1&0&-1\\\\0&1&1\\\\0&0&1\\end{pmatrix}$ 行列式为 $1$，可逆。正惯性指数 $1$，负惯性指数 $1$，秩 $2$。对应 $C^{\\mathsf T}AC=\\operatorname{diag}(1,-1,0)$，故惯性三元组为 $(1,1,1)$。不出现的第三变量是一个零方向，不能把零惯性指数写成$0$。",
+      "answer": "标准形 $u^2-v^2+0w^2$；$x=u-w,y=v+w,z=w$；$(n_+,n_-,n_0)=(1,1,1)$，秩$2$。",
+      "method": "逐变量配方(三元退化不定)",
+      "difficulty": "中等",
+      "variant_kind": "维数变化:三元二次型配方后仅剩两项(秩2退化),替换矩阵含负系数",
+      "scene_spec": {
+        "objects": [
+          "板书:$f=x^2-y^2+2xz+2yz$",
+          "板书:第一步配方 $x^2+2xz=(x+z)^2-z^2$",
+          "板书:合并 $-(y^2-2yz+z^2)=-(y-z)^2$",
+          "高亮框:标准形 $u^2-v^2$ 与替换矩阵 $\\begin{pmatrix}1&0&-1\\\\0&1&1\\\\0&0&1\\end{pmatrix}$",
+          "标签「惯性 $(1,1,1)$,秩 $2$(退化)」"
+        ],
+        "steps": [
+          "第一步:写出二次型,标出含 $x$ 与含 $y$ 的交叉项。",
+          "第二步:对 $x$ 配方得 $(x+z)^2-z^2$,剩余项高亮。",
+          "第三步:合并剩余项为 $-(y-z)^2$,展示完全平方差。",
+          "第四步:写出新变量替换与可逆矩阵,验证行列式。",
+          "第五步:高亮标准形 $u^2-v^2$,标注惯性 $(1,1,1)$ 与秩 $2$ 的退化结构。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "7067bdfc780bfe35f58f8cae5e631e876721ff364c0f42b315ad4e114c886ab8",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c35-04",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "original_id": "draft-c35-04",
+        "prior_parent_training_ids": [
+          "linalg-059"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "d98857aefb36c038e14bc6112af334bae1793986c3b8b60f6ac83e743722ff58",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "修三元rank2的零惯性指数为1"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c35-04"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "7067bdfc780bfe35f58f8cae5e631e876721ff364c0f42b315ad4e114c886ab8",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c37-05",
+      "math_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+      "parent_review": {
+        "line": 184,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+      "source_line": 10,
+      "source_sha256": "10e548568d85f3d3037515e21605eca58c0e2a07315a591c43c191f3b2320f6e"
+    },
+    "record": {
+      "id": "draft-c37-05",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "concept": "基与坐标变换",
+      "concept_id": "C37",
+      "parent_training_ids": [
+        "linalg-061"
+      ],
+      "problem": "证明 $\\{1+x+x^2,\\ 1-x+x^2,\\ x-x^2\\}$ 是次数不超过 $2$ 的多项式空间的一组基，并求 $p(x)=x^2$ 在这组基下的坐标。",
+      "solution": "约定基矩阵 $B_\\eta=B_\\varepsilon P$，$P$的第$j$列为$[\\eta_j]_\\varepsilon$，故$[v]_\\varepsilon=P[v]_\\eta$、$[v]_\\eta=P^{-1}[v]_\\varepsilon$；换基改变坐标，不改变向量$v$。把三个多项式在基 $\\{1,x,x^2\\}$ 下的坐标按列排列：$M=\\begin{pmatrix}1&1&0\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$。计算 $\\det M=1\\times((-1)\\times(-1)-1\\times1)-1\\times(1\\times(-1)-1\\times1)+0=0-(-2)=2\\neq0$，故三个向量线性无关；空间维数为 $3$，故构成一组基。求 $p=x^2$ 的坐标即解 $M\\xi=(0,0,1)^{\\mathsf T}$。由伴随矩阵法(或消元)得 $M^{-1}=\\begin{pmatrix}0&\\frac12&\\frac12\\\\1&-\\frac12&-\\frac12\\\\1&0&-1\\end{pmatrix}$，故 $\\xi=M^{-1}(0,0,1)^{\\mathsf T}=(\\frac12,-\\frac12,-1)$。验证:$\\frac12(1+x+x^2)-\\frac12(1-x+x^2)-(x-x^2)=(\\frac12-\\frac12)+(\\frac x2+\\frac x2-x)+(\\frac{x^2}2-\\frac{x^2}2+x^2)=x^2$。",
+      "answer": "三个多项式线性无关(行列式 $2\\neq0$),构成一组基;$p=x^2$ 的坐标为 $(\\frac12,-\\frac12,-1)$。",
+      "method": "行列式判基+坐标解算(反求验证)",
+      "difficulty": "进阶",
+      "variant_kind": "证明+解算:抽象空间基的判定证明与特定多项式的坐标反求",
+      "scene_spec": {
+        "objects": [
+          "板书:三个多项式及其旧坐标向量",
+          "板书:坐标矩阵 $M=\\begin{pmatrix}1&1&0\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$ 与行列式计算 $\\det M=2$",
+          "板书:$M^{-1}$ 的求法",
+          "高亮框:$\\xi=(\\frac12,-\\frac12,-1)$",
+          "验证板书:$\\frac12(1+x+x^2)-\\frac12(1-x+x^2)-(x-x^2)=x^2$"
+        ],
+        "steps": [
+          "第一步:写出三个多项式,提取它们在旧基下的坐标列。",
+          "第二步:计算坐标矩阵行列式 $\\det M=2\\neq0$,判定线性无关。",
+          "第三步:由维数论证构成一组基。",
+          "第四步:解 $M\\xi=(0,0,1)^{\\mathsf T}$,得 $\\xi=(\\frac12,-\\frac12,-1)$。",
+          "第五步:展示验证:坐标组合展开恰为 $x^2$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c37-05",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "original_id": "draft-c37-05",
+        "prior_parent_training_ids": [
+          "linalg-061"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "d550fef646db4a71beaf9ac606a479f8c36134df981e24464db14981aa70f2f5",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "用明确基矩阵/坐标等式固定换基方向，向量本身不变"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c37-05"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c30-01",
+      "math_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+      "parent_review": {
+        "line": 145,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+      "source_line": 11,
+      "source_sha256": "9521198544281f96e62466080d8d2475c1582693618903c742bdd81410b04adc"
+    },
+    "record": {
+      "id": "draft-c30-01",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "concept": "多项式平移展开",
+      "concept_id": "C30",
+      "parent_training_ids": [
+        "linalg-052"
+      ],
+      "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+      "solution": "零点重数给$(x-1)^3(x-2)^2\\mid f$。由次数上界，$f=c(x-1)^3(x-2)^2$；$f(0)=1$给$-4c=1$，即$c=-1/4$。令$u=x-1$，则$f=-u^3(u-1)^2/4=-u^5/4+u^4/2-u^3/4$。因为$c\\ne0$且两个因子互素，重数分别恰为$3$与$2$。所有条件均验证，且常数被唯一确定，故解唯一。",
+      "answer": "$f=-\\frac14(x-1)^3(x-2)^2=-\\frac14(x-1)^5+\\frac12(x-1)^4-\\frac14(x-1)^3$，唯一。",
+      "method": "重数约束的Hermite型平移重建",
+      "difficulty": "基础",
+      "variant_kind": "两个节点的重数条件+次数与归一化唯一性",
+      "scene_spec": {
+        "objects": [
+          "重数$3,2$与次数$\\le5$",
+          "$f(0)=1$归一化",
+          "关于$u=x-1$的有限恒等式"
+        ],
+        "steps": [
+          "第一步:把重数条件改写为整除条件。",
+          "第二步:由次数上界限制为一个常数倍。",
+          "第三步:归一化确定常数并平移展开。",
+          "第四步:验证精确重数和唯一性。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-04",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "original_id": "draft-c30-01",
+        "prior_parent_training_ids": [
+          "linalg-052"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "57320599bd5b6b2ca4cc97446dc1dd0f91cbdf0d819a4b5be958a99c93427340",
+        "previous_hold_reasons": [
+          "DIRECT_POLYNOMIAL_SHIFT_TEMPLATE",
+          "SECONDARY_FINITE_TAYLOR_TEMPLATE"
+        ],
+        "math_correction_notes": [],
+        "revised_in_place": true,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+          "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+          "versioned_id": "codex-repair-20261005-batch-04-draft-c30-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e15ce999256e86cefe8f79d3e42c0001aa8ef7f082b095bcf5ac8b69f5e0d822",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "selected_draft",
+      "id": "draft-c02-01",
+      "math_sha256": "d304f2ae550e79756b7b6e6f343d782ef1737d7a27ba4be3dcf42094957f318b",
+      "parent_review": {
+        "line": 6,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/independent-draft-review-264.jsonl",
+        "record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+        "sha256": "d3e85c29907e75bc132d5a8d535500a3c008121efeb253fd7f079f876ca2e3c7"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl",
+      "record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "source_line": 1,
+      "source_sha256": "abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894"
+    },
+    "record": {
+      "id": "draft-c02-01",
+      "category": "数学分析",
+      "sub_category": "反常积分",
+      "concept": "无穷限反常积分",
+      "concept_id": "C02",
+      "parent_training_ids": [
+        "calc-improper-002",
+        "calc-param-improper-003"
+      ],
+      "problem": "证明广义积分$\\int_1^{\\infty}\\sin(x^2)\\,dx$收敛但不绝对收敛，并给出对任意$T>R\\ge1$均成立的精确尾积分上界。无需计算积分的具体值。",
+      "solution": "令$u=x^2$，尾积分为$\\int_{R^2}^{T^2}\\sin u/(2\\sqrt u)\\,du$。置$w(u)=1/(2\\sqrt u)$，分部积分得$[-w(u)\\cos u]_{R^2}^{T^2}+\\int_{R^2}^{T^2}w^{\\prime}(u)\\cos u\\,du$。因$w$正且递减，其绝对值不超过$w(R^2)+w(T^2)+\\int_{R^2}^{T^2}|w^{\\prime}|=2w(R^2)=1/R$。由柯西准则，广义积分收敛。绝对值积分换元为$\\int_1^{\\infty}|\\sin u|/(2\\sqrt u)\\,du$。对$n\\ge1$，在$[n\\pi+\\pi/6,n\\pi+5\\pi/6]$上$|\\sin u|\\ge1/2$，故每段贡献至少$\\sqrt\\pi/(6\\sqrt{n+1})$。从$n=N$到$2N-1$的贡献至少$(\\sqrt\\pi/6)N/\\sqrt{2N}=(\\sqrt\\pi/6)\\sqrt{N/2}$，无界，因而不绝对收敛。",
+      "answer": "条件收敛；$\\left|\\int_R^T\\sin(x^2)\\,dx\\right|\\le1/R$（$T>R\\ge1$）。",
+      "method": "振荡相位广义积分的柯西尾界",
+      "difficulty": "基础",
+      "variant_kind": "平方相位换元+分部尾界+绝对积分分块下界",
+      "scene_spec": {
+        "objects": [
+          "积分尾项与$1/R$上界",
+          "$u=x^2$及权重$1/(2\\sqrt u)$",
+          "每段下界$\\sqrt\\pi/(6\\sqrt{n+1})$",
+          "条件收敛与绝对收敛的区分"
+        ],
+        "steps": [
+          "第一步:换元将振荡项与递减权重分开。",
+          "第二步:分部积分给统一精确尾界。",
+          "第三步:用柯西准则证明收敛。",
+          "第四步:用正弦远离零的区间证明绝对积分发散。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-07",
+        "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "d304f2ae550e79756b7b6e6f343d782ef1737d7a27ba4be3dcf42094957f318b",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+        "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+        "original_id": "draft-c02-01",
+        "prior_parent_training_ids": [
+          "calc-improper-002",
+          "calc-param-improper-003"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "3b5caa8eb4385d1e4e74a7e2fb11a7c4ef57d45f33ec00f6a49e702c86d18b3d",
+        "previous_hold_reasons": [
+          "FIXED_PARAMETER_DIRECT_SUBTASK"
+        ],
+        "math_correction_notes": [],
+        "revised_in_place": true,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+          "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+          "versioned_id": "codex-repair-20261005-batch-07-draft-c02-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "f6e33b10b0f0ee50a281e3067af4023a8f1d15ba312198c0eea0d87d9a36425a",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-019-s1",
+      "math_sha256": "e62787742e2d11ba49170907a9af1742e6b28709cfd64cab6b1fc67e748f4a60",
+      "parent_review": {
+        "line": 54,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "source_line": 55,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-calc-019-s1",
+      "problem_id": "eval-calc-019",
+      "solution_id": "eval-calc-019-s1",
+      "method": "分部积分+极限",
+      "category": "数学分析",
+      "sub_category": "反常积分",
+      "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+      "solution": "先求原函数：令 $u=x$、$dv=e^{-x}dx$，则 $du=dx$、$v=-e^{-x}$，$\\displaystyle\\int xe^{-x}dx=-xe^{-x}+\\int e^{-x}dx=-(x+1)e^{-x}+C$。故 $\\displaystyle\\int_0^{b}xe^{-x}dx=\\left[-(x+1)e^{-x}\\right]_0^b=1-(b+1)e^{-b}$。令 $b\\to+\\infty$：$(b+1)e^{-b}\\to 0$（指数衰减快于线性增长），得原积分 $=1$。",
+      "answer": "$1$",
+      "scene_spec": {
+        "objects": [
+          "分部积分 $u=x$、$dv=e^{-x}dx$ 的选取",
+          "$(b+1)e^{-b}\\to0$ 的极限标注"
+        ],
+        "steps": [
+          "第一步：以分部积分+极限为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+          "第二步：分部积分 $u=x$、$dv=e^{-x}dx$ 的选取。",
+          "第三步：$(b+1)e^{-b}\\to0$ 的极限标注。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "指数衰减函数反常积分",
+      "visual_style": "峰形曲线与横向条带",
+      "efficiency_tags": [
+        "分部积分 $u=x$、$dv=e^{-x}dx$ 的选取",
+        "$(b+1)e^{-b}\\to0$ 的极限标注"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-021-s1",
+      "math_sha256": "7e8b5e4207e66b96222d74536a2c8834d4f9a3451226dd4f3e4e06483d460e59",
+      "parent_review": {
+        "line": 208,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "source_line": 256,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-linalg-021-s1",
+      "problem_id": "eval-linalg-021",
+      "solution_id": "eval-linalg-021-s1",
+      "method": "顺序主子式",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "solution": "$f$ 的矩阵 $A=\\begin{pmatrix}2&1&a\\\\1&1&0\\\\a&0&2\\end{pmatrix}$。顺序主子式:$\\Delta_1=2>0$,$\\Delta_2=\\begin{vmatrix}2&1\\\\1&1\\end{vmatrix}=1>0$,$\\Delta_3=|A|=2\\cdot\\begin{vmatrix}1&0\\\\0&2\\end{vmatrix}-1\\cdot\\begin{vmatrix}1&0\\\\a&2\\end{vmatrix}+a\\cdot\\begin{vmatrix}1&1\\\\a&0\\end{vmatrix}=4-2-a^2=2-a^2$。$f$ 正定 $\\iff\\Delta_3>0\\iff 2-a^2>0\\iff -\\sqrt{2}<a<\\sqrt{2}$。",
+      "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+      "scene_spec": {
+        "objects": [
+          "$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注",
+          "主子式序列随 $a$ 变化"
+        ],
+        "steps": [
+          "第一步：以顺序主子式为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+          "第二步：$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注。",
+          "第三步：主子式序列随 $a$ 变化。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "含参三元二次型正定范围",
+      "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换",
+      "efficiency_tags": [
+        "$\\Delta_3(a)=2-a^2$ 的抛物线图与正区间 $(-\\sqrt2,\\sqrt2)$ 标注",
+        "主子式序列随 $a$ 变化"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-021-s2",
+      "math_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "parent_review": {
+        "line": 209,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "source_line": 257,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+      "category": "高等代数",
+      "efficiency_tags": [
+        "含参配方逐步展开",
+        "系数 $2-a^2$ 的符号区间"
+      ],
+      "function_family": "含参三元二次型正定范围",
+      "id": "eval-linalg-021-s2",
+      "license": "Internal-Research-Use-Only",
+      "method": "配方",
+      "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "problem_id": "eval-linalg-021",
+      "revision_lineage": {
+        "continuous_correction_reason": "系数判正定补可逆变量替换及反向必要性",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "5c7b6b5053b27a1b5de1c2ad969444347906f060f42d2bf19ccbdc307c8542b3",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-linalg-021-s2",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 304,
+            "record_version_sha256": "5c7b6b5053b27a1b5de1c2ad969444347906f060f42d2bf19ccbdc307c8542b3",
+            "source_line": 257,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "d2249bdffe09f69d0483532a1f87ddb1b87934b8f4ac6b182fda32fe162eac5b"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "含参配方逐步展开",
+          "系数 $2-a^2$ 的符号区间"
+        ],
+        "steps": [
+          "呈现题干及适用条件：设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+          "依次呈现：含参配方逐步展开",
+          "依次呈现：系数 $2-a^2$ 的符号区间",
+          "核对完整证明：$2\\left(x+\\dfrac{y}{2}+\\dfrac{az}{2}\\right)^2=2x^2+\\dfrac{y^2}{2}+\\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\left[\\frac{y^2}{2}-ayz+\\left(2-\\frac{a^2}{2}\\right)z^2\\right]=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\\ \\dfrac{1}{2},\\ 2-a^2$ 全正 $\\iff 2-a^2>0\\iff |a|<\\sqrt{2}$,与解法一一致。变量替换$u=x+y/2+az/2,\\ v=y-az,\\ w=z$的矩阵为上三角且行列式1，故可逆。若$2-a^2\\le0$，取非零向量$(x,y,z)=(-a,a,1)$，前两平方为零且$f=2-a^2\\le0$，因此上述条件也是必要条件。",
+          "高亮结果：$-\\sqrt{2}<a<\\sqrt{2}$"
+        ]
+      },
+      "solution": "$2\\left(x+\\dfrac{y}{2}+\\dfrac{az}{2}\\right)^2=2x^2+\\dfrac{y^2}{2}+\\dfrac{a^2z^2}{2}+2xy+2axz+ayz$,故 $$f=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\left[\\frac{y^2}{2}-ayz+\\left(2-\\frac{a^2}{2}\\right)z^2\\right]=2\\left(x+\\frac{y}{2}+\\frac{az}{2}\\right)^2+\\frac{1}{2}(y-az)^2+(2-a^2)z^2.$$ 三项系数 $2,\\ \\dfrac{1}{2},\\ 2-a^2$ 全正 $\\iff 2-a^2>0\\iff |a|<\\sqrt{2}$,与解法一一致。变量替换$u=x+y/2+az/2,\\ v=y-az,\\ w=z$的矩阵为上三角且行列式1，故可逆。若$2-a^2\\le0$，取非零向量$(x,y,z)=(-a,a,1)$，前两平方为零且$f=2-a^2\\le0$，因此上述条件也是必要条件。",
+      "solution_id": "eval-linalg-021-s2",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "二次型",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-021-s2",
+      "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-021-s3",
+      "math_sha256": "66bef0e32d5837091ec28e2d9cbe2a95a60771f3fa703f5a798af26e88fe3b9e",
+      "parent_review": {
+        "line": 210,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc",
+      "source_line": 258,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-linalg-021-s3",
+      "problem_id": "eval-linalg-021",
+      "solution_id": "eval-linalg-021-s3",
+      "method": "Schur 补",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "problem": "设 $a\\in\\mathbb R$ 为参数,求使二次型 $f(x,y,z)=2x^2+y^2+2z^2+2xy+2axz$ 正定的 $a$ 的取值范围。",
+      "solution": "把 $A$ 分块为 $\\begin{pmatrix}B&c\\\\c^T&2\\end{pmatrix}$,其中 $B=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix}$,$c=(a,0)^T$。$B$ 正定($2>0$ 且 $|B|=1>0$),由 Schur 补判据,$A$ 正定 $\\iff$ $B$ 正定且 $S=2-c^TB^{-1}c>0$。$B^{-1}=\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$,$c^TB^{-1}c=(a,0)\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}\\begin{pmatrix}a\\\\0\\end{pmatrix}=a^2$,故 $S=2-a^2$。于是 $f$ 正定 $\\iff 2-a^2>0\\iff -\\sqrt{2}<a<\\sqrt{2}$,与前两法独立得到同一范围。",
+      "answer": "$-\\sqrt{2}<a<\\sqrt{2}$",
+      "scene_spec": {
+        "objects": [
+          "$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注",
+          "等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)"
+        ],
+        "steps": [
+          "第一步：以Schur 补为主线，建立高等代数·二次型场景并呈现该解法的关键图形。",
+          "第二步：$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注。",
+          "第三步：等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "含参三元二次型正定范围",
+      "visual_style": "参数正区间与椭球面/椭圆柱面/单叶双曲面切换",
+      "efficiency_tags": [
+        "$2\\times2$ 块 $B$ 与 Schur 补 $S=2-a^2$ 的分块标注",
+        "等值面 $f=1$ 随 $a$ 的类型切换(椭球/椭圆柱/单叶双曲面)"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-022-s1",
+      "math_sha256": "71eb09eda410df398fb681b4082c258b5a6bae3d1601f9c0931f6a84471cce61",
+      "parent_review": {
+        "line": 211,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+      "source_line": 259,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-linalg-022-s1",
+      "problem_id": "eval-linalg-022",
+      "solution_id": "eval-linalg-022-s1",
+      "method": "有理根定理",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "problem": "将多项式 $f(x)=x^4+2x^3-7x^2-8x+12$ 因式分解。",
+      "solution": "常数项 $12$ 与首项系数 $1$，可能的有理根为 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$。逐一代入：$f(1)=1+2-7-8+12=0$；$f(2)=16+16-28-16+12=0$；$f(-2)=16-16-28+16+12=0$；$f(-3)=81-54-63+24+12=0$。四次多项式有四个根 $1,2,-2,-3$，故 $f=(x-1)(x-2)(x+2)(x+3)$。",
+      "answer": "$(x-1)(x-2)(x+2)(x+3)$",
+      "scene_spec": {
+        "objects": [
+          "有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根",
+          "曲线 $y=f(x)$ 与四个实根"
+        ],
+        "steps": [
+          "第一步：以有理根定理为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+          "第二步：有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根。",
+          "第三步：曲线 $y=f(x)$ 与四个实根。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "整系数多项式因式分解",
+      "visual_style": "曲线与四个实根",
+      "efficiency_tags": [
+        "有理根候选 $\\pm1,\\pm2,\\pm3,\\pm4,\\pm6,\\pm12$ 的逐一试根",
+        "曲线 $y=f(x)$ 与四个实根"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-024-s3",
+      "math_sha256": "033b151361a6778bb8e96f2dbe11876b243fd9de51c2a2067711314cd985a678",
+      "parent_review": {
+        "line": 219,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213",
+      "source_line": 267,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-linalg-024-s3",
+      "problem_id": "eval-linalg-024",
+      "solution_id": "eval-linalg-024-s3",
+      "method": "换元展开",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "problem": "将多项式 $f(x)=x^3-7x+6$ 按 $x-1$ 的幂展开（即求 $f$ 在 $x=1$ 处的泰勒展开）。",
+      "solution": "令 $y=x-1$，则 $x=y+1$。$f=(y+1)^3-7(y+1)+6=y^3+3y^2+3y+1-7y-7+6=y^3+3y^2-4y$。代回 $y=x-1$ 得 $f=(x-1)^3+3(x-1)^2-4(x-1)$。",
+      "answer": "$f(x)=(x-1)^3+3(x-1)^2-4(x-1)$",
+      "scene_spec": {
+        "objects": [
+          "换元 $y=x-1$ 的展开动画",
+          "曲线与展开点 $(1,0)$"
+        ],
+        "steps": [
+          "第一步：以换元展开为主线，建立高等代数·多项式场景并呈现该解法的关键图形。",
+          "第二步：换元 $y=x-1$ 的展开动画。",
+          "第三步：曲线与展开点 $(1,0)$。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "多项式按幂展开",
+      "visual_style": "各阶切触贴合",
+      "efficiency_tags": [
+        "换元 $y=x-1$ 的展开动画",
+        "曲线与展开点 $(1,0)$"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-linalg-026-s1",
+      "math_sha256": "340cdaeb7bcf50a692c352c15a8224786a4a56a41683f046e60517d3f2468185",
+      "parent_review": {
+        "line": 223,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/effective-core-v2/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+      "source_line": 271,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0"
+    },
+    "record": {
+      "id": "eval-linalg-026-s1",
+      "problem_id": "eval-linalg-026",
+      "solution_id": "eval-linalg-026-s1",
+      "method": "行列式",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "problem": "判断向量组 $\\alpha_1=(1,2,3)$，$\\alpha_2=(2,3,1)$，$\\alpha_3=(3,1,2)$ 是否线性相关。",
+      "solution": "以三向量为行（或列）的行列式 $D=\\begin{vmatrix}1&2&3\\\\2&3&1\\\\3&1&2\\end{vmatrix}=1\\cdot(3\\cdot 2-1\\cdot 1)-2\\cdot(2\\cdot 2-1\\cdot 3)+3\\cdot(2\\cdot 1-3\\cdot 3)=1\\cdot 5-2\\cdot 1+3\\cdot(-7)=5-2-21=-18\\ne 0$。行列式非零，故三向量线性无关。",
+      "answer": "线性无关",
+      "scene_spec": {
+        "objects": [
+          "三阶行列式 $-18$ 的展开计算",
+          "体积 $|D|=18$ 的标注"
+        ],
+        "steps": [
+          "第一步：以行列式为主线，建立高等代数·线性空间场景并呈现该解法的关键图形。",
+          "第二步：三阶行列式 $-18$ 的展开计算。",
+          "第三步：体积 $|D|=18$ 的标注。",
+          "第四步：高亮最终结果与答案。"
+        ]
+      },
+      "function_family": "向量组线性相关",
+      "visual_style": "平行六面体体积",
+      "efficiency_tags": [
+        "三阶行列式 $-18$ 的展开计算",
+        "体积 $|D|=18$ 的标注"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  }
+]

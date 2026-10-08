@@ -1,0 +1,1466 @@
+{
+  "revised_questions": 35,
+  "exact_checks": 120,
+  "all_pass": true,
+  "floating_point_used": false,
+  "finite_checks_not_universal_proof": true,
+  "manual_general_proofs": [
+    {
+      "id": "draft-c11-03",
+      "concept_id": "C11",
+      "math_sha256": "5996ade600a217d0ad94b1b515150cd490864b638e39d62dfcebabc9508b8882",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "用$2^n\\ge n+1$建立绝对收敛界。",
+        "分别检查两个端点及区间外通项。",
+        "重编号得到函数方程。",
+        "将两个解之差反复代入$x\\mapsto x^2$，用连续性证明唯一。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c11-04",
+      "concept_id": "C11",
+      "math_sha256": "0d84179c54308b3ad6a91c0c73a2252b38dcde22fed5b170eeeb1135e15fdc4a",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "解递推并验证初值。",
+        "拆成两个几何级数，给出共同收敛域。",
+        "逐一检查两端通项。",
+        "用递推生成函数恒等式及精确分数取值核对。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c11-05",
+      "concept_id": "C11",
+      "math_sha256": "63ece989fb182c4a44db35b98b232563556ee8cab16269ea57d42758398ef63f",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "推导系数递推及半径。",
+        "逐项求导得到初值问题并解出精确和函数。",
+        "用二项式行最大项证明正端点发散。",
+        "用精确对数不等式证明系数趋零，再用莱布尼茨与阿贝尔处理负端点。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c51-02",
+      "concept_id": "C51",
+      "math_sha256": "44803ebbce669eb2dd02a49311893139bf365a7575e2e2178a45679f739564a1",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "分别计算两种参数下的二项似然。",
+        "用先验加权得到证据概率。",
+        "归一化得到两个后验概率。",
+        "再对参数后验求平均，给出预测分数。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c35-02",
+      "concept_id": "C35",
+      "math_sha256": "9922125f39097c4e231c377eae2345bc55f1a8493d225f725df6f270d761a7f1",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "定义差分坐标并给反解。",
+        "写出标准形和规范形。",
+        "计算核、秩与三元惯性。",
+        "将约束代入，证明核与约束空间只交于零，得到限制正定。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 7
+    },
+    {
+      "id": "draft-c37-03",
+      "concept_id": "C37",
+      "math_sha256": "6443db363602ab67b8946be92fe259dd13b2b1aa4700248ec59d8273f3ce9f13",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "以列坐标定义过渡矩阵并验证可逆。",
+        "解新坐标并重建矩阵对象。",
+        "通过$P^{\\mathsf T}G_EP$变换Gram矩阵。",
+        "用新坐标和原矩阵分别计算同一范数。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c13-01",
+      "concept_id": "C13",
+      "math_sha256": "ea1fbf12a582fc528867e20e2345e2efe981affc78aa78f160c35096bddcd7f4",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "推导正切差并检查主值区间。",
+        "写有限部分和的完整抵消式。",
+        "取极限得到精确角度。",
+        "给互余角形式的精确余项。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c13-04",
+      "concept_id": "C13",
+      "math_sha256": "c3c17708bf8511c03382146e2a259e52531f64f5197ff371952a1d9dacc6e3f8",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "有理化定义一阶差分并证明递减。",
+        "二阶差分的有限和抵消。",
+        "由符号得到绝对收敛。",
+        "给精确尾项与符号。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c18-01",
+      "concept_id": "C18",
+      "math_sha256": "fd28d2b07737ce1f188b32dbcb1ed82da2e09d40763c265930016d2fae73d95e",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "归一化平面法向与常数。",
+        "用两个距离条件得到$a=0$或$1$。",
+        "分类全部平面及投影。",
+        "验证每类的距离并证明穷尽。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 1
+    },
+    {
+      "id": "draft-c18-04",
+      "concept_id": "C18",
+      "math_sha256": "f493d8c1103dd68755cad9a213b862a0c26642fad1c79007aa4b09e9f3556837",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "计算加权法向和归一化分母。",
+        "构造候选投影并检验平面方程。",
+        "证明加权正交勾股分解。",
+        "得到精确距离及唯一性。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c30-01",
+      "concept_id": "C30",
+      "math_sha256": "e15ce999256e86cefe8f79d3e42c0001aa8ef7f082b095bcf5ac8b69f5e0d822",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "把重数条件改写为整除条件。",
+        "由次数上界限制为一个常数倍。",
+        "归一化确定常数并平移展开。",
+        "验证精确重数和唯一性。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 7
+    },
+    {
+      "id": "draft-c30-02",
+      "concept_id": "C30",
+      "math_sha256": "a84668c7d7f6cfd781aafc37562a47cdcccd8df7976b5350b57a2545d9c70254",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "将反射对称条件解释为平移后的偶性。",
+        "用三次项系数给唯一候选中心。",
+        "完整展开验证所有奇次项消失。",
+        "给精确恒等式及穷尽性。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c30-03",
+      "concept_id": "C30",
+      "math_sha256": "bd4c8507625d92dfcf6c7a96bb57d506edb1e9a205edbfb1e1f41bbc1d4979a8",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "用有限二项式展开证明精确降阶。",
+        "证明幂零指数恰为$4$。",
+        "比较差分系数求多项式。",
+        "用差分核与初值证明唯一。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c30-05",
+      "concept_id": "C30",
+      "math_sha256": "8ff427046c219fcdbbe95f844d90f1dc879d637b92b78461ca99d22d90463b02",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "比较一次平移差的最高非零系数。",
+        "推出非恒定多项式无非零周期。",
+        "比较中心二阶差的最高非零系数。",
+        "验证并给出所有次数至多一的解。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 7
+    },
+    {
+      "id": "draft-c21-04",
+      "concept_id": "C21",
+      "math_sha256": "555f2b01a05e5160a82e64cfacd634b5d54f855cd7f3b39403eee4a2861918c6",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "代入并先区分二次项是否为零。",
+        "穷尽常数、一次与二次方程分支。",
+        "用梯度验证重根对应相切。",
+        "排除整线包含并验证参数与交点一一对应。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c28-01",
+      "concept_id": "C28",
+      "math_sha256": "974a56040c97bd45161acfdcd5f68fcb599294497f677df7dbb372c23e43c0b4",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "检查简单性与凹顶点。",
+        "计算鞋带行列式和。",
+        "保留扇分解负项并解释抵消。",
+        "用矩形减凹口三角形验证。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c28-02",
+      "concept_id": "C28",
+      "math_sha256": "7b21417f45df9704a7549e92f7838be7e2f352db6b957ef3225c473e44ca76dc",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "用列多线性推导秩一行列式公式。",
+        "分离有向行列式与普通体积。",
+        "在唯一奇异参数检验投影恒等式。",
+        "求核、像及压缩后的维数。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 5
+    },
+    {
+      "id": "draft-c28-04",
+      "concept_id": "C28",
+      "math_sha256": "c73c1d979e64522c9560ac0b7b142a3ebfe2a61e2298de1982141f1a8ca8806d",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "计算全部内积得到Gram矩阵。",
+        "由薄QR说明平方体积公式。",
+        "作正交残差并计算底面积和高度。",
+        "指出矩形坐标矩阵不能直接取行列式。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c46-01",
+      "concept_id": "C46",
+      "math_sha256": "f3d76f63682646d430afe60cecf0568e75105fb09d5b8a3e73db8e8f0b9acb88",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "写出联合均匀密度及几何事件。",
+        "求双曲线与正方形边界交点。",
+        "分段积分面积。",
+        "保留精确分数与对数。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 1
+    },
+    {
+      "id": "draft-c46-03",
+      "concept_id": "C46",
+      "math_sha256": "e9370347d44c53760a8ffe957afd0874991bedd955b871a83aab52a3aa223290",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "把距离平方比较化成直线半平面。",
+        "交叠相应半平面得到三个区域。",
+        "求精确面积并检验和为一。",
+        "证明平局集合零测。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c46-04",
+      "concept_id": "C46",
+      "math_sha256": "f3e56ad52993f24b5a1b4db68e1e038c12194936fdd1a4f1c6d16ab0cdaf64c0",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "验证非负性与全区域归一化。",
+        "对事件区域积分密度。",
+        "比较加权概率与普通面积。",
+        "说明均匀假设与零测边界。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c46-05",
+      "concept_id": "C46",
+      "math_sha256": "60d929979bd570c9483cd256755be8e4917806cdb066858bc11474de0c5410a6",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "固定$x$并作线性变量替换。",
+        "用周期性求每个纵截面的精确长度。",
+        "积分得到乘积联合分布函数。",
+        "验证独立性、边界零测及精确事件分数。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c02-01",
+      "concept_id": "C02",
+      "math_sha256": "f6e33b10b0f0ee50a281e3067af4023a8f1d15ba312198c0eea0d87d9a36425a",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "换元将振荡项与递减权重分开。",
+        "分部积分给统一精确尾界。",
+        "用柯西准则证明收敛。",
+        "用正弦远离零的区间证明绝对积分发散。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c02-02",
+      "concept_id": "C02",
+      "math_sha256": "ba6ffb3cd70ac72e1a8952bf15b83f5e119a527f84d00da74aeb935a1203bb14",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "检查尖峰互不重叠与局部有限跳跃。",
+        "计算每个尖峰的精确面积。",
+        "用非负性与整数上限夹逼得到积分。",
+        "取两条明确子列否定函数极限。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c02-04",
+      "concept_id": "C02",
+      "math_sha256": "4cc39f38d110508bb33693e2f8e1badc2815318b5f4b0ff0456b1a1fe2a0983d",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "把差商写成参数积分恒等式。",
+        "按参数大小处理符号并说明交换依据。",
+        "求精确对数值与收敛上界。",
+        "证明单独两项发散，解释抵消的必要性。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c02-05",
+      "concept_id": "C02",
+      "math_sha256": "81dc3d7776b14d46ef93db76bee5af64784e02fa02f5a1244c45a65933af4011",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "分别在两个端点建立双边比较。",
+        "求两个收敛条件的交集。",
+        "含端点地证明其余参数发散。",
+        "对$a=1/2$作平方换元并精确积分。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c04-05",
+      "concept_id": "C04",
+      "math_sha256": "ddc3ff92ce7a83951cb67a97b5e3bda2eff83608bc841459741c48925d66dfa9",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "检查区域与场的光滑适用范围。",
+        "求旋度并直接参数化各奇点自身环流。",
+        "对另一中心的光滑场求零贡献。",
+        "把两个顺时针内边界纳入Green公式求外环流。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c07-02",
+      "concept_id": "C07",
+      "math_sha256": "cc6cb6f334743a5a805d890b5272d349da6453c80d03f37f9c48f5cf11b07bfd",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "求零极径并划分两环参数区间。",
+        "精确积分两环分别的面积。",
+        "把负极径换成实际方向并证明内环包含。",
+        "区分面积和与区域并集面积。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 4
+    },
+    {
+      "id": "draft-c08-01",
+      "concept_id": "C08",
+      "math_sha256": "edb3cbb43fba8f345c8d173f8c6e4bf4d515efbcaf344d078ead446a4b2bcdd6",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "证明横坐标严格递增及纵坐标非负。",
+        "用两端点和轴线段确定闭合区域。",
+        "写正面积参数积分并精确积分。",
+        "核对有向边界符号与零贡献轴段。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 1
+    },
+    {
+      "id": "draft-c09-01",
+      "concept_id": "C09",
+      "math_sha256": "45d3c87d6ecb70ef882b195027a11ef9075fa9965333db806907bd236e2aa6f0",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "识别每个纵截面穿过旋转轴。",
+        "分别描述两侧旋转像并求并集半径。",
+        "积分真实圆盘截面积。",
+        "给出平方相减的错误原因。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 1
+    },
+    {
+      "id": "draft-c09-02",
+      "concept_id": "C09",
+      "math_sha256": "fe5444d54833743227b411ab9ee77e794cfb45964afaf12a390ac05ca652acec",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "计算到外部轴的近远半径。",
+        "积分圆环平方差。",
+        "精确求半圆面积。",
+        "检查轴不相交条件并用质心轨迹验证。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 2
+    },
+    {
+      "id": "draft-c09-04",
+      "concept_id": "C09",
+      "math_sha256": "64940d4b91d031229097f3b836874ac2a9924771dc275e2ccb8a3b868830d3c8",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "区分轴在矩形内外。",
+        "计算各分支真实近远半径。",
+        "检验交界值并合写分段函数。",
+        "比较内外分支给全局最优。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 5
+    },
+    {
+      "id": "draft-c09-05",
+      "concept_id": "C09",
+      "math_sha256": "8e8f14abd579f2c1d213bc909f5de45396140ec049e761f9de901904e2028ad0",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "将两个平面分量转为径向区间。",
+        "在$x=1,2$处分段求并集截面积。",
+        "精确积分三个分支。",
+        "用交叠体积和容斥独立核对。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 3
+    },
+    {
+      "id": "draft-c11-02",
+      "concept_id": "C11",
+      "math_sha256": "ed9a6137ec1ba238de2b5308da33030c0751eaa436db2c54e0ae62b2ef6b1462",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "平移变量并比较有限分母与级数的系数。",
+        "解复根递推得到显式实系数。",
+        "用全体上界及非零子列求根值上极限。",
+        "检查两端与区间外子列，并解释比值法失效。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 13
+    },
+    {
+      "id": "draft-c33-05",
+      "concept_id": "C33",
+      "math_sha256": "13183c6720628c9b333a0bd1584aa3c2e88f31412b221fcaa74584703f381a62",
+      "manual_general_proof": "PASS_UNDER_EXPLICIT_ASSUMPTIONS",
+      "proof_steps_reviewed": [
+        "验证$C^3=I$并因式分解矩阵多项式。",
+        "写出双侧逆及完整可逆参数。",
+        "在奇异参数相加三式得到必要条件。",
+        "构造并穷尽全部解，给核与像。"
+      ],
+      "finite_checks_do_not_replace_general_proof": true,
+      "symbolic_check_count": 6
+    }
+  ],
+  "checks": [
+    {
+      "id": "draft-c11-03",
+      "check": "有限稀疏和重编号恒等式",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-03",
+      "check": "稀疏指数界归纳步",
+      "actual": "n",
+      "expected": "n",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "通项满足递推",
+      "actual": "2*(-1)**n/3 - 4*(-1)**(n - 2)/3 - 2*(-1)**(n - 1)/3 + 2**n/3 - 2*2**(n - 2)/3 - 2**(n - 1)/3",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "两个初值",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "独立部分分式和函数",
+      "actual": "2/(3*x + 3) + 1/(3 - 6*x)",
+      "expected": "(1 - x)/(-2*x**2 - x + 1)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-04",
+      "check": "精确分数取值",
+      "actual": "6/5",
+      "expected": "6/5",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-05",
+      "check": "组合系数比",
+      "actual": "4**n*4**(-n - 1)*binomial(2*n + 2, n + 1)/binomial(2*n, n)",
+      "expected": "(2*n + 1)/(2*n + 2)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-05",
+      "check": "初值问题",
+      "actual": "-1/sqrt(1 - x) + (2 - 2*x)/(2*(1 - x)**(3/2))",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-05",
+      "check": "负端点阿贝尔值",
+      "actual": "sqrt(2)/2",
+      "expected": "sqrt(2)/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "观测证据概率",
+      "actual": "15/64",
+      "expected": "15/64",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "后验归一化",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c51-02",
+      "check": "预测概率",
+      "actual": "11/20",
+      "expected": "11/20",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "全空间秩",
+      "actual": "3",
+      "expected": "3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "全空间核",
+      "actual": "Matrix([[0], [0], [0], [0]])",
+      "expected": "Matrix([[0], [0], [0], [0]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "可逆替换行列式",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "合同标准形",
+      "actual": "Matrix([[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 0]])",
+      "expected": "Matrix([[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 0]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "受限正定Sylvester主子式1为正",
+      "actual": "True",
+      "expected": "True",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "受限正定Sylvester主子式2为正",
+      "actual": "True",
+      "expected": "True",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c35-02",
+      "check": "受限正定Sylvester主子式3为正",
+      "actual": "True",
+      "expected": "True",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c37-03",
+      "check": "换基可逆",
+      "actual": "2",
+      "expected": "2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c37-03",
+      "check": "坐标逆问题",
+      "actual": "Matrix([[2], [-1], [2]])",
+      "expected": "Matrix([[2], [-1], [2]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c37-03",
+      "check": "Gram变换",
+      "actual": "Matrix([[2, 0, 0], [0, 2, 2], [0, 2, 4]])",
+      "expected": "Matrix([[2, 0, 0], [0, 2, 2], [0, 2, 4]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c37-03",
+      "check": "两种坐标同一平方范数",
+      "actual": "18",
+      "expected": "18",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c13-01",
+      "check": "反正切差的正切",
+      "actual": "1/(x*(x + 1) + 1)",
+      "expected": "1/(x**2 + x + 1)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c13-01",
+      "check": "有限裂项和",
+      "actual": "-pi/4 + atan(9)",
+      "expected": "-pi/4 + atan(9)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c13-04",
+      "check": "二阶差分有限和",
+      "actual": "4 - 3*sqrt(2)",
+      "expected": "4 - 3*sqrt(2)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c13-04",
+      "check": "尾项有理化",
+      "actual": "-sqrt(n + 1) + sqrt(n + 2)",
+      "expected": "1/(sqrt(n + 1) + sqrt(n + 2))",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c18-01",
+      "check": "归一化距离条件全部分支",
+      "actual": "4*a**2 - 4*a",
+      "expected": "4*a*(a - 1)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c18-04",
+      "check": "候选点满足平面",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c18-04",
+      "check": "精确投影",
+      "actual": "Matrix([[-25/11], [4/11], [21/11]])",
+      "expected": "Matrix([[-25/11], [4/11], [21/11]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c18-04",
+      "check": "加权距离平方",
+      "actual": "216/11",
+      "expected": "216/11",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c18-04",
+      "check": "距离根式",
+      "actual": "6*sqrt(66)/11",
+      "expected": "6*sqrt(66)/11",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "三重零点导数0",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "三重零点导数1",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "三重零点导数2",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "二重零点导数0",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "二重零点导数1",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "归一化",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-01",
+      "check": "平移展开",
+      "actual": "-t**3*(t - 1)**2/4",
+      "expected": "-t**5/4 + t**4/2 - t**3/4",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-02",
+      "check": "三次项必要条件",
+      "actual": "4*h - 4",
+      "expected": "4*h - 4",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-02",
+      "check": "完整偶性验证",
+      "actual": "-6*t + (t + 1)**4 - 4*(t + 1)**3 + 7*(t + 1)**2 - 3",
+      "expected": "t**4 + t**2 + 1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-03",
+      "check": "三次差分非零",
+      "actual": "6",
+      "expected": "6",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-03",
+      "check": "四次差分为零",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-03",
+      "check": "差分方程解",
+      "actual": "3*x**2 + 5*x + 2",
+      "expected": "3*x**2 + 5*x + 2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "平移差最高系数m=1",
+      "actual": "h",
+      "expected": "h",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "平移差最高系数m=2",
+      "actual": "2*h",
+      "expected": "2*h",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "中心差最高系数m=2",
+      "actual": "2",
+      "expected": "2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "平移差最高系数m=3",
+      "actual": "3*h",
+      "expected": "3*h",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "中心差最高系数m=3",
+      "actual": "6",
+      "expected": "6",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "平移差最高系数m=7",
+      "actual": "7*h",
+      "expected": "7*h",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c30-05",
+      "check": "中心差最高系数m=7",
+      "actual": "42",
+      "expected": "42",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "两分支精确根-1",
+      "actual": "-1 + b*(-b - sqrt(4*a + b**2))/(2*a) + (-b - sqrt(4*a + b**2))**2/(4*a)",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "两分支精确根1",
+      "actual": "-1 + b*(-b + sqrt(4*a + b**2))/(2*a) + (-b + sqrt(4*a + b**2))**2/(4*a)",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "线性分支",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c21-04",
+      "check": "重根梯度方向内积",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-01",
+      "check": "鞋带面积",
+      "actual": "8",
+      "expected": "8",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-01",
+      "check": "几何凹口验证",
+      "actual": "8",
+      "expected": "8",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "独立直接行列式",
+      "actual": "3*t + 1",
+      "expected": "3*t + 1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "幂等投影",
+      "actual": "Matrix([[1/3, -1/3, -1/3], [2/3, 4/3, 1/3], [-4/3, -2/3, 1/3]])",
+      "expected": "Matrix([[1/3, -1/3, -1/3], [2/3, 4/3, 1/3], [-4/3, -2/3, 1/3]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "核包含",
+      "actual": "Matrix([[0], [0], [0]])",
+      "expected": "Matrix([[0], [0], [0]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "像约束",
+      "actual": "Matrix([[0, 0, 0]])",
+      "expected": "Matrix([[0, 0, 0]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-02",
+      "check": "奇异秩",
+      "actual": "2",
+      "expected": "2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-04",
+      "check": "Gram行列式",
+      "actual": "4",
+      "expected": "4",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-04",
+      "check": "正交残差平方长度",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c28-04",
+      "check": "独立Cauchy-Binet子式平方和",
+      "actual": "4",
+      "expected": "4",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-01",
+      "check": "双曲线分段积分",
+      "actual": "1/4 + log(4)/4",
+      "expected": "1/4 + log(2)/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-03",
+      "check": "Voronoi区域B面积",
+      "actual": "3/8",
+      "expected": "3/8",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-03",
+      "check": "概率和",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-04",
+      "check": "密度归一化",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-04",
+      "check": "加权事件概率",
+      "actual": "3/8",
+      "expected": "3/8",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-05",
+      "check": "三周期原像长度除Jacobian",
+      "actual": "b",
+      "expected": "b",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c46-05",
+      "check": "联合事件分数",
+      "actual": "1/6",
+      "expected": "1/6",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-01",
+      "check": "分部尾界化简",
+      "actual": "1/sqrt(a)",
+      "expected": "1/sqrt(a)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-01",
+      "check": "绝对积分每段下界",
+      "actual": "sqrt(pi)/(6*sqrt(n + 1))",
+      "expected": "sqrt(pi)/(6*sqrt(n + 1))",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-02",
+      "check": "尖峰面积有限和",
+      "actual": "1 - 2*2**(-N - 1)",
+      "expected": "1 - 1/2**N",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-02",
+      "check": "尖峰面积无限和",
+      "actual": "1",
+      "expected": "1",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-04",
+      "check": "参数积分恒等式",
+      "actual": "-exp(-bp*q)/q + exp(-ap*q)/q",
+      "expected": "(-exp(-bp*q) + exp(-ap*q))/q",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-04",
+      "check": "对数原函数导数",
+      "actual": "1/t",
+      "expected": "1/t",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "正参数平方换元",
+      "actual": "2/(q**2 + 1)",
+      "expected": "2/(q**2 + 1)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "特殊值精确积分",
+      "actual": "pi",
+      "expected": "pi",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c04-05",
+      "check": "区域内旋度",
+      "actual": "-4*x**2/(x**2 + y**2)**2 + 6*y**2/(y**2 + (x - 3)**2)**2 - 4*y**2/(x**2 + y**2)**2 - (6 - 2*x)*(3*x - 9)/(y**2 + (x - 3)**2)**2 - 6/(y**2 + (x - 3)**2) + 4/(x**2 + y**2)",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c04-05",
+      "check": "自身圆周环流微元",
+      "actual": "2*rr**2*sin(t)**2/(rr**2*sin(t)**2 + rr**2*cos(t)**2) + 2*rr**2*cos(t)**2/(rr**2*sin(t)**2 + rr**2*cos(t)**2)",
+      "expected": "2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c04-05",
+      "check": "总边界环流和",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c07-02",
+      "check": "极坐标面积原函数导数",
+      "actual": "6*cos(t) + 9*cos(2*t)/4 + 17/4",
+      "expected": "(3*cos(t) + 2)**2/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c07-02",
+      "check": "内环面积",
+      "actual": "-3*sqrt(5) + 17*acos(2/3)/2",
+      "expected": "-3*sqrt(5) + 17*acos(2/3)/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c07-02",
+      "check": "外环面积",
+      "actual": "-17*acos(2/3)/2 + 3*sqrt(5) + 17*pi/2",
+      "expected": "-17*acos(2/3)/2 + 3*sqrt(5) + 17*pi/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c07-02",
+      "check": "全周期平方积分",
+      "actual": "17*pi/2",
+      "expected": "17*pi/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c08-01",
+      "check": "摆线参数面积",
+      "actual": "3*pi",
+      "expected": "3*pi",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-01",
+      "check": "穿轴真实圆盘体积",
+      "actual": "pi/3",
+      "expected": "pi/3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-02",
+      "check": "圆环截面平方差",
+      "actual": "-(2 - sqrt(1 - x**2))**2 + (sqrt(1 - x**2) + 2)**2",
+      "expected": "8*sqrt(1 - x**2)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-02",
+      "check": "外轴环面体积",
+      "actual": "4*pi**2",
+      "expected": "4*pi**2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "左侧圆环平方差",
+      "actual": "-h**2 + (2 - h)**2",
+      "expected": "4 - 4*h",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "右侧圆环平方差",
+      "actual": "h**2 - (h - 2)**2",
+      "expected": "4*h - 4",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "内区间唯一最小值条件",
+      "actual": "(d + 1)**2 - 1",
+      "expected": "d*(d + 2)",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "左右分支边界值",
+      "actual": "4*pi",
+      "expected": "4*pi",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-04",
+      "check": "右侧边界值",
+      "actual": "4*pi",
+      "expected": "4*pi",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-05",
+      "check": "三段并集体积",
+      "actual": "41*pi/3",
+      "expected": "41*pi/3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-05",
+      "check": "交叠体积",
+      "actual": "13*pi/3",
+      "expected": "13*pi/3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c09-05",
+      "check": "容斥核对",
+      "actual": "41*pi/3",
+      "expected": "41*pi/3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "复根满足特征方程",
+      "actual": "(-1/2 + I/2)**2 + I/2",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "两个初值",
+      "actual": "Matrix([[1/2], [-1/2]])",
+      "expected": "Matrix([[1/2], [-1/2]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "精确复根幅度",
+      "actual": "(-1/2 - I/2)*(-1/2 + I/2)",
+      "expected": "1/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样2",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样3",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样4",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样5",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样6",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样7",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样8",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样15",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "递推独立取样16",
+      "actual": "0",
+      "expected": "0",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c11-02",
+      "check": "端点非零子列通项",
+      "actual": "1/2",
+      "expected": "1/2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "三次循环恒等式",
+      "actual": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "直接行列式",
+      "actual": "1 - t**3",
+      "expected": "1 - t**3",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "双侧逆左乘",
+      "actual": "Matrix([[-t**3/(1 - t**3) + 1/(1 - t**3), 0, 0], [0, -t**3/(1 - t**3) + 1/(1 - t**3), 0], [0, 0, -t**3/(1 - t**3) + 1/(1 - t**3)]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "双侧逆右乘",
+      "actual": "Matrix([[-t**3/(1 - t**3) + 1/(1 - t**3), 0, 0], [0, -t**3/(1 - t**3) + 1/(1 - t**3), 0], [0, 0, -t**3/(1 - t**3) + 1/(1 - t**3)]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "奇异参数全部解代入",
+      "actual": "Matrix([[b1], [b2], [-b1/6 - b2/3]])",
+      "expected": "Matrix([[b1], [b2], [-b1/6 - b2/3]])",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c33-05",
+      "check": "奇异秩",
+      "actual": "2",
+      "expected": "2",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "零端二进分块上界",
+      "actual": "2**((a - 1)*(-n - 1))*2**(-n - 1)",
+      "expected": "2**(-a*(n + 1))",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    },
+    {
+      "id": "draft-c02-05",
+      "check": "无穷端二进分块上界",
+      "actual": "2**n*2**(n*(a - 2))",
+      "expected": "2**(n*(a - 1))",
+      "status": "PASS",
+      "method": "exact_symbolic_or_integer_algebra"
+    }
+  ],
+  "retained_questions_same_math_as_prior_after_latex_normalization": 84,
+  "precision_scan": {
+    "records": 119,
+    "flags": []
+  }
+}

@@ -1,0 +1,865 @@
+{
+  "schema": "scene-small-sample-static-qa-v1",
+  "checked_at": "2026-10-06T14:13:26.102734+08:00",
+  "scope": [
+    "draft-c37-03",
+    "draft-c12-05",
+    "draft-c51-02"
+  ],
+  "symbolic_checks": [
+    {
+      "check": "P determinant",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "coordinate equation 0",
+      "actual": "3",
+      "expected": "3",
+      "passed": true
+    },
+    {
+      "check": "coordinate equation 1",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "coordinate equation 2",
+      "actual": "1",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "check": "Gram row 1 col 1",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "Gram row 1 col 2",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "check": "Gram row 1 col 3",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "check": "Gram row 2 col 1",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "check": "Gram row 2 col 2",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "Gram row 2 col 3",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "Gram row 3 col 1",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "check": "Gram row 3 col 2",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "check": "Gram row 3 col 3",
+      "actual": "4",
+      "expected": "4",
+      "passed": true
+    },
+    {
+      "check": "Gram norm squared",
+      "actual": "18",
+      "expected": "18",
+      "passed": true
+    },
+    {
+      "check": "trace norm squared",
+      "actual": "18",
+      "expected": "18",
+      "passed": true
+    },
+    {
+      "check": "exact integral after substitution",
+      "actual": "n**2/(2*(n + 1))",
+      "expected": "n**2/(2*n + 2)",
+      "passed": true
+    },
+    {
+      "check": "lower bound remainder",
+      "actual": "n**2/(2*n + 2) - n/4",
+      "expected": "n*(n - 1)/(4*n + 4)",
+      "passed": true
+    },
+    {
+      "check": "geometric margin r-q",
+      "actual": "1/2 - q/2",
+      "expected": "1/2 - q/2",
+      "passed": true
+    },
+    {
+      "check": "geometric margin 1-r",
+      "actual": "1/2 - q/2",
+      "expected": "1/2 - q/2",
+      "passed": true
+    },
+    {
+      "check": "low likelihood",
+      "actual": "9/64",
+      "expected": "9/64",
+      "passed": true
+    },
+    {
+      "check": "high likelihood",
+      "actual": "27/64",
+      "expected": "27/64",
+      "passed": true
+    },
+    {
+      "check": "evidence",
+      "actual": "15/64",
+      "expected": "15/64",
+      "passed": true
+    },
+    {
+      "check": "low posterior",
+      "actual": "2/5",
+      "expected": "2/5",
+      "passed": true
+    },
+    {
+      "check": "high posterior",
+      "actual": "3/5",
+      "expected": "3/5",
+      "passed": true
+    },
+    {
+      "check": "posterior sum",
+      "actual": "1",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "check": "predictive probability",
+      "actual": "11/20",
+      "expected": "11/20",
+      "passed": true
+    }
+  ],
+  "passed_checks": 26,
+  "records": [
+    {
+      "id": "draft-c37-03",
+      "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl",
+      "source_raw_sha256": "cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac",
+      "full_record_canonical_sha256": "78de840277b02e2d13d968e225540fe27cc4a4fac623b02acf223eeef39c36b2",
+      "publisher_sorted_full_record_sha256": "12d0b5395f57d84d8a87e121efdcdf3acd454791a092cea571c04a049f1ee285",
+      "before_guard_issues": [
+        {
+          "issue_id": "0001",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c37-03)",
+          "evidence": "$R_3\\\\leftarrow-\\\\frac12R_3$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0002",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c37-03)",
+          "evidence": "$R_3\\\\leftarrow-\\\\frac12R_3$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0003",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_iE_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c37-03)",
+          "evidence": "$\\\\operatorname{tr}(E_iE_j)=0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0004",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_3g_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c37-03)",
+          "evidence": "$\\\\xi^{\\\\mathsf T}G_\\\\eta\\\\xi=\\\\xi_1^2g_{11}+\\\\xi_2^2g_{22}+2\\\\xi_2\\\\xi_3g_{23}+\\\\xi_3^2g_…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        }
+      ],
+      "after_guard_issues": [
+        {
+          "issue_id": "0001",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_iE_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c37-03)",
+          "evidence": "$\\\\operatorname{tr}(E_iE_j)=0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0002",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c37-03",
+          "id": "draft-c37-03",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_3g_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c37-03)",
+          "evidence": "$\\\\xi^{\\\\mathsf T}G_\\\\eta\\\\xi=\\\\xi_1^2g_{11}+\\\\xi_2^2g_{22}+2\\\\xi_2\\\\xi_3g_{23}+\\\\xi_3^2g_…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        }
+      ],
+      "mathematics_three_fields_unchanged": true,
+      "scene_has_no_hard_or_quarantine": true,
+      "scene_has_no_decimal_literals": true,
+      "visual_verified": false
+    },
+    {
+      "id": "draft-c12-05",
+      "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl",
+      "source_raw_sha256": "9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003",
+      "full_record_canonical_sha256": "176401803e3a73ba9427aed054679f2c7c06753773079c4080768f170da23b78",
+      "publisher_sorted_full_record_sha256": "fd43383c196a488fb0cfae5107a9edbf45809557e1409fec069d5955ad771b34",
+      "before_guard_issues": [
+        {
+          "issue_id": "0001",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "solution",
+          "message": "solution 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$n^2q^n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0002",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$n^2q^n\\\\to0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0003",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^0u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac12\\\\int_0^1u^n\\\\,du$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0004",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac12\\\\int_0^1u^n\\\\,du$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0005",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^1u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1u^n\\\\,du=[\\\\frac{u^{n+1}}{n+1}]_0^1=\\\\frac{1}{n+1}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0006",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1f_n(x)\\\\,dx=n^2\\\\cdot\\\\frac12\\\\cdot\\\\frac{1}{n+1}=\\\\frac{n^2}{2(n+1)}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0007",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\frac{n^2}{2(n+1)}=\\\\frac n2\\\\cdot\\\\frac n{n+1}\\\\ge\\\\frac n2\\\\cdot\\\\frac12=\\\\frac n4$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0008",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\frac n4\\\\to+\\\\infty$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0009",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1f_n\\\\,dx\\\\le\\\\sup_{[0,1]}f_n\\\\cdot1$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0010",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\lim_{n\\\\to\\\\infty}\\\\int_0^1f_n=+\\\\infty\\\\ne0=\\\\int_0^1\\\\lim_{n\\\\to\\\\infty}f_n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0011",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$n^2q^n\\\\to0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0012",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^1n^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1f_n(x)\\\\,dx=\\\\int_0^1n^2x(1-x^2)^n\\\\,dx=n^2\\\\int_0^1x(1-x^2)^n\\\\,dx$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0013",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^0u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac12\\\\int_0^1u^n\\\\,du$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0014",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac12\\\\int_0^1u^n\\\\,du$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0015",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^1u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1u^n\\\\,du=[\\\\frac{u^{n+1}}{n+1}]_0^1=\\\\frac{1}{n+1}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0016",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1f_n(x)\\\\,dx=n^2\\\\cdot\\\\frac12\\\\cdot\\\\frac{1}{n+1}=\\\\frac{n^2}{2(n+1)}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0017",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\frac{n^2}{2(n+1)}=\\\\frac n2\\\\cdot\\\\frac n{n+1}\\\\ge\\\\frac n2\\\\cdot\\\\frac12=\\\\frac n4$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0018",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c12-05)",
+          "evidence": "$\\\\frac n4\\\\to+\\\\infty$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0019",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1f_n\\\\,dx\\\\le\\\\sup_{[0,1]}f_n\\\\cdot1$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0020",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1\\\\lim_{n\\\\to\\\\infty}f_n=\\\\int_0^10\\\\,dx=0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0021",
+          "severity": "quarantine",
+          "code": "L008",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 未加花括号的多位数字上下标 '^10'(渲染为单字符+残余数字,id=draft-c12-05)",
+          "evidence": "$\\\\int_0^1\\\\lim_{n\\\\to\\\\infty}f_n=\\\\int_0^10\\\\,dx=0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        }
+      ],
+      "after_guard_issues": [
+        {
+          "issue_id": "0001",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "solution",
+          "message": "solution 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$n^2q^n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0002",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$n^2q^n\\\\to0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0003",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$a_n=n^2q^n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0004",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^0u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac{1}{2}\\\\int_{0}^{1}u^n\\\\,…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0005",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}u^n\\\\,du=[\\\\frac{u^{n+1}}{n+1}]_0^1=\\\\frac{1}{n+1}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0006",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}f_n\\\\,dx\\\\le\\\\sup_{[0,1]}f_n\\\\cdot1$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0007",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\lim_{n\\\\to\\\\infty}\\\\int_{0}^{1}f_n=+\\\\infty\\\\ne0=\\\\int_{0}^{1}\\\\lim_{n\\\\to\\\\infty}f_n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0008",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^2q^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$a_n=n^2q^n$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0009",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^n^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}f_n(x)\\\\,dx=\\\\int_{0}^{1}n^2x(1-x^2)^n\\\\,dx=n^2\\\\int_{0}^{1}x(1-x^2)^n\\\\,dx$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0010",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^0u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}x(1-x^2)^n\\\\,dx=\\\\int_1^0u^n(-\\\\frac{du}{2})=\\\\frac{1}{2}\\\\int_{0}^{1}u^n\\\\,…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0011",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '^u^':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}u^n\\\\,du=[\\\\frac{u^{n+1}}{n+1}]_0^1=\\\\frac{1}{n+1}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0012",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}f_n\\\\,dx\\\\le\\\\sup_{[0,1]}f_n\\\\cdot1$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0013",
+          "severity": "info",
+          "code": "L007",
+          "file": "candidate-static-review",
+          "locator": "draft-c12-05",
+          "id": "draft-c12-05",
+          "field": "scene_spec",
+          "message": "scene_spec 同一层重复上下标标记 '_f_':若属同一原子的双重上下标会报错,若为相邻原子(如 u_1v_2)合法;建议加花括号消歧(id=draft-c12-05)",
+          "evidence": "$\\\\int_{0}^{1}\\\\lim_{n\\\\to\\\\infty}f_n=\\\\int_{0}^{1}0\\\\,dx=0$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        }
+      ],
+      "mathematics_three_fields_unchanged": true,
+      "scene_has_no_hard_or_quarantine": true,
+      "scene_has_no_decimal_literals": true,
+      "visual_verified": false
+    },
+    {
+      "id": "draft-c51-02",
+      "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-02/draft-codex-repair-v6.jsonl",
+      "source_raw_sha256": "fc452babbd4d0e70583703759186527f6fc2631f1b875e4b49e13c5a3ba4168f",
+      "full_record_canonical_sha256": "28195b62e5c5a09377793c69cd8db21834009f43e0ae074cf3bb4285109f8db4",
+      "publisher_sorted_full_record_sha256": "e09b32ff4a97ddd52f228cf3eb449efbd4ae629ceb9397d47a5348a3c91a7fcd",
+      "before_guard_issues": [
+        {
+          "issue_id": "0001",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$P(K=2)=\\\\frac23\\\\cdot\\\\frac{9}{64}+\\\\frac13\\\\cdot\\\\frac{27}{64}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0002",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac23\\\\cdot\\\\frac{9}{64}=\\\\frac{18}{192}=\\\\frac{3}{32}=\\\\frac{6}{64}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0003",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac13\\\\cdot\\\\frac{27}{64}=\\\\frac{27}{192}=\\\\frac{9}{64}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0004",
+          "severity": "hard",
+          "code": "L002",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec 数学公式内出现中文(TeX 无 CJK,渲染必失败,id=draft-c51-02)",
+          "evidence": "$P(\\\\text{第四次正面}\\\\mid K=2)=\\\\frac25\\\\cdot\\\\frac14+\\\\frac35\\\\cdot\\\\frac34=\\\\frac{2}{20}+\\\\f…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0005",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$P(\\\\text{第四次正面}\\\\mid K=2)=\\\\frac25\\\\cdot\\\\frac14+\\\\frac35\\\\cdot\\\\frac34=\\\\frac{2}{20}+\\\\f…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0006",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac23\\\\cdot\\\\frac{9}{64}=\\\\frac{18}{192}=\\\\frac{3}{32}=\\\\frac{6}{64}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0007",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac13\\\\cdot\\\\frac{27}{64}=\\\\frac{27}{192}=\\\\frac{9}{64}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0008",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$P(K=2)=\\\\frac23\\\\cdot\\\\frac{9}{64}+\\\\frac13\\\\cdot\\\\frac{27}{64}=\\\\frac{6}{64}+\\\\frac{9}{6…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0009",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac25\\\\cdot\\\\frac14=\\\\frac{2}{20}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0010",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$\\\\frac35\\\\cdot\\\\frac34=\\\\frac{9}{20}$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0011",
+          "severity": "hard",
+          "code": "L002",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec 数学公式内出现中文(TeX 无 CJK,渲染必失败,id=draft-c51-02)",
+          "evidence": "$P(\\\\text{第四次正面}\\\\mid K=2)=\\\\frac25\\\\cdot\\\\frac14+\\\\frac35\\\\cdot\\\\frac34=\\\\frac{2}{20}+\\\\f…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        },
+        {
+          "issue_id": "0012",
+          "severity": "quarantine",
+          "code": "L009",
+          "file": "candidate-static-review",
+          "locator": "draft-c51-02",
+          "id": "draft-c51-02",
+          "field": "scene_spec",
+          "message": "scene_spec \\frac 未使用花括号参数(id=draft-c51-02)",
+          "evidence": "$P(\\\\text{第四次正面}\\\\mid K=2)=\\\\frac25\\\\cdot\\\\frac14+\\\\frac35\\\\cdot\\\\frac34=\\\\frac{2}{20}+\\\\f…$",
+          "suggested_action": "仅报告:由用户确认后人工修改,工具不改写"
+        }
+      ],
+      "after_guard_issues": [],
+      "mathematics_three_fields_unchanged": true,
+      "scene_has_no_hard_or_quarantine": true,
+      "scene_has_no_decimal_literals": true,
+      "visual_verified": false
+    }
+  ],
+  "corrections": [
+    {
+      "id": "draft-c37-03",
+      "fixes": [
+        "math and nine row-column operations independently verified; no semantic correction"
+      ]
+    },
+    {
+      "id": "draft-c12-05",
+      "fixes": [
+        "explicit eventual geometric bound",
+        "integrability hypothesis and finite interval stated"
+      ]
+    },
+    {
+      "id": "draft-c51-02",
+      "fixes": [
+        "CJK moved outside math",
+        "conditional independence applies to both likelihood and prediction"
+      ]
+    }
+  ],
+  "input_snapshot_raw_sha256": "5d24b29b5f008596849e2b0fc621366f351bdab97e5970b1cabac07e1c3c8c4d",
+  "visual_verified": false,
+  "publisher_executed": false,
+  "selector_updated": false,
+  "pending": "writer stop, immutable original input restoration, remaining candidates review, real visual verification"
+}

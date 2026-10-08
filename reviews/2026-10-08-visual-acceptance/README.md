@@ -1,3 +1,15 @@
+# 当前公式页审阅交付
+
+当前修复归档：[FIX_REPORT.md](../codex-supervision/2026-10-08-complete-glyph-review/FIX_REPORT.md)。
+
+165 条当前交付记录、638 页全部完成实际图片审阅，待审 0 页。本轮复核 98 条完整数学记录，修复 23 条记录和 3 条签名描述；96 项精确符号检查通过。19 道重新原生渲染的 75 页全部逐页复审，视频起始帧与 PNG 逐像素一致。
+
+当前来源：[current-source-bindings.json](../codex-supervision/2026-10-08-complete-glyph-review/current-source-bindings.json)；交付索引：[CURRENT_DELIVERY_INDEX.jsonl](../codex-supervision/2026-10-08-complete-glyph-review/CURRENT_DELIVERY_INDEX.jsonl)；资格结论：[QUALIFICATION.json](../codex-supervision/2026-10-08-complete-glyph-review/QUALIFICATION.json)。
+
+仅认定当前绑定公式页的本地审阅合格。最小字形高度未认证，概念动画未验收，整体语义隔离未建立，原生沙箱未核实，生产关闭；双端实验按用户要求不在本轮范围。
+
+---
+
 # 视觉验收证据包(作者侧·结构验收;人工目视复核待完成)
 
 范围:TRUSTED_LOCAL_MATHTEX_ONLY 的 165 条合格渲染记录

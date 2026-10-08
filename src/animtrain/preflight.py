@@ -146,8 +146,24 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
             return False, f"样本 {sid} 产物文件不可读: {exc}(GS2)"
         if fsha != osha or fp.stat().st_size != osize:
             return False, f"样本 {sid} 产物文件哈希/大小与证据不一致(GS2)"
-        if rec.get("math") != "verified" or rec.get("render") != "rendered":
-            return False, f"样本 {sid} 数学/渲染证据未验证(GS2)"
+        try:
+            if fp.suffix.lower() == ".mp4":
+                from .sandbox_execution import decode_video
+                decode_video(fp)
+            elif fp.suffix.lower() == ".png":
+                from PIL import Image
+                with Image.open(fp) as image:
+                    if image.format != "PNG":
+                        raise ValueError("not a PNG")
+                    image.load()
+                    if min(image.size) <= 0:
+                        raise ValueError("empty image")
+            else:
+                raise ValueError("unsupported media: only decoded MP4/PNG accepted")
+        except Exception as exc:
+            return False, f"样本 {sid} 媒体解码验收失败: {exc}"
+        if rec.get("math") != "verified" or rec.get("render") != "rendered" or rec.get("semantic") != "verified":
+            return False, f"样本 {sid} 数学/语义/渲染证据未验证(GS2)"
     if len(records) != len(actual):
         return False, f"证据条数 {len(records)} 与实际样本数 {len(actual)} 不符(GS2)"
     n_verified = ev.get("n_verified_assets")
@@ -157,22 +173,9 @@ def check_asset_evidence(manifest_path: Path) -> tuple[bool, str]:
 
 
 def check_exec_isolation() -> tuple[bool, str]:
-    """B4:执行隔离验收——network 隔离未实施前,不可执行生成代码,
-    ready 必须阻断(与 render_gate._isolation_state 同一口径,不假绿)。"""
-    from .render_gate import _isolation_state  # noqa: PLC0415
-
-    st = _isolation_state()
-    missing = []
-    if st["memory_limit_mb"] is None:
-        missing.append("memory")
-    if st["network_isolation"] is False:
-        missing.append("network")
-    if missing:
-        return False, ("执行隔离未验收:{} 隔离未实施(现有:cwd 基础隔离+"
-                       "环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得"
-                       "执行生成代码,UNVERIFIED 阻断 ready"
-                       ).format("/".join(missing))
-    return True, f"执行隔离已验收: {st}"
+    """Only current production transport joint evidence can remove this gate."""
+    from .sandbox_execution import check_certificate
+    return check_certificate()
 
 
 def run_preflight(model_dir: Path | None,

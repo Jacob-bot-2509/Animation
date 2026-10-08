@@ -1,0 +1,643 @@
+{
+  "schema": 3,
+  "run_id": "1a74d39b87e4",
+  "contract": "local-file-acl-v1",
+  "scope": "仅本次具名目录/操作的本地文件读写隔离;不构成整体文件隔离或生产放行结论",
+  "state": "COMPLETE",
+  "overall": "PASS_LOCAL_FILE_ACL",
+  "production_gate": "CLOSED",
+  "command": [
+    "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+    "reviews/2026-10-04-acceptance-support/file_acceptance.py"
+  ],
+  "work": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4",
+  "denied_dir": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4",
+  "negative_regressions": {
+    "cases": [
+      {
+        "name": "N1 denied_write 目标出现",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N2 denied_read 内容泄漏",
+        "verdict": "FAIL",
+        "expect": "FAIL",
+        "holds": true
+      },
+      {
+        "name": "N3 控制端失败",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N4 令牌证据缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N5 SID 不符",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N6 授予类哈希不一致",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N7 授予类无记录",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N8 拒绝类归因非 5",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N9 拒绝类结果无法解释",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N10 沙箱未启动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N11 拒写目标状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N12 拒读泄漏状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N13 沙箱超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N14 控制超时状态未知",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N15 控制 spawned 非布尔",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N16 未知场景 kind",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N17 客户端自哈希缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N18 正写目标前置已存在",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N19 授予读目标被改动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N20 拒读哨兵被改动",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N21 拒写探针未确认拒绝",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N22 拒读 GetLastError 缺失",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N23 拒写缺 errno 记录",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N24 拒读缺异常类型/消息",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N25 归因矛盾",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "N26 无任何 5 归因",
+        "verdict": "UNVERIFIED",
+        "expect": "UNVERIFIED",
+        "holds": true
+      },
+      {
+        "name": "P1 granted_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P2 denied_write 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P3 granted_read 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P4 denied_read 基线",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P5 denied_write winerror=5 归因",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      },
+      {
+        "name": "P6 denied_read winerror=5 归因",
+        "verdict": "PASS",
+        "expect": "PASS",
+        "holds": true
+      }
+    ],
+    "all_hold": true
+  },
+  "runtime": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+  "profile": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+  "expected_sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903",
+  "pre_granted_acl": [
+    [
+      "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime",
+      "read"
+    ],
+    [
+      "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4",
+      "read_write"
+    ]
+  ],
+  "allowed_dirs": [],
+  "sandbox_env": {
+    "SYSTEMROOT": "C:\\Windows",
+    "SystemDrive": "C:",
+    "windir": "C:\\windows",
+    "USERNAME": "Jacap",
+    "USERDOMAIN": "JACAPO",
+    "PATH": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime;C:\\Windows\\System32",
+    "TEMP": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4",
+    "TMP": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4",
+    "LOCALAPPDATA": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "APPDATA": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "USERPROFILE": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-render-sandbox\\AC",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+  },
+  "runtime_manifest": {
+    "python.exe": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "python313.dll": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+    "Lib/socket.py": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+    "DLLs/_socket.pyd": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259"
+  },
+  "core_manifest_before": {
+    "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/network_isolation.py": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c"
+  },
+  "runtime_pth": "Lib\nDLLs\n.\n",
+  "runtime_pth_ok": true,
+  "source_hashes": {
+    "script_sha256": "ab4ce6bad8b048496952b20d4a01ba7e1ff8e506d7abb6e26b96fe09ddb0ec3a",
+    "appcontainer_sha256": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+    "win_job_sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "network_isolation_sha256": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c",
+    "runtime_python_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "client_file_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77"
+  },
+  "case": {
+    "cases": {
+      "granted_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "granted_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_write": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      },
+      "denied_read": {
+        "verdict": "PASS",
+        "reasons": [],
+        "contract": "local-file-acl-v1"
+      }
+    },
+    "raw": {
+      "granted_write": {
+        "control": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "write",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\gw-ctrl-04ca31b987fc4a4b8de0129ff421e103.bin",
+            "04ca31b987fc4a4b8de0129ff421e103"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "mode": "write",
+            "outcome": "wrote",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "3643e06c73f28df5e6d8487b560f5ccae31fe4a54487a73c69dc430ae398f42b",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"mode\": \"write\", \"outcome\": \"wrote\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"3643e06c73f28df5e6d8487b560f5ccae31fe4a54487a73c69dc430ae398f42b\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "write",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\gw-sb-8cbd9d54c01d410a8531911a005b2d09.bin",
+            "8cbd9d54c01d410a8531911a005b2d09"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "mode": "write",
+            "outcome": "wrote",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "9a0d133d635727a92c4716a633ef525b95a89e4fc4985bac85b4ed6e7aa45454",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"mode\": \"write\", \"outcome\": \"wrote\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"9a0d133d635727a92c4716a633ef525b95a89e4fc4985bac85b4ed6e7aa45454\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "ctrl_target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\gw-ctrl-04ca31b987fc4a4b8de0129ff421e103.bin",
+        "sb_target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\gw-sb-8cbd9d54c01d410a8531911a005b2d09.bin",
+        "sb_pre_exists": false,
+        "ctrl_sha256": "3643e06c73f28df5e6d8487b560f5ccae31fe4a54487a73c69dc430ae398f42b",
+        "ctrl_expected_sha256": "3643e06c73f28df5e6d8487b560f5ccae31fe4a54487a73c69dc430ae398f42b",
+        "sb_sha256": "9a0d133d635727a92c4716a633ef525b95a89e4fc4985bac85b4ed6e7aa45454",
+        "sb_expected_sha256": "9a0d133d635727a92c4716a633ef525b95a89e4fc4985bac85b4ed6e7aa45454"
+      },
+      "granted_read": {
+        "control": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "read",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "mode": "read",
+            "outcome": "read",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"mode\": \"read\", \"outcome\": \"read\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "read",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\granted-read.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "mode": "read",
+            "outcome": "read",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"mode\": \"read\", \"outcome\": \"read\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\granted-read.bin",
+        "expected_sha256": "2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3",
+        "hash_before": "2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3",
+        "hash_after": "2cee54aa34b9e38ad2a56e1175b0f83388d4251011a0b62ca07203510dfebdf3"
+      },
+      "denied_write": {
+        "control": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "write",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\dw-ctrl-27738201767b41539272f3b1c5dc932f.bin",
+            "27738201767b41539272f3b1c5dc932f"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "mode": "write",
+            "outcome": "wrote",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "19c55b8240eb179bca65c717ac5b5f9992060a4cf136d9c4bb39715f7230cacb",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"mode\": \"write\", \"outcome\": \"wrote\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"19c55b8240eb179bca65c717ac5b5f9992060a4cf136d9c4bb39715f7230cacb\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "write",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\dw-sb-27738201767b41539272f3b1c5dc932f.bin",
+            "27738201767b41539272f3b1c5dc932f"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "mode": "write",
+            "outcome": "denied",
+            "winerror": null,
+            "errno": 13,
+            "exc_type": "PermissionError",
+            "exc_msg": "[Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\file-denied-1a74d39b87e4\\\\dw-sb-27738201767b41539272f3b1c5dc932f.bin'",
+            "probe_denied": true,
+            "gle": 5,
+            "content_hash": null,
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"mode\": \"write\", \"outcome\": \"denied\", \"winerror\": null, \"errno\": 13, \"exc_type\": \"PermissionError\", \"exc_msg\": \"[Errno 13] Permission denied: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\reviews\\\\\\\\2026-10-04-acceptance-support\\\\\\\\file-denied-1a74d39b87e4\\\\\\\\dw-sb-27738201767b41539272f3b1c5dc932f.bin'\", \"probe_denied\": true, \"gle\": 5, \"content_hash\": null, \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "ctrl_target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\dw-ctrl-27738201767b41539272f3b1c5dc932f.bin",
+        "ctrl_sha256": "19c55b8240eb179bca65c717ac5b5f9992060a4cf136d9c4bb39715f7230cacb",
+        "ctrl_expected_sha256": "19c55b8240eb179bca65c717ac5b5f9992060a4cf136d9c4bb39715f7230cacb",
+        "sb_target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\dw-sb-27738201767b41539272f3b1c5dc932f.bin",
+        "target_created": false,
+        "sb_target_sha256": null,
+        "target_created_resample": false
+      },
+      "denied_read": {
+        "control": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "read",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "mode": "read",
+            "outcome": "read",
+            "winerror": null,
+            "errno": null,
+            "exc_type": null,
+            "exc_msg": null,
+            "probe_denied": null,
+            "gle": null,
+            "content_hash": "6e053a400f61682c3b05f7657fad850838ffd84405c639265ca1ac64e186776d",
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": false, \"capability_count\": 0, \"sid\": null}, \"mode\": \"read\", \"outcome\": \"read\", \"winerror\": null, \"errno\": null, \"exc_type\": null, \"exc_msg\": null, \"probe_denied\": null, \"gle\": null, \"content_hash\": \"6e053a400f61682c3b05f7657fad850838ffd84405c639265ca1ac64e186776d\", \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "sandbox": {
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-1a74d39b87e4\\file_client.py",
+            "read",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\sentinel.bin",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "spawned": true,
+          "rc": 0,
+          "timed_out": false,
+          "data": {
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "mode": "read",
+            "outcome": "denied",
+            "winerror": null,
+            "errno": 13,
+            "exc_type": "PermissionError",
+            "exc_msg": "[Errno 13] Permission denied: 'D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\file-denied-1a74d39b87e4\\\\sentinel.bin'",
+            "probe_denied": true,
+            "gle": 5,
+            "content_hash": null,
+            "client_sha256": "9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77",
+            "exe_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "site_absent": true,
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "elapsed_s": 0.001
+          },
+          "raw_out": "{\"token\": {\"api_ok\": true, \"is_appcontainer\": true, \"capability_count\": 0, \"sid\": \"S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903\"}, \"mode\": \"read\", \"outcome\": \"denied\", \"winerror\": null, \"errno\": 13, \"exc_type\": \"PermissionError\", \"exc_msg\": \"[Errno 13] Permission denied: 'D:\\\\\\\\Animation-Model-Training\\\\\\\\reviews\\\\\\\\2026-10-04-acceptance-support\\\\\\\\file-denied-1a74d39b87e4\\\\\\\\sentinel.bin'\", \"probe_denied\": true, \"gle\": 5, \"content_hash\": null, \"client_sha256\": \"9b3ac35e308f5cc279d53a78f3236dd7ddb8b0a84af916bba47422ce20403d77\", \"exe_sha256\": \"dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b\", \"site_absent\": true, \"executable\": \"D:\\\\Animation-Model-Training\\\\reviews\\\\2026-10-04-acceptance-support\\\\net-runtime\\\\python.exe\", \"elapsed_s\": 0.001}\r\n"
+        },
+        "target": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-denied-1a74d39b87e4\\sentinel.bin",
+        "expected_sha256": "6e053a400f61682c3b05f7657fad850838ffd84405c639265ca1ac64e186776d",
+        "hash_before": "6e053a400f61682c3b05f7657fad850838ffd84405c639265ca1ac64e186776d",
+        "hash_after": "6e053a400f61682c3b05f7657fad850838ffd84405c639265ca1ac64e186776d",
+        "content_leaked": false
+      }
+    },
+    "errors": [],
+    "overall": "PASS_LOCAL_FILE_ACL"
+  },
+  "post_verify": {
+    "all_unchanged": true,
+    "checks": {
+      "python.exe": true,
+      "python313.dll": true,
+      "Lib/socket.py": true,
+      "DLLs/_socket.pyd": true,
+      "pth": true,
+      "client_file": true,
+      "script": true,
+      "core:src/animtrain/appcontainer.py": true,
+      "core:src/animtrain/win_job.py": true,
+      "core:src/animtrain/network_isolation.py": true
+    },
+    "core_modules_before": {
+      "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/network_isolation.py": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c"
+    },
+    "core_modules_after": {
+      "src/animtrain/appcontainer.py": "69a5f2bea26e72b1c9d42b8fd213e6222fdf710ab41c3ed3018e73f76916c01f",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/network_isolation.py": "ee14102688ed94d45a2768026182d4748552f99194beeea3f192209b694e2f6c"
+    }
+  },
+  "evidence_written": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-evidence\\file-accept-results-1a74d39b87e4.json",
+  "stdout_only": false
+}

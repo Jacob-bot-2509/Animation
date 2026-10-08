@@ -1,0 +1,987 @@
+{
+ "remaining_90": [
+  "draft-c02-01",
+  "draft-c02-04",
+  "draft-c04-04",
+  "draft-c06-01",
+  "draft-c06-02",
+  "draft-c07-01",
+  "draft-c07-03",
+  "draft-c07-04",
+  "draft-c07-05",
+  "draft-c08-01",
+  "draft-c08-02",
+  "draft-c08-03",
+  "draft-c10-01",
+  "draft-c10-03",
+  "draft-c10-04",
+  "draft-c10-05",
+  "draft-c12-01",
+  "draft-c12-03",
+  "draft-c14-01",
+  "draft-c14-02",
+  "draft-c14-04",
+  "draft-c17-04",
+  "draft-c19-03",
+  "draft-c19-04",
+  "draft-c19-05",
+  "draft-c20-03",
+  "draft-c20-04",
+  "draft-c23-05",
+  "draft-c24-03",
+  "draft-c25-04",
+  "draft-c25-05",
+  "draft-c26-01",
+  "draft-c26-03",
+  "draft-c26-04",
+  "draft-c26-05",
+  "draft-c27-01",
+  "draft-c27-02",
+  "draft-c27-03",
+  "draft-c27-04",
+  "draft-c27-05",
+  "draft-c29-02",
+  "draft-c29-03",
+  "draft-c29-05",
+  "draft-c30-01",
+  "draft-c30-03",
+  "draft-c31-03",
+  "draft-c31-04",
+  "draft-c31-05",
+  "draft-c32-02",
+  "draft-c34-01",
+  "draft-c34-02",
+  "draft-c34-03",
+  "draft-c34-05",
+  "draft-c35-02",
+  "draft-c35-05",
+  "draft-c38-01",
+  "draft-c38-02",
+  "draft-c39-01",
+  "draft-c39-03",
+  "draft-c40-01",
+  "draft-c40-04",
+  "draft-c41-01",
+  "draft-c41-02",
+  "draft-c41-04",
+  "draft-c42-02",
+  "draft-c42-03",
+  "draft-c42-04",
+  "draft-c43-01",
+  "draft-c43-02",
+  "draft-c43-03",
+  "draft-c44-01",
+  "draft-c44-02",
+  "draft-c44-03",
+  "draft-c44-04",
+  "draft-c45-04",
+  "draft-c46-04",
+  "draft-c47-01",
+  "draft-c47-02",
+  "draft-c47-03",
+  "draft-c47-04",
+  "draft-c47-05",
+  "draft-c48-02",
+  "draft-c48-04",
+  "draft-c49-03",
+  "draft-c49-04",
+  "draft-c49-05",
+  "draft-c50-01",
+  "draft-c50-03",
+  "draft-c50-04",
+  "draft-c50-05"
+ ],
+ "chosen": [
+  {
+   "id": "draft-c02-01",
+   "deficiencies": [
+    "第二步'分部积分给统一精确尾界'未展示运算细节:[-w(u)cosu]的求值与|·|≤w(R²)+w(T²)+∫|w'|=2w(R²)=1/R的放缩过程(含w递减使w(R²)+w(T²)≤2w(R²)的依据)均未标注",
+    "第三步'用柯西准则证明收敛'引用无细节,未标重点",
+    "第四步绝对发散的下界只给结果√π/(6√(n+1)),未标注放缩依据(|sinu|≥1/2的区间选取、1/(2√u)≥1/(2√((n+1)π)))与从n=N到2N-1求和≥(√π/6)√(N/2)无界的求和过程"
+   ],
+   "record": {
+    "id": "draft-c02-01",
+    "category": "数学分析",
+    "sub_category": "反常积分",
+    "concept": "无穷限反常积分",
+    "concept_id": "C02",
+    "parent_training_ids": [
+     "calc-improper-002",
+     "calc-param-improper-003"
+    ],
+    "problem": "证明广义积分$\\int_1^{\\infty}\\sin(x^2)\\,dx$收敛但不绝对收敛，并给出对任意$T>R\\ge1$均成立的精确尾积分上界。无需计算积分的具体值。",
+    "solution": "令$u=x^2$，尾积分为$\\int_{R^2}^{T^2}\\sin u/(2\\sqrt u)\\,du$。置$w(u)=1/(2\\sqrt u)$，分部积分得$[-w(u)\\cos u]_{R^2}^{T^2}+\\int_{R^2}^{T^2}w^{\\prime}(u)\\cos u\\,du$。因$w$正且递减，其绝对值不超过$w(R^2)+w(T^2)+\\int_{R^2}^{T^2}|w^{\\prime}|=2w(R^2)=1/R$。由柯西准则，广义积分收敛。绝对值积分换元为$\\int_1^{\\infty}|\\sin u|/(2\\sqrt u)\\,du$。对$n\\ge1$，在$[n\\pi+\\pi/6,n\\pi+5\\pi/6]$上$|\\sin u|\\ge1/2$，故每段贡献至少$\\sqrt\\pi/(6\\sqrt{n+1})$。从$n=N$到$2N-1$的贡献至少$(\\sqrt\\pi/6)N/\\sqrt{2N}=(\\sqrt\\pi/6)\\sqrt{N/2}$，无界，因而不绝对收敛。",
+    "answer": "条件收敛；$\\left|\\int_R^T\\sin(x^2)\\,dx\\right|\\le1/R$（$T>R\\ge1$）。",
+    "method": "振荡相位广义积分的柯西尾界",
+    "difficulty": "基础",
+    "variant_kind": "平方相位换元+分部尾界+绝对积分分块下界",
+    "scene_spec": {
+     "objects": [
+      "积分尾项与$1/R$上界",
+      "$u=x^2$及权重$1/(2\\sqrt u)$",
+      "每段下界$\\sqrt\\pi/(6\\sqrt{n+1})$",
+      "条件收敛与绝对收敛的区分"
+     ],
+     "steps": [
+      "第一步:换元将振荡项与递减权重分开。",
+      "第二步:分部积分给统一精确尾界。",
+      "第三步:用柯西准则证明收敛。",
+      "第四步:用正弦远离零的区间证明绝对积分发散。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-07",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "d304f2ae550e79756b7b6e6f343d782ef1737d7a27ba4be3dcf42094957f318b",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c02-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "original_id": "draft-c02-01",
+     "prior_parent_training_ids": [
+      "calc-improper-002",
+      "calc-param-improper-003"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "3b5caa8eb4385d1e4e74a7e2fb11a7c4ef57d45f33ec00f6a49e702c86d18b3d",
+     "previous_hold_reasons": [
+      "FIXED_PARAMETER_DIRECT_SUBTASK"
+     ],
+     "math_correction_notes": [],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+      "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+      "versioned_id": "codex-repair-20261005-batch-07-draft-c02-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "f6e33b10b0f0ee50a281e3067af4023a8f1d15ba312198c0eea0d87d9a36425a",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c04-04",
+   "deficiencies": [
+    "第二步\"计算区域内的偏导差,得零\"与板书\"∂Q/∂x-∂P/∂y=1-1=0\"只给差值,未展示 ∂Q/∂x=∂(x)/∂x=1 与 ∂P/∂y=∂(x+y)/∂y=1 的逐项求导结果",
+    "第四步\"参数化补边线段并计算 -3/2\"未列出代入过程:未展示 x=y=1-t、dx=dy=-dt、(2-2t)(-1)+(1-t)(-1)=3t-3 的逐项代入,板书只有 ∫_{L'}(3t-3)dt=-3/2",
+    "未展示原函数 3t²/2-3t 及代入上下限 0、1 的求值步骤,学生无法跟着算出 -3/2"
+   ],
+   "record": {
+    "id": "draft-c04-04",
+    "category": "数学分析",
+    "sub_category": "曲线积分",
+    "concept": "格林公式",
+    "concept_id": "C04",
+    "parent_training_ids": [
+     "calc-green-005"
+    ],
+    "problem": "用格林公式(补边闭合)计算曲线积分 $\\int_L (x+y)\\,dx+x\\,dy$，其中 $L$ 为抛物线 $y=x^2$ 上从 $(0,0)$ 到 $(1,1)$ 的弧段。",
+    "solution": "补直线段 $L'$:从 $(1,1)$ 沿直线回到 $(0,0)$,$L+L'$ 为闭合曲线。区域 $D$ 内,$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=\\frac{\\partial x}{\\partial x}-\\frac{\\partial(x+y)}{\\partial y}=1-1=0$,故 $\\oint_{L+L'}=0$,于是 $\\int_L=-\\int_{L'}$。参数化 $L'$:$(1-t,1-t)$,$t\\in[0,1]$,$dx=dy=-dt$:$\\int_{L'}(x+y)dx+x\\,dy=\\int_0^1\\left[(2-2t)(-1)+(1-t)(-1)\\right]dt=\\int_0^1(3t-3)\\,dt=-\\frac32$。故 $\\int_L=\\frac32$。",
+    "answer": "积分值为 $\\frac32$(补边闭合,格林公式得闭合积分为零)。",
+    "method": "补边法(非闭合曲线+格林公式)",
+    "difficulty": "中等",
+    "variant_kind": "适用条件:非闭合曲线补边闭合后应用格林公式",
+    "scene_spec": {
+     "objects": [
+      "平面坐标系:抛物线弧段 $L$(从 $(0,0)$ 到 $(1,1)$)与补边直线段(虚线)",
+      "区域 $D$(阴影)与闭合定向箭头",
+      "板书:$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}=1-1=0$",
+      "板书:补边积分 $\\int_{L'}(3t-3)dt=-\\frac32$",
+      "高亮框:$\\int_L=\\frac32$"
+     ],
+     "steps": [
+      "第一步:画出抛物线弧段,并用虚线补上直线段形成闭合回路。",
+      "第二步:计算区域内的偏导差,得零。",
+      "第三步:由格林公式得闭合积分为零,故 $\\int_L=-\\int_{L'}$。",
+      "第四步:参数化补边线段并计算 $-\\frac32$。",
+      "第五步:取负得 $\\frac32$,高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-07",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "5926dab4985e1f88c1a4d75332dcf17a4945abcfa03dffbed8106c50e5e585bd",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c04-04",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "original_id": "draft-c04-04",
+     "prior_parent_training_ids": [
+      "calc-green-005"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "fee155aff29dd6522edc4fe88d0427c8ac8a21e61079bda4af90a0b6a495b351",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+      "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+      "versioned_id": "codex-repair-20261005-batch-07-draft-c04-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "5926dab4985e1f88c1a4d75332dcf17a4945abcfa03dffbed8106c50e5e585bd",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c06-01",
+   "deficiencies": [
+    "第四步仅\"计算得 8/3\",未展示原函数 2x-2x³/3 的求取",
+    "未展示代入 x=0 与 x=1 得 4/3、再乘对称因子 2 得 8/3 的逐项过程,板书只有积分式 A=2∫(2-2x²)dx 与结果"
+   ],
+   "record": {
+    "id": "draft-c06-01",
+    "category": "数学分析",
+    "sub_category": "定积分应用",
+    "concept": "直角坐标面积与分段",
+    "concept_id": "C06",
+    "parent_training_ids": [
+     "calc-area-007",
+     "calc-area-010",
+     "calc-area-011",
+     "calc-area-013"
+    ],
+    "problem": "求由抛物线 $y=x^2$ 与 $y=2-x^2$ 围成的封闭图形的面积。",
+    "solution": "交点:$x^2=2-x^2$ 得 $x=\\pm1$。利用对称性,$A=\\int_{-1}^{1}\\left[(2-x^2)-x^2\\right]dx=2\\int_0^1(2-2x^2)\\,dx=2\\left.\\left(2x-\\frac{2x^3}{3}\\right)\\right|_0^1=2\\times\\frac43=\\frac83$。",
+    "answer": "面积为 $\\frac83$。",
+    "method": "上下曲线相减(对称简化)",
+    "difficulty": "基础",
+    "variant_kind": "曲线组合变化:两条抛物线围成的对称区域",
+    "scene_spec": {
+     "objects": [
+      "平面坐标系:两条抛物线 $y=x^2$ 与 $y=2-x^2$",
+      "两抛物线围成的封闭区域(阴影)",
+      "两个交点 $(-1,1)$ 与 $(1,1)$ 高亮",
+      "板书:$A=2\\int_0^1(2-2x^2)dx$",
+      "高亮框:$\\frac83$"
+     ],
+     "steps": [
+      "第一步:画出两条抛物线,高亮两个交点。",
+      "第二步:阴影标出围成区域,说明上下曲线的位置。",
+      "第三步:写出积分并利用对称性简化。",
+      "第四步:计算得 $\\frac83$。",
+      "第五步:高亮结论。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-07",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "1d634448d9c2a263f9931b9c3089bb3a16188985af1ab701486009149124c589",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-07-draft-c06-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-07\\draft.jsonl",
+     "source_sha256": "fe3576287150709fa595d4fe033e69553cfc44acc8bd9441a4226ad815adbbd4",
+     "original_id": "draft-c06-01",
+     "prior_parent_training_ids": [
+      "calc-area-007",
+      "calc-area-010",
+      "calc-area-011",
+      "calc-area-013"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "063bbf30ccb4ab85f6ccf2812b3b5e38f00df6caf376fb80f9e08aa77861502b",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v3.jsonl",
+      "sha256": "95cc2304693f8b80847b4d378c201fd7e2edcafe49408bdebccb8af103fa36da",
+      "versioned_id": "codex-repair-20261005-batch-07-draft-c06-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "1d634448d9c2a263f9931b9c3089bb3a16188985af1ab701486009149124c589",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c11-01",
+   "deficiencies": [
+    "第二步根值法板面只有表达式与结果(1-1/(n+1))ⁿ→e⁻¹,未展示关键夹逼链n/(n+1)≤-n·ln(1-uₙ)≤1(源自u≤-ln(1-u)≤u/(1-u))的推导。",
+    "第四步端点检查只给结果e^{1/2},未标注展开式-ln(1-u)=u+u²/2+r(u)、余项估计n²r(uₙ)→0及n+n²ln(1-uₙ)→1/2的细节(标准③:收敛证明须标注重点与细节)。"
+   ],
+   "record": {
+    "id": "draft-c11-01",
+    "category": "数学分析",
+    "sub_category": "幂级数",
+    "concept": "幂级数收敛域与和函数",
+    "concept_id": "C11",
+    "parent_training_ids": [
+     "calc-series-016",
+     "calc-series-018"
+    ],
+    "problem": "求幂级数 $\\sum_{n=1}^{\\infty}\\left(\\frac{n}{n+1}\\right)^{n^2}x^n$ 的收敛域。",
+    "solution": "设 $u_n=\\frac1{n+1}$、$a_n=(1-u_n)^{n^2}$。由 $u\\le-\\ln(1-u)\\le\\frac{u}{1-u}$，有 $\\frac{n}{n+1}\\le-n\\ln(1-u_n)\\le1$，故 $\\lim a_n^{1/n}=e^{-1}$，收敛半径 $R=e$。为判端点，写 $-\\ln(1-u)=u+\\frac{u^2}{2}+r(u)$，其中 $0\\le r(u)=\\sum_{k=3}^{\\infty}\\frac{u^k}{k}\\le\\frac{u^3}{3(1-u)}$。于是 $0\\le n^2r(u_n)\\le\\frac{n}{3(n+1)^2}\\to0$，且 $n+n^2\\ln(1-u_n)=\\frac{n}{n+1}-\\frac{n^2}{2(n+1)^2}-n^2r(u_n)\\to\\frac12$。当 $x=\\pm e$ 时，通项绝对值趋于 $e^{1/2}\\ne0$，故两端点发散。收敛域为 $(-e,e)$。",
+    "answer": "收敛域为 $(-e,e)$。",
+    "method": "根值法+端点通项检验",
+    "difficulty": "基础",
+    "variant_kind": "任务形式变化:根值法求非几何结构幂级数的收敛半径,端点由通项不趋于零排除",
+    "scene_spec": {
+     "objects": [
+      "板书:幂级数 $\\sum_{n=1}^{\\infty}(\\frac{n}{n+1})^{n^2}x^n$",
+      "板书:根值法计算 $\\sqrt[n]{a_n}=(1-\\frac{1}{n+1})^n\\to e^{-1}$",
+      "数轴:收敛区间 $(-e,e)$,端点 $\\pm e$ 红色叉号",
+      "板书:端点通项极限 $e^{\\frac12}\\neq0$ 的计算过程",
+      "右下角标签「收敛半径 $R=e$」"
+     ],
+     "steps": [
+      "第一步:写出幂级数通项,说明用根值法求收敛半径。",
+      "第二步:展示 $\\sqrt[n]{a_n}=(1-\\frac{1}{n+1})^n\\to e^{-1}$,得 $R=e$。",
+      "第三步:在数轴上画出收敛区间 $(-e,e)$。",
+      "第四步:检查端点:展示通项绝对值趋于 $e^{\\frac12}\\neq0$。",
+      "第五步:两端点红色叉号,结论:收敛域为 $(-e,e)$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-02",
+     "source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "843752dac9989a3429daf6492023d170602c399e1b95470dbd54a72972cd12d0",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "versioned_id": "codex-repair-v4-final-20261005-batch-02-draft-c11-01",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-02\\draft.jsonl",
+     "source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+     "original_id": "draft-c11-01",
+     "prior_parent_training_ids": [
+      "calc-series-016",
+      "calc-series-018"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "a3014c16beab439f0e6cc3b31bb2b56c64260e53e0219c403cc818c2d4b040e0",
+     "previous_hold_reasons": [],
+     "math_correction_notes": [
+      "根值极限补正确极限符号，端点分析给出精确余项界",
+      "用精确余项不等式替代省略项和渐近估算"
+     ],
+     "revised_in_place": false,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-02/draft-codex-repair-v3.jsonl",
+      "sha256": "e50a72c150656846ff0879289398000a971b59830442c256c3a0ca9cdd915fab",
+      "versioned_id": "codex-repair-20261005-batch-02-draft-c11-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "843752dac9989a3429daf6492023d170602c399e1b95470dbd54a72972cd12d0",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c11-04",
+   "deficiencies": [
+    "第一步'解递推'未展示特征方程λ²=λ+2、根2与-1及aₙ=(2ⁿ+2(-1)ⁿ)/3的推导与初值验证。",
+    "第三步端点检查未展示x=1/2时aₙxⁿ→1/3、x=-1/2时|((-1)ⁿ+2(1/2)ⁿ)/3|→1/3的计算。",
+    "第四步S(1/4)=6/5只给结果,未展示代入x=1/4得(3/4)/(5/8)=6/5的分数运算。"
+   ],
+   "record": {
+    "id": "draft-c11-04",
+    "category": "数学分析",
+    "sub_category": "幂级数",
+    "concept": "幂级数收敛域与和函数",
+    "concept_id": "C11",
+    "parent_training_ids": [
+     "calc-series-016",
+     "calc-series-018"
+    ],
+    "problem": "设$a_0=1,a_1=0$，$a_n=a_{n-1}+2a_{n-2}$（$n\\ge2$）。求幂级数$S(x)=\\sum_{n=0}^{\\infty}a_nx^n$的收敛域与和函数，并求$S(1/4)$。",
+    "solution": "递推特征根为$2,-1$，由初值得$a_n=(2^n+2(-1)^n)/3$，可直接代回验证。于是$S(x)=\\frac13\\sum(2x)^n+\\frac23\\sum(-x)^n$，在$|x|<1/2$绝对收敛，其和为$\\frac1{3(1-2x)}+\\frac2{3(1+x)}=\\frac{1-x}{1-x-2x^2}$。若$|x|>1/2$，$|a_nx^n|\\ge((2|x|)^n-2|x|^n)/3$最终不趋于零。当$x=1/2$时通项趋于$1/3$；当$x=-1/2$时通项为$((-1)^n+2(1/2)^n)/3$，其绝对值趋于$1/3$。两端均发散，故收敛域为$(-1/2,1/2)$。亦可由递推在收敛域内得到$(1-x-2x^2)S(x)=1-x$。代入$x=1/4$得$S(1/4)=(3/4)/(5/8)=6/5$。",
+    "answer": "$S(x)=\\frac{1-x}{1-x-2x^2}$，收敛域$(-1/2,1/2)$；$S(1/4)=6/5$。",
+    "method": "递推系数的有理生成函数",
+    "difficulty": "中等",
+    "variant_kind": "系数递推+两特征根+收敛边界",
+    "scene_spec": {
+     "objects": [
+      "$a_n=(2^n+2(-1)^n)/3$",
+      "$(1-x-2x^2)S=1-x$",
+      "$S(1/4)=6/5$"
+     ],
+     "steps": [
+      "第一步:解递推并验证初值。",
+      "第二步:拆成两个几何级数，给出共同收敛域。",
+      "第三步:逐一检查两端通项。",
+      "第四步:用递推生成函数恒等式及精确分数取值核对。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-02",
+     "source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "math_content_sha256": "4fde5afbcfde6028c57b75972c1662d9991c13519f301b4f76acad74c0f1f210",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+     "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+    },
+    "versioned_id": "codex-repair-v4-final-20261005-batch-02-draft-c11-04",
+    "revision_lineage": {
+     "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-02\\draft.jsonl",
+     "source_sha256": "71d46f404c59db6194494bf8ea2353202b77f602a15522f58c1b4599d1cbb07a",
+     "original_id": "draft-c11-04",
+     "prior_parent_training_ids": [
+      "calc-series-016",
+      "calc-series-018"
+     ],
+     "historical_risk_not_reset": true,
+     "prior_corrected_record_sha256": "3d477769ce2ede20c07657a43f2704bfbb722a7516386f8040e424682223095b",
+     "previous_hold_reasons": [
+      "DIRECT_METHOD_REUSE"
+     ],
+     "math_correction_notes": [
+      "澄清只保证每个紧区间上一致收敛；结构复用仍须重写"
+     ],
+     "revised_in_place": true,
+     "version": "codex-repair-v4-final",
+     "additional_recheck_reason": null,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-02/draft-codex-repair-v3.jsonl",
+      "sha256": "e50a72c150656846ff0879289398000a971b59830442c256c3a0ca9cdd915fab",
+      "versioned_id": "codex-repair-20261005-batch-02-draft-c11-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": "0d84179c54308b3ad6a91c0c73a2252b38dcde22fed5b170eeeb1135e15fdc4a",
+      "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+     }
+    },
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "admitted": false,
+    "animation_render_verified": false
+   }
+  },
+  {
+   "id": "draft-c12-01",
+   "deficiencies": [
+    "objects 仅复制题干与答案,无板书/高亮框/标注等呈现元素,无法构成标准①要求的清晰细致的运算动画",
+    "证明未标注重点:放缩依据 |sin nx/n²|≤1/n²(即 |sin nx|≤1)与 Σ1/n² 收敛这两个关键点无高亮标注,也未设计逐项 |f_n(x)|≤M_n 的核对板书"
+   ],
+   "record": {
+    "id": "draft-c12-01",
+    "category": "数学分析",
+    "sub_category": "函数项级数",
+    "concept": "函数项级数一致收敛",
+    "concept_id": "C12",
+    "parent_training_ids": [
+     "calc-series-017"
+    ],
+    "problem": "证明函数项级数 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛。",
+    "solution": "用魏尔斯特拉斯 $M$ 判别法:对一切 $x\\in\\mathbb R$,$\\left|\\frac{\\sin nx}{n^2}\\right|\\le\\frac{1}{n^2}=M_n$,而 $\\sum_{n=1}^{\\infty}M_n=\\sum\\frac{1}{n^2}$ 收敛。故级数在 $\\mathbb R$ 上一致收敛(且绝对一致收敛)。",
+    "answer": "在 $\\mathbb R$ 上一致收敛($M$ 判别法,$M_n=\\frac{1}{n^2}$)。",
+    "method": "魏尔斯特拉斯 M 判别法",
+    "difficulty": "基础",
+    "variant_kind": "方法变化:三角函数的 M 判别法(与幂级数父题不同)",
+    "scene_spec": {
+     "objects": [
+      "证明函数项级数 $\\sum_{n=1}^{\\infty}\\frac{\\sin nx}{n^2}$ 在 $\\mathbb R$ 上一致收敛。",
+      "在 $\\mathbb R$ 上一致收敛($M$ 判别法,$M_n=\\frac{1}{n^2}$)。"
+     ],
+     "steps": [
+      "第一步:用魏尔斯特拉斯 $M$ 判别法:对一切 $x\\in\\mathbb R$,$\\left|\\frac{\\sin nx}{n^2}\\right|\\le\\frac{1}{n^2}=M_n$,而 $\\sum_{n=1}^{\\infty}M_n=\\sum\\frac{1}{n^2}$ 收敛。",
+      "第二步:故级数在 $\\mathbb R$ 上一致收敛(且绝对一致收敛)。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-09-draft-c12-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-09",
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "b317f15885ba72c3ef93b4ea9043aec8296fc856dcb5053e383f1789f47c18b4",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "1cc220e2699b799fb9bacc8525e1f9d82321dc39dacd33e5c1caa21c1a7d959b",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft.jsonl",
+     "original_id": "draft-c12-01",
+     "prior_parent_training_ids": [
+      "calc-series-017"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "sin项的统一上界1/n²可和，M判别适用全实轴；不求冻结Basel常数。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v3.jsonl",
+      "sha256": "d9c5c3b0f67edfbd3ff79145f929c454b16ce6a8ac7bf29bb07b46a7addb91a7",
+      "versioned_id": "codex-repair-20261005-batch-09-draft-c12-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c23-01",
+   "deficiencies": [],
+   "record": {
+    "id": "draft-c23-01",
+    "category": "解析几何",
+    "sub_category": "空间变换",
+    "concept": "等距变换",
+    "concept_id": "C23",
+    "parent_training_ids": [
+     "geom-029"
+    ],
+    "problem": "求等距变换 $T(x)=Ax+b$ 的逆变换，其中 $A=\\begin{pmatrix}0&1&0\\\\-1&0&0\\\\0&0&1\\end{pmatrix}$，$b=(1,2,3)$。",
+    "solution": "$A$ 为正交矩阵,逆变换为 $T^{-1}(x)=A^{\\mathsf T}x-A^{\\mathsf T}b$。$A^{\\mathsf T}=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$A^{\\mathsf T}b=(0-2,\\ 1+0,\\ 0+3)=(-2,1,3)$。故 $T^{-1}(x)=A^{\\mathsf T}x-(-2,1,3)=A^{\\mathsf T}x+(2,-1,-3)$。验证:$T(T^{-1}(x))=A(A^{\\mathsf T}x-A^{\\mathsf T}b)+b=x-b+b=x$ ✓。",
+    "answer": "$T^{-1}(x)=A^{\\mathsf T}x+(2,-1,-3)$,即 $T^{-1}(x,y,z)=(-y+2,\\,x-1,\\,z-3)$。",
+    "method": "正交矩阵的逆变换公式",
+    "difficulty": "基础",
+    "variant_kind": "逆变换:等距变换的逆公式推导与验证",
+    "scene_spec": {
+     "objects": [
+      "求等距变换 $T(x)=Ax+b$ 的逆变换，其中 $A=\\begin{pmatrix}0&1&0\\\\-1&0&0\\\\0&0&1\\end{pmatrix}$，$b=(1,2,3)$。",
+      "$T^{-1}(x)=A^{\\mathsf T}x+(2,-1,-3)$,即 $T^{-1}(x,y,z)=(-y+2,\\,x-1,\\,z-3)$。"
+     ],
+     "steps": [
+      "第一步:$A$ 为正交矩阵,逆变换为 $T^{-1}(x)=A^{\\mathsf T}x-A^{\\mathsf T}b$。",
+      "第二步:$A^{\\mathsf T}=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$,$A^{\\mathsf T}b=(0-2,\\ 1+0,\\ 0+3)=(-2,1,3)$。",
+      "第三步:故 $T^{-1}(x)=A^{\\mathsf T}x-(-2,1,3)=A^{\\mathsf T}x+(2,-1,-3)$。",
+      "第四步:验证:$T(T^{-1}(x))=A(A^{\\mathsf T}x-A^{\\mathsf T}b)+b=x-b+b=x$ ✓。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-11-draft-c23-01",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-11",
+     "source_sha256": "e0eb9bf14b1cdf0919006ede0e9523046d0edadffb69ac3a10e4941a77563756",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "e94980d78cf598ba601617a83ff03aee559bdfe52f3e520c53cfbe9ee947191f",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e0eb9bf14b1cdf0919006ede0e9523046d0edadffb69ac3a10e4941a77563756",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-11/draft.jsonl",
+     "original_id": "draft-c23-01",
+     "prior_parent_training_ids": [
+      "geom-029"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "双侧仿射逆通过AᵀA=I与平移校正，Aᵀb=(-2,1,3)正确。",
+     "substantive_rewrite": false,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-11/draft-codex-repair-v3.jsonl",
+      "sha256": "37f23ea69c81a0d0c7e15c195d365c71408f4b081e8ae06b2806d1662609e106",
+      "versioned_id": "codex-repair-20261005-batch-11-draft-c23-01"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c24-03",
+   "deficiencies": [
+    "第一步 det A_t=t(t-2) 未展示分量计算过程(1·t²-2·t)",
+    "逆矩阵 [t(t-2)]⁻¹[[t²,-2],[-t,1]] 只给结果,未展示伴随矩阵与 det 相除的推导过程",
+    "第三步奇异参数 t=0、t=2 下像集与相容条件未展示代入过程(如 t=0 时 T(x,y)=b+(x+2y,0) 及由此导出 v=b₂ 的推导)",
+    "第四步纤维 (s-2r,r) 未展示由 x+2y=s 解出 x=s-2r 的过程"
+   ],
+   "record": {
+    "id": "draft-c24-03",
+    "category": "解析几何",
+    "sub_category": "空间变换",
+    "concept": "仿射变换与曲面",
+    "concept_id": "C24",
+    "parent_training_ids": [
+     "geom-030"
+    ],
+    "problem": "设$T_t(x)=A_tx+b$，$A_t=\\begin{pmatrix}1&2\\\\t&t^2\\end{pmatrix}$，$t\\in\\mathbb R$。求可逆参数及逆矩阵，并在每个奇异参数下给整个平面像、相容条件与全部纤维。",
+    "solution": "$\\det A_t=t(t-2)$，故$t\\ne0,2$时可逆，逆为$[t(t-2)]^{-1}\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$。记像点为$(u,v)$，$s=u-b_1$。$t=0$时像为$b+\\operatorname{span}(1,0)$，条件$v=b_2$；$t=2$时像为$b+\\operatorname{span}(1,2)$，条件$v-b_2=2s$。两奇异参数下，满足条件的全部原像都是$(s-2r,r)$，$r\\in\\mathbb R$；不满足条件则无原像。核方向为$(-2,1)$，两种奇异像方向不同，不能只检查一个退化值。",
+    "answer": "可逆$t\\notin\\{0,2\\}$；逆如上；奇异像与全部纤维如上。",
+    "method": "双奇异参数的仿射像与纤维",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：双奇异参数的仿射像与纤维",
+    "scene_spec": {
+     "objects": [
+      "设$T_t(x)=A_tx+b$，$A_t=\\begin{pmatrix}1&2\\\\t&t^2\\end{pmatrix}$，$t\\in\\mathbb R$。求可逆参数及逆矩阵，并在每个奇异参数下给整个平面像、相容条件与全部纤维。",
+      "可逆$t\\notin\\{0,2\\}$；逆如上；奇异像与全部纤维如上。"
+     ],
+     "steps": [
+      "第一步:$\\det A_t=t(t-2)$，故$t\\ne0,2$时可逆，逆为$[t(t-2)]^{-1}\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$。",
+      "第二步:记像点为$(u,v)$，$s=u-b_1$。",
+      "第三步:$t=0$时像为$b+\\operatorname{span}(1,0)$，条件$v=b_2$；$t=2$时像为$b+\\operatorname{span}(1,2)$，条件$v-b_2=2s$。",
+      "第四步:两奇异参数下，满足条件的全部原像都是$(s-2r,r)$，$r\\in\\mathbb R$；不满足条件则无原像。",
+      "第五步:核方向为$(-2,1)$，两种奇异像方向不同，不能只检查一个退化值。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v6-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v6-20261005-batch-12-draft-c24-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-12",
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "024855f49cef5096b3912559393a1e87847a8132d1f17ebfb30188e4a19e626c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-hash-compatibility/ready-row-separator-patches.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+     "original_id": "draft-c24-03",
+     "prior_parent_training_ids": [
+      "geom-030"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v6",
+     "math_correction_notes": [
+      "去",
+      "掉",
+      "包",
+      "含",
+      "冻",
+      "结",
+      "平",
+      "衡",
+      "谱",
+      "矩",
+      "阵",
+      "的",
+      "参",
+      "数",
+      "族",
+      "，",
+      "增",
+      "加",
+      "两",
+      "个",
+      "不",
+      "同",
+      "奇",
+      "异",
+      "像",
+      "与",
+      "完",
+      "整",
+      "纤",
+      "维",
+      "分",
+      "类",
+      "。",
+      "v6: 严格前后哈希校验+路径别名修正(Codex msg505/506)"
+     ],
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v5",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v5.jsonl",
+      "sha256": "cf3c80de30e9226efe90dc6044a06dcdd8babc5918bd6fcc53f83994daa69308",
+      "versioned_id": "codex-repair-v5-20261005-batch-12-draft-c24-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c26-03",
+   "deficiencies": [
+    "第一步'A²=I'的证明只有'直接再作用给 (x,y)'的表述,未展示逐分量代入:A(A(x,y))=A(x+2y,−y)=(x+2y+2(−y),−(−y))=(x,y) 应明确写出。",
+    "第二步固定线(解 A(x,y)=(x,y) 得 y=0)与变号线(解 A(x,y)=−(x,y) 得 x=−y)的方程组求解过程未展示,只给了结论。"
+   ],
+   "record": {
+    "id": "draft-c26-03",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "concept": "线性变换的几何解释",
+    "concept_id": "C26",
+    "parent_training_ids": [
+     "linalg-048"
+    ],
+    "problem": "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+    "solution": "$A(x,y)=(x+2y,-y)$，直接再作用给$(x,y)$，所以$A^2=I$。固定向量满足$y=0$，固定线为$x$轴；变号向量满足$x=-y$，变号线为$\\operatorname{span}(-1,1)$，两者独立但不垂直。$\\|Ae_2\\|^2=\\|(2,-1)\\|^2=5\\ne1$，因此不保距离，不是Euclidean平面反射。任意向量唯一分解为这两条线的向量，$A$保持第一分量并将第二变号，是斜分解下的线性对合。",
+    "answer": "线性对合，固定线$x$轴、变号线$y=-x$；不等距，不是Euclidean反射。",
+    "method": "对合与Euclidean反射的区别",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：对合与Euclidean反射的区别",
+    "scene_spec": {
+     "objects": [
+      "对$A=\\begin{pmatrix}1&2\\\\0&-1\\end{pmatrix}$，证明$A^2=I$，求固定线与变号线，判断是否为Euclidean反射。说明线性对合为何不一定是等距变换。",
+      "线性对合，固定线$x$轴、变号线$y=-x$；不等距，不是Euclidean反射。"
+     ],
+     "steps": [
+      "第一步:$A(x,y)=(x+2y,-y)$，直接再作用给$(x,y)$，所以$A^2=I$。",
+      "第二步:固定向量满足$y=0$，固定线为$x$轴；变号向量满足$x=-y$，变号线为$\\operatorname{span}(-1,1)$，两者独立但不垂直。",
+      "第三步:$\\|Ae_2\\|^2=\\|(2,-1)\\|^2=5\\ne1$，因此不保距离，不是Euclidean平面反射。",
+      "第四步:任意向量唯一分解为这两条线的向量，$A$保持第一分量并将第二变号，是斜分解下的线性对合。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-12-draft-c26-03",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-12",
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "5e943db0ed712ed88da58f2b39eb5be244492dcb606cbd653e2ddbc3b1e8cb11",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "25705ed80dbac40074a2bc29ed482de0087b12bc96d3e1ec0cb9f77722fefe0e",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft.jsonl",
+     "original_id": "draft-c26-03",
+     "prior_parent_training_ids": [
+      "linalg-048"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "独立结构复核确认平衡二阶谱块可直接复用冻结谱任务，改为非正交线性对合。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v3.jsonl",
+      "sha256": "db89b45f2374cb8be368a5806e5a26e964de3c3759317bd538e26c27ffd1ced4",
+      "versioned_id": "codex-repair-20261005-batch-12-draft-c26-03"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  },
+  {
+   "id": "draft-c27-04",
+   "deficiencies": [
+    "第二步断言 A_kP=P·diag(1,2) 只给等式结果,未标明哪一行乘哪一列的分量乘积(如第1行×第2列:1·k+k·1=2k,第2行×第2列:0·k+2·1=2),学生无法跟着验算对角化。",
+    "第三步夹角公式 cosα=|k|/√(k²+1) 直接给出,未展示点积与模长代入:⟨(1,0),(k,1)⟩=k、‖(k,1)‖=√(k²+1)、cosα=|k|/(1·√(k²+1))。"
+   ],
+   "record": {
+    "id": "draft-c27-04",
+    "category": "高等代数",
+    "sub_category": "矩阵对角化",
+    "concept": "谱分解与对角化",
+    "concept_id": "C27",
+    "parent_training_ids": [
+     "linalg-049",
+     "linalg-064",
+     "linalg-068"
+    ],
+    "problem": "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+    "solution": "特征值为$1,2$，对应特征向量$e_1=(1,0)$与$(k,1)$。$P=\\begin{pmatrix}1&k\\\\0&1\\end{pmatrix}$可逆且$A_kP=P\\operatorname{diag}(1,2)$，故所有$k$都可对角化。两特征线夹角$\\alpha\\in(0,\\pi/2]$满足$\\cos\\alpha=|k|/\\sqrt{k^2+1}$，所以仅$k=0$时垂直。实矩阵正交对角化为实对角阵必对称，而$A_k$对称当且仅当$k=0$；故正交对角化也当且仅当$k=0$。",
+    "answer": "所有$k$可对角化；正交对角化当且仅当$k=0$；$\\alpha=\\arccos(|k|/\\sqrt{k^2+1})$。",
+    "method": "含参特征方向分析",
+    "difficulty": "中等",
+    "variant_kind": "结构改写：含参特征方向分析",
+    "scene_spec": {
+     "objects": [
+      "设$A_k=\\begin{pmatrix}1&k\\\\0&2\\end{pmatrix}$，$k\\in\\mathbb R$。求对角化并判断何时能正交对角化，给两特征线的锐夹角精确式。",
+      "所有$k$可对角化；正交对角化当且仅当$k=0$；$\\alpha=\\arccos(|k|/\\sqrt{k^2+1})$。"
+     ],
+     "steps": [
+      "第一步:特征值为$1,2$，对应特征向量$e_1=(1,0)$与$(k,1)$。",
+      "第二步:$P=\\begin{pmatrix}1&k\\\\0&1\\end{pmatrix}$可逆且$A_kP=P\\operatorname{diag}(1,2)$，故所有$k$都可对角化。",
+      "第三步:两特征线夹角$\\alpha\\in(0,\\pi/2]$满足$\\cos\\alpha=|k|/\\sqrt{k^2+1}$，所以仅$k=0$时垂直。",
+      "第四步:实矩阵正交对角化为实对角阵必对称，而$A_k$对称当且仅当$k=0$；故正交对角化也当且仅当$k=0$。"
+     ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only",
+    "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+    "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+    "versioned_id": "codex-repair-v4-final-20261005-batch-13-draft-c27-04",
+    "admitted": false,
+    "animation_render_verified": false,
+    "strict_review": {
+     "core_math_verified": true,
+     "exact_expression_required": true,
+     "rational_numbers": "fractions_or_integers",
+     "text_math_fields_reviewed": true,
+     "scene_text_reviewed": true,
+     "render_verified": false,
+     "admitted": false,
+     "source_batch": "batch-13",
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+     "math_content_sha256": "7e1172e2319b004e6a82f3bc181d4fc215ebb2c5f363f2361989db46a7c3b43c",
+     "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+     "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS"
+    },
+    "revision_lineage": {
+     "source_sha256": "e019465093b291bd83fb6ae20f3eefc40a96df3e5137a246ad8813dd03f87b34",
+     "source_path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft.jsonl",
+     "original_id": "draft-c27-04",
+     "prior_parent_training_ids": [
+      "linalg-049",
+      "linalg-064",
+      "linalg-068"
+     ],
+     "historical_risk_not_reset": true,
+     "version": "codex-repair-v4-final",
+     "math_correction_notes": "增加非正交特征方向的判据，避免只把上三角矩阵换数值。",
+     "substantive_rewrite": true,
+     "previous_selected_version": {
+      "version": "codex-repair-v3",
+      "path": "reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v3.jsonl",
+      "sha256": "74397c96cbc35566ea025a7f8d98ec202e6f01127831f19508bf0b52d37d8091",
+      "versioned_id": "codex-repair-20261005-batch-13-draft-c27-04"
+     },
+     "previous_math_review_binding": {
+      "math_content_sha256": null,
+      "evidence": null
+     }
+    }
+   }
+  }
+ ]
+}

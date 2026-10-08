@@ -1,0 +1,202 @@
+{
+  "hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+  "records": [
+    {
+      "id": "draft-c33-02",
+      "batch": "batch-02",
+      "expected_selected_path": "batch-02/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "4010a23d3b7a1149b3e7bc6792674f4e4ae6176e372dae646debf22ffc2375a8",
+      "expected_selected_raw_sha256": "5fc3019cab712aa729b5ea6a94c88b6a8eb8211794032fd1d8fd65e1ed757ae7",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "609a28cbd5e14022a6c75909ad0f1874ec36c163dd3d3f6a1f589d5c929a65de",
+      "fields": {
+        "problem": "求使矩阵 $A=\\begin{pmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{pmatrix}$ 可逆的参数 $a$ 的取值范围；并求 $a=0$ 时的逆矩阵。",
+        "scene_spec": {
+          "objects": [
+            "板书:矩阵 $A=\\begin{pmatrix}1&1&a\\\\1&a&1\\\\a&1&1\\end{pmatrix}$",
+            "板书:行列式展开与因式分解 $\\det A=-(a-1)^2(a+2)$",
+            "数轴:奇异点 $a=-2$ 与 $a=1$(双重)红色标记",
+            "板书:$a=0$ 时的增广矩阵消元过程",
+            "高亮框:$A^{-1}=\\frac12\\begin{pmatrix}1&1&-1\\\\1&-1&1\\\\-1&1&1\\end{pmatrix}$"
+          ],
+          "steps": [
+            "第一步:写出矩阵 $A$,按第一行展开计算行列式。",
+            "第二步:因式分解得 $\\det A=-(a-1)^2(a+2)$。",
+            "第三步:在数轴上标出奇异点 $a=-2$ 与 $a=1$,得可逆范围。",
+            "第四步:代入 $a=0$,用增广矩阵消元求逆。",
+            "第五步:高亮结果并验证 $AA^{-1}=I$。"
+          ]
+        }
+      },
+      "new_math_content_sha256": "9b1cae14031c761f2632d44db14e387b51cd6292ef81aeae159406d7cd247044",
+      "intended_matrix_shape": [
+        3,
+        3
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c33-04",
+      "batch": "batch-02",
+      "expected_selected_path": "batch-02/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "4010a23d3b7a1149b3e7bc6792674f4e4ae6176e372dae646debf22ffc2375a8",
+      "expected_selected_raw_sha256": "5fc3019cab712aa729b5ea6a94c88b6a8eb8211794032fd1d8fd65e1ed757ae7",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "b74af12288cce454c2cba60380a7b1080b4920e324b86e58772bfd934f121eaa",
+      "fields": {
+        "solution": "$A$ 为 $3\\times2$ 列满秩矩阵。取 $L=\\begin{pmatrix}1&0&0\\\\0&1&0\\end{pmatrix}$，则 $LA=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I_2$，故 $L$ 是 $A$ 的一个左逆。$B$ 为 $2\\times3$ 行满秩矩阵。取 $R=\\begin{pmatrix}1&0\\\\0&1\\\\0&0\\end{pmatrix}$，则 $BR=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}=I_2$，故 $R$ 是 $B$ 的一个右逆。区别:列满秩的「高瘦」矩阵只可能有左逆($LA=I$),行满秩的「宽扁」矩阵只可能有右逆($BR=I$);只有方阵且可逆时才存在同时满足两侧的双边逆。不唯一性:$A$ 的左逆一般形式为 $\\begin{pmatrix}1-t&-t&t\\\\-s&1-s&s\\end{pmatrix}$($t,s$ 为任意实数),$L$ 对应 $t=s=0$,$\\begin{pmatrix}0&-1&1\\\\1&2&-1\\end{pmatrix}$ 对应 $t=1,s=-1$,也是左逆;$B$ 的右逆同理不唯一。一般地，$m\\times n$ 矩阵有左逆当且仅当列满秩（故$m\\ge n$），有右逆当且仅当行满秩（故$m\\le n$）。严格高瘦/宽扁情形的相应单边逆不唯一；可逆方阵的左右逆一致且唯一。因本题 $B=A^{\\mathsf T}$，全部右逆可写成 $R(t,s)=\\begin{pmatrix}1-t&-s\\\\-t&1-s\\\\t&s\\end{pmatrix}$，有 $BR(t,s)=I_2$。"
+      },
+      "new_math_content_sha256": "cf59b21c342d32b2f9898a4c8dba331dd43f2bc20dc3d289bd563b5d20aaeb10",
+      "intended_matrix_shape": [
+        3,
+        2
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c33-05",
+      "batch": "batch-02",
+      "expected_selected_path": "batch-02/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "4010a23d3b7a1149b3e7bc6792674f4e4ae6176e372dae646debf22ffc2375a8",
+      "expected_selected_raw_sha256": "5fc3019cab712aa729b5ea6a94c88b6a8eb8211794032fd1d8fd65e1ed757ae7",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "f88d0706f478722f98079e41aa88de9a26934cabb8b877f6d8d025b8c1c8f2d5",
+      "fields": {
+        "solution": "$C^3=I$，故$(I-tC)(I+tC+t^2C^2)=(1-t^3)I$，两因子均为$C$的多项式，因此逆序乘积也相同。对实数$t\\ne1$，$A_t^{-1}=(I+tC+t^2C^2)/(1-t^3)=\\frac1{1-t^3}\\begin{pmatrix}1&2t&6t^2\\\\t^2/2&1&3t\\\\t/6&t^2/3&1\\end{pmatrix}$。直接行列式为$1-t^3$，唯一实奇异参数$t=1$。此时方程为$x_1-2x_2=b_1,x_2-3x_3=b_2,x_3-x_1/6=b_3$，将三式分别乘$1,2,6$再相加得必要条件$b_1+2b_2+6b_3=0$。若此条件满足，任意$s\\in\\mathbb R$给$x=(6s+2b_2+b_1,3s+b_2,s)$，代入三式均成立；反过来任何解均由第三坐标$s$决定，故这是全部解。核为$\\operatorname{span}\\{(6,3,1)\\}$、像为$\\{b:b_1+2b_2+6b_3=0\\}$、秩为$2$。",
+        "answer": "$t\\ne1$时$A_t^{-1}=\\frac1{1-t^3}\\begin{pmatrix}1&2t&6t^2\\\\t^2/2&1&3t\\\\t/6&t^2/3&1\\end{pmatrix}$；$t=1$时相容当且仅当$b_1+2b_2+6b_3=0$，全部解$(6s+2b_2+b_1,3s+b_2,s)$，$s\\in\\mathbb R$。"
+      },
+      "new_math_content_sha256": "ddacb0aee5356df40d0480f6386cdde82e73a3b2c5972ac56d8f2470e9990bec",
+      "intended_matrix_shape": [
+        3,
+        3
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c31-04",
+      "batch": "batch-05",
+      "expected_selected_path": "batch-05/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "089a1bd06d7a68c7109636a6298bfafeb1dd6be884adb5363bd18c79d63db287",
+      "expected_selected_raw_sha256": "a6097a8483dee6b8599aeae30157d4aed0823f85ad3419752c657785bdadcd70",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "e8fb0e984906fd54b3041847a1c077212a9a7b5a4251318cd001dbf7a8dabd0c",
+      "fields": {
+        "solution": "$D=k^2-1=(k-1)(k+1)$。当 $k\\neq\\pm1$ 时,$D_x=\\begin{vmatrix}1&1\\\\k&k\\end{vmatrix}=k-k=0$,$D_y=\\begin{vmatrix}k&1\\\\1&k\\end{vmatrix}=k^2-1$,故唯一解 $x=\\frac{0}{D}=0$,$y=\\frac{D}{D}=1$。当 $k=1$ 时,两方程均为 $x+y=1$,无穷多解。当 $k=-1$ 时,方程为 $-x+y=1$ 与 $x-y=-1$,后者乘以 $-1$ 恰为前者,仍是同一条直线,无穷多解。注意:本题两个奇异值均落在无穷多解分支,与常见的「一个奇异值无解、另一个无穷多解」的例子不同;克拉默法则仅在 $D\\neq0$ 时适用,$D=0$ 时必须改用初等变换/秩判断。"
+      },
+      "new_math_content_sha256": "5ddc802efa157c5d8c7508c1ed2ded44257b7fab5ca1339fdfff92e27135f8f1",
+      "intended_matrix_shape": [
+        2,
+        2
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c24-03",
+      "batch": "batch-12",
+      "expected_selected_path": "batch-12/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "042a95a7255c348cfe6825b89cab67dec9a329edfd50e83744dd718e546449a6",
+      "expected_selected_raw_sha256": "09fd66f525de92bbaf65f350e21d79a7ffe0687442b933e8577d34e6827b360c",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "e20c7d1dfbc92773da8123681cddb9f488296f1b4c14a787234ef7f82d15e0a7",
+      "fields": {
+        "problem": "设$T_t(x)=A_tx+b$，$A_t=\\begin{pmatrix}1&2\\\\t&t^2\\end{pmatrix}$，$t\\in\\mathbb R$。求可逆参数及逆矩阵，并在每个奇异参数下给整个平面像、相容条件与全部纤维。",
+        "scene_spec": {
+          "objects": [
+            "设$T_t(x)=A_tx+b$，$A_t=\\begin{pmatrix}1&2\\\\t&t^2\\end{pmatrix}$，$t\\in\\mathbb R$。求可逆参数及逆矩阵，并在每个奇异参数下给整个平面像、相容条件与全部纤维。",
+            "可逆$t\\notin\\{0,2\\}$；逆如上；奇异像与全部纤维如上。"
+          ],
+          "steps": [
+            "第一步:$\\det A_t=t(t-2)$，故$t\\ne0,2$时可逆，逆为$[t(t-2)]^{-1}\\begin{pmatrix}t^2&-2\\\\-t&1\\end{pmatrix}$。",
+            "第二步:记像点为$(u,v)$，$s=u-b_1$。",
+            "第三步:$t=0$时像为$b+\\operatorname{span}(1,0)$，条件$v=b_2$；$t=2$时像为$b+\\operatorname{span}(1,2)$，条件$v-b_2=2s$。",
+            "第四步:两奇异参数下，满足条件的全部原像都是$(s-2r,r)$，$r\\in\\mathbb R$；不满足条件则无原像。",
+            "第五步:核方向为$(-2,1)$，两种奇异像方向不同，不能只检查一个退化值。"
+          ]
+        }
+      },
+      "new_math_content_sha256": "024855f49cef5096b3912559393a1e87847a8132d1f17ebfb30188e4a19e626c",
+      "intended_matrix_shape": [
+        2,
+        2
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c38-03",
+      "batch": "batch-14",
+      "expected_selected_path": "batch-14/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "e5da45108e4d829c1bc2933ed589c12c165012a2785240162c54f07d737cccfb",
+      "expected_selected_raw_sha256": "55946d7083cdc76ecc73df833a611044c282be33ba8a2b2bee609a46a43a6c89",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "7a9faff01037cbf8be92695f2bae41905293518d344b7299311ae5f9a7d0fa91",
+      "fields": {
+        "solution": "$U$维数$3$，$V$维数$3$。交中矩阵为$\\begin{pmatrix}a&b\\\\b&-a\\end{pmatrix}$，基为$\\operatorname{diag}(1,-1)$与$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，维数$2$。对任意$A$，分解$A=(\\operatorname{tr}A/2)I+[A-(\\operatorname{tr}A/2)I]$，前项对称、后项无迹，故和为全空间，维数$4$。交非零，所以分解成任意$U,V$成分不唯一，也不是直和。",
+        "scene_spec": {
+          "objects": [
+            "在实$2\\times2$矩阵空间中，令$U$为对称矩阵、$V$为迹为零的矩阵。给出交空间的基、两空间与和的维数，并显式证明和为全空间。",
+            "$\\dim U=\\dim V=3$，交维数$2$、基如上，和为四维全空间，非直和。"
+          ],
+          "steps": [
+            "第一步:$U$维数$3$，$V$维数$3$。",
+            "第二步:交中矩阵为$\\begin{pmatrix}a&b\\\\b&-a\\end{pmatrix}$，基为$\\operatorname{diag}(1,-1)$与$\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$，维数$2$。",
+            "第三步:对任意$A$，分解$A=(\\operatorname{tr}A/2)I+[A-(\\operatorname{tr}A/2)I]$，前项对称、后项无迹，故和为全空间，维数$4$。",
+            "第四步:交非零，所以分解成任意$U,V$成分不唯一，也不是直和。"
+          ]
+        }
+      },
+      "new_math_content_sha256": "b607ade0f3aa2db79957fc90adc56792198de97031fb7a45bbacc01792e3a0ea",
+      "intended_matrix_shape": [
+        2,
+        2
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    },
+    {
+      "id": "draft-c39-01",
+      "batch": "batch-14",
+      "expected_selected_path": "batch-14/draft-codex-repair-v4-final.jsonl",
+      "expected_selected_sha256": "e5da45108e4d829c1bc2933ed589c12c165012a2785240162c54f07d737cccfb",
+      "expected_selected_raw_sha256": "55946d7083cdc76ecc73df833a611044c282be33ba8a2b2bee609a46a43a6c89",
+      "expected_hash_algorithm": "sha256-utf8-sig-splitlines-lf-v1",
+      "expected_record_sha256": "7f7e5dfad9ab5bb802139f8f9c4253170aef4a7d0e344fd1017223bc8f79471c",
+      "fields": {
+        "solution": "对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。",
+        "scene_spec": {
+          "objects": [
+            "在实$2\\times2$矩阵空间中取$A=\\operatorname{diag}(1,3)$，定义$T(X)=AX-XA$。求核、像、秩，并说明全空间能否分解为核与像的直和。",
+            "核为对角矩阵，像为零对角矩阵，秩$2$；$M_2(\\mathbb R)=\\ker T\\oplus\\operatorname{im}T$。"
+          ],
+          "steps": [
+            "第一步:对$X=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$，$T(X)=\\begin{pmatrix}0&-2b\\\\2c&0\\end{pmatrix}$。",
+            "第二步:所以核为所有对角矩阵，基$e_{11},e_{22}$；像为所有零对角矩阵，基$e_{12},e_{21}$，秩$2$。",
+            "第三步:两空间交为零且每个矩阵唯一分解为对角部分与零对角部分，故是直和。",
+            "第四步:$T$在像上可逆，$T^2$在像上为$4I$，与在核上为零的作用不同；非正交Jordan中心化问题未被套用。"
+          ]
+        }
+      },
+      "new_math_content_sha256": "5dd4fc241e308a6ebcac638bb8422cc2f0651b9e5da9defe59f522089c90953d",
+      "intended_matrix_shape": [
+        2,
+        2
+      ],
+      "repair_kind": "EXPLICIT_TEX_ROW_SEPARATOR_RESTORE",
+      "published": false,
+      "requires_new_version_lineage_and_math_evidence_binding": true
+    }
+  ],
+  "source_versions_preserved": true,
+  "current_selector_modified": false,
+  "remaining_actor_actions": "Publish new version through draft_io; bind versioned_id/lineage/current math evidence; generate matching full MD; render into NEW PDF with strict guards; return actual receipts. Do not overwrite v4-final or automatically grant training admission."
+}

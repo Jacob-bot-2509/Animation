@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>linalg-048 改写候选 · 独立复核报告（2026-10-06）</h1>
+<blockquote>
+<p>复核对象：提交 <code>889027d</code>（10-06 01:07）新增的
+<code>reviews/2026-10-06-linalg048-rewrite/linalg-048-rewrite-candidate.json</code>
+背景：<code>data_check</code> 因 <strong>2 对结构泄漏候选</strong>（<code>eval-linalg-015-s1</code>、<code>test-linalg-025</code> 各自 vs 训练池 <code>linalg-048</code>）不通过；本候选把 <code>linalg-048</code> 从<strong>对称矩阵 <code>[[2,1],[1,2]]</code> 的几何意义</strong>改写为<strong>水平剪切 <code>[[1,3],[0,1]]</code> 的几何意义</strong>。
+复现：<code>python dataset_audit_2026-10-06-linalg048/_verify.py</code>（只读）</p>
+</blockquote>
+<hr />
+<h2>0. 结论</h2>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数学正确性（Lead 独立自算）</td>
+<td><strong>通过</strong>——det、基向量像、正方形像、斜率、面积全部与候选一致</td>
+</tr>
+<tr>
+<td>结构泄漏（替换后全量再筛 21,090 对）</td>
+<td><strong>候选对 0</strong>（旧题：2 对）</td>
+</tr>
+<tr>
+<td>与两条查询题的近重复（5-gram）</td>
+<td>0.2568 / 0.1910，全池最大 0.2985 ≪ 0.7</td>
+</tr>
+<tr>
+<td>字段 / LaTeX / scene_spec / answer↔solution</td>
+<td><strong>无 hard</strong>；仅仓库既有 <code>P002</code>（许可证）、<code>A008</code>（动画未验证）两条系统级 quarantine</td>
+</tr>
+<tr>
+<td><strong>是否已生效</strong></td>
+<td><strong>否——目前仍是候选，数据集未改动</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 数学自算（不依赖其脚本）</h2>
+<p>对 $A=\begin{pmatrix}1&amp;3\0&amp;1\end{pmatrix}$：</p>
+<table>
+<thead>
+<tr>
+<th>断言（候选）</th>
+<th>我的自算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A(x,y)=(x+3y,;y)$</td>
+<td>✓ 取 $(x,y)=(7,2)$ 得 $(13,2)$</td>
+</tr>
+<tr>
+<td>$\vec e_1=(1,0)$ 不动、$\vec e_2=(0,1)\mapsto(3,1)$</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>$\det A=1\cdot1-3\cdot0=1$</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>单位正方形 $[0,1]^2$ 顶点像 $(0,0),(1,0),(3,1),(4,1)$</td>
+<td>✓（逐个代入一致）</td>
+</tr>
+<tr>
+<td>底边长 $1$、高 $1$、面积仍为 $1$</td>
+<td>✓（面积因子 $\lvert\det\rvert=1$）</td>
+</tr>
+<tr>
+<td>水平线 $y=c$ 仍水平、整体右移 $3c$</td>
+<td>✓ $(x,c)\mapsto(x+3c,c)$</td>
+</tr>
+<tr>
+<td>竖直线 $x=c$ 变为过 $(c,0)$、斜率 $1/3$ 的直线</td>
+<td>✓ $(c,y)\mapsto(c+3y,y)$</td>
+</tr>
+<tr>
+<td>该变换为水平剪切（$x$ 轴上点不动，越远平移越多）</td>
+<td>✓ 特征多项式 $(1-\lambda)^2$、$A\ne I$ 且不可对角化，正是剪切</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>改写后的解答<strong>只讲几何、不再给出谱数据</strong>，因此不再包含 <code>eval-linalg-015</code>（求特征值/特征向量并对角化）与 <code>test-linalg-025</code>（求谱分解）的答案信息。</p>
+</blockquote>
+<hr />
+<h2>2. 结构泄漏复筛（关键验证）</h2>
+<p>用项目自带 <code>animgtrain.structural_leakage.compare</code>（规则 <code>structure-candidates-v4</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>旧题 <code>[[2,1],[1,2]]</code></th>
+<th><strong>候选题 <code>[[1,3],[0,1]]</code></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vs <code>eval-linalg-015-s1</code></td>
+<td>candidate=<strong>True</strong>（31/75）</td>
+<td>candidate=<strong>False</strong>（31/74，reasons 空）</td>
+</tr>
+<tr>
+<td>vs <code>test-linalg-025</code></td>
+<td>candidate=<strong>True</strong>（29/82）</td>
+<td>candidate=<strong>False</strong>（29/81，reasons 空）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>全量再筛</strong>：以候选题替换 <code>linalg-048</code> 后，对 eval 300 条 × train 47 条、test 150 条 × train 47 条共 <strong>21,090 对</strong>逐对调用 <code>compare()</code> → <strong>候选对 0</strong>。与其提交自述&quot;全量筛查全过&quot;一致。</p>
+<p><strong>近重复</strong>：候选 vs 两条查询题 J=0.2568 / 0.1910；与全池最大 <strong>0.2985</strong>（<code>eval-linalg-006-s1</code>）≪ 0.7 阈值。</p>
+<hr />
+<h2>3. 记录级检查</h2>
+<ul>
+<li>必需字段齐全（id/category/sub_category/problem/solution/answer/scene_spec/source/license + 3 项可选元数据），键集合与现行记录一致；</li>
+<li>LaTeX：公式内无中文/全角，<code>$</code> 配对、花括号平衡，<code>\begin{pmatrix}</code> 等用法正常；</li>
+<li>scene_spec：objects 5 项 / steps 5 步（编号连续），<strong>objects 与 steps 一一对应</strong>（坐标轴→步1、单位正方形→步1/4、平行四边形→步4、两条水平线→步3、右下角文本→步2）；</li>
+<li>answer 与 solution 一致（<code>C007</code> info：等价表述）；</li>
+<li>仅 <code>P002</code>（许可证）与 <code>A008</code>（动画未验证）两条<strong>仓库级</strong> quarantine，非本次改写引入。</li>
+</ul>
+<hr />
+<h2>4. ⚠️ 关键状态：候选<strong>尚未应用</strong></h2>
+<ul>
+<li>候选只写入了 <code>reviews/2026-10-06-linalg048-rewrite/linalg-048-rewrite-candidate.json</code>；</li>
+<li><strong>三个训练池目录</strong>（<code>data/v2/train/leakage-isolated-2026-10-05</code>、<code>-v2</code>、<code>-v3</code>）中的 <code>linalg-048</code> <strong>仍是旧的对称矩阵版本</strong>；</li>
+<li>因此 <code>python tools/data_check.py --manifest data/manifest.json</code> <strong>仍为不通过（exit 2）</strong>，2 对结构泄漏候选仍在；</li>
+<li><code>tools/prepare_linalg048_rewrite.py</code> 是&quot;只准备 + 自检&quot;脚本（输出已存在时 fail-closed），<strong>不会自动改数据</strong>。</li>
+</ul>
+<h3>应用时需同步完成（建议顺序）</h3>
+<ol>
+<li>用候选内容替换现行训练池（活动池为 <code>v2/train/leakage-isolated-v3-2026-10-05</code>）中的 <code>linalg-048</code>，并落 UTF-8/LF；</li>
+<li>重跑 <code>data_check --manifest data/manifest.json</code> → 预期 2 对候选清零、exit 0；</li>
+<li><strong>重绑哈希</strong>：<code>data/manifest.json</code> 中该 train 条目的 sha256 + 重冻 <code>data/{eval,test}-v2.lock.json</code>（train 文件哈希变化会让冻结证据失效）；</li>
+<li>重跑隔离/近重复门禁与（若已接入）渲染门禁。</li>
+</ol>
+<h3>两点提醒</h3>
+<ul>
+<li>候选同时改动了<strong>元数据取值</strong>：<code>function_family</code> 矩阵变换→线性变换、<code>visual_style</code> 空间网格形变→空间几何图形、<code>efficiency_tags</code> 基向量追踪/网格拉伸→几何意义/剪切变换。准备脚本的 E 项只比较<strong>键集合</strong>、不校验元数据取值漂移，请确认这是有意为之。</li>
+<li>旧 scene 含 NumberPlane 网格与基向量箭头，新版 scene 改为单位正方形+水平线（无基向量）——与 <code>A008</code>（动画未验证）一致：若后续要出动画，需按新版 scene 重写。</li>
+</ul>
+<hr />
+<h2>5. 产物</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dataset_audit_2026-10-06-linalg048/_verify.py</code></td>
+<td>本次只读复核脚本（数学自算 + 结构复筛 + 近重复 + 记录级检查）</td>
+</tr>
+<tr>
+<td><code>dataset_audit_2026-10-06-linalg048/LINALG048_REVIEW.md</code> / <code>.pdf</code></td>
+<td>本报告</td>
+</tr>
+<tr>
+<td><code>reviews/2026-10-06-linalg048-rewrite/linalg-048-rewrite-candidate.json</code></td>
+<td>被复核的候选题（未改动）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮为只读复核；未修改任何数据、清单、锁或工具；所有写入均在本工作区复核目录内。</p>
+
+</body>
+</html>

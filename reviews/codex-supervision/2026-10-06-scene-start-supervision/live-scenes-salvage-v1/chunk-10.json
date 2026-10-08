@@ -1,0 +1,349 @@
+{
+ "standard": "场景呈现标准(2026-10-06 用户审阅后新增,长期执行):①不能用集合/几何视角动画表示的题,必须给出清晰细致的运算动画;②矩阵运算不能只展现过程和结果,要标明哪一行乘哪一列;③证明收敛要标注重点和细节;④所有无法用几何视角表示的计算题必须列出详细运算方法和操作过程,学生看动画就能跟着算。",
+ "records": [
+  {
+   "idx": 126,
+   "id": "draft-c12-03",
+   "concept_id": "C12",
+   "category": "数学分析",
+   "sub_category": "函数项级数",
+   "problem": "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+   "solution": "几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。块和不能一致趋于零，因此在整个开区间不一致收敛。",
+   "answer": "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。",
+   "scene_spec": {
+    "objects": [
+     "证明$\\sum_{n\\ge1}\\sin(nx)/n$在$[\\delta,2\\pi-\\delta]$（$0<\\delta<\\pi$）上一致收敛，而在$(0,2\\pi)$上不一致收敛。不得用其和函数的图像代替证明。",
+     "远离周期端点的闭区间上一致收敛；在$(0,2\\pi)$上不一致收敛。"
+    ],
+    "steps": [
+     "第一步:几何求和给任意正弦块$|\\sum_{n=p}^q\\sin(nx)|\\le1/|\\sin(x/2)|\\le1/\\sin(\\delta/2)$。",
+     "第二步:对权$1/n$作分部求和，得到$|\\sum_{n=p}^q\\sin(nx)/n|\\le1/[p\\sin(\\delta/2)]$；此界与$x,q$无关，满足一致柯西准则。",
+     "第三步:反之，取$x_N=\\pi/(4N)$，对$N+1\\le n\\le2N$，$\\pi/4<nx_N\\le\\pi/2$，故$\\sin(nx_N)\\ge\\sqrt2/2$且$1/n\\ge1/(2N)$，于是该块和不小于$\\sqrt2/4$。",
+     "第四步:块和不能一致趋于零，因此在整个开区间不一致收敛。"
+    ]
+   }
+  },
+  {
+   "idx": 127,
+   "id": "draft-c12-04",
+   "concept_id": "C12",
+   "category": "数学分析",
+   "sub_category": "函数项级数",
+   "problem": "固定$0<r<1$。证明$F_r(x)=\\sum_{n=0}^{\\infty}r^n\\cos(nx)$在实轴上一致绝对收敛，求其和函数，并严格求$\\int_0^\\pi F_r(x)\\,dx$。",
+   "solution": "$|r^n\\cos(nx)|\\le r^n$，几何级数可和，故在实轴上一致绝对收敛。取$\\sum r^ne^{inx}=1/(1-re^{ix})$的实部，得$F_r(x)=(1-r\\cos x)/(1-2r\\cos x+r^2)$；分母为$|1-re^{ix}|^2\\ge(1-r)^2>0$。一致收敛允许在$[0,\\pi]$逐项积分，常数项贡献$\\pi$，每个$n\\ge1$的积分$r^n[\\sin(nx)/n]_0^\\pi=0$，故积分为$\\pi$。",
+   "answer": "$F_r(x)=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$，一致绝对收敛，积分$\\pi$。",
+   "scene_spec": {
+    "objects": [
+     "固定$0<r<1$。证明$F_r(x)=\\sum_{n=0}^{\\infty}r^n\\cos(nx)$在实轴上一致绝对收敛，求其和函数，并严格求$\\int_0^\\pi F_r(x)\\,dx$。",
+     "$F_r(x)=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$，一致绝对收敛，积分$\\pi$。",
+     "放缩公式卡:$|r^n\\cos(nx)|\\le r^n$",
+     "高亮框(放缩依据):$|\\cos(nx)|\\le1$，上界 $r^n$ 与 $x$ 无关",
+     "关键点标注卡(优级数选取):$\\sum_{n=0}^{\\infty}r^n$ 是公比 $r\\in(0,1)$ 的几何级数，可和",
+     "定理标签卡(判别定理应用):Weierstrass M 判别法 ⇒ 实轴上一致绝对收敛",
+     "公式卡(实部交换):$F_r(x)=\\mathrm{Re}\\sum_{n=0}^{\\infty}r^ne^{inx}$",
+     "高亮框(交换依据):一致绝对收敛 ⇒ 取实部与求和可交换；$e^{inx}=\\cos(nx)+i\\sin(nx)$",
+     "公式卡(复几何级数求和):$\\sum_{n=0}^{\\infty}r^ne^{inx}=\\sum_{n=0}^{\\infty}(re^{ix})^n=\\frac{1}{1-re^{ix}}$",
+     "高亮框(公式条件):$|re^{ix}|=r<1$",
+     "标注箭头(同乘共轭):分子分母同乘 $1-re^{-ix}$",
+     "公式卡(有理化起式):$\\frac{1}{1-re^{ix}}=\\frac{1-re^{-ix}}{(1-re^{ix})(1-re^{-ix})}$",
+     "公式卡(分子展开):$1-re^{-ix}=1-r(\\cos x-i\\sin x)=1-r\\cos x+ir\\sin x$",
+     "公式卡(分母展开):$(1-re^{ix})(1-re^{-ix})=1-r(e^{ix}+e^{-ix})+r^2=1-2r\\cos x+r^2$",
+     "公式卡(取实部):$F_r(x)=\\mathrm{Re}\\frac{1-r\\cos x+ir\\sin x}{1-2r\\cos x+r^2}=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$",
+     "高亮框(分母恒正):$1-2r\\cos x+r^2=|1-re^{ix}|^2\\ge(1-r)^2>0$",
+     "注释文本(不等式依据):因 $\\cos x\\le1$，$1-2r\\cos x+r^2\\ge1-2r+r^2=(1-r)^2$",
+     "公式卡(逐项积分):$\\int_0^\\pi F_r(x)\\,dx=\\sum_{n=0}^{\\infty}r^n\\int_0^\\pi\\cos(nx)\\,dx$",
+     "高亮框(逐项积分依据):一致收敛 ⇒ 可在 $[0,\\pi]$ 逐项积分",
+     "公式卡(常数项):$n=0$:$r^0\\cos(0x)=1$，$\\int_0^\\pi1\\,dx=\\pi$，贡献 $\\pi$",
+     "公式卡(高次项):$n\\ge1$:$r^n\\int_0^\\pi\\cos(nx)\\,dx=r^n[\\sin(nx)/n]_0^\\pi=r^n(\\sin(n\\pi)/n-0)=0$",
+     "结果高亮框:故 $\\int_0^\\pi F_r(x)\\,dx=\\pi$"
+    ],
+    "steps": [
+     "第一步:一致绝对收敛判定。关键点:放缩依据——由 $|\\cos(nx)|\\le1$ 得 $|r^n\\cos(nx)|\\le r^n$，上界 $r^n$ 与 $x$ 无关；关键点:优级数选取——$\\sum_{n=0}^{\\infty}r^n$ 是公比 $r\\in(0,1)$ 的几何级数，可和；关键点:判别定理应用——Weierstrass M 判别法 ⇒ $\\sum r^n\\cos(nx)$ 在实轴上一致绝对收敛。",
+     "第二步:复指数化归。$F_r(x)=\\mathrm{Re}\\sum_{n=0}^{\\infty}r^ne^{inx}$；关键点:交换依据——一致绝对收敛 ⇒ 取实部与求和可交换，且 $e^{inx}=\\cos(nx)+i\\sin(nx)$；求和:$\\sum_{n=0}^{\\infty}r^ne^{inx}=\\sum_{n=0}^{\\infty}(re^{ix})^n=\\frac{1}{1-re^{ix}}$；关键点:公式条件——$|re^{ix}|=r<1$。",
+     "第三步:有理化。关键点:分子分母同乘共轭 $1-re^{-ix}$:$\\frac{1}{1-re^{ix}}=\\frac{1-re^{-ix}}{(1-re^{ix})(1-re^{-ix})}$；分子展开:$1-re^{-ix}=1-r(\\cos x-i\\sin x)=1-r\\cos x+ir\\sin x$；分母展开:$(1-re^{ix})(1-re^{-ix})=1-r(e^{ix}+e^{-ix})+r^2=1-2r\\cos x+r^2$。",
+     "第四步:取实部得和函数。$F_r(x)=\\mathrm{Re}\\frac{1-r\\cos x+ir\\sin x}{1-2r\\cos x+r^2}=\\frac{1-r\\cos x}{1-2r\\cos x+r^2}$；关键点:分母为实数且恒正——$1-2r\\cos x+r^2=|1-re^{ix}|^2\\ge(1-r)^2>0$（因 $\\cos x\\le1$，$1-2r\\cos x+r^2\\ge1-2r+r^2=(1-r)^2$），和函数处处有定义、无奇点。",
+     "第五步:逐项积分。关键点:一致收敛 ⇒ 可在 $[0,\\pi]$ 逐项积分:$\\int_0^\\pi F_r(x)\\,dx=\\sum_{n=0}^{\\infty}r^n\\int_0^\\pi\\cos(nx)\\,dx$；常数项 $n=0$:$r^0\\cos(0x)=1$，$\\int_0^\\pi1\\,dx=\\pi$，贡献 $\\pi$；每个 $n\\ge1$:$r^n\\int_0^\\pi\\cos(nx)\\,dx=r^n[\\sin(nx)/n]_0^\\pi=r^n(\\sin(n\\pi)/n-0)=0$（因 $\\sin(n\\pi)=0$）；故积分为 $\\pi$。"
+    ]
+   }
+  },
+  {
+   "idx": 128,
+   "id": "draft-c12-05",
+   "concept_id": "C12",
+   "category": "数学分析",
+   "sub_category": "函数项级数",
+   "problem": "证明函数列 $f_n(x)=n^2x(1-x^2)^n$($0\\le x\\le1$)逐点收敛于 $0$，但 $\\int_0^1f_n(x)\\,dx$ 不趋于 $0$；由此说明逐点收敛不足以保证极限与积分交换，并指出一致收敛为何是充分条件。",
+   "solution": "$f_n(x)=n^2x(1-x^2)^n$在$[0,1]$逐点趋于零：端点直接为零，对$0<x<1$令$q=1-x^2<1$，$n^2q^n$的相邻比趋于$q<1$，故趋零。换元$u=1-x^2$给$\\int_0^1f_n(x)dx=n^2/[2(n+1)]\\ge n/4\\to\\infty$。由于$f_n\\ge0$且区间长度为$1$，$\\sup f_n\\ge\\int f_n\\ge n/4$，所以不可能一致趋零，也不能交换极限与积分。",
+   "answer": "逐点极限$0$，非一致收敛；$\\int_0^1f_n=n^2/[2(n+1)]\\to+\\infty$，不能交换极限与积分。",
+   "scene_spec": {
+    "objects": [
+     "题目公式卡片:$f_n(x)=n^2x(1-x^2)^n$($0\\le x\\le1$);目标标注:证明逐点收敛于 $0$、$\\int_0^1f_n(x)\\,dx$ 不趋于 $0$、极限与积分不能交换",
+     "端点计算卡片(两行并排):$f_n(0)=n^2\\cdot0\\cdot(1-0)^n=0$;$f_n(1)=n^2\\cdot1\\cdot(1-1)^n=0$",
+     "相邻比演算卡片:$q=1-x^2$($0<q<1$);$\\frac{(n+1)^2q^{n+1}}{n^2q^n}=(\\frac{n+1}{n})^2\\cdot q\\to q<1$",
+     "「关键点」高亮框:相邻比极限 $q<1$ ⟹ $n^2q^n\\to0$ ⟹ $f_n(x)\\to0$,即逐点收敛于 $0$",
+     "换元公式卡片:$u=1-x^2$;$du=-2x\\,dx$;$x\\,dx=-du/2$",
+     "积分限对调示意卡片(双向箭头):$x=0\\leftrightarrow u=1$、$x=1\\leftrightarrow u=0$;负号抵消:$\\int_0^1x(1-x^2)^n\\,dx=\\int_1^0u^n(-\\frac{du}{2})=\\frac12\\int_0^1u^n\\,du$",
+     "幂积分演算卡片:$\\int_0^1u^n\\,du=[\\frac{u^{n+1}}{n+1}]_0^1=\\frac{1}{n+1}$",
+     "积分结果卡片:$\\int_0^1f_n(x)\\,dx=n^2\\cdot\\frac12\\cdot\\frac{1}{n+1}=\\frac{n^2}{2(n+1)}$",
+     "「关键点」高亮框(放缩依据):$n\\ge1$ 时 $n/(n+1)\\ge1/2$,等价于 $2n\\ge n+1$",
+     "放缩链卡片:$\\frac{n^2}{2(n+1)}=\\frac n2\\cdot\\frac n{n+1}\\ge\\frac n2\\cdot\\frac12=\\frac n4$",
+     "发散标注箭头:$\\frac n4\\to+\\infty$ ⟹ $\\int_0^1f_n\\,dx\\ge n/4\\to+\\infty$,积分不趋于 $0$",
+     "上确界估计卡片:$f_n\\ge0$ 且区间长 $1$ ⟹ $\\int_0^1f_n\\,dx\\le\\sup_{[0,1]}f_n\\cdot1$ ⟹ $\\sup f_n\\ge\\int_0^1f_n\\,dx\\ge n/4$",
+     "「关键点」高亮框(重点对比):逐点极限 $=0$,但 $\\sup f_n\\to+\\infty$ ⟹ 非一致收敛",
+     "交换失败对比卡片:$\\lim_{n\\to\\infty}\\int_0^1f_n=+\\infty\\ne0=\\int_0^1\\lim_{n\\to\\infty}f_n$",
+     "一致收敛充分条件卡片:$|\\int_0^1f_n-\\int_0^1f|\\le\\int_0^1|f_n-f|\\le\\sup_{[0,1]}|f_n-f|\\cdot1\\to0$ ⟹ 极限与积分可交换",
+     "总结对比高亮框:逐点收敛(不充分,本例交换失败)vs 一致收敛(充分,保证交换)",
+     "标注箭头:分别指向换元变量 $u=1-x^2$、被放缩的 $n/(n+1)$、上确界估计 $\\int f_n\\le\\sup f_n$ 等关键位置",
+     "旁注注释文本:「上下限对调,负号抵消」「相邻比极限 $q<1$ 即几何衰减,故趋零」「区间长度为 $1$ 是 $\\int_0^1f_n\\le\\sup f_n$ 的关键」"
+    ],
+    "steps": [
+     "第一步:证明逐点收敛于 $0$,分端点与内部讨论。①端点:$x=0$ 时 $f_n(0)=n^2\\cdot0\\cdot(1-0)^n=0$;$x=1$ 时 $f_n(1)=n^2\\cdot1\\cdot(1-1)^n=0$,端点直接为零。②内部 $0<x<1$:令 $q=1-x^2$,则 $0<q<1$,且 $f_n(x)=n^2x\\cdot q^n$。③算相邻比:$\\frac{(n+1)^2q^{n+1}}{n^2q^n}=(\\frac{n+1}{n})^2\\cdot q\\to q<1$。④关键点:相邻比极限 $q<1$,故 $n^2q^n\\to0$,从而 $f_n(x)\\to0$。⑤结论:对每个 $x\\in[0,1]$ 均有 $f_n(x)\\to0$,即 $f_n$ 在 $[0,1]$ 上逐点收敛于 $0$。",
+     "第二步:换元积分,逐步演算 $\\int_0^1f_n(x)\\,dx$。①写积分:$\\int_0^1f_n(x)\\,dx=\\int_0^1n^2x(1-x^2)^n\\,dx=n^2\\int_0^1x(1-x^2)^n\\,dx$。②换元:令 $u=1-x^2$,微分得 $du=-2x\\,dx$,即 $x\\,dx=-du/2$。③换积分限并抵消:$x=0$ 对应 $u=1-0=1$,$x=1$ 对应 $u=1-1=0$;上下限对调、负号抵消:$\\int_0^1x(1-x^2)^n\\,dx=\\int_1^0u^n(-\\frac{du}{2})=\\frac12\\int_0^1u^n\\,du$。④算幂积分:$\\int_0^1u^n\\,du=[\\frac{u^{n+1}}{n+1}]_0^1=\\frac{1}{n+1}$。⑤得结果:$\\int_0^1f_n(x)\\,dx=n^2\\cdot\\frac12\\cdot\\frac{1}{n+1}=\\frac{n^2}{2(n+1)}$。",
+     "第三步:放缩并判断积分发散。①关键点(放缩依据):$n\\ge1$ 时 $n/(n+1)\\ge1/2$(等价于 $2n\\ge n+1$)。②拆分放缩:$\\frac{n^2}{2(n+1)}=\\frac n2\\cdot\\frac n{n+1}\\ge\\frac n2\\cdot\\frac12=\\frac n4$。③关键点:$\\frac n4\\to+\\infty$,故 $\\int_0^1f_n(x)\\,dx\\ge n/4\\to+\\infty$,积分不趋于 $0$。",
+     "第四步:上确界估计,推出不一致收敛与交换失败。①关键点(估计依据):$f_n\\ge0$ 且区间 $[0,1]$ 长度为 $1$,故 $\\int_0^1f_n\\,dx\\le\\sup_{[0,1]}f_n\\cdot1$,即 $\\sup f_n\\ge\\int_0^1f_n\\,dx\\ge n/4\\to+\\infty$。②关键点(重点对比·高亮):逐点极限为 $0$,但 $\\sup f_n\\to+\\infty$ 不趋于 $0$;一致收敛于 $0$ 必须要求 $\\sup f_n\\to0$,矛盾,故 $f_n$ 不一致收敛。③交换失败:$\\lim_{n\\to\\infty}\\int_0^1f_n=+\\infty$,而 $\\int_0^1\\lim_{n\\to\\infty}f_n=\\int_0^10\\,dx=0$,两者不等,极限与积分不能交换。",
+     "第五步:指出一致收敛为何是充分条件。①关键点:若 $f_n$ 在 $[0,1]$ 上一致收敛于 $f$,则 $|\\int_0^1f_n-\\int_0^1f|\\le\\int_0^1|f_n-f|\\le\\sup_{[0,1]}|f_n-f|\\cdot1\\to0$,故 $\\int_0^1f_n\\to\\int_0^1f$,极限与积分可交换。②总结对比:本例仅有逐点收敛,$\\sup f_n\\ge n/4\\to+\\infty$ 使交换失效,正是『逐点收敛不足以保证极限与积分交换』的反例;一致收敛才是充分条件。"
+    ]
+   }
+  },
+  {
+   "idx": 129,
+   "id": "draft-c14-01",
+   "concept_id": "C14",
+   "category": "数学分析",
+   "sub_category": "傅立叶级数",
+   "problem": "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+   "solution": "$f$为偶函数，故$b_n=0$。$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。",
+   "answer": "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。",
+   "scene_spec": {
+    "objects": [
+     "求$2\\pi$周期函数$f(x)=|\\sin x|$的实Fourier展开，证明展开在实轴上一致绝对收敛并确实等于$f$。",
+     "$|\\sin x|=\\frac2\\pi-\\frac4\\pi\\sum_{k\\ge1}\\frac{\\cos(2kx)}{4k^2-1}$，全实轴一致绝对收敛。"
+    ],
+    "steps": [
+     "第一步:$f$为偶函数，故$b_n=0$。",
+     "第二步:$a_0=(2/\\pi)\\int_0^\\pi\\sin x\\,dx=4/\\pi$。",
+     "第三步:用积化和差积分可得$a_n=0$（$n$奇），$a_{2k}=-4/[\\pi(4k^2-1)]$（$k\\ge1$）；在$n=1$时直接积分也为零，不能在含零分母的通式中代入。",
+     "第四步:故展开为$2/\\pi-(4/\\pi)\\sum_{k\\ge1}\\cos(2kx)/(4k^2-1)$。",
+     "第五步:因$4k^2-1\\ge3k^2$，系数绝对可和，由M判别法一致绝对收敛。",
+     "第六步:$f$连续且分段光滑，Dirichlet定理给每点Fourier和等于$f$；端点及尖点的左右值相同，所以也无跳跃取值问题。"
+    ]
+   }
+  },
+  {
+   "idx": 130,
+   "id": "draft-c14-02",
+   "concept_id": "C14",
+   "category": "数学分析",
+   "sub_category": "傅立叶级数",
+   "problem": "求$f(x)=x(\\pi-x)$在$[0,\\pi]$的半区间正弦展开，并说明周期奇延拓的端点值和收敛方式。",
+   "solution": "$b_n=(2/\\pi)\\int_0^\\pi x(\\pi-x)\\sin(nx)dx$。两次分部积分，端点$f(0)=f(\\pi)=0$且$f^{\\prime\\prime}=-2$，得积分$2[1-(-1)^n]/n^3$，所以$b_n=4[1-(-1)^n]/(\\pi n^3)$。故$f(x)=(8/\\pi)\\sum_{k\\ge0}\\sin((2k+1)x)/(2k+1)^3$。奇延拓在$0,\\pm\\pi$左右极限都为零，连续、分段光滑；Dirichlet定理在每点取实际值。系数绝对可和，故周期展开全实轴一致绝对收敛。",
+   "answer": "$x(\\pi-x)=\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$；端点为零，一致绝对收敛。",
+   "scene_spec": {
+    "objects": [
+     "求$f(x)=x(\\pi-x)$在$[0,\\pi]$的半区间正弦展开，并说明周期奇延拓的端点值和收敛方式。",
+     "$x(\\pi-x)=\\frac8\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{(2k+1)^3}$；端点为零，一致绝对收敛。"
+    ],
+    "steps": [
+     "第一步:$b_n=(2/\\pi)\\int_0^\\pi x(\\pi-x)\\sin(nx)dx$。",
+     "第二步:两次分部积分，端点$f(0)=f(\\pi)=0$且$f^{\\prime\\prime}=-2$，得积分$2[1-(-1)^n]/n^3$，所以$b_n=4[1-(-1)^n]/(\\pi n^3)$。",
+     "第三步:故$f(x)=(8/\\pi)\\sum_{k\\ge0}\\sin((2k+1)x)/(2k+1)^3$。",
+     "第四步:奇延拓在$0,\\pm\\pi$左右极限都为零，连续、分段光滑；Dirichlet定理在每点取实际值。",
+     "第五步:系数绝对可和，故周期展开全实轴一致绝对收敛。"
+    ]
+   }
+  },
+  {
+   "idx": 131,
+   "id": "draft-c14-03",
+   "concept_id": "C14",
+   "category": "数学分析",
+   "sub_category": "傅立叶级数",
+   "problem": "将$2\\pi$周期方波$f(x)=0$（$-\\pi<x<0$）、$f(x)=1$（$0<x<\\pi$）展开为Fourier级数；跳点$x\\in\\pi\\mathbb Z$处定义$f(x)=0$。说明非跳点及跳点的级数取值。",
+   "solution": "$a_0=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\,dx=\\frac1\\pi\\int_0^{\\pi}1\\,dx=1$。$a_n=\\frac1\\pi\\int_0^{\\pi}\\cos nx\\,dx=\\frac{\\sin n\\pi}{n\\pi}=0$($n\\ge1$)。$b_n=\\frac1\\pi\\int_0^{\\pi}\\sin nx\\,dx=\\frac{1-\\cos n\\pi}{n\\pi}=\\frac{1-(-1)^n}{n\\pi}$,即奇数项 $b_{2k-1}=\\frac{2}{(2k-1)\\pi}$,偶数项为 $0$。故在非跳点 $f(x)=\\frac12+\\frac{2}{\\pi}\\sum_{k=1}^{\\infty}\\frac{\\sin(2k-1)x}{2k-1}$。在间断点 $x=0,\\pm\\pi$ 处,由狄利克雷定理,级数和为左右极限的平均值 $\\frac{0+1}{2}=\\frac12$。",
+   "answer": "非跳点上$f(x)=\\frac12+\\frac2\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{2k+1}$；在$x\\in\\pi\\mathbb Z$，级数和为$1/2$，与任意指定单点值无关。",
+   "scene_spec": {
+    "objects": [
+     "将$2\\pi$周期方波$f(x)=0$（$-\\pi<x<0$）、$f(x)=1$（$0<x<\\pi$）展开为Fourier级数；跳点$x\\in\\pi\\mathbb Z$处定义$f(x)=0$。说明非跳点及跳点的级数取值。",
+     "非跳点上$f(x)=\\frac12+\\frac2\\pi\\sum_{k\\ge0}\\frac{\\sin((2k+1)x)}{2k+1}$；在$x\\in\\pi\\mathbb Z$，级数和为$1/2$，与任意指定单点值无关。"
+    ],
+    "steps": [
+     "第一步:$a_0=\\frac1\\pi\\int_{-\\pi}^{\\pi}f(x)\\,dx=\\frac1\\pi\\int_0^{\\pi}1\\,dx=1$。",
+     "第二步:$a_n=\\frac1\\pi\\int_0^{\\pi}\\cos nx\\,dx=\\frac{\\sin n\\pi}{n\\pi}=0$($n\\ge1$)。",
+     "第三步:$b_n=\\frac1\\pi\\int_0^{\\pi}\\sin nx\\,dx=\\frac{1-\\cos n\\pi}{n\\pi}=\\frac{1-(-1)^n}{n\\pi}$,即奇数项 $b_{2k-1}=\\frac{2}{(2k-1)\\pi}$,偶数项为 $0$。",
+     "第四步:故在非跳点 $f(x)=\\frac12+\\frac{2}{\\pi}\\sum_{k=1}^{\\infty}\\frac{\\sin(2k-1)x}{2k-1}$。",
+     "第五步:在间断点 $x=0,\\pm\\pi$ 处,由狄利克雷定理,级数和为左右极限的平均值 $\\frac{0+1}{2}=\\frac12$。"
+    ]
+   }
+  },
+  {
+   "idx": 132,
+   "id": "draft-c14-04",
+   "concept_id": "C14",
+   "category": "数学分析",
+   "sub_category": "傅立叶级数",
+   "problem": "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+   "solution": "若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。",
+   "answer": "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。",
+   "scene_spec": {
+    "objects": [
+     "设$f(x)=3+2\\cos x-\\sin(2x)$，$g(x)=f(x-\\pi/3)$。求$g$的实Fourier系数，推导一般平移的系数变换，并证明每一频率的$a_n^2+b_n^2$不变。",
+     "$g=3+\\cos x+\\sqrt3\\sin x+\\frac{\\sqrt3}{2}\\cos2x+\\frac12\\sin2x$；各频率系数平方和不变。"
+    ],
+    "steps": [
+     "第一步:若平移量为$\\alpha$，展开加法公式得$a_n^{\\prime}=a_n\\cos(n\\alpha)-b_n\\sin(n\\alpha)$、$b_n^{\\prime}=a_n\\sin(n\\alpha)+b_n\\cos(n\\alpha)$，常数项不变。",
+     "第二步:这是二维正交变换，平方相加消去交叉项，得$(a_n^{\\prime})^2+(b_n^{\\prime})^2=a_n^2+b_n^2$。",
+     "第三步:本题$a_0=6,a_1=2,b_2=-1$，其余为零，代入$\\alpha=\\pi/3$得到$g(x)=3+\\cos x+\\sqrt3\\sin x+(\\sqrt3/2)\\cos(2x)+(1/2)\\sin(2x)$，有限展开无需收敛交换。"
+    ]
+   }
+  },
+  {
+   "idx": 133,
+   "id": "draft-c14-05",
+   "concept_id": "C14",
+   "category": "数学分析",
+   "sub_category": "傅立叶级数",
+   "problem": "令$f(x)=\\cos x$，$g(x)=\\cos x$（$x\\notin2\\pi\\mathbb Z$），而$g(x)=5$（$x\\in2\\pi\\mathbb Z$）。比较两者的Fourier系数与在$x=0$处的级数和。为什么系数相同不保证处处相同？",
+   "solution": "在一个周期内，两函数只在有限点不同，这些点对积分无贡献，所以Fourier系数完全相同：$a_1=1$，其他系数为零，两者级数均为$\\cos x$。在$0$处级数和为$1$，等于左右极限平均值，而$g(0)=5$。Fourier积分无法辨识零测集上的取值；在此例两函数几乎处处相等，却不处处相等。没有连续性等附加条件，不能从系数相同推出逐点相同。",
+   "answer": "系数相同，级数均为$\\cos x$；在$0$处和$1\\ne g(0)=5$。",
+   "scene_spec": {
+    "objects": [
+     "令$f(x)=\\cos x$，$g(x)=\\cos x$（$x\\notin2\\pi\\mathbb Z$），而$g(x)=5$（$x\\in2\\pi\\mathbb Z$）。比较两者的Fourier系数与在$x=0$处的级数和。为什么系数相同不保证处处相同？",
+     "系数相同，级数均为$\\cos x$；在$0$处和$1\\ne g(0)=5$。"
+    ],
+    "steps": [
+     "第一步:在一个周期内，两函数只在有限点不同，这些点对积分无贡献，所以Fourier系数完全相同：$a_1=1$，其他系数为零，两者级数均为$\\cos x$。",
+     "第二步:在$0$处级数和为$1$，等于左右极限平均值，而$g(0)=5$。",
+     "第三步:Fourier积分无法辨识零测集上的取值；在此例两函数几乎处处相等，却不处处相等。",
+     "第四步:没有连续性等附加条件，不能从系数相同推出逐点相同。"
+    ]
+   }
+  },
+  {
+   "idx": 134,
+   "id": "draft-c15-01",
+   "concept_id": "C15",
+   "category": "解析几何",
+   "sub_category": "空间直线与平面",
+   "problem": "直线$l:(x,y,z)=(1,-2,0)+t(1,0,1)$，$t\\in\\mathbb R$，平面$\\pi:x+y=1$。求直线与平面的锐夹角。",
+   "solution": "直线方向 $d=(1,0,1)$,平面法向量 $n=(1,1,0)$。夹角公式 $\\sin\\varphi=\\frac{|d\\cdot n|}{|d|\\,|n|}=\\frac{|1\\times1+0\\times1+1\\times0|}{\\sqrt{2}\\times\\sqrt{2}}=\\frac{1}{2}$,故 $\\varphi=\\arcsin\\frac12=\\frac{\\pi}{6}$,即 $30^\\circ$。",
+   "answer": "夹角为 $\\frac{\\pi}{6}$(即 $30^\\circ$)。",
+   "scene_spec": {
+    "objects": [
+     "直线$l:(x,y,z)=(1,-2,0)+t(1,0,1)$，$t\\in\\mathbb R$，平面$\\pi:x+y=1$。求直线与平面的锐夹角。",
+     "夹角为 $\\frac{\\pi}{6}$(即 $30^\\circ$)。"
+    ],
+    "steps": [
+     "第一步:直线方向 $d=(1,0,1)$,平面法向量 $n=(1,1,0)$。",
+     "第二步:夹角公式 $\\sin\\varphi=\\frac{|d\\cdot n|}{|d|\\,|n|}=\\frac{|1\\times1+0\\times1+1\\times0|}{\\sqrt{2}\\times\\sqrt{2}}=\\frac{1}{2}$,故 $\\varphi=\\arcsin\\frac12=\\frac{\\pi}{6}$,即 $30^\\circ$。"
+    ]
+   }
+  },
+  {
+   "idx": 135,
+   "id": "draft-c15-02",
+   "concept_id": "C15",
+   "category": "解析几何",
+   "sub_category": "空间直线与平面",
+   "problem": "判断直线 $l:\\frac{x-1}{1}=\\frac{y-2}{2}=\\frac{z-3}{-1}$ 与平面 $\\pi:x+2y-z=0$ 的位置关系；再判断过点 $(1,1,2)$、方向为 $(1,-1,1)$ 的直线 $l'$ 与平面 $\\pi':x+y=0$ 的位置关系。",
+   "solution": "$l$ 的方向 $d=(1,2,-1)$ 与 $\\pi$ 的法向量 $n=(1,2,-1)$ 平行($d=n$),故 $l\\perp\\pi$(直线垂直于平面)。$l'$ 的方向 $d'=(1,-1,1)$ 与 $\\pi'$ 的法向量 $n'=(1,1,0)$ 的内积为 $1-1+0=0$,故 $d'\\perp n'$,即 $l'\\parallel\\pi'$;又点 $(1,1,2)$ 代入 $x+y=2\\neq0$,不在平面内,故 $l'$ 与 $\\pi'$ 平行且不重合。",
+   "answer": "$l\\perp\\pi$(方向平行于法向);$l'\\parallel\\pi'$ 且不重合($d'\\perp n'$ 且所过点不在平面内)。",
+   "scene_spec": {
+    "objects": [
+     "判断直线 $l:\\frac{x-1}{1}=\\frac{y-2}{2}=\\frac{z-3}{-1}$ 与平面 $\\pi:x+2y-z=0$ 的位置关系；再判断过点 $(1,1,2)$、方向为 $(1,-1,1)$ 的直线 $l'$ 与平面 $\\pi':x+y=0$ 的位置关系。",
+     "$l\\perp\\pi$(方向平行于法向);$l'\\parallel\\pi'$ 且不重合($d'\\perp n'$ 且所过点不在平面内)。"
+    ],
+    "steps": [
+     "第一步:$l$ 的方向 $d=(1,2,-1)$ 与 $\\pi$ 的法向量 $n=(1,2,-1)$ 平行($d=n$),故 $l\\perp\\pi$(直线垂直于平面)。",
+     "第二步:$l'$ 的方向 $d'=(1,-1,1)$ 与 $\\pi'$ 的法向量 $n'=(1,1,0)$ 的内积为 $1-1+0=0$,故 $d'\\perp n'$,即 $l'\\parallel\\pi'$;又点 $(1,1,2)$ 代入 $x+y=2\\neq0$,不在平面内,故 $l'$ 与 $\\pi'$ 平行且不重合。"
+    ]
+   }
+  },
+  {
+   "idx": 136,
+   "id": "draft-c15-03",
+   "concept_id": "C15",
+   "category": "解析几何",
+   "sub_category": "空间直线与平面",
+   "problem": "求过点 $P(1,2,3)$、法向量位于 $xz$ 平面内、且与方向为 $(1,1,0)$ 的直线成 $30^\\circ$ 角的平面方程。",
+   "solution": "法向量为$(a,0,c)\\ne0$，直线方向为$(1,1,0)$。线面角为$\\pi/6$，所以$|a|/[\\sqrt2\\sqrt{a^2+c^2}]=1/2$，平方得$a^2=c^2$；若$a=0$则$c=0$矛盾，故可取$a=1$，$c=\\pm1$。过$P=(1,2,3)$的两个平面分别为$x+z=4$、$x-z=-2$。两者法向量均使角正弦为$1/2$，故线面锐角均为$\\pi/6$。",
+   "answer": "两个平面:$x+z=4$ 与 $x-z=-2$。",
+   "scene_spec": {
+    "objects": [
+     "求过点 $P(1,2,3)$、法向量位于 $xz$ 平面内、且与方向为 $(1,1,0)$ 的直线成 $30^\\circ$ 角的平面方程。",
+     "两个平面:$x+z=4$ 与 $x-z=-2$。"
+    ],
+    "steps": [
+     "第一步:法向量为$(a,0,c)\\ne0$，直线方向为$(1,1,0)$。",
+     "第二步:线面角为$\\pi/6$，所以$|a|/[\\sqrt2\\sqrt{a^2+c^2}]=1/2$，平方得$a^2=c^2$；若$a=0$则$c=0$矛盾，故可取$a=1$，$c=\\pm1$。",
+     "第三步:过$P=(1,2,3)$的两个平面分别为$x+z=4$、$x-z=-2$。",
+     "第四步:两者法向量均使角正弦为$1/2$，故线面锐角均为$\\pi/6$。"
+    ]
+   }
+  },
+  {
+   "idx": 137,
+   "id": "draft-c15-04",
+   "concept_id": "C15",
+   "category": "解析几何",
+   "sub_category": "空间直线与平面",
+   "problem": "求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\\pi:x+y=0$ 的夹角 $\\varphi$；再求 $l$ 在 $\\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\\theta$，说明 $\\theta$ 与 $\\varphi$ 的关系。",
+   "solution": "直线方向$d=(1,1,1)$，平面法向量$n=(1,1,0)$。正交投影方向$d_{\\parallel}=d-(d\\cdot n)/(n\\cdot n)n=(0,0,1)$。线面角$\\phi\\in[0,\\pi/2]$满足$\\sin\\phi=|d\\cdot n|/(\\|d\\|\\|n\\|)=\\sqrt{2/3}$；直线与其非零投影的锐角$\\theta$满足$\\cos\\theta=(d\\cdot d_{\\parallel})/(\\|d\\|\\|d_{\\parallel}\\|)=1/\\sqrt3$。两角范围相同且$\\cos\\phi=1/\\sqrt3$，故$\\phi=\\theta$。",
+   "answer": "$\\phi=\\arcsin\\sqrt{2/3}$，$\\theta=\\arccos(1/\\sqrt3)$；$\\phi=\\theta$，方向投影为$(0,0,1)$。",
+   "scene_spec": {
+    "objects": [
+     "求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\\pi:x+y=0$ 的夹角 $\\varphi$；再求 $l$ 在 $\\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\\theta$，说明 $\\theta$ 与 $\\varphi$ 的关系。",
+     "$\\phi=\\arcsin\\sqrt{2/3}$，$\\theta=\\arccos(1/\\sqrt3)$；$\\phi=\\theta$，方向投影为$(0,0,1)$。"
+    ],
+    "steps": [
+     "第一步:直线方向$d=(1,1,1)$，平面法向量$n=(1,1,0)$。",
+     "第二步:正交投影方向$d_{\\parallel}=d-(d\\cdot n)/(n\\cdot n)n=(0,0,1)$。",
+     "第三步:线面角$\\phi\\in[0,\\pi/2]$满足$\\sin\\phi=|d\\cdot n|/(\\|d\\|\\|n\\|)=\\sqrt{2/3}$；直线与其非零投影的锐角$\\theta$满足$\\cos\\theta=(d\\cdot d_{\\parallel})/(\\|d\\|\\|d_{\\parallel}\\|)=1/\\sqrt3$。",
+     "第四步:两角范围相同且$\\cos\\phi=1/\\sqrt3$，故$\\phi=\\theta$。"
+    ]
+   }
+  },
+  {
+   "idx": 138,
+   "id": "draft-c15-05",
+   "concept_id": "C15",
+   "category": "解析几何",
+   "sub_category": "空间直线与平面",
+   "problem": "证明直线与平面夹角公式 $\\sin\\varphi=\\frac{|d\\cdot n|}{|d|\\,|n|}$，并讨论 $d\\cdot n=0$ 与 $d\\times n=0$ 两个退化分支对应的位置关系及判定方法。",
+   "solution": "设直线为$l=p+td$，平面为$\\Pi=\\{x:n\\cdot x=c\\}$，其中$d,n\\ne0$。将方向向量正交分解为$d=d_{\\parallel}+d_{\\perp}$，其中$d_{\\perp}=\\frac{d\\cdot n}{\\|n\\|^2}n$，$d_{\\parallel}=d-\\frac{d\\cdot n}{\\|n\\|^2}n$，故$n\\cdot d_{\\parallel}=0$、$d_{\\parallel}\\cdot d_{\\perp}=0$。若$d_{\\parallel}\\ne0$，直线与平面的夹角$\\varphi\\in[0,\\pi/2)$为$d$与其平面投影方向的锐角或零角，由直角三角形得$\\sin\\varphi=\\frac{\\|d_{\\perp}\\|}{\\|d\\|}=\\frac{|d\\cdot n|}{\\|d\\|\\,\\|n\\|}$。若$d_{\\parallel}=0$，则$d\\parallel n$，直线垂直于平面，$\\varphi=\\pi/2$，上述公式右端为$1$，仍然成立。若$d\\cdot n=0$，则$\\varphi=0$，且所有$t$都有$n\\cdot(p+td)=n\\cdot p$；因此$n\\cdot p=c$时$l\\subset\\Pi$，$n\\cdot p\\ne c$时$l\\cap\\Pi=\\varnothing$且直线与平面平行。若$d\\times n=0$，由$d,n\\ne0$知$d\\cdot n\\ne0$；直线垂直于平面，并在唯一参数$t=\\frac{c-n\\cdot p}{n\\cdot d}$处与平面相交。",
+   "answer": "$\\sin\\varphi=\\frac{|d\\cdot n|}{\\|d\\|\\,\\|n\\|}$，$\\varphi\\in[0,\\pi/2]$。若$d\\cdot n=0$，则$\\varphi=0$：$n\\cdot p=c$时$l\\subset\\Pi$，否则$l\\cap\\Pi=\\varnothing$且$l\\parallel\\Pi$。若$d\\times n=0$，则$\\varphi=\\pi/2$且$l\\perp\\Pi$，交点为$p+\\frac{c-n\\cdot p}{n\\cdot d}d$。",
+   "scene_spec": {
+    "objects": [
+     "证明直线与平面夹角公式 $\\sin\\varphi=\\frac{|d\\cdot n|}{|d|\\,|n|}$，并讨论 $d\\cdot n=0$ 与 $d\\times n=0$ 两个退化分支对应的位置关系及判定方法。",
+     "$\\sin\\varphi=\\frac{|d\\cdot n|}{\\|d\\|\\,\\|n\\|}$，$\\varphi\\in[0,\\pi/2]$。若$d\\cdot n=0$，则$\\varphi=0$：$n\\cdot p=c$时$l\\subset\\Pi$，否则$l\\cap\\Pi=\\varnothing$且$l\\parallel\\Pi$。若$d\\times n=0$，则$\\varphi=\\pi/2$且$l\\perp\\Pi$，交点为$p+\\frac{c-n\\cdot p}{n\\cdot d}d$。"
+    ],
+    "steps": [
+     "第一步：设$l=p+td$、$\\Pi=\\{x:n\\cdot x=c\\}$，明确$d,n\\ne0$。",
+     "第二步：将$d$分解为正交的$d_{\\parallel}$和$d_{\\perp}=\\frac{d\\cdot n}{\\|n\\|^2}n$。",
+     "第三步：由正交分解得到$\\sin\\varphi=\\frac{\\|d_{\\perp}\\|}{\\|d\\|}=\\frac{|d\\cdot n|}{\\|d\\|\\,\\|n\\|}$；投影为零时取$\\varphi=\\pi/2$。",
+     "第四步：当$d\\cdot n=0$时，利用$n\\cdot p=c$区分直线包含于平面与平行且不相交。",
+     "第五步：当$d\\times n=0$时，证明$n\\cdot d\\ne0$，求唯一交点$p+\\frac{c-n\\cdot p}{n\\cdot d}d$。"
+    ]
+   }
+  },
+  {
+   "idx": 139,
+   "id": "draft-c17-01",
+   "concept_id": "C17",
+   "category": "解析几何",
+   "sub_category": "平面",
+   "problem": "求过点 $P(1,-2,3)$ 且以 $n=(2,1,-2)$ 为法向量的平面方程。",
+   "solution": "点法式:$2(x-1)+1(y+2)-2(z-3)=0$,展开得 $2x+y-2z+6=0$。验证:代入 $P$:$2-2-6+6=0$ ✓。",
+   "answer": "平面方程为 $2x+y-2z+6=0$。",
+   "scene_spec": {
+    "objects": [
+     "求过点 $P(1,-2,3)$ 且以 $n=(2,1,-2)$ 为法向量的平面方程。",
+     "平面方程为 $2x+y-2z+6=0$。"
+    ],
+    "steps": [
+     "第一步:点法式:$2(x-1)+1(y+2)-2(z-3)=0$,展开得 $2x+y-2z+6=0$。",
+     "第二步:验证:代入 $P$:$2-2-6+6=0$ ✓。"
+    ]
+   }
+  }
+ ]
+}

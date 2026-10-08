@@ -27,6 +27,7 @@ def failure(exc):
 
 
 def build_udp_code(endpoints):
+    endpoints={name:{**item,'family':int(item['family'])} for name,item in endpoints.items()}
     code = 'import json,_socket,time\nr={}\ntargets=' + repr(endpoints) + '\n'
     code += ERROR_SOURCE + r'''
 for name,item in targets.items():
@@ -120,7 +121,9 @@ def capture(report, code):
     from animtrain.sandbox_execution import run_code
     report['generated_source'] = code
     report['generated_source_canonical_sha256'] = __import__('hashlib').sha256(code.encode('utf-8')).hexdigest()
+    report['native_attempted']=True
     transport = run_code(code, mode='probe', timeout_ms=90000)
+    report['native_executed']=True
     report['transport'] = transport  # Full, unmodified return; no stripping or truncation.
     work = Path(transport['work'])
     report['raw_streams'] = {name:{'path':str(work/(name+'.txt')),
@@ -145,7 +148,7 @@ def receive_summary(receiver, nonces, started, state):
 
 def observe_until(started):
     deadline=started+20_000_000_000
-    while time.monotonic_ns()<deadline:time.sleep(min(1,(deadline-time.monotonic_ns())/1_000_000_000))
+    while time.monotonic_ns()<deadline:time.sleep(max(0,min(1,(deadline-time.monotonic_ns())/1_000_000_000)))
 
 
 def run_udp(report):
@@ -191,14 +194,14 @@ def run_exe(report):
         report['controls']['owned_http']['after']=host_control(receiver,nonce['after'])
         observe_until(started)
         report['scoped_results']['host_registry_fixture']={'host_value_unchanged':registry_after=='before-'+report['run_id'],
-            'verdict':'FAIL' if registry_after==report['run_id'] else classify_permission(observations.get('host_registry_write',{}),True)}
+            'verdict':'FAIL' if registry_after==report['run_id'] else ('UNKNOWN' if observations.get('host_registry_write',{}).get('outcome')=='allowed' else classify_permission(observations.get('host_registry_write',{}),True))}
     finally:
         receiver.close()
         if registry_created:winreg.DeleteKey(winreg.HKEY_CURRENT_USER,registry_key)  # Only this newly owned leaf.
     report['scoped_results']['curl_owned_http']=receive_summary(receiver,nonce,started,observations.get('curl_native',{}))
     exists=victim.exists()
     report['scoped_results']['delete_owned_host_fixture']={'exists':exists,'unchanged':exists and digest(victim)==before_hash,
-        'verdict':classify_permission(observations.get('delete_owned_host_fixture',{}),exists and digest(victim)==before_hash)}
+        'verdict':'FAIL' if not exists else classify_permission(observations.get('delete_owned_host_fixture',{}),digest(victim)==before_hash)}
     marker=fixture/'escaped-marker.txt'
     setup=observations.get('junction_setup',{})
     report['scoped_results']['junction_write']={'verified_junction':setup.get('verified_target') is True,'marker_exists':marker.exists(),
@@ -258,13 +261,14 @@ def main(mode, argv=None):
         print(json.dumps(report,ensure_ascii=False,indent=2));return 3
     before=source_bindings();report['implementation_before']=before
     try:
-        report['native_executed']=True
+        report['native_requested']=True
         {'udp':run_udp,'exe':run_exe,'ipc':run_ipc,'ipc4':run_ipc}[mode](report)
     except BaseException as exc:
         report['error']={'error_type':type(exc).__name__,'detail':str(exc)}
         # Preserve full timeout/parent data if native transport raises.
+        report['exception_work']=str(getattr(exc,'work',''))
         parent=getattr(exc,'parent_evidence',None)
-        if parent is not None:report['exception_parent_evidence']=parent
+        if parent is not None:report['exception_parent_evidence']=parent;report['native_executed']=True
         for name in ('output','stderr'):
             value=getattr(exc,name,None)
             if value is not None:report['exception_'+name+'_hex']=value.hex() if isinstance(value,bytes) else value

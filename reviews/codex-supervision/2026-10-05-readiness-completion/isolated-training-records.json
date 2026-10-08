@@ -1,0 +1,270 @@
+{
+  "user_decision": "2026-10-05：同核心结构仅换数值作为泄漏，训练/评测隔离",
+  "removed_ids": [
+    "geom-023",
+    "geom-025",
+    "linalg-049",
+    "linalg-052",
+    "linalg-057",
+    "linalg-061",
+    "linalg-068"
+  ],
+  "records": [
+    {
+      "id": "geom-023",
+      "source_path": "v1\\raw\\dataset_geom.jsonl",
+      "source_sha256": "bbd5c6ad09e9c8d9c7bb8fba74ade5616d71d2ec3ddedcd2381244929dc5cf89",
+      "raw_line": "{\"id\": \"geom-023\", \"category\": \"解析几何\", \"sub_category\": \"直线与平面\", \"function_family\": \"点到平面的距离与投影\", \"visual_style\": \"三维空间关系演示\", \"efficiency_tags\": [\"垂线投影\", \"最短距离\"], \"problem\": \"求点 $P(2, 1, 3)$ 到平面 $\\\\pi: 2x - y + 2z + 1 = 0$ 的距离，并求点 $P$ 在平面 $\\\\pi$ 上的投影点。\", \"solution\": \"点到平面的距离公式 $d = \\\\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\\\sqrt{A^2 + B^2 + C^2}} = \\\\frac{|2\\\\times2 + (-1)\\\\times1 + 2\\\\times3 + 1|}{\\\\sqrt{4 + 1 + 4}} = \\\\frac{|4 - 1 + 6 + 1|}{3} = \\\\frac{10}{3}$。设投影点为 $Q(x, y, z)$，则过点 $P$ 且垂直于平面的直线方程为 $\\\\frac{x-2}{2} = \\\\frac{y-1}{-1} = \\\\frac{z-3}{2} = t$，即 $x = 2 + 2t, y = 1 - t, z = 3 + 2t$。代入平面方程得 $2(2+2t) - (1-t) + 2(3+2t) + 1 = 0$，解得 $t = -\\\\frac{10}{9}$。故投影点 $Q = (2 - \\\\frac{20}{9}, 1 + \\\\frac{10}{9}, 3 - \\\\frac{20}{9}) = (-\\\\frac{2}{9}, \\\\frac{19}{9}, \\\\frac{7}{9})$。\", \"answer\": \"距离为 $\\\\frac{10}{3}$，投影点为 $(-\\\\frac{2}{9}, \\\\frac{19}{9}, \\\\frac{7}{9})$\", \"scene_spec\": {\"objects\": [\"三维坐标系\", \"平面 $\\\\pi$\", \"点 P 和投影点 Q\", \"法向量\", \"连接 P 与 Q 的垂线\"], \"steps\": [\"第一步：在三维空间中画出平面 $2x - y + 2z + 1 = 0$ 和点 $P(2, 1, 3)$。\", \"第二步：从点 P 向平面作垂线，垂足即为投影点 Q。\", \"第三步：用黄色高亮显示这条垂线段，其长度即为最短距离。\", \"第四步：动态绘制平面的法向量，展示它与垂线平行。\", \"第五步：展示公式推导和计算过程，高亮距离和投影点的最终结果。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "geom-023",
+        "category": "解析几何",
+        "sub_category": "直线与平面",
+        "function_family": "点到平面的距离与投影",
+        "visual_style": "三维空间关系演示",
+        "efficiency_tags": [
+          "垂线投影",
+          "最短距离"
+        ],
+        "problem": "求点 $P(2, 1, 3)$ 到平面 $\\pi: 2x - y + 2z + 1 = 0$ 的距离，并求点 $P$ 在平面 $\\pi$ 上的投影点。",
+        "solution": "点到平面的距离公式 $d = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^2 + B^2 + C^2}} = \\frac{|2\\times2 + (-1)\\times1 + 2\\times3 + 1|}{\\sqrt{4 + 1 + 4}} = \\frac{|4 - 1 + 6 + 1|}{3} = \\frac{10}{3}$。设投影点为 $Q(x, y, z)$，则过点 $P$ 且垂直于平面的直线方程为 $\\frac{x-2}{2} = \\frac{y-1}{-1} = \\frac{z-3}{2} = t$，即 $x = 2 + 2t, y = 1 - t, z = 3 + 2t$。代入平面方程得 $2(2+2t) - (1-t) + 2(3+2t) + 1 = 0$，解得 $t = -\\frac{10}{9}$。故投影点 $Q = (2 - \\frac{20}{9}, 1 + \\frac{10}{9}, 3 - \\frac{20}{9}) = (-\\frac{2}{9}, \\frac{19}{9}, \\frac{7}{9})$。",
+        "answer": "距离为 $\\frac{10}{3}$，投影点为 $(-\\frac{2}{9}, \\frac{19}{9}, \\frac{7}{9})$",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "平面 $\\pi$",
+            "点 P 和投影点 Q",
+            "法向量",
+            "连接 P 与 Q 的垂线"
+          ],
+          "steps": [
+            "第一步：在三维空间中画出平面 $2x - y + 2z + 1 = 0$ 和点 $P(2, 1, 3)$。",
+            "第二步：从点 P 向平面作垂线，垂足即为投影点 Q。",
+            "第三步：用黄色高亮显示这条垂线段，其长度即为最短距离。",
+            "第四步：动态绘制平面的法向量，展示它与垂线平行。",
+            "第五步：展示公式推导和计算过程，高亮距离和投影点的最终结果。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "geom-025",
+      "source_path": "v1\\raw\\dataset_geom.jsonl",
+      "source_sha256": "bbd5c6ad09e9c8d9c7bb8fba74ade5616d71d2ec3ddedcd2381244929dc5cf89",
+      "raw_line": "{\"id\": \"geom-025\", \"category\": \"解析几何\", \"sub_category\": \"二次曲面分类\", \"function_family\": \"二次曲面标准形式\", \"visual_style\": \"截面法与三维立体\", \"efficiency_tags\": [\"截面扫描\", \"直纹性验证\"], \"problem\": \"指出方程 $x^2 + y^2 - z^2 = 1$ 表示的二次曲面类型，并说明其与平面 $z = k$ 的交线形状。\", \"solution\": \"该方程为单叶双曲面。用平面 $z = k$ 去截，得到 $x^2 + y^2 = 1 + k^2$，这是半径为 $\\\\sqrt{1+k^2}$ 的圆。随着 $|k|$ 增大，截面圆的半径逐渐增大，呈现出两头大、中间细的“沙漏”形状。单叶双曲面也是一种直纹面，存在两组直线族。\", \"answer\": \"单叶双曲面，平行于 xOy 平面的截面为圆\", \"scene_spec\": {\"objects\": [\"三维坐标系\", \"单叶双曲面\", \"移动的截平面\", \"截面圆\", \"直母线\"], \"steps\": [\"第一步：在三维坐标系中生成单叶双曲面，用蓝色半透明渲染。\", \"第二步：用一个水平截平面 $z = k$ 由下至上扫描曲面。\", \"第三步：高亮显示截平面与曲面的交线，它是一个圆，并让观众看到圆的大小随高度变化。\", \"第四步：绘制曲面上的一组直线族，展示单叶双曲面的直纹性。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "geom-025",
+        "category": "解析几何",
+        "sub_category": "二次曲面分类",
+        "function_family": "二次曲面标准形式",
+        "visual_style": "截面法与三维立体",
+        "efficiency_tags": [
+          "截面扫描",
+          "直纹性验证"
+        ],
+        "problem": "指出方程 $x^2 + y^2 - z^2 = 1$ 表示的二次曲面类型，并说明其与平面 $z = k$ 的交线形状。",
+        "solution": "该方程为单叶双曲面。用平面 $z = k$ 去截，得到 $x^2 + y^2 = 1 + k^2$，这是半径为 $\\sqrt{1+k^2}$ 的圆。随着 $|k|$ 增大，截面圆的半径逐渐增大，呈现出两头大、中间细的“沙漏”形状。单叶双曲面也是一种直纹面，存在两组直线族。",
+        "answer": "单叶双曲面，平行于 xOy 平面的截面为圆",
+        "scene_spec": {
+          "objects": [
+            "三维坐标系",
+            "单叶双曲面",
+            "移动的截平面",
+            "截面圆",
+            "直母线"
+          ],
+          "steps": [
+            "第一步：在三维坐标系中生成单叶双曲面，用蓝色半透明渲染。",
+            "第二步：用一个水平截平面 $z = k$ 由下至上扫描曲面。",
+            "第三步：高亮显示截平面与曲面的交线，它是一个圆，并让观众看到圆的大小随高度变化。",
+            "第四步：绘制曲面上的一组直线族，展示单叶双曲面的直纹性。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-049",
+      "source_path": "v1\\raw\\dataset_linalg.jsonl",
+      "source_sha256": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+      "raw_line": "{\"id\": \"linalg-049\", \"category\": \"高等代数\", \"sub_category\": \"特征值与特征向量\", \"function_family\": \"矩阵的特征分解\", \"visual_style\": \"方向不变与长度缩放\", \"efficiency_tags\": [\"特定方向高亮\", \"缩放因子视觉化\"], \"problem\": \"求矩阵 $A = \\\\begin{pmatrix} 2 & 1 \\\\\\\\ 1 & 2 \\\\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。\", \"solution\": \"特征方程为 $|\\\\lambda I - A| = (\\\\lambda - 2)^2 - 1 = 0$，解得特征值 $\\\\lambda_1 = 3, \\\\lambda_2 = 1$。对于 $\\\\lambda_1 = 3$，解方程 $(3I - A)x = 0$ 得特征向量 $(1, 1)^T$。对于 $\\\\lambda_2 = 1$，解得特征向量 $(1, -1)^T$。几何上，整个空间在变换时，特征向量 $(1,1)$ 的方向保持不变，长度拉伸为原来的3倍；特征向量 $(1,-1)$ 的方向也保持不变，长度保持为原来的1倍。\", \"answer\": \"特征值 3 和 1，对应特征向量 (1,1) 和 (1,-1)；几何意义：变换保持这两个特征方向不变，$(1,1)$ 方向拉伸为原来的 3 倍，$(1,-1)$ 方向保持不变\", \"scene_spec\": {\"objects\": [\"二维坐标系\", \"标准网格\", \"多个方向不同的向量箭头\", \"特征向量高亮\"], \"steps\": [\"第一步：建立二维坐标系，画出一个网格。\", \"第二步：随机画出几个不同方向的向量，并在矩阵变换前用灰色表示。\", \"第三步：应用矩阵变换，观察大部分向量都改变了方向。\", \"第四步：高亮特定方向的特征向量 (1,1)，展示它方向不变，长度变为原来的 3 倍。\", \"第五步：高亮另一个特征向量 (1,-1)，展示它方向不变，长度保持不变。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "linalg-049",
+        "category": "高等代数",
+        "sub_category": "特征值与特征向量",
+        "function_family": "矩阵的特征分解",
+        "visual_style": "方向不变与长度缩放",
+        "efficiency_tags": [
+          "特定方向高亮",
+          "缩放因子视觉化"
+        ],
+        "problem": "求矩阵 $A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 的特征值和特征向量，并说明其几何意义。",
+        "solution": "特征方程为 $|\\lambda I - A| = (\\lambda - 2)^2 - 1 = 0$，解得特征值 $\\lambda_1 = 3, \\lambda_2 = 1$。对于 $\\lambda_1 = 3$，解方程 $(3I - A)x = 0$ 得特征向量 $(1, 1)^T$。对于 $\\lambda_2 = 1$，解得特征向量 $(1, -1)^T$。几何上，整个空间在变换时，特征向量 $(1,1)$ 的方向保持不变，长度拉伸为原来的3倍；特征向量 $(1,-1)$ 的方向也保持不变，长度保持为原来的1倍。",
+        "answer": "特征值 3 和 1，对应特征向量 (1,1) 和 (1,-1)；几何意义：变换保持这两个特征方向不变，$(1,1)$ 方向拉伸为原来的 3 倍，$(1,-1)$ 方向保持不变",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "标准网格",
+            "多个方向不同的向量箭头",
+            "特征向量高亮"
+          ],
+          "steps": [
+            "第一步：建立二维坐标系，画出一个网格。",
+            "第二步：随机画出几个不同方向的向量，并在矩阵变换前用灰色表示。",
+            "第三步：应用矩阵变换，观察大部分向量都改变了方向。",
+            "第四步：高亮特定方向的特征向量 (1,1)，展示它方向不变，长度变为原来的 3 倍。",
+            "第五步：高亮另一个特征向量 (1,-1)，展示它方向不变，长度保持不变。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-052",
+      "source_path": "v1\\raw\\dataset_linalg.jsonl",
+      "source_sha256": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+      "raw_line": "{\"id\": \"linalg-052\", \"category\": \"高等代数\", \"sub_category\": \"多项式\", \"function_family\": \"多项式函数逼近\", \"visual_style\": \"泰勒展开叠加逼近\", \"efficiency_tags\": [\"阶数递增\", \"逼近误差\"], \"problem\": \"将多项式 $f(x)=x^3$ 在 $x=1$ 处按泰勒公式展开，并说明展开式的意义。\", \"solution\": \"对 $f(x)=x^3$ 求导：$f(1)=1$，$f'(1)=3$，$f''(1)=6$，$f'''(1)=6$。代入泰勒公式得 $f(x)=1+3(x-1)+3(x-1)^2+(x-1)^3$。展开式的每一项系数由各阶导数在 $x=1$ 处的值决定。\", \"answer\": \"$1+3(x-1)+3(x-1)^2+(x-1)^3$；展开式各项系数由各阶导数在 $x=1$ 处的值决定，且三次多项式的三阶泰勒展开与原函数精确相等\", \"scene_spec\": {\"objects\": [\"坐标系\", \"三次曲线 y=x^3\", \"泰勒多项式逐阶叠加曲线\", \"展开点 x=1\"], \"steps\": [\"第一步：绘制三次曲线 y=x^3，用红色圆点标记展开点 (1,1)。\", \"第二步：先画出零阶近似（常数函数 y=1），用虚线表示，观察它与原曲线的偏差。\", \"第三步：逐步叠加一阶、二阶、三阶项，用不同颜色展示逼近多项式曲线与原曲线的重合过程。\", \"第四步：最终三阶泰勒多项式与原曲线完全重合，说明三次多项式在任意点展开后仍然精确。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "linalg-052",
+        "category": "高等代数",
+        "sub_category": "多项式",
+        "function_family": "多项式函数逼近",
+        "visual_style": "泰勒展开叠加逼近",
+        "efficiency_tags": [
+          "阶数递增",
+          "逼近误差"
+        ],
+        "problem": "将多项式 $f(x)=x^3$ 在 $x=1$ 处按泰勒公式展开，并说明展开式的意义。",
+        "solution": "对 $f(x)=x^3$ 求导：$f(1)=1$，$f'(1)=3$，$f''(1)=6$，$f'''(1)=6$。代入泰勒公式得 $f(x)=1+3(x-1)+3(x-1)^2+(x-1)^3$。展开式的每一项系数由各阶导数在 $x=1$ 处的值决定。",
+        "answer": "$1+3(x-1)+3(x-1)^2+(x-1)^3$；展开式各项系数由各阶导数在 $x=1$ 处的值决定，且三次多项式的三阶泰勒展开与原函数精确相等",
+        "scene_spec": {
+          "objects": [
+            "坐标系",
+            "三次曲线 y=x^3",
+            "泰勒多项式逐阶叠加曲线",
+            "展开点 x=1"
+          ],
+          "steps": [
+            "第一步：绘制三次曲线 y=x^3，用红色圆点标记展开点 (1,1)。",
+            "第二步：先画出零阶近似（常数函数 y=1），用虚线表示，观察它与原曲线的偏差。",
+            "第三步：逐步叠加一阶、二阶、三阶项，用不同颜色展示逼近多项式曲线与原曲线的重合过程。",
+            "第四步：最终三阶泰勒多项式与原曲线完全重合，说明三次多项式在任意点展开后仍然精确。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-057",
+      "source_path": "v1\\raw\\dataset_linalg.jsonl",
+      "source_sha256": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+      "raw_line": "{\"id\": \"linalg-057\", \"category\": \"高等代数\", \"sub_category\": \"矩阵\", \"function_family\": \"逆矩阵与可逆变换\", \"visual_style\": \"变换与逆变换\", \"efficiency_tags\": [\"可逆性几何条件\", \"行列式非零\"], \"problem\": \"已知矩阵 $A=\\\\begin{pmatrix} 2 & 1 \\\\\\\\ 1 & 1 \\\\end{pmatrix}$，求其逆矩阵，并说明可逆性的几何意义。\", \"solution\": \"计算 $\\\\det(A)=2\\\\times1-1\\\\times1=1\\\\neq0$，矩阵可逆。$A^{-1}=\\\\frac{1}{1}\\\\begin{pmatrix} 1 & -1 \\\\\\\\ -1 & 2 \\\\end{pmatrix}=\\\\begin{pmatrix} 1 & -1 \\\\\\\\ -1 & 2 \\\\end{pmatrix}$。几何上，可逆意味着该线性变换不将空间压缩到更低维度，存在逆变换将空间恢复。\", \"answer\": \"$A^{-1}=\\\\begin{pmatrix} 1 & -1 \\\\\\\\ -1 & 2 \\\\end{pmatrix}$；几何意义：可逆变换不将空间压缩到更低维度，存在逆变换将空间恢复原状\", \"scene_spec\": {\"objects\": [\"二维坐标系\", \"标准网格\", \"变换后网格\", \"逆变换过程\"], \"steps\": [\"第一步：绘制标准网格，用蓝色箭头标出基向量。\", \"第二步：应用矩阵 A 的变换，展示网格沿特征方向发生拉伸形变（对称正定矩阵为纯拉伸）。\", \"第三步：用动画展示逆矩阵 A⁻¹ 作用于变换后的网格，将其恢复为原始标准网格。\", \"第四步：高亮显示 $\\\\det(A)=1 \\\\ne 0$，说明该变换可逆（行列式非零是可逆的充要条件）。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "linalg-057",
+        "category": "高等代数",
+        "sub_category": "矩阵",
+        "function_family": "逆矩阵与可逆变换",
+        "visual_style": "变换与逆变换",
+        "efficiency_tags": [
+          "可逆性几何条件",
+          "行列式非零"
+        ],
+        "problem": "已知矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix}$，求其逆矩阵，并说明可逆性的几何意义。",
+        "solution": "计算 $\\det(A)=2\\times1-1\\times1=1\\neq0$，矩阵可逆。$A^{-1}=\\frac{1}{1}\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}=\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$。几何上，可逆意味着该线性变换不将空间压缩到更低维度，存在逆变换将空间恢复。",
+        "answer": "$A^{-1}=\\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}$；几何意义：可逆变换不将空间压缩到更低维度，存在逆变换将空间恢复原状",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "标准网格",
+            "变换后网格",
+            "逆变换过程"
+          ],
+          "steps": [
+            "第一步：绘制标准网格，用蓝色箭头标出基向量。",
+            "第二步：应用矩阵 A 的变换，展示网格沿特征方向发生拉伸形变（对称正定矩阵为纯拉伸）。",
+            "第三步：用动画展示逆矩阵 A⁻¹ 作用于变换后的网格，将其恢复为原始标准网格。",
+            "第四步：高亮显示 $\\det(A)=1 \\ne 0$，说明该变换可逆（行列式非零是可逆的充要条件）。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-061",
+      "source_path": "v1\\raw\\dataset_linalg.jsonl",
+      "source_sha256": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+      "raw_line": "{\"id\": \"linalg-061\", \"category\": \"高等代数\", \"sub_category\": \"线性空间\", \"function_family\": \"基变换与过渡矩阵\", \"visual_style\": \"坐标系切换\", \"efficiency_tags\": [\"基向量变化\", \"坐标变换公式\"], \"problem\": \"在 $\\\\mathbb{R}^2$ 中，已知旧基 $\\\\varepsilon_1=(1,0), \\\\varepsilon_2=(0,1)$，新基 $\\\\eta_1=(1,1), \\\\eta_2=(-1,1)$。求从旧基到新基的过渡矩阵，并求向量 $\\\\alpha=(3,1)$ 在新基下的坐标。\", \"solution\": \"过渡矩阵 $P=\\\\begin{pmatrix} 1 & -1 \\\\\\\\ 1 & 1 \\\\end{pmatrix}$。设 $\\\\alpha$ 在新基下的坐标为 $(x_1,x_2)^T$，则 $\\\\begin{pmatrix} 1 & -1 \\\\\\\\ 1 & 1 \\\\end{pmatrix}\\\\begin{pmatrix} x_1 \\\\\\\\ x_2 \\\\end{pmatrix}=\\\\begin{pmatrix} 3 \\\\\\\\ 1 \\\\end{pmatrix}$，展开得方程组 $x_1 - x_2 = 3$，$x_1 + x_2 = 1$，两式相加得 $2x_1 = 4$，故 $x_1 = 2$，回代得 $x_2 = -1$。\", \"answer\": \"过渡矩阵 $P=\\\\begin{pmatrix} 1 & -1 \\\\\\\\ 1 & 1 \\\\end{pmatrix}$，新坐标 $(2,-1)^T$\", \"scene_spec\": {\"objects\": [\"二维坐标系\", \"旧基向量\", \"新基向量\", \"向量 α\"], \"steps\": [\"第一步：在二维坐标系中画出旧基 ε₁ 和 ε₂（标准基），用蓝色箭头表示。\", \"第二步：画出新基 η₁ 和 η₂，用红色箭头表示，展示它们与原基的关系。\", \"第三步：画出向量 α=(3,1)，用绿色箭头表示。\", \"第四步：用动画展示 α 如何由新基向量线性组合得到，高亮组合系数 (2,-1)。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "linalg-061",
+        "category": "高等代数",
+        "sub_category": "线性空间",
+        "function_family": "基变换与过渡矩阵",
+        "visual_style": "坐标系切换",
+        "efficiency_tags": [
+          "基向量变化",
+          "坐标变换公式"
+        ],
+        "problem": "在 $\\mathbb{R}^2$ 中，已知旧基 $\\varepsilon_1=(1,0), \\varepsilon_2=(0,1)$，新基 $\\eta_1=(1,1), \\eta_2=(-1,1)$。求从旧基到新基的过渡矩阵，并求向量 $\\alpha=(3,1)$ 在新基下的坐标。",
+        "solution": "过渡矩阵 $P=\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}$。设 $\\alpha$ 在新基下的坐标为 $(x_1,x_2)^T$，则 $\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix}=\\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$，展开得方程组 $x_1 - x_2 = 3$，$x_1 + x_2 = 1$，两式相加得 $2x_1 = 4$，故 $x_1 = 2$，回代得 $x_2 = -1$。",
+        "answer": "过渡矩阵 $P=\\begin{pmatrix} 1 & -1 \\\\ 1 & 1 \\end{pmatrix}$，新坐标 $(2,-1)^T$",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "旧基向量",
+            "新基向量",
+            "向量 α"
+          ],
+          "steps": [
+            "第一步：在二维坐标系中画出旧基 ε₁ 和 ε₂（标准基），用蓝色箭头表示。",
+            "第二步：画出新基 η₁ 和 η₂，用红色箭头表示，展示它们与原基的关系。",
+            "第三步：画出向量 α=(3,1)，用绿色箭头表示。",
+            "第四步：用动画展示 α 如何由新基向量线性组合得到，高亮组合系数 (2,-1)。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    },
+    {
+      "id": "linalg-068",
+      "source_path": "v1\\raw\\dataset_linalg.jsonl",
+      "source_sha256": "f83723a082b06eea495c691885dfff8e7ff1aebf8f1dfb5fa8828affeccd3535",
+      "raw_line": "{\"id\": \"linalg-068\", \"category\": \"高等代数\", \"sub_category\": \"欧几里得空间\", \"function_family\": \"实对称矩阵\", \"visual_style\": \"主轴旋转与正交对角化\", \"efficiency_tags\": [\"特征向量正交\", \"主轴变换\"], \"problem\": \"将实对称矩阵 $A=\\\\begin{pmatrix} 2 & 1 \\\\\\\\ 1 & 2 \\\\end{pmatrix}$ 正交对角化。\", \"solution\": \"特征值 $\\\\lambda_1=3$ 对应特征向量 $(1,1)^T/\\\\sqrt{2}$，$\\\\lambda_2=1$ 对应 $(1,-1)^T/\\\\sqrt{2}$。两个特征向量正交。正交矩阵 $Q=\\\\frac{1}{\\\\sqrt{2}}\\\\begin{pmatrix} 1 & 1 \\\\\\\\ 1 & -1 \\\\end{pmatrix}$，$Q^TAQ=\\\\operatorname{diag}(3,1)$。\", \"answer\": \"$Q=\\\\frac{1}{\\\\sqrt{2}}\\\\begin{pmatrix} 1 & 1 \\\\\\\\ 1 & -1 \\\\end{pmatrix}$，$Q^TAQ=\\\\operatorname{diag}(3,1)$，即正交对角化把二次型化为对角标准形\", \"scene_spec\": {\"objects\": [\"二维坐标系\", \"二次型椭圆\", \"特征向量方向\", \"主轴旋转\"], \"steps\": [\"第一步：绘制实对称矩阵对应的二次型椭圆。\", \"第二步：画出两个特征向量方向，展示它们相互垂直。\", \"第三步：用动画展示将坐标系旋转到特征向量方向后，椭圆与坐标轴对齐。\", \"第四步：高亮对角化结果 diag(3,1)，说明实对称矩阵可以通过正交变换对角化。\"]}, \"source\": \"self-authored\", \"license\": \"Internal-Research-Use-Only\"}",
+      "record": {
+        "id": "linalg-068",
+        "category": "高等代数",
+        "sub_category": "欧几里得空间",
+        "function_family": "实对称矩阵",
+        "visual_style": "主轴旋转与正交对角化",
+        "efficiency_tags": [
+          "特征向量正交",
+          "主轴变换"
+        ],
+        "problem": "将实对称矩阵 $A=\\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ 正交对角化。",
+        "solution": "特征值 $\\lambda_1=3$ 对应特征向量 $(1,1)^T/\\sqrt{2}$，$\\lambda_2=1$ 对应 $(1,-1)^T/\\sqrt{2}$。两个特征向量正交。正交矩阵 $Q=\\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$，$Q^TAQ=\\operatorname{diag}(3,1)$。",
+        "answer": "$Q=\\frac{1}{\\sqrt{2}}\\begin{pmatrix} 1 & 1 \\\\ 1 & -1 \\end{pmatrix}$，$Q^TAQ=\\operatorname{diag}(3,1)$，即正交对角化把二次型化为对角标准形",
+        "scene_spec": {
+          "objects": [
+            "二维坐标系",
+            "二次型椭圆",
+            "特征向量方向",
+            "主轴旋转"
+          ],
+          "steps": [
+            "第一步：绘制实对称矩阵对应的二次型椭圆。",
+            "第二步：画出两个特征向量方向，展示它们相互垂直。",
+            "第三步：用动画展示将坐标系旋转到特征向量方向后，椭圆与坐标轴对齐。",
+            "第四步：高亮对角化结果 diag(3,1)，说明实对称矩阵可以通过正交变换对角化。"
+          ]
+        },
+        "source": "self-authored",
+        "license": "Internal-Research-Use-Only"
+      }
+    }
+  ]
+}

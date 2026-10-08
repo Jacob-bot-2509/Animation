@@ -1,0 +1,72 @@
+# -*- coding: utf-8 -*-
+"""二分:完整场景 + 无unicode数学符号的字幕,验证修复方向。"""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+import sys
+sys.path.insert(0, str(ROOT / "src"))
+
+from animtrain.render_gate import render_check
+
+CODE = r'''
+from manim import *
+
+class ConceptScene(Scene):
+    def construct(self):
+        title = MathTex('y=x^2', r'\quad', 'y=x+2').to_edge(UP)
+        self.play(Write(title))
+        ax = Axes(x_range=[-2, 4, 1], y_range=[-2, 6, 1],
+                  x_length=6.6, y_length=3.8).shift(DOWN * 0.45)
+        curve = ax.plot(lambda x: x ** 2, x_range=[-1.5, 2.7, 0.01], color=BLUE)
+        line = ax.plot(lambda x: x + 2, x_range=[-1.5, 2.7, 0.01], color=RED)
+        caps = [
+            Text("第一步：坐标系、抛物线、直线", font='Microsoft YaHei', font_size=24).scale(0.55),
+            Text("第二步：标交点(-1,1)与(2,4)", font='Microsoft YaHei', font_size=24).scale(0.55),
+            Text("第三步：黄色填充封闭区域", font='Microsoft YaHei', font_size=24).scale(0.55),
+            Text("第四步：矩形微元扫过区域", font='Microsoft YaHei', font_size=24).scale(0.55),
+            Text("第五步：代入上下限得 S=9/2", font='Microsoft YaHei', font_size=24).scale(0.55),
+        ]
+        for i, c in enumerate(caps):
+            c.move_to([-3.1, 2.4 - 0.62 * i, 0])
+            c.align_to([-5.9, 0, 0], LEFT)
+        self.play(Create(ax))
+        self.play(Create(curve), Create(line), FadeIn(caps[0]))
+        d1 = Dot(ax.c2p(-1, 1), color=YELLOW)
+        d2 = Dot(ax.c2p(2, 4), color=YELLOW)
+        l1 = MathTex('(-1,1)').scale(0.55).next_to(d1, DL, buff=0.12)
+        l2 = MathTex('(2,4)').scale(0.55).next_to(d2, UR, buff=0.12)
+        self.play(FadeIn(d1, d2), Write(l1), Write(l2), FadeIn(caps[1]))
+        area = ax.get_area(curve, x_range=[-1, 2], bounded_graph=line,
+                           color=YELLOW, opacity=0.45)
+        self.play(FadeIn(area), FadeIn(caps[2]))
+        vt = ValueTracker(-1)
+        rect = Rectangle(width=0.18, height=0.1, color=ORANGE,
+                         fill_color=ORANGE, fill_opacity=0.55, stroke_width=0)
+        def update_rect(m):
+            x = vt.get_value()
+            y1, y2 = x ** 2, x + 2
+            center = ax.c2p(x, (y1 + y2) / 2)
+            height = abs(ax.c2p(0, y2)[1] - ax.c2p(0, y1)[1])
+            m.move_to(center)
+            m.set_height(height)
+        rect.add_updater(update_rect)
+        self.add(rect)
+        self.play(FadeIn(caps[3]))
+        self.play(vt.animate.set_value(2), run_time=4.5)
+        rect.clear_updaters()
+        self.play(FadeOut(rect))
+        formula = MathTex(
+            r'S=\int_{-1}^{2}\big((x+2)-x^2\big)\,dx',
+            r'=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^{2}',
+            r'=\frac{9}{2}',
+        ).to_edge(DOWN).scale_to_fit_width(config.frame_width - 1.2)
+        self.play(Write(formula), FadeIn(caps[4]))
+        self.wait(0.8)
+'''
+
+result = render_check(CODE, trusted=True)
+Path(__file__).with_name("bisect-unicode-free.json").write_text(
+    json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+print("ok:", result.get("ok"), "| status:", result.get("status"))
+print("output:", result.get("output"))

@@ -1,0 +1,16 @@
+{"id": "linalg-048", "verdict": "MATH_PASS", "findings": "剪切变换(改写后版本):水平线作点集不变、带标记点位移(3y,0)、竖直线像X-3Y=c斜率1/3、det=1、长度不保持√10,全部正确", "sympy": "sympy det=1 吻合"}
+{"id": "linalg-051", "verdict": "MATH_PASS", "findings": "有理根定理找根1,分解(x-1)(x-2)(x-3)正确,三实根在实轴", "sympy": "sympy factor 吻合"}
+{"id": "prob-040", "verdict": "MATH_PASS", "findings": "泊松逼近定理条件(n→∞,p→0,np→λ)与极限式(1-λ/n)^n→e^{-λ}正确", "sympy": null}
+{"id": "linalg-053", "verdict": "MATH_PASS", "findings": "按第一行展开1·(-2)-2·(-6)=10正确;|det|=平行六面体体积", "sympy": "sympy det=10 吻合"}
+{"id": "prob-041", "verdict": "MATH_PASS", "findings": "μ位置参数、σ尺度参数(越大越矮胖)描述正确", "sympy": null}
+{"id": "linalg-054", "verdict": "MATH_PASS", "findings": "D=-3,Dx=-6,Dy=-3,x=2,y=1正确;D=0平行或重合对应无解/无穷多解正确", "sympy": "sympy x,y=2,1 吻合"}
+{"id": "linalg-055", "verdict": "MATH_PASS", "findings": "系数矩阵det=2≠0秩3唯一解;消元得y=0,x=1,z=0,三式回代全成立", "sympy": null}
+{"id": "linalg-056", "verdict": "MATH_PASS", "findings": "秩1、3未知数→2个基础解向量;ξ1=(-2,1,0),ξ2=(-1,0,1)线性无关且满足方程", "sympy": null}
+{"id": "linalg-058", "verdict": "MATH_PASS", "findings": "初等矩阵[[1,0],[3,1]]对应第二行加3倍第一行,变换(x,y)→(x,y+3x),det=1面积不变", "sympy": null}
+{"id": "linalg-062", "verdict": "MATH_PASS", "findings": "W1∩W2=y轴维1,维数公式2+2-1=3正确", "sympy": null}
+{"id": "linalg-063", "verdict": "MATH_PASS", "findings": "ker={(-y,y,-y)}维1,秩-零化度3-1=2,值域=R²(任(u,v)取y=0,x=u,z=v)", "sympy": null}
+{"id": "linalg-064", "verdict": "MATH_PASS", "findings": "特征值3,2;特征向量(1,0)与(1,-1)正确,拉伸3倍/2倍", "sympy": "sympy eigvals/eigvecs 吻合"}
+{"id": "linalg-065", "verdict": "MATH_PASS", "findings": "D1=gcd(λ,λ²-1)=1,D2=λ(λ²-1);不变因子1,λ(λ²-1);初等因子λ,λ-1,λ+1全部正确", "sympy": null}
+{"id": "linalg-066", "verdict": "MATH_PASS", "findings": "λ=2几何重数1(rank(A-2I)=2)→单个2×2若尔当块;J=diag(J1(2),(3))与答案矩阵一致", "sympy": "sympy jordan_form J 吻合"}
+{"id": "linalg-067", "verdict": "MATH_PASS", "findings": "A^TA=I正交;对应旋转θ角", "sympy": "sympy R^T R=I 吻合"}
+{"id": "linalg-069", "verdict": "MATH_PASS", "findings": "对偶基f1(x,y)=x,f2(x,y)=y满足f_i(ε_j)=δ_ij", "sympy": null}

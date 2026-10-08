@@ -13,9 +13,9 @@ sitecustomize 的子 Python 均可绕过(msg_259 已实测)——network_isolati
 
 如实边界(不假绿):
   - 只约束本进程族内的 Python 层网络出口;
-  - 固定工具链子进程(latex/dvisvgm/ffmpeg,项目可信组件)不经 shim,
-    其自身无网络行为;
-  - OS 级沙箱(AppContainer/防火墙)需管理员权限,不在本机制范围。
+  - latex/dvisvgm/ffmpeg 等非 Python 子进程不经 shim，不能据此声称无网络行为;
+  - 生产渲染 bootstrap 显式装入本 shim；-I 的固定原生探针不装入，单独测 OS 边界;
+  - AppContainer 是独立 OS 边界，是否通过取决于原生证据，不能从 shim 或代理推导。
 """
 from __future__ import annotations
 

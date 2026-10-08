@@ -1,0 +1,39 @@
+{
+  "simulation_only": true,
+  "sentinel_expected_sha256": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358",
+  "observed_sandbox_record": {
+    "spawned": true,
+    "rc": 0,
+    "timed_out": false,
+    "data": {
+      "token": [
+        "malformed"
+      ],
+      "client_sha256": "client",
+      "exe_sha256": "exe",
+      "site_absent": true,
+      "executable": "/runtime/python.exe",
+      "winerror": 5,
+      "outcome": "read",
+      "content_hash": "2dc3b97b1e90788f360b3e5ad8dda3b159ff696d7f313bcd8eb019f597793358"
+    },
+    "command": [
+      "/runtime/python.exe",
+      "-X",
+      "utf8",
+      "/work/client.py",
+      "read",
+      "/denied/sentinel.bin",
+      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ],
+    "raw_out": "mock"
+  },
+  "actual_verdict": {
+    "verdict": "UNVERIFIED",
+    "reasons": [
+      "执行异常: AttributeError(\"'list' object has no attribute 'get'\")"
+    ],
+    "contract": "local-file-acl-v1"
+  },
+  "expected_verdict": "FAIL"
+}

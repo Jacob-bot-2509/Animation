@@ -1,0 +1,54 @@
+{
+  "manifest_sha256": "c1f18378ca2b28df5629c908070cc68498dea00977c62c196d6946734954f500",
+  "active_counts": {
+    "train": 48,
+    "eval": 300,
+    "test": 150,
+    "total": 498
+  },
+  "removed_train_ids_absent": true,
+  "data_check": {
+    "ok": true,
+    "problems": [],
+    "quarantines": []
+  },
+  "freeze_locks": {
+    "eval-v2": {
+      "issues": [],
+      "manifest_bound": true
+    },
+    "test-v2": {
+      "issues": [],
+      "manifest_bound": true
+    }
+  },
+  "preserved": {
+    "data/v2/eval/dataset_eval.jsonl": true,
+    "data/v2/raw/dataset_eval.json": true,
+    "data/v2/test/dataset_test.jsonl": true,
+    "data/v2/raw/dataset_test.json": true,
+    "data/b5-annotation-set/b5-annotation-set.json": true
+  },
+  "core_drift": [],
+  "external_tcp_cases_verified": 4,
+  "pilot_reuse_current_row_hashes_verified": [
+    "eval-calc-001-s1",
+    "eval-geom-006-s1",
+    "eval-calc-003-s1",
+    "eval-calc-005-s1",
+    "eval-calc-019-s3",
+    "eval-geom-001-s1",
+    "eval-calc-001-s2",
+    "eval-linalg-013-s1"
+  ],
+  "pilot_raw_report": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-readiness-completion\\pilot-83c6d358b0ea\\pilot-report.json",
+  "near_dup_calibrated": false,
+  "asset_evidence": [
+    false,
+    "资产验收证据缺失(asset_evidence.json 不存在)——当前资产未经真实渲染/数学验收,UNVERIFIED 阻断 ready"
+  ],
+  "production_exec_gate": [
+    false,
+    "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+  ]
+}

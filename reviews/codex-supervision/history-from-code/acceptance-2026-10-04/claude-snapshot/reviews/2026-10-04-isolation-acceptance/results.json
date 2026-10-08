@@ -1,0 +1,49 @@
+{
+  "profile": {
+    "hresult": 0,
+    "profile": "skipped",
+    "already_exists": true
+  },
+  "P1_tcp_loopback": {
+    "desc": "本机 TCP 回环(回归)",
+    "control_out": "TOKEN_APPCONTAINER=False\r\nCONNECTED\r\n",
+    "sandbox_out": "TOKEN_APPCONTAINER=False\r\nBLOCKED:[WinError 10061] 由于目标计算机积极拒绝，无法连接。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P2_tcp_external": {
+    "desc": "外网 TCP(8.8.8.8:53)",
+    "control_out": "CONNECTED\r\n",
+    "sandbox_out": "BLOCKED:[WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P3_udp_sendto": {
+    "desc": "UDP sendto(本机监听)",
+    "control_out": "SENT\r\n",
+    "sandbox_out": "SENT\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P4_ipv6": {
+    "desc": "IPv6 ::1 连接",
+    "control_out": "CONNECTED\r\n",
+    "sandbox_out": "BLOCKED:[WinError 10061] 由于目标计算机积极拒绝，无法连接。\r\n",
+    "sandbox_err": "",
+    "sandbox_rc": 0
+  },
+  "P5_subprocess_inherit": {
+    "desc": "子进程树令牌继承",
+    "control_out": "",
+    "sandbox_out": "",
+    "sandbox_err": "  File \"<string>\", line 2\r\n    child=('import _socket\\\\n'\r\n          ^\r\nSyntaxError: '(' was never closed\r\n",
+    "sandbox_rc": 1
+  },
+  "P7_timeout_terminate": {
+    "desc": "超时终止(5s vs sleep 60)",
+    "control_out": "",
+    "sandbox_out": "",
+    "sandbox_err": "TIMEOUT_EXPIRED",
+    "sandbox_rc": -9
+  }
+}

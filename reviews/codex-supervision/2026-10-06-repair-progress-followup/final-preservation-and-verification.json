@@ -1,0 +1,105 @@
+{
+  "time": "2026-10-06T02:27:16.989911+08:00",
+  "head": "c8a8441d08af17264aedaa6e254263a3871f2562",
+  "changed_source_hashes": {
+    "tools/admit_linalg048_v3.py": "843f421c47e6414c4bbbaf7dff5de3b467c5970f181e0bee44b3758bbbfbaca8",
+    "tools/apply_linalg048_admission.py": "5e66b8a421e7519c644a781cc4d48378c388b7dbac64eba0b9dd5e0454a61765",
+    "tests/test_linalg048_admission_guards.py": "88efc42b1aec05ca5eeff54f4291a200e1d399c09f9214a5f1659e0bc421781e"
+  },
+  "scene_raw_sha256": "e21c9ff372911a46a8538025f6e1f4f4f4cb36371fbef7740fe47fd71c65149e",
+  "codex_modified_active_data_files": [],
+  "protected_files_checked": 12219,
+  "protected_paths_changed_by_claude": {
+    "data/manifest.json": {
+      "old_sha256": "801f7036cf14b9d44e3a84874878ad176b19124fbfe74154cd5e95c8cbcfc448",
+      "current_sha256": "11b6ff941798bcdea53de08c22328b45bad1512a6773d274829f2ad7456874a7",
+      "archive_path": "reviews/2026-10-06-linalg048-admission/before/manifest.json",
+      "archive_matches_old": true
+    },
+    "data/eval-v2.lock.json": {
+      "old_sha256": "335d8b3f7338f53276ce8f76903fa7da0d03ed906ab07d5bf37f9a062e87c728",
+      "current_sha256": "28414fba61ac9bff5953e60ae8f699c58d05fc39734678127268934f7228d0f0",
+      "archive_path": "reviews/2026-10-06-linalg048-admission/before/eval-v2.lock.json",
+      "archive_matches_old": true
+    },
+    "data/test-v2.lock.json": {
+      "old_sha256": "f84704df7fd5f8d8ebd258c76c519d5678a6c74ed5c0e0292586a38b6609c091",
+      "current_sha256": "4f95184c920c6e3a58efbf968a94080387d2352862a9f42ba0f8e6b8298c5dbc",
+      "archive_path": "reviews/2026-10-06-linalg048-admission/before/test-v2.lock.json",
+      "archive_matches_old": true
+    },
+    "data/asset_evidence.json": {
+      "old_sha256": "dba614f78e18aeb5f19223f217abf4d044911d7ce78b5d19a5c08c31b3fd608d",
+      "current_sha256": "d5163af3900c37091f65eefaa40a9c27c8152abbb2cf9b319a3a7d917bba7bb1",
+      "archive_path": "reviews/2026-10-06-linalg048-admission/before/asset_evidence.json",
+      "archive_matches_old": true
+    },
+    "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl": {
+      "old_sha256": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4",
+      "current_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+      "archive_path": "reviews/2026-10-06-linalg048-admission/before/dataset_linalg.jsonl",
+      "archive_matches_old": true
+    }
+  },
+  "other_protected_drift": [],
+  "protected_unreadable": [],
+  "prior_holdout_artifacts_drift": [],
+  "prior_holdout_source_drift": [],
+  "previous_harness_source_drift": [],
+  "watcher_time": "2026-10-06T02:27:14.140234+08:00",
+  "watcher_pid": 28352,
+  "watcher_child_jobs": [],
+  "scoped_diff_check_returncode": 0,
+  "tests_passed": 133,
+  "test_suites": [
+    {
+      "suite": "test_linalg048_admission_guards.py",
+      "returncode": 0,
+      "tests": 32,
+      "tail": "ong_decoded_metadata_refused (test_linalg048_admission_guards.AdmissionTests.test_wrong_decoded_metadata_refused) ... ok\n\n----------------------------------------------------------------------\nRan 32 tests in 0.496s\n\nOK\n"
+    },
+    {
+      "suite": "test_holdout_contract.py",
+      "returncode": 0,
+      "tests": 37,
+      "tail": "question_payload_rejected (test_holdout_contract.StrictJsonAndRateTests.test_malformed_question_payload_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 37 tests in 0.326s\n\nOK\n"
+    },
+    {
+      "suite": "test_linalg048_rewrite.py",
+      "returncode": 0,
+      "tests": 13,
+      "tail": "_wrong_matrix_or_math_text_rejected (test_linalg048_rewrite.RewriteTests.test_wrong_matrix_or_math_text_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.461s\n\nOK\n"
+    },
+    {
+      "suite": "test_leakage_population.py",
+      "returncode": 0,
+      "tests": 5,
+      "tail": "uto_calibrates (test_leakage_population.PopulationTests.test_signature_only_is_explicit_and_never_auto_calibrates) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n"
+    },
+    {
+      "suite": "test_structural_spectrum_candidates.py",
+      "returncode": 0,
+      "tests": 8,
+      "tail": "ation (test_structural_spectrum_candidates.SpectrumCandidateTests.test_unit_uniform_sum_candidate_across_notation) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "suite": "test_training_readiness_fixes.py",
+      "returncode": 0,
+      "tests": 20,
+      "tail": "r_is_not_launched (test_training_readiness_fixes.TrainingReadinessTests.test_unreviewed_executor_is_not_launched) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.014s\n\nOK\n"
+    },
+    {
+      "suite": "test_draft_hashes.py",
+      "returncode": 0,
+      "tests": 18,
+      "tail": "iter_validates_before_creating_file (test_draft_hashes.DraftHashTests.test_writer_validates_before_creating_file) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 0.040s\n\nOK\n"
+    }
+  ],
+  "new_diagnostic_pairs": 171,
+  "new_diagnostic_raw_sha256": "a0085dee83d6306ab8511c1d1a0819761319d0dba4a96a06ada820726b1274ed",
+  "asset_progress_raw_sha256": "4a7123d85ff8b847b016ebb761972aa2470a6fd1770cfa8c6195ddcfa17920e3",
+  "corrected_asset_source_bindings": 15,
+  "additional_assets_admitted": 0,
+  "actual_corrected_scene_render_verified": false,
+  "actual_model_training_run": false
+}

@@ -1,0 +1,157 @@
+{
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "subjects": [
+    {
+      "split": "train",
+      "id": "linalg-058",
+      "problem_sha256": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+      "source_records": [
+        {
+          "id": "linalg-058",
+          "category": "高等代数",
+          "sub_category": "矩阵",
+          "function_family": "初等变换",
+          "visual_style": "网格剪切",
+          "efficiency_tags": [
+            "行变换几何效果",
+            "面积保持"
+          ],
+          "problem": "说明初等矩阵 $E=\\begin{pmatrix} 1 & 0 \\\\ 3 & 1 \\end{pmatrix}$ 对应的线性变换的几何意义。",
+          "solution": "该矩阵是将单位矩阵第二行加上第一行的 3 倍得到的初等矩阵。对应的线性变换是沿 $y$ 轴方向的剪切变换：平面上每一点的 $x$ 坐标不变，$y$ 坐标变为 $y+3x$。这是一个保持面积不变（行列式为 1）的剪切变换。",
+          "answer": "$x$ 坐标不变，$y$ 坐标变为 $y+3x$，面积不变",
+          "scene_spec": {
+            "objects": [
+              "二维坐标系",
+              "标准网格",
+              "剪切后网格",
+              "基向量变化"
+            ],
+            "steps": [
+              "第一步：画出标准网格和单位正方形。",
+              "第二步：应用初等矩阵 E 的变换，展示水平网格线发生倾斜（竖直网格线保持竖直），网格被剪切。",
+              "第三步：观察单位正方形变为平行四边形（以仍竖直的边为底，底和高均为 1），面积保持为 1。",
+              "第四步：高亮显示行列式值为 1，说明剪切变换不改变面积。"
+            ]
+          },
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "0006aaf8c255cec0bae511a826ed367cf4a3d8ae95f2533b373301c30c78267d"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-geom-016",
+      "problem_sha256": "5341d6583f22e36e87c32cd820af3c66883dff9bab112ccb6d9edb1f9e8dba8a",
+      "source_records": [
+        {
+          "id": "test-geom-016",
+          "category": "解析几何",
+          "sub_category": "线性变换×二次曲线",
+          "problem": "线性变换 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。",
+          "solution": "$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\\begin{pmatrix}1&-1\\\\-1&2\\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\\det A=1$，故椭圆面积 $=\\pi\\cdot|\\det A|=\\pi$。",
+          "answer": "椭圆 $x^2-2xy+2y^2=1$，面积 $\\pi$",
+          "scene_spec": {
+            "objects": [
+              "单位圆被剪切为椭圆",
+              "面积不变（$\\det A=1$）"
+            ],
+            "steps": [
+              "第一步：建立解析几何·线性变换×二次曲线综合场景，呈现与线性变换、二次曲线、行列式相关的核心图形。",
+              "第二步：单位圆被剪切为椭圆。",
+              "第三步：面积不变（$\\det A=1$）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "线性变换下二次曲线",
+          "visual_style": "圆剪切为椭圆",
+          "efficiency_tags": [
+            "单位圆被剪切为椭圆",
+            "面积不变（$\\det A=1$）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "4596378d62c7e56fd65247371804f83aec2c5fcd1c2f37655ebd979f8f87e6b9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "test",
+      "id": "test-linalg-036",
+      "problem_sha256": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+      "source_records": [
+        {
+          "id": "test-linalg-036",
+          "category": "高等代数",
+          "sub_category": "初等矩阵×行列式",
+          "problem": "求三类初等矩阵的行列式：交换两行、某行乘以 $k$（$k\\ne 0$）、某行加到另一行（三类变换均涉及两不同行）。",
+          "solution": "交换两行的初等矩阵 $P_{ij}$：由单位矩阵交换两行得到，$\\det P_{ij}=-1$（一次对换改变符号）。第 $i$ 行乘 $k$ 的初等矩阵 $D_i(k)$：对角线第 $i$ 元为 $k$，$\\det D_i(k)=k$。第 $i$ 行加到第 $j$ 行的初等矩阵 $E_{ij}$：下（上）三角且对角线全 1，$\\det E_{ij}=1$。相应地对任意方阵 $B$：$\\det(P_{ij}B)=-\\det B$，$\\det(D_i(k)B)=k\\det B$，$\\det(E_{ij}B)=\\det B$。",
+          "answer": "$-1$；$k$；$1$",
+          "scene_spec": {
+            "objects": [
+              "三类行变换对行列式的影响",
+              "单位矩阵的变形"
+            ],
+            "steps": [
+              "第一步：建立高等代数·初等矩阵×行列式综合场景，呈现与初等矩阵、行列式性质相关的核心图形。",
+              "第二步：三类行变换对行列式的影响。",
+              "第三步：单位矩阵的变形。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "初等矩阵行列式",
+          "visual_style": "行变换效果",
+          "efficiency_tags": [
+            "三类行变换对行列式的影响",
+            "单位矩阵的变形"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "cf7e078bb6e9ee65c110c6ff687ea18abad71c232a261f5fee5bb4ca62b0e726"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ],
+  "scope": "three focused comparisons only; not a 296-subject acceptance"
+}

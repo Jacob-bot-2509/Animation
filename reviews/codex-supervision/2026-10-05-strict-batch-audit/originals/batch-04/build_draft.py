@@ -1,0 +1,465 @@
+"""batch-04 生成器:三个空考点各 5 题
+(C13 裂项级数与求和 / C18 点到平面距离与投影 / C30 多项式平移展开)。
+全部数学结论由作者逐题手工验算(见 DRAFT_REPORT.md 核算说明);
+起草过程未读 eval/test 题文或答案作提示;凡有理数一律分数。
+"""
+from __future__ import annotations
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE / "draft.jsonl"
+
+DATA = [
+# ===================== C13 裂项级数与求和 =====================
+{
+ "id": "draft-c13-01", "category": "数学分析", "sub_category": "级数",
+ "concept": "裂项级数与求和", "concept_id": "C13",
+ "parent_training_ids": ["calc-series-019"],
+ "problem": r"求级数 $\sum_{n=1}^{\infty}\frac{1}{(2n-1)(2n+1)}$ 的和。",
+ "solution": r"部分分式：$\frac{1}{(2n-1)(2n+1)}=\frac12\left(\frac{1}{2n-1}-\frac{1}{2n+1}\right)$。前 $N$ 项和 $S_N=\frac12\sum_{n=1}^{N}\left(\frac{1}{2n-1}-\frac{1}{2n+1}\right)=\frac12\left(1-\frac{1}{2N+1}\right)$(中间项两两抵消)。令 $N\to\infty$ 得 $S=\frac12$。",
+ "answer": r"和为 $\frac12$。",
+ "method": "部分分式裂项(奇数项相邻抵消)",
+ "difficulty": "基础",
+ "variant_kind": "形式变化:相邻奇数因子的裂项(分母间距为2的相邻线性因子)",
+ "scene_spec": {
+  "objects": [
+   "板书:级数 $\\sum_{n=1}^{\\infty}\\frac{1}{(2n-1)(2n+1)}$",
+   "板书:部分分式 $\\frac12(\\frac{1}{2n-1}-\\frac{1}{2n+1})$",
+   "动画:前几项展开与相邻项抵消的划线(红色叉号标出抵消对)",
+   "板书:$S_N=\\frac12(1-\\frac{1}{2N+1})$",
+   "高亮框:极限 $S=\\frac12$"
+  ],
+  "steps": [
+   "第一步:写出级数,展示部分分式分解过程。",
+   "第二步:逐项展开前 $N$ 项,用划线动画标出相互抵消的项。",
+   "第三步:整理出部分和 $S_N=\\frac12(1-\\frac{1}{2N+1})$。",
+   "第四步:取极限 $N\\to\\infty$,第二项趋于 $0$。",
+   "第五步:高亮结论 $S=\\frac12$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c13-02", "category": "数学分析", "sub_category": "级数",
+ "concept": "裂项级数与求和", "concept_id": "C13",
+ "parent_training_ids": ["calc-series-019"],
+ "problem": r"求级数 $\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$ 的和。",
+ "solution": r"重组分解：$\frac{1}{n(n+1)(n+2)}=\frac12\left(\frac{1}{n(n+1)}-\frac{1}{(n+1)(n+2)}\right)$(通分核对:分子差为 $(n+2)-n=2$)。前 $N$ 项和 $S_N=\frac12\sum_{n=1}^{N}\left(\frac{1}{n(n+1)}-\frac{1}{(n+1)(n+2)}\right)=\frac12\left(\frac12-\frac{1}{(N+1)(N+2)}\right)$。令 $N\to\infty$ 得 $S=\frac12\cdot\frac12=\frac14$。",
+ "answer": r"和为 $\frac14$。",
+ "method": "重组分解裂项(二阶相邻抵消)",
+ "difficulty": "基础",
+ "variant_kind": "分解结构变化:三重线性因子需先重组为相邻二阶因子的差分",
+ "scene_spec": {
+  "objects": [
+   "板书:级数 $\\sum_{n=1}^{\\infty}\\frac{1}{n(n+1)(n+2)}$",
+   "板书:重组分解 $\\frac12(\\frac{1}{n(n+1)}-\\frac{1}{(n+1)(n+2)})$ 与通分核对",
+   "动画:相邻项抵消划线",
+   "板书:$S_N=\\frac12(\\frac12-\\frac{1}{(N+1)(N+2)})$",
+   "高亮框:$S=\\frac14$"
+  ],
+  "steps": [
+   "第一步:写出级数,构造相邻二阶因子的差分分解。",
+   "第二步:通分核对分解的正确性(分子差为 $2$)。",
+   "第三步:展开前 $N$ 项,动画标出抵消对。",
+   "第四步:整理部分和并取极限。",
+   "第五步:高亮结论 $S=\\frac14$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c13-03", "category": "数学分析", "sub_category": "级数",
+ "concept": "裂项级数与求和", "concept_id": "C13",
+ "parent_training_ids": ["calc-series-019"],
+ "problem": r"求级数 $\sum_{n=1}^{\infty}\frac{n}{(n+1)!}$ 的和。",
+ "solution": r"重组：$\frac{n}{(n+1)!}=\frac{n+1-1}{(n+1)!}=\frac{1}{n!}-\frac{1}{(n+1)!}$。前 $N$ 项和 $S_N=\sum_{n=1}^{N}\left(\frac{1}{n!}-\frac{1}{(n+1)!}\right)=\frac{1}{1!}-\frac{1}{(N+1)!}=1-\frac{1}{(N+1)!}$。令 $N\to\infty$ 得 $S=1$。",
+ "answer": r"和为 $1$。",
+ "method": "阶乘型裂项(分子重组)",
+ "difficulty": "中等",
+ "variant_kind": "分解结构变化:分子重组出相邻阶乘倒数之差(非部分分式路径)",
+ "scene_spec": {
+  "objects": [
+   "板书:级数 $\\sum_{n=1}^{\\infty}\\frac{n}{(n+1)!}$",
+   "板书:分子重组 $\\frac{n}{(n+1)!}=\\frac{1}{n!}-\\frac{1}{(n+1)!}$",
+   "动画:相邻项抵消划线(阶乘结构)",
+   "板书:$S_N=1-\\frac{1}{(N+1)!}$",
+   "高亮框:$S=1$"
+  ],
+  "steps": [
+   "第一步:写出级数,把分子写成 $(n+1)-1$。",
+   "第二步:拆成两个阶乘倒数之差,展示化简。",
+   "第三步:展开前 $N$ 项,动画标出抵消对。",
+   "第四步:整理得 $S_N=1-\\frac{1}{(N+1)!}$。",
+   "第五步:取极限,高亮结论 $S=1$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c13-04", "category": "数学分析", "sub_category": "级数",
+ "concept": "裂项级数与求和", "concept_id": "C13",
+ "parent_training_ids": ["calc-series-019"],
+ "problem": r"求级数 $\sum_{n=2}^{\infty}\frac{1}{n^2-1}$ 的和。",
+ "solution": r"部分分式：$\frac{1}{n^2-1}=\frac12\left(\frac{1}{n-1}-\frac{1}{n+1}\right)$。前 $N$ 项和 $S_N=\frac12\sum_{n=2}^{N}\left(\frac{1}{n-1}-\frac{1}{n+1}\right)=\frac12\left(1+\frac12-\frac{1}{N}-\frac{1}{N+1}\right)$(正项只留下 $n=2$ 的 $\frac11$ 与 $\frac12$，负项只留下 $\frac1N$ 与 $\frac1{N+1}$)。令 $N\to\infty$ 得 $S=\frac12\cdot\frac32=\frac34$。",
+ "answer": r"和为 $\frac34$。",
+ "method": "部分分式+错位抵消(首尾各留两项)",
+ "difficulty": "中等",
+ "variant_kind": "边界变化:分母差为2的错位抵消,首尾各留两项需仔细核对",
+ "scene_spec": {
+  "objects": [
+   "板书:级数 $\\sum_{n=2}^{\\infty}\\frac{1}{n^2-1}$ 与部分分式分解",
+   "动画:展开前几项,正项列与负项列错位排列",
+   "划线动画:中间项两两抵消,首尾各留两项高亮",
+   "板书:$S_N=\\frac12(1+\\frac12-\\frac1N-\\frac{1}{N+1})$",
+   "高亮框:$S=\\frac34$"
+  ],
+  "steps": [
+   "第一步:写出级数,分解 $\\frac{1}{n^2-1}=\\frac12(\\frac{1}{n-1}-\\frac{1}{n+1})$。",
+   "第二步:把正项列与负项列错位排列,动画划线标出抵消对。",
+   "第三步:高亮首尾各剩余的两项。",
+   "第四步:写出部分和并取极限。",
+   "第五步:高亮结论 $S=\\frac34$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c13-05", "category": "数学分析", "sub_category": "级数",
+ "concept": "裂项级数与求和", "concept_id": "C13",
+ "parent_training_ids": ["calc-series-019"],
+ "problem": r"说明级数 $\sum_{n=1}^{\infty}\frac{1}{n^2+1}$ 能否用部分分式裂项法求和，并说明理由；再用比较判别法与裂项上界证明该级数的和小于 $2$。",
+ "solution": r"不能直接裂项求和：$n^2+1$ 在实数域没有一次因式，部分分式分解不含 $\frac{1}{n-\alpha}$ 型项，无法构造相邻抵消的差分结构(对照 $n^2-1=(n-1)(n+1)$ 的情形)。上界估计：$\frac{1}{n^2+1}<\frac{1}{n^2}$，故 $S<\sum_{n=1}^{\infty}\frac{1}{n^2}$。又 $\frac{1}{n^2}<\frac{1}{n(n-1)}=\frac{1}{n-1}-\frac{1}{n}$($n\ge2$)，故 $\sum_{n=1}^{\infty}\frac{1}{n^2}=1+\sum_{n=2}^{\infty}\frac{1}{n^2}<1+\sum_{n=2}^{\infty}\left(\frac{1}{n-1}-\frac{1}{n}\right)=1+1=2$。于是 $S<2$。",
+ "answer": r"不能裂项求和(分母无实一次因式,无法构造差分抵消);$S<2$(比较判别+裂项上界)。",
+ "method": "裂项可行性辨析+比较判别上界",
+ "difficulty": "进阶",
+ "variant_kind": "反例辨析:不可裂项情形的判定理由,并用裂项法反向给出上界",
+ "scene_spec": {
+  "objects": [
+   "板书:级数 $\\sum_{n=1}^{\\infty}\\frac{1}{n^2+1}$ 与对照 $\\frac{1}{n^2-1}$",
+   "板书:$n^2+1$ 无实一次因式(红色标注),$n^2-1=(n-1)(n+1)$(绿色标注)",
+   "板书:比较判别 $\\frac{1}{n^2+1}<\\frac{1}{n^2}$",
+   "板书:裂项上界 $\\sum_{n=2}^{\\infty}\\frac{1}{n(n-1)}=1$ 的抵消动画",
+   "高亮框:$S<2$"
+  ],
+  "steps": [
+   "第一步:写出级数,并列出对照级数 $\\sum 1/(n^2-1)$。",
+   "第二步:说明 $n^2+1$ 无实一次因式,无法部分分式裂项,红色标注。",
+   "第三步:展示比较判别 $\\frac{1}{n^2+1}<\\frac{1}{n^2}$。",
+   "第四步:对 $\\sum 1/n^2$ 用裂项上界,动画展示 $\\sum_{n\\ge2}1/(n(n-1))=1$。",
+   "第五步:高亮结论 $S<2$,并用「裂项法服务于上界」呼应主题。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+# ===================== C18 点到平面距离与投影 =====================
+{
+ "id": "draft-c18-01", "category": "解析几何", "sub_category": "平面",
+ "concept": "点到平面距离与投影", "concept_id": "C18",
+ "parent_training_ids": ["geom-023"],
+ "problem": r"求点 $P(2,1,1)$ 到平面 $\pi: x+2y+2z=3$ 的距离与投影点。",
+ "solution": r"平面法向量 $n=(1,2,2)$，$|n|=3$。有向距离 $\frac{n\cdot P-3}{|n|}=\frac{2+2+2-3}{3}=1$，故距离为 $1$。投影点 $Q=P-\frac{n\cdot P-3}{|n|^2}n=(2,1,1)-\frac{3}{9}(1,2,2)=(2,1,1)-(\frac13,\frac23,\frac23)=(\frac53,\frac13,\frac13)$。验证:$Q$ 在平面上($\frac53+\frac23+\frac23=3$)且 $P-Q=(\frac13,\frac23,\frac23)\parallel n$。",
+ "answer": r"距离为 $1$;投影点为 $(\frac53,\frac13,\frac13)$。",
+ "method": "法向量投影公式",
+ "difficulty": "基础",
+ "variant_kind": "数值结构变化:标准距离+投影点(与父题同公式不同平面/点)",
+ "scene_spec": {
+  "objects": [
+   "三维坐标系(带刻度)",
+   "半透明蓝色平面 $x+2y+2z=3$",
+   "红色圆点 $P(2,1,1)$ 与黄色圆点 $Q(\\frac53,\\frac13,\\frac13)$",
+   "绿色虚线垂线段 $PQ$(标注长度 $1$)",
+   "法向量箭头 $n=(1,2,2)$"
+  ],
+  "steps": [
+   "第一步:画出平面与点 $P$,显示法向量 $n=(1,2,2)$。",
+   "第二步:计算有向距离 $\\frac{n\\cdot P-3}{|n|}=1$。",
+   "第三步:沿法向量投影,得 $Q=(\\frac53,\\frac13,\\frac13)$,黄色圆点闪烁。",
+   "第四步:画出绿色垂线段 $PQ$,标注长度 $1$。",
+   "第五步:验证 $Q$ 在平面上且 $PQ\\parallel n$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c18-02", "category": "解析几何", "sub_category": "平面",
+ "concept": "点到平面距离与投影", "concept_id": "C18",
+ "parent_training_ids": ["geom-023"],
+ "problem": r"求两平行平面 $\pi_1:2x-y+2z=1$ 与 $\pi_2:2x-y+2z=5$ 之间的距离。",
+ "solution": r"两平面法向量相同，为平行平面。取 $\pi_1$ 上一点(如 $P_1=(0,-1,0)$:代入 $0-(-1)+0=1$)，点 $P_1$ 到 $\pi_2$ 的有向距离为 $\frac{2\times0-(-1)+2\times0-5}{\sqrt{4+1+4}}=\frac{-4}{3}$，绝对值 $\frac43$ 即两平面间距离。(亦可用公式 $\frac{|d_1-d_2|}{\sqrt{a^2+b^2+c^2}}=\frac{|1-5|}{3}=\frac43$。)",
+ "answer": r"距离为 $\frac43$。",
+ "method": "平行平面距离(常数项差/法向量模)",
+ "difficulty": "基础",
+ "variant_kind": "对象变化:点到平面推广为两平行平面间距离",
+ "scene_spec": {
+  "objects": [
+   "三维坐标系(带刻度)",
+   "两个半透明平行平面(蓝色与橙色)",
+   "绿色垂线段连接两平面(标注长度 $\\frac43$)",
+   "法向量箭头 $n=(2,-1,2)$",
+   "板书:$\\frac{|1-5|}{\\sqrt{4+1+4}}=\\frac43$"
+  ],
+  "steps": [
+   "第一步:画出两个平行平面,显示共同法向量 $(2,-1,2)$。",
+   "第二步:取 $\\pi_1$ 上一点 $P_1=(0,-1,0)$,计算其到 $\\pi_2$ 的有向距离。",
+   "第三步:展示常数项差公式 $\\frac{|d_1-d_2|}{|n|}$。",
+   "第四步:画出两平面间的绿色垂线段。",
+   "第五步:高亮结论 $\\frac43$。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c18-03", "category": "解析几何", "sub_category": "平面",
+ "concept": "点到平面距离与投影", "concept_id": "C18",
+ "parent_training_ids": ["geom-023"],
+ "problem": r"求过点 $P(1,2,3)$ 且垂直于方向 $v=(2,1,-1)$ 的平面方程；并求该平面与过原点、方向为 $v$ 的直线的交点。",
+ "solution": r"以 $v=(2,1,-1)$ 为法向量、过 $P(1,2,3)$ 的平面为 $2(x-1)+(y-2)-(z-3)=0$，即 $2x+y-z-1=0$。直线参数化 $(2t,t,-t)$，代入平面方程：$4t+t+t-1=0$，得 $6t-1=0$，$t=\frac16$，交点为 $(\frac13,\frac16,-\frac16)$。验证:该点满足 $2x+y-z-1=\frac23+\frac16+\frac16-1=0$。",
+ "answer": r"平面 $2x+y-z-1=0$;交点为 $(\frac13,\frac16,-\frac16)$。",
+ "method": "反向构造平面+线与平面求交",
+ "difficulty": "中等",
+ "variant_kind": "逆向任务:由垂直方向反求平面,再求直线与平面的交点(即原点的投影)",
+ "scene_spec": {
+  "objects": [
+   "三维坐标系(带刻度)",
+   "蓝色点 $P(1,2,3)$ 与方向箭头 $v=(2,1,-1)$",
+   "半透明平面 $2x+y-z-1=0$(垂直于 $v$)",
+   "红色直线(过原点,方向 $v$)",
+   "黄色交点 $(\\frac13,\\frac16,-\\frac16)$"
+  ],
+  "steps": [
+   "第一步:标出点 $P$ 与方向向量 $v$。",
+   "第二步:以 $v$ 为法向量写出过 $P$ 的平面方程。",
+   "第三步:画出平面与过原点的红色直线。",
+   "第四步:参数化直线并代入平面方程,解得 $t=\\frac16$。",
+   "第五步:黄色圆点标出交点并验证。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c18-04", "category": "解析几何", "sub_category": "平面",
+ "concept": "点到平面距离与投影", "concept_id": "C18",
+ "parent_training_ids": ["geom-023"],
+ "problem": r"求点 $P(1,0,0)$ 到直线 $l:\begin{cases}x+y+z=1\\ x-y+2z=0\end{cases}$(两平面交线)的距离与垂足。",
+ "solution": r"直线方向 $d=n_1\times n_2=(1,1,1)\times(1,-1,2)=(1\times2-1\times(-1),\,1\times1-1\times2,\,1\times(-1)-1\times1)=(3,-1,-2)$。取 $z=0$ 解 $\begin{cases}x+y=1\\x-y=0\end{cases}$ 得直线上一点 $P_0=(\frac12,\frac12,0)$。设垂足 $Q=P_0+td$，由 $(Q-P)\cdot d=0$：$(-\frac12+3t,\, \frac12-t,\,-2t)\cdot(3,-1,-2)=-\frac32+9t-\frac12+t+4t=-2+14t=0$，得 $t=\frac17$。垂足 $Q=(\frac12+\frac37,\,\frac12-\frac17,\,-\frac27)=(\frac{13}{14},\frac{5}{14},-\frac27)$。距离 $|P-Q|=|(-\frac{1}{14},\frac{5}{14},-\frac{4}{14})|=\frac{\sqrt{1+25+16}}{14}=\frac{\sqrt{42}}{14}$。(交叉验证:$|(P-P_0)\times d|/|d|=\sqrt3/\sqrt{14}=\sqrt{42}/14$。)",
+ "answer": r"距离为 $\frac{\sqrt{42}}{14}$;垂足为 $(\frac{13}{14},\frac{5}{14},-\frac27)$。",
+ "method": "交线方向叉积+正交条件解垂足",
+ "difficulty": "中等",
+ "variant_kind": "多平面约束:两平面交线的距离与垂足(方向由法向量叉积给出)",
+ "scene_spec": {
+  "objects": [
+   "三维坐标系(带刻度)",
+   "两个半透明平面及其交线 $l$(蓝色)",
+   "红色圆点 $P(1,0,0)$ 与黄色垂足 $Q(\\frac{13}{14},\\frac{5}{14},-\\frac27)$",
+   "绿色垂线段 $PQ$(标注 $\\frac{\\sqrt{42}}{14}$)",
+   "板书:方向 $d=n_1\\times n_2=(3,-1,-2)$"
+  ],
+  "steps": [
+   "第一步:画出两个平面与交线 $l$。",
+   "第二步:叉积得交线方向 $(3,-1,-2)$,取直线上一点 $P_0$。",
+   "第三步:设垂足 $Q=P_0+td$,写出正交条件方程。",
+   "第四步:解得 $t=\\frac17$,黄色圆点标出垂足。",
+   "第五步:计算距离并用叉积公式交叉验证。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c18-05", "category": "解析几何", "sub_category": "平面",
+ "concept": "点到平面距离与投影", "concept_id": "C18",
+ "parent_training_ids": ["geom-023"],
+ "problem": r"证明空间中任意一点到给定平面 $\pi:n\cdot x=d$($n\neq0$)的投影点存在且唯一，并推导投影公式。",
+ "solution": r"存在性:对任意点 $P$，令 $\lambda=\frac{n\cdot P-d}{|n|^2}$，$Q=P-\lambda n$。则 $n\cdot Q=n\cdot P-\lambda|n|^2=n\cdot P-(n\cdot P-d)=d$，故 $Q\in\pi$。垂直性:对任意 $X\in\pi$，$(P-Q)\cdot(X-Q)=\lambda n\cdot(X-Q)=\lambda(n\cdot X-n\cdot Q)=\lambda(d-d)=0$，故 $PQ\perp\pi$，$Q$ 是投影点。唯一性:若 $Q'$ 也是投影点，则 $Q-Q'$ 平行于 $\pi$(属于 $\pi$ 的方向子空间)，即 $n\cdot(Q-Q')=n\cdot Q-n\cdot Q'=d-d=0$;又由垂直性，$(P-Q)\cdot(Q-Q')=0$ 与 $(P-Q')\cdot(Q-Q')=0$，两式相减得 $(Q-Q')\cdot(Q-Q')=0$，故 $Q=Q'$。投影公式:$Q=P-\frac{n\cdot P-d}{|n|^2}n$，距离为 $d(P,\pi)=\frac{|n\cdot P-d|}{|n|}$。",
+ "answer": r"投影点唯一,公式 $Q=P-\frac{n\cdot P-d}{|n|^2}n$;距离 $d(P,\pi)=\frac{|n\cdot P-d|}{|n|}$(证明见解法)。",
+ "method": "存在唯一性证明+正交分解",
+ "difficulty": "进阶",
+ "variant_kind": "证明型:投影存在唯一性的严格证明与公式推导,非数值计算",
+ "scene_spec": {
+  "objects": [
+   "三维示意图:平面 $\\pi$ 与点 $P$",
+   "板书:构造 $Q=P-\\lambda n$(法向量方向移动)",
+   "板书:$n\\cdot Q=d$(落在平面上)与 $(P-Q)\\cdot(X-Q)=0$(垂直性)",
+   "板书:唯一性论证 $(Q-Q')\\cdot(Q-Q')=0$",
+   "高亮框:投影公式与距离公式"
+  ],
+  "steps": [
+   "第一步:画出平面与点 $P$,标注法向量 $n$。",
+   "第二步:构造候选投影点 $Q=P-\\lambda n$,验证其落在平面上。",
+   "第三步:对任意 $X\\in\\pi$ 验证 $(P-Q)\\perp(X-Q)$,即垂直性。",
+   "第四步:由 $n\\cdot(Q-Q')=0$ 与两垂直式相减,论证唯一性。",
+   "第五步:高亮投影公式与距离公式,完成证明。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+# ===================== C30 多项式平移展开 =====================
+{
+ "id": "draft-c30-01", "category": "高等代数", "sub_category": "多项式",
+ "concept": "多项式平移展开", "concept_id": "C30",
+ "parent_training_ids": ["linalg-052"],
+ "problem": r"将多项式 $f(x)=x^3+2x^2+x+1$ 按 $x-1$ 的幂展开。",
+ "solution": r"令 $y=x-1$，则 $x=y+1$，代入展开：$f=(y+1)^3+2(y+1)^2+(y+1)+1=(y^3+3y^2+3y+1)+(2y^2+4y+2)+(y+1)+1=y^3+5y^2+8y+5$。即 $f=(x-1)^3+5(x-1)^2+8(x-1)+5$。验证(泰勒系数):$f(1)=5$，$f'(1)=3+4+1=8$，$f''(1)/2=(6+4)/2=5$，$f'''(1)/6=6/6=1$。",
+ "answer": r"$f=(x-1)^3+5(x-1)^2+8(x-1)+5$。",
+ "method": "换元展开法",
+ "difficulty": "基础",
+ "variant_kind": "形式变化:三项多项式整体换元平移(与单项式父题不同)",
+ "scene_spec": {
+  "objects": [
+   "板书:$f(x)=x^3+2x^2+x+1$ 与换元 $x=y+1$",
+   "板书:$(y+1)^3$、$2(y+1)^2$、$(y+1)$ 的展开",
+   "板书:合并同类项过程(同类项动画归组)",
+   "高亮框:$y^3+5y^2+8y+5$",
+   "验证板书:泰勒系数对照 $f(1),f'(1),f''(1)/2,f'''(1)/6$"
+  ],
+  "steps": [
+   "第一步:写出多项式,令 $y=x-1$ 即 $x=y+1$。",
+   "第二步:逐项代入并展开各次幂。",
+   "第三步:动画归组合并同类项。",
+   "第四步:高亮展开结果,把 $y$ 换回 $x-1$。",
+   "第五步:用泰勒系数公式逐项验证。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c30-02", "category": "高等代数", "sub_category": "多项式",
+ "concept": "多项式平移展开", "concept_id": "C30",
+ "parent_training_ids": ["linalg-052"],
+ "problem": r"求 $f(x)=x^4-2x^3+3x^2-4x+5$ 在 $x=2$ 处的泰勒展开。",
+ "solution": r"逐阶求导:$f'(x)=4x^3-6x^2+6x-4$，$f''(x)=12x^2-12x+6$，$f'''(x)=24x-12$，$f^{(4)}(x)=24$。在 $x=2$ 处:$f(2)=16-16+12-8+5=9$，$f'(2)=32-24+12-4=16$，$f''(2)=48-24+6=30$，$f'''(2)=48-12=36$。泰勒公式:$f(x)=9+16(x-2)+\frac{30}{2}(x-2)^2+\frac{36}{6}(x-2)^3+\frac{24}{24}(x-2)^4=9+16(x-2)+15(x-2)^2+6(x-2)^3+(x-2)^4$。",
+ "answer": r"$f=(x-2)^4+6(x-2)^3+15(x-2)^2+16(x-2)+9$。",
+ "method": "泰勒公式(逐阶导数)",
+ "difficulty": "基础",
+ "variant_kind": "方法变化:换元改为逐阶求导的泰勒公式路径(四次多项式)",
+ "scene_spec": {
+  "objects": [
+   "板书:$f(x)=x^4-2x^3+3x^2-4x+5$ 与一至四阶导数",
+   "板书:各阶导数在 $x=2$ 的取值",
+   "板书:泰勒公式代入过程(系数除以阶乘)",
+   "高亮框:$9+16(x-2)+15(x-2)^2+6(x-2)^3+(x-2)^4$",
+   "验证板书:展开还原核对"
+  ],
+  "steps": [
+   "第一步:逐阶求导,列出 $f',f'',f''',f^{(4)}$。",
+   "第二步:计算各阶导数在 $x=2$ 的值。",
+   "第三步:代入泰勒公式,系数除以对应阶乘。",
+   "第四步:高亮最终展开式。",
+   "第五步:展开还原验证与原多项式一致。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c30-03", "category": "高等代数", "sub_category": "多项式",
+ "concept": "多项式平移展开", "concept_id": "C30",
+ "parent_training_ids": ["linalg-052"],
+ "problem": r"用二项式定理将 $f(x)=x^4$ 按 $x-1$ 的幂展开。",
+ "solution": r"$x^4=[(x-1)+1]^4=\sum_{k=0}^{4}\binom{4}{k}(x-1)^k\cdot1^{4-k}=\binom{4}{0}+\binom{4}{1}(x-1)+\binom{4}{2}(x-1)^2+\binom{4}{3}(x-1)^3+\binom{4}{4}(x-1)^4$。二项式系数为 $1,4,6,4,1$，故 $x^4=(x-1)^4+4(x-1)^3+6(x-1)^2+4(x-1)+1$。",
+ "answer": r"$x^4=(x-1)^4+4(x-1)^3+6(x-1)^2+4(x-1)+1$。",
+ "method": "二项式定理(组合数系数)",
+ "difficulty": "中等",
+ "variant_kind": "方法变化:二项式定理直接给出组合数系数(与逐阶求导等价但路径不同)",
+ "scene_spec": {
+  "objects": [
+   "板书:$x^4=[(x-1)+1]^4$",
+   "板书:二项式展开的求和式 $\\sum_{k=0}^4\\binom4k(x-1)^k$",
+   "动画:杨辉三角/组合数 $1,4,6,4,1$ 依次高亮",
+   "高亮框:$(x-1)^4+4(x-1)^3+6(x-1)^2+4(x-1)+1$",
+   "对照板书:与逐阶求导法结果一致"
+  ],
+  "steps": [
+   "第一步:把 $x$ 写成 $(x-1)+1$。",
+   "第二步:写出二项式展开的求和形式。",
+   "第三步:展示组合数 $1,4,6,4,1$ 的来历。",
+   "第四步:高亮展开结果。",
+   "第五步:与泰勒系数路径对照,两法一致。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c30-04", "category": "高等代数", "sub_category": "多项式",
+ "concept": "多项式平移展开", "concept_id": "C30",
+ "parent_training_ids": ["linalg-052"],
+ "problem": r"已知多项式 $f$ 在 $x=1$ 处的展开为 $f=2+3(x-1)+(x-1)^2-(x-1)^3$。求 $f$ 按 $x$ 的幂展开的标准形式，并求 $f(1)$、$f'(1)$、$f''(1)$。",
+ "solution": r"令 $y=x-1$，$f=2+3y+y^2-y^3$，回代 $y=x-1$ 并展开:$2+3(x-1)+(x-1)^2-(x-1)^3=2+3x-3+(x^2-2x+1)-(x^3-3x^2+3x-1)=-x^3+4x^2-2x+1$。由展开式直接读系数:$f(1)=2$，$f'(1)=3$，$f''(1)/2!=1$ 即 $f''(1)=2$。验证:对标准形式求导 $f'(x)=-3x^2+8x-2$，$f'(1)=3$;$f''(x)=-6x+8$，$f''(1)=2$，一致。",
+ "answer": r"$f=-x^3+4x^2-2x+1$;$f(1)=2$，$f'(1)=3$，$f''(1)=2$。",
+ "method": "逆向重建(展开式还原标准形式)",
+ "difficulty": "中等",
+ "variant_kind": "逆向任务:由平移展开反求标准形式与各阶导数值",
+ "scene_spec": {
+  "objects": [
+   "板书:$f=2+3(x-1)+(x-1)^2-(x-1)^3$",
+   "板书:逐项展开 $(x-1)^2$、$(x-1)^3$ 与合并过程",
+   "高亮框:$f=-x^3+4x^2-2x+1$",
+   "板书:由平移展开系数直读 $f(1),f'(1),f''(1)$",
+   "验证板书:对标准形式求导核对"
+  ],
+  "steps": [
+   "第一步:写出平移展开式,令 $y=x-1$。",
+   "第二步:逐项展开各次幂,动画归组合并。",
+   "第三步:高亮标准形式 $-x^3+4x^2-2x+1$。",
+   "第四步:由平移展开系数直读各阶导数值。",
+   "第五步:对标准形式求导验证,两路一致。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+{
+ "id": "draft-c30-05", "category": "高等代数", "sub_category": "多项式",
+ "concept": "多项式平移展开", "concept_id": "C30",
+ "parent_training_ids": ["linalg-052"],
+ "problem": r"写出 $f(x)=\ln x$ 在 $x=1$ 处的幂级数展开的前四项，并讨论其收敛范围；再与多项式(如 $x^4$)的平移展开对照，说明两者在项数与适用范围上的区别。",
+ "solution": r"令 $u=x-1$，$\ln x=\ln(1+u)=u-\frac{u^2}{2}+\frac{u^3}{3}-\frac{u^4}{4}+\cdots$，即 $\ln x=(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}-\frac{(x-1)^4}{4}+\cdots$。收敛范围:该级数在 $|u|<1$ 收敛，即 $0<x<2$;$u=1$(即 $x=2$)时级数为交错调和级数，条件收敛，故 $0<x\leq2$;其余 $x$ 发散。对照:多项式 $x^4$ 的平移展开 $(x-1)^4+4(x-1)^3+\cdots$ 只有有限项,且对一切实数恒等成立;而 $\ln x$ 的展开有无穷多项,只在收敛域 $0<x\leq2$ 内成立。区别的根源:多项式展开是有限次恒等变形,超越函数展开是无穷级数,其有效性受收敛半径限制。",
+ "answer": r"$\ln x=(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}-\frac{(x-1)^4}{4}+\cdots$,收敛于 $0<x\leq2$;多项式展开有限且处处恒等,级数展开无穷且仅限收敛域。",
+ "method": "无穷级数展开+收敛域分析(与多项式对照)",
+ "difficulty": "进阶",
+ "variant_kind": "适用范围辨析:有限多项式展开与无穷级数展开的项数与收敛域对照",
+ "scene_spec": {
+  "objects": [
+   "板书:$\\ln x=\\ln(1+(x-1))$ 的级数展开前四项",
+   "数轴:收敛域 $(0,2]$ 高亮,端点 $x=2$ 条件收敛标注,区间外灰色",
+   "对照板书:$x^4$ 的有限平移展开(项数有限标注)",
+   "高亮框:「多项式:有限项·处处恒等」与「级数:无穷项·仅收敛域」",
+   "板书:交错调和级数在 $u=1$ 的条件收敛说明"
+  ],
+  "steps": [
+   "第一步:写出 $\\ln(1+u)$ 的级数展开前四项。",
+   "第二步:在数轴上标出收敛区间 $|u|<1$ 即 $0<x<2$。",
+   "第三步:讨论端点:$u=1$ 条件收敛,$u=-1$ 发散,得 $0<x\\leq2$。",
+   "第四步:对照多项式 $x^4$ 的有限展开,高亮「有限项·处处恒等」。",
+   "第五步:总结两类展开在项数与适用范围上的本质区别。"
+  ]
+ },
+ "source": "self-authored", "license": "Internal-Research-Use-Only",
+ "draft_status": "draft-v1-待用户审阅",
+},
+]
+
+def main() -> int:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    with OUT.open("w", encoding="utf-8", newline="\n") as f:
+        for row in DATA:
+            f.write(json.dumps(row, ensure_ascii=False, separators=(",", ":"))
+                    + "\n")
+    print(f"写入 {len(DATA)} 行 -> {OUT}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

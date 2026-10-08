@@ -2,3 +2,7 @@
 *.json text eol=lf
 dataset-eval.md text eol=lf
 data-test.md text eol=lf
+
+# Draft versions retain original bytes. New publications use UTF-8/LF/no BOM.
+reviews/2026-10-05-training-diversity-drafts/batch-*/draft*.jsonl -text !eol
+reviews/codex-supervision/**/staged/*.jsonl -text !eol

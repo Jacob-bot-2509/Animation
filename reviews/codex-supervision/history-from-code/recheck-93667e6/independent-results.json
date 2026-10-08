@@ -1,0 +1,311 @@
+{
+  "revision": "93667e6",
+  "checks": {
+    "metrics_flags": [
+      {
+        "flag": "parsed_strict",
+        "value": 2,
+        "rejected": true,
+        "error": "parsed_strict must be bool, got 2"
+      },
+      {
+        "flag": "parsed_strict",
+        "value": 1,
+        "rejected": true,
+        "error": "parsed_strict must be bool, got 1"
+      },
+      {
+        "flag": "parsed_strict",
+        "value": null,
+        "rejected": true,
+        "error": "parsed_strict must be bool, got None"
+      },
+      {
+        "flag": "parsed_strict",
+        "value": "true",
+        "rejected": true,
+        "error": "parsed_strict must be bool, got 'true'"
+      },
+      {
+        "flag": "parsed_lenient",
+        "value": 2,
+        "rejected": true,
+        "error": "parsed_lenient must be bool, got 2"
+      },
+      {
+        "flag": "parsed_lenient",
+        "value": 1,
+        "rejected": true,
+        "error": "parsed_lenient must be bool, got 1"
+      },
+      {
+        "flag": "parsed_lenient",
+        "value": null,
+        "rejected": true,
+        "error": "parsed_lenient must be bool, got None"
+      },
+      {
+        "flag": "parsed_lenient",
+        "value": "true",
+        "rejected": true,
+        "error": "parsed_lenient must be bool, got 'true'"
+      }
+    ],
+    "isolation": {
+      "state": {
+        "shell": false,
+        "timeout_sec": 300,
+        "env_sanitized": true,
+        "fs_isolation": "cwd_only",
+        "memory_limit_mb": 2048,
+        "network_isolation": false,
+        "python_socket_guard": true,
+        "note": "当前隔离:cwd 基础隔离 + 环境脱敏 + 禁 shell + 超时 + 内存上限 2048 + Python socket 出口 guard(best-effort,可被 _socket 等底层接口绕过,已实测;不作为网络隔离验收证据);OS 级网络边界未实施,不可信生成代码的执行仍被拒绝(B4)"
+      },
+      "gate": [
+        false,
+        "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+      ],
+      "untrusted_render": {
+        "ok": false,
+        "status": "unverified",
+        "detail": "隔离不完整(fs 完整隔离未实施,现有 cwd_only 基础隔离),拒绝执行不可信代码;可信模板须显式 trusted=True(BR6)",
+        "unverified": [
+          "render_isolation"
+        ]
+      }
+    },
+    "v1_alias_guard": [
+      {
+        "alias": "data/V1",
+        "returncode": 1,
+        "stdout": "[FAIL] 拒绝写入 data/v1 任何大小写形式(v1 冻结数据只读)\n"
+      },
+      {
+        "alias": "data/v1",
+        "returncode": 1,
+        "stdout": "[FAIL] 拒绝写入 data/v1 任何大小写形式(v1 冻结数据只读)\n"
+      },
+      {
+        "alias": "data/v2/../V1",
+        "returncode": 1,
+        "stdout": "[FAIL] 拒绝写入 data/v1 任何大小写形式(v1 冻结数据只读)\n"
+      }
+    ],
+    "manifests_locks": [
+      {
+        "version": "v1",
+        "split": "eval",
+        "manifest_ok": true,
+        "problems": [],
+        "quarantines": [],
+        "lock_problems": [],
+        "binding_ok": true
+      },
+      {
+        "version": "v1",
+        "split": "test",
+        "manifest_ok": true,
+        "problems": [],
+        "quarantines": [],
+        "lock_problems": [],
+        "binding_ok": true
+      },
+      {
+        "version": "v2",
+        "split": "eval",
+        "manifest_ok": true,
+        "problems": [],
+        "quarantines": [],
+        "lock_problems": [],
+        "binding_ok": true
+      },
+      {
+        "version": "v2",
+        "split": "test",
+        "manifest_ok": true,
+        "problems": [],
+        "quarantines": [],
+        "lock_problems": [],
+        "binding_ok": true
+      }
+    ],
+    "status": [
+      {
+        "version": "v1",
+        "returncode": 0,
+        "stdout": "[OK] eval: 已生成 1 个 JSONL\n[OK] eval: 冻结锁 eval-v1.lock.json 校验通过(结构/覆盖/manifest 绑定一致)\n[INFO] eval: 锁 eval-v2.lock.json 覆盖其他版本文件,不参与本次判定\n[OK] test: 已生成 1 个 JSONL\n[OK] test: 冻结锁 test-v1.lock.json 校验通过(结构/覆盖/manifest 绑定一致)\n[INFO] test: 锁 test-v2.lock.json 覆盖其他版本文件,不参与本次判定\n"
+      },
+      {
+        "version": "v2",
+        "returncode": 0,
+        "stdout": "[OK] eval: 已生成 1 个 JSONL\n[INFO] eval: 锁 eval-v1.lock.json 覆盖其他版本文件,不参与本次判定\n[OK] eval: 冻结锁 eval-v2.lock.json 校验通过(结构/覆盖/manifest 绑定一致)\n[OK] test: 已生成 1 个 JSONL\n[INFO] test: 锁 test-v1.lock.json 覆盖其他版本文件,不参与本次判定\n[OK] test: 冻结锁 test-v2.lock.json 校验通过(结构/覆盖/manifest 绑定一致)\n"
+      }
+    ],
+    "scene_examples": [
+      {
+        "id": "eval-calc-023-s1",
+        "exact_match": true
+      },
+      {
+        "id": "eval-calc-023-s2",
+        "exact_match": true
+      },
+      {
+        "id": "eval-calc-023-s3",
+        "exact_match": true
+      },
+      {
+        "id": "eval-prob-010-s2",
+        "exact_match": false
+      }
+    ],
+    "linalg_solution": "本题复数域分解为 $\\displaystyle\\prod_{k=0}^{7}\\left(x-e^{2\\pi ik/8}\\right)$（8 次单位根）。实数域分解有两种书写形式。形式一（按共轭根配对，完整实不可约分解）：$x^8-1=(x-1)(x+1)(x^2-\\sqrt2x+1)(x^2+1)(x^2+\\sqrt2x+1)$。形式二（按平方差递推，尚未完全分解）：$x^8-1=(x-1)(x+1)(x^2+1)(x^4+1)$。两形式由恒等式 $(x^2-\\sqrt2x+1)(x^2+\\sqrt2x+1)=x^4+1$ 连接，其证明是平方差：$(x^2+1)^2-(\\sqrt2x)^2=x^4+2x^2+1-2x^2=x^4+1$。故形式二是形式一的合并书写，形式一才是完整实不可约分解。",
+    "linalg_factor_identity": true,
+    "v1_immutable": [
+      {
+        "path": "data/v1/eval/dataset_eval.jsonl",
+        "identical": true
+      },
+      {
+        "path": "data/v1/test/dataset_test.jsonl",
+        "identical": true
+      },
+      {
+        "path": "data/v1/manifest.json",
+        "identical": true
+      },
+      {
+        "path": "data/eval-v1.lock.json",
+        "identical": true
+      },
+      {
+        "path": "data/test-v1.lock.json",
+        "identical": true
+      }
+    ],
+    "preflight_normal": {
+      "freeze_gate": [
+        true,
+        "冻结证据绑定当前 manifest, eval/test 全量覆盖"
+      ],
+      "captured": [
+        [
+          "data_manifest",
+          [
+            true,
+            "6 条目,问题 0,quarantine 0"
+          ]
+        ],
+        [
+          "near_dup_calibrated",
+          [
+            false,
+            "近重复阈值 UNCALIBRATED(真实数据对照实验未完成)—— ready 模式必须阻断"
+          ]
+        ],
+        [
+          "render_gate",
+          [
+            true,
+            "环境诊断(固定可信 smoke,**非资产验收证据**): review_stub — No render performed"
+          ]
+        ],
+        [
+          "math_gate",
+          [
+            true,
+            "环境诊断(固定数学 smoke,**非资产验收证据**): review_stub — No subprocess performed"
+          ]
+        ],
+        [
+          "freeze_gate",
+          [
+            true,
+            "冻结证据绑定当前 manifest, eval/test 全量覆盖"
+          ]
+        ],
+        [
+          "asset_evidence",
+          [
+            false,
+            "资产验收证据缺失(asset_evidence.json 不存在)——当前资产未经真实渲染/数学验收,UNVERIFIED 阻断 ready"
+          ]
+        ],
+        [
+          "exec_isolation",
+          [
+            false,
+            "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+          ]
+        ]
+      ],
+      "stdout": "结论: **存在 FAIL —— 禁止后续动作(训练/评测一律停止),先定位修复**\n"
+    },
+    "preflight_other_version_bad_lock": {
+      "freeze_gate": [
+        false,
+        "data\\v2\\eval\\dataset_eval.jsonl: 哈希变化(冻结后不可修改;登记 000000000000…,实际 8f18123fcb3f…)"
+      ],
+      "captured": [
+        [
+          "data_manifest",
+          [
+            true,
+            "6 条目,问题 0,quarantine 0"
+          ]
+        ],
+        [
+          "near_dup_calibrated",
+          [
+            false,
+            "近重复阈值 UNCALIBRATED(真实数据对照实验未完成)—— ready 模式必须阻断"
+          ]
+        ],
+        [
+          "render_gate",
+          [
+            true,
+            "环境诊断(固定可信 smoke,**非资产验收证据**): review_stub — No render performed"
+          ]
+        ],
+        [
+          "math_gate",
+          [
+            true,
+            "环境诊断(固定数学 smoke,**非资产验收证据**): review_stub — No subprocess performed"
+          ]
+        ],
+        [
+          "freeze_gate",
+          [
+            false,
+            "data\\v2\\eval\\dataset_eval.jsonl: 哈希变化(冻结后不可修改;登记 000000000000…,实际 8f18123fcb3f…)"
+          ]
+        ],
+        [
+          "asset_evidence",
+          [
+            false,
+            "资产验收证据缺失(asset_evidence.json 不存在)——当前资产未经真实渲染/数学验收,UNVERIFIED 阻断 ready"
+          ]
+        ],
+        [
+          "exec_isolation",
+          [
+            false,
+            "执行隔离未验收:network 隔离未实施(现有:cwd 基础隔离+环境脱敏+禁 shell+超时+内存上限)——B4 验收前不得执行生成代码,UNVERIFIED 阻断 ready"
+          ]
+        ]
+      ],
+      "stdout": "结论: **存在 FAIL —— 禁止后续动作(训练/评测一律停止),先定位修复**\n"
+    }
+  },
+  "findings": [
+    {
+      "priority": "P2",
+      "file": "tools/preflight.py",
+      "issue": "check_frozen validates all discovered version locks before the version filter; a damaged v2 lock still blocks v1."
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "scope": "Only TCP connect to listed public endpoints during this run; no payload sent, no UDP/DNS/complete production isolation claim",
+  "production_gate": "CLOSED",
+  "source_sha256": "816bc5879f16de8e209781a7e6e73393557458756c919aaf25368801a27e179d",
+  "runtime_manifest": {
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python313.dll": "6964e590037c41d631fd1215f05af154f7fa68105993c6f573a20689b473f1ac",
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py": "523695ac3383799547b421b4fe18004de1e80181e97181b6d7a10533b47f4c49",
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\DLLs\\_socket.pyd": "8676f3cebd9d01c7ad51a29b3f7ff429c0a8f6bc564cab21eb6cdaa2e26fd259",
+    "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python313._pth": "ccacd1c92b7e032843f6257b7f915b7c36758dc67fbf7e4a8ccacb1f67faff26"
+  },
+  "cases": [
+    {
+      "host": "1.1.1.1",
+      "port": 443,
+      "clients": {
+        "before": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.1.1.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.1.1.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        },
+        "sandbox": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.1.1.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.1.1.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "connected": false,
+            "winerror": 10013,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "error": "PermissionError(13, '\u4ee5\u4e00\u79cd\u8bbf\u95ee\u6743\u9650\u4e0d\u5141\u8bb8\u7684\u65b9\u5f0f\u505a\u4e86\u4e00\u4e2a\u8bbf\u95ee\u5957\u63a5\u5b57\u7684\u5c1d\u8bd5\u3002', None, 10013, None)"
+          },
+          "stderr": ""
+        },
+        "after": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.1.1.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.1.1.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        }
+      },
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "integrity": true,
+      "controls_connected": true,
+      "identity_valid": true,
+      "verdict": "PASS_TESTED_EXTERNAL_TCP"
+    },
+    {
+      "host": "1.0.0.1",
+      "port": 443,
+      "clients": {
+        "before": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.0.0.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.0.0.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        },
+        "sandbox": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.0.0.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.0.0.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "connected": false,
+            "winerror": 10013,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "error": "PermissionError(13, '\u4ee5\u4e00\u79cd\u8bbf\u95ee\u6743\u9650\u4e0d\u5141\u8bb8\u7684\u65b9\u5f0f\u505a\u4e86\u4e00\u4e2a\u8bbf\u95ee\u5957\u63a5\u5b57\u7684\u5c1d\u8bd5\u3002', None, 10013, None)"
+          },
+          "stderr": ""
+        },
+        "after": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "1.0.0.1",
+            "443"
+          ],
+          "data": {
+            "host": "1.0.0.1",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        }
+      },
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "integrity": true,
+      "controls_connected": true,
+      "identity_valid": true,
+      "verdict": "PASS_TESTED_EXTERNAL_TCP"
+    },
+    {
+      "host": "2606:4700:4700::1111",
+      "port": 443,
+      "clients": {
+        "before": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1111",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1111",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        },
+        "sandbox": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1111",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1111",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "connected": false,
+            "winerror": 10013,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "error": "PermissionError(13, '\u4ee5\u4e00\u79cd\u8bbf\u95ee\u6743\u9650\u4e0d\u5141\u8bb8\u7684\u65b9\u5f0f\u505a\u4e86\u4e00\u4e2a\u8bbf\u95ee\u5957\u63a5\u5b57\u7684\u5c1d\u8bd5\u3002', None, 10013, None)"
+          },
+          "stderr": ""
+        },
+        "after": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1111",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1111",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        }
+      },
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "integrity": true,
+      "controls_connected": true,
+      "identity_valid": true,
+      "verdict": "PASS_TESTED_EXTERNAL_TCP"
+    },
+    {
+      "host": "2606:4700:4700::1001",
+      "port": 443,
+      "clients": {
+        "before": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1001",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1001",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        },
+        "sandbox": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1001",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1001",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": true,
+              "capability_count": 0,
+              "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+            },
+            "connected": false,
+            "winerror": 10013,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b",
+            "error": "PermissionError(13, '\u4ee5\u4e00\u79cd\u8bbf\u95ee\u6743\u9650\u4e0d\u5141\u8bb8\u7684\u65b9\u5f0f\u505a\u4e86\u4e00\u4e2a\u8bbf\u95ee\u5957\u63a5\u5b57\u7684\u5c1d\u8bd5\u3002', None, 10013, None)"
+          },
+          "stderr": ""
+        },
+        "after": {
+          "rc": 0,
+          "command": [
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\file-work-487341961b6c\\external-c1e8d1507f76\\external_client.py",
+            "2606:4700:4700::1001",
+            "443"
+          ],
+          "data": {
+            "host": "2606:4700:4700::1001",
+            "port": 443,
+            "token": {
+              "api_ok": true,
+              "is_appcontainer": false,
+              "capability_count": 0,
+              "sid": null
+            },
+            "connected": true,
+            "winerror": null,
+            "site_absent": true,
+            "socket_file": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\Lib\\socket.py",
+            "executable": "D:\\Animation-Model-Training\\reviews\\2026-10-04-acceptance-support\\net-runtime\\python.exe",
+            "script_sha256": "2ee6181a5647f45eebed000c02ec0169f26a44b4861f7ca907c2e3a5b8feb4ce",
+            "runtime_sha256": "dc7ecf75280678175b4f931ce05f1ef9c10d48984399ca7de6beee69d71bcb1b"
+          },
+          "stderr": ""
+        }
+      },
+      "policy_before": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "policy_after": {
+        "api_ok": true,
+        "return_code": 0,
+        "sids": [],
+        "cleanup_ok": true
+      },
+      "integrity": true,
+      "controls_connected": true,
+      "identity_valid": true,
+      "verdict": "PASS_TESTED_EXTERNAL_TCP"
+    }
+  ],
+  "state": "COMPLETE",
+  "runtime_unchanged": true,
+  "overall": "PASS_TESTED_EXTERNAL_TCP"
+}

@@ -38,3 +38,13 @@ python tools/data_check.py --manifest data/v1/split/split_manifest.json
 - JSONL 字段类型、合法多行 JSON、默认运行记录清单路径等剩余缺口见 reviews/2026-09-30-round2/REVIEW.md，之后修复以新审查结论为准。
 
 当前没有已批准进入训练的数据集。
+
+
+## 当前活动训练版本（2026-10-05）
+
+以 data/manifest.json 为准。用户确认同核心结构仅换数值的题按泄漏隔离后，活动训练切换为 data/v2/train/leakage-isolated-v2-2026-10-05/，共48条；eval仍300条、test仍150条。原v1与中间版本保留归档，15条训练隔离记录及双锁绑定历史见 reviews/codex-supervision/2026-10-05-readiness-completion/READINESS_REPORT.md。数据入口 clean 不等于训练就绪，结构检测器校准和逐条资产验收仍未通过。
+
+跨集合候选普查使用 tools/leakage_population.py，默认含不同签名，不自动赋标签或校准。可信模板沙箱试点使用 tools/sandbox_render_pilot.py，真实媒体完整解码；数学/动画语义仍需逐条独立验收。
+
+
+2026-10-05 后续结构复核：`calc-series-018` 的和函数直接代入 `x=1/2` 覆盖 eval-calc-011，另隔离 1 条，累计 16 条，活动训练 47 条。当前路径 `v2/train/leakage-isolated-v3-2026-10-05/`；旧数据与清单/锁原字节保留。仍未取得独立校准、全量资产与生产联合验收放行。

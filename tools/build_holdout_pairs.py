@@ -1,241 +1,249 @@
-"""Build the independent leakage-holdout pair set (2026-10-06).
+"""Build source-bound DEVELOPMENT diagnostics, not an independent calibration set.
 
-Independence contract:
-- Train side = the 264 new draft records (selected versions per
-  draft-selection.json). These did not exist while the structural screen and
-  kp rules were developed, so no detector score or rule was ever influenced
-  by them.
-- Query side = frozen eval (300) + test (150) records.
-- Sampling is stratified by 考点 metadata (category / sub_category / concept
-  / parent lineage), NOT by any similarity score, so text-similar and
-  text-different structural clones (the calc-series-018 failure mode) are
-  both represented fairly.
-
-Strata (kept OUT of the labeling file to keep labels blind):
-  S1a parent-derived : drafts whose parent_training_ids were involved in the
-       17 dev-positive leakage labels or the 5 quarantined pairs, paired with
-       that same query. Tests whether the rules generalize to NEW instances
-       (reworded drafts) of known-leaking structures.
-  S1b same-sub      : exact sub_category matches (concept-stratified sample).
-  S2  same-cat      : same category, different sub_category.
-  S3  cross-cat     : different category.
-
-Outputs:
-  reviews/2026-10-06-independent-holdout/holdout-pairs.json  (BLIND: no stratum,
-      no detector scores, no parent ids -> for the independent labeler)
-  Strata are NOT written to disk: score_holdout.py rebuilds them
-  deterministically (same seed, same algorithm) so the labeler cannot see them.
+Scene rows are grouped by question identity before metadata-stratified sampling.
+No detector score is used in sampling. The labeling artifact omits strata and
+parent IDs, but repository access is not a guarantee of blinded labeling.
+Published v1 pairs remain immutable; v2 artifacts need fresh manual labels.
 """
 from __future__ import annotations
-
 import argparse
-import hashlib
-import json
 import random
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
-
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "tools"))
-from draft_io import selected_path, verify_entry  # noqa: E402
+sys.path.insert(0, str(ROOT / 'tools'))
+from draft_io import NORMALIZED_HASH, fingerprint, selected_path
+from holdout_contract import (Snapshot, INDEPENDENCE, LABEL_RULE, RULE_SHA,
+    PAIR_SCHEMA, LABEL_SCHEMA, raw_sha, strict_json, json_object, jsonl, required_text,
+    make_pair, require_pairs, write_new_json)
 
-DRAFTS = ROOT / "reviews/2026-10-05-training-diversity-drafts"
-EVAL = ROOT / "data/v2/eval/dataset_eval.jsonl"
-TEST = ROOT / "data/v2/test/dataset_test.jsonl"
-DEV_LABELS = (ROOT / "reviews/codex-supervision/2026-10-05-readiness-completion"
-              / "independent-leakage-labels-v2.json")
-DEV_POP = (ROOT / "reviews/codex-supervision/2026-10-05-readiness-completion"
-           / "leakage-population.json")
-QUARANTINE = (ROOT / "reviews/codex-supervision/2026-10-05-math-template-followup-v2"
-              / "new-overlap-before-fix.json")
-OUT_DIR = ROOT / "reviews/2026-10-06-independent-holdout"
-
+DRAFTS = ROOT / 'reviews/2026-10-05-training-diversity-drafts'
+EVAL = ROOT / 'data/v2/eval/dataset_eval.jsonl'
+TEST = ROOT / 'data/v2/test/dataset_test.jsonl'
+EVAL_LOCK = ROOT / 'data/eval-v2.lock.json'
+TEST_LOCK = ROOT / 'data/test-v2.lock.json'
+DEV_LABELS = ROOT / 'reviews/codex-supervision/2026-10-05-readiness-completion/independent-leakage-labels-v2.json'
+DEV_POP = ROOT / 'reviews/codex-supervision/2026-10-05-readiness-completion/leakage-population.json'
+DEV_EXTRA = ROOT / 'reviews/codex-supervision/2026-10-05-readiness-completion/cross-signature-leakage-findings.json'
+QUARANTINE = ROOT / 'reviews/codex-supervision/2026-10-05-math-template-followup-v2/new-overlap-before-fix.json'
+OUT_DIR = ROOT / 'reviews/leakage-diagnostic-v2'
 SEED = 20261006
 S1A_MAX_DRAFTS_PER_PAIR = 3
 S1B_PER_CONCEPT = 2
 S2_PER_CATEGORY = 12
 S3_TOTAL = 32
 
+def sampling_config():
+    return {'algorithm': 'unique-question-metadata-stratified-v2', 'seed': SEED,
+            's1a_max_drafts_per_parent_pair': S1A_MAX_DRAFTS_PER_PAIR,
+            's1b_per_concept': S1B_PER_CONCEPT, 's2_per_category': S2_PER_CATEGORY,
+            's3_total': S3_TOTAL}
 
-def _sha(text: str) -> str:
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-
-def _pair_id(q_problem: str, t_problem: str) -> str:
-    return hashlib.sha256((_sha(q_problem) + _sha(t_problem)).encode()).hexdigest()[:20]
-
-
-def load_drafts() -> list[dict]:
-    sel_path = DRAFTS / "draft-selection.json"
-    sel_bytes = sel_path.read_bytes()
-    sel = json.loads(sel_bytes.decode("utf-8-sig"))
-    if sel.get("schema") != 2:
-        raise ValueError("schema2 selector required")
-    rows: list[dict] = []
-    for entry in sel["entries"]:
+def load_drafts(snapshot=None):
+    snap = snapshot or Snapshot()
+    sel = strict_json(snap.read(DRAFTS / 'draft-selection.json'))
+    if not isinstance(sel, dict) or sel.get('schema') != 2 or sel.get('hash_algorithm') != NORMALIZED_HASH:
+        raise ValueError('schema2 normalized selector required')
+    entries = sel.get('entries')
+    if not isinstance(entries, list) or not entries:
+        raise ValueError('nonempty selector entries required')
+    rows, batches, ids = [], set(), set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError('selector entry object required')
         path = selected_path(DRAFTS, entry)
-        verify_entry(path, entry, hash_algorithm=sel["hash_algorithm"])
-        for line in path.read_text("utf-8-sig").splitlines():
-            if line.strip():
-                rows.append(json.loads(line))
-    if sel_path.read_bytes() != sel_bytes:
-        raise ValueError("selection changed during load")
-    return rows
+        if entry['batch'] in batches:
+            raise ValueError('duplicate selected batch')
+        batches.add(entry['batch'])
+        data = snap.read(path); fp = fingerprint(data)
+        if entry.get('hash_algorithm', sel['hash_algorithm']) != NORMALIZED_HASH:
+            raise ValueError('selected hash algorithm mismatch')
+        if fp['sha256'] != entry.get('sha256'):
+            raise ValueError('selected hash mismatch')
+        # Raw archives may use CRLF; canonical bytes are the portable contract.
+        h = entry.get('raw_sha256')
+        if not isinstance(h, str) or len(h) != 64 or any(c not in '0123456789abcdef' for c in h):
+            raise ValueError('archival raw hash required')
+        batch = jsonl(data)
+        if type(entry.get('count')) is not int or entry['count'] != len(batch):
+            raise ValueError('selected count mismatch')
+        for row in batch:
+            for field in ('id', 'problem', 'category', 'sub_category', 'concept_id'):
+                required_text(row, field)
+            if row['id'] in ids:
+                raise ValueError('duplicate draft ID')
+            ids.add(row['id'])
+            parents = row.get('parent_training_ids', [])
+            if not isinstance(parents, list) or any(not isinstance(p, str) or not p.strip() for p in parents):
+                raise ValueError('invalid draft parents')
+        rows.extend(batch)
+    snap.check_unchanged()
+    return sorted(rows, key=lambda r: r['id'])
 
+def load_queries(snapshot=None):
+    snap = snapshot or Snapshot()
+    groups, ids, seen_scene_ids = {}, {}, set()
+    for split, path, lock_path in [('eval', EVAL, EVAL_LOCK), ('test', TEST, TEST_LOCK)]:
+        data = snap.read(path); lock = strict_json(snap.read(lock_path))
+        if not isinstance(lock, dict) or not isinstance(lock.get('entries'), list) or any(not isinstance(e, dict) for e in lock['entries']):
+            raise ValueError('query freeze lock shape mismatch')
+        matching = [e for e in lock.get('entries', []) if Path(e['path']).resolve() == path.resolve()]
+        if lock.get('locked') is not True or len(matching) != 1 or matching[0].get('sha256') != raw_sha(data):
+            raise ValueError('query freeze lock mismatch: ' + split)
+        for row in jsonl(data):
+            for field in ('id', 'problem', 'category', 'sub_category'):
+                required_text(row, field)
+            if row['id'] in seen_scene_ids:
+                raise ValueError('duplicate query scene ID')
+            seen_scene_ids.add(row['id'])
+            if 'problem_id' in row:
+                required_text(row, 'problem_id')
+            pid = row.get('problem_id') or row['id']
+            if not isinstance(pid, str) or not pid.strip():
+                raise ValueError('invalid query problem_id')
+            key = (split, pid)
+            if pid in ids and ids[pid] != key:
+                raise ValueError('query ID collides across splits')
+            ids[pid] = key
+            if key not in groups:
+                groups[key] = {**row, 'id': pid, '_split': split, '_source_records': []}
+            rec = groups[key]
+            if any(rec[field] != row[field] for field in ('problem', 'category', 'sub_category')):
+                raise ValueError('conflicting metadata for query question: ' + pid)
+            rec['_source_records'].append(row)
+    recs = sorted(groups.values(), key=lambda r: (r['_split'], r['id']))
+    aliases = {}
+    for rec in recs:
+        for alias in {rec['id']} | {r['id'] for r in rec['_source_records']}:
+            if alias in aliases and aliases[alias] is not rec:
+                raise ValueError('query alias collision')
+            aliases[alias] = rec
+    snap.check_unchanged()
+    return recs, aliases
 
-def load_queries() -> tuple[list[dict], dict[str, dict]]:
-    """All eval/test records + by-problem_id lookup (first record wins)."""
-    recs: list[dict] = []
-    by_pid: dict[str, dict] = {}
-    for path in (EVAL, TEST):
-        for line in path.read_text("utf-8-sig").splitlines():
-            if line.strip():
-                rec = json.loads(line)
-                rec["_source"] = str(path.relative_to(ROOT))
-                recs.append(rec)
-                pid = rec.get("problem_id") or rec.get("id")
-                by_pid.setdefault(pid, rec)
-    return recs, by_pid
-
-
-def parent_positive_queries() -> list[tuple[str, str]]:
-    """(parent_train_id, query_problem_id) from dev labels + quarantine."""
-    out: list[tuple[str, str]] = []
-    labels = json.loads(DEV_LABELS.read_text(encoding="utf-8"))
-    pop = json.loads(DEV_POP.read_text(encoding="utf-8"))
-    h2ids: dict[str, list[str]] = {}
-    for p in pop["pairs"]:
-        for side in ("query", "train"):
-            h2ids[p[side]["hash"]] = [s["id"] for s in p[side]["sources"]]
-    for a in labels["annotations"]:
-        if a["label"] != "泄漏":
+def parent_positive_queries(snapshot=None):
+    snap = snapshot or Snapshot()
+    labels = json_object(snap.read(DEV_LABELS)); pop = json_object(snap.read(DEV_POP))
+    extra_bytes = snap.read(DEV_EXTRA); extra = json_object(extra_bytes)
+    if labels.get('additional_findings_sha256') != raw_sha(extra_bytes):
+        raise ValueError('development extra-findings binding mismatch')
+    population = {p['pair_id']: p for p in pop['pairs']}
+    if len(population) != len(pop['pairs']):
+        raise ValueError('duplicate development population pair')
+    annotations = labels['annotations']
+    if len({a['pair_id'] for a in annotations}) != len(annotations):
+        raise ValueError('duplicate development annotation')
+    declared = labels.get('counts')
+    if declared is not None and declared != dict(Counter(a['label'] for a in annotations)):
+        raise ValueError('development label count mismatch')
+    cross = {(a['query_hash'], a['train_hash'], a['query_id'], a['train_id'])
+             for a in extra['leakage_pairs']}
+    out = []
+    for a in annotations:
+        if a['label'] not in ('泄漏', '不泄漏', '不确定'):
+            raise ValueError('invalid development label')
+        if a['label'] != '泄漏':
             continue
-        tids = h2ids.get(a["train_hash"], [])
-        qids = h2ids.get(a["query_hash"], [])
-        if tids and qids:
-            out.append((tids[0], qids[0].rsplit("-s", 1)[0] if "-s" in qids[0] else qids[0]))
-    quar = json.loads(QUARANTINE.read_text(encoding="utf-8"))
-    for p in quar.get("new_pairs", []):
-        out.append((p["train_id"], p["query_id"].rsplit("-s", 1)[0] if "-s" in p["query_id"] else p["query_id"]))
-    # dedupe, keep order
-    seen, dedup = set(), []
-    for t, q in out:
-        if (t, q) not in seen:
-            seen.add((t, q))
-            dedup.append((t, q))
-    return dedup
+        p = population.get(a['pair_id'])
+        if p is not None:
+            if (a['query_hash'], a['train_hash']) != (p['query']['hash'], p['train']['hash']):
+                raise ValueError('development annotation pair/hash mismatch')
+            out.extend((t['id'], q['id']) for t in p['train']['sources'] for q in p['query']['sources'])
+        else:
+            key = (a['query_hash'], a['train_hash'], a.get('query_id'), a.get('train_id'))
+            if key not in cross:
+                raise ValueError('unresolved development positive label')
+            out.append((a['train_id'], a['query_id']))
+    quarantine = json_object(snap.read(QUARANTINE))
+    for p in quarantine.get('new_pairs', []):
+        if p.get('review_label') != 'DIRECT_TEMPLATE_OVERLAP':
+            raise ValueError('quarantine item is not a reviewed positive')
+        out.append((p['train_id'], p['query_id']))
+    snap.check_unchanged()
+    return sorted(set(out))
 
-
-def build_pairs(drafts, recs, by_pid, rng) -> tuple[list[dict], dict[str, str]]:
-    strata: dict[str, str] = {}
-    pairs: list[dict] = []
-    by_id = {d["id"]: d for d in drafts}
-
-    def add(train: dict, query: dict, stratum: str) -> None:
-        pid = _pair_id(query["problem"], train["problem"])
-        if pid in strata:
-            return
-        strata[pid] = stratum
-        pairs.append({
-            "pair_id": pid,
-            "query": {"id": query.get("problem_id") or query.get("id"),
-                      "problem": query["problem"], "category": query["category"]},
-            "train": {"id": train["id"], "problem": train["problem"],
-                      "category": train["category"]},
-        })
-
-    # S1a: parent-derived. Drafts whose parents leaked a query, re-paired with it.
-    for parent_tid, query_pid in parent_positive_queries():
-        q = by_pid.get(query_pid) or by_pid.get(query_pid + "-s1")
-        if q is None:
-            continue
-        kids = [d for d in drafts if parent_tid in d.get("parent_training_ids", [])]
+def build_pairs(drafts, recs, by_pid, rng, *, parent_pairs=None):
+    parents = parent_positive_queries() if parent_pairs is None else parent_pairs
+    pairs, strata, seen_text = [], {}, set()
+    def add(d, q, stratum):
+        p = make_pair(d, q); pid = p['pair_id']
+        key = (p['query']['problem_sha256'], p['train']['problem_sha256'])
+        if pid in strata or key in seen_text:
+            return False
+        strata[pid] = stratum; seen_text.add(key); pairs.append(p)
+        return True
+    normalized_parents = set()
+    for tid, qid in parents:
+        if qid not in by_pid:
+            raise ValueError('development query identity unresolved: ' + qid)
+        normalized_parents.add((tid, by_pid[qid]['id']))
+    for tid, qid in sorted(normalized_parents):
+        q = by_pid[qid]
+        kids = [d for d in drafts if tid in d.get('parent_training_ids', [])]
         rng.shuffle(kids)
         for d in kids[:S1A_MAX_DRAFTS_PER_PAIR]:
-            add(d, q, "S1a_parent_derived")
-
-    # S1b: exact same-sub, per concept
-    by_sub: dict[str, list[dict]] = defaultdict(list)
+            add(d, q, 'S1a_parent_derived')
+    by_sub, by_cat, concepts = defaultdict(list), defaultdict(list), defaultdict(list)
     for q in recs:
-        by_sub[(q["category"], q.get("sub_category", ""))].append(q)
-    per_concept: dict[str, list[dict]] = defaultdict(list)
+        by_sub[(q['category'], q['sub_category'])].append(q)
+        by_cat[q['category']].append(q)
     for d in drafts:
-        for q in by_sub[(d["category"], d["sub_category"])]:
-            per_concept[d["concept_id"]].append((d, q))
-    for concept in sorted(per_concept):
-        pool = per_concept[concept]
-        rng.shuffle(pool)
-        taken = 0
+        concepts[d['concept_id']].extend((d, q) for q in by_sub[(d['category'], d['sub_category'])])
+    def sample(pool, quota, stratum):
+        rng.shuffle(pool); count = 0
         for d, q in pool:
-            if taken >= S1B_PER_CONCEPT:
+            if count == quota:
                 break
-            if _pair_id(q["problem"], d["problem"]) in strata:
-                continue
-            add(d, q, "S1b_same_sub")
-            taken += 1
-
-    # S2: same category, different sub
-    by_cat_q: dict[str, list[dict]] = defaultdict(list)
-    for q in recs:
-        by_cat_q[q["category"]].append(q)
-    for cat in sorted({d["category"] for d in drafts}):
-        pool = [(d, q) for d in drafts if d["category"] == cat
-                for q in by_cat_q[cat] if q.get("sub_category") != d["sub_category"]]
-        rng.shuffle(pool)
-        n = 0
-        for d, q in pool:
-            if n >= S2_PER_CATEGORY:
-                break
-            add(d, q, "S2_same_cat_diff_sub")
-            n += 1
-
-    # S3: cross-category
-    cats = sorted({d["category"] for d in drafts})
-    cross = [(d, q) for d in drafts for cat in cats if cat != d["category"]
-             for q in by_cat_q[cat]]
-    rng.shuffle(cross)
-    n = 0
-    for d, q in cross:
-        if n >= S3_TOTAL:
-            break
-        add(d, q, "S3_cross_cat")
-        n += 1
+            if add(d, q, stratum):
+                count += 1
+    for concept in sorted(concepts):
+        sample(concepts[concept], S1B_PER_CONCEPT, 'S1b_same_sub')
+    for cat in sorted({d['category'] for d in drafts}):
+        sample([(d, q) for d in drafts if d['category'] == cat for q in by_cat[cat]
+                if q['sub_category'] != d['sub_category']], S2_PER_CATEGORY, 'S2_same_cat_diff_sub')
+    sample([(d, q) for d in drafts for q in recs if d['category'] != q['category']], S3_TOTAL, 'S3_cross_cat')
+    require_pairs(pairs)
     return pairs, strata
 
+def build_dataset(snapshot):
+    snapshot.read(Path(__file__)); snapshot.read(ROOT / 'tools/holdout_contract.py'); snapshot.read(ROOT / 'tools/draft_io.py')
+    drafts = load_drafts(snapshot); recs, aliases = load_queries(snapshot)
+    parents = parent_positive_queries(snapshot)
+    pairs, strata = build_pairs(drafts, recs, aliases, random.Random(SEED), parent_pairs=parents)
+    snapshot.check_unchanged()
+    data = {'schema': PAIR_SCHEMA, 'sampling': sampling_config(),
+            'independence': INDEPENDENCE.copy(), 'labeling_rule': LABEL_RULE,
+            'labeling_rule_sha256': RULE_SHA, 'labeling_status': 'PENDING',
+            'source_bindings': snapshot.bindings(),
+            'sampling_unit': 'unique question; all scene records retained in source identity',
+            'pairs': pairs}
+    return data, strata, drafts, recs
+
+def label_template(data, pairs_sha):
+    return {'schema': LABEL_SCHEMA, 'pairs_raw_sha256': pairs_sha,
+            'labeling_rule_sha256': RULE_SHA, 'labeler': '',
+            'labels': [{'pair_id': p['pair_id'], 'query_problem_sha256': p['query']['problem_sha256'],
+                        'train_problem_sha256': p['train']['problem_sha256'],
+                        'label': None, 'reason': ''} for p in data['pairs']]}
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out-dir", type=Path, default=OUT_DIR)
-    args = ap.parse_args(argv)
+    ap.add_argument('--out-dir', type=Path, default=OUT_DIR); args = ap.parse_args(argv)
     try:
-        drafts = load_drafts()
-        recs, by_pid = load_queries()
-        rng = random.Random(SEED)
-        pairs, strata = build_pairs(drafts, recs, by_pid, rng)
-        args.out_dir.mkdir(parents=True, exist_ok=True)
-        pairs_path = args.out_dir / "holdout-pairs.json"
-        if pairs_path.exists():
-            raise ValueError("output exists: use a new directory")
-        blind = {
-            "schema": "holdout-pairs-v1",
-            "created": "2026-10-06",
-            "seed": SEED,
-            "sampling": "metadata-stratified; NO similarity scores; strata hidden from labeler",
-            "labeling_rule": "独立标注:本质考点+数学对象/题型/目标及求解结构均不变的文本变体=泄漏;共享知识点本身不算泄漏",
-            "labeler": "codex-independent; conflicts -> user adjudication",
-            "pairs": pairs,
-        }
-        with pairs_path.open("x", encoding="utf-8", newline="\n") as f:
-            f.write(json.dumps(blind, ensure_ascii=False, indent=2) + "\n")
-        from collections import Counter
-        print(json.dumps({"pairs": len(pairs), "strata": dict(Counter(strata.values())),
-                          "out": str(pairs_path)}, ensure_ascii=False))
+        pair_path = args.out_dir / 'holdout-pairs.json'; template = args.out_dir / 'holdout-labels.template.json'
+        if pair_path.exists() or template.exists():
+            raise ValueError('output exists: use a new directory')
+        snap = Snapshot(); data, strata, drafts, recs = build_dataset(snap)
+        h = write_new_json(pair_path, data, snap)
+        write_new_json(template, label_template(data, h), snap)
+        print(__import__('json').dumps({'pairs': len(data['pairs']), 'draft_questions': len(drafts),
+            'unique_query_questions': len(recs), 'query_scene_records': sum(len(q['_source_records']) for q in recs),
+            'strata': dict(Counter(strata.values())), 'independence': INDEPENDENCE,
+            'labeling_status': 'PENDING', 'out': str(pair_path)}, ensure_ascii=False))
         return 0
     except (OSError, ValueError, KeyError, TypeError) as exc:
-        print("[FAIL]", exc)
-        return 1
+        print('[FAIL]', exc); return 2
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

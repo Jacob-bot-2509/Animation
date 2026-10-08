@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>候选数据集全量审计报告（2026-10-02）</title>
+<style>
+@page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", "SimSun", sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 4pt 0; padding-bottom: 5pt;
+     border-bottom: 2.4pt solid #1f4e79; color: #1f4e79; }
+h2 { font-size: 13.5pt; margin: 15pt 0 6pt 0; padding: 3pt 0 3pt 7pt;
+     border-left: 4pt solid #1f4e79; background: #eef3f9; color: #16365c;
+     page-break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt 0; color: #1f4e79;
+     page-break-after: avoid; }
+p { margin: 4pt 0; }
+ul, ol { margin: 4pt 0 4pt 0; padding-left: 18pt; }
+li { margin: 2pt 0; }
+blockquote { margin: 7pt 0; padding: 5pt 9pt; background: #f5f7fa;
+             border-left: 3pt solid #9db8d2; color: #333; font-size: 9.2pt; }
+blockquote p { margin: 2pt 0; }
+code { font-family: Consolas, "Courier New", "Microsoft YaHei", monospace;
+       background: #f2f2f2; padding: 0.5pt 2.5pt; border-radius: 2pt;
+       font-size: 8.8pt; }
+pre { background: #f6f8fa; border: 0.5pt solid #d6dde5; border-radius: 3pt;
+      padding: 6pt 8pt; overflow-wrap: anywhere; page-break-inside: avoid; }
+pre code { background: none; font-size: 8.6pt; }
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 9pt 0;
+        font-size: 8.6pt; }
+th, td { border: 0.5pt solid #b7c3d0; padding: 3pt 4.5pt;
+         vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+th { background: #dfe8f2; color: #16365c; font-weight: 600; }
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+tbody tr:nth-child(even) { background: #f7fafd; }
+hr { border: none; border-top: 0.8pt solid #c9d3de; margin: 12pt 0; }
+a { color: #1f4e79; text-decoration: none; overflow-wrap: anywhere; }
+strong { color: #000; }
+h1 + blockquote { margin-top: 8pt; }
+</style>
+</head>
+<body>
+<h1>全量数据渲染检查报告（2026-10-05）</h1>
+<blockquote>
+<p>目的：快速看清<strong>所有数据</strong>的公式排版/渲染情况
+方式：把每个数据集的<strong>全部字段</strong>（problem / solution / answer / scene_spec.objects / scene_spec.steps）打成渲染包 MD，用项目自带 <code>tools/render_review.py --check</code>（本地 MathJax tex-svg + headless Edge，<code>--dump-dom</code> 统计未排版公式）逐集核对
+复现：
+<code>python tools/render_review.py &lt;render-pack&gt;.md --out-dir &lt;dir&gt; --check --skip-pdf</code>
+产物：<code>render-packs/*.md</code>（输入）、<code>render/*/</code>（HTML 证据）、<code>render-results.json</code>（机读结果）</p>
+</blockquote>
+<hr />
+<h2>0. 结论</h2>
+<p><strong>全部 824 条记录、16,539 条公式，未排版 0 条 —— 公式排版层面全部通过。</strong></p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th style="text-align:right">记录</th>
+<th style="text-align:right">公式（已排版）</th>
+<th style="text-align:right">未排版</th>
+<th style="text-align:right">耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/v1/raw</code>（原训练池 63）</td>
+<td style="text-align:right">63</td>
+<td style="text-align:right">884</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">1.7s</td>
+</tr>
+<tr>
+<td><code>data/v2/train/leakage-isolated-v3</code>（现行训练池）</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">693</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">1.5s</td>
+</tr>
+<tr>
+<td><code>data/v2/eval</code>（冻结 eval）</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">4540</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">6.3s</td>
+</tr>
+<tr>
+<td><code>data/v2/test</code>（冻结 test）</td>
+<td style="text-align:right">150</td>
+<td style="text-align:right">2106</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">3.3s</td>
+</tr>
+<tr>
+<td><code>reviews/…/draft-codex-repair-v4-final</code>（264 题草稿）</td>
+<td style="text-align:right">264</td>
+<td style="text-align:right">8316</td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">9.5s</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align:right"><strong>824</strong></td>
+<td style="text-align:right"><strong>16,539</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right">~22s</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>另用项目自有审阅稿 MD 复核一次（<code>dataset.md</code> 884、<code>data-test.md</code> 2025、<code>dataset-eval.md</code> 3469、<code>outputs/draft-review/draft-review-v4-final.md</code> 8316），同样<strong>全部 0 未排版</strong>。</p>
+</blockquote>
+<hr />
+<h2>1. 静态渲染风险扫描（同一批数据的文本层）</h2>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th style="text-align:right">公式 span</th>
+<th style="text-align:right"><code>$</code> 奇偶异常</th>
+<th style="text-align:right">花括号不平衡</th>
+<th style="text-align:right"><code>\left/\right</code> 不配对</th>
+<th style="text-align:right">公式内中文</th>
+<th style="text-align:right">公式内全角</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1 raw 63</td>
+<td style="text-align:right">884</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>v2 train 池</td>
+<td style="text-align:right">693</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>v2 eval</td>
+<td style="text-align:right">4548</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>v2 test</td>
+<td style="text-align:right">2106</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>drafts v4-final</td>
+<td style="text-align:right">8316</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align:right"><strong>16,547</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+<td style="text-align:right"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>静态计数比渲染计数多 8 条：来自 eval 中 3 条记录使用 <code>$$…$$</code> <strong>显示公式</strong>（<code>eval-linalg-019-s3</code>、<code>eval-linalg-021-s2</code>、<code>eval-linalg-032-s3</code>）。渲染器的 MathJax 配置含 <code>displayMath:[['$$','$$']]</code>，这 8 处<strong>均正常排版</strong>，属<strong>写法不统一</strong>（其余 800+ 条一律单 <code>$</code> 行内），不是渲染缺陷。</li>
+<li>无 <code>$$</code> 之外的空公式、无未闭合定界符。</li>
+</ul>
+<hr />
+<h2>2. 与&quot;资产渲染验证&quot;的区别（重要）</h2>
+<p>上表是<strong>公式排版</strong>（MathJax→SVG）层面。项目另有<strong>逐资产渲染/数学验收</strong>（manim 出图 + 语义校验），其证据在 <code>data/asset_evidence.json</code>：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schema</td>
+<td><code>asset-evidence-progress-v1</code></td>
+</tr>
+<tr>
+<td>记录总数</td>
+<td><strong>497</strong></td>
+</tr>
+<tr>
+<td>已语义验证</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>语义未通过/未验证</td>
+<td><strong>496</strong></td>
+</tr>
+<tr>
+<td>状态</td>
+<td><strong>NOT READY</strong></td>
+</tr>
+<tr>
+<td>scope 原文</td>
+<td>&quot;One individually reviewed asset; 496 assets remain unverified. This is incomplete progress evidence.&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>→ 也就是说：<strong>公式排版全绿，但逐资产渲染验收仍是 1/497</strong>；<code>preflight --ready</code> 仍会因 <code>asset_evidence</code> 阻断。</p>
+<hr />
+<h2>3. 检查口径与环境</h2>
+<ul>
+<li><strong>渲染链路</strong>：<code>tools/render_review.py</code> → <code>protect_math</code> 把 <code>$…$</code>/<code>$$…$$</code> 包进 <code>&lt;span class=&quot;math&quot;&gt;</code> → 本地 <code>tools/assets/mathjax-tex-svg.js</code>（2.1 MB，<strong>无需联网</strong>）+ headless Edge（<code>--dump-dom --virtual-time-budget=240000</code>）→ 统计含 <code>&lt;mjx-container&gt;</code> 的 span 数；未排版 = span 总数 − 已排版。</li>
+<li><strong>覆盖面</strong>：每个数据集<strong>全部记录的全部字段</strong>（含 <code>scene_spec.objects</code> / <code>scene_spec.steps</code>），非抽样。</li>
+<li><strong>只读</strong>：源数据未改动；渲染包与 HTML 写入 <code>dataset_audit_2026-10-05-render-check/</code>。</li>
+</ul>
+<hr />
+<h2>4. 产物</h2>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RENDER_REPORT.md</code> / <code>.pdf</code></td>
+<td>本报告</td>
+</tr>
+<tr>
+<td><code>render-results.json</code></td>
+<td>逐数据集&quot;已排版/未排版&quot;机读结果</td>
+</tr>
+<tr>
+<td><code>render-packs/*.md</code></td>
+<td>5 个渲染包（824 条记录全字段）</td>
+</tr>
+<tr>
+<td><code>render/&lt;dataset&gt;/*.html</code></td>
+<td>渲染后的 HTML 证据（含 MJDONE 标记）</td>
+</tr>
+<tr>
+<td><code>_scan.py</code> / <code>_dollar.py</code> / <code>_packs.py</code></td>
+<td>只读检查脚本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本轮为只读渲染检查，未修改任何数据；未启动训练、未下载模型、未生成动画（未执行 manim 渲染，仅公式排版与静态扫描）。</p>
+
+</body>
+</html>

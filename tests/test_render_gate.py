@@ -23,35 +23,20 @@ class TestRenderGate(unittest.TestCase):
         self.assertEqual(r["status"], "unverified")
         self.assertEqual(r["unverified"], ["render"])
 
-    def test_manim_available_render_executes(self):
-        """B4: 环境可用时真实执行(用假 python 输出验证执行路径)。"""
-        with mock.patch("animtrain.render_gate.check_manim_available",
-                        return_value=(True, "manim 可用")), \
-             mock.patch.object(sys, "platform", "linux"), \
-             mock.patch("subprocess.Popen") as popen:
-            proc = mock.MagicMock()
-            proc.communicate.return_value = ("", "")
-            proc.returncode = 0
-            popen.return_value = proc
-            r = render_check("x = 1", trusted=True)
+    def test_manim_available_routes_to_os_transport(self):
+        with mock.patch("animtrain.render_gate.check_manim_available", return_value=(True, "ok")), \
+             mock.patch("animtrain.sandbox_execution.render_scene", return_value={"ok": True, "status": "rendered"}) as backend, \
+             mock.patch("subprocess.Popen") as host:
+            r = render_check("fixed scene", trusted=True)
         self.assertTrue(r["ok"])
-        self.assertEqual(r["status"], "rendered")
-        # 必须走隔离子进程(禁 shell 由列表参数保证,断言命令形如 python -m manim)
-        args = popen.call_args.args[0]
-        self.assertIn("-m", args) and self.assertIn("manim", args)
+        backend.assert_called_once_with("fixed scene", python=None)
+        host.assert_not_called()
 
     def test_render_failure_reported(self):
-        with mock.patch("animtrain.render_gate.check_manim_available",
-                        return_value=(True, "ok")), \
-             mock.patch.object(sys, "platform", "linux"), \
-             mock.patch("subprocess.Popen") as popen:
-            proc = mock.MagicMock()
-            proc.communicate.return_value = ("", "AttributeError: no plot_curve")
-            proc.returncode = 1
-            popen.return_value = proc
-            r = render_check("bad code", trusted=True)
+        with mock.patch("animtrain.render_gate.check_manim_available", return_value=(True, "ok")), \
+             mock.patch("animtrain.sandbox_execution.render_scene", return_value={"ok": False, "status": "failed", "detail": "bad plot_curve"}):
+            r = render_check("bad scene", trusted=True)
         self.assertFalse(r["ok"])
-        self.assertEqual(r["status"], "failed")
         self.assertIn("plot_curve", r["detail"])
 
     def test_math_missing_unverified(self):
@@ -63,7 +48,8 @@ class TestRenderGate(unittest.TestCase):
 
     def test_untrusted_code_blocked_by_default(self):
         """BR6: 隔离不足时默认拒绝执行(trusted=False)。"""
-        r = render_check("任意代码", trusted=False)
+        with mock.patch("animtrain.sandbox_execution.check_certificate", return_value=(False, "missing")):
+            r = render_check("任意代码", trusted=False)
         self.assertFalse(r["ok"])
         self.assertEqual(r["status"], "unverified")
         self.assertEqual(r["unverified"], ["render_isolation"])
@@ -212,7 +198,8 @@ class TestB4Hardening(unittest.TestCase):
 
     def test_isolation_state_honest(self):
         from animtrain.render_gate import _isolation_state
-        st = _isolation_state()
+        with mock.patch("animtrain.sandbox_execution.check_certificate", return_value=(False, "生产隔离尚未联合验收")):
+            st = _isolation_state()
         # Windows 下 job object 可用时内存上限已实施;不可用则如实 None
         if sys.platform == "win32":
             self.assertIn(st["memory_limit_mb"], (None, 2048))
@@ -220,12 +207,13 @@ class TestB4Hardening(unittest.TestCase):
             self.assertIsNone(st["memory_limit_mb"])
         # msg_259:网络隔离未验收(_socket 可绕过 shim),shim 仅 best-effort guard
         self.assertFalse(st["network_isolation"])
-        self.assertTrue(st["python_socket_guard"])
-        self.assertEqual(st["fs_isolation"], "cwd_only")  # fs 仍未完整隔离
+        self.assertFalse(st["python_socket_guard"])
+        self.assertEqual(st["fs_isolation"], "shared_explicit_acl")  # fs 仍未完整隔离
 
     def test_check_exec_isolation_blocks(self):
         from animtrain.preflight import check_exec_isolation
-        ok, detail = check_exec_isolation()
+        with mock.patch("animtrain.sandbox_execution.check_certificate", return_value=(False, "生产隔离尚未联合验收")):
+            ok, detail = check_exec_isolation()
         # 网络 OS 级边界未实施 → 任何平台都必须阻断(如实,不假绿)
         self.assertFalse(ok)
-        self.assertIn("隔离未实施", detail)
+        self.assertIn("联合验收", detail)

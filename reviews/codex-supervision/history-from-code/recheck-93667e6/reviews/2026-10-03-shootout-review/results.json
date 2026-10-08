@@ -1,0 +1,353 @@
+{
+  "head": "9ce2766d7f9476ad5fedfe81a8a25e7b24628de1",
+  "source_hashes": {
+    "tools/screening_probe.py": "5a7d376eb952a53ec358cafd1fa6b32b55e7daa98f5be6b96465645b22f06ff3",
+    "tools/screening_qlora_probe.py": "493ab37a96502949bc57344086afbd77d1e4cd9b225dd2970f0040414f573b0b",
+    "tools/model_provenance.py": "7a8d86e30466c3c685e8ffe0c5bbe27a9826ad9c46a72dfa347c887b4fcf83aa",
+    "MODEL_SHOOTOUT_PLAN.md": "4a2f28517982bac1ddd578e25581d515d05662acb8f7b3fdd8b31f4367897fa6"
+  },
+  "execution": "mock-only; local tokenizer read; no model execution",
+  "parser": [
+    {
+      "case": "final_json",
+      "parsed": true,
+      "clean": true
+    },
+    {
+      "case": "thinking_has_json_then_valid_final",
+      "parsed": false,
+      "clean": false
+    },
+    {
+      "case": "thinking_only_no_final_answer",
+      "parsed": true,
+      "clean": true
+    }
+  ],
+  "sample_selection": {
+    "count": 20,
+    "ids": [
+      "calc-derivative-001",
+      "calc-improper-002",
+      "calc-param-improper-003",
+      "calc-double-integral-004",
+      "calc-green-005",
+      "calc-limit-006",
+      "prob-038",
+      "prob-039",
+      "prob-040",
+      "prob-041",
+      "prob-042",
+      "geom-020",
+      "geom-021",
+      "geom-022",
+      "geom-023",
+      "linalg-048",
+      "linalg-049",
+      "linalg-050",
+      "linalg-051",
+      "linalg-052"
+    ],
+    "sub_categories": {
+      "数学分析": [
+        "导数",
+        "反常积分",
+        "反常积分",
+        "重积分",
+        "格林公式",
+        "极限"
+      ],
+      "概率论": [
+        "条件概率与独立性",
+        "几何概型",
+        "常见分布",
+        "常见分布",
+        "大数定律"
+      ],
+      "解析几何": [
+        "直线与平面",
+        "直线与平面",
+        "直线与平面",
+        "直线与平面"
+      ],
+      "高等代数": [
+        "线性变换",
+        "特征值与特征向量",
+        "行列式",
+        "多项式",
+        "多项式"
+      ]
+    }
+  },
+  "actual_synthetic_token_lengths": {
+    "qwen2.5-7b-instruct": {
+      "1024": 680,
+      "2048": 1364,
+      "4096": 2728
+    },
+    "qwen3-4b": {
+      "1024": 680,
+      "2048": 1364,
+      "4096": 2728
+    },
+    "qwen3-8b": {
+      "1024": 680,
+      "2048": 1364,
+      "4096": 2728
+    }
+  },
+  "local_generation_defaults": {
+    "qwen2.5-7b-instruct": {
+      "bos_token_id": 151643,
+      "pad_token_id": 151643,
+      "do_sample": true,
+      "eos_token_id": [
+        151645,
+        151643
+      ],
+      "repetition_penalty": 1.05,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "transformers_version": "4.37.0"
+    },
+    "qwen3-4b": {
+      "bos_token_id": 151643,
+      "do_sample": true,
+      "eos_token_id": [
+        151645,
+        151643
+      ],
+      "pad_token_id": 151643,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95,
+      "transformers_version": "4.51.0"
+    },
+    "qwen3-8b": {
+      "bos_token_id": 151643,
+      "do_sample": true,
+      "eos_token_id": [
+        151645,
+        151643
+      ],
+      "pad_token_id": 151643,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95,
+      "transformers_version": "4.51.0"
+    }
+  },
+  "inference_False": {
+    "rc": 0,
+    "calls": [
+      [
+        "model_load",
+        {
+          "quantization_config": {
+            "load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "bf16",
+            "bnb_4bit_quant_type": "nf4"
+          },
+          "device_map": "auto",
+          "torch_dtype": "bf16",
+          "trust_remote_code": false
+        }
+      ],
+      [
+        "reset_peak",
+        true
+      ],
+      [
+        "chat_template",
+        {
+          "tokenize": false,
+          "add_generation_prompt": true
+        }
+      ],
+      [
+        "generate",
+        {
+          "max_new_tokens": 1024,
+          "do_sample": true,
+          "temperature": 0.7,
+          "top_p": 0.9,
+          "pad_token_id": 99
+        }
+      ]
+    ],
+    "saved_fields": [
+      "category",
+      "gen_sec",
+      "id",
+      "n_gen_tokens",
+      "output_preview",
+      "parsed",
+      "spec_problems"
+    ],
+    "saved_preview_length": 200,
+    "full_output_stored": false
+  },
+  "inference_True": {
+    "rc": 0,
+    "calls": [
+      [
+        "model_load",
+        {
+          "quantization_config": {
+            "load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "bf16",
+            "bnb_4bit_quant_type": "nf4"
+          },
+          "device_map": "auto",
+          "torch_dtype": "bf16",
+          "trust_remote_code": false
+        }
+      ],
+      [
+        "reset_peak",
+        true
+      ],
+      [
+        "chat_template",
+        {
+          "tokenize": false,
+          "add_generation_prompt": true
+        }
+      ],
+      [
+        "generate",
+        {
+          "max_new_tokens": 1024,
+          "do_sample": true,
+          "temperature": 0.7,
+          "top_p": 0.9,
+          "pad_token_id": 99
+        }
+      ]
+    ],
+    "saved_fields": [
+      "category",
+      "gen_sec",
+      "id",
+      "n_gen_tokens",
+      "output_preview",
+      "parsed",
+      "spec_problems"
+    ],
+    "saved_preview_length": 200,
+    "full_output_stored": false
+  },
+  "tag_escape": {
+    "outside_inference_directory": true
+  },
+  "inference_same_tag_rerun": {
+    "overwrites_without_force": true,
+    "generation_settings_stored": false
+  },
+  "qlora": {
+    "runs": [
+      {
+        "requested": 2048,
+        "calls": [
+          [
+            "model_load",
+            {
+              "quantization_config": {
+                "load_in_4bit": true,
+                "bnb_4bit_compute_dtype": "bf16",
+                "bnb_4bit_quant_type": "nf4"
+              },
+              "device_map": "auto",
+              "torch_dtype": "bf16",
+              "trust_remote_code": false
+            }
+          ],
+          [
+            "reset_peak",
+            true
+          ],
+          [
+            "forward_tokens",
+            1193
+          ],
+          [
+            "backward",
+            true
+          ],
+          [
+            "optimizer_step",
+            true
+          ],
+          [
+            "synchronize",
+            true
+          ]
+        ]
+      },
+      {
+        "requested": 4096,
+        "calls": [
+          [
+            "model_load",
+            {
+              "quantization_config": {
+                "load_in_4bit": true,
+                "bnb_4bit_compute_dtype": "bf16",
+                "bnb_4bit_quant_type": "nf4"
+              },
+              "device_map": "auto",
+              "torch_dtype": "bf16",
+              "trust_remote_code": false
+            }
+          ],
+          [
+            "reset_peak",
+            true
+          ],
+          [
+            "forward_tokens",
+            2387
+          ],
+          [
+            "backward",
+            true
+          ],
+          [
+            "optimizer_step",
+            true
+          ],
+          [
+            "synchronize",
+            true
+          ]
+        ]
+      }
+    ],
+    "surviving_summary_files": 1,
+    "surviving_seq_len": 4096,
+    "checkpoint_dirs": [
+      "mock-ckpt"
+    ]
+  },
+  "provenance_no_weights": {
+    "rc": 0,
+    "weight_files": []
+  },
+  "provenance_lfs_pointer": {
+    "rc": 0,
+    "weight_files": [
+      {
+        "file": "model.safetensors",
+        "size": 131,
+        "sha256": "c0562c00993608344d93ec4d0a0c47cff38ab1e17bb7f96e91bb9f0d0650162b"
+      }
+    ]
+  },
+  "provenance_parent_git": {
+    "rc": 0,
+    "reported_commit": "9ce2766d7f9476ad5fedfe81a8a25e7b24628de1",
+    "project_commit": "9ce2766d7f9476ad5fedfe81a8a25e7b24628de1"
+  },
+  "source_unchanged_during_probe": true
+}

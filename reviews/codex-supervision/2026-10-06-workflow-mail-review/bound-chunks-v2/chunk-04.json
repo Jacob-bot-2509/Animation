@@ -1,0 +1,2218 @@
+{
+  "schema": "linalg048-semantic-review-chunk-v2",
+  "packet_raw_sha256": "eb37c77a6c2619726f2b297ae92ec12778d908140c542af5893970ab8578b401",
+  "definition": "核心数学对象、条件、目标及求解结构保持不变，仅更换数值、符号或表述即为泄漏；训练与评测/测试需要隔离。共享知识点本身不足以判泄漏。",
+  "candidate": {
+    "id": "linalg-048",
+    "category": "高等代数",
+    "sub_category": "线性变换",
+    "function_family": "线性变换",
+    "visual_style": "空间几何图形",
+    "efficiency_tags": [
+      "几何意义",
+      "剪切变换"
+    ],
+    "problem": "已知矩阵 $A=\\begin{pmatrix}1&3\\\\0&1\\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。",
+    "solution": "对任意点 $(x,y)$，$T(x,y)=A\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+3y\\\\y\\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\\vec e_1=(1,0)$ 不动，$\\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\\in\\mathbb R$，$T(\\mathbb R\\times\\{c\\})=\\mathbb R\\times\\{c\\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\\times\\{c\\}$ 则映为 $[3c,1+3c]\\times\\{c\\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\\in\\mathbb R$，即 $X-3Y=c$，斜率为 $\\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\\det A=1\\cdot1-3\\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\\|(0,1)\\|=1$ 而 $\\|T(0,1)\\|=\\sqrt{10}$。",
+    "answer": "水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\\det A=1$，长度一般不保持。",
+    "scene_spec": {
+      "objects": [
+        "带有刻度的黑色坐标轴",
+        "蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$",
+        "橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$",
+        "青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线",
+        "白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$"
+      ],
+      "steps": [
+        "第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。",
+        "第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。",
+        "第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。",
+        "第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。",
+        "第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。"
+      ]
+    },
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+  },
+  "pairs": [
+    {
+      "split": "eval",
+      "id": "eval-calc-012",
+      "problem_sha256": "3ceee48b951db0cf5ab977fffbca0f0b36d1f3d4d9026a704c868664ae430418",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-013",
+      "problem_sha256": "8e48e0d8ad49823f0064a70b3217ea20b0fa65ff03d0176a75048467e7b41bec",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-014",
+      "problem_sha256": "b0930d72502ed7c2b6cbef33f6e2c171c9057c2d445f1c365a80e26da7885f0d",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-015",
+      "problem_sha256": "5cd7f65b3e3039904e3bbdbb2bc7d15882a2e4e82ec30681d3c1af06cace1991",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-016",
+      "problem_sha256": "ef2e5e7702d2b90237fc249adbcc6c5b7f04102067164afafc9d46b64dfe1194",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-017",
+      "problem_sha256": "2c5d8abc26a7152fe6af6b3f68bcbd35fa26b039383b1d251333e83bca9a0f93",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-018",
+      "problem_sha256": "2fc7588e696ba41d01efe9aabb14e323188eeabad475513d85b31e02ae4f98ce",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-019",
+      "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-020",
+      "problem_sha256": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-021",
+      "problem_sha256": "14f8b0e55c16d34159961ff30763784042a90a216a873d65ed33b4a1aedc559e",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-022",
+      "problem_sha256": "6f25c4b291c4ba7e232e7b5ddff9b9c1da8909c60fc6e75f5697b45ec1e988a6",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-023",
+      "problem_sha256": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-024",
+      "problem_sha256": "d20461e9e541de80f28d13de7faaecbf4cc2d3fbe2d2fd544f283c9e1e978f20",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-025",
+      "problem_sha256": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-026",
+      "problem_sha256": "1caaeaba6e895a4e687b662f0e655819f7254e88f05da21050dea5d44311af8a",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-027",
+      "problem_sha256": "62572e2ce02c00bea462d6235ed7e90121dab0c9b96cb6f1986f8a089896632e",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-028",
+      "problem_sha256": "166a03d5727e13a672fcf7c0f8591ca033730421b6ed1cce21b9dc0a00c4c7fd",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-029",
+      "problem_sha256": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+      "verdict": null,
+      "reason": ""
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-030",
+      "problem_sha256": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+      "verdict": null,
+      "reason": ""
+    }
+  ],
+  "material": [
+    {
+      "split": "eval",
+      "id": "eval-calc-012",
+      "problem_sha256": "3ceee48b951db0cf5ab977fffbca0f0b36d1f3d4d9026a704c868664ae430418",
+      "source_records": [
+        {
+          "id": "eval-calc-012-s1",
+          "problem_id": "eval-calc-012",
+          "solution_id": "eval-calc-012-s1",
+          "method": "和角公式",
+          "category": "数学分析",
+          "sub_category": "三角恒等式",
+          "problem": "求 $\\tan 15^\\circ$ 的精确值。",
+          "solution": "$\\tan 15^\\circ=\\tan(45^\\circ-30^\\circ)=\\dfrac{\\tan 45^\\circ-\\tan 30^\\circ}{1+\\tan 45^\\circ\\tan 30^\\circ}=\\dfrac{1-\\frac{\\sqrt{3}}{3}}{1+\\frac{\\sqrt{3}}{3}}=\\dfrac{3-\\sqrt{3}}{3+\\sqrt{3}}$。分子分母同乘 $3-\\sqrt{3}$：$\\dfrac{(3-\\sqrt{3})^2}{9-3}=\\dfrac{12-6\\sqrt{3}}{6}=2-\\sqrt{3}$。",
+          "answer": "$2-\\sqrt{3}$",
+          "scene_spec": {
+            "objects": [
+              "单位圆中 $15^\\circ$ 角与 $45^\\circ-30^\\circ$ 分解",
+              "和角公式 $\\tan(45^\\circ-30^\\circ)$ 的代数代入动画"
+            ],
+            "steps": [
+              "第一步：以和角公式为主线，建立数学分析·三角恒等式场景并呈现该解法的关键图形。",
+              "第二步：单位圆中 $15^\\circ$ 角与 $45^\\circ-30^\\circ$ 分解。",
+              "第三步：和角公式 $\\tan(45^\\circ-30^\\circ)$ 的代数代入动画。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数(特殊角)",
+          "visual_style": "单位圆角分解",
+          "efficiency_tags": [
+            "单位圆中 $15^\\circ$ 角与 $45^\\circ-30^\\circ$ 分解",
+            "和角公式 $\\tan(45^\\circ-30^\\circ)$ 的代数代入动画"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-012-s2",
+          "problem_id": "eval-calc-012",
+          "solution_id": "eval-calc-012-s2",
+          "method": "半角公式",
+          "category": "数学分析",
+          "sub_category": "三角恒等式",
+          "problem": "求 $\\tan 15^\\circ$ 的精确值。",
+          "solution": "$\\tan 15^\\circ=\\tan\\dfrac{30^\\circ}{2}=\\dfrac{1-\\cos 30^\\circ}{\\sin 30^\\circ}=\\dfrac{1-\\frac{\\sqrt{3}}{2}}{\\frac{1}{2}}=2-\\sqrt{3}$。",
+          "answer": "$2-\\sqrt{3}$",
+          "scene_spec": {
+            "objects": [
+              "$30^\\circ$ 角的角平分线构造",
+              "半角公式 $\\tan\\dfrac{\\theta}{2}=\\dfrac{1-\\cos\\theta}{\\sin\\theta}$ 的标注"
+            ],
+            "steps": [
+              "第一步：以半角公式为主线，建立数学分析·三角恒等式场景并呈现该解法的关键图形。",
+              "第二步：$30^\\circ$ 角的角平分线构造。",
+              "第三步：半角公式 $\\tan\\dfrac{\\theta}{2}=\\dfrac{1-\\cos\\theta}{\\sin\\theta}$ 的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数(特殊角)",
+          "visual_style": "单位圆角分解",
+          "efficiency_tags": [
+            "$30^\\circ$ 角的角平分线构造",
+            "半角公式 $\\tan\\dfrac{\\theta}{2}=\\dfrac{1-\\cos\\theta}{\\sin\\theta}$ 的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-012-s3",
+          "problem_id": "eval-calc-012",
+          "solution_id": "eval-calc-012-s3",
+          "method": "几何构造",
+          "category": "数学分析",
+          "sub_category": "三角恒等式",
+          "problem": "求 $\\tan 15^\\circ$ 的精确值。",
+          "solution": "用 $30^\\circ$-$60^\\circ$-$90^\\circ$ 三角形（边长 $1:\\sqrt3:2$）拼出宽 $1$、长 $2+\\sqrt3$ 的矩形：长边由\"长直角边 $\\sqrt3$ 与斜边 $2$ 首尾相接\"构成，宽取短直角边 $1$。该矩形的对角线与长边的夹角 $\\alpha$ 满足 $\\tan\\alpha=\\dfrac{1}{2+\\sqrt3}$。分母有理化：$\\dfrac{1}{2+\\sqrt3}=\\dfrac{2-\\sqrt3}{(2+\\sqrt3)(2-\\sqrt3)}=2-\\sqrt3$。由解法一 $\\tan 15^\\circ=2-\\sqrt3$，且 $0<\\alpha<90^\\circ$ 内正切一一对应，故 $\\alpha=15^\\circ$。此构造同时给出 $\\tan 75^\\circ=2+\\sqrt3$。",
+          "answer": "$2-\\sqrt{3}$",
+          "scene_spec": {
+            "objects": [
+              "$30^\\circ$-$60^\\circ$-$90^\\circ$ 三角形（边 $1:\\sqrt3:2$）的拼合",
+              "$1\\times(2+\\sqrt3)$ 矩形对角线与 $15^\\circ$ 角的对应",
+              "分母有理化 $1/(2+\\sqrt3)=2-\\sqrt3$"
+            ],
+            "steps": [
+              "第一步：以几何构造为主线，建立数学分析·三角恒等式场景并呈现该解法的关键图形。",
+              "第二步：$30^\\circ$-$60^\\circ$-$90^\\circ$ 三角形（边 $1:\\sqrt3:2$）的拼合。",
+              "第三步：$1\\times(2+\\sqrt3)$ 矩形对角线与 $15^\\circ$ 角的对应。",
+              "第四步：分母有理化 $1/(2+\\sqrt3)=2-\\sqrt3$。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数(特殊角)",
+          "visual_style": "单位圆角分解",
+          "efficiency_tags": [
+            "$30^\\circ$-$60^\\circ$-$90^\\circ$ 三角形（边 $1:\\sqrt3:2$）的拼合",
+            "$1\\times(2+\\sqrt3)$ 矩形对角线与 $15^\\circ$ 角的对应",
+            "分母有理化 $1/(2+\\sqrt3)=2-\\sqrt3$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "c06727887fed2dd193f30a4eac50d9cdd86033c3e0024e76edf4739fd91c703d",
+        "98678b7efe93549643c7a0b72afc5de226b221a2f65f341707f75306e10b5a63",
+        "33bef4e2f1d9b2d230acaecb537ece75ff048536662f0b6ad1853c6e35f1d1ea"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-013",
+      "problem_sha256": "8e48e0d8ad49823f0064a70b3217ea20b0fa65ff03d0176a75048467e7b41bec",
+      "source_records": [
+        {
+          "id": "eval-calc-013-s1",
+          "problem_id": "eval-calc-013",
+          "solution_id": "eval-calc-013-s1",
+          "method": "分部积分两次",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+          "solution": "第一次：$\\int x^2e^xdx=x^2e^x-2\\int xe^xdx$。第二次：$\\int xe^xdx=xe^x-\\int e^xdx=(x-1)e^x$。故原式 $=x^2e^x-2(x-1)e^x+C=(x^2-2x+2)e^x+C$。",
+          "answer": "$(x^2-2x+2)e^x+C$",
+          "scene_spec": {
+            "objects": [
+              "两次分部积分的逐步拆解",
+              "每次 $u,dv$ 选取的标注"
+            ],
+            "steps": [
+              "第一步：以分部积分两次为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：两次分部积分的逐步拆解。",
+              "第三步：每次 $u,dv$ 选取的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×指数函数积分",
+          "visual_style": "表格分部法",
+          "efficiency_tags": [
+            "两次分部积分的逐步拆解",
+            "每次 $u,dv$ 选取的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-013-s2",
+          "problem_id": "eval-calc-013",
+          "solution_id": "eval-calc-013-s2",
+          "method": "待定系数法",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+          "solution": "因被积函数是 $x^2e^x$，设原函数为 $(ax^2+bx+c)e^x$。求导比对：$\\left[(ax^2+bx+c)e^x\\right]'=\\left[ax^2+(2a+b)x+(b+c)\\right]e^x\\equiv x^2e^x$，故 $a=1$，$2a+b=0\\Rightarrow b=-2$，$b+c=0\\Rightarrow c=2$，得 $(x^2-2x+2)e^x$。",
+          "answer": "$(x^2-2x+2)e^x+C$",
+          "scene_spec": {
+            "objects": [
+              "待定系数 $(ax^2+bx+c)e^x$ 的求导比对动画",
+              "系数 $a,b,c$ 的方程组求解"
+            ],
+            "steps": [
+              "第一步：以待定系数法为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：待定系数 $(ax^2+bx+c)e^x$ 的求导比对动画。",
+              "第三步：系数 $a,b,c$ 的方程组求解。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×指数函数积分",
+          "visual_style": "表格分部法",
+          "efficiency_tags": [
+            "待定系数 $(ax^2+bx+c)e^x$ 的求导比对动画",
+            "系数 $a,b,c$ 的方程组求解"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-013-s3",
+          "problem_id": "eval-calc-013",
+          "solution_id": "eval-calc-013-s3",
+          "method": "递推公式",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x^2e^x\\,dx$。",
+          "solution": "记 $I_n=\\int x^ne^xdx$，分部得 $I_n=x^ne^x-nI_{n-1}$。$I_0=e^x$，$I_1=xe^x-I_0=(x-1)e^x$，$I_2=x^2e^x-2I_1=(x^2-2x+2)e^x$。",
+          "answer": "$(x^2-2x+2)e^x+C$",
+          "scene_spec": {
+            "objects": [
+              "递推链 $I_0\\to I_1\\to I_2$ 的流程图",
+              "递推式 $I_n=x^ne^x-nI_{n-1}$ 的标注"
+            ],
+            "steps": [
+              "第一步：以递推公式为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：递推链 $I_0\\to I_1\\to I_2$ 的流程图。",
+              "第三步：递推式 $I_n=x^ne^x-nI_{n-1}$ 的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×指数函数积分",
+          "visual_style": "表格分部法",
+          "efficiency_tags": [
+            "递推链 $I_0\\to I_1\\to I_2$ 的流程图",
+            "递推式 $I_n=x^ne^x-nI_{n-1}$ 的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "e7e07b9bfcf8c3dade7e01af66a0067d9e2f045759153b9b958c801a0023d336",
+        "0cdb2585ddce15ded2a49967727c6283ecd0afbe56d89188b40be5e3df580acb",
+        "5c1a777581370e3f438bfb7544f1e5d798f9946b55569be7e233ed67584b4336"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-014",
+      "problem_sha256": "b0930d72502ed7c2b6cbef33f6e2c171c9057c2d445f1c365a80e26da7885f0d",
+      "source_records": [
+        {
+          "id": "eval-calc-014-s1",
+          "problem_id": "eval-calc-014",
+          "solution_id": "eval-calc-014-s1",
+          "method": "半角变形",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+          "solution": "$\\dfrac{1}{\\sin x}=\\dfrac{1}{2\\sin\\frac{x}{2}\\cos\\frac{x}{2}}=\\dfrac{\\dfrac{1}{2}\\sec^2\\frac{x}{2}}{\\tan\\frac{x}{2}}$。故 $\\int\\dfrac{dx}{\\sin x}=\\int\\dfrac{d\\left(\\tan\\frac{x}{2}\\right)}{\\tan\\frac{x}{2}}=\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$。",
+          "answer": "$\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$（等价于 $\\ln|\\csc x-\\cot x|+C$）",
+          "scene_spec": {
+            "objects": [
+              "半角恒等式 $\\dfrac{1}{\\sin x}=\\dfrac{\\sec^2(x/2)/2}{\\tan(x/2)}$ 的变形动画",
+              "凑微分 $\\dfrac{d(\\tan(x/2))}{\\tan(x/2)}$ 的高亮"
+            ],
+            "steps": [
+              "第一步：以半角变形为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：半角恒等式 $\\dfrac{1}{\\sin x}=\\dfrac{\\sec^2(x/2)/2}{\\tan(x/2)}$ 的变形动画。",
+              "第三步：凑微分 $\\dfrac{d(\\tan(x/2))}{\\tan(x/2)}$ 的高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数有理式积分",
+          "visual_style": "万能代换三角形",
+          "efficiency_tags": [
+            "半角恒等式 $\\dfrac{1}{\\sin x}=\\dfrac{\\sec^2(x/2)/2}{\\tan(x/2)}$ 的变形动画",
+            "凑微分 $\\dfrac{d(\\tan(x/2))}{\\tan(x/2)}$ 的高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-014-s2",
+          "problem_id": "eval-calc-014",
+          "solution_id": "eval-calc-014-s2",
+          "method": "万能代换",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+          "solution": "令 $t=\\tan\\dfrac{x}{2}$，则 $\\sin x=\\dfrac{2t}{1+t^2}$，$dx=\\dfrac{2dt}{1+t^2}$。原式 $=\\int\\dfrac{1+t^2}{2t}\\cdot\\dfrac{2dt}{1+t^2}=\\int\\dfrac{dt}{t}=\\ln|t|+C=\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$。",
+          "answer": "$\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$（等价于 $\\ln|\\csc x-\\cot x|+C$）",
+          "scene_spec": {
+            "objects": [
+              "万能代换三角形（半角 $t=\\tan(x/2)$ 的边长对应）",
+              "$\\sin x=\\dfrac{2t}{1+t^2}$、$dx=\\dfrac{2dt}{1+t^2}$ 的代入"
+            ],
+            "steps": [
+              "第一步：以万能代换为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：万能代换三角形（半角 $t=\\tan(x/2)$ 的边长对应）。",
+              "第三步：$\\sin x=\\dfrac{2t}{1+t^2}$、$dx=\\dfrac{2dt}{1+t^2}$ 的代入。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数有理式积分",
+          "visual_style": "万能代换三角形",
+          "efficiency_tags": [
+            "万能代换三角形（半角 $t=\\tan(x/2)$ 的边长对应）",
+            "$\\sin x=\\dfrac{2t}{1+t^2}$、$dx=\\dfrac{2dt}{1+t^2}$ 的代入"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-014-s3",
+          "problem_id": "eval-calc-014",
+          "solution_id": "eval-calc-014-s3",
+          "method": "共轭恒等式",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\dfrac{dx}{\\sin x}$，并说明不同形式答案的等价性。",
+          "solution": "分子分母同乘 $\\csc x-\\cot x$：$\\int\\csc x\\,dx=\\int\\dfrac{\\csc x(\\csc x-\\cot x)}{\\csc x-\\cot x}dx=\\int\\dfrac{d(\\csc x-\\cot x)}{\\csc x-\\cot x}=\\ln|\\csc x-\\cot x|+C$。由 $\\csc x-\\cot x=\\dfrac{1-\\cos x}{\\sin x}=\\tan\\dfrac{x}{2}$ 知两形式完全相同。",
+          "answer": "$\\ln\\left|\\tan\\dfrac{x}{2}\\right|+C$（等价于 $\\ln|\\csc x-\\cot x|+C$）",
+          "scene_spec": {
+            "objects": [
+              "共轭式 $\\csc x-\\cot x$ 的分子分母同乘动画",
+              "两形式答案同框求导验证"
+            ],
+            "steps": [
+              "第一步：以共轭恒等式为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：共轭式 $\\csc x-\\cot x$ 的分子分母同乘动画。",
+              "第三步：两形式答案同框求导验证。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数有理式积分",
+          "visual_style": "万能代换三角形",
+          "efficiency_tags": [
+            "共轭式 $\\csc x-\\cot x$ 的分子分母同乘动画",
+            "两形式答案同框求导验证"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "d7df34084c066c156d5edacc1920c33fd59e5eb0abcc9bac96b44da82dd55c4c",
+        "dd98174c90af42437827e817fcb44d48a45bace1e56d4b3a698ce9ac33af5a3b",
+        "f4c1c6a940ac128cd5be49d36671bbc628a0171729df7f40668b30830edd6e47"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-015",
+      "problem_sha256": "5cd7f65b3e3039904e3bbdbb2bc7d15882a2e4e82ec30681d3c1af06cace1991",
+      "source_records": [
+        {
+          "id": "eval-calc-015-s1",
+          "problem_id": "eval-calc-015",
+          "solution_id": "eval-calc-015-s1",
+          "method": "区间替换法，对称性",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2 x}\\,dx$。",
+          "solution": "令 $t=\\pi-x$，则 $I=\\int_0^\\pi\\dfrac{(\\pi-t)\\sin t}{1+\\cos^2 t}\\,dt=\\pi\\int_0^\\pi\\dfrac{\\sin t}{1+\\cos^2 t}\\,dt-I$，故 $2I=\\pi\\int_0^\\pi\\dfrac{\\sin x}{1+\\cos^2 x}\\,dx$。令 $u=\\cos x$（$du=-\\sin x\\,dx$）：$\\int_0^\\pi\\dfrac{\\sin x}{1+\\cos^2x}dx=\\int_{-1}^{1}\\dfrac{du}{1+u^2}=\\left[\\arctan u\\right]_{-1}^{1}=\\dfrac{\\pi}{2}$。于是 $2I=\\pi\\cdot\\dfrac{\\pi}{2}$，$I=\\dfrac{\\pi^2}{4}$。",
+          "answer": "$\\dfrac{\\pi^2}{4}$",
+          "scene_spec": {
+            "objects": [
+              "区间替换 $t=\\pi-x$ 的镜像动画",
+              "自指方程 $2I=\\pi\\int\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的推导高亮",
+              "换元 $u=\\cos x$ 后 $\\arctan$ 区间取值"
+            ],
+            "steps": [
+              "第一步：以区间替换法，对称性为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：区间替换 $t=\\pi-x$ 的镜像动画。",
+              "第三步：自指方程 $2I=\\pi\\int\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的推导高亮。",
+              "第四步：换元 $u=\\cos x$ 后 $\\arctan$ 区间取值。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数定积分",
+          "visual_style": "区间替换镜像",
+          "efficiency_tags": [
+            "区间替换 $t=\\pi-x$ 的镜像动画",
+            "自指方程 $2I=\\pi\\int\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的推导高亮",
+            "换元 $u=\\cos x$ 后 $\\arctan$ 区间取值"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-015-s2",
+          "problem_id": "eval-calc-015",
+          "solution_id": "eval-calc-015-s2",
+          "method": "分部积分+回代思想",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2 x}\\,dx$。",
+          "solution": "令 $u=x$、$dv=\\dfrac{\\sin x}{1+\\cos^2x}dx$，则 $v=-\\arctan(\\cos x)$。$I=\\left[-x\\arctan(\\cos x)\\right]_0^\\pi+\\int_0^\\pi\\arctan(\\cos x)dx$。代入上下限：$-\\pi\\arctan(-1)+0=\\dfrac{\\pi^2}{4}$，再结合对称性 $\\int_0^\\pi\\arctan(\\cos x)dx=0$（被积函数关于 $x=\\dfrac{\\pi}{2}$ 反对称），得 $I=\\dfrac{\\pi^2}{4}$。",
+          "answer": "$\\dfrac{\\pi^2}{4}$",
+          "scene_spec": {
+            "objects": [
+              "分部积分 $u=x$、$dv=\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的选取",
+              "反对称性 $\\int_0^\\pi\\arctan(\\cos x)dx=0$ 的面积抵消"
+            ],
+            "steps": [
+              "第一步：以分部积分+回代思想为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：分部积分 $u=x$、$dv=\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的选取。",
+              "第三步：反对称性 $\\int_0^\\pi\\arctan(\\cos x)dx=0$ 的面积抵消。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数定积分",
+          "visual_style": "区间替换镜像",
+          "efficiency_tags": [
+            "分部积分 $u=x$、$dv=\\dfrac{\\sin x}{1+\\cos^2x}dx$ 的选取",
+            "反对称性 $\\int_0^\\pi\\arctan(\\cos x)dx=0$ 的面积抵消"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-015-s3",
+          "problem_id": "eval-calc-015",
+          "solution_id": "eval-calc-015-s3",
+          "method": "数值验证",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^\\pi\\frac{x\\sin x}{1+\\cos^2 x}\\,dx$。",
+          "solution": "用辛普森法或等距分割近似计算 $I$（如 $n=1000$ 区间），得到 $2.467401\\cdots$，与 $\\dfrac{\\pi^2}{4}\\approx2.4674011$ 吻合，作为解析结果的独立校验。",
+          "answer": "$\\dfrac{\\pi^2}{4}$",
+          "scene_spec": {
+            "objects": [
+              "数值积分点列逼近 $\\pi^2/4$",
+              "与解析值同框对照"
+            ],
+            "steps": [
+              "第一步：以数值验证为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：数值积分点列逼近 $\\pi^2/4$。",
+              "第三步：与解析值同框对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数定积分",
+          "visual_style": "区间替换镜像",
+          "efficiency_tags": [
+            "数值积分点列逼近 $\\pi^2/4$",
+            "与解析值同框对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "6bcbac34f318edd02be8612d894988b1e1a57a71b6030f1fc0cd378910d4587f",
+        "db4ea7139d46a7dcbeaaa7befadf29bbd0560f374c556e5e33c89f0fd716736f",
+        "19b7be653316336a3153478953138be8241a073a27bd995c85dbebc84cc02c50"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-016",
+      "problem_sha256": "ef2e5e7702d2b90237fc249adbcc6c5b7f04102067164afafc9d46b64dfe1194",
+      "source_records": [
+        {
+          "id": "eval-calc-016-s1",
+          "problem_id": "eval-calc-016",
+          "solution_id": "eval-calc-016-s1",
+          "method": "三角换元",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+          "solution": "令 $x=a\\tan t$，则 $dx=a\\sec^2 t\\,dt$，$x^2+a^2=a^2\\sec^2 t$。原式 $=\\displaystyle\\int\\dfrac{a\\sec^2 t}{a^4\\sec^4 t}dt=\\dfrac{1}{a^3}\\int\\cos^2 t\\,dt=\\dfrac{1}{a^3}\\left(\\dfrac{t}{2}+\\dfrac{\\sin 2t}{4}\\right)+C=\\dfrac{1}{a^3}\\left(\\dfrac{t}{2}+\\dfrac{\\sin t\\cos t}{2}\\right)+C$。由直角三角形得 $\\sin t=\\dfrac{x}{\\sqrt{x^2+a^2}}$、$\\cos t=\\dfrac{a}{\\sqrt{x^2+a^2}}$，故原式 $=\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+\\dfrac{x}{2a^2(x^2+a^2)}+C$。",
+          "answer": "$\\dfrac{x}{2a^2(x^2+a^2)}+\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+C$",
+          "scene_spec": {
+            "objects": [
+              "直角三角形替换 $x=a\\tan t$ 的边长标注",
+              "$\\cos^2t$ 的倍角积分与代回"
+            ],
+            "steps": [
+              "第一步：以三角换元为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：直角三角形替换 $x=a\\tan t$ 的边长标注。",
+              "第三步：$\\cos^2t$ 的倍角积分与代回。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "有理函数积分",
+          "visual_style": "直角三角形替换与递推链",
+          "efficiency_tags": [
+            "直角三角形替换 $x=a\\tan t$ 的边长标注",
+            "$\\cos^2t$ 的倍角积分与代回"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-016-s2",
+          "problem_id": "eval-calc-016",
+          "solution_id": "eval-calc-016-s2",
+          "method": "递推公式",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+          "solution": "记 $I_n=\\displaystyle\\int\\dfrac{dx}{(x^2+a^2)^n}$。对 $I_n$ 分部积分（取 $u=\\dfrac{1}{(x^2+a^2)^n}$、$dv=dx$）：$I_n=\\dfrac{x}{(x^2+a^2)^n}+2n\\displaystyle\\int\\dfrac{x^2}{(x^2+a^2)^{n+1}}dx=\\dfrac{x}{(x^2+a^2)^n}+2n\\int\\dfrac{(x^2+a^2)-a^2}{(x^2+a^2)^{n+1}}dx=\\dfrac{x}{(x^2+a^2)^n}+2n(I_n-a^2I_{n+1})$。整理得递推式 $I_{n+1}=\\dfrac{1}{2na^2}\\left[\\dfrac{x}{(x^2+a^2)^n}+(2n-1)I_n\\right]$。取 $n=1$ 并以 $I_1=\\dfrac{1}{a}\\arctan\\dfrac{x}{a}$ 代入：$I_2=\\dfrac{1}{2a^2}\\left[\\dfrac{x}{x^2+a^2}+I_1\\right]=\\dfrac{x}{2a^2(x^2+a^2)}+\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+C$。",
+          "answer": "$\\dfrac{x}{2a^2(x^2+a^2)}+\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+C$",
+          "scene_spec": {
+            "objects": [
+              "递推链 $I_1\\to I_2\\to\\cdots$ 流程图",
+              "分部积分导出递推式 $I_{n+1}=\\dfrac{1}{2na^2}\\left[\\dfrac{x}{(x^2+a^2)^n}+(2n-1)I_n\\right]$ 的步骤"
+            ],
+            "steps": [
+              "第一步：以递推公式为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：递推链 $I_1\\to I_2\\to\\cdots$ 流程图。",
+              "第三步：分部积分导出递推式 $I_{n+1}=\\dfrac{1}{2na^2}\\left[\\dfrac{x}{(x^2+a^2)^n}+(2n-1)I_n\\right]$ 的步骤。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "有理函数积分",
+          "visual_style": "直角三角形替换与递推链",
+          "efficiency_tags": [
+            "递推链 $I_1\\to I_2\\to\\cdots$ 流程图",
+            "分部积分导出递推式 $I_{n+1}=\\dfrac{1}{2na^2}\\left[\\dfrac{x}{(x^2+a^2)^n}+(2n-1)I_n\\right]$ 的步骤"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-016-s3",
+          "problem_id": "eval-calc-016",
+          "solution_id": "eval-calc-016-s3",
+          "method": "复数部分分式",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int\\frac{dx}{(x^2+a^2)^2}$（$a>0$）。",
+          "solution": "在复数域 $f(z)=\\dfrac{1}{(z^2+a^2)^2}=\\dfrac{1}{(z-ai)^2(z+ai)^2}$，实系数保证共轭对称。求系数：$C=\\lim_{z\\to ai}(z-ai)^2f(z)=\\dfrac{1}{(2ai)^2}=-\\dfrac{1}{4a^2}$；$D=\\lim_{z\\to ai}\\dfrac{d}{dz}\\dfrac{1}{(z+ai)^2}=\\dfrac{-2}{(2ai)^3}=\\dfrac{1}{4a^3i}=-\\dfrac{i}{4a^3}$，共轭 $\\bar D=\\dfrac{i}{4a^3}$。故 $\\dfrac{1}{(x^2+a^2)^2}=-\\dfrac{1}{4a^2}\\left[\\dfrac{1}{(x-ai)^2}+\\dfrac{1}{(x+ai)^2}\\right]-\\dfrac{i}{4a^3}\\cdot\\dfrac{1}{x-ai}+\\dfrac{i}{4a^3}\\cdot\\dfrac{1}{x+ai}$。逐项积分：第一组 $=\\dfrac{1}{4a^2}\\left[\\dfrac{1}{x-ai}+\\dfrac{1}{x+ai}\\right]=\\dfrac{x}{2a^2(x^2+a^2)}$；第二组 $=\\dfrac{i}{4a^3}\\left[\\ln(x+ai)-\\ln(x-ai)\\right]=\\dfrac{i}{4a^3}\\ln\\dfrac{x+ai}{x-ai}$。对实数 $x>0$，$|x+ai|=|x-ai|$，且 $\\arg\\dfrac{x+ai}{x-ai}=2\\arg(x+ai)=2\\left(\\dfrac{\\pi}{2}-\\arctan\\dfrac{x}{a}\\right)=\\pi-2\\arctan\\dfrac{x}{a}$，故第二组 $=\\dfrac{i}{4a^3}\\cdot i\\left(\\pi-2\\arctan\\dfrac{x}{a}\\right)=\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}-\\dfrac{\\pi}{4a^3}$（常数并入 $C$）；当 $x<0$ 时上述辐角公式超出主值范围，需沿实轴选取连续对数分支，分支差异为常数、并入 $C$ 后不影响原函数（也可分 $x>0$ 与 $x<0$ 两区间分别计算）。合并得 $\\dfrac{x}{2a^2(x^2+a^2)}+\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+C$，三法一致。",
+          "answer": "$\\dfrac{x}{2a^2(x^2+a^2)}+\\dfrac{1}{2a^3}\\arctan\\dfrac{x}{a}+C$",
+          "scene_spec": {
+            "objects": [
+              "复数平面两极点 $z=\\pm ai$ 示意",
+              "部分分式系数 $C,D$ 的极限求法",
+              "辐角分支与实部合并"
+            ],
+            "steps": [
+              "第一步：以复数部分分式为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：复数平面两极点 $z=\\pm ai$ 示意。",
+              "第三步：部分分式系数 $C,D$ 的极限求法。",
+              "第四步：辐角分支与实部合并。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "有理函数积分",
+          "visual_style": "直角三角形替换与递推链",
+          "efficiency_tags": [
+            "复数平面两极点 $z=\\pm ai$ 示意",
+            "部分分式系数 $C,D$ 的极限求法",
+            "辐角分支与实部合并"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "6c2ef58f20ea295c8f62d7a7c37714078490105713e8e7befca6f271d7d52610",
+        "5d97e8211d45acd395fe1f34bbdd9af072b318d6989dfd2b890058ea4d8a9d94",
+        "6e23373990ba71224e47b3122dc7a8315c08d85d39c7b995c1d192c081314709"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-017",
+      "problem_sha256": "2c5d8abc26a7152fe6af6b3f68bcbd35fa26b039383b1d251333e83bca9a0f93",
+      "source_records": [
+        {
+          "id": "eval-calc-017-s1",
+          "problem_id": "eval-calc-017",
+          "solution_id": "eval-calc-017-s1",
+          "method": "换元+对称性",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^1\\frac{\\ln(1+x)}{1+x^2}\\,dx$。",
+          "solution": "令 $x=\\tan t$（$t:0\\to\\dfrac{\\pi}{4}$），则 $I=\\displaystyle\\int_0^{\\pi/4}\\ln(1+\\tan t)\\,dt$。利用区间替换 $t\\to\\dfrac{\\pi}{4}-t$：$I=\\displaystyle\\int_0^{\\pi/4}\\ln\\left(1+\\tan\\left(\\frac{\\pi}{4}-t\\right)\\right)dt$。由和角公式 $\\tan\\left(\\dfrac{\\pi}{4}-t\\right)=\\dfrac{1-\\tan t}{1+\\tan t}$，得 $1+\\tan\\left(\\dfrac{\\pi}{4}-t\\right)=\\dfrac{2}{1+\\tan t}$。两式相加：$2I=\\displaystyle\\int_0^{\\pi/4}\\left[\\ln(1+\\tan t)+\\ln\\dfrac{2}{1+\\tan t}\\right]dt=\\int_0^{\\pi/4}\\ln 2\\,dt=\\dfrac{\\pi}{4}\\ln 2$，故 $I=\\dfrac{\\pi}{8}\\ln 2$。",
+          "answer": "$\\dfrac{\\pi}{8}\\ln 2$",
+          "scene_spec": {
+            "objects": [
+              "$x=\\tan t$ 把区间映到 $\\left[0,\\dfrac{\\pi}{4}\\right]$ 的坐标动画",
+              "$t\\to\\dfrac{\\pi}{4}-t$ 镜像对称示意",
+              "两式相加得 $2I=\\dfrac{\\pi}{4}\\ln2$ 的自指方程"
+            ],
+            "steps": [
+              "第一步：以换元+对称性为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：$x=\\tan t$ 把区间映到 $\\left[0,\\dfrac{\\pi}{4}\\right]$ 的坐标动画。",
+              "第三步：$t\\to\\dfrac{\\pi}{4}-t$ 镜像对称示意。",
+              "第四步：两式相加得 $2I=\\dfrac{\\pi}{4}\\ln2$ 的自指方程。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数×有理函数定积分",
+          "visual_style": "分式替换自指方程",
+          "efficiency_tags": [
+            "$x=\\tan t$ 把区间映到 $\\left[0,\\dfrac{\\pi}{4}\\right]$ 的坐标动画",
+            "$t\\to\\dfrac{\\pi}{4}-t$ 镜像对称示意",
+            "两式相加得 $2I=\\dfrac{\\pi}{4}\\ln2$ 的自指方程"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-017-s2",
+          "problem_id": "eval-calc-017",
+          "solution_id": "eval-calc-017-s2",
+          "method": "分式替换",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^1\\frac{\\ln(1+x)}{1+x^2}\\,dx$。",
+          "solution": "令 $x=\\dfrac{1-t}{1+t}$（$t:1\\to 0$），则 $dx=-\\dfrac{2}{(1+t)^2}dt$，且 $1+x=\\dfrac{2}{1+t}$、$1+x^2=\\dfrac{2(1+t^2)}{(1+t)^2}$。代入得 $I=\\displaystyle\\int_1^0\\dfrac{\\ln\\frac{2}{1+t}}{\\frac{2(1+t^2)}{(1+t)^2}}\\cdot\\left(-\\dfrac{2}{(1+t)^2}\\right)dt=\\int_0^1\\dfrac{\\ln 2-\\ln(1+t)}{1+t^2}\\,dt=\\ln 2\\int_0^1\\dfrac{dt}{1+t^2}-I=\\dfrac{\\pi}{4}\\ln 2-I$（其中 $\\int_0^1\\dfrac{dt}{1+t^2}=\\left[\\arctan t\\right]_0^1=\\dfrac{\\pi}{4}$）。故 $2I=\\dfrac{\\pi}{4}\\ln 2$，$I=\\dfrac{\\pi}{8}\\ln 2$。",
+          "answer": "$\\dfrac{\\pi}{8}\\ln 2$",
+          "scene_spec": {
+            "objects": [
+              "分式替换 $x=\\dfrac{1-t}{1+t}$ 的变量对应动画",
+              "$\\ln\\dfrac{2}{1+t}$ 拆分的变形高亮"
+            ],
+            "steps": [
+              "第一步：以分式替换为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：分式替换 $x=\\dfrac{1-t}{1+t}$ 的变量对应动画。",
+              "第三步：$\\ln\\dfrac{2}{1+t}$ 拆分的变形高亮。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数×有理函数定积分",
+          "visual_style": "分式替换自指方程",
+          "efficiency_tags": [
+            "分式替换 $x=\\dfrac{1-t}{1+t}$ 的变量对应动画",
+            "$\\ln\\dfrac{2}{1+t}$ 拆分的变形高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-017-s3",
+          "problem_id": "eval-calc-017",
+          "solution_id": "eval-calc-017-s3",
+          "method": "分部积分+替换",
+          "category": "数学分析",
+          "sub_category": "定积分",
+          "problem": "求定积分 $\\displaystyle I=\\int_0^1\\frac{\\ln(1+x)}{1+x^2}\\,dx$。",
+          "solution": "取 $u=\\ln(1+x)$、$dv=\\dfrac{dx}{1+x^2}$，则 $v=\\arctan x$。$I=\\left[\\ln(1+x)\\arctan x\\right]_0^1-\\displaystyle\\int_0^1\\dfrac{\\arctan x}{1+x}\\,dx=\\dfrac{\\pi}{4}\\ln 2-J$，其中 $J=\\displaystyle\\int_0^1\\dfrac{\\arctan x}{1+x}dx$。对 $J$ 作替换 $x=\\dfrac{1-t}{1+t}$：$dx=-\\dfrac{2}{(1+t)^2}dt$，$1+x=\\dfrac{2}{1+t}$，且 $\\arctan\\dfrac{1-t}{1+t}=\\dfrac{\\pi}{4}-\\arctan t$（$t\\in[0,1]$，由 $\\tan\\left(\\dfrac{\\pi}{4}-\\arctan t\\right)=\\dfrac{1-t}{1+t}$ 得）。故 $J=\\displaystyle\\int_1^0\\left(\\frac{\\pi}{4}-\\arctan t\\right)\\cdot\\frac{1+t}{2}\\cdot\\left(-\\frac{2}{(1+t)^2}\\right)dt=\\int_0^1\\dfrac{\\frac{\\pi}{4}-\\arctan t}{1+t}\\,dt=\\dfrac{\\pi}{4}\\ln 2-J$，得 $2J=\\dfrac{\\pi}{4}\\ln 2$，$J=\\dfrac{\\pi}{8}\\ln 2$。于是 $I=\\dfrac{\\pi}{4}\\ln 2-\\dfrac{\\pi}{8}\\ln 2=\\dfrac{\\pi}{8}\\ln 2$。",
+          "answer": "$\\dfrac{\\pi}{8}\\ln 2$",
+          "scene_spec": {
+            "objects": [
+              "分部积分 $u=\\ln(1+x)$、$dv=\\dfrac{dx}{1+x^2}$ 的选取",
+              "辅助积分 $J$ 的自指方程推导"
+            ],
+            "steps": [
+              "第一步：以分部积分+替换为主线，建立数学分析·定积分场景并呈现该解法的关键图形。",
+              "第二步：分部积分 $u=\\ln(1+x)$、$dv=\\dfrac{dx}{1+x^2}$ 的选取。",
+              "第三步：辅助积分 $J$ 的自指方程推导。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数×有理函数定积分",
+          "visual_style": "分式替换自指方程",
+          "efficiency_tags": [
+            "分部积分 $u=\\ln(1+x)$、$dv=\\dfrac{dx}{1+x^2}$ 的选取",
+            "辅助积分 $J$ 的自指方程推导"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "532c1ec1e28635792860b9bc0d64c231f57faabc38433816dd6443f427e6b611",
+        "f8297a480e5580e3797da013b384aadcaf6b0d796ce31c515630dc6e10a693c5",
+        "b376d93f946a931f212d44551affb1c774224b17558498642d9313e39dedf4d0"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-018",
+      "problem_sha256": "2fc7588e696ba41d01efe9aabb14e323188eeabad475513d85b31e02ae4f98ce",
+      "source_records": [
+        {
+          "id": "eval-calc-018-s1",
+          "problem_id": "eval-calc-018",
+          "solution_id": "eval-calc-018-s1",
+          "method": "分部积分：反函数留作 $u$",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x\\arctan x\\,dx$。",
+          "solution": "令 $u=\\arctan x$、$dv=x\\,dx$，则 $du=\\dfrac{dx}{1+x^2}$、$v=\\dfrac{x^2}{2}$。原式 $=\\dfrac{x^2}{2}\\arctan x-\\dfrac{1}{2}\\displaystyle\\int\\dfrac{x^2}{1+x^2}dx=\\dfrac{x^2}{2}\\arctan x-\\dfrac{1}{2}\\int\\left(1-\\dfrac{1}{1+x^2}\\right)dx=\\dfrac{x^2}{2}\\arctan x-\\dfrac{x}{2}+\\dfrac{1}{2}\\arctan x+C=\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$。",
+          "answer": "$\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$",
+          "scene_spec": {
+            "objects": [
+              "分部积分 $u=\\arctan x$、$dv=x\\,dx$ 的选取",
+              "$\\dfrac{x^2}{1+x^2}$ 拆成 $1-\\dfrac{1}{1+x^2}$ 的化简"
+            ],
+            "steps": [
+              "第一步：以分部积分：反函数留作 $u$为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：分部积分 $u=\\arctan x$、$dv=x\\,dx$ 的选取。",
+              "第三步：$\\dfrac{x^2}{1+x^2}$ 拆成 $1-\\dfrac{1}{1+x^2}$ 的化简。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×反三角函数积分",
+          "visual_style": "分部两种选取对照",
+          "efficiency_tags": [
+            "分部积分 $u=\\arctan x$、$dv=x\\,dx$ 的选取",
+            "$\\dfrac{x^2}{1+x^2}$ 拆成 $1-\\dfrac{1}{1+x^2}$ 的化简"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-018-s2",
+          "problem_id": "eval-calc-018",
+          "solution_id": "eval-calc-018-s2",
+          "method": "先换元再分部",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x\\arctan x\\,dx$。",
+          "solution": "令 $t=\\arctan x$，则 $x=\\tan t$、$dx=\\sec^2 t\\,dt$。原式 $=\\displaystyle\\int t\\tan t\\sec^2 t\\,dt=\\dfrac{1}{2}\\int t\\,d(\\tan^2 t)=\\dfrac{1}{2}t\\tan^2 t-\\dfrac{1}{2}\\int\\tan^2 t\\,dt=\\dfrac{1}{2}t\\tan^2 t-\\dfrac{1}{2}\\int(\\sec^2 t-1)dt=\\dfrac{1}{2}t(1+\\tan^2 t)-\\dfrac{1}{2}\\tan t+C$。代回 $t=\\arctan x$、$\\tan t=x$，得 $\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$。",
+          "answer": "$\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$",
+          "scene_spec": {
+            "objects": [
+              "换元 $t=\\arctan x$ 的坐标压缩示意",
+              "$t\\tan t\\sec^2t$ 的凑微分 $\\dfrac{1}{2}d(\\tan^2t)$"
+            ],
+            "steps": [
+              "第一步：以先换元再分部为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：换元 $t=\\arctan x$ 的坐标压缩示意。",
+              "第三步：$t\\tan t\\sec^2t$ 的凑微分 $\\dfrac{1}{2}d(\\tan^2t)$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×反三角函数积分",
+          "visual_style": "分部两种选取对照",
+          "efficiency_tags": [
+            "换元 $t=\\arctan x$ 的坐标压缩示意",
+            "$t\\tan t\\sec^2t$ 的凑微分 $\\dfrac{1}{2}d(\\tan^2t)$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-018-s3",
+          "problem_id": "eval-calc-018",
+          "solution_id": "eval-calc-018-s3",
+          "method": "分部积分：整体留作 $u$",
+          "category": "数学分析",
+          "sub_category": "不定积分",
+          "problem": "求不定积分 $\\displaystyle\\int x\\arctan x\\,dx$。",
+          "solution": "令 $u=x\\arctan x$、$dv=dx$，则 $v=x$、$du=\\left(\\arctan x+\\dfrac{x}{1+x^2}\\right)dx$。原式 $=x^2\\arctan x-\\displaystyle\\int x\\arctan x\\,dx-\\int\\dfrac{x^2}{1+x^2}dx$，即 $2I=x^2\\arctan x-\\displaystyle\\int\\left(1-\\dfrac{1}{1+x^2}\\right)dx=x^2\\arctan x-x+\\arctan x$，故 $I=\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$。",
+          "answer": "$\\dfrac{x^2+1}{2}\\arctan x-\\dfrac{x}{2}+C$",
+          "scene_spec": {
+            "objects": [
+              "整体作 $u=x\\arctan x$ 的选取",
+              "自指方程 $2I=x^2\\arctan x-x+\\arctan x$ 的推导"
+            ],
+            "steps": [
+              "第一步：以分部积分：整体留作 $u$为主线，建立数学分析·不定积分场景并呈现该解法的关键图形。",
+              "第二步：整体作 $u=x\\arctan x$ 的选取。",
+              "第三步：自指方程 $2I=x^2\\arctan x-x+\\arctan x$ 的推导。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式×反三角函数积分",
+          "visual_style": "分部两种选取对照",
+          "efficiency_tags": [
+            "整体作 $u=x\\arctan x$ 的选取",
+            "自指方程 $2I=x^2\\arctan x-x+\\arctan x$ 的推导"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "6cd40183fdbcb58b6856399edbb5fb2e01bc4f2e42b5fd0060fd294eb641394f",
+        "2dd110fac9ee12b86257b5d55247baa792efe868a37c37133a3f21bd423af5a2",
+        "1288f93be0ad77d27a80d45a93280808a5894ab76663e5038fa1ae72d91c47d2"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-019",
+      "problem_sha256": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+      "source_records": [
+        {
+          "id": "eval-calc-019-s1",
+          "problem_id": "eval-calc-019",
+          "solution_id": "eval-calc-019-s1",
+          "method": "分部积分+极限",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+          "solution": "先求原函数：令 $u=x$、$dv=e^{-x}dx$，则 $du=dx$、$v=-e^{-x}$，$\\displaystyle\\int xe^{-x}dx=-xe^{-x}+\\int e^{-x}dx=-(x+1)e^{-x}+C$。故 $\\displaystyle\\int_0^{b}xe^{-x}dx=\\left[-(x+1)e^{-x}\\right]_0^b=1-(b+1)e^{-b}$。令 $b\\to+\\infty$：$(b+1)e^{-b}\\to 0$（指数衰减快于线性增长），得原积分 $=1$。",
+          "answer": "$1$",
+          "scene_spec": {
+            "objects": [
+              "分部积分 $u=x$、$dv=e^{-x}dx$ 的选取",
+              "$(b+1)e^{-b}\\to0$ 的极限标注"
+            ],
+            "steps": [
+              "第一步：以分部积分+极限为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：分部积分 $u=x$、$dv=e^{-x}dx$ 的选取。",
+              "第三步：$(b+1)e^{-b}\\to0$ 的极限标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数衰减函数反常积分",
+          "visual_style": "峰形曲线与横向条带",
+          "efficiency_tags": [
+            "分部积分 $u=x$、$dv=e^{-x}dx$ 的选取",
+            "$(b+1)e^{-b}\\to0$ 的极限标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-019-s2",
+          "problem_id": "eval-calc-019",
+          "solution_id": "eval-calc-019-s2",
+          "method": "Γ 函数",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+          "solution": "由 Γ 函数定义 $\\Gamma(s)=\\displaystyle\\int_0^{+\\infty}t^{s-1}e^{-t}dt$，原积分 $=\\Gamma(2)$。递推：$\\Gamma(s+1)=s\\Gamma(s)$（分部积分一次即得），且 $\\Gamma(1)=\\displaystyle\\int_0^{+\\infty}e^{-t}dt=1$，故 $\\Gamma(2)=1\\cdot\\Gamma(1)=1$。此解法把单个积分放进 Γ 函数家族，可一并处理 $\\int_0^{+\\infty}x^ne^{-x}dx=\\Gamma(n+1)=n!$。",
+          "answer": "$1$",
+          "scene_spec": {
+            "objects": [
+              "Γ 函数递推 $\\Gamma(s+1)=s\\Gamma(s)$ 的示意",
+              "$\\Gamma(1)=1$ 的基线标注"
+            ],
+            "steps": [
+              "第一步：以Γ 函数为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：Γ 函数递推 $\\Gamma(s+1)=s\\Gamma(s)$ 的示意。",
+              "第三步：$\\Gamma(1)=1$ 的基线标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数衰减函数反常积分",
+          "visual_style": "峰形曲线与横向条带",
+          "efficiency_tags": [
+            "Γ 函数递推 $\\Gamma(s+1)=s\\Gamma(s)$ 的示意",
+            "$\\Gamma(1)=1$ 的基线标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-019-s3",
+          "problem_id": "eval-calc-019",
+          "solution_id": "eval-calc-019-s3",
+          "method": "概率论视角",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "求反常积分 $\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。",
+          "solution": "若 $X\\sim\\operatorname{Exp}(1)$（参数 $\\lambda=1$ 的指数分布），其密度为 $f(x)=e^{-x}$（$x>0$），则原积分 $=E[X]$。由指数分布期望公式 $E[X]=\\dfrac{1}{\\lambda}=1$；或由尾概率公式 $E[X]=\\displaystyle\\int_0^{+\\infty}P(X>t)dt=\\int_0^{+\\infty}e^{-t}dt=1$ 得到同一结果。",
+          "answer": "$1$",
+          "scene_spec": {
+            "objects": [
+              "指数分布密度 $e^{-x}$ 的峰形曲线与面积填充",
+              "横向条带分解（尾概率公式 $\\int P(X>t)dt$）"
+            ],
+            "steps": [
+              "第一步：以概率论视角为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：指数分布密度 $e^{-x}$ 的峰形曲线与面积填充。",
+              "第三步：横向条带分解（尾概率公式 $\\int P(X>t)dt$）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "指数衰减函数反常积分",
+          "visual_style": "峰形曲线与横向条带",
+          "efficiency_tags": [
+            "指数分布密度 $e^{-x}$ 的峰形曲线与面积填充",
+            "横向条带分解（尾概率公式 $\\int P(X>t)dt$）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+        "74959a5999cc04566c403b1cc3ba1bdb768df8d2eba6257ce7ab8cdeba2d22f2",
+        "b060db4ad32b4f4cdd7a2d1805a7622ba6da2aee32ccd22105214396f916e04e"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-020",
+      "problem_sha256": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+      "source_records": [
+        {
+          "id": "eval-calc-020-s1",
+          "problem_id": "eval-calc-020",
+          "solution_id": "eval-calc-020-s1",
+          "method": "定义直接计算",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+          "solution": "当 $p\\ne 1$ 时，$\\displaystyle\\int_1^b x^{-p}dx=\\left[\\dfrac{x^{1-p}}{1-p}\\right]_1^b=\\dfrac{b^{1-p}-1}{1-p}$。若 $p>1$，则 $1-p<0$，$b^{1-p}\\to 0$，积分为 $\\dfrac{0-1}{1-p}=\\dfrac{1}{p-1}$，收敛；若 $0<p<1$，则 $b^{1-p}\\to+\\infty$，发散。当 $p=1$ 时 $\\displaystyle\\int_1^b\\dfrac{dx}{x}=\\ln b\\to+\\infty$，发散。综上，$p>1$ 收敛于 $\\dfrac{1}{p-1}$，$0<p\\le 1$ 发散。",
+          "answer": "$p>1$ 时收敛于 $\\dfrac{1}{p-1}$；$0<p\\le 1$ 时发散",
+          "scene_spec": {
+            "objects": [
+              "$b^{1-p}$ 随 $b\\to\\infty$ 的三种走势（收敛/发散/对数）",
+              "分段结论 $p>1$ 收敛于 $\\dfrac{1}{p-1}$ 的标注"
+            ],
+            "steps": [
+              "第一步：以定义直接计算为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：$b^{1-p}$ 随 $b\\to\\infty$ 的三种走势（收敛/发散/对数）。",
+              "第三步：分段结论 $p>1$ 收敛于 $\\dfrac{1}{p-1}$ 的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂函数反常积分",
+          "visual_style": "p 滑块临界演示",
+          "efficiency_tags": [
+            "$b^{1-p}$ 随 $b\\to\\infty$ 的三种走势（收敛/发散/对数）",
+            "分段结论 $p>1$ 收敛于 $\\dfrac{1}{p-1}$ 的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-020-s2",
+          "problem_id": "eval-calc-020",
+          "solution_id": "eval-calc-020-s2",
+          "method": "与 p 级数互证：积分判别法",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+          "solution": "函数 $f(x)=x^{-p}$ 在 $[1,+\\infty)$ 上非负递减，由积分判别法，$\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{n^p}$ 与 $\\displaystyle\\int_1^{+\\infty}\\dfrac{dx}{x^p}$ 同敛散，故 $p>1$ 收敛、$p\\le 1$ 发散——积分与级数两个世界互相印证。",
+          "answer": "$p>1$ 时收敛于 $\\dfrac{1}{p-1}$；$0<p\\le 1$ 时发散",
+          "scene_spec": {
+            "objects": [
+              "柱状图与 $y=\\dfrac{1}{x^p}$ 曲线的面积夹逼",
+              "p 级数与 p 积分的同敛散对应"
+            ],
+            "steps": [
+              "第一步：以与 p 级数互证：积分判别法为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：柱状图与 $y=\\dfrac{1}{x^p}$ 曲线的面积夹逼。",
+              "第三步：p 级数与 p 积分的同敛散对应。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂函数反常积分",
+          "visual_style": "p 滑块临界演示",
+          "efficiency_tags": [
+            "柱状图与 $y=\\dfrac{1}{x^p}$ 曲线的面积夹逼",
+            "p 级数与 p 积分的同敛散对应"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-020-s3",
+          "problem_id": "eval-calc-020",
+          "solution_id": "eval-calc-020-s3",
+          "method": "面积直觉与分块比较",
+          "category": "数学分析",
+          "sub_category": "反常积分",
+          "problem": "讨论反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^p}$（$p>0$）的敛散性，并求其收敛时的值。",
+          "solution": "作图比较 $y=\\dfrac{1}{x}$ 与 $y=\\dfrac{1}{x^2}$：把 $[1,+\\infty)$ 按整数分块，$\\dfrac{1}{x}$ 下第 $n$ 块面积约 $\\dfrac{1}{n}$（对应调和级数各项，发散），$\\dfrac{1}{x^2}$ 下第 $n$ 块面积约 $\\dfrac{1}{n^2}$（对应收敛级数各项）。直观上 $p$ 越大曲线\"塌得越快\"，面积越有限，临界在 $p=1$。",
+          "answer": "$p>1$ 时收敛于 $\\dfrac{1}{p-1}$；$0<p\\le 1$ 时发散",
+          "scene_spec": {
+            "objects": [
+              "$p$ 滑块联动曲线 $y=1/x^p$",
+              "整数分块条带面积与级数项对照",
+              "临界 $p=1$ 高亮"
+            ],
+            "steps": [
+              "第一步：以面积直觉与分块比较为主线，建立数学分析·反常积分场景并呈现该解法的关键图形。",
+              "第二步：$p$ 滑块联动曲线 $y=1/x^p$。",
+              "第三步：整数分块条带面积与级数项对照。",
+              "第四步：临界 $p=1$ 高亮。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂函数反常积分",
+          "visual_style": "p 滑块临界演示",
+          "efficiency_tags": [
+            "$p$ 滑块联动曲线 $y=1/x^p$",
+            "整数分块条带面积与级数项对照",
+            "临界 $p=1$ 高亮"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3154b8c9f2ba4d20c29e83bddb0347f99053d209d26341ecea7019f90b4d2333",
+        "a21c8ddca640d9c7395a629f383332e0416896f6765db25eb12f95e4a057a438",
+        "0db94e0994b4bbecb8c8f94569c5e04a5be5a57819b993417bda0e2dddfe3a0a"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-021",
+      "problem_sha256": "14f8b0e55c16d34159961ff30763784042a90a216a873d65ed33b4a1aedc559e",
+      "source_records": [
+        {
+          "id": "eval-calc-021-s1",
+          "problem_id": "eval-calc-021",
+          "solution_id": "eval-calc-021-s1",
+          "method": "错位相减",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+          "solution": "写 $S=\\dfrac{1}{2}+\\dfrac{2}{4}+\\dfrac{3}{8}+\\dfrac{4}{16}+\\cdots$，则 $\\dfrac{S}{2}=\\dfrac{1}{4}+\\dfrac{2}{8}+\\dfrac{3}{16}+\\cdots$。两式相减：$S-\\dfrac{S}{2}=\\dfrac{1}{2}+\\left(\\dfrac{2}{4}-\\dfrac{1}{4}\\right)+\\left(\\dfrac{3}{8}-\\dfrac{2}{8}\\right)+\\left(\\dfrac{4}{16}-\\dfrac{3}{16}\\right)+\\cdots=\\dfrac{1}{2}+\\dfrac{1}{4}+\\dfrac{1}{8}+\\dfrac{1}{16}+\\cdots=1$（几何级数）。故 $\\dfrac{S}{2}=1$，$S=2$。",
+          "answer": "$2$",
+          "scene_spec": {
+            "objects": [
+              "竖式错位相减逐行对齐",
+              "相减后每行系数归一的抵消动画"
+            ],
+            "steps": [
+              "第一步：以错位相减为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：竖式错位相减逐行对齐。",
+              "第三步：相减后每行系数归一的抵消动画。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数",
+          "visual_style": "错位相减竖式",
+          "efficiency_tags": [
+            "竖式错位相减逐行对齐",
+            "相减后每行系数归一的抵消动画"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-021-s2",
+          "problem_id": "eval-calc-021",
+          "solution_id": "eval-calc-021-s2",
+          "method": "幂级数求和",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+          "solution": "由等比级数 $\\displaystyle\\sum_{n=0}^{\\infty}x^{n}=\\dfrac{1}{1-x}$（$|x|<1$）逐项求导：$\\displaystyle\\sum_{n=1}^{\\infty}nx^{n-1}=\\dfrac{1}{(1-x)^2}$，故 $\\displaystyle\\sum_{n=1}^{\\infty}nx^n=\\dfrac{x}{(1-x)^2}$。取 $x=\\dfrac{1}{2}$，得 $S=\\dfrac{1/2}{(1-1/2)^2}=\\dfrac{1/2}{1/4}=2$。",
+          "answer": "$2$",
+          "scene_spec": {
+            "objects": [
+              "逐项求导 $\\sum nx^{n-1}=\\dfrac{1}{(1-x)^2}$ 的过程",
+              "幂级数曲线在 $x=\\dfrac{1}{2}$ 处取点"
+            ],
+            "steps": [
+              "第一步：以幂级数求和为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：逐项求导 $\\sum nx^{n-1}=\\dfrac{1}{(1-x)^2}$ 的过程。",
+              "第三步：幂级数曲线在 $x=\\dfrac{1}{2}$ 处取点。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数",
+          "visual_style": "错位相减竖式",
+          "efficiency_tags": [
+            "逐项求导 $\\sum nx^{n-1}=\\dfrac{1}{(1-x)^2}$ 的过程",
+            "幂级数曲线在 $x=\\dfrac{1}{2}$ 处取点"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-021-s3",
+          "problem_id": "eval-calc-021",
+          "solution_id": "eval-calc-021-s3",
+          "method": "概率论：几何分布期望",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n}{2^n}$ 的和。",
+          "solution": "设 $X$ 服从参数 $p=\\dfrac{1}{2}$ 的几何分布（抛硬币直到首次正面所需次数），则 $P(X=n)=q^{n-1}p=\\left(\\dfrac{1}{2}\\right)^n$，$E[X]=\\displaystyle\\sum_{n=1}^{\\infty}nq^{n-1}p=p\\sum_{n=1}^{\\infty}nq^{n-1}=p\\cdot\\dfrac{1}{(1-q)^2}=\\dfrac{1}{p}=2$（其中用到 $\\sum nq^{n-1}=\\dfrac{1}{(1-q)^2}$）。而 $E[X]=\\displaystyle\\sum_{n=1}^{\\infty}n\\left(\\dfrac{1}{2}\\right)^n=S$，故 $S=2$。",
+          "answer": "$2$",
+          "scene_spec": {
+            "objects": [
+              "抛硬币\"首次正面次数\"的频数直方图",
+              "直方图均值收敛于 2"
+            ],
+            "steps": [
+              "第一步：以概率论：几何分布期望为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：抛硬币\"首次正面次数\"的频数直方图。",
+              "第三步：直方图均值收敛于 2。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数",
+          "visual_style": "错位相减竖式",
+          "efficiency_tags": [
+            "抛硬币\"首次正面次数\"的频数直方图",
+            "直方图均值收敛于 2"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "0df9c52d39d272100bd30f47ffcb7702d58591e0f3df29909e47f31fb6f6c8b7",
+        "6b5d864362276209464244a14149104a8d65ced88eec92ae41b0ec33c214a52a",
+        "296010b01b0b1324cb2ddf4d12b0f86165ca88f7140aa6a0bea7f08377c9e6d8"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-022",
+      "problem_sha256": "6f25c4b291c4ba7e232e7b5ddff9b9c1da8909c60fc6e75f5697b45ec1e988a6",
+      "source_records": [
+        {
+          "id": "eval-calc-022-s1",
+          "problem_id": "eval-calc-022",
+          "solution_id": "eval-calc-022-s1",
+          "method": "幂级数求和",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+          "solution": "由 $\\displaystyle\\sum_{n=1}^{\\infty}x^n=\\dfrac{x}{1-x}$ 逐项求导两次：先得 $\\displaystyle\\sum_{n=1}^{\\infty}nx^{n-1}=\\dfrac{1}{(1-x)^2}$，再得 $\\displaystyle\\sum_{n=1}^{\\infty}n(n-1)x^{n-2}=\\dfrac{2}{(1-x)^3}$。于是 $\\displaystyle\\sum_{n=1}^{\\infty}n^2x^n=\\sum_{n=1}^{\\infty}n(n-1)x^n+\\sum_{n=1}^{\\infty}nx^n=\\dfrac{2x^2}{(1-x)^3}+\\dfrac{x}{(1-x)^2}=\\dfrac{x(1+x)}{(1-x)^3}$。取 $x=\\dfrac{1}{2}$，得 $S=\\dfrac{(1/2)(3/2)}{(1/2)^3}=6$。",
+          "answer": "$6$",
+          "scene_spec": {
+            "objects": [
+              "两次逐项求导的系数错位动画",
+              "$n^2x^n=\\dfrac{x(1+x)}{(1-x)^3}$ 的推导"
+            ],
+            "steps": [
+              "第一步：以幂级数求和为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：两次逐项求导的系数错位动画。",
+              "第三步：$n^2x^n=\\dfrac{x(1+x)}{(1-x)^3}$ 的推导。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数(二阶)",
+          "visual_style": "两级错位竖式",
+          "efficiency_tags": [
+            "两次逐项求导的系数错位动画",
+            "$n^2x^n=\\dfrac{x(1+x)}{(1-x)^3}$ 的推导"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-022-s2",
+          "problem_id": "eval-calc-022",
+          "solution_id": "eval-calc-022-s2",
+          "method": "两次错位相减",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+          "solution": "记 $A=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{n}{2^n}=2$（eval-calc-021）、$B=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{1}{2^n}=1$。$\\dfrac{S}{2}=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{n^2}{2^{n+1}}=\\sum_{m=2}^{\\infty}\\dfrac{(m-1)^2}{2^m}$，故 $S-\\dfrac{S}{2}=\\displaystyle\\sum_{n=1}^{\\infty}\\dfrac{n^2-(n-1)^2}{2^n}=\\sum_{n=1}^{\\infty}\\dfrac{2n-1}{2^n}=2A-B=2\\cdot 2-1=3$。于是 $\\dfrac{S}{2}=3$，$S=6$。",
+          "answer": "$6$",
+          "scene_spec": {
+            "objects": [
+              "两级错位相减的竖式结构",
+              "复用 021 的 $A=2$、$B=1$ 的链式标注"
+            ],
+            "steps": [
+              "第一步：以两次错位相减为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：两级错位相减的竖式结构。",
+              "第三步：复用 021 的 $A=2$、$B=1$ 的链式标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数(二阶)",
+          "visual_style": "两级错位竖式",
+          "efficiency_tags": [
+            "两级错位相减的竖式结构",
+            "复用 021 的 $A=2$、$B=1$ 的链式标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-022-s3",
+          "problem_id": "eval-calc-022",
+          "solution_id": "eval-calc-022-s3",
+          "method": "概率论：几何分布二阶矩",
+          "category": "数学分析",
+          "sub_category": "一般级数",
+          "problem": "求级数 $\\displaystyle S=\\sum_{n=1}^{\\infty}\\frac{n^2}{2^n}$ 的和。",
+          "solution": "设 $X\\sim\\operatorname{Geom}(1/2)$（$q=p=\\dfrac{1}{2}$）。先算阶乘矩：$E[X(X-1)]=\\displaystyle\\sum_{k=1}^{\\infty}k(k-1)q^{k-1}p=pq\\sum_{k=2}^{\\infty}k(k-1)q^{k-2}=pq\\cdot\\dfrac{2}{(1-q)^3}=\\dfrac{2q}{p^2}$。故 $E[X^2]=E[X(X-1)]+E[X]=\\dfrac{2q}{p^2}+\\dfrac{1}{p}=\\dfrac{2q+p}{p^2}=\\dfrac{2-p}{p^2}$。代入 $p=\\dfrac{1}{2}$ 得 $E[X^2]=6$，而 $E[X^2]=\\displaystyle\\sum_{n=1}^{\\infty}n^2\\left(\\dfrac{1}{2}\\right)^n=S$，故 $S=6$。",
+          "answer": "$6$",
+          "scene_spec": {
+            "objects": [
+              "阶乘矩 $E[X(X-1)]$ 的求和重整化",
+              "$k$ 阶矩与级数逐阶对应"
+            ],
+            "steps": [
+              "第一步：以概率论：几何分布二阶矩为主线，建立数学分析·一般级数场景并呈现该解法的关键图形。",
+              "第二步：阶乘矩 $E[X(X-1)]$ 的求和重整化。",
+              "第三步：$k$ 阶矩与级数逐阶对应。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "等差×等比级数(二阶)",
+          "visual_style": "两级错位竖式",
+          "efficiency_tags": [
+            "阶乘矩 $E[X(X-1)]$ 的求和重整化",
+            "$k$ 阶矩与级数逐阶对应"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "5ec156db64ced5fe04ebaab7e5ca2b6aad81951e2c119db883422a856a778341",
+        "b920071d9061b340350c32f60c060d259040b702ea01b8050734e3fd4dabe69c",
+        "6089d2200bd36e36d938e70d18c0fc4be2a81dfd60b1e082cd47105987204508"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-023",
+      "problem_sha256": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+      "source_records": [
+        {
+          "id": "eval-calc-023-s1",
+          "problem_id": "eval-calc-023",
+          "solution_id": "eval-calc-023-s1",
+          "method": "积分判别法",
+          "category": "数学分析",
+          "sub_category": "正项级数",
+          "problem": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+          "solution": "$f(x)=\\dfrac{1}{x^2}$ 在 $[1,+\\infty)$ 上非负递减，且 $\\displaystyle\\int_1^{+\\infty}\\dfrac{dx}{x^2}=1$ 收敛（eval-calc-020 的 $p=2$ 情形），由积分判别法，级数 $\\sum\\dfrac{1}{n^2}$ 收敛。",
+          "answer": "证毕（三种证法）",
+          "scene_spec": {
+            "objects": [
+              "坐标系与曲线 $f(x)=1/x^2$（$x\\ge1$）",
+              "积分区域 $1\\le x\\le R$ 及面积 $1-1/R$",
+              "正项级数 $\\sum_{n=1}^{\\infty}1/n^2$ 与积分判别法条件"
+            ],
+            "steps": [
+              "画出正值递减曲线 $f(x)=1/x^2$，明确连续、非负、递减三项条件。",
+              "用参数 $R>1$ 高亮曲线下从 $1$ 到 $R$ 的区域，展示 $\\int_1^R x^{-2}\\,dx=1-1/R$。",
+              "令 $R\\to\\infty$，面积趋于 $1$，说明反常积分收敛。",
+              "逐项对应 $a_n=f(n)$，应用积分判别法得到 $\\sum1/n^2$ 收敛"
+            ]
+          },
+          "function_family": "p 级数",
+          "visual_style": "柱状图嵌入曲线",
+          "efficiency_tags": [
+            "正值递减曲线 $f(x)=1/x^2$ 的三项条件",
+            "参数 $R$ 高亮 $[1,R]$ 面积 $1-1/R$",
+            "$R\\to\\infty$ 面积趋于 1 与逐项对应 $a_n=f(n)$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-023-s2",
+          "problem_id": "eval-calc-023",
+          "solution_id": "eval-calc-023-s2",
+          "method": "裂项比较法",
+          "category": "数学分析",
+          "sub_category": "正项级数",
+          "problem": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+          "solution": "当 $n\\ge 2$ 时 $\\dfrac{1}{n^2}<\\dfrac{1}{n(n-1)}=\\dfrac{1}{n-1}-\\dfrac{1}{n}$。部分和 $S_n=1+\\displaystyle\\sum_{k=2}^{n}\\dfrac{1}{k^2}<1+\\sum_{k=2}^{n}\\left(\\dfrac{1}{k-1}-\\dfrac{1}{k}\\right)=1+\\left(1-\\dfrac{1}{n}\\right)<2$。正项级数部分和单调递增且有上界 2，故收敛。",
+          "answer": "证毕（三种证法）",
+          "scene_spec": {
+            "objects": [
+              "项 $1/n^2$ 与比较项 $1/[n(n-1)]$（$n\\ge2$）",
+              "裂项恒等式 $1/[n(n-1)]=1/(n-1)-1/n$",
+              "部分和 $S_N$ 与上界 $2-1/N$"
+            ],
+            "steps": [
+              "从 $n\\ge2$ 开始，展示 $1/n^2<1/[n(n-1)]$；首项 $1$ 单独保留。",
+              "把比较项拆成 $1/(n-1)-1/n$，按相邻项逐项抵消。",
+              "给出 $S_N<1+\\sum_{n=2}^{N}(1/(n-1)-1/n)=2-1/N<2$（$N\\ge2$）。",
+              "展示 $S_N$ 递增且有上界，应用单调有界原则证明收敛"
+            ]
+          },
+          "function_family": "p 级数",
+          "visual_style": "柱状图嵌入曲线",
+          "efficiency_tags": [
+            "$1/n^2<1/[n(n-1)]$ 的比较",
+            "裂项 $1/(n-1)-1/n$ 的逐项抵消",
+            "部分和上界 $2-1/N<2$ 与单调有界原则"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-023-s3",
+          "problem_id": "eval-calc-023",
+          "solution_id": "eval-calc-023-s3",
+          "method": "Cauchy 凝聚判别法",
+          "category": "数学分析",
+          "sub_category": "正项级数",
+          "problem": "证明级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n^2}$ 收敛。",
+          "solution": "取 $2^k$ 项凝聚：$\\displaystyle\\sum_{k=1}^{\\infty}2^k\\cdot\\dfrac{1}{(2^k)^2}=\\sum_{k=1}^{\\infty}\\dfrac{1}{2^k}$ 收敛（几何级数），由 Cauchy 凝聚判别法，原级数收敛。",
+          "answer": "证毕（三种证法）",
+          "scene_spec": {
+            "objects": [
+              "数列 $a_n=1/n^2$ 及按 $2^k$ 标记的分块",
+              "凝聚项 $2^k a_{2^k}=2^{-k}$",
+              "几何级数 $\\sum_{k=1}^{\\infty}2^{-k}$"
+            ],
+            "steps": [
+              "确认 $a_n$ 正且递减，说明 Cauchy 凝聚判别法的适用条件。",
+              "高亮 $2^k$ 对应的样本位置和权重，建立 $2^k/(2^k)^2=2^{-k}$。",
+              "把凝聚级数映射到公比 $1/2$ 的几何级数，其和为 $1$；有限初始项不影响收敛性。",
+              "应用凝聚判别法回到原级数，结论是收敛"
+            ]
+          },
+          "function_family": "p 级数",
+          "visual_style": "柱状图嵌入曲线",
+          "efficiency_tags": [
+            "$a_n$ 按 $2^k$ 标记的分块",
+            "凝聚项 $2^k a_{2^k}=2^{-k}$ 的建立",
+            "公比 $\\dfrac{1}{2}$ 几何级数的映射"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "42d8691a92d519758bb0e2f511d252f4abee40194042569be065f9c196656db9",
+        "13901c30aec2cad89dff8e883711ffc40d412816ede44a3675ced0c1dea8b22d",
+        "250464448fc475a2ea746c5be4148103ed2cdf9230923eee76e55f1f992f8c59"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-024",
+      "problem_sha256": "d20461e9e541de80f28d13de7faaecbf4cc2d3fbe2d2fd544f283c9e1e978f20",
+      "source_records": [
+        {
+          "id": "eval-calc-024-s1",
+          "problem_id": "eval-calc-024",
+          "solution_id": "eval-calc-024-s1",
+          "method": "逐项积分",
+          "category": "数学分析",
+          "sub_category": "幂级数",
+          "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+          "solution": "由等比级数 $\\dfrac{1}{1+t}=\\displaystyle\\sum_{n=0}^{\\infty}(-1)^nt^{n}$（$|t|<1$），以 $t=x^2$ 代入得 $\\dfrac{1}{1+x^2}=\\displaystyle\\sum_{n=0}^{\\infty}(-1)^nx^{2n}$。逐项积分：$\\arctan x=\\displaystyle\\int_0^x\\dfrac{dt}{1+t^2}=\\sum_{n=0}^{\\infty}(-1)^n\\int_0^xt^{2n}dt=\\sum_{n=0}^{\\infty}\\dfrac{(-1)^nx^{2n+1}}{2n+1}$（$|x|<1$）。",
+          "answer": "$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数",
+          "scene_spec": {
+            "objects": [
+              "等比级数 $\\dfrac{1}{1+x^2}=\\sum(-1)^nx^{2n}$ 的逐项积分",
+              "部分和多项式逐阶逼近 $\\arctan x$"
+            ],
+            "steps": [
+              "第一步：以逐项积分为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+              "第二步：等比级数 $\\dfrac{1}{1+x^2}=\\sum(-1)^nx^{2n}$ 的逐项积分。",
+              "第三步：部分和多项式逐阶逼近 $\\arctan x$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "反三角函数幂级数",
+          "visual_style": "部分和逐阶逼近",
+          "efficiency_tags": [
+            "等比级数 $\\dfrac{1}{1+x^2}=\\sum(-1)^nx^{2n}$ 的逐项积分",
+            "部分和多项式逐阶逼近 $\\arctan x$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-024-s2",
+          "problem_id": "eval-calc-024",
+          "solution_id": "eval-calc-024-s2",
+          "method": "端点取值的 Abel 定理",
+          "category": "数学分析",
+          "sub_category": "幂级数",
+          "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+          "solution": "$x=1$ 处级数 $\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n}{2n+1}$ 为交错级数（$a_n=\\dfrac{1}{2n+1}\\searrow 0$），由莱布尼茨判别法收敛；由 Abel 定理，和函数在 $x=1$ 左连续，故 $\\arctan 1=\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。$x=-1$ 同理（或由奇偶性）。",
+          "answer": "$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数",
+          "scene_spec": {
+            "objects": [
+              "$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$",
+              "Abel 定理左连续的标注"
+            ],
+            "steps": [
+              "第一步：以端点取值的 Abel 定理为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+              "第二步：$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$。",
+              "第三步：Abel 定理左连续的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "反三角函数幂级数",
+          "visual_style": "部分和逐阶逼近",
+          "efficiency_tags": [
+            "$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$",
+            "Abel 定理左连续的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-024-s3",
+          "problem_id": "eval-calc-024",
+          "solution_id": "eval-calc-024-s3",
+          "method": "泰勒公式余项验证",
+          "category": "数学分析",
+          "sub_category": "幂级数",
+          "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+          "solution": "对 $f(x)=\\arctan x$ 用带拉格朗日余项的麦克劳林公式：$f^{(n)}(0)$ 由递推 $f'(x)=\\dfrac{1}{1+x^2}$ 逐阶求导给出。对 $\\arctan$ 可归纳证明 $|f^{(m)}(t)|\\le(m-1)!$（$m\\ge 1$，对一切实数 $t$），于是余项 $|R_N(x)|=\\dfrac{|f^{(N+1)}(\\xi)|}{(N+1)!}|x|^{N+1}\\le\\dfrac{N!}{(N+1)!}\\cdot 1=\\dfrac{1}{N+1}\\to 0$，对 $|x|\\le 1$ 一致成立。故展开式在 $|x|\\le 1$ 成立，端点处即莱布尼茨级数。",
+          "answer": "$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数",
+          "scene_spec": {
+            "objects": [
+              "各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注",
+              "余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示"
+            ],
+            "steps": [
+              "第一步：以泰勒公式余项验证为主线，建立数学分析·幂级数场景并呈现该解法的关键图形。",
+              "第二步：各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注。",
+              "第三步：余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "反三角函数幂级数",
+          "visual_style": "部分和逐阶逼近",
+          "efficiency_tags": [
+            "各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注",
+            "余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "32b3b95862181baf1e23c869880329a1eb1e966df4823cd6d14780ddd5aa4ba7",
+        "ad034e007019428c7e5ff48deb0edffe35bda62624c7ce80c283158abc96bece",
+        "ef34ca9960205c47eef4ad6e4d1a25a669156b63414c3a1b872273e82063adb9"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-025",
+      "problem_sha256": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+      "source_records": [
+        {
+          "id": "eval-calc-025-s1",
+          "problem_id": "eval-calc-025",
+          "solution_id": "eval-calc-025-s1",
+          "method": "莱布尼茨判别法+绝对收敛检验",
+          "category": "数学分析",
+          "sub_category": "交错级数",
+          "problem": "讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+          "solution": "$a_n=\\dfrac{1}{\\ln n}$ 单调递减且 $\\lim_{n\\to\\infty}a_n=0$，由莱布尼茨判别法，交错级数 $\\displaystyle\\sum_{n=2}^{\\infty}(-1)^na_n$ 收敛。考察绝对级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\dfrac{1}{\\ln n}$：当 $n\\ge 3$ 时 $\\dfrac{1}{\\ln n}>\\dfrac{1}{n}$（因 $\\ln n<n$），而调和级数 $\\sum\\dfrac{1}{n}$ 发散，由比较判别法绝对级数发散。因此原级数条件收敛。",
+          "answer": "条件收敛",
+          "scene_spec": {
+            "objects": [
+              "单调递减项 $a_n=\\dfrac{1}{\\ln n}$ 的柱状图",
+              "与调和级数 $\\dfrac{1}{n}$ 的比较标注"
+            ],
+            "steps": [
+              "第一步：以莱布尼茨判别法+绝对收敛检验为主线，建立数学分析·交错级数场景并呈现该解法的关键图形。",
+              "第二步：单调递减项 $a_n=\\dfrac{1}{\\ln n}$ 的柱状图。",
+              "第三步：与调和级数 $\\dfrac{1}{n}$ 的比较标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数型交错级数",
+          "visual_style": "振荡收敛折线对比",
+          "efficiency_tags": [
+            "单调递减项 $a_n=\\dfrac{1}{\\ln n}$ 的柱状图",
+            "与调和级数 $\\dfrac{1}{n}$ 的比较标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-025-s2",
+          "problem_id": "eval-calc-025",
+          "solution_id": "eval-calc-025-s2",
+          "method": "部分和分组估计",
+          "category": "数学分析",
+          "sub_category": "交错级数",
+          "problem": "讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+          "solution": "记 $a_n=\\dfrac{1}{\\ln n}$，$S_n=\\displaystyle\\sum_{k=2}^{n}(-1)^ka_k$。配对求和：$S_{2m+1}=\\displaystyle\\sum_{j=1}^{m}(a_{2j}-a_{2j+1})$，每项为正，故奇子列 $S_{2m+1}$ 随 $m$ 递增；又 $a_{2j}-a_{2j+1}<a_{2j}-a_{2j+2}$，故 $S_{2m+1}<\\displaystyle\\sum_{j=1}^{m}(a_{2j}-a_{2j+2})=\\dfrac{1}{\\ln 2}-\\dfrac{1}{\\ln(2m+2)}<\\dfrac{1}{\\ln 2}$，奇子列有上界，收敛。偶子列 $S_{2m}=S_{2m+1}+a_{2m+1}$，与奇子列之差 $a_{2m+1}\\to 0$，故 $S_n$ 收敛。绝对发散仍由解法一的比较法给出。",
+          "answer": "条件收敛",
+          "scene_spec": {
+            "objects": [
+              "奇子列 $S_{2m+1}$ 递增有上界的折线",
+              "偶子列 $S_{2m}$ 与奇子列之差 $a_{2m+1}\\to0$ 的配对相消放大"
+            ],
+            "steps": [
+              "第一步：以部分和分组估计为主线，建立数学分析·交错级数场景并呈现该解法的关键图形。",
+              "第二步：奇子列 $S_{2m+1}$ 递增有上界的折线。",
+              "第三步：偶子列 $S_{2m}$ 与奇子列之差 $a_{2m+1}\\to0$ 的配对相消放大。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数型交错级数",
+          "visual_style": "振荡收敛折线对比",
+          "efficiency_tags": [
+            "奇子列 $S_{2m+1}$ 递增有上界的折线",
+            "偶子列 $S_{2m}$ 与奇子列之差 $a_{2m+1}\\to0$ 的配对相消放大"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-025-s3",
+          "problem_id": "eval-calc-025",
+          "solution_id": "eval-calc-025-s3",
+          "method": "与调和级数对比的收敛速度观察",
+          "category": "数学分析",
+          "sub_category": "交错级数",
+          "problem": "讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+          "solution": "数值观察：$\\displaystyle\\sum_{k=2}^{n}\\dfrac{1}{\\ln k}$ 约为 $\\dfrac{n}{\\ln n}$ 量级（发散），而交错后正负相消使部分和在极限值附近振荡——用图形展示振荡收敛与无条件发散的反差。严格结论仍由解法一给出，本解法用于建立几何直觉。",
+          "answer": "条件收敛",
+          "scene_spec": {
+            "objects": [
+              "交错部分和振荡收敛折线",
+              "绝对级数部分和单调发散对比"
+            ],
+            "steps": [
+              "第一步：以与调和级数对比的收敛速度观察为主线，建立数学分析·交错级数场景并呈现该解法的关键图形。",
+              "第二步：交错部分和振荡收敛折线。",
+              "第三步：绝对级数部分和单调发散对比。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "对数型交错级数",
+          "visual_style": "振荡收敛折线对比",
+          "efficiency_tags": [
+            "交错部分和振荡收敛折线",
+            "绝对级数部分和单调发散对比"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "2bce851331df1a855f508db65666f66dbfbe720e5320239eb05c8574b8c08e78",
+        "e7dcc76f7a10fb0cdf2c93f2ca11936df9a3540bf5c0d030fba28045cf5c2224",
+        "551e44311703012d6655b8e670ba856f1013f0461cdf8ceb76daa7a68a604668"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-026",
+      "problem_sha256": "1caaeaba6e895a4e687b662f0e655819f7254e88f05da21050dea5d44311af8a",
+      "source_records": [
+        {
+          "id": "eval-calc-026-s1",
+          "problem_id": "eval-calc-026",
+          "solution_id": "eval-calc-026-s1",
+          "method": "直接按定义求偏导",
+          "category": "数学分析",
+          "sub_category": "多元函数微分",
+          "problem": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+          "solution": "把 $y$ 视为常数：$z_x=yx^{y-1}$，故 $z_x(1,2)=2\\cdot 1^{2-1}=2$。把 $x$ 视为常数：$z_y=x^y\\ln x$，故 $z_y(1,2)=1^2\\cdot\\ln 1=0$。",
+          "answer": "$z_x(1,2)=2$，$z_y(1,2)=0$",
+          "scene_spec": {
+            "objects": [
+              "沿 $x$ 方向固定 $y=2$ 的截面曲线 $z=x^2$",
+              "沿 $y$ 方向固定 $x=1$ 的截面曲线 $z=1^y$"
+            ],
+            "steps": [
+              "第一步：以直接按定义求偏导为主线，建立数学分析·多元函数微分场景并呈现该解法的关键图形。",
+              "第二步：沿 $x$ 方向固定 $y=2$ 的截面曲线 $z=x^2$。",
+              "第三步：沿 $y$ 方向固定 $x=1$ 的截面曲线 $z=1^y$。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂指函数(多元)",
+          "visual_style": "曲面切平面局部放大",
+          "efficiency_tags": [
+            "沿 $x$ 方向固定 $y=2$ 的截面曲线 $z=x^2$",
+            "沿 $y$ 方向固定 $x=1$ 的截面曲线 $z=1^y$"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-026-s2",
+          "problem_id": "eval-calc-026",
+          "solution_id": "eval-calc-026-s2",
+          "method": "全微分",
+          "category": "数学分析",
+          "sub_category": "多元函数微分",
+          "problem": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+          "solution": "对 $\\ln z=y\\ln x$ 两边求全微分：$\\dfrac{dz}{z}=\\dfrac{y}{x}dx+\\ln x\\,dy$。在 $(1,2)$ 处 $z=1$、$\\dfrac{y}{x}=2$、$\\ln x=0$，故 $dz=2\\,dx+0\\cdot dy$，即 $z_x=2$、$z_y=0$。",
+          "answer": "$z_x(1,2)=2$，$z_y(1,2)=0$",
+          "scene_spec": {
+            "objects": [
+              "全微分 $\\dfrac{dz}{z}=\\dfrac{y}{x}dx+\\ln x\\,dy$ 的推导",
+              "切平面沿 $x$ 倾斜、沿 $y$ 水平的标注"
+            ],
+            "steps": [
+              "第一步：以全微分为主线，建立数学分析·多元函数微分场景并呈现该解法的关键图形。",
+              "第二步：全微分 $\\dfrac{dz}{z}=\\dfrac{y}{x}dx+\\ln x\\,dy$ 的推导。",
+              "第三步：切平面沿 $x$ 倾斜、沿 $y$ 水平的标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂指函数(多元)",
+          "visual_style": "曲面切平面局部放大",
+          "efficiency_tags": [
+            "全微分 $\\dfrac{dz}{z}=\\dfrac{y}{x}dx+\\ln x\\,dy$ 的推导",
+            "切平面沿 $x$ 倾斜、沿 $y$ 水平的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-026-s3",
+          "problem_id": "eval-calc-026",
+          "solution_id": "eval-calc-026-s3",
+          "method": "数值差分验证",
+          "category": "数学分析",
+          "sub_category": "多元函数微分",
+          "problem": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+          "solution": "取步长 $h=10^{-4}$：$z_x\\approx\\dfrac{(1+h)^2-1^2}{h}=\\dfrac{2h+h^2}{h}=2+h\\to 2$；$z_y\\approx\\dfrac{1^{2+h}-1}{h}=\\dfrac{0}{h}=0$。数值结果与解析一致，说明 $z_y(1,2)=0$ 反映曲面在 $y$ 方向局部水平。",
+          "answer": "$z_x(1,2)=2$，$z_y(1,2)=0$",
+          "scene_spec": {
+            "objects": [
+              "差分步长 $h$ 收缩动画",
+              "两方向差商分别趋近 2 与 0"
+            ],
+            "steps": [
+              "第一步：以数值差分验证为主线，建立数学分析·多元函数微分场景并呈现该解法的关键图形。",
+              "第二步：差分步长 $h$ 收缩动画。",
+              "第三步：两方向差商分别趋近 2 与 0。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "幂指函数(多元)",
+          "visual_style": "曲面切平面局部放大",
+          "efficiency_tags": [
+            "差分步长 $h$ 收缩动画",
+            "两方向差商分别趋近 2 与 0"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "6a1cad3f0801acef0946880522f6b68c1bd7345721a8e821ed07fb9e1ee034f4",
+        "03e411661d1cd0cb46eb8628e73c9016d56aab76002199b75dee1da3056cf542",
+        "42fd34dac50a10be36eb155ea06d8d820b179814ab9a73daaf4ef3080bc80f66"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-027",
+      "problem_sha256": "62572e2ce02c00bea462d6235ed7e90121dab0c9b96cb6f1986f8a089896632e",
+      "source_records": [
+        {
+          "id": "eval-calc-027-s1",
+          "problem_id": "eval-calc-027",
+          "solution_id": "eval-calc-027-s1",
+          "method": "交换积分次序",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+          "solution": "积分区域为 $D=\\{(x,y):0\\le x\\le 1,\\ x\\le y\\le 1\\}=\\{(x,y):0\\le y\\le 1,\\ 0\\le x\\le y\\}$。交换次序：$I=\\displaystyle\\int_0^1\\!\\!\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1 y\\,e^{y^2}\\,dy$。令 $u=y^2$（$du=2y\\,dy$）：$I=\\dfrac{1}{2}\\displaystyle\\int_0^1 e^u\\,du=\\dfrac{1}{2}(e-1)$。",
+          "answer": "$\\dfrac{e-1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "积分区域 $D$ 竖条扫描受阻的演示",
+              "换为横条扫描后 $y\\,e^{y^2}$ 的一气呵成",
+              "换序前后对照"
+            ],
+            "steps": [
+              "第一步：以交换积分次序为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：积分区域 $D$ 竖条扫描受阻的演示。",
+              "第三步：换为横条扫描后 $y\\,e^{y^2}$ 的一气呵成。",
+              "第四步：换序前后对照。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "高斯型函数重积分",
+          "visual_style": "竖条/横条扫描切换",
+          "efficiency_tags": [
+            "积分区域 $D$ 竖条扫描受阻的演示",
+            "换为横条扫描后 $y\\,e^{y^2}$ 的一气呵成",
+            "换序前后对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-027-s2",
+          "problem_id": "eval-calc-027",
+          "solution_id": "eval-calc-027-s2",
+          "method": "分部积分",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+          "solution": "记 $F(x)=\\displaystyle\\int_x^1e^{y^2}dy$，则 $I=\\displaystyle\\int_0^1F(x)dx$，且 $F(1)=0$、$F'(x)=-e^{x^2}$。分部积分：$I=\\left[xF(x)\\right]_0^1-\\displaystyle\\int_0^1xF'(x)dx=0-\\int_0^1x\\left(-e^{x^2}\\right)dx=\\int_0^1xe^{x^2}dx=\\left[\\dfrac{e^{x^2}}{2}\\right]_0^1=\\dfrac{e-1}{2}$。",
+          "answer": "$\\dfrac{e-1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "分部积分 $u=F(x)$、$dv=dx$ 的选取",
+              "边界项 $xF(x)\\big|_0^1=0$ 的标注",
+              "$F'=-e^{x^2}$ 的代入"
+            ],
+            "steps": [
+              "第一步：以分部积分为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：分部积分 $u=F(x)$、$dv=dx$ 的选取。",
+              "第三步：边界项 $xF(x)\\big|_0^1=0$ 的标注。",
+              "第四步：$F'=-e^{x^2}$ 的代入。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "高斯型函数重积分",
+          "visual_style": "竖条/横条扫描切换",
+          "efficiency_tags": [
+            "分部积分 $u=F(x)$、$dv=dx$ 的选取",
+            "边界项 $xF(x)\\big|_0^1=0$ 的标注",
+            "$F'=-e^{x^2}$ 的代入"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-027-s3",
+          "problem_id": "eval-calc-027",
+          "solution_id": "eval-calc-027-s3",
+          "method": "数值验证，辅助校验",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+          "solution": "若按原次序先积 $y$，需要 $\\int e^{y^2}dy$ 的原函数，而由刘维尔定理 $e^{y^2}$ 没有初等原函数，直接路线注定失败——这正是必须交换次序（或改用解法二）的信号。作为辅助校验，用二重黎曼和（如 $1000\\times 1000$ 网格）估算 $I\\approx 0.85914$，与解析值 $\\dfrac{e-1}{2}=0.859141\\cdots$ 吻合。",
+          "answer": "$\\dfrac{e-1}{2}$",
+          "scene_spec": {
+            "objects": [
+              "二重黎曼和网格加密",
+              "数值 0.85914 与 $\\dfrac{e-1}{2}$ 同框对照"
+            ],
+            "steps": [
+              "第一步：以数值验证，辅助校验为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：二重黎曼和网格加密。",
+              "第三步：数值 0.85914 与 $\\dfrac{e-1}{2}$ 同框对照。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "高斯型函数重积分",
+          "visual_style": "竖条/横条扫描切换",
+          "efficiency_tags": [
+            "二重黎曼和网格加密",
+            "数值 0.85914 与 $\\dfrac{e-1}{2}$ 同框对照"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "db9cf2cf9803898ecab058872250afd5ae2528aaefb72311ae01dd5681d6082c",
+        "e4d355a5208ee9f317748283cd9706f57beb53ef1b70983d0a38e0ba7a9262a7",
+        "af9add6fc89c734f062bba6d88c3ba8ed3dfdbdb6bbca776aa00debb3b9630ef"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-028",
+      "problem_sha256": "166a03d5727e13a672fcf7c0f8591ca033730421b6ed1cce21b9dc0a00c4c7fd",
+      "source_records": [
+        {
+          "id": "eval-calc-028-s1",
+          "problem_id": "eval-calc-028",
+          "solution_id": "eval-calc-028-s1",
+          "method": "极坐标",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\iint_D(x^2+y^2)\\,dA$，其中 $D=\\{(x,y):x^2+y^2\\le 2y\\}$。",
+          "solution": "$D$ 是圆心 $(0,1)$、半径 $1$ 的圆盘，极坐标下边界 $r=2\\sin\\theta$（$\\theta\\in[0,\\pi]$），且 $x^2+y^2=r^2$、$dA=r\\,dr\\,d\\theta$。$I=\\displaystyle\\int_0^{\\pi}\\!\\!\\int_0^{2\\sin\\theta}r^2\\cdot r\\,dr\\,d\\theta=\\int_0^{\\pi}\\left[\\dfrac{r^4}{4}\\right]_0^{2\\sin\\theta}d\\theta=\\int_0^{\\pi}4\\sin^4\\theta\\,d\\theta$。由 $\\displaystyle\\int_0^{\\pi}\\sin^4\\theta\\,d\\theta=\\dfrac{3\\pi}{8}$（倍角降次即得），故 $I=4\\cdot\\dfrac{3\\pi}{8}=\\dfrac{3\\pi}{2}$。",
+          "answer": "$\\dfrac{3\\pi}{2}$",
+          "scene_spec": {
+            "objects": [
+              "圆盘 $D$ 与极角 $\\theta\\in[0,\\pi]$ 的扇形扫描",
+              "$r^4$ 径向积分与 $\\sin^4\\theta$ 的倍角降次"
+            ],
+            "steps": [
+              "第一步：以极坐标为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：圆盘 $D$ 与极角 $\\theta\\in[0,\\pi]$ 的扇形扫描。",
+              "第三步：$r^4$ 径向积分与 $\\sin^4\\theta$ 的倍角降次。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式重积分",
+          "visual_style": "极坐标扇形扫描",
+          "efficiency_tags": [
+            "圆盘 $D$ 与极角 $\\theta\\in[0,\\pi]$ 的扇形扫描",
+            "$r^4$ 径向积分与 $\\sin^4\\theta$ 的倍角降次"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-028-s2",
+          "problem_id": "eval-calc-028",
+          "solution_id": "eval-calc-028-s2",
+          "method": "直角坐标",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\iint_D(x^2+y^2)\\,dA$，其中 $D=\\{(x,y):x^2+y^2\\le 2y\\}$。",
+          "solution": "$D:0\\le y\\le 2,\\ -\\sqrt{2y-y^2}\\le x\\le\\sqrt{2y-y^2}$。先对 $x$ 积分：内层 $=\\left[\\dfrac{x^3}{3}+xy^2\\right]_{-\\sqrt{2y-y^2}}^{\\sqrt{2y-y^2}}=2\\left[\\dfrac{(2y-y^2)^{3/2}}{3}+y^2\\sqrt{2y-y^2}\\right]=2\\sqrt{2y-y^2}\\left[\\dfrac{2y-y^2}{3}+y^2\\right]=\\dfrac{4}{3}y(1+y)\\sqrt{2y-y^2}$。故 $I=\\dfrac{4}{3}\\displaystyle\\int_0^2 y(1+y)\\sqrt{2y-y^2}\\,dy$。令 $u=y-1$（平移至圆心），则 $y(1+y)=(1+u)(2+u)=2+3u+u^2$，$\\sqrt{2y-y^2}=\\sqrt{1-u^2}$，$u:-1\\to 1$。$I=\\dfrac{4}{3}\\displaystyle\\int_{-1}^{1}(2+3u+u^2)\\sqrt{1-u^2}\\,du=\\dfrac{4}{3}\\left[2\\cdot\\dfrac{\\pi}{2}+3\\cdot 0+\\dfrac{\\pi}{8}\\right]=\\dfrac{4}{3}\\cdot\\dfrac{9\\pi}{8}=\\dfrac{3\\pi}{2}$（其中 $\\int_{-1}^{1}\\sqrt{1-u^2}du=\\dfrac{\\pi}{2}$ 为半圆面积，$u\\sqrt{1-u^2}$ 为奇函数积分为 0，$\\int_{-1}^{1}u^2\\sqrt{1-u^2}du=\\dfrac{\\pi}{8}$ 由三角代换 $u=\\sin t$ 即得）。",
+          "answer": "$\\dfrac{3\\pi}{2}$",
+          "scene_spec": {
+            "objects": [
+              "水平条带平移 $u=y-1$ 的示意",
+              "三个标准积分 $\\dfrac{\\pi}{2},0,\\dfrac{\\pi}{8}$ 的分解标注"
+            ],
+            "steps": [
+              "第一步：以直角坐标为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：水平条带平移 $u=y-1$ 的示意。",
+              "第三步：三个标准积分 $\\dfrac{\\pi}{2},0,\\dfrac{\\pi}{8}$ 的分解标注。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式重积分",
+          "visual_style": "极坐标扇形扫描",
+          "efficiency_tags": [
+            "水平条带平移 $u=y-1$ 的示意",
+            "三个标准积分 $\\dfrac{\\pi}{2},0,\\dfrac{\\pi}{8}$ 的分解标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-028-s3",
+          "problem_id": "eval-calc-028",
+          "solution_id": "eval-calc-028-s3",
+          "method": "平行轴定理/极惯性矩",
+          "category": "数学分析",
+          "sub_category": "重积分",
+          "problem": "求二重积分 $\\displaystyle I=\\iint_D(x^2+y^2)\\,dA$，其中 $D=\\{(x,y):x^2+y^2\\le 2y\\}$。",
+          "solution": "被积函数 $x^2+y^2$ 是到原点的距离平方，积分即区域 $D$ 关于原点 $O$ 的极惯性矩 $J_O$。由平行轴定理 $J_O=J_C+Ad^2$，其中 $J_C$ 是圆盘关于自身圆心 $C$ 的极惯性矩 $J_C=\\dfrac{\\pi R^4}{2}=\\dfrac{\\pi}{2}$，$A=\\pi$ 为面积，$d=|OC|=1$ 为圆心到原点的距离。故 $I=J_O=\\dfrac{\\pi}{2}+\\pi\\cdot 1^2=\\dfrac{3\\pi}{2}$。",
+          "answer": "$\\dfrac{3\\pi}{2}$",
+          "scene_spec": {
+            "objects": [
+              "平行轴定理的物理示意（圆盘+偏心距 $d=1$）",
+              "$J_C=\\dfrac{\\pi R^4}{2}$ 与 $Ad^2$ 的叠加"
+            ],
+            "steps": [
+              "第一步：以平行轴定理/极惯性矩为主线，建立数学分析·重积分场景并呈现该解法的关键图形。",
+              "第二步：平行轴定理的物理示意（圆盘+偏心距 $d=1$）。",
+              "第三步：$J_C=\\dfrac{\\pi R^4}{2}$ 与 $Ad^2$ 的叠加。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "多项式重积分",
+          "visual_style": "极坐标扇形扫描",
+          "efficiency_tags": [
+            "平行轴定理的物理示意（圆盘+偏心距 $d=1$）",
+            "$J_C=\\dfrac{\\pi R^4}{2}$ 与 $Ad^2$ 的叠加"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "b78a005cd7e95a3a223dbf43020693dd03faeb43237a4a254c084e638ebc6ffc",
+        "cae70ab822de54c129224138f06f42203e29910da5735c7bd2c3502478b020a4",
+        "fbf90bcba2d7786a0b7b4d1a79a1208280f4a600a4676e311790c43080090bd8"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-029",
+      "problem_sha256": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+      "source_records": [
+        {
+          "id": "eval-calc-029-s1",
+          "problem_id": "eval-calc-029",
+          "solution_id": "eval-calc-029-s1",
+          "method": "参数方程弧长",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$（$a>0$）的周长。",
+          "solution": "参数化 $x=a\\cos^3 t$、$y=a\\sin^3 t$（$t\\in[0,2\\pi]$）。$x'=-3a\\cos^2 t\\sin t$，$y'=3a\\sin^2 t\\cos t$，弧长微元 $ds=\\sqrt{(x')^2+(y')^2}\\,dt=\\sqrt{9a^2\\cos^4 t\\sin^2 t+9a^2\\sin^4 t\\cos^2 t}\\,dt=3a|\\sin t\\cos t|\\,dt$。由对称性取第一象限：$L=4\\displaystyle\\int_0^{\\pi/2}3a\\sin t\\cos t\\,dt=12a\\left[\\dfrac{\\sin^2 t}{2}\\right]_0^{\\pi/2}=12a\\cdot\\dfrac{1}{2}=6a$。",
+          "answer": "$6a$",
+          "scene_spec": {
+            "objects": [
+              "弧长微元 $ds=3a|\\sin t\\cos t|dt$ 沿曲线移动",
+              "四分之一对称性叠加"
+            ],
+            "steps": [
+              "第一步：以参数方程弧长为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：弧长微元 $ds=3a|\\sin t\\cos t|dt$ 沿曲线移动。",
+              "第三步：四分之一对称性叠加。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "参数曲线(星形线)弧长",
+          "visual_style": "滑动线段包络",
+          "efficiency_tags": [
+            "弧长微元 $ds=3a|\\sin t\\cos t|dt$ 沿曲线移动",
+            "四分之一对称性叠加"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-029-s2",
+          "problem_id": "eval-calc-029",
+          "solution_id": "eval-calc-029-s2",
+          "method": "隐式方程弧长",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$（$a>0$）的周长。",
+          "solution": "由隐函数求导（eval-calc-007）$y'=-\\left(\\dfrac{y}{x}\\right)^{1/3}$，故弧长微元 $ds=\\sqrt{1+(y')^2}\\,dx=\\sqrt{1+(y/x)^{2/3}}\\,dx=\\sqrt{\\dfrac{x^{2/3}+y^{2/3}}{x^{2/3}}}\\,dx$。由星形线方程 $x^{2/3}+y^{2/3}=a^{2/3}$，得 $ds=a^{1/3}x^{-1/3}dx$。第一象限部分：$L_1=\\displaystyle\\int_0^a a^{1/3}x^{-1/3}dx=a^{1/3}\\left[\\dfrac{3}{2}x^{2/3}\\right]_0^a=\\dfrac{3a}{2}$，故 $L=4L_1=6a$。",
+          "answer": "$6a$",
+          "scene_spec": {
+            "objects": [
+              "隐式导数 $y'=-(y/x)^{1/3}$ 的推导",
+              "$ds=a^{1/3}x^{-1/3}dx$ 的化简与积分"
+            ],
+            "steps": [
+              "第一步：以隐式方程弧长为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：隐式导数 $y'=-(y/x)^{1/3}$ 的推导。",
+              "第三步：$ds=a^{1/3}x^{-1/3}dx$ 的化简与积分。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "参数曲线(星形线)弧长",
+          "visual_style": "滑动线段包络",
+          "efficiency_tags": [
+            "隐式导数 $y'=-(y/x)^{1/3}$ 的推导",
+            "$ds=a^{1/3}x^{-1/3}dx$ 的化简与积分"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-029-s3",
+          "problem_id": "eval-calc-029",
+          "solution_id": "eval-calc-029-s3",
+          "method": "滑动线段包络法",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$（$a>0$）的周长。",
+          "solution": "考虑两端分别在坐标轴上、长为 $a$ 的滑动线段：端点 $E_1(t)=(a\\cos t,0)$、$E_2(t)=(0,a\\sin t)$。线段上参数 $v\\in[0,1]$ 的点为 $P(t,v)=\\big(a(1-v)\\cos t,\\ a v\\sin t\\big)$。包络条件 $\\dfrac{\\partial P}{\\partial t}$ 与 $\\dfrac{\\partial P}{\\partial v}$ 平行：$\\left(-a(1-v)\\sin t,\\ av\\cos t\\right)$ 与 $\\left(-a\\cos t,\\ a\\sin t\\right)$ 平行，叉积为零：$-a^2(1-v)\\sin^2 t+a^2v\\cos^2 t=0$，解得 $v=\\sin^2 t$。代入得包络点 $\\big(a\\cos t(1-\\sin^2 t),\\ a\\sin^3 t\\big)=\\big(a\\cos^3 t,\\ a\\sin^3 t\\big)$——正是星形线。于是星形线是定长滑动线段的包络，其弧长即解法一的参数曲线弧长：四分之一部分 $\\displaystyle\\int_0^{\\pi/2}3a\\sin t\\cos t\\,dt=\\dfrac{3a}{2}$，全长 $6a$。",
+          "answer": "$6a$",
+          "scene_spec": {
+            "objects": [
+              "滑动线段包络生成星形线",
+              "包络条件叉积为零的推导",
+              "切点把切线分成 $a\\sin^2t$ 与 $a\\cos^2t$ 的标注"
+            ],
+            "steps": [
+              "第一步：以滑动线段包络法为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：滑动线段包络生成星形线。",
+              "第三步：包络条件叉积为零的推导。",
+              "第四步：切点把切线分成 $a\\sin^2t$ 与 $a\\cos^2t$ 的标注。",
+              "第五步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "参数曲线(星形线)弧长",
+          "visual_style": "滑动线段包络",
+          "efficiency_tags": [
+            "滑动线段包络生成星形线",
+            "包络条件叉积为零的推导",
+            "切点把切线分成 $a\\sin^2t$ 与 $a\\cos^2t$ 的标注"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "3754298e1110077982c0e404d9da0ac886c636284e2a88d325f0dc18f1372ddc",
+        "69ef74a52e6847f39c19d366a3d23d107f0c9bae289ae868b1b97f78a203ff58",
+        "4b3f5123cbe3ad9123cb9f02ed843876162926ca2cda0fa4d79d286bd06f88bc"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    },
+    {
+      "split": "eval",
+      "id": "eval-calc-030",
+      "problem_sha256": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+      "source_records": [
+        {
+          "id": "eval-calc-030-s1",
+          "problem_id": "eval-calc-030",
+          "solution_id": "eval-calc-030-s1",
+          "method": "壳层法",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+          "solution": "在 $x$ 处取高度 $\\sin x$、厚度 $dx$ 的竖直壳层，其体积微元 $dV=2\\pi x\\sin x\\,dx$。$V=\\displaystyle\\int_0^{\\pi}2\\pi x\\sin x\\,dx$。分部积分（$u=x$、$dv=\\sin x\\,dx$）：$\\displaystyle\\int_0^{\\pi}x\\sin x\\,dx=\\left[-x\\cos x\\right]_0^{\\pi}+\\int_0^{\\pi}\\cos x\\,dx=\\pi+\\left[\\sin x\\right]_0^{\\pi}=\\pi$。故 $V=2\\pi\\cdot\\pi=2\\pi^2$。",
+          "answer": "$2\\pi^2$",
+          "scene_spec": {
+            "objects": [
+              "竖直壳层扫掠并展开成薄板",
+              "分部积分 $\\int x\\sin x\\,dx$ 的步骤"
+            ],
+            "steps": [
+              "第一步：以壳层法为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：竖直壳层扫掠并展开成薄板。",
+              "第三步：分部积分 $\\int x\\sin x\\,dx$ 的步骤。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数旋转体",
+          "visual_style": "壳层展开成薄板",
+          "efficiency_tags": [
+            "竖直壳层扫掠并展开成薄板",
+            "分部积分 $\\int x\\sin x\\,dx$ 的步骤"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-030-s2",
+          "problem_id": "eval-calc-030",
+          "solution_id": "eval-calc-030-s2",
+          "method": "帕普斯定理",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+          "solution": "区域面积 $A=\\displaystyle\\int_0^\\pi\\sin x\\,dx=\\left[-\\cos x\\right]_0^\\pi=2$。质心横坐标 $\\bar x=\\dfrac{1}{A}\\displaystyle\\int_0^\\pi x\\sin x\\,dx=\\dfrac{\\pi}{2}$（区域关于 $x=\\dfrac{\\pi}{2}$ 对称，且上式已算出积分为 $\\pi$）。由帕普斯定理（绕 $y$ 轴，轴不穿过区域内部），$V=2\\pi\\bar x A=2\\pi\\cdot\\dfrac{\\pi}{2}\\cdot 2=2\\pi^2$。",
+          "answer": "$2\\pi^2$",
+          "scene_spec": {
+            "objects": [
+              "质心横坐标 $\\bar x=\\dfrac{\\pi}{2}$ 的标注",
+              "帕普斯旋转示意（质心轨迹圆）"
+            ],
+            "steps": [
+              "第一步：以帕普斯定理为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：质心横坐标 $\\bar x=\\dfrac{\\pi}{2}$ 的标注。",
+              "第三步：帕普斯旋转示意（质心轨迹圆）。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数旋转体",
+          "visual_style": "壳层展开成薄板",
+          "efficiency_tags": [
+            "质心横坐标 $\\bar x=\\dfrac{\\pi}{2}$ 的标注",
+            "帕普斯旋转示意（质心轨迹圆）"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        },
+        {
+          "id": "eval-calc-030-s3",
+          "problem_id": "eval-calc-030",
+          "solution_id": "eval-calc-030-s3",
+          "method": "圆盘法，需分段",
+          "category": "数学分析",
+          "sub_category": "定积分的应用",
+          "problem": "求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+          "solution": "绕 $y$ 轴时取水平圆盘：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆盘外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2y-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
+          "answer": "$2\\pi^2$",
+          "scene_spec": {
+            "objects": [
+              "水平圆盘的内外半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+              "环形截面随 $y$ 扫掠"
+            ],
+            "steps": [
+              "第一步：以圆盘法，需分段为主线，建立数学分析·定积分的应用场景并呈现该解法的关键图形。",
+              "第二步：水平圆盘的内外半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$。",
+              "第三步：环形截面随 $y$ 扫掠。",
+              "第四步：高亮最终结果与答案。"
+            ]
+          },
+          "function_family": "三角函数旋转体",
+          "visual_style": "壳层展开成薄板",
+          "efficiency_tags": [
+            "水平圆盘的内外半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+            "环形截面随 $y$ 扫掠"
+          ],
+          "source": "self-authored",
+          "license": "Internal-Research-Use-Only"
+        }
+      ],
+      "source_record_sha256": [
+        "cc781569c3eaa11a88eb6fad64489237573c0313a95974a5ec5a2087ffa07bc1",
+        "b382e133a9bd5b5ff6e064104b992d70687354d5782dfd31a4ba908b3bb6397c",
+        "9fb3ba03a69965468042f5a9447d7ee9baacbc882d787321d77cd0c707df95a0"
+      ],
+      "status": "PENDING_ACTUAL_REVIEW"
+    }
+  ]
+}
