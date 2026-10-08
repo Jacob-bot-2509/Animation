@@ -1,0 +1,7 @@
+{
+  "schema": "author-pretest-record-v1",
+  "command": ".venv/Scripts/python.exe tools/runpy.py tools/host_pretest_witness.py",
+  "original_output": {"tcp": {"target": "172.31.31.250:49002", "errno": 0, "elapsed_ms": 24.7}, "udp": {"target": "172.31.31.250:49001", "sent": true}, "verdict": "errno=0"},
+  "context": "pretest ran while a leftover witness receiver process was still listening on 49002; witness operator subsequently killed it (Stop-Process -Force) and restarted a fresh listener for round lan-2026-10-08-b. errno=0 therefore touched the leftover listener, not the fresh round listener.",
+  "note": "script was later taken over and corrected by Codex (SHA 7b0d1df0...); this record preserves the author-side original run."
+}
