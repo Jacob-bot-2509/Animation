@@ -1,11 +1,13 @@
-"""Re-verify Codex's 626-page readable formula delivery against the user's HD criteria.
+"""Quantitative re-verification of the merged 633-page 4K delivery (v2).
 
-Reads the frozen DELIVERY_INDEX.jsonl (read-only; nothing is written into the
-frozen dir). Checks per canonical page: file existence, sha256 binding,
-resolution (>=1080 lines), ink content, no edge clipping, and per-formula slot
-height (page content height / formulas-on-page from the bound geometry file).
-Also verifies total formula coverage (sum of per-page items == unique formulas).
-Writes a new receipt under reviews/2026-10-08-visual-acceptance/ (add-only).
+v2 fixes the v1 flaws Codex named (msg_734):
+- pages are paired to geometry entries BY ORDER, never by filename number;
+- FORMULA_SEGMENT pages (partial viewport slices) are reported separately and
+  excluded from slot statistics -- bbox height there is viewport framing, not
+  formula size;
+- every page row records its path + sha256 + the pairing rule;
+- slot_px remains a LAYOUT OCCUPANCY PROXY and is explicitly not glyph
+  certification (per-symbol review is Codex's lane).
 """
 from __future__ import annotations
 
@@ -15,11 +17,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(r"D:\Animation-Model-Training")
-INDEX = ROOT / "reviews/codex-supervision/2026-10-08-hd-formula-mail-review/DELIVERY_INDEX.jsonl"
+INDEX = ROOT / "reviews/codex-supervision/2026-10-08-glyph-review-followup/DELIVERY_INDEX.jsonl"
 OUT = ROOT / "reviews/2026-10-08-visual-acceptance"
 THRESH = 32
 HD_SIZE = [3840, 2160]  # true 4K per delivery contract
-SLOT_MIN = 24  # px per formula slot per page (user requirement)
+SLOT_MIN = 24  # px per formula slot, FULL pages only (layout occupancy proxy)
 ANALYSIS_SCALE = 2  # analyze at half resolution, scale bbox back by this factor
 
 
@@ -54,7 +56,7 @@ def metrics(png):
 def main():
     rows = [json.loads(ln) for ln in INDEX.read_text(encoding="utf-8").splitlines() if ln.strip()]
     assert len(rows) == 165, f"expected 165 index rows, got {len(rows)}"
-    pages, issues, per_record, total_items = [], [], [], 0
+    pages, full_pages, seg_pages, issues, per_record, total_items = [], [], [], [], [], 0
     for r in rows:
         rid = r.get("id")
         frames = r.get("canonical_frames") or []
@@ -67,53 +69,62 @@ def main():
             continue
         geo = json.loads(geo_path.read_text(encoding="utf-8"))
         geo_pages = geo.get("pages") or []
-        n_items = {p.get("page"): len(p.get("items") or []) for p in geo_pages}
+        if len(geo_pages) != len(frames):
+            issues.append({"id": rid, "issue": f"pages {len(geo_pages)} != frames {len(frames)}"})
+            continue
         rec = {"id": rid, "pages": len(frames), "page_rows": []}
-        for f in frames:
+        for i, (geo_page, f) in enumerate(zip(geo_pages, frames)):
             png = ROOT / f["path"]
             if not png.is_file():
-                issues.append({"id": rid, "page": f["path"], "issue": "frame file missing"})
+                issues.append({"id": rid, "page_index": i, "issue": "frame file missing"})
                 continue
             if sha256(png) != f["sha256"]:
-                issues.append({"id": rid, "page": f["path"], "issue": "frame sha mismatch"})
+                issues.append({"id": rid, "page_index": i, "issue": "frame sha mismatch"})
                 continue
             met = metrics(png)
-            page_no = int(Path(f["path"]).stem.split("-")[-1])
-            items = n_items.get(page_no, 0)
+            items = len(geo_page.get("items") or [])
+            kind = geo_page.get("kind")
             bbox_h = (met["bbox"][3] - met["bbox"][1]) if met["bbox"] else 0
-            slot = round(bbox_h / items, 1) if items else None
+            slot = round(bbox_h / items, 1) if (kind == "FULL_FORMULAS" and items) else None
             row = {
-                "page": page_no, "size": met["size"], "ink": met["ink"],
-                "clipped": met["clipped"], "formulas_on_page": items, "slot_px": slot,
+                "page_order_index": i, "kind": kind, "path": f["path"],
+                "frame_sha256": f["sha256"], "size": met["size"], "ink": met["ink"],
+                "clipped": met["clipped"], "formulas_on_page": items, "slot_px_proxy": slot,
                 "resolution_ok": met["size"] == HD_SIZE,
-                "slot_ok": slot is not None and slot >= SLOT_MIN,
                 "ink_ok": met["ink"] >= 200,
                 "clipped_ok": not met["clipped"],
             }
+            row["slot_ok"] = slot is None or slot >= SLOT_MIN
             row["all_ok"] = row["resolution_ok"] and row["slot_ok"] and row["ink_ok"] and row["clipped_ok"]
             if not row["all_ok"]:
-                issues.append({"id": rid, "page": page_no, "issue": row})
+                issues.append({"id": rid, "page_order_index": i, "issue": row})
             rec["page_rows"].append(row)
+            (full_pages if kind == "FULL_FORMULAS" else seg_pages).append(row)
             pages.append(row)
         per_record.append(rec)
-        total_items += sum(n_items.values())
+        total_items += sum(len(p.get("items") or []) for p in geo_pages)
     ok_pages = sum(p["all_ok"] for p in pages)
     sizes = sorted({tuple(p["size"]) for p in pages})
-    slots = [p["slot_px"] for p in pages if p["slot_px"] is not None]
+    slots = [p["slot_px_proxy"] for p in full_pages if p["slot_px_proxy"] is not None]
     summary = {
-        "records": len(per_record), "pages": len(pages), "geometry_items_total": total_items,
+        "schema_version": 2,
+        "records": len(per_record), "pages": len(pages),
+        "full_pages": len(full_pages), "segment_pages": len(seg_pages),
+        "geometry_items_total": total_items,
         "pages_all_ok": ok_pages, "pages_with_issues": len(pages) - ok_pages,
         "resolution_histogram": {f"{w}x{h}": sum(1 for p in pages if tuple(p["size"]) == (w, h))
                                  for w, h in sizes},
-        "slot_px_min": min(slots) if slots else None,
-        "slot_px_p10": sorted(slots)[len(slots) // 10] if slots else None,
-        "slot_px_median": sorted(slots)[len(slots) // 2] if slots else None,
+        "full_page_slot_proxy_min": min(slots) if slots else None,
+        "full_page_slot_proxy_p10": sorted(slots)[len(slots) // 10] if slots else None,
+        "full_page_slot_proxy_median": sorted(slots)[len(slots) // 2] if slots else None,
+        "pairing_rule": "canonical_frames[i] <-> geometry pages[i], by order (never by filename)",
+        "segment_pages_note": "FORMULA_SEGMENT pages are partial viewport slices; bbox is framing, not formula size -- excluded from slot stats",
+        "slot_proxy_disclaimer": "slot_px_proxy is layout occupancy, NOT glyph-size certification; per-symbol review is separate (Codex lane)",
         "criteria": {"resolution_target": f"{HD_SIZE[0]}x{HD_SIZE[1]} (true 4K)", "slot_px_min": SLOT_MIN,
-                     "coverage": "165 records, all pages sha-bound to frozen 4K index",
-                     "supersedes": "480p receipt (readable-pages-verification.json) no longer applies to this delivery"},
+                     "coverage": "165 records, all pages sha-bound to frozen merged index (glyph-review-followup)"},
         "issues": issues[:20], "issue_count": len(issues),
     }
-    (OUT / "readable-pages-verification-4k.json").write_text(
+    (OUT / "readable-pages-verification-4k-v2.json").write_text(
         json.dumps({"summary": summary, "records": per_record}, ensure_ascii=False, indent=2),
         encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False))
