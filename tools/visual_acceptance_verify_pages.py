@@ -15,11 +15,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(r"D:\Animation-Model-Training")
-INDEX = ROOT / "reviews/codex-supervision/2026-10-08-visual-mail-review/DELIVERY_INDEX.jsonl"
+INDEX = ROOT / "reviews/codex-supervision/2026-10-08-hd-formula-mail-review/DELIVERY_INDEX.jsonl"
 OUT = ROOT / "reviews/2026-10-08-visual-acceptance"
 THRESH = 32
-HD_LINES = 1080
+HD_SIZE = [3840, 2160]  # true 4K per delivery contract
 SLOT_MIN = 24  # px per formula slot per page (user requirement)
+ANALYSIS_SCALE = 2  # analyze at half resolution, scale bbox back by this factor
 
 
 def sha256(path):
@@ -32,18 +33,21 @@ def sha256(path):
 
 def metrics(png):
     from PIL import Image
-    img = Image.open(png).convert("L")
-    w, h = img.size
-    px = img.load()
+    src = Image.open(png).convert("L")
+    w, h = src.size
+    half = src.resize((w // ANALYSIS_SCALE, h // ANALYSIS_SCALE))
+    pw, ph = half.size
+    px = half.load()
     xs, ys, n = [], [], 0
-    for y in range(0, h, 2):
-        for x in range(0, w, 2):
+    for y in range(ph):
+        for x in range(pw):
             if px[x, y] > THRESH:
                 xs.append(x); ys.append(y); n += 1
     if not n:
         return {"ink": 0, "bbox": None, "clipped": False, "size": [w, h]}
-    minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)
-    clipped = minx <= 1 or maxx >= w - 2 or miny <= 1 or maxy >= h - 2
+    minx, maxx, miny, maxy = (min(xs) * ANALYSIS_SCALE, max(xs) * ANALYSIS_SCALE,
+                              min(ys) * ANALYSIS_SCALE, max(ys) * ANALYSIS_SCALE)
+    clipped = minx <= 2 or maxx >= w - 3 or miny <= 2 or maxy >= h - 3
     return {"ink": n, "bbox": [minx, miny, maxx, maxy], "clipped": clipped, "size": [w, h]}
 
 
@@ -81,7 +85,7 @@ def main():
             row = {
                 "page": page_no, "size": met["size"], "ink": met["ink"],
                 "clipped": met["clipped"], "formulas_on_page": items, "slot_px": slot,
-                "resolution_ok": met["size"][1] >= HD_LINES,
+                "resolution_ok": met["size"] == HD_SIZE,
                 "slot_ok": slot is not None and slot >= SLOT_MIN,
                 "ink_ok": met["ink"] >= 200,
                 "clipped_ok": not met["clipped"],
@@ -104,11 +108,12 @@ def main():
         "slot_px_min": min(slots) if slots else None,
         "slot_px_p10": sorted(slots)[len(slots) // 10] if slots else None,
         "slot_px_median": sorted(slots)[len(slots) // 2] if slots else None,
-        "criteria": {"resolution_min_lines": HD_LINES, "slot_px_min": SLOT_MIN,
-                     "coverage": "165 records, all pages sha-bound to frozen index"},
+        "criteria": {"resolution_target": f"{HD_SIZE[0]}x{HD_SIZE[1]} (true 4K)", "slot_px_min": SLOT_MIN,
+                     "coverage": "165 records, all pages sha-bound to frozen 4K index",
+                     "supersedes": "480p receipt (readable-pages-verification.json) no longer applies to this delivery"},
         "issues": issues[:20], "issue_count": len(issues),
     }
-    (OUT / "readable-pages-verification.json").write_text(
+    (OUT / "readable-pages-verification-4k.json").write_text(
         json.dumps({"summary": summary, "records": per_record}, ensure_ascii=False, indent=2),
         encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False))
