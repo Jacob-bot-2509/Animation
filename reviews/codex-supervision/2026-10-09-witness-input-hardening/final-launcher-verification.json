@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "tag": "nonlocal-bind",
+      "command_argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\start_witness_capture.ps1",
+        "-Execute",
+        "-Bind",
+        "192.0.2.254",
+        "-Round",
+        "local-final-nonlocal-bind",
+        "-OutputRoot",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\negative-captures"
+      ],
+      "actual_exit_code": 2,
+      "receipt_exit_code": 2,
+      "capture": "negative-captures\\local-final-nonlocal-bind-5fb31bfeef474a77bc3643acd735ffab",
+      "elapsed_ns": 1746202400,
+      "scope": "Host-only positive loopback or negative nonlocal bind; no external sends"
+    },
+    {
+      "tag": "selftest",
+      "command_argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\start_witness_capture.ps1",
+        "-Execute",
+        "-SelfTest",
+        "-Round",
+        "local-final-selftest",
+        "-OutputRoot",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\final-selftest-captures"
+      ],
+      "actual_exit_code": 0,
+      "receipt_exit_code": 0,
+      "capture": "final-selftest-captures\\local-final-selftest-10cb7f572c6143c8844100b535248f64",
+      "elapsed_ns": 21456238800,
+      "scope": "Host-only positive loopback or negative nonlocal bind; no external sends"
+    }
+  ],
+  "negative_bind_confirmed_not_assigned": true,
+  "base64_roundtrip": true,
+  "package_exact_bytes": true,
+  "wrapper_sha256": "39032c5e3b14d699715047cf9f6acbd2bef1c9265916d574ae9f90ca0f3e3545",
+  "exe_sha256": "02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf",
+  "production": "CLOSED",
+  "native_acceptance": false
+}

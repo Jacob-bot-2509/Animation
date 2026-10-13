@@ -18,7 +18,7 @@
   info       → 结构性观察,不影响 clean/candidate/rejected
 
 用法:
-  python tools/dataset_audit.py --out reports/dataset_audit_<date>
+  python tools/dataset_audit.py --out archives/dataset-audits/dataset_audit_<date>
 """
 from __future__ import annotations
 

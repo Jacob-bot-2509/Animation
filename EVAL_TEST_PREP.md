@@ -72,6 +72,6 @@ eval(同题多解)单行:
 - test:已生成(150 行,id 唯一)、未冻结;
 - 预跑剩余项:冻结锁(待用户批准)、可选元数据补齐(F010)、动画验证(A008)、
   许可证转正(P002),以及 manifest-train 的 raw/train 标签冲突(MF005/MF008,训练侧遗留);
-- 合成夹具仅在 reviews/fixtures-eval-test/(标 synthetic,不混入正式数据);
+- 合成夹具仅在 archives/reviews/fixtures-eval-test/(标 synthetic,不混入正式数据);
 - preflight --ready 在无 eval/test 冻结时必为 NOT READY(fail-closed),
   不生成可执行训练计划。

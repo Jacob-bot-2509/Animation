@@ -56,7 +56,7 @@ animation 数据(加 scene_spec):
 
 ## 4. 最小 synthetic fixture/验收脚本
 
-- fixtures:reviews/ 下合成样例(现有)+ 新增 data/v1 骨架目录
+- fixtures:archives/reviews/ 下合成样例(现有)+ 新增 data/v1 骨架目录
   (README + 空分区占位)
 - 验收脚本:一条命令链(make_manifest → freeze_data → data_check
   → preflight --ready),全部 dry-run 可重放

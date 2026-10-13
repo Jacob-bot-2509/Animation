@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "witness-transfer-package-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "purpose",
+    "round",
+    "capture_id",
+    "receiver_run_id",
+    "wrapper_sha256",
+    "exe_sha256",
+    "files"
+  ],
+  "properties": {
+    "schema": {
+      "const": "witness-transfer-package-v1"
+    },
+    "purpose": {
+      "enum": [
+        "EXPERIMENT_TRANSFER",
+        "DESIGN_FIXTURE_ONLY"
+      ]
+    },
+    "round": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "capture_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "receiver_run_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$"
+    },
+    "wrapper_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "exe_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^capture/[A-Za-z0-9][A-Za-z0-9_-]{0,63}-[0-9a-f]{32}/(receiver[.]jsonl|receiver[.]jsonl[.]summary[.]json|stdout[.]bin|stderr[.]bin|process-exit[.]json)$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

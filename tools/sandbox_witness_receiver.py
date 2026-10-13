@@ -285,6 +285,14 @@ def selftest(output):
     return 0 if not failures else 2
 
 
+def validate_serving_bind(bind):
+    address = ipaddress.ip_address(bind)
+    if (address.is_unspecified or address.is_multicast or address.is_loopback
+            or address.is_link_local or address.is_reserved):
+        raise ValueError("--serve requires a specific unicast witness address")
+    return str(address)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--serve", action="store_true")
@@ -296,6 +304,8 @@ def main(argv=None):
     parser.add_argument("--selftest", action="store_true")
     parser.add_argument("--output", type=Path, default=Path("witness-selftest"))
     args = parser.parse_args(argv)
+    if args.selftest and args.serve:
+        parser.error("--selftest and --serve are mutually exclusive")
     if args.selftest:
         return selftest(args.output)
     if not args.serve:
@@ -304,7 +314,10 @@ def main(argv=None):
     if args.bind is None or args.log is None:
         parser.error("--serve requires --bind and a new --log path")
     try:
-        return run(args.bind, args.udp_port, args.tcp_port, args.seconds, args.log)
+        bind = validate_serving_bind(args.bind)
+        if args.udp_port == 0 or args.tcp_port == 0 or args.udp_port == args.tcp_port:
+            raise ValueError("--serve requires distinct nonzero UDP/TCP ports")
+        return run(bind, args.udp_port, args.tcp_port, args.seconds, args.log)
     except (OSError, ValueError) as exc:
         print(json.dumps({"status": "FAILED", "error_type": type(exc).__name__,
                           "detail": str(exc), "certificate_written": False}), file=sys.stderr)

@@ -1,0 +1,114 @@
+--- NEWRELEASE.md before
++++ NEWRELEASE.md after
+@@ -3,7 +3,7 @@
+ 发布日期：2026-10-08
+ 发布类型：验收材料封板版（Pre-release）
+ 
+-本版本同步数学动画训练项目 10-08 的进展：731 条数学复核收口、761 条语义签名与深层隔离裁决、原生真实公式渲染 165 条合格、真 4K 高清分页交付与全量逐页字形验收完成、训练超参数经实测语料重算并由用户确认落配置。生产门禁保持 CLOSED，训练未启动；沙箱双端实验为本版本后唯一剩余验收项（2026-10-08 下午执行）。
++本版本同步数学动画训练项目 10-08 的进展：731 条数学复核收口、761 条语义签名与深层隔离裁决、原生真实公式渲染 165 条合格、真 4K 高清分页交付与全量逐页字形验收完成、训练超参数经实测语料重算并由用户确认落配置。生产门禁保持 CLOSED，训练未启动；沙箱双端实验现已开始采集，尚待双端原始材料对账；后续资格以各项独立验收结论为准。
+ 
+ ## 本次交付
+ 
+@@ -15,10 +15,10 @@
+ 
+ ### 原生真实渲染与高清分页（视觉验收线）
+ 
+-- 原生公式渲染：165 条合格（2663 条按题去重公式、5212 处原文出现），本地 Manim 完整编译，逐条 record/math/source SHA 与视频 SHA 绑定。
+-- 高清修复历程：480p 单屏缩字（3 条过糊）→ 固定字号分页（626 页）→ **真 4K 分页最终交付：165 条 / 638 页（559 整页 + 79 分段）、3840×2160、逐页 PNG 与视频首帧逐像素一致**。
++- 原生公式渲染：165 条合格（2711 条按题去重公式、5320 处原文出现，以当前交付索引汇总），本地 Manim 完整编译，逐条 record/math/source SHA 与视频 SHA 绑定。
++- 高清修复历程：480p 单屏缩字（3 条过糊）→ 固定字号分页（626 页）→ **真 4K 分页最终交付：165 条 / 638 页（559 整页 + 79 分段）、3840×2160；本轮 19 条重渲染的 75 个页面起始帧与 PNG 逐像素一致，其余视频继承父交付验证并核对当前 SHA**。
+ - 全量字形逐页验收完成：638 页实际图像审阅 100% 覆盖、待审 0；期间修复 23 条记录（数学残留、表述歧义、LaTeX 截断、场景标签）与 3 条签名；98 题完整证明复审 + 96 项精确符号检查通过。资格 PASS_LOCAL_COMPLETE_CURRENT_FORMULA_PAGE_REVIEW。
+-- 用户三条高清硬标准定量全过：分辨率全 4K、完整页占用槽位代理最小 92px（远超 24px 阈值）、165 条全覆盖。占用代理不作最小字形认证。
++- 定量记录：分辨率全 4K、165 条全覆盖，559 个完整页的每项占用包围盒高度代理最小为 92px。该代理不等同于最小字形高度，不能凭其大于 24px 宣称最小字形标准通过；逐页图像审阅资格另以 Codex 当前回执为准。
+ - 当前版本入口：reviews/codex-supervision/2026-10-08-complete-glyph-review/ 的 current-source-bindings.json、current-record-bindings.jsonl、current-complete-signatures.jsonl、CURRENT_DELIVERY_INDEX.jsonl（SHA b901df08…）。
+ 
+ ### 训练准备
+@@ -34,7 +34,7 @@
+ ## 验证
+ 
+ - 数学/签名/渲染/分页/字形各线独立复验回执齐备，逐页 SHA 绑定；旧版目录全部保留作历史，不与当前入口混用。
+-- 本侧定量复测工具经历 Codex 三轮修正（标题污染、分段页口径、覆盖保护），当前权威量化口径以 Codex v3 为准（完整页 min 92 / p10 161.3 / median 219 px 占用代理）。
++- 本侧定量复测工具经历 Codex 三轮修正（标题污染、分段页口径、覆盖保护），当前权威量化口径以 Codex v3 为准（559 个完整页：最小值 92px / 第十分位最近秩 484/3 px / 中位数 658/3 px，均为每项占用包围盒高度代理）。
+ 
+ ## 状态与边界
+ 
+@@ -43,6 +43,6 @@
+ 
+ ## 下一步
+ 
+-1. 沙箱双端实验（2026-10-08 下午）：LAN IPv4 证人 + 外部 IPv6 证人，新轮次 lan/v6-2026-10-07-b，操作单 reviews/2026-10-07-witness-runbook.md。
++1. 沙箱双端实验：当前 LAN 采集轮次 lan-2026-10-08-a，run remote-271e1c881c4f473fb027f5f28d4a3bd5，发送侧 complete=true、UNVERIFIED；收齐证人原始 JSONL、对应 summary 和真实退出码后对账。外部 IPv6 须另起唯一轮次并核实外部拓扑，不能沿用旧日期轮次。操作单 reviews/2026-10-07-witness-runbook.md。
+ 2. 实验对账与 Codex 独立验收。
+ 3. 训练数据集构建（含 seq 2048 逐条校验）→ 首轮试训网格 → 动画样本交用户目视。
+--- reviews/2026-10-07-witness-runbook.md before
++++ reviews/2026-10-07-witness-runbook.md after
+@@ -1,8 +1,8 @@
+-# 双端沙箱实验全流程(证人机操作单,2026-10-07 修订 b 轮)
++# 双端沙箱实验全流程(证人机操作单,2026-10-08 当前采集修订)
+ 
+ 角色:**你** = 证人机(第三台物理机);**我** = 训练机(发送端)。
+ 接收器必须用 v2 版 `witness_receiver_v2.exe`(SHA256 以 d6887098 开头)。
+-本轮轮次名:**lan-2026-10-07-b**、**v6-2026-10-07-b**;日志必须用新文件名(旧日志混有旧 nonce,不能复用)。
++当前 LAN 发送侧已经完成：轮次 **lan-2026-10-08-a**，run **remote-271e1c881c4f473fb027f5f28d4a3bd5**。应收集与此 run 对应的接收端原始材料，不能通过重命名旧日志补证。下文命令用于后续新轮，接收日志文件名和发送轮次必须使用新的唯一名称。外部 IPv6 新轮次由发送端与证人明确确认后填写，不能复用旧日期轮次。
+ 
+ ## 0. 前置:确认 exe 版本
+ 
+@@ -10,7 +10,7 @@
+ ```
+ certutil -hashfile witness_receiver_v2.exe SHA256
+ ```
+-开头必须是 **d6887098**。不是的话,回训练机拷这个文件:
++完整 SHA256 必须等于 **d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad**。不是的话,回训练机拷这个文件:
+ `D:\Animation-Model-Training\reviews\codex-supervision\2026-10-06-witness-mail-review\release\witness_receiver_v2.exe`
+ 
+ ## 1. 自检
+@@ -29,40 +29,40 @@
+ - **稳定 IPv6**(不是"临时 IPv6"那一行)
+ - **局域网 IPv4**
+ 
+-我拿到后先做本机连通性测试(宿主 TCP/UDP 到 49001/49002),通了才让你开接收器。
++先启动接收器并确认 UDP 49001、TCP 49002 均已 LISTENING，再由发送端进行宿主前对照。UDP sendto 成功不代表接收端收到；最终通路健康由原始接收日志中的前后对照 nonce 证明。
+ 
+ ## 3. LAN 轮(IPv4)
+ 
+ **你**启动接收器:
+ ```
+-witness_receiver_v2.exe --serve --bind <你的IPv4> --log lan-round-b.jsonl
++witness_receiver_v2.exe --serve --bind <你的IPv4> --log <新的LAN日志名>.jsonl
+ ```
+ 看到 **LISTENING**(两协议都绑成功才显示)→ 马上告诉我。
+ 
+-**我**:跑 `--execute-native --bind <你的IPv4> --round lan-2026-10-07-b --scope lan --protocol both`
++**我**:跑 `--execute-native --bind <你的IPv4> --round <新的LAN轮次> --scope lan --protocol both`
+ (宿主前对照 → 沙箱探针 → 21 秒观察 → 后对照,约 2 分钟)。
+ 
+ **你**:接收器默认 300 秒自动停;看到它退出后:
+ ```
+-echo %errorlevel%
++echo $LASTEXITCODE
+ ```
+-把 lan-round-b.jsonl 的**内容**和退出码发我。
++立即记录 PowerShell 中的 $LASTEXITCODE（若使用 cmd，则用 echo %errorlevel%）。提交 **原始 JSONL 文件、同名 .jsonl.summary.json 文件和真实退出码**，不要只提交截图、摘录或重新序列化后的文字。
+ 
+ ## 4. 外部 IPv6 轮
+ 
+ **你**启动接收器:
+ ```
+-witness_receiver_v2.exe --serve --bind <你的稳定IPv6> --log v6-round-b.jsonl
++witness_receiver_v2.exe --serve --bind <你的稳定IPv6> --log <新的IPv6日志名>.jsonl
+ ```
+ 看到 LISTENING → 告诉我。
+ 
+-**我**:跑 `--execute-native --bind <你的稳定IPv6> --round v6-2026-10-07-b --scope external --protocol both`。
++**我**:跑 `--execute-native --bind <你的稳定IPv6> --round <新的IPv6轮次> --scope external --protocol both`。
+ 
+-**你**:同样等自动停,发我 v6-round-b.jsonl 内容和退出码。
++**你**:同样等自动停，立即记录真实退出码，并提交 **原始 JSONL 文件、同名 .jsonl.summary.json 文件和真实退出码**。
+ 
+ ## 5. 收尾
+ 
+-我这边用 `--reconcile` 把两端证据对账(9 个 nonce 逐项、送达/未送达、观察窗、拓扑身份),出对账回执后交 Codex 独立验收。你那边收工。
++我这边用 `--reconcile` 把两端证据对账(每轮 2 协议 × 3 阶段 = 6 个 nonce 逐项、送达/未送达、观察窗、拓扑身份),出对账回执后交 Codex 独立验收。合格接收日志应包含每协议 before、after 两个对照，共 4 个完整 payload；两个 sandbox nonce 均不得出现，出现任意一个即边界 FAIL。外部 IPv6 须证明接收机不属于发送端同一 LAN /64，LAN 证人不等于外部证人。LAN / 外部单项对账也不等于全 43 点或生产放行。你那边收工。
+ 
+ ## 注意
+ 

@@ -1,0 +1,38 @@
+{
+  "files": {
+    "reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-44613b0442e744f890505252d9a3b510\\receiver\\witness_new_02.jsonl": "1f36447e473f601e124b40569019de8df04a657c3afaebcc4bb5a35f2468c683",
+    "reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-44613b0442e744f890505252d9a3b510\\receiver\\witness_new_02.jsonl.summary.json": "865c32b48b9309412ced475499ccb8837ae425a9da1d02ec64766966fdfa9a42",
+    "reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-44613b0442e744f890505252d9a3b510\\sender.json": "0dcce788d4ba2e2444080e45b26842f9327d96bc876c746b6e4369d37c75ffa5"
+  },
+  "findings": [
+    {
+      "code": "HEALTH_CONTROLS_MISSING_OR_INVALID",
+      "expected_controls": {
+        "tcp": [
+          "e108433a9a134507a9d4b41f438cbcb7",
+          "aa71b7efd4544be18b9751d0059bde7d"
+        ],
+        "udp": [
+          "874459bbd14c4b71809bca69b7015ca7",
+          "c39eee5da91e4b50a672c84c0f8b9ba4"
+        ]
+      },
+      "observed_controls": {
+        "tcp": [],
+        "udp": []
+      },
+      "payload_count": 0
+    },
+    {
+      "code": "ACTUAL_RECEIVER_RC_MISSING_OR_NONZERO",
+      "note": "The caller must provide actual native exit status; never infer from JSON.",
+      "received_rc": null
+    }
+  ],
+  "full_surface_accepted": false,
+  "production": "CLOSED",
+  "read_only_inputs_unchanged": true,
+  "registered_receiver_check": null,
+  "run_id": "remote-44613b0442e744f890505252d9a3b510",
+  "status": "NOT_ACCEPTED"
+}

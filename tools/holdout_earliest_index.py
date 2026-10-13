@@ -35,8 +35,8 @@ def main() -> int:
     report = {"schema": "earliest-complete-index-v1", "produced_at": "2026-10-07",
               "sections": {}}
 
-    # 1) 审查目录(09-30 ~ 10-05)
-    review_dirs = sorted([d for d in (ROOT / "reviews").iterdir()
+    # 1) 审查目录(09-30 ~ 10-05,2026-10-14 起审查档案统一在 archives/reviews/)
+    review_dirs = sorted([d for d in (ROOT / "archives" / "reviews").iterdir()
                           if d.is_dir() and d.name <= "2026-10-05"])
     files = []
     for d in review_dirs:
@@ -51,7 +51,7 @@ def main() -> int:
         if p.is_dir():
             data_files.extend(dir_index(p, "*"))
     audit_files = []
-    for d in sorted((ROOT).glob("dataset_audit_2026-10-0[23]*")):
+    for d in sorted((ROOT / "archives" / "dataset-audits").glob("dataset_audit_2026-10-0[23]*")):
         audit_files.extend(dir_index(d))
     report["sections"]["data_v1_and_v2raw"] = {"n_files": len(data_files), "files": data_files}
     report["sections"]["early_dataset_audits"] = {"n_files": len(audit_files), "files": audit_files}

@@ -108,3 +108,8 @@ holdout仅修当前391条候选，不加题、不生成数值变体。v3纠正�
 已完成163条当前目标，另2条补验；165条完整公式资格限定本地MathTex编译，2663公式/5212原文出现。修复双美元解析与中文XeLaTeX/ctex，19项相关回归和9项复验器对抗检查通过，数学正文保持。全局隔离/视觉/原生沙箱未标绿，production CLOSED。
 
 只读监听新增 native-real-render 与 real-formula-followup 两个目录，略过媒体缓存。旧worker24760正常STOP，新隐藏worker52952有心跳，后台只记录，不自动AI审查或放行。双端实验不由Codex执行或验收。[当前修复报告](../2026-10-08-real-formula-followup/FIX_REPORT.md)。
+
+
+## 2026-10-08 双端实验监管恢复
+
+旧心跳停在 11:13:03，旧 worker 已不存在、原因未知。已隐藏恢复，实际 worker PID 44524，新心跳和 Claude 进程树已核实；原脚本未改，旧日志保留，空窗不补造。LAN 轮 remote-271e1c881c4f473fb027f5f28d4a3bd5 发送侧绑定独立通过，待接收端原始 JSONL、summary 与真实 rc，双端仍 UNVERIFIED、生产 CLOSED。Codex 已修操作单与发布说明，66 项本地回归通过。见 [监管报告](../2026-10-08-dual-endpoint-supervision/SUPERVISION_REPORT.md)。观察器只记录，不自动 AI 验收。

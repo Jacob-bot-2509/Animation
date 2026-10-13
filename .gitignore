@@ -40,7 +40,7 @@ venv/
 !data/v1/raw/*.jsonl
 
 # 复查证据页图不入库(仅本地留存)
-reviews/*/evidence/*.png
+archives/reviews/*/evidence/*.png
 
 # eval/test 正式入口 JSONL 入库(用户指示 2026-10-03 生成,harness 预跑)
 !data/v1/eval/*.jsonl
@@ -65,4 +65,18 @@ holdout-sources/*
 !holdout-sources/extracted/kaoyan-pool-v1-manifest.json
 
 # 沙箱执行快照路径超 Windows 长度上限(状态转储属运行时产物,非源代码),不入库
+archives/reviews/codex-supervision/2026-10-05-three-gates/execution-*/
 reviews/codex-supervision/2026-10-05-three-gates/execution-*/
+
+# 观察器/邮箱运行时锁文件不入库(旧路径为活动观察器运行时,归档完成后移除旧行)
+archives/reviews/codex-supervision/2026-10-04-live-watch/watch.lock
+archives/reviews/codex-supervision/2026-10-08-auto-mail/mail.lock
+reviews/codex-supervision/2026-10-04-live-watch/watch.lock
+reviews/codex-supervision/2026-10-08-auto-mail/mail.lock
+
+# 发布源码包归档(仅本地,已上传 GitHub Release)
+archives/release-sources/
+
+# Codex 证人自动化活动工作区(本地回放暂存路径超 Windows 长度上限;运行时产物,由其自行入库)
+reviews/witness-automation/
+archives/reviews/witness-automation/

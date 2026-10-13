@@ -3,12 +3,12 @@
 更新日期：2026-10-03。**协作角色：Claude Code 同时承担统筹(copilot 职责)与执行职责;
 Codex 独立复审(用户指示监管)。** 未训练;三款模型已下载(用户批准 2026-10-03,
 筛选完成,baseline=Qwen3-4B 已拍板);依赖栈已装(审查快照
-reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
+archives/reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
 
 ## 当前阶段
 
 - **底座模型筛选完成(2026-10-03):baseline = Qwen3-4B(用户拍板)**;
-  三方对照证据见 reviews/2026-10-03-model-screening/,临时实验组已按计划撤走;
+  三方对照证据见 archives/reviews/2026-10-03-model-screening/,临时实验组已按计划撤走;
   落选模型(2.5-7B/3-8B)保留在 .models/ 作对照。
 - 训练任务继续挂起:等 eval/test 独立制作与冻结、preflight 八项门禁、用户训练批准。
 - **eval/test 审阅稿已出(2026-10-03,用户指示由我方起草)**:
@@ -19,7 +19,7 @@ reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
   渲染工具 tools/render_review.py + tools/assets/mathjax-tex-svg.js(本地渲染器)。
   状态:待用户审阅题目与解答;定稿后再转正式 markdown→JSON→JSONL(契约见 EVAL_TEST_PREP.md §3.5)。
 - **数学复查一轮已整改(2026-10-03)**:Codex 逐题复查报告已迁移至
-  reviews/2026-10-03-math-review/review-math.md(250 题全查,A/B/C 分级)。
+  archives/reviews/2026-10-03-math-review/review-math.md(250 题全查,A/B/C 分级)。
   A 级 5 项、B/C 级 55 项全部按报告修复(精确值、反函数、直纹族、反射轴、
   部分和奇偶子列、分部积分第二解析解、草稿残留清除等);全局排版两类问题
   (矩阵列分隔符 & 被误转义、\lt/\gt 连写)在渲染器中修复;PDF 已重渲染
@@ -34,7 +34,7 @@ reviews/2026-10-03-pretrain-review/dependency-inventory.json)。
   scene_spec 由已复查动画要点按模板展开(candidate,后续精修);
   source=self-authored,license=Internal-Research-Use-Only;
   涉及知识点/思路展开保留在 md(契约无对应字段)。
-  报告:reports/2026-10-03-eval-test-intake.md。
+  报告:archives/reports/2026-10-03-eval-test-intake.md。
 
 - 数据：63 条自撰候选数据(数学分析 19 / 概率论 9 / 解析几何 12 / 高等代数 23),
   dataset.md / JSON 数组 / data/v1/raw/*.jsonl 三处一致,入场检查 clean;

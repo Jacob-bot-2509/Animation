@@ -9,7 +9,11 @@ from animtrain import sandbox_execution as se,full_surface_evidence as fe
 
 class ExternalDriverTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory(prefix="external-driver-test-",dir=d.REGISTERED_ROOT)
+        (ROOT/"reviews/codex-supervision/2026-10-09-witness-input-test-work").mkdir(parents=True,exist_ok=True)
+        self.temp=tempfile.TemporaryDirectory(prefix="external-driver-test-",dir=ROOT/"reviews/codex-supervision/2026-10-09-witness-input-test-work")
+        self.registered_patch=mock.patch.object(d,"REGISTERED_ROOT",Path(self.temp.name).resolve())
+        self.registered_patch.start()
+        self.addCleanup(self.registered_patch.stop)
         self.base=Path(self.temp.name).resolve()
         self.assertTrue(self.base.is_relative_to(d.REGISTERED_ROOT.resolve()))
     def tearDown(self):
@@ -155,6 +159,22 @@ class ExternalDriverTests(unittest.TestCase):
         sender=self.sender();packets,receipt=self.verify(sender)
         self.assertEqual(set(packets),{"tcp","udp"});self.assertEqual(receipt["rc"],0)
         self.assertTrue(all(len(v)==2 for v in packets.values()))
+    def test_unknown_witness_kind_with_absent_hash_is_never_approved(self):
+        sender=self.sender();rows,summary=self.witness(sender)
+        summary["implementation"]={"kind":"unknown"}
+        for row in rows:
+            if "implementation" in row:row["implementation"]=summary["implementation"]
+        with self.assertRaisesRegex(ValueError,"approved"):self.verify(sender,rows,summary)
+
+    def test_new_source_and_executable_versions_require_exact_allowlisted_digest(self):
+        for kind in d.ADDITIONAL_APPROVED_WITNESSES:
+            sender=self.sender();rows,summary=self.witness(sender)
+            identity={"kind":kind,"path":"versioned-implementation","sha256":next(iter(d.ADDITIONAL_APPROVED_WITNESSES[kind]))}
+            summary["implementation"]=identity
+            for row in rows:
+                if "implementation" in row:row["implementation"]=identity
+            self.verify(sender,rows,summary)
+
     def test_actual_sandbox_nonce_fails_even_when_capture_marked_incomplete(self):
         sender=self.sender();rows,summary=self.witness(sender)
         row=rows[2];nonce=sender["nonces"][row["protocol"]]["sandbox"]
@@ -213,6 +233,25 @@ class ExternalDriverTests(unittest.TestCase):
         result=json.loads(outputs[0].read_bytes())
         self.assertFalse(result["full_surface_accepted"]);self.assertEqual(result["production_gate"],"CLOSED")
         self.assertTrue(all(r["point"]=="D9" for r in result["cases"].values()))
+    def test_new_witness_reconciliation_cannot_bypass_parent_capture_with_manual_rc(self):
+        sender=self.sender();rows,summary=self.witness(sender)
+        identity={"kind":"frozen_executable","path":"v3.exe","sha256":next(iter(d.ADDITIONAL_APPROVED_WITNESSES["frozen_executable"]))}
+        summary["implementation"]=identity
+        for row in rows:
+            if "implementation" in row:row["implementation"]=identity
+        log,path=self.store_witness(rows,summary)
+        sender_path=self.base/"new-sender.json";d.write_json(sender_path,sender)
+        args=types.SimpleNamespace(reconcile=sender_path,receiver_log=log,receiver_summary=path,receiver_rc=0)
+        with mock.patch.object(fe,"transport",return_value=(sender["transport"],json.loads(sender["transport"]["stdout"]))):
+            with self.assertRaisesRegex(ValueError,"manual rc is insufficient"):d.reconcile(args)
+        self.assertFalse(list(self.base.glob("reconciled-*.json")))
+
+    def test_capture_cli_rejects_manual_rc_override_before_any_reconcile(self):
+        with mock.patch.object(d,"reconcile") as reconcile:
+            rc,out=self.run_main(["--reconcile",str(self.base/"sender.json"),"--receiver-capture",str(self.base),"--receiver-rc","0"])
+        self.assertEqual(rc,2);reconcile.assert_not_called()
+        self.assertIn("cannot be combined",json.loads(out)["detail"])
+
     def test_reconciliation_never_trusts_legacy_pass_labels(self):
         args=self.reconcile_args(self.sender())
         args.reconcile.write_text(json.dumps({"status":"GREEN","complete":True}),encoding="utf-8")
@@ -260,6 +299,29 @@ class ExternalDriverTests(unittest.TestCase):
         obs=sender["observation"];self.assertGreaterEqual(obs["elapsed_ns"],21_000_000_000)
         for p in ("tcp","udp"):
             self.assertGreaterEqual(sender["phases"]["after_"+p]["started_monotonic_ns"],obs["started_monotonic_ns"]+20_000_000_000)
+
+    def test_collection_after_control_error_stays_incomplete(self):
+        clock=types.SimpleNamespace(value=100_000_000_000)
+        def now():clock.value+=100_000;return clock.value
+        def wait(deadline):clock.value=max(clock.value,deadline)
+        cp={"rc":0,"stdout":"\n"+json.dumps({"tcp":{"outcome":"os_denied","winerror":10013},"udp":{"outcome":"sent"}})+"\n",
+            "stderr":"FULL UNTRUNCATED STDERR\n"*500,"work":"SIMULATED ONLY","source_sha256":"test"}
+        args=types.SimpleNamespace(bind="192.0.2.10",udp_port=49001,tcp_port=49002,
+            round="unit-collect",observe_seconds=21,scope="lan",out=self.base,protocol="both")
+        def capture(command,directory,tag,timeout):
+            stdout=directory/(tag+".stdout.bin");stderr=directory/(tag+".stderr.bin")
+            body=b"TRACE" if tag=="route" else b'[{"IPAddress":"192.0.2.1","PrefixLength":24}]'
+            d.write_bytes(stdout,body);d.write_bytes(stderr,b"")
+            return {"path":str(stdout),"sha256":d.digest(stdout),"stderr_path":str(stderr),
+                "stderr_sha256":d.digest(stderr),"rc":0,"stderr":""}
+        with (mock.patch.object(d,"capture",side_effect=capture),mock.patch.object(d,"send",side_effect=[{"outcome":"sent"},{"outcome":"completed"},{"outcome":"error"},{"outcome":"completed"}]),
+            mock.patch.object(d.time,"monotonic_ns",side_effect=now),mock.patch.object(d,"wait_until",side_effect=wait),
+            mock.patch.object(se,"run_code",return_value=cp),contextlib.redirect_stdout(io.StringIO())):
+            self.assertEqual(d.collect(args),2)
+        sender=json.loads(next(self.base.glob("remote-*/sender.json")).read_bytes())
+        self.assertFalse(sender["complete"])
+        self.assertIn("after-send failed",sender["error"]["detail"])
+        self.assertEqual(sender["phases"]["after_tcp"]["result"]["outcome"],"error")
 
     def test_probe_real_bare_sockets_ipv4_ipv6_loopback_delivery_and_close(self):
         import _socket

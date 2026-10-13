@@ -5,8 +5,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKS = ROOT / "dataset_audit_2026-10-07-render-check-v2/render-packs-v2"
-OUT = ROOT / "dataset_audit_2026-10-07-render-check-v2/render-html-v2"
+PACKS = ROOT / "archives/dataset-audits/dataset_audit_2026-10-07-render-check-v2/render-packs-v2"
+OUT = ROOT / "archives/dataset-audits/dataset_audit_2026-10-07-render-check-v2/render-html-v2"
 
 MATHJAX = (
     "<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\\\(','\\\\)']],"
@@ -51,7 +51,7 @@ def main() -> int:
                 "Manim场景渲染UNVERIFIED(生产门CLOSED)",
         "html_files": summary,
     }
-    rp = ROOT / "dataset_audit_2026-10-07-render-check-v2/render-html-v2-report.json"
+    rp = ROOT / "archives/dataset-audits/dataset_audit_2026-10-07-render-check-v2/render-html-v2-report.json"
     with rp.open("w", encoding="utf-8", newline="\n") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
         f.write("\n")

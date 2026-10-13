@@ -21,8 +21,8 @@
 | tools/run_record.py | 记录配置、seed、环境、git 状态及数据版本 |
 | tools/preflight.py | GPU/模型/数据/快照/冻结覆盖聚合及固定样例执行；完整资产验收门禁尚未闭合 |
 
-核心代码在 src/animtrain/，测试在 tests/，审查证据在 reviews/。
-标准见 [PIPELINE_PLAN.md](PIPELINE_PLAN.md)，最新复验见 [第四轮报告](reviews/2026-10-01-br-recheck-round4/REVIEW.md)。
+核心代码在 src/animtrain/，测试在 tests/，审查证据在 archives/reviews/。
+标准见 [PIPELINE_PLAN.md](PIPELINE_PLAN.md)，最新复验见 [第四轮报告](archives/reviews/2026-10-01-br-recheck-round4/REVIEW.md)。
 
 ## 本地验证
 

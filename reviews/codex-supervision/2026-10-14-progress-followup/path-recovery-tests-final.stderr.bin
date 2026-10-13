@@ -1,0 +1,105 @@
+test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted (test_witness_automation.AutomationTests.test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted) ... ok
+test_adapter_interrupted_intent_does_not_rerun (test_witness_automation.AutomationTests.test_adapter_interrupted_intent_does_not_rerun) ... ok
+test_changed_publish_destination_keeps_old_receipt_immutable (test_witness_automation.AutomationTests.test_changed_publish_destination_keeps_old_receipt_immutable) ... ok
+test_complete_adapter_receipt_recovery_without_second_output (test_witness_automation.AutomationTests.test_complete_adapter_receipt_recovery_without_second_output) ... FAIL
+test_default_cli_and_import_have_no_execution (test_witness_automation.AutomationTests.test_default_cli_and_import_have_no_execution) ... ok
+test_duplicate_consume_and_publish_do_not_create_more_jobs (test_witness_automation.AutomationTests.test_duplicate_consume_and_publish_do_not_create_more_jobs) ... FAIL
+test_duplicate_zip_member_is_rejected (test_witness_automation.AutomationTests.test_duplicate_zip_member_is_rejected) ... ok
+test_execution_config_rejects_inactive_pins_and_overlapping_roots (test_witness_automation.AutomationTests.test_execution_config_rejects_inactive_pins_and_overlapping_roots) ... ok
+test_extra_and_traversal_zip_members_are_rejected_without_escape (test_witness_automation.AutomationTests.test_extra_and_traversal_zip_members_are_rejected_without_escape) ... ok
+test_fixture_purpose_cannot_register (test_witness_automation.AutomationTests.test_fixture_purpose_cannot_register) ... ok
+test_frozen_directory_write_and_system_write_are_rejected (test_witness_automation.AutomationTests.test_frozen_directory_write_and_system_write_are_rejected) ... ok
+test_frozen_job_tampering_cannot_be_reused (test_witness_automation.AutomationTests.test_frozen_job_tampering_cannot_be_reused) ... FAIL
+test_hash_consistent_but_corrupted_stdout_is_rejected (test_witness_automation.AutomationTests.test_hash_consistent_but_corrupted_stdout_is_rejected) ... ok
+test_manifest_path_length_and_member_sha_are_checked (test_witness_automation.AutomationTests.test_manifest_path_length_and_member_sha_are_checked) ... ok
+test_parent_proof_missing_stderr_and_bool_rc_are_rejected (test_witness_automation.AutomationTests.test_parent_proof_missing_stderr_and_bool_rc_are_rejected) ... ok
+test_partial_zip_waits (test_witness_automation.AutomationTests.test_partial_zip_waits) ... ok
+test_proof_and_summary_object_shapes_fail_cleanly (test_witness_automation.AutomationTests.test_proof_and_summary_object_shapes_fail_cleanly) ... ok
+test_publish_conflict_never_overwrites_existing_object (test_witness_automation.AutomationTests.test_publish_conflict_never_overwrites_existing_object) ... ok
+test_ready_before_zip_waits_without_job (test_witness_automation.AutomationTests.test_ready_before_zip_waits_without_job) ... ok
+test_real_submitted_snapshot_replays_without_network_or_spawn (test_witness_automation.AutomationTests.test_real_submitted_snapshot_replays_without_network_or_spawn) ... FAIL
+test_received_sandbox_nonce_is_failed_not_missing_evidence (test_witness_automation.AutomationTests.test_received_sandbox_nonce_is_failed_not_missing_evidence) ... ok
+test_recovery_from_complete_frozen_job_updates_journal_without_replay (test_witness_automation.AutomationTests.test_recovery_from_complete_frozen_job_updates_journal_without_replay) ... ok
+test_registry_sender_and_native_bytes_are_pinned (test_witness_automation.AutomationTests.test_registry_sender_and_native_bytes_are_pinned) ... ok
+test_same_logical_identity_changed_content_conflicts (test_witness_automation.AutomationTests.test_same_logical_identity_changed_content_conflicts) ... FAIL
+test_tampered_unfrozen_recovery_output_is_rejected (test_witness_automation.AutomationTests.test_tampered_unfrozen_recovery_output_is_rejected) ... ERROR
+test_two_worker_lock_refused (test_witness_automation.AutomationTests.test_two_worker_lock_refused) ... ok
+test_unknown_and_missing_sender_binding (test_witness_automation.AutomationTests.test_unknown_and_missing_sender_binding) ... ok
+test_unknown_reparse_tag_rejected_cloud_tag_narrow (test_witness_automation.AutomationTests.test_unknown_reparse_tag_rejected_cloud_tag_narrow) ... ok
+
+======================================================================
+ERROR: test_tampered_unfrozen_recovery_output_is_rejected (test_witness_automation.AutomationTests.test_tampered_unfrozen_recovery_output_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 370, in test_tampered_unfrozen_recovery_output_is_rejected
+    receipt = c.decode(receipt_path.read_bytes())
+                       ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\Python\Lib\pathlib\_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "D:\Python\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Animation-Model-Training\\reviews\\witness-automation\\test-work\\local-only-15rmh261\\jobs\\job-97629dc0f5fb442783a9d3a0ab607a4c\\ADAPTER_RECEIPT.json'
+
+======================================================================
+FAIL: test_complete_adapter_receipt_recovery_without_second_output (test_witness_automation.AutomationTests.test_complete_adapter_receipt_recovery_without_second_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 357, in test_complete_adapter_receipt_recovery_without_second_output
+    self.assertEqual(len(before), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_duplicate_consume_and_publish_do_not_create_more_jobs (test_witness_automation.AutomationTests.test_duplicate_consume_and_publish_do_not_create_more_jobs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 95, in test_duplicate_consume_and_publish_do_not_create_more_jobs
+    self.assertEqual(first["status"], "REGISTERED_RECONCILIATION_COMPLETE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NEEDS_EVIDENCE' != 'REGISTERED_RECONCILIATION_COMPLETE'
+- NEEDS_EVIDENCE
++ REGISTERED_RECONCILIATION_COMPLETE
+
+
+======================================================================
+FAIL: test_frozen_job_tampering_cannot_be_reused (test_witness_automation.AutomationTests.test_frozen_job_tampering_cannot_be_reused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 247, in test_frozen_job_tampering_cannot_be_reused
+    self.assertEqual(result["status"], "REGISTERED_RECONCILIATION_COMPLETE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NEEDS_EVIDENCE' != 'REGISTERED_RECONCILIATION_COMPLETE'
+- NEEDS_EVIDENCE
++ REGISTERED_RECONCILIATION_COMPLETE
+
+
+======================================================================
+FAIL: test_real_submitted_snapshot_replays_without_network_or_spawn (test_witness_automation.AutomationTests.test_real_submitted_snapshot_replays_without_network_or_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 86, in test_real_submitted_snapshot_replays_without_network_or_spawn
+    self.assertEqual(result["status"], "REGISTERED_RECONCILIATION_COMPLETE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NEEDS_EVIDENCE' != 'REGISTERED_RECONCILIATION_COMPLETE'
+- NEEDS_EVIDENCE
++ REGISTERED_RECONCILIATION_COMPLETE
+
+
+======================================================================
+FAIL: test_same_logical_identity_changed_content_conflicts (test_witness_automation.AutomationTests.test_same_logical_identity_changed_content_conflicts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 197, in test_same_logical_identity_changed_content_conflicts
+    self.assertEqual(result["status"], "REGISTERED_RECONCILIATION_COMPLETE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NEEDS_EVIDENCE' != 'REGISTERED_RECONCILIATION_COMPLETE'
+- NEEDS_EVIDENCE
++ REGISTERED_RECONCILIATION_COMPLETE
+
+
+----------------------------------------------------------------------
+Ran 28 tests in 55.528s
+
+FAILED (failures=5, errors=1)

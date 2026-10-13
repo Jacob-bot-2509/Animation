@@ -1,10 +1,12 @@
-"""Host-level connectivity pre-test to witness 172.31.31.250 before receiver starts.
+"""Local host socket diagnostics for the named witness.
 
-Expectation with no listener running: TCP connect returns WSAECONNREFUSED (10061)
-if the path is alive (RST from the host), timeout (10060) if blocked/unreachable.
+A local connect completion or refusal does not authenticate the witness.
+A timeout leaves reachability unresolved. Receiver nonce evidence is required.
 """
 from __future__ import annotations
 
+from fractions import Fraction
+import json
 import socket
 import sys
 import time
@@ -14,38 +16,63 @@ TCP_PORT = 49002
 UDP_PORT = 49001
 
 
+def tcp_verdict(code):
+    if code == 0:
+        return "LOCAL_CONNECT_COMPLETED"
+    if code == 10061:
+        return "CONNECTION_REFUSED"
+    if code == 10060:
+        return "TIMEOUT_UNCONFIRMED"
+    return "SOCKET_ERROR"
+
+
+def elapsed_fields(started):
+    elapsed = time.monotonic_ns() - started
+    return {"elapsed_ns": elapsed, "elapsed_ms_exact": str(Fraction(elapsed, 1_000_000))}
+
+
+def error_fields(exc):
+    return {"error_type": type(exc).__name__, "detail": str(exc),
+            "errno": exc.errno, "winerror": getattr(exc, "winerror", None)}
+
+
 def tcp_probe():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.settimeout(5)
-    start = time.monotonic()
-    err = sock.connect_ex((WITNESS, TCP_PORT))
-    elapsed = round((time.monotonic() - start) * 1000, 1)
-    sock.close()
-    return {"target": f"{WITNESS}:{TCP_PORT}", "errno": err, "elapsed_ms": elapsed,
-            "note": "10061=refused(path alive, no listener) 10060=timeout(path blocked/unreachable)"}
+    started = time.monotonic_ns()
+    result = {"target": f"{WITNESS}:{TCP_PORT}", "receiver_delivery_verified": False}
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.settimeout(5)
+            code = sock.connect_ex((WITNESS, TCP_PORT))
+        result.update(errno=code, outcome=tcp_verdict(code))
+    except OSError as exc:
+        result.update(error=error_fields(exc), errno=None,
+                      outcome="TIMEOUT_UNCONFIRMED" if isinstance(exc, TimeoutError) else "SOCKET_ERROR")
+    result.update(elapsed_fields(started))
+    return result
 
 
 def udp_probe():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.settimeout(3)
+    started = time.monotonic_ns()
+    payload = b"pretest"
+    result = {"target": f"{WITNESS}:{UDP_PORT}", "receiver_delivery_verified": False}
     try:
-        sock.sendto(b"pretest", (WITNESS, UDP_PORT))
-        sent = True
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+            sock.settimeout(3)
+            count = sock.sendto(payload, (WITNESS, UDP_PORT))
+        result.update(sent=count == len(payload), bytes_sent=count,
+                      outcome="LOCAL_SEND_COMPLETED" if count == len(payload) else "SHORT_SEND")
     except OSError as exc:
-        sent = False
-        print(f"udp send error: {exc}")
-    sock.close()
-    return {"target": f"{WITNESS}:{UDP_PORT}", "sent": sent,
-            "note": "no listener yet; delivery cannot be confirmed pre-start"}
+        result.update(sent=False, outcome="SOCKET_ERROR", error=error_fields(exc))
+    result.update(elapsed_fields(started))
+    return result
 
 
 def main():
-    tcp = tcp_probe()
-    udp = udp_probe()
-    verdict = "PATH_ALIVE" if tcp["errno"] in (10061, 10060) else f"errno={tcp['errno']}"
-    # 10060 also reported: alive-but-filtered ambiguity is resolved after receiver starts.
-    print({"tcp": tcp, "udp": udp, "verdict": verdict})
-    return 0
+    tcp, udp = tcp_probe(), udp_probe()
+    print(json.dumps({"tcp": tcp, "udp": udp, "verdict": tcp["outcome"],
+                      "status": "DIAGNOSTIC_ONLY", "qualification": "NOT_ESTABLISHED",
+                      "production_gate": "CLOSED", "full_surface_accepted": False}))
+    return 2 if tcp["outcome"] == "SOCKET_ERROR" or not udp["sent"] else 0
 
 
 if __name__ == "__main__":

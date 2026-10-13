@@ -1,199 +1,121 @@
-"""Decode the lan-2026-10-13-a witness capture from pasted b64 into the registered root."""
+"""Lossless local witness Base64 intake. Default PLAN; never issues acceptance."""
 from __future__ import annotations
+import argparse,base64,hashlib,json,re,sys,uuid
+from pathlib import Path
 
-import base64
-import hashlib
-import json
-import pathlib
+ROOT=Path(__file__).resolve().parents[1]
+REGISTERED_ROOT=ROOT/"reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests"
+NAMES=("receiver.jsonl","receiver.jsonl.summary.json","stdout.bin","stderr.bin","process-exit.json")
+ALIASES={"receiver.jsonl.summary.json":"summary.b64","stdout.bin":"stdout.b64"}
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
 
-ROOT = pathlib.Path(r"D:\Animation-Model-Training")
-CAP = ROOT / "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/capture-lan-2026-10-13-a"
+def safe_path(path,registered=False):
+    path=Path(path).absolute()
+    if ".." in path.parts:raise ValueError("Parent traversal is forbidden")
+    if registered and not path.is_relative_to(REGISTERED_ROOT.absolute()):
+        raise ValueError("Output must stay inside the registered external-tests root")
+    for part in (path,*path.parents):
+        if part.exists() or part.is_symlink():
+            st=part.lstat()
+            if part.is_symlink() or getattr(st,"st_file_attributes",0)&0x400:
+                raise ValueError("Reparse evidence/output path")
+    return path
 
-JSONL_B64 = ("eyJzY2hlbWEiOiAic2FuZGJveC13aXRuZXNzLXJlY2VpdmVyLXYyIiwgInJ1bl9p"
-"ZCI6ICJmODAxMDQ2YzQ3YTA0ZGVlYjg5Y2M0NDI5NDJmMGJiNiIsICJzZXEiOiAx"
-"LCAidXRjX25zIjogMTc5MTg5MTcwMzg3NzgwMjMwMCwgIm1vbm90b25pY19ucyI6"
-"IDI1MTAzODcxNjYxNzkwMCwgImtpbmQiOiAiY3JlYXRlZCIsICJiaW5kIjogIjE5"
-"Mi4xNjguMTM3LjEiLCAiYWRkcmVzc19mYW1pbHkiOiA0LCAiaXB2Nl9vbmx5Ijog"
-"ZmFsc2UsICJpbXBsZW1lbnRhdGlvbiI6IHsia2luZCI6ICJmcm96ZW5fZXhlY3V0"
-"YWJsZSIsICJwYXRoIjogIkM6XFxVc2Vyc1xcTGVub3ZvXFxEZXNrdG9wXFx3aXRu"
-"ZXNzX3JlY2VpdmVyX3YzLmV4ZSIsICJzaGEyNTYiOiAiMDJkNzgxYmMyMjI4NmIx"
-"ZTg0MTdkZGIxMTllYzZiNTI5ZTVhOTEwMWIxZmFkNzU4YTQxYTA2ZmJjMmViNDRi"
-"ZiJ9LCAiYXJndiI6IFsiQzpcXFVzZXJzXFxMZW5vdm9cXERlc2t0b3BcXHdpdG5l"
-"c3NfcmVjZWl2ZXJfdjMuZXhlIiwgIi0tc2VydmUiLCAiLS1iaW5kIiwgIjE5Mi4x"
-"NjguMTM3LjEiLCAiLS11ZHAtcG9ydCIsICI0OTAwMSIsICItLXRjcC1wb3J0Iiwg"
-"IjQ5MDAyIiwgIi0tc2Vjb25kcyIsICIzMDAiLCAiLS1sb2ciLCAiQzpcXFVzZXJz"
-"XFxMZW5vdm9cXERlc2t0b3BcXGNhcHR1cmVzXFxsYW4tMjAyNi0xMC0xMy1hLWU2"
-"MDVlMGVlM2E4YjQzODhhYTcyMjcxZDU2ZjQ3M2NkXFxyZWNlaXZlci5qc29ubCJd"
-"LCAicGlkIjogMTAwNTQ0LCAiaG9zdCI6ICLliqDlh4/nmoRsYXB0b3AiLCAicmVx"
-"dWVzdGVkX3NlY29uZHMiOiAzMDAsICJsb2ciOiAiQzpcXFVzZXJzXFxMZW5vdm9c"
-"XERlc2t0b3BcXGNhcHR1cmVzXFxsYW4tMjAyNi0xMC0xMy1hLWU2MDVlMGVlM2E4"
-"YjQzODhhYTcyMjcxZDU2ZjQ3M2NkXFxyZWNlaXZlci5qc29ubCIsICJzdW1tYXJ5"
-"IjogIkM6XFxVc2Vyc1xcTGVub3ZvXFxEZXNrdG9wXFxjYXB0dXJlc1xcbGFuLTIw"
-"MjYtMTAtMTMtYS1lNjA1ZTBlZTNhOGI0Mzg4YWE3MjI3MWQ1NmY0NzNjZFxccmVj"
-"ZWl2ZXIuanNvbmwuc3VtbWFyeS5qc29uIn0KeyJzY2hlbWEiOiAic2FuZGJveC13"
-"aXRuZXNzLXJlY2VpdmVyLXYyIiwgInJ1bl9pZCI6ICJmODAxMDQ2YzQ3YTA0ZGVl"
-"Yjg5Y2M0NDI5NDJmMGJiNiIsICJzZXEiOiAyLCAidXRjX25zIjogMTc5MTg5MTcw"
-"Mzg3ODk3NzYwMCwgIm1vbm90b25pY19ucyI6IDI1MTAzODcxNzc5MjEwMCwgImtp"
-"bmQiOiAibGlzdGVuaW5nIiwgImVuZHBvaW50cyI6IHsidWRwIjogWyIxOTIuMTY4"
-"LjEzNy4xIiwgNDkwMDFdLCAidGNwIjogWyIxOTIuMTY4LjEzNy4xIiwgNDkwMDJd"
-"fSwgImltcGxlbWVudGF0aW9uIjogeyJraW5kIjogImZyb3plbl9leGVjdXRhYmxl"
-"IiwgInBhdGgiOiAiQzpcXFVzZXJzXFxMZW5vdm9cXERlc2t0b3BcXHdpdG5lc3Nf"
-"cmVjZWl2ZXJfdjMuZXhlIiwgInNoYTI1NiI6ICIwMmQ3ODFiYzIyMjg2YjFlODQx"
-"N2RkYjExOWVjNmI1MjllNWE5MTAxYjFmYWQ3NThhNDFhMDZmYmMyZWI0NGJmIn19"
-"Cnsic2NoZW1hIjogInNhbmRib3gtd2l0bmVzcy1yZWNlaXZlci12MiIsICJydW5f"
-"aWQiOiAiZjgwMTA0NmM0N2EwNGRlZWI4OWNjNDQyOTQyZjBiYjYiLCAic2VxIjog"
-"MywgInV0Y19ucyI6IDE3OTE4OTE3NTY2NTIwMzM1MDAsICJtb25vdG9uaWNfbnMi"
-"OiAyNTEwOTE0OTA4NDc5MDAsICJraW5kIjogInBheWxvYWQiLCAicHJvdG9jb2wi"
-"OiAidGNwIiwgInBlZXIiOiBbIjE5Mi4xNjguMTM3LjIwIiwgNjQzODBdLCAiZW5k"
-"cG9pbnQiOiBbIjE5Mi4xNjguMTM3LjEiLCA0OTAwMl0sICJieXRlcyI6IDMyLCAi"
-"cGF5bG9hZF9oZXgiOiAiMzUzMDY2MzAzMzM4NjMzMTM4MzQzNDMyMzQzOTMyNjIz"
-"ODYzNjMzMzY1NjQzNTM0NjI2NTMxNjY2NjY2MzczNCIsICJjYXB0dXJlX2NvbXBs"
-"ZXRlIjogdHJ1ZSwgImV4YWN0X25vbmNlIjogdHJ1ZSwgIm5vbmNlIjogIjUwZjAz"
-"OGMxODQ0MjQ5MmI4Y2MzZWQ1NGJlMWZmZjc0In0KeyJzY2hlbWEiOiAic2FuZGJv"
-"eC13aXRuZXNzLXJlY2VpdmVyLXYyIiwgInJ1bl9pZCI6ICJmODAxMDQ2YzQ3YTA0"
-"ZGVlYjg5Y2M0NDI5NDJmMGJiNiIsICJzZXEiOiA0LCAidXRjX25zIjogMTc5MTg5"
-"MTc1NjY1MjIxNjIwMCwgIm1vbm90b25pY19ucyI6IDI1MTA5MTQ5MTAzMDYwMCwg"
-"ImtpbmQiOiAicGF5bG9hZCIsICJwcm90b2NvbCI6ICJ1ZHAiLCAicGVlciI6IFsi"
-"MTkyLjE2OC4xMzcuMjAiLCA1OTMzNF0sICJlbmRwb2ludCI6IFsiMTkyLjE2OC4x"
-"MzcuMSIsIDQ5MDAxXSwgImJ5dGVzIjogMzIsICJwYXlsb2FkX2hleCI6ICIzNjM3"
-"MzU2NDY2NjEzNzM0Mzg2MzYxMzUzNDM4NjE2MzM5MzkzNjM0NjI2MzY2MzUzNTM0"
-"NjMzODM0MzIzODYyIiwgImNhcHR1cmVfY29tcGxldGUiOiB0cnVlLCAiZXhhY3Rf"
-"bm9uY2UiOiB0cnVlLCAibm9uY2UiOiAiNjc1ZGZhNzQ4Y2E1NDhhYzk5NjRiY2Y1"
-"NTRjODQyOGIifQp7InNjaGVtYSI6ICJzYW5kYm94LXdpdG5lc3MtcmVjZWl2ZXIt"
-"djIiLCAicnVuX2lkIjogImY4MDEwNDZjNDdhMDRkZWViODljYzQ0Mjk0MmYwYmI2"
-"IiwgInNlcSI6IDUsICJ1dGNfbnMiOiAxNzkxODkxODMwMjE0NjIwNDAwLCAibW9u"
-"b3RvbmljX25zIjogMjUxMTY1MDUzNDM0ODAwLCAia2luZCI6ICJwYXlsb2FkIiwg"
-"InByb3RvY29sIjogInVkcCIsICJwZWVyIjogWyIxOTIuMTY4LjEzNy4yMCIsIDYx"
-"NTkzXSwgImVuZHBvaW50IjogWyIxOTIuMTY4LjEzNy4xIiwgNDkwMDFdLCAiYnl0"
-"ZXMiOiAzMiwgInBheWxvYWRfaGV4IjogIjY1MzgzMDM3MzU2MTMzNjU2MTMzMzAz"
-"MTM0MzAzNTM0NjEzMTYyNjMzMTMzMzIzMTM2NjE2MjY1MzMzMDY0MzAiLCAiY2Fw"
-"dHVyZV9jb21wbGV0ZSI6IHRydWUsICJleGFjdF9ub25jZSI6IHRydWUsICJub25j"
-"ZSI6ICJlODA3NWEzZWEzMDE0MDU0YTFiYzEzMjE2YWJlMzBkMCJ9Cnsic2NoZW1h"
-"IjogInNhbmRib3gtd2l0bmVzcy1yZWNlaXZlci12MiIsICJydW5faWQiOiAiZjgw"
-"MTA0NmM0N2EwNGRlZWI4OWNjNDQyOTQyZjBiYjYiLCAic2VxIjogNiwgInV0Y19u"
-"cyI6IDE3OTE4OTE4MzAyMTQ2ODQ0MDAsICJtb25vdG9uaWNfbnMiOiAyNTExNjUw"
-"NTM0OTg4MDAsICJraW5kIjogInBheWxvYWQiLCAicHJvdG9jb2wiOiAidGNwIiwg"
-"InBlZXIiOiBbIjE5Mi4xNjguMTM3LjIwIiwgNjM5MzZdLCAiZW5kcG9pbnQiOiBb"
-"IjE5Mi4xNjguMTM3LjEiLCA0OTAwMl0sICJieXRlcyI6IDMyLCAicGF5bG9hZF9o"
-"ZXgiOiAiMzA2NTYxNjQ2NDYyMzM2MjYzNjMzNjM5MzQzNTY0MzgzOTMzNjE2MzMx"
-"MzAzODYxNjEzNDM4NjM2NDM5MzIzOSIsICJjYXB0dXJlX2NvbXBsZXRlIjogdHJ1"
-"ZSwgImV4YWN0X25vbmNlIjogdHJ1ZSwgIm5vbmNlIjogIjBlYWRkYjNiY2M2OTQ1"
-"ZDg5M2FjMTA4YWE0OGNkOTI5In0KeyJzY2hlbWEiOiAic2FuZGJveC13aXRuZXNz"
-"LXJlY2VpdmVyLXYyIiwgInJ1bl9pZCI6ICJmODAxMDQ2YzQ3YTA0ZGVlYjg5Y2M0"
-"NDI5NDJmMGJiNiIsICJzZXEiOiA3LCAidXRjX25zIjogMTc5MTg5MjAwMzg4NzAy"
-"MDcwMCwgIm1vbm90b25pY19ucyI6IDI1MTMzODcyNTgzNTcwMCwgImtpbmQiOiAi"
-"Y2xvc2VkIiwgImxpc3RlbmVyc19jbG9zZWQiOiB0cnVlLCAiZGVhZGxpbmVfcmVh"
-"Y2hlZCI6IHRydWUsICJyZWNlaXZlcl9jb21wbGV0ZSI6IHRydWV9Cg==")
+def read_transport(directory):
+    directory=safe_path(directory)
+    result={};originals={}
+    for name in NAMES:
+        candidates=[directory/(name+".b64")]
+        if name in ALIASES:candidates.append(directory/ALIASES[name])
+        present=[safe_path(p) for p in candidates if p.exists()]
+        if len(present)!=1:raise ValueError("Exactly one Base64 source required for "+name)
+        source=present[0];encoded=source.read_bytes()
+        compact=b"".join(encoded.split())
+        raw=base64.b64decode(compact,validate=True)
+        if name!="stderr.bin" and not raw:raise ValueError("Empty original: "+name)
+        result[name]=raw;originals[name]={"path":source,"encoded":encoded}
+    return result,originals
 
-SUMMARY_B64 = ("ewogICJzY2hlbWEiOiAic2FuZGJveC13aXRuZXNzLXJlY2VpdmVyLXYyIiwKICAi"
-"cnVuX2lkIjogImY4MDEwNDZjNDdhMDRkZWViODljYzQ0Mjk0MmYwYmI2IiwKICAi"
-"YmluZCI6ICIxOTIuMTY4LjEzNy4xIiwKICAiYWRkcmVzc19mYW1pbHkiOiA0LAog"
-"ICJpcHY2X29ubHkiOiBmYWxzZSwKICAiZW5kcG9pbnRzIjogewogICAgInVkcCI6"
-"IFsKICAgICAgIjE5Mi4xNjguMTM3LjEiLAogICAgICA0OTAwMQogICAgXSwKICAg"
-"ICJ0Y3AiOiBbCiAgICAgICIxOTIuMTY4LjEzNy4xIiwKICAgICAgNDkwMDIKICAg"
-"IF0KICB9LAogICJpbXBsZW1lbnRhdGlvbiI6IHsKICAgICJraW5kIjogImZyb3pl"
-"bl9leGVjdXRhYmxlIiwKICAgICJwYXRoIjogIkM6XFxVc2Vyc1xcTGVub3ZvXFxE"
-"ZXNrdG9wXFx3aXRuZXNzX3JlY2VpdmVyX3YzLmV4ZSIsCiAgICAic2hhMjU2Ijog"
-"IjAyZDc4MWJjMjIyODZiMWU4NDE3ZGRiMTE5ZWM2YjUyOWU1YTkxMDFiMWZhZDc1"
-"OGE0MWEwNmZiYzJlYjQ0YmYiCiAgfSwKICAiaW1wbGVtZW50YXRpb25fdW5jaGFu"
-"Z2VkIjogdHJ1ZSwKICAic3RhcnRlZF9tb25vdG9uaWNfbnMiOiAyNTEwMzg3MTc3"
-"ODg2MDAsCiAgImZpbmlzaGVkX21vbm90b25pY19ucyI6IDI1MTMzODcxODMxNTMw"
-"MCwKICAicmVxdWVzdGVkX3NlY29uZHMiOiAzMDAsCiAgImRlYWRsaW5lX3JlYWNo"
-"ZWQiOiB0cnVlLAogICJpbnRlcnJ1cHRlZCI6IGZhbHNlLAogICJlcnJvcnMiOiBb"
-"XSwKICAicmVjb3JkcyI6IDQsCiAgImxpc3RlbmVyc19jbG9zZWQiOiB0cnVlLAog"
-"ICJyZWNlaXZlcl9jb21wbGV0ZSI6IHRydWUsCiAgImxvZyI6ICJDOlxcVXNlcnNc"
-"XExlbm92b1xcRGVza3RvcFxcY2FwdHVyZXNcXGxhbi0yMDI2LTEwLTEzLWEtZTYw"
-"NWUwZWUzYThiNDM4OGFhNzIyNzFkNTZmNDczY2RcXHJlY2VpdmVyLmpzb25sIiwK"
-"ICAibG9nX3NoYTI1NiI6ICIyYTA1NDhlNTVlNmM5ZGQyM2U3OGQxZjM4YjA5MDJl"
-"NmEwZjAwZDUzNGIyZjA0ZmIwMjY1OTZkM2YxMzFhMWEwIiwKICAic3VtbWFyeSI6"
-"IiIsCiAgImNlcnRpZmljYXRlX3dyaXR0ZW4iOiBmYWxzZSwKICAicHJvZHVjdGlv"
-"bl9nYXRlIjogIkNMT1NFRCIKfQo=")
+def validate_bytes(raw):
+    proof=json.loads(raw["process-exit.json"])
+    summary=json.loads(raw["receiver.jsonl.summary.json"])
+    rows=[json.loads(line) for line in raw["receiver.jsonl"].splitlines() if line.strip()]
+    # Stdout is checked without reserializing or altering the original bytes.
+    stdout=[json.loads(line) for line in raw["stdout.bin"].decode("utf-8").splitlines() if line.strip()]
+    if proof.get("schema")!="witness-process-exit-v1" or proof.get("mode")!="SERVE":
+        raise ValueError("Expected a SERVE parent-process receipt")
+    round_name=proof.get("round");capture_id=proof.get("capture_id")
+    if not isinstance(round_name,str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}",round_name):
+        raise ValueError("Invalid round name")
+    if not isinstance(capture_id,str) or not re.fullmatch("[0-9a-f]{32}",capture_id):
+        raise ValueError("Invalid capture identifier")
+    hashes=proof.get("files",{})
+    if not isinstance(hashes,dict) or set(hashes)!=set(NAMES[:-1]):
+        raise ValueError("Incomplete parent-process file hash set")
+    if any(hashes[name]!=digest(raw[name]) for name in NAMES[:-1]):
+        raise ValueError("Original bytes differ from parent-process hashes")
+    if summary.get("log_sha256")!=digest(raw["receiver.jsonl"]):
+        raise ValueError("Summary/log hash mismatch")
+    if proof.get("receiver_run_id")!=summary.get("run_id") or not rows:
+        raise ValueError("Receiver run mismatch")
+    if any(row.get("run_id")!=summary["run_id"] for row in rows):
+        raise ValueError("Mixed receiver runs")
+    if len(stdout)!=2 or stdout[0] not in rows or stdout[0].get("kind")!="listening" or stdout[1]!=summary:
+        raise ValueError("Stdout differs from original listening event or summary")
+    return round_name+"-"+capture_id
 
-STDOUT_B64 = ("eyJzY2hlbWEiOiAic2FuZGJveC13aXRuZXNzLXJlY2VpdmVyLXYyIiwgInJ1bl9p"
-"ZCI6ICJmODAxMDQ2YzQ3YTA0ZGVlYjg5Y2M0NDI5NDJmMGJiNiIsICJzZXEiOiAy"
-"LCAidXRjX25zIjogMTc5MTg5MTcwMzg3ODk3NzYwMCwgIm1vbm90b25pY19ucyI6"
-"IDI1MTAzODcxNzc5MjEwMCwgImtpbmQiOiAibGlzdGVuaW5nIiwgImVuZHBvaW50"
-"cyI6IHsidWRwIjogWyIxOTIuMTY4LjEzNy4xIiwgNDkwMDFdLCAidGNwIjogWyIx"
-"OTIuMTY4LjEzNy4xIiwgNDkwMDJdfSwgImltcGxlbWVudGF0aW9uIjogeyJraW5k"
-"IjogImZyb3plbl9leGVjdXRhYmxlIiwgInBhdGgiOiAiQzpcXFVzZXJzXFxMZW5v"
-"dm9cXERlc2t0b3BcXHdpdG5lc3NfcmVjZWl2ZXJfdjMuZXhlIiwgInNoYTI1NiI6"
-"IiIwMmQ3ODFiYzIyMjg2YjFlODQxN2RkYjExOWVjNmI1MjllNWE5MTAxYjFmYWQ3"
-"NThhNDFhMDZmYmMyZWI0NGJmIn19DQp7InNjaGVtYSI6ICJzYW5kYm94LXdpdG5l"
-"c3MtcmVjZWl2ZXItdjIiLCAicnVuX2lkIjogImY4MDEwNDZjNDdhMDRkZWViODlj"
-"YzQ0Mjk0MmYwYmI2IiwgImJpbmQiOiAiMTkyLjE2OC4xMzcuMSIsICJhZGRyZXNz"
-"X2ZhbWlseSI6IDQsICJpcHY2X29ubHkiOiBmYWxzZSwgImVuZHBvaW50cyI6IHsi"
-"dWRwIjogWyIxOTIuMTY4LjEzNy4xIiwgNDkwMDFdLCAidGNwIjogWyIxOTIuMTY4"
-"LjEzNy4xIiwgNDkwMDJdfSwgImltcGxlbWVudGF0aW9uIjogeyJraW5kIjogImZy"
-"b3plbl9leGVjdXRhYmxlIiwgInBhdGgiOiAiQzpcXFVzZXJzXFxMZW5vdm9cXERl"
-"c2t0b3BcXHdpdG5lc3NfcmVjZWl2ZXJfdjMuZXhlIiwgInNoYTI1NiI6ICIwMmQ3"
-"ODFiYzIyMjg2YjFlODQxN2RkYjExOWVjNmI1MjllNWE5MTAxYjFmYWQ3NThhNDFh"
-"MDZmYmMyZWI0NGJmIn0sICJpbXBsZW1lbnRhdGlvbl91bmNoYW5nZWQiOiB0cnVl"
-"LCAic3RhcnRlZF9tb25vdG9uaWNfbnMiOiAyNTEwMzg3MTc3ODg2MDAsICJmaW5p"
-"c2hlZF9tb25vdG9uaWNfbnMiOiAyNTEzMzg3MTgzMTUzMDAsICJyZXF1ZXN0ZWRf"
-"c2Vjb25kcyI6IDMwMCwgImRlYWRsaW5lX3JlYWNoZWQiOiB0cnVlLCAiaW50ZXJy"
-"dXB0ZWQiOiBmYWxzZSwgImVycm9ycyI6IFtdLCAicmVjb3JkcyI6IDQsICJsaXN0"
-"ZW5lcnNfY2xvc2VkIjogdHJ1ZSwgInJlY2VpdmVyX2NvbXBsZXRlIjogdHJ1ZSwg"
-"ImxvZyI6ICJDOlxcVXNlcnNcXExlbm92b1xcRGVza3RvcFxcY2FwdHVyZXNcXGxh"
-"bi0yMDI2LTEwLTEzLWEtZTYwNWUwZWUzYThiNDM4OGFhNzIyNzFkNTZmNDczY2Rc"
-"XHJlY2VpdmVyLmpzb25sIiwgImxvZ19zaGEyNTYiOiAiMmEwNTQ4ZTU1ZTZjOWRk"
-"MjNlNzhkMWYzOGIwOTAyZTZhMGYwMGQ1MzRiMmYwNGZiMDI2NTk2ZDNmMTMxYTFh"
-"MCIsICJzdW1tYXJ5IjogIkM6XFxVc2Vyc1xcTGVub3ZvXFxEZXNrdG9wXFxjYXB0"
-"dXJlc1xcbGFuLTIwMjYtMTAtMTMtYS1lNjA1ZTBlZTNhOGI0Mzg4YWE3MjI3MWQ1"
-"NmY0NzNjZFxccmVjZWl2ZXIuanNvbmwuc3VtbWFyeS5qc29uIiwgImNlcnRpZmlj"
-"YXRlX3dyaXR0ZW4iOiBmYWxzZSwgInByb2R1Y3Rpb25fZ2F0ZSI6ICJDTE9TRUQi"
-"fQ0K")
+def decode_capture(input_directory,output_parent):
+    raw,originals=read_transport(input_directory)
+    name=validate_bytes(raw)  # Validate every byte before creating any output.
+    parent=safe_path(output_parent,registered=True)
+    target=safe_path(parent/name,registered=True)
+    if target.exists():raise FileExistsError("Capture already exists; never overwrite")
+    parent.mkdir(parents=True,exist_ok=True);safe_path(parent,registered=True)
+    staging=safe_path(parent/(".decode-stage-"+uuid.uuid4().hex),registered=True)
+    staging.mkdir(exist_ok=False)
+    try:
+        for name in NAMES:
+            with (staging/name).open("xb") as stream:stream.write(raw[name])
+        for name in NAMES:
+            if (staging/name).read_bytes()!=raw[name]:raise ValueError("Output byte verification failed")
+            if originals[name]["path"].read_bytes()!=originals[name]["encoded"]:
+                raise ValueError("Transport changed during intake")
+        receipt={"schema":"witness-lossless-decode-v1","qualification":"INTEGRITY_ONLY",
+                 "files":{name:{"bytes":len(raw[name]),"sha256":digest(raw[name]),
+                                "transport_sha256":digest(originals[name]["encoded"])} for name in NAMES},
+                 "production":"CLOSED","native_acceptance":False,"certificate_written":False}
+        with (staging/"decode-receipt.json").open("x",encoding="utf-8",newline="\n") as stream:
+            json.dump(receipt,stream,indent=2);stream.write("\n")
+        # Both resolved targets are checked before this single-shell local rename.
+        safe_path(staging,registered=True);safe_path(target,registered=True)
+        if target.exists():raise FileExistsError("Capture appeared during intake")
+        if not staging.resolve().is_relative_to(REGISTERED_ROOT.resolve()) or not target.resolve().is_relative_to(REGISTERED_ROOT.resolve()):
+            raise ValueError("Resolved publication target escaped the registered root")
+        staging.rename(target)
+        return {"status":"DECODED_INTEGRITY_ONLY","path":str(target),**receipt}
+    except Exception:
+        # Retain owned partial staging for diagnosis; never delete or publish it.
+        raise
 
-PROCESS_EXIT_B64 = ("ew0KICAgICJzY2hlbWEiOiAgIndpdG5lc3MtcHJvY2Vzcy1leGl0LXYxIiwNCiAgICAi"
-"bW9kZSI6ICAiU0VSVkUiLA0KICAgICJyb3VuZCI6ICAibGFuLTIwMjYtMTAtMTMtYSIs"
-"DQogICAgImNhcHR1cmVfaWQiOiAgImU2MDVlMGVlM2E4YjQzODhhYTcyMjcxZDU2ZjQ3"
-"M2NkIiwNCiAgICAiY29tbWFuZF9hcmd2IjogIFsNCiAgICAgICAgICAgICAgICAgICAg"
-"ICAgICAiQzpcXFVzZXJzXFxMZW5vdm9cXERlc2t0b3BcXHdpdG5lc3NfcmVjZWl2ZXJf"
-"djMuZXhlIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAiLS1zZXJ2ZSIsDQogICAg"
-"ICAgICAgICAgICAgICAgICAgICAgIi0tYmluZCIsDQogICAgICAgICAgICAgICAgICAg"
-"ICAgICAiMTkyLjE2OC4xMzcuMSIsDQogICAgICAgICAgICAgICAgICAgICAgICAgIi0t"
-"dWRwLXBvcnQiLA0KICAgICAgICAgICAgICAgICAgICAgICAgICI0OTAwMSIsDQogICAg"
-"ICAgICAgICAgICAgICAgICAgICAgIi0tdGNwLXBvcnQiLA0KICAgICAgICAgICAgICAg"
-"ICAgICAgICAgICI0OTAwMiIsDQogICAgICAgICAgICAgICAgICAgICAgICAgIi0tc2Vj"
-"b25kcyIsDQogICAgICAgICAgICAgICAgICAgICAgICAgIjMwMCIsDQogICAgICAgICAg"
-"ICAgICAgICAgICAgICAgIi0tbG9nIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAi"
-"QzpcXFVzZXJzXFxMZW5vdm9cXERlc2t0b3BcXGNhcHR1cmVzXFxsYW4tMjAyNi0xMC0x"
-"My1hLWU2MDVlMGVlM2E4YjQzODhhYTcyMjcxZDU2ZjQ3M2NkXFxyZWNlaXZlci5qc29u"
-"bCINCiAgICAgICAgICAgICAgICAgICAgIF0sDQogICAgImxhdW5jaGVkX3BpZCI6ICAx"
-"MzQ5OTIsDQogICAgInJlY2VpdmVyX3J1bl9pZCI6ICAiZjgwMTA0NmM0N2EwNGRlZWI4"
-"OWNjNDQyOTQyZjBiYjYiLA0KICAgICJleGl0X2NvZGUiOiAgMCwNCiAgICAic3Bhd25f"
-"ZXJyb3IiOiAgbnVsbCwNCiAgICAic3RhcnRlZF91dGNfbnMiOiAgMTc5MTg5MTcwMzE0"
-"NTQ2MjYwMCwNCiAgICAiZmluaXNoZWRfdXRjX25zIjogIDE3OTE4OTIwMDQyNDkyMDA4"
-"MDAsDQogICAgImV4ZV9iZWZvcmVfc2hhMjU2IjogICIwMmQ3ODFiYzIyMjg2YjFlODQx"
-"N2RkYjExOWVjNmI1MjllNWE5MTAxYjFmYWQ3NThhNDFhMDZmYmMyZWI0NGJmIiwNCiAg"
-"ICAiZXhlX2FmdGVyX3NoYTI1NiI6ICAiMDJkNzgxYmMyMjI4NmIxZTg0MTdkZGIxMTll"
-"YzZiNTI5ZTVhOTEwMWIxZmFkNzU4YTQxYTA2ZmJjMmViNDRiZiIsDQogICAgIndyYXBw"
-"ZXJfc2hhMjU2IjogICIzOTAzMmM1ZTNiMTRkNjk5NzE1MDQ3Y2Y5ZjZhY2JkMmJlZjFj"
-"OTI2NTkxNmQ1NzRhZTlmOTBjMGYzZTM1NDUiLA0KICAgICJmaWxlcyI6ICB7DQogICAg"
-"ICAgICAgICAgICAgICAicmVjZWl2ZXIuanNvbmwuc3VtbWFyeS5qc29uIjogICI5NmIw"
-"MjdmMzMwMjkxOTAxYTIxNmE0MWFjOWFkYWFlYzdmODg0Njc0MjBmYmI4MmNkZTc2Yzgy"
-"NTgzMTRlNSIsDQogICAgICAgICAgICAgICAgICAicmVjZWl2ZXIuanNvbmwiOiAgIjJh"
-"MDU0OGU1NWU2YzlkZDIzZTc4ZDFmMzhiMDkwMmU2YTBmMDBkNTM0YjJmMDRmYjAyNjU5"
-"NmQzZjEzMWExYTAiLA0KICAgICAgICAgICAgICAgICAgInN0ZGVyci5iaW4iOiAgImUz"
-"YjBjNDQyOThmYzFjMTQ5YWZiYjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5"
-"OTFiNzg1MmI4NTUiLA0KICAgICAgICAgICAgICAgICAgInN0ZG91dC5iaW4iOiAgIjg3"
-"MmM5MzY2M2I0MDU1ZTRiNmQ4MjdkMTVkMzVjMWE1Njg0MjBmYjc1MTE4OTkwYzBkNGQ0"
-"NTMyZmYxNWE2NmEiDQogICAgICAgICAgICAgIH0sDQogICAgInByb2R1Y3Rpb25fZ2F0"
-"ZSI6ICAiQ0xPU0VEIiwNCiAgICAiY2VydGlmaWNhdGVfd3JpdHRlbiI6ICBmYWxzZQ0K"
-"fQ0K")
-
-
-def main():
-    (CAP / "receiver.jsonl").write_bytes(base64.b64decode(JSONL_B64))
-    (CAP / "receiver.jsonl.summary.json").write_bytes(base64.b64decode(SUMMARY_B64))
-    (CAP / "stdout.bin").write_bytes(base64.b64decode(STDOUT_B64))
-    (CAP / "stderr.bin").write_bytes(b"")
-    (CAP / "process-exit.json").write_bytes(base64.b64decode(PROCESS_EXIT_B64))
-    for name in ("receiver.jsonl", "receiver.jsonl.summary.json", "stdout.bin", "stderr.bin", "process-exit.json"):
-        h = hashlib.sha256((CAP / name).read_bytes()).hexdigest()
-        print(name, h)
-    lines = json.loads((CAP / "receiver.jsonl").read_text(encoding="utf-8").splitlines()[0])
-    print("created bind:", lines["bind"])
-
-
-if __name__ == "__main__":
-    main()
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--execute",action="store_true")
+    parser.add_argument("--input-directory",type=Path)
+    parser.add_argument("--output-parent",type=Path)
+    args=parser.parse_args(argv)
+    if not args.execute:
+        print(json.dumps({"status":"PLAN","writes":False,"required":"--execute --input-directory DIR --output-parent REGISTERED_DIR","production":"CLOSED"}))
+        return 3
+    try:
+        if args.input_directory is None or args.output_parent is None:
+            raise ValueError("Explicit input and registered output parent are required")
+        result=decode_capture(args.input_directory,args.output_parent)
+        print(json.dumps(result,ensure_ascii=False,indent=2))
+        return 0
+    except Exception as exc:
+        print(json.dumps({"status":"NOT_DECODED","error_type":type(exc).__name__,"detail":str(exc),
+                          "production":"CLOSED","native_acceptance":False},ensure_ascii=False))
+        return 2
+if __name__=="__main__":
+    raise SystemExit(main())

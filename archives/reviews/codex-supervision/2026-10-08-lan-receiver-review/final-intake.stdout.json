@@ -1,0 +1,74 @@
+{
+  "status": "NOT_ACCEPTED",
+  "run_id": "remote-271e1c881c4f473fb027f5f28d4a3bd5",
+  "findings": [
+    {
+      "code": "ORIGINAL_LOG_SHA_MISMATCH",
+      "claimed": "0f490152cc50cdfcfc5b7fa9cf050360f51baffea17bb492818142e48f52eef4",
+      "actual": "39bd89372457a68d10f86cfbce454712f099157bbca6dcd21395d0f996c26901"
+    },
+    {
+      "code": "APPROVED_IMPLEMENTATION_HASH_MISMATCH",
+      "expected": "d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad",
+      "actual": "d6887098ccd3b1c3b9de1180746558b78d2b2882cbee25d791c5f792f1cad",
+      "actual_hex_length": 61
+    },
+    {
+      "code": "EXACT_ENDPOINT_BIND_MISMATCH",
+      "sender_target": "192.168.1.83",
+      "receiver_bind": "0.0.0.0",
+      "receiver_unspecified": true
+    },
+    {
+      "code": "RECEIVER_MONOTONIC_DURATION_INVALID",
+      "started": 168368885274900,
+      "finished": 16868887799600,
+      "claimed_seconds": 300,
+      "elapsed_ns_exact": -151499997475300
+    },
+    {
+      "code": "HEALTH_CONTROLS_MISSING_OR_INVALID",
+      "expected_controls": {
+        "tcp": [
+          "60b38192ba5749cc91aa572a7d4d115b",
+          "0ae9da925a734529948de226db82a7cc"
+        ],
+        "udp": [
+          "5b6baef464ab47e5b953b93a7d690745",
+          "55a764253acb45d280eae20a738d4d4e"
+        ]
+      },
+      "observed_controls": {
+        "tcp": [],
+        "udp": []
+      },
+      "payload_count": 0
+    },
+    {
+      "code": "RAW_EVENT_OUTSIDE_SUMMARY_TIME_WINDOW",
+      "row_sequence": 2,
+      "kind": "listening",
+      "monotonic_ns": 168368885277100
+    },
+    {
+      "code": "RAW_EVENT_OUTSIDE_SUMMARY_TIME_WINDOW",
+      "row_sequence": 3,
+      "kind": "closed",
+      "monotonic_ns": 168368900653800
+    },
+    {
+      "code": "ACTUAL_RECEIVER_RC_MISSING_OR_NONZERO",
+      "received_rc": null,
+      "note": "The caller must provide actual native exit status; never infer from JSON."
+    }
+  ],
+  "files": {
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-271e1c881c4f473fb027f5f28d4a3bd5\\sender.json": "f2ca09bd06173dc48ab19ee5798a24b14bbd986985cb26f8af6d8edd40744a6c",
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-271e1c881c4f473fb027f5f28d4a3bd5\\receiver\\witness_new_01.jsonl": "39bd89372457a68d10f86cfbce454712f099157bbca6dcd21395d0f996c26901",
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-271e1c881c4f473fb027f5f28d4a3bd5\\receiver\\witness_new_01.jsonl.summary.json": "94df8977163a25e08c6e55012197b409238d8a13076870776cb4f09a4d4dbfb8"
+  },
+  "read_only_inputs_unchanged": true,
+  "registered_receiver_check": null,
+  "production": "CLOSED",
+  "full_surface_accepted": false
+}

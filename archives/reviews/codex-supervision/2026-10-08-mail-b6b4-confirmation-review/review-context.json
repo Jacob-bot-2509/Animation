@@ -1,0 +1,69 @@
+{
+  "bindings": {
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/sender.json": "0dcce788d4ba2e2444080e45b26842f9327d96bc876c746b6e4369d37c75ffa5",
+    "reviews/codex-supervision/2026-10-08-mail-c1f60-provenance-review/inspect_receiver.py": "1215462aaf73f70dd698b54b2f218b6734d1975be7cd66485009cad0836c6d17"
+  },
+  "captured_at": "2026-10-08T22:53:11.120084+08:00",
+  "current_status_sha256": "65df0018e7adcb343eb747ea0a208592964f775789bfd3fffdeab0341e90de4f",
+  "observer": {
+    "head": "06992ba6f8cf8fff3950b94b24733fb0556019e1",
+    "readme_latest_section": "检测实验在2026-10-08，当前未启动该实验。只读监听已扩展到采集器、测试、外部实验及holdout修订目录；44260正常STOP，新隐藏worker37180有心跳，后台仍只记录。\n\nholdout仅修当前391条候选，不加题、不生成数值变体。v3纠正资格声明、容量矛盾、成员/核心隔离和统计界；9项精确公式测试通过，实际资格/盲标/校准/最终验证仍PENDING / UNCALIBRATED。生产CLOSED。\n\n[草案修订报告](../2026-10-07-holdout-v2-review/REVIEW_REPORT.md) · [当前设计v3](../2026-10-07-holdout-v2-review/holdout-design-v3.pending.md) · [采集入口修复](../2026-10-07-external-driver-supervision/FIX_REPORT.md)\n\n\n## 2026-10-07 核心提交监管恢复\n\n旧 worker37180 最后心跳05:08:27，当前已退出，原因UNKNOWN；历史日志保留。已隐藏恢复，launcher29596、实际worker31260；观察范围加入core-submission-v1、核心检查器、测试及冻结政策/清单。恢复时心跳见 ../2026-10-07-core-submission-supervision/observer-recovery.json。观察器只记录，不能自动执行数学审查或准入。\n\n当前 A/B 原SHA复验匹配；C 的统计和审核范围有错，检查器由Codex修复、27回归通过；交30题精确正文候选，31具名精确检查通过，现役与冻结包未替换。数学/同核心隔离仍待实际全范围复核，生产CLOSED；详见 ../2026-10-07-core-submission-supervision/FIX_REPORT.md。\n\n\n## 2026-10-07 后续核验与接入层监管\n\n原 verify_codex_supervision 统计/身份/退出码错误已修，39回归通过；接入与格式相关51回归通过，共90具名检查。30题正文保持上一轮精确修订，17场景修正后生成独立 admission-v2，5源文件489记录原身份保留，现役与v1原件未覆盖；全核心数学/同核心隔离和新渲染仍未完成，生产CLOSED。\n\n监听扩展到后续4核验/构建工具、相关测试、v1及Codex新版本材料；31260与41804均正常STOP，当前worker见 ../2026-10-07-core-verifier-followup/observer-restart.json。后台只记录，不自动AI审查或放行。详情 ../2026-10-07-core-verifier-followup/FIX_REPORT.md。\n\n\n## 2026-10-07 数学批审链修复与独立复核\n\n批审工具最终契约 v3：冻结源/记录版本核验、非空唯一题号、具名理由、源码快照、六项产物回执与禁止覆盖旧目录。独立复核本轮38题，10条补严谨条件/精确场景，保留上一轮30条修订。其他已收草稿批次仅重新绑定，不等同独立数学通过。监听纳入 math_review_batch.py、测试、规格、批次目录及本轮 Codex 材料；旧20432正常STOP，新 worker见 ../2026-10-07-math-batch-supervision/observer-restart.json。后台只记录，不自动数学审查或准入；production CLOSED。\n\n\n## 2026-10-08 深层数学与真实公式复核\n\n4个训练ID另版修订，61项工具回归、46项精确检查和6项一般性证明通过。原162空MathTex回执不合格，7条实际公式样例通过，156条交Claude Code重渲；全局隔离与视觉仍未验收，生产CLOSED。监听新增数学源码／回执，略过媒体缓存；40700正常STOP，新worker 24760，后台只记录，不自动AI审查。详见 [本轮报告](../2026-10-07-deep-isolation-followup/FIX_REPORT.md)。\n\n\n## 2026-10-08 当前公式重渲复验\n\n已完成163条当前目标，另2条补验；165条完整公式资格限定本地MathTex编译，2663公式/5212原文出现。修复双美元解析与中文XeLaTeX/ctex，19项相关回归和9项复验器对抗检查通过，数学正文保持。全局隔离/视觉/原生沙箱未标绿，production CLOSED。\n\n只读监听新增 native-real-render 与 real-formula-followup 两个目录，略过媒体缓存。旧worker24760正常STOP，新隐藏worker52952有心跳，后台只记录，不自动AI审查或放行。双端实验不由Codex执行或验收。[当前修复报告](../2026-10-08-real-formula-followup/FIX_REPORT.md)。\n\n\n## 2026-10-08 双端实验监管恢复\n\n旧心跳停在 11:13:03，旧 worker 已不存在、原因未知。已隐藏恢复，实际 worker PID 44524，新心跳和 Claude 进程树已核实；原脚本未改，旧日志保留，空窗不补造。LAN 轮 remote-271e1c881c4f473fb027f5f28d4a3bd5 发送侧绑定独立通过，待接收端原始 JSONL、summary 与真实 rc，双端仍 UNVERIFIED、生产 CLOSED。Codex 已修操作单与发布说明，66 项本地回归通过。见 [监管报告](../2026-10-08-dual-endpoint-supervision/SUPERVISION_REPORT.md)。观察器只记录，不自动 AI 验收。\n",
+    "readme_sha256": "e2965eaf65e141568c7b18a179b953a0b35ceb202b35e26d361fb9a6e3c21433",
+    "snapshot_sha256": "8ba06e4c120d6d05bfffdc4483c5211394029e7827cfa6f7b772b3c34d05846d",
+    "time": "2026-10-08T22:53:09.518537+08:00",
+    "watcher_pid": 44524
+  },
+  "qualifications": {
+    "latest_glyph_continuation": {
+      "archive_artifacts": 1118,
+      "archive_completed_at": "2026-10-08T18:15:33.799230+08:00",
+      "archive_integrity": "PASS_FROZEN_ALL_ARTIFACT_HASHES",
+      "bridge_reply_id": "msg_1791454515789_753",
+      "conceptual_animation": "NOT_EVALUATED",
+      "current_batch_complete_proofs": 98,
+      "delivery_index": "reviews/codex-supervision/2026-10-08-complete-glyph-review/CURRENT_DELIVERY_INDEX.jsonl",
+      "delivery_index_sha256": "b901df08dde6161ef92ef0c2891a430a43b065af8b81b943cce9c22816efe257",
+      "delivery_manifest": "reviews/codex-supervision/2026-10-08-complete-glyph-review/delivery-manifest.json",
+      "delivery_manifest_sha256": "415cc3283f886705b0853aecac806a4324117a241bd8a88bd6a39c12bf125323",
+      "exact_symbolic_checks": 96,
+      "full_glyph_visual_acceptance": "PASS_LOCAL_CURRENT_165_BOUND_RECORDS_ALL_638_FORMULA_PAGES",
+      "manual_image_review_pages": 638,
+      "minimum_glyph_height": "NOT_CERTIFIED",
+      "native_sandbox": "UNVERIFIED",
+      "new_actual_pages": 75,
+      "original_pending_pages_actually_viewed": 337,
+      "page_review_evidence": "reviews/codex-supervision/2026-10-08-complete-glyph-review/effective-page-review-queue.json",
+      "production": "CLOSED",
+      "project_path": "reviews/codex-supervision/2026-10-08-complete-glyph-review",
+      "qualification": "reviews/codex-supervision/2026-10-08-complete-glyph-review/QUALIFICATION.json",
+      "qualified_pages": 638,
+      "qualified_record_count": 165,
+      "report": "reviews/codex-supervision/2026-10-08-complete-glyph-review/FIX_REPORT.md",
+      "report_sha256": "4f83e60b98203ea1cabe6479dffe9fb85bb0ee68373e18e151c81675d4344f4e",
+      "reviewed_at": "2026-10-08T18:09:10.552952+08:00",
+      "semantic_isolation": "NOT_ESTABLISHED",
+      "task_source": "USER_CONTINUE_UNTIL_ALL_SCOPED_REPAIRS_COMPLETE",
+      "unreviewed_current_pages": 0,
+      "unreviewed_page_list": "reviews/codex-supervision/2026-10-08-complete-glyph-review/current-unreviewed-pages.json"
+    },
+    "native_sandbox": "UNVERIFIED",
+    "production": "CLOSED",
+    "semantic_isolation": "NOT_ESTABLISHED"
+  },
+  "sender_directory_files": [
+    "interfaces-6.stderr.bin",
+    "interfaces-6.stdout.bin",
+    "route.stderr.bin",
+    "route.stdout.bin",
+    "sender.json"
+  ],
+  "sender_metadata_only": {
+    "bind": "240e:3b3:ec2:4e30:54ce:7b52:7526:6fba",
+    "certificate_written": false,
+    "complete": true,
+    "production_gate": "CLOSED",
+    "round": "v6-2026-10-08-a",
+    "run_id": "remote-44613b0442e744f890505252d9a3b510",
+    "verification_status": "UNVERIFIED"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "status": "PASS_LOCAL_LOOPBACK_PROTOCOL_ONLY",
+  "cases": [
+    {
+      "family": "ipv4",
+      "rc": 0,
+      "expected_controls": {
+        "tcp": [
+          "b50bb04b7bc64387b723a48b1d8f8ff7",
+          "f1419b1efd984dfb85dada12e8f7a095"
+        ],
+        "udp": [
+          "af2b320a41f6456da98a405b4da1553a",
+          "1aa1601dfe544c398a52baa8f8495e59"
+        ]
+      },
+      "observed_controls": {
+        "tcp": [
+          "b50bb04b7bc64387b723a48b1d8f8ff7",
+          "f1419b1efd984dfb85dada12e8f7a095"
+        ],
+        "udp": [
+          "af2b320a41f6456da98a405b4da1553a",
+          "1aa1601dfe544c398a52baa8f8495e59"
+        ]
+      },
+      "empty_connection_recorded": true,
+      "records": 5,
+      "sends": {
+        "before_tcp": {
+          "outcome": "completed",
+          "elapsed_ns": 346000,
+          "receiver_delivery_verified": false
+        },
+        "before_udp": {
+          "outcome": "sent",
+          "elapsed_ns": 256400,
+          "receiver_delivery_verified": false
+        },
+        "after_tcp": {
+          "outcome": "completed",
+          "elapsed_ns": 209200,
+          "receiver_delivery_verified": false
+        },
+        "after_udp": {
+          "outcome": "sent",
+          "elapsed_ns": 154700,
+          "receiver_delivery_verified": false
+        }
+      },
+      "log_sha256": "a2207a46ccca8d83e13eacd70f770a157ef4f4df3bc7339540e5db752227de09",
+      "scope": "LOCAL_HOST_LOOPBACK_PROTOCOL_ONLY"
+    },
+    {
+      "family": "ipv6",
+      "rc": 0,
+      "expected_controls": {
+        "tcp": [
+          "d353e16f1ea84c448b9e1b02650066c6",
+          "91b6e2642d5e48baa666f5a04b23e7ba"
+        ],
+        "udp": [
+          "387739be22854210a52f53ee1101343e",
+          "5a10b4a435d64d3597d6b9d252bab0cd"
+        ]
+      },
+      "observed_controls": {
+        "tcp": [
+          "d353e16f1ea84c448b9e1b02650066c6",
+          "91b6e2642d5e48baa666f5a04b23e7ba"
+        ],
+        "udp": [
+          "387739be22854210a52f53ee1101343e",
+          "5a10b4a435d64d3597d6b9d252bab0cd"
+        ]
+      },
+      "empty_connection_recorded": true,
+      "records": 5,
+      "sends": {
+        "before_tcp": {
+          "outcome": "completed",
+          "elapsed_ns": 359200,
+          "receiver_delivery_verified": false
+        },
+        "before_udp": {
+          "outcome": "sent",
+          "elapsed_ns": 159200,
+          "receiver_delivery_verified": false
+        },
+        "after_tcp": {
+          "outcome": "completed",
+          "elapsed_ns": 159100,
+          "receiver_delivery_verified": false
+        },
+        "after_udp": {
+          "outcome": "sent",
+          "elapsed_ns": 158400,
+          "receiver_delivery_verified": false
+        }
+      },
+      "log_sha256": "3acdd58db044a563e354c26cbd636aa308e478a2ad296ed31319aa0c3c3cdacb",
+      "scope": "LOCAL_HOST_LOOPBACK_PROTOCOL_ONLY"
+    }
+  ],
+  "bindings": {
+    "tools\\sandbox_external_test_driver.py": "99324c8a5343ab1379f290f1c9b2b46f70ae13e3a3f346e23249f6c1bc236292",
+    "tools\\sandbox_witness_receiver.py": "571f4ce31465a84147395abd9778845194ac591371234737ccf2abeebc6be75e"
+  },
+  "original_sources_unchanged": true,
+  "native_sandbox_accepted": false,
+  "full_surface_accepted": false,
+  "production": "CLOSED"
+}

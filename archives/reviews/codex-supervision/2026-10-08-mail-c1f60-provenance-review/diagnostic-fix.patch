@@ -1,0 +1,17 @@
+--- frozen previous inspect_receiver.py
++++ current corrected inspect_receiver.py
+@@ -33,8 +33,12 @@
+                 findings.append({"code":"ACTUAL_SANDBOX_PAYLOAD_BOUNDARY_FAILURE","protocol":p,"row_sequence":r.get("seq")})
+     for r in rows:
+         mono=r.get("monotonic_ns")
+-        if r.get("kind")!="created" and valid:
+-            check("RAW_EVENT_OUTSIDE_SUMMARY_TIME_WINDOW",type(mono)is int and start<=mono<=end,{"row_sequence":r.get("seq"),"kind":r.get("kind"),"monotonic_ns":mono})
++        kind=r.get("kind")
++        if kind in ("listening","payload") and valid:
++            check("RAW_EVENT_OUTSIDE_SUMMARY_TIME_WINDOW",type(mono)is int and start<=mono<=end,{"row_sequence":r.get("seq"),"kind":kind,"monotonic_ns":mono})
++        elif kind=="closed" and valid:
++            # Receiver records finished before implementation hashing and the closed event.
++            check("CLOSED_EVENT_BEFORE_COLLECTION_FINISHED",type(mono)is int and mono>=end,{"row_sequence":r.get("seq"),"monotonic_ns":mono,"finished_monotonic_ns":end})
+     check("ACTUAL_RECEIVER_RC_MISSING_OR_NONZERO",type(receiver_rc)is int and receiver_rc==0,{"received_rc":receiver_rc,"note":"The caller must provide actual native exit status; never infer from JSON."})
+     lifecycle=all(summary.get(k)is True for k in ("receiver_complete","implementation_unchanged","deadline_reached","listeners_closed"))
+     check("RECEIVER_LIFECYCLE_INCOMPLETE",lifecycle and summary.get("errors")==[] and summary.get("interrupted")is False,{"flags":[summary.get(k)for k in ("receiver_complete","implementation_unchanged","deadline_reached","listeners_closed")],"errors":summary.get("errors")})

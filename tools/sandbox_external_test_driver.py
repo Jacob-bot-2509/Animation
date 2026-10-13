@@ -14,6 +14,14 @@ WITNESS_SCHEMA="sandbox-witness-receiver-v2"
 APPROVED_WITNESSES={
     "python_source":"571f4ce31465a84147395abd9778845194ac591371234737ccf2abeebc6be75e",
     "frozen_executable":"d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad"}
+ADDITIONAL_APPROVED_WITNESSES={
+    "python_source": {"c23b3c48f03cf10bbffd7533b91e71495a1efc14b4770a2cbb34828abf4b864f"},
+    "frozen_executable": {"02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf"}}
+
+def approved_witness_hashes(kind):
+    primary = APPROVED_WITNESSES.get(kind)
+    return ({primary} if primary is not None else set()) | ADDITIONAL_APPROVED_WITNESSES.get(kind,set())
+
 sys.path.insert(0,str(ROOT/"src"))
 
 def digest(path):
@@ -207,6 +215,8 @@ def collect(args):
         # AFTER reaches the receiver >=20 s after the sandbox returned and is within the recorded window.
         wait_until(start+(args.observe_seconds-1)*1_000_000_000)
         controls("after")
+        if any(report["phases"]["after_"+p]["result"]["outcome"]=="error" for p in protocols):
+            raise ValueError("Host after-send failed; no healthy fixture for this run")
         wait_until(max(start+args.observe_seconds*1_000_000_000,time.monotonic_ns()+200_000_000))
         report["observation"]["finished_monotonic_ns"]=time.monotonic_ns()
         report["observation"]["elapsed_ns"]=report["observation"]["finished_monotonic_ns"]-start
@@ -240,7 +250,7 @@ def receiver_packets(report,log_path,summary_path,receiver_rc):
     if any(summary.get(k) is not True for k in required) or summary.get("errors")!=[] or summary.get("interrupted") is not False:
         raise ValueError("Witness lifecycle incomplete")
     identity=summary["implementation"]
-    if identity.get("sha256")!=APPROVED_WITNESSES.get(identity.get("kind")):
+    if identity.get("sha256") not in approved_witness_hashes(identity.get("kind")):
         raise ValueError("Witness executable/source is not the approved version")
     started=summary["started_monotonic_ns"];finished=summary["finished_monotonic_ns"]
     seconds=summary["requested_seconds"]
@@ -339,7 +349,28 @@ def reconcile(args):
                 or before["result"]["outcome"] not in ("sent","completed")
                 or after["result"]["outcome"] not in ("sent","completed")):
             raise ValueError("Sender controls not within the required live window")
+    capture=getattr(args,"receiver_capture",None)
+    receiver_summary=json.loads(registered(args.receiver_summary).read_bytes())
+    identity=receiver_summary.get("implementation",{})
+    is_new=identity.get("sha256") in ADDITIONAL_APPROVED_WITNESSES.get(identity.get("kind"),set())
+    intake=None
+    if is_new and capture is None:
+        raise ValueError("New witness versions require --receiver-capture; manual rc is insufficient")
+    if capture is not None:
+        import importlib.util
+        module_path=ROOT/"tools/inspect_witness_evidence.py"
+        spec=importlib.util.spec_from_file_location("bound_witness_intake",module_path)
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        module.driver.REGISTERED_ROOT=REGISTERED_ROOT
+        intake=module.inspect_capture(path,registered(capture))
+        if intake["status"]!="READY_FOR_REGISTERED_RECONCILIATION":
+            raise ValueError("Bound receiver intake rejected: "+json.dumps(intake["findings"]))
+        args.receiver_rc=0
     packets,receipt=receiver_packets(raw,args.receiver_log,args.receiver_summary,args.receiver_rc)
+    if intake is not None:
+        receipt["process_receipt"]=intake["process_receipt"]
+        receipt["intake_source_sha256"]=digest(module_path)
+
     cases={}
     for p in protocols:
         point="D9" if raw["scope"]=="lan" else ("D2" if p=="tcp" else "D8") if address.version==6 else ("D1" if p=="tcp" else "D7")
@@ -371,12 +402,19 @@ def main(argv=None):
     ap.add_argument("--reconcile",type=Path)
     ap.add_argument("--receiver-log",type=Path);ap.add_argument("--receiver-summary",type=Path)
     ap.add_argument("--receiver-rc",type=int)
+    ap.add_argument("--receiver-capture",type=Path,help="New witness capture directory with bound parent-process receipt")
     args=ap.parse_args(argv)
     try:
         if args.reconcile:
             if args.execute_native:raise ValueError("Collection and reconciliation are separate actions")
-            if args.receiver_log is None or args.receiver_summary is None or args.receiver_rc is None:
-                raise ValueError("Reconciliation requires actual original receiver log, summary and rc")
+            if args.receiver_capture is not None:
+                if any(v is not None for v in (args.receiver_log,args.receiver_summary,args.receiver_rc)):
+                    raise ValueError("--receiver-capture cannot be combined with manual log/summary/rc")
+                capture=registered(args.receiver_capture)
+                args.receiver_log=capture/"receiver.jsonl"
+                args.receiver_summary=capture/"receiver.jsonl.summary.json"
+            elif args.receiver_log is None or args.receiver_summary is None or args.receiver_rc is None:
+                raise ValueError("Reconciliation requires a bound capture or legacy original log, summary and actual rc")
             return reconcile(args)
         if not args.execute_native:
             print(json.dumps({"status":"PLAN","native_execution":False,

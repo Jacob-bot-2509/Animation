@@ -6,8 +6,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SUP = ROOT / "reviews/codex-supervision/2026-10-07-math-batch-supervision"
-OUT = ROOT / "dataset_audit_2026-10-07-render-check-v2"
+SUP = ROOT / "archives/reviews/codex-supervision/2026-10-07-math-batch-supervision"
+OUT = ROOT / "archives/dataset-audits/dataset_audit_2026-10-07-render-check-v2"
 
 
 def digest(data: bytes) -> str:

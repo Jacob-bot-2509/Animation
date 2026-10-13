@@ -1,0 +1,177 @@
+"""Replay existing registered validators in isolated modules; never collect."""
+from __future__ import annotations
+import argparse, contextlib, importlib.util, io, json, sys, types, uuid
+from pathlib import Path
+import witness_transfer_common as c
+
+def load_bound(path, expected):
+    raw = c.read_bytes(path, root=c.ROOT)
+    c.require(c.sha(raw) == expected, "SOURCE_VERSION_DRIFT", path)
+    module = types.ModuleType("bound_" + uuid.uuid4().hex)
+    module.__file__ = str(path)
+    module.__package__ = ""
+    exec(compile(raw, str(path), "exec"), module.__dict__)
+    c.require(c.sha(c.read_bytes(path, root=c.ROOT)) == expected, "SOURCE_CHANGED_DURING_LOAD")
+    return module
+
+def binding_inputs(entry):
+    needed = {"round", "receiver_capture_id", "expected_receiver_run_id", "sender_run_id",
+              "sender_path", "sender_sha256", "input_bindings"}
+    c.require(type(entry) is dict and set(entry) == needed, "SENDER_REGISTRY_SCHEMA")
+    c.require(type(entry["sender_sha256"]) is str and c.HEX.fullmatch(entry["sender_sha256"]),
+              "SENDER_SHA_INVALID")
+    sender = c.checked(entry["sender_path"], c.ROOT)
+    raw_bytes = c.read_bytes(sender, root=c.ROOT)
+    c.require(c.sha(raw_bytes) == entry["sender_sha256"], "SENDER_VERSION_DRIFT")
+    raw = c.decode(raw_bytes)
+    c.require(raw.get("run_id") == entry["sender_run_id"] and raw.get("round") == entry["round"],
+              "SENDER_IDENTITY")
+    bindings = entry["input_bindings"]
+    c.require(type(bindings) is dict and bindings, "NATIVE_BINDINGS_REQUIRED")
+    required = {raw["sender_interfaces"]["path"], raw["sender_interfaces"]["stderr_path"]}
+    work = Path(raw["transport"]["work"])
+    required.update(str(work / name) for name in ("scene.py", "stdout.txt", "stderr.txt"))
+    c.require(required <= set(bindings), "NATIVE_BINDINGS_INCOMPLETE")
+    snapshots = {str(sender): c.sha(raw_bytes)}
+    for value, expected in bindings.items():
+        path = c.checked(value, c.ROOT)
+        c.require(type(expected) is str and c.HEX.fullmatch(expected), "INPUT_SHA_INVALID")
+        c.require(c.sha(c.read_bytes(path, root=c.ROOT)) == expected, "NATIVE_INPUT_CHANGED", path)
+        snapshots[str(path)] = expected
+    c.require(raw.get("driver_source_path") == str((c.ROOT / "tools/sandbox_external_test_driver.py").resolve())
+              and raw.get("driver_before_sha256") == raw.get("driver_after_sha256") ==
+              c.V3_PINS["tools/sandbox_external_test_driver.py"], "SENDER_DRIVER_BINDING")
+    return sender, raw_bytes, raw, snapshots
+
+def reconcile(entry, capture, job):
+    job = c.checked(job, c.ROOT / "reviews/witness-automation", write=True)
+    c.require(job.is_dir(), "JOB_DIRECTORY_MISSING")
+    capture = c.checked(capture, job)
+    sender_path, raw_bytes, raw, snapshots = binding_inputs(entry)
+    proof = c.decode(c.read_bytes(capture / "process-exit.json", root=job))
+    c.require((proof.get("round"), proof.get("capture_id"), proof.get("receiver_run_id")) ==
+              (entry["round"], entry["receiver_capture_id"], entry["expected_receiver_run_id"]),
+              "REGISTRY_RECEIVER_IDENTITY")
+    source_hashes = {}
+    for rel, digest in c.V3_PINS.items():
+        if rel != "witness_receiver_v3.exe":
+            c.require(c.sha(c.read_bytes(c.ROOT / rel)) == digest, "SOURCE_VERSION_DRIFT", rel)
+            source_hashes[rel] = digest
+    local_sender = job / "sender.json"
+    if local_sender.exists():
+        c.require(c.read_bytes(local_sender, root=job) == raw_bytes, "JOB_SENDER_CHANGED")
+    else:
+        c.fresh(local_sender, raw_bytes, root=job)
+    snapshots[str(local_sender)] = entry["sender_sha256"]
+    for name in c.RAW_NAMES:
+        snapshots[str(capture / name)] = c.sha(c.read_bytes(capture / name, root=job))
+    existing = job / "ADAPTER_RECEIPT.json"
+    if existing.exists():
+        old = c.decode(c.read_bytes(existing, root=job))
+        c.require(old.get("original_sender_sha256") == entry["sender_sha256"] and
+                  old.get("input_bindings") == snapshots and old.get("v3_source_bindings") == source_hashes
+                  and old.get("adapter_sha256") == c.sha(c.read_bytes(Path(__file__))),
+                  "RECOVERY_RECEIPT_BINDING")
+        path = c.checked(old["record"]["path"], job)
+        c.require(c.sha(c.read_bytes(path, root=job)) == old["record"]["sha256"],
+                  "RECOVERY_RESULT_CHANGED")
+        c.require(old.get("production") == "CLOSED" and old.get("full_surface_accepted") is False,
+                  "RECOVERY_SCOPE")
+        return old
+    c.require(not (job / "ADAPTER_INTENT.json").exists(), "RECOVERY_REQUIRED",
+              "Interrupted adapter has no fully verified completion receipt")
+    # Allowed outer reads are an exact input set, not the entire former registration root.
+    allowed_files = set(snapshots) | {str(c.ROOT / rel) for rel in source_hashes}
+    def read_registered(value, must_exist=True):
+        path = c.checked(value, c.ROOT)
+        c.require(str(path) in allowed_files or path == capture, "UNAPPROVED_REGISTERED_INPUT", path)
+        if must_exist:
+            c.require(path.exists(), "REGISTERED_INPUT_MISSING", path)
+        return path
+    def write_result(path, data):
+        path = c.checked(path, job, write=True)
+        c.require(path.parent == job and path.name.startswith("reconciled-") and
+                  c.GUID.fullmatch(path.stem[len("reconciled-"):]), "UNEXPECTED_RESULT_PATH")
+        c.require(data.get("production_gate") == "CLOSED" and data.get("certificate_written") is False
+                  and data.get("full_surface_accepted") is False, "RESULT_GATE_CHANGED")
+        return c.new_json(path, data, root=job)
+    inspector = load_bound(c.ROOT / "tools/inspect_witness_evidence.py",
+                           source_hashes["tools/inspect_witness_evidence.py"])
+    inspector.driver.REGISTERED_ROOT = job
+    precheck = inspector.inspect_capture(local_sender, capture)
+    if not (job / "PRECHECK.json").exists():
+        c.new_json(job / "PRECHECK.json", precheck, job)
+    else:
+        c.require(c.decode(c.read_bytes(job / "PRECHECK.json", root=job)) == precheck,
+                  "RECOVERY_PRECHECK_CHANGED")
+    c.require(not any("BOUNDARY_FAILURE" in f.get("code", "") for f in precheck["findings"]),
+              "BOUNDARY_FAILURE", precheck["findings"])
+    c.require(precheck["status"] == "READY_FOR_REGISTERED_RECONCILIATION" and
+              not precheck["findings"], "PRECHECK_REJECTED", precheck["findings"])
+    c.new_json(job / "ADAPTER_INTENT.json", {"input_bindings": snapshots,
+               "v3_source_bindings": source_hashes, "probe_emitted": False}, job)
+    driver = load_bound(c.ROOT / "tools/sandbox_external_test_driver.py",
+                        source_hashes["tools/sandbox_external_test_driver.py"])
+    # Per-instance root scopes the driver's freshly loaded inner inspector to this job only.
+    # The original file and other module instances are never mutated.
+    driver.REGISTERED_ROOT = job
+    driver.registered = read_registered
+    driver.write_json = write_result
+    def forbidden(*args, **kwargs):
+        raise c.TransferError("PROBE_OR_UNAPPROVED_WRITE_FORBIDDEN")
+    driver.write_bytes = forbidden
+    driver.collect = driver.send = driver.capture = forbidden
+    args = types.SimpleNamespace(reconcile=local_sender, receiver_capture=capture,
+        receiver_log=capture / "receiver.jsonl", receiver_summary=capture / "receiver.jsonl.summary.json",
+        receiver_rc=None)
+    stream = io.StringIO()
+    with contextlib.redirect_stdout(stream):
+        rc = driver.reconcile(args)
+    c.require(rc == 0, "RECONCILE_NONZERO")
+    record = c.decode(stream.getvalue().encode("utf-8"))
+    output = c.checked(record["path"], job)
+    c.require(output.parent == job and c.sha(c.read_bytes(output, root=job)) == record["sha256"],
+              "RECONCILE_OUTPUT_BINDING")
+    result = c.decode(c.read_bytes(output, root=job))
+    expected_points = {p: "D9" if raw["scope"] == "lan" else
+        ("D2" if p == "tcp" else "D8") if ":" in raw["bind"] else ("D1" if p == "tcp" else "D7")
+        for p in raw["protocols"]}
+    c.require(set(result["cases"]) == set(expected_points) and all(
+        result["cases"][p]["point"] == point for p, point in expected_points.items()),
+        "RECONCILE_POINT_MAPPING")
+    c.require(result["production_gate"] == "CLOSED" and result["certificate_written"] is False
+              and result["full_surface_accepted"] is False, "RECONCILE_SCOPE")
+    for path, expected in snapshots.items():
+        c.require(c.sha(c.read_bytes(path, root=c.ROOT)) == expected, "INPUT_CHANGED_AFTER_RECONCILE", path)
+    for rel, expected in source_hashes.items():
+        c.require(c.sha(c.read_bytes(c.ROOT / rel)) == expected, "SOURCE_CHANGED_AFTER_RECONCILE")
+    receipt = {"status": "REGISTERED_RECONCILIATION_COMPLETE", "record": record, "points": expected_points,
+               "original_sender_path": str(sender_path), "original_sender_sha256": entry["sender_sha256"],
+               "input_bindings": snapshots, "v3_source_bindings": source_hashes,
+               "adapter_sha256": c.sha(c.read_bytes(Path(__file__))), "probe_emitted": False,
+               "production": "CLOSED", "full_surface_accepted": False}
+    c.new_json(job / "ADAPTER_RECEIPT.json", receipt, job)
+    return receipt
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--entry", type=Path)
+    ap.add_argument("--capture-directory", type=Path)
+    ap.add_argument("--job", type=Path)
+    ap.add_argument("--execute", action="store_true")
+    args = ap.parse_args(argv)
+    if not args.execute:
+        print(json.dumps({"status": "PLAN", "probe_emitted": False}))
+        return 3
+    try:
+        c.require(all(v is not None for v in (args.entry, args.capture_directory, args.job)), "INPUTS_REQUIRED")
+        print(json.dumps(reconcile(c.decode(c.read_bytes(args.entry, root=c.ROOT)),
+                                   args.capture_directory, args.job)))
+        return 0
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        print(json.dumps({"status": "NOT_ACCEPTED", "detail": str(exc),
+                          "code": getattr(exc, "code", "INVALID_EVIDENCE"), "production": "CLOSED"}))
+        return 2
+
+if __name__ == "__main__":
+    raise SystemExit(main())

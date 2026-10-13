@@ -1,0 +1,105 @@
+{
+  "approved_receiver_source_unchanged": true,
+  "bindings": [
+    {
+      "archive_copy": "experimental-source/sender.json",
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/sender.json",
+      "sha256": "c90b1f19eb8ad869e1435e93a62212a9d1362196e2bf8e0bc9212657d8ee43ff"
+    },
+    {
+      "archive_copy": "experimental-source/witness_lan_v4.jsonl",
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/receiver/witness_lan_v4.jsonl",
+      "sha256": "bd91036f16b1f34d18a51e7ca7f7edc502878792cfc76956577616f9aa34920c"
+    },
+    {
+      "archive_copy": "experimental-source/witness_lan_v4.jsonl.summary.json",
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/receiver/witness_lan_v4.jsonl.summary.json",
+      "sha256": "7c0a6154cb355953258f9add9369cffa60263753a09fc84dac66bda8119fa0ec"
+    },
+    {
+      "archive_copy": "experimental-source/wl4.b64",
+      "path": "reviews/2026-10-08-dual-endpoint-experiment/b64/wl4.b64",
+      "sha256": "019a3319d48ca69d8910e19fafb8c99e91019a2cd2207a3e27dc356ce3e6402a"
+    },
+    {
+      "archive_copy": "experimental-source/wl4s.b64",
+      "path": "reviews/2026-10-08-dual-endpoint-experiment/b64/wl4s.b64",
+      "sha256": "1c2b8f03c13eda3ab6d1a02a34da32e0be624835a8766a5b3c6203848063d551"
+    }
+  ],
+  "carrier_checks": [
+    {
+      "byte_match": true,
+      "carrier": "wl4.b64",
+      "carrier_sha256": "019a3319d48ca69d8910e19fafb8c99e91019a2cd2207a3e27dc356ce3e6402a",
+      "decoded_bytes": 1516,
+      "decoded_sha256": "bd91036f16b1f34d18a51e7ca7f7edc502878792cfc76956577616f9aa34920c",
+      "header_is_only_transport_container_not_certificate_authority": true
+    },
+    {
+      "byte_match": true,
+      "carrier": "wl4s.b64",
+      "carrier_sha256": "1c2b8f03c13eda3ab6d1a02a34da32e0be624835a8766a5b3c6203848063d551",
+      "decoded_bytes": 1072,
+      "decoded_sha256": "7c0a6154cb355953258f9add9369cffa60263753a09fc84dac66bda8119fa0ec",
+      "header_is_only_transport_container_not_certificate_authority": true
+    }
+  ],
+  "current_receiver_files": [
+    "witness_lan_v4.jsonl",
+    "witness_lan_v4.jsonl.summary.json"
+  ],
+  "full_surface_accepted": false,
+  "host_tcp_elapsed_ms_exact": {
+    "after": "36327/2000",
+    "before": "8999/400"
+  },
+  "intake": {
+    "files": {
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-aefc74dd86f74ab0bbbca13e1ddfc7e6\\receiver\\witness_lan_v4.jsonl": "bd91036f16b1f34d18a51e7ca7f7edc502878792cfc76956577616f9aa34920c",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-aefc74dd86f74ab0bbbca13e1ddfc7e6\\receiver\\witness_lan_v4.jsonl.summary.json": "7c0a6154cb355953258f9add9369cffa60263753a09fc84dac66bda8119fa0ec",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-aefc74dd86f74ab0bbbca13e1ddfc7e6\\sender.json": "c90b1f19eb8ad869e1435e93a62212a9d1362196e2bf8e0bc9212657d8ee43ff"
+    },
+    "findings": [
+      {
+        "code": "HEALTH_CONTROLS_MISSING_OR_INVALID",
+        "expected_controls": {
+          "tcp": [
+            "34d6a62847c94cc3b710afdd82a19197",
+            "899f6a14a0564c6db29c2199a1e7c8f2"
+          ],
+          "udp": [
+            "dce8960444bb46e1b1ed354d4f4ae7f0",
+            "ea034558890e4821b8aa37d9e24aa0d0"
+          ]
+        },
+        "observed_controls": {
+          "tcp": [],
+          "udp": []
+        },
+        "payload_count": 0
+      },
+      {
+        "code": "ACTUAL_RECEIVER_RC_MISSING_OR_NONZERO",
+        "note": "The caller must provide actual native exit status; never infer from JSON.",
+        "received_rc": null
+      }
+    ],
+    "full_surface_accepted": false,
+    "production": "CLOSED",
+    "read_only_inputs_unchanged": true,
+    "registered_receiver_check": null,
+    "run_id": "remote-aefc74dd86f74ab0bbbca13e1ddfc7e6",
+    "status": "NOT_ACCEPTED"
+  },
+  "production": "CLOSED",
+  "receiver_elapsed_ns_exact": 300009887300,
+  "receiver_elapsed_seconds_exact": "3000098873/10000000",
+  "receiver_rc_actual_source_submitted": false,
+  "receiver_rc_claim": 0,
+  "receiver_rc_used_for_independent_intake": null,
+  "registered_driver_unchanged": true,
+  "registered_implementation_bindings_checked": 15,
+  "registered_sender_source_matches": true,
+  "status": "NEEDS_EVIDENCE"
+}

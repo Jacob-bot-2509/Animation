@@ -18,7 +18,8 @@ spec.loader.exec_module(receiver)
 
 class WitnessReceiverTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(dir=ROOT/"reviews/codex-supervision/2026-10-06-witness-mail-review")
+        (ROOT/"reviews/codex-supervision/2026-10-09-witness-input-test-work").mkdir(parents=True,exist_ok=True)
+        self.temp = tempfile.TemporaryDirectory(dir=ROOT/"reviews/codex-supervision/2026-10-09-witness-input-test-work")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
 
@@ -29,6 +30,23 @@ class WitnessReceiverTests(unittest.TestCase):
         with mock.patch.object(receiver.socket, "socket") as socket_call:
             self.assertEqual(receiver.main([]), 3)
             socket_call.assert_not_called()
+
+    def test_cli_invalid_wildcard_loopback_reserved_and_port_bind_never_opens_socket(self):
+        for bind in ("0.0.0.0","::","127.0.0.1","::1","224.0.0.1","ff02::1","fe80::1","169.254.2.3","255.255.255.255"):
+            with self.subTest(bind=bind), mock.patch.object(receiver.socket,"socket") as connect:
+                self.assertEqual(receiver.main(["--serve","--bind",bind,"--log",str(self.root/"invalid.jsonl")]),2)
+                connect.assert_not_called()
+                self.assertFalse((self.root/"invalid.jsonl").exists())
+        for ports in (["--udp-port","0"],["--tcp-port","49001"]):
+            with mock.patch.object(receiver.socket,"socket") as connect:
+                self.assertEqual(receiver.main(["--serve","--bind","192.0.2.10","--log",str(self.root/"invalid.jsonl"),*ports]),2)
+                connect.assert_not_called()
+
+    def test_cli_selftest_serve_are_mutually_exclusive(self):
+        with mock.patch.object(receiver,"selftest") as selftest, self.assertRaises(SystemExit) as caught:
+            receiver.main(["--selftest","--serve"])
+        self.assertEqual(caught.exception.code,2)
+        selftest.assert_not_called()
 
     def test_invalid_bind_ports_and_window(self):
         cases = [("localhost",0,0,20),("127.0.0.1",80,0,20),
@@ -43,7 +61,7 @@ class WitnessReceiverTests(unittest.TestCase):
         log=self.root/"existing.jsonl"
         log.write_bytes(b"original\n")
         with mock.patch.object(receiver.socket,"socket") as socket_call:
-            rc=receiver.main(["--serve","--bind","127.0.0.1","--log",str(log)])
+            rc=receiver.main(["--serve","--bind","192.0.2.10","--log",str(log)])
             self.assertEqual(rc,2)
             socket_call.assert_not_called()
         self.assertEqual(log.read_bytes(),b"original\n")

@@ -9,7 +9,7 @@ data/v1/{eval,test}/dataset_{eval,test}.jsonl(+.json 镜像)做入场预检:
 汇总统计、原始文件哈希,并区分 clean / quarantine / rejected。
 
 用法:
-  python tools/eval_test_audit.py --out dataset_audit_2026-10-03-eval-test
+  python tools/eval_test_audit.py --out archives/dataset-audits/dataset_audit_2026-10-03-eval-test
 """
 from __future__ import annotations
 

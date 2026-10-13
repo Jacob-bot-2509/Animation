@@ -93,5 +93,5 @@ seed、Python 版本、GPU 型号与显存、git commit 与 dirty 状态、
 
 ## 8. 不覆盖声明
 
-不覆盖任何既有审计证据(dataset_audit_*)、reviews/ 文档、原始数据;
+不覆盖任何既有审计证据(dataset_audit_*)、archives/reviews/ 文档、原始数据;
 本文件为计划补充。
