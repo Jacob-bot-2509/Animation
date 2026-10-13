@@ -1,48 +1,45 @@
-# Animation Model Training v0.4.0
+# Animation Model Training v0.5.0
 
-发布日期：2026-10-08
-发布类型：验收材料封板版（Pre-release）
+发布日期：2026-10-13
+发布类型：双端实验突破与自动化版（Pre-release）
 
-本版本同步数学动画训练项目 10-08 的进展：731 条数学复核收口、761 条语义签名与深层隔离裁决、原生真实公式渲染 165 条合格、真 4K 高清分页交付与全量逐页字形验收完成、训练超参数经实测语料重算并由用户确认落配置。生产门禁保持 CLOSED，训练未启动；沙箱双端实验为本版本后唯一剩余验收项（2026-10-08 下午执行）。
+本版本同步 10-09 至 10-13 的进展：沙箱双端实验 LAN 轮首次完整成立并获 Codex 独立裁决通过、证人工具链 v3 防错交付、外部 IPv6 缺口延期补做（用户直接授权）、证据采集与对账自动化（第二三层）设计并交付三工具、OneDrive 材料通道接入准备。生产门禁保持 CLOSED，训练未启动。
 
 ## 本次交付
 
-### 数据与语义
+### 沙箱双端实验（本轮核心突破）
 
-- 数学复核全部完成：731/731 条（22 批 v1/v2/v3 契约），Codex 独立复核通过。
-- 语义签名 761 条 PASS：24 源、47 train / 264 selected_draft / 300 eval / 150 test，逐条绑定 record/math/source SHA。
-- 深层隔离通道：1131 同族配对 → 12 候选逐对裁决（6 SAME_CORE 关闭、6 DIFFERENT_CORE）；Codex 结构性改写 4 条训练 ID（draft-c36-03、linalg-051、draft-c30-01、draft-c37-05，保留题数与编号），连同此前 c31-01/03、c18-02 修订，12 个具名配对局部关闭。全局语义隔离仍 NOT_ESTABLISHED（Codex 立场：零命中筛查不构成全局证书）。
+- **LAN 轮 lan-2026-10-13-a 首次完整成立**：证人机 v3 接收器（SHA 02d781bc…）具体绑定 192.168.137.1（Windows 热点双机同网），接收端四份原始 payload 记录与发送端宿主 before/after TCP+UDP 四个 nonce 逐一精确对应；沙箱 TCP 探针 os_denied（WinError 10013，socket 层被拒）；沙箱 UDP 本地 send 成功但证人零收到（因果机制未建立，不下"静默拦截实锤"结论）。
+- **Codex 独立裁决：PASS_BOUND_LAN_D9_TCP_UDP_REGISTERED_WINDOW_ONLY**——对提交原件只读注册回放逐项比对：宿主 nonce 对应、观察窗完整、沙箱 nonce 未收到、进程启动调用 0。TCP/UDP 实际代码点位为 D9；D1/D7 仍缺联合 IPv6 依赖，不伪标绿。
+- **IPv6（D2/D8）延期补做**：用户 2026-10-13 在 Codex 会话直接授权——现阶段如实 GAP 记账、不阻塞训练准备；等未来有可达公网 IPv6 证人时补做。
+- 此前四轮（LAN-a/b/c、v6）零入账的根因排查过程全部保留为历史证据：跨网段不可达、通配绑定、热点客户端隔离、Windows 防火墙规则等逐一定位并排除。
 
-### 原生真实渲染与高清分页（视觉验收线）
+### 证人工具链 v3 防错（witness-input-hardening）
 
-- 原生公式渲染：165 条合格（2663 条按题去重公式、5212 处原文出现），本地 Manim 完整编译，逐条 record/math/source SHA 与视频 SHA 绑定。
-- 高清修复历程：480p 单屏缩字（3 条过糊）→ 固定字号分页（626 页）→ **真 4K 分页最终交付：165 条 / 638 页（559 整页 + 79 分段）、3840×2160、逐页 PNG 与视频首帧逐像素一致**。
-- 全量字形逐页验收完成：638 页实际图像审阅 100% 覆盖、待审 0；期间修复 23 条记录（数学残留、表述歧义、LaTeX 截断、场景标签）与 3 条签名；98 题完整证明复审 + 96 项精确符号检查通过。资格 PASS_LOCAL_COMPLETE_CURRENT_FORMULA_PAGE_REVIEW。
-- 用户三条高清硬标准定量全过：分辨率全 4K、完整页占用槽位代理最小 92px（远超 24px 阈值）、165 条全覆盖。占用代理不作最小字形认证。
-- 当前版本入口：reviews/codex-supervision/2026-10-08-complete-glyph-review/ 的 current-source-bindings.json、current-record-bindings.jsonl、current-complete-signatures.jsonl、CURRENT_DELIVERY_INDEX.jsonl（SHA b901df08…）。
+- v3 接收器强制拒绝通配/回环/多播绑定；start_witness_capture.ps1 一键采集（五原件 + Base64 + process-exit.json 父进程回执，退出码与命令/轮次/进程哈希绑定）；inspect_witness_evidence.py 严格只读预检（禁止手填 rc）；驱动对账强制 --receiver-capture。
+- 本地验证：接收器 12 项、驱动/检查器 45 项、启动器 10 项绑定复测、回环 IPv4/IPv6 自检 rc0、无效绑定 rc2 拒绝。
 
-### 训练准备
+### 证据自动化（第二三层，OneDrive 通道）
 
-- 超参效率重算：实测训练侧语料 311 条 / 25.5 万字符 ≈ 0.3M tokens（哈希校验全过），推导并**经用户确认**：LoRA r16/α32、LR 1/5000 + cosine + 5% warmup、batch 2×4、seq 2048（构建期逐条校验拆分）、epochs 6 + 验收集早停、4bit NF4 双量化、paged_adamw_8bit；落配置 configs/hp_sweep.json（status=CONFIRMED、sha256 绑定、run=NOT_RUN_YET），首轮试训网格（1/4 数据 4 组）PLANNED。
-- 训练流程约定（用户敲定）：小范围试训 → 生成动画渲染给用户看 → 用户自然语言提建议 → 数据/参数落地修改 → 迭代循环，用户点头才全量。
-- 底座模型：Qwen3-4B（用户 2026-10-03 拍板，8G 显存 QLoRA 无溢出实测）。
+- 设计稿 DESIGN.md（SHA 10d64d49…，32 项本地检查通过）。
+- 三工具交付：witness_pack / witness_consumer / witness_registered_adapter + 公共模块，28 项回归全过（损坏包、缺 stderr、坏 rc 形状、ZIP 穿越与重复、并发锁、冲突幂等、崩溃恢复均实测）。
+- 云盘选型：**OneDrive**（用户拍板）。配置默认 active=false；接入验证需提供证人 capture_root/sync_root、训练机 sync_root 与共享权限，先一次性验证材料通道再启用后台 watch。
+- 红线：探针发射与采集启动仍归用户授权 + 本侧执行，Codex 不发射。
 
-### 协作自动化
+### 训练准备（无变化，口径继承 v0.4.0）
 
-- 双 AI 协作收件自动化：本侧每 10 分钟自动查信处理（含 Codex 修复交接规则），每 7 天自动续期；定义备份于 D:\code\.bridge-poll\cron-jobs-backup.md。
-
-## 验证
-
-- 数学/签名/渲染/分页/字形各线独立复验回执齐备，逐页 SHA 绑定；旧版目录全部保留作历史，不与当前入口混用。
-- 本侧定量复测工具经历 Codex 三轮修正（标题污染、分段页口径、覆盖保护），当前权威量化口径以 Codex v3 为准（完整页 min 92 / p10 161.3 / median 219 px 占用代理）。
+- 超参用户确认落配置（r16/α32、LR 1/5000+cosine、batch 2×4、seq 2048+构建期校验、epochs 6+验收集早停、NF4 双量化），configs/hp_sweep.json CONFIRMED、NOT_RUN_YET。
+- 隔离口径（方案 A，用户 2026-10-09 拍板）：接受有限隔离证据现状开训，holdout 391 条冻结真题作泄漏检测硬门禁；训练流程=小范围试训→用户看动画提建议→迭代→全量。
 
 ## 状态与边界
 
-- production=CLOSED、PASS_CORE_SCOPE=false；全局语义隔离 NOT_ESTABLISHED；概念动画 NOT_EVALUATED（训练后评估）；原生沙箱 UNVERIFIED。
+- LAN 双端证据：PASS_BOUND_LAN_D9_TCP_UDP_REGISTERED_WINDOW_ONLY（仅该登记窗口内）；D1/D7 联合 IPv6 依赖仍缺；D2/D8 GAP（用户授权延期）。
+- production=CLOSED、未发全 43 点/全局/正式开训许可；"训练准备"授权不等于开训。
+- 全局语义隔离 NOT_ESTABLISHED、概念动画 NOT_EVALUATED、最小字形高度未认证。
 - 本版本不是训练完成或生产就绪版本。
 
 ## 下一步
 
-1. 沙箱双端实验（2026-10-08 下午）：LAN IPv4 证人 + 外部 IPv6 证人，新轮次 lan/v6-2026-10-07-b，操作单 reviews/2026-10-07-witness-runbook.md。
-2. 实验对账与 Codex 独立验收。
-3. 训练数据集构建（含 seq 2048 逐条校验）→ 首轮试训网格 → 动画样本交用户目视。
+1. 自动化接入验证：WJW 证人机 OneDrive 同账号同步 → 提供三路径与共享权限 → 一次性材料通道验证 → 启用后台 watch。
+2. 训练线：数据构建（seq 2048 逐条校验）→ 首轮试训网格 → holdout 泄漏检测 → 用户目视动画迭代 → 全量训练。
+3. IPv6 补做：待未来可达公网 IPv6 证人出现。
