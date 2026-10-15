@@ -1,0 +1,279 @@
+test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted (test_witness_automation.AutomationTests.test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted) ... ERROR
+test_adapter_interrupted_intent_does_not_rerun (test_witness_automation.AutomationTests.test_adapter_interrupted_intent_does_not_rerun) ... ok
+test_default_cli_and_import_have_no_execution (test_witness_automation.AutomationTests.test_default_cli_and_import_have_no_execution) ... ok
+test_duplicate_consume_and_publish_do_not_create_more_jobs (test_witness_automation.AutomationTests.test_duplicate_consume_and_publish_do_not_create_more_jobs) ... ERROR
+test_duplicate_zip_member_is_rejected (test_witness_automation.AutomationTests.test_duplicate_zip_member_is_rejected) ... ok
+test_extra_and_traversal_zip_members_are_rejected_without_escape (test_witness_automation.AutomationTests.test_extra_and_traversal_zip_members_are_rejected_without_escape) ... ok
+test_fixture_purpose_cannot_register (test_witness_automation.AutomationTests.test_fixture_purpose_cannot_register) ... ok
+test_frozen_directory_write_and_system_write_are_rejected (test_witness_automation.AutomationTests.test_frozen_directory_write_and_system_write_are_rejected) ... ok
+test_frozen_job_tampering_cannot_be_reused (test_witness_automation.AutomationTests.test_frozen_job_tampering_cannot_be_reused) ... ERROR
+test_manifest_path_length_and_member_sha_are_checked (test_witness_automation.AutomationTests.test_manifest_path_length_and_member_sha_are_checked) ... ok
+test_parent_proof_missing_stderr_and_bool_rc_are_rejected (test_witness_automation.AutomationTests.test_parent_proof_missing_stderr_and_bool_rc_are_rejected) ... ok
+test_partial_zip_waits (test_witness_automation.AutomationTests.test_partial_zip_waits) ... ok
+test_publish_conflict_never_overwrites_existing_object (test_witness_automation.AutomationTests.test_publish_conflict_never_overwrites_existing_object) ... ok
+test_ready_before_zip_waits_without_job (test_witness_automation.AutomationTests.test_ready_before_zip_waits_without_job) ... ok
+test_real_submitted_snapshot_replays_without_network_or_spawn (test_witness_automation.AutomationTests.test_real_submitted_snapshot_replays_without_network_or_spawn) ... ERROR
+test_recovery_from_complete_frozen_job_updates_journal_without_replay (test_witness_automation.AutomationTests.test_recovery_from_complete_frozen_job_updates_journal_without_replay) ... ERROR
+test_registry_sender_and_native_bytes_are_pinned (test_witness_automation.AutomationTests.test_registry_sender_and_native_bytes_are_pinned) ... ok
+test_same_logical_identity_changed_content_conflicts (test_witness_automation.AutomationTests.test_same_logical_identity_changed_content_conflicts) ... ERROR
+test_two_worker_lock_refused (test_witness_automation.AutomationTests.test_two_worker_lock_refused) ... ok
+test_unknown_and_missing_sender_binding (test_witness_automation.AutomationTests.test_unknown_and_missing_sender_binding) ... ok
+test_unknown_reparse_tag_rejected_cloud_tag_narrow (test_witness_automation.AutomationTests.test_unknown_reparse_tag_rejected_cloud_tag_narrow) ... ok
+
+======================================================================
+ERROR: test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted (test_witness_automation.AutomationTests.test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 152, in consume
+    receipt = adapter.reconcile(entry, capture, job)
+  File "D:\Animation-Model-Training\tools\witness_registered_adapter.py", line 109, in reconcile
+    c.require(precheck["status"] == "READY_FOR_REGISTERED_RECONCILIATION" and
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              not precheck["findings"], "PRECHECK_REJECTED", precheck["findings"])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: PRECHECK_REJECTED: [{'code': 'PROCESS_EXIT_NOT_ACTUAL_ZERO'}, {'code': 'ACTUAL_RECEIVER_RC_MISSING_OR_NONZERO', 'received_rc': None, 'note': 'The caller must provide actual native exit status; never infer from JSON.'}]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 158, in test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted
+    result = self.guarded(self.published())
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 169, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-y37f_gv9\jobs\job-c2369947bcd142d8876e2ae64e1e8cc9
+
+======================================================================
+ERROR: test_duplicate_consume_and_publish_do_not_create_more_jobs (test_witness_automation.AutomationTests.test_duplicate_consume_and_publish_do_not_create_more_jobs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 155, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-rzb2oppr\jobs\job-85e10cf389964ce4990928196c464109
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 94, in test_duplicate_consume_and_publish_do_not_create_more_jobs
+    first = self.guarded(ready)
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 165, in consume
+    raise c.TransferError("RECOVERY_REQUIRED", exc) from exc
+witness_transfer_common.TransferError: RECOVERY_REQUIRED: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-rzb2oppr\jobs\job-85e10cf389964ce4990928196c464109
+
+======================================================================
+ERROR: test_frozen_job_tampering_cannot_be_reused (test_witness_automation.AutomationTests.test_frozen_job_tampering_cannot_be_reused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 155, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-r1a6viw4\jobs\job-7ca6c41c3eb8429cbc252507d724f036
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 246, in test_frozen_job_tampering_cannot_be_reused
+    result = self.guarded(ready)
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 165, in consume
+    raise c.TransferError("RECOVERY_REQUIRED", exc) from exc
+witness_transfer_common.TransferError: RECOVERY_REQUIRED: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-r1a6viw4\jobs\job-7ca6c41c3eb8429cbc252507d724f036
+
+======================================================================
+ERROR: test_real_submitted_snapshot_replays_without_network_or_spawn (test_witness_automation.AutomationTests.test_real_submitted_snapshot_replays_without_network_or_spawn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 155, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-j9rxtrvi\jobs\job-5e7c43b734024be4a6ecf98db796a989
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 85, in test_real_submitted_snapshot_replays_without_network_or_spawn
+    result = self.guarded(self.published())
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 165, in consume
+    raise c.TransferError("RECOVERY_REQUIRED", exc) from exc
+witness_transfer_common.TransferError: RECOVERY_REQUIRED: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-j9rxtrvi\jobs\job-5e7c43b734024be4a6ecf98db796a989
+
+======================================================================
+ERROR: test_recovery_from_complete_frozen_job_updates_journal_without_replay (test_witness_automation.AutomationTests.test_recovery_from_complete_frozen_job_updates_journal_without_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 155, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-1q4911w4\jobs\job-45a7863017ed447ea452fb61c359c9bb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 267, in test_recovery_from_complete_frozen_job_updates_journal_without_replay
+    result = self.guarded(ready)
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 165, in consume
+    raise c.TransferError("RECOVERY_REQUIRED", exc) from exc
+witness_transfer_common.TransferError: RECOVERY_REQUIRED: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-1q4911w4\jobs\job-45a7863017ed447ea452fb61c359c9bb
+
+======================================================================
+ERROR: test_same_logical_identity_changed_content_conflicts (test_witness_automation.AutomationTests.test_same_logical_identity_changed_content_conflicts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 155, in consume
+    _finish(job, result)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 85, in _finish
+    _freeze(job)
+    ~~~~~~~^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 56, in _freeze
+    c.new_json(job / "delivery-manifest.json", {
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "schema": "witness-consumer-frozen-job-v1", "self_manifest_excluded": True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "artifacts": files, "production": "CLOSED", "full_surface_accepted": False}, job)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 126, in new_json
+    return fresh(path, encoded(data), root=root)
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 122, in fresh
+    checked(path, root, write=True, cloud=cloud)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 70, in checked
+    require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 27, in require
+    raise TransferError(code, detail)
+witness_transfer_common.TransferError: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-pduip0hv\jobs\job-77ad5f410376416783a5ff5af3d84ac8
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 196, in test_same_logical_identity_changed_content_conflicts
+    result = self.guarded(ready)
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 74, in guarded
+    return consume.consume(self.config, ready)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_consumer.py", line 165, in consume
+    raise c.TransferError("RECOVERY_REQUIRED", exc) from exc
+witness_transfer_common.TransferError: RECOVERY_REQUIRED: FROZEN_DIRECTORY: D:\Animation-Model-Training\reviews\witness-automation\test-work\local-only-pduip0hv\jobs\job-77ad5f410376416783a5ff5af3d84ac8
+
+----------------------------------------------------------------------
+Ran 21 tests in 40.449s
+
+FAILED (errors=6)

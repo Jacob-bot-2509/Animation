@@ -1,0 +1,183 @@
+{
+  "1": [
+    "Derivative 3x(x-2); horizontal tangents at (0,2),(2,-2), lines y=2 and y=-2.",
+    "Continuity requires a=b; one-sided derivatives are 2,b. Differentiable iff a=b=2, tangent y=2x+1; a=b=1 is a corner.",
+    "Regular parametric curve; for t!=0 slope=(3t^2-3)/(2t). t=2 gives y=9x/4-7; t=+/-1 horizontal, t=0 vertical; self-intersection (3,0) at +/-sqrt(3).",
+    "External point tangency equation yields a=0,2; y=-2x and y=2x-4.",
+    "Equal tangent coefficients imply a=1-c and c^2-c+1=0, whose completed square is (c-1/2)^2+3/4>0."
+  ],
+  "2": [
+    "After u=x^2, integration by parts gives tail <=1/R; blocks away from sine zeros have lower bounds sqrt(pi)/(6sqrt(n+1)), proving absolute divergence.",
+    "Disjoint spikes with heights n and widths 2^(-n)/n have total integral 1. Peak and zero subsequences prove no limit at infinity; local integrability checked.",
+    "Logarithmic substitution: integral 1/(x ln x) diverges, integral 1/(x ln^2 x) from 2 to infinity is 1/ln 2.",
+    "Frullani integrand equals integral_a^b exp(-tx)dt. Positive Tonelli case and reversed sign give ln(b/a), absolute convergence and exact exponential tail bound.",
+    "Endpoint comparisons give 0<a<1; dyadic upper bounds are summable in this range; all remaining cases diverge. a=1/2 yields pi by x=t^2."
+  ],
+  "3": [
+    "Rectangular separated integral xy on [0,1]x[0,2] equals 1.",
+    "Both orders on 0<=y<=x<=1 give integral x^2=1/4.",
+    "Quarter disk radius 2: integrand r^2 times Jacobian r gives 2pi.",
+    "Upper half unit disk integral y=2/3; full disk integral y=0 by symmetry.",
+    "u=x+y,v=x-y maps square to diamond with inverse Jacobian 1/2; split at u=1 gives 1/3+2/3=1."
+  ],
+  "4": [
+    "Positive triangle boundary: Green curl 2x gives 1/3; direct edge integral agrees.",
+    "Unit circle integral y dx: CCW -pi, clockwise pi.",
+    "Annulus with outer CCW and inner clockwise: curl 3(x^2+y^2), integral 45pi/2.",
+    "Close the parabola arc using the return segment; curl zero, return -3/2, hence arc 3/2.",
+    "Punctured domain excludes both singularities; inner circulations -4pi and 6pi, outer -2pi, total boundary zero."
+  ],
+  "5": [
+    "Divide the rational expression by x^2; highest coefficient ratio 1/2.",
+    "One-sided limits of |x|/x are 1 and -1, so no two-sided limit.",
+    "Rationalization of sqrt(x^2+2x)-x gives limit 1 at positive infinity.",
+    "Checked L'Hopital hypotheses: x^3/e^x, ln x/sqrt(x), sqrt(x)/x^3 all tend to zero.",
+    "Sequences 1/(2npi) and 1/(2npi+pi/2) give values 0 and 1, disproving the limit."
+  ],
+  "6": [
+    "Parabolas intersect at (-1,1),(1,1); integral 2-2x^2 gives area 8/3.",
+    "|x| and 1 enclose triangle area 1.",
+    "Using y as integration variable, intersections y=-1,2; integral y+2-y^2 gives 9/2.",
+    "k>0: intersections x=0,k, area integral kx-x^2 gives k^3/6, at k=2 gives 4/3."
+  ],
+  "7": [
+    "One petal of r=2sin(3theta), theta in [0,pi/3], has area pi/3.",
+    "For beta=arccos(2/3), inner=17beta/2-3sqrt(5), outer=17(pi-beta)/2+3sqrt(5); inner lies in outer. Full parameter integral counts inner twice.",
+    "Four petals of cos(2theta) are disjoint in area, each pi/8; total pi/2.",
+    "Inside r=4cos(theta) outside r=2 on [-pi/3,pi/3]: area 4pi/3+2sqrt(3).",
+    "Lemniscate real angle domains produce two petals, each 1/2, total 1."
+  ],
+  "8": [
+    "Cycloid a>0: x is strictly increasing, y>=0; integral y dx=3pi a^2 with correct closed-boundary orientation.",
+    "Astroid a>0: quadrant integral 3a^2 integral sin^4(t)cos^2(t)dt=3pi a^2/32; total 3pi a^2/8.",
+    "Folium t>=0 is one simple loop, ends meet at origin; half integral 9t^2/(1+t^3)^2 gives 3/2.",
+    "Lissajous cos t,sin 2t has two loops each 4/3, total 8/3; opposite orientations yield signed sum zero.",
+    "Simple full boundary area is |integral y dx|. Subloop absolute values may sum only after overlap handling; shifted-circle two-half absolute sum 8 differs from pi."
+  ],
+  "9": [
+    "Cross-axis region -x<=y<=x^2, x in [0,1]: radial union is disk radius x, volume pi/3.",
+    "External-axis rotation of unit disk about y=2: washers or Pappus give torus volume 4pi^2; nonintersection hypothesis checked.",
+    "Rotate area between y=x and y=x^2 around x axis: pi integral(x^2-x^4)=2pi/15.",
+    "Rectangle rotated about y=h: internal branch pi(1+|h-1|)^2; external branch 4pi|h-1|; unique minimum pi at h=1.",
+    "Union [1,2] and [0,x] gives three radial cases; volume 41pi/3 and overlap 13pi/3, not sum of overlapping rotations."
+  ],
+  "10": [
+    "Even sums 1-2^(-N), odd add 1/(N+1), both tend to 1; absolute sum diverges. |u4|=1/4<|u5|=1/3 disproves required monotonicity.",
+    "a_n positive, decreasing b_n plus absolutely summable perturbation gives convergence; comparison with harmonic series gives absolute divergence; exact a4>a3.",
+    "Paired terms (4k-3)/(2k(2k-1))>=1/(2k) prove divergence to positive infinity; odd residual tends to zero.",
+    "Geometric sum 1/4, remainder (-1)^N/(4*3^N); actual minimum N=6, Leibniz-bound guarantee N=7. Integer power comparisons checked.",
+    "Even and odd partial sums are monotone bounded with gap tending to zero; signed remainder lies between zero and a_(N+1)."
+  ],
+  "11": [
+    "Root limit e^-1 gives R=e; exact logarithmic remainder shows endpoint term magnitudes tend to exp(1/2), so endpoints diverge.",
+    "At x=1 coefficients (-1)^n 2^(-(n+1)/2) sin((n+1)pi/4), zeros n=4k+3. R=sqrt(2), endpoints nonzero subsequence, interval open.",
+    "Sum x^(2^n): absolute convergence inside unit interval, endpoints diverge; S=x+S(x^2); repeated substitution and continuity at zero prove uniqueness.",
+    "Recurrence yields a_n=(2^n+2(-1)^n)/3, S=(1-x)/(1-x-2x^2), interval (-1/2,1/2), S(1/4)=6/5.",
+    "Central binomial coefficients yield (1-x)^(-1/2), R=1; positive endpoint diverges via 1/(2n+1), negative endpoint converges to sqrt(2)/2 by Leibniz and Abel."
+  ],
+  "12": [
+    "M-test with 1/n^2 proves uniform absolute convergence on real line.",
+    "Geometric series uniformly converges on [-1/2,1/2]; tails have infinite supremum on (-1,1), so not uniform there.",
+    "Bounded sine blocks and Abel summation prove uniform Cauchy on [delta,2pi-delta]; x_N=pi/(4N) gives block sum >=sqrt(2)/4 on full open interval.",
+    "Uniform absolute convergence for fixed 0<r<1 allows termwise integral. Real geometric sum (1-r cos x)/(1-2r cos x+r^2), integral from 0 to pi equals pi.",
+    "n^2 q^n tends to zero pointwise, integral n^2/(2(n+1)) diverges. Add uniform integral-error inequality to answer the requested sufficiency proof."
+  ],
+  "13": [
+    "Arctangent difference formula checked in principal range: sum pi/4, tail arctan(1/(N+1)).",
+    "Second-order rational telescoper gives sum 1/4 and exact finite remainder.",
+    "n/(n+1)! =1/n!-1/(n+1)! yields sum 1.",
+    "Second differences of sqrt(n) are negative and telescope; sum 1-sqrt(2), absolute sum sqrt(2)-1, exact negative tail.",
+    "Integer-translation pole-class residue sum of rational difference must vanish, but poles +/-i have separate nonzero sums. Fourier cosh expansion gives (pi coth pi-1)/2; strict bound 0<S<3/2<2."
+  ],
+  "14": [
+    "Fourier of |sin x|: constant 2/pi, even coefficients -4/(pi(4k^2-1)); M-test and Dirichlet prove uniform absolute equality.",
+    "Half-range sine expansion x(pi-x) has odd coefficients 8/(pi n^3); continuous odd extension is zero at endpoints, uniform absolute convergence.",
+    "Square wave coefficients: constant 1/2 and odd sine 2/(pi n). Nonjump equality, all piZ jumps take series value 1/2 regardless specified point values.",
+    "Translation rotates each (a_n,b_n) pair orthogonally, preserving square norm. For pi/3 shift, coefficients 1,sqrt(3),sqrt(3)/2,1/2 checked.",
+    "Changing finitely many points per period preserves integrals. Both Fourier series cos x have value 1 at zero although g(0)=5."
+  ],
+  "15": [
+    "Line-plane angle sine=1/2, hence pi/6.",
+    "d=n gives perpendicular line; second direction orthogonal to n but point off plane gives parallel disjoint line.",
+    "Normal (a,0,c), line angle pi/6 implies a^2=c^2 and a nonzero; planes x+z=4, x-z=-2.",
+    "Projection of (1,1,1) onto x+y=0 is (0,0,1); angles arcsin sqrt(2/3)=arccos(1/sqrt(3)).",
+    "Orthogonal direction decomposition proves sine formula including zero projection; dot-zero branch must distinguish containment from disjoint parallel; cross-zero gives unique intersection."
+  ],
+  "16": [
+    "Solve parameters t=0,s=1 gives intersection (1,0,0); directions have dot product zero, angle pi/2.",
+    "Parallel noncoincident lines: separation cross direction norm ratio sqrt(6)/3.",
+    "Skew x axis and vertical-y line: common perpendicular is z axis, feet (0,0,0),(0,0,1), distance 1.",
+    "Closest parameters 1/3,2/3 and F=1/3+u^2+v^2+(u-v)^2 prove unique global minimum sqrt(3)/3.",
+    "Nonparallel directions yield determinant -|cross|^2!=0 for perpendicular-foot system; Pythagorean difference proves unique shortest pair and scalar-triple distance formula."
+  ],
+  "17": [
+    "Point-normal expansion gives 2x+y-2z+6=0.",
+    "Cross of (1,0,1),(0,1,1) is (-1,-1,1); plane x+y-z=1.",
+    "AB=(1,1,1) and x direction independent; normal (0,1,-1), plane y=z. Two points alone give infinitely many planes.",
+    "Projective pencil sf1+tf2 covers missing f2 member; point on intersection gives all, off gives unique ratio; specified point yields 2y-z=1.",
+    "Three finite nonzero axis intercepts imply D!=0 and intercept equation. Equal intercept through (1,2,3) is 6."
+  ],
+  "18": [
+    "Normalized plane coefficients give a=0 or 1; planes x=1 and by+cz=1 with b^2+c^2=1 are complete. Projections verified.",
+    "Parallel planes with common normal (2,-1,2) have distance 4/3.",
+    "Normal-direction line intersects 2x+y-z=1 at parameter 1/6, point (1/3,1/6,-1/6).",
+    "Weighted projection uses W^-1 n, gives (-25/11,4/11,21/11), squared distance 216/11; weighted orthogonality proves unique minimum.",
+    "Q=P-(n.P-c)n/|n|^2 lies in plane; orthogonal Pythagorean identity proves nearest point and uniqueness."
+  ],
+  "19": [
+    "Equation independent of z is parabolic cylinder, distinguished from planar parabola.",
+    "Oblique cylinder (x-z)^2+(y-z)^2=1; normal section in x+y+z=0 has u^2+3v^2=1, semiaxes 1,1/sqrt(3).",
+    "Intersection parameter (cos t,sin t,2cos t), projection unit circle. Explicit coordinate xi along e1, eta along e2 gives xi^2+eta^2/5=1; short 1, long sqrt(5).",
+    "Real dimensions 0,1,2,2; dependent equations do not add constraints, implicit theorem requires full Jacobian row rank locally.",
+    "Translation invariance iff v.gradient F=0 by derivative of F(x+tv); nonempty regular zero set has dimension two. Degenerate examples prevent automatic surface claim."
+  ],
+  "20": [
+    "Hyperbolic paraboloid; z=0 two lines, z=1 and -1 hyperbolas with exchanged transverse axes.",
+    "Complete squares gives sphere center (1,2,0), radius 2.",
+    "Orthogonal rotation gives u^2/2-v^2/2+t z^2=1; positive t one-sheet, negative two-sheet, zero hyperbolic cylinder rank two.",
+    "Weighted section center t(6,3,2)/11, threshold |t|=sqrt(11/6); tangential eigenvalues 2+/-1/sqrt(3), exact ellipse semiaxes; beyond empty, boundary singleton.",
+    "True orthogonal rotation determinant one gives w=-2u^2, cylinder along world direction (-1,1,0)/sqrt(2)."
+  ],
+  "21": [
+    "Substitution into paraboloid gives t(t-1)=0, points (0,0,0),(1,1,2).",
+    "Sphere radius 2: |a|<2 two, =2 one tangent, >2 none; tangent normal orthogonal to direction.",
+    "Substitution z=xy gives t(2t+1)=0, points (1,0,0),(1/2,-1,-1/2).",
+    "xy=1 gives at^2+bt-1=0; separate constant, linear, quadratic discriminant cases, gradient confirms double-root tangency, whole line impossible.",
+    "Direction family (1,1,m) gives discriminant m^2+8>0 and two roots (m+/-sqrt(m^2+8))/4 for all real m; family scope explicit."
+  ],
+  "22": [
+    "Projective parameters give both complete ruling families including zero/infinite values; rank-one 2x2 matrix proves each point has one ruling of each family.",
+    "Sphere restriction to any line has positive quadratic coefficient |d|^2, so contains no complete real line.",
+    "Coefficient comparison for z=xy^2 yields all fixed-y rulings plus y axis; x!=0 one line per point, x=0 two.",
+    "F(p+td)=F(p)+2t(Ap+b).d+t^2 d^TAd; all three coefficients zero iff whole line lies on quadric. Definite A prevents nonzero isotropic d.",
+    "Two-sheet hyperboloid line coefficients plus Cauchy yield (p3 d3)^2<itself, so no rulings."
+  ],
+  "23": [
+    "Orthogonal inverse A^T x-A^T b gives (-y+2,x-1,z-3).",
+    "Squared difference norm u^T A^T A u=u^T u proves isometry.",
+    "Glide reflection in y=2 then translation (2,0,0); no fixed points, inverse x-2,4-y,z; square translation (4,0,0).",
+    "Unit-normal plane reflections compose into 2(b-a)n=(2,-1,2); reverse is inverse, no fixed points; plane separation 3/2.",
+    "Screw decomposition solves (I-A)p=(1,2,0), p=(-1/2,3/2,0); rotation pi/2 about p+z axis and axial translation (0,0,3)."
+  ],
+  "24": [
+    "Shear maps square vertices in boundary order to (0,0),(1,0),(3,1),(2,1), determinant and area one.",
+    "Rank-one affine image of circle is closed line segment parameter |t|<=sqrt(2); interior two preimages, endpoints one, exterior zero.",
+    "det A_t=t(t-2); nonzero branch inverse exact, both singular cases have compatible affine lines and fibers (s-2r,r).",
+    "Affine A=[[2,-1],[1,3]], b=(1,-1), det7; image triangle area7/2, centroid(4/3,1/3), line2u+3v=6.",
+    "Invertibility preserves nonzero directions, parallelism and affine ratios; image circle SPD equation; retains circle iff A is scalar times orthogonal."
+  ],
+  "25": [
+    "Cone z=ax: |a|<1 singleton, =1 one complete line, >1 two distinct complete lines with exact directions.",
+    "Intersect cylinders gives (cos t,sin t,+/-cos t); two ellipse branches meet at (0,+/-1,0).",
+    "Cone z=1+y: parameter (t,(t^2-1)/2,(t^2+1)/2), complete planar parabola.",
+    "Intersection (2cos t,2sin t,4cos^2 t), full period; Fourier independence forces any proposed plane coefficients all zero.",
+    "Sphere y=x^2: two arcs (t,t^2,+/-sqrt(1-t^2-t^4)), |t|<=sqrt((sqrt(5)-1)/2), joined as one regular closed curve. Gradients independent; endpoint local z parameter; no plane by sign comparison and polynomial identity."
+  ],
+  "26": [
+    "Oblique projection I-d n^T/3 has kernel span(1,1,0), image n-perp, rank2 and idempotence; nonsymmetric hence not Euclidean orthogonal.",
+    "Preserve each coordinate axis and unit circle iff diagonal entries +/-1; four fixed spaces and orientation classified.",
+    "A=[[1,2],[0,-1]] involution, fixed x axis and sign-change line y=-x are nonorthogonal; |Ae2|^2=5, not isometry.",
+    "T rank sequence4,2,0; U4,2,1,0. Different nilpotency indices imply nonsimilar, both nonzero nilpotents cannot diagonalize.",
+    "AB=[[0,-1],[2,0]], BA=[[0,-2],[1,0]]; distinct square images verify order matters."
+  ]
+}

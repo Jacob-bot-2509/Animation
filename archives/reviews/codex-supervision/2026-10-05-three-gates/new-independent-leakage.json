@@ -1,0 +1,25 @@
+{
+  "scope": "新增独立题文核对；未在228对开发标签中。该单例只证明漏检，不代表总体校准。",
+  "manifest_sha256": "c1f18378ca2b28df5629c908070cc68498dea00977c62c196d6946734954f500",
+  "detector_sha256_before_new_label": "347e497139780913345d956ce6979d74bdc782bdf61c863684332964563dfc44",
+  "query_id": "eval-calc-011-s1",
+  "train_id": "calc-series-018",
+  "query_problem": "用多种方法求级数 $\\displaystyle\\sum_{n=1}^{\\infty}\\frac{1}{n\\cdot 2^n}$ 的和。",
+  "train_problem": "已知级数 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n}$ 在 $(-1, 1)$ 内收敛，求其和函数，并求该级数逐项求导和逐项积分后的结果。",
+  "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+  "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+  "query_row_sha256": "a9f6927e6b57342f90cdc3afe946747da22b4b554f183175b1abdeee995e9bd9",
+  "train_row_sha256": "4f8cd3cbacb45a2a7df7d671f690b4575c64a343ac93904e6e961cf925c91d0c",
+  "label": "泄漏",
+  "reason": "训练已求出 sum x^n/n 的和函数 -ln(1-x)，评测为 x=1/2 的直接代值 -ln(1-1/2)=ln 2；无需新的收敛或边界论证。",
+  "reviewer": "Codex",
+  "user_confirmed_individual_label": false,
+  "prediction_before_new_label": {
+    "candidate": false,
+    "coverage": "UNKNOWN",
+    "reasons": [],
+    "score": "29/94",
+    "rule": "structure-candidates-v1"
+  },
+  "independent_acceptance": "FAIL: known-development 17/17 does not certify newly reviewed direct-evaluation pair"
+}

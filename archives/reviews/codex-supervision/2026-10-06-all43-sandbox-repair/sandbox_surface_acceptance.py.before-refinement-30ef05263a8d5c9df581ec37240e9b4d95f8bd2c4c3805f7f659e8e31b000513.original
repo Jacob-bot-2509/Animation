@@ -1,0 +1,280 @@
+"""Bounded native 43-point repair collection. No certificate, training or user UI."""
+from __future__ import annotations
+import argparse,ctypes,hashlib,json,os,socket,subprocess,sys,tempfile,threading,time,uuid
+from ctypes import wintypes
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+HERE=ROOT/"reviews/codex-supervision/2026-10-06-all43-sandbox-repair"
+sys.path.insert(0,str(ROOT/"src"))
+sys.path.insert(0,str(ROOT/"reviews/2026-10-06-exec-isolation-full-surface"))
+from animtrain import sandbox_execution as se,private_profile as pp
+from animtrain.full_surface_evidence import recompute
+from surface_probe_contract import Receiver,host_control
+DIGEST=se.digest
+ERROR_CODE=r'''
+def failure(e):
+    n=getattr(e,"winerror",None)
+    return {"outcome":"os_denied" if n in (5,10013) else "error","winerror":n,"errno":getattr(e,"errno",None),"error_type":type(e).__name__,"detail":str(e)}
+'''
+def bindings():return {n:DIGEST(ROOT/n) for n in se.BOUND_FILES}
+def write_new(path,data):
+    with path.open("x",encoding="utf-8",newline="\n") as f:json.dump(data,f,ensure_ascii=False,indent=2);f.write("\n")
+def native(source,timeout=90000,prepare=None):
+    before=bindings()
+    try:cp=se.run_code(source,mode="probe",timeout_ms=timeout,prepare_probe=prepare)
+    except subprocess.TimeoutExpired as e:
+        work=Path(e.work)
+        cp={"rc":-1,"stdout":(e.output or b"").decode("utf-8","replace"),"stderr":(e.stderr or b"").decode("utf-8","replace"),
+            "work":e.work,"source_sha256":DIGEST(work/"scene.py"),"command":[str((ROOT/".venv/Scripts/python.exe").resolve()),"-I","-B",str(work/"scene.py")],"parent_evidence":e.parent_evidence}
+    return {"source":source,"transport":cp,"implementation_before":before,"implementation_after":bindings()}
+def checkpoint(report,label):
+    write_new(HERE/("checkpoint-"+report["run_id"]+"-"+label+".json"),report)
+    print(label,"captured",flush=True)
+
+def foundations(report):
+    # Only this owned inheritable file handle is offered as the negative control.
+    path=HERE/("handle-sentinel-"+report["run_id"]+".txt");path.write_text(report["run_id"],encoding="utf-8")
+    k=ctypes.WinDLL("kernel32",use_last_error=True)
+    class SA(ctypes.Structure):_fields_=[("size",wintypes.DWORD),("descriptor",wintypes.LPVOID),("inherit",wintypes.BOOL)]
+    class FILE_ID_INFO(ctypes.Structure):_fields_=[("volume",ctypes.c_ulonglong),("identifier",ctypes.c_ubyte*16)]
+    k.CreateFileW.argtypes=[wintypes.LPCWSTR,wintypes.DWORD,wintypes.DWORD,ctypes.POINTER(SA),wintypes.DWORD,wintypes.DWORD,wintypes.HANDLE];k.CreateFileW.restype=wintypes.HANDLE
+    k.GetFileInformationByHandleEx.argtypes=[wintypes.HANDLE,ctypes.c_int,wintypes.LPVOID,wintypes.DWORD];k.GetFileInformationByHandleEx.restype=wintypes.BOOL
+    k.CloseHandle.argtypes=[wintypes.HANDLE];k.CloseHandle.restype=wintypes.BOOL
+    sa=SA(ctypes.sizeof(SA),None,True);handle=k.CreateFileW(str(path),0x80000000,3,ctypes.byref(sa),3,0,None)
+    if handle in (None,0,ctypes.c_void_p(-1).value):raise ctypes.WinError(ctypes.get_last_error())
+    file_id=FILE_ID_INFO()
+    if not k.GetFileInformationByHandleEx(handle,18,ctypes.byref(file_id),ctypes.sizeof(file_id)):raise ctypes.WinError(ctypes.get_last_error())
+    expected=str(file_id.volume)+":"+bytes(file_id.identifier).hex()
+    code='import ctypes,json,os\nfrom ctypes import wintypes\n'+'''
+class FileId(ctypes.Structure):_fields_=[("volume",ctypes.c_ulonglong),("identifier",ctypes.c_ubyte*16)]
+k=ctypes.WinDLL("kernel32",use_last_error=True)
+k.GetFileInformationByHandleEx.argtypes=[wintypes.HANDLE,ctypes.c_int,wintypes.LPVOID,wintypes.DWORD];k.GetFileInformationByHandleEx.restype=wintypes.BOOL
+k.GetStdHandle.argtypes=[wintypes.DWORD];k.GetStdHandle.restype=wintypes.HANDLE
+info=FileId()
+'''
+    code+=f'ok=k.GetFileInformationByHandleEx({handle},18,ctypes.byref(info),ctypes.sizeof(info))\n'
+    code+='print(json.dumps({"pid":os.getpid(),"external_handle_file_id":str(info.volume)+":"+bytes(info.identifier).hex() if ok else None,"stdio_count":sum(bool(k.GetStdHandle(v)) for v in (0xfffffff6,0xfffffff5,0xfffffff4))}),flush=True)\n'
+    try:identity=native(code)
+    finally:k.CloseHandle(handle)
+    report["identity_jobs"]=[identity]
+    report["cases"]["B1"]={**identity,"host_file_id":expected,"host_inheritable_control_verified":True}
+    protected=[{"path":str(ROOT/n),"before_sha256":DIGEST(ROOT/n)} for n in se.BOUND_FILES]
+    guarded=se.NETWORK_SHIM+'''
+import json,os,socket
+r={}
+for name,call in (
+ ("connect",lambda:socket.socket().connect(("127.0.0.1",9))),
+ ("connect_ex",lambda:socket.socket().connect_ex(("127.0.0.1",9))),
+ ("sendto",lambda:socket.socket(type=socket.SOCK_DGRAM).sendto(b"fixture",("127.0.0.1",9))),
+ ("getaddrinfo",lambda:socket.getaddrinfo("never-query.invalid",80))):
+    try:call();r[name]="ALLOWED"
+    except ConnectionError as e:r[name]=str(e)
+keys=("HTTP_PROXY","HTTPS_PROXY","ALL_PROXY","http_proxy","https_proxy","all_proxy","NO_PROXY","no_proxy")
+print(json.dumps({"shim":r,"proxy_environment":{k:os.environ.get(k) for k in keys}}),flush=True)
+'''
+    guards=native(guarded);report["identity_jobs"].append(guards)
+    for point in ("A1","A2","A3","A4","A5","A7"):report["cases"][point]={"jobs":report["identity_jobs"]}
+    for point in ("E1","E2"):report["cases"][point]=guards
+    report["cases"]["E3"]={"source_sha256":DIGEST(ROOT/"src/animtrain/net_guard.py")}
+    for v in protected:v["after_sha256"]=DIGEST(v["path"])
+    report["cases"]["C5"]={**guards,"protected_files":protected}
+    checkpoint(report,"foundations")
+
+def host_case(mode):
+    tag=uuid.uuid4().hex;source=HERE/"host_cases.py"
+    cp=subprocess.run([sys.executable,"-X","utf8","-B",str(source),mode,tag],capture_output=True,timeout=100,cwd=ROOT)
+    path=HERE/("host-"+mode+"-"+tag+".stdout.txt")
+    with path.open("xb") as f:f.write(cp.stdout)
+    with path.with_suffix(".stderr.txt").open("xb") as f:f.write(cp.stderr)
+    return {"host_source_path":str(source),"host_source_sha256":DIGEST(source),"host_stdout_path":str(path),"host_stdout_sha256":DIGEST(path),"host_rc":cp.returncode},json.loads(cp.stdout or b"{}")
+def fault_cases(report):
+    row,data=host_case("reparse");report["cases"]["A6"]={**report["identity_jobs"][0],**row}
+    row,data=host_case("sid_collision");report["cases"]["A8"]=row
+    row,data=host_case("assignment_failure");report["cases"]["B5"]=row
+    source=HERE/"host_cases.py";tag=uuid.uuid4().hex;folder=HERE/("host-fixture-"+tag)
+    first=subprocess.Popen([sys.executable,"-X","utf8","-B",str(source),"lock_owner",tag],stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=ROOT)
+    first_out=first_err=b""
+    try:
+        deadline=time.monotonic()+30
+        while not (folder/"ready.json").exists():
+            if first.poll() is not None or time.monotonic()>deadline:raise RuntimeError("Lock fixture not healthy")
+            time.sleep(1/20)
+        second=subprocess.run([sys.executable,"-X","utf8","-B",str(source),"lock_contender",tag],capture_output=True,timeout=15,cwd=ROOT)
+    finally:
+        if folder.exists():(folder/"release").write_text("release",encoding="ascii")
+        first_out,first_err=first.communicate(timeout=30)
+    data={**json.loads(first_out),**json.loads(second.stdout),"same_lock_path":True}
+    path=HERE/("host-lock-"+tag+".stdout.json");write_new(path,data)
+    for name,value in (("owner.stdout",first_out),("owner.stderr",first_err),("contender.stdout",second.stdout),("contender.stderr",second.stderr)):
+        with (HERE/("host-lock-"+tag+"-"+name+".txt")).open("xb") as f:f.write(value)
+    report["cases"]["A9"]={"host_source_path":str(source),"host_source_sha256":DIGEST(source),"host_stdout_path":str(path),"host_stdout_sha256":DIGEST(path),"host_rc":0 if first.returncode==second.returncode==0 else 2}
+    checkpoint(report,"fault-native")
+
+def files(report):
+    fixture=Path(tempfile.mkdtemp(prefix="AnimTrainCodex-"+report["run_id"]+"-")).resolve()
+    report["temporary_external_fixture"]=str(fixture)
+    protected=fixture/"private.txt";victim=fixture/"victim.txt"
+    protected.write_text(report["run_id"],encoding="ascii");victim.write_text(report["run_id"],encoding="ascii")
+    prior=Path(report["identity_jobs"][0]["transport"]["work"])
+    attempts={
+      "read_outside":("read",protected),
+      "write_outside":("write",fixture/"outside-marker.txt"),
+      "write_toolchain":("write",Path(r"D:\Python")/("AnimTrainCodex-"+report["run_id"]+".txt")),
+      "cross_run_write":("write",prior/("cross-marker-"+report["run_id"]+".txt")),
+      "cross_run_cache":("write",prior/"state/config"/("cross-marker-"+report["run_id"]+".txt")),
+      "delete_outside":("delete",victim)}
+    control={}
+    def healthy(op,path):
+        if op=="read":path.read_bytes()
+        elif op=="write":path.write_text(report["run_id"],encoding="ascii");path.unlink()
+        else:path.unlink();path.write_text(report["run_id"],encoding="ascii")
+        return {"outcome":"allowed","fixture":str(path)}
+    for name,(op,path) in attempts.items():control[name]={"before":healthy(op,path)}
+    target_acl=pp.acl_text(fixture);link_record={}
+    def prepare(work):
+        link=work/"existing-escape"
+        cp=subprocess.run([os.environ["COMSPEC"],"/c","mklink","/J",str(link),str(fixture)],capture_output=True,timeout=10)
+        valid=cp.returncode==0 and link.is_junction() and link.resolve()==fixture
+        if not valid:raise RuntimeError("Preexisting junction fixture creation failed")
+        link_record.update(path=str(link),target=str(fixture),verified=True,stdout=cp.stdout.decode("utf-8","replace"))
+    code='import json,pathlib\n'+ERROR_CODE+'r={}\n'
+    code+='attempts='+repr({n:(op,str(p)) for n,(op,p) in attempts.items()})+'\n'
+    code+='''
+for name,(op,path) in attempts.items():
+    try:
+        p=pathlib.Path(path)
+        if op=="read":p.read_bytes()
+        elif op=="write":
+            with p.open("x",encoding="ascii") as f:f.write("sandbox")
+        else:p.unlink()
+        r[name]={"outcome":"allowed"}
+    except OSError as e:r[name]=failure(e)
+try:
+    with pathlib.Path("existing-escape/escaped-marker.txt").open("x",encoding="ascii") as f:f.write("sandbox")
+    r["junction_escape"]={"outcome":"allowed"}
+except OSError as e:r["junction_escape"]=failure(e)
+print(json.dumps(r),flush=True)
+'''
+    row=native(code,prepare=prepare);data=json.loads(row["transport"]["stdout"])
+    snapshots={name:((path.exists() and DIGEST(path)==hashlib.sha256(report["run_id"].encode()).hexdigest()) if op in ("read","delete") else not path.exists()) for name,(op,path) in attempts.items()}
+    for name,(op,path) in attempts.items():control[name]["after"]=healthy(op,path)
+    points={"C1":"read_outside","C2":"write_outside","C3":"write_toolchain","C4":"cross_run_write","C7":"delete_outside"}
+    for point,name in points.items():
+        report["cases"][point]={**row,"operation":name,"observation_key":name,"fixture":str(attempts[name][1]),"controls":control[name],"fixture_alive_throughout":True,"host_unchanged":snapshots[name]}
+    report["cases"]["C4"]["cache_denied"]=data.get("cross_run_cache",{}).get("outcome")=="os_denied" and data["cross_run_cache"].get("winerror")==5 and snapshots["cross_run_cache"]
+    marker=fixture/"escaped-marker.txt"
+    report["cases"]["C6"]={**row,"operation":"junction_escape","observation_key":"junction_escape","fixture":str(fixture),
+         "controls":{phase:{"outcome":"allowed","fixture":str(fixture)} for phase in ("before","after")},
+         "fixture_alive_throughout":True,"host_unchanged":not marker.exists(),"preexisting_junction_verified":link_record.get("verified") is True,
+         "target_acl_unchanged":target_acl==pp.acl_text(fixture),"junction":link_record}
+    report["temporary_external_fixture_cleanup_pending"]=True
+    checkpoint(report,"files")
+
+def process_tree(report,kind):
+    tag=uuid.uuid4().hex;meta={};result={}
+    mid='import subprocess,sys,time\np=subprocess.Popen([sys.executable,"-I","-B","-c","import time;time.sleep(60)"])\nprint(p.pid,flush=True)\ntime.sleep(60)\n'
+    code='import subprocess,sys,time,json,pathlib\n'
+    code+='p=subprocess.Popen([sys.executable,"-I","-B","-c",'+repr(mid)+'],stdout=subprocess.PIPE)\n'
+    code+='grand=int(p.stdout.readline())\npathlib.Path("children-'+tag+'.json").write_text(json.dumps([p.pid,grand]),encoding="ascii")\n'
+    code+='deadline=time.monotonic()+15\nwhile not pathlib.Path("continue-'+tag+'").exists():\n    if time.monotonic()>deadline:raise TimeoutError("Host did not retain child handles")\n    time.sleep(1/20)\n'
+    code+='print(json.dumps({"child_pid":p.pid,"grandchild_pid":grand}),flush=True)\n'
+    if kind=="B3":code+='time.sleep(60)\n'
+    def run():
+        try:result["row"]=native(code,timeout=20000,prepare=lambda w:meta.update(work=w))
+        except Exception as e:result["error"]=repr(e)
+    thread=threading.Thread(target=run);thread.start()
+    k=ctypes.WinDLL("kernel32",use_last_error=True)
+    k.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD];k.OpenProcess.restype=wintypes.HANDLE
+    k.WaitForSingleObject.argtypes=[wintypes.HANDLE,wintypes.DWORD];k.WaitForSingleObject.restype=wintypes.DWORD
+    k.GetProcessTimes.argtypes=[wintypes.HANDLE,*([ctypes.POINTER(wintypes.FILETIME)]*4)];k.GetProcessTimes.restype=wintypes.BOOL
+    k.CloseHandle.argtypes=[wintypes.HANDLE];k.CloseHandle.restype=wintypes.BOOL
+    handles=[];children=[]
+    try:
+        deadline=time.monotonic()+90
+        while "work" not in meta or not (meta["work"]/("children-"+tag+".json")).exists():
+            if not thread.is_alive() or time.monotonic()>deadline:raise RuntimeError("Child/grandchild fixture unavailable: "+repr(result))
+            time.sleep(1/20)
+        for pid in json.loads((meta["work"]/("children-"+tag+".json")).read_text(encoding="ascii")):
+            h=k.OpenProcess(0x100000|0x1000,False,pid)
+            if not h:raise ctypes.WinError(ctypes.get_last_error())
+            handles.append(h);times=[wintypes.FILETIME() for _ in range(4)]
+            if not k.GetProcessTimes(h,*[ctypes.byref(v) for v in times]):raise ctypes.WinError(ctypes.get_last_error())
+            children.append({"pid":pid,"creation_filetime":times[0].dwHighDateTime*2**32+times[0].dwLowDateTime,
+                             "opened_while_live":k.WaitForSingleObject(h,0)==258,"same_handle_retained":True})
+        (meta["work"]/("continue-"+tag)).write_text("continue",encoding="ascii")
+        thread.join(100)
+        if thread.is_alive():raise RuntimeError("Owned transport did not finish")
+        if "error" in result:raise RuntimeError(result["error"])
+        for h,v in zip(handles,children):v["signaled_wait_result"]=int(k.WaitForSingleObject(h,5000))
+        row=result["row"];report["cases"][kind]={**row,"held_children":children,"timed_out":row["transport"]["rc"]==-1}
+    finally:
+        if thread.is_alive() and "work" in meta:(meta["work"]/("continue-"+tag)).write_text("continue",encoding="ascii")
+        thread.join(100)
+        for h in handles:k.CloseHandle(h)
+    checkpoint(report,kind)
+
+def memory(report):
+    code='import json,sys\nchunks=[]\ntry:\n    for i in range(36):chunks.append(bytearray(67108864))\nexcept MemoryError:\n    print(json.dumps({"memory_denied":True,"allocated_chunks":len(chunks),"chunk_bytes":67108864}),flush=True)\n    sys.exit(17)\nprint(json.dumps({"memory_denied":False}),flush=True)\n'
+    report["cases"]["B4"]=native(code,timeout=30000);checkpoint(report,"memory")
+
+def loopback(report):
+    receivers={};nonces={};spec={}
+    try:
+        for point,kind,family in (("D3","tcp",socket.AF_INET),("D4","tcp",socket.AF_INET6),("D5","udp",socket.AF_INET),("D6","udp",socket.AF_INET6)):
+            receiver=Receiver(kind,family);receivers[point]=receiver
+            phases={p:uuid.uuid4().hex for p in ("before","sandbox","after")};nonces[point]=phases
+            host_control(receiver,phases["before"])
+            spec[point]={"family":int(family),"kind":int(socket.SOCK_STREAM if kind=="tcp" else socket.SOCK_DGRAM),"endpoint":receiver.endpoint,"nonce":phases["sandbox"]}
+        code='import _socket,json,time\nr={}\nspec='+repr(spec)+'\n'+ERROR_CODE+'''
+for name,item in spec.items():
+    s=_socket.socket(item["family"],item["kind"]);s.settimeout(2)
+    try:
+        if item["kind"]==int(_socket.SOCK_DGRAM):s.sendto(item["nonce"].encode(),tuple(item["endpoint"]))
+        else:s.connect(tuple(item["endpoint"]));s.sendall(item["nonce"].encode())
+        r[name]={"outcome":"sent"}
+    except TimeoutError as e:r[name]={"outcome":"timeout","error_type":"TimeoutError","detail":str(e)}
+    except OSError as e:r[name]=failure(e)
+    finally:s.close()
+print(json.dumps(r),flush=True)
+'''
+        row=native(code);finished=time.monotonic_ns()
+        deadline=finished+20_000_000_000
+        while time.monotonic_ns()<deadline:time.sleep(max(0,min(1,(deadline-time.monotonic_ns())/1_000_000_000)))
+        for point,receiver in receivers.items():host_control(receiver,nonces[point]["after"])
+    finally:
+        for receiver in receivers.values():receiver.close()
+    from animtrain.full_surface_evidence import NETWORKS
+    for point,receiver in receivers.items():
+        report["cases"][point]={**row,"operation":NETWORKS[point],"observation_key":point,"endpoint":receiver.endpoint,"nonces":nonces[point],
+            "packets":receiver.packets,"receiver_complete":receiver.complete,"receiver_errors":receiver.errors,
+            "post_attempt_observation_ns":time.monotonic_ns()-finished}
+    checkpoint(report,"loopback")
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--execute-native",action="store_true")
+    parser.add_argument("--groups",default="foundations,faults,files,trees,memory,loopback")
+    args=parser.parse_args()
+    if not args.execute_native:print("PLAN ONLY: 43-point evidence collection; production CLOSED");return 3
+    HERE.mkdir(parents=True,exist_ok=True)
+    report={"schema":"sandbox-surface-native-v1","run_id":uuid.uuid4().hex,"cases":{},"production_gate":"CLOSED",
+            "certificate_written":False,"initial_bindings":bindings(),"started_ns":time.monotonic_ns()}
+    try:
+        for group in args.groups.split(","):
+            if group=="foundations":foundations(report)
+            elif group=="faults":fault_cases(report)
+            elif group=="files":files(report)
+            elif group=="trees":
+                process_tree(report,"B2");process_tree(report,"B3")
+            elif group=="memory":memory(report)
+            elif group=="loopback":loopback(report)
+            else:raise ValueError("Unknown group "+group)
+    except BaseException as e:report["error"]={"type":type(e).__name__,"detail":str(e)}
+    finally:
+        report["finished_ns"]=time.monotonic_ns();report["final_bindings"]=bindings()
+        report["implementation_unchanged"]=report["initial_bindings"]==report["final_bindings"]
+        report["results"]=recompute(report)
+        path=HERE/("surface-raw-"+report["run_id"]+".json");write_new(path,report)
+    print(json.dumps({"path":str(path),"sha256":DIGEST(path),"counts":{s:sum(v["status"]==s for v in report["results"].values()) for s in ("GREEN","PARTIAL","GAP")},"error":report.get("error"),"production_gate":"CLOSED"}),flush=True)
+    return 2 if "error" in report else 3
+if __name__=="__main__":raise SystemExit(main())

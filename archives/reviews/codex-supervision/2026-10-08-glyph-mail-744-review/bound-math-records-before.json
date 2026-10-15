@@ -1,0 +1,1318 @@
+[
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-024-s2",
+      "math_sha256": "9e60c955187dcead2a1f5cf9e3b4e687ab1ec86d94c3f6d88014ad0123cc1553",
+      "parent_review": {
+        "line": 70,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "1c9ae7ac9a73e4e09af5e1e93eba9a1ceb38b61bf54378d052fe01c4e73e2919",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "1c9ae7ac9a73e4e09af5e1e93eba9a1ceb38b61bf54378d052fe01c4e73e2919",
+      "source_line": 71,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "1c9ae7ac9a73e4e09af5e1e93eba9a1ceb38b61bf54378d052fe01c4e73e2919",
+      "parent_math_sha256": "9e60c955187dcead2a1f5cf9e3b4e687ab1ec86d94c3f6d88014ad0123cc1553",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数",
+      "category": "数学分析",
+      "efficiency_tags": [
+        "$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$",
+        "Abel 定理左连续的标注"
+      ],
+      "function_family": "反三角函数幂级数",
+      "id": "eval-calc-024-s2",
+      "license": "Internal-Research-Use-Only",
+      "method": "端点取值的 Abel 定理",
+      "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+      "problem_id": "eval-calc-024",
+      "revision_lineage": {
+        "continuous_correction_reason": "补齐Abel定理所需的开区间展开依据",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "ad034e007019428c7e5ff48deb0edffe35bda62624c7ce80c283158abc96bece",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-calc-024-s2",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 118,
+            "record_version_sha256": "ad034e007019428c7e5ff48deb0edffe35bda62624c7ce80c283158abc96bece",
+            "source_line": 71,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "093109836bf55d81fa07675d720e5b851c81726eefbfe037856bc2ba48a15b18"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$",
+          "Abel 定理左连续的标注"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+          "依次呈现：$x=1$ 处交错级数逐项加减逼近 $\\dfrac{\\pi}{4}$",
+          "依次呈现：Abel 定理左连续的标注",
+          "核对完整证明：$x=1$ 处级数 $\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n}{2n+1}$ 为交错级数（$a_n=\\dfrac{1}{2n+1}\\searrow 0$），由莱布尼茨判别法收敛；由 Abel 定理，和函数在 $x=1$ 左连续，故 $\\arctan 1=\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。$x=-1$ 同理（或由奇偶性）。开区间的展开来自几何级数$1/(1+t^2)=\\sum_{k=0}^{\\infty}(-1)^kt^{2k}$，在任意紧子区间$[-r,r]$（$r<1$）一致收敛，可从$0$逐项积分得到$\\arctan x$的幂级数，再结合上述端点收敛及Abel定理。",
+          "高亮结果：$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数"
+        ]
+      },
+      "solution": "$x=1$ 处级数 $\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n}{2n+1}$ 为交错级数（$a_n=\\dfrac{1}{2n+1}\\searrow 0$），由莱布尼茨判别法收敛；由 Abel 定理，和函数在 $x=1$ 左连续，故 $\\arctan 1=\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。$x=-1$ 同理（或由奇偶性）。开区间的展开来自几何级数$1/(1+t^2)=\\sum_{k=0}^{\\infty}(-1)^kt^{2k}$，在任意紧子区间$[-r,r]$（$r<1$）一致收敛，可从$0$逐项积分得到$\\arctan x$的幂级数，再结合上述端点收敛及Abel定理。",
+      "solution_id": "eval-calc-024-s2",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "9e60c955187dcead2a1f5cf9e3b4e687ab1ec86d94c3f6d88014ad0123cc1553",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "幂级数",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-calc-024-s2",
+      "visual_style": "部分和逐阶逼近"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-024-s3",
+      "math_sha256": "77abee46a51abb2577004d9ebf36fec8044bb5db6ec20a6e00e2081b39148f5e",
+      "parent_review": {
+        "line": 71,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "03ae7d80c3e298649ffcf4571a54c89867b879e00d6bcbf7985d0eb65edadf22",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "03ae7d80c3e298649ffcf4571a54c89867b879e00d6bcbf7985d0eb65edadf22",
+      "source_line": 72,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "03ae7d80c3e298649ffcf4571a54c89867b879e00d6bcbf7985d0eb65edadf22",
+      "parent_math_sha256": "77abee46a51abb2577004d9ebf36fec8044bb5db6ec20a6e00e2081b39148f5e",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数",
+      "category": "数学分析",
+      "efficiency_tags": [
+        "各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注",
+        "余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示"
+      ],
+      "function_family": "反三角函数幂级数",
+      "id": "eval-calc-024-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "泰勒公式余项验证",
+      "problem": "求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+      "problem_id": "eval-calc-024",
+      "revision_lineage": {
+        "continuous_correction_reason": "给出高阶导数界的明确公式和证明",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "ef34ca9960205c47eef4ad6e4d1a25a669156b63414c3a1b872273e82063adb9",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-calc-024-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 119,
+            "record_version_sha256": "ef34ca9960205c47eef4ad6e4d1a25a669156b63414c3a1b872273e82063adb9",
+            "source_line": 72,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "854facb3033f084745e91b7bf58bd743147cc577ed7de9630d97ceb6276acc50"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注",
+          "余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求 $\\arctan x$ 的幂级数展开式，并由此推导莱布尼茨级数 $\\dfrac{\\pi}{4}=1-\\dfrac{1}{3}+\\dfrac{1}{5}-\\dfrac{1}{7}+\\cdots$。",
+          "依次呈现：各阶导 $|f^{(m)}(t)|\\le(m-1)!$ 的界标注",
+          "依次呈现：余项 $\\dfrac{1}{N+1}\\to0$ 的收敛演示",
+          "核对完整证明：对 $f(x)=\\arctan x$ 用带拉格朗日余项的麦克劳林公式：$f^{(n)}(0)$ 由递推 $f'(x)=\\dfrac{1}{1+x^2}$ 逐阶求导给出。对 $\\arctan$ 可归纳证明 $|f^{(m)}(t)|\\le(m-1)!$（$m\\ge 1$，对一切实数 $t$），于是余项 $|R_N(x)|=\\dfrac{|f^{(N+1)}(\\xi)|}{(N+1)!}|x|^{N+1}\\le\\dfrac{N!}{(N+1)!}\\cdot 1=\\dfrac{1}{N+1}\\to 0$，对 $|x|\\le 1$ 一致成立。故展开式在 $|x|\\le 1$ 成立，端点处即莱布尼茨级数。所用导数界可由部分分式严格验证：对$m\\ge1$，$f^{(m)}(t)=\\frac{(-1)^{m-1}(m-1)!}{2i}[(t-i)^{-m}-(t+i)^{-m}]$，于是$|f^{(m)}(t)|\\le(m-1)!(1+t^2)^{-m/2}\\le(m-1)!$。同时$f^{(2k+1)}(0)=(-1)^k(2k)!$，$f^{(2k)}(0)=0$；泰勒余项界$1/(N+1)$确实趋于零。",
+          "高亮结果：$\\arctan x=\\displaystyle\\sum_{n=0}^{\\infty}\\dfrac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\\le 1$）；$x=1$ 时即莱布尼茨级数"
+        ]
+      },
+      "solution": "对 $f(x)=\\arctan x$ 用带拉格朗日余项的麦克劳林公式：$f^{(n)}(0)$ 由递推 $f'(x)=\\dfrac{1}{1+x^2}$ 逐阶求导给出。对 $\\arctan$ 可归纳证明 $|f^{(m)}(t)|\\le(m-1)!$（$m\\ge 1$，对一切实数 $t$），于是余项 $|R_N(x)|=\\dfrac{|f^{(N+1)}(\\xi)|}{(N+1)!}|x|^{N+1}\\le\\dfrac{N!}{(N+1)!}\\cdot 1=\\dfrac{1}{N+1}\\to 0$，对 $|x|\\le 1$ 一致成立。故展开式在 $|x|\\le 1$ 成立，端点处即莱布尼茨级数。所用导数界可由部分分式严格验证：对$m\\ge1$，$f^{(m)}(t)=\\frac{(-1)^{m-1}(m-1)!}{2i}[(t-i)^{-m}-(t+i)^{-m}]$，于是$|f^{(m)}(t)|\\le(m-1)!(1+t^2)^{-m/2}\\le(m-1)!$。同时$f^{(2k+1)}(0)=(-1)^k(2k)!$，$f^{(2k)}(0)=0$；泰勒余项界$1/(N+1)$确实趋于零。",
+      "solution_id": "eval-calc-024-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "77abee46a51abb2577004d9ebf36fec8044bb5db6ec20a6e00e2081b39148f5e",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "幂级数",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-calc-024-s3",
+      "visual_style": "部分和逐阶逼近"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-025-s3",
+      "math_sha256": "88ce52b6cae29fdc9dfac0bff747529dca3bc488f3203f4b8d4bb0762dc51359",
+      "parent_review": {
+        "line": 74,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "5f634c5c6d90b9a465cb6eefbb3298b2805fb6e9ff5dec682ba27d48520c4ca3",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "5f634c5c6d90b9a465cb6eefbb3298b2805fb6e9ff5dec682ba27d48520c4ca3",
+      "source_line": 75,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "5f634c5c6d90b9a465cb6eefbb3298b2805fb6e9ff5dec682ba27d48520c4ca3",
+      "parent_math_sha256": "88ce52b6cae29fdc9dfac0bff747529dca3bc488f3203f4b8d4bb0762dc51359",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "条件收敛",
+      "category": "数学分析",
+      "efficiency_tags": [
+        "交错部分和振荡收敛折线",
+        "绝对级数部分和单调发散对比"
+      ],
+      "function_family": "对数型交错级数",
+      "id": "eval-calc-025-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "Abel分部求和与精确下界",
+      "problem": "讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+      "problem_id": "eval-calc-025",
+      "revision_lineage": {
+        "continuous_correction_reason": "删除数值量级推断，使用Abel分部求和与精确下界",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "551e44311703012d6655b8e670ba856f1013f0461cdf8ceb76daa7a68a604668",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-calc-025-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 122,
+            "record_version_sha256": "551e44311703012d6655b8e670ba856f1013f0461cdf8ceb76daa7a68a604668",
+            "source_line": 75,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "1c22fabf74c460a8c89f3a37eaa686f0da5bb2ba5bafe62c6b14d478cae37356"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "交错部分和振荡收敛折线",
+          "绝对级数部分和单调发散对比"
+        ],
+        "steps": [
+          "呈现题干及适用条件：讨论级数 $\\displaystyle\\sum_{n=2}^{\\infty}\\frac{(-1)^n}{\\ln n}$ 的敛散性，若收敛，判断是绝对收敛还是条件收敛。",
+          "依次呈现：交错部分和振荡收敛折线",
+          "依次呈现：绝对级数部分和单调发散对比",
+          "核对完整证明：令$a_n=1/\\ln n$（$n\\ge2$），则$a_n\\downarrow0$。对任意$p\\ge2$，令$B_j=\\sum_{n=p}^j(-1)^n$，有$|B_j|\\le1$。Abel分部求和给出$\\sum_{n=p}^q(-1)^na_n=B_qa_q+\\sum_{j=p}^{q-1}B_j(a_j-a_{j+1})$，故其绝对值不超过$a_q+\\sum_{j=p}^{q-1}(a_j-a_{j+1})=a_p\\to0$，由Cauchy准则交错级数收敛。绝对级数的有限和满足$\\sum_{n=2}^N1/\\ln n\\ge(N-1)/\\ln N\\to\\infty$，其中$\\ln N/N\\to0$由洛必达法则得到。因此是条件收敛。",
+          "高亮结果：条件收敛"
+        ]
+      },
+      "solution": "令$a_n=1/\\ln n$（$n\\ge2$），则$a_n\\downarrow0$。对任意$p\\ge2$，令$B_j=\\sum_{n=p}^j(-1)^n$，有$|B_j|\\le1$。Abel分部求和给出$\\sum_{n=p}^q(-1)^na_n=B_qa_q+\\sum_{j=p}^{q-1}B_j(a_j-a_{j+1})$，故其绝对值不超过$a_q+\\sum_{j=p}^{q-1}(a_j-a_{j+1})=a_p\\to0$，由Cauchy准则交错级数收敛。绝对级数的有限和满足$\\sum_{n=2}^N1/\\ln n\\ge(N-1)/\\ln N\\to\\infty$，其中$\\ln N/N\\to0$由洛必达法则得到。因此是条件收敛。",
+      "solution_id": "eval-calc-025-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "88ce52b6cae29fdc9dfac0bff747529dca3bc488f3203f4b8d4bb0762dc51359",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "交错级数",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-calc-025-s3",
+      "visual_style": "振荡收敛折线对比"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-026-s3",
+      "math_sha256": "0ab77710a3361d178404e84c4ed8f7ace6abc24a009434d36fa57065871ddcee",
+      "parent_review": {
+        "line": 11,
+        "path": "reviews/codex-supervision/2026-10-07-core-verifier-followup/admission-v2/record-bindings.jsonl",
+        "record_sha256": "28974b6200d3532bf0569c9fb9daa0f9f7909524f7c0b99dfdfa8e839515289f",
+        "sha256": "0f1f325b70d43528d5947dffc17fcb74f36aa8ef682c05cadea70ad402133714"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "28974b6200d3532bf0569c9fb9daa0f9f7909524f7c0b99dfdfa8e839515289f",
+      "source_line": 78,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "28974b6200d3532bf0569c9fb9daa0f9f7909524f7c0b99dfdfa8e839515289f",
+      "parent_math_sha256": "0ab77710a3361d178404e84c4ed8f7ace6abc24a009434d36fa57065871ddcee",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "id": "eval-calc-026-s3",
+      "problem_id": "eval-calc-026",
+      "solution_id": "eval-calc-026-s3",
+      "method": "数值差分验证",
+      "category": "数学分析",
+      "sub_category": "多元函数微分",
+      "problem": "设 $z=x^y$（$x>0$），求 $z$ 在点 $(1,2)$ 处的两个偏导数。",
+      "solution": "按偏导数定义，$z_x(1,2)=\\lim_{h\\to0}\\frac{(1+h)^2-1}{h}=\\lim_{h\\to0}(2+h)=2$，其中 $h\\ne0$ 且充分小时 $1+h>0$。另一方面，$z_y(1,2)=\\lim_{h\\to0}\\frac{1^{2+h}-1}{h}=\\lim_{h\\to0}0=0$。两个结果均由极限定义精确得到。",
+      "answer": "$z_x(1,2)=2$，$z_y(1,2)=0$。",
+      "scene_spec": {
+        "objects": [
+          "两个方向的差商",
+          "精确极限等式"
+        ],
+        "steps": [
+          "沿 $x$ 方向显示差商 $((1+h)^2-1)/h=2+h$，其中 $h\\ne0$ 且 $1+h>0$。",
+          "令 $h\\to0$ 得 $z_x(1,2)=2$。",
+          "沿 $y$ 方向显示 $(1^{2+h}-1)/h=0$，所以 $z_y(1,2)=0$。",
+          "步长收缩图示精确极限定义，不用固定步长数值差分替代偏导数。"
+        ]
+      },
+      "function_family": "幂指函数(多元)",
+      "visual_style": "曲面切平面局部放大",
+      "efficiency_tags": [
+        "差分步长 $h$ 收缩动画",
+        "两方向差商分别趋近 2 与 0"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-027-s3",
+      "math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+      "parent_review": {
+        "line": 12,
+        "path": "reviews/codex-supervision/2026-10-07-core-verifier-followup/admission-v2/record-bindings.jsonl",
+        "record_sha256": "389ed5bf26c7ebdaa2d39067666d45f0067c07a41ebc8fe9a7b5f637adc57d53",
+        "sha256": "0f1f325b70d43528d5947dffc17fcb74f36aa8ef682c05cadea70ad402133714"
+      },
+      "patch_review": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+      "source_line": 81,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+      "parent_math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "admitted": false,
+      "animation_render_verified": false,
+      "answer": "$\\frac{e-1}{2}$",
+      "category": "数学分析",
+      "current_revision_lineage": {
+        "native_render": "UNVERIFIED",
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "cba9ddfc2ca97e989ab67b05b94176e7596d4d227f5a0d4e4c583b5d5f1fbf2b",
+        "parent_record_sha256": "389ed5bf26c7ebdaa2d39067666d45f0067c07a41ebc8fe9a7b5f637adc57d53",
+        "reason": "旧动画标签残留近似数值，改为与已复验题解一致的精确积分值。",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      },
+      "efficiency_tags": [
+        "三角域 $D=\\{(x,y):0\\le x\\le y\\le1\\}$ 与积分换序",
+        "精确积分 $I=\\frac12\\int_0^1e^u\\,du=\\frac{e-1}{2}$"
+      ],
+      "function_family": "高斯型函数重积分",
+      "id": "eval-calc-027-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "数值验证，辅助校验",
+      "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+      "problem_id": "eval-calc-027",
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "scene_spec": {
+        "objects": [
+          "$D=\\{(x,y):0\\le x\\le y\\le1\\}$",
+          "积分换序与代换"
+        ],
+        "steps": [
+          "画出三角形 $D$ 并标注被积函数连续，可以交换次序。",
+          "显示 $I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1y e^{y^2}\\,dy$。",
+          "令 $u=y^2$，得 $I=\\frac12\\int_0^1e^u\\,du=(e-1)/2$。"
+        ]
+      },
+      "solution": "积分区域为 $D=\\{(x,y):0\\le x\\le y\\le1\\}$。被积函数连续，故可交换积分次序：$I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1 y e^{y^2}\\,dy$。令 $u=y^2$，得到 $I=\\frac12\\int_0^1e^u\\,du=\\frac{e-1}{2}$。",
+      "solution_id": "eval-calc-027-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "text_math_fields_reviewed": true,
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW"
+      },
+      "sub_category": "重积分",
+      "versioned_id": "codex-current-core-v1-20261007-eval-calc-027-s3",
+      "visual_style": "积分次序交换与代换"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-029-s2",
+      "math_sha256": "ae35043e390c2fc762c9b8de789cbe5b80f000f5b3257345406b59cafc0a742d",
+      "parent_review": {
+        "line": 83,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "f2569c3ddd8ef3885f4156626ce45c36c3f5ecc1ca5d7f6cf81b3b56db33e302",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "f2569c3ddd8ef3885f4156626ce45c36c3f5ecc1ca5d7f6cf81b3b56db33e302",
+      "source_line": 86,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "f2569c3ddd8ef3885f4156626ce45c36c3f5ecc1ca5d7f6cf81b3b56db33e302",
+      "parent_math_sha256": "ae35043e390c2fc762c9b8de789cbe5b80f000f5b3257345406b59cafc0a742d",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "$6a$",
+      "category": "数学分析",
+      "efficiency_tags": [
+        "隐式导数 $y'=-(y/x)^{1/3}$ 的推导",
+        "$ds=a^{1/3}x^{-1/3}|dx|\\quad(0<x\\le a)$ 的化简与积分"
+      ],
+      "function_family": "参数曲线(星形线)弧长",
+      "id": "eval-calc-029-s2",
+      "license": "Internal-Research-Use-Only",
+      "method": "隐式方程弧长",
+      "problem": "求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$（$a>0$）的周长。",
+      "problem_id": "eval-calc-029",
+      "revision_lineage": {
+        "continuous_correction_reason": "弧长微元补第一象限和绝对值条件",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "69ef74a52e6847f39c19d366a3d23d107f0c9bae289ae868b1b97f78a203ff58",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-calc-029-s2",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 133,
+            "record_version_sha256": "69ef74a52e6847f39c19d366a3d23d107f0c9bae289ae868b1b97f78a203ff58",
+            "source_line": 86,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "8ddd3f5d2879b83efc5b04d879d30fa0b487ab1b19827c11ee6ae082fcf3a50e"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "隐式导数 $y'=-(y/x)^{1/3}$ 的推导",
+          "$ds=a^{1/3}x^{-1/3}|dx|\\quad(0<x\\le a)$ 的化简与积分"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求星形线 $x^{2/3}+y^{2/3}=a^{2/3}$（$a>0$）的周长。",
+          "依次呈现：隐式导数 $y'=-(y/x)^{1/3}$ 的推导",
+          "依次呈现：$ds=a^{1/3}x^{-1/3}|dx|\\quad(0<x\\le a)$ 的化简与积分",
+          "核对完整证明：由隐函数求导（eval-calc-007）$y'=-\\left(\\dfrac{y}{x}\\right)^{1/3}$，故弧长微元 $ds=\\sqrt{1+(y')^2}\\,dx=\\sqrt{1+(y/x)^{2/3}}\\,dx=\\sqrt{\\dfrac{x^{2/3}+y^{2/3}}{x^{2/3}}}\\,dx$。由星形线方程 $x^{2/3}+y^{2/3}=a^{2/3}$，得 $ds=a^{1/3}x^{-1/3}dx$。第一象限部分：$L_1=\\displaystyle\\int_0^a a^{1/3}x^{-1/3}dx=a^{1/3}\\left[\\dfrac{3}{2}x^{2/3}\\right]_0^a=\\dfrac{3a}{2}$，故 $L=4L_1=6a$。上述$x$积分限定在第一象限$0<x\\le a$，其中$ds=a^{1/3}x^{-1/3}|dx|$；从$x=0$到$a$积分可写为$a^{1/3}\\int_0^a x^{-1/3}dx=3a/2$，端点按反常积分收敛处理，再由四象限对称得$6a$。",
+          "高亮结果：$6a$"
+        ]
+      },
+      "solution": "由隐函数求导（eval-calc-007）$y'=-\\left(\\dfrac{y}{x}\\right)^{1/3}$，故弧长微元 $ds=\\sqrt{1+(y')^2}\\,dx=\\sqrt{1+(y/x)^{2/3}}\\,dx=\\sqrt{\\dfrac{x^{2/3}+y^{2/3}}{x^{2/3}}}\\,dx$。由星形线方程 $x^{2/3}+y^{2/3}=a^{2/3}$，得 $ds=a^{1/3}x^{-1/3}dx$。第一象限部分：$L_1=\\displaystyle\\int_0^a a^{1/3}x^{-1/3}dx=a^{1/3}\\left[\\dfrac{3}{2}x^{2/3}\\right]_0^a=\\dfrac{3a}{2}$，故 $L=4L_1=6a$。上述$x$积分限定在第一象限$0<x\\le a$，其中$ds=a^{1/3}x^{-1/3}|dx|$；从$x=0$到$a$积分可写为$a^{1/3}\\int_0^a x^{-1/3}dx=3a/2$，端点按反常积分收敛处理，再由四象限对称得$6a$。",
+      "solution_id": "eval-calc-029-s2",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "ae35043e390c2fc762c9b8de789cbe5b80f000f5b3257345406b59cafc0a742d",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "定积分的应用",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-calc-029-s2",
+      "visual_style": "滑动线段包络"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-calc-030-s3",
+      "math_sha256": "b0e57c77a9a7bce7a08b3d9acd161db2ed98bbca0115d1d0dbd77c308eca76cd",
+      "parent_review": {
+        "line": 87,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "ecdb133853ad7feea3863bc57f6cb61879efa7340174cefb65f965dc4a74f504",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "ecdb133853ad7feea3863bc57f6cb61879efa7340174cefb65f965dc4a74f504",
+      "source_line": 90,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "ecdb133853ad7feea3863bc57f6cb61879efa7340174cefb65f965dc4a74f504",
+      "parent_math_sha256": "b0e57c77a9a7bce7a08b3d9acd161db2ed98bbca0115d1d0dbd77c308eca76cd",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "$2\\pi^2$",
+      "category": "数学分析",
+      "efficiency_tags": [
+        "水平圆环的外、内半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+        "环形截面随 $y$ 扫掠"
+      ],
+      "function_family": "三角函数旋转体",
+      "id": "eval-calc-030-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "圆盘法，需分段",
+      "problem": "求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+      "problem_id": "eval-calc-030",
+      "revision_lineage": {
+        "continuous_correction_reason": "内外半径之间是圆环截面",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "9fb3ba03a69965468042f5a9447d7ee9baacbc882d787321d77cd0c707df95a0",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-calc-030-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 137,
+            "record_version_sha256": "9fb3ba03a69965468042f5a9447d7ee9baacbc882d787321d77cd0c707df95a0",
+            "source_line": 90,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "635df1ba473ada5b40aaf0aeee0601aa129b0e356e8ae5600dfb476dcab1bd66"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "水平圆环的外、内半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+          "环形截面随 $y$ 扫掠"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求由 $y=\\sin x$（$0\\le x\\le\\pi$）与 $x$ 轴围成的区域绕 $y$ 轴旋转所得旋转体的体积。",
+          "依次呈现：水平圆环的外、内半径 $\\pi-\\arcsin y$ 与 $\\arcsin y$",
+          "依次呈现：环形截面随 $y$ 扫掠",
+          "核对完整证明：绕 $y$ 轴时取水平圆盘：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆盘外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2y-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
+          "高亮结果：$2\\pi^2$"
+        ]
+      },
+      "solution": "绕 $y$ 轴时取水平圆盘：对 $0\\le y\\le 1$，水平线 $y$ 与区域相交于 $x=\\arcsin y$（左）与 $x=\\pi-\\arcsin y$（右），圆盘外半径 $R=\\pi-\\arcsin y$、内半径 $r=\\arcsin y$。$V=\\pi\\displaystyle\\int_0^1\\left[(\\pi-\\arcsin y)^2-(\\arcsin y)^2\\right]dy=\\pi\\int_0^1(\\pi^2-2\\pi\\arcsin y)\\,dy=\\pi\\left[\\pi^2y-2\\pi\\int_0^1\\arcsin y\\,dy\\right]$。其中 $\\displaystyle\\int_0^1\\arcsin y\\,dy=\\left[y\\arcsin y+\\sqrt{1-y^2}\\right]_0^1=\\dfrac{\\pi}{2}-1$。故 $V=\\pi\\left[\\pi^2-2\\pi\\left(\\dfrac{\\pi}{2}-1\\right)\\right]=\\pi\\left[\\pi^2-\\pi^2+2\\pi\\right]=2\\pi^2$。",
+      "solution_id": "eval-calc-030-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "b0e57c77a9a7bce7a08b3d9acd161db2ed98bbca0115d1d0dbd77c308eca76cd",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "定积分的应用",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-calc-030-s3",
+      "visual_style": "壳层展开成薄板"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-001-s3",
+      "math_sha256": "90af81caf5819ce792b64fdf0bd0e87b8ea8a7b43ae1205b4e52accc851fb1e3",
+      "parent_review": {
+        "line": 90,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "72e2aed9a76005f71ed11b4fda87db15e2e223035f2b349965e9ae0164eb43eb",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "72e2aed9a76005f71ed11b4fda87db15e2e223035f2b349965e9ae0164eb43eb",
+      "source_line": 93,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "72e2aed9a76005f71ed11b4fda87db15e2e223035f2b349965e9ae0164eb43eb",
+      "parent_math_sha256": "90af81caf5819ce792b64fdf0bd0e87b8ea8a7b43ae1205b4e52accc851fb1e3",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "$\\dfrac{5}{3}$",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "约束平面上的等高线",
+        "梯度与法向量平行的最优点标注"
+      ],
+      "function_family": "平面与点(距离)",
+      "id": "eval-geom-001-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "拉格朗日乘数法",
+      "problem": "求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+      "problem_id": "eval-geom-001",
+      "revision_lineage": {
+        "continuous_correction_reason": "Lagrange驻点需证明是全局最小距离点",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "26619ae11d05dd2e83d681b89daec049820257d72dc563c7ccc3df6fe818589a",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-001-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 140,
+            "record_version_sha256": "26619ae11d05dd2e83d681b89daec049820257d72dc563c7ccc3df6fe818589a",
+            "source_line": 93,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "04ba1f390d53a9e730fe8b77047b49bc3f8aac33108f0e3f04603a471f0c14b3"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "约束平面上的等高线",
+          "梯度与法向量平行的最优点标注"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求点 $P(1,2,-1)$ 到平面 $\\pi:2x-y+2z=3$ 的距离。",
+          "依次呈现：约束平面上的等高线",
+          "依次呈现：梯度与法向量平行的最优点标注",
+          "核对完整证明：求 $f(x,y,z)=(x-1)^2+(y-2)^2+(z+1)^2$ 在约束 $2x-y+2z-3=0$ 下的最小值。由 $\\nabla f=\\lambda\\nabla(2x-y+2z-3)$：$2(x-1)=2\\lambda$，$2(y-2)=-\\lambda$，$2(z+1)=2\\lambda$，得 $x-1=\\lambda$，$y-2=-\\dfrac{\\lambda}{2}$，$z+1=\\lambda$。代入约束：$2(1+\\lambda)-\\left(2-\\dfrac{\\lambda}{2}\\right)+2(\\lambda-1)=3$，即 $\\dfrac{9\\lambda}{2}-2=3$，解得 $\\lambda=\\dfrac{10}{9}$。最近距离 $d=\\sqrt{\\lambda^2+\\dfrac{\\lambda^2}{4}+\\lambda^2}=\\dfrac{3}{2}|\\lambda|=\\dfrac{5}{3}$。在约束平面内，设垂足$Q=(19/9,13/9,1/9)$；$P-Q$与平面法向量平行，故对任意平面内$X$有$(P-Q)\\cdot(X-Q)=0$。因此$|P-X|^2=|P-Q|^2+|X-Q|^2=25/9+|X-Q|^2\\ge25/9$，等号只在$X=Q$取到，证明此驻点是唯一全局极小点。",
+          "高亮结果：$\\dfrac{5}{3}$"
+        ]
+      },
+      "solution": "求 $f(x,y,z)=(x-1)^2+(y-2)^2+(z+1)^2$ 在约束 $2x-y+2z-3=0$ 下的最小值。由 $\\nabla f=\\lambda\\nabla(2x-y+2z-3)$：$2(x-1)=2\\lambda$，$2(y-2)=-\\lambda$，$2(z+1)=2\\lambda$，得 $x-1=\\lambda$，$y-2=-\\dfrac{\\lambda}{2}$，$z+1=\\lambda$。代入约束：$2(1+\\lambda)-\\left(2-\\dfrac{\\lambda}{2}\\right)+2(\\lambda-1)=3$，即 $\\dfrac{9\\lambda}{2}-2=3$，解得 $\\lambda=\\dfrac{10}{9}$。最近距离 $d=\\sqrt{\\lambda^2+\\dfrac{\\lambda^2}{4}+\\lambda^2}=\\dfrac{3}{2}|\\lambda|=\\dfrac{5}{3}$。在约束平面内，设垂足$Q=(19/9,13/9,1/9)$；$P-Q$与平面法向量平行，故对任意平面内$X$有$(P-Q)\\cdot(X-Q)=0$。因此$|P-X|^2=|P-Q|^2+|X-Q|^2=25/9+|X-Q|^2\\ge25/9$，等号只在$X=Q$取到，证明此驻点是唯一全局极小点。",
+      "solution_id": "eval-geom-001-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "90af81caf5819ce792b64fdf0bd0e87b8ea8a7b43ae1205b4e52accc851fb1e3",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "直线与平面",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-001-s3",
+      "visual_style": "三维垂线段与投影"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-002-s3",
+      "math_sha256": "889ee420207a58cd031d26c08b17757e26cb23bd4c5c27190b9917177525faa0",
+      "parent_review": {
+        "line": 93,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "143580ac3fbe1537cd5eaf7249c769ced92fad9d78d20ea85a418a7e0ec13128",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "143580ac3fbe1537cd5eaf7249c769ced92fad9d78d20ea85a418a7e0ec13128",
+      "source_line": 96,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "143580ac3fbe1537cd5eaf7249c769ced92fad9d78d20ea85a418a7e0ec13128",
+      "parent_math_sha256": "889ee420207a58cd031d26c08b17757e26cb23bd4c5c27190b9917177525faa0",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "异面直线",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "三维两直线与方向向量箭头",
+        "视角旋转揭示\"看似相交\""
+      ],
+      "function_family": "空间直线位置关系",
+      "id": "eval-geom-002-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "几何观察",
+      "problem": "判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+      "problem_id": "eval-geom-002",
+      "revision_lineage": {
+        "continuous_correction_reason": "第三解不能仅引用第二解排除相交",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "d307944ea65b3595516bd890d8976d59ae992f2980d3b429f0881c56f9edbe3d",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-002-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 143,
+            "record_version_sha256": "d307944ea65b3595516bd890d8976d59ae992f2980d3b429f0881c56f9edbe3d",
+            "source_line": 96,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "0ee27302f647667353b401d4f037fe1c8172b181dedd18bf3ce801da666dce46"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "三维两直线与方向向量箭头",
+          "视角旋转揭示\"看似相交\""
+        ],
+        "steps": [
+          "呈现题干及适用条件：判断两条直线 $l_1:\\dfrac{x-1}{2}=\\dfrac{y+1}{1}=\\dfrac{z-2}{-1}$ 与 $l_2:\\dfrac{x+1}{1}=\\dfrac{y-2}{2}=\\dfrac{z}{1}$ 的位置关系。",
+          "依次呈现：三维两直线与方向向量箭头",
+          "依次呈现：视角旋转揭示\"看似相交\"",
+          "核对完整证明：两方向$d_1=(2,1,-1)$、$d_2=(1,2,1)$满足$d_1\\times d_2=(3,-3,3)\\ne0$，故不平行。两基点差$\\Delta=(-2,3,-2)$与叉积的内积为$-21\\ne0$；若相交，则$\\Delta$必在$\\operatorname{span}\\{d_1,d_2\\}$中，内积应为零，矛盾。因此两线不相交且不平行，是异面直线。",
+          "高亮结果：异面直线"
+        ]
+      },
+      "solution": "两方向$d_1=(2,1,-1)$、$d_2=(1,2,1)$满足$d_1\\times d_2=(3,-3,3)\\ne0$，故不平行。两基点差$\\Delta=(-2,3,-2)$与叉积的内积为$-21\\ne0$；若相交，则$\\Delta$必在$\\operatorname{span}\\{d_1,d_2\\}$中，内积应为零，矛盾。因此两线不相交且不平行，是异面直线。",
+      "solution_id": "eval-geom-002-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "889ee420207a58cd031d26c08b17757e26cb23bd4c5c27190b9917177525faa0",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "直线与平面",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-002-s3",
+      "visual_style": "三维视角旋转"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-006-s1",
+      "math_sha256": "89c48d79f680b5c3c49ebb8bebe984e86783f9023165ec2b6f6127ac6859bab9",
+      "parent_review": {
+        "line": 103,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "32b94b540dbf64b22a6f5553899093c474e8366dea02883b8be9dd773a6af2a7",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "32b94b540dbf64b22a6f5553899093c474e8366dea02883b8be9dd773a6af2a7",
+      "source_line": 106,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "32b94b540dbf64b22a6f5553899093c474e8366dea02883b8be9dd773a6af2a7",
+      "parent_math_sha256": "89c48d79f680b5c3c49ebb8bebe984e86783f9023165ec2b6f6127ac6859bab9",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "三平面共线，交线为 $y=0,\\ x+z=1$",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "增广矩阵行变换的逐步动画",
+        "秩 $2<3$ 与仿射解集维数一的对应标注"
+      ],
+      "function_family": "三平面位置关系",
+      "id": "eval-geom-006-s1",
+      "license": "Internal-Research-Use-Only",
+      "method": "高斯消元/秩",
+      "problem": "讨论三个平面 $\\pi_1:x+y+z=1$，$\\pi_2:x-y+z=1$，$\\pi_3:2x+2z=2$ 的位置关系，并求其公共部分。",
+      "problem_id": "eval-geom-006",
+      "revision_lineage": {
+        "continuous_correction_reason": "非齐次解集是仿射直线，不是线性解空间",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "df0959e08b4dd30ad010a7a93cdc14cce3391d2e8700477d63406965c205c326",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-006-s1",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 153,
+            "record_version_sha256": "df0959e08b4dd30ad010a7a93cdc14cce3391d2e8700477d63406965c205c326",
+            "source_line": 106,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "50bd0ef7894ccda1a115d7dda0eabf2367873bc4a7429a2fee485a68cfda9ea3"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "增广矩阵行变换的逐步动画",
+          "秩 $2<3$ 与仿射解集维数一的对应标注"
+        ],
+        "steps": [
+          "呈现题干及适用条件：讨论三个平面 $\\pi_1:x+y+z=1$，$\\pi_2:x-y+z=1$，$\\pi_3:2x+2z=2$ 的位置关系，并求其公共部分。",
+          "依次呈现：增广矩阵行变换的逐步动画",
+          "依次呈现：秩 $2<3$ 与仿射解集维数一的对应标注",
+          "核对完整证明：系数矩阵与增广矩阵行变换：$\\begin{pmatrix}1&1&1&1\\\\1&-1&1&1\\\\2&0&2&2\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&-2&0&0\\\\0&-2&0&0\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&1&0&0\\\\0&0&0&0\\end{pmatrix}$。秩 $\\mathrm r(A)=\\mathrm r(\\bar A)=2<3$，无穷多解，解集（仿射直线）一维：$y=0$，$x+z=1$，即一条直线。",
+          "高亮结果：三平面共线，交线为 $y=0,\\ x+z=1$"
+        ]
+      },
+      "solution": "系数矩阵与增广矩阵行变换：$\\begin{pmatrix}1&1&1&1\\\\1&-1&1&1\\\\2&0&2&2\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&-2&0&0\\\\0&-2&0&0\\end{pmatrix}\\to\\begin{pmatrix}1&1&1&1\\\\0&1&0&0\\\\0&0&0&0\\end{pmatrix}$。秩 $\\mathrm r(A)=\\mathrm r(\\bar A)=2<3$，无穷多解，解集（仿射直线）一维：$y=0$，$x+z=1$，即一条直线。",
+      "solution_id": "eval-geom-006-s1",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "89c48d79f680b5c3c49ebb8bebe984e86783f9023165ec2b6f6127ac6859bab9",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "直线与平面",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-006-s1",
+      "visual_style": "共轴平面组"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-007-s1",
+      "math_sha256": "7b9e07d27c50b6b4406d72a44bc6b9146d444019d8d969b3abd1bdeba575b225",
+      "parent_review": {
+        "line": 106,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "948c07dede0d865bfc1492352076ca7c2dbac20aa30e58e0ac80df01849d5c85",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "948c07dede0d865bfc1492352076ca7c2dbac20aa30e58e0ac80df01849d5c85",
+      "source_line": 109,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "948c07dede0d865bfc1492352076ca7c2dbac20aa30e58e0ac80df01849d5c85",
+      "parent_math_sha256": "7b9e07d27c50b6b4406d72a44bc6b9146d444019d8d969b3abd1bdeba575b225",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "单叶双曲面（以 $y$ 轴为对称轴）",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+        "$z=k$在$k=\\pm1$退化为两相交直线",
+        "$x=k$在$k=\\pm1/2$退化为两相交直线",
+        "绕$y$轴的单叶双曲面"
+      ],
+      "function_family": "二次曲面(单叶双曲面)",
+      "id": "eval-geom-007-s1",
+      "license": "Internal-Research-Use-Only",
+      "method": "标准型判断",
+      "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+      "problem_id": "eval-geom-007",
+      "revision_lineage": {
+        "continuous_correction_reason": "补齐截面法及两组退化边界",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "ec4295b03616c521c1da0a8dc8cc6b9c718064a2946f3f11f92c05b64eae3fc2",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-007-s1",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 156,
+            "record_version_sha256": "ec4295b03616c521c1da0a8dc8cc6b9c718064a2946f3f11f92c05b64eae3fc2",
+            "source_line": 109,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "e7226e09c751e7b8620374e6a23262db19d6d72f28dad8bd5c4781086655a158"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+          "$z=k$在$k=\\pm1$退化为两相交直线",
+          "$x=k$在$k=\\pm1/2$退化为两相交直线",
+          "绕$y$轴的单叶双曲面"
+        ],
+        "steps": [
+          "呈现题干及适用条件：指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+          "依次呈现：$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+          "依次呈现：$z=k$在$k=\\pm1$退化为两相交直线",
+          "依次呈现：$x=k$在$k=\\pm1/2$退化为两相交直线",
+          "依次呈现：绕$y$轴的单叶双曲面",
+          "核对完整证明：方程化为 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$，形如 $\\dfrac{x^2}{a^2}+\\dfrac{z^2}{b^2}-\\dfrac{y^2}{c^2}=1$（一个负号项），是单叶双曲面，对称轴为 $y$ 轴。截面$y=k$为$4x^2+z^2=1+k^2$，始终为椭圆。截面$z=k$为$4x^2-y^2=1-k^2$：$|k|<1$沿$x$开口，$|k|>1$沿$y$开口，$|k|=1$退化为$y=\\pm2x$。截面$x=k$为$z^2-y^2=1-4k^2$：$|k|<1/2$沿$z$开口，$|k|>1/2$沿$y$开口，$|k|=1/2$退化为$z=\\pm y$。由一个负平方和两个正平方组成的标准式且$y=k$截面始终非空，知为绕$y$轴的单叶双曲面。",
+          "高亮结果：单叶双曲面（以 $y$ 轴为对称轴）"
+        ]
+      },
+      "solution": "方程化为 $\\dfrac{x^2}{1/4}+\\dfrac{z^2}{1}-\\dfrac{y^2}{1}=1$，形如 $\\dfrac{x^2}{a^2}+\\dfrac{z^2}{b^2}-\\dfrac{y^2}{c^2}=1$（一个负号项），是单叶双曲面，对称轴为 $y$ 轴。截面$y=k$为$4x^2+z^2=1+k^2$，始终为椭圆。截面$z=k$为$4x^2-y^2=1-k^2$：$|k|<1$沿$x$开口，$|k|>1$沿$y$开口，$|k|=1$退化为$y=\\pm2x$。截面$x=k$为$z^2-y^2=1-4k^2$：$|k|<1/2$沿$z$开口，$|k|>1/2$沿$y$开口，$|k|=1/2$退化为$z=\\pm y$。由一个负平方和两个正平方组成的标准式且$y=k$截面始终非空，知为绕$y$轴的单叶双曲面。",
+      "solution_id": "eval-geom-007-s1",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "7b9e07d27c50b6b4406d72a44bc6b9146d444019d8d969b3abd1bdeba575b225",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "二次曲面分类",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-007-s1",
+      "visual_style": "水平截面扫描+直母线"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-007-s2",
+      "math_sha256": "5b8d3655d7c4e6f8e5fe664d67a73253a864eda57dfc249ad88fecfcbe8852e5",
+      "parent_review": {
+        "line": 107,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "b5f3acb9e69d2b0c4e44f7cb2132189bc0c01e79603634847f693c8cbdec9f5d",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "b5f3acb9e69d2b0c4e44f7cb2132189bc0c01e79603634847f693c8cbdec9f5d",
+      "source_line": 110,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "b5f3acb9e69d2b0c4e44f7cb2132189bc0c01e79603634847f693c8cbdec9f5d",
+      "parent_math_sha256": "5b8d3655d7c4e6f8e5fe664d67a73253a864eda57dfc249ad88fecfcbe8852e5",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "单叶双曲面（以 $y$ 轴为对称轴）",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+        "$z=k$在$k=\\pm1$退化为两相交直线",
+        "$x=k$在$k=\\pm1/2$退化为两相交直线",
+        "绕$y$轴的单叶双曲面"
+      ],
+      "function_family": "二次曲面(单叶双曲面)",
+      "id": "eval-geom-007-s2",
+      "license": "Internal-Research-Use-Only",
+      "method": "截面法",
+      "problem": "指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+      "problem_id": "eval-geom-007",
+      "revision_lineage": {
+        "continuous_correction_reason": "补齐截面法及两组退化边界",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "2fc29ccbaf372a35a8e393590d20bfcc49d26a9b1822f2a54315b1c6aaa3f056",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-007-s2",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 157,
+            "record_version_sha256": "2fc29ccbaf372a35a8e393590d20bfcc49d26a9b1822f2a54315b1c6aaa3f056",
+            "source_line": 110,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "5fa3415c237f344bcc9ad0de810ae180cbff98de6f82c41e95e6f6f936ca319d"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+          "$z=k$在$k=\\pm1$退化为两相交直线",
+          "$x=k$在$k=\\pm1/2$退化为两相交直线",
+          "绕$y$轴的单叶双曲面"
+        ],
+        "steps": [
+          "呈现题干及适用条件：指出方程 $4x^2-y^2+z^2=1$ 表示的二次曲面类型，并用截面法说明其形状。",
+          "依次呈现：$y=k$的椭圆截面$4x^2+z^2=1+k^2$",
+          "依次呈现：$z=k$在$k=\\pm1$退化为两相交直线",
+          "依次呈现：$x=k$在$k=\\pm1/2$退化为两相交直线",
+          "依次呈现：绕$y$轴的单叶双曲面",
+          "核对完整证明：截面$y=k$为$4x^2+z^2=1+k^2$，始终为椭圆。截面$z=k$为$4x^2-y^2=1-k^2$：$|k|<1$沿$x$开口，$|k|>1$沿$y$开口，$|k|=1$退化为$y=\\pm2x$。截面$x=k$为$z^2-y^2=1-4k^2$：$|k|<1/2$沿$z$开口，$|k|>1/2$沿$y$开口，$|k|=1/2$退化为$z=\\pm y$。由一个负平方和两个正平方组成的标准式且$y=k$截面始终非空，知为绕$y$轴的单叶双曲面。",
+          "高亮结果：单叶双曲面（以 $y$ 轴为对称轴）"
+        ]
+      },
+      "solution": "截面$y=k$为$4x^2+z^2=1+k^2$，始终为椭圆。截面$z=k$为$4x^2-y^2=1-k^2$：$|k|<1$沿$x$开口，$|k|>1$沿$y$开口，$|k|=1$退化为$y=\\pm2x$。截面$x=k$为$z^2-y^2=1-4k^2$：$|k|<1/2$沿$z$开口，$|k|>1/2$沿$y$开口，$|k|=1/2$退化为$z=\\pm y$。由一个负平方和两个正平方组成的标准式且$y=k$截面始终非空，知为绕$y$轴的单叶双曲面。",
+      "solution_id": "eval-geom-007-s2",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "5b8d3655d7c4e6f8e5fe664d67a73253a864eda57dfc249ad88fecfcbe8852e5",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "二次曲面分类",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-007-s2",
+      "visual_style": "水平截面扫描+直母线"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-008-s3",
+      "math_sha256": "6510a721ad1044ebf2ffade993e38869d54d5e2b86c65f014e3f9aad3b498ac6",
+      "parent_review": {
+        "line": 111,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "a6d8d0863783a54de309764f454025abdae6af174f1f02b8a4b4066ded3bb301",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "a6d8d0863783a54de309764f454025abdae6af174f1f02b8a4b4066ded3bb301",
+      "source_line": 114,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "a6d8d0863783a54de309764f454025abdae6af174f1f02b8a4b4066ded3bb301",
+      "parent_math_sha256": "6510a721ad1044ebf2ffade993e38869d54d5e2b86c65f014e3f9aad3b498ac6",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "双叶双曲面",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "三个典型截面的双曲线",
+        "$x+y=0$ 截面无实解的标注",
+        "与单叶双曲面（eval-geom-007）对照"
+      ],
+      "function_family": "二次曲面(双叶双曲面)",
+      "id": "eval-geom-008-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "截面法",
+      "problem": "判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+      "problem_id": "eval-geom-008",
+      "revision_lineage": {
+        "continuous_correction_reason": "仅凭几个典型截面不足以严格分类，补两连通分支表达式",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "a24264703105f7f3f928f2c54a3adfe4391048870bf3a3d16d784d5f090da678",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-008-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 161,
+            "record_version_sha256": "a24264703105f7f3f928f2c54a3adfe4391048870bf3a3d16d784d5f090da678",
+            "source_line": 114,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "352dc1cc2c444c8b6806708c466e98d1089d3a295563b034c22fc804d994aef5"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "三个典型截面的双曲线",
+          "$x+y=0$ 截面无实解的标注",
+          "与单叶双曲面（eval-geom-007）对照"
+        ],
+        "steps": [
+          "呈现题干及适用条件：判断二次曲面 $2x^2+y^2-z^2+4xy=1$ 的类型。",
+          "依次呈现：三个典型截面的双曲线",
+          "依次呈现：$x+y=0$ 截面无实解的标注",
+          "依次呈现：与单叶双曲面（eval-geom-007）对照",
+          "核对完整证明：用 $z=0$ 截：$2x^2+4xy+y^2=1$，配方为 $2(x+y)^2-y^2=1$，是双曲线；用 $y=0$ 截：$2x^2-z^2=1$，是双曲线；用 $x+y=0$（即 $x=-y$）截：$-y^2-z^2=1$ 无实解——该平面与曲面不相交。三个截面说明曲面在 $z$ 方向与 $x+y$ 方向均为双曲型、且存在与曲面完全不相交的平面（双叶分离的特征）。严格分类令$u=x+y,\\ v=y,\\ w=z$，这是可逆线性替换。原式化为$2u^2-v^2-w^2=1$，故$u=\\pm\\sqrt{(1+v^2+w^2)/2}$。两个符号分支分别是定义于$\\mathbb R^2$的连续图像，各自连通，且由$|u|\\ge1/\\sqrt2$隔开，故恰为双叶双曲面。",
+          "高亮结果：双叶双曲面"
+        ]
+      },
+      "solution": "用 $z=0$ 截：$2x^2+4xy+y^2=1$，配方为 $2(x+y)^2-y^2=1$，是双曲线；用 $y=0$ 截：$2x^2-z^2=1$，是双曲线；用 $x+y=0$（即 $x=-y$）截：$-y^2-z^2=1$ 无实解——该平面与曲面不相交。三个截面说明曲面在 $z$ 方向与 $x+y$ 方向均为双曲型、且存在与曲面完全不相交的平面（双叶分离的特征）。严格分类令$u=x+y,\\ v=y,\\ w=z$，这是可逆线性替换。原式化为$2u^2-v^2-w^2=1$，故$u=\\pm\\sqrt{(1+v^2+w^2)/2}$。两个符号分支分别是定义于$\\mathbb R^2$的连续图像，各自连通，且由$|u|\\ge1/\\sqrt2$隔开，故恰为双叶双曲面。",
+      "solution_id": "eval-geom-008-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "6510a721ad1044ebf2ffade993e38869d54d5e2b86c65f014e3f9aad3b498ac6",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "二次曲面分类",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-008-s3",
+      "visual_style": "三截面双曲线"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-010-s1",
+      "math_sha256": "a023ecbaa1c11211a2435c97725b2adc2fd35043c225c64c89ee8401fd20fb98",
+      "parent_review": {
+        "line": 115,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "3dad2a29ee4106f24f1f05ef8d056fb518bd3b5435ce279c4c570c6bd85ca4e8",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "3dad2a29ee4106f24f1f05ef8d056fb518bd3b5435ce279c4c570c6bd85ca4e8",
+      "source_line": 118,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "3dad2a29ee4106f24f1f05ef8d056fb518bd3b5435ce279c4c570c6bd85ca4e8",
+      "parent_math_sha256": "a023ecbaa1c11211a2435c97725b2adc2fd35043c225c64c89ee8401fd20fb98",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "双曲抛物面（马鞍面），直纹面",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "马鞍面三维渲染与 $45^\\circ$ 旋转变换",
+        "$xy=\\dfrac{u^2-v^2}{2}$ 的代入"
+      ],
+      "function_family": "双曲抛物面",
+      "id": "eval-geom-010-s1",
+      "license": "Internal-Research-Use-Only",
+      "method": "旋转化标准形",
+      "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+      "problem_id": "eval-geom-010",
+      "revision_lineage": {
+        "continuous_correction_reason": "补题干要求的两族直母线",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "42c9768716ba0702343312fb65976851066d1b2235cc769d8c7db483d95d01be",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-010-s1",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 165,
+            "record_version_sha256": "42c9768716ba0702343312fb65976851066d1b2235cc769d8c7db483d95d01be",
+            "source_line": 118,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "aa8562a166703661cba4e9d8509873a2f93ae476b891266dfb4efb0cdf9a3f2f"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "马鞍面三维渲染与 $45^\\circ$ 旋转变换",
+          "$xy=\\dfrac{u^2-v^2}{2}$ 的代入"
+        ],
+        "steps": [
+          "呈现题干及适用条件：说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+          "依次呈现：马鞍面三维渲染与 $45^\\circ$ 旋转变换",
+          "依次呈现：$xy=\\dfrac{u^2-v^2}{2}$ 的代入",
+          "核对完整证明：作正交变换 $u=\\dfrac{x+y}{\\sqrt{2}}$、$v=\\dfrac{x-y}{\\sqrt{2}}$，则 $x=\\dfrac{u+v}{\\sqrt{2}}$、$y=\\dfrac{u-v}{\\sqrt{2}}$，$xy=\\dfrac{u^2-v^2}{2}$。曲面方程化为 $z=\\dfrac{u^2}{2}-\\dfrac{v^2}{2}$，即 $2z=u^2-v^2$，是双曲抛物面（马鞍面）。两族直母线显式写成$(x,y,z)=(t,c,ct)$和$(c,t,ct)$（$c,t\\in\\mathbb R$）。每一点$(x_0,y_0,x_0y_0)$都同时落在$c=y_0$的第一族及$c=x_0$的第二族上。",
+          "高亮结果：双曲抛物面（马鞍面），直纹面"
+        ]
+      },
+      "solution": "作正交变换 $u=\\dfrac{x+y}{\\sqrt{2}}$、$v=\\dfrac{x-y}{\\sqrt{2}}$，则 $x=\\dfrac{u+v}{\\sqrt{2}}$、$y=\\dfrac{u-v}{\\sqrt{2}}$，$xy=\\dfrac{u^2-v^2}{2}$。曲面方程化为 $z=\\dfrac{u^2}{2}-\\dfrac{v^2}{2}$，即 $2z=u^2-v^2$，是双曲抛物面（马鞍面）。两族直母线显式写成$(x,y,z)=(t,c,ct)$和$(c,t,ct)$（$c,t\\in\\mathbb R$）。每一点$(x_0,y_0,x_0y_0)$都同时落在$c=y_0$的第一族及$c=x_0$的第二族上。",
+      "solution_id": "eval-geom-010-s1",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "a023ecbaa1c11211a2435c97725b2adc2fd35043c225c64c89ee8401fd20fb98",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "曲面与曲线",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-010-s1",
+      "visual_style": "直母线网格"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-010-s3",
+      "math_sha256": "fdd6a571d1eaf41e3a38cd1e5f253c64557ad3f003fe955c2824d72a9fd6bce4",
+      "parent_review": {
+        "line": 117,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "581020b17d937c91ce7c12f12b551c8a32722becc18c54a78ac11c91d90396df",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "581020b17d937c91ce7c12f12b551c8a32722becc18c54a78ac11c91d90396df",
+      "source_line": 120,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "581020b17d937c91ce7c12f12b551c8a32722becc18c54a78ac11c91d90396df",
+      "parent_math_sha256": "fdd6a571d1eaf41e3a38cd1e5f253c64557ad3f003fe955c2824d72a9fd6bce4",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "双曲抛物面（马鞍面），直纹面",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "坐标方向竖直截面（直线族）与水平截面（非零高度为等轴双曲线，零高度为两相交直线）扫描",
+        "斜截面 $x=\\pm y$ 的抛物线"
+      ],
+      "function_family": "双曲抛物面",
+      "id": "eval-geom-010-s3",
+      "license": "Internal-Research-Use-Only",
+      "method": "截面法",
+      "problem": "说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+      "problem_id": "eval-geom-010",
+      "revision_lineage": {
+        "continuous_correction_reason": "一般竖直截面并非直线，限制为两个坐标方向",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "4ae3e8eb32316bffebd83aeb8a1ae59d9a3e36889b9e2c5deca5bd33ca96db86",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-010-s3",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 167,
+            "record_version_sha256": "4ae3e8eb32316bffebd83aeb8a1ae59d9a3e36889b9e2c5deca5bd33ca96db86",
+            "source_line": 120,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "442431421378c3af5327306a770982d02e227337fbf5a74430dd73ac20168634"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "坐标方向竖直截面（直线族）与水平截面（非零高度为等轴双曲线，零高度为两相交直线）扫描",
+          "斜截面 $x=\\pm y$ 的抛物线"
+        ],
+        "steps": [
+          "呈现题干及适用条件：说明曲面 $z=xy$ 的类型，并验证它是直纹面。",
+          "依次呈现：坐标方向竖直截面（直线族）与水平截面（非零高度为等轴双曲线，零高度为两相交直线）扫描",
+          "依次呈现：斜截面 $x=\\pm y$ 的抛物线",
+          "核对完整证明：用 $y=k$ 截：$z=kx$，对任意 $k$ 都是直线（上述两个坐标方向的竖直截面均为直线，直纹性的又一体现）；用 $z=k$ 截：$xy=k$，等轴双曲线（$k\\ne 0$）或两坐标轴（$k=0$）；若要抛物线截面，取斜截面 $x=y$（得 $z=x^2$）与 $x=-y$（得 $z=-x^2$）。直线截面与双曲线截面正是双曲抛物面的截面特征。",
+          "高亮结果：双曲抛物面（马鞍面），直纹面"
+        ]
+      },
+      "solution": "用 $y=k$ 截：$z=kx$，对任意 $k$ 都是直线（上述两个坐标方向的竖直截面均为直线，直纹性的又一体现）；用 $z=k$ 截：$xy=k$，等轴双曲线（$k\\ne 0$）或两坐标轴（$k=0$）；若要抛物线截面，取斜截面 $x=y$（得 $z=x^2$）与 $x=-y$（得 $z=-x^2$）。直线截面与双曲线截面正是双曲抛物面的截面特征。",
+      "solution_id": "eval-geom-010-s3",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "fdd6a571d1eaf41e3a38cd1e5f253c64557ad3f003fe955c2824d72a9fd6bce4",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "曲面与曲线",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-010-s3",
+      "visual_style": "直母线网格"
+    }
+  },
+  {
+    "binding": {
+      "group": "eval",
+      "id": "eval-geom-011-s2",
+      "math_sha256": "5deca295faf6cd426e158be008452d9b62304839def9a28a09be45982d6f7f1e",
+      "parent_review": {
+        "line": 119,
+        "path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "record_sha256": "64728e663c5d48e7f220da751a846d6edf12ba5f15b6d803ab8be000a3a8ce98",
+        "sha256": "5872955cf4d806b1dfae6c883a8ac8afff5ab77c4d54ed5e274755bd0327db4e"
+      },
+      "patch_review": null,
+      "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/effective-core-v3/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "record_sha256": "64728e663c5d48e7f220da751a846d6edf12ba5f15b6d803ab8be000a3a8ce98",
+      "source_line": 122,
+      "source_sha256": "49ab55cf087403951a119a43d370bc8ee5a1cc1df96f3afc095f613012cfe8a0",
+      "parent_record_sha256": "64728e663c5d48e7f220da751a846d6edf12ba5f15b6d803ab8be000a3a8ce98",
+      "parent_math_sha256": "5deca295faf6cd426e158be008452d9b62304839def9a28a09be45982d6f7f1e",
+      "review": "INHERITED_IDENTICAL_COMPLETE_RECORD"
+    },
+    "record": {
+      "answer": "两个交点：$\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$ 与 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$",
+      "category": "解析几何",
+      "efficiency_tags": [
+        "球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$",
+        "相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照"
+      ],
+      "function_family": "直线与二次曲面交点",
+      "id": "eval-geom-011-s2",
+      "license": "Internal-Research-Use-Only",
+      "method": "距离法",
+      "problem": "求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+      "problem_id": "eval-geom-011",
+      "revision_lineage": {
+        "continuous_correction_reason": "距离和弦长仅核对另一解，补独立推导交点",
+        "continuous_review_parent": {
+          "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+          "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+          "parent_record_sha256": "0ef82acf84ecce48cc9f9c08f3822b8c004b893b2a9a429d135f72326fe421fd",
+          "submitted_ref": {
+            "group": "eval",
+            "id": "eval-geom-011-s2",
+            "identity_verified": true,
+            "input_binding": "active-497-row-bindings.jsonl",
+            "input_binding_line": 169,
+            "record_version_sha256": "0ef82acf84ecce48cc9f9c08f3822b8c004b893b2a9a429d135f72326fe421fd",
+            "source_line": 122,
+            "source_path": "data/v2/eval/dataset_eval.jsonl",
+            "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+            "task_sha256": "23ef9ba884a8fb9af9fbf161da9369fd74da2113c09eb9d81929c33f947b6c12"
+          }
+        },
+        "version": "codex-continuous-eval-v1-20261007"
+      },
+      "scene_spec": {
+        "objects": [
+          "球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$",
+          "相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照"
+        ],
+        "steps": [
+          "呈现题干及适用条件：求直线 $l:x=1+t,\\ y=t,\\ z=t$ 与球面 $x^2+y^2+z^2=4$ 的交点个数，并求出交点坐标。",
+          "依次呈现：球心到直线的垂线段与距离 $\\sqrt{\\dfrac{2}{3}}$",
+          "依次呈现：相交弦长 $2\\sqrt{\\dfrac{10}{3}}$ 与两参数差的对照",
+          "核对完整证明：球心 $O(0,0,0)$ 到直线距离：直线上取点 $P_0(1,0,0)$、方向 $\\vec s=(1,1,1)$，$\\overrightarrow{P_0O}=(-1,0,0)$，叉积 $\\overrightarrow{P_0O}\\times\\vec s=(0\\cdot 1-0\\cdot 1,\\ 0\\cdot 1-(-1)\\cdot 1,\\ (-1)\\cdot 1-0\\cdot 1)=(0,1,-1)$，模 $\\sqrt{2}$，故 $d=\\dfrac{\\sqrt{2}}{\\sqrt{3}}=\\sqrt{\\dfrac{2}{3}}<2$，直线与球面相交于两点。相交弦长 $=2\\sqrt{4-\\dfrac{2}{3}}=2\\sqrt{\\dfrac{10}{3}}$，与解法一中两参数差对应的长度 $|t_1-t_2|\\cdot|\\vec s|=\\dfrac{2\\sqrt{10}}{3}\\cdot\\sqrt{3}=2\\sqrt{\\dfrac{10}{3}}$ 一致。设直线点$r(t)=(1+t,t,t)$，沿方向$d=(1,1,1)$到球心的最近参数满足$r(t)\\cdot d=1+3t=0$，故$t_0=-1/3$、垂足$Q=(2/3,-1/3,-1/3)$。由正交分解$|r(t)|^2=|Q|^2+|d|^2(t-t_0)^2=2/3+3(t+1/3)^2$。令其等于$4$，即$t=(-1\\pm\\sqrt{10})/3$，代入$r(t)$得到题中两个交点。",
+          "高亮结果：两个交点：$\\left(\\dfrac{2+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3},\\dfrac{-1+\\sqrt{10}}{3}\\right)$ 与 $\\left(\\dfrac{2-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3},\\dfrac{-1-\\sqrt{10}}{3}\\right)$"
+        ]
+      },
+      "solution": "球心 $O(0,0,0)$ 到直线距离：直线上取点 $P_0(1,0,0)$、方向 $\\vec s=(1,1,1)$，$\\overrightarrow{P_0O}=(-1,0,0)$，叉积 $\\overrightarrow{P_0O}\\times\\vec s=(0\\cdot 1-0\\cdot 1,\\ 0\\cdot 1-(-1)\\cdot 1,\\ (-1)\\cdot 1-0\\cdot 1)=(0,1,-1)$，模 $\\sqrt{2}$，故 $d=\\dfrac{\\sqrt{2}}{\\sqrt{3}}=\\sqrt{\\dfrac{2}{3}}<2$，直线与球面相交于两点。相交弦长 $=2\\sqrt{4-\\dfrac{2}{3}}=2\\sqrt{\\dfrac{10}{3}}$，与解法一中两参数差对应的长度 $|t_1-t_2|\\cdot|\\vec s|=\\dfrac{2\\sqrt{10}}{3}\\cdot\\sqrt{3}=2\\sqrt{\\dfrac{10}{3}}$ 一致。设直线点$r(t)=(1+t,t,t)$，沿方向$d=(1,1,1)$到球心的最近参数满足$r(t)\\cdot d=1+3t=0$，故$t_0=-1/3$、垂足$Q=(2/3,-1/3,-1/3)$。由正交分解$|r(t)|^2=|Q|^2+|d|^2(t-t_0)^2=2/3+3(t+1/3)^2$。令其等于$4$，即$t=(-1\\pm\\sqrt{10})/3$，代入$r(t)$得到题中两个交点。",
+      "solution_id": "eval-geom-011-s2",
+      "source": "self-authored",
+      "strict_review": {
+        "admitted": false,
+        "core_math_verified": true,
+        "math_content_sha256": "5deca295faf6cd426e158be008452d9b62304839def9a28a09be45982d6f7f1e",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+        "render_verified": false,
+        "scene_text_reviewed": true,
+        "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+      },
+      "sub_category": "曲面与曲线",
+      "versioned_id": "codex-continuous-eval-v1-20261007-eval-geom-011-s2",
+      "visual_style": "判别式与弦长"
+    }
+  }
+]

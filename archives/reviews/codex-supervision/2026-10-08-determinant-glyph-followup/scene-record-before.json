@@ -1,0 +1,63 @@
+{
+  "answer": "$6$",
+  "category": "高等代数",
+  "efficiency_tags": [
+    "前三行分别减第四行（第四行保持不变）的展开降阶",
+    "三阶余子式按第一列展开的高亮"
+  ],
+  "function_family": "特殊结构行列式",
+  "id": "eval-linalg-002-s3",
+  "license": "Internal-Research-Use-Only",
+  "method": "展开降阶",
+  "problem": "计算四阶行列式 $D=\\begin{vmatrix}1&1&1&1\\\\1&2&1&1\\\\1&1&3&1\\\\1&1&1&4\\end{vmatrix}$。",
+  "problem_id": "eval-linalg-002",
+  "revision_lineage": {
+    "continuous_correction_reason": "消元只作用前三行，不能把末行也减成零行",
+    "continuous_review_parent": {
+      "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+      "parent_record_sha256": "4c9ed8f80c261081c64c817ca5fca04e59b7bd403ed2af4a870502d6cf798203",
+      "submitted_ref": {
+        "group": "eval",
+        "id": "eval-linalg-002-s3",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 248,
+        "record_version_sha256": "4c9ed8f80c261081c64c817ca5fca04e59b7bd403ed2af4a870502d6cf798203",
+        "source_line": 201,
+        "source_path": "data/v2/eval/dataset_eval.jsonl",
+        "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+        "task_sha256": "df227e282c243751f1cf48bfa776398513fa7634bfc72cb19bc55cd94a673713"
+      }
+    },
+    "version": "codex-continuous-eval-v1-20261007"
+  },
+  "scene_spec": {
+    "objects": [
+      "前三行分别减第四行（第四行保持不变）的展开降阶",
+      "三阶余子式按第一列展开的高亮"
+    ],
+    "steps": [
+      "呈现题干及适用条件：计算四阶行列式 $D=\\begin{vmatrix}1&1&1&1\\\\1&2&1&1\\\\1&1&3&1\\\\1&1&1&4\\end{vmatrix}$。",
+      "依次呈现：前三行分别减第四行（第四行保持不变）的展开降阶",
+      "依次呈现：三阶余子式按第一列展开的高亮",
+      "核对完整证明：第一、二、三行分别减第四行，第四行保持不变：$\\begin{vmatrix}0&0&0&-3\\\\0&1&0&-3\\\\0&0&2&-3\\\\1&1&1&4\\end{vmatrix}$，按第一列展开：$D=(-1)^{4+1}\\cdot 1\\cdot\\begin{vmatrix}0&0&-3\\\\1&0&-3\\\\0&2&-3\\end{vmatrix}=-\\left[0-0+(-3)\\begin{vmatrix}1&0\\\\0&2\\end{vmatrix}\\right]=-(-3\\cdot 2)=6$。",
+      "高亮结果：$6$"
+    ]
+  },
+  "solution": "第一、二、三行分别减第四行，第四行保持不变：$\\begin{vmatrix}0&0&0&-3\\\\0&1&0&-3\\\\0&0&2&-3\\\\1&1&1&4\\end{vmatrix}$，按第一列展开：$D=(-1)^{4+1}\\cdot 1\\cdot\\begin{vmatrix}0&0&-3\\\\1&0&-3\\\\0&2&-3\\end{vmatrix}=-\\left[0-0+(-3)\\begin{vmatrix}1&0\\\\0&2\\end{vmatrix}\\right]=-(-3\\cdot 2)=6$。",
+  "solution_id": "eval-linalg-002-s3",
+  "source": "self-authored",
+  "strict_review": {
+    "admitted": false,
+    "core_math_verified": true,
+    "math_content_sha256": "37978f200684f4ec03471ca1a70128f9d96532e1956bca59a43db88b62b22065",
+    "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+    "render_verified": false,
+    "scene_text_reviewed": true,
+    "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+  },
+  "sub_category": "行列式",
+  "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-002-s3",
+  "visual_style": "消元三角化"
+}

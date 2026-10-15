@@ -1,0 +1,48 @@
+{
+  "probe": "external-udp-v1",
+  "lan_ip": "28.0.0.1",
+  "production_gate": "CLOSED",
+  "controls": {
+    "before_udp": "sent",
+    "before_dns": "resolved",
+    "after_udp": "sent",
+    "after_dns": "resolved"
+  },
+  "sandbox": {
+    "rc": 0,
+    "stdout": "{\"udp_lan_v4\": {\"outcome\": \"sent\"}, \"udp_external_v4\": {\"outcome\": \"sent\"}, \"udp_external_v6\": {\"outcome\": \"sent\"}, \"dns_os\": {\"outcome\": \"failed\", \"errno\": 11001, \"err\": \"gaierror\"}}",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9642ca80103e4ab590ea68c149d8b6c4",
+    "results": {
+      "udp_lan_v4": {
+        "outcome": "sent"
+      },
+      "udp_external_v4": {
+        "outcome": "sent"
+      },
+      "udp_external_v6": {
+        "outcome": "sent"
+      },
+      "dns_os": {
+        "outcome": "failed",
+        "errno": 11001,
+        "err": "gaierror"
+      }
+    }
+  },
+  "receiver": {
+    "all": [
+      [
+        "c4d979f5-f8be-48",
+        "('28.0.0.1', 59650)"
+      ],
+      [
+        "d2eb4d3c-69ff-4f",
+        "('28.0.0.1', 58782)"
+      ]
+    ],
+    "before_nonrecv": true,
+    "after_received": true,
+    "sandbox_nonce_received": false
+  }
+}

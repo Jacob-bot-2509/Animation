@@ -1,0 +1,52 @@
+[
+  {
+    "case": "empty",
+    "exit_code": 0,
+    "incorrectly_packaged": true,
+    "report": {
+      "schema": "math-review-batch-v1",
+      "batch": "empty",
+      "reviewer": "claude-code",
+      "total": 0,
+      "pass": 0,
+      "issue": 0,
+      "needs_codex": 0,
+      "note": "逐条人工审阅(题面/解析/答案);sympy 辅助核验仅作佐证,不替代审阅结论"
+    }
+  },
+  {
+    "case": "duplicate",
+    "exit_code": 0,
+    "incorrectly_packaged": true,
+    "report": {
+      "schema": "math-review-batch-v1",
+      "batch": "duplicate",
+      "reviewer": "claude-code",
+      "total": 2,
+      "pass": 2,
+      "issue": 0,
+      "needs_codex": 0,
+      "note": "逐条人工审阅(题面/解析/答案);sympy 辅助核验仅作佐证,不替代审阅结论"
+    }
+  },
+  {
+    "case": "stale",
+    "exit_code": 0,
+    "incorrectly_packaged": true,
+    "report": {
+      "schema": "math-review-batch-v1",
+      "batch": "stale",
+      "reviewer": "claude-code",
+      "total": 1,
+      "pass": 1,
+      "issue": 0,
+      "needs_codex": 0,
+      "note": "逐条人工审阅(题面/解析/答案);sympy 辅助核验仅作佐证,不替代审阅结论"
+    }
+  },
+  {
+    "case": "overwrite_and_self_manifest",
+    "exit_code": 0,
+    "receipt_includes_previous_receipt": true
+  }
+]

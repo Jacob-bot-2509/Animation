@@ -1,0 +1,65 @@
+{
+  "schema": "codex-current-core-bound-isolation-followup-v1",
+  "source_bindings_sha256": "27d48ee8253a94f765e51b0a021ef588704e6f5b8b31baf490455ff69ddaa5ca",
+  "record_bindings_sha256": "764ac2ca028271eebf51311b0b30d2a5592ffc6af025bd4998d522e6c40e0efd",
+  "screen_tool_snapshot_sha256": "54f587c582dc9f7542146a3491294005a2586b413b51e2cd5918f0fc0656f4d8",
+  "screens": {
+    "digits": {
+      "train_side": 311,
+      "eval_side": 450,
+      "cross_candidates": []
+    },
+    "digits_letters": {
+      "train_side": 311,
+      "eval_side": 450,
+      "cross_candidates": []
+    },
+    "wording": {
+      "train_side": 311,
+      "eval_side": 450,
+      "cross_candidates": []
+    }
+  },
+  "focused_semantic_review": [
+    {
+      "train_id": "draft-c31-01",
+      "test_id": "test-linalg-001",
+      "train_parent_record_sha256": "25b7e1fb0f5e4d53ec83a498a0b1c45b1be5b230e5a09f7a86217e6a73577bb4",
+      "test_record_sha256": "cb6588edbc010da5365843061352622f26530422e628c736b658e0297da79476",
+      "before_common_structure": "Invertible three-variable matrix; compute D,Dx,Dy,Dz; divide; substitute. Parameter in c31-03 does not change rank or branch.",
+      "before_disposition": "CONFIRMED_SAME_CORE",
+      "detected_by_old_skeleton_methods": {
+        "digits": false,
+        "digits_letters": false,
+        "wording": false
+      },
+      "after_train_record_sha256": "77cad5f8c6eaace67bdcd7f36e6dcc12b4783c0d72af1b30f0f224309258f6e3",
+      "after_goal": "Necessary and sufficient parity condition for INTEGER solution",
+      "after_exact_proof": "patch-review.json",
+      "pair_repair": "PASS_LOCAL_STRUCTURAL_SEPARATION",
+      "global_generalization": "NOT_PERMITTED"
+    },
+    {
+      "train_id": "draft-c31-03",
+      "test_id": "test-linalg-001",
+      "train_parent_record_sha256": "dd7bb9d15c2e898c1bec639ed1bf94716f197b1a24b00e4c218b783a512bd2c1",
+      "test_record_sha256": "cb6588edbc010da5365843061352622f26530422e628c736b658e0297da79476",
+      "before_common_structure": "Invertible three-variable matrix; compute D,Dx,Dy,Dz; divide; substitute. Parameter in c31-03 does not change rank or branch.",
+      "before_disposition": "CONSERVATIVE_STRUCTURE_REVISION",
+      "detected_by_old_skeleton_methods": {
+        "digits": false,
+        "digits_letters": false,
+        "wording": false
+      },
+      "after_train_record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+      "after_goal": "Necessary and sufficient divisibility for solution over POLYNOMIAL RING",
+      "after_exact_proof": "patch-review.json",
+      "pair_repair": "PASS_LOCAL_STRUCTURAL_SEPARATION",
+      "global_generalization": "NOT_PERMITTED"
+    }
+  ],
+  "global_semantic_isolation": "NOT_ESTABLISHED",
+  "remaining_core_material": "Current-version family/core map for the 311 training-side and 450 evaluation-side records; cross-family candidate list; per-candidate independent mathematical distinction or versioned repair. No historic corpus expansion.",
+  "production": "CLOSED",
+  "PASS_CORE_SCOPE_issued": false
+}

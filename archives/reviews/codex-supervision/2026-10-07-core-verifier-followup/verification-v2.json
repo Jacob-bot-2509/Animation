@@ -1,0 +1,71 @@
+{
+  "schema": "codex-supervision-independent-verification-v2",
+  "overall": "PASS_SCOPED_EVIDENCE_VERIFICATION",
+  "checks": {
+    "delivery": {
+      "status": "PASS_SCOPED_EVIDENCE_CHECK",
+      "result": {
+        "artifact_count": 58,
+        "verified_artifacts": 58
+      }
+    },
+    "AB": {
+      "status": "PASS_SCOPED_EVIDENCE_CHECK",
+      "result": {
+        "A": {
+          "path": "reviews/2026-10-07-gap-materials/core-submission-v1/package-reference.json",
+          "raw_sha256": "99eff04df56c9d26fc329f2f57d918f81552910ad71005a5db042aee35d89d9e",
+          "bytes": 1135
+        },
+        "B": {
+          "path": "reviews/2026-10-07-gap-materials/core-submission-v1/submission-manifest.json",
+          "raw_sha256": "6081b95f1945d912abb6fe80792e9ef6299bb12fd31d8a623cdee6db2b25d2f8",
+          "bytes": 1982
+        }
+      }
+    },
+    "original_consistency": {
+      "status": "PASS_SCOPED_EVIDENCE_CHECK",
+      "result": {
+        "total": 761,
+        "status_counts": {
+          "PASS": 158,
+          "FAIL": 603
+        },
+        "tail_mismatch_rows": 602,
+        "decimal_answer_rows": 11
+      }
+    },
+    "review_input_scope": {
+      "status": "PASS_SCOPED_EVIDENCE_CHECK",
+      "result": {
+        "review_count": 296,
+        "by_split": {
+          "train": 46,
+          "eval": 100,
+          "test": 150
+        },
+        "draft_count": 264,
+        "draft_id_intersection_count": 0,
+        "draft_id_intersection": [],
+        "risky_is_not_an_additional_identity_list": true
+      }
+    },
+    "correction_structure": {
+      "status": "PASS_SCOPED_EVIDENCE_CHECK",
+      "result": {
+        "correction_count": 30,
+        "by_group": {
+          "train": 9,
+          "eval": 9,
+          "test": 12
+        },
+        "input_and_corrected_dense_record_sha_verified": true
+      }
+    }
+  },
+  "full_761_math_verdict": "NOT_ESTABLISHED",
+  "semantic_isolation_verdict": "NOT_ESTABLISHED",
+  "active_data_admission": "PENDING",
+  "PASS_CORE_SCOPE_issued": false
+}

@@ -1,0 +1,7047 @@
+## test-calc-001
+
+problem
+
+求极限 $\displaystyle\lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\sin\frac{k\pi}{n}$。
+
+solution
+
+该和式为函数 $f(x)=\sin(\pi x)$ 在 $[0,1]$ 上 $n$ 等分的黎曼和（取右端点 $\dfrac{k}{n}$）：$\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\sin\dfrac{k\pi}{n}=\sum_{k=1}^{n}\sin\left(\pi\cdot\dfrac{k}{n}\right)\cdot\dfrac{1}{n}$。由定积分定义，$\lim_{n\to\infty}\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\sin\dfrac{k\pi}{n}=\int_0^1\sin(\pi x)\,dx=\left[-\dfrac{\cos\pi x}{\pi}\right]_0^1=-\dfrac{\cos\pi}{\pi}+\dfrac{\cos 0}{\pi}=\dfrac{1}{\pi}+\dfrac{1}{\pi}=\dfrac{2}{\pi}$。
+
+answer
+
+$\dfrac{2}{\pi}$
+
+scene_spec.objects[0]
+
+单位区间 $[0,1]$ 上 $\sin(\pi x)$ 的黎曼矩形逼近
+
+scene_spec.objects[1]
+
+和式随 $n$ 增大收敛于积分值
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·极限×定积分综合场景，呈现与黎曼和、定积分定义、正弦函数积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：单位区间 $[0,1]$ 上 $\sin(\pi x)$ 的黎曼矩形逼近。
+
+scene_spec.steps[2]
+
+第三步：和式随 $n$ 增大收敛于积分值。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+单位区间 $[0,1]$ 上 $\sin(\pi x)$ 的黎曼矩形逼近
+
+efficiency_tags[1]
+
+和式随 $n$ 增大收敛于积分值
+
+## test-calc-002
+
+problem
+
+求极限 $\displaystyle\lim_{n\to\infty}n^2\left(1-\cos\frac{1}{n}\right)$。
+
+solution
+
+由 $\cos x=1-\dfrac{x^2}{2}+o(x^2)$，取 $x=\dfrac{1}{n}\to 0$：$1-\cos\dfrac{1}{n}=\dfrac{1}{2n^2}+o\left(\dfrac{1}{n^2}\right)$。故 $n^2\left(1-\cos\dfrac{1}{n}\right)=n^2\cdot\dfrac{1}{2n^2}+n^2\cdot o\left(\dfrac{1}{n^2}\right)\to\dfrac{1}{2}$。
+
+answer
+
+$\dfrac{1}{2}$
+
+scene_spec.objects[0]
+
+$y=1-\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触
+
+scene_spec.objects[1]
+
+数列点列向 $1/2$ 收敛
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·数列极限×泰勒公式综合场景，呈现与数列极限、泰勒展开、无穷小阶相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=1-\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触。
+
+scene_spec.steps[2]
+
+第三步：数列点列向 $1/2$ 收敛。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=1-\cos x$ 与 $y=x^2/2$ 在原点附近的二阶接触
+
+efficiency_tags[1]
+
+数列点列向 $1/2$ 收敛
+
+## test-calc-003
+
+problem
+
+设 $F(x)=\displaystyle\int_1^x\frac{\ln t}{t}\,dt$（$x>0$）。求 $F'(x)$、$F''(x)$，并给出 $F(x)$ 的显式表达式。
+
+solution
+
+由微积分基本定理，$F'(x)=\dfrac{\ln x}{x}$。再求导：$F''(x)=\dfrac{\frac{1}{x}\cdot x-\ln x\cdot 1}{x^2}=\dfrac{1-\ln x}{x^2}$。显式积分：令 $u=\ln t$（$du=\dfrac{dt}{t}$），$F(x)=\displaystyle\int_0^{\ln x}u\,du=\dfrac{(\ln x)^2}{2}$（下限 $t=1$ 对应 $u=0$）。验证：$F'(x)=\dfrac{2\ln x}{2}\cdot\dfrac{1}{x}=\dfrac{\ln x}{x}$，一致。
+
+answer
+
+$F'(x)=\dfrac{\ln x}{x}$；$F''(x)=\dfrac{1-\ln x}{x^2}$；$F(x)=\dfrac{(\ln x)^2}{2}$
+
+scene_spec.objects[0]
+
+被积函数曲线与变限积分的面积
+
+scene_spec.objects[1]
+
+$F,F',F''$ 三条曲线对照
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·变限积分×导数综合场景，呈现与微积分基本定理、对数函数、链式求导相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：被积函数曲线与变限积分的面积。
+
+scene_spec.steps[2]
+
+第三步：$F,F',F''$ 三条曲线对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+被积函数曲线与变限积分的面积
+
+efficiency_tags[1]
+
+$F,F',F''$ 三条曲线对照
+
+## test-calc-004
+
+problem
+
+求微分方程 $y'+2y=e^{-x}$ 的通解。
+
+solution
+
+积分因子 $\mu(x)=e^{\int 2\,dx}=e^{2x}$。方程两边乘 $e^{2x}$：$e^{2x}y'+2e^{2x}y=e^{x}$，即 $(e^{2x}y)'=e^{x}$。积分得 $e^{2x}y=e^{x}+C$，故通解 $y=e^{-x}+Ce^{-2x}$。
+
+answer
+
+$y=e^{-x}+Ce^{-2x}$
+
+scene_spec.objects[0]
+
+积分因子把左端变为乘积导数
+
+scene_spec.objects[1]
+
+通解曲线族（含特解 $e^{-x}$）
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·微分方程×一阶线性综合场景，呈现与一阶线性微分方程、积分因子、常数变易相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：积分因子把左端变为乘积导数。
+
+scene_spec.steps[2]
+
+第三步：通解曲线族（含特解 $e^{-x}$）。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+积分因子把左端变为乘积导数
+
+efficiency_tags[1]
+
+通解曲线族（含特解 $e^{-x}$）
+
+## test-calc-005
+
+problem
+
+用积分判别法判断级数 $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n\ln n}$ 的敛散性。
+
+solution
+
+$f(x)=\dfrac{1}{x\ln x}$ 在 $[2,+\infty)$ 上非负递减。$\displaystyle\int_2^{+\infty}\dfrac{dx}{x\ln x}=\lim_{b\to\infty}\left[\ln(\ln x)\right]_2^b=\lim_{b\to\infty}\left(\ln(\ln b)-\ln(\ln 2)\right)=+\infty$，发散。由积分判别法，级数 $\sum\dfrac{1}{n\ln n}$ 发散。
+
+answer
+
+发散
+
+scene_spec.objects[0]
+
+$y=\dfrac{1}{x\ln x}$ 曲线下的无穷面积
+
+scene_spec.objects[1]
+
+级数柱状图嵌入曲线下方
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·级数×反常积分综合场景，呈现与积分判别法、对数函数积分、p 级数思想相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=\dfrac{1}{x\ln x}$ 曲线下的无穷面积。
+
+scene_spec.steps[2]
+
+第三步：级数柱状图嵌入曲线下方。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=\dfrac{1}{x\ln x}$ 曲线下的无穷面积
+
+efficiency_tags[1]
+
+级数柱状图嵌入曲线下方
+
+## test-calc-006
+
+problem
+
+求 $f(x)=\ln(1+x)$ 的麦克劳林展开式，并归纳 $f^{(n)}(0)$ 的规律。
+
+solution
+
+逐阶求导：$f'(x)=(1+x)^{-1}$，$f''(x)=-(1+x)^{-2}$，$f'''(x)=2(1+x)^{-3}$，$f^{(4)}(x)=-6(1+x)^{-4}$。归纳得 $f^{(n)}(x)=(-1)^{n-1}(n-1)!\,(1+x)^{-n}$（$n\ge 1$），故 $f^{(n)}(0)=(-1)^{n-1}(n-1)!$。麦克劳林展开：$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$（$|x|<1$）。展开的依据：在$|x|<1$内，几何级数$1/(1+t)=\sum_{k=0}^{\infty}(-t)^k$在从$0$到$x$的紧区间上一致收敛，逐项积分即得上述展开。$x=1$时有限几何式积分的余项绝对值不超过$1/(N+1)$，故也收敛到$\ln2$；$x=-1$时为负调和级数，发散，且原对数不定义；$|x|>1$时级数通项不趋于0。因此实展开的完整区间为$(-1,1]$。
+
+answer
+
+$\ln(1+x)=\sum_{n=1}^{\infty}(-1)^{n-1}x^n/n$（$-1<x\le1$）；$f^{(n)}(0)=(-1)^{n-1}(n-1)!$（整数$n\ge1$）。
+
+scene_spec.objects[0]
+
+逐阶导数系数的递推表
+
+scene_spec.objects[1]
+
+部分和多项式逐阶逼近 $\ln(1+x)$
+
+scene_spec.steps[0]
+
+呈现题干及条件：求 $f(x)=\ln(1+x)$ 的麦克劳林展开式，并归纳 $f^{(n)}(0)$ 的规律。
+
+scene_spec.steps[1]
+
+依次呈现：逐阶导数系数的递推表
+
+scene_spec.steps[2]
+
+依次呈现：部分和多项式逐阶逼近 $\ln(1+x)$
+
+scene_spec.steps[3]
+
+核对完整证明：逐阶求导：$f'(x)=(1+x)^{-1}$，$f''(x)=-(1+x)^{-2}$，$f'''(x)=2(1+x)^{-3}$，$f^{(4)}(x)=-6(1+x)^{-4}$。归纳得 $f^{(n)}(x)=(-1)^{n-1}(n-1)!\,(1+x)^{-n}$（$n\ge 1$），故 $f^{(n)}(0)=(-1)^{n-1}(n-1)!$。麦克劳林展开：$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$（$|x|<1$）。展开的依据：在$|x|<1$内，几何级数$1/(1+t)=\sum_{k=0}^{\infty}(-t)^k$在从$0$到$x$的紧区间上一致收敛，逐项积分即得上述展开。$x=1$时有限几何式积分的余项绝对值不超过$1/(N+1)$，故也收敛到$\ln2$；$x=-1$时为负调和级数，发散，且原对数不定义；$|x|>1$时级数通项不趋于0。因此实展开的完整区间为$(-1,1]$。
+
+scene_spec.steps[4]
+
+高亮答案：$\ln(1+x)=\sum_{n=1}^{\infty}(-1)^{n-1}x^n/n$（$-1<x\le1$）；$f^{(n)}(0)=(-1)^{n-1}(n-1)!$（整数$n\ge1$）。
+
+efficiency_tags[0]
+
+逐阶导数系数的递推表
+
+efficiency_tags[1]
+
+部分和多项式逐阶逼近 $\ln(1+x)$
+
+## test-calc-007
+
+problem
+
+设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\displaystyle\lim_{x\to 0}\frac{f(x)}{x^2}$。
+
+solution
+
+由 $f(0)=0$ 与 $f'(0)=0$，$\dfrac{f(x)}{x^2}$ 为 $\dfrac{0}{0}$ 型。洛必达一次：$\lim_{x\to 0}\dfrac{f'(x)}{2x}$。不假设 $f''$ 连续，直接由二阶导数定义（$f'(0)=0$）：$\lim_{x\to 0}\dfrac{f'(x)}{2x}=\dfrac{1}{2}\lim_{x\to 0}\dfrac{f'(x)-f'(0)}{x}=\dfrac{f''(0)}{2}$。
+
+answer
+
+$\dfrac{f''(0)}{2}$
+
+scene_spec.objects[0]
+
+一次洛必达，再由二阶导数定义取极限
+
+scene_spec.objects[1]
+
+$f$ 在原点附近的二阶接触
+
+scene_spec.steps[0]
+
+呈现题干及条件：设 $f$ 二阶可导且 $f(0)=f'(0)=0$，求 $\displaystyle\lim_{x\to 0}\frac{f(x)}{x^2}$。
+
+scene_spec.steps[1]
+
+依次呈现：一次洛必达，再由二阶导数定义取极限
+
+scene_spec.steps[2]
+
+依次呈现：$f$ 在原点附近的二阶接触
+
+scene_spec.steps[3]
+
+核对完整证明：由 $f(0)=0$ 与 $f'(0)=0$，$\dfrac{f(x)}{x^2}$ 为 $\dfrac{0}{0}$ 型。洛必达一次：$\lim_{x\to 0}\dfrac{f'(x)}{2x}$。不假设 $f''$ 连续，直接由二阶导数定义（$f'(0)=0$）：$\lim_{x\to 0}\dfrac{f'(x)}{2x}=\dfrac{1}{2}\lim_{x\to 0}\dfrac{f'(x)-f'(0)}{x}=\dfrac{f''(0)}{2}$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{f''(0)}{2}$
+
+efficiency_tags[0]
+
+一次洛必达，再由二阶导数定义取极限
+
+efficiency_tags[1]
+
+$f$ 在原点附近的二阶接触
+
+## test-calc-008
+
+problem
+
+求 $f(x)=\displaystyle\int_0^x(t^2-t)\,dt$ 的极值点与极值。
+
+solution
+
+$f'(x)=x^2-x=x(x-1)$，驻点 $x=0,1$。$f''(x)=2x-1$：$f''(0)=-1<0$，$x=0$ 为极大值点；$f''(1)=1>0$，$x=1$ 为极小值点。计算值：$f(x)=\displaystyle\int_0^x(t^2-t)dt=\dfrac{x^3}{3}-\dfrac{x^2}{2}$。$f(0)=0$（极大值），$f(1)=\dfrac{1}{3}-\dfrac{1}{2}=-\dfrac{1}{6}$（极小值）。
+
+answer
+
+极大值 $f(0)=0$；极小值 $f(1)=-\dfrac{1}{6}$
+
+scene_spec.objects[0]
+
+被积函数 $t^2-t$ 与面积的正负变化
+
+scene_spec.objects[1]
+
+$f$ 曲线与两个极值点
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·变限积分×极值综合场景，呈现与微积分基本定理、极值判别、定积分计算相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：被积函数 $t^2-t$ 与面积的正负变化。
+
+scene_spec.steps[2]
+
+第三步：$f$ 曲线与两个极值点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+被积函数 $t^2-t$ 与面积的正负变化
+
+efficiency_tags[1]
+
+$f$ 曲线与两个极值点
+
+## test-calc-009
+
+problem
+
+求曲线 $x=t^2,\ y=t^3$（$0\le t\le 1$）的弧长。
+
+solution
+
+$\dfrac{dx}{dt}=2t$，$\dfrac{dy}{dt}=3t^2$。弧长 $L=\displaystyle\int_0^1\sqrt{(2t)^2+(3t^2)^2}\,dt=\int_0^1 t\sqrt{4+9t^2}\,dt$。令 $u=4+9t^2$（$du=18t\,dt$），$L=\dfrac{1}{18}\displaystyle\int_4^{13}\sqrt{u}\,du=\dfrac{1}{18}\cdot\dfrac{2}{3}\left[u^{3/2}\right]_4^{13}=\dfrac{1}{27}(13\sqrt{13}-8)$。
+
+answer
+
+$\dfrac{13\sqrt{13}-8}{27}$
+
+scene_spec.objects[0]
+
+半立方抛物线 $x=t^2,y=t^3$ 的绘制
+
+scene_spec.objects[1]
+
+弧长微元沿曲线扫掠
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·参数方程×弧长综合场景，呈现与参数方程、弧长公式、换元积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：半立方抛物线 $x=t^2,y=t^3$ 的绘制。
+
+scene_spec.steps[2]
+
+第三步：弧长微元沿曲线扫掠。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+半立方抛物线 $x=t^2,y=t^3$ 的绘制
+
+efficiency_tags[1]
+
+弧长微元沿曲线扫掠
+
+## test-calc-010
+
+problem
+
+求心形线 $r=1+\cos\theta$ 所围图形的面积。
+
+solution
+
+极坐标面积 $S=\dfrac{1}{2}\displaystyle\int_0^{2\pi}r^2\,d\theta=\dfrac{1}{2}\int_0^{2\pi}(1+\cos\theta)^2d\theta=\dfrac{1}{2}\int_0^{2\pi}(1+2\cos\theta+\cos^2\theta)d\theta$。其中 $\int_0^{2\pi}\cos\theta\,d\theta=0$，$\int_0^{2\pi}\cos^2\theta\,d\theta=\pi$，故 $S=\dfrac{1}{2}(2\pi+0+\pi)=\dfrac{3\pi}{2}$。
+
+answer
+
+$\dfrac{3\pi}{2}$
+
+scene_spec.objects[0]
+
+心形线的动态绘制
+
+scene_spec.objects[1]
+
+扇形微元扫掠
+
+scene_spec.objects[2]
+
+面积结果标注
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·极坐标×面积综合场景，呈现与极坐标面积公式、倍角积分、对称性相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：心形线的动态绘制。
+
+scene_spec.steps[2]
+
+第三步：扇形微元扫掠。
+
+scene_spec.steps[3]
+
+第四步：面积结果标注。
+
+scene_spec.steps[4]
+
+第五步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+心形线的动态绘制
+
+efficiency_tags[1]
+
+扇形微元扫掠
+
+efficiency_tags[2]
+
+面积结果标注
+
+## test-calc-011
+
+problem
+
+求由 $y=x^2$ 与 $y=4$ 围成的区域绕 $y$ 轴旋转所得旋转体的体积。
+
+solution
+
+区域为 $-2\le x\le 2,\ x^2\le y\le 4$（关于 $y$ 轴对称）。绕 $y$ 轴旋转时左右两半生成同一个旋转体，只需取右半 $0\le x\le 2$。在 $x$ 处取高 $4-x^2$、厚 $dx$ 的竖直壳层，$dV=2\pi x(4-x^2)dx$。$V=\displaystyle\int_0^2 2\pi x(4-x^2)dx=2\pi\int_0^2(4x-x^3)dx=2\pi\left[2x^2-\dfrac{x^4}{4}\right]_0^2=2\pi(8-4)=8\pi$。
+
+answer
+
+$8\pi$
+
+scene_spec.objects[0]
+
+壳层展开成薄板的扫掠动画
+
+scene_spec.objects[1]
+
+抛物线、直线与旋转轴
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·旋转体×壳层法综合场景，呈现与壳层法、多项式积分、旋转体体积相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：壳层展开成薄板的扫掠动画。
+
+scene_spec.steps[2]
+
+第三步：抛物线、直线与旋转轴。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+壳层展开成薄板的扫掠动画
+
+efficiency_tags[1]
+
+抛物线、直线与旋转轴
+
+## test-calc-012
+
+problem
+
+判断反常积分 $\displaystyle\int_1^{+\infty}\frac{dx}{x(1+x)}$ 的敛散性，若收敛求其值。
+
+solution
+
+$\dfrac{1}{x(1+x)}=\dfrac{1}{x}-\dfrac{1}{1+x}$。$\displaystyle\int_1^b\dfrac{dx}{x(1+x)}=\left[\ln x-\ln(1+x)\right]_1^b=\ln\dfrac{b}{1+b}-\ln\dfrac{1}{2}$。令 $b\to+\infty$：$\ln\dfrac{b}{1+b}\to\ln 1=0$，故积分 $=0-\ln\dfrac{1}{2}=\ln 2$，收敛。
+
+answer
+
+$\ln 2$
+
+scene_spec.objects[0]
+
+部分分式拆分的面积分解
+
+scene_spec.objects[1]
+
+上限 $b\to\infty$ 时面积趋于 $\ln 2$
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·反常积分×部分分式综合场景，呈现与反常积分、部分分式、对数函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：部分分式拆分的面积分解。
+
+scene_spec.steps[2]
+
+第三步：上限 $b\to\infty$ 时面积趋于 $\ln 2$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+部分分式拆分的面积分解
+
+efficiency_tags[1]
+
+上限 $b\to\infty$ 时面积趋于 $\ln 2$
+
+## test-calc-013
+
+problem
+
+求级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$ 的和。
+
+solution
+
+$\dfrac{1}{n(n+2)}=\dfrac{1}{2}\left(\dfrac{1}{n}-\dfrac{1}{n+2}\right)$。部分和 $S_n=\dfrac{1}{2}\displaystyle\sum_{k=1}^{n}\left(\dfrac{1}{k}-\dfrac{1}{k+2}\right)=\dfrac{1}{2}\left[\left(1+\dfrac{1}{2}+\dfrac{1}{3}+\cdots+\dfrac{1}{n}\right)-\left(\dfrac{1}{3}+\dfrac{1}{4}+\cdots+\dfrac{1}{n+2}\right)\right]=\dfrac{1}{2}\left(1+\dfrac{1}{2}-\dfrac{1}{n+1}-\dfrac{1}{n+2}\right)$。令 $n\to\infty$，$S=\dfrac{1}{2}\cdot\dfrac{3}{2}=\dfrac{3}{4}$。
+
+answer
+
+$\dfrac{3}{4}$
+
+scene_spec.objects[0]
+
+裂项相消的逐项抵消动画
+
+scene_spec.objects[1]
+
+部分和逼近 $3/4$
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·级数×裂项综合场景，呈现与裂项相消、部分和极限、几何级数思想相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：裂项相消的逐项抵消动画。
+
+scene_spec.steps[2]
+
+第三步：部分和逼近 $3/4$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+裂项相消的逐项抵消动画
+
+efficiency_tags[1]
+
+部分和逼近 $3/4$
+
+## test-calc-014
+
+problem
+
+验证幂级数 $y=\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 满足微分方程 $y'=y$ 及初值 $y(0)=1$。
+
+solution
+
+该级数收敛半径为 $+\infty$（比值判别法：$\dfrac{1/(n+1)!}{1/n!}=\dfrac{1}{n+1}\to 0$），可逐项求导：$y'=\displaystyle\sum_{n=1}^{\infty}\dfrac{nx^{n-1}}{n!}=\sum_{n=1}^{\infty}\dfrac{x^{n-1}}{(n-1)!}=\sum_{m=0}^{\infty}\dfrac{x^m}{m!}=y$。且 $y(0)=\dfrac{1}{0!}+\displaystyle\sum_{n=1}^{\infty}\dfrac{0^n}{n!}=1+0=1$。由解的唯一性，$y=e^x$。
+
+answer
+
+$y'=y$、$y(0)=1$，故 $y=e^x$
+
+scene_spec.objects[0]
+
+部分和多项式随项数增长逼近 $e^x$
+
+scene_spec.objects[1]
+
+逐项求导的系数错位对应
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·幂级数×微分方程综合场景，呈现与幂级数逐项求导、微分方程、指数函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：部分和多项式随项数增长逼近 $e^x$。
+
+scene_spec.steps[2]
+
+第三步：逐项求导的系数错位对应。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+部分和多项式随项数增长逼近 $e^x$
+
+efficiency_tags[1]
+
+逐项求导的系数错位对应
+
+## test-calc-015
+
+problem
+
+利用幂级数展开求 $\displaystyle\int_0^1\frac{\ln(1+x)}{x}\,dx$ 的精确值。
+
+solution
+
+$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\dfrac{\ln(1+x)}{x}=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\left|\displaystyle\sum_{k>N}\dfrac{(-1)^{k-1}x^{k-1}}{k}\right|\le\dfrac{x^N}{N+1}\le\dfrac{1}{N+1}\to 0$（交错级数估计，对 $x\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\lim_{x\to 0}\dfrac{\ln(1+x)}{x}=1$）。故可逐项积分：$\displaystyle\int_0^1\dfrac{\ln(1+x)}{x}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}\int_0^1x^{n-1}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\zeta(2)$ 的关系：$\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}=\eta(2)=\left(1-2^{1-2}\right)\zeta(2)=\dfrac{1}{2}\cdot\dfrac{\pi^2}{6}=\dfrac{\pi^2}{12}$（其中 $\zeta(2)=\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。
+
+answer
+
+$\dfrac{\pi^2}{12}$
+
+scene_spec.objects[0]
+
+级数部分和逐项逼近
+
+scene_spec.objects[1]
+
+$\dfrac{\pi^2}{12}$ 与幂级数积分恒等式对照
+
+scene_spec.steps[0]
+
+呈现题干及条件：利用幂级数展开求 $\displaystyle\int_0^1\frac{\ln(1+x)}{x}\,dx$ 的精确值。
+
+scene_spec.steps[1]
+
+依次呈现：级数部分和逐项逼近
+
+scene_spec.steps[2]
+
+依次呈现：$\dfrac{\pi^2}{12}$ 与幂级数积分恒等式对照
+
+scene_spec.steps[3]
+
+核对完整证明：$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$，除以 $x$ 得 $\dfrac{\ln(1+x)}{x}=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^{n-1}}{n}$（$x\ne 0$），且该级数在 $[0,1]$ 上一致收敛：余项 $\left|\displaystyle\sum_{k>N}\dfrac{(-1)^{k-1}x^{k-1}}{k}\right|\le\dfrac{x^N}{N+1}\le\dfrac{1}{N+1}\to 0$（交错级数估计，对 $x\in[0,1]$ 一致）；被积函数在 $x=0$ 处连续延拓为 $1$（$\lim_{x\to 0}\dfrac{\ln(1+x)}{x}=1$）。故可逐项积分：$\displaystyle\int_0^1\dfrac{\ln(1+x)}{x}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}\int_0^1x^{n-1}dx=\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}$。由交错级数与 $\zeta(2)$ 的关系：$\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n^2}=\eta(2)=\left(1-2^{1-2}\right)\zeta(2)=\dfrac{1}{2}\cdot\dfrac{\pi^2}{6}=\dfrac{\pi^2}{12}$（其中 $\zeta(2)=\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$ 为已知结果，可由 test-calc-023 的 Parseval 等式得到）。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{\pi^2}{12}$
+
+efficiency_tags[0]
+
+级数部分和逐项逼近
+
+efficiency_tags[1]
+
+$\dfrac{\pi^2}{12}$ 与幂级数积分恒等式对照
+
+## test-calc-016
+
+problem
+
+由方程 $x^2+y^2+xy=3$ 确定隐函数 $y=y(x)$。求 $y'(1)$ 与 $y''(1)$（已知 $(1,1)$ 满足方程）。
+
+solution
+
+两边对 $x$ 求导：$2x+2yy'+y+xy'=0$。代入 $(1,1)$：$2+2y'(1)+1+y'(1)=0$，即 $3y'(1)=-3$，$y'(1)=-1$。再对 $x$ 求导：$2+2(y')^2+2yy''+y'+y'+xy''=0$，即 $2+2(y')^2+2yy''+2y'+xy''=0$。代入 $(1,1)$ 与 $y'=-1$：$2+2\cdot 1+2y''-2+y''=0$，即 $3y''=-2$，$y''(1)=-\dfrac{2}{3}$。
+
+answer
+
+$y'(1)=-1$；$y''(1)=-\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+隐式曲线在 $(1,1)$ 处的切线与凹凸
+
+scene_spec.objects[1]
+
+逐次求导的符号推导
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·隐函数×高阶导数综合场景，呈现与隐函数求导、链式法则、高阶导数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：隐式曲线在 $(1,1)$ 处的切线与凹凸。
+
+scene_spec.steps[2]
+
+第三步：逐次求导的符号推导。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+隐式曲线在 $(1,1)$ 处的切线与凹凸
+
+efficiency_tags[1]
+
+逐次求导的符号推导
+
+## test-calc-017
+
+problem
+
+求 $f(x,y)=x^2+y^2-xy+x+y$ 的极值点与极值。
+
+solution
+
+驻点条件：$f_x=2x-y+1=0$，$f_y=2y-x+1=0$。两式相加得 $x+y+2=0$；两式相减得 $3x-3y=0$，即 $x=y$。代入 $x+y+2=0$：$2x=-2$，$x=y=-1$。驻点 $(-1,-1)$。Hessian $H=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$，顺序主子式 $2>0$、$\det H=3>0$，正定，故 $(-1,-1)$ 为极小值点。$f(-1,-1)=1+1-1-1-1=-1$。更直接令$u=x+1,\ v=y+1$，则$f=-1+u^2+v^2-uv=-1+\frac12[(u-v)^2+u^2+v^2]$。故$f\ge-1$，等号仅在$u=v=0$，是唯一全局最小；因只有一个驻点且该点为严格最小，不存在局部极大，且沿$y=-1,x\to\infty$无上界。
+
+answer
+
+唯一极小点$(-1,-1)$，极小值也是全局最小值$-1$；无极大值。
+
+scene_spec.objects[0]
+
+曲面 $z=f(x,y)$ 与极小点
+
+scene_spec.objects[1]
+
+等高线向极值点收缩
+
+scene_spec.steps[0]
+
+呈现题干及条件：求 $f(x,y)=x^2+y^2-xy+x+y$ 的极值点与极值。
+
+scene_spec.steps[1]
+
+依次呈现：曲面 $z=f(x,y)$ 与极小点
+
+scene_spec.steps[2]
+
+依次呈现：等高线向极值点收缩
+
+scene_spec.steps[3]
+
+核对完整证明：驻点条件：$f_x=2x-y+1=0$，$f_y=2y-x+1=0$。两式相加得 $x+y+2=0$；两式相减得 $3x-3y=0$，即 $x=y$。代入 $x+y+2=0$：$2x=-2$，$x=y=-1$。驻点 $(-1,-1)$。Hessian $H=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$，顺序主子式 $2>0$、$\det H=3>0$，正定，故 $(-1,-1)$ 为极小值点。$f(-1,-1)=1+1-1-1-1=-1$。更直接令$u=x+1,\ v=y+1$，则$f=-1+u^2+v^2-uv=-1+\frac12[(u-v)^2+u^2+v^2]$。故$f\ge-1$，等号仅在$u=v=0$，是唯一全局最小；因只有一个驻点且该点为严格最小，不存在局部极大，且沿$y=-1,x\to\infty$无上界。
+
+scene_spec.steps[4]
+
+高亮答案：唯一极小点$(-1,-1)$，极小值也是全局最小值$-1$；无极大值。
+
+efficiency_tags[0]
+
+曲面 $z=f(x,y)$ 与极小点
+
+efficiency_tags[1]
+
+等高线向极值点收缩
+
+## test-calc-018
+
+problem
+
+求 $f(x,y)=xy$ 在约束 $x+y=4$ 下的最大值。
+
+solution
+
+拉格朗日函数 $L=xy+\lambda(x+y-4)$。$L_x=y+\lambda=0$，$L_y=x+\lambda=0$，故 $x=y=-\lambda$。代入约束 $2x=4$，$x=y=2$，$\lambda=-2$。$f(2,2)=4$。验证（消元法）：$y=4-x$，$f=x(4-x)=4x-x^2=-(x-2)^2+4\le 4$，等号在 $x=2$ 取得，最大值 $4$。
+
+answer
+
+最大值 $4$（在 $(2,2)$ 处取得）
+
+scene_spec.objects[0]
+
+约束直线与等高线（双曲线族）相切
+
+scene_spec.objects[1]
+
+拉格朗日乘数的几何意义
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·条件极值×拉格朗日乘数综合场景，呈现与拉格朗日乘数法、约束优化、消元验证相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：约束直线与等高线（双曲线族）相切。
+
+scene_spec.steps[2]
+
+第三步：拉格朗日乘数的几何意义。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+约束直线与等高线（双曲线族）相切
+
+efficiency_tags[1]
+
+拉格朗日乘数的几何意义
+
+## test-calc-019
+
+problem
+
+求 $\displaystyle I=\int_0^1\!\!\int_y^1\frac{x}{1+x^2}\,dx\,dy$。
+
+solution
+
+区域 $D=\{(x,y):0\le y\le 1,\ y\le x\le 1\}=\{(x,y):0\le x\le 1,\ 0\le y\le x\}$。交换次序：$I=\displaystyle\int_0^1\!\!\int_0^x\frac{x}{1+x^2}\,dy\,dx=\int_0^1\frac{x^2}{1+x^2}\,dx=\int_0^1\left(1-\frac{1}{1+x^2}\right)dx=\left[x-\arctan x\right]_0^1=1-\dfrac{\pi}{4}$。
+
+answer
+
+$1-\dfrac{\pi}{4}$
+
+scene_spec.objects[0]
+
+三角形区域的两种扫描方向
+
+scene_spec.objects[1]
+
+交换次序前后的对照
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·重积分×交换次序综合场景，呈现与交换积分次序、反三角函数、二重积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三角形区域的两种扫描方向。
+
+scene_spec.steps[2]
+
+第三步：交换次序前后的对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三角形区域的两种扫描方向
+
+efficiency_tags[1]
+
+交换次序前后的对照
+
+## test-calc-020
+
+problem
+
+用格林公式（或曲线积分）求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$（$a,b>0$）的面积。
+
+solution
+
+参数化 $x=a\cos t$、$y=b\sin t$（$t:0\to 2\pi$）。由格林公式，面积 $S=\dfrac{1}{2}\displaystyle\oint(x\,dy-y\,dx)=\dfrac{1}{2}\int_0^{2\pi}\left[a\cos t\cdot b\cos t-b\sin t\cdot(-a\sin t)\right]dt=\dfrac{1}{2}\int_0^{2\pi}ab(\cos^2t+\sin^2t)dt=\dfrac{1}{2}ab\cdot 2\pi=\pi ab$。
+
+answer
+
+$\pi ab$
+
+scene_spec.objects[0]
+
+椭圆参数点沿边界运动
+
+scene_spec.objects[1]
+
+面积公式与扇形微元
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·格林公式×参数方程综合场景，呈现与格林公式、参数方程、定积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：椭圆参数点沿边界运动。
+
+scene_spec.steps[2]
+
+第三步：面积公式与扇形微元。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+椭圆参数点沿边界运动
+
+efficiency_tags[1]
+
+面积公式与扇形微元
+
+## test-calc-021
+
+problem
+
+求曲线积分 $\displaystyle\int_L(2xy\,dx+x^2\,dy)$，其中 $L$ 为从 $(0,0)$ 到 $(1,1)$ 的任意光滑曲线段，并说明结果与路径无关的原因。
+
+solution
+
+$d(x^2y)=2xy\,dx+x^2\,dy$，故被积表达式是全微分，势函数 $\varphi(x,y)=x^2y$。由微积分基本定理，$\displaystyle\int_L d\varphi=\varphi(1,1)-\varphi(0,0)=1-0=1$，与路径无关（本题已直接构造出 $\mathbb R^2$ 上的全局势函数，故无需再讨论充要条件；一般结论"$\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ 等价于积分与路径无关"只在单连通区域上对 $C^1$ 向量场成立）。
+
+answer
+
+$1$
+
+scene_spec.objects[0]
+
+不同路径的曲线积分同一结果
+
+scene_spec.objects[1]
+
+势函数的等高线
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·曲线积分×路径无关综合场景，呈现与全微分、势函数、曲线积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：不同路径的曲线积分同一结果。
+
+scene_spec.steps[2]
+
+第三步：势函数的等高线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+不同路径的曲线积分同一结果
+
+efficiency_tags[1]
+
+势函数的等高线
+
+## test-calc-022
+
+problem
+
+用高斯公式求 $\displaystyle\iint_S\vec F\cdot\vec n\,dS$，其中 $\vec F=(x,y,z)$，$S$ 为单位球面 $x^2+y^2+z^2=1$（外侧），$\vec n$ 为单位外法向量。
+
+solution
+
+$\operatorname{div}\vec F=\dfrac{\partial x}{\partial x}+\dfrac{\partial y}{\partial y}+\dfrac{\partial z}{\partial z}=3$。由高斯公式，$\displaystyle\iint_S\vec F\cdot\vec n\,dS=\iiint_B\operatorname{div}\vec F\,dV=3\iiint_B dV=3\cdot\dfrac{4\pi}{3}=4\pi$（$B$ 为单位球体，体积 $\dfrac{4\pi}{3}$）。
+
+answer
+
+$4\pi$
+
+scene_spec.objects[0]
+
+单位球面与向量场
+
+scene_spec.objects[1]
+
+高斯公式的区域积分示意
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·曲面积分×高斯公式综合场景，呈现与高斯散度定理、球体积、散度相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：单位球面与向量场。
+
+scene_spec.steps[2]
+
+第三步：高斯公式的区域积分示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+单位球面与向量场
+
+efficiency_tags[1]
+
+高斯公式的区域积分示意
+
+## test-calc-023
+
+problem
+
+设$f(x)=x$（$-\pi<x<\pi$）并作$2\pi$周期延拓，其傅里叶正弦系数为$b_n=2(-1)^{n+1}/n$；在开区间内级数收敛到$x$，在周期接缝$x=\pm\pi$收敛到左右极限平均值$0$。利用$L^2$意义下的Parseval等式求$\sum_{n=1}^{\infty}1/n^2$。
+
+solution
+
+Parseval 等式：$\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}f(x)^2dx=\sum_{n=1}^{\infty}b_n^2$（奇函数情形，$a_n=0$），其中 $b_n=\dfrac{2(-1)^{n+1}}{n}$。左端 $\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2dx=\dfrac{1}{\pi}\cdot\dfrac{2\pi^3}{3}=\dfrac{2\pi^2}{3}$。右端 $\displaystyle\sum_{n=1}^{\infty}\dfrac{4}{n^2}=4\sum_{n=1}^{\infty}\dfrac{1}{n^2}$。故 $4\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{2\pi^2}{3}$，$\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$。端点取值不影响$L^2$积分与傅里叶系数；上述Parseval论证不需要级数在接缝处等于$\pm\pi$。
+
+answer
+
+$\dfrac{\pi^2}{6}$
+
+scene_spec.objects[0]
+
+锯齿波与傅里叶部分和叠加
+
+scene_spec.objects[1]
+
+能量等式两端的对照
+
+scene_spec.steps[0]
+
+呈现题干及条件：设$f(x)=x$（$-\pi<x<\pi$）并作$2\pi$周期延拓，其傅里叶正弦系数为$b_n=2(-1)^{n+1}/n$；在开区间内级数收敛到$x$，在周期接缝$x=\pm\pi$收敛到左右极限平均值$0$。利用$L^2$意义下的Parseval等式求$\sum_{n=1}^{\infty}1/n^2$。
+
+scene_spec.steps[1]
+
+依次呈现：锯齿波与傅里叶部分和叠加
+
+scene_spec.steps[2]
+
+依次呈现：能量等式两端的对照
+
+scene_spec.steps[3]
+
+核对完整证明：Parseval 等式：$\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}f(x)^2dx=\sum_{n=1}^{\infty}b_n^2$（奇函数情形，$a_n=0$），其中 $b_n=\dfrac{2(-1)^{n+1}}{n}$。左端 $\dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2dx=\dfrac{1}{\pi}\cdot\dfrac{2\pi^3}{3}=\dfrac{2\pi^2}{3}$。右端 $\displaystyle\sum_{n=1}^{\infty}\dfrac{4}{n^2}=4\sum_{n=1}^{\infty}\dfrac{1}{n^2}$。故 $4\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{2\pi^2}{3}$，$\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^2}=\dfrac{\pi^2}{6}$。端点取值不影响$L^2$积分与傅里叶系数；上述Parseval论证不需要级数在接缝处等于$\pm\pi$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{\pi^2}{6}$
+
+efficiency_tags[0]
+
+锯齿波与傅里叶部分和叠加
+
+efficiency_tags[1]
+
+能量等式两端的对照
+
+## test-calc-024
+
+problem
+
+求 $\displaystyle\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}$。
+
+solution
+
+记 $S_n=\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\ln\dfrac{k}{n}$，其中 $\dfrac{k}{n}$ 是小区间 $\left[\dfrac{k-1}{n},\dfrac{k}{n}\right]$ 的右端点。因 $\ln x$ 单调递增，在每个小区间上 $\ln x\le\ln\dfrac{k}{n}$，故 $\displaystyle\int_0^1\ln x\,dx=\sum_{k=1}^{n}\int_{(k-1)/n}^{k/n}\ln x\,dx\le S_n$；又对 $k\le n-1$，在 $\left[\dfrac{k}{n},\dfrac{k+1}{n}\right]$ 上 $\ln x\ge\ln\dfrac{k}{n}$，故 $S_n\le\displaystyle\sum_{k=1}^{n-1}\int_{k/n}^{(k+1)/n}\ln x\,dx+\dfrac{1}{n}\ln 1=\int_{1/n}^1\ln x\,dx$。于是 $-1=\displaystyle\int_0^1\ln x\,dx\le S_n\le\int_{1/n}^1\ln x\,dx=\left[x\ln x-x\right]_{1/n}^1=-1+\dfrac{\ln n+1}{n}$（其中 $\lim_{x\to 0^+}x\ln x=0$ 保证左端积分为 $-1$）。两端都趋于 $-1$，由夹逼准则 $S_n\to-1$。故原极限 $=\lim e^{S_n}=e^{-1}=\dfrac{1}{e}$。
+
+answer
+
+$\dfrac{1}{e}$
+
+scene_spec.objects[0]
+
+对数函数的黎曼矩形
+
+scene_spec.objects[1]
+
+极限值 $1/e$ 的收敛示意
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·数列极限×定积分综合场景，呈现与对数化、黎曼和、对数积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：对数函数的黎曼矩形。
+
+scene_spec.steps[2]
+
+第三步：极限值 $1/e$ 的收敛示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+对数函数的黎曼矩形
+
+efficiency_tags[1]
+
+极限值 $1/e$ 的收敛示意
+
+## test-calc-025
+
+problem
+
+设 $a_1=1$，$a_{n+1}=1+\dfrac{a_n}{1+a_n}$。证明 $\{a_n\}$ 收敛并求其极限。
+
+solution
+
+记 $\varphi=\dfrac{1+\sqrt5}{2}$（满足 $\varphi^2=\varphi+1$）。先证 $1\le a_n<\varphi$：$a_1=1<\varphi$；若 $a_n<\varphi$，则 $a_{n+1}=1+\dfrac{a_n}{1+a_n}<1+\dfrac{\varphi}{1+\varphi}$。由 $\varphi^2=\varphi+1$ 得 $\dfrac{\varphi}{1+\varphi}=\dfrac{1}{\varphi}$，故 $a_{n+1}<1+\dfrac{1}{\varphi}=\varphi$（$1+\dfrac{1}{\varphi}=\dfrac{\varphi+1}{\varphi}=\dfrac{\varphi^2}{\varphi}=\varphi$）。再证单调递增：$a_{n+1}-a_n=1-\dfrac{a_n^2}{1+a_n}=\dfrac{1+a_n-a_n^2}{1+a_n}>0$（因 $a_n<\varphi$ 时 $a_n^2<1+a_n$）。故 $\{a_n\}$ 单调递增有上界，收敛。设极限为 $L$，对递推式取极限：$L=1+\dfrac{L}{1+L}$，即 $L^2=L+1$，正根 $L=\varphi=\dfrac{1+\sqrt5}{2}$。
+
+answer
+
+极限为 $\dfrac{1+\sqrt5}{2}$
+
+scene_spec.objects[0]
+
+蛛网图（cobweb）迭代收敛
+
+scene_spec.objects[1]
+
+不动点 $\varphi$ 的标注
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·单调有界×递推数列综合场景，呈现与单调有界准则、递推数列、不动点相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：蛛网图（cobweb）迭代收敛。
+
+scene_spec.steps[2]
+
+第三步：不动点 $\varphi$ 的标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+蛛网图（cobweb）迭代收敛
+
+efficiency_tags[1]
+
+不动点 $\varphi$ 的标注
+
+## test-calc-026
+
+problem
+
+求 $\displaystyle\lim_{x\to 0}\frac{\displaystyle\int_0^x\sin(t^2)\,dt}{x^3}$。
+
+solution
+
+$\dfrac{0}{0}$ 型。分子求导得 $\sin(x^2)$，分母求导得 $3x^2$。原式 $=\lim_{x\to 0}\dfrac{\sin(x^2)}{3x^2}$。令 $u=x^2\to 0$，$\dfrac{\sin u}{u}\to 1$，故原式 $=\dfrac{1}{3}$。
+
+answer
+
+$\dfrac{1}{3}$
+
+scene_spec.objects[0]
+
+被积函数与面积
+
+scene_spec.objects[1]
+
+洛必达步骤的比值对照
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·洛必达×变限积分综合场景，呈现与洛必达法则、变限积分求导、等价无穷小相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：被积函数与面积。
+
+scene_spec.steps[2]
+
+第三步：洛必达步骤的比值对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+被积函数与面积
+
+efficiency_tags[1]
+
+洛必达步骤的比值对照
+
+## test-calc-027
+
+problem
+
+证明方程 $e^x=2x+1$ 恰有两个实根，并给出两个根所在的区间。
+
+solution
+
+令 $f(x)=e^x-2x-1$，则 $f'(x)=e^x-2$。所以 $f$ 在 $(-\infty,\ln2)$ 严格递减，在 $(\ln2,+\infty)$ 严格递增。$f(0)=0$，且 $\ln2=\int_1^2t^{-1}\,dt>1/2$，故 $f(\ln2)=1-2\ln2<0$。由指数级数的正项可知 $e^2>1+2+2=5$，因而 $f(2)>0$。又有 $0<\ln2<1$，连续性与严格单调性说明递减区间唯一零点为 $0$，递增区间唯一零点 $\xi$ 位于 $(\ln2,2)$。故恰有两个实根。
+
+answer
+
+恰有两个实根：$0$ 与 $\xi\in(\ln2,2)$。
+
+scene_spec.objects[0]
+
+$y=e^x$ 与 $y=2x+1$ 的两交点
+
+scene_spec.objects[1]
+
+单调区间与零点定位
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·零点定理×中值定理综合场景，呈现与零点存在性、单调区间、极值分析相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=e^x$ 与 $y=2x+1$ 的两交点。
+
+scene_spec.steps[2]
+
+第三步：单调区间与零点定位。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=e^x$ 与 $y=2x+1$ 的两交点
+
+efficiency_tags[1]
+
+单调区间与零点定位
+
+## test-calc-028
+
+problem
+
+求 $\displaystyle\int_{-1}^{1}x^3\sqrt{1-x^2}\,dx$。
+
+solution
+
+被积函数 $f(x)=x^3\sqrt{1-x^2}$ 满足 $f(-x)=(-x)^3\sqrt{1-(-x)^2}=-x^3\sqrt{1-x^2}=-f(x)$，为奇函数，积分区间关于原点对称，故 $\displaystyle\int_{-1}^{1}f(x)dx=0$。
+
+answer
+
+$0$
+
+scene_spec.objects[0]
+
+奇函数曲线两侧面积正负抵消
+
+scene_spec.objects[1]
+
+对称性标注
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·定积分×奇偶对称性综合场景，呈现与奇函数对称性、定积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：奇函数曲线两侧面积正负抵消。
+
+scene_spec.steps[2]
+
+第三步：对称性标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+奇函数曲线两侧面积正负抵消
+
+efficiency_tags[1]
+
+对称性标注
+
+## test-calc-029
+
+problem
+
+判断 $\displaystyle\int_1^{+\infty}\frac{\ln x}{x^2}\,dx$ 的敛散性，若收敛求其值。
+
+solution
+
+分部积分（$u=\ln x$、$dv=x^{-2}dx$）：$\displaystyle\int\dfrac{\ln x}{x^2}dx=-\dfrac{\ln x}{x}+\int\dfrac{dx}{x^2}=-\dfrac{\ln x}{x}-\dfrac{1}{x}+C$。$\displaystyle\int_1^b=-\left[\dfrac{\ln x}{x}+\dfrac{1}{x}\right]_1^b=1-\dfrac{\ln b}{b}-\dfrac{1}{b}$。令 $b\to+\infty$：$\dfrac{\ln b}{b}\to 0$、$\dfrac{1}{b}\to 0$，故积分为 $1$，收敛。
+
+answer
+
+$1$
+
+scene_spec.objects[0]
+
+曲线下面积趋于 1
+
+scene_spec.objects[1]
+
+分部积分的两项分解
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·反常积分×分部积分综合场景，呈现与反常积分、分部积分、极限相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：曲线下面积趋于 1。
+
+scene_spec.steps[2]
+
+第三步：分部积分的两项分解。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+曲线下面积趋于 1
+
+efficiency_tags[1]
+
+分部积分的两项分解
+
+## test-calc-030
+
+problem
+
+求 $\displaystyle\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx$。
+
+solution
+
+当 $0\le x\le 1$ 时 $0\le\dfrac{x^n}{1+x}\le x^n$（因 $1+x\ge 1$），故 $0\le\displaystyle\int_0^1\dfrac{x^n}{1+x}dx\le\int_0^1x^ndx=\dfrac{1}{n+1}$。由夹逼准则，极限为 $0$。
+
+answer
+
+$0$
+
+scene_spec.objects[0]
+
+被积函数随 $n$ 增大而"塌陷"
+
+scene_spec.objects[1]
+
+夹逼上下界的动画
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·极限×积分不等式综合场景，呈现与夹逼准则、定积分估计、极限相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：被积函数随 $n$ 增大而"塌陷"。
+
+scene_spec.steps[2]
+
+第三步：夹逼上下界的动画。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+被积函数随 $n$ 增大而"塌陷"
+
+efficiency_tags[1]
+
+夹逼上下界的动画
+
+## test-calc-031
+
+problem
+
+物体从高度 $20$ 米处自由下落，高度函数 $h(t)=20-5t^2$（米，$t$ 为秒）。求速度与加速度函数，及物体落地时刻与落地速度。
+
+solution
+
+$v(t)=h'(t)=-10t$（米/秒），$a(t)=v'(t)=-10$（米/秒²，向下）。落地：$h(t)=0$，即 $20-5t^2=0$，$t=2$（秒，舍负根）。落地速度 $v(2)=-20$（米/秒，向下，大小为 $20$）。
+
+answer
+
+$v(t)=-10t$米/秒，$a(t)=-10$米/秒$^2$；$t=2$秒落地，落地速度$-20$米/秒（向下），速率$20$米/秒。
+
+scene_spec.objects[0]
+
+高度抛物线、速度直线、加速度水平线三图对照
+
+scene_spec.objects[1]
+
+落地时刻标注
+
+scene_spec.steps[0]
+
+呈现题干及条件：物体从高度 $20$ 米处自由下落，高度函数 $h(t)=20-5t^2$（米，$t$ 为秒）。求速度与加速度函数，及物体落地时刻与落地速度。
+
+scene_spec.steps[1]
+
+依次呈现：高度抛物线、速度直线、加速度水平线三图对照
+
+scene_spec.steps[2]
+
+依次呈现：落地时刻标注
+
+scene_spec.steps[3]
+
+核对完整证明：$v(t)=h'(t)=-10t$（米/秒），$a(t)=v'(t)=-10$（米/秒²，向下）。落地：$h(t)=0$，即 $20-5t^2=0$，$t=2$（秒，舍负根）。落地速度 $v(2)=-20$（米/秒，向下，大小为 $20$）。
+
+scene_spec.steps[4]
+
+高亮答案：$v(t)=-10t$米/秒，$a(t)=-10$米/秒$^2$；$t=2$秒落地，落地速度$-20$米/秒（向下），速率$20$米/秒。
+
+efficiency_tags[0]
+
+高度抛物线、速度直线、加速度水平线三图对照
+
+efficiency_tags[1]
+
+落地时刻标注
+
+## test-calc-032
+
+problem
+
+求曲线 $y=x^2$ 在原点处的曲率，以及曲线 $y=\ln x$ 在 $(1,0)$ 处的曲率。
+
+solution
+
+曲率公式 $\kappa=\dfrac{|y''|}{(1+y'^2)^{3/2}}$。对 $y=x^2$：$y'=2x$，$y''=2$，在 $(0,0)$：$\kappa=\dfrac{2}{(1+0)^{3/2}}=2$。对 $y=\ln x$：$y'=\dfrac{1}{x}$，$y''=-\dfrac{1}{x^2}$，在 $(1,0)$：$\kappa=\dfrac{1}{(1+1)^{3/2}}=\dfrac{1}{2\sqrt2}$。
+
+answer
+
+$y=x^2$ 在原点处 $\kappa=2$；$y=\ln x$ 在 $(1,0)$ 处 $\kappa=\dfrac{1}{2\sqrt2}$
+
+scene_spec.objects[0]
+
+密切圆在两曲线处的贴合
+
+scene_spec.objects[1]
+
+曲率随位置变化
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·曲率×导数综合场景，呈现与曲率公式、二阶导数、反函数思想相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：密切圆在两曲线处的贴合。
+
+scene_spec.steps[2]
+
+第三步：曲率随位置变化。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+密切圆在两曲线处的贴合
+
+efficiency_tags[1]
+
+曲率随位置变化
+
+## test-calc-033
+
+problem
+
+证明：当 $x\ge 0$ 时，$e^x\ge 1+x+\dfrac{x^2}{2}$。
+
+solution
+
+令 $f(x)=e^x-1-x-\dfrac{x^2}{2}$。$f'(x)=e^x-1-x$。由 $e^x>1+x$（$x>0$，eval-calc-008）得 $f'(x)>0$（$x>0$），故 $f$ 在 $[0,+\infty)$ 上严格递增。又 $f(0)=1-1-0-0=0$，故 $x\ge 0$ 时 $f(x)\ge 0$，即 $e^x\ge 1+x+\dfrac{x^2}{2}$。亦可由泰勒公式带拉格朗日余项 $e^x=1+x+\dfrac{x^2}{2}+\dfrac{x^3}{6}e^\xi\ge 1+x+\dfrac{x^2}{2}$（$\xi\ge 0$）直接得证。
+
+answer
+
+证毕（两种证法）
+
+scene_spec.objects[0]
+
+$y=e^x$ 与 $y=1+x+\dfrac{x^2}{2}$ 的分离
+
+scene_spec.objects[1]
+
+余项曲线的包络
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·泰勒公式×不等式证明综合场景，呈现与泰勒公式、单调性、不等式相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=e^x$ 与 $y=1+x+\dfrac{x^2}{2}$ 的分离。
+
+scene_spec.steps[2]
+
+第三步：余项曲线的包络。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=e^x$ 与 $y=1+x+\dfrac{x^2}{2}$ 的分离
+
+efficiency_tags[1]
+
+余项曲线的包络
+
+## test-calc-034
+
+problem
+
+判断级数 $\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}$ 的敛散性。
+
+solution
+
+比值：$\dfrac{a_{n+1}}{a_n}=\dfrac{(n+1)!}{(n+1)^{n+1}}\cdot\dfrac{n^n}{n!}=\dfrac{n^n}{(n+1)^n}=\left(\dfrac{n}{n+1}\right)^n=\dfrac{1}{\left(1+\frac{1}{n}\right)^n}\to\dfrac{1}{e}<1$。由比值判别法，级数收敛。
+
+answer
+
+收敛
+
+scene_spec.objects[0]
+
+比值 $\left(\frac{n}{n+1}\right)^n$ 趋近 $1/e$
+
+scene_spec.objects[1]
+
+级数项与几何级数比较
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·级数×比值判别法综合场景，呈现与比值判别法、重要极限、阶乘增长相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：比值 $\left(\frac{n}{n+1}\right)^n$ 趋近 $1/e$。
+
+scene_spec.steps[2]
+
+第三步：级数项与几何级数比较。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+比值 $\left(\frac{n}{n+1}\right)^n$ 趋近 $1/e$
+
+efficiency_tags[1]
+
+级数项与几何级数比较
+
+## test-calc-035
+
+problem
+
+求幂级数 $\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 与 $\displaystyle\sum_{n=0}^{\infty}n!\,x^n$ 的收敛半径，并对比说明。
+
+solution
+
+对$\sum_{n=0}^{\infty}x^n/n!$，当$x\ne0$时相邻项绝对值比为$|x|/(n+1)\to0$，故每个实数或复数$x$都绝对收敛，收敛半径$+\infty$。对$\sum_{n=0}^{\infty}n!x^n$，任意$x\ne0$时相邻项绝对值比为$(n+1)|x|\to\infty$，通项绝对值最终至少以公比2增长，不趋于0，故发散；$x=0$时只有常数项1，收敛，收敛半径0。
+
+answer
+
+$R=+\infty$ 与 $R=0$
+
+scene_spec.objects[0]
+
+两系数序列的增长对比（$1/n!$ 与 $n!$）
+
+scene_spec.objects[1]
+
+数轴上收敛域标注
+
+scene_spec.steps[0]
+
+呈现题干及条件：求幂级数 $\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$ 与 $\displaystyle\sum_{n=0}^{\infty}n!\,x^n$ 的收敛半径，并对比说明。
+
+scene_spec.steps[1]
+
+依次呈现：两系数序列的增长对比（$1/n!$ 与 $n!$）
+
+scene_spec.steps[2]
+
+依次呈现：数轴上收敛域标注
+
+scene_spec.steps[3]
+
+核对完整证明：对$\sum_{n=0}^{\infty}x^n/n!$，当$x\ne0$时相邻项绝对值比为$|x|/(n+1)\to0$，故每个实数或复数$x$都绝对收敛，收敛半径$+\infty$。对$\sum_{n=0}^{\infty}n!x^n$，任意$x\ne0$时相邻项绝对值比为$(n+1)|x|\to\infty$，通项绝对值最终至少以公比2增长，不趋于0，故发散；$x=0$时只有常数项1，收敛，收敛半径0。
+
+scene_spec.steps[4]
+
+高亮答案：$R=+\infty$ 与 $R=0$
+
+efficiency_tags[0]
+
+两系数序列的增长对比（$1/n!$ 与 $n!$）
+
+efficiency_tags[1]
+
+数轴上收敛域标注
+
+## test-calc-036
+
+problem
+
+设 $u=f(r)$，其中 $r=\sqrt{x^2+y^2}$（$(x,y)\ne(0,0)$），$f$ 二阶可导。证明在 $\mathbb R^2\setminus\{(0,0)\}$ 上 $u_{xx}+u_{yy}=f''(r)+\dfrac{f'(r)}{r}$，并验证 $u=\ln r$ 满足 $u_{xx}+u_{yy}=0$。
+
+solution
+
+$r_x=\dfrac{x}{r}$，$r_y=\dfrac{y}{r}$。$u_x=f'(r)\dfrac{x}{r}$，$u_{xx}=f''(r)\dfrac{x^2}{r^2}+f'(r)\left(\dfrac{1}{r}-\dfrac{x^2}{r^3}\right)$。同理 $u_{yy}=f''(r)\dfrac{y^2}{r^2}+f'(r)\left(\dfrac{1}{r}-\dfrac{y^2}{r^3}\right)$。相加：$u_{xx}+u_{yy}=f''(r)\dfrac{x^2+y^2}{r^2}+f'(r)\left(\dfrac{2}{r}-\dfrac{x^2+y^2}{r^3}\right)=f''(r)+f'(r)\left(\dfrac{2}{r}-\dfrac{1}{r}\right)=f''(r)+\dfrac{f'(r)}{r}$。取 $f(r)=\ln r$：$f'(r)=\dfrac{1}{r}$，$f''(r)=-\dfrac{1}{r^2}$，代入得 $u_{xx}+u_{yy}=-\dfrac{1}{r^2}+\dfrac{1}{r^2}=0$，即 $\ln r$ 在去掉原点的平面上调和。
+
+answer
+
+证毕（在 $\mathbb R^2\setminus\{(0,0)\}$ 上）；$u=\ln r$ 在 $\mathbb R^2\setminus\{(0,0)\}$ 上满足 $u_{xx}+u_{yy}=0$
+
+scene_spec.objects[0]
+
+径向函数与极坐标拉普拉斯
+
+scene_spec.objects[1]
+
+$\ln r$ 的等值线（同心圆）
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·多元链式法则×拉普拉斯算子综合场景，呈现与多元链式法则、拉普拉斯算子、调和函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：径向函数与极坐标拉普拉斯。
+
+scene_spec.steps[2]
+
+第三步：$\ln r$ 的等值线（同心圆）。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+径向函数与极坐标拉普拉斯
+
+efficiency_tags[1]
+
+$\ln r$ 的等值线（同心圆）
+
+## test-calc-037
+
+problem
+
+由笛卡尔叶形线方程 $x^3+y^3-3xy=0$ 确定隐函数。求曲线在点 $\left(\dfrac{3}{2},\dfrac{3}{2}\right)$ 处的切线斜率。
+
+solution
+
+两边对 $x$ 求导：$3x^2+3y^2y'-3y-3xy'=0$，即 $(y^2-x)y'=y-x^2$，$y'=\dfrac{y-x^2}{y^2-x}$。在 $\left(\dfrac{3}{2},\dfrac{3}{2}\right)$ 处：$y'=\dfrac{\frac{3}{2}-\frac{9}{4}}{\frac{9}{4}-\frac{3}{2}}=\dfrac{-\frac{3}{4}}{\frac{3}{4}}=-1$。
+
+answer
+
+$-1$
+
+scene_spec.objects[0]
+
+叶形线的环与渐近线
+
+scene_spec.objects[1]
+
+切点 $\left(\frac32,\frac32\right)$ 处的切线
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·隐函数×导数综合场景，呈现与隐函数求导、代数曲线、切线相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：叶形线的环与渐近线。
+
+scene_spec.steps[2]
+
+第三步：切点 $\left(\frac32,\frac32\right)$ 处的切线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+叶形线的环与渐近线
+
+efficiency_tags[1]
+
+切点 $\left(\frac32,\frac32\right)$ 处的切线
+
+## test-calc-038
+
+problem
+
+证明 $\displaystyle\int_0^1 e^{x^2}\,dx\ge e^{1/3}$。
+
+solution
+
+$e^t$ 是凸函数。区间 $[0,1]$ 上取均匀"概率测度"，由积分型 Jensen 不等式：$\displaystyle\int_0^1 e^{x^2}dx\ge e^{\int_0^1 x^2dx}=e^{1/3}$（凸函数在"平均点"的取值不大于函数值的平均）。其中 $\displaystyle\int_0^1x^2dx=\dfrac{1}{3}$。
+
+answer
+
+证毕
+
+scene_spec.objects[0]
+
+凸函数图像上弦与弧的位置关系
+
+scene_spec.objects[1]
+
+不等式两端的对照
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·凸函数×积分不等式综合场景，呈现与Jensen 不等式、凸函数、定积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：凸函数图像上弦与弧的位置关系。
+
+scene_spec.steps[2]
+
+第三步：不等式两端的对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+凸函数图像上弦与弧的位置关系
+
+efficiency_tags[1]
+
+不等式两端的对照
+
+## test-calc-039
+
+problem
+
+牛顿冷却模型：物体温度 $T(t)$ 满足 $T'=-k(T-20)$（环境温度 $20^\circ$C）。已知 $T(0)=100$、$T(5)=60$，求 $T(10)$。
+
+solution
+
+解方程：$\dfrac{dT}{T-20}=-k\,dt$，积分得 $\ln(T-20)=-kt+C$，$T=20+Ce^{-kt}$。由 $T(0)=100$：$C=80$，$T=20+80e^{-kt}$。由 $T(5)=60$：$60=20+80e^{-5k}$，$e^{-5k}=\dfrac{1}{2}$。故 $T(10)=20+80e^{-10k}=20+80(e^{-5k})^2=20+80\cdot\dfrac{1}{4}=40$。
+
+answer
+
+$T(10)=40^\circ$C
+
+scene_spec.objects[0]
+
+冷却曲线与 $20^\circ$C 渐近线
+
+scene_spec.objects[1]
+
+两点确定参数 $k$
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·微分方程×应用建模综合场景，呈现与可分离变量微分方程、指数衰减、参数确定相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：冷却曲线与 $20^\circ$C 渐近线。
+
+scene_spec.steps[2]
+
+第三步：两点确定参数 $k$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+冷却曲线与 $20^\circ$C 渐近线
+
+efficiency_tags[1]
+
+两点确定参数 $k$
+
+## test-calc-040
+
+problem
+
+求 $\displaystyle\lim_{x\to 0}\frac{1-\cos x-\frac{x^2}{2}}{x^4}$。
+
+solution
+
+$\cos x=1-\dfrac{x^2}{2}+\dfrac{x^4}{24}-\dfrac{x^6}{720}+\cdots$。故 $1-\cos x-\dfrac{x^2}{2}=-\dfrac{x^4}{24}+o(x^4)$。原式 $=\lim_{x\to 0}\dfrac{-x^4/24+o(x^4)}{x^4}=-\dfrac{1}{24}$。
+
+answer
+
+$-\dfrac{1}{24}$
+
+scene_spec.objects[0]
+
+$\cos x$ 与 $1-\dfrac{x^2}{2}$ 的四阶偏差
+
+scene_spec.objects[1]
+
+极限值标注
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·泰勒公式×极限综合场景，呈现与泰勒展开、高阶无穷小、极限相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$\cos x$ 与 $1-\dfrac{x^2}{2}$ 的四阶偏差。
+
+scene_spec.steps[2]
+
+第三步：极限值标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$\cos x$ 与 $1-\dfrac{x^2}{2}$ 的四阶偏差
+
+efficiency_tags[1]
+
+极限值标注
+
+## test-calc-041
+
+problem
+
+求 $\displaystyle\int_0^{\pi}\sin^2x\,dx$ 与 $\displaystyle\int_0^{\pi}\cos^2x\,dx$，并说明两者相等的几何原因。
+
+solution
+
+$\displaystyle\int_0^{\pi}\sin^2x\,dx=\int_0^{\pi}\dfrac{1-\cos 2x}{2}dx=\left[\dfrac{x}{2}-\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。$\displaystyle\int_0^{\pi}\cos^2x\,dx=\int_0^{\pi}\dfrac{1+\cos 2x}{2}dx=\left[\dfrac{x}{2}+\dfrac{\sin 2x}{4}\right]_0^{\pi}=\dfrac{\pi}{2}$。几何原因：$\cos^2x=\sin^2\left(x+\dfrac{\pi}{2}\right)$，故 $\displaystyle\int_0^{\pi}\cos^2x\,dx=\int_0^{\pi}\sin^2\left(x+\dfrac{\pi}{2}\right)dx=\int_{\pi/2}^{3\pi/2}\sin^2u\,du$（换元 $u=x+\dfrac{\pi}{2}$）$=\displaystyle\int_0^{\pi}\sin^2u\,du$（$\sin^2$ 以 $\pi$ 为周期）。
+
+answer
+
+均为 $\dfrac{\pi}{2}$
+
+scene_spec.objects[0]
+
+两曲线的平移关系
+
+scene_spec.objects[1]
+
+面积相等的对照
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·定积分×对称性综合场景，呈现与倍角公式、平移对称、定积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两曲线的平移关系。
+
+scene_spec.steps[2]
+
+第三步：面积相等的对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两曲线的平移关系
+
+efficiency_tags[1]
+
+面积相等的对照
+
+## test-calc-042
+
+problem
+
+证明 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln 2$。
+
+solution
+
+由 test-calc-006，$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$ 对 $|x|<1$ 成立。$x=1$ 处级数 $\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}$ 为交错级数（$a_n=\dfrac{1}{n}\searrow 0$），由莱布尼茨判别法收敛。由 Abel 定理，幂级数的和函数在收敛点左连续，故 $\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}=\lim_{x\to 1^-}\ln(1+x)=\ln 2$。另一证法（积分表示）：$\dfrac{1}{n}=\displaystyle\int_0^1x^{n-1}dx$，故 $\displaystyle\sum_{n=1}^{N}\dfrac{(-1)^{n-1}}{n}=\int_0^1\sum_{n=1}^{N}(-x)^{n-1}dx=\int_0^1\dfrac{1-(-x)^N}{1+x}dx\to\int_0^1\dfrac{dx}{1+x}=\ln 2$。第二证法的极限由精确界保证：$\left|\int_0^1\frac{(-x)^N}{1+x}dx\right|\le\int_0^1x^Ndx=1/(N+1)\to0$。
+
+answer
+
+证毕（两种证法）
+
+scene_spec.objects[0]
+
+交错级数部分和逼近 $\ln 2$
+
+scene_spec.objects[1]
+
+$x\to 1^-$ 的和函数连续过渡
+
+scene_spec.steps[0]
+
+呈现题干及条件：证明 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln 2$。
+
+scene_spec.steps[1]
+
+依次呈现：交错级数部分和逼近 $\ln 2$
+
+scene_spec.steps[2]
+
+依次呈现：$x\to 1^-$ 的和函数连续过渡
+
+scene_spec.steps[3]
+
+核对完整证明：由 test-calc-006，$\ln(1+x)=\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}x^n}{n}$ 对 $|x|<1$ 成立。$x=1$ 处级数 $\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}$ 为交错级数（$a_n=\dfrac{1}{n}\searrow 0$），由莱布尼茨判别法收敛。由 Abel 定理，幂级数的和函数在收敛点左连续，故 $\displaystyle\sum_{n=1}^{\infty}\dfrac{(-1)^{n-1}}{n}=\lim_{x\to 1^-}\ln(1+x)=\ln 2$。另一证法（积分表示）：$\dfrac{1}{n}=\displaystyle\int_0^1x^{n-1}dx$，故 $\displaystyle\sum_{n=1}^{N}\dfrac{(-1)^{n-1}}{n}=\int_0^1\sum_{n=1}^{N}(-x)^{n-1}dx=\int_0^1\dfrac{1-(-x)^N}{1+x}dx\to\int_0^1\dfrac{dx}{1+x}=\ln 2$。第二证法的极限由精确界保证：$\left|\int_0^1\frac{(-x)^N}{1+x}dx\right|\le\int_0^1x^Ndx=1/(N+1)\to0$。
+
+scene_spec.steps[4]
+
+高亮答案：证毕（两种证法）
+
+efficiency_tags[0]
+
+交错级数部分和逼近 $\ln 2$
+
+efficiency_tags[1]
+
+$x\to 1^-$ 的和函数连续过渡
+
+## test-calc-043
+
+problem
+
+求 $\displaystyle\int_0^{+\infty}e^{-x^2}\,dx$（高斯积分）。
+
+solution
+
+令$I_R=\int_0^R e^{-x^2}dx$。有限矩形上的Fubini定理给$I_R^2=\iint_{[0,R]^2}e^{-(x^2+y^2)}dxdy$。第一象限半径$R$的四分之一圆包含于此正方形，而正方形包含于半径$\sqrt2R$的四分之一圆。正被积函数积分保持包含序。极坐标计算半径$r$的四分之一圆积分为$J_r=\int_0^{\pi/2}\int_0^r e^{-u^2}u\,du\,d\theta=\frac{\pi}{4}(1-e^{-r^2})$。因此$\frac{\pi}{4}(1-e^{-R^2})\le I_R^2\le\frac{\pi}{4}(1-e^{-2R^2})$。$I_R>0$单调有上界，且两端趋于$\pi/4$，故$\int_0^\infty e^{-x^2}dx=\sqrt\pi/2$。
+
+answer
+
+$\dfrac{\sqrt\pi}{2}$
+
+scene_spec.objects[0]
+
+钟形曲面与体积
+
+scene_spec.objects[1]
+
+四分之一圆的极坐标扫描
+
+scene_spec.steps[0]
+
+呈现题干及条件：求 $\displaystyle\int_0^{+\infty}e^{-x^2}\,dx$（高斯积分）。
+
+scene_spec.steps[1]
+
+依次呈现：钟形曲面与体积
+
+scene_spec.steps[2]
+
+依次呈现：四分之一圆的极坐标扫描
+
+scene_spec.steps[3]
+
+核对完整证明：令$I_R=\int_0^R e^{-x^2}dx$。有限矩形上的Fubini定理给$I_R^2=\iint_{[0,R]^2}e^{-(x^2+y^2)}dxdy$。第一象限半径$R$的四分之一圆包含于此正方形，而正方形包含于半径$\sqrt2R$的四分之一圆。正被积函数积分保持包含序。极坐标计算半径$r$的四分之一圆积分为$J_r=\int_0^{\pi/2}\int_0^r e^{-u^2}u\,du\,d\theta=\frac{\pi}{4}(1-e^{-r^2})$。因此$\frac{\pi}{4}(1-e^{-R^2})\le I_R^2\le\frac{\pi}{4}(1-e^{-2R^2})$。$I_R>0$单调有上界，且两端趋于$\pi/4$，故$\int_0^\infty e^{-x^2}dx=\sqrt\pi/2$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{\sqrt\pi}{2}$
+
+efficiency_tags[0]
+
+钟形曲面与体积
+
+efficiency_tags[1]
+
+四分之一圆的极坐标扫描
+
+## test-calc-044
+
+problem
+
+用参数方程 $x=a\cos t,\ y=b\sin t$（$0\le t\le 2\pi$，$a,b>0$）求椭圆所围面积。
+
+solution
+
+$S=\left|\displaystyle\int_0^{2\pi}y\,dx\right|=\left|\int_0^{2\pi}b\sin t\cdot(-a\sin t)dt\right|=ab\displaystyle\int_0^{2\pi}\sin^2t\,dt=ab\cdot\pi=\pi ab$（$\int_0^{2\pi}\sin^2t\,dt=\pi$，与 test-calc-041 同法）。
+
+answer
+
+$\pi ab$
+
+scene_spec.objects[0]
+
+参数点沿椭圆运动
+
+scene_spec.objects[1]
+
+面积微元的累积
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·参数方程×面积综合场景，呈现与参数方程面积公式、倍角积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：参数点沿椭圆运动。
+
+scene_spec.steps[2]
+
+第三步：面积微元的累积。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+参数点沿椭圆运动
+
+efficiency_tags[1]
+
+面积微元的累积
+
+## test-calc-045
+
+problem
+
+求 $\displaystyle\lim_{x\to+\infty}x^2\left(2^{1/x}-2^{1/(x+1)}\right)$。
+
+solution
+
+对 $f(t)=2^t$ 在 $\left[\dfrac{1}{x+1},\dfrac{1}{x}\right]$ 上用拉格朗日中值定理：$2^{1/x}-2^{1/(x+1)}=f'(\xi)\left(\dfrac{1}{x}-\dfrac{1}{x+1}\right)=2^\xi\ln 2\cdot\dfrac{1}{x(x+1)}$，其中 $\dfrac{1}{x+1}<\xi<\dfrac{1}{x}$。故原式 $=\lim_{x\to\infty}x^2\cdot 2^\xi\ln 2\cdot\dfrac{1}{x(x+1)}=\lim_{x\to\infty}\dfrac{x^2}{x(x+1)}\cdot 2^\xi\ln 2$。当 $x\to+\infty$ 时 $\xi\to 0^+$，$2^\xi\to 1$，$\dfrac{x^2}{x(x+1)}\to 1$，故极限为 $\ln 2$。
+
+answer
+
+$\ln 2$
+
+scene_spec.objects[0]
+
+$y=2^t$ 上两点随 $x\to\infty$ 靠拢
+
+scene_spec.objects[1]
+
+中值点 $\xi\to 0$ 的标注
+
+scene_spec.steps[0]
+
+第一步：建立数学分析·中值定理×极限综合场景，呈现与拉格朗日中值定理、指数函数、极限相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=2^t$ 上两点随 $x\to\infty$ 靠拢。
+
+scene_spec.steps[2]
+
+第三步：中值点 $\xi\to 0$ 的标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=2^t$ 上两点随 $x\to\infty$ 靠拢
+
+efficiency_tags[1]
+
+中值点 $\xi\to 0$ 的标注
+
+## test-geom-001
+
+problem
+
+求两直线 $l_1:\begin{cases}x=1+t\\y=2-t\\z=t\end{cases}$ 与 $l_2:\begin{cases}x=2+s\\y=1+2s\\z=1+s\end{cases}$ 的交点，并求过两直线的平面方程。
+
+solution
+
+求交点：$\begin{cases}1+t=2+s\\2-t=1+2s\\t=1+s\end{cases}$。由第三式 $t=1+s$，代入第一式：$1+1+s=2+s$ 恒等；代入第二式：$2-(1+s)=1+2s$，即 $1-s=1+2s$，$s=0$，$t=1$。交点为 $(2,1,1)$。两直线方向：$\vec{s_1}=(1,-1,1)$，$\vec{s_2}=(1,2,1)$。过两直线的平面法向量 $\vec n=\vec{s_1}\times\vec{s_2}=((-1)\cdot 1-1\cdot 2,\ 1\cdot 1-1\cdot 1,\ 1\cdot 2-(-1)\cdot 1)=(-3,0,3)$，取 $(1,0,-1)$。平面方程：$(x-2)-(z-1)=0$，即 $x-z=1$。
+
+answer
+
+交点 $(2,1,1)$；平面 $x-z=1$
+
+scene_spec.objects[0]
+
+两直线相交的三维视图
+
+scene_spec.objects[1]
+
+法向量叉积方向
+
+scene_spec.objects[2]
+
+平面贴合两直线
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·空间直线×平面综合场景，呈现与空间直线参数方程、叉积、平面方程相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两直线相交的三维视图。
+
+scene_spec.steps[2]
+
+第三步：法向量叉积方向。
+
+scene_spec.steps[3]
+
+第四步：平面贴合两直线。
+
+scene_spec.steps[4]
+
+第五步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两直线相交的三维视图
+
+efficiency_tags[1]
+
+法向量叉积方向
+
+efficiency_tags[2]
+
+平面贴合两直线
+
+## test-geom-002
+
+problem
+
+求点 $P(1,2,3)$ 到直线 $l:x=1+t,\ y=1+2t,\ z=1+3t$ 的距离与垂足坐标。
+
+solution
+
+直线上取点 $P_0(1,1,1)$、方向 $\vec s=(1,2,3)$。$\overrightarrow{P_0P}=(0,1,2)$。叉积 $\overrightarrow{P_0P}\times\vec s=(1\cdot 3-2\cdot 2,\ 2\cdot 1-0\cdot 3,\ 0\cdot 2-1\cdot 1)=(-1,2,-1)$，模 $\sqrt{6}$；$|\vec s|=\sqrt{14}$。距离 $d=\dfrac{\sqrt6}{\sqrt{14}}=\sqrt{\dfrac{3}{7}}$。垂足参数 $t^*=\dfrac{\overrightarrow{P_0P}\cdot\vec s}{|\vec s|^2}=\dfrac{0+2+6}{14}=\dfrac{4}{7}$，垂足 $Q=\left(1+\dfrac{4}{7},1+\dfrac{8}{7},1+\dfrac{12}{7}\right)=\left(\dfrac{11}{7},\dfrac{15}{7},\dfrac{19}{7}\right)$。
+
+answer
+
+距离 $\sqrt{\dfrac{3}{7}}$；垂足 $\left(\dfrac{11}{7},\dfrac{15}{7},\dfrac{19}{7}\right)$
+
+scene_spec.objects[0]
+
+直线与垂线段
+
+scene_spec.objects[1]
+
+叉积平行四边形的面积分解
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·点到直线×投影综合场景，呈现与叉积距离公式、正交投影、参数方程相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：直线与垂线段。
+
+scene_spec.steps[2]
+
+第三步：叉积平行四边形的面积分解。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+直线与垂线段
+
+efficiency_tags[1]
+
+叉积平行四边形的面积分解
+
+## test-geom-003
+
+problem
+
+求异面直线 $l_1:\begin{cases}x=1+t\\y=2t\\z=3+t\end{cases}$ 与 $l_2:\begin{cases}x=2s\\y=1-s\\z=2s\end{cases}$ 之间的距离。
+
+solution
+
+$\vec{s_1}=(1,2,1)$，$\vec{s_2}=(2,-1,2)$，取点 $P_1=(1,0,3)\in l_1$、$P_2=(0,1,0)\in l_2$。公垂线方向 $\vec n=\vec{s_1}\times\vec{s_2}=(2\cdot 2-1\cdot(-1),\ 1\cdot 2-1\cdot 2,\ 1\cdot(-1)-2\cdot 2)=(5,0,-5)$，取 $(1,0,-1)$。$\overrightarrow{P_1P_2}=(-1,1,-3)$。距离 $d=\dfrac{|\overrightarrow{P_1P_2}\cdot\vec n|}{|\vec n|}=\dfrac{|-1-0+3|}{\sqrt2}=\dfrac{2}{\sqrt2}=\sqrt2$。
+
+answer
+
+$\sqrt2$
+
+scene_spec.objects[0]
+
+两异面直线与公垂线段
+
+scene_spec.objects[1]
+
+方向向量叉积
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·异面直线×公垂线综合场景，呈现与混合积、叉积、公垂线方向相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两异面直线与公垂线段。
+
+scene_spec.steps[2]
+
+第三步：方向向量叉积。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两异面直线与公垂线段
+
+efficiency_tags[1]
+
+方向向量叉积
+
+## test-geom-004
+
+problem
+
+判断平面 $x+2y+2z=3$ 与球面 $x^2+y^2+z^2=1$ 的位置关系，若相切求切点。
+
+solution
+
+球心 $O(0,0,0)$ 到平面的距离 $d=\dfrac{|0+0+0-3|}{\sqrt{1+4+4}}=\dfrac{3}{3}=1$，等于球半径 $1$，故平面与球面相切。切点在球心到平面的垂线上：$\overrightarrow{OQ}$ 沿法向量 $(1,2,2)$，且 $|OQ|=1$，$Q=\dfrac{1}{3}(1,2,2)=\left(\dfrac{1}{3},\dfrac{2}{3},\dfrac{2}{3}\right)$。验证在平面上：$\dfrac{1}{3}+\dfrac{4}{3}+\dfrac{4}{3}=\dfrac{9}{3}=3$。
+
+answer
+
+相切，切点 $\left(\dfrac{1}{3},\dfrac{2}{3},\dfrac{2}{3}\right)$
+
+scene_spec.objects[0]
+
+球与平面相切
+
+scene_spec.objects[1]
+
+半径与切点的垂直关系
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·平面×球面综合场景，呈现与点到平面距离、球面方程、相切条件相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：球与平面相切。
+
+scene_spec.steps[2]
+
+第三步：半径与切点的垂直关系。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+球与平面相切
+
+efficiency_tags[1]
+
+半径与切点的垂直关系
+
+## test-geom-005
+
+problem
+
+求曲面 $z=\dfrac{x^2}{4}+y^2$ 在点 $(2,1,2)$ 处的切平面方程。
+
+solution
+
+$z_x=\dfrac{x}{2}$，$z_y=2y$。在 $(2,1)$ 处 $z_x=1$、$z_y=2$。切平面：$z-2=1\cdot(x-2)+2\cdot(y-1)$，即 $z=x+2y-2$。验证切点在平面上：$2=2+2-2$。
+
+answer
+
+$z=x+2y-2$
+
+scene_spec.objects[0]
+
+椭圆抛物面与切平面贴合
+
+scene_spec.objects[1]
+
+两条切方向
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·曲面×切平面综合场景，呈现与偏导数、切平面、梯度相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：椭圆抛物面与切平面贴合。
+
+scene_spec.steps[2]
+
+第三步：两条切方向。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+椭圆抛物面与切平面贴合
+
+efficiency_tags[1]
+
+两条切方向
+
+## test-geom-006
+
+problem
+
+求曲线 $x=t,\ y=t^2,\ z=t^3$ 在 $t=1$ 处的切线与法平面方程。
+
+solution
+
+$\vec r'(t)=(1,2t,3t^2)$，在 $t=1$ 处切向量 $(1,2,3)$，切点 $(1,1,1)$。切线：$\dfrac{x-1}{1}=\dfrac{y-1}{2}=\dfrac{z-1}{3}$。法平面：$1\cdot(x-1)+2\cdot(y-1)+3\cdot(z-1)=0$，即 $x+2y+3z=6$。
+
+answer
+
+切线 $\dfrac{x-1}{1}=\dfrac{y-1}{2}=\dfrac{z-1}{3}$；法平面 $x+2y+3z=6$
+
+scene_spec.objects[0]
+
+三次挠曲线与切线
+
+scene_spec.objects[1]
+
+法平面垂直于切线
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·空间曲线×法平面综合场景，呈现与空间曲线切向量、法平面、参数求导相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三次挠曲线与切线。
+
+scene_spec.steps[2]
+
+第三步：法平面垂直于切线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三次挠曲线与切线
+
+efficiency_tags[1]
+
+法平面垂直于切线
+
+## test-geom-007
+
+problem
+
+求以 $O(0,0,0)$、$A(1,2,0)$、$B(2,0,1)$、$C(0,1,2)$ 为顶点的四面体体积。
+
+solution
+
+$V=\dfrac{1}{6}\left|\det(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC})\right|=\dfrac{1}{6}\left|\begin{vmatrix}1&2&0\\2&0&1\\0&1&2\end{vmatrix}\right|$。行列式 $=1\cdot(0\cdot 2-1\cdot 1)-2\cdot(2\cdot 2-1\cdot 0)+0=1\cdot(-1)-2\cdot 4=-9$。$V=\dfrac{9}{6}=\dfrac{3}{2}$。
+
+answer
+
+$\dfrac{3}{2}$
+
+scene_spec.objects[0]
+
+四面体与平行六面体
+
+scene_spec.objects[1]
+
+混合积的体积意义
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·混合积×体积综合场景，呈现与混合积、平行六面体、行列式相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：四面体与平行六面体。
+
+scene_spec.steps[2]
+
+第三步：混合积的体积意义。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+四面体与平行六面体
+
+efficiency_tags[1]
+
+混合积的体积意义
+
+## test-geom-008
+
+problem
+
+求以 $A(1,0)$、$B(0,1)$、$C(2,3)$ 为顶点的三角形面积。
+
+solution
+
+平面中三角形面积 $S=\dfrac{1}{2}\left|\det(\overrightarrow{AB},\overrightarrow{AC})\right|$。$\overrightarrow{AB}=(-1,1)$，$\overrightarrow{AC}=(1,3)$。$\det=(-1)\cdot 3-1\cdot 1=-4$。$S=\dfrac{1}{2}\cdot 4=2$。
+
+answer
+
+$2$
+
+scene_spec.objects[0]
+
+三角形与叉积平行四边形
+
+scene_spec.objects[1]
+
+面积标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·向量×三角形面积综合场景，呈现与叉积面积公式、行列式相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三角形与叉积平行四边形。
+
+scene_spec.steps[2]
+
+第三步：面积标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三角形与叉积平行四边形
+
+efficiency_tags[1]
+
+面积标注
+
+## test-geom-009
+
+problem
+
+求点 $(2,1)$ 绕原点逆时针旋转 $90^\circ$ 后的坐标，以及向量 $(3,4)$ 在方向 $(1,1)$ 上的投影向量。
+
+solution
+
+旋转 $90^\circ$：$(x,y)\mapsto(-y,x)$，$(2,1)\mapsto(-1,2)$。投影：方向单位向量 $\vec u=\dfrac{1}{\sqrt2}(1,1)$，投影 $=((3,4)\cdot\vec u)\vec u=\dfrac{7}{\sqrt2}\cdot\dfrac{1}{\sqrt2}(1,1)=\left(\dfrac{7}{2},\dfrac{7}{2}\right)$。
+
+answer
+
+$(-1,2)$；$\left(\dfrac{7}{2},\dfrac{7}{2}\right)$
+
+scene_spec.objects[0]
+
+旋转动画
+
+scene_spec.objects[1]
+
+投影垂线
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·旋转×投影综合场景，呈现与旋转矩阵、正交投影、点积相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：旋转动画。
+
+scene_spec.steps[2]
+
+第三步：投影垂线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+旋转动画
+
+efficiency_tags[1]
+
+投影垂线
+
+## test-geom-010
+
+problem
+
+求椭圆 $\dfrac{x^2}{9}+\dfrac{y^2}{16}=1$ 的面积。
+
+solution
+
+椭圆是半径为 3 的圆沿 $y$ 轴拉伸 $\dfrac{4}{3}$ 倍的像：$S=\pi\cdot 3\cdot 4=12\pi$。或用定积分：$S=4\displaystyle\int_0^3 4\sqrt{1-\dfrac{x^2}{9}}\,dx=16\int_0^3\sqrt{1-\dfrac{x^2}{9}}\,dx$。换元 $x=3\sin t$（$dx=3\cos t\,dt$，$t:0\to\dfrac{\pi}{2}$）：$S=16\cdot 3\displaystyle\int_0^{\pi/2}\cos^2t\,dt=48\cdot\dfrac{\pi}{4}=12\pi$（$\int_0^{\pi/2}\cos^2t\,dt=\dfrac{\pi}{4}$）。直接公式 $S=\pi ab=\pi\cdot 3\cdot 4=12\pi$。
+
+answer
+
+$12\pi$
+
+scene_spec.objects[0]
+
+圆到椭圆的拉伸
+
+scene_spec.objects[1]
+
+面积公式标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·二次曲线×面积综合场景，呈现与椭圆面积公式、仿射变换、积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：圆到椭圆的拉伸。
+
+scene_spec.steps[2]
+
+第三步：面积公式标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+圆到椭圆的拉伸
+
+efficiency_tags[1]
+
+面积公式标注
+
+## test-geom-011
+
+problem
+
+求直线 $\dfrac{x-2}{1}=\dfrac{y+1}{2}=\dfrac{z-3}{-1}$ 与三个坐标面的交点。
+
+solution
+
+参数化 $x=2+t,\ y=-1+2t,\ z=3-t$。与 $xOy$ 面（$z=0$）：$3-t=0$，$t=3$，交点 $(5,5,0)$。与 $yOz$ 面（$x=0$）：$2+t=0$，$t=-2$，交点 $(0,-5,5)$。与 $xOz$ 面（$y=0$）：$-1+2t=0$，$t=\dfrac{1}{2}$，交点 $\left(\dfrac{5}{2},0,\dfrac{5}{2}\right)$。
+
+answer
+
+$(5,5,0)$；$(0,-5,5)$；$\left(\dfrac{5}{2},0,\dfrac{5}{2}\right)$
+
+scene_spec.objects[0]
+
+直线穿过三个坐标面
+
+scene_spec.objects[1]
+
+交点标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·空间直线×坐标面综合场景，呈现与空间直线参数方程、坐标面相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：直线穿过三个坐标面。
+
+scene_spec.steps[2]
+
+第三步：交点标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+直线穿过三个坐标面
+
+efficiency_tags[1]
+
+交点标注
+
+## test-geom-012
+
+problem
+
+设 $\vec a=(1,0,1)$、$\vec b=(0,1,1)$、$\vec c=(1,1,0)$，求 $\vec a\cdot(\vec b\times\vec c)$ 与 $\vec a\times\vec b\cdot\vec c$，并比较。
+
+solution
+
+先算 $\vec b\times\vec c$：$\vec b=(0,1,1)$，$\vec c=(1,1,0)$，叉积 $=(1\cdot 0-1\cdot 1,\ 1\cdot 1-0\cdot 0,\ 0\cdot 1-1\cdot 1)=(-1,1,-1)$。故 $\vec a\cdot(\vec b\times\vec c)=1\cdot(-1)+0\cdot 1+1\cdot(-1)=-2$。再算 $\vec a\times\vec b$：$(0\cdot 1-1\cdot 1,\ 1\cdot 0-1\cdot 1,\ 1\cdot 1-0\cdot 0)=(-1,-1,1)$。故 $(\vec a\times\vec b)\cdot\vec c=(-1)\cdot 1+(-1)\cdot 1+1\cdot 0=-2$。两者相等，符合混合积的轮换对称性 $\vec a\cdot(\vec b\times\vec c)=\vec b\cdot(\vec c\times\vec a)=\vec c\cdot(\vec a\times\vec b)$；该值也等于行列式 $\begin{vmatrix}1&0&1\\0&1&1\\1&1&0\end{vmatrix}=1\cdot(1\cdot 0-1\cdot 1)-0\cdot(0\cdot 0-1\cdot 1)+1\cdot(0\cdot 1-1\cdot 1)=-1-1=-2$。
+
+answer
+
+均为 $-2$
+
+scene_spec.objects[0]
+
+三向量与平行六面体
+
+scene_spec.objects[1]
+
+混合积的轮换对称
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·三重积×混合积综合场景，呈现与混合积、轮换对称性、行列式相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三向量与平行六面体。
+
+scene_spec.steps[2]
+
+第三步：混合积的轮换对称。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三向量与平行六面体
+
+efficiency_tags[1]
+
+混合积的轮换对称
+
+## test-geom-013
+
+problem
+
+求球面 $x^2+y^2+z^2=4$ 与平面 $z=\sqrt2$ 的交线方程，并将其参数化。
+
+solution
+
+代入 $z=\sqrt2$：$x^2+y^2+2=4$，即 $x^2+y^2=2$。交线为平面 $z=\sqrt2$ 上的圆，半径 $\sqrt2$，圆心 $(0,0,\sqrt2)$。参数化：$x=\sqrt2\cos t$，$y=\sqrt2\sin t$，$z=\sqrt2$，$t\in[0,2\pi]$。
+
+answer
+
+$\begin{cases}x^2+y^2=2\\z=\sqrt2\end{cases}$；参数化 $(x,y,z)=(\sqrt2\cos t,\sqrt2\sin t,\sqrt2)$
+
+scene_spec.objects[0]
+
+平面截球的截面圆
+
+scene_spec.objects[1]
+
+参数点沿圆运动
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·球面×截面圆综合场景，呈现与截面圆、参数方程、圆相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：平面截球的截面圆。
+
+scene_spec.steps[2]
+
+第三步：参数点沿圆运动。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+平面截球的截面圆
+
+efficiency_tags[1]
+
+参数点沿圆运动
+
+## test-geom-014
+
+problem
+
+证明曲面 $z=x^2-y^2$ 是直纹面，并写出其直母线族。
+
+solution
+
+$z=x^2-y^2=(x+y)(x-y)$。对任意常数 $c$，直线 $\begin{cases}x+y=c\\z=c(x-y)\end{cases}$ 上每点满足 $z=(x+y)(x-y)=c(x-y)$，故整条直线在曲面上；同理 $\begin{cases}x-y=c\\z=c(x+y)\end{cases}$ 也是直母线族。每点处恰有两条直母线通过，故 $z=x^2-y^2$ 是直纹面（双曲抛物面）。
+
+answer
+
+证毕；直母线族 $\begin{cases}x+y=c\\z=c(x-y)\end{cases}$ 与 $\begin{cases}x-y=c\\z=c(x+y)\end{cases}$
+
+scene_spec.objects[0]
+
+马鞍面上的直线网格
+
+scene_spec.objects[1]
+
+两族直母线
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·直纹面×双曲抛物面综合场景，呈现与直纹面、因式分解、直线族相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：马鞍面上的直线网格。
+
+scene_spec.steps[2]
+
+第三步：两族直母线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+马鞍面上的直线网格
+
+efficiency_tags[1]
+
+两族直母线
+
+## test-geom-015
+
+problem
+
+求曲面 $xyz=1$（$x,y,z>0$）上到原点距离最近的点及最短距离。
+
+solution
+
+求 $d^2=x^2+y^2+z^2$ 在 $xyz=1$ 下的最小值。由均值不等式 $x^2+y^2+z^2\ge 3\sqrt[3]{x^2y^2z^2}=3\sqrt[3]{(xyz)^2}=3$，等号当且仅当 $x^2=y^2=z^2$，即 $x=y=z=1$（$xyz=1$）。故最近点为 $(1,1,1)$，最短距离 $\sqrt3$。
+
+answer
+
+最近点 $(1,1,1)$，距离 $\sqrt3$
+
+scene_spec.objects[0]
+
+曲面 $xyz=1$ 与原点
+
+scene_spec.objects[1]
+
+最短距离线段
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·曲面×条件极值综合场景，呈现与条件极值、均值不等式、距离相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：曲面 $xyz=1$ 与原点。
+
+scene_spec.steps[2]
+
+第三步：最短距离线段。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+曲面 $xyz=1$ 与原点
+
+efficiency_tags[1]
+
+最短距离线段
+
+## test-geom-016
+
+problem
+
+线性变换 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。
+
+solution
+
+$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\begin{pmatrix}1&-1\\-1&2\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\det A=1$，故椭圆面积 $=\pi\cdot|\det A|=\pi$。
+
+answer
+
+椭圆 $x^2-2xy+2y^2=1$，面积 $\pi$
+
+scene_spec.objects[0]
+
+单位圆被剪切为椭圆
+
+scene_spec.objects[1]
+
+面积不变（$\det A=1$）
+
+scene_spec.steps[0]
+
+呈现题干及条件：线性变换 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 把单位圆 $x^2+y^2=1$ 变成什么曲线？并求其面积。
+
+scene_spec.steps[1]
+
+依次呈现：单位圆被剪切为椭圆
+
+scene_spec.steps[2]
+
+依次呈现：面积不变（$\det A=1$）
+
+scene_spec.steps[3]
+
+核对完整证明：$A$ 把 $(x,y)$ 映到 $(x',y')=(x+y,y)$。反解 $x=x'-y'$、$y=y'$。代入 $x^2+y^2=1$：$(x'-y')^2+y'^2=1$，即 $x'^2-2x'y'+2y'^2=1$。这是椭圆（二次型 $x'^2-2x'y'+2y'^2$ 正定，因矩阵 $\begin{pmatrix}1&-1\\-1&2\end{pmatrix}$ 顺序主子式 $1>0$、$1>0$）。面积：$\det A=1$，故椭圆面积 $=\pi\cdot|\det A|=\pi$。
+
+scene_spec.steps[4]
+
+高亮答案：椭圆 $x^2-2xy+2y^2=1$，面积 $\pi$
+
+efficiency_tags[0]
+
+单位圆被剪切为椭圆
+
+efficiency_tags[1]
+
+面积不变（$\det A=1$）
+
+## test-geom-017
+
+problem
+
+求抛物线 $y=x^2$ 在顶点处的曲率与曲率半径，并说明顶点处曲率最大的原因。
+
+solution
+
+$\kappa(x)=\dfrac{|y''|}{(1+y'^2)^{3/2}}=\dfrac{2}{(1+4x^2)^{3/2}}$。在顶点 $x=0$：$\kappa=2$，曲率半径 $R=\dfrac{1}{2}$。$\kappa(x)$ 在 $x=0$ 处最大（分母在 $x=0$ 最小），因顶点处曲线"弯得最急"。
+
+answer
+
+$\kappa=2$；$R=\dfrac{1}{2}$
+
+scene_spec.objects[0]
+
+密切圆在顶点处贴合
+
+scene_spec.objects[1]
+
+曲率随$|x|$增大严格减小，顶点$x=0$最大
+
+scene_spec.steps[0]
+
+呈现题干及条件：求抛物线 $y=x^2$ 在顶点处的曲率与曲率半径，并说明顶点处曲率最大的原因。
+
+scene_spec.steps[1]
+
+依次呈现：密切圆在顶点处贴合
+
+scene_spec.steps[2]
+
+依次呈现：曲率随$|x|$增大严格减小，顶点$x=0$最大
+
+scene_spec.steps[3]
+
+核对完整证明：$\kappa(x)=\dfrac{|y''|}{(1+y'^2)^{3/2}}=\dfrac{2}{(1+4x^2)^{3/2}}$。在顶点 $x=0$：$\kappa=2$，曲率半径 $R=\dfrac{1}{2}$。$\kappa(x)$ 在 $x=0$ 处最大（分母在 $x=0$ 最小），因顶点处曲线"弯得最急"。
+
+scene_spec.steps[4]
+
+高亮答案：$\kappa=2$；$R=\dfrac{1}{2}$
+
+efficiency_tags[0]
+
+密切圆在顶点处贴合
+
+efficiency_tags[1]
+
+曲率随$|x|$增大严格减小，顶点$x=0$最大
+
+## test-geom-018
+
+problem
+
+求过直线 $l:\begin{cases}x+y-1=0\\x+z-2=0\end{cases}$ 且过点 $(0,0,0)$ 的平面方程。
+
+solution
+
+过 $l$ 的平面束为 $(x+y-1)+\lambda(x+z-2)=0$。代入点 $(0,0,0)$：$-1-2\lambda=0$，$\lambda=-\dfrac{1}{2}$。代入：$(x+y-1)-\dfrac{1}{2}(x+z-2)=0$，即 $x+y-1-\dfrac{x}{2}-\dfrac{z}{2}+1=0$，$\dfrac{x}{2}+y-\dfrac{z}{2}=0$，$x+2y-z=0$。
+
+answer
+
+$x+2y-z=0$
+
+scene_spec.objects[0]
+
+平面束绕直线旋转
+
+scene_spec.objects[1]
+
+扫过定点
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·平面束×定点综合场景，呈现与平面束、参数代入、平面方程相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：平面束绕直线旋转。
+
+scene_spec.steps[2]
+
+第三步：扫过定点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+平面束绕直线旋转
+
+efficiency_tags[1]
+
+扫过定点
+
+## test-geom-019
+
+problem
+
+求椭圆 $\dfrac{x^2}{4}+y^2=1$ 上点到 $(1,0)$ 的距离的最大值与最小值。
+
+solution
+
+参数化 $(2\cos t,\sin t)$。$d^2=(2\cos t-1)^2+\sin^2t=4\cos^2t-4\cos t+1+1-\cos^2t=3\cos^2t-4\cos t+2$。令 $u=\cos t\in[-1,1]$，$g(u)=3u^2-4u+2$。$g'(u)=6u-4=0$，$u=\dfrac{2}{3}$（在 $[-1,1]$ 内）。$g\left(\dfrac{2}{3}\right)=3\cdot\dfrac{4}{9}-\dfrac{8}{3}+2=\dfrac{4}{3}-\dfrac{8}{3}+2=\dfrac{2}{3}$；端点 $g(1)=1$，$g(-1)=3+4+2=9$。故 $d_{\min}=\sqrt{\dfrac{2}{3}}$，$d_{\max}=3$。
+
+answer
+
+最小值 $\sqrt{\dfrac{2}{3}}$；最大值 $3$
+
+scene_spec.objects[0]
+
+椭圆上动点到 $(1,0)$ 的距离变化
+
+scene_spec.objects[1]
+
+最值点标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·椭圆×距离最值综合场景，呈现与参数方程、距离最值、二次函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：椭圆上动点到 $(1,0)$ 的距离变化。
+
+scene_spec.steps[2]
+
+第三步：最值点标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+椭圆上动点到 $(1,0)$ 的距离变化
+
+efficiency_tags[1]
+
+最值点标注
+
+## test-geom-020
+
+problem
+
+求点 $P(1,2,3)$ 关于平面 $x+y+z=0$ 的对称点。
+
+solution
+
+法向量 $\vec n=(1,1,1)$，$|\vec n|^2=3$。$P$ 在平面上的投影为 $Q=P-\dfrac{P\cdot\vec n}{|\vec n|^2}\vec n=(1,2,3)-\dfrac{6}{3}(1,1,1)=(1,2,3)-(2,2,2)=(-1,0,1)$。对称点 $P'=2Q-P=(-2,0,2)-(1,2,3)=(-3,-2,-1)$。验证 $Q$ 在平面上：$-1+0+1=0$。
+
+answer
+
+$(-3,-2,-1)$
+
+scene_spec.objects[0]
+
+点、投影、对称点共线
+
+scene_spec.objects[1]
+
+平面镜面反射
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·对称点×平面综合场景，呈现与投影、对称、法向量相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：点、投影、对称点共线。
+
+scene_spec.steps[2]
+
+第三步：平面镜面反射。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+点、投影、对称点共线
+
+efficiency_tags[1]
+
+平面镜面反射
+
+## test-geom-021
+
+problem
+
+已知向量 $\vec a,\vec b,\vec c$ 满足 $\vec a+\vec b+\vec c=\vec 0$，且 $|\vec a|=3$、$|\vec b|=4$、$|\vec c|=5$。求 $\vec a$ 与 $\vec b$ 的夹角。
+
+solution
+
+由 $\vec c=-(\vec a+\vec b)$：$|\vec c|^2=|\vec a|^2+|\vec b|^2+2\vec a\cdot\vec b$。代入：$25=9+16+2\vec a\cdot\vec b$，故 $\vec a\cdot\vec b=0$。$\cos\theta=\dfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}=0$，夹角为 $\dfrac{\pi}{2}$。几何上三向量首尾相接成 $3$-$4$-$5$ 直角三角形（勾股定理逆定理）。
+
+answer
+
+$\dfrac{\pi}{2}$
+
+scene_spec.objects[0]
+
+三向量首尾相接成三角形
+
+scene_spec.objects[1]
+
+直角标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·向量×三角形边角综合场景，呈现与向量模长、内积、三角形相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三向量首尾相接成三角形。
+
+scene_spec.steps[2]
+
+第三步：直角标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三向量首尾相接成三角形
+
+efficiency_tags[1]
+
+直角标注
+
+## test-geom-022
+
+problem
+
+写出绕 $y$ 轴旋转角 $\varphi$ 的旋转矩阵 $R_y(\varphi)$，并验证它是正交矩阵。取右手直角坐标系，正角遵循绕正$y$轴的右手定则。
+
+solution
+
+绕 $y$ 轴旋转：$x'=x\cos\varphi+z\sin\varphi$，$y'=y$，$z'=-x\sin\varphi+z\cos\varphi$，故 $R_y(\varphi)=\begin{pmatrix}\cos\varphi&0&\sin\varphi\\0&1&0\\-\sin\varphi&0&\cos\varphi\end{pmatrix}$。验证 $R^TR=I$：第一列与第二列点积 $0$、与第三列点积 $\cos\varphi\sin\varphi-\sin\varphi\cos\varphi=0$；各列模长 $\cos^2\varphi+\sin^2\varphi=1$、$1$、$1$。故 $R$ 正交，且 $\det R=1$（旋转保定向）。
+
+answer
+
+$R_y(\varphi)=\begin{pmatrix}\cos\varphi&0&\sin\varphi\\0&1&0\\-\sin\varphi&0&\cos\varphi\end{pmatrix}$；正交（证毕）
+
+scene_spec.objects[0]
+
+绕 $y$ 轴旋转动画
+
+scene_spec.objects[1]
+
+列向量标准正交标注
+
+scene_spec.steps[0]
+
+呈现题干及条件：写出绕 $y$ 轴旋转角 $\varphi$ 的旋转矩阵 $R_y(\varphi)$，并验证它是正交矩阵。取右手直角坐标系，正角遵循绕正$y$轴的右手定则。
+
+scene_spec.steps[1]
+
+依次呈现：绕 $y$ 轴旋转动画
+
+scene_spec.steps[2]
+
+依次呈现：列向量标准正交标注
+
+scene_spec.steps[3]
+
+核对完整证明：绕 $y$ 轴旋转：$x'=x\cos\varphi+z\sin\varphi$，$y'=y$，$z'=-x\sin\varphi+z\cos\varphi$，故 $R_y(\varphi)=\begin{pmatrix}\cos\varphi&0&\sin\varphi\\0&1&0\\-\sin\varphi&0&\cos\varphi\end{pmatrix}$。验证 $R^TR=I$：第一列与第二列点积 $0$、与第三列点积 $\cos\varphi\sin\varphi-\sin\varphi\cos\varphi=0$；各列模长 $\cos^2\varphi+\sin^2\varphi=1$、$1$、$1$。故 $R$ 正交，且 $\det R=1$（旋转保定向）。
+
+scene_spec.steps[4]
+
+高亮答案：$R_y(\varphi)=\begin{pmatrix}\cos\varphi&0&\sin\varphi\\0&1&0\\-\sin\varphi&0&\cos\varphi\end{pmatrix}$；正交（证毕）
+
+efficiency_tags[0]
+
+绕 $y$ 轴旋转动画
+
+efficiency_tags[1]
+
+列向量标准正交标注
+
+## test-geom-023
+
+problem
+
+求球面 $x^2+y^2+z^2=4$ 在点 $(1,1,\sqrt2)$ 处的单位外法向量。
+
+solution
+
+$F=x^2+y^2+z^2-4$，$\nabla F=(2x,2y,2z)$。在 $(1,1,\sqrt2)$ 处 $\nabla F=(2,2,2\sqrt2)$，模 $=\sqrt{4+4+8}=4$。单位外法向量 $\vec n=\dfrac{\nabla F}{|\nabla F|}=\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$（若问全部单位法向量则为 $\pm\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$）。
+
+answer
+
+$\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{\sqrt2}{2}\right)$
+
+scene_spec.objects[0]
+
+球面与径向法向量
+
+scene_spec.objects[1]
+
+梯度方向标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·曲面×单位法向量综合场景，呈现与梯度、法向量、球面相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：球面与径向法向量。
+
+scene_spec.steps[2]
+
+第三步：梯度方向标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+球面与径向法向量
+
+efficiency_tags[1]
+
+梯度方向标注
+
+## test-geom-024
+
+problem
+
+求两平行平面 $2x-y+2z=1$ 与 $2x-y+2z=7$ 之间的距离。
+
+solution
+
+在第一个平面上取点（令 $x=z=0$，则 $-y=1$，$y=-1$）$P(0,-1,0)$。$P$ 到第二个平面的距离 $d=\dfrac{|2\cdot 0-(-1)+2\cdot 0-7|}{\sqrt{4+1+4}}=\dfrac{|1-7|}{3}=\dfrac{6}{3}=2$。即两平面距离为 $2$。
+
+answer
+
+$2$
+
+scene_spec.objects[0]
+
+两平行平面与公垂线段
+
+scene_spec.objects[1]
+
+距离标注
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·平行平面×距离综合场景，呈现与平行平面距离、点面距离公式相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两平行平面与公垂线段。
+
+scene_spec.steps[2]
+
+第三步：距离标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两平行平面与公垂线段
+
+efficiency_tags[1]
+
+距离标注
+
+## test-geom-025
+
+problem
+
+求到两定点 $A(1,0,0)$、$B(-1,0,0)$ 距离之和等于 $4$ 的点的轨迹方程，并说明曲面类型。
+
+solution
+
+设动点 $P(x,y,z)$，记 $r_1=\sqrt{(x-1)^2+y^2+z^2}$、$r_2=\sqrt{(x+1)^2+y^2+z^2}$，条件为 $r_1+r_2=4$。由 $r_2=4-r_1$ 两边平方：$r_2^2=16-8r_1+r_1^2$。又 $r_2^2-r_1^2=\left[(x+1)^2+y^2+z^2\right]-\left[(x-1)^2+y^2+z^2\right]=(x+1)^2-(x-1)^2=4x$。代入上式：$4x=16-8r_1$，即 $2r_1=4-x$。再平方：$4\left[(x-1)^2+y^2+z^2\right]=(4-x)^2$。展开：$4(x^2-2x+1)+4y^2+4z^2=16-8x+x^2$，整理得 $3x^2+4y^2+4z^2=12$，即 $\dfrac{x^2}{4}+\dfrac{y^2+z^2}{3}=1$。反向验证：由椭球方程得 $3x^2\le 12$，即 $|x|\le 2$，于是 $r_1=\dfrac{4-x}{2}\ge 1$、$r_2=\dfrac{4+x}{2}\ge 1$ 均非负（第二次平方得到的正是 $2r_1=4-x$，故 $r_1=\dfrac{4-x}{2}$ 代入平方前的方程成立，$r_2=4-r_1=\dfrac{4+x}{2}$ 同理），且 $r_1+r_2=4$——椭球上每点都满足原距离和条件，两方程等价。该方程表示绕 $x$ 轴的旋转椭球面：两焦点 $(\pm 1,0,0)$（$c=1$）、长半轴 $a=2$、短半轴 $b=\sqrt{a^2-c^2}=\sqrt3$。
+
+answer
+
+$\dfrac{x^2}{4}+\dfrac{y^2+z^2}{3}=1$，旋转椭球面
+
+scene_spec.objects[0]
+
+两定点与"绳长固定"的椭球生成
+
+scene_spec.objects[1]
+
+截面椭圆族
+
+scene_spec.steps[0]
+
+第一步：建立解析几何·轨迹×二次曲面综合场景，呈现与距离公式、椭球面、轨迹相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两定点与"绳长固定"的椭球生成。
+
+scene_spec.steps[2]
+
+第三步：截面椭圆族。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两定点与"绳长固定"的椭球生成
+
+efficiency_tags[1]
+
+截面椭圆族
+
+## test-prob-001
+
+problem
+
+两车间各承担总产量的 $\frac35$ 与 $\frac25$，次品率分别为 $\frac1{50}$ 与 $\frac3{100}$。随机抽取一件产品发现是次品，求它来自第一车间的概率。
+
+solution
+
+设 $A_i$ 表示产品来自第 $i$ 车间，$D$ 表示次品。$P(A_1\cap D)=\frac35\cdot\frac1{50}=\frac3{250}$，$P(A_2\cap D)=\frac25\cdot\frac3{100}=\frac3{250}$，故 $P(D)=\frac3{125}>0$。由贝叶斯公式，$P(A_1\mid D)=\frac{3/250}{3/125}=\frac12$。
+
+answer
+
+$\frac12$
+
+scene_spec.objects[0]
+
+两车间分支的面积图
+
+scene_spec.objects[1]
+
+次品分支的重新归一化
+
+scene_spec.steps[0]
+
+第一步：建立概率论·全概率公式×贝叶斯公式综合场景，呈现与全概率公式、贝叶斯公式、条件概率相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两车间分支的面积图。
+
+scene_spec.steps[2]
+
+第三步：次品分支的重新归一化。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两车间分支的面积图
+
+efficiency_tags[1]
+
+次品分支的重新归一化
+
+## test-prob-002
+
+problem
+
+设 $X\sim B\!\left(10,\dfrac{3}{10}\right)$。求 $P(X=3)$ 与 $P(X\le 1)$ 的精确值。
+
+solution
+
+由二项分布公式，$P(X=3)=\binom{10}{3}\left(\frac3{10}\right)^3\left(\frac7{10}\right)^7=\frac{120\cdot3^3\cdot7^7}{10^{10}}=\frac{66706983}{250000000}$。又 $P(X\le1)=P(X=0)+P(X=1)=\left(\frac7{10}\right)^{10}+10\cdot\frac3{10}\left(\frac7{10}\right)^9=\frac{7^{10}+30\cdot7^9}{10^{10}}=\frac{1493083459}{10000000000}$。
+
+answer
+
+$P(X=3)=\frac{66706983}{250000000}$；$P(X\le1)=\frac{1493083459}{10000000000}$。
+
+scene_spec.objects[0]
+
+二项分布柱状图
+
+scene_spec.objects[1]
+
+目标柱高亮
+
+scene_spec.steps[0]
+
+第一步：建立概率论·二项分布×组合计数综合场景，呈现与二项分布、组合数、概率质量函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：二项分布柱状图。
+
+scene_spec.steps[2]
+
+第三步：目标柱高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+二项分布柱状图
+
+efficiency_tags[1]
+
+目标柱高亮
+
+## test-prob-003
+
+problem
+
+用指示变量法推导 $X\sim B(n,p)$ 的期望与方差。
+
+solution
+
+设 $X=\displaystyle\sum_{i=1}^{n}X_i$，其中 $X_i$ 为第 $i$ 次试验成功的指示变量（独立，$P(X_i=1)=p$）。$E[X_i]=p$，由期望线性性 $E[X]=np$。$\operatorname{Var}(X_i)=E[X_i^2]-p^2=p-p^2=p(1-p)$。由独立性 $\operatorname{Var}(X)=\displaystyle\sum_{i=1}^{n}\operatorname{Var}(X_i)=np(1-p)$（独立变量的方差可加）。
+
+answer
+
+$E[X]=np$；$\operatorname{Var}(X)=np(1-p)$
+
+scene_spec.objects[0]
+
+指示变量拆解动画
+
+scene_spec.objects[1]
+
+方差可加性的示意
+
+scene_spec.steps[0]
+
+第一步：建立概率论·期望×方差×指示变量综合场景，呈现与指示变量、期望线性性、方差、独立性相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：指示变量拆解动画。
+
+scene_spec.steps[2]
+
+第三步：方差可加性的示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+指示变量拆解动画
+
+efficiency_tags[1]
+
+方差可加性的示意
+
+## test-prob-004
+
+problem
+
+设 $X$ 的密度为 $f(x)=3x^2$（$0<x<1$）。求 $X$ 的分布函数、$P\!\left(X>\dfrac{1}{2}\right)$ 与 $E[X]$。
+
+solution
+
+分布函数 $F(x)=\displaystyle\int_0^x3t^2dt=x^3$（$0<x<1$；$x\le 0$ 时为 0，$x\ge 1$ 时为 1）。$P\!\left(X>\dfrac{1}{2}\right)=1-F\!\left(\dfrac{1}{2}\right)=1-\dfrac{1}{8}=\dfrac{7}{8}$。$E[X]=\displaystyle\int_0^1x\cdot 3x^2dx=3\int_0^1x^3dx=\dfrac{3}{4}$。
+
+answer
+
+$F(x)=\begin{cases}0,&x\le 0\\x^3,&0<x<1\\1,&x\ge 1\end{cases}$；$P\!\left(X>\dfrac12\right)=\dfrac{7}{8}$；$E[X]=\dfrac{3}{4}$
+
+scene_spec.objects[0]
+
+密度与分布函数曲线对照
+
+scene_spec.objects[1]
+
+概率面积高亮
+
+scene_spec.steps[0]
+
+第一步：建立概率论·连续分布×分布函数综合场景，呈现与连续型随机变量、分布函数、分段函数积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：密度与分布函数曲线对照。
+
+scene_spec.steps[2]
+
+第三步：概率面积高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+密度与分布函数曲线对照
+
+efficiency_tags[1]
+
+概率面积高亮
+
+## test-prob-005
+
+problem
+
+设 $X,Y$ 独立同分布于 $U(0,1)$，求 $Z=X+Y$ 的密度与 $P(Z>\frac32)$。
+
+solution
+
+由卷积，$f_Z(z)=\int_{\mathbb R}\mathbf1_{(0,1)}(x)\mathbf1_{(0,1)}(z-x)\,dx$，即两个区间的交集长度。因此 $f_Z(z)=\begin{cases}z,&0<z<1,\\2-z,&1\le z<2,\\0,&\text{其他}.\end{cases}$。所求尾概率为 $P(Z>\frac32)=\int_{3/2}^2(2-z)\,dz=[2z-z^2/2]_{3/2}^2=2-\frac{15}{8}=\frac18$。
+
+answer
+
+$f_Z(z)=\begin{cases}z,&0<z<1,\\2-z,&1\le z<2,\\0,&\text{其他}.\end{cases}$；$P(Z>\frac32)=\frac18$。
+
+scene_spec.objects[0]
+
+卷积滑动的矩形面积
+
+scene_spec.objects[1]
+
+三角密度与尾部高亮
+
+scene_spec.steps[0]
+
+第一步：建立概率论·卷积×三角分布综合场景，呈现与卷积、三角分布、分段积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：卷积滑动的矩形面积。
+
+scene_spec.steps[2]
+
+第三步：三角密度与尾部高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+卷积滑动的矩形面积
+
+efficiency_tags[1]
+
+三角密度与尾部高亮
+
+## test-prob-006
+
+problem
+
+设 $X\sim\operatorname{Poisson}(4)$。求 $P(X=2)$ 与 $P(X\ge 1)$ 的精确表达式。
+
+solution
+
+$P(X=k)=\dfrac{4^ke^{-4}}{k!}$。$P(X=2)=\dfrac{16e^{-4}}{2}=8e^{-4}$。$P(X\ge 1)=1-P(X=0)=1-e^{-4}$（$P(X=0)=\dfrac{4^0e^{-4}}{0!}=e^{-4}$）。
+
+answer
+
+$P(X=2)=8e^{-4}$；$P(X\ge 1)=1-e^{-4}$
+
+scene_spec.objects[0]
+
+泊松柱状图
+
+scene_spec.objects[1]
+
+尾部概率高亮
+
+scene_spec.steps[0]
+
+第一步：建立概率论·泊松分布×级数综合场景，呈现与泊松分布、对立事件、指数级数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：泊松柱状图。
+
+scene_spec.steps[2]
+
+第三步：尾部概率高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+泊松柱状图
+
+efficiency_tags[1]
+
+尾部概率高亮
+
+## test-prob-007
+
+problem
+
+某灯泡寿命 $T\sim\operatorname{Exp}\!\left(\dfrac{1}{1000}\right)$（单位：小时，参数 $\lambda=\dfrac{1}{1000}$）。求 $P(T>1500\mid T>500)$。
+
+solution
+
+指数分布的生存函数为 $P(T>t)=e^{-t/1000}$（$t\ge0$）。由于 $\{T>1500\}\subseteq\{T>500\}$，$P(T>1500\mid T>500)=\frac{e^{-1500/1000}}{e^{-500/1000}}=\frac{e^{-3/2}}{e^{-1/2}}=e^{-1}$。
+
+answer
+
+$e^{-1}$
+
+scene_spec.objects[0]
+
+生存函数的值比
+
+scene_spec.objects[1]
+
+条件归一化后的平移曲线
+
+scene_spec.steps[0]
+
+定义 $S(t)=P(T>t)=e^{-t/1000}$，$t\ge0$。
+
+scene_spec.steps[1]
+
+条件剩余寿命的生存函数为 $P(T>500+t\mid T>500)=S(500+t)/S(500)=S(t)$。
+
+scene_spec.steps[2]
+
+重合的是归一化后的条件曲线；未归一化的 $S(500+t)=e^{-1/2}S(t)$ 不与 $S(t)$ 重合。
+
+scene_spec.steps[3]
+
+取 $t=1000$ 得所求概率 $e^{-1}$，用函数值的比，不用生存曲线下方的面积。
+
+efficiency_tags[0]
+
+生存函数曲线右移重合
+
+efficiency_tags[1]
+
+条件概率的面积比
+
+## test-prob-008
+
+problem
+
+独立投掷均匀骰子 $n$ 次，设 $\bar X_n$ 为平均点数。用切比雪夫不等式给出 $P(|\bar X_n-\frac72|\ge\frac1{10})$ 的上界，并说明 $n\to\infty$ 时该概率趋于 $0$。
+
+solution
+
+每次点数 $X_i$ 在 $1,\ldots,6$ 上等可能，故 $E(X_i)=\frac16\sum_{k=1}^6k=\frac72$，$E(X_i^2)=\frac16\sum_{k=1}^6k^2=\frac{91}{6}$，$\operatorname{Var}(X_i)=\frac{91}{6}-\frac{49}{4}=\frac{35}{12}$。独立性给出 $E(\bar X_n)=\frac72$，$\operatorname{Var}(\bar X_n)=\frac{35}{12n}$。因此 $P(|\bar X_n-\frac72|\ge\frac1{10})\le\min\{1,\frac{35}{12n}\cdot100\}=\min\{1,\frac{875}{3n}\}$。该非负上界趋于 $0$，由夹逼定理所求概率也趋于 $0$。
+
+answer
+
+上界 $\min\{1,\frac{875}{3n}\}$；当 $n\to\infty$ 时概率趋于 $0$。
+
+scene_spec.objects[0]
+
+独立骰子的精确矩
+
+scene_spec.objects[1]
+
+平均数的概率上界
+
+scene_spec.steps[0]
+
+独立点数满足 $E(X_i)=7/2$、$\operatorname{Var}(X_i)=35/12$。
+
+scene_spec.steps[1]
+
+显示 $\operatorname{Var}(\overline X_n)=35/(12n)$。
+
+scene_spec.steps[2]
+
+阈值为 $1/10$，显示 $P(|\overline X_n-7/2|\ge1/10)\le\min\{1,875/(3n)\}\to0$。
+
+scene_spec.steps[3]
+
+样本轨迹仅作示意；概率收敛由精确上界证明。
+
+efficiency_tags[0]
+
+独立公平骰子均值 $E(X_i)=\frac72$
+
+efficiency_tags[1]
+
+精确概率上界 $\min\{1,\frac{875}{3n}\}$ 趋于 $0$
+
+## test-prob-009
+
+problem
+
+设 $X\sim N(2,3)$（均值 2、方差 3），$Y=2X-1$。求 $Y$ 的分布与 $P(Y>3)$。
+
+solution
+
+正态分布在线性变换下仍为正态：$E[Y]=2E[X]-1=3$，$\operatorname{Var}(Y)=4\operatorname{Var}(X)=12$，故 $Y\sim N(3,12)$。标准化 $Z=\dfrac{Y-3}{\sqrt{12}}\sim N(0,1)$。$P(Y>3)=P\!\left(Z>\dfrac{3-3}{\sqrt{12}}\right)=P(Z>0)=\dfrac{1}{2}$（标准正态关于 0 对称）。
+
+answer
+
+$Y\sim N(3,12)$；$P(Y>3)=\dfrac{1}{2}$
+
+scene_spec.objects[0]
+
+线性变换前后密度曲线
+
+scene_spec.objects[1]
+
+对称性与 $1/2$ 面积
+
+scene_spec.steps[0]
+
+第一步：建立概率论·正态分布×线性变换综合场景，呈现与正态分布线性变换、标准化、分布函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：线性变换前后密度曲线。
+
+scene_spec.steps[2]
+
+第三步：对称性与 $1/2$ 面积。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+线性变换前后密度曲线
+
+efficiency_tags[1]
+
+对称性与 $1/2$ 面积
+
+## test-prob-010
+
+problem
+
+设 $X\sim U(0,1)$，$Y=X^2$。求 $\operatorname{Cov}(X,Y)$ 与相关系数 $\rho(X,Y)$。
+
+solution
+
+$E[X]=\dfrac{1}{2}$，$E[X^2]=\dfrac{1}{3}$，$E[X^3]=\dfrac{1}{4}$，$E[X^4]=\dfrac{1}{5}$。$\operatorname{Cov}(X,Y)=E[X^3]-E[X]E[X^2]=\dfrac{1}{4}-\dfrac{1}{2}\cdot\dfrac{1}{3}=\dfrac{1}{4}-\dfrac{1}{6}=\dfrac{1}{12}$。$\operatorname{Var}(X)=\dfrac{1}{12}$，$\operatorname{Var}(Y)=E[X^4]-(E[X^2])^2=\dfrac{1}{5}-\dfrac{1}{9}=\dfrac{4}{45}$。$\rho=\dfrac{\operatorname{Cov}}{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}}=\dfrac{1/12}{\sqrt{\frac{1}{12}\cdot\frac{4}{45}}}=\dfrac{1/12}{\sqrt{1/135}}=\dfrac{\sqrt{135}}{12}=\dfrac{3\sqrt{15}}{12}=\dfrac{\sqrt{15}}{4}$。
+
+answer
+
+$\operatorname{Cov}(X,Y)=\dfrac{1}{12}$；$\rho=\dfrac{\sqrt{15}}{4}$
+
+scene_spec.objects[0]
+
+$y=x^2$ 上的散点
+
+scene_spec.objects[1]
+
+正相关的可视化
+
+scene_spec.steps[0]
+
+第一步：建立概率论·协方差×相关系数综合场景，呈现与协方差、相关系数、均匀分布相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=x^2$ 上的散点。
+
+scene_spec.steps[2]
+
+第三步：正相关的可视化。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=x^2$ 上的散点
+
+efficiency_tags[1]
+
+正相关的可视化
+
+## test-prob-011
+
+problem
+
+$(X,Y)$ 在三角形 $D=\{(x,y):x\ge 0,\ y\ge 0,\ x+y\le 2\}$ 上均匀分布。求条件密度 $f_{Y|X}(y|x)$ 与 $E[Y|X=x]$，并求 $E[Y]$。
+
+solution
+
+$D$ 面积为 $\dfrac{1}{2}\cdot 2\cdot 2=2$，联合密度 $f(x,y)=\dfrac{1}{2}$（$(x,y)\in D$）。边缘密度 $f_X(x)=\displaystyle\int_0^{2-x}\dfrac{1}{2}dy=\dfrac{2-x}{2}$（$0<x<2$）。条件密度 $f_{Y|X}(y|x)=\dfrac{f(x,y)}{f_X(x)}=\dfrac{1}{2-x}$（$0<y<2-x$，即在 $(0,2-x)$ 上均匀）。$E[Y|X=x]=\dfrac{2-x}{2}$。$E[Y]=\displaystyle\int_0^2E[Y|X=x]f_X(x)dx=\int_0^2\dfrac{2-x}{2}\cdot\dfrac{2-x}{2}dx=\dfrac{1}{4}\int_0^2(2-x)^2dx=\dfrac{1}{4}\cdot\dfrac{8}{3}=\dfrac{2}{3}$。
+
+answer
+
+$0<x<2$ 时，$f_{Y|X}(y|x)=\dfrac{1}{2-x}$（$0<y<2-x$，其余 $y$ 处为 0）；$E[Y|X=x]=\dfrac{2-x}{2}$；$E[Y]=\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+三角形区域与条件切片
+
+scene_spec.objects[1]
+
+条件期望随 $x$ 变化的直线
+
+scene_spec.steps[0]
+
+第一步：建立概率论·条件期望×二维均匀综合场景，呈现与二维均匀、条件分布、条件期望相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三角形区域与条件切片。
+
+scene_spec.steps[2]
+
+第三步：条件期望随 $x$ 变化的直线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三角形区域与条件切片
+
+efficiency_tags[1]
+
+条件期望随 $x$ 变化的直线
+
+## test-prob-012
+
+problem
+
+袋中有 3 个红球、2 个白球，不放回地抽取 2 个。求恰抽到一红一白的概率。
+
+solution
+
+样本空间为从 5 球中取 2 球，共 $C_5^2=10$ 种等可能结果。恰一红一白：$C_3^1\cdot C_2^1=6$ 种。故 $P=\dfrac{6}{10}=\dfrac{3}{5}$。（超几何分布公式 $P=\dfrac{\binom{3}{1}\binom{2}{1}}{\binom{5}{2}}=\dfrac{3}{5}$。）
+
+answer
+
+$\dfrac{3}{5}$
+
+scene_spec.objects[0]
+
+抽取过程的树状图
+
+scene_spec.objects[1]
+
+有利分支高亮
+
+scene_spec.steps[0]
+
+第一步：建立概率论·超几何分布×组合综合场景，呈现与超几何分布、组合计数、对称性相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：抽取过程的树状图。
+
+scene_spec.steps[2]
+
+第三步：有利分支高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+抽取过程的树状图
+
+efficiency_tags[1]
+
+有利分支高亮
+
+## test-prob-013
+
+problem
+
+设 $X\sim\operatorname{Poisson}(\lambda)$。求矩母函数 $M(t)$，并用它求 $E[X]$ 与 $E[X^2]$。
+
+solution
+
+$M(t)=E[e^{tX}]=\displaystyle\sum_{k=0}^{\infty}e^{tk}\dfrac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^{\infty}\dfrac{(\lambda e^t)^k}{k!}=e^{-\lambda}e^{\lambda e^t}=e^{\lambda(e^t-1)}$。$M'(t)=M(t)\cdot\lambda e^t$，$M'(0)=\lambda$，故 $E[X]=\lambda$。$M''(t)=M(t)\left[(\lambda e^t)^2+\lambda e^t\right]$，$M''(0)=\lambda^2+\lambda$，故 $E[X^2]=\lambda^2+\lambda$（与 eval-prob-006 一致）。
+
+answer
+
+$M(t)=e^{\lambda(e^t-1)}$；$E[X]=\lambda$；$E[X^2]=\lambda^2+\lambda$
+
+scene_spec.objects[0]
+
+矩母函数曲线
+
+scene_spec.objects[1]
+
+导数与矩的对应
+
+scene_spec.steps[0]
+
+第一步：建立概率论·矩母函数×数字特征综合场景，呈现与矩母函数、指数级数、矩的计算相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：矩母函数曲线。
+
+scene_spec.steps[2]
+
+第三步：导数与矩的对应。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+矩母函数曲线
+
+efficiency_tags[1]
+
+导数与矩的对应
+
+## test-prob-014
+
+problem
+
+独立重复掷一枚均匀骰子，直到首次出现6为止。求所需投掷次数的期望。
+
+solution
+
+设 $E$ 为期望次数。第一次若为 6（概率 $\dfrac{1}{6}$），总次数 1；否则（概率 $\dfrac{5}{6}$）回到初始状态，总次数 $1+E$。故 $E=\dfrac{1}{6}\cdot 1+\dfrac{5}{6}\cdot(1+E)=1+\dfrac{5E}{6}$，解得 $E=6$。（几何分布 $p=\dfrac{1}{6}$ 的期望 $\dfrac{1}{p}=6$。）有限性也可直接由尾和给出：$P(T>k)=(5/6)^k$，因此$E[T]=\sum_{k=0}^\infty P(T>k)=\sum_{k=0}^\infty(5/6)^k=6<\infty$，所以递推式移项合法。
+
+answer
+
+$6$
+
+scene_spec.objects[0]
+
+树状图与"回到原点"分支
+
+scene_spec.objects[1]
+
+期望自指方程
+
+scene_spec.steps[0]
+
+呈现题干及条件：独立重复掷一枚均匀骰子，直到首次出现6为止。求所需投掷次数的期望。
+
+scene_spec.steps[1]
+
+依次呈现：树状图与"回到原点"分支
+
+scene_spec.steps[2]
+
+依次呈现：期望自指方程
+
+scene_spec.steps[3]
+
+核对完整证明：设 $E$ 为期望次数。第一次若为 6（概率 $\dfrac{1}{6}$），总次数 1；否则（概率 $\dfrac{5}{6}$）回到初始状态，总次数 $1+E$。故 $E=\dfrac{1}{6}\cdot 1+\dfrac{5}{6}\cdot(1+E)=1+\dfrac{5E}{6}$，解得 $E=6$。（几何分布 $p=\dfrac{1}{6}$ 的期望 $\dfrac{1}{p}=6$。）有限性也可直接由尾和给出：$P(T>k)=(5/6)^k$，因此$E[T]=\sum_{k=0}^\infty P(T>k)=\sum_{k=0}^\infty(5/6)^k=6<\infty$，所以递推式移项合法。
+
+scene_spec.steps[4]
+
+高亮答案：$6$
+
+efficiency_tags[0]
+
+树状图与"回到原点"分支
+
+efficiency_tags[1]
+
+期望自指方程
+
+## test-prob-015
+
+problem
+
+甲乙每个回合同步各抛一枚公平硬币；所有抛掷相互独立，两人各自遇到首次正面即停止。求他们在同一个回合停止的概率。
+
+solution
+
+设两人停止时刻为 $X,Y$，独立同分布于 $\operatorname{Geom}\!\left(\dfrac{1}{2}\right)$，$P(X=k)=P(Y=k)=\left(\dfrac{1}{2}\right)^k$。$P(X=Y)=\displaystyle\sum_{k=1}^{\infty}P(X=k)P(Y=k)=\sum_{k=1}^{\infty}\left(\dfrac{1}{2}\right)^{2k}=\sum_{k=1}^{\infty}\left(\dfrac{1}{4}\right)^k=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$。
+
+answer
+
+$\dfrac{1}{3}$
+
+scene_spec.objects[0]
+
+两人抛硬币过程同步
+
+scene_spec.objects[1]
+
+同时停止的计数
+
+scene_spec.steps[0]
+
+呈现题干及条件：甲乙每个回合同步各抛一枚公平硬币；所有抛掷相互独立，两人各自遇到首次正面即停止。求他们在同一个回合停止的概率。
+
+scene_spec.steps[1]
+
+依次呈现：两人抛硬币过程同步
+
+scene_spec.steps[2]
+
+依次呈现：同时停止的计数
+
+scene_spec.steps[3]
+
+核对完整证明：设两人停止时刻为 $X,Y$，独立同分布于 $\operatorname{Geom}\!\left(\dfrac{1}{2}\right)$，$P(X=k)=P(Y=k)=\left(\dfrac{1}{2}\right)^k$。$P(X=Y)=\displaystyle\sum_{k=1}^{\infty}P(X=k)P(Y=k)=\sum_{k=1}^{\infty}\left(\dfrac{1}{2}\right)^{2k}=\sum_{k=1}^{\infty}\left(\dfrac{1}{4}\right)^k=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{1}{3}$
+
+efficiency_tags[0]
+
+两人抛硬币过程同步
+
+efficiency_tags[1]
+
+同时停止的计数
+
+## test-prob-016
+
+problem
+
+某地天气的转移矩阵为 $P=\begin{pmatrix}\frac45&\frac15\\\frac25&\frac35\end{pmatrix}$（状态 $1$ 晴、状态 $2$ 雨，行表示今天）。求稳态分布。
+
+solution
+
+令 $\pi=(a,b)$，其中 $a+b=1$ 且 $a,b\ge0$。由 $\pi P=\pi$ 得 $a=\frac45a+\frac25b$，即 $a=2b$。联立归一化条件，得到 $a=\frac23$、$b=\frac13$。代回可核验 $(\frac23,\frac13)P=(\frac23,\frac13)$。
+
+answer
+
+$\pi=(\frac23,\frac13)$。
+
+scene_spec.objects[0]
+
+状态转移图
+
+scene_spec.objects[1]
+
+分布向稳态收敛
+
+scene_spec.steps[0]
+
+第一步：建立概率论·马尔可夫链×稳态分布综合场景，呈现与马尔可夫链、稳态分布、特征向量相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：状态转移图。
+
+scene_spec.steps[2]
+
+第三步：分布向稳态收敛。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+状态转移图
+
+efficiency_tags[1]
+
+分布向稳态收敛
+
+## test-prob-017
+
+problem
+
+设 $X,Y$ 独立同分布于 $U(0,1)$。求 $M=\max(X,Y)$ 的分布函数，并求 $E[M]$。
+
+solution
+
+$F_M(t)=P(\max(X,Y)\le t)=P(X\le t)P(Y\le t)=t^2$（$0<t<1$，$t\le 0$ 为 0、$t\ge 1$ 为 1）。密度 $f_M(t)=2t$（$0<t<1$）。$E[M]=\displaystyle\int_0^1t\cdot 2t\,dt=\dfrac{2}{3}$。
+
+answer
+
+$F_M(t)=\begin{cases}0,&t\le 0\\t^2,&0<t<1\\1,&t\ge 1\end{cases}$；$E[M]=\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+单位正方形中 $\max\le t$ 的小正方形
+
+scene_spec.objects[1]
+
+密度 $2t$ 曲线
+
+scene_spec.steps[0]
+
+第一步：建立概率论·二维均匀×次序统计量综合场景，呈现与次序统计量、二维均匀、分布函数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：单位正方形中 $\max\le t$ 的小正方形。
+
+scene_spec.steps[2]
+
+第三步：密度 $2t$ 曲线。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+单位正方形中 $\max\le t$ 的小正方形
+
+efficiency_tags[1]
+
+密度 $2t$ 曲线
+
+## test-prob-018
+
+problem
+
+设 $X\sim\operatorname{Exp}(\lambda)$。求 $E[e^{tX}]$ 的收敛条件与表达式。其中$\lambda>0,\ t\in\mathbb R$。
+
+solution
+
+$M(t)=E[e^{tX}]=\displaystyle\int_0^{\infty}e^{tx}\lambda e^{-\lambda x}dx=\lambda\int_0^{\infty}e^{(t-\lambda)x}dx$。当 $t<\lambda$ 时收敛：$M(t)=\lambda\cdot\dfrac{1}{\lambda-t}=\dfrac{\lambda}{\lambda-t}$；当 $t\ge\lambda$ 时积分发散（$t=\lambda$ 时 $\int\lambda\,dx$ 发散）。收敛条件 $t<\lambda$ 恰对应"指数增长阶小于衰减率"。
+
+answer
+
+$E[e^{tX}]=\lambda/(\lambda-t)$（$t<\lambda$）；$t\ge\lambda$时为$+\infty$。
+
+scene_spec.objects[0]
+
+被积函数随 $t$ 逼近 $\lambda$ 的变化
+
+scene_spec.objects[1]
+
+收敛域标注
+
+scene_spec.steps[0]
+
+呈现题干及条件：设 $X\sim\operatorname{Exp}(\lambda)$。求 $E[e^{tX}]$ 的收敛条件与表达式。其中$\lambda>0,\ t\in\mathbb R$。
+
+scene_spec.steps[1]
+
+依次呈现：被积函数随 $t$ 逼近 $\lambda$ 的变化
+
+scene_spec.steps[2]
+
+依次呈现：收敛域标注
+
+scene_spec.steps[3]
+
+核对完整证明：$M(t)=E[e^{tX}]=\displaystyle\int_0^{\infty}e^{tx}\lambda e^{-\lambda x}dx=\lambda\int_0^{\infty}e^{(t-\lambda)x}dx$。当 $t<\lambda$ 时收敛：$M(t)=\lambda\cdot\dfrac{1}{\lambda-t}=\dfrac{\lambda}{\lambda-t}$；当 $t\ge\lambda$ 时积分发散（$t=\lambda$ 时 $\int\lambda\,dx$ 发散）。收敛条件 $t<\lambda$ 恰对应"指数增长阶小于衰减率"。
+
+scene_spec.steps[4]
+
+高亮答案：$E[e^{tX}]=\lambda/(\lambda-t)$（$t<\lambda$）；$t\ge\lambda$时为$+\infty$。
+
+efficiency_tags[0]
+
+被积函数随 $t$ 逼近 $\lambda$ 的变化
+
+efficiency_tags[1]
+
+收敛域标注
+
+## test-prob-019
+
+problem
+
+设 $X_1,\dots,X_5$ 独立同分布于 $U(0,1)$。求 $E[\min X_i]$ 与 $E[\max X_i]$。
+
+solution
+
+$P(\max\le t)=t^5$，密度 $5t^4$，$E[\max]=\displaystyle\int_0^1t\cdot 5t^4dt=\dfrac{5}{6}$。$P(\min>t)=(1-t)^5$，故 $F_{\min}(t)=1-(1-t)^5$，密度 $5(1-t)^4$，$E[\min]=\displaystyle\int_0^1t\cdot 5(1-t)^4dt$。令 $u=1-t$：$=5\displaystyle\int_0^1(1-u)u^4du=5\left(\dfrac{1}{5}-\dfrac{1}{6}\right)=1-\dfrac{5}{6}=\dfrac{1}{6}$。
+
+answer
+
+$E[\min]=\dfrac{1}{6}$；$E[\max]=\dfrac{5}{6}$
+
+scene_spec.objects[0]
+
+五个样本点的最值标注
+
+scene_spec.objects[1]
+
+对称性 $1/6$ 与 $5/6$
+
+scene_spec.steps[0]
+
+第一步：建立概率论·均匀分布×次序统计量综合场景，呈现与次序统计量、均匀分布、期望相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：五个样本点的最值标注。
+
+scene_spec.steps[2]
+
+第三步：对称性 $1/6$ 与 $5/6$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+五个样本点的最值标注
+
+efficiency_tags[1]
+
+对称性 $1/6$ 与 $5/6$
+
+## test-prob-020
+
+problem
+
+口袋里有 $10$ 把钥匙，其中只有 $1$ 把能开门，以均匀随机顺序逐一不放回尝试。求打开门所需尝试次数的期望。
+
+solution
+
+正确钥匙在均匀随机排列中的位置 $K$ 等可能为 $1,\ldots,10$，即 $P(K=k)=1/10$。因此 $E(K)=\frac1{10}\sum_{k=1}^{10}k=\frac{10\cdot11}{2\cdot10}=\frac{11}{2}$。
+
+answer
+
+$\frac{11}{2}$
+
+scene_spec.objects[0]
+
+逐一尝试的动画
+
+scene_spec.objects[1]
+
+位置均匀性示意
+
+scene_spec.steps[0]
+
+第一步：建立概率论·组合×期望综合场景，呈现与对称性、期望、均匀分布相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：逐一尝试的动画。
+
+scene_spec.steps[2]
+
+第三步：位置均匀性示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+逐一尝试的动画
+
+efficiency_tags[1]
+
+位置均匀性示意
+
+## test-prob-021
+
+problem
+
+设 $A,B$ 独立，$P(A)=\frac25$，$P(A\cup B)=\frac7{10}$。求 $P(B)$。
+
+solution
+
+令 $p=P(B)$。独立性给出 $P(A\cap B)=\frac25p$。由容斥公式，$\frac7{10}=\frac25+p-\frac25p=\frac25+\frac35p$，所以 $\frac35p=\frac3{10}$，得 $p=\frac12$。
+
+answer
+
+$\frac12$
+
+scene_spec.objects[0]
+
+韦恩图与面积方程
+
+scene_spec.objects[1]
+
+独立性约束
+
+scene_spec.steps[0]
+
+第一步：建立概率论·独立性×概率运算综合场景，呈现与独立性、加法公式、解方程相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：韦恩图与面积方程。
+
+scene_spec.steps[2]
+
+第三步：独立性约束。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+韦恩图与面积方程
+
+efficiency_tags[1]
+
+独立性约束
+
+## test-prob-022
+
+problem
+
+独立掷两枚均匀骰子，设$X$为两数之和。求$\operatorname{Var}(X)$。
+
+solution
+
+设 $X=X_1+X_2$，$X_1,X_2$ 独立同分布（单次骰子），$\operatorname{Var}(X_i)=\dfrac{35}{12}$（eval-prob-015）。由独立性 $\operatorname{Var}(X)=\operatorname{Var}(X_1)+\operatorname{Var}(X_2)=\dfrac{35}{12}+\dfrac{35}{12}=\dfrac{35}{6}$。直接验证：$E[X]=7$，$E[X^2]=\displaystyle\sum_{k=2}^{12}k^2P(X=k)=\dfrac{1974}{36}=\dfrac{329}{6}$，$\operatorname{Var}(X)=\dfrac{329}{6}-49=\dfrac{329-294}{6}=\dfrac{35}{6}$，一致。
+
+answer
+
+$\dfrac{35}{6}$
+
+scene_spec.objects[0]
+
+两骰子和的分布柱状图
+
+scene_spec.objects[1]
+
+方差叠加示意
+
+scene_spec.steps[0]
+
+呈现题干及条件：独立掷两枚均匀骰子，设$X$为两数之和。求$\operatorname{Var}(X)$。
+
+scene_spec.steps[1]
+
+依次呈现：两骰子和的分布柱状图
+
+scene_spec.steps[2]
+
+依次呈现：方差叠加示意
+
+scene_spec.steps[3]
+
+核对完整证明：设 $X=X_1+X_2$，$X_1,X_2$ 独立同分布（单次骰子），$\operatorname{Var}(X_i)=\dfrac{35}{12}$（eval-prob-015）。由独立性 $\operatorname{Var}(X)=\operatorname{Var}(X_1)+\operatorname{Var}(X_2)=\dfrac{35}{12}+\dfrac{35}{12}=\dfrac{35}{6}$。直接验证：$E[X]=7$，$E[X^2]=\displaystyle\sum_{k=2}^{12}k^2P(X=k)=\dfrac{1974}{36}=\dfrac{329}{6}$，$\operatorname{Var}(X)=\dfrac{329}{6}-49=\dfrac{329-294}{6}=\dfrac{35}{6}$，一致。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{35}{6}$
+
+efficiency_tags[0]
+
+两骰子和的分布柱状图
+
+efficiency_tags[1]
+
+方差叠加示意
+
+## test-prob-023
+
+problem
+
+布丰投针：平行线间距$d>0$，针长$0<l\le d$。针中点到最近平行线的距离$X$在$[0,d/2]$均匀，针与平行线的无向锐夹角$\Theta$在$[0,\pi/2]$均匀，且两者独立。求针与任一直线相交的概率。
+
+solution
+
+设针中点到最近平行线的距离为 $x\sim U\!\left(0,\dfrac{d}{2}\right)$，针与平行线的夹角为 $\theta\sim U\!\left(0,\dfrac{\pi}{2}\right)$，两者独立。相交条件：$x\le\dfrac{l}{2}\sin\theta$。联合密度 $f(x,\theta)=\dfrac{2}{d}\cdot\dfrac{2}{\pi}$。相交概率 $P=\dfrac{4}{\pi d}\displaystyle\int_0^{\pi/2}\!\!\int_0^{(l/2)\sin\theta}dx\,d\theta=\dfrac{4}{\pi d}\int_0^{\pi/2}\dfrac{l}{2}\sin\theta\,d\theta=\dfrac{2l}{\pi d}\left[-\cos\theta\right]_0^{\pi/2}=\dfrac{2l}{\pi d}$。
+
+answer
+
+$\dfrac{2l}{\pi d}$
+
+scene_spec.objects[0]
+
+随机投针动画
+
+scene_spec.objects[1]
+
+相交区域的面积
+
+scene_spec.steps[0]
+
+呈现题干及条件：布丰投针：平行线间距$d>0$，针长$0<l\le d$。针中点到最近平行线的距离$X$在$[0,d/2]$均匀，针与平行线的无向锐夹角$\Theta$在$[0,\pi/2]$均匀，且两者独立。求针与任一直线相交的概率。
+
+scene_spec.steps[1]
+
+依次呈现：随机投针动画
+
+scene_spec.steps[2]
+
+依次呈现：相交区域的面积
+
+scene_spec.steps[3]
+
+核对完整证明：设针中点到最近平行线的距离为 $x\sim U\!\left(0,\dfrac{d}{2}\right)$，针与平行线的夹角为 $\theta\sim U\!\left(0,\dfrac{\pi}{2}\right)$，两者独立。相交条件：$x\le\dfrac{l}{2}\sin\theta$。联合密度 $f(x,\theta)=\dfrac{2}{d}\cdot\dfrac{2}{\pi}$。相交概率 $P=\dfrac{4}{\pi d}\displaystyle\int_0^{\pi/2}\!\!\int_0^{(l/2)\sin\theta}dx\,d\theta=\dfrac{4}{\pi d}\int_0^{\pi/2}\dfrac{l}{2}\sin\theta\,d\theta=\dfrac{2l}{\pi d}\left[-\cos\theta\right]_0^{\pi/2}=\dfrac{2l}{\pi d}$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{2l}{\pi d}$
+
+efficiency_tags[0]
+
+随机投针动画
+
+efficiency_tags[1]
+
+相交区域的面积
+
+## test-prob-024
+
+problem
+
+证明泊松分布的概率质量函数归一化：$\displaystyle\sum_{k=0}^{\infty}\frac{\lambda^ke^{-\lambda}}{k!}=1$，并用阶乘矩求 $\operatorname{Var}(X)$（$X\sim\operatorname{Poisson}(\lambda)$）。
+
+solution
+
+归一化：$\displaystyle\sum_{k=0}^{\infty}\dfrac{\lambda^ke^{-\lambda}}{k!}=e^{-\lambda}\sum_{k=0}^{\infty}\dfrac{\lambda^k}{k!}=e^{-\lambda}\cdot e^{\lambda}=1$（$e^\lambda$ 的泰勒展开）。阶乘矩：$E[X(X-1)]=\displaystyle\sum_{k=2}^{\infty}k(k-1)\dfrac{\lambda^ke^{-\lambda}}{k!}=\lambda^2e^{-\lambda}\sum_{k=2}^{\infty}\dfrac{\lambda^{k-2}}{(k-2)!}=\lambda^2e^{-\lambda}e^{\lambda}=\lambda^2$。故 $E[X^2]=E[X(X-1)]+E[X]=\lambda^2+\lambda$，$\operatorname{Var}(X)=E[X^2]-\lambda^2=\lambda$。
+
+answer
+
+证毕；$\operatorname{Var}(X)=\lambda$
+
+scene_spec.objects[0]
+
+泊松柱状图归一
+
+scene_spec.objects[1]
+
+阶乘矩求和的重整化
+
+scene_spec.steps[0]
+
+第一步：建立概率论·泊松分布×泰勒展开综合场景，呈现与泊松分布、指数级数、阶乘矩相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：泊松柱状图归一。
+
+scene_spec.steps[2]
+
+第三步：阶乘矩求和的重整化。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+泊松柱状图归一
+
+efficiency_tags[1]
+
+阶乘矩求和的重整化
+
+## test-prob-025
+
+problem
+
+掷一枚均匀骰子得$X$分；若第一次得6分，则再独立掷一次并累加点数，第二次无论得几分都停止；否则第一次后停止。最多掷两次。求总得分期望。
+
+solution
+
+设总得分为 $Y$。第一次掷出 $X$；若 $X=6$ 则加第二次的 $Z$（与 $X$ 独立同分布）。$E[Y]=E[X]+E[\mathbf 1_{\{X=6\}}Z]=E[X]+P(X=6)E[Z]=\dfrac{7}{2}+\dfrac{1}{6}\cdot\dfrac{7}{2}=\dfrac{7}{2}\left(1+\dfrac{1}{6}\right)=\dfrac{7}{2}\cdot\dfrac{7}{6}=\dfrac{49}{12}$。
+
+answer
+
+$\dfrac{49}{12}$
+
+scene_spec.objects[0]
+
+掷骰分支的树状图
+
+scene_spec.objects[1]
+
+期望拆分示意
+
+scene_spec.steps[0]
+
+呈现题干及条件：掷一枚均匀骰子得$X$分；若第一次得6分，则再独立掷一次并累加点数，第二次无论得几分都停止；否则第一次后停止。最多掷两次。求总得分期望。
+
+scene_spec.steps[1]
+
+依次呈现：掷骰分支的树状图
+
+scene_spec.steps[2]
+
+依次呈现：期望拆分示意
+
+scene_spec.steps[3]
+
+核对完整证明：设总得分为 $Y$。第一次掷出 $X$；若 $X=6$ 则加第二次的 $Z$（与 $X$ 独立同分布）。$E[Y]=E[X]+E[\mathbf 1_{\{X=6\}}Z]=E[X]+P(X=6)E[Z]=\dfrac{7}{2}+\dfrac{1}{6}\cdot\dfrac{7}{2}=\dfrac{7}{2}\left(1+\dfrac{1}{6}\right)=\dfrac{7}{2}\cdot\dfrac{7}{6}=\dfrac{49}{12}$。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{49}{12}$
+
+efficiency_tags[0]
+
+掷骰分支的树状图
+
+efficiency_tags[1]
+
+期望拆分示意
+
+## test-linalg-001
+
+problem
+
+用 Cramer 法则解方程组 $\begin{cases}2x+y-z=1\\x-y+z=2\\x+2y+z=4\end{cases}$。
+
+solution
+
+系数行列式 $D=\begin{vmatrix}2&1&-1\\1&-1&1\\1&2&1\end{vmatrix}=2\cdot(-1-2)-1\cdot(1-1)+(-1)\cdot(2+1)=-6-0-3=-9$。$D_x=\begin{vmatrix}1&1&-1\\2&-1&1\\4&2&1\end{vmatrix}=1\cdot(-1-2)-1\cdot(2-4)+(-1)\cdot(4+4)=-3+2-8=-9$，$x=\dfrac{D_x}{D}=\dfrac{-9}{-9}=1$。$D_y=\begin{vmatrix}2&1&-1\\1&2&1\\1&4&1\end{vmatrix}=2\cdot(2-4)-1\cdot(1-1)+(-1)\cdot(4-2)=-4-0-2=-6$，$y=\dfrac{-6}{-9}=\dfrac{2}{3}$。$D_z=\begin{vmatrix}2&1&1\\1&-1&2\\1&2&4\end{vmatrix}=2\cdot(-4-4)-1\cdot(4-2)+1\cdot(2+1)=-16-2+3=-15$，$z=\dfrac{-15}{-9}=\dfrac{5}{3}$。验证：$2\cdot 1+\dfrac{2}{3}-\dfrac{5}{3}=1$；$1-\dfrac{2}{3}+\dfrac{5}{3}=2$；$1+\dfrac{4}{3}+\dfrac{5}{3}=4$。
+
+answer
+
+$(x,y,z)=\left(1,\dfrac{2}{3},\dfrac{5}{3}\right)$
+
+scene_spec.objects[0]
+
+三个行列式的并行计算
+
+scene_spec.objects[1]
+
+解的三平面交点
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·行列式×线性方程组综合场景，呈现与Cramer 法则、三阶行列式、方程组相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三个行列式的并行计算。
+
+scene_spec.steps[2]
+
+第三步：解的三平面交点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三个行列式的并行计算
+
+efficiency_tags[1]
+
+解的三平面交点
+
+## test-linalg-002
+
+problem
+
+解矩阵方程 $AX=B$，其中 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$，$B=\begin{pmatrix}3\\3\end{pmatrix}$。
+
+solution
+
+$\det A=4-1=3$，$A^{-1}=\dfrac{1}{3}\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$。$X=A^{-1}B=\dfrac{1}{3}\begin{pmatrix}2&-1\\-1&2\end{pmatrix}\begin{pmatrix}3\\3\end{pmatrix}=\dfrac{1}{3}\begin{pmatrix}6-3\\-3+6\end{pmatrix}=\begin{pmatrix}1\\1\end{pmatrix}$。验证：$AX=\begin{pmatrix}2&1\\1&2\end{pmatrix}\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}3\\3\end{pmatrix}=B$。
+
+answer
+
+$X=\begin{pmatrix}1\\1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+矩阵乘法的行列运算
+
+scene_spec.objects[1]
+
+验证回代
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·矩阵方程×逆矩阵综合场景，呈现与矩阵方程、逆矩阵、矩阵乘法相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：矩阵乘法的行列运算。
+
+scene_spec.steps[2]
+
+第三步：验证回代。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+矩阵乘法的行列运算
+
+efficiency_tags[1]
+
+验证回代
+
+## test-linalg-003
+
+problem
+
+求所有满足 $B^2=A$ 的二阶实矩阵 $B$，其中 $A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$。
+
+solution
+
+设 $B=\begin{pmatrix}a&b\\c&d\end{pmatrix}$。由 $B^2=A$ 得 $B$ 与 $A$ 可交换（$BA=B^3=AB$）。与 $A=I+2N$（$N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，$N^2=0$）可交换的矩阵族为 $\{aI+bN\}$（解 $XA=AX$：$\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}1&2\\0&1\end{pmatrix}=\begin{pmatrix}a&2a+b\\c&2c+d\end{pmatrix}$，$\begin{pmatrix}1&2\\0&1\end{pmatrix}\begin{pmatrix}a&b\\c&d\end{pmatrix}=\begin{pmatrix}a+2c&b+2d\\c&d\end{pmatrix}$，逐项相等得 $c=0$、$a=d$，即 test-linalg-019 的结论）。故 $B=aI+bN$。代入 $B^2=(aI+bN)^2=a^2I+2abN$（$N^2=0$ 且 $IN=NI$），要求 $a^2I+2abN=I+2N$。比较系数：$a^2=1$、$2ab=2$。由 $a^2=1$ 得 $a=\pm 1$；代入 $2ab=2$ 得 $b=a$，故 $(a,b)=(1,1)$ 或 $(-1,-1)$。于是 $B=\pm(I+N)=\pm\begin{pmatrix}1&1\\0&1\end{pmatrix}$。验证：$\begin{pmatrix}1&1\\0&1\end{pmatrix}^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}=A$；$(-B)^2=A$ 同理。
+
+answer
+
+$B=\pm\begin{pmatrix}1&1\\0&1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+可交换矩阵族 $aI+bN$ 的参数平面
+
+scene_spec.objects[1]
+
+平方根的正负两支
+
+scene_spec.objects[2]
+
+平方回代验证
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·矩阵方程×幂零分解综合场景，呈现与矩阵平方根、可交换矩阵族、幂零分解相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：可交换矩阵族 $aI+bN$ 的参数平面。
+
+scene_spec.steps[2]
+
+第三步：平方根的正负两支。
+
+scene_spec.steps[3]
+
+第四步：平方回代验证。
+
+scene_spec.steps[4]
+
+第五步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+可交换矩阵族 $aI+bN$ 的参数平面
+
+efficiency_tags[1]
+
+平方根的正负两支
+
+efficiency_tags[2]
+
+平方回代验证
+
+## test-linalg-004
+
+problem
+
+设线性变换 $T:\mathbb R^4\to\mathbb R^3$ 的矩阵为 $\begin{pmatrix}1&0&1&0\\0&1&1&0\\1&1&2&0\end{pmatrix}$。求 $\operatorname{rank}T$ 与 $\dim\ker T$。
+
+solution
+
+第三行 $=$ 第一行 $+$ 第二行，且第一、二行线性无关，故 $\operatorname{rank}T=2$。由秩-零化度定理 $\dim\ker T=4-2=2$。核方程：$x_1+x_3=0$、$x_2+x_3=0$，即 $x_3$ 与 $x_4$ 自由，$\ker T=\operatorname{span}\{(-1,-1,1,0)^T,(0,0,0,1)^T\}$，维数 2。
+
+answer
+
+$\operatorname{rank}T=2$；$\dim\ker T=2$
+
+scene_spec.objects[0]
+
+行变换消元
+
+scene_spec.objects[1]
+
+核空间与像空间的维数对应
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·秩×零度综合场景，呈现与矩阵的秩、秩-零化度定理、行变换相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：行变换消元。
+
+scene_spec.steps[2]
+
+第三步：核空间与像空间的维数对应。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+行变换消元
+
+efficiency_tags[1]
+
+核空间与像空间的维数对应
+
+## test-linalg-005
+
+problem
+
+已知 3 阶方阵 $A$ 的特征值为 $1,2,3$。求 $\operatorname{tr}A$、$\det A$、$\operatorname{tr}(A^2)$ 及 $A^{-1}$ 的特征值。
+
+solution
+
+$\operatorname{tr}A=1+2+3=6$。$\det A=1\cdot 2\cdot 3=6$。$A^2$ 的特征值为 $1^2,2^2,3^2$，故 $\operatorname{tr}(A^2)=1+4+9=14$。$A^{-1}$ 的特征值为 $1,\dfrac{1}{2},\dfrac{1}{3}$（$A$ 可逆因特征值全非零）。
+
+answer
+
+$\operatorname{tr}A=6$；$\det A=6$；$\operatorname{tr}(A^2)=14$；$A^{-1}$ 的特征值 $1,\dfrac{1}{2},\dfrac{1}{3}$
+
+scene_spec.objects[0]
+
+特征值在数轴上的位置
+
+scene_spec.objects[1]
+
+谱与不变量对照
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·特征值×迹与行列式综合场景，呈现与特征值性质、迹、行列式、逆矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：特征值在数轴上的位置。
+
+scene_spec.steps[2]
+
+第三步：谱与不变量对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+特征值在数轴上的位置
+
+efficiency_tags[1]
+
+谱与不变量对照
+
+## test-linalg-006
+
+problem
+
+设 $A=P\begin{pmatrix}2&0\\0&3\end{pmatrix}P^{-1}$。求 $A^{10}$ 的表达式（用 $P$ 表示）。
+
+solution
+
+$A^{10}=\left(PDP^{-1}\right)^{10}=PD^{10}P^{-1}$（中间项 $P^{-1}P=I$ 逐对抵消）。$D^{10}=\begin{pmatrix}2^{10}&0\\0&3^{10}\end{pmatrix}=\begin{pmatrix}1024&0\\0&59049\end{pmatrix}$。故 $A^{10}=P\begin{pmatrix}1024&0\\0&59049\end{pmatrix}P^{-1}$。
+
+answer
+
+$A^{10}=P\begin{pmatrix}1024&0\\0&59049\end{pmatrix}P^{-1}$
+
+scene_spec.objects[0]
+
+$PDP^{-1}$ 连乘的抵消动画
+
+scene_spec.objects[1]
+
+对角元逐次幂
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·相似对角化×矩阵幂综合场景，呈现与相似对角化、矩阵幂、分块相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$PDP^{-1}$ 连乘的抵消动画。
+
+scene_spec.steps[2]
+
+第三步：对角元逐次幂。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$PDP^{-1}$ 连乘的抵消动画
+
+efficiency_tags[1]
+
+对角元逐次幂
+
+## test-linalg-007
+
+problem
+
+求二次型 $f(x,y)=x^2+4y^2$ 在单位圆 $x^2+y^2=1$ 上的最大值与最小值。
+
+solution
+
+二次型矩阵 $A=\begin{pmatrix}1&0\\0&4\end{pmatrix}$，其特征值为 $1$ 与 $4$。由瑞利商性质，$\lambda_{\min}\le\dfrac{f}{x^2+y^2}\le\lambda_{\max}$，故在单位圆上 $1\le f\le 4$。最小值 $1$ 在 $(x,y)=(\pm 1,0)$ 处取得（特征值 1 的特征向量），最大值 $4$ 在 $(0,\pm 1)$ 处取得。或直接：$f=x^2+4(1-x^2)=4-3x^2$，$x\in[-1,1]$，最小 $1$（$|x|=1$）、最大 $4$（$x=0$）。
+
+answer
+
+最小值 $1$；最大值 $4$
+
+scene_spec.objects[0]
+
+单位圆上的 $f$ 值色彩映射
+
+scene_spec.objects[1]
+
+极值点标注
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·二次型×特征值×最值综合场景，呈现与瑞利商、特征值、条件极值相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：单位圆上的 $f$ 值色彩映射。
+
+scene_spec.steps[2]
+
+第三步：极值点标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+单位圆上的 $f$ 值色彩映射
+
+efficiency_tags[1]
+
+极值点标注
+
+## test-linalg-008
+
+problem
+
+设 $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$。利用 Cayley–Hamilton 定理求 $A^{-1}$。
+
+solution
+
+特征多项式 $\chi(\lambda)=\lambda^2-2\lambda-3$。由 C–H 定理 $A^2-2A-3I=0$，即 $A(A-2I)=3I$。故 $A^{-1}=\dfrac{1}{3}(A-2I)=\dfrac{1}{3}\begin{pmatrix}-1&2\\2&-1\end{pmatrix}=\begin{pmatrix}-\frac{1}{3}&\frac{2}{3}\\\frac{2}{3}&-\frac{1}{3}\end{pmatrix}$。验证：$AA^{-1}=\begin{pmatrix}1&2\\2&1\end{pmatrix}\cdot\dfrac{1}{3}\begin{pmatrix}-1&2\\2&-1\end{pmatrix}=\dfrac{1}{3}\begin{pmatrix}3&0\\0&3\end{pmatrix}=I$。
+
+answer
+
+$A^{-1}=\dfrac{1}{3}\begin{pmatrix}-1&2\\2&-1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+$A^2-2A-3I=0$ 的代入过程
+
+scene_spec.objects[1]
+
+从多项式恒等式提取逆矩阵
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·Cayley–Hamilton×逆矩阵综合场景，呈现与Cayley–Hamilton 定理、特征多项式、逆矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$A^2-2A-3I=0$ 的代入过程。
+
+scene_spec.steps[2]
+
+第三步：从多项式恒等式提取逆矩阵。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$A^2-2A-3I=0$ 的代入过程
+
+efficiency_tags[1]
+
+从多项式恒等式提取逆矩阵
+
+## test-linalg-009
+
+problem
+
+求$\mathbb R^2$中到$\operatorname{span}\{(1,1)^T\}$的正交投影矩阵，并求$(3,1)^T$的正交投影。
+
+solution
+
+单位方向 $\hat u=\dfrac{1}{\sqrt2}(1,1)^T$。投影矩阵 $P=\hat u\hat u^T=\dfrac{1}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix}=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}$。$P\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}2\\2\end{pmatrix}$。验证 $P^2=P$（幂等）且 $(3,1)^T-(2,2)^T=(1,-1)^T\perp(1,1)^T$。
+
+answer
+
+$P=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}$；投影为 $(2,2)^T$
+
+scene_spec.objects[0]
+
+向量沿 $y=x$ 方向的投影
+
+scene_spec.objects[1]
+
+垂足与正交分解
+
+scene_spec.steps[0]
+
+呈现题干及条件：求$\mathbb R^2$中到$\operatorname{span}\{(1,1)^T\}$的正交投影矩阵，并求$(3,1)^T$的正交投影。
+
+scene_spec.steps[1]
+
+依次呈现：向量沿 $y=x$ 方向的投影
+
+scene_spec.steps[2]
+
+依次呈现：垂足与正交分解
+
+scene_spec.steps[3]
+
+核对完整证明：单位方向 $\hat u=\dfrac{1}{\sqrt2}(1,1)^T$。投影矩阵 $P=\hat u\hat u^T=\dfrac{1}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix}=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}$。$P\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}2\\2\end{pmatrix}$。验证 $P^2=P$（幂等）且 $(3,1)^T-(2,2)^T=(1,-1)^T\perp(1,1)^T$。
+
+scene_spec.steps[4]
+
+高亮答案：$P=\begin{pmatrix}\frac{1}{2}&\frac{1}{2}\\\frac{1}{2}&\frac{1}{2}\end{pmatrix}$；投影为 $(2,2)^T$
+
+efficiency_tags[0]
+
+向量沿 $y=x$ 方向的投影
+
+efficiency_tags[1]
+
+垂足与正交分解
+
+## test-linalg-010
+
+problem
+
+求 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 的 QR 分解。
+
+solution
+
+$a_1=(1,1)^T$：$q_1=\dfrac{a_1}{\|a_1\|}=\dfrac{1}{\sqrt2}(1,1)^T$，$r_{11}=\|a_1\|=\sqrt2$，$r_{12}=q_1^Ta_2=\dfrac{1+0}{\sqrt2}=\dfrac{1}{\sqrt2}$。$a_2-r_{12}q_1=(1,0)^T-\dfrac{1}{2}(1,1)^T=\left(\dfrac{1}{2},-\dfrac{1}{2}\right)^T$，$r_{22}=\sqrt{\dfrac{1}{4}+\dfrac{1}{4}}=\dfrac{1}{\sqrt2}$，$q_2=\left(\dfrac{1}{2},-\dfrac{1}{2}\right)^T\Big/\dfrac{1}{\sqrt2}=\dfrac{1}{\sqrt2}(1,-1)^T$。故 $A=QR$，其中 $Q=\dfrac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$，$R=\begin{pmatrix}\sqrt2&\frac{1}{\sqrt2}\\0&\frac{1}{\sqrt2}\end{pmatrix}$。验证：$QR=\dfrac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}\sqrt2&\frac{1}{\sqrt2}\\0&\frac{1}{\sqrt2}\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}$。
+
+answer
+
+$Q=\dfrac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$，$R=\begin{pmatrix}\sqrt2&\frac{1}{\sqrt2}\\0&\frac{1}{\sqrt2}\end{pmatrix}$
+
+scene_spec.objects[0]
+
+两列的 Gram–Schmidt 步骤
+
+scene_spec.objects[1]
+
+$Q$ 正交、$R$ 上三角的标注
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·QR 分解×Gram–Schmidt综合场景，呈现与Gram–Schmidt 正交化、QR 分解相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两列的 Gram–Schmidt 步骤。
+
+scene_spec.steps[2]
+
+第三步：$Q$ 正交、$R$ 上三角的标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两列的 Gram–Schmidt 步骤
+
+efficiency_tags[1]
+
+$Q$ 正交、$R$ 上三角的标注
+
+## test-linalg-011
+
+problem
+
+用最小二乘法拟合数据点 $(1,2),(2,4),(3,7)$ 的直线 $y=ax+b$。
+
+solution
+
+$A=\begin{pmatrix}1&1\\2&1\\3&1\end{pmatrix}$，$\vec b=(2,4,7)^T$。法方程 $A^TA\vec x=A^T\vec b$：$A^TA=\begin{pmatrix}14&6\\6&3\end{pmatrix}$，$A^T\vec b=\begin{pmatrix}31\\13\end{pmatrix}$。解 $\begin{cases}14a+6b=31\\6a+3b=13\end{cases}$：由第二式 $2a+b=\dfrac{13}{3}$，$b=\dfrac{13}{3}-2a$。代入第一式：$14a+6\left(\dfrac{13}{3}-2a\right)=31$，即 $14a+26-12a=31$，$2a=5$，$a=\dfrac{5}{2}$，$b=\dfrac{13}{3}-5=-\dfrac{2}{3}$。拟合直线 $y=\dfrac{5}{2}x-\dfrac{2}{3}$。验证：$x=1,2,3$ 时预测值 $\dfrac{11}{6},\dfrac{13}{3},\dfrac{41}{6}$，残差平方和 $\left(\dfrac{1}{6}\right)^2+\left(-\dfrac{1}{3}\right)^2+\left(\dfrac{1}{6}\right)^2=\dfrac{1}{6}$。设求得系数向量$c_*=(5/2,-2/3)^T$，残差$r=b-Ac_*=(1/6,-1/3,1/6)^T$，满足$A^Tr=0$。任意$c=c_*+\delta$有$\|b-Ac\|^2=\|r\|^2+\|A\delta\|^2\ge1/6$。$A$列满秩（$\det(A^TA)=6>0$），故等号仅当$\delta=0$，证明拟合唯一最优。
+
+answer
+
+$y=\dfrac{5}{2}x-\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+数据点与拟合直线
+
+scene_spec.objects[1]
+
+残差线段最小化
+
+scene_spec.steps[0]
+
+呈现题干及条件：用最小二乘法拟合数据点 $(1,2),(2,4),(3,7)$ 的直线 $y=ax+b$。
+
+scene_spec.steps[1]
+
+依次呈现：数据点与拟合直线
+
+scene_spec.steps[2]
+
+依次呈现：残差线段最小化
+
+scene_spec.steps[3]
+
+核对完整证明：$A=\begin{pmatrix}1&1\\2&1\\3&1\end{pmatrix}$，$\vec b=(2,4,7)^T$。法方程 $A^TA\vec x=A^T\vec b$：$A^TA=\begin{pmatrix}14&6\\6&3\end{pmatrix}$，$A^T\vec b=\begin{pmatrix}31\\13\end{pmatrix}$。解 $\begin{cases}14a+6b=31\\6a+3b=13\end{cases}$：由第二式 $2a+b=\dfrac{13}{3}$，$b=\dfrac{13}{3}-2a$。代入第一式：$14a+6\left(\dfrac{13}{3}-2a\right)=31$，即 $14a+26-12a=31$，$2a=5$，$a=\dfrac{5}{2}$，$b=\dfrac{13}{3}-5=-\dfrac{2}{3}$。拟合直线 $y=\dfrac{5}{2}x-\dfrac{2}{3}$。验证：$x=1,2,3$ 时预测值 $\dfrac{11}{6},\dfrac{13}{3},\dfrac{41}{6}$，残差平方和 $\left(\dfrac{1}{6}\right)^2+\left(-\dfrac{1}{3}\right)^2+\left(\dfrac{1}{6}\right)^2=\dfrac{1}{6}$。设求得系数向量$c_*=(5/2,-2/3)^T$，残差$r=b-Ac_*=(1/6,-1/3,1/6)^T$，满足$A^Tr=0$。任意$c=c_*+\delta$有$\|b-Ac\|^2=\|r\|^2+\|A\delta\|^2\ge1/6$。$A$列满秩（$\det(A^TA)=6>0$），故等号仅当$\delta=0$，证明拟合唯一最优。
+
+scene_spec.steps[4]
+
+高亮答案：$y=\dfrac{5}{2}x-\dfrac{2}{3}$
+
+efficiency_tags[0]
+
+数据点与拟合直线
+
+efficiency_tags[1]
+
+残差线段最小化
+
+## test-linalg-012
+
+problem
+
+用矩阵方法求斐波那契数列 $F_1=F_2=1$，$F_{n+2}=F_{n+1}+F_n$ 中 $F_{10}$ 的值，并说明增长比趋于黄金比。
+
+solution
+
+补记 $F_0=0$，则 $\binom{F_{n+1}}{F_n}=A^n\binom10$，其中 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$。令 $\phi=(1+\sqrt5)/2$、$\psi=(1-\sqrt5)/2$，则 $Q=\begin{pmatrix}\phi&\psi\\1&1\end{pmatrix}$ 满足 $A=Q\operatorname{diag}(\phi,\psi)Q^{-1}$，且 $\det Q=\sqrt5\ne0$。由此得到精确公式 $F_n=(\phi^n-\psi^n)/\sqrt5$。递推或代入公式均得 $F_{10}=55$。令 $r=\psi/\phi$，则 $|r|<1$，并且对 $n\ge1$ 有 $\frac{F_{n+1}}{F_n}=\phi\frac{1-r^{n+1}}{1-r^n}\to\phi=\frac{1+\sqrt5}{2}$。
+
+answer
+
+$F_{10}=55$；$\lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\frac{1+\sqrt5}{2}$。
+
+scene_spec.objects[0]
+
+斐波那契递推与矩阵幂
+
+scene_spec.objects[1]
+
+比值逼近黄金比
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·特征值×递推数列综合场景，呈现与矩阵幂、特征值、斐波那契数列相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：斐波那契递推与矩阵幂。
+
+scene_spec.steps[2]
+
+第三步：比值逼近黄金比。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+斐波那契递推与矩阵幂
+
+efficiency_tags[1]
+
+比值逼近黄金比
+
+## test-linalg-013
+
+problem
+
+求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}1&1&0&\cdots&0\\1&1&1&\cdots&0\\0&1&1&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&\cdots&1&1\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。
+
+solution
+
+按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\cdot D_{n-1}-1\cdot\begin{vmatrix}1&1&0&\cdots\\0&1&1&\cdots\\\vdots\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\begin{vmatrix}1&1\\1&1\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\cdots=D_n$ 由递推的线性性质）。严格周期证明：由$D_{n+2}=D_{n+1}-D_n$，得到$D_{n+3}=D_{n+2}-D_{n+1}=-D_n$，再得$D_{n+6}=-D_{n+3}=D_n$。前六个相邻有序对$(1,0),(0,-1),(-1,-1),(-1,0),(0,1),(1,1)$互不相同，所以最小正周期确为6。
+
+answer
+
+$D_1,\dots,D_6=1,0,-1,-1,0,1$，周期为 6
+
+scene_spec.objects[0]
+
+三对角矩阵结构
+
+scene_spec.objects[1]
+
+递推序列的循环折线
+
+scene_spec.steps[0]
+
+呈现题干及条件：求 $n$ 阶三对角行列式 $D_n=\begin{vmatrix}1&1&0&\cdots&0\\1&1&1&\cdots&0\\0&1&1&\cdots&0\\\vdots&&&\ddots&\vdots\\0&0&\cdots&1&1\end{vmatrix}$ 的前 6 项，并发现其周期规律（矩阵元素满足 $a_{ii}=a_{i,i+1}=a_{i+1,i}=1$，其余为 0）。
+
+scene_spec.steps[1]
+
+依次呈现：三对角矩阵结构
+
+scene_spec.steps[2]
+
+依次呈现：递推序列的循环折线
+
+scene_spec.steps[3]
+
+核对完整证明：按第一行展开：$D_n=D_{n-1}-D_{n-2}$（第二项的符号来自展开：$1\cdot D_{n-1}-1\cdot\begin{vmatrix}1&1&0&\cdots\\0&1&1&\cdots\\\vdots\end{vmatrix}$，该子式按第一列展开为 $D_{n-2}$）。$D_1=1$，$D_2=\begin{vmatrix}1&1\\1&1\end{vmatrix}=0$。递推：$D_3=D_2-D_1=-1$，$D_4=D_3-D_2=-1$，$D_5=D_4-D_3=0$，$D_6=D_5-D_4=1$。序列 $1,0,-1,-1,0,1$ 以周期 6 循环（$D_n=D_{n-6}$，因 $D_{n+6}=D_{n+5}-D_{n+4}=\cdots=D_n$ 由递推的线性性质）。严格周期证明：由$D_{n+2}=D_{n+1}-D_n$，得到$D_{n+3}=D_{n+2}-D_{n+1}=-D_n$，再得$D_{n+6}=-D_{n+3}=D_n$。前六个相邻有序对$(1,0),(0,-1),(-1,-1),(-1,0),(0,1),(1,1)$互不相同，所以最小正周期确为6。
+
+scene_spec.steps[4]
+
+高亮答案：$D_1,\dots,D_6=1,0,-1,-1,0,1$，周期为 6
+
+efficiency_tags[0]
+
+三对角矩阵结构
+
+efficiency_tags[1]
+
+递推序列的循环折线
+
+## test-linalg-014
+
+problem
+
+求 $A=\begin{pmatrix}1&0&1\\0&2&0\\1&0&2\end{pmatrix}$ 的逆矩阵。
+
+solution
+
+$\det A=1\cdot(2\cdot 2-0\cdot 0)-0+1\cdot(0\cdot 0-2\cdot 1)=4-2=2$。代数余子式：$C_{11}=\begin{vmatrix}2&0\\0&2\end{vmatrix}=4$，$C_{12}=-\begin{vmatrix}0&0\\1&2\end{vmatrix}=0$，$C_{13}=\begin{vmatrix}0&2\\1&0\end{vmatrix}=-2$，$C_{21}=-\begin{vmatrix}0&1\\0&2\end{vmatrix}=0$，$C_{22}=\begin{vmatrix}1&1\\1&2\end{vmatrix}=1$，$C_{23}=-\begin{vmatrix}1&0\\1&0\end{vmatrix}=0$，$C_{31}=\begin{vmatrix}0&1\\2&0\end{vmatrix}=-2$，$C_{32}=-\begin{vmatrix}1&1\\0&0\end{vmatrix}=0$，$C_{33}=\begin{vmatrix}1&0\\0&2\end{vmatrix}=2$。$A^*=C^T=\begin{pmatrix}4&0&-2\\0&1&0\\-2&0&2\end{pmatrix}$。$A^{-1}=\dfrac{A^*}{2}=\begin{pmatrix}2&0&-1\\0&\frac{1}{2}&0\\-1&0&1\end{pmatrix}$。验证：$AA^{-1}=I$。
+
+answer
+
+$\begin{pmatrix}2&0&-1\\0&\frac{1}{2}&0\\-1&0&1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+9 个代数余子式的高亮计算
+
+scene_spec.objects[1]
+
+伴随矩阵转置
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·逆矩阵×伴随矩阵综合场景，呈现与伴随矩阵、代数余子式、三阶逆矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：9 个代数余子式的高亮计算。
+
+scene_spec.steps[2]
+
+第三步：伴随矩阵转置。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+9 个代数余子式的高亮计算
+
+efficiency_tags[1]
+
+伴随矩阵转置
+
+## test-linalg-015
+
+problem
+
+求 $\lambda$ 使向量组 $(1,\lambda,\lambda)$、$(\lambda,1,\lambda)$、$(\lambda,\lambda,1)$ 线性相关。
+
+solution
+
+三向量为行的行列式 $D=\begin{vmatrix}1&\lambda&\lambda\\\lambda&1&\lambda\\\lambda&\lambda&1\end{vmatrix}$。该矩阵 $=(1-\lambda)I+\lambda J$（$J$ 全 1 矩阵），特征值为 $(1-\lambda)+3\lambda=1+2\lambda$（一重）与 $1-\lambda$（二重），故 $D=(1+2\lambda)(1-\lambda)^2$。线性相关 $\iff D=0\iff\lambda=1$ 或 $\lambda=-\dfrac{1}{2}$。
+
+answer
+
+$\lambda=1$ 或 $\lambda=-\dfrac{1}{2}$
+
+scene_spec.objects[0]
+
+行列式随 $\lambda$ 变化的曲线
+
+scene_spec.objects[1]
+
+零点标注
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·行列式×线性相关综合场景，呈现与行列式判据、特征值、参数讨论相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：行列式随 $\lambda$ 变化的曲线。
+
+scene_spec.steps[2]
+
+第三步：零点标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+行列式随 $\lambda$ 变化的曲线
+
+efficiency_tags[1]
+
+零点标注
+
+## test-linalg-016
+
+problem
+
+设 $W_1=\{(x,y,z):x+y+z=0\}$，$W_2=\{(x,y,z):x=y=z\}$。求 $\dim(W_1\cap W_2)$ 与 $\dim(W_1+W_2)$，并判断是否为直和。
+
+solution
+
+$W_1$ 是平面（维数 2），$W_2$ 是直线（维数 1，方向 $(1,1,1)$）。$W_1\cap W_2$：$(t,t,t)\in W_1$ 需 $3t=0$，即 $t=0$，故 $W_1\cap W_2=\{0\}$，$\dim=0$。由维数公式 $\dim(W_1+W_2)=2+1-0=3$，且 $W_1\cap W_2=\{0\}$，故为直和，$W_1\oplus W_2=\mathbb R^3$。
+
+answer
+
+$\dim(W_1\cap W_2)=0$；$\dim(W_1+W_2)=3$；直和
+
+scene_spec.objects[0]
+
+平面与直线只交于原点
+
+scene_spec.objects[1]
+
+直和分解示意
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·子空间×维数公式综合场景，呈现与子空间、维数公式、直和相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：平面与直线只交于原点。
+
+scene_spec.steps[2]
+
+第三步：直和分解示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+平面与直线只交于原点
+
+efficiency_tags[1]
+
+直和分解示意
+
+## test-linalg-017
+
+problem
+
+验证 $\langle A,B\rangle=\operatorname{tr}(A^TB)$ 是 $2\times 2$ 实矩阵空间上的内积，并求 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ 的范数。
+
+solution
+
+设 $A=(a_{ij})$、$B=(b_{ij})$，$\operatorname{tr}(A^TB)=\displaystyle\sum_{i,j}a_{ij}b_{ij}$，即把矩阵按分量展开成 4 维向量的标准点积，故满足内积公理（对称、双线性、正定性：$\langle A,A\rangle=\sum a_{ij}^2\ge 0$ 且等号仅当 $A=0$）。$\|A\|=\sqrt{\langle A,A\rangle}=\sqrt{1+4+9+16}=\sqrt{30}$。
+
+answer
+
+证毕；$\|A\|=\sqrt{30}$
+
+scene_spec.objects[0]
+
+矩阵展开为 4 维向量
+
+scene_spec.objects[1]
+
+分量平方和
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·内积×矩阵综合场景，呈现与内积公理、矩阵迹、范数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：矩阵展开为 4 维向量。
+
+scene_spec.steps[2]
+
+第三步：分量平方和。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+矩阵展开为 4 维向量
+
+efficiency_tags[1]
+
+分量平方和
+
+## test-linalg-018
+
+problem
+
+设 $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$。验证 $A^2=A$，求 $A$ 的特征值，并说明幂等矩阵满足 $\operatorname{rank}A=\operatorname{tr}A$。
+
+solution
+
+$A^2=\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix}1&0\\0&0\end{pmatrix}=A$。特征值：$|\lambda I-A|=\lambda(\lambda-1)$，特征值 $1,0$。$\operatorname{rank}A=1$，$\operatorname{tr}A=1$，相等。一般地，幂等矩阵 $A^2=A$ 的特征值满足 $\lambda^2=\lambda$，即 $\lambda\in\{0,1\}$，且 $A$ 可对角化（最小多项式整除 $\lambda(\lambda-1)$，无重根；本题给定矩阵的最小多项式恰为 $\lambda(\lambda-1)$），非零特征值个数 $=$ 秩，特征值之和 $=$ 迹，故 $\operatorname{rank}A=\operatorname{tr}A$。
+
+answer
+
+证毕；特征值 $1,0$；$\operatorname{rank}A=\operatorname{tr}A=1$
+
+scene_spec.objects[0]
+
+投影变换的几何
+
+scene_spec.objects[1]
+
+特征值 $\{0,1\}$ 标注
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·幂等矩阵×秩与迹综合场景，呈现与幂等矩阵、特征值、秩与迹相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：投影变换的几何。
+
+scene_spec.steps[2]
+
+第三步：特征值 $\{0,1\}$ 标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+投影变换的几何
+
+efficiency_tags[1]
+
+特征值 $\{0,1\}$ 标注
+
+## test-linalg-019
+
+problem
+
+求所有与 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 可交换的 $2\times 2$ 实矩阵 $X$。
+
+solution
+
+设 $X=\begin{pmatrix}a&b\\c&d\end{pmatrix}$。$AX=\begin{pmatrix}a+c&b+d\\c&d\end{pmatrix}$，$XA=\begin{pmatrix}a&a+b\\c&c+d\end{pmatrix}$。可交换要求两矩阵相等：$a+c=a$（即 $c=0$），$b+d=a+b$（即 $a=d$），$d=c+d$（即 $c=0$，重复）。故 $X=\begin{pmatrix}a&b\\0&a\end{pmatrix}=aI+bN$（$N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$），即与 $A$ 可交换的矩阵恰为 $A$ 的多项式 $aI+bN$。
+
+answer
+
+$X=\begin{pmatrix}a&b\\0&a\end{pmatrix}$（$a,b\in\mathbb R$）
+
+scene_spec.objects[0]
+
+矩阵乘法比对
+
+scene_spec.objects[1]
+
+参数空间示意
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·矩阵交换×待定系数综合场景，呈现与矩阵乘法、可交换性、待定系数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：矩阵乘法比对。
+
+scene_spec.steps[2]
+
+第三步：参数空间示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+矩阵乘法比对
+
+efficiency_tags[1]
+
+参数空间示意
+
+## test-linalg-020
+
+problem
+
+求 $f(x)=x^4-4x^2+3$ 除以 $x^2-2x$ 的余式。
+
+solution
+
+设余式为 $ax+b$（除式二次，余式次数 $<2$）：$f(x)=(x^2-2x)q(x)+ax+b$。取 $x=0$：$f(0)=3=b$。取 $x=2$：$f(2)=16-16+3=3=2a+b$，故 $2a+3=3$，$a=0$。余式为 $3$。验证（长除法）：$x^4-4x^2+3=(x^2-2x)(x^2+2x)+3$（因 $(x^2-2x)(x^2+2x)=x^4-4x^2$）。
+
+answer
+
+$3$
+
+scene_spec.objects[0]
+
+长除法竖式
+
+scene_spec.objects[1]
+
+代入 $x=0,2$ 的快速路径
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·多项式除法×余数定理综合场景，呈现与多项式除法、余式定理、代入法相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：长除法竖式。
+
+scene_spec.steps[2]
+
+第三步：代入 $x=0,2$ 的快速路径。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+长除法竖式
+
+efficiency_tags[1]
+
+代入 $x=0,2$ 的快速路径
+
+## test-linalg-021
+
+problem
+
+设 $A=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$。证明 $A$ 是正交矩阵，求其特征值，并说明其几何意义。
+
+solution
+
+$A^TA=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}=\begin{pmatrix}\cos^2\theta+\sin^2\theta&\cos\theta\sin\theta-\sin\theta\cos\theta\\\sin\theta\cos\theta-\cos\theta\sin\theta&\sin^2\theta+\cos^2\theta\end{pmatrix}=I$，故 $A$ 正交，且 $\det A=-\cos^2\theta-\sin^2\theta=-1$。特征方程 $\lambda^2-1=0$（迹为 0），特征值 $\pm 1$。特征值 $1$ 的特征方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$（关于此方向的直线反射），$-1$ 的特征方向与之垂直。几何上 $A$ 是关于过原点、方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的镜面反射；该参数化覆盖所有轴方向，包括 $\theta=(2k+1)\pi$ 时的竖直轴 $x=0$（此时 $\tan\dfrac{\theta}{2}$ 不存在，不能用斜截式表示）。
+
+answer
+
+证毕；特征值 $\pm 1$；关于过原点、方向 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的反射（$\theta=(2k+1)\pi$ 时为竖直轴 $x=0$）
+
+scene_spec.objects[0]
+
+关于任意过原点直线的反射（含水平轴、竖直轴）
+
+scene_spec.objects[1]
+
+两个特征方向（不动/反向）
+
+scene_spec.steps[0]
+
+呈现题干及条件：设 $A=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$。证明 $A$ 是正交矩阵，求其特征值，并说明其几何意义。
+
+scene_spec.steps[1]
+
+依次呈现：关于任意过原点直线的反射（含水平轴、竖直轴）
+
+scene_spec.steps[2]
+
+依次呈现：两个特征方向（不动/反向）
+
+scene_spec.steps[3]
+
+核对完整证明：$A^TA=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}=\begin{pmatrix}\cos^2\theta+\sin^2\theta&\cos\theta\sin\theta-\sin\theta\cos\theta\\\sin\theta\cos\theta-\cos\theta\sin\theta&\sin^2\theta+\cos^2\theta\end{pmatrix}=I$，故 $A$ 正交，且 $\det A=-\cos^2\theta-\sin^2\theta=-1$。特征方程 $\lambda^2-1=0$（迹为 0），特征值 $\pm 1$。特征值 $1$ 的特征方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$（关于此方向的直线反射），$-1$ 的特征方向与之垂直。几何上 $A$ 是关于过原点、方向为 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的镜面反射；该参数化覆盖所有轴方向，包括 $\theta=(2k+1)\pi$ 时的竖直轴 $x=0$（此时 $\tan\dfrac{\theta}{2}$ 不存在，不能用斜截式表示）。
+
+scene_spec.steps[4]
+
+高亮答案：证毕；特征值 $\pm 1$；关于过原点、方向 $\left(\cos\dfrac{\theta}{2},\sin\dfrac{\theta}{2}\right)$ 的直线的反射（$\theta=(2k+1)\pi$ 时为竖直轴 $x=0$）
+
+efficiency_tags[0]
+
+关于任意过原点直线的反射（含水平轴、竖直轴）
+
+efficiency_tags[1]
+
+两个特征方向（不动/反向）
+
+## test-linalg-022
+
+problem
+
+求正定矩阵 $A=\begin{pmatrix}4&2\\2&3\end{pmatrix}$ 的 Cholesky 分解 $A=LL^T$（$L$ 为下三角）。
+
+solution
+
+设 $L=\begin{pmatrix}l_{11}&0\\l_{21}&l_{22}\end{pmatrix}$。$LL^T=\begin{pmatrix}l_{11}^2&l_{11}l_{21}\\l_{11}l_{21}&l_{21}^2+l_{22}^2\end{pmatrix}=\begin{pmatrix}4&2\\2&3\end{pmatrix}$。解得 $l_{11}=2$（取正），$l_{21}=\dfrac{2}{2}=1$，$l_{22}^2=3-1=2$，$l_{22}=\sqrt2$。故 $L=\begin{pmatrix}2&0\\1&\sqrt2\end{pmatrix}$。验证：$LL^T=\begin{pmatrix}4&2\\2&3\end{pmatrix}$。
+
+answer
+
+$L=\begin{pmatrix}2&0\\1&\sqrt2\end{pmatrix}$
+
+scene_spec.objects[0]
+
+下三角矩阵的逐列计算
+
+scene_spec.objects[1]
+
+平方和分解示意
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·Cholesky 分解×正定矩阵综合场景，呈现与Cholesky 分解、正定矩阵、三角矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：下三角矩阵的逐列计算。
+
+scene_spec.steps[2]
+
+第三步：平方和分解示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+下三角矩阵的逐列计算
+
+efficiency_tags[1]
+
+平方和分解示意
+
+## test-linalg-023
+
+problem
+
+用矩阵方法解微分方程组 $\begin{cases}x'=3x+y\\y'=x+3y\end{cases}$ 的通解。
+
+solution
+
+系数矩阵 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$。特征方程 $(\lambda-3)^2-1=0$，$\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\begin{pmatrix}x\\y\end{pmatrix}=c_1e^{4t}\begin{pmatrix}1\\1\end{pmatrix}+c_2e^{2t}\begin{pmatrix}1\\-1\end{pmatrix}$，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。
+
+answer
+
+$x=c_1e^{4t}+c_2e^{2t}$；$y=c_1e^{4t}-c_2e^{2t}$
+
+scene_spec.objects[0]
+
+相图与特征方向
+
+scene_spec.objects[1]
+
+解的轨道
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·特征值×微分方程组综合场景，呈现与特征值分解、线性微分方程组、矩阵指数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：相图与特征方向。
+
+scene_spec.steps[2]
+
+第三步：解的轨道。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+相图与特征方向
+
+efficiency_tags[1]
+
+解的轨道
+
+## test-linalg-024
+
+problem
+
+求 $t$ 使三点 $(1,2)$、$(2,4)$、$(t,6)$ 共线。
+
+solution
+
+共线条件：$\begin{vmatrix}1&2&1\\2&4&1\\t&6&1\end{vmatrix}=0$。按第一行展开：$1\cdot(4\cdot 1-1\cdot 6)-2\cdot(2\cdot 1-1\cdot t)+1\cdot(2\cdot 6-4\cdot t)=1\cdot(-2)-2\cdot(2-t)+1\cdot(12-4t)=-2-4+2t+12-4t=6-2t=0$，故 $t=3$。（或用斜率：前两点连线 $y=2x$，$(t,6)$ 在直线上需 $6=2t$，$t=3$。）
+
+answer
+
+$t=3$
+
+scene_spec.objects[0]
+
+三点与直线
+
+scene_spec.objects[1]
+
+行列式为零的几何意义
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·行列式×共线条件综合场景，呈现与三点共线、行列式、斜率相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三点与直线。
+
+scene_spec.steps[2]
+
+第三步：行列式为零的几何意义。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三点与直线
+
+efficiency_tags[1]
+
+行列式为零的几何意义
+
+## test-linalg-025
+
+problem
+
+求 $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$ 的谱分解 $A=\lambda_1u_1u_1^T+\lambda_2u_2u_2^T$。
+
+solution
+
+特征值 $\lambda_1=3$、$\lambda_2=-1$（test-linalg-008），单位特征向量 $u_1=\dfrac{1}{\sqrt2}(1,1)^T$、$u_2=\dfrac{1}{\sqrt2}(1,-1)^T$。$u_1u_1^T=\dfrac{1}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix}$，$u_2u_2^T=\dfrac{1}{2}\begin{pmatrix}1&-1\\-1&1\end{pmatrix}$。谱分解 $A=3u_1u_1^T+(-1)u_2u_2^T=\dfrac{3}{2}\begin{pmatrix}1&1\\1&1\end{pmatrix}-\dfrac{1}{2}\begin{pmatrix}1&-1\\-1&1\end{pmatrix}=\begin{pmatrix}1&2\\2&1\end{pmatrix}$。
+
+answer
+
+$A=3u_1u_1^T-u_2u_2^T$（$u_1=\dfrac{(1,1)^T}{\sqrt2}$，$u_2=\dfrac{(1,-1)^T}{\sqrt2}$）
+
+scene_spec.objects[0]
+
+两个投影的叠加
+
+scene_spec.objects[1]
+
+特征方向的分解
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·谱分解×对称矩阵综合场景，呈现与谱分解、特征值、正交投影相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两个投影的叠加。
+
+scene_spec.steps[2]
+
+第三步：特征方向的分解。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两个投影的叠加
+
+efficiency_tags[1]
+
+特征方向的分解
+
+## test-linalg-026
+
+problem
+
+将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。
+
+solution
+
+$f=3\left(x^2+\dfrac{4}{3}xy\right)+6y^2=3\left(x+\dfrac{2}{3}y\right)^2-\dfrac{4}{3}y^2+6y^2=3\left(x+\dfrac{2}{3}y\right)^2+\dfrac{14}{3}y^2$。令 $u=x+\dfrac{2}{3}y$、$v=y$（可逆：$x=u-\dfrac{2}{3}v$、$y=v$），标准形为 $3u^2+\dfrac{14}{3}v^2$。矩阵形式：$A=\begin{pmatrix}3&2\\2&6\end{pmatrix}$，$C=\begin{pmatrix}1&-\frac{2}{3}\\0&1\end{pmatrix}$，验证 $C^TAC=\begin{pmatrix}3&0\\0&\frac{14}{3}\end{pmatrix}$（$AC=\begin{pmatrix}3&0\\2&\frac{14}{3}\end{pmatrix}$，$C^T(AC)=\begin{pmatrix}3&0\\0&\frac{14}{3}\end{pmatrix}$）。
+
+answer
+
+标准形 $3u^2+\dfrac{14}{3}v^2$；替换 $\begin{cases}u=x+\frac{2}{3}y\\v=y\end{cases}$
+
+scene_spec.objects[0]
+
+配方步骤的代数动画
+
+scene_spec.objects[1]
+
+可逆斜坐标合同替换；此替换不是正交主轴旋转
+
+scene_spec.steps[0]
+
+呈现题干及条件：将二次型 $f=3x^2+4xy+6y^2$ 用配方法化为标准形，并写出相应的可逆线性替换。
+
+scene_spec.steps[1]
+
+依次呈现：配方步骤的代数动画
+
+scene_spec.steps[2]
+
+依次呈现：可逆斜坐标合同替换；此替换不是正交主轴旋转
+
+scene_spec.steps[3]
+
+核对完整证明：$f=3\left(x^2+\dfrac{4}{3}xy\right)+6y^2=3\left(x+\dfrac{2}{3}y\right)^2-\dfrac{4}{3}y^2+6y^2=3\left(x+\dfrac{2}{3}y\right)^2+\dfrac{14}{3}y^2$。令 $u=x+\dfrac{2}{3}y$、$v=y$（可逆：$x=u-\dfrac{2}{3}v$、$y=v$），标准形为 $3u^2+\dfrac{14}{3}v^2$。矩阵形式：$A=\begin{pmatrix}3&2\\2&6\end{pmatrix}$，$C=\begin{pmatrix}1&-\frac{2}{3}\\0&1\end{pmatrix}$，验证 $C^TAC=\begin{pmatrix}3&0\\0&\frac{14}{3}\end{pmatrix}$（$AC=\begin{pmatrix}3&0\\2&\frac{14}{3}\end{pmatrix}$，$C^T(AC)=\begin{pmatrix}3&0\\0&\frac{14}{3}\end{pmatrix}$）。
+
+scene_spec.steps[4]
+
+高亮答案：标准形 $3u^2+\dfrac{14}{3}v^2$；替换 $\begin{cases}u=x+\frac{2}{3}y\\v=y\end{cases}$
+
+efficiency_tags[0]
+
+配方步骤的代数动画
+
+efficiency_tags[1]
+
+可逆斜坐标合同替换；此替换不是正交主轴旋转
+
+## test-linalg-027
+
+problem
+
+解微分方程组 $\begin{cases}x'=2x+y\\y'=2y\end{cases}$ 的通解。
+
+solution
+
+系数矩阵 $A=\begin{pmatrix}2&1\\0&2\end{pmatrix}=J_2(2)$。先解 $y'=2y$：$y=c_2e^{2t}$。代入 $x'=2x+c_2e^{2t}$：$x=e^{2t}\left(c_1+c_2t\right)$（常数变易，或观察特解 $x_p=c_2te^{2t}$：$x_p'-2x_p=c_2e^{2t}(1+2t)-2c_2te^{2t}=c_2e^{2t}$ 恰为强迫项）。验证：$x'=2e^{2t}(c_1+c_2t)+c_2e^{2t}=2x+y$。
+
+answer
+
+$x=e^{2t}(c_1+c_2t)$；$y=c_2e^{2t}$
+
+scene_spec.objects[0]
+
+相图的退化结点
+
+scene_spec.objects[1]
+
+广义特征方向
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·若尔当形×微分方程组综合场景，呈现与若尔当块、广义特征向量、线性微分方程相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：相图的退化结点。
+
+scene_spec.steps[2]
+
+第三步：广义特征方向。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+相图的退化结点
+
+efficiency_tags[1]
+
+广义特征方向
+
+## test-linalg-028
+
+problem
+
+求 $A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ 的特征值，并说明它没有实特征向量的几何原因。
+
+solution
+
+$|\lambda I-A|=\begin{vmatrix}\lambda&1\\-1&\lambda\end{vmatrix}=\lambda^2+1=0$，特征值 $\lambda=\pm i$（一对共轭虚数）。几何上 $A$ 是旋转 $90^\circ$（逆时针），除零向量外任何实向量旋转后都不与原方向平行，故没有（一维的）实特征空间；只有把向量空间扩充到复数域，才有特征方向。
+
+answer
+
+特征值 $\pm i$；无实特征向量（旋转 $90^\circ$）
+
+scene_spec.objects[0]
+
+向量旋转 $90^\circ$
+
+scene_spec.objects[1]
+
+无不变方向的演示
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·复特征值×旋转综合场景，呈现与复特征值、旋转、特征向量相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：向量旋转 $90^\circ$。
+
+scene_spec.steps[2]
+
+第三步：无不变方向的演示。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+向量旋转 $90^\circ$
+
+efficiency_tags[1]
+
+无不变方向的演示
+
+## test-linalg-029
+
+problem
+
+求 $A=\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$ 的最小多项式与若尔当标准形。
+
+solution
+
+特征多项式 $(\lambda-1)^3$。$A-I=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}=:N$，$N\ne 0$ 且 $N^2=0$，故最小多项式 $m(\lambda)=(\lambda-1)^2$。秩判块结构：$\operatorname{rank}(A-I)=1$，特征值 $1$ 的若尔当块个数 $=3-1=2$，最大块尺寸由 $m(\lambda)$ 的因子幂给出为 2，故标准形为 $\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}=A$ 本身（即 $J_2(1)\oplus J_1(1)$）。
+
+answer
+
+最小多项式 $(\lambda-1)^2$；若尔当标准形 $\begin{pmatrix}1&1&0\\0&1&0\\0&0&1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+两个若尔当块的分块高亮
+
+scene_spec.objects[1]
+
+幂零链长度
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·最小多项式×若尔当形综合场景，呈现与最小多项式、若尔当块、秩序列相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两个若尔当块的分块高亮。
+
+scene_spec.steps[2]
+
+第三步：幂零链长度。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两个若尔当块的分块高亮
+
+efficiency_tags[1]
+
+幂零链长度
+
+## test-linalg-030
+
+problem
+
+求 $\mathbb R^3$ 上的线性泛函 $f$，使其满足 $f(1,1,1)=3$、$f(1,0,0)=1$、$f(0,1,0)=1$。
+
+solution
+
+设 $f(x,y,z)=ax+by+cz$。条件：$f(1,0,0)=a=1$；$f(0,1,0)=b=1$；$f(1,1,1)=a+b+c=3$，故 $c=3-1-1=1$。得 $f(x,y,z)=x+y+z$。
+
+answer
+
+$f(x,y,z)=x+y+z$
+
+scene_spec.objects[0]
+
+等值面（平面族）
+
+scene_spec.objects[1]
+
+基向量上的取值
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·线性泛函×对偶综合场景，呈现与线性泛函、对偶空间、待定系数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：等值面（平面族）。
+
+scene_spec.steps[2]
+
+第三步：基向量上的取值。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+等值面（平面族）
+
+efficiency_tags[1]
+
+基向量上的取值
+
+## test-linalg-031
+
+problem
+
+求 $\lambda$ 使向量组 $(1,2,3)$、$(2,\lambda,1)$、$(3,1,2)$ 线性相关。
+
+solution
+
+行列式 $D=\begin{vmatrix}1&2&3\\2&\lambda&1\\3&1&2\end{vmatrix}=1\cdot(\lambda\cdot 2-1\cdot 1)-2\cdot(2\cdot 2-1\cdot 3)+3\cdot(2\cdot 1-\lambda\cdot 3)=(2\lambda-1)-2\cdot 1+3\cdot(2-3\lambda)=2\lambda-1-2+6-9\lambda=3-7\lambda$。线性相关 $\iff D=0\iff\lambda=\dfrac{3}{7}$。
+
+answer
+
+$\lambda=\dfrac{3}{7}$
+
+scene_spec.objects[0]
+
+三向量随 $\lambda$ 共面的瞬间
+
+scene_spec.objects[1]
+
+行列式零点
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·行列式×线性相关综合场景，呈现与三阶行列式、线性相关、参数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三向量随 $\lambda$ 共面的瞬间。
+
+scene_spec.steps[2]
+
+第三步：行列式零点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三向量随 $\lambda$ 共面的瞬间
+
+efficiency_tags[1]
+
+行列式零点
+
+## test-linalg-032
+
+problem
+
+证明 $\operatorname{rank}(A+B)\le\operatorname{rank}A+\operatorname{rank}B$，并举出等号成立的例子。
+
+solution
+
+列空间 $\operatorname{col}(A+B)\subseteq\operatorname{col}(A)+\operatorname{col}(B)$（$A+B$ 的每列都是 $A$ 与 $B$ 对应列之和，落在两列空间的和中）。故 $\operatorname{rank}(A+B)=\dim\operatorname{col}(A+B)\le\dim(\operatorname{col}(A)+\operatorname{col}(B))\le\dim\operatorname{col}(A)+\dim\operatorname{col}(B)=\operatorname{rank}A+\operatorname{rank}B$。等号例子：$A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$、$B=\begin{pmatrix}0&0\\0&1\end{pmatrix}$，$\operatorname{rank}A=\operatorname{rank}B=1$，$A+B=I$，$\operatorname{rank}(A+B)=2=1+1$。
+
+answer
+
+证毕；等号例 $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$、$B=\begin{pmatrix}0&0\\0&1\end{pmatrix}$
+
+scene_spec.objects[0]
+
+列空间包含关系
+
+scene_spec.objects[1]
+
+等号例的对照
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·秩不等式×证明综合场景，呈现与秩不等式、子空间、列空间相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：列空间包含关系。
+
+scene_spec.steps[2]
+
+第三步：等号例的对照。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+列空间包含关系
+
+efficiency_tags[1]
+
+等号例的对照
+
+## test-linalg-033
+
+problem
+
+证明：若 $A^2=A$，则 $A$ 的特征值只能是 $0$ 或 $1$。
+
+solution
+
+设 $Av=\lambda v$（$v\ne 0$）。则 $A^2v=A(Av)=A(\lambda v)=\lambda Av=\lambda^2v$。由 $A^2=A$ 得 $\lambda^2v=\lambda v$，即 $(\lambda^2-\lambda)v=0$。因 $v\ne 0$，$\lambda^2-\lambda=0$，$\lambda\in\{0,1\}$。
+
+answer
+
+证毕
+
+scene_spec.objects[0]
+
+投影的"两次作用=一次"
+
+scene_spec.objects[1]
+
+特征值 $\{0,1\}$
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·幂等矩阵×特征值证明综合场景，呈现与幂等矩阵、特征值、证明相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：投影的"两次作用=一次"。
+
+scene_spec.steps[2]
+
+第三步：特征值 $\{0,1\}$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+投影的"两次作用=一次"
+
+efficiency_tags[1]
+
+特征值 $\{0,1\}$
+
+## test-linalg-034
+
+problem
+
+判断二次曲面 $3x^2+2xy+3y^2+z^2=1$ 的类型。
+
+solution
+
+二次项矩阵 $A=\begin{pmatrix}3&1&0\\1&3&0\\0&0&1\end{pmatrix}$。$2\times 2$ 块 $\begin{pmatrix}3&1\\1&3\end{pmatrix}$ 的特征方程 $(\lambda-3)^2-1=0$，特征值 $4,2$；第三个特征值为 $1$。全为正，故曲面为椭球面：$\dfrac{u^2}{1/4}+\dfrac{v^2}{1/2}+z^2=1$（主轴沿特征方向，半轴 $\dfrac{1}{2},\dfrac{1}{\sqrt2},1$）。
+
+answer
+
+椭球面（特征值 $4,2,1$ 全正）
+
+scene_spec.objects[0]
+
+椭球面与三个主轴
+
+scene_spec.objects[1]
+
+特征方向旋转到主轴
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·正交对角化×二次曲面分类综合场景，呈现与正交对角化、特征值、二次曲面分类相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：椭球面与三个主轴。
+
+scene_spec.steps[2]
+
+第三步：特征方向旋转到主轴。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+椭球面与三个主轴
+
+efficiency_tags[1]
+
+特征方向旋转到主轴
+
+## test-linalg-035
+
+problem
+
+把 $D(x)=\begin{vmatrix}1&x&x^2\\1&2&4\\1&3&9\end{vmatrix}$ 看成 $x$ 的多项式并因式分解。
+
+solution
+
+这是范德蒙德行列式（三个点的范德蒙德型），$D(x)=(2-x)(3-x)(3-2)=(2-x)(3-x)=x^2-5x+6=(x-2)(x-3)$。验证：$x=2$ 时第一、二行相同，$D=0$；$x=3$ 时第一、三行相同，$D=0$；$x=0$ 时 $D=\begin{vmatrix}1&0&0\\1&2&4\\1&3&9\end{vmatrix}=18-12=6$，与 $(0-2)(0-3)=6$ 一致。
+
+answer
+
+$(x-2)(x-3)$
+
+scene_spec.objects[0]
+
+行列式随 $x$ 变化的曲线
+
+scene_spec.objects[1]
+
+两个零点
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·行列式×多项式综合场景，呈现与范德蒙德行列式、多项式、因式分解相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：行列式随 $x$ 变化的曲线。
+
+scene_spec.steps[2]
+
+第三步：两个零点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+行列式随 $x$ 变化的曲线
+
+efficiency_tags[1]
+
+两个零点
+
+## test-linalg-036
+
+problem
+
+求三类初等矩阵的行列式：交换两不同行；将单行乘以$k$（$k\ne0$）；将一行加到另一不同行。
+
+solution
+
+交换两行的初等矩阵 $P_{ij}$：由单位矩阵交换两行得到，$\det P_{ij}=-1$（一次对换改变符号）。第 $i$ 行乘 $k$ 的初等矩阵 $D_i(k)$：对角线第 $i$ 元为 $k$，$\det D_i(k)=k$。第 $i$ 行加到第 $j$ 行的初等矩阵 $E_{ij}$：下（上）三角且对角线全 1，$\det E_{ij}=1$。相应地对任意方阵 $B$：$\det(P_{ij}B)=-\det B$，$\det(D_i(k)B)=k\det B$，$\det(E_{ij}B)=\det B$。
+
+answer
+
+$-1$；$k$；$1$
+
+scene_spec.objects[0]
+
+三类行变换对行列式的影响
+
+scene_spec.objects[1]
+
+单位矩阵的变形
+
+scene_spec.steps[0]
+
+呈现题干及条件：求三类初等矩阵的行列式：交换两不同行；将单行乘以$k$（$k\ne0$）；将一行加到另一不同行。
+
+scene_spec.steps[1]
+
+依次呈现：三类行变换对行列式的影响
+
+scene_spec.steps[2]
+
+依次呈现：单位矩阵的变形
+
+scene_spec.steps[3]
+
+核对完整证明：交换两行的初等矩阵 $P_{ij}$：由单位矩阵交换两行得到，$\det P_{ij}=-1$（一次对换改变符号）。第 $i$ 行乘 $k$ 的初等矩阵 $D_i(k)$：对角线第 $i$ 元为 $k$，$\det D_i(k)=k$。第 $i$ 行加到第 $j$ 行的初等矩阵 $E_{ij}$：下（上）三角且对角线全 1，$\det E_{ij}=1$。相应地对任意方阵 $B$：$\det(P_{ij}B)=-\det B$，$\det(D_i(k)B)=k\det B$，$\det(E_{ij}B)=\det B$。
+
+scene_spec.steps[4]
+
+高亮答案：$-1$；$k$；$1$
+
+efficiency_tags[0]
+
+三类行变换对行列式的影响
+
+efficiency_tags[1]
+
+单位矩阵的变形
+
+## test-linalg-037
+
+problem
+
+求微分算子 $T(f)=f'$ 在多项式空间 $P_2$（次数 $\le 2$，基 $1,x,x^2$）下的矩阵。
+
+solution
+
+对基作用：$T(1)=0=0\cdot 1+0\cdot x+0\cdot x^2$；$T(x)=1=1\cdot 1+0\cdot x+0\cdot x^2$；$T(x^2)=2x=0\cdot 1+2\cdot x+0\cdot x^2$。坐标列为 $(0,0,0)^T$、$(1,0,0)^T$、$(0,2,0)^T$，故矩阵 $\begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}$。验证：对 $f=a+bx+cx^2$（坐标 $(a,b,c)^T$），$Tf=b+2cx$，坐标 $(b,2c,0)^T$，矩阵乘法 $\begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}\begin{pmatrix}a\\b\\c\end{pmatrix}=\begin{pmatrix}b\\2c\\0\end{pmatrix}$，一致。
+
+answer
+
+$\begin{pmatrix}0&1&0\\0&0&2\\0&0&0\end{pmatrix}$
+
+scene_spec.objects[0]
+
+基向量被微分的映射
+
+scene_spec.objects[1]
+
+矩阵-坐标乘法验证
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·线性变换×矩阵表示综合场景，呈现与线性变换的矩阵、微分、基相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：基向量被微分的映射。
+
+scene_spec.steps[2]
+
+第三步：矩阵-坐标乘法验证。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+基向量被微分的映射
+
+efficiency_tags[1]
+
+矩阵-坐标乘法验证
+
+## test-linalg-038
+
+problem
+
+证明：若 $A$ 可逆，则 $\operatorname{rank}(A^2)=\operatorname{rank}A$；并举出 $A$ 不可逆时该结论不成立的例子。
+
+solution
+
+$A$ 可逆时 $A^2$ 也可逆（$\det(A^2)=(\det A)^2\ne 0$），两者秩都等于 $n$（满秩），故相等。不可逆的反例：$A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，$\operatorname{rank}A=1$，$A^2=0$，$\operatorname{rank}(A^2)=0\ne 1$。
+
+answer
+
+证毕；反例 $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$
+
+scene_spec.objects[0]
+
+幂零变换的逐步退化
+
+scene_spec.objects[1]
+
+秩的变化链
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·秩×可逆性综合场景，呈现与秩、可逆性、反例相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：幂零变换的逐步退化。
+
+scene_spec.steps[2]
+
+第三步：秩的变化链。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+幂零变换的逐步退化
+
+efficiency_tags[1]
+
+秩的变化链
+
+## test-linalg-039
+
+problem
+
+求二次型 $f=3x^2-2y^2-z^2+4xy$ 的正负惯性指数，并判断等值曲面 $f=1$ 的类型。
+
+solution
+
+矩阵 $A=\begin{pmatrix}3&2&0\\2&-2&0\\0&0&-1\end{pmatrix}$。$2\times 2$ 块 $\begin{pmatrix}3&2\\2&-2\end{pmatrix}$：迹 $1$、行列式 $-10$，特征方程 $\lambda^2-\lambda-10=0$，特征值 $\dfrac{1\pm\sqrt{41}}{2}$，即一正一负；第三个特征值 $-1$。故正惯性指数 $1$、负惯性指数 $2$（符号差 $-1$）。等值曲面 $f=1$ 为双叶双曲面（一个正方向、两个负方向）。
+
+answer
+
+正惯性指数 $1$、负惯性指数 $2$；$f=1$ 为双叶双曲面（$f=-1$ 为单叶双曲面，$f=0$ 为锥面）
+
+scene_spec.objects[0]
+
+双叶双曲面的三维图
+
+scene_spec.objects[1]
+
+惯性指数标注
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·二次型×惯性指数综合场景，呈现与惯性指数、特征值、二次曲面分类相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：双叶双曲面的三维图。
+
+scene_spec.steps[2]
+
+第三步：惯性指数标注。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+双叶双曲面的三维图
+
+efficiency_tags[1]
+
+惯性指数标注
+
+## test-linalg-040
+
+problem
+
+求四顶点圈 $C_4$ 的邻接矩阵及其特征值。
+
+solution
+
+$C_4$ 的邻接矩阵 $A=\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}$。解方程 $Av=\lambda v$：由对称性，特征向量可取 $(1,1,1,1)^T$（$A(1,1,1,1)^T=(2,2,2,2)^T=2(1,1,1,1)^T$，特征值 $2$）、$(1,-1,1,-1)^T$（验证 $A(1,-1,1,-1)^T=(-2,2,-2,2)^T=-2(1,-1,1,-1)^T$，特征值 $-2$）、$(1,0,-1,0)^T$（$A(1,0,-1,0)^T=(0,0,0,0)^T$，特征值 $0$）、$(0,1,0,-1)^T$（同样为 $0$）。故特征值为 $2,0,0,-2$（图是二部图，谱关于 0 对称）。
+
+answer
+
+邻接矩阵 $A=\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}$；特征值 $2,0,0,-2$
+
+scene_spec.objects[0]
+
+圈图与邻接矩阵
+
+scene_spec.objects[1]
+
+四个特征向量的模式
+
+scene_spec.steps[0]
+
+第一步：建立高等代数·图论×特征值综合场景，呈现与邻接矩阵、图的谱、对称矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：圈图与邻接矩阵。
+
+scene_spec.steps[2]
+
+第三步：四个特征向量的模式。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+圈图与邻接矩阵
+
+efficiency_tags[1]
+
+四个特征向量的模式
+
+## test-x-001
+
+problem
+
+设 $X$ 服从参数 $p=\dfrac{1}{2}$ 的几何分布（抛硬币直到正面）。求 $P(X$ 为偶数$)$ 的精确值。
+
+solution
+
+$P(X=k)=\left(\dfrac{1}{2}\right)^k$。$P(X$ 为偶数$)=\displaystyle\sum_{k=1}^{\infty}P(X=2k)=\sum_{k=1}^{\infty}\left(\dfrac{1}{2}\right)^{2k}=\sum_{k=1}^{\infty}\left(\dfrac{1}{4}\right)^k=\dfrac{1/4}{1-1/4}=\dfrac{1}{3}$。
+
+answer
+
+$\dfrac{1}{3}$
+
+scene_spec.objects[0]
+
+奇偶分支的概率条
+
+scene_spec.objects[1]
+
+几何级数求和示意
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·概率论×级数综合场景，呈现与几何分布、几何级数、奇偶分类相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：奇偶分支的概率条。
+
+scene_spec.steps[2]
+
+第三步：几何级数求和示意。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+奇偶分支的概率条
+
+efficiency_tags[1]
+
+几何级数求和示意
+
+## test-x-002
+
+problem
+
+设 $X\sim U(0,1)$，求 $Y=\sqrt{X}$ 的密度与 $E[Y]$。
+
+solution
+
+$y=\sqrt{x}$ 严格递增，反函数 $x=y^2$（$0<y<1$），$\left|\dfrac{dx}{dy}\right|=2y$。$f_Y(y)=f_X(y^2)\cdot 2y=2y$（$0<y<1$）。$E[Y]=\displaystyle\int_0^1y\cdot 2y\,dy=\dfrac{2}{3}$。验证：$E[\sqrt{X}]=\displaystyle\int_0^1\sqrt{x}\,dx=\left[\dfrac{2}{3}x^{3/2}\right]_0^1=\dfrac{2}{3}$，一致。
+
+answer
+
+$f_Y(y)=2y$（$0<y<1$）；$E[Y]=\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+$y=\sqrt{x}$ 的映射
+
+scene_spec.objects[1]
+
+密度曲线 $2y$
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·概率论×微积分综合场景，呈现与密度变换、均匀分布、定积分相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$y=\sqrt{x}$ 的映射。
+
+scene_spec.steps[2]
+
+第三步：密度曲线 $2y$。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$y=\sqrt{x}$ 的映射
+
+efficiency_tags[1]
+
+密度曲线 $2y$
+
+## test-x-003
+
+problem
+
+设 $A$ 为常矩阵。证明 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$。
+
+solution
+
+$e^{tA}=\displaystyle\sum_{k=0}^{\infty}\dfrac{t^kA^k}{k!}$（对任意 $t$ 收敛）。逐项求导：$\dfrac{d}{dt}e^{tA}=\displaystyle\sum_{k=1}^{\infty}\dfrac{kt^{k-1}A^k}{k!}=\sum_{k=1}^{\infty}\dfrac{t^{k-1}A^k}{(k-1)!}=A\sum_{m=0}^{\infty}\dfrac{t^mA^m}{m!}=Ae^{tA}$（$A$ 为常数矩阵，可提出求和号外）。故 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$，即矩阵指数是矩阵微分方程 $X'=AX$、$X(0)=I$ 的解。严格依据：任取$R>0$和次乘性矩阵范数，在$|t|\le R$上，原项范数不超过$R^k\|A\|^k/k!$，导数项范数不超过$R^{k-1}\|A\|^k/(k-1)!$（$k\ge1$）。两个数值级数分别求和为$e^{R\|A\|}$和$\|A\|e^{R\|A\|}$，均有限。由Weierstrass判别法及逐项求导定理，运算在任意紧区间有效，故对所有实$t$成立。
+
+answer
+
+证毕
+
+scene_spec.objects[0]
+
+级数逐项求导
+
+scene_spec.objects[1]
+
+与标量情形的类比
+
+scene_spec.steps[0]
+
+呈现题干及条件：设 $A$ 为常矩阵。证明 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$。
+
+scene_spec.steps[1]
+
+依次呈现：级数逐项求导
+
+scene_spec.steps[2]
+
+依次呈现：与标量情形的类比
+
+scene_spec.steps[3]
+
+核对完整证明：$e^{tA}=\displaystyle\sum_{k=0}^{\infty}\dfrac{t^kA^k}{k!}$（对任意 $t$ 收敛）。逐项求导：$\dfrac{d}{dt}e^{tA}=\displaystyle\sum_{k=1}^{\infty}\dfrac{kt^{k-1}A^k}{k!}=\sum_{k=1}^{\infty}\dfrac{t^{k-1}A^k}{(k-1)!}=A\sum_{m=0}^{\infty}\dfrac{t^mA^m}{m!}=Ae^{tA}$（$A$ 为常数矩阵，可提出求和号外）。故 $\dfrac{d}{dt}e^{tA}=Ae^{tA}$，即矩阵指数是矩阵微分方程 $X'=AX$、$X(0)=I$ 的解。严格依据：任取$R>0$和次乘性矩阵范数，在$|t|\le R$上，原项范数不超过$R^k\|A\|^k/k!$，导数项范数不超过$R^{k-1}\|A\|^k/(k-1)!$（$k\ge1$）。两个数值级数分别求和为$e^{R\|A\|}$和$\|A\|e^{R\|A\|}$，均有限。由Weierstrass判别法及逐项求导定理，运算在任意紧区间有效，故对所有实$t$成立。
+
+scene_spec.steps[4]
+
+高亮答案：证毕
+
+efficiency_tags[0]
+
+级数逐项求导
+
+efficiency_tags[1]
+
+与标量情形的类比
+
+## test-x-004
+
+problem
+
+转移矩阵为 $P$ 的马尔可夫链，稳态分布 $\pi$ 满足 $\pi=\pi P$。说明稳态分布对应于 $P^T$ 的特征值 $1$ 的特征向量，并求 $P=\begin{pmatrix}\frac12&\frac12\\\frac14&\frac34\end{pmatrix}$ 的稳态分布。
+
+solution
+
+将行向量等式 $\pi P=\pi$ 转置，得 $P^T\pi^T=\pi^T$。因 $\pi$ 的分量非负且和为 $1$，$\pi^T\ne0$，所以它是 $P^T$ 对应于特征值 $1$ 的特征向量。对题中矩阵，设 $\pi=(a,b)$，则 $a+b=1$ 且 $a=\frac12a+\frac14b$，于是 $b=2a$，得 $\pi=(\frac13,\frac23)$，代回确实满足稳态方程。
+
+answer
+
+$\pi=(\frac13,\frac23)$；$P^T\pi^T=\pi^T$。
+
+scene_spec.objects[0]
+
+状态转移图
+
+scene_spec.objects[1]
+
+特征值 1 与稳态的对应
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·概率论×线性代数综合场景，呈现与马尔可夫链、特征向量、随机矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：状态转移图。
+
+scene_spec.steps[2]
+
+第三步：特征值 1 与稳态的对应。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+状态转移图
+
+efficiency_tags[1]
+
+特征值 1 与稳态的对应
+
+## test-x-005
+
+problem
+
+用长为 $l$ 的围栏围一个矩形区域（一边靠墙不需围栏），求最大面积。
+
+solution
+
+设垂直墙的边长为 $x$，则平行墙的边长为 $l-2x$（$0<x<\dfrac{l}{2}$）。面积 $A=x(l-2x)=lx-2x^2$。$A'=l-4x=0$，$x=\dfrac{l}{4}$；$A''=-4<0$，为最大值。$A_{\max}=\dfrac{l}{4}\cdot\left(l-\dfrac{l}{2}\right)=\dfrac{l^2}{8}$。
+
+answer
+
+$\dfrac{l^2}{8}$（$x=\dfrac{l}{4}$ 时）
+
+scene_spec.objects[0]
+
+矩形随 $x$ 变形
+
+scene_spec.objects[1]
+
+面积抛物线与顶点
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·解析几何×微积分综合场景，呈现与二次函数最值、几何建模、导数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：矩形随 $x$ 变形。
+
+scene_spec.steps[2]
+
+第三步：面积抛物线与顶点。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+矩形随 $x$ 变形
+
+efficiency_tags[1]
+
+面积抛物线与顶点
+
+## test-x-006
+
+problem
+
+Bertrand 悖论：在单位圆中"随机取一条弦"，求弦长大于 $\sqrt3$ 的概率，分别按三种取法计算（随机端点、随机半径中点、随机中点）。
+
+solution
+
+弦长 $>\sqrt3\iff$ 弦到圆心的距离 $<\dfrac{1}{2}$（半弦长 $\sqrt{1-d^2}>\dfrac{\sqrt3}{2}\iff d<\dfrac{1}{2}$）。（1）随机端点：两端点在圆周上均匀独立，等价于固定一端后另一端随机，另一端点对应的圆心角 $\theta\in[0,2\pi)$ 均匀。弦长为 $2\sin\dfrac{\theta}{2}$（$\theta\in[0,\pi]$ 时递增、$[\pi,2\pi]$ 时递减），故 $2\sin\dfrac{\theta}{2}>\sqrt3\iff\dfrac{\theta}{2}\in\left(\dfrac{\pi}{3},\dfrac{2\pi}{3}\right)\iff\theta\in\left(\dfrac{2\pi}{3},\dfrac{4\pi}{3}\right)$，有利角长 $\dfrac{4\pi}{3}-\dfrac{2\pi}{3}=\dfrac{2\pi}{3}$，概率 $=\dfrac{2\pi/3}{2\pi}=\dfrac{1}{3}$。（2）随机半径中点：在一条半径上均匀取中点再作垂直弦，弦到圆心距离 $<\dfrac{1}{2}$ 的概率 $=\dfrac{1}{2}$。（3）随机中点：中点在圆内均匀分布，$d<\dfrac{1}{2}$ 对应半径为 $\dfrac{1}{2}$ 的小圆，面积比 $=\dfrac{\pi/4}{\pi}=\dfrac{1}{4}$。三种取法给出三个不同答案，说明"随机"必须先明确概率空间。
+
+answer
+
+$\dfrac{1}{3}$、$\dfrac{1}{2}$、$\dfrac{1}{4}$（取决于取法）
+
+scene_spec.objects[0]
+
+三种取弦方式并排演示
+
+scene_spec.objects[1]
+
+有利区域高亮
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·概率论×解析几何综合场景，呈现与几何概型、概率空间定义、建模相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：三种取弦方式并排演示。
+
+scene_spec.steps[2]
+
+第三步：有利区域高亮。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+三种取弦方式并排演示
+
+efficiency_tags[1]
+
+有利区域高亮
+
+## test-x-007
+
+problem
+
+用特征值方法判断二次曲线 $x^2+4xy+y^2=1$ 的类型，并说明主轴方向。
+
+solution
+
+矩阵 $A=\begin{pmatrix}1&2\\2&1\end{pmatrix}$。特征方程 $(\lambda-1)^2-4=0$，特征值 $\lambda_1=3$、$\lambda_2=-1$（一正一负），故曲线为双曲线。特征向量：$\lambda=3$ 对应 $(1,1)^T$（主轴），$\lambda=-1$ 对应 $(1,-1)^T$。正交变换 $u=\dfrac{x+y}{\sqrt2}$、$v=\dfrac{x-y}{\sqrt2}$ 后方程为 $3u^2-v^2=1$，即 $\dfrac{u^2}{1/3}-v^2=1$，是双曲线，实轴沿 $y=x$ 方向。
+
+answer
+
+双曲线；主轴沿 $y=x$ 与 $y=-x$ 方向，标准形 $3u^2-v^2=1$
+
+scene_spec.objects[0]
+
+双曲线与两主轴
+
+scene_spec.objects[1]
+
+旋转到标准位置
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·线性代数×解析几何综合场景，呈现与二次曲线分类、特征值、主轴相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：双曲线与两主轴。
+
+scene_spec.steps[2]
+
+第三步：旋转到标准位置。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+双曲线与两主轴
+
+efficiency_tags[1]
+
+旋转到标准位置
+
+## test-x-008
+
+problem
+
+求由 $y=x^2$ 与 $y=\sqrt{x}$ 围成的区域的面积。
+
+solution
+
+交点：$x^2=\sqrt{x}$，即 $x^4=x$，$x(x^3-1)=0$，$x=0$ 或 $x=1$。在 $[0,1]$ 上 $\sqrt{x}\ge x^2$。面积 $S=\displaystyle\int_0^1(\sqrt{x}-x^2)dx=\left[\dfrac{2}{3}x^{3/2}-\dfrac{x^3}{3}\right]_0^1=\dfrac{2}{3}-\dfrac{1}{3}=\dfrac{1}{3}$。
+
+answer
+
+$\dfrac{1}{3}$
+
+scene_spec.objects[0]
+
+两曲线围成的叶片形区域
+
+scene_spec.objects[1]
+
+微元扫掠
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·解析几何×微积分综合场景，呈现与定积分、曲线交点、面积相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两曲线围成的叶片形区域。
+
+scene_spec.steps[2]
+
+第三步：微元扫掠。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两曲线围成的叶片形区域
+
+efficiency_tags[1]
+
+微元扫掠
+
+## test-x-009
+
+problem
+
+设 $X\sim\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。其中$n\in\mathbb Z_{\ge0}$。
+
+solution
+
+设 $n\in\{0,1,2,\dots\}$。$E[X^n]=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。记 $I_n=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。$I_0=\displaystyle\int_0^{\infty}e^{-x}dx=1$ 单独计算；$n\ge 1$ 时用分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\left[-x^ne^{-x}\right]_0^{\infty}+n\displaystyle\int_0^{\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（$n\ge 1$ 时边界项 $x^ne^{-x}\big|_0^\infty$ 为 0）。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\Gamma(n+1)$）。
+
+answer
+
+证毕；$E[X^n]=n!$
+
+scene_spec.objects[0]
+
+分部积分的递推链
+
+scene_spec.objects[1]
+
+矩的阶乘增长
+
+scene_spec.steps[0]
+
+呈现题干及条件：设 $X\sim\operatorname{Exp}(1)$。证明 $E[X^n]=n!$。其中$n\in\mathbb Z_{\ge0}$。
+
+scene_spec.steps[1]
+
+依次呈现：分部积分的递推链
+
+scene_spec.steps[2]
+
+依次呈现：矩的阶乘增长
+
+scene_spec.steps[3]
+
+核对完整证明：设 $n\in\{0,1,2,\dots\}$。$E[X^n]=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。记 $I_n=\displaystyle\int_0^{\infty}x^ne^{-x}dx$。$I_0=\displaystyle\int_0^{\infty}e^{-x}dx=1$ 单独计算；$n\ge 1$ 时用分部积分（$u=x^n$、$dv=e^{-x}dx$）：$I_n=\left[-x^ne^{-x}\right]_0^{\infty}+n\displaystyle\int_0^{\infty}x^{n-1}e^{-x}dx=nI_{n-1}$（$n\ge 1$ 时边界项 $x^ne^{-x}\big|_0^\infty$ 为 0）。递推得 $I_n=n!$，即 $E[X^n]=n!$（恰为 Γ 函数 $\Gamma(n+1)$）。
+
+scene_spec.steps[4]
+
+高亮答案：证毕；$E[X^n]=n!$
+
+efficiency_tags[0]
+
+分部积分的递推链
+
+efficiency_tags[1]
+
+矩的阶乘增长
+
+## test-x-010
+
+problem
+
+设两随机变量的方差有限且严格为正（$\sigma_1,\sigma_2>0$）。证明协方差矩阵 $\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\end{pmatrix}$ 正定当且仅当 $|\rho|<1$。
+
+solution
+
+顺序主子式：$\sigma_1^2>0$；行列式 $\sigma_1^2\sigma_2^2(1-\rho^2)$。矩阵正定 $\iff$ 两顺序主子式均为正 $\iff 1-\rho^2>0\iff|\rho|<1$。概率解释：相关系数 $|\rho|<1$ 恰是中心化变量$X-E[X]$与$Y-E[Y]$不几乎必然线性相关（即不存在非平凡常数$a,b$使$aX+bY$几乎必然为常数）的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。
+
+answer
+
+证毕（在 $\sigma_1,\sigma_2>0$ 的前提下，正定 $\iff|\rho|<1$）
+
+scene_spec.objects[0]
+
+相关系数滑块与散布图
+
+scene_spec.objects[1]
+
+退化情形 $\rho=\pm 1$
+
+scene_spec.steps[0]
+
+呈现题干及条件：设两随机变量的方差有限且严格为正（$\sigma_1,\sigma_2>0$）。证明协方差矩阵 $\begin{pmatrix}\sigma_1^2&\rho\sigma_1\sigma_2\\\rho\sigma_1\sigma_2&\sigma_2^2\end{pmatrix}$ 正定当且仅当 $|\rho|<1$。
+
+scene_spec.steps[1]
+
+依次呈现：相关系数滑块与散布图
+
+scene_spec.steps[2]
+
+依次呈现：退化情形 $\rho=\pm 1$
+
+scene_spec.steps[3]
+
+核对完整证明：顺序主子式：$\sigma_1^2>0$；行列式 $\sigma_1^2\sigma_2^2(1-\rho^2)$。矩阵正定 $\iff$ 两顺序主子式均为正 $\iff 1-\rho^2>0\iff|\rho|<1$。概率解释：相关系数 $|\rho|<1$ 恰是中心化变量$X-E[X]$与$Y-E[Y]$不几乎必然线性相关（即不存在非平凡常数$a,b$使$aX+bY$几乎必然为常数）的充要条件，此时协方差矩阵非退化；若某个方差为 0，协方差矩阵必奇异，且相关系数未定义。
+
+scene_spec.steps[4]
+
+高亮答案：证毕（在 $\sigma_1,\sigma_2>0$ 的前提下，正定 $\iff|\rho|<1$）
+
+efficiency_tags[0]
+
+相关系数滑块与散布图
+
+efficiency_tags[1]
+
+退化情形 $\rho=\pm 1$
+
+## test-x-011
+
+problem
+
+证明：平面上关于两条过原点直线的（线性）反射的复合是旋转。以关于 $x$ 轴和关于直线 $y=x$ 的两次反射为例，求复合变换矩阵并识别其几何意义。
+
+solution
+
+关于 $x$ 轴的反射 $R_1=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，关于 $y=x$ 的反射 $R_2=\begin{pmatrix}0&1\\1&0\end{pmatrix}$。复合（先 $R_1$ 后 $R_2$）$R_2R_1=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$，这是逆时针旋转 $90^\circ$ 的矩阵（$\det=1$）。一般地，两个线性反射矩阵（正交、$\det=-1$）之积是正交矩阵且 $\det=1$，即旋转。注意：对一般的平面镜面反射，两轴相交时复合为绕交点旋转 $2\varphi$（$\varphi$ 为两轴夹角），两轴平行时复合为平移——本题限定线性反射（轴过原点）才恒得旋转。
+
+answer
+
+复合矩阵 $\begin{pmatrix}0&-1\\1&0\end{pmatrix}$（逆时针旋转 $90^\circ$）
+
+scene_spec.objects[0]
+
+两次反射的连续动画
+
+scene_spec.objects[1]
+
+合成出旋转
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·解析几何×线性代数综合场景，呈现与反射矩阵、矩阵乘法、旋转相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：两次反射的连续动画。
+
+scene_spec.steps[2]
+
+第三步：合成出旋转。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+两次反射的连续动画
+
+efficiency_tags[1]
+
+合成出旋转
+
+## test-x-012
+
+problem
+
+用级数定义计算矩阵指数 $e^{A}$，其中 $A=\begin{pmatrix}0&\pi\\-\pi&0\end{pmatrix}$。
+
+solution
+
+记 $J=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$，则 $A=\pi J$，且 $J^2=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I$。故 $A^2=-\pi^2I$，$A^3=-\pi^3J$，$A^4=\pi^4I$，一般地 $A^{2k}=(-1)^k\pi^{2k}I$，$A^{2k+1}=(-1)^k\pi^{2k+1}J$。$e^{A}=\displaystyle\sum_{k=0}^{\infty}\left[\dfrac{(-1)^k\pi^{2k}}{(2k)!}I+\dfrac{(-1)^k\pi^{2k+1}}{(2k+1)!}J\right]=\cos\pi\cdot I+\sin\pi\cdot J=-I+0\cdot J=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}$（$\cos\pi=-1$，$\sin\pi=0$）。即 $e^{A}=-I$，对应旋转 $\pi$ 角（欧拉公式的矩阵版 $e^{i\pi}=-1$）。
+
+answer
+
+$e^{A}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-I$
+
+scene_spec.objects[0]
+
+旋转 $\pi$ 的动画
+
+scene_spec.objects[1]
+
+矩阵版欧拉公式
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·线性代数×微积分综合场景，呈现与矩阵指数、级数、旋转矩阵相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：旋转 $\pi$ 的动画。
+
+scene_spec.steps[2]
+
+第三步：矩阵版欧拉公式。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+旋转 $\pi$ 的动画
+
+efficiency_tags[1]
+
+矩阵版欧拉公式
+
+## test-x-013
+
+problem
+
+随机取一个正整数（在 $1$ 到 $N$ 中等可能，$N\to\infty$ 取极限），求它能被 2 或 3 整除的概率。
+
+solution
+
+在$\{1,\ldots,N\}$均匀选取整数。能被2、3、6整除的个数分别恰为$\lfloor N/2\rfloor,\lfloor N/3\rfloor,\lfloor N/6\rfloor$，故所求概率$p_N=[\lfloor N/2\rfloor+\lfloor N/3\rfloor-\lfloor N/6\rfloor]/N$。因$|\lfloor u\rfloor-u|<1$，有$|p_N-(1/2+1/3-1/6)|<3/N\to0$。所以极限自然密度为$2/3$；这不是在所有正整数上定义等概率分布。
+
+answer
+
+$\dfrac{2}{3}$
+
+scene_spec.objects[0]
+
+精确计数$\lfloor N/2\rfloor+\lfloor N/3\rfloor-\lfloor N/6\rfloor$
+
+scene_spec.objects[1]
+
+容斥与严格误差$|p_N-2/3|<3/N$
+
+scene_spec.steps[0]
+
+呈现题干及条件：随机取一个正整数（在 $1$ 到 $N$ 中等可能，$N\to\infty$ 取极限），求它能被 2 或 3 整除的概率。
+
+scene_spec.steps[1]
+
+依次呈现：精确计数$\lfloor N/2\rfloor+\lfloor N/3\rfloor-\lfloor N/6\rfloor$
+
+scene_spec.steps[2]
+
+依次呈现：容斥与严格误差$|p_N-2/3|<3/N$
+
+scene_spec.steps[3]
+
+核对完整证明：在$\{1,\ldots,N\}$均匀选取整数。能被2、3、6整除的个数分别恰为$\lfloor N/2\rfloor,\lfloor N/3\rfloor,\lfloor N/6\rfloor$，故所求概率$p_N=[\lfloor N/2\rfloor+\lfloor N/3\rfloor-\lfloor N/6\rfloor]/N$。因$|\lfloor u\rfloor-u|<1$，有$|p_N-(1/2+1/3-1/6)|<3/N\to0$。所以极限自然密度为$2/3$；这不是在所有正整数上定义等概率分布。
+
+scene_spec.steps[4]
+
+高亮答案：$\dfrac{2}{3}$
+
+efficiency_tags[0]
+
+精确计数$\lfloor N/2\rfloor+\lfloor N/3\rfloor-\lfloor N/6\rfloor$
+
+efficiency_tags[1]
+
+容斥与严格误差$|p_N-2/3|<3/N$
+
+## test-x-014
+
+problem
+
+求悬链线 $y=a\cosh\dfrac{x}{a}$（$0\le x\le b$）的弧长，其中 $a,b>0$。
+
+solution
+
+$y'=\sinh\dfrac{x}{a}$。弧长 $L=\displaystyle\int_0^b\sqrt{1+\sinh^2\dfrac{x}{a}}\,dx=\int_0^b\cosh\dfrac{x}{a}\,dx=\left[a\sinh\dfrac{x}{a}\right]_0^b=a\sinh\dfrac{b}{a}$（用到 $1+\sinh^2u=\cosh^2u$）。
+
+answer
+
+$a\sinh\dfrac{b}{a}$
+
+scene_spec.objects[0]
+
+悬链线与其弧长
+
+scene_spec.objects[1]
+
+$\cosh$ 与 $\sinh$ 的关系
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·解析几何×微积分综合场景，呈现与双曲函数、弧长公式、导数相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：悬链线与其弧长。
+
+scene_spec.steps[2]
+
+第三步：$\cosh$ 与 $\sinh$ 的关系。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+悬链线与其弧长
+
+efficiency_tags[1]
+
+$\cosh$ 与 $\sinh$ 的关系
+
+## test-x-015
+
+problem
+
+设马尔可夫链的转移矩阵 $P=\begin{pmatrix}\frac12&\frac12\\\frac14&\frac34\end{pmatrix}$。用对角化求 $P^n$（$n$ 为非负整数），并求 $n\to\infty$ 时的极限矩阵。
+
+solution
+
+特征多项式为 $\lambda^2-\frac54\lambda+\frac14=(\lambda-1)(\lambda-\frac14)$，对应特征向量可取 $(1,1)^T$、$(2,-1)^T$。令 $Q=\begin{pmatrix}1&2\\1&-1\end{pmatrix}$，则 $Q^{-1}=\begin{pmatrix}\frac13&\frac23\\\frac13&-\frac13\end{pmatrix}$，且 $P=Q\operatorname{diag}(1,\frac14)Q^{-1}$。所以 $P^n=Q\operatorname{diag}(1,4^{-n})Q^{-1}=\frac13\begin{pmatrix}1+2\cdot4^{-n}&2-2\cdot4^{-n}\\1-4^{-n}&2+4^{-n}\end{pmatrix}$。由 $4^{-n}\to0$，得到 $\lim_{n\to\infty}P^n=\begin{pmatrix}\frac13&\frac23\\\frac13&\frac23\end{pmatrix}$。
+
+answer
+
+$P^n=\frac13\begin{pmatrix}1+2\cdot4^{-n}&2-2\cdot4^{-n}\\1-4^{-n}&2+4^{-n}\end{pmatrix}$；$\lim_{n\to\infty}P^n=\begin{pmatrix}\frac13&\frac23\\\frac13&\frac23\end{pmatrix}$。
+
+scene_spec.objects[0]
+
+$P^n$ 随 $n$ 收敛的动画
+
+scene_spec.objects[1]
+
+稳态分布行重复结构
+
+scene_spec.steps[0]
+
+第一步：建立跨学科·概率论×线性代数×级数综合场景，呈现与对角化、矩阵极限、稳态分布相关的核心图形。
+
+scene_spec.steps[1]
+
+第二步：$P^n$ 随 $n$ 收敛的动画。
+
+scene_spec.steps[2]
+
+第三步：稳态分布行重复结构。
+
+scene_spec.steps[3]
+
+第四步：高亮最终结果与答案。
+
+efficiency_tags[0]
+
+$P^n$ 随 $n$ 收敛的动画
+
+efficiency_tags[1]
+
+稳态分布行重复结构

@@ -1,0 +1,1114 @@
+{
+  "schema": "exact-bound-math-review-38-v1",
+  "reviewed": 38,
+  "witnesses": [
+    {
+      "exact_equalities": [
+        {
+          "left": "2",
+          "right": "2",
+          "residual": "0"
+        },
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "可微函数的切线为 y-f(1)=f'(1)(x-1)，即 y=2x-1。",
+      "id": "calc-derivative-001",
+      "source": {
+        "group": "train",
+        "id": "calc-derivative-001",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 1,
+        "record_version_sha256": "70a89019a4ed327fd7f64afc57a45099694a33da8b6a16fdc9d26cd9d3c0d671",
+        "source_line": 1,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "dec6095ba849a50559497acef17681f09c958dba06fd482a0b8c1eee2a9efe1b"
+      },
+      "final_record_dense_sha256": "70a89019a4ed327fd7f64afc57a45099694a33da8b6a16fdc9d26cd9d3c0d671",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "pi/2",
+          "right": "pi/2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "变上限积分 arctan b 的有限极限存在，符合反常积分收敛定义。",
+      "id": "calc-improper-002",
+      "source": {
+        "group": "train",
+        "id": "calc-improper-002",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 2,
+        "record_version_sha256": "4553bb903bb9bc33397c21eec8d1f14108543e4dd6a9b12edeab4f60f5e389e1",
+        "source_line": 2,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "ef87b1cae997b8b477f6422cf6fc4fc624d2b3bae4d3ffff68696f850d801a40"
+      },
+      "final_record_dense_sha256": "4553bb903bb9bc33397c21eec8d1f14108543e4dd6a9b12edeab4f60f5e389e1",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1/alpha",
+          "right": "1/alpha",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "alpha>0 保证 exp(-alpha b)→0；不向 alpha<=0 外推。",
+      "id": "calc-param-improper-003",
+      "source": {
+        "group": "train",
+        "id": "calc-param-improper-003",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 3,
+        "record_version_sha256": "0b008740140446c84fe7f379472aa7b9e2a9dbd0d9c418273c6cdc47ba9be884",
+        "source_line": 3,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "fbd2d0871812a2032d3279d12588d529d1fca826942697656c1ab48504342a50"
+      },
+      "final_record_dense_sha256": "0b008740140446c84fe7f379472aa7b9e2a9dbd0d9c418273c6cdc47ba9be884",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "pi/2",
+          "right": "pi/2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "单位圆盘上 integrand 非负；极坐标 Jacobian r，体积解释成立。",
+      "id": "calc-double-integral-004",
+      "source": {
+        "group": "train",
+        "id": "calc-double-integral-004",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 4,
+        "record_version_sha256": "f93c07ad63dd319f3c3cd4a19c76e1e14d13b4081491fade754fcbde05c386ff",
+        "source_line": 4,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "2a341d577d6739cf7e753db6588fceda658a85ef09c951772e768fb733272c94"
+      },
+      "final_record_dense_sha256": "f93c07ad63dd319f3c3cd4a19c76e1e14d13b4081491fade754fcbde05c386ff",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "2*pi*a**2",
+          "right": "2*pi*a**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "a>0；圆周逆时针，P=-y、Q=x 为 C1，Green 公式 integrand=2。",
+      "id": "calc-green-005",
+      "source": {
+        "group": "train",
+        "id": "calc-green-005",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 5,
+        "record_version_sha256": "a732f0521056602044ad966ef416bdef289458a8bd6c53bb3b8ca2d316745c44",
+        "source_line": 5,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "bd2ff67645bddc2b82be5d2192756bac15bbed11bae2a1e15052484ff4534e6b"
+      },
+      "final_record_dense_sha256": "6fbed8cad64ca35839f5d6df94ffbfd0f6e94d2bc4bdb9322a4952932f2c5a12",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        },
+        {
+          "left": "sin(x)/x",
+          "right": "sin(x)/x",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "对所有 0<x<pi/2，面积比较给 sin x<x<tan x，夹逼及偶性推出双侧极限；有限动画不是证明。",
+      "id": "calc-limit-006",
+      "source": {
+        "group": "train",
+        "id": "calc-limit-006",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 6,
+        "record_version_sha256": "4f07f35747328b445316aa043679b54c72add9b8ff7f29bb05b4751d497e30c9",
+        "source_line": 6,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "35d61a793d1102abaf166bbfd293c23e69cab57aa2699659ed89438bbfac7d6e"
+      },
+      "final_record_dense_sha256": "0577d8caa7832557dc7c0bcdc2d76260bb6b3b0942c5797f92987fb506941c0a",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "9/2",
+          "right": "9/2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "上、下边界差 (2-x)(x+1)>=0，交点 -1,2 精确。",
+      "id": "calc-area-007",
+      "source": {
+        "group": "train",
+        "id": "calc-area-007",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 7,
+        "record_version_sha256": "5362c761944b4748832f9807a72851917dd7076e65812d045854465c889a3795",
+        "source_line": 7,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "4224598f4b3eddfec0f52be5ca9a474c080167b4bd8f460bcdcd67f627f300a9"
+      },
+      "final_record_dense_sha256": "5362c761944b4748832f9807a72851917dd7076e65812d045854465c889a3795",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "pi*a**2",
+          "right": "pi*a**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "a>0，r>=0 的角域 [-pi/2,pi/2] 覆盖圆一次。",
+      "id": "calc-area-008",
+      "source": {
+        "group": "train",
+        "id": "calc-area-008",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 8,
+        "record_version_sha256": "59fb7a78f08c354859df1793997ea06f87f39487be39186353c76a3d60ee0801",
+        "source_line": 8,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "525f4bf08ebfc671be099f5a8cfc2f03c05fa33ea474a8224f6b1791850c71db"
+      },
+      "final_record_dense_sha256": "59fb7a78f08c354859df1793997ea06f87f39487be39186353c76a3d60ee0801",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "3*pi*a**2",
+          "right": "3*pi*a**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "a>0，dx/dt=a(1-cos t)>=0，一拱 y>=0，因此 y dx 给普通面积。",
+      "id": "calc-area-009",
+      "source": {
+        "group": "train",
+        "id": "calc-area-009",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 9,
+        "record_version_sha256": "15ce0d6025f6a3cf50952947ed7c3d8eb85ddfd296b20765769f119e748c949e",
+        "source_line": 9,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "066a714c5b92da9e9a1b8d41ced49e89ecd6a18e2ce8b7907b26f13a9d2710b3"
+      },
+      "final_record_dense_sha256": "cd6964e1a6da29353ef0af297b38cd891c51d3a6bcdfdd879e7de195f5f684eb",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "-E*(1 + E) + 1 + exp(2)/2 + (1 + E)**2/2",
+          "right": "3/2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "ln x+x-e-1 严格递增，唯一交点 x=e；分段上边界正确。",
+      "id": "calc-area-010",
+      "source": {
+        "group": "train",
+        "id": "calc-area-010",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 10,
+        "record_version_sha256": "f2b0cf66178ffbe0bf3d4db809a2818ff57ebb0502e61bdfef24f9ea96b81fac",
+        "source_line": 10,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "4117293d1867e058f14f9b37412f7f21779117ff81b5fceda5f7fa097ebc28b5"
+      },
+      "final_record_dense_sha256": "f2b0cf66178ffbe0bf3d4db809a2818ff57ebb0502e61bdfef24f9ea96b81fac",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "-8/3 + 8*sqrt(2)/3",
+          "right": "-8/3 + 8*sqrt(2)/3",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "对称性及绝对值在 x=1 处分段，交点 0,+/-sqrt2；计算两瓣总面积。",
+      "id": "calc-area-011",
+      "source": {
+        "group": "train",
+        "id": "calc-area-011",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 11,
+        "record_version_sha256": "14db1d21c52d8763fa8f90ba302a9d0d13e0f19f39c41b4b4f1de10cfe62f7f0",
+        "source_line": 11,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "c935181829e09d4c0064e45dd5120681ceaf1943f97a0b5ca0a38023e1d394f3"
+      },
+      "final_record_dense_sha256": "14db1d21c52d8763fa8f90ba302a9d0d13e0f19f39c41b4b4f1de10cfe62f7f0",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "asin(x)**2",
+          "right": "asin(x)**2",
+          "residual": "0"
+        },
+        {
+          "left": "pi*(-2 + pi**2/4)",
+          "right": "-2*pi + pi**3/4",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "圆盘法用于 0<=x<=1 上非负半径；反导在内部求导，端点使用连续极限。",
+      "id": "calc-vol-012",
+      "source": {
+        "group": "train",
+        "id": "calc-vol-012",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 12,
+        "record_version_sha256": "3e65c3bcbf2910133c224c839ddea6f873093d2fbe2b10ffa7fb09443346d3c0",
+        "source_line": 12,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "dea0e26452eb4d18f39391bfe2f17cd7ec57bf8e6b36ef8425f2c3fa120e3f3f"
+      },
+      "final_record_dense_sha256": "3e65c3bcbf2910133c224c839ddea6f873093d2fbe2b10ffa7fb09443346d3c0",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1 - 2*exp(-1)",
+          "right": "1 - 2*exp(-1)",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "x exp(-x)>=0，分部积分符号及上下限正确。",
+      "id": "calc-area-013",
+      "source": {
+        "group": "train",
+        "id": "calc-area-013",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 13,
+        "record_version_sha256": "3186d4b0a62ce04b4235da187f3e1369111048654c16cd5e2466b78e355b27d3",
+        "source_line": 13,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "a2eef58143fb4f962ad56682658bd56f8bdae6861116a3e3a540da4786e33d3f"
+      },
+      "final_record_dense_sha256": "3186d4b0a62ce04b4235da187f3e1369111048654c16cd5e2466b78e355b27d3",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1/N",
+          "right": "1/N",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "对所有 |x|<=1，以可求和的 1/n² 控制；M 判别法一致收敛，N>=1 时尾和<=1/N。",
+      "id": "calc-series-017",
+      "source": {
+        "group": "train",
+        "id": "calc-series-017",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 15,
+        "record_version_sha256": "bd4323dca10213b71396b4bcc8a89d477e72d5e83fe85ffcf128ced2aa71468f",
+        "source_line": 15,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl",
+        "source_raw_sha256": "cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1",
+        "task_sha256": "7e60fa1339ca7d1c1635ed502c2a8ce95c8479924ea668e30e968ee6f0f8292b"
+      },
+      "final_record_dense_sha256": "bd4323dca10213b71396b4bcc8a89d477e72d5e83fe85ffcf128ced2aa71468f",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "14",
+          "right": "14",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "方向与法向平行，sin(theta)=1 且 theta∈[0,pi/2]，故线面垂直。",
+      "id": "geom-020",
+      "source": {
+        "group": "train",
+        "id": "geom-020",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 17,
+        "record_version_sha256": "b5b861497fb320ad03d7d4309d6d88fe78154886d0566cc8080668cbac632a6f",
+        "source_line": 1,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "152c37ca829483c9777e212980a53c1c00a9f101754a17a366fdce31128530da"
+      },
+      "final_record_dense_sha256": "b5b861497fb320ad03d7d4309d6d88fe78154886d0566cc8080668cbac632a6f",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[6],\n[3],\n[2]])",
+          "right": "Matrix([\n[6],\n[3],\n[2]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "法向非零，三点不共线，方程 6x+3y+2z-6=0 包含三点。",
+      "id": "geom-022",
+      "source": {
+        "group": "train",
+        "id": "geom-022",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 18,
+        "record_version_sha256": "6bca30f252391153444b24b59c84ad1778152bf5e9a3632dac4d7c01ebb9e689",
+        "source_line": 2,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "87838be596d6fefccf52d51fa5947c3ecbcfee38a5d3aad14bf14489cb744ff5"
+      },
+      "final_record_dense_sha256": "6bca30f252391153444b24b59c84ad1778152bf5e9a3632dac4d7c01ebb9e689",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "4",
+          "right": "4",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "z 任意，参数 (2cost,2sint,z) 覆盖半径2圆柱面，母线平行z轴。",
+      "id": "geom-024",
+      "source": {
+        "group": "train",
+        "id": "geom-024",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 19,
+        "record_version_sha256": "44f74742b6396d58e382ca51b81547a71410d8334762d4b05270bd8a0366d380",
+        "source_line": 3,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "a6549ad9527543daf1f7a4e13903e54d2f2f456d44513c23aa16e420dcb7edd0"
+      },
+      "final_record_dense_sha256": "44f74742b6396d58e382ca51b81547a71410d8334762d4b05270bd8a0366d380",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "2*c**2 + x**2",
+          "right": "2*c**2 + x**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "y=c 的截线在三维中为 (x,c,x²+2c²)，顶点 (0,c,2c²)；y=0/1 各结果正确。",
+      "id": "geom-026",
+      "source": {
+        "group": "train",
+        "id": "geom-026",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 20,
+        "record_version_sha256": "348c49265098b87862ea3b1a89564124ab750e50d926ba642c1754716f3c0600",
+        "source_line": 4,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "315bef8a9ce368b4001c6eb901433b7dca6f07bcf8c3c92cfa72969591b9bf6d"
+      },
+      "final_record_dense_sha256": "348c49265098b87862ea3b1a89564124ab750e50d926ba642c1754716f3c0600",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "l**2 + m**2",
+          "right": "l**2 + m**2",
+          "residual": "0"
+        },
+        {
+          "left": "2*l*x0 + 2*m*y0 - n",
+          "right": "2*l*x0 + 2*m*y0 - n",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "实数域上二次系数0推出 l=m=0，一次系数0再推出 n=0，矛盾于方向非零。",
+      "id": "geom-028",
+      "source": {
+        "group": "train",
+        "id": "geom-028",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 21,
+        "record_version_sha256": "0d057d9c18189ad4032f1d8b7025e53a6a8e9938c7282f9f8e6713f4d85a446e",
+        "source_line": 5,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "97997e313f5b4e985248e73040f96f69107d482cae360de83957070f0d930e57"
+      },
+      "final_record_dense_sha256": "ef3561df932f82a7976e9759819538b6b171f464119b660d8cd8ab5eccb96808",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[1],\n[3],\n[3]])",
+          "right": "Matrix([\n[1],\n[3],\n[3]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "A 为绕 z 轴正向 pi/2 旋转；随后平移，操作次序正确。",
+      "id": "geom-029",
+      "source": {
+        "group": "train",
+        "id": "geom-029",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 22,
+        "record_version_sha256": "737a94a96b717e5c60f99c53040df03d69ddc2525b625cc111a879f8210cf2ef",
+        "source_line": 6,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "5beb89b1d2fa9257b56bb5d0710ac5eb90c769fd63b21a8a0345be6f06a3b18d"
+      },
+      "final_record_dense_sha256": "737a94a96b717e5c60f99c53040df03d69ddc2525b625cc111a879f8210cf2ef",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "xp**2/4 + yp**2 + zp**2",
+          "right": "xp**2/4 + yp**2 + zp**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "可逆仿射变换的逆代换给椭球，x向半轴2、其余1。",
+      "id": "geom-030",
+      "source": {
+        "group": "train",
+        "id": "geom-030",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 23,
+        "record_version_sha256": "505d525a0b6ecaf2c12cece0e92860b733fb0c9849b8eef4149c45471944cb46",
+        "source_line": 7,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "b7bee074aea1b62950cb65a7d6f75adb002b14ee8d57223c22fd1fc76f25c544"
+      },
+      "final_record_dense_sha256": "505d525a0b6ecaf2c12cece0e92860b733fb0c9849b8eef4149c45471944cb46",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "a**2*(cos(t) + 1)**2 + a**2*sin(t)**2",
+          "right": "2*a**2*(cos(t) + 1)",
+          "residual": "0"
+        },
+        {
+          "left": "a**2*(cos(t) + 1)**2 + 4*a**2*sin(t/2)**2 + a**2*sin(t)**2",
+          "right": "4*a**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "t∈[0,2pi] 对应 z>=0，t+2pi 保持 x,y 而反转 z；[0,4pi] 覆盖两分支与交点。",
+      "id": "geom-031",
+      "source": {
+        "group": "train",
+        "id": "geom-031",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 24,
+        "record_version_sha256": "29d04a841b4ff1e6e864ebe519ae347f98270b08190c03fafbc075d80384c3d5",
+        "source_line": 8,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl",
+        "source_raw_sha256": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+        "task_sha256": "761ac8ee56e17ecbd1063308250c3268bb6aa71aa2349525ab2f035b8e997b77"
+      },
+      "final_record_dense_sha256": "29d04a841b4ff1e6e864ebe519ae347f98270b08190c03fafbc075d80384c3d5",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        },
+        {
+          "left": "10",
+          "right": "10",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "T(x,y)=(x+3y,y)；整条水平线集合不变，带标记点/有限线段有位移；竖线像 X-3Y=c。",
+      "id": "linalg-048",
+      "source": {
+        "group": "train",
+        "id": "linalg-048",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 25,
+        "record_version_sha256": "79de529e40a7bb98d088a21037d3f41e2c05f45a81b2770781382126fd7e6ea0",
+        "source_line": 1,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "9d85642ac8c608c5dd22aadc77c31f72c96800dbf8f180da4aa412811ea40b64"
+      },
+      "final_record_dense_sha256": "79de529e40a7bb98d088a21037d3f41e2c05f45a81b2770781382126fd7e6ea0",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "x**3 - 6*x**2 + 11*x - 6",
+          "right": "x**3 - 6*x**2 + 11*x - 6",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "三实根1,2,3，因此均在复平面的实轴上。",
+      "id": "linalg-051",
+      "source": {
+        "group": "train",
+        "id": "linalg-051",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 27,
+        "record_version_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+        "source_line": 3,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "2b4a65cd47016ad6386e9927089c8dfb9ef3de6008c838fa20255ad0716fe80a"
+      },
+      "final_record_dense_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "10",
+          "right": "10",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[-2],\n[ 3],\n[ 1]])",
+          "right": "Matrix([\n[-2],\n[ 3],\n[ 1]])",
+          "residual": "0"
+        },
+        {
+          "left": "10",
+          "right": "10",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "底面积sqrt14、高10/sqrt14，体积10；不以动态测量代替精确结论。",
+      "id": "linalg-053",
+      "source": {
+        "group": "train",
+        "id": "linalg-053",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 28,
+        "record_version_sha256": "f257e2425409858699514e0beac6859df86eaa86f04a0995124e4b94e2a53ec5",
+        "source_line": 4,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "928a19e71a273237b103c3b3e7c66f4947ea55a5aeedd9808a8d5346d037cb7b"
+      },
+      "final_record_dense_sha256": "432b996caf30a744445fc41c9b14e97b80e2070267af39279299a8e4d65027b1",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "-3",
+          "right": "-3",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[5],\n[1]])",
+          "right": "Matrix([\n[5],\n[1]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "系数D=-3，Dx=-6，Dy=-3；非退化直线系数下 D=0 分平行不重合/重合两种。",
+      "id": "linalg-054",
+      "source": {
+        "group": "train",
+        "id": "linalg-054",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 29,
+        "record_version_sha256": "da8cdcee83888931a391155143b894ddf1cf7977f59da628e02b9ac430c56dba",
+        "source_line": 5,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "d4056b1a65a6e6806a6dfde1c09f9bf1a58db16cd26bcebac6a6c18a6719a541"
+      },
+      "final_record_dense_sha256": "f3b22b400485ff50782724cb134c5df7e40e1468795ff70a5703f980b4c9cdbf",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "2",
+          "right": "2",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[1],\n[1],\n[2]])",
+          "right": "Matrix([\n[1],\n[1],\n[2]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "系数可逆，唯一解(1,0,0)，消元回代全成立。",
+      "id": "linalg-055",
+      "source": {
+        "group": "train",
+        "id": "linalg-055",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 30,
+        "record_version_sha256": "77f70b1591db703295a5805198a5bf7c7ca8c048364676ece5861cc622ed04cc",
+        "source_line": 6,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "995ab568881bee4456f807b2b4fb0508e1c60fe80abde478af52878b9133a3bc"
+      },
+      "final_record_dense_sha256": "77f70b1591db703295a5805198a5bf7c7ca8c048364676ece5861cc622ed04cc",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[0, 0],\n[0, 0]])",
+          "right": "Matrix([\n[0, 0],\n[0, 0]])",
+          "residual": "0"
+        },
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        },
+        {
+          "left": "2",
+          "right": "2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "两个零空间向量独立，零化度2，因此构成基础解系。",
+      "id": "linalg-056",
+      "source": {
+        "group": "train",
+        "id": "linalg-056",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 31,
+        "record_version_sha256": "34433235e65ddd6bd82e2f4ee1f823536278c3e8efd3e7854f5af18f75c17982",
+        "source_line": 7,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "b19c8e90ba0407656b0480f72b748faa314ba492f66a5d02e9591d75f0d28788"
+      },
+      "final_record_dense_sha256": "34433235e65ddd6bd82e2f4ee1f823536278c3e8efd3e7854f5af18f75c17982",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[      x],\n[t + 3*x]])",
+          "right": "Matrix([\n[      x],\n[t + 3*x]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "竖直线集合保持，水平线倾斜，底/高1，保持面积和定向。",
+      "id": "linalg-058",
+      "source": {
+        "group": "train",
+        "id": "linalg-058",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 32,
+        "record_version_sha256": "0006aaf8c255cec0bae511a826ed367cf4a3d8ae95f2533b373301c30c78267d",
+        "source_line": 8,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "59a8fc6d548e4a8a125f80163f888935822dda9f3e09bb096f0a0dbdf85541a7"
+      },
+      "final_record_dense_sha256": "0006aaf8c255cec0bae511a826ed367cf4a3d8ae95f2533b373301c30c78267d",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "3",
+          "right": "3",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "交为span(e2)，和含三个标准基而等于R³；维数3和1。",
+      "id": "linalg-062",
+      "source": {
+        "group": "train",
+        "id": "linalg-062",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 33,
+        "record_version_sha256": "785653fd613ab2a58a3eaa8659e338f51e7930870331cc4f9407f2d225b6f5ab",
+        "source_line": 9,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "13f1b76ec974ac442cc71506481fe0d7598a87ef6dd99f6759714b15661e0f2b"
+      },
+      "final_record_dense_sha256": "785653fd613ab2a58a3eaa8659e338f51e7930870331cc4f9407f2d225b6f5ab",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[0],\n[0]])",
+          "right": "Matrix([\n[0],\n[0]])",
+          "residual": "0"
+        },
+        {
+          "left": "2",
+          "right": "2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "核维1，任(u,v)可取(x,y,z)=(u,0,v)，值域R²。",
+      "id": "linalg-063",
+      "source": {
+        "group": "train",
+        "id": "linalg-063",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 34,
+        "record_version_sha256": "98ce95ed5ca6af2fade511a62e543f28135747d3a8f356be90388f906468ec9a",
+        "source_line": 10,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "916e2b590b2f296a7f155db9dcc2003bd4aaf6fd29ee633a24df5ef476d0ecea"
+      },
+      "final_record_dense_sha256": "98ce95ed5ca6af2fade511a62e543f28135747d3a8f356be90388f906468ec9a",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[3],\n[0]])",
+          "right": "Matrix([\n[3],\n[0]])",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[ 2],\n[-2]])",
+          "right": "Matrix([\n[ 2],\n[-2]])",
+          "residual": "0"
+        },
+        {
+          "left": "lambda**2 - 5*lambda + 6",
+          "right": "(lambda - 3)*(lambda - 2)",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "全部非零特征向量是对应一维特征空间的非零倍，不能含零向量。",
+      "id": "linalg-064",
+      "source": {
+        "group": "train",
+        "id": "linalg-064",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 35,
+        "record_version_sha256": "1054f681c953165c301284e10ffd60b406c424a9cc8357f3449d60a467c14499",
+        "source_line": 11,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "db81e327b152b66d2ed1b2cd83a0bca5078bb307c5d07745464689d73ba4c684"
+      },
+      "final_record_dense_sha256": "3cf69bfaf0c138629257f163616091d3523f1d0dbed9b203c81363dbc6dc33d5",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        },
+        {
+          "left": "lambda*(lambda**2 - 1)",
+          "right": "lambda*(lambda - 1)*(lambda + 1)",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "一阶行列式因子1，二阶lambda(lambda²-1)，不变因子1、二阶式；初等因子三个一次多项式。",
+      "id": "linalg-065",
+      "source": {
+        "group": "train",
+        "id": "linalg-065",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 36,
+        "record_version_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+        "source_line": 12,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "7db9a65d67b8f7166c52502c658806fbe38f57c29adfbaf5ee66e21fdfb5b856"
+      },
+      "final_record_dense_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "lambda**3 - 7*lambda**2 + 16*lambda - 12",
+          "right": "(lambda - 3)*(lambda - 2)**2",
+          "residual": "0"
+        },
+        {
+          "left": "2",
+          "right": "2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "lambda=2代数重数2、几何重数1，对应一个2阶块；lambda=3一个1阶块，A已在Jordan形式。",
+      "id": "linalg-066",
+      "source": {
+        "group": "train",
+        "id": "linalg-066",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 37,
+        "record_version_sha256": "037e01abf3aaf02bfee249648581a940fb51244e0989a23697bfed2191a8f4cd",
+        "source_line": 13,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "b7e54509a59691270c01406e6c9d762a779af8cdc63fec94fb766659a6e747eb"
+      },
+      "final_record_dense_sha256": "037e01abf3aaf02bfee249648581a940fb51244e0989a23697bfed2191a8f4cd",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[sin(theta)**2 + cos(theta)**2,                             0],\n[                            0, sin(theta)**2 + cos(theta)**2]])",
+          "right": "Matrix([\n[1, 0],\n[0, 1]])",
+          "residual": "0"
+        },
+        {
+          "left": "sin(theta)**2 + cos(theta)**2",
+          "right": "1",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "A^TA=I 对所有实theta成立，内积、长度、角度与定向保持。",
+      "id": "linalg-067",
+      "source": {
+        "group": "train",
+        "id": "linalg-067",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 38,
+        "record_version_sha256": "308ae4734dad5650788d5605531f4ce593ab67bfaab45ee9b769190388c3ff9f",
+        "source_line": 14,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "cbf7fa2c2560f28645b2917654fbefe5a10887a2e2144dc763f1ad08f29764cb"
+      },
+      "final_record_dense_sha256": "3f70cb26aa7f187055812d0c9b3ca0a4aa1aa22037234711f2ac61a1e12de261",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "Matrix([\n[1],\n[0]])",
+          "right": "Matrix([\n[1],\n[0]])",
+          "residual": "0"
+        },
+        {
+          "left": "Matrix([\n[0],\n[1]])",
+          "right": "Matrix([\n[0],\n[1]])",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "f1(x,y)=x和f2(x,y)=y分别在标准基取Kronecker值，线性扩张唯一。",
+      "id": "linalg-069",
+      "source": {
+        "group": "train",
+        "id": "linalg-069",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 39,
+        "record_version_sha256": "89625d2e3cb81b2f94912a8587eb481dc854fdde1fe1250ee0ff78ba11078a73",
+        "source_line": 15,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl",
+        "source_raw_sha256": "c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f",
+        "task_sha256": "951a4bb8417f55a111947a424c87771774c93497d466d470560eb4021a3c2228"
+      },
+      "final_record_dense_sha256": "89625d2e3cb81b2f94912a8587eb481dc854fdde1fe1250ee0ff78ba11078a73",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "1 - 1/(1 - p)",
+          "right": "-p/(1 - p)",
+          "residual": "0"
+        },
+        {
+          "left": "p/(1 - p)**2",
+          "right": "p/(1 - p)**2",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "对0<=p<1，积分导数符号给 -p/(1-p)<=log(1-p)<=-p；np_n→lambda 推出二项质量固定k极限。lambda=0 用Markov界 np_n，不使用0^0。",
+      "id": "prob-040",
+      "source": {
+        "group": "train",
+        "id": "prob-040",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 43,
+        "record_version_sha256": "8603c675ce665f2e3cda9c651e7ff29123390af943ae42c0dfb34ed87ee222c8",
+        "source_line": 3,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+        "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+        "task_sha256": "7e77395971e5529ab01d76e8d70a15fd7a32ddf9175be7f2243e9447bc41c1e4"
+      },
+      "final_record_dense_sha256": "8ac6000bc9cf96a828d535fc5e6d2df42972fa367ee264626831fb2f2b0c7014",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    },
+    {
+      "exact_equalities": [
+        {
+          "left": "erf(sqrt(2)/2)",
+          "right": "erf(sqrt(2)/2)",
+          "residual": "0"
+        },
+        {
+          "left": "erf(sqrt(2))",
+          "right": "erf(sqrt(2))",
+          "residual": "0"
+        },
+        {
+          "left": "1",
+          "right": "1",
+          "residual": "0"
+        }
+      ],
+      "manual_reasoning": "sigma>0，Z=(X-mu)/sigma为标准正态；缩放密度保持总面积，区间质量使用erf精确表达。",
+      "id": "prob-041",
+      "source": {
+        "group": "train",
+        "id": "prob-041",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 44,
+        "record_version_sha256": "eae914133e0447d5ba8da272170e4397878aaa3aafeb77f0833e5525ec03174f",
+        "source_line": 4,
+        "source_path": "data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+        "source_raw_sha256": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+        "task_sha256": "cdaf4e933c8b49d1df650ae3ec0804877a42f36a43a95f85a37cf87ec34ba3c4"
+      },
+      "final_record_dense_sha256": "709f96f3e19cf35bbcb14582527248bfe3c357efe8cf9118020992e2efde06c3",
+      "status": "PASS_SCOPED_EXACT_WITNESSES_AND_MANUAL_REVIEW",
+      "limitation": "符号恒等式佐证具体计算；所列定理条件和覆盖性由逐题人工数学审阅确认，非自动通用证明。"
+    }
+  ],
+  "sympy_version": "1.14.0",
+  "decimal_or_numerical_approximation_used": false,
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "native_render": "UNVERIFIED",
+  "production": "CLOSED"
+}

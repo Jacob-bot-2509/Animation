@@ -1,0 +1,65 @@
+--- tools/hd_formula_pages.py.before
++++ tools/hd_formula_pages.py.after
+@@ -54,8 +54,33 @@
+     if not any(Path(r["source"]).suffix==".svg" for r in receipts):raise ValueError("No bound vector cache")
+     return receipts
+ 
++
++FRACTION_ARRAY_RE = __import__("re").compile(
++    r"\\begin\{(pmatrix|bmatrix|Bmatrix|vmatrix|Vmatrix|matrix|smallmatrix|array|cases)\}(.*?)\\end\{\1\}",
++    __import__("re").S)
++def needs_fraction_spacing(formula):
++    return any(__import__("re").search(r"\\(?:d|t|c)?frac(?![A-Za-z])", match.group(2))
++               for match in FRACTION_ARRAY_RE.finditer(formula))
++
++SPACED_TEMPLATE_SOURCE = r'''
++def fraction_template(template=None):
++    template=deepcopy(template) if template is not None else TexTemplate()
++    template.add_to_preamble(r"\renewcommand{\arraystretch}{2}")
++    return template
++'''
++
+ def hd_scene(formulas,rid):
+     source=base.scene_source(formulas,rid)
++    if any(needs_fraction_spacing(f) for f in formulas):
++        source="from copy import deepcopy\n"+source
++        source=source.replace("class ConceptScene(Scene):", SPACED_TEMPLATE_SOURCE+"\nclass ConceptScene(Scene):", 1)
++        chinese="maths=[MathTex(formula, font_size=48, tex_template=template) for formula in FORMULAS]"
++        regular="maths=[MathTex(formula, font_size=48) for formula in FORMULAS]"
++        if source.count(chinese)!=1 or source.count(regular)!=1:
++            raise ValueError("Pinned scene construction contract changed")
++        source=source.replace(chinese,"maths=[MathTex(formula, font_size=48, tex_template=fraction_template(template) if needs_fraction_spacing(formula) else template) for formula in FORMULAS]",1)
++        source=source.replace(regular,"maths=[MathTex(formula, font_size=48, tex_template=fraction_template()) if needs_fraction_spacing(formula) else MathTex(formula, font_size=48) for formula in FORMULAS]",1)
++        source="import re\n"+__import__("inspect").getsource(needs_fraction_spacing)+"\nFRACTION_ARRAY_RE=re.compile("+repr(FRACTION_ARRAY_RE.pattern)+",re.S)\n"+source
+     return source.replace('"schema":"exact-formula-pages-v1"',
+                           '"schema":"exact-formula-pages-hd-v1","pixel_width":config.pixel_width,"pixel_height":config.pixel_height,"fps":str(config.frame_rate),"page_seconds":"3"')
+ 
+--- tests/test_hd_formula_pages.py.before
++++ tests/test_hd_formula_pages.py.after
+@@ -55,4 +55,26 @@
+                 with self.assertRaises(ValueError):hd.copy_bound_cache(row,artifacts,root/"new/Tex")
+     def test_traversal_fails(self):
+         with self.assertRaises(ValueError):hd.core.checked_path(hd.PARENT/"../outside",hd.PARENT)
++
++    def test_fraction_array_detection_is_local(self):
++        self.assertTrue(hd.needs_fraction_spacing(r"\begin{pmatrix}1&\frac12\\0&\frac12\end{pmatrix}"))
++        self.assertTrue(hd.needs_fraction_spacing(r"\begin{cases}\dfrac{x}{y}&x>0\\0&x=0\end{cases}"))
++        self.assertFalse(hd.needs_fraction_spacing(r"\frac12+\begin{pmatrix}1&2\\3&4\end{pmatrix}"))
++        self.assertFalse(hd.needs_fraction_spacing(r"\frac12"))
++    def test_spacing_preserves_exact_tex_and_font(self):
++        formula=r"M^{-1}=\begin{pmatrix}1&-1&-\frac12\\-1&2&\frac12\\0&0&\frac12\end{pmatrix}"
++        scene=hd.hd_scene([formula],"sample")
++        tree=ast.parse(scene)
++        literal=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=="FORMULAS" for t in n.targets))
++        self.assertEqual(literal,[formula])
++        self.assertIn(r"\renewcommand{\arraystretch}{2}",scene)
++        for n in ast.walk(tree):
++            if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=="MathTex":
++                self.assertTrue(any(k.arg=="font_size" and k.value.value==48 for k in n.keywords))
++    def test_unaffected_scene_is_byte_identical_to_prior(self):
++        fs=[r"\frac17",r"\begin{pmatrix}1&2\\3&4\end{pmatrix}"]
++        old=hd.base.scene_source(fs,"sample").replace('"schema":"exact-formula-pages-v1"',
++            '"schema":"exact-formula-pages-hd-v1","pixel_width":config.pixel_width,"pixel_height":config.pixel_height,"fps":str(config.frame_rate),"page_seconds":"3"')
++        self.assertEqual(hd.hd_scene(fs,"sample"),old)
++
+ if __name__=="__main__":unittest.main()

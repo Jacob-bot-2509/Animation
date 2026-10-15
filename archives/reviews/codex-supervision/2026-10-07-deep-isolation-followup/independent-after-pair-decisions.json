@@ -1,0 +1,53 @@
+{
+  "candidate_sha256": "aff224ecc18e15505765a7a3b2cd307c4b549aaa2684796ebafe8da702063ec4",
+  "rows": [
+    {
+      "train_id": "draft-c02-01",
+      "eval_id": "eval-calc-019-s1",
+      "train_record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "eval_record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需证明振荡积分条件收敛、不绝对收敛及任意T>R≥1的尾界1/R；评测需计算绝对收敛的∫₀∞xe⁻ˣdx=1。前者依赖振荡抵消、柯西准则和绝对发散下界；后者计算原函数后取极限。分部积分是共享基础工具，评测的完整求值任务未包含在训练题中。"
+    },
+    {
+      "train_id": "draft-c35-01",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定二次型通过可逆替换得到diag(1,−1,1)，目标为标准形、惯性(2,1,0)与秩3；评测的含参正定任务必须求可逆配方后系数2−a²>0的充要范围。固定负方向与不定结论不等于求参数范围；局部共享配方这一基础工具。"
+    },
+    {
+      "train_id": "draft-c35-03",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练用diag(1,a−1)的零系数条件求秩1，即a=1，并在a=0,1,2列惯性；评测对三元型求所有正方向成立的参数范围2−a²>0。秩退化等式与全域正定不等式是不同约束和目标，不能仅因共享配方认定同核心。"
+    },
+    {
+      "train_id": "draft-c35-04",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定退化型标准形为u²−v²+0w²，证明可逆替换并求惯性(1,1,1)/秩2；评测的关键任务是含参正定范围与其必要性。固定零方向和惯性不是评测完整参数可行性任务。"
+    },
+    {
+      "train_id": "draft-c36-04",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练给定已分解平方和(x−y)²+2(y−z)²，核心为公共零空间x=y=z、半正定非正定与秩2；评测必须消去含参混合项并判2−a²>0。固定非平凡零空间的证明不是含参正定范围任务。"
+    },
+    {
+      "train_id": "draft-c36-05",
+      "eval_id": "eval-linalg-021-s1",
+      "train_record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需构造反例使三个顺序主子式均为0但某方向二次型为−2，说明非负顺序主子式不能判半正定；评测在严格正定判据下求2−a²>0。反例的构造与充分条件失败和评测的严格正定判定不同。"
+    }
+  ]
+}

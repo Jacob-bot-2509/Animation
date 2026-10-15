@@ -1,0 +1,2407 @@
+[
+  {
+    "id": "draft-c01-02",
+    "rationale": "补题目要求的连续不可微参数曲线反例。",
+    "before": {
+      "id": "draft-c01-02",
+      "goal": "求分段函数连续可微条件与切线",
+      "domain": "分段多项式",
+      "key_conditions": [
+        "衔接点",
+        "左右导数"
+      ],
+      "decisive_steps": [
+        "左右极限",
+        "左右导数",
+        "点斜式"
+      ],
+      "record_sha256": "f05b35ae8d984b3653779830dcfed89ef00272c9a7d4813201affc77ccaf52b9",
+      "math_sha256": "090c05a8456ea84cacde0a5b377bad140b463d75124c329149065a096a6e6303",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c01-02",
+      "goal": "求分段函数连续、可微参数条件、切线及连续不可微实例",
+      "domain": "x∈R，参数a,b∈R",
+      "key_conditions": [
+        "接点x=1",
+        "左右极限相等为连续条件",
+        "左右导数相等为可微条件"
+      ],
+      "decisive_steps": [
+        "左右极限给a=b",
+        "左右导数给a=b=2及切线y=2x+1",
+        "a=b=1时左右导数2与1不同，形成角点"
+      ],
+      "record_sha256": "f05b35ae8d984b3653779830dcfed89ef00272c9a7d4813201affc77ccaf52b9",
+      "math_sha256": "090c05a8456ea84cacde0a5b377bad140b463d75124c329149065a096a6e6303",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c01-03",
+    "rationale": "自交点不是本题决定条件；补t=0不能套dy/dx的分支。",
+    "before": {
+      "id": "draft-c01-03",
+      "goal": "求参数曲线切线与水平竖直切线",
+      "domain": "参数曲线",
+      "key_conditions": [
+        "切向量非零",
+        "自交点"
+      ],
+      "decisive_steps": [
+        "参数求导",
+        "dy/dx",
+        "分类切线"
+      ],
+      "record_sha256": "19058bef859a16b490006f57704b0f452bb3ee14b5436fc4e6992d53943e73e0",
+      "math_sha256": "7faaac855175476a26ee522cf1d58f3a589efaeb02a7361df02b6a57ab4e784f",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c01-03",
+      "goal": "求参数曲线t=2处及全部水平、竖直切线",
+      "domain": "参数曲线",
+      "key_conditions": [
+        "t∈R",
+        "切向量(2t,3t²−3)不同时为零",
+        "t=0时x′=0而y′≠0"
+      ],
+      "decisive_steps": [
+        "计算非零切向量",
+        "t≠0时求dy/dx=3(t²−1)/(2t)，t=2给9/4",
+        "水平切线t=±1与竖直切线t=0分支"
+      ],
+      "record_sha256": "19058bef859a16b490006f57704b0f452bb3ee14b5436fc4e6992d53943e73e0",
+      "math_sha256": "7faaac855175476a26ee522cf1d58f3a589efaeb02a7361df02b6a57ab4e784f",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c02-02",
+    "rationale": "目标遗漏反常积分敛散反例的判断。",
+    "before": {
+      "id": "draft-c02-02",
+      "goal": "证明尖峰函数局部黎曼可积与精确积分",
+      "domain": "分段常数g",
+      "key_conditions": [
+        "尖峰不重叠",
+        "非负"
+      ],
+      "decisive_steps": [
+        "面积求和",
+        "取极限",
+        "反例极限不存在"
+      ],
+      "record_sha256": "f7fa64a489fd9c4eddb377dfb4be2c87c2a122e1eddfb08605a0417c45908525",
+      "math_sha256": "3ff7d02c1275454c27893d77afd14ed41fc2fb3ff1e9f03650868196aae62553",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c02-02",
+      "goal": "证明局部黎曼可积及广义积分收敛，求精确值并判断函数极限",
+      "domain": "分段常数g",
+      "key_conditions": [
+        "尖峰不重叠",
+        "非负"
+      ],
+      "decisive_steps": [
+        "面积求和",
+        "取极限",
+        "反例极限不存在"
+      ],
+      "record_sha256": "f7fa64a489fd9c4eddb377dfb4be2c87c2a122e1eddfb08605a0417c45908525",
+      "math_sha256": "3ff7d02c1275454c27893d77afd14ed41fc2fb3ff1e9f03650868196aae62553",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c02-05",
+    "rationale": "补特殊参数a=1/2的精确积分值。",
+    "before": {
+      "id": "draft-c02-05",
+      "goal": "讨论含参Beta型反常积分收敛域",
+      "domain": "∫x^{a-1}/(1+x)",
+      "key_conditions": [
+        "两端点分别处理"
+      ],
+      "decisive_steps": [
+        "二进分块",
+        "几何级数判敛",
+        "特殊值换元求值"
+      ],
+      "record_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6",
+      "math_sha256": "bcf2e008f07349fa7cf940fb360322ac1c3be853724ddc9de08e2b2b2295038a",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c02-05",
+      "goal": "分类含参反常积分收敛域并求a=1/2的精确值",
+      "domain": "∫x^{a-1}/(1+x)",
+      "key_conditions": [
+        "两端点分别处理"
+      ],
+      "decisive_steps": [
+        "二进分块",
+        "几何级数判敛",
+        "特殊值换元求值"
+      ],
+      "record_sha256": "020211e1b1a9330f91c977909f871b7ab01f18fe17bdf7342f5f15c4cd3854f6",
+      "math_sha256": "bcf2e008f07349fa7cf940fb360322ac1c3be853724ddc9de08e2b2b2295038a",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c04-03",
+    "rationale": "补多连通区域边界正向约定的理由。",
+    "before": {
+      "id": "draft-c04-03",
+      "goal": "格林公式计算复连通域闭曲线积分",
+      "domain": "圆环边界",
+      "key_conditions": [
+        "外逆内顺"
+      ],
+      "decisive_steps": [
+        "格林公式",
+        "极坐标积分"
+      ],
+      "record_sha256": "1b3244edd9a2bc0e589e0c638195617f6c13dc7a2872c98ba288aa491da0cf69",
+      "math_sha256": "137a698851d5cb7bddfa3877a0c0f51d36cf77e0997a9f001dc2fcdaca31f1fc",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c04-03",
+      "goal": "格林公式计算复连通域闭曲线积分",
+      "domain": "圆环边界",
+      "key_conditions": [
+        "外逆内顺"
+      ],
+      "decisive_steps": [
+        "按区域位于行进方向左侧确定外边界逆时针、内边界顺时针",
+        "Green公式给3∬(x²+y²)dA",
+        "极坐标积分给45π/2"
+      ],
+      "record_sha256": "1b3244edd9a2bc0e589e0c638195617f6c13dc7a2872c98ba288aa491da0cf69",
+      "math_sha256": "137a698851d5cb7bddfa3877a0c0f51d36cf77e0997a9f001dc2fcdaca31f1fc",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c08-05",
+    "rationale": "补单次遍历及重叠时有向重数与并集面积的区别。",
+    "before": {
+      "id": "draft-c08-05",
+      "goal": "推导参数曲线面积公式三情形",
+      "domain": "分段C¹曲线",
+      "key_conditions": [
+        "简单闭/图线/自交"
+      ],
+      "decisive_steps": [
+        "分类公式",
+        "绝对值处理",
+        "反例"
+      ],
+      "record_sha256": "e1c5e97124ffbc1914d232d30b05af9fae0994f27d15a6b1fbcc69671120aee8",
+      "math_sha256": "c86a015eda73624fbf4d16d6bc56ba6eea9bfcf7457c4c4f276a0ec8bf21eb1e",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c08-05",
+      "goal": "推导参数曲线面积公式三情形",
+      "domain": "分段C¹曲线",
+      "key_conditions": [
+        "简单闭曲线须单次遍历并固定定向",
+        "自交或重叠区域可能具有不同绕数"
+      ],
+      "decisive_steps": [
+        "简单正向边界的参数面积公式",
+        "反向或图像上下次序用正确符号",
+        "自交和重叠按有向重数计数，与普通并集面积区分"
+      ],
+      "record_sha256": "e1c5e97124ffbc1914d232d30b05af9fae0994f27d15a6b1fbcc69671120aee8",
+      "math_sha256": "c86a015eda73624fbf4d16d6bc56ba6eea9bfcf7457c4c4f276a0ec8bf21eb1e",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c11-05",
+    "rationale": "原关键条件笼统声称端点收敛，x=1实为发散。",
+    "before": {
+      "id": "draft-c11-05",
+      "goal": "由系数递推推导微分方程求和函数",
+      "domain": "ΣC(2n,n)xⁿ/4ⁿ",
+      "key_conditions": [
+        "端点收敛",
+        "阿贝尔"
+      ],
+      "decisive_steps": [
+        "递推",
+        "微分方程",
+        "端点判敛"
+      ],
+      "record_sha256": "96c2842ddbc50c97a8098c6faf082e871a03d106793e001ef3104bec1892f562",
+      "math_sha256": "d6b7a52367f6b446ede41d3511cd5cbc775b9c1811089ea7cd7af25c9381d2e1",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c11-05",
+      "goal": "由系数递推求微分方程、和函数及两个端点的实收敛域",
+      "domain": "实x，收敛域[-1,1)",
+      "key_conditions": [
+        "a_n=binom(2n,n)/4^n",
+        "x=1发散",
+        "x=−1条件收敛"
+      ],
+      "decisive_steps": [
+        "比值给半径1，递推给2(1−x)S′=S和S(0)=1",
+        "解内域和函数(1−x)⁻¹ᐟ²",
+        "x=1以a_n≥1/(2n+1)证发散",
+        "x=−1用Leibniz与Abel求和1/√2"
+      ],
+      "record_sha256": "96c2842ddbc50c97a8098c6faf082e871a03d106793e001ef3104bec1892f562",
+      "math_sha256": "d6b7a52367f6b446ede41d3511cd5cbc775b9c1811089ea7cd7af25c9381d2e1",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c12-04",
+    "rationale": "补全全实轴一致绝对收敛及交换积分的合法性。",
+    "before": {
+      "id": "draft-c12-04",
+      "goal": "求和函数与逐项积分",
+      "domain": "Σrⁿcos(nx)",
+      "key_conditions": [
+        "0<r<1"
+      ],
+      "decisive_steps": [
+        "复级数实部",
+        "逐项积分"
+      ],
+      "record_sha256": "4830e209a44c3718efe48e582cdb50ff2d9c1f909ff26b7fd9f85e7840141a82",
+      "math_sha256": "259f92517ceb8fd810be209e30103fd6ff2d24bb2d2943e1f59524cbd3664dce",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c12-04",
+      "goal": "求和函数并证明全实轴一致绝对收敛及逐项积分成立",
+      "domain": "Σrⁿcos(nx)",
+      "key_conditions": [
+        "0<r<1"
+      ],
+      "decisive_steps": [
+        "Weierstrass判别给一致绝对收敛",
+        "识别和函数",
+        "在有限积分区间一致收敛保证逐项积分"
+      ],
+      "record_sha256": "4830e209a44c3718efe48e582cdb50ff2d9c1f909ff26b7fd9f85e7840141a82",
+      "math_sha256": "259f92517ceb8fd810be209e30103fd6ff2d24bb2d2943e1f59524cbd3664dce",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c12-05",
+    "rationale": "原目标与步骤遗漏积分精确值及一致收敛的充分性证明。",
+    "before": {
+      "id": "draft-c12-05",
+      "goal": "证明逐点收敛但不一致收敛",
+      "domain": "n²x(1-x²)ⁿ",
+      "key_conditions": [
+        "积分发散"
+      ],
+      "decisive_steps": [
+        "逐点极限",
+        "积分下界",
+        "非一致"
+      ],
+      "record_sha256": "a877228eb942df5ecd02bf9e94cd8ced7be43cc1ebc95f2441e6bbce1496b373",
+      "math_sha256": "e9d4a7f0f3f8ff6a0487f9418723cf8640900b698e4de46106bcd47b1799cead",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c12-05",
+      "goal": "证明逐点趋零不足以交换积分并说明一致收敛的充分性",
+      "domain": "x∈[0,1]，n为正整数",
+      "key_conditions": [
+        "积分发散"
+      ],
+      "decisive_steps": [
+        "端点与内点分别证n²x(1−x²)^n→0",
+        "换元得积分n²/[2(n+1)]≥n/4→∞",
+        "积分差≤区间长度×一致误差证明充分性"
+      ],
+      "record_sha256": "a877228eb942df5ecd02bf9e94cd8ced7be43cc1ebc95f2441e6bbce1496b373",
+      "math_sha256": "e9d4a7f0f3f8ff6a0487f9418723cf8640900b698e4de46106bcd47b1799cead",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c13-03",
+    "rationale": "阶乘裂项不是有理函数的部分分式分解。",
+    "before": {
+      "id": "draft-c13-03",
+      "goal": "求阶乘型裂项级数和",
+      "domain": "Σn/(n+1)!",
+      "key_conditions": [
+        "裂项"
+      ],
+      "decisive_steps": [
+        "部分分式",
+        "望远镜"
+      ],
+      "record_sha256": "ac0172a16d3cf55c2351f8c6560ae4873f00f1a903f12c5286e2d2f6f88c1a88",
+      "math_sha256": "c18549753bf2b624d2be76e205b92129d27ab90dd5c2bdd706faadac9fb7715c",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c13-03",
+      "goal": "求阶乘型裂项级数和",
+      "domain": "Σn/(n+1)!",
+      "key_conditions": [
+        "裂项"
+      ],
+      "decisive_steps": [
+        "阶乘恒等式n/(n+1)!=1/n!−1/(n+1)!",
+        "有限望远镜和",
+        "余项1/(N+1)!→0"
+      ],
+      "record_sha256": "ac0172a16d3cf55c2351f8c6560ae4873f00f1a903f12c5286e2d2f6f88c1a88",
+      "math_sha256": "c18549753bf2b624d2be76e205b92129d27ab90dd5c2bdd706faadac9fb7715c",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c13-04",
+    "rationale": "补精确余项这一独立要求。",
+    "before": {
+      "id": "draft-c13-04",
+      "goal": "求根式差望远镜级数和与绝对收敛",
+      "domain": "Σ(√(n+2)-2√(n+1)+√n)",
+      "key_conditions": [
+        "d_n递减"
+      ],
+      "decisive_steps": [
+        "定义d_n",
+        "望远镜",
+        "绝对值级数"
+      ],
+      "record_sha256": "d41ae55ef0dd3604e68cf0b1d3514ceca90da9d248928af7533093c14367e9fc",
+      "math_sha256": "ddc5246d20750aa56a712bab9b1afced39b607cb64cc51030526f4af56b7c1c3",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c13-04",
+      "goal": "求二阶根号差分级数和、绝对收敛及精确余项",
+      "domain": "Σ(√(n+2)-2√(n+1)+√n)",
+      "key_conditions": [
+        "d_n递减"
+      ],
+      "decisive_steps": [
+        "定义递减正差d_n=√(n+1)−√n",
+        "有限望远镜和与绝对值和",
+        "R_N=−1/(√(N+2)+√(N+1))"
+      ],
+      "record_sha256": "d41ae55ef0dd3604e68cf0b1d3514ceca90da9d248928af7533093c14367e9fc",
+      "math_sha256": "ddc5246d20750aa56a712bab9b1afced39b607cb64cc51030526f4af56b7c1c3",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c13-05",
+    "rationale": "明确题目要求的严格上界与解答补充精确值，保留确有的Fourier推导。",
+    "before": {
+      "id": "draft-c13-05",
+      "goal": "证明无有理函数裂项并求级数和",
+      "domain": "Σ1/(n²+1)",
+      "key_conditions": [
+        "有限差分"
+      ],
+      "decisive_steps": [
+        "留数分组",
+        "比较判别",
+        "傅里叶级数"
+      ],
+      "record_sha256": "308f6596996291729628b80e0c13f086462d2311f3bceb6fe4d91438a4b25f6e",
+      "math_sha256": "637830f816cf5b177273422c18ea17180a07bff3657b8b2112639d59173fc16d",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c13-05",
+      "goal": "证明无有理有限差分裂项，给严格级数上界及解答中的补充精确和",
+      "domain": "Σ1/(n²+1)",
+      "key_conditions": [
+        "有限差分"
+      ],
+      "decisive_steps": [
+        "整数平移极点类的留数总和矛盾",
+        "严格比较裂项得S<3/2<2",
+        "补充cosh的Fourier端点求和得(πcothπ−1)/2"
+      ],
+      "record_sha256": "308f6596996291729628b80e0c13f086462d2311f3bceb6fe4d91438a4b25f6e",
+      "math_sha256": "637830f816cf5b177273422c18ea17180a07bff3657b8b2112639d59173fc16d",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c14-05",
+    "rationale": "改点处两侧极限相同，不是跳跃点；需体现系数相同却点值不同。",
+    "before": {
+      "id": "draft-c14-05",
+      "goal": "比较几乎处处相等函数的傅里叶系数",
+      "domain": "cosx改动零测集",
+      "key_conditions": [
+        "零测集"
+      ],
+      "decisive_steps": [
+        "系数积分",
+        "跳点级数和"
+      ],
+      "record_sha256": "c8831f45318a2d48b99b4663814dacd5fdaf22ecef1b1ea2203b47445050ad1b",
+      "math_sha256": "d23ac33b44bf3633bd77d4737e885c8c00cd05a4379f1d9ed9ab52cf597f8324",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c14-05",
+      "goal": "比较零测集改值函数的Fourier系数与指定点级数和",
+      "domain": "cosx改动零测集",
+      "key_conditions": [
+        "零测集"
+      ],
+      "decisive_steps": [
+        "零测集改值不改变系数积分",
+        "级数仍为cosx，在x=0取1而g(0)=5",
+        "区分几乎处处相等与处处相等"
+      ],
+      "record_sha256": "c8831f45318a2d48b99b4663814dacd5fdaf22ecef1b1ea2203b47445050ad1b",
+      "math_sha256": "d23ac33b44bf3633bd77d4737e885c8c00cd05a4379f1d9ed9ab52cf597f8324",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c18-01",
+    "rationale": "补题目要求的两点投影。",
+    "before": {
+      "id": "draft-c18-01",
+      "goal": "求到两点等距的全部平面",
+      "domain": "两定点",
+      "key_conditions": [
+        "距离均为1"
+      ],
+      "decisive_steps": [
+        "归一化方程",
+        "距离方程",
+        "分类"
+      ],
+      "record_sha256": "c4f17612dbc8e4f4a8ab321997e2f4988a3e65c1ccd78e171ea80bc6c229f148",
+      "math_sha256": "653d7a1a8c0859f6f8cebcd0e9fb17c2c466c3f5dde7e0187d429437f846f324",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c18-01",
+      "goal": "求到两定点距离均为1的全部平面及两点投影",
+      "domain": "两定点",
+      "key_conditions": [
+        "距离均为1"
+      ],
+      "decisive_steps": [
+        "归一化法向量与两距离方程",
+        "分类全部平面",
+        "逐类代入正交投影公式"
+      ],
+      "record_sha256": "c4f17612dbc8e4f4a8ab321997e2f4988a3e65c1ccd78e171ea80bc6c229f148",
+      "math_sha256": "653d7a1a8c0859f6f8cebcd0e9fb17c2c466c3f5dde7e0187d429437f846f324",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c18-02",
+    "rationale": "旧题与测试题同核心，题干/过程/答案/场景另版重写；本签名重新绑定修订数学版本。",
+    "before": {
+      "id": "draft-c18-02",
+      "goal": "求两平行平面距离",
+      "domain": "平行平面",
+      "key_conditions": [
+        "法向量相同"
+      ],
+      "decisive_steps": [
+        "点面距离公式"
+      ],
+      "record_sha256": "8e3197f933a35a03c9a6f8046fad796ee5f53c8f8c959d30e574b0e609be6f94",
+      "math_sha256": "7f7259db375b192f8446524e81b14ccd7169d45e93b6427fc1ccbad39e059ec3",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c18-02",
+      "goal": "求交替正交投影的精确迭代、极限、误差及有限终止条件，并判复合是否投影",
+      "domain": "R³，a,b,c∈R，n∈Z≥0",
+      "key_conditions": [
+        "先Π₂后Π₁，两个平面相交",
+        "n=0与n≥1分开",
+        "a=b=0、a=b≠0与a≠b分支"
+      ],
+      "decisive_steps": [
+        "构造对称幂等的两个投影矩阵",
+        "复合A及归纳Aⁿ与P_n",
+        "精确几何衰减|b−a|/2ⁿ及有限终止分类",
+        "A²e₂≠Ae₂判非投影"
+      ],
+      "record_sha256": "71ec413023c4b697a22f5236f23152b24824f2b1b2b742edfcb1ef7628801389",
+      "math_sha256": "5914f26ab8b4ee1b4f124422f6c820daec1028911879340d0a3c75df12100232",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c23-03",
+    "rationale": "补滑移反射保持距离的证明。",
+    "before": {
+      "id": "draft-c23-03",
+      "goal": "分析滑移反射类型",
+      "domain": "等距变换",
+      "key_conditions": [
+        "固定点为空"
+      ],
+      "decisive_steps": [
+        "固定点方程",
+        "逆变换",
+        "T²"
+      ],
+      "record_sha256": "befe1c61b6a0498555122bdd468538d3a8d5c9b292c748d8d7ee2d6565653360",
+      "math_sha256": "59f561330f9b4ab456e40aec0d9aadc0a7f6abbb01a6169a47d25690074dc530",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c23-03",
+      "goal": "分析滑移反射类型、固定点、逆、平方并证明保距离",
+      "domain": "等距变换",
+      "key_conditions": [
+        "固定点为空"
+      ],
+      "decisive_steps": [
+        "分解平移和反射并解固定点方程",
+        "求逆变换与T²",
+        "坐标差范数证明保持距离"
+      ],
+      "record_sha256": "befe1c61b6a0498555122bdd468538d3a8d5c9b292c748d8d7ee2d6565653360",
+      "math_sha256": "59f561330f9b4ab456e40aec0d9aadc0a7f6abbb01a6169a47d25690074dc530",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c26-04",
+    "rationale": "补非零幂零变换不能对角化的判断。",
+    "before": {
+      "id": "draft-c26-04",
+      "goal": "比较幂零变换迭代像维数",
+      "domain": "R⁴幂零",
+      "key_conditions": [
+        "秩相同"
+      ],
+      "decisive_steps": [
+        "迭代像维数",
+        "幂零指数",
+        "不相似判定"
+      ],
+      "record_sha256": "2c247e5f0a5729041ccb4fa2084f14e0e36cc65489c7500b700c0aa1748ad617",
+      "math_sha256": "3c20767c365236c22d3bb8bfe8e88d9aa0201dccd0af65444dd7ee8ef8d3ae04",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c26-04",
+      "goal": "比较幂零变换的迭代像、指数、相似性与可对角化性",
+      "domain": "R⁴幂零",
+      "key_conditions": [
+        "秩相同"
+      ],
+      "decisive_steps": [
+        "迭代像维数",
+        "幂零指数不同证不相似",
+        "非零幂零映射只有零特征值，不能对角化"
+      ],
+      "record_sha256": "2c247e5f0a5729041ccb4fa2084f14e0e36cc65489c7500b700c0aa1748ad617",
+      "math_sha256": "3c20767c365236c22d3bb8bfe8e88d9aa0201dccd0af65444dd7ee8ef8d3ae04",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c29-01",
+    "rationale": "避免目标语句被理解成无有理根就不可约。",
+    "before": {
+      "id": "draft-c29-01",
+      "goal": "证明无有理根不可约的误区",
+      "domain": "x⁴+4",
+      "key_conditions": [
+        "有理根检验局限"
+      ],
+      "decisive_steps": [
+        "Sophie Germain",
+        "判别式",
+        "复根"
+      ],
+      "record_sha256": "4860b6f0c118f3c04b872b3e178c3b1d2316f6cde1494c93936c6daf9d12aa24",
+      "math_sha256": "225e62519e6b4f32b0a2abad8f84cd09a1a55c5f23cd2e4b806db2b70510cddd",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c29-01",
+      "goal": "用四次多项式证明无有理根不蕴含Q上不可约，并分解于Q、R、C",
+      "domain": "x⁴+4",
+      "key_conditions": [
+        "有理根检验局限"
+      ],
+      "decisive_steps": [
+        "Sophie Germain",
+        "判别式",
+        "复根"
+      ],
+      "record_sha256": "4860b6f0c118f3c04b872b3e178c3b1d2316f6cde1494c93936c6daf9d12aa24",
+      "math_sha256": "225e62519e6b4f32b0a2abad8f84cd09a1a55c5f23cd2e4b806db2b70510cddd",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c31-03",
+    "rationale": "补多项式环零因子不存在所给唯一性，非数值Cramer题。",
+    "before": {
+      "id": "draft-c31-03",
+      "goal": "讨论多项式环方程组可解充要条件",
+      "domain": "R[t]方程组",
+      "key_conditions": [
+        "p,q,r∈R[t]",
+        "整除性"
+      ],
+      "decisive_steps": [
+        "整除条件",
+        "可去分母",
+        "分类"
+      ],
+      "record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+      "math_sha256": "aa1a163e957801d3f49c5001e0762a643333ee1ed63e23d3c48b3e56fceaff4a",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c31-03",
+      "goal": "讨论多项式环方程组可解充要条件",
+      "domain": "R[t]方程组",
+      "key_conditions": [
+        "p,q,r∈R[t]",
+        "整除性"
+      ],
+      "decisive_steps": [
+        "在分式域用Cramer公式",
+        "分子对t与t−1的整除条件保证多项式解",
+        "R[t]无零因子且行列式非零证明唯一性"
+      ],
+      "record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+      "math_sha256": "aa1a163e957801d3f49c5001e0762a643333ee1ed63e23d3c48b3e56fceaff4a",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c32-05",
+    "rationale": "补秩零度和不相容分支。",
+    "before": {
+      "id": "draft-c32-05",
+      "goal": "证明齐次非齐次解集结构",
+      "domain": "线性方程组",
+      "key_conditions": [
+        "b≠0"
+      ],
+      "decisive_steps": [
+        "核空间",
+        "特解平移"
+      ],
+      "record_sha256": "84cd7c36575e64b137e5dfceecf45528612cf70e2bc6fc21418ad8b5af560bb2",
+      "math_sha256": "e5c5b9cc64afb884998fbc611d03eadb8351366ad283ea1e1c673214cf60fcbc",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c32-05",
+      "goal": "证明齐次非齐次解集结构",
+      "domain": "线性方程组",
+      "key_conditions": [
+        "b≠0"
+      ],
+      "decisive_steps": [
+        "核为子空间及维数n−rank(A)",
+        "相容非齐次解集为特解加核",
+        "b≠0时不含零向量；不相容时为空集"
+      ],
+      "record_sha256": "84cd7c36575e64b137e5dfceecf45528612cf70e2bc6fc21418ad8b5af560bb2",
+      "math_sha256": "e5c5b9cc64afb884998fbc611d03eadb8351366ad283ea1e1c673214cf60fcbc",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c40-02",
+    "rationale": "补初等因子的不可约幂分解。",
+    "before": {
+      "id": "draft-c40-02",
+      "goal": "求λ-矩阵不变因子与初等因子",
+      "domain": "[[λ,1],[0,λ]]",
+      "key_conditions": [
+        "非对角"
+      ],
+      "decisive_steps": [
+        "行列式因子",
+        "整除链"
+      ],
+      "record_sha256": "6de5bd6f5f5b6ff8bc0dbb261fc098f051d2a26b30a36c1887bb0aac3dd9f8e1",
+      "math_sha256": "c51b9ff425c301068c2059323451813d186751833f6b138659d381e3718e97c7",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c40-02",
+      "goal": "求λ-矩阵不变因子与初等因子",
+      "domain": "[[λ,1],[0,λ]]",
+      "key_conditions": [
+        "非对角"
+      ],
+      "decisive_steps": [
+        "求首一行列式因子",
+        "相邻商给不变因子",
+        "不可约幂分解给初等因子"
+      ],
+      "record_sha256": "6de5bd6f5f5b6ff8bc0dbb261fc098f051d2a26b30a36c1887bb0aac3dd9f8e1",
+      "math_sha256": "c51b9ff425c301068c2059323451813d186751833f6b138659d381e3718e97c7",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c42-03",
+    "rationale": "等范数条件不足以表达u=v及零向量的全部分类。",
+    "before": {
+      "id": "draft-c42-03",
+      "goal": "分类将u映到v的平面反射",
+      "domain": "u,v∈R³",
+      "key_conditions": [
+        "等范数"
+      ],
+      "decisive_steps": [
+        "法向量",
+        "反射矩阵",
+        "唯一性分类"
+      ],
+      "record_sha256": "207a4af1959d0f487a0b7e87b7eafb53d8ecc123acb62833e2c6ad7e0bffa332",
+      "math_sha256": "91e1cba25ed21ff73e38da68633155656bf522294a0032fcf71ed315082e9594",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c42-03",
+      "goal": "分类将u映到v的平面反射",
+      "domain": "u,v∈R³",
+      "key_conditions": [
+        "u,v∈R³",
+        "范数不等时无解",
+        "u≠v且等范数时法向量平行u−v",
+        "u=v≠0时法向量垂直u；u=v=0时任意平面反射"
+      ],
+      "decisive_steps": [
+        "由反射保范数判存在性",
+        "u≠v时构造并证唯一",
+        "u=v及零向量分支",
+        "代具体向量求矩阵"
+      ],
+      "record_sha256": "207a4af1959d0f487a0b7e87b7eafb53d8ecc123acb62833e2c6ad7e0bffa332",
+      "math_sha256": "91e1cba25ed21ff73e38da68633155656bf522294a0032fcf71ed315082e9594",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "draft-c50-03",
+    "rationale": "目标含CLT极限但原步骤只覆盖有限Gamma尾。",
+    "before": {
+      "id": "draft-c50-03",
+      "goal": "求指数和精确尾与CLT极限",
+      "domain": "Exp(1)和",
+      "key_conditions": [
+        "Gamma尾"
+      ],
+      "decisive_steps": [
+        "Gamma密度",
+        "分部积分",
+        "泊松等价"
+      ],
+      "record_sha256": "81182e84f2cd03f56ef265b3588006c05325d12d89d5e3ebbb97f77dd602bb49",
+      "math_sha256": "61d01564d84f3b521e9214730473d9a1791ea234d8f121a5cbbd836195273b97",
+      "group": "selected_draft"
+    },
+    "after": {
+      "id": "draft-c50-03",
+      "goal": "求指数和精确尾与CLT极限",
+      "domain": "Exp(1)和",
+      "key_conditions": [
+        "Gamma尾"
+      ],
+      "decisive_steps": [
+        "指数和的Gamma密度",
+        "分部积分得精确尾e⁻¹¹⁰Σₖ₌₀⁹⁹110ᵏ/k!",
+        "均值1方差1的CLT给固定阈值极限1−Φ(a)"
+      ],
+      "record_sha256": "81182e84f2cd03f56ef265b3588006c05325d12d89d5e3ebbb97f77dd602bb49",
+      "math_sha256": "61d01564d84f3b521e9214730473d9a1791ea234d8f121a5cbbd836195273b97",
+      "group": "selected_draft"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-003-s1",
+    "rationale": "补题目要求的级数联系，保留各方法已有定义的假设。",
+    "before": {
+      "id": "eval-calc-003-s1",
+      "goal": "证明e的定义极限存在",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "单调有界"
+      ],
+      "decisive_steps": [
+        "二项展开",
+        "单调性",
+        "上界"
+      ],
+      "record_sha256": "c191634c3714939e342d6cb4c5c281954af79cdcdb6d5bef0ef6280615fa6e10",
+      "math_sha256": "fc4b5003b893ee4474a6023cb7eb5c1c6061cc2cb5f79d98f6cc156582e3145f",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-003-s1",
+      "goal": "证明e的定义极限存在并连接阶乘级数",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "单调有界"
+      ],
+      "decisive_steps": [
+        "二项式展开与单调有界",
+        "有限截断和夹逼与Σ1/k!等价"
+      ],
+      "record_sha256": "c191634c3714939e342d6cb4c5c281954af79cdcdb6d5bef0ef6280615fa6e10",
+      "math_sha256": "fc4b5003b893ee4474a6023cb7eb5c1c6061cc2cb5f79d98f6cc156582e3145f",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-003-s2",
+    "rationale": "补题目要求的级数联系，保留各方法已有定义的假设。",
+    "before": {
+      "id": "eval-calc-003-s2",
+      "goal": "证明e的定义极限存在",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "验证性"
+      ],
+      "decisive_steps": [
+        "对数化",
+        "洛必达",
+        "默认e已定义"
+      ],
+      "record_sha256": "568a36a78f437d14ed627720594f2898f53c5d70a3e8c4c10f40f68b879df36d",
+      "math_sha256": "09c04e226e5b05894641ce0bcd234c2fa0d1650d795af56416e60f2941017023",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-003-s2",
+      "goal": "证明e的定义极限存在并连接阶乘级数",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "本方法已独立定义指数及e，作为验证",
+        "阶乘幂级数可逐项求导"
+      ],
+      "decisive_steps": [
+        "对数化与洛必达证极限",
+        "阶乘幂级数满足E′=E、E(0)=1",
+        "指数函数唯一性给e=Σ1/k!"
+      ],
+      "record_sha256": "568a36a78f437d14ed627720594f2898f53c5d70a3e8c4c10f40f68b879df36d",
+      "math_sha256": "09c04e226e5b05894641ce0bcd234c2fa0d1650d795af56416e60f2941017023",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-003-s3",
+    "rationale": "补题目要求的级数联系，保留各方法已有定义的假设。",
+    "before": {
+      "id": "eval-calc-003-s3",
+      "goal": "证明e的定义极限存在",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "级数定义"
+      ],
+      "decisive_steps": [
+        "双向不等式",
+        "liminf/limsup",
+        "与级数等价"
+      ],
+      "record_sha256": "91e594bd81e4f737e5f4a49f2cb6634904faffc0dc0f35517fdc33e6d134786a",
+      "math_sha256": "bf19696abc066ce7e82aa0ed0552d336d07bf31debf5afaba320bdb9bc100477",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-003-s3",
+      "goal": "证明e的定义极限存在并连接阶乘级数",
+      "domain": "(1+1/n)ⁿ",
+      "key_conditions": [
+        "级数定义"
+      ],
+      "decisive_steps": [
+        "双向不等式",
+        "liminf/limsup",
+        "与级数等价"
+      ],
+      "record_sha256": "91e594bd81e4f737e5f4a49f2cb6634904faffc0dc0f35517fdc33e6d134786a",
+      "math_sha256": "bf19696abc066ce7e82aa0ed0552d336d07bf31debf5afaba320bdb9bc100477",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-007-s3",
+    "rationale": "补实际解答中的包络、二阶导与尖点分支，非仅截距几何。",
+    "before": {
+      "id": "eval-calc-007-s3",
+      "goal": "求星形线参数导数与二阶导",
+      "domain": "参数曲线",
+      "key_conditions": [
+        "光滑分支",
+        "尖点"
+      ],
+      "decisive_steps": [
+        "几何切线截距",
+        "定长线段"
+      ],
+      "record_sha256": "8cbfe9a468f4594d0168055597cbaeaada62495ba3af198fb3e30d5883e159d9",
+      "math_sha256": "cee3f45b52cb99aa3074bb4c22110171884dd7b118d2babb5f9174383603972e",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-007-s3",
+      "goal": "求星形线参数导数与二阶导",
+      "domain": "参数曲线",
+      "key_conditions": [
+        "光滑分支",
+        "尖点"
+      ],
+      "decisive_steps": [
+        "切线族F=0及包络F_t=0",
+        "沿包络求一阶导，再除x′求二阶导",
+        "sin t cos t=0的尖点另作单侧切线判断"
+      ],
+      "record_sha256": "8cbfe9a468f4594d0168055597cbaeaada62495ba3af198fb3e30d5883e159d9",
+      "math_sha256": "cee3f45b52cb99aa3074bb4c22110171884dd7b118d2babb5f9174383603972e",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-014-s1",
+    "rationale": "原签名遗漏sinx=0排除与不同答案等价要求。",
+    "before": {
+      "id": "eval-calc-014-s1",
+      "goal": "求∫dx/sinx",
+      "domain": "不定积分",
+      "key_conditions": [
+        "三角"
+      ],
+      "decisive_steps": [
+        "半角变形"
+      ],
+      "record_sha256": "d7df34084c066c156d5edacc1920c33fd59e5eb0abcc9bac96b44da82dd55c4c",
+      "math_sha256": "557103192183d551bbed5f17a2872b7463283bec99d9c508822e9e35a2fe021b",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-014-s1",
+      "goal": "求cscx原函数并证明等价形式",
+      "domain": "R\\πZ的每个连通区间",
+      "key_conditions": [
+        "sinx≠0",
+        "积分常数在各连通区间独立"
+      ],
+      "decisive_steps": [
+        "半角变形"
+      ],
+      "record_sha256": "d7df34084c066c156d5edacc1920c33fd59e5eb0abcc9bac96b44da82dd55c4c",
+      "math_sha256": "557103192183d551bbed5f17a2872b7463283bec99d9c508822e9e35a2fe021b",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-014-s2",
+    "rationale": "原签名遗漏sinx=0排除与不同答案等价要求。",
+    "before": {
+      "id": "eval-calc-014-s2",
+      "goal": "求∫dx/sinx",
+      "domain": "不定积分",
+      "key_conditions": [
+        "三角"
+      ],
+      "decisive_steps": [
+        "万能代换"
+      ],
+      "record_sha256": "dd98174c90af42437827e817fcb44d48a45bace1e56d4b3a698ce9ac33af5a3b",
+      "math_sha256": "508d0ac5128c4f95b3dbefb0a453178b5eacf188f7bda3eeaef8d8d9abf6c4d8",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-014-s2",
+      "goal": "求cscx原函数并证明等价形式",
+      "domain": "R\\πZ的每个连通区间",
+      "key_conditions": [
+        "sinx≠0",
+        "积分常数在各连通区间独立"
+      ],
+      "decisive_steps": [
+        "万能代换"
+      ],
+      "record_sha256": "dd98174c90af42437827e817fcb44d48a45bace1e56d4b3a698ce9ac33af5a3b",
+      "math_sha256": "508d0ac5128c4f95b3dbefb0a453178b5eacf188f7bda3eeaef8d8d9abf6c4d8",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-014-s3",
+    "rationale": "原签名遗漏sinx=0排除与不同答案等价要求。",
+    "before": {
+      "id": "eval-calc-014-s3",
+      "goal": "求∫dx/sinx",
+      "domain": "不定积分",
+      "key_conditions": [
+        "三角"
+      ],
+      "decisive_steps": [
+        "共轭恒等式"
+      ],
+      "record_sha256": "f4c1c6a940ac128cd5be49d36671bbc628a0171729df7f40668b30830edd6e47",
+      "math_sha256": "dabd444550aef19466c6d77d5349708f1e2a4881b2812aecdb5afbca7c1171ec",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-014-s3",
+      "goal": "求cscx原函数并证明等价形式",
+      "domain": "R\\πZ的每个连通区间",
+      "key_conditions": [
+        "sinx≠0",
+        "积分常数在各连通区间独立"
+      ],
+      "decisive_steps": [
+        "共轭恒等式"
+      ],
+      "record_sha256": "f4c1c6a940ac128cd5be49d36671bbc628a0171729df7f40668b30830edd6e47",
+      "math_sha256": "dabd444550aef19466c6d77d5349708f1e2a4881b2812aecdb5afbca7c1171ec",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-020-s2",
+    "rationale": "比较判别不足以给题目要求的收敛值。",
+    "before": {
+      "id": "eval-calc-020-s2",
+      "goal": "讨论p积分敛散与值",
+      "domain": "∫x⁻ᵖdx",
+      "key_conditions": [
+        "p>0"
+      ],
+      "decisive_steps": [
+        "p级数互证"
+      ],
+      "record_sha256": "41205e409cea4eb59556850c41391f4d9582700df73ee320d6ca9f70f70f7608",
+      "math_sha256": "c0c5f8624e11a368d8f9b396a5dad8fa80b83da9d46dc52c36112d8601e5bcde",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-020-s2",
+      "goal": "讨论p积分敛散与值",
+      "domain": "∫x⁻ᵖdx",
+      "key_conditions": [
+        "p>0"
+      ],
+      "decisive_steps": [
+        "积分与p级数比较",
+        "p=1单独对数分支",
+        "p>1由有限积分极限给1/(p−1)"
+      ],
+      "record_sha256": "41205e409cea4eb59556850c41391f4d9582700df73ee320d6ca9f70f70f7608",
+      "math_sha256": "c0c5f8624e11a368d8f9b396a5dad8fa80b83da9d46dc52c36112d8601e5bcde",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-020-s3",
+    "rationale": "比较判别不足以给题目要求的收敛值。",
+    "before": {
+      "id": "eval-calc-020-s3",
+      "goal": "讨论p积分敛散与值",
+      "domain": "∫x⁻ᵖdx",
+      "key_conditions": [
+        "p>0"
+      ],
+      "decisive_steps": [
+        "二进分块比较"
+      ],
+      "record_sha256": "5bff8301ecdbcd8db7cc7d85964d60d9090bb66ad8acba424ea9ad2562a62ff1",
+      "math_sha256": "0ec807e95bf5d5d6861dd82b3e2b60c7508312c42e8b6cb36cc9cbf808bfc2cd",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-020-s3",
+      "goal": "讨论p积分敛散与值",
+      "domain": "∫x⁻ᵖdx",
+      "key_conditions": [
+        "p>0"
+      ],
+      "decisive_steps": [
+        "二进块比较确定阈值",
+        "p=1单独对数分支",
+        "p>1由有限积分极限给1/(p−1)"
+      ],
+      "record_sha256": "5bff8301ecdbcd8db7cc7d85964d60d9090bb66ad8acba424ea9ad2562a62ff1",
+      "math_sha256": "0ec807e95bf5d5d6861dd82b3e2b60c7508312c42e8b6cb36cc9cbf808bfc2cd",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-025-s2",
+    "rationale": "补绝对发散判定，不能只证明交错收敛。",
+    "before": {
+      "id": "eval-calc-025-s2",
+      "goal": "讨论交错级数条件收敛",
+      "domain": "Σ(-1)ⁿ/lnn",
+      "key_conditions": [
+        "绝对发散"
+      ],
+      "decisive_steps": [
+        "部分和分组估计"
+      ],
+      "record_sha256": "e7dcc76f7a10fb0cdf2c93f2ca11936df9a3540bf5c0d030fba28045cf5c2224",
+      "math_sha256": "c2fddac378efde69cadb014fd79d5f2cb2093a023e7496648d8d34a902b9ac6d",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-025-s2",
+      "goal": "讨论交错级数条件收敛",
+      "domain": "Σ(-1)ⁿ/lnn",
+      "key_conditions": [
+        "绝对发散"
+      ],
+      "decisive_steps": [
+        "成对分组和尾项控制",
+        "1/ln n≥1/n给绝对值级数发散"
+      ],
+      "record_sha256": "e7dcc76f7a10fb0cdf2c93f2ca11936df9a3540bf5c0d030fba28045cf5c2224",
+      "math_sha256": "c2fddac378efde69cadb014fd79d5f2cb2093a023e7496648d8d34a902b9ac6d",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-025-s3",
+    "rationale": "补绝对发散判定，不能只证明交错收敛。",
+    "before": {
+      "id": "eval-calc-025-s3",
+      "goal": "讨论交错级数条件收敛",
+      "domain": "Σ(-1)ⁿ/lnn",
+      "key_conditions": [
+        "绝对发散"
+      ],
+      "decisive_steps": [
+        "Abel分部求和"
+      ],
+      "record_sha256": "5f634c5c6d90b9a465cb6eefbb3298b2805fb6e9ff5dec682ba27d48520c4ca3",
+      "math_sha256": "88ce52b6cae29fdc9dfac0bff747529dca3bc488f3203f4b8d4bb0762dc51359",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-025-s3",
+      "goal": "讨论交错级数条件收敛",
+      "domain": "Σ(-1)ⁿ/lnn",
+      "key_conditions": [
+        "绝对发散"
+      ],
+      "decisive_steps": [
+        "Abel分部求和及单调趋零",
+        "1/ln n≥1/n给绝对值级数发散"
+      ],
+      "record_sha256": "5f634c5c6d90b9a465cb6eefbb3298b2805fb6e9ff5dec682ba27d48520c4ca3",
+      "math_sha256": "88ce52b6cae29fdc9dfac0bff747529dca3bc488f3203f4b8d4bb0762dc51359",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-027-s1",
+    "rationale": "共同目标应为求二重积分，s2实际采用分部积分而非换序。",
+    "before": {
+      "id": "eval-calc-027-s1",
+      "goal": "交换次序求二重积分",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "交换积分次序"
+      ],
+      "record_sha256": "db9cf2cf9803898ecab058872250afd5ae2528aaefb72311ae01dd5681d6082c",
+      "math_sha256": "4534b14cbb637a92a8a289ee54789e4c9242c1e9db1ccaf89ca7e8778ec383e5",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-027-s1",
+      "goal": "求三角区域二重积分的精确值",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "交换积分次序"
+      ],
+      "record_sha256": "db9cf2cf9803898ecab058872250afd5ae2528aaefb72311ae01dd5681d6082c",
+      "math_sha256": "4534b14cbb637a92a8a289ee54789e4c9242c1e9db1ccaf89ca7e8778ec383e5",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-027-s2",
+    "rationale": "共同目标应为求二重积分，s2实际采用分部积分而非换序。",
+    "before": {
+      "id": "eval-calc-027-s2",
+      "goal": "交换次序求二重积分",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "分部积分"
+      ],
+      "record_sha256": "e4d355a5208ee9f317748283cd9706f57beb53ef1b70983d0a38e0ba7a9262a7",
+      "math_sha256": "9c86b6d129331658840bd10548e77e9e8d99d1f3068a930a38b87cf8c0d4e69c",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-027-s2",
+      "goal": "求三角区域二重积分的精确值",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "分部积分"
+      ],
+      "record_sha256": "e4d355a5208ee9f317748283cd9706f57beb53ef1b70983d0a38e0ba7a9262a7",
+      "math_sha256": "9c86b6d129331658840bd10548e77e9e8d99d1f3068a930a38b87cf8c0d4e69c",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-calc-027-s3",
+    "rationale": "共同目标应为求二重积分，s2实际采用分部积分而非换序。",
+    "before": {
+      "id": "eval-calc-027-s3",
+      "goal": "交换次序求二重积分",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "交换次序",
+        "u代换"
+      ],
+      "record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+      "math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-calc-027-s3",
+      "goal": "求三角区域二重积分的精确值",
+      "domain": "三角形区域",
+      "key_conditions": [
+        "e^{y²}无初等原函数"
+      ],
+      "decisive_steps": [
+        "交换次序",
+        "u代换"
+      ],
+      "record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+      "math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-004-s1",
+    "rationale": "定义域不能仅写三阶，题目明确要求推广n阶。",
+    "before": {
+      "id": "eval-linalg-004-s1",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "三阶",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "行变换"
+      ],
+      "record_sha256": "fde65cd999cc47310aac021f0004cd2ff04247db53e53a4969e6a73312581ac3",
+      "math_sha256": "5c95a5b6e94c4e22935dd12e6d5ea8cf77662b9eb75d28ab7c9b8e62dd30b68b",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-004-s1",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "a,b∈R，n为正整数（含n=3）",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "行变换"
+      ],
+      "record_sha256": "fde65cd999cc47310aac021f0004cd2ff04247db53e53a4969e6a73312581ac3",
+      "math_sha256": "5c95a5b6e94c4e22935dd12e6d5ea8cf77662b9eb75d28ab7c9b8e62dd30b68b",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-004-s2",
+    "rationale": "定义域不能仅写三阶，题目明确要求推广n阶。",
+    "before": {
+      "id": "eval-linalg-004-s2",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "三阶",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "特征值法"
+      ],
+      "record_sha256": "9dd028873a3dfe2356485988ad635ac94d0ae85835361f781fa31971da419bf6",
+      "math_sha256": "62206f73eb881c5b74a8f77f48cd1c4c0d62907fae4709356741196f4de8ad3f",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-004-s2",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "a,b∈R，n为正整数（含n=3）",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "特征值法"
+      ],
+      "record_sha256": "9dd028873a3dfe2356485988ad635ac94d0ae85835361f781fa31971da419bf6",
+      "math_sha256": "62206f73eb881c5b74a8f77f48cd1c4c0d62907fae4709356741196f4de8ad3f",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-004-s3",
+    "rationale": "定义域不能仅写三阶，题目明确要求推广n阶。",
+    "before": {
+      "id": "eval-linalg-004-s3",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "三阶",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "拆列法多重线性"
+      ],
+      "record_sha256": "cf088b7671e412b5878f49f5af3a9f8baebb86e60daaeeea9193c1c60bd882a4",
+      "math_sha256": "d7b0127b744f04514ee0b04fc40e3fff01073617b4cbe5a473041d304c816466",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-004-s3",
+      "goal": "计算aJ+bI型行列式",
+      "domain": "a,b∈R，n为正整数（含n=3）",
+      "key_conditions": [
+        "a,b参数"
+      ],
+      "decisive_steps": [
+        "拆列法多重线性"
+      ],
+      "record_sha256": "cf088b7671e412b5878f49f5af3a9f8baebb86e60daaeeea9193c1c60bd882a4",
+      "math_sha256": "d7b0127b744f04514ee0b04fc40e3fff01073617b4cbe5a473041d304c816466",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-012-s1",
+    "rationale": "目标需包括各参数分支的完整解空间。",
+    "before": {
+      "id": "eval-linalg-012-s1",
+      "goal": "求齐次方程组非零解参数",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "行列式为零"
+      ],
+      "record_sha256": "f1875ce97293033336a54f0e53d3e3c0b419697d1320535634c801f7fda04f7a",
+      "math_sha256": "1eedccf983f32eb77a7499d2696df4214b94ee80a0a0fa052c8da5fa601d1a34",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-012-s1",
+      "goal": "求齐次方程组有非零解的参数及各解空间",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "行列式为零"
+      ],
+      "record_sha256": "f1875ce97293033336a54f0e53d3e3c0b419697d1320535634c801f7fda04f7a",
+      "math_sha256": "1eedccf983f32eb77a7499d2696df4214b94ee80a0a0fa052c8da5fa601d1a34",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-012-s2",
+    "rationale": "目标需包括各参数分支的完整解空间。",
+    "before": {
+      "id": "eval-linalg-012-s2",
+      "goal": "求齐次方程组非零解参数",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "秩与行变换"
+      ],
+      "record_sha256": "f05ebe8013341ae6448c362c5933a9db17a0d227fcb26a580da656b2680b0f59",
+      "math_sha256": "89bb1753b2457bf5f51bd769508759c1d070497a51f042495984e1317859fbac",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-012-s2",
+      "goal": "求齐次方程组有非零解的参数及各解空间",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "秩与行变换"
+      ],
+      "record_sha256": "f05ebe8013341ae6448c362c5933a9db17a0d227fcb26a580da656b2680b0f59",
+      "math_sha256": "89bb1753b2457bf5f51bd769508759c1d070497a51f042495984e1317859fbac",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-012-s3",
+    "rationale": "目标需包括各参数分支的完整解空间。",
+    "before": {
+      "id": "eval-linalg-012-s3",
+      "goal": "求齐次方程组非零解参数",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "特征值观点"
+      ],
+      "record_sha256": "b2e407a1e14e16fc9174c379ffa13aa8592c2f24672e90a737ee64bec361df33",
+      "math_sha256": "c0c001ad524ad1ad30bf56a2a76df2ff8a2d5ab18cf5ccc804783b02cdc1ab7e",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-012-s3",
+      "goal": "求齐次方程组有非零解的参数及各解空间",
+      "domain": "三元含a",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "特征值观点"
+      ],
+      "record_sha256": "b2e407a1e14e16fc9174c379ffa13aa8592c2f24672e90a737ee64bec361df33",
+      "math_sha256": "c0c001ad524ad1ad30bf56a2a76df2ff8a2d5ab18cf5ccc804783b02cdc1ab7e",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-015-s1",
+    "rationale": "补题目明确要求的对角化。",
+    "before": {
+      "id": "eval-linalg-015-s1",
+      "goal": "求对称矩阵特征值向量",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "特征方程"
+      ],
+      "record_sha256": "91425eb620f933ab26310dfc2a935a69fd7581741ec51721ec151abebd26a499",
+      "math_sha256": "eb3b30176f8d1a9d4996b1d777d164f3faca6f2fd2ab00ecead6059af34f9f07",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-015-s1",
+      "goal": "求对称矩阵特征值、特征向量与对角化",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "特征方程"
+      ],
+      "record_sha256": "91425eb620f933ab26310dfc2a935a69fd7581741ec51721ec151abebd26a499",
+      "math_sha256": "eb3b30176f8d1a9d4996b1d777d164f3faca6f2fd2ab00ecead6059af34f9f07",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-015-s2",
+    "rationale": "补题目明确要求的对角化。",
+    "before": {
+      "id": "eval-linalg-015-s2",
+      "goal": "求对称矩阵特征值向量",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "二次型主轴"
+      ],
+      "record_sha256": "f4560bf05830884200be8a93fbb213d3efd9eef5392ac06bc8f326b7ce4e7e0a",
+      "math_sha256": "6004718ac2ff755db9e5accb0d1d6a7693e3699a9770305d65cdf2f565818a7b",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-015-s2",
+      "goal": "求对称矩阵特征值、特征向量与对角化",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "二次型主轴"
+      ],
+      "record_sha256": "f4560bf05830884200be8a93fbb213d3efd9eef5392ac06bc8f326b7ce4e7e0a",
+      "math_sha256": "6004718ac2ff755db9e5accb0d1d6a7693e3699a9770305d65cdf2f565818a7b",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-015-s3",
+    "rationale": "补题目明确要求的对角化。",
+    "before": {
+      "id": "eval-linalg-015-s3",
+      "goal": "求对称矩阵特征值向量",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "正交对角化"
+      ],
+      "record_sha256": "cd0904caea6b5a5f9ccec5e5fabff15bd25932183b361d8ef52e7befd14ff21f",
+      "math_sha256": "835ce553b0937ed71e3046de166076facc9f534d33b87dbd195867ac27148495",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-015-s3",
+      "goal": "求对称矩阵特征值、特征向量与对角化",
+      "domain": "二阶对称",
+      "key_conditions": [
+        "对称"
+      ],
+      "decisive_steps": [
+        "正交对角化"
+      ],
+      "record_sha256": "cd0904caea6b5a5f9ccec5e5fabff15bd25932183b361d8ef52e7befd14ff21f",
+      "math_sha256": "835ce553b0937ed71e3046de166076facc9f534d33b87dbd195867ac27148495",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-016-s1",
+    "rationale": "补Cayley–Hamilton矩阵恒等式这一要求。",
+    "before": {
+      "id": "eval-linalg-016-s1",
+      "goal": "由迹与行列式求特征值",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "迹与行列式"
+      ],
+      "record_sha256": "fc86e42846e47affe983db61970d467e98f7228c704b933174723afe3ec7f79f",
+      "math_sha256": "5baff1e5ee032011ef808654bc045dff7e63a23a11327f110c26e11c636dc691",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-016-s1",
+      "goal": "由迹和行列式求特征值并验证矩阵多项式恒等式",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "迹与行列式"
+      ],
+      "record_sha256": "fc86e42846e47affe983db61970d467e98f7228c704b933174723afe3ec7f79f",
+      "math_sha256": "5baff1e5ee032011ef808654bc045dff7e63a23a11327f110c26e11c636dc691",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-016-s2",
+    "rationale": "补Cayley–Hamilton矩阵恒等式这一要求。",
+    "before": {
+      "id": "eval-linalg-016-s2",
+      "goal": "由迹与行列式求特征值",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "Cayley-Hamilton"
+      ],
+      "record_sha256": "c71ee8617ef2d047ab979b5d95ca3370ba40aca4782a4d74700b2ab1161c64f8",
+      "math_sha256": "c2b36b758791d1a26a9ef479e5329a4974d813bb3a9ea266cabb61a8d26f54c1",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-016-s2",
+      "goal": "由迹和行列式求特征值并验证矩阵多项式恒等式",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "Cayley-Hamilton"
+      ],
+      "record_sha256": "c71ee8617ef2d047ab979b5d95ca3370ba40aca4782a4d74700b2ab1161c64f8",
+      "math_sha256": "c2b36b758791d1a26a9ef479e5329a4974d813bb3a9ea266cabb61a8d26f54c1",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-016-s3",
+    "rationale": "补Cayley–Hamilton矩阵恒等式这一要求。",
+    "before": {
+      "id": "eval-linalg-016-s3",
+      "goal": "由迹与行列式求特征值",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "对角化验证"
+      ],
+      "record_sha256": "5c8d473d1ab91a321e420d2b51b5bde97b411851766d74f37933dd23eb440410",
+      "math_sha256": "ed3761ebcefd6ed1446f89581f1ca993bd2b431aba060020097223cf5a5d8f76",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-016-s3",
+      "goal": "由迹和行列式求特征值并验证矩阵多项式恒等式",
+      "domain": "二阶方阵",
+      "key_conditions": [
+        "tr和det给定"
+      ],
+      "decisive_steps": [
+        "对角化验证"
+      ],
+      "record_sha256": "5c8d473d1ab91a321e420d2b51b5bde97b411851766d74f37933dd23eb440410",
+      "math_sha256": "ed3761ebcefd6ed1446f89581f1ca993bd2b431aba060020097223cf5a5d8f76",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-032-s1",
+    "rationale": "补不变因子到初等因子及a=1根合并分支。",
+    "before": {
+      "id": "eval-linalg-032-s1",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "行列式因子"
+      ],
+      "record_sha256": "e0c58aaa9fdf90ede941e255fdd94f14929db23bdf3db8ec136e51e1c13e16b8",
+      "math_sha256": "73c04f157849e076eafaa55434842eb90f1ec6bcacb0e8dab63fd58fa16b8bda",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-032-s1",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a∈R",
+        "a=1与a≠1分别处理"
+      ],
+      "decisive_steps": [
+        "计算行列式因子",
+        "求不变因子并作不可约幂分解",
+        "a=1时(λ−1)³；a≠1时λ−a与(λ−1)²"
+      ],
+      "record_sha256": "e0c58aaa9fdf90ede941e255fdd94f14929db23bdf3db8ec136e51e1c13e16b8",
+      "math_sha256": "73c04f157849e076eafaa55434842eb90f1ec6bcacb0e8dab63fd58fa16b8bda",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-032-s2",
+    "rationale": "补不变因子到初等因子及a=1根合并分支。",
+    "before": {
+      "id": "eval-linalg-032-s2",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "初等变换化标准形"
+      ],
+      "record_sha256": "cebe1ea620545ed9e0a94def411f80181035ed130a3700e129f2a800205d4b8a",
+      "math_sha256": "fc266ee4d3f766655080e1ce9797eb555ffc2906769c63d0425fdfe4c8615694",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-032-s2",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a∈R",
+        "a=1与a≠1分别处理"
+      ],
+      "decisive_steps": [
+        "可逆多项式初等变换",
+        "求不变因子并作不可约幂分解",
+        "a=1时(λ−1)³；a≠1时λ−a与(λ−1)²"
+      ],
+      "record_sha256": "cebe1ea620545ed9e0a94def411f80181035ed130a3700e129f2a800205d4b8a",
+      "math_sha256": "fc266ee4d3f766655080e1ce9797eb555ffc2906769c63d0425fdfe4c8615694",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-linalg-032-s3",
+    "rationale": "补不变因子到初等因子及a=1根合并分支。",
+    "before": {
+      "id": "eval-linalg-032-s3",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a参数"
+      ],
+      "decisive_steps": [
+        "循环向量独立推导"
+      ],
+      "record_sha256": "f22552bb74c0e185a0d907f94194793806ed2e462744ddb8a89f3975986b6c76",
+      "math_sha256": "d6e63ccb369cc1c99a1aad0581b0e6d4c409b6a34375a1e3fe9a13ac0e106877",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-linalg-032-s3",
+      "goal": "求λ-矩阵因子与参数影响",
+      "domain": "含aλ-矩阵",
+      "key_conditions": [
+        "a∈R",
+        "a=1与a≠1分别处理"
+      ],
+      "decisive_steps": [
+        "循环向量证明循环性",
+        "求不变因子并作不可约幂分解",
+        "a=1时(λ−1)³；a≠1时λ−a与(λ−1)²"
+      ],
+      "record_sha256": "f22552bb74c0e185a0d907f94194793806ed2e462744ddb8a89f3975986b6c76",
+      "math_sha256": "d6e63ccb369cc1c99a1aad0581b0e6d4c409b6a34375a1e3fe9a13ac0e106877",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-prob-007-s3",
+    "rationale": "配对期望不是所问精确概率；实际证明还有矩下界及补事件计数。",
+    "before": {
+      "id": "eval-prob-007-s3",
+      "goal": "求生日问题概率",
+      "domain": "30人生日",
+      "key_conditions": [
+        "独立等可能"
+      ],
+      "decisive_steps": [
+        "配对计数精确期望"
+      ],
+      "record_sha256": "2bd39828bd9246eea45cbea52f5dad27e79d151f86e6aca45d0e8ec3862dd47d",
+      "math_sha256": "85f925f66b5704cbb393818eeb20edc114f1042df90a5b9d4269dc454c59346e",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-prob-007-s3",
+      "goal": "求生日问题概率",
+      "domain": "30人生日",
+      "key_conditions": [
+        "独立等可能"
+      ],
+      "decisive_steps": [
+        "配对指示变量的一、二阶矩",
+        "Cauchy–Schwarz给概率下界，明确不等于精确概率",
+        "补事件计数给1−365!/(335!365³⁰)"
+      ],
+      "record_sha256": "2bd39828bd9246eea45cbea52f5dad27e79d151f86e6aca45d0e8ec3862dd47d",
+      "math_sha256": "85f925f66b5704cbb393818eeb20edc114f1042df90a5b9d4269dc454c59346e",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-prob-008-s1",
+    "rationale": "补所问精确二项尾概率及与切比雪夫界的比较。",
+    "before": {
+      "id": "eval-prob-008-s1",
+      "goal": "求二项尾概率上界",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "阈值"
+      ],
+      "decisive_steps": [
+        "切比雪夫不等式"
+      ],
+      "record_sha256": "0982cfb0f82e843cd17a3a20ed8198f0b1fcfb6b7f00e5ef41ed5d2a5c8fc5f8",
+      "math_sha256": "4039f075b06a33ecf5ddfadc19f8205a7202c1ebdcef67327b3444268e524d12",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-prob-008-s1",
+      "goal": "求二项尾概率切比雪夫上界并与精确值比较",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "尾事件含等号|X−50|≥10",
+        "独立Bernoulli和，方差25"
+      ],
+      "decisive_steps": [
+        "切比雪夫不等式"
+      ],
+      "record_sha256": "0982cfb0f82e843cd17a3a20ed8198f0b1fcfb6b7f00e5ef41ed5d2a5c8fc5f8",
+      "math_sha256": "4039f075b06a33ecf5ddfadc19f8205a7202c1ebdcef67327b3444268e524d12",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-prob-008-s2",
+    "rationale": "补所问精确二项尾概率及与切比雪夫界的比较。",
+    "before": {
+      "id": "eval-prob-008-s2",
+      "goal": "求二项尾概率上界",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "阈值"
+      ],
+      "decisive_steps": [
+        "精确二项求和"
+      ],
+      "record_sha256": "c397fea7bf9d299bbb1312e2442c9aabcc8f4e65d190f9c7f65cf50d0588fde2",
+      "math_sha256": "72b264907bf37f5ca72f1526a14a966cba0018aaa30df0e9e1254499301b40af",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-prob-008-s2",
+      "goal": "求二项尾概率切比雪夫上界并与精确值比较",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "尾事件含等号|X−50|≥10",
+        "独立Bernoulli和，方差25"
+      ],
+      "decisive_steps": [
+        "精确二项求和"
+      ],
+      "record_sha256": "c397fea7bf9d299bbb1312e2442c9aabcc8f4e65d190f9c7f65cf50d0588fde2",
+      "math_sha256": "72b264907bf37f5ca72f1526a14a966cba0018aaa30df0e9e1254499301b40af",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "eval-prob-008-s3",
+    "rationale": "补所问精确二项尾概率及与切比雪夫界的比较。",
+    "before": {
+      "id": "eval-prob-008-s3",
+      "goal": "求二项尾概率上界",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "阈值"
+      ],
+      "decisive_steps": [
+        "方法对比讨论"
+      ],
+      "record_sha256": "57944b3a5498c92c812181fd37a8372f02e9cdbc56af58ee34655a1e4f64c256",
+      "math_sha256": "d4c7f33e909c14b48a24b8a23d577cd31a21687500df4aca0610510078c0b779",
+      "group": "eval"
+    },
+    "after": {
+      "id": "eval-prob-008-s3",
+      "goal": "求二项尾概率切比雪夫上界并与精确值比较",
+      "domain": "B(100,1/2)",
+      "key_conditions": [
+        "尾事件含等号|X−50|≥10",
+        "独立Bernoulli和，方差25"
+      ],
+      "decisive_steps": [
+        "切比雪夫给上界1/4",
+        "二项系数有限和给精确概率",
+        "用精确不等式比較界与尾概率"
+      ],
+      "record_sha256": "57944b3a5498c92c812181fd37a8372f02e9cdbc56af58ee34655a1e4f64c256",
+      "math_sha256": "d4c7f33e909c14b48a24b8a23d577cd31a21687500df4aca0610510078c0b779",
+      "group": "eval"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "test-calc-036",
+    "rationale": "径向公式含1/r，必须排除原点。",
+    "before": {
+      "id": "test-calc-036",
+      "goal": "推导极坐标拉普拉斯",
+      "domain": "u=f(r)",
+      "key_conditions": [
+        "二阶可导"
+      ],
+      "decisive_steps": [
+        "链式法则",
+        "径向化简",
+        "调和验证"
+      ],
+      "record_sha256": "ee9af23045e406b28a9748b1b16e15647dee504f7f7da698e5cde2dd55dbd670",
+      "math_sha256": "fec73561fc8f1562ff1cf25058b23cbf74c96a72859be74944f35f10281ff6f4",
+      "group": "test"
+    },
+    "after": {
+      "id": "test-calc-036",
+      "goal": "推导极坐标拉普拉斯",
+      "domain": "R²\\{(0,0)}，r=√(x²+y²)>0",
+      "key_conditions": [
+        "f二阶可导",
+        "r>0"
+      ],
+      "decisive_steps": [
+        "链式法则",
+        "径向化简",
+        "调和验证"
+      ],
+      "record_sha256": "ee9af23045e406b28a9748b1b16e15647dee504f7f7da698e5cde2dd55dbd670",
+      "math_sha256": "fec73561fc8f1562ff1cf25058b23cbf74c96a72859be74944f35f10281ff6f4",
+      "group": "test"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "test-geom-022",
+    "rationale": "补约定的右手坐标及正角方向，避免旋转号歧义。",
+    "before": {
+      "id": "test-geom-022",
+      "goal": "写旋转矩阵并验证正交",
+      "domain": "绕y轴旋转",
+      "key_conditions": [
+        "正交"
+      ],
+      "decisive_steps": [
+        "矩阵写出",
+        "RᵀR=I"
+      ],
+      "record_sha256": "35c66d53bc57b547edce1b9501364f72770ee70b5e85467ead890a3ad457c5ec",
+      "math_sha256": "c5266cb825e1c3f2ca4c774d922b15a72f888f2734c09076632600a5d90d954b",
+      "group": "test"
+    },
+    "after": {
+      "id": "test-geom-022",
+      "goal": "写旋转矩阵并验证正交",
+      "domain": "绕y轴旋转",
+      "key_conditions": [
+        "右手直角坐标系",
+        "绕正y轴按右手定则取正角"
+      ],
+      "decisive_steps": [
+        "矩阵写出",
+        "RᵀR=I"
+      ],
+      "record_sha256": "35c66d53bc57b547edce1b9501364f72770ee70b5e85467ead890a3ad457c5ec",
+      "math_sha256": "c5266cb825e1c3f2ca4c774d922b15a72f888f2734c09076632600a5d90d954b",
+      "group": "test"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "test-linalg-012",
+    "rationale": "补题目要求的增长比极限。",
+    "before": {
+      "id": "test-linalg-012",
+      "goal": "矩阵方法求斐波那契",
+      "domain": "递推数列",
+      "key_conditions": [
+        "矩阵幂"
+      ],
+      "decisive_steps": [
+        "转移矩阵",
+        "矩阵幂",
+        "F₁₀"
+      ],
+      "record_sha256": "ed3c7931d30bdfacd4c1045785c1fee12cb6aff3f06d2790ab059d83dbb5fba2",
+      "math_sha256": "6fc27af380fd43f86067b9cdfa9e0cfb12897a064e7b7cf553aa3be34389fe52",
+      "group": "test"
+    },
+    "after": {
+      "id": "test-linalg-012",
+      "goal": "用矩阵求F₁₀并证明相邻项增长比趋于黄金比",
+      "domain": "递推数列",
+      "key_conditions": [
+        "矩阵幂"
+      ],
+      "decisive_steps": [
+        "转移矩阵与特征分解",
+        "矩阵幂得F₁₀",
+        "精确闭式及次主特征值比的幂趋零"
+      ],
+      "record_sha256": "ed3c7931d30bdfacd4c1045785c1fee12cb6aff3f06d2790ab059d83dbb5fba2",
+      "math_sha256": "6fc27af380fd43f86067b9cdfa9e0cfb12897a064e7b7cf553aa3be34389fe52",
+      "group": "test"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "test-x-004",
+    "rationale": "补具体矩阵稳态分布的求解及概率约束。",
+    "before": {
+      "id": "test-x-004",
+      "goal": "说明稳态分布与Pᵀ特征关系",
+      "domain": "马尔可夫链",
+      "key_conditions": [
+        "π=πP"
+      ],
+      "decisive_steps": [
+        "转置特征向量"
+      ],
+      "record_sha256": "39dfa9fcaee6e0691fb74c5ca1e70041b3aace097f35ec3644ae09e7601e3d55",
+      "math_sha256": "be4edd9024276e4c435b846549fabc4bba88fb144dae704dc4be20c173477043",
+      "group": "test"
+    },
+    "after": {
+      "id": "test-x-004",
+      "goal": "解释稳态的转置特征关系并求给定矩阵稳态分布",
+      "domain": "马尔可夫链",
+      "key_conditions": [
+        "π=πP"
+      ],
+      "decisive_steps": [
+        "πᵀ是Pᵀ特征值1的特征向量",
+        "联立稳态方程、非负性与坐标和1"
+      ],
+      "record_sha256": "39dfa9fcaee6e0691fb74c5ca1e70041b3aace097f35ec3644ae09e7601e3d55",
+      "math_sha256": "be4edd9024276e4c435b846549fabc4bba88fb144dae704dc4be20c173477043",
+      "group": "test"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "test-x-015",
+    "rationale": "原步骤遗漏题目指定的对角化计算矩阵幂。",
+    "before": {
+      "id": "test-x-015",
+      "goal": "求马尔可夫链稳态与矩阵幂",
+      "domain": "两状态链",
+      "key_conditions": [
+        "转移矩阵"
+      ],
+      "decisive_steps": [
+        "稳态方程",
+        "Pⁿ收敛"
+      ],
+      "record_sha256": "ecc416ffe414f244462390311dbcc15c73efc0575de80e6ff8177ea83caef9aa",
+      "math_sha256": "533f6781aceb5f37b12f9cbad840d6c28beac7062f266f2f00ae350cd111f60a",
+      "group": "test"
+    },
+    "after": {
+      "id": "test-x-015",
+      "goal": "用对角化求马尔可夫转移矩阵Pⁿ及极限矩阵",
+      "domain": "两状态链",
+      "key_conditions": [
+        "转移矩阵"
+      ],
+      "decisive_steps": [
+        "求特征值1和1/4及可逆特征向量矩阵",
+        "Pⁿ=VDⁿV⁻¹，包括n=0",
+        "(1/4)ⁿ→0给极限矩阵"
+      ],
+      "record_sha256": "ecc416ffe414f244462390311dbcc15c73efc0575de80e6ff8177ea83caef9aa",
+      "math_sha256": "533f6781aceb5f37b12f9cbad840d6c28beac7062f266f2f00ae350cd111f60a",
+      "group": "test"
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "linalg-064",
+    "rationale": "补齐题目要求的特征直线几何意义和非零倍数条件。",
+    "before": {
+      "id": "linalg-064",
+      "group": "train",
+      "record_sha256": "3cf69bfaf0c138629257f163616091d3523f1d0dbed9b203c81363dbc6dc33d5",
+      "math_sha256": "d8eb0a855303e43931850e1883cea7edd87e818aa1216644d58cd88dc57464be",
+      "goal": "求特征值与特征向量",
+      "domain": "二阶矩阵A",
+      "key_conditions": [
+        "实矩阵"
+      ],
+      "decisive_steps": [
+        "特征方程",
+        "解特征向量"
+      ]
+    },
+    "after": {
+      "id": "linalg-064",
+      "group": "train",
+      "record_sha256": "3cf69bfaf0c138629257f163616091d3523f1d0dbed9b203c81363dbc6dc33d5",
+      "math_sha256": "d8eb0a855303e43931850e1883cea7edd87e818aa1216644d58cd88dc57464be",
+      "goal": "求特征值、全部特征向量并解释特征直线伸缩",
+      "domain": "二阶矩阵A",
+      "key_conditions": [
+        "实二阶矩阵",
+        "特征向量非零"
+      ],
+      "decisive_steps": [
+        "特征多项式",
+        "解各特征空间并取非零倍数",
+        "在特征直线上Av=λv解释方向与伸缩"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "linalg-065",
+    "rationale": "初等因子需不可约因子幂分解，不能只列不变因子整除链。",
+    "before": {
+      "id": "linalg-065",
+      "group": "train",
+      "record_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+      "math_sha256": "b5bb5b1c53096a79cd586d00797495b517dc0a4394a00979170dd45f6f7c5d3b",
+      "goal": "求λ-矩阵不变因子与初等因子",
+      "domain": "对角λ-矩阵",
+      "key_conditions": [
+        "对角形"
+      ],
+      "decisive_steps": [
+        "行列式因子",
+        "整除链"
+      ]
+    },
+    "after": {
+      "id": "linalg-065",
+      "group": "train",
+      "record_sha256": "24c4653b68ed51fa8d108317988f9c3154214dd009ffc5d1d7d7fab975f50eee",
+      "math_sha256": "b5bb5b1c53096a79cd586d00797495b517dc0a4394a00979170dd45f6f7c5d3b",
+      "goal": "求λ-矩阵不变因子与初等因子",
+      "domain": "对角λ-矩阵",
+      "key_conditions": [
+        "对角形"
+      ],
+      "decisive_steps": [
+        "求各阶首一行列式因子",
+        "取相邻商得不变因子整除链",
+        "将不变因子分解为首一不可约多项式幂得到初等因子"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "prob-040",
+    "rationale": "补全 λ=0 退化分支，避免三因子分解隐含 λ>0。",
+    "before": {
+      "id": "prob-040",
+      "group": "train",
+      "record_sha256": "8ac6000bc9cf96a828d535fc5e6d2df42972fa367ee264626831fb2f2b0c7014",
+      "math_sha256": "fb36b4fe42a720adc669218de1efa3dbd7284ce94598590446f66fecda5d9525",
+      "goal": "证明泊松逼近定理",
+      "domain": "X_n~B(n,p_n)",
+      "key_conditions": [
+        "np_n→λ含λ=0",
+        "固定k"
+      ],
+      "decisive_steps": [
+        "点概率分解",
+        "三因子极限"
+      ]
+    },
+    "after": {
+      "id": "prob-040",
+      "group": "train",
+      "record_sha256": "8ac6000bc9cf96a828d535fc5e6d2df42972fa367ee264626831fb2f2b0c7014",
+      "math_sha256": "fb36b4fe42a720adc669218de1efa3dbd7284ce94598590446f66fecda5d9525",
+      "goal": "证明泊松逼近定理",
+      "domain": "X_n~B(n,p_n)",
+      "key_conditions": [
+        "n→∞，0≤p_n≤1，np_n→λ≥0",
+        "k为固定非负整数"
+      ],
+      "decisive_steps": [
+        "λ>0时拆分二项点概率并取三因子极限",
+        "λ=0时由P(X_n>0)≤np_n→0处理退化分布"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "prob-041",
+    "rationale": "原签名遗漏题目要求的中心区间精确概率。",
+    "before": {
+      "id": "prob-041",
+      "group": "train",
+      "record_sha256": "286754fa13ef01227f0b53f712cd107166a4b34a56b01d7541f467db6b09be7c",
+      "math_sha256": "5e3f8715cb7eda8e53c9ce4658b1ad4caeaf57e795daca920074702b86f82688",
+      "goal": "分析正态密度参数影响",
+      "domain": "N(μ,σ²), σ>0",
+      "key_conditions": [
+        "σ>0"
+      ],
+      "decisive_steps": [
+        "密度公式",
+        "参数角色"
+      ]
+    },
+    "after": {
+      "id": "prob-041",
+      "group": "train",
+      "record_sha256": "286754fa13ef01227f0b53f712cd107166a4b34a56b01d7541f467db6b09be7c",
+      "math_sha256": "5e3f8715cb7eda8e53c9ce4658b1ad4caeaf57e795daca920074702b86f82688",
+      "goal": "分析正态位置、尺度与峰高并求中心区间精确概率",
+      "domain": "μ∈R，σ>0，c≥0",
+      "key_conditions": [
+        "σ>0"
+      ],
+      "decisive_steps": [
+        "密度写为σ⁻¹φ((x−μ)/σ)",
+        "平移、横向尺度与峰高1/(σ√(2π))",
+        "标准化积分给erf(c/√2)"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "prob-042",
+    "rationale": "原步骤把依概率收敛写成弱收敛，且未完整表达矩和公平条件。",
+    "before": {
+      "id": "prob-042",
+      "group": "train",
+      "record_sha256": "b0ee9a9e5a5e03559b564cf4fee3d4545f9fc58ec8e767975686788543a06a67",
+      "math_sha256": "a75391db662a9455206f72f183e5d9241c3abde58ab9b26168d4628d4f447336",
+      "goal": "证明频率依概率收敛",
+      "domain": "Bernoulli(p)序列, 0≤p≤1",
+      "key_conditions": [
+        "独立同分布",
+        "题目未指定公平性"
+      ],
+      "decisive_steps": [
+        "期望方差",
+        "切比雪夫",
+        "弱收敛"
+      ]
+    },
+    "after": {
+      "id": "prob-042",
+      "group": "train",
+      "record_sha256": "b0ee9a9e5a5e03559b564cf4fee3d4545f9fc58ec8e767975686788543a06a67",
+      "math_sha256": "a75391db662a9455206f72f183e5d9241c3abde58ab9b26168d4628d4f447336",
+      "goal": "求Bernoulli频率的期望方差并证明依概率收敛",
+      "domain": "n≥1，0≤p≤1，独立同分布Bernoulli(p)",
+      "key_conditions": [
+        "独立同分布",
+        "ε>0",
+        "公平硬币才有p=1/2"
+      ],
+      "decisive_steps": [
+        "E(F_n)=p，Var(F_n)=p(1−p)/n",
+        "P(|F_n−p|≥ε)≤p(1−p)/(nε²)→0",
+        "由定义得F_n依概率收敛到p"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  },
+  {
+    "id": "prob-043",
+    "rationale": "补总体正态的有限样本精确分布，区分标准化与原尺度极限。",
+    "before": {
+      "id": "prob-043",
+      "group": "train",
+      "record_sha256": "b0328d853a2e7414d634b517c51c9eb617f48dfdacb82c70c4d8d0581ea55830",
+      "math_sha256": "d1dbd21ab9dea5c0b72fa00671f04f880b815fb9d51b7da6b6b8189f0fa1015a",
+      "goal": "CLT标准化与退化极限",
+      "domain": "i.i.d.序列",
+      "key_conditions": [
+        "0<σ²<∞",
+        "标准化"
+      ],
+      "decisive_steps": [
+        "定义Z_n",
+        "依分布收敛",
+        "退化极限"
+      ]
+    },
+    "after": {
+      "id": "prob-043",
+      "group": "train",
+      "record_sha256": "b0328d853a2e7414d634b517c51c9eb617f48dfdacb82c70c4d8d0581ea55830",
+      "math_sha256": "d1dbd21ab9dea5c0b72fa00671f04f880b815fb9d51b7da6b6b8189f0fa1015a",
+      "goal": "区分标准化CLT、样本均值退化极限及正态总体有限样本分布",
+      "domain": "i.i.d.序列",
+      "key_conditions": [
+        "独立同分布",
+        "0<σ²<∞",
+        "有限样本正态结论需总体正态"
+      ],
+      "decisive_steps": [
+        "√n(样本均值−μ)/σ依分布收敛到N(0,1)",
+        "方差σ²/n和切比雪夫推出均值依概率收敛到μ",
+        "总体正态时样本均值精确服从N(μ,σ²/n)"
+      ]
+    },
+    "verdict": "PASS_SIGNATURE_FIDELITY_TO_CURRENT_TASK"
+  }
+]

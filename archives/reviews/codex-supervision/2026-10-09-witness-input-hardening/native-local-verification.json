@@ -1,0 +1,95 @@
+{
+  "cases": [
+    {
+      "name": "exe-plan",
+      "actual_exit_code": 3,
+      "expected_exit_code": 3,
+      "elapsed_ns": 830830800,
+      "command_argv": [
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\witness_receiver_v3.exe"
+      ]
+    },
+    {
+      "name": "exe-wildcard-v4",
+      "actual_exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_ns": 974617500,
+      "command_argv": [
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\witness_receiver_v3.exe",
+        "--serve",
+        "--bind",
+        "0.0.0.0",
+        "--log",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\never-v4.jsonl"
+      ]
+    },
+    {
+      "name": "exe-wildcard-v6",
+      "actual_exit_code": 2,
+      "expected_exit_code": 2,
+      "elapsed_ns": 857664500,
+      "command_argv": [
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\witness_receiver_v3.exe",
+        "--serve",
+        "--bind",
+        "::",
+        "--log",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\never-v6.jsonl"
+      ]
+    },
+    {
+      "name": "launcher-plan",
+      "actual_exit_code": 3,
+      "expected_exit_code": 3,
+      "elapsed_ns": 255686100,
+      "command_argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\start_witness_capture.ps1",
+        "-OutputRoot",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\never-created-plan"
+      ]
+    },
+    {
+      "name": "launcher-wildcard-v4",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_ns": 384132500,
+      "command_argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\start_witness_capture.ps1",
+        "-Execute",
+        "-Bind",
+        "0.0.0.0",
+        "-OutputRoot",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\never-created-bind"
+      ]
+    },
+    {
+      "name": "launcher-empty-bind",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_ns": 380891800,
+      "command_argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\release\\start_witness_capture.ps1",
+        "-Execute",
+        "-OutputRoot",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-09-witness-input-hardening\\never-created-empty"
+      ]
+    }
+  ],
+  "selftest_actual_parent_exit_code": 0,
+  "selftest_payload_pairs": 4,
+  "base64_roundtrip": true,
+  "two_file_package_exact_bytes": true,
+  "scope": "Host-only; invalid serve commands rejected before listeners",
+  "production": "CLOSED",
+  "native_acceptance": false,
+  "status": "PASS"
+}

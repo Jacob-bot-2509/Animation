@@ -1,0 +1,36 @@
+{
+  "core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+  "pairs": [
+    {
+      "train_id": "draft-c18-02",
+      "eval_id": "test-geom-024",
+      "before": "SAME_CORE_CONFIRMED",
+      "after": "PASS_REVISED_PAIR_DISTINCT_CORE",
+      "train_record_before": "8e3197f933a35a03c9a6f8046fad796ee5f53c8f8c959d30e574b0e609be6f94",
+      "train_record_after": "71ec413023c4b697a22f5236f23152b24824f2b1b2b742edfcb1ef7628801389",
+      "eval_record_sha256": "123ab6b21b539d6dc85fbf99c2aa67e1737a40773f68edfa8a1108df6d1b83de",
+      "reason_before": "Same normal (2,-1,2), first plane constant 1, and Euclidean plane-distance formula; only second constants 5 versus 7 differ.",
+      "reason_after": "New task asks alternating projections to two intersecting planes, exact matrix powers and error, finite termination cases, and non-idempotence. It does not ask parallel-plane separation or use constant-difference/norm as its deciding calculation."
+    },
+    {
+      "train_id": "draft-c31-01",
+      "eval_id": "test-linalg-001",
+      "before": "PRIOR_REPAIR_INHERITED",
+      "after": "PASS_LOCAL_REVISED_PAIR_DISTINCT_TASK",
+      "train_record_sha256": "77cad5f8c6eaace67bdcd7f36e6dcc12b4783c0d72af1b30f0f224309258f6e3",
+      "eval_record_sha256": "cb6588edbc010da5365843061352622f26530422e628c736b658e0297da79476",
+      "reason": "Integer solvability parity criterion for variable integer right sides, versus a single nonsingular real numerical system. Cramer is a shared submethod; the revised deciding goal is arithmetic integrality."
+    },
+    {
+      "train_id": "draft-c31-03",
+      "eval_id": "test-linalg-001",
+      "before": "PRIOR_REPAIR_INHERITED",
+      "after": "PASS_LOCAL_REVISED_PAIR_DISTINCT_TASK",
+      "train_record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+      "eval_record_sha256": "cb6588edbc010da5365843061352622f26530422e628c736b658e0297da79476",
+      "reason": "Polynomial-ring solvability requires divisibility and cancellation at t=0,1; it is not solving a numerical real system by determinant ratios."
+    }
+  ],
+  "scope": "ONLY_NAMED_PAIRS",
+  "global_isolation": "NOT_ESTABLISHED"
+}

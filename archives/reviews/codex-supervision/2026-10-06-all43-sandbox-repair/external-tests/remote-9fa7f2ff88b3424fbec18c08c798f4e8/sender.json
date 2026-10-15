@@ -1,0 +1,221 @@
+{
+  "schema": "native-remote-sender-v2",
+  "run_id": "remote-9fa7f2ff88b3424fbec18c08c798f4e8",
+  "round": "v6-2026-10-07-a",
+  "scope": "external",
+  "bind": "240e:47c:c32:9625:53d6:4260:b47e:5876",
+  "ports": {
+    "tcp": 49002,
+    "udp": 49001
+  },
+  "protocols": [
+    "tcp",
+    "udp"
+  ],
+  "sender_identity": {
+    "hostname": "Jacapo",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "driver_source_path": "D:\\Animation-Model-Training\\tools\\sandbox_external_test_driver.py",
+  "driver_before_sha256": "f2705098266303c0d1ef38eb580a0020649632387432d005f3ccf51963fda51d",
+  "implementation_before": {
+    "src/animtrain/sandbox_execution.py": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+    "src/animtrain/full_surface_evidence.py": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+    "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "started_utc_ns": 1791366933203571600,
+  "started_monotonic_ns": 21873221783400,
+  "nonces": {
+    "tcp": {
+      "before": "79f61ae34ae047af9d73c60e812933cc",
+      "sandbox": "f899793334004f729061c701643e22cb",
+      "after": "f6c4e770d228484fadff5fd0ad396da3"
+    },
+    "udp": {
+      "before": "85787030e57944e899f2d45873c3005e",
+      "sandbox": "c2ca0f86098e4dc9a5b8cb1a9a8bb015",
+      "after": "5264e04520d6487ca4287eb2db2c2884"
+    }
+  },
+  "phases": {
+    "before_tcp": {
+      "started_monotonic_ns": 21880666365100,
+      "finished_monotonic_ns": 21880683927500,
+      "result": {
+        "outcome": "completed",
+        "elapsed_ns": 17551300,
+        "receiver_delivery_verified": false
+      }
+    },
+    "before_udp": {
+      "started_monotonic_ns": 21880683933700,
+      "finished_monotonic_ns": 21880684161900,
+      "result": {
+        "outcome": "sent",
+        "elapsed_ns": 200200,
+        "receiver_delivery_verified": false
+      }
+    },
+    "after_tcp": {
+      "started_monotonic_ns": 21935293312800,
+      "finished_monotonic_ns": 21935312056400,
+      "result": {
+        "outcome": "completed",
+        "elapsed_ns": 18710000,
+        "receiver_delivery_verified": false
+      }
+    },
+    "after_udp": {
+      "started_monotonic_ns": 21935312060800,
+      "finished_monotonic_ns": 21935312319900,
+      "result": {
+        "outcome": "sent",
+        "elapsed_ns": 221800,
+        "receiver_delivery_verified": false
+      }
+    }
+  },
+  "complete": true,
+  "verification_status": "UNVERIFIED",
+  "production_gate": "CLOSED",
+  "certificate_written": false,
+  "route": {
+    "command_argv": [
+      "tracert",
+      "-6",
+      "-d",
+      "-h",
+      "4",
+      "-w",
+      "500",
+      "240e:47c:c32:9625:53d6:4260:b47e:5876"
+    ],
+    "rc": 0,
+    "timed_out": false,
+    "elapsed_ns": 5803152500,
+    "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-9fa7f2ff88b3424fbec18c08c798f4e8\\route.stdout.bin",
+    "sha256": "d9b41e64a6b8896aa5740cf2a86b699ae29189b055f65a6b760e274c02dbf0a9",
+    "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-9fa7f2ff88b3424fbec18c08c798f4e8\\route.stderr.bin",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "sender_interfaces": {
+    "command_argv": [
+      "powershell",
+      "-NoProfile",
+      "-Command",
+      "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+    ],
+    "rc": 0,
+    "timed_out": false,
+    "elapsed_ns": 1638423200,
+    "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-9fa7f2ff88b3424fbec18c08c798f4e8\\interfaces-6.stdout.bin",
+    "sha256": "28a6c94111eabbed7f1aab4637cb75df26e010778697834b8314c0cbed9c9283",
+    "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-9fa7f2ff88b3424fbec18c08c798f4e8\\interfaces-6.stderr.bin",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+  },
+  "source": "SPEC=[('tcp', '240e:47c:c32:9625:53d6:4260:b47e:5876', 49002, 'f899793334004f729061c701643e22cb'), ('udp', '240e:47c:c32:9625:53d6:4260:b47e:5876', 49001, 'c2ca0f86098e4dc9a5b8cb1a9a8bb015')]\n\nimport json,_socket,time\nr={}\nfor protocol,host,port,nonce in SPEC:\n    family=_socket.AF_INET6 if \":\" in host else _socket.AF_INET\n    started=time.monotonic_ns()\n    try:\n        with _socket.socket(family,_socket.SOCK_DGRAM if protocol==\"udp\" else _socket.SOCK_STREAM) as s:\n            s.settimeout(4 if protocol==\"udp\" else 6)\n            if protocol==\"udp\":s.sendto(nonce.encode(\"ascii\"),(host,port))\n            else:\n                s.connect((host,port));s.sendall(nonce.encode(\"ascii\"));s.shutdown(_socket.SHUT_WR)\n        r[protocol]={\"outcome\":\"sent\" if protocol==\"udp\" else \"completed\"}\n    except OSError as exc:\n        code=getattr(exc,\"winerror\",None)\n        outcome=\"os_denied\" if code==10013 else \"timeout\" if isinstance(exc,TimeoutError) else \"error\"\n        r[protocol]={\"outcome\":outcome,\"winerror\":code,\"error_type\":type(exc).__name__,\"detail\":str(exc)}\n    r[protocol][\"elapsed_ns\"]=time.monotonic_ns()-started\nprint(json.dumps(r),flush=True)\n",
+  "sandbox_started_monotonic_ns": 21880685369700,
+  "transport": {
+    "rc": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\r\n  File \"D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c1a8763240545758f7449ac64cf01f8\\scene.py\", line 9, in <module>\r\n    with _socket.socket(family,_socket.SOCK_DGRAM if protocol==\"udp\" else _socket.SOCK_STREAM) as s:\r\n         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nTypeError: '_socket.socket' object does not support the context manager protocol\r\n",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c1a8763240545758f7449ac64cf01f8",
+    "source_sha256": "17eb5bd7af6a13870b0f24bb3bd53ca92adce98e010fb7b0153538b42855999a",
+    "command": [
+      "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c1a8763240545758f7449ac64cf01f8\\scene.py"
+    ],
+    "parent_evidence": {
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-710492490-1923734036-3151744196-1884790932-3933382-1949902427-3079265286"
+      },
+      "memory_limit_mb": 2048,
+      "created_suspended": true,
+      "job_assigned_before_resume": true,
+      "inherited_handle_count": 3,
+      "tree_stopped": true,
+      "pid": 46324,
+      "private_profile": {
+        "profile_name": "animtrain-job-199484d538754de4bca47e278a6a0f66",
+        "sid": "S-1-15-2-710492490-1923734036-3151744196-1884790932-3933382-1949902427-3079265286",
+        "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-199484d538754de4bca47e278a6a0f66\\AC",
+        "temporary_acl": [
+          {
+            "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-9c1a8763240545758f7449ac64cf01f8",
+            "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.venv",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Python",
+            "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "restored": true
+          }
+        ],
+        "cleanup_complete": true
+      }
+    }
+  },
+  "sandbox_finished_monotonic_ns": 21915293064400,
+  "observation": {
+    "started_monotonic_ns": 21915293065000,
+    "requested_seconds": 21,
+    "finished_monotonic_ns": 21936293540100,
+    "elapsed_ns": 21000475100
+  },
+  "finished_utc_ns": 1791366996275334900,
+  "finished_monotonic_ns": 21936293545800,
+  "implementation_after": {
+    "src/animtrain/sandbox_execution.py": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+    "src/animtrain/full_surface_evidence.py": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+    "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "driver_after_sha256": "f2705098266303c0d1ef38eb580a0020649632387432d005f3ccf51963fda51d",
+  "implementation_unchanged": true
+}

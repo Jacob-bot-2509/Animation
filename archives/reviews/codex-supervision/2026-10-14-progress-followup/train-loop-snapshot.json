@@ -1,0 +1,30 @@
+{
+  "_说明": "提案配置；hyperparameter_approval须为CONFIRMED且sha256绑定同一参数对象，确认前拒绝训练；数据多样性、资产、校准和隔离门禁仍须通过。",
+  "hyperparameters": {
+    "learning_rate": "1/5000",
+    "batch_size": 2,
+    "gradient_accumulation_steps": 4,
+    "epochs": 6,
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "max_seq_length": 2048,
+    "quantization": "4bit",
+    "seed": 42
+  },
+  "model_path": ".models/qwen3-4b",
+  "dataset_manifest": "data/manifest.json",
+  "train_script": "tools/train_step.py",
+  "eval_script": "tools/eval_step.py",
+  "render_executor": null,
+  "judge_script": null,
+  "targets": {
+    "render": "1",
+    "executable": "19/20"
+  },
+  "max_rounds": 8,
+  "plateau_rounds": 3,
+  "hyperparameter_approval": {
+    "status": "PROPOSED",
+    "sha256": null
+  }
+}

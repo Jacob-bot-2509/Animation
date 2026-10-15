@@ -1,0 +1,228 @@
+{
+  "schema": "deep-candidates-disposed-v2",
+  "core_manifest_sha256": "e66ca4f1835667801cc20502818dbf3398308634e8dc2b9a7f1b182ba3805eda",
+  "candidate_binding": {
+    "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/bound-after-v3/deep-candidates.json",
+    "sha256": "aff224ecc18e15505765a7a3b2cd307c4b549aaa2684796ebafe8da702063ec4"
+  },
+  "decision_binding": {
+    "path": "reviews/codex-supervision/2026-10-07-deep-isolation-followup/independent-after-pair-decisions.json",
+    "sha256": "c3d4c4aaefdb5d38a349b2bfd5035c9aa49aa0f6a9390bcade5d06a8c9f4f718"
+  },
+  "disposer_sha256": "8a9d4a8ad28e5e51b53e7f8eadc2d80cf09f829ef6ffae730aec81d9fb4cf13d",
+  "family_pairs_total": 1131,
+  "flagged_pairs": 6,
+  "same_core": 0,
+  "different_core": 6,
+  "needs_review": 0,
+  "family_pairs_not_flagged": 1125,
+  "nonflagged_semantic_verdict": "NOT_REVIEWED",
+  "outside_family_pairs_not_screened": 138819,
+  "rows": [
+    {
+      "train_id": "draft-c02-01",
+      "eval_id": "eval-calc-019-s1",
+      "eval_group": "eval",
+      "category": "数学分析",
+      "sub_category": "反常积分",
+      "same_goal_group": false,
+      "steps_jaccard": "1/4",
+      "train_goal": "证明反常积分条件收敛与精确尾界",
+      "train_domain": "∫sin(x²)dx",
+      "train_record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "train_math_sha256": "d304f2ae550e79756b7b6e6f343d782ef1737d7a27ba4be3dcf42094957f318b",
+      "eval_goal": "求反常积分∫xe⁻ˣdx",
+      "eval_domain": "[0,∞)",
+      "eval_record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "eval_math_sha256": "e62787742e2d11ba49170907a9af1742e6b28709cfd64cab6b1fc67e748f4a60",
+      "train_conditions": [
+        "振荡",
+        "尾界对T>R≥1"
+      ],
+      "eval_conditions": [
+        "收敛"
+      ],
+      "train_steps": [
+        "换元",
+        "分部积分",
+        "下界估计"
+      ],
+      "eval_steps": [
+        "分部积分",
+        "极限"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需证明振荡积分条件收敛、不绝对收敛及任意T>R≥1的尾界1/R；评测需计算绝对收敛的∫₀∞xe⁻ˣdx=1。前者依赖振荡抵消、柯西准则和绝对发散下界；后者计算原函数后取极限。分部积分是共享基础工具，评测的完整求值任务未包含在训练题中。"
+    },
+    {
+      "train_id": "draft-c35-01",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": "1/3",
+      "train_goal": "配方法化标准形与惯性",
+      "train_domain": "三元二次型",
+      "train_record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "train_math_sha256": "6f8f2dcc8b5672288d94588a7d14d8557538df6b85b44f32e4e64011036b0004",
+      "eval_goal": "求二次型正定参数范围",
+      "eval_domain": "三元含a",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "eval_math_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "train_conditions": [
+        "可逆替换"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性指数"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定二次型通过可逆替换得到diag(1,−1,1)，目标为标准形、惯性(2,1,0)与秩3；评测的含参正定任务必须求可逆配方后系数2−a²>0的充要范围。固定负方向与不定结论不等于求参数范围；局部共享配方这一基础工具。"
+    },
+    {
+      "train_id": "draft-c35-03",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": "1/3",
+      "train_goal": "求二次型秩参数与标准形",
+      "train_domain": "二元含参",
+      "train_record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "train_math_sha256": "ba1281f464ff8bbe076971e033c1dd4e417fe446078a4c05ad236e9f7b284a11",
+      "eval_goal": "求二次型正定参数范围",
+      "eval_domain": "三元含a",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "eval_math_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩条件",
+        "各参数标准形"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练用diag(1,a−1)的零系数条件求秩1，即a=1，并在a=0,1,2列惯性；评测对三元型求所有正方向成立的参数范围2−a²>0。秩退化等式与全域正定不等式是不同约束和目标，不能仅因共享配方认定同核心。"
+    },
+    {
+      "train_id": "draft-c35-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": "1/3",
+      "train_goal": "配方法化标准形与惯性",
+      "train_domain": "三元二次型",
+      "train_record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "train_math_sha256": "7067bdfc780bfe35f58f8cae5e631e876721ff364c0f42b315ad4e114c886ab8",
+      "eval_goal": "求二次型正定参数范围",
+      "eval_domain": "三元含a",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "eval_math_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "train_conditions": [
+        "退化"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定退化型标准形为u²−v²+0w²，证明可逆替换并求惯性(1,1,1)/秩2；评测的关键任务是含参正定范围与其必要性。固定零方向和惯性不是评测完整参数可行性任务。"
+    },
+    {
+      "train_id": "draft-c36-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": "1/3",
+      "train_goal": "判断二次型半正定与秩",
+      "train_domain": "三元二次型",
+      "train_record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "train_math_sha256": "42d0d3e042daa2dbd8435b681bb7b7c10378a8673f8d92788ec74a60671cb3e9",
+      "eval_goal": "求二次型正定参数范围",
+      "eval_domain": "三元含a",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "eval_math_sha256": "df72d36560dbd4b8d6d27d503223fd39b822a3f06b678d7838eb2067c39082c6",
+      "train_conditions": [
+        "零解条件"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练给定已分解平方和(x−y)²+2(y−z)²，核心为公共零空间x=y=z、半正定非正定与秩2；评测必须消去含参混合项并判2−a²>0。固定非平凡零空间的证明不是含参正定范围任务。"
+    },
+    {
+      "train_id": "draft-c36-05",
+      "eval_id": "eval-linalg-021-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": "1/3",
+      "train_goal": "构造顺序主子式非负但非半正定反例",
+      "train_domain": "三阶对称矩阵",
+      "train_record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "train_math_sha256": "d5ab42fce06cdbb2dcd62990ba11e16cadc8cdae8ead5c57c933258497596d78",
+      "eval_goal": "求二次型正定参数范围",
+      "eval_domain": "三元含a",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "eval_math_sha256": "7e8b5e4207e66b96222d74536a2c8834d4f9a3451226dd4f3e4e06483d460e59",
+      "train_conditions": [
+        "反例构造"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "构造矩阵",
+        "顺序主子式",
+        "负特征值"
+      ],
+      "eval_steps": [
+        "顺序主子式"
+      ],
+      "disposition": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需构造反例使三个顺序主子式均为0但某方向二次型为−2，说明非负顺序主子式不能判半正定；评测在严格正定判据下求2−a²>0。反例的构造与充分条件失败和评测的严格正定判定不同。"
+    }
+  ],
+  "decision_packaging": "PASS_VERSION_BOUND_DECISION_PACKAGING",
+  "independent_reason_correctness": "REQUIRES_SEPARATE_REVIEW_RECEIPT",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "production": "CLOSED",
+  "PASS_CORE_SCOPE_issued": false
+}

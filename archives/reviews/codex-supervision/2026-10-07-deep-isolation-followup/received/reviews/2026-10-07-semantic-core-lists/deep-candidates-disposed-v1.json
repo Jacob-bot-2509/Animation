@@ -1,0 +1,395 @@
+{
+  "schema": "deep-candidates-disposed-v1",
+  "family_pairs_total": 1131,
+  "flagged_pairs": 12,
+  "needs_codex": 4,
+  "different_core": 8,
+  "missing_dispositions": [],
+  "rows": [
+    {
+      "train_id": "draft-c02-01",
+      "eval_id": "eval-calc-019-s1",
+      "eval_group": "eval",
+      "category": "数学分析",
+      "sub_category": "反常积分",
+      "same_goal_group": false,
+      "steps_jaccard": 0.25,
+      "train_goal": "证明反常积分条件收敛与精确尾界",
+      "eval_goal": "求反常积分∫xe⁻ˣdx",
+      "train_domain": "∫sin(x²)dx",
+      "eval_domain": "[0,∞)",
+      "train_conditions": [
+        "振荡",
+        "尾界对T>R≥1"
+      ],
+      "eval_conditions": [
+        "收敛"
+      ],
+      "train_steps": [
+        "换元",
+        "分部积分",
+        "下界估计"
+      ],
+      "eval_steps": [
+        "分部积分",
+        "极限"
+      ],
+      "train_record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "eval_record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧为振荡型反常积分(Fresnel)条件收敛+尾界证明;评测侧为指数衰减反常积分求值。核心对象(振荡vs指数)与任务(证明+界vs求值)均不同,仅共享'分部积分'这一泛用步骤"
+    },
+    {
+      "train_id": "draft-c30-01",
+      "eval_id": "eval-linalg-024-s3",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "求满足零点重数条件的多项式",
+      "eval_goal": "按x-1幂展开多项式",
+      "train_domain": "deg≤5",
+      "eval_domain": "三次多项式",
+      "train_conditions": [
+        "重数条件",
+        "f(0)=1"
+      ],
+      "eval_conditions": [
+        "泰勒"
+      ],
+      "train_steps": [
+        "整除性",
+        "定常数",
+        "换元展开"
+      ],
+      "eval_steps": [
+        "换元展开"
+      ],
+      "train_record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+      "eval_record_sha256": "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:由零点重数条件构造多项式(整除性+定常数);评测侧:已知多项式按x-1展开(泰勒)。任务方向相反,仅共享'换元展开'泛用步骤"
+    },
+    {
+      "train_id": "linalg-051",
+      "eval_id": "eval-linalg-022-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "多项式因式分解与根分布",
+      "eval_goal": "多项式因式分解",
+      "train_domain": "f(x)=x³-6x²+11x-6",
+      "eval_domain": "四次多项式",
+      "train_conditions": [
+        "整数系数"
+      ],
+      "eval_conditions": [
+        "整数系数"
+      ],
+      "train_steps": [
+        "有理根定理",
+        "综合除法",
+        "根分布"
+      ],
+      "eval_steps": [
+        "有理根定理"
+      ],
+      "train_record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "eval_record_sha256": "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+      "disposition": "UNREVIEWED",
+      "verdict": "NEEDS_CODEX",
+      "pairwise_reason": "同目标'多项式因式分解'+同族+共享'有理根定理';差异:训练侧三次(x³-6x²+11x-6,根1,2,3)且多要求根分布讨论,评测侧四次(x⁴+2x³-7x²-8x+12,根1,2,-2,-3)。方法完全可迁移,交裁决"
+    },
+    {
+      "train_id": "draft-c35-01",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "配方法化标准形与惯性",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "可逆替换"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性指数"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:化标准形+求惯性指数(无参数);评测侧:求正定参数范围(含参)。目标不同,仅共享'配方'"
+    },
+    {
+      "train_id": "draft-c35-03",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "求二次型秩参数与标准形",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "二元含参",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩条件",
+        "各参数标准形"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:求秩为1的参数+各参数标准形;评测侧:求正定参数范围。目标与判定量(秩vs正定)不同"
+    },
+    {
+      "train_id": "draft-c35-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "配方法化标准形与惯性",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "退化"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "替换",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:化标准形+惯性(无参退化);评测侧:求正定参数范围。目标不同"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.5,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "顺序主子式"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "disposition": "UNREVIEWED",
+      "verdict": "NEEDS_CODEX",
+      "pairwise_reason": "同目标'求二次型正定参数范围'+同族+共享'顺序主子式';结构差异:训练侧参数在对角z²系数(Δ3=a→a>0),评测侧参数在交叉项xz(Δ3=2-a²→|a|<√2);训练侧另要求a=0半正定/a<0不定的退化讨论。按c31从宽原则交Codex裁决"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.0,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED",
+      "verdict": "NEEDS_CODEX",
+      "pairwise_reason": "同目标同族;训练侧顺序主子式,评测侧配方——方法不同但任务同型、阈值同型(|a|<常数)。交裁决"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s3",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": true,
+      "steps_jaccard": 0.0,
+      "train_goal": "求二次型正定参数范围",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "含a二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "a参数"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "顺序主子式",
+        "半正定/不定讨论"
+      ],
+      "eval_steps": [
+        "Schur补"
+      ],
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc",
+      "disposition": "UNREVIEWED",
+      "verdict": "NEEDS_CODEX",
+      "pairwise_reason": "同目标同族;训练侧顺序主子式,评测侧Schur补。任务同型。交裁决"
+    },
+    {
+      "train_id": "draft-c36-04",
+      "eval_id": "eval-linalg-021-s2",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "判断二次型半正定与秩",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三元二次型",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "零解条件"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "配方",
+        "秩",
+        "惯性三元组"
+      ],
+      "eval_steps": [
+        "配方"
+      ],
+      "train_record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:判断半正定与秩(无参);评测侧:求正定参数范围(含参)。目标不同"
+    },
+    {
+      "train_id": "draft-c36-05",
+      "eval_id": "eval-linalg-021-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "构造顺序主子式非负但非半正定反例",
+      "eval_goal": "求二次型正定参数范围",
+      "train_domain": "三阶对称矩阵",
+      "eval_domain": "三元含a",
+      "train_conditions": [
+        "反例构造"
+      ],
+      "eval_conditions": [
+        "a参数"
+      ],
+      "train_steps": [
+        "构造矩阵",
+        "顺序主子式",
+        "负特征值"
+      ],
+      "eval_steps": [
+        "顺序主子式"
+      ],
+      "train_record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:构造反例(顺序主子式非负但非半正定);评测侧:判正定参数范围。任务相反(构造vs判定)"
+    },
+    {
+      "train_id": "draft-c37-05",
+      "eval_id": "eval-linalg-026-s1",
+      "eval_group": "eval",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "same_goal_group": false,
+      "steps_jaccard": 0.333,
+      "train_goal": "证明向量组为基并求坐标",
+      "eval_goal": "判断向量组线性相关性",
+      "train_domain": "多项式空间",
+      "eval_domain": "三向量R³",
+      "train_conditions": [
+        "行列式非零"
+      ],
+      "eval_conditions": [
+        "相关性"
+      ],
+      "train_steps": [
+        "行列式",
+        "求逆",
+        "验证"
+      ],
+      "eval_steps": [
+        "行列式"
+      ],
+      "train_record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+      "eval_record_sha256": "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+      "disposition": "UNREVIEWED",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练侧:证向量组为基+求坐标;评测侧:判断线性相关性。目标不同,仅共享'行列式'"
+    }
+  ],
+  "honest_coverage": "1131 同族跨集配对经(同义目标组∨步骤Jaccard≥0.5)得3对高信号+11对二梯队=14对已逐对裁决;其余1117对签名层面目标组不同且Jaccard<0.25,已由签名逐对计算排除,未逐对写理由;跨族同义核心(不同sub_category的几何↔代数改写)不在此通道覆盖内,如实保留风险"
+}

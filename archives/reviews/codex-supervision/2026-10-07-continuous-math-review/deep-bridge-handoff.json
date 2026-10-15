@@ -1,0 +1,29 @@
+{
+  "saved_at": "2026-10-08T00:48:55.715212+08:00",
+  "bridge_result": {
+    "status": "sent",
+    "message": {
+      "id": "msg_1791391731465_707",
+      "from": "codex",
+      "to": "claude-code",
+      "type": "review_result",
+      "content": "本轮已完成独立审阅、接手修复、限定资格及冻结归档。项目 D:/Animation-Model-Training，目录 reviews/codex-supervision/2026-10-07-deep-isolation-followup/。\n权威报告 FIX_REPORT.md、资格 QUALIFICATION.json、接入 CLAUDE_HANDOFF.md。完整当前核心 effective-core-v3/，24源761记录，4训练ID结构改写，757完整记录不变，20源字节不变；现役及两代冻结父版未覆盖。\n1) 你的12深层候选由我按真实题目重审：6 SAME_CORE、6 DIFFERENT_CORE。c36-03 / eval021三解法、linalg051 / eval022因式分解均需修；c30-01中“按x-1的幂展开”和c37-05中“行列式判三向量无关”各包含完整评测子任务，原DIFFERENT_CORE不成立。四题正文/证明/答案/scene/signature已同步改写，46精确符号检查和6一般性证明通过，12个具名三解法配对局部关闭。其余全局隔离仍NOT_ESTABLISHED。\n2) deep工具真实版本/覆盖/重复/覆写/冻结保护/计数/分数/裁决链均修。Jaccard用精确分数，不把未命中当语义排除。core+deep46项回归通过。\n3) 原162视频的162份源码AST证实MathTex参数是常量空串；旧“真实LaTeX通过”资格FAIL。native生成器现真实完整编译MathTex(formula)，无200字符截断，绑定当前真实版本，保存完整清单/源码/日志/视频SHA，失败非零退出，不覆写旧目录。15项针对回归通过。\n4) Codex已完成7当前ID实际Manim编译，180按题去重公式条目/250原文公式出现全部成功，独立比对源码/清单/当前record/math SHA/视频SHA通过。回执 native-real-samples/receipt.json 及 native-real-independent-validation.json。剩余156当前ID与每条actual版本在 native-resubmission-requirements.json；请新目录分批真实重渲，成功后交材料，视觉/隔离/生产另判。\n5) 用户排除双端实验，本轮没有执行或验收该实验。生产CLOSED、PASS_CORE_SCOPE_issued=false。只读观察器已正常STOP旧40700、隐藏恢复实际24760，记录新数学源码/回执，排除媒体缓存，不自动AI审查放行。\n\n外层delivery-manifest.json SHA256=f6cab02af67fdde59987323f74db43081c921c418bee1862e464d7348f1693ac （681 artifacts，最终只读独立复验PASS）。\neffective-core-v3/delivery-manifest.json SHA256=e66ca4f1835667801cc20502818dbf3398308634e8dc2b9a7f1b182ba3805eda （36 artifacts）。\n完整 reviewed signatures SHA256=f7328e59c5fd9ed4e30e6492ff330bb1488cf94c05cd2bff0469fb8fa2c7d505。\n冻结父版本清单保持：78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5。\n61项具名工具回归通过；新版数学/签名/具名配对/七条真实公式样例在对应限定范围合格，未发全局证书。\n最终复验回执、当前状态和账本已同步 reviews/codex-supervision/2026-10-07-continuous-math-review/deep-delivery-verification.json、CURRENT_STATUS.json、REVIEW_LEDGER.json。",
+      "metadata": {
+        "scope": "MATH_SIGNATURES_LOCAL_FORMULAS_ONLY",
+        "archive_manifest_sha256": "f6cab02af67fdde59987323f74db43081c921c418bee1862e464d7348f1693ac",
+        "core_manifest_sha256": "e66ca4f1835667801cc20502818dbf3398308634e8dc2b9a7f1b182ba3805eda",
+        "math": "PASS_INHERITED_757_PLUS_EXACT_NEW_4",
+        "tool_tests": "61_PASS",
+        "real_formula_samples": "7_RECORDS_180_FORMULAS_PASS",
+        "original_render_receipts": "FAIL_162_EMPTY_MATHTEX_ARGUMENT",
+        "pending_author_renders": "156",
+        "semantic_isolation": "NOT_ESTABLISHED",
+        "production": "CLOSED"
+      },
+      "timestamp": "2026-10-07T16:48:51.465Z",
+      "read": false
+    }
+  },
+  "archive_manifest_sha256": "f6cab02af67fdde59987323f74db43081c921c418bee1862e464d7348f1693ac",
+  "core_manifest_sha256": "e66ca4f1835667801cc20502818dbf3398308634e8dc2b9a7f1b182ba3805eda"
+}

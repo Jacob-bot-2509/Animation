@@ -1,0 +1,598 @@
+[
+  {
+    "id": "linalg-051",
+    "before": {
+      "id": "linalg-051",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "function_family": "因式分解与根",
+      "visual_style": "根到系数的映射",
+      "efficiency_tags": [
+        "根与因式对应",
+        "实根高亮"
+      ],
+      "problem": "设多项式 $f(x)=x^3-6x^2+11x-6$，将其因式分解并说明其根在复平面上的分布。",
+      "solution": "由有理根定理，可能的根为 $\\pm1,\\pm2,\\pm3,\\pm6$。代入得 $f(1)=0$，故 $(x-1)$ 是因式。多项式除法得 $f(x)=(x-1)(x^2-5x+6)=(x-1)(x-2)(x-3)$。三个根均为实根，在复平面上位于实轴上。",
+      "answer": "$(x-1)(x-2)(x-3)$；三个根 $1,2,3$ 均为实根，在复平面上全部位于实轴上",
+      "scene_spec": {
+        "objects": [
+          "直角坐标系（实轴）",
+          "曲线 y=f(x)",
+          "三个实根点",
+          "因式分解公式"
+        ],
+        "steps": [
+          "第一步：在坐标系中绘制三次多项式曲线 $y=x^3-6x^2+11x-6$。",
+          "第二步：在 x=1,2,3 处用黄色圆点标记曲线与 x 轴的交点，表示根的位置。",
+          "第三步：在右侧展示因式分解的代数过程，用连线将每个根与其对应的因式 $(x-1)$ 联系起来。",
+          "第四步：在数轴上展示三个根全部落在实轴上，说明该多项式无虚根。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "after": {
+      "id": "linalg-051",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "function_family": "因式分解与根",
+      "visual_style": "根到系数的映射",
+      "efficiency_tags": [
+        "根与因式对应",
+        "实根高亮"
+      ],
+      "problem": "在实多项式空间 $\\mathbb R[x]$ 上定义前向差分算子 $\\Delta p(x)=p(x+1)-p(x)$。证明 $\\ker\\Delta$ 恰为常数多项式空间，且 $\\Delta:\\mathbb R[x]\\to\\mathbb R[x]$ 为满射；求满足 $\\Delta p(x)=3x^2+3x+1$、$p(0)=0$ 的全部多项式。",
+      "solution": "$\\Delta$ 是线性算子。若 $p(x)=a_nx^n+\\cdots$、$n\\ge1$、$a_n\\ne0$，二项式恒等式给出 $\\Delta p(x)=na_nx^{n-1}+\\cdots\\ne0$；常数多项式的差分为零，故 $\\ker\\Delta=\\mathbb R\\cdot1$。证明满射：零多项式已有原像。若目标多项式 $g$ 的次数为 $m\\ge0$、首项为 $c_mx^m$，则 $\\Delta(\\frac{c_m}{m+1}x^{m+1})$ 的首项恰为 $c_mx^m$。两者之差次数小于 $m$；对次数归纳（常数 $c$ 的原像为 $cx$）即可构造 $g$ 的原像。最后 $(x+1)^3-x^3=3x^2+3x+1$，故任意解与 $x^3$ 之差属于 $\\ker\\Delta$，即 $p=x^3+C$。由 $p(0)=0$ 得 $C=0$，所以解唯一。",
+      "answer": "$\\ker\\Delta=\\mathbb R\\cdot1$，$\\operatorname{im}\\Delta=\\mathbb R[x]$；唯一解 $p(x)=x^3$。",
+      "scene_spec": {
+        "objects": [
+          "差分箭头 $p(x)\\mapsto p(x+1)-p(x)$",
+          "首项关系 $a_nx^n\\mapsto na_nx^{n-1}$（$n\\ge1$）",
+          "次数归纳构造 $\\frac{c_m}{m+1}x^{m+1}$",
+          "恒等式 $(x+1)^3-x^3=3x^2+3x+1$"
+        ],
+        "steps": [
+          "先用二项式恒等式证明非零非常数多项式不在核中。",
+          "逐次消去目标的最高次项，证明满射。",
+          "验证 $x^3$ 的差分；由核得到全体解 $x^3+C$。",
+          "代入 $p(0)=0$ 确定 $C=0$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "method": "差分首项次数归纳与核的唯一性",
+      "deep_core_revision": {
+        "reviewed_at": "2026-10-08T00:11:25.753852+08:00",
+        "parent_record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+        "parent_math_sha256": "b1d304d425ed0983b12dd27f8869bc8e5c5d9317000a00fa8d3d52a00c3ebd72",
+        "parent_core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+        "reason": "Same/embedded evaluation core removed with actual task and proof revision",
+        "new_render": "NOT_RUN",
+        "production": "CLOSED"
+      }
+    }
+  },
+  {
+    "id": "draft-c36-03",
+    "before": {
+      "id": "draft-c36-03",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "二次型正定性",
+      "concept_id": "C36",
+      "parent_training_ids": [
+        "linalg-060"
+      ],
+      "problem": "求使二次型 $f(x,y,z)=x^2+2xy+2y^2+az^2$ 正定的参数 $a$ 的取值范围，并讨论 $a=0$ 与 $a<0$ 时二次型的情形。",
+      "solution": "二次型对应矩阵 $A=\\begin{pmatrix}1&1&0\\\\1&2&0\\\\0&0&a\\end{pmatrix}$。顺序主子式：$\\Delta_1=1>0$，$\\Delta_2=1\\times2-1\\times1=1>0$，$\\Delta_3=\\det A=1\\times(2a-0)-1\\times(a-0)+0=a$。正定当且仅当三个顺序主子式全为正，故 $a>0$。当 $a=0$ 时，$f=x^2+2xy+2y^2=(x+y)^2+y^2\\geq 0$，且 $f(0,0,1)=0$，存在非零解，故半正定但非正定。当 $a<0$ 时，取 $(x,y,z)=(0,0,1)$ 得 $f(0,0,1)=a<0$，同时取 $(1,0,0)$ 得 $f(1,0,0)=1>0$，既有正值又有负值，故二次型不定。",
+      "answer": "正定当且仅当 $a>0$；$a=0$ 时半正定非正定；$a<0$ 时不定。",
+      "method": "顺序主子式法(含参)",
+      "difficulty": "中等",
+      "variant_kind": "参数范围:顺序主子式得参数不等式,边界 $a=0$ 与负参数情形的完整讨论",
+      "scene_spec": {
+        "objects": [
+          "板书:二次型 $f=x^2+2xy+2y^2+az^2$ 与其矩阵 $A=\\begin{pmatrix}1&1&0\\\\1&2&0\\\\0&0&a\\end{pmatrix}$",
+          "三个高亮框:顺序主子式 $\\Delta_1=1$、$\\Delta_2=1$、$\\Delta_3=a$",
+          "数轴:原点处边界点 $a=0$,三个区间标注「正定」「半正定」「不定」",
+          "板书:$a=0$ 时配方 $(x+y)^2+y^2$ 与零解 $(0,0,1)$",
+          "板书:$a<0$ 时代入 $(0,0,1)$ 与 $(1,0,0)$ 得负值 $a$ 与正值 $1$"
+        ],
+        "steps": [
+          "第一步:写出二次型对应的矩阵 $A$。",
+          "第二步:依次计算顺序主子式 $\\Delta_1=1$、$\\Delta_2=1$、$\\Delta_3=a$,高亮显示。",
+          "第三步:由全正条件得 $a>0$,在数轴上标出正定区间。",
+          "第四步:讨论边界 $a=0$:配方得 $(x+y)^2+y^2\\geq0$,且 $(0,0,1)$ 为非零零解,半正定非正定。",
+          "第五步:$a<0$ 时分别代入 $(0,0,1)$ 与 $(1,0,0)$ 得负值 $a$ 与正值 $1$,确认不定;汇总各分支。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-01",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-01-draft-c36-03",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-01\\draft-v3.jsonl",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "original_id": "draft-c36-03",
+        "prior_parent_training_ids": [
+          "linalg-060"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "ac12e1968e1a152ef382149dc8978b8100e6d0fcf2c86f558fc5333805f272fc",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v3.jsonl",
+          "sha256": "df24843855a0521eef32abdc174c9cd1c51c5bd70d1d9425b77dd5de18afdf6f",
+          "versioned_id": "codex-repair-20261005-batch-01-draft-c36-03"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    },
+    "after": {
+      "id": "draft-c36-03",
+      "category": "高等代数",
+      "sub_category": "二次型",
+      "concept": "证明合同保持惯性并构造合同非相似实例",
+      "concept_id": "C36",
+      "parent_training_ids": [
+        "linalg-060"
+      ],
+      "problem": "设 $A=\\operatorname{diag}(1,-1,0)$、$C=\\begin{pmatrix}1&1&0\\\\0&2&0\\\\0&0&3\\end{pmatrix}$、$B=C^{\\mathsf T}AC$。计算 $B$，求其秩与惯性三元组 $(n_+,n_-,n_0)$；证明 $A$ 与 $B$ 合同但不相似，并用可逆变量替换说明合同为何保持惯性。",
+      "solution": "$\\det C=6\\ne0$，直接相乘得 $B=\\begin{pmatrix}1&1&0\\\\1&-3&0\\\\0&0&0\\end{pmatrix}$，所以合同关系成立。对任意 $v$，$v^{\\mathsf T}Bv=(Cv)^{\\mathsf T}A(Cv)$；映射 $v\\mapsto Cv$ 为双射，正定子空间、负定子空间分别被一一对应且保持维数，因此最大正、负子空间维数不变。又可逆矩阵左右乘不改变秩，故 $\\operatorname{rank}B=\\operatorname{rank}A=2$，零惯性指数为 $3-2=1$。$A$ 的惯性三元组为 $(1,1,1)$，$B$ 亦然。若存在可逆 $S$ 使 $B=S^{-1}AS$，利用 $\\operatorname{tr}(UV)=\\operatorname{tr}(VU)$ 就有 $\\operatorname{tr}B=\\operatorname{tr}A$；但本例 $\\operatorname{tr}A=0$、$\\operatorname{tr}B=-2$，矛盾。因此二者不相似。合同保持惯性与秩，却不必保持特征值或迹。",
+      "answer": "$B=\\begin{pmatrix}1&1&0\\\\1&-3&0\\\\0&0&0\\end{pmatrix}$，$\\operatorname{rank}B=2$、$(n_+,n_-,n_0)=(1,1,1)$；$A,B$ 合同而不相似（迹分别为 $0,-2$）。",
+      "method": "合同的子空间双射与相似的迹不变量",
+      "difficulty": "中等",
+      "variant_kind": "structural-isolation-rewrite",
+      "scene_spec": {
+        "objects": [
+          "矩阵 $A,C,B=C^{\\mathsf T}AC$",
+          "可逆变量箭头 $v\\mapsto Cv$，$\\det C=6$",
+          "秩 $2$ 与惯性三元组 $(1,1,1)$",
+          "迹对照 $\\operatorname{tr}A=0$、$\\operatorname{tr}B=-2$"
+        ],
+        "steps": [
+          "展示矩阵相乘得到 $B$，验证 $\\det C\\ne0$。",
+          "用双射运输正、负子空间，说明惯性保持。",
+          "由可逆左右乘得到秩和零惯性指数。",
+          "用相似的迹不变性与本例不同迹得出反证。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-01",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "draft-c36-03:codex-deep-v3",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-01\\draft-v3.jsonl",
+        "source_sha256": "d4a722d596042f6bb3db4c2b64b0f4f816e161b00f474bc03a7f8716f67d4fb4",
+        "original_id": "draft-c36-03",
+        "prior_parent_training_ids": [
+          "linalg-060"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "ac12e1968e1a152ef382149dc8978b8100e6d0fcf2c86f558fc5333805f272fc",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v3.jsonl",
+          "sha256": "df24843855a0521eef32abdc174c9cd1c51c5bd70d1d9425b77dd5de18afdf6f",
+          "versioned_id": "codex-repair-20261005-batch-01-draft-c36-03"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "PASS_MATH_SCENE_TEXT_CANDIDATE_ONLY",
+      "admitted": false,
+      "animation_render_verified": false,
+      "deep_core_revision": {
+        "reviewed_at": "2026-10-08T00:11:25.753852+08:00",
+        "parent_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+        "parent_math_sha256": "aff9ae3bee53d232d46588368d44f01d993ef404d16956c339fa223cbf699395",
+        "parent_core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+        "reason": "Same/embedded evaluation core removed with actual task and proof revision",
+        "new_render": "NOT_RUN",
+        "production": "CLOSED"
+      }
+    }
+  },
+  {
+    "id": "draft-c37-05",
+    "before": {
+      "id": "draft-c37-05",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "concept": "基与坐标变换",
+      "concept_id": "C37",
+      "parent_training_ids": [
+        "linalg-061"
+      ],
+      "problem": "证明 $\\{1+x+x^2,\\ 1-x+x^2,\\ x-x^2\\}$ 是次数不超过 $2$ 的多项式空间的一组基，并求 $p(x)=x^2$ 在这组基下的坐标。",
+      "solution": "约定基矩阵 $B_\\eta=B_\\varepsilon P$，$P$的第$j$列为$[\\eta_j]_\\varepsilon$，故$[v]_\\varepsilon=P[v]_\\eta$、$[v]_\\eta=P^{-1}[v]_\\varepsilon$；换基改变坐标，不改变向量$v$。把三个多项式在基 $\\{1,x,x^2\\}$ 下的坐标按列排列：$M=\\begin{pmatrix}1&1&0\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$。计算 $\\det M=1\\times((-1)\\times(-1)-1\\times1)-1\\times(1\\times(-1)-1\\times1)+0=0-(-2)=2\\neq0$，故三个向量线性无关；空间维数为 $3$，故构成一组基。求 $p=x^2$ 的坐标即解 $M\\xi=(0,0,1)^{\\mathsf T}$。由伴随矩阵法(或消元)得 $M^{-1}=\\begin{pmatrix}0&\\frac12&\\frac12\\\\1&-\\frac12&-\\frac12\\\\1&0&-1\\end{pmatrix}$，故 $\\xi=M^{-1}(0,0,1)^{\\mathsf T}=(\\frac12,-\\frac12,-1)$。验证:$\\frac12(1+x+x^2)-\\frac12(1-x+x^2)-(x-x^2)=(\\frac12-\\frac12)+(\\frac x2+\\frac x2-x)+(\\frac{x^2}2-\\frac{x^2}2+x^2)=x^2$。",
+      "answer": "三个多项式线性无关(行列式 $2\\neq0$),构成一组基;$p=x^2$ 的坐标为 $(\\frac12,-\\frac12,-1)$。",
+      "method": "行列式判基+坐标解算(反求验证)",
+      "difficulty": "进阶",
+      "variant_kind": "证明+解算:抽象空间基的判定证明与特定多项式的坐标反求",
+      "scene_spec": {
+        "objects": [
+          "板书:三个多项式及其旧坐标向量",
+          "板书:坐标矩阵 $M=\\begin{pmatrix}1&1&0\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$ 与行列式计算 $\\det M=2$",
+          "板书:$M^{-1}$ 的求法",
+          "高亮框:$\\xi=(\\frac12,-\\frac12,-1)$",
+          "验证板书:$\\frac12(1+x+x^2)-\\frac12(1-x+x^2)-(x-x^2)=x^2$"
+        ],
+        "steps": [
+          "第一步:写出三个多项式,提取它们在旧基下的坐标列。",
+          "第二步:计算坐标矩阵行列式 $\\det M=2\\neq0$,判定线性无关。",
+          "第三步:由维数论证构成一组基。",
+          "第四步:解 $M\\xi=(0,0,1)^{\\mathsf T}$,得 $\\xi=(\\frac12,-\\frac12,-1)$。",
+          "第五步:展示验证:坐标组合展开恰为 $x^2$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-03-draft-c37-05",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "original_id": "draft-c37-05",
+        "prior_parent_training_ids": [
+          "linalg-061"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "d550fef646db4a71beaf9ac606a479f8c36134df981e24464db14981aa70f2f5",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "用明确基矩阵/坐标等式固定换基方向，向量本身不变"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c37-05"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    },
+    "after": {
+      "id": "draft-c37-05",
+      "category": "高等代数",
+      "sub_category": "线性空间",
+      "concept": "证明有限维交换子不能为单位并给无限维反例",
+      "concept_id": "C37",
+      "parent_training_ids": [
+        "linalg-061"
+      ],
+      "problem": "设 $V$ 是非零有限维实线性空间。证明不存在 $S,T\\in\\operatorname{End}(V)$ 使 $ST-TS=I_V$。再在无限维实多项式空间 $\\mathbb R[x]$ 上给出满足该恒等式的两个线性算子，说明有限维假设的必要性。",
+      "solution": "记 $n=\\dim V\\ge1$。任选一组基，把 $S,T$ 写成矩阵 $(s_{ij}),(t_{ij})$。有限求和可交换顺序，故 $\\operatorname{tr}(ST)=\\sum_{i,j}s_{ij}t_{ji}=\\sum_{i,j}t_{ij}s_{ji}=\\operatorname{tr}(TS)$。若 $ST-TS=I_V$，取迹得到 $0=\\operatorname{tr}(ST-TS)=\\operatorname{tr}I_V=n$，与 $n\\ge1$ 且实数域矛盾。无限维情形取 $D(p)=p'$、$M(p)=xp$。二者均为 $\\mathbb R[x]$ 上的线性算子，乘积求导恒等式给出 $(DM-MD)(p)=(xp)'-xp'=p$，即 $DM-MD=I$。这里不能使用有限矩阵的迹论证；$\\mathbb R[x]$ 为无限维，因而不与前述结论矛盾。",
+      "answer": "非零有限维实空间上不存在这样的 $S,T$；在 $\\mathbb R[x]$ 上 $D(p)=p'$、$M(p)=xp$ 满足 $DM-MD=I$。",
+      "method": "交换子的迹障碍与无限维算子反例",
+      "difficulty": "进阶",
+      "variant_kind": "structural-isolation-rewrite",
+      "scene_spec": {
+        "objects": [
+          "有限维假设 $n=\\dim V\\ge1$",
+          "有限双重求和 $\\operatorname{tr}(ST)=\\operatorname{tr}(TS)$",
+          "矛盾链 $0=\\operatorname{tr}(ST-TS)=\\operatorname{tr}I_V=n\\ne0$",
+          "无限维算子 $D(p)=p'$、$M(p)=xp$"
+        ],
+        "steps": [
+          "逐项展示有限矩阵乘积的迹相等。",
+          "假设交换子为单位算子，取迹得到矛盾。",
+          "在实多项式空间展示导数与乘法算子。",
+          "利用乘积求导规则验证 $(DM-MD)(p)=p$，说明维数假设。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-03",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "draft-c37-05:codex-deep-v3",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-03\\draft.jsonl",
+        "source_sha256": "afcd74e3e4d285e77802f29ab182f9dce80cfe5833b983feb8af34694ed15331",
+        "original_id": "draft-c37-05",
+        "prior_parent_training_ids": [
+          "linalg-061"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "d550fef646db4a71beaf9ac606a479f8c36134df981e24464db14981aa70f2f5",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [
+          "用明确基矩阵/坐标等式固定换基方向，向量本身不变"
+        ],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v3.jsonl",
+          "sha256": "20a414c56bcb8fb86e221680f60c142a3365bf2e639338b57da603edd61a2aea",
+          "versioned_id": "codex-repair-20261005-batch-03-draft-c37-05"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "PASS_MATH_SCENE_TEXT_CANDIDATE_ONLY",
+      "admitted": false,
+      "animation_render_verified": false,
+      "deep_core_revision": {
+        "reviewed_at": "2026-10-08T00:11:25.753852+08:00",
+        "parent_record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+        "parent_math_sha256": "e8686bb1514cfe3f08cd93b288aac196cf2d36cdce9464db360bc1fc8cbe07a5",
+        "parent_core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+        "reason": "Same/embedded evaluation core removed with actual task and proof revision",
+        "new_render": "NOT_RUN",
+        "production": "CLOSED"
+      }
+    }
+  },
+  {
+    "id": "draft-c30-01",
+    "before": {
+      "id": "draft-c30-01",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "concept": "多项式平移展开",
+      "concept_id": "C30",
+      "parent_training_ids": [
+        "linalg-052"
+      ],
+      "problem": "求次数不超过$5$、在$x=1$至少有三重零点、在$x=2$至少有二重零点且$f(0)=1$的全部实多项式，并写成$x-1$的幂。",
+      "solution": "零点重数给$(x-1)^3(x-2)^2\\mid f$。由次数上界，$f=c(x-1)^3(x-2)^2$；$f(0)=1$给$-4c=1$，即$c=-1/4$。令$u=x-1$，则$f=-u^3(u-1)^2/4=-u^5/4+u^4/2-u^3/4$。因为$c\\ne0$且两个因子互素，重数分别恰为$3$与$2$。所有条件均验证，且常数被唯一确定，故解唯一。",
+      "answer": "$f=-\\frac14(x-1)^3(x-2)^2=-\\frac14(x-1)^5+\\frac12(x-1)^4-\\frac14(x-1)^3$，唯一。",
+      "method": "重数约束的Hermite型平移重建",
+      "difficulty": "基础",
+      "variant_kind": "两个节点的重数条件+次数与归一化唯一性",
+      "scene_spec": {
+        "objects": [
+          "重数$3,2$与次数$\\le5$",
+          "$f(0)=1$归一化",
+          "关于$u=x-1$的有限恒等式"
+        ],
+        "steps": [
+          "第一步:把重数条件改写为整除条件。",
+          "第二步:由次数上界限制为一个常数倍。",
+          "第三步:归一化确定常数并平移展开。",
+          "第四步:验证精确重数和唯一性。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-04",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-04-draft-c30-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "original_id": "draft-c30-01",
+        "prior_parent_training_ids": [
+          "linalg-052"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "57320599bd5b6b2ca4cc97446dc1dd0f91cbdf0d819a4b5be958a99c93427340",
+        "previous_hold_reasons": [
+          "DIRECT_POLYNOMIAL_SHIFT_TEMPLATE",
+          "SECONDARY_FINITE_TAYLOR_TEMPLATE"
+        ],
+        "math_correction_notes": [],
+        "revised_in_place": true,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+          "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+          "versioned_id": "codex-repair-20261005-batch-04-draft-c30-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e15ce999256e86cefe8f79d3e42c0001aa8ef7f082b095bcf5ac8b69f5e0d822",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    },
+    "after": {
+      "id": "draft-c30-01",
+      "category": "高等代数",
+      "sub_category": "多项式",
+      "concept": "按重数及归一化条件唯一构造多项式",
+      "concept_id": "C30",
+      "parent_training_ids": [
+        "linalg-052"
+      ],
+      "problem": "求次数不超过 $5$、在 $x=1$ 至少有三重零点、在 $x=2$ 至少有二重零点且 $f(0)=1$ 的全部实多项式，并证明解的唯一性及两个零点的精确重数。",
+      "solution": "两处重数条件给出 $(x-1)^3\\mid f$、$(x-2)^2\\mid f$。两个因子互素，故 $(x-1)^3(x-2)^2\\mid f$。由 $\\deg f\\le5$，必有 $f=c(x-1)^3(x-2)^2$，其中 $c\\in\\mathbb R$。归一化 $f(0)=1$ 给出 $-4c=1$，所以 $c=-\\frac14$，非零。在 $x=1$ 处其余因子 $c(x-2)^2$ 的值为 $-\\frac14\\ne0$，故重数恰为 $3$；在 $x=2$ 处其余因子 $c(x-1)^3$ 的值为 $-\\frac14\\ne0$，故重数恰为 $2$。所得多项式满足全部条件，常数 $c$ 被唯一确定，所以解唯一。",
+      "answer": "唯一解 $f(x)=-\\frac14(x-1)^3(x-2)^2$；$x=1,2$ 的零点重数分别恰为 $3,2$。",
+      "method": "互素重数整除、次数约束与归一化唯一性",
+      "difficulty": "基础",
+      "variant_kind": "structural-isolation-rewrite",
+      "scene_spec": {
+        "objects": [
+          "两处重数条件 $(x-1)^3\\mid f$、$(x-2)^2\\mid f$",
+          "互素因子乘积与次数界 $5$",
+          "归一化 $-4c=1\\Rightarrow c=-\\frac14$",
+          "两个剩余因子在对应零点处均为 $-\\frac14\\ne0$"
+        ],
+        "steps": [
+          "从互素性推出乘积整除。",
+          "由次数界把可行多项式限制为单个常数倍。",
+          "由 $f(0)=1$ 精确确定常数。",
+          "验证精确重数并证明唯一性。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-04",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "draft-c30-01:codex-deep-v3",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-04\\draft.jsonl",
+        "source_sha256": "4a8930a557e05b01cec58257879ecd5bd9679b9c08e3e478767c363642ebe382",
+        "original_id": "draft-c30-01",
+        "prior_parent_training_ids": [
+          "linalg-052"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "57320599bd5b6b2ca4cc97446dc1dd0f91cbdf0d819a4b5be958a99c93427340",
+        "previous_hold_reasons": [
+          "DIRECT_POLYNOMIAL_SHIFT_TEMPLATE",
+          "SECONDARY_FINITE_TAYLOR_TEMPLATE"
+        ],
+        "math_correction_notes": [],
+        "revised_in_place": true,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v3.jsonl",
+          "sha256": "6079948e8d5cee357ee2bd98e04ff7934127ef7674d4c2d150f31a274aa63445",
+          "versioned_id": "codex-repair-20261005-batch-04-draft-c30-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e15ce999256e86cefe8f79d3e42c0001aa8ef7f082b095bcf5ac8b69f5e0d822",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "PASS_MATH_SCENE_TEXT_CANDIDATE_ONLY",
+      "admitted": false,
+      "animation_render_verified": false,
+      "deep_core_revision": {
+        "reviewed_at": "2026-10-08T00:11:25.753852+08:00",
+        "parent_record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+        "parent_math_sha256": "e85231a767fc9eb129d4e0baf10015cf3c08a6ce3f40e3b8a65ebd8a4a4ef965",
+        "parent_core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+        "reason": "Same/embedded evaluation core removed with actual task and proof revision",
+        "new_render": "NOT_RUN",
+        "production": "CLOSED"
+      }
+    }
+  }
+]

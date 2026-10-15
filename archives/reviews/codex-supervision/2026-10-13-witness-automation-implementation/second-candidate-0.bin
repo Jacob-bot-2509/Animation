@@ -1,0 +1,255 @@
+"""Local-only witness transfer primitives. Never launch probes or training."""
+from __future__ import annotations
+import contextlib, ctypes, hashlib, json, os, re, sys, time, uuid
+sys.dont_write_bytecode = True
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+RAW_NAMES = ("receiver.jsonl", "receiver.jsonl.summary.json", "stdout.bin",
+             "stderr.bin", "process-exit.json")
+V3_PINS = {
+    "tools/start_witness_capture.ps1": "39032c5e3b14d699715047cf9f6acbd2bef1c9265916d574ae9f90ca0f3e3545",
+    "tools/inspect_witness_evidence.py": "87cb989fd1f538b89a53f04e764b4cd5f0eb459bde89ac3a5517846cfa199b23",
+    "tools/sandbox_external_test_driver.py": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15",
+    "witness_receiver_v3.exe": "02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf",
+}
+ROUND = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}")
+GUID = re.compile(r"[0-9a-f]{32}")
+HEX = re.compile(r"[0-9a-f]{64}")
+
+class TransferError(ValueError):
+    def __init__(self, code, detail=""):
+        self.code, self.detail = code, str(detail)
+        super().__init__(code + (": " + self.detail if detail else ""))
+
+def require(condition, code, detail=""):
+    if not condition:
+        raise TransferError(code, detail)
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+def encoded(data):
+    return (json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
+
+def _pairs(pairs):
+    result = {}
+    for key, value in pairs:
+        require(key not in result, "DUPLICATE_JSON_KEY", key)
+        result[key] = value
+    return result
+
+def decode(raw):
+    return json.loads(raw.decode("utf-8-sig"), object_pairs_hook=_pairs,
+                      parse_constant=lambda value: (_ for _ in ()).throw(TransferError("NONFINITE_JSON", value)))
+
+def cloud_tag(tag):
+    return type(tag) is int and tag & 0xffff0fff == 0x9000001a and not tag & 0x20000000
+
+def checked(value, root=None, *, write=False, cloud=False):
+    path = Path(value).absolute()
+    if write and os.name == "nt":
+        for key in ("SystemRoot", "ProgramFiles", "ProgramFiles(x86)", "ProgramData"):
+            protected = os.environ.get(key)
+            require(not protected or not path.is_relative_to(Path(protected).absolute()),
+                    "SYSTEM_WRITE_FORBIDDEN", path)
+    require(".." not in path.parts, "PATH_TRAVERSAL", path)
+    if os.name == "nt":
+        require(not str(path).startswith("\\\\"), "UNC_PATH_NOT_ALLOWED")
+        require(all(":" not in part for part in path.parts[1:]), "ADS_PATH_NOT_ALLOWED")
+    if root is not None:
+        require(path.is_relative_to(Path(root).absolute()), "PATH_OUTSIDE_ROOT", path)
+    for part in (path, *path.parents):
+        if part.exists() or part.is_symlink():
+            info = part.lstat()
+            tag = getattr(info, "st_reparse_tag", 0)
+            reparse = bool(getattr(info, "st_file_attributes", 0) & 0x400)
+            require(not part.is_symlink(), "SYMLINK_NOT_ALLOWED", part)
+            require(not reparse or cloud and cloud_tag(tag), "REPARSE_NOT_ALLOWED", part)
+        if write:
+            require(not (part / "delivery-manifest.json").is_file(), "FROZEN_DIRECTORY", part)
+    return path
+
+def _handle_path(stream):
+    if os.name != "nt":
+        return None
+    import msvcrt
+    api = ctypes.WinDLL("kernel32", use_last_error=True)
+    fn = api.GetFinalPathNameByHandleW
+    fn.argtypes = [ctypes.c_void_p, ctypes.c_wchar_p, ctypes.c_uint32, ctypes.c_uint32]
+    fn.restype = ctypes.c_uint32
+    handle = msvcrt.get_osfhandle(stream.fileno())
+    buf = ctypes.create_unicode_buffer(32768)
+    count = fn(handle, buf, len(buf), 0)
+    require(0 < count < len(buf), "FINAL_HANDLE_PATH_UNAVAILABLE")
+    value = buf.value
+    require(not value.startswith("\\\\?\\UNC\\"), "UNC_HANDLE_NOT_ALLOWED")
+    return Path(value[4:] if value.startswith("\\\\?\\") else value).absolute()
+
+def read_bytes(path, *, root=None, limit=268435456, cloud=False):
+    path = checked(path, root, cloud=cloud)
+    with path.open("rb") as stream:
+        target = _handle_path(stream)
+        if target is not None:
+            expected = path.resolve()
+            require(target == expected, "HANDLE_PATH_CHANGED", path)
+            if root is not None:
+                require(target.is_relative_to(Path(root).resolve()), "HANDLE_OUTSIDE_ROOT")
+        before = os.fstat(stream.fileno())
+        require(before.st_size <= limit, "FILE_TOO_LARGE", path)
+        raw = stream.read(limit + 1)
+        after = os.fstat(stream.fileno())
+    require(len(raw) <= limit, "FILE_TOO_LARGE", path)
+    require((before.st_size, before.st_mtime_ns, before.st_ino) ==
+            (after.st_size, after.st_mtime_ns, after.st_ino), "INPUT_CHANGED", path)
+    checked(path, root, cloud=cloud)
+    return raw
+
+def mkdir(path, root=None, cloud=False):
+    path = checked(path, root, write=True, cloud=cloud)
+    path.mkdir(parents=True, exist_ok=True)
+    return checked(path, root, write=True, cloud=cloud)
+
+def fresh(path, raw, *, root=None, cloud=False):
+    path = checked(path, root, write=True, cloud=cloud)
+    require(path.parent.is_dir(), "OUTPUT_PARENT_MISSING", path.parent)
+    with path.open("xb") as stream:
+        stream.write(raw)
+        stream.flush()
+        os.fsync(stream.fileno())
+        target = _handle_path(stream)
+        require(target is None or target == path.resolve(), "OUTPUT_HANDLE_CHANGED")
+    checked(path, root, cloud=cloud)
+    return sha(raw)
+
+def new_json(path, data, root=None):
+    return fresh(path, encoded(data), root=root)
+
+def atomic_json(path, data, root):
+    path = checked(path, root, write=True)
+    temp = path.with_name(path.name + "." + uuid.uuid4().hex + ".tmp")
+    fresh(temp, encoded(data), root=root)
+    checked(path, root, write=True)
+    os.replace(temp, path)
+
+def manifest_check(m):
+    require(type(m) is dict and set(m) == {
+        "schema", "purpose", "round", "capture_id", "receiver_run_id",
+        "wrapper_sha256", "exe_sha256", "files"}, "PACKAGE_SCHEMA")
+    require(m["schema"] == "witness-transfer-package-v1", "PACKAGE_SCHEMA")
+    require(m["purpose"] == "EXPERIMENT_TRANSFER", "FIXTURE_OR_UNKNOWN_PURPOSE")
+    require(type(m["round"]) is str and ROUND.fullmatch(m["round"]), "ROUND_INVALID")
+    for key in ("capture_id", "receiver_run_id"):
+        require(type(m[key]) is str and GUID.fullmatch(m[key]), "CAPTURE_ID_INVALID")
+    require(m["wrapper_sha256"] == V3_PINS["tools/start_witness_capture.ps1"] and
+            m["exe_sha256"] == V3_PINS["witness_receiver_v3.exe"], "V3_VERSION_MISMATCH")
+    require(type(m["files"]) is list and len(m["files"]) == 5, "PACKAGE_FILE_SET")
+    prefix = "capture/" + m["round"] + "-" + m["capture_id"] + "/"
+    expected = {prefix + name for name in RAW_NAMES}
+    paths = []
+    total = 0
+    for row in m["files"]:
+        require(type(row) is dict and set(row) == {"path", "bytes", "sha256"}, "FILE_ROW_SCHEMA")
+        require(type(row["path"]) is str and row["path"] in expected, "PACKAGE_PATH")
+        require(type(row["bytes"]) is int and 0 <= row["bytes"] <= 268435456, "FILE_LENGTH")
+        require(type(row["sha256"]) is str and HEX.fullmatch(row["sha256"]), "FILE_SHA")
+        total += row["bytes"]
+        paths.append(row["path"])
+    require(len(set(paths)) == 5 and set(paths) == expected and total <= 268435456,
+            "PACKAGE_FILE_SET_OR_SIZE")
+    return prefix
+
+def ready_check(r, filename):
+    require(type(r) is dict and set(r) == {"schema", "purpose", "round", "capture_id",
+        "package_sha256", "package_bytes", "manifest_sha256"}, "READY_SCHEMA")
+    require(r["schema"] == "witness-transfer-ready-v1" and r["purpose"] == "EXPERIMENT_TRANSFER",
+            "READY_PURPOSE")
+    require(type(r["round"]) is str and ROUND.fullmatch(r["round"]), "ROUND_INVALID")
+    require(type(r["capture_id"]) is str and GUID.fullmatch(r["capture_id"]), "CAPTURE_ID_INVALID")
+    for k in ("package_sha256", "manifest_sha256"):
+        require(type(r[k]) is str and HEX.fullmatch(r[k]), "READY_SHA")
+    require(filename == r["package_sha256"] + ".ready.json", "READY_FILENAME")
+    require(type(r["package_bytes"]) is int and 0 < r["package_bytes"] <= 1073741824, "PACKAGE_SIZE")
+
+def proof_check(m, blobs):
+    proof = decode(blobs["process-exit.json"])
+    require(proof.get("schema") == "witness-process-exit-v1" and proof.get("mode") == "SERVE",
+            "PROCESS_PROOF_SCHEMA")
+    require((proof.get("round"), proof.get("capture_id"), proof.get("receiver_run_id")) ==
+            (m["round"], m["capture_id"], m["receiver_run_id"]), "PROCESS_IDENTITY")
+    require(type(proof.get("exit_code")) is int, "PROCESS_RC_MISSING")
+    require(proof.get("wrapper_sha256") == m["wrapper_sha256"] and
+            proof.get("exe_before_sha256") == proof.get("exe_after_sha256") == m["exe_sha256"],
+            "PROCESS_SOURCE_BINDING")
+    require(proof.get("files") == {name: sha(blobs[name]) for name in RAW_NAMES[:-1]},
+            "PROCESS_RAW_HASHES")
+    require(proof.get("production_gate") == "CLOSED" and proof.get("certificate_written") is False,
+            "GATE_OR_CERTIFICATE_CHANGED")
+    return proof
+
+def load_config(path, *, execute=False, role="consumer"):
+    c = decode(read_bytes(path, limit=65536))
+    require(c.get("schema") == "witness-automation-config-v1" and
+            c.get("cloud_provider") == "OneDrive" and c.get("cloud_provider_user_approved") is True,
+            "CONFIG_PROVIDER")
+    require(c.get("production") == "CLOSED" and c.get("allow_probe_emission") is False and
+            c.get("allow_training_start") is False and type(c.get("max_concurrent_jobs")) is int and c.get("max_concurrent_jobs") == 1,
+            "CONFIG_SCOPE")
+    require(c.get("v3_source_pins") == V3_PINS, "CONFIG_V3_PINS")
+    if execute:
+        require(c.get("active") is True, "CONFIG_INACTIVE")
+        section = c["consumer" if role == "consumer" else "witness"]
+        required = ("sync_root", "jobs_root", "runtime_root") if role == "consumer" else (
+            "capture_root", "sync_root", "staging_root")
+        require(all(type(section.get(k)) is str and section[k] for k in required), "CONFIG_PATHS")
+        for rel, digest in V3_PINS.items():
+            if rel != "witness_receiver_v3.exe":
+                require(sha(read_bytes(ROOT / rel)) == digest, "SOURCE_VERSION_DRIFT", rel)
+        pins = c.get("automation_source_pins")
+        require(type(pins) is dict and set(pins) == {"tools/witness_transfer_common.py",
+            "tools/witness_pack.py", "tools/witness_consumer.py", "tools/witness_registered_adapter.py"},
+            "AUTOMATION_PINS_REQUIRED")
+        require(pins == STARTUP_PINS, "AUTOMATION_RESTART_REQUIRED")
+        for rel, digest in pins.items():
+            require(type(digest) is str and HEX.fullmatch(digest) and
+                    sha(read_bytes(ROOT / rel)) == digest, "AUTOMATION_VERSION_DRIFT", rel)
+        paths = [Path(section[k]).absolute() for k in required]
+        require(all(not a.is_relative_to(b) and not b.is_relative_to(a)
+                    for i, a in enumerate(paths) for b in paths[i + 1:]), "CONFIG_ROOT_OVERLAP")
+        if role == "consumer":
+            for k in ("jobs_root", "runtime_root"):
+                checked(section[k], ROOT / "reviews/witness-automation", write=True)
+        else:
+            checked(section["staging_root"], ROOT / "reviews/witness-automation", write=True)
+    return c
+
+@contextlib.contextmanager
+def lock(root):
+    root = mkdir(root)
+    path = checked(root / "worker.lock", root, write=True)
+    with path.open("a+b") as stream:
+        stream.seek(0)
+        stream.write(b"1")
+        stream.flush()
+        stream.seek(0)
+        try:
+            if os.name == "nt":
+                import msvcrt
+                msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+            else:
+                import fcntl
+                fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as exc:
+            raise TransferError("WORKER_BUSY", exc) from exc
+        try:
+            yield
+        finally:
+            if os.name == "nt":
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(stream, fcntl.LOCK_UN)
+
+# Pin the loaded tool cohort; a running worker never silently adopts newly edited files.
+STARTUP_PINS = {rel: sha((ROOT / rel).read_bytes()) if (ROOT / rel).is_file() else None
+                for rel in ("tools/witness_transfer_common.py", "tools/witness_pack.py",
+                            "tools/witness_consumer.py", "tools/witness_registered_adapter.py")}

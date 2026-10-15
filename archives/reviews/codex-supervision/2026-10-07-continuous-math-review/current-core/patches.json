@@ -1,0 +1,706 @@
+[
+  {
+    "id": "prob-041",
+    "reason": "恢复旧候选题干与答案中已确认的问号乱码；保持正尺度与精确正态概率。",
+    "before": {
+      "answer": "$\\mu$ ????????$\\sigma>0$ ????????? $\\sigma$ ???????? $\\frac1{\\sigma\\sqrt{2\\pi}}$ ???????? $1$?",
+      "category": "概率论",
+      "efficiency_tags": [
+        "均值和方差几何意义",
+        "概率密度函数高亮"
+      ],
+      "function_family": "正态分布",
+      "id": "prob-041",
+      "license": "Internal-Research-Use-Only",
+      "problem": "? $\\mu\\in\\mathbb R$?$\\sigma>0$?$X\\sim N(\\mu,\\sigma^2)$??????????????? $\\mu$ ? $\\sigma$ ?????????",
+      "scene_spec": {
+        "objects": [
+          "密度 $f_{\\mu,\\sigma}(x)$，参数 $\\mu\\in\\mathbb R,\\ \\sigma>0$",
+          "对称轴 $x=\\mu$，峰高标签 $\\frac1{\\sigma\\sqrt{2\\pi}}$",
+          "精确阴影标签 $\\operatorname{erf}(1/\\sqrt2)$ 和 $\\operatorname{erf}(\\sqrt2)$"
+        ],
+        "steps": [
+          "初始展示 $N(0,1)$，板书 $\\int_{\\mathbb R}\\phi(z)\\,dz=1$。",
+          "改变 $\\mu$ 仅平移曲线；改变 $\\sigma$ 时始终限制为正数，显示缩放公式 $f_{\\mu,\\sigma}(x)=\\sigma^{-1}\\phi((x-\\mu)/\\sigma)$。",
+          "对区间 $[\\mu-\\sigma,\\mu+\\sigma]$ 和 $[\\mu-2\\sigma,\\mu+2\\sigma]$ 填充阴影，只使用精确概率 $\\operatorname{erf}(1/\\sqrt2)$ 和 $\\operatorname{erf}(\\sqrt2)$。",
+          "展示变量代换 $z=(x-\\mu)/\\sigma$；面积结论来自精确积分，视觉阴影只作示意。"
+        ]
+      },
+      "solution": "密度为 $f_{\\mu,\\sigma}(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\exp(-\\frac{(x-\\mu)^2}{2\\sigma^2})$，其中 $\\sigma>0$。\n令 $\\phi(z)=\\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2}$，则 $f_{\\mu,\\sigma}(x)=\\sigma^{-1}\\phi((x-\\mu)/\\sigma)$：改变 $\\mu$ 只平移对称轴 $x=\\mu$；增大 $\\sigma$ 时横向按比例展宽，峰高 $f_{\\mu,\\sigma}(\\mu)=1/(\\sigma\\sqrt{2\\pi})$ 降低，总积分仍为 $1$。\n由 $Z=(X-\\mu)/\\sigma\\sim N(0,1)$，对任意 $c\\ge0$，\n$P(|X-\\mu|\\le c\\sigma)=\\frac{1}{\\sqrt{2\\pi}}\\int_{-c}^{c}e^{-z^2/2}\\,dz=\\operatorname{erf}(c/\\sqrt2)$。\n这里 $\\operatorname{erf}(u)=\\frac2{\\sqrt\\pi}\\int_0^u e^{-t^2}\\,dt$，所以 $c=1,2$ 时分别为 $\\operatorname{erf}(1/\\sqrt2)$、$\\operatorname{erf}(\\sqrt2)$。",
+      "source": "self-authored",
+      "sub_category": "常见分布",
+      "visual_style": "连续曲线与参数动态调整"
+    },
+    "after": {
+      "answer": "对称轴为 $x=\\mu$；改变 $\\mu$ 只作水平平移。$\\sigma>0$ 是横向尺度，峰高为 $\\frac1{\\sigma\\sqrt{2\\pi}}$，总积分为 $1$。对 $c\\ge0$，$P(|X-\\mu|\\le c\\sigma)=\\operatorname{erf}(c/\\sqrt2)$，其中 $\\operatorname{erf}(u)=\\frac2{\\sqrt\\pi}\\int_0^u e^{-t^2}\\,dt$。",
+      "category": "概率论",
+      "efficiency_tags": [
+        "均值和方差几何意义",
+        "概率密度函数高亮"
+      ],
+      "function_family": "正态分布",
+      "id": "prob-041",
+      "license": "Internal-Research-Use-Only",
+      "problem": "设 $\\mu\\in\\mathbb R$、$\\sigma>0$，且 $X\\sim N(\\mu,\\sigma^2)$。分析其概率密度函数，说明参数 $\\mu$ 和 $\\sigma$ 对曲线位置、宽度与峰高的影响，并用精确式表示区间 $[\\mu-c\\sigma,\\mu+c\\sigma]$ 的概率（$c\\ge0$）。",
+      "scene_spec": {
+        "objects": [
+          "密度 $f_{\\mu,\\sigma}(x)$，参数 $\\mu\\in\\mathbb R,\\ \\sigma>0$",
+          "对称轴 $x=\\mu$，峰高标签 $\\frac1{\\sigma\\sqrt{2\\pi}}$",
+          "精确阴影标签 $\\operatorname{erf}(1/\\sqrt2)$ 和 $\\operatorname{erf}(\\sqrt2)$"
+        ],
+        "steps": [
+          "初始展示 $N(0,1)$，板书 $\\int_{\\mathbb R}\\phi(z)\\,dz=1$。",
+          "改变 $\\mu$ 仅平移曲线；改变 $\\sigma$ 时始终限制为正数，显示缩放公式 $f_{\\mu,\\sigma}(x)=\\sigma^{-1}\\phi((x-\\mu)/\\sigma)$。",
+          "对区间 $[\\mu-\\sigma,\\mu+\\sigma]$ 和 $[\\mu-2\\sigma,\\mu+2\\sigma]$ 填充阴影，只使用精确概率 $\\operatorname{erf}(1/\\sqrt2)$ 和 $\\operatorname{erf}(\\sqrt2)$。",
+          "展示变量代换 $z=(x-\\mu)/\\sigma$；面积结论来自精确积分，视觉阴影只作示意。"
+        ]
+      },
+      "solution": "密度为 $f_{\\mu,\\sigma}(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\exp(-\\frac{(x-\\mu)^2}{2\\sigma^2})$，其中 $\\sigma>0$。\n令 $\\phi(z)=\\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2}$，则 $f_{\\mu,\\sigma}(x)=\\sigma^{-1}\\phi((x-\\mu)/\\sigma)$：改变 $\\mu$ 只平移对称轴 $x=\\mu$；增大 $\\sigma$ 时横向按比例展宽，峰高 $f_{\\mu,\\sigma}(\\mu)=1/(\\sigma\\sqrt{2\\pi})$ 降低，总积分仍为 $1$。\n由 $Z=(X-\\mu)/\\sigma\\sim N(0,1)$，对任意 $c\\ge0$，\n$P(|X-\\mu|\\le c\\sigma)=\\frac{1}{\\sqrt{2\\pi}}\\int_{-c}^{c}e^{-z^2/2}\\,dz=\\operatorname{erf}(c/\\sqrt2)$。\n这里 $\\operatorname{erf}(u)=\\frac2{\\sqrt\\pi}\\int_0^u e^{-t^2}\\,dt$，所以 $c=1,2$ 时分别为 $\\operatorname{erf}(1/\\sqrt2)$、$\\operatorname{erf}(\\sqrt2)$。",
+      "source": "self-authored",
+      "sub_category": "常见分布",
+      "visual_style": "连续曲线与参数动态调整",
+      "versioned_id": "codex-current-core-v1-20261007-prob-041",
+      "admitted": false,
+      "animation_render_verified": false,
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "strict_review": {
+        "core_math_verified": true,
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "5e3f8715cb7eda8e53c9ce4658b1ad4caeaf57e795daca920074702b86f82688",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "render_verified": false,
+        "admitted": false,
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW"
+      },
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl",
+        "parent_raw_sha256": "53af8eee14b90b58741267e47bb1276ca5fe28c703b3fb2edc18703e16a7a807",
+        "parent_record_sha256": "709f96f3e19cf35bbcb14582527248bfe3c357efe8cf9118020992e2efde06c3",
+        "reason": "恢复旧候选题干与答案中已确认的问号乱码；保持正尺度与精确正态概率。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "709f96f3e19cf35bbcb14582527248bfe3c357efe8cf9118020992e2efde06c3",
+    "after_record_sha256": "286754fa13ef01227f0b53f712cd107166a4b34a56b01d7541f467db6b09be7c",
+    "after_math_sha256": "5e3f8715cb7eda8e53c9ce4658b1ad4caeaf57e795daca920074702b86f82688"
+  },
+  {
+    "id": "draft-c31-01",
+    "reason": "整数可解性与同余分类替代跨测试集的固定三元 Cramer 计算模板。",
+    "before": {
+      "id": "draft-c31-01",
+      "category": "高等代数",
+      "sub_category": "线性方程组",
+      "concept": "克拉默法则",
+      "concept_id": "C31",
+      "parent_training_ids": [
+        "linalg-054"
+      ],
+      "problem": "用克拉默法则解线性方程组 $\\begin{cases}x+y+z=6\\\\ x-y+z=2\\\\ x+y-z=0\\end{cases}$。",
+      "solution": "系数行列式 $D=\\begin{vmatrix}1&1&1\\\\1&-1&1\\\\1&1&-1\\end{vmatrix}=1\\times((-1)\\times(-1)-1\\times1)-1\\times(1\\times(-1)-1\\times1)+1\\times(1\\times1-(-1)\\times1)=0+2+2=4$。$D_x=\\begin{vmatrix}6&1&1\\\\2&-1&1\\\\0&1&-1\\end{vmatrix}=6\\times0-1\\times(-2)+1\\times2=4$,$x=\\frac{D_x}{D}=1$。$D_y=\\begin{vmatrix}1&6&1\\\\1&2&1\\\\1&0&-1\\end{vmatrix}=1\\times(-2)-6\\times(-2)+1\\times(-2)=8$,$y=\\frac{D_y}{D}=2$。$D_z=\\begin{vmatrix}1&1&6\\\\1&-1&2\\\\1&1&0\\end{vmatrix}=1\\times(-2)-1\\times(-2)+6\\times2=12$,$z=\\frac{D_z}{D}=3$。验证:$1+2+3=6$,$1-2+3=2$,$1+2-3=0$。",
+      "answer": "$x=1$,$y=2$,$z=3$。",
+      "method": "克拉默法则(三阶)",
+      "difficulty": "基础",
+      "variant_kind": "维数变化:三阶方程组的克拉默求解(替代父题二阶)",
+      "scene_spec": {
+        "objects": [
+          "板书:方程组与系数行列式 $D=4$",
+          "三个高亮框:$D_x=4$、$D_y=8$、$D_z=12$ 的行列式",
+          "板书:比值 $x=1,y=2,z=3$",
+          "验证板书:逐式代入核对",
+          "标签「唯一解」"
+        ],
+        "steps": [
+          "第一步:写出方程组与系数行列式 $D$,展示其计算。",
+          "第二步:依次计算 $D_x$、$D_y$、$D_z$,高亮替换列的来源。",
+          "第三步:由比值公式得 $x=1,y=2,z=3$。",
+          "第四步:逐式代入验证。",
+          "第五步:标注方程组有唯一解。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-05",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "e628cfb0baa4de80a000aba896e2356e8fa199e82bee149315669843cf2778d9",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c31-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "original_id": "draft-c31-01",
+        "prior_parent_training_ids": [
+          "linalg-054"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "36d716aff074f0eabdbffed9bf2e9fbd607629ccf2096c1fccc39ebabf0cea5b",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+          "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+          "versioned_id": "codex-repair-20261005-batch-05-draft-c31-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e628cfb0baa4de80a000aba896e2356e8fa199e82bee149315669843cf2778d9",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    },
+    "after": {
+      "id": "draft-c31-01",
+      "category": "高等代数",
+      "sub_category": "线性方程组",
+      "concept": "克拉默法则与整数可解性",
+      "concept_id": "C31",
+      "parent_training_ids": [
+        "linalg-054"
+      ],
+      "problem": "设 $b_1,b_2,b_3\\in\\mathbb Z$。对方程组 $\\begin{cases}x+y+z=b_1\\\\x-y+z=b_2\\\\x+y-z=b_3\\end{cases}$，利用克拉默公式确定存在整数解 $(x,y,z)\\in\\mathbb Z^3$ 的充要条件，并说明整数解的唯一性。",
+      "solution": "系数矩阵 $A=\\begin{pmatrix}1&1&1\\\\1&-1&1\\\\1&1&-1\\end{pmatrix}$ 满足 $D=\\det A=4\\ne0$，故在 $\\mathbb Q^3$ 中始终有唯一解。按替换列行列式计算得 $D_x=2(b_2+b_3)$、$D_y=2(b_1-b_2)$、$D_z=2(b_1-b_3)$，因此 $x=\\frac{b_2+b_3}{2}$、$y=\\frac{b_1-b_2}{2}$、$z=\\frac{b_1-b_3}{2}$。\n若 $x,y,z\\in\\mathbb Z$，则 $b_1-b_2=2y$ 和 $b_1-b_3=2z$ 都是偶数，故 $b_1\\equiv b_2\\equiv b_3\\pmod2$。反之，该同余条件使上述三个分子均为偶数，三比值都是整数，且代入三式分别得到 $b_1,b_2,b_3$。因此条件充要；唯一性由 $\\det A\\ne0$ 得出。\n等价地，$A\\mathbb Z^3=\\{b\\in\\mathbb Z^3:b_1\\equiv b_2\\equiv b_3\\pmod2\\}$。两个独立奇偶差 $(b_1-b_2,b_1-b_3)\\bmod2$ 有 $4$ 种取值，故该子格在 $\\mathbb Z^3$ 中的指数为 $4$。",
+      "answer": "整数解存在当且仅当 $b_1\\equiv b_2\\equiv b_3\\pmod2$；存在时唯一，且 $(x,y,z)=\\left(\\frac{b_2+b_3}{2},\\frac{b_1-b_2}{2},\\frac{b_1-b_3}{2}\\right)$。",
+      "method": "克拉默公式与整数可解同余条件",
+      "difficulty": "基础",
+      "variant_kind": "由有理数唯一解转为整数解存在性的充要同余条件",
+      "scene_spec": {
+        "objects": [
+          "整数右端 $b\\in\\mathbb Z^3$ 与 $\\det A=4$",
+          "三比值 $\\frac{b_2+b_3}{2},\\frac{b_1-b_2}{2},\\frac{b_1-b_3}{2}$",
+          "奇偶条件 $b_1\\equiv b_2\\equiv b_3\\pmod2$",
+          "子格 $A\\mathbb Z^3$ 的 $4$ 个陪集示意"
+        ],
+        "steps": [
+          "展示题干、整数定义域及 $D=4$。",
+          "以符号右端计算 $D_x,D_y,D_z$，写出三个精确比值。",
+          "从整数解推出两个差为偶数，证明同余条件必要。",
+          "从同余条件证明三个分子均为偶数并逐式代入，证明充分。",
+          "用 $D\\ne0$ 证明唯一；以两个奇偶差解释子格指数 $4$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-CURRENT-CORE-v1-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-05",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "3834cbc22dd5354aaa44868c4b97d1e93915a52fd1ffafbd96e61dcc1029fbac",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-current-core-v1-20261007-draft-c31-01",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "original_id": "draft-c31-01",
+        "prior_parent_training_ids": [
+          "linalg-054"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "36d716aff074f0eabdbffed9bf2e9fbd607629ccf2096c1fccc39ebabf0cea5b",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+          "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+          "versioned_id": "codex-repair-20261005-batch-05-draft-c31-01"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "e628cfb0baa4de80a000aba896e2356e8fa199e82bee149315669843cf2778d9",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "admitted": false,
+      "animation_render_verified": false,
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "parent_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "parent_record_sha256": "25b7e1fb0f5e4d53ec83a498a0b1c45b1be5b230e5a09f7a86217e6a73577bb4",
+        "reason": "整数可解性与同余分类替代跨测试集的固定三元 Cramer 计算模板。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "25b7e1fb0f5e4d53ec83a498a0b1c45b1be5b230e5a09f7a86217e6a73577bb4",
+    "after_record_sha256": "77cad5f8c6eaace67bdcd7f36e6dcc12b4783c0d72af1b30f0f224309258f6e3",
+    "after_math_sha256": "3834cbc22dd5354aaa44868c4b97d1e93915a52fd1ffafbd96e61dcc1029fbac"
+  },
+  {
+    "id": "draft-c31-03",
+    "reason": "多项式环的整除与可去分母条件替代恒可逆含参三元计算模板。",
+    "before": {
+      "id": "draft-c31-03",
+      "category": "高等代数",
+      "sub_category": "线性方程组",
+      "concept": "克拉默法则",
+      "concept_id": "C31",
+      "parent_training_ids": [
+        "linalg-054"
+      ],
+      "problem": "用克拉默法则求方程组 $\\begin{cases}x+y+z=1\\\\ x+y+2z=2\\\\ x+2y+az=3\\end{cases}$ 的解，并说明解与参数 $a$ 的关系。",
+      "solution": "系数行列式 $D=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&a\\end{vmatrix}=1\\times(a-4)-1\\times(a-2)+1\\times(2-1)=-1$,与 $a$ 无关且非零,故对一切 $a$ 都有唯一解。$D_x=\\begin{vmatrix}1&1&1\\\\2&1&2\\\\3&2&a\\end{vmatrix}=1\\times(a-4)-1\\times(2a-6)+1\\times(4-3)=-a+3$;$D_y=\\begin{vmatrix}1&1&1\\\\1&2&2\\\\1&3&a\\end{vmatrix}=1\\times(2a-6)-1\\times(a-2)+1\\times(3-2)=a-3$;$D_z=\\begin{vmatrix}1&1&1\\\\1&1&2\\\\1&2&3\\end{vmatrix}=1\\times(3-4)-1\\times(3-2)+1\\times(2-1)=-1$。故 $x=\\frac{-a+3}{-1}=a-3$,$y=\\frac{a-3}{-1}=3-a$,$z=\\frac{-1}{-1}=1$。验证:$x+y+z=(a-3)+(3-a)+1=1$;$x+y+2z=0+2=2$;$x+2y+az=(a-3)+2(3-a)+a=3$。",
+      "answer": "$D=-1$ 与 $a$ 无关,对一切 $a$ 有唯一解 $x=a-3$,$y=3-a$,$z=1$。",
+      "method": "克拉默法则(三阶含参)",
+      "difficulty": "中等",
+      "variant_kind": "参数结构:系数行列式与参数无关的非平凡含参方程组,解线性依赖参数",
+      "scene_spec": {
+        "objects": [
+          "板书:方程组与行列式 $D=-1$(高亮「与 $a$ 无关」)",
+          "板书:$D_x=-a+3$、$D_y=a-3$、$D_z=-1$ 的计算",
+          "高亮框:$x=a-3$,$y=3-a$,$z=1$",
+          "验证板书:三式代入逐项核对",
+          "标签「对一切 $a$ 唯一解」"
+        ],
+        "steps": [
+          "第一步:计算系数行列式,高亮结果 $-1$ 不含 $a$。",
+          "第二步:依次计算三个替换行列式。",
+          "第三步:由比值公式得解,注意分母为 $-1$ 的符号处理。",
+          "第四步:展示三式代入验证。",
+          "第五步:总结:参数位于系数矩阵 $a_{33}$ 位置,但其代数余子式为零,故 $D$ 与 $a$ 无关、唯一性不变,解线性依赖 $a$。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-REPAIR-v4-final-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-05",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "992eee7cb4d0b27315cc62526e57eaa538612f5ba5ab47d719dfbc9ca2d6e79f",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-05-draft-mail-reverification/selected-math-review-final.json",
+        "verification_basis": "HASH_BOUND_PRIOR_MATH_PLUS_EQUIVALENT_NOTATION_AND_SCENE_REVIEW_EXACT_41_CHECKS",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-repair-v4-final-20261005-batch-05-draft-c31-03",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "original_id": "draft-c31-03",
+        "prior_parent_training_ids": [
+          "linalg-054"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "428063cc8a5d049cedcc20aae1d064328c37c3f3754dbb51f268b7f475805411",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+          "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+          "versioned_id": "codex-repair-20261005-batch-05-draft-c31-03"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "992eee7cb4d0b27315cc62526e57eaa538612f5ba5ab47d719dfbc9ca2d6e79f",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_REVIEW_COMPLETE_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "admitted": false,
+      "animation_render_verified": false
+    },
+    "after": {
+      "id": "draft-c31-03",
+      "category": "高等代数",
+      "sub_category": "线性方程组",
+      "concept": "克拉默法则与多项式环可解性",
+      "concept_id": "C31",
+      "parent_training_ids": [
+        "linalg-054"
+      ],
+      "problem": "设 $p,q,r\\in\\mathbb R[t]$。在多项式环 $\\mathbb R[t]$ 中讨论方程组 $\\begin{cases}t x+y=p\\\\(t-1)y+z=q\\\\z=r\\end{cases}$ 是否有多项式解 $x,y,z\\in\\mathbb R[t]$。借助克拉默公式给出存在的充要条件及解，并证明唯一性。",
+      "solution": "在有理函数域 $\\mathbb R(t)$ 中，系数行列式 $D=t(t-1)$ 是非零多项式，故方程组有唯一有理函数解。三个替换列行列式为 $D_x=(t-1)p-q+r$、$D_y=t(q-r)$、$D_z=t(t-1)r$，故 $z=r$、$y=\\frac{q-r}{t-1}$、$x=\\frac{(t-1)p-q+r}{t(t-1)}$。\n令 $N=(t-1)p-q+r$。若存在多项式解，则第二式在 $t=1$ 给出 $q(1)=r(1)$；第二式在 $t=0$ 给出 $y(0)=r(0)-q(0)$，第一式在 $t=0$ 又给出 $p(0)=y(0)$，故 $p(0)+q(0)-r(0)=0$。\n反之，$q(1)=r(1)$ 使 $q-r$ 被 $t-1$ 整除。两个条件还使 $N(1)=0$ 且 $N(0)=0$；因 $t$ 与 $t-1$ 互素，因式定理给出 $t(t-1)\\mid N$。因此上述 $x,y,z$ 均为多项式。将表达式代入三式即可验证是解。\n若有两个多项式解，取差得到 $\\Delta z=0$、$(t-1)\\Delta y=0$、$t\\Delta x=0$。$\\mathbb R[t]$ 无零因子，且 $t,t-1$ 为非零多项式，故三个差都为零，解唯一。这里不能在 $\\mathbb R[t]$ 中把非零的 $t(t-1)$ 当作可逆常数；整除条件正是分母能消去的必要条件。",
+      "answer": "存在多项式解当且仅当 $q(1)=r(1)$ 且 $p(0)+q(0)-r(0)=0$。存在时唯一，且 $z=r$、$y=\\frac{q-r}{t-1}$、$x=\\frac{(t-1)p-q+r}{t(t-1)}$；两项商均由充要条件保证属于 $\\mathbb R[t]$。",
+      "method": "克拉默公式、因式定理与多项式整除",
+      "difficulty": "中等",
+      "variant_kind": "由实数域含参唯一解转为多项式环内的整除条件",
+      "scene_spec": {
+        "objects": [
+          "定义域 $\\mathbb R[t]$ 与 $D=t(t-1)$",
+          "有理函数解与分母 $t,t-1$",
+          "条件 $q(1)=r(1)$、$p(0)+q(0)-r(0)=0$",
+          "因式定理 $N(0)=N(1)=0\\Longrightarrow t(t-1)\\mid N$"
+        ],
+        "steps": [
+          "展示题干并明确未知量是多项式；非零多项式不一定是单位。",
+          "在 $\\mathbb R(t)$ 中推导三个替换列行列式与比值。",
+          "在 $t=1,0$ 处代入原方程，推出两个必要条件。",
+          "用因式定理和互素性证明分母可消去，代入原方程证明充分。",
+          "用无零因子性质证明唯一，板书完整充要条件与多项式商。"
+        ]
+      },
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "draft_status": "CODEX-CURRENT-CORE-v1-NOT-ADMITTED",
+      "strict_review": {
+        "core_math_verified": true,
+        "exact_expression_required": true,
+        "rational_numbers": "fractions_or_integers",
+        "user_review_new_version": "DELEGATED_TO_CODEX_COMPLETED",
+        "render_verified": false,
+        "admitted": false,
+        "source_batch": "batch-05",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "aa1a163e957801d3f49c5001e0762a643333ee1ed63e23d3c48b3e56fceaff4a",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW",
+        "admission_disposition": "MATH_VALID_PENDING_VERSION_BOUND_USER_DIVERSITY_ASSET_ACCEPTANCE"
+      },
+      "review_disposition": "MATH_VALID_PENDING_VERSION_BOUND_ACCEPTANCE",
+      "versioned_id": "codex-current-core-v1-20261007-draft-c31-03",
+      "revision_lineage": {
+        "source_path": "reviews\\2026-10-05-training-diversity-drafts\\batch-05\\draft.jsonl",
+        "source_sha256": "d37d937851dd65a04639ac056400cd3d508fd96a4cbec235d17dd573fb499084",
+        "original_id": "draft-c31-03",
+        "prior_parent_training_ids": [
+          "linalg-054"
+        ],
+        "historical_risk_not_reset": true,
+        "prior_corrected_record_sha256": "428063cc8a5d049cedcc20aae1d064328c37c3f3754dbb51f268b7f475805411",
+        "previous_hold_reasons": [],
+        "math_correction_notes": [],
+        "revised_in_place": false,
+        "version": "codex-repair-v4-final",
+        "additional_recheck_reason": null,
+        "previous_selected_version": {
+          "version": "codex-repair-v3",
+          "path": "reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v3.jsonl",
+          "sha256": "7365ad8b2df03906800f50e46c3f16fb8590eeb7cd45b5f9750f7e98d01c5e1e",
+          "versioned_id": "codex-repair-20261005-batch-05-draft-c31-03"
+        },
+        "previous_math_review_binding": {
+          "math_content_sha256": "992eee7cb4d0b27315cc62526e57eaa538612f5ba5ab47d719dfbc9ca2d6e79f",
+          "evidence": "reviews/codex-supervision/2026-10-05-batch-repair-execution/exact-reverification.json"
+        }
+      },
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "admitted": false,
+      "animation_render_verified": false,
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/candidate-sources/reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl",
+        "parent_raw_sha256": "fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063",
+        "parent_record_sha256": "dd7bb9d15c2e898c1bec639ed1bf94716f197b1a24b00e4c218b783a512bd2c1",
+        "reason": "多项式环的整除与可去分母条件替代恒可逆含参三元计算模板。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "dd7bb9d15c2e898c1bec639ed1bf94716f197b1a24b00e4c218b783a512bd2c1",
+    "after_record_sha256": "1549ac12089f694c3ff9f228a197e6a85b634e5b81c22acd749cca930a31fd33",
+    "after_math_sha256": "aa1a163e957801d3f49c5001e0762a643333ee1ed63e23d3c48b3e56fceaff4a"
+  },
+  {
+    "id": "eval-calc-027-s3",
+    "reason": "旧动画标签残留近似数值，改为与已复验题解一致的精确积分值。",
+    "before": {
+      "id": "eval-calc-027-s3",
+      "problem_id": "eval-calc-027",
+      "solution_id": "eval-calc-027-s3",
+      "method": "数值验证，辅助校验",
+      "category": "数学分析",
+      "sub_category": "重积分",
+      "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+      "solution": "积分区域为 $D=\\{(x,y):0\\le x\\le y\\le1\\}$。被积函数连续，故可交换积分次序：$I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1 y e^{y^2}\\,dy$。令 $u=y^2$，得到 $I=\\frac12\\int_0^1e^u\\,du=\\frac{e-1}{2}$。",
+      "answer": "$\\frac{e-1}{2}$",
+      "scene_spec": {
+        "objects": [
+          "$D=\\{(x,y):0\\le x\\le y\\le1\\}$",
+          "积分换序与代换"
+        ],
+        "steps": [
+          "画出三角形 $D$ 并标注被积函数连续，可以交换次序。",
+          "显示 $I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1y e^{y^2}\\,dy$。",
+          "令 $u=y^2$，得 $I=\\frac12\\int_0^1e^u\\,du=(e-1)/2$。"
+        ]
+      },
+      "function_family": "高斯型函数重积分",
+      "visual_style": "积分次序交换与代换",
+      "efficiency_tags": [
+        "二重黎曼和网格加密",
+        "数值 0.85914 与 $\\dfrac{e-1}{2}$ 同框对照"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "after": {
+      "id": "eval-calc-027-s3",
+      "problem_id": "eval-calc-027",
+      "solution_id": "eval-calc-027-s3",
+      "method": "数值验证，辅助校验",
+      "category": "数学分析",
+      "sub_category": "重积分",
+      "problem": "求二重积分 $\\displaystyle I=\\int_0^1\\!\\!\\int_x^1 e^{y^2}\\,dy\\,dx$。",
+      "solution": "积分区域为 $D=\\{(x,y):0\\le x\\le y\\le1\\}$。被积函数连续，故可交换积分次序：$I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1 y e^{y^2}\\,dy$。令 $u=y^2$，得到 $I=\\frac12\\int_0^1e^u\\,du=\\frac{e-1}{2}$。",
+      "answer": "$\\frac{e-1}{2}$",
+      "scene_spec": {
+        "objects": [
+          "$D=\\{(x,y):0\\le x\\le y\\le1\\}$",
+          "积分换序与代换"
+        ],
+        "steps": [
+          "画出三角形 $D$ 并标注被积函数连续，可以交换次序。",
+          "显示 $I=\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy=\\int_0^1y e^{y^2}\\,dy$。",
+          "令 $u=y^2$，得 $I=\\frac12\\int_0^1e^u\\,du=(e-1)/2$。"
+        ]
+      },
+      "function_family": "高斯型函数重积分",
+      "visual_style": "积分次序交换与代换",
+      "efficiency_tags": [
+        "三角域 $D=\\{(x,y):0\\le x\\le y\\le1\\}$ 与积分换序",
+        "精确积分 $I=\\frac12\\int_0^1e^u\\,du=\\frac{e-1}{2}$"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "versioned_id": "codex-current-core-v1-20261007-eval-calc-027-s3",
+      "admitted": false,
+      "animation_render_verified": false,
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "strict_review": {
+        "core_math_verified": true,
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "render_verified": false,
+        "admitted": false,
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW"
+      },
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "cba9ddfc2ca97e989ab67b05b94176e7596d4d227f5a0d4e4c583b5d5f1fbf2b",
+        "parent_record_sha256": "389ed5bf26c7ebdaa2d39067666d45f0067c07a41ebc8fe9a7b5f637adc57d53",
+        "reason": "旧动画标签残留近似数值，改为与已复验题解一致的精确积分值。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "389ed5bf26c7ebdaa2d39067666d45f0067c07a41ebc8fe9a7b5f637adc57d53",
+    "after_record_sha256": "6734cda1979eeee5cc3dadbf6783ffd068d38ca9c3afaead750299b4af5779d0",
+    "after_math_sha256": "c47785c33e019561e621763b1ac95c830f13bcf426ed523cf048d7e9f2a1c9eb"
+  },
+  {
+    "id": "eval-prob-008-s3",
+    "reason": "旧动画标签残留近似二项尾概率，改为已复验有限和及精确差值。",
+    "before": {
+      "id": "eval-prob-008-s3",
+      "problem_id": "eval-prob-008",
+      "solution_id": "eval-prob-008-s3",
+      "method": "方法对比讨论",
+      "category": "概率论",
+      "sub_category": "大数定律",
+      "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+      "solution": "记 $A=\\{|X-50|\\ge10\\}$。由 $E((X-50)^2)=25$，有 $P(A)\\le1/4$。精确概率为 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$。更细地，$25-100q=E(((X-50)^2-100)\\mathbf1_A)+E((X-50)^2\\mathbf1_{A^c})>0$；两项非负，第一项中 $X=0$ 的贡献严格为正。于是 $q<1/4$，且精确差值为 $\\frac14-q=\\frac{2^{97}-\\sum_{k=0}^{40}\\binom{100}{k}}{2^{99}}>0$。",
+      "answer": "上界 $\\frac14$；精确值 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$；差 $\\frac14-q=\\frac{2^{97}-\\sum_{k=0}^{40}\\binom{100}{k}}{2^{99}}>0$。",
+      "scene_spec": {
+        "objects": [
+          "切比雪夫上界",
+          "精确尾概率和差值"
+        ],
+        "steps": [
+          "显示 $E(X)=50$、$\\operatorname{Var}(X)=25$，从而 $P(|X-50|\\ge10)\\le1/4$。",
+          "由对称性显示 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$。",
+          "显示精确差值 $1/4-q=(2^{97}-\\sum_{k=0}^{40}\\binom{100}{k})/2^{99}>0$。",
+          "严格性来自正概率的 $X=0$ 项使平方偏差严格大于阈值 $100$。"
+        ]
+      },
+      "function_family": "二项分布与切比雪夫",
+      "visual_style": "尾部概率对比条",
+      "efficiency_tags": [
+        "切比雪夫上界与精确值 0.0569 的对比条",
+        "\"分布无关界 vs 分布相关值\"的标注"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "after": {
+      "id": "eval-prob-008-s3",
+      "problem_id": "eval-prob-008",
+      "solution_id": "eval-prob-008-s3",
+      "method": "方法对比讨论",
+      "category": "概率论",
+      "sub_category": "大数定律",
+      "problem": "设 $X\\sim B\\!\\left(100,\\dfrac{1}{2}\\right)$。用切比雪夫不等式给出 $P(|X-50|\\ge 10)$ 的上界，并与精确值比较。",
+      "solution": "记 $A=\\{|X-50|\\ge10\\}$。由 $E((X-50)^2)=25$，有 $P(A)\\le1/4$。精确概率为 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$。更细地，$25-100q=E(((X-50)^2-100)\\mathbf1_A)+E((X-50)^2\\mathbf1_{A^c})>0$；两项非负，第一项中 $X=0$ 的贡献严格为正。于是 $q<1/4$，且精确差值为 $\\frac14-q=\\frac{2^{97}-\\sum_{k=0}^{40}\\binom{100}{k}}{2^{99}}>0$。",
+      "answer": "上界 $\\frac14$；精确值 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$；差 $\\frac14-q=\\frac{2^{97}-\\sum_{k=0}^{40}\\binom{100}{k}}{2^{99}}>0$。",
+      "scene_spec": {
+        "objects": [
+          "切比雪夫上界",
+          "精确尾概率和差值"
+        ],
+        "steps": [
+          "显示 $E(X)=50$、$\\operatorname{Var}(X)=25$，从而 $P(|X-50|\\ge10)\\le1/4$。",
+          "由对称性显示 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$。",
+          "显示精确差值 $1/4-q=(2^{97}-\\sum_{k=0}^{40}\\binom{100}{k})/2^{99}>0$。",
+          "严格性来自正概率的 $X=0$ 项使平方偏差严格大于阈值 $100$。"
+        ]
+      },
+      "function_family": "二项分布与切比雪夫",
+      "visual_style": "尾部概率对比条",
+      "efficiency_tags": [
+        "切比雪夫上界 $\\frac14$ 与精确尾概率 $q=2^{-99}\\sum_{k=0}^{40}\\binom{100}{k}$",
+        "精确正差值 $\\frac14-q=\\frac{2^{97}-\\sum_{k=0}^{40}\\binom{100}{k}}{2^{99}}>0$"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "versioned_id": "codex-current-core-v1-20261007-eval-prob-008-s3",
+      "admitted": false,
+      "animation_render_verified": false,
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "strict_review": {
+        "core_math_verified": true,
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "d4c7f33e909c14b48a24b8a23d577cd31a21687500df4aca0610510078c0b779",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "render_verified": false,
+        "admitted": false,
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW"
+      },
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+        "parent_raw_sha256": "cba9ddfc2ca97e989ab67b05b94176e7596d4d227f5a0d4e4c583b5d5f1fbf2b",
+        "parent_record_sha256": "3e783d93788ce06c685f8b706be257a972697ca08d8969796d1a9a9ae99de1b5",
+        "reason": "旧动画标签残留近似二项尾概率，改为已复验有限和及精确差值。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "3e783d93788ce06c685f8b706be257a972697ca08d8969796d1a9a9ae99de1b5",
+    "after_record_sha256": "57944b3a5498c92c812181fd37a8372f02e9cdbc56af58ee34655a1e4f64c256",
+    "after_math_sha256": "d4c7f33e909c14b48a24b8a23d577cd31a21687500df4aca0610510078c0b779"
+  },
+  {
+    "id": "test-prob-008",
+    "reason": "旧动画标签仍使用小数均值，改为分数，并将图示与概率收敛证明对应。",
+    "before": {
+      "id": "test-prob-008",
+      "category": "概率论",
+      "sub_category": "切比雪夫×大数定律",
+      "problem": "独立投掷均匀骰子 $n$ 次，设 $\\bar X_n$ 为平均点数。用切比雪夫不等式给出 $P(|\\bar X_n-\\frac72|\\ge\\frac1{10})$ 的上界，并说明 $n\\to\\infty$ 时该概率趋于 $0$。",
+      "solution": "每次点数 $X_i$ 在 $1,\\ldots,6$ 上等可能，故 $E(X_i)=\\frac16\\sum_{k=1}^6k=\\frac72$，$E(X_i^2)=\\frac16\\sum_{k=1}^6k^2=\\frac{91}{6}$，$\\operatorname{Var}(X_i)=\\frac{91}{6}-\\frac{49}{4}=\\frac{35}{12}$。独立性给出 $E(\\bar X_n)=\\frac72$，$\\operatorname{Var}(\\bar X_n)=\\frac{35}{12n}$。因此 $P(|\\bar X_n-\\frac72|\\ge\\frac1{10})\\le\\min\\{1,\\frac{35}{12n}\\cdot100\\}=\\min\\{1,\\frac{875}{3n}\\}$。该非负上界趋于 $0$，由夹逼定理所求概率也趋于 $0$。",
+      "answer": "上界 $\\min\\{1,\\frac{875}{3n}\\}$；当 $n\\to\\infty$ 时概率趋于 $0$。",
+      "scene_spec": {
+        "objects": [
+          "独立骰子的精确矩",
+          "平均数的概率上界"
+        ],
+        "steps": [
+          "独立点数满足 $E(X_i)=7/2$、$\\operatorname{Var}(X_i)=35/12$。",
+          "显示 $\\operatorname{Var}(\\overline X_n)=35/(12n)$。",
+          "阈值为 $1/10$，显示 $P(|\\overline X_n-7/2|\\ge1/10)\\le\\min\\{1,875/(3n)\\}\\to0$。",
+          "样本轨迹仅作示意；概率收敛由精确上界证明。"
+        ]
+      },
+      "function_family": "切比雪夫与大数定律",
+      "visual_style": "均值轨迹收敛",
+      "efficiency_tags": [
+        "样本均值轨迹收敛于 3.5",
+        "上界随 $n$ 衰减曲线"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only"
+    },
+    "after": {
+      "id": "test-prob-008",
+      "category": "概率论",
+      "sub_category": "切比雪夫×大数定律",
+      "problem": "独立投掷均匀骰子 $n$ 次，设 $\\bar X_n$ 为平均点数。用切比雪夫不等式给出 $P(|\\bar X_n-\\frac72|\\ge\\frac1{10})$ 的上界，并说明 $n\\to\\infty$ 时该概率趋于 $0$。",
+      "solution": "每次点数 $X_i$ 在 $1,\\ldots,6$ 上等可能，故 $E(X_i)=\\frac16\\sum_{k=1}^6k=\\frac72$，$E(X_i^2)=\\frac16\\sum_{k=1}^6k^2=\\frac{91}{6}$，$\\operatorname{Var}(X_i)=\\frac{91}{6}-\\frac{49}{4}=\\frac{35}{12}$。独立性给出 $E(\\bar X_n)=\\frac72$，$\\operatorname{Var}(\\bar X_n)=\\frac{35}{12n}$。因此 $P(|\\bar X_n-\\frac72|\\ge\\frac1{10})\\le\\min\\{1,\\frac{35}{12n}\\cdot100\\}=\\min\\{1,\\frac{875}{3n}\\}$。该非负上界趋于 $0$，由夹逼定理所求概率也趋于 $0$。",
+      "answer": "上界 $\\min\\{1,\\frac{875}{3n}\\}$；当 $n\\to\\infty$ 时概率趋于 $0$。",
+      "scene_spec": {
+        "objects": [
+          "独立骰子的精确矩",
+          "平均数的概率上界"
+        ],
+        "steps": [
+          "独立点数满足 $E(X_i)=7/2$、$\\operatorname{Var}(X_i)=35/12$。",
+          "显示 $\\operatorname{Var}(\\overline X_n)=35/(12n)$。",
+          "阈值为 $1/10$，显示 $P(|\\overline X_n-7/2|\\ge1/10)\\le\\min\\{1,875/(3n)\\}\\to0$。",
+          "样本轨迹仅作示意；概率收敛由精确上界证明。"
+        ]
+      },
+      "function_family": "切比雪夫与大数定律",
+      "visual_style": "均值轨迹收敛",
+      "efficiency_tags": [
+        "独立公平骰子均值 $E(X_i)=\\frac72$",
+        "精确概率上界 $\\min\\{1,\\frac{875}{3n}\\}$ 趋于 $0$"
+      ],
+      "source": "self-authored",
+      "license": "Internal-Research-Use-Only",
+      "versioned_id": "codex-current-core-v1-20261007-test-prob-008",
+      "admitted": false,
+      "animation_render_verified": false,
+      "review_status": "CODEX_MATH_AND_SCENE_TEXT_REVIEWED_PENDING_GLOBAL_ISOLATION",
+      "strict_review": {
+        "core_math_verified": true,
+        "text_math_fields_reviewed": true,
+        "scene_text_reviewed": true,
+        "math_content_sha256": "5e9d98a66cdcb954c93b5ccd7952e2592b9b9481456846a696554e5423d1702c",
+        "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/current-core/patch-review.json",
+        "render_verified": false,
+        "admitted": false,
+        "verification_basis": "CURRENT_EXACT_PATCH_PROOF_AND_SCENE_TEXT_REVIEW"
+      },
+      "current_revision_lineage": {
+        "parent_path": "reviews/codex-supervision/2026-10-07-continuous-math-review/test-review/candidate-sources/data/v2/test/dataset_test.jsonl",
+        "parent_raw_sha256": "72f3a8a8461a2ca60f8a27c285f1b99010ce52da010b0fbbaa67a8713b6dc2fd",
+        "parent_record_sha256": "8b89707756f7d0f87fa5f83e95d8accf7023fb7d4460ef8851dd97f5c11b7ea5",
+        "reason": "旧动画标签仍使用小数均值，改为分数，并将图示与概率收敛证明对应。",
+        "native_render": "UNVERIFIED",
+        "semantic_isolation": "NOT_ESTABLISHED"
+      }
+    },
+    "before_record_sha256": "8b89707756f7d0f87fa5f83e95d8accf7023fb7d4460ef8851dd97f5c11b7ea5",
+    "after_record_sha256": "389e68cb50a48bf8e0deb76b0c0821fbc0044b50cad3184d79a7457e8cb894aa",
+    "after_math_sha256": "5e9d98a66cdcb954c93b5ccd7952e2592b9b9481456846a696554e5423d1702c"
+  }
+]

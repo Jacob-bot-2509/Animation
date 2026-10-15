@@ -1,0 +1,55 @@
+{
+  "production_gate": "CLOSED",
+  "records": [
+    {
+      "name": "file_and_external_network",
+      "result": {
+        "rc": 0,
+        "stdout": "{\"file_read_outside\": {\"outcome\": \"denied\", \"winerror\": null}, \"file_write_outside\": {\"outcome\": \"denied\", \"winerror\": null}, \"cross_run_write\": {\"outcome\": \"allowed\"}, \"file_write_runtime\": {\"outcome\": \"denied\", \"winerror\": null}, \"tcp_external_v4\": {\"outcome\": \"denied\", \"winerror\": 10013}, \"tcp_external_v6\": {\"outcome\": \"denied\", \"winerror\": 10013}}\r\n",
+        "stderr": "",
+        "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-a5dd69f4593b4c9f8e249e5a82279d1b",
+        "source_sha256": "3317d48ce1c4f0085c792a5241bb3503584d241572ac208619026496a49d3cb5",
+        "command": [
+          "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-a5dd69f4593b4c9f8e249e5a82279d1b\\scene.py"
+        ],
+        "parent_evidence": {
+          "token": {
+            "api_ok": true,
+            "is_appcontainer": true,
+            "capability_count": 0,
+            "sid": "S-1-15-2-3423237233-3196467352-838437515-839394313-3699679944-2152902214-2569894903"
+          },
+          "memory_limit_mb": 2048,
+          "created_suspended": true,
+          "job_assigned_before_resume": true,
+          "tree_stopped": true,
+          "pid": 3708
+        }
+      }
+    }
+  ],
+  "ordinary_network_controls": {
+    "before": {
+      "tcp_external_v4": "connected",
+      "tcp_external_v6": "connected"
+    },
+    "after": {
+      "tcp_external_v4": "connected",
+      "tcp_external_v6": "connected"
+    }
+  },
+  "marker_paths": [
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\host-only-sentinel.txt",
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\host-cross-run-marker.txt",
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-readiness-completion\\pilot-83c6d358b0ea\\scene-000\\cross-run-probe.txt"
+  ],
+  "marker_exists_after": {
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\host-only-sentinel.txt": true,
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\host-cross-run-marker.txt": false,
+    "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-readiness-completion\\pilot-83c6d358b0ea\\scene-000\\cross-run-probe.txt": true
+  },
+  "scope": "Transport and named tested boundaries only. Shared writable work/profile/cache prohibit joint acceptance; no certificate issued."
+}

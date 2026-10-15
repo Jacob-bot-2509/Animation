@@ -1,0 +1,78 @@
+test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted (test_witness_automation.AutomationTests.test_actual_nonzero_receiver_rc_is_preserved_and_not_accepted) ... ok
+test_adapter_interrupted_intent_does_not_rerun (test_witness_automation.AutomationTests.test_adapter_interrupted_intent_does_not_rerun) ... ok
+test_changed_publish_destination_keeps_old_receipt_immutable (test_witness_automation.AutomationTests.test_changed_publish_destination_keeps_old_receipt_immutable) ... ok
+test_complete_adapter_receipt_recovery_without_second_output (test_witness_automation.AutomationTests.test_complete_adapter_receipt_recovery_without_second_output) ... ok
+test_default_cli_and_import_have_no_execution (test_witness_automation.AutomationTests.test_default_cli_and_import_have_no_execution) ... ok
+test_duplicate_consume_and_publish_do_not_create_more_jobs (test_witness_automation.AutomationTests.test_duplicate_consume_and_publish_do_not_create_more_jobs) ... ok
+test_duplicate_zip_member_is_rejected (test_witness_automation.AutomationTests.test_duplicate_zip_member_is_rejected) ... ok
+test_execution_config_rejects_inactive_pins_and_overlapping_roots (test_witness_automation.AutomationTests.test_execution_config_rejects_inactive_pins_and_overlapping_roots) ... ok
+test_extra_and_traversal_zip_members_are_rejected_without_escape (test_witness_automation.AutomationTests.test_extra_and_traversal_zip_members_are_rejected_without_escape) ... ok
+test_fixture_purpose_cannot_register (test_witness_automation.AutomationTests.test_fixture_purpose_cannot_register) ... ok
+test_frozen_directory_write_and_system_write_are_rejected (test_witness_automation.AutomationTests.test_frozen_directory_write_and_system_write_are_rejected) ... ok
+test_frozen_job_tampering_cannot_be_reused (test_witness_automation.AutomationTests.test_frozen_job_tampering_cannot_be_reused) ... ok
+test_hash_consistent_but_corrupted_stdout_is_rejected (test_witness_automation.AutomationTests.test_hash_consistent_but_corrupted_stdout_is_rejected) ... ok
+test_manifest_path_length_and_member_sha_are_checked (test_witness_automation.AutomationTests.test_manifest_path_length_and_member_sha_are_checked) ... ok
+test_parent_proof_missing_stderr_and_bool_rc_are_rejected (test_witness_automation.AutomationTests.test_parent_proof_missing_stderr_and_bool_rc_are_rejected) ... ok
+test_partial_zip_waits (test_witness_automation.AutomationTests.test_partial_zip_waits) ... ok
+test_proof_and_summary_object_shapes_fail_cleanly (test_witness_automation.AutomationTests.test_proof_and_summary_object_shapes_fail_cleanly) ... ERROR
+test_publish_conflict_never_overwrites_existing_object (test_witness_automation.AutomationTests.test_publish_conflict_never_overwrites_existing_object) ... ok
+test_ready_before_zip_waits_without_job (test_witness_automation.AutomationTests.test_ready_before_zip_waits_without_job) ... ok
+test_real_submitted_snapshot_replays_without_network_or_spawn (test_witness_automation.AutomationTests.test_real_submitted_snapshot_replays_without_network_or_spawn) ... ok
+test_received_sandbox_nonce_is_failed_not_missing_evidence (test_witness_automation.AutomationTests.test_received_sandbox_nonce_is_failed_not_missing_evidence) ... ERROR
+test_recovery_from_complete_frozen_job_updates_journal_without_replay (test_witness_automation.AutomationTests.test_recovery_from_complete_frozen_job_updates_journal_without_replay) ... ok
+test_registry_sender_and_native_bytes_are_pinned (test_witness_automation.AutomationTests.test_registry_sender_and_native_bytes_are_pinned) ... ok
+test_same_logical_identity_changed_content_conflicts (test_witness_automation.AutomationTests.test_same_logical_identity_changed_content_conflicts) ... ok
+test_tampered_unfrozen_recovery_output_is_rejected (test_witness_automation.AutomationTests.test_tampered_unfrozen_recovery_output_is_rejected) ... ok
+test_two_worker_lock_refused (test_witness_automation.AutomationTests.test_two_worker_lock_refused) ... ok
+test_unknown_and_missing_sender_binding (test_witness_automation.AutomationTests.test_unknown_and_missing_sender_binding) ... ok
+test_unknown_reparse_tag_rejected_cloud_tag_narrow (test_witness_automation.AutomationTests.test_unknown_reparse_tag_rejected_cloud_tag_narrow) ... ok
+
+======================================================================
+ERROR: test_proof_and_summary_object_shapes_fail_cleanly (test_witness_automation.AutomationTests.test_proof_and_summary_object_shapes_fail_cleanly)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 306, in test_proof_and_summary_object_shapes_fail_cleanly
+    self.published()
+    ~~~~~~~~~~~~~~^^
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 49, in published
+    result = pack.publish(self.capture, self.sync, self.stage)
+  File "D:\Animation-Model-Training\tools\witness_pack.py", line 42, in publish
+    "round": proof.get("round"), "capture_id": proof.get("capture_id"),
+             ^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+
+======================================================================
+ERROR: test_received_sandbox_nonce_is_failed_not_missing_evidence (test_witness_automation.AutomationTests.test_received_sandbox_nonce_is_failed_not_missing_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 297, in test_received_sandbox_nonce_is_failed_not_missing_evidence
+    result = self.guarded(self.published())
+                          ~~~~~~~~~~~~~~^^
+  File "D:\Animation-Model-Training\tests\test_witness_automation.py", line 49, in published
+    result = pack.publish(self.capture, self.sync, self.stage)
+  File "D:\Animation-Model-Training\tools\witness_pack.py", line 50, in publish
+    c.proof_check(manifest, blobs)  # A real nonzero exit remains nonzero, never fabricated.
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 192, in proof_check
+    rows = [decode(line) for line in blobs["receiver.jsonl"].splitlines()]
+            ~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\witness_transfer_common.py", line 43, in decode
+    return json.loads(raw.decode("utf-8-sig"), object_pairs_hook=_pairs,
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      parse_constant=lambda value: (_ for _ in ()).throw(TransferError("NONFINITE_JSON", value)))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python\Lib\json\__init__.py", line 365, in loads
+    return cls(**kw).decode(s)
+           ~~~~~~~~~~~~~~~~^^^
+  File "D:\Python\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+----------------------------------------------------------------------
+Ran 28 tests in 67.906s
+
+FAILED (errors=2)

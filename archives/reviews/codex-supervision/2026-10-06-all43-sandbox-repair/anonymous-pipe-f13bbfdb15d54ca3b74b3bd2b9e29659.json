@@ -1,0 +1,109 @@
+{
+  "schema": "anonymous-pipe-supplement-v1",
+  "row": {
+    "source": "import ctypes,json\nfrom ctypes import wintypes\nr={}\nhandles={'read': 472, 'write': 476}\n\nk=ctypes.WinDLL(\"kernel32\",use_last_error=True)\nk.GetNamedPipeInfo.argtypes=[wintypes.HANDLE,*([ctypes.POINTER(wintypes.DWORD)]*4)];k.GetNamedPipeInfo.restype=wintypes.BOOL\nfor name,h in handles.items():\n    ctypes.set_last_error(0)\n    try:\n        ok=k.GetNamedPipeInfo(h,None,None,None,None)\n        r[name]={\"query\":bool(ok),\"winerror\":None if ok else ctypes.get_last_error()}\n    except OSError as e:r[name]={\"query\":False,\"winerror\":e.winerror}\nprint(json.dumps(r),flush=True)\n",
+    "transport": {
+      "rc": 0,
+      "stdout": "{\"read\": {\"query\": false, \"winerror\": -1073741816}, \"write\": {\"query\": false, \"winerror\": -1073741816}}\r\n",
+      "stderr": "",
+      "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-315b368a4fc04e4c8688775b6a3587ad",
+      "source_sha256": "34e715f1d75e604ead5bb00928c605997fe4b086929d42462f806e854c01b7fb",
+      "command": [
+        "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-315b368a4fc04e4c8688775b6a3587ad\\scene.py"
+      ],
+      "parent_evidence": {
+        "token": {
+          "api_ok": true,
+          "is_appcontainer": true,
+          "capability_count": 0,
+          "sid": "S-1-15-2-4291990771-3928414666-2874650465-1710467196-352144604-1718573514-2569229924"
+        },
+        "memory_limit_mb": 2048,
+        "created_suspended": true,
+        "job_assigned_before_resume": true,
+        "inherited_handle_count": 3,
+        "tree_stopped": true,
+        "pid": 16872,
+        "private_profile": {
+          "profile_name": "animtrain-job-399b9ee6e32d42fd890ee92ee474541c",
+          "sid": "S-1-15-2-4291990771-3928414666-2874650465-1710467196-352144604-1718573514-2569229924",
+          "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-399b9ee6e32d42fd890ee92ee474541c\\AC",
+          "temporary_acl": [
+            {
+              "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-315b368a4fc04e4c8688775b6a3587ad",
+              "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Animation-Model-Training\\.venv",
+              "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+              "restored": true
+            },
+            {
+              "path": "D:\\Python",
+              "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+              "restored": true
+            }
+          ],
+          "cleanup_complete": true
+        }
+      }
+    },
+    "implementation_before": {
+      "src/animtrain/sandbox_execution.py": "2ed47814cb8466b3b108a878e14dc6a82154351b34c2d9b58d0e1148cb553d69",
+      "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+      "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+      "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+      "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+      "src/animtrain/full_surface_evidence.py": "46614845a95d00d159e86d7d8c92b92359bc5ab223158005f13cac8f1796d162",
+      "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+      "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+      "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+      "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+      ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+      ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+      ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+    },
+    "implementation_after": {
+      "src/animtrain/sandbox_execution.py": "2ed47814cb8466b3b108a878e14dc6a82154351b34c2d9b58d0e1148cb553d69",
+      "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+      "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+      "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+      "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+      "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+      "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+      "src/animtrain/full_surface_evidence.py": "46614845a95d00d159e86d7d8c92b92359bc5ab223158005f13cac8f1796d162",
+      "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+      "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+      "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+      "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+      ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+      ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+      ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+    }
+  },
+  "controls": {
+    "before": "b82f1711ca6f42ababf7d06a5e436f10",
+    "after": "9ebe2b9402154323a84afbdce4b3beec"
+  },
+  "both_host_handles_held_throughout": true,
+  "scoped_pass": true,
+  "F2_complete": false,
+  "remaining": "A distinct Windows user fixture is still required",
+  "host_source_sha256": "450328ea78898e3bf903f46ebdcfe35c28a8425aacda735cf5ef0873c93e09b3",
+  "production_gate": "CLOSED"
+}

@@ -1,0 +1,101 @@
+{
+  "candidate_sha256": "c64769ce73b5c76ba25d7658ef73bc20763b6499e30b58a7c1455e8713452f2b",
+  "rows": [
+    {
+      "train_id": "draft-c02-01",
+      "eval_id": "eval-calc-019-s1",
+      "train_record_sha256": "1c04e799a7ddc9e4e588a8f7b5a774e0392cb6eb4d58f1c5995b9112aba5d35a",
+      "eval_record_sha256": "dab64cd87960bb6deb7536abda7ad02cbab0fc2991d608a8651dd184587c3b04",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需证明振荡积分条件收敛、不绝对收敛及任意T>R≥1的尾界1/R；评测需计算绝对收敛的∫₀∞xe⁻ˣdx=1。前者依赖振荡抵消、柯西准则和绝对发散下界；后者计算原函数后取极限。分部积分是共享基础工具，评测的完整求值任务未包含在训练题中。"
+    },
+    {
+      "train_id": "draft-c30-01",
+      "eval_id": "eval-linalg-024-s3",
+      "train_record_sha256": "f3ec9324c0af7711242673f5c6e0d6cf6d695206f79cf82b744dcd667ece9e22",
+      "eval_record_sha256": "ddc866cc70088c9332226ac7f0a4dbb39945a3ff38b8dc5f385793fc58363213",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "原训练题明确附加“写成x−1的幂”，过程置u=x−1并展开已确定多项式；评测同样置x=u+1展开给定多项式。前面的重数构造不消除后面的完整评测子任务，不能凭目标方向相反认定隔离。"
+    },
+    {
+      "train_id": "draft-c35-01",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "1ad84e1d108826f2a082b6b275a87fc3267344e41625787baf5c52ae260e8a50",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定二次型通过可逆替换得到diag(1,−1,1)，目标为标准形、惯性(2,1,0)与秩3；评测的含参正定任务必须求可逆配方后系数2−a²>0的充要范围。固定负方向与不定结论不等于求参数范围；局部共享配方这一基础工具。"
+    },
+    {
+      "train_id": "draft-c35-03",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "51c8b02ad76837fe2be2659f8f4857184531d8fbc387ecd0245db1b860eacd53",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练用diag(1,a−1)的零系数条件求秩1，即a=1，并在a=0,1,2列惯性；评测对三元型求所有正方向成立的参数范围2−a²>0。秩退化等式与全域正定不等式是不同约束和目标，不能仅因共享配方认定同核心。"
+    },
+    {
+      "train_id": "draft-c35-04",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "40c46e0c0e910b6af6eecd522a75aed5aec94c54b25627a953e118c7d6371e17",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练的固定退化型标准形为u²−v²+0w²，证明可逆替换并求惯性(1,1,1)/秩2；评测的关键任务是含参正定范围与其必要性。固定零方向和惯性不是评测完整参数可行性任务。"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s1",
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "两题的核心都是含参三元实二次型的正定充要参数范围，先构造对称矩阵，再以正定判据将问题化为参数不等式。训练Δ₃=a、评测Δ₃=2−a²的具体系数位置和边界变化不隔离这一任务；附加a=0/a<0分类也未消除评测核心。"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "与s1为同一评测题，仅证明改用可逆配方；训练也用配方验证边界，完整含参正定任务仍重叠。一个评测题的多种解法不因步骤名称不同获得隔离。原理由“训练阈值亦为|a|<常数”是错误描述，训练实际为a>0。"
+    },
+    {
+      "train_id": "draft-c36-03",
+      "eval_id": "eval-linalg-021-s3",
+      "train_record_sha256": "432def8f0c775de258fc07336db313b1fdddbddb7e3f93fa56485087ca3add69",
+      "eval_record_sha256": "ef8fab29ffa0079756baba404c6f34b83232bf63123dc3d95f28b735b7b830cc",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "与s1为同一评测题，Schur补只是另一种正定判据；当前策略按数学任务及核心判定结构，而非字符串或解法名称隔离。训练和评测都要求含参三元实二次型的正定充要范围。"
+    },
+    {
+      "train_id": "draft-c36-04",
+      "eval_id": "eval-linalg-021-s2",
+      "train_record_sha256": "f062f2cf25cbce153876bb31c6568a66ca5a4aae1b4a4ecb9df769e96c3ef2a3",
+      "eval_record_sha256": "cbcdadf6048af3c470a4d532372497387b863e972450d8f6fcb70ff2029fd98f",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练给定已分解平方和(x−y)²+2(y−z)²，核心为公共零空间x=y=z、半正定非正定与秩2；评测必须消去含参混合项并判2−a²>0。固定非平凡零空间的证明不是含参正定范围任务。"
+    },
+    {
+      "train_id": "draft-c36-05",
+      "eval_id": "eval-linalg-021-s1",
+      "train_record_sha256": "3c6212cb894abfa4e02b543843783de87e5f2a0cacfc6a0341e704c961c336b2",
+      "eval_record_sha256": "dafbd801a93bc90edec3aa84eb235d9351ef8eda92523420bd404d21a5398f67",
+      "verdict": "DIFFERENT_CORE",
+      "pairwise_reason": "训练需构造反例使三个顺序主子式均为0但某方向二次型为−2，说明非负顺序主子式不能判半正定；评测在严格正定判据下求2−a²>0。反例的构造与充分条件失败和评测的严格正定判定不同。"
+    },
+    {
+      "train_id": "draft-c37-05",
+      "eval_id": "eval-linalg-026-s1",
+      "train_record_sha256": "9b8edc805f0e5c2a2b07d9699eee53bf5adad856476232951e3d8c9cad0f8933",
+      "eval_record_sha256": "bfe6a97daa1ea703f59a9964f5e91469bd1744d55eae9e2e396e0e97f4839690",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "原训练题第一部分在{1,x,x²}坐标中把三个多项式化为R³三向量，计算3×3行列式非零以判线性无关；评测正是三向量行列式非零判线性无关。只是向量数值和表示空间变化，后续基/坐标计算不消除已包含的评测子任务。"
+    },
+    {
+      "train_id": "linalg-051",
+      "eval_id": "eval-linalg-022-s1",
+      "train_record_sha256": "1b5afe571f186d0a95a910a90f929d01295c814a758862f5411dd18028804e5e",
+      "eval_record_sha256": "1ba39e82a5a6a32c8184027e865aa646ca489311d28b27182adfee70c444d8af",
+      "verdict": "SAME_CORE",
+      "pairwise_reason": "两题均由整数系数多项式出发，使用有理根定理枚举可能根、验证根并得到线性因子乘积。次数3/4与数值根不同不改变核心解题结构；补充根在实轴上的位置不消除因式分解子任务。"
+    }
+  ]
+}

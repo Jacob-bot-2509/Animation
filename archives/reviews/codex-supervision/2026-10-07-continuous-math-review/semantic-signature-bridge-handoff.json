@@ -1,0 +1,29 @@
+{
+  "schema": "codex-semantic-signature-bridge-handoff-v1",
+  "saved_at": "2026-10-07T23:20:14.905912+08:00",
+  "scope": "MATH_AND_CURRENT_SIGNATURES_ONLY",
+  "bridge_result": {
+    "status": "sent",
+    "message": {
+      "id": "msg_1791386375191_698",
+      "from": "codex",
+      "to": "claude-code",
+      "type": "review_result",
+      "content": "本轮数学与核心签名复核/修复已完成并冻结归档。用户最新指示“ 双端实验你不用管，把前面的做好就行 ”：Codex 后续仅负责数学题、当前核心签名、结构配对复核、修订资格和归档；双端实验由你继续处理，不纳入本轮新增证据要求。\n\n项目根 D:/Animation-Model-Training，交付目录 reviews/codex-supervision/2026-10-07-semantic-signature-supervision/。\n1. FIX_REPORT.md、QUALIFICATION.json、CLAUDE_HANDOFF.md 是本轮结论与接入约定。共复核 761 条签名（24 源；47 train/264 selected_draft/300 eval 方法记录/150 test），实际源/记录/数学哈希及签名内容对应通过。\n2. 修复 66 条描述；draft-c18-02 保持 ID/题数改为“相交平面的交替正交投影、精确矩阵幂、有限到达分类及非幂等”，同步题干/过程/答案/scene_spec 和签名。因此共 67 条签名变化；其余 760 条完整记录 SHA 不变。新题 22 项精确符号检查及 4 项实数分支论证通过。\n3. tools/core_signatures.py 已修复真实冻结源/记录核验、字段类型、重复 ID、覆盖不足、旧目录覆写及冻结父目录保护，27 项回归通过。工具现固定到新核心，请勿恢复旧 pin 或混用旧 c18 签名。\n4. 接入新核心 effective-core-v2/source-bindings.json 的完整 24 源及 record-bindings.jsonl 的 761 个版本，配套 reviewed input 是 revised-complete-signatures-v2.jsonl。不要覆盖旧父核心/提交原件，也不要直接合并到现役。选择尚不存在的新 --out 目录；具体命令见 CLAUDE_HANDOFF.md。\n5. c18/test-geom-024 旧版 SAME_CORE，改写后只关闭该具名配对；两条 c31/测试具名配对局部合格。全局 semantic_isolation=NOT_ESTABLISHED，production=CLOSED，PASS_CORE_SCOPE_issued=false。311×450=139950 个可能记录配对；零 goal+steps 字面候选并非穷尽语义判定。\n6. 下一批只提交当前 761 版本的结构候选及逐对理由，覆盖数学目标、对象/定义域、假设、核心变换/证明结构，包含同义与换数值变式；不需全历史语料。发现问题继续交 Codex 独立裁决修复归档。新 c18 排版未验证，旧父 761 条排版回执不能覆盖新题；后续数学呈现材料绑定新 record/math SHA。\n\n校验锚点：\n外层 delivery-manifest.json SHA256 = 4e2ae6741592386d93be6cf01cbe8cabb13e3fd002d99b0617675d37a4ea24a5 （126 artifacts，最终只读复验 PASS）。\neffective-core-v2/delivery-manifest.json SHA256 = 78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5。\nrevised-complete-signatures-v2.jsonl SHA256 = 74ed2f8d5646fc0d3f0152dc357b8fb876dc667d6f96a678130628ec4b4aca80。\n父版清单保持 972bd216b713bec7c48896e8f144d999dd6385b8c0e3e00a4c0116dfd1bbca22。\n最终复验回执与当前状态位于 reviews/codex-supervision/2026-10-07-continuous-math-review/semantic-signature-delivery-verification.json、CURRENT_STATUS.json。",
+      "metadata": {
+        "scope": "MATH_AND_CURRENT_SIGNATURES_ONLY",
+        "archive_manifest_sha256": "4e2ae6741592386d93be6cf01cbe8cabb13e3fd002d99b0617675d37a4ea24a5",
+        "core_manifest_sha256": "78017f740969cd251f6c263bdcb14ef1bb5bd63de939df394fa24e33e57df4b5",
+        "math_verdict": "PASS_INHERITED_760_PLUS_EXACT_REWRITE_1",
+        "signature_verdict": "PASS_REVISED_761",
+        "semantic_isolation": "NOT_ESTABLISHED",
+        "production": "CLOSED",
+        "experiments": "OUT_OF_CODEX_SCOPE_PER_USER"
+      },
+      "timestamp": "2026-10-07T15:19:35.191Z",
+      "read": false
+    }
+  },
+  "archive_manifest_sha256": "4e2ae6741592386d93be6cf01cbe8cabb13e3fd002d99b0617675d37a4ea24a5",
+  "qualification": "reviews/codex-supervision/2026-10-07-semantic-signature-supervision/QUALIFICATION.json"
+}

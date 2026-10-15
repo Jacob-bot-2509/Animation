@@ -1,0 +1,692 @@
+{
+  "test-calc-001": {
+    "manual_proof_and_scene_review": "连续sin(πx)右端点Riemann和，积分2/π。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-002": {
+    "manual_proof_and_scene_review": "二阶Peano展开n²(1-cos(1/n))→1/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-003": {
+    "manual_proof_and_scene_review": "FTC加换元，F=(ln x)²/2，导数lnx/x，二阶(1-lnx)/x²，x>0。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-004": {
+    "manual_proof_and_scene_review": "integrating factor exp2x，通解e^-x+Ce^-2x，回代成立。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-005": {
+    "manual_proof_and_scene_review": "x≥2连续正递减1/(xlnx)，积分loglog发散。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-006": {
+    "manual_proof_and_scene_review": "高阶导(-1)^(n-1)(n-1)!，修订几何积分证明，闭端点x1及全区间(-1,1]。",
+    "method": null,
+    "repair_reason": "答案补n与展开适用域，并证明展开与端点"
+  },
+  "test-calc-007": {
+    "manual_proof_and_scene_review": "无需f″连续，一次LHopital后用f′导数定义，极限f″(0)/2，修订场景。",
+    "method": null,
+    "repair_reason": "场景两次洛必达与正文一次洛必达加导数定义不一致"
+  },
+  "test-calc-008": {
+    "manual_proof_and_scene_review": "f=x³/3-x²/2，stationary0,1，二阶符号localmax0/min-1/6。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-009": {
+    "manual_proof_and_scene_review": "t∈[0,1]speed=t√(4+9t²)，弧长(13√13-8)/27。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-010": {
+    "manual_proof_and_scene_review": "cardioid polararea half∫(1+cosθ)²=3π/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-011": {
+    "manual_proof_and_scene_review": "y-axis旋转左右不重复，右半shell integral8π。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-012": {
+    "manual_proof_and_scene_review": "partialfractions finite primitive，b/(1+b)→1，值ln2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-013": {
+    "manual_proof_and_scene_review": "finite telescopinghalf[1+1/2-1/(N+1)-1/(N+2)]，和3/4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-014": {
+    "manual_proof_and_scene_review": "power radius∞，逐项导数indexshift及initial1，ODEuniqueness给expx。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-015": {
+    "manual_proof_and_scene_review": "alternating remainderuniform≤1/(N+1)，逐项积分eta2=halfzeta2=π²/12。",
+    "method": null,
+    "repair_reason": "不以积分数值观察作为精确答案的依据"
+  },
+  "test-calc-016": {
+    "manual_proof_and_scene_review": "F_y(1,1)=3，IFTvalid，implicit y′=-1,y″=-2/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-017": {
+    "manual_proof_and_scene_review": "唯一驻点(-1,-1)，Hpositive；修订精确中心平方式globalmin-1，无max。",
+    "method": null,
+    "repair_reason": "补唯一全局最小和无最大值的完整结论"
+  },
+  "test-calc-018": {
+    "manual_proof_and_scene_review": "x+y4，Lagrangepoint(2,2)，配方4-(x-2)²证明全局max4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-019": {
+    "manual_proof_and_scene_review": "triangle换序得到∫0¹x²/(1+x²)=1-π/4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-020": {
+    "manual_proof_and_scene_review": "a,bpositiveGreen正向椭圆参数∫half(xdy-ydx)=πab。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-021": {
+    "manual_proof_and_scene_review": "globalpotential x²y，任意曲线路径无关，值1；simplyconnected条件原文已区分。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-022": {
+    "manual_proof_and_scene_review": "div(x,y,z)=3，unitballvol4π/3，outwardflux4π。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-023": {
+    "manual_proof_and_scene_review": "Parseval L²，2π²/3=4Σ1/n²，修端点点值问题不影响积分。",
+    "method": null,
+    "repair_reason": "傅里叶级数在周期端点收敛到0，不等于端点给定的±π"
+  },
+  "test-calc-024": {
+    "manual_proof_and_scene_review": "logmonotonesum有限不等式-1≤Sn≤-1+(lnn+1)/n，极限exp-1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-025": {
+    "manual_proof_and_scene_review": "递推1+a/(1+a)在[1,φ)保持，上界φ、差(1+a-a²)/(1+a)>0，极限φ。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-026": {
+    "manual_proof_and_scene_review": "FTC后LHopital sin(x²)/(3x²)→1/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-028": {
+    "manual_proof_and_scene_review": "奇函数连续对称区间积分0。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-029": {
+    "manual_proof_and_scene_review": "分部积分finite1-(lnb+1)/b→1，收敛。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-030": {
+    "manual_proof_and_scene_review": "exact0≤integral≤1/(n+1)，极限0。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-031": {
+    "manual_proof_and_scene_review": "h20-5t²,v-10t,a-10，t2,落地signedv-20，修答案速率区分。",
+    "method": null,
+    "repair_reason": "落地速度与速率分开表述"
+  },
+  "test-calc-032": {
+    "manual_proof_and_scene_review": "graphcurvatureformula，parabola原点2,lnx点1值1/(2√2)。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-033": {
+    "manual_proof_and_scene_review": "差函数monotone及positiveLagrangecubicremainder，x≥0不等式成立。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-034": {
+    "manual_proof_and_scene_review": "ratio(n/(n+1))^n→1/e<1，正项级数收敛。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-035": {
+    "manual_proof_and_scene_review": "修订实际项比证明两个幂级数半径∞和0，避免1/0记号。",
+    "method": null,
+    "repair_reason": "不能将1/0写成普通除法，直接给比值判别论证"
+  },
+  "test-calc-036": {
+    "manual_proof_and_scene_review": "r>0chain Laplacian f″+f′/r，lnr给0，仅去原点。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-037": {
+    "manual_proof_and_scene_review": "foliumpoint3/2,3/2满足方程，Fy≠0，implicit slope-1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-038": {
+    "manual_proof_and_scene_review": "integralJensen unitinterval expconvex，∫x²1/3，lowerexp1/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-039": {
+    "manual_proof_and_scene_review": "separableNewtoncool T20+80e^-kt，e^-5k1/2，T10=40。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-040": {
+    "manual_proof_and_scene_review": "fourthPeano cos limit-1/24。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-041": {
+    "manual_proof_and_scene_review": "doubleangle积分均π/2，sin²periodπ平移解释。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-042": {
+    "manual_proof_and_scene_review": "Abel+Leibniz或finitegeom积分，修订余项≤1/(N+1)，和ln2。",
+    "method": null,
+    "repair_reason": "第二证法的积分极限补明确余项上界"
+  },
+  "test-calc-043": {
+    "manual_proof_and_scene_review": "修订finite squaresandwich byquarterdiskR与√2R，boundπ/4(1-exp(-R²))与π/4(1-exp(-2R²))，sqrtπ/2。",
+    "method": null,
+    "repair_reason": "将有限区域夹逼写全，避免未证可积时的形式平方"
+  },
+  "test-calc-044": {
+    "manual_proof_and_scene_review": "orientedlineintegralabs givesellipseπab，a,bpositive。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-calc-045": {
+    "manual_proof_and_scene_review": "exponentialMVT ξbetween1/(x+1)和1/x→0，x²difference→ln2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-001": {
+    "manual_proof_and_scene_review": "参数联立s0t1，交点2,1,1，cross(-3,0,3)，plane x-z1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-002": {
+    "manual_proof_and_scene_review": "pointlineprojectiont4/7，foot11/7,15/7,19/7，distance²3/7。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-003": {
+    "manual_proof_and_scene_review": "skewdirectionscross5,0,-5，delta-1,1,-3projectiondistance√2，nonzero混合积证异面。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-004": {
+    "manual_proof_and_scene_review": "unit球与normal1,2,2常数3平面distance1相切，Q1/3,2/3,2/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-005": {
+    "manual_proof_and_scene_review": "paraboloid点2,1,2，partials1,2，tangent z=x+2y-2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-006": {
+    "manual_proof_and_scene_review": "r=(t,t²,t³) t1切向1,2,3，normalplane x+2y+3z6。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-007": {
+    "manual_proof_and_scene_review": "tetra determinant-9绝对/6，volume3/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-008": {
+    "manual_proof_and_scene_review": "AB(-1,1),AC(1,3)，det-4/2，area2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-009": {
+    "manual_proof_and_scene_review": "90degCCW(2,1)→(-1,2)，投影(3,4)onto1,1=(7/2,7/2)。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-010": {
+    "manual_proof_and_scene_review": "ellipse axes3,4 area12π，affinescale或trigexactintegral。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-011": {
+    "manual_proof_and_scene_review": "lineplane z0t3→5,5,0;x0t-2→0,-5,5;y0t1/2→5/2,0,5/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-012": {
+    "manual_proof_and_scene_review": "cyclictriplevalue-2，两种cross和det一致。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-013": {
+    "manual_proof_and_scene_review": "sphereR2cutz√2圆x²+y²2，fullcircleparamt0..2π。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-014": {
+    "manual_proof_and_scene_review": "z=(x+y)(x-y)，固定一因子两族直线，每点两族完整覆盖。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-015": {
+    "manual_proof_and_scene_review": "xyz1positive，AMGMdistance²≥3等号1,1,1，globalmin√3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-016": {
+    "manual_proof_and_scene_review": "shear Aunitcircleinverse=>x′²-2x′y′+2y′²1，SPDminor1,1，areaπ；sceneTeXfix。",
+    "method": null,
+    "repair_reason": "场景TeX的det命令多了一个反斜杠"
+  },
+  "test-geom-017": {
+    "manual_proof_and_scene_review": "κ2/(1+4x²)^(3/2)，maxat0,R1/2；scene对|x|的monotonicityfix。",
+    "method": null,
+    "repair_reason": "曲率不是对全部实x单调，改为关于绝对值的单调性"
+  },
+  "test-geom-018": {
+    "manual_proof_and_scene_review": "pencilλ-1/2→plane x+2y-z0，missingpencilplane x+z2不throughorigin。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-019": {
+    "manual_proof_and_scene_review": "ucos t[-1,1] g3u²-4u2，minu2/3g2/3，maxu-1g9，distance√2/3,3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-020": {
+    "manual_proof_and_scene_review": "n1,1,1，foot(-1,0,1)，mirror(-3,-2,-1)。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-021": {
+    "manual_proof_and_scene_review": "vectorssum0 lengths3,4,5，dot0θπ/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-022": {
+    "manual_proof_and_scene_review": "right-handedyrotationcolumnsorthonormalanddet1，修正角度约定。",
+    "method": null,
+    "repair_reason": "明确空间旋转矩阵采用右手正角约定"
+  },
+  "test-geom-023": {
+    "manual_proof_and_scene_review": "radialnormal sphereR2 point1,1,√2，outwardunit(1/2,1/2,√2/2)。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-024": {
+    "manual_proof_and_scene_review": "parallelplanesconstantdifference6/norm3=>2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-geom-025": {
+    "manual_proof_and_scene_review": "twofocidistancesum4等价x²/4+(y²+z²)/3=1，|x|≤2正根回代无赘解，旋转椭球。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-003": {
+    "manual_proof_and_scene_review": "iidBernoulliindicator EXnp,varnp(1-p)，非独立variance不能直接加，原文已明确。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-004": {
+    "manual_proof_and_scene_review": "density3x²(0,1)，CDFx³，tailat1/2=7/8，mean3/4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-006": {
+    "manual_proof_and_scene_review": "Poisson4 P2=8exp-4，P≥1=1-exp-4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-009": {
+    "manual_proof_and_scene_review": "N(mean2,var3) affine2X-1→N(3,12)，tailaboveownmean1/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-010": {
+    "manual_proof_and_scene_review": "uniformmomentk=1/(k+1)，cov1/12,vars1/12,4/45，rho√15/4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-011": {
+    "manual_proof_and_scene_review": "triangleleg2 area2，conditionaluniform0..2-x,mean(2-x)/2，marginal(2-x)/2，EY2/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-012": {
+    "manual_proof_and_scene_review": "hypergeom3red2white draw2，6/10=3/5。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-013": {
+    "manual_proof_and_scene_review": "PoissonMGFexpλ(expt-1)，derivativesmeanλ,rawsecondλ²λ。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-014": {
+    "manual_proof_and_scene_review": "independentfairdie until6，tail(5/6)^k exactsum6先证finite，递推成立。",
+    "method": null,
+    "repair_reason": "期望递推先证明有限性并说明独立重复"
+  },
+  "test-prob-015": {
+    "manual_proof_and_scene_review": "修订independentfaircoin同步rounds，sameGeometricstop概率Σ4^-k=1/3。",
+    "method": null,
+    "repair_reason": "同一时刻及硬币公平性需明确概率模型"
+  },
+  "test-prob-017": {
+    "manual_proof_and_scene_review": "iiduniformmaxCDFt²[0,1]density2t，mean2/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-018": {
+    "manual_proof_and_scene_review": "λ>0real t，exp integralconvergesiff t<λ valueλ/(λ-t)，diverges∞ otherwise。",
+    "method": null,
+    "repair_reason": "答案补参数范围和发散分支"
+  },
+  "test-prob-019": {
+    "manual_proof_and_scene_review": "5uniform min/max density5(1-t)^4和5t4，expect1/6,5/6。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-022": {
+    "manual_proof_and_scene_review": "两fairdice修订independence，var35/6；rawsecond329/6,moment校核正确。",
+    "method": null,
+    "repair_reason": "均匀边缘分布不能代替两骰独立条件"
+  },
+  "test-prob-023": {
+    "manual_proof_and_scene_review": "修订Buffonmodel independentuniformdistanceandangle0<l≤d，区域概率2l/(πd)。",
+    "method": null,
+    "repair_reason": "投针分布及正长度假设应在题干明确，而非推导中默加"
+  },
+  "test-prob-024": {
+    "manual_proof_and_scene_review": "Poissonnormalization expseries1，factorialmomentλ²,varλ。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-prob-025": {
+    "manual_proof_and_scene_review": "修订最多两次always追加oneiff初次6，无递归机会，EX7/2+EZ7/12=49/12。",
+    "method": null,
+    "repair_reason": "最多两次和第二次不追加机会需明确，以匹配49/12"
+  },
+  "test-linalg-001": {
+    "manual_proof_and_scene_review": "Cramer D-9,Dx-9,Dy-6,Dz-15，solution1,2/3,5/3回代全部成立。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-002": {
+    "manual_proof_and_scene_review": "Ainverse third[[2,-1],[-1,2]]乘B3,3得X1,1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-003": {
+    "manual_proof_and_scene_review": "B²=A⇒BAAB，centralizeraI+bN，a²1,ab1⇒B±(I+N)，完备。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-004": {
+    "manual_proof_and_scene_review": "3×4matrixrow3=row1+row2，rank2，nullity2，twoexplicitkernelbasis。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-005": {
+    "manual_proof_and_scene_review": "eigen1,2,3⇒tr6,det6,trA²14,inverses1,1/2,1/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-006": {
+    "manual_proof_and_scene_review": "similardiagonalpower exp10,2^10=1024,3^10=59049。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-007": {
+    "manual_proof_and_scene_review": "Rayleigh/unitcircle f4-3x²，min1 at±1,0 max4at0,±1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-008": {
+    "manual_proof_and_scene_review": "CHλ²-2λ-3，A(A-2I)=3I，inverse1/3[[-1,2],[2,-1]]。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-009": {
+    "manual_proof_and_scene_review": "修订正交projection P=halfones2，P²P，(3,1)→2,2，residual1,-1orthogonal。",
+    "method": null,
+    "repair_reason": "明确所求是到指定直线的正交投影"
+  },
+  "test-linalg-010": {
+    "manual_proof_and_scene_review": "GScolumnsa1(1,1),a2(1,0)，Q[[1,1],[1,-1]]/√2,R[[√2,1/√2],[0,1/√2]]。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-011": {
+    "manual_proof_and_scene_review": "leastsquaresA^TAmat14,6;6,3det6，coef5/2,-2/3，SSE1/6，修订globalminimumorthresidual。",
+    "method": null,
+    "repair_reason": "补法方程解是唯一全局最小的验证"
+  },
+  "test-linalg-013": {
+    "manual_proof_and_scene_review": "tri diag/off1 recDn=Dn-1-Dn-2，first1,0,-1,-1,0,1；修Dn+3=-Dn所以leastperiod6。",
+    "method": null,
+    "repair_reason": "周期不能仅从六项观察，写出严格递推恒等式"
+  },
+  "test-linalg-014": {
+    "manual_proof_and_scene_review": "matrix[[1,0,1],[0,2,0],[1,0,2]]det2 inverse[[2,0,-1],[0,1/2,0],[-1,0,1]]，ninecofactors正确。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-015": {
+    "manual_proof_and_scene_review": "(1-λ)I+λJ det(1+2λ)(1-λ)²，dependentiff1or-1/2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-016": {
+    "manual_proof_and_scene_review": "planeW1sum0dim2,lineW2equalcoordsdim1，intersection0，directsumR³。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-017": {
+    "manual_proof_and_scene_review": "FrobeniusinnertraceATB=sumij aijbij满足axioms，normA√30。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-018": {
+    "manual_proof_and_scene_review": "idempotentdiag1,0，eigen1,0，generalminimaldividesλ(λ-1)⇒diagonalizable，ranktrace。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-019": {
+    "manual_proof_and_scene_review": "centralizerJordanones X[[a,b],[0,a]]，N=A-I，确为A多项式。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-020": {
+    "manual_proof_and_scene_review": "polynomial x4-4x²3 modx²-2x余3，exactquotientx²2x。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-021": {
+    "manual_proof_and_scene_review": "orthogonalreflection θhalfangledirection eigen±1，verticalaxes亦covered；scenefix。",
+    "method": null,
+    "repair_reason": "反射轴覆盖全部过原点方向，不只斜轴"
+  },
+  "test-linalg-022": {
+    "manual_proof_and_scene_review": "Choleskypositive lowerdiag2,√2，L[[2,0],[1,√2]],LLTgiven。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-023": {
+    "manual_proof_and_scene_review": "A[[3,1],[1,3]] eigen4,2，generalx c1e4t+c2e2t,yc1e4t-c2e2t，independentbasis完整。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-024": {
+    "manual_proof_and_scene_review": "3pointcollineardet6-2t，t3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-025": {
+    "manual_proof_and_scene_review": "spectrum3,-1unitvectors(1,±1)/√2，sum3project1-project2givenA。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-026": {
+    "manual_proof_and_scene_review": "congruence C[[1,-2/3],[0,1]] givesdiag3,14/3，替换可逆但非orth主轴rotation，scenefix。",
+    "method": null,
+    "repair_reason": "配方法的合同替换是斜坐标，不等于正交主轴旋转"
+  },
+  "test-linalg-027": {
+    "manual_proof_and_scene_review": "Jordan2(2) ODEy c2e2t,x e2t(c1+c2t)，triangularintegration完整。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-028": {
+    "manual_proof_and_scene_review": "90degrotationcharλ²1，eigen±i，无非零realeigenvector。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-029": {
+    "manual_proof_and_scene_review": "A-Irank1nonzeroN²0，minimal(λ-1)²，JordanJ2(1)⊕1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-030": {
+    "manual_proof_and_scene_review": "linearfunctional coeff1,1,1 determinedbasisconditions，f=x+y+z。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-031": {
+    "manual_proof_and_scene_review": "determinant3-7λ，dependentiffλ3/7。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-032": {
+    "manual_proof_and_scene_review": "col(A+B)subsetcolA+colB dimensionalinequality，orthdiagrank1examplesgiveequality2。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-033": {
+    "manual_proof_and_scene_review": "idempotenteigenλ²=λfromnonnullv⇒0or1，未误断言两值一定都出现。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-034": {
+    "manual_proof_and_scene_review": "SPDblockeigen4,2,1，ellipsoidaxes1/2,1/√2,1。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-035": {
+    "manual_proof_and_scene_review": "Vandermonde(x,2,3)det(2-x)(3-x)=(x-2)(x-3)。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-036": {
+    "manual_proof_and_scene_review": "swapdet-1,scale k,adddet1，修premise只有swap和add涉及两行。",
+    "method": null,
+    "repair_reason": "倍乘操作只有一行，不能说三类均涉及两不同行"
+  },
+  "test-linalg-037": {
+    "manual_proof_and_scene_review": "derivativebasis1,x,x²列0,e1,2e2，matrix[[0,1,0],[0,0,2],[0,0,0]]。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-038": {
+    "manual_proof_and_scene_review": "invertibleAsquarefullrank；counterexamplenilpotent2rankdrops1to0。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-039": {
+    "manual_proof_and_scene_review": "quadraticblocktrace1,det-10,eigen(1±√41)/2及-1，inertia1,2，f1two-sheet。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-linalg-040": {
+    "manual_proof_and_scene_review": "cycleC4 adjacency specified，fourindependentmodes2,-2,0,0。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-001": {
+    "manual_proof_and_scene_review": "geometricp1/2 supportpositive，evenΣ4^-k=1/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-002": {
+    "manual_proof_and_scene_review": "Y√Xtransformdensity2yfor0<y<1zeroelse，mean2/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-003": {
+    "manual_proof_and_scene_review": "matrixexpentire seriesderivative，修normcompact Mtest为逐项求导依据，initialI。",
+    "method": null,
+    "repair_reason": "矩阵级数逐项求导补紧区间一致收敛的依据"
+  },
+  "test-x-005": {
+    "manual_proof_and_scene_review": "positivefencel，rectdomain0<x<l/2 quadraticlx-2x²maxl²/8。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-006": {
+    "manual_proof_and_scene_review": "Bertrandthreefullyspecifiedmodels enduniform1/3,radiusdistanceuniform1/2,midpointareauniform1/4。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-007": {
+    "manual_proof_and_scene_review": "symmetricmatrix[[1,2],[2,1]] inertia1,1，hyperbola3u²-v²1，realaxis y=x。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-008": {
+    "manual_proof_and_scene_review": "x≥0intersections0,1，sqrtx≥x²，area1/3。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-009": {
+    "manual_proof_and_scene_review": "Exp1 nnonnegativeinteger，I0=1,finitepartsrecnIprev andzeroendboundary，momentn!。",
+    "method": null,
+    "repair_reason": "阶乘矩的n明确为非负整数"
+  },
+  "test-x-010": {
+    "manual_proof_and_scene_review": "covariancevarspositive principalminors iff|rho|<1，修解释centeredlinearrelation或原变量affine而非raw线性。",
+    "method": null,
+    "repair_reason": "相关系数绝对值1对应中心化线性相关，原变量为仿射关系"
+  },
+  "test-x-011": {
+    "manual_proof_and_scene_review": "twooriginlinearreflections determinant+1⇒rotation，exampleR2R1CCWπ/2，orderexplicit。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-012": {
+    "manual_proof_and_scene_review": "AπJ,J²-I，evenoddabsoluteconvergentexpseriescosπI+sinπJ=-I。",
+    "method": null,
+    "repair_reason": null
+  },
+  "test-x-013": {
+    "manual_proof_and_scene_review": "修精确floor容斥与error<3/N，naturaldensity2/3，非正整数全集uniformlaw。",
+    "method": null,
+    "repair_reason": "删除所有约数估算，写出取整容斥及误差界"
+  },
+  "test-x-014": {
+    "manual_proof_and_scene_review": "a,bpositivecatenaryspeedcosh(x/a)>0，integral a sinh(b/a)。",
+    "method": null,
+    "repair_reason": null
+  }
+}

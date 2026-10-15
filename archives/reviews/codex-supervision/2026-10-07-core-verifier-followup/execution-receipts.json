@@ -1,0 +1,52 @@
+{
+  "verifier_tests_39": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "b60bb3",
+      "wall_time_seconds": 0.4567901,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": ".......................................                                  [100%]\r\n39 passed in 0.15s\r\n"
+    }
+  },
+  "admission_and_format_tests_51": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "64cfc4",
+      "wall_time_seconds": 1.5785608,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": "...................................................                      [100%]\r\n51 passed in 1.25s\r\n"
+    }
+  },
+  "admission_v2_cli": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "d72584",
+      "wall_time_seconds": 0.1150406,
+      "exit_code": 0,
+      "original_token_count": 135,
+      "output": "{\r\n  \"result\": \"PASS_VERSION_SCHEMA_AND_SOURCE_RECONSTRUCTION\",\r\n  \"mathematical_records\": 30,\r\n  \"updated_native_scenes\": 17,\r\n  \"retained_native_scenes\": 13,\r\n  \"source_files\": 5,\r\n  \"full_source_records_preserved\": 489,\r\n  \"verified_artifacts\": 9,\r\n  \"unchanged_source_line_bytes\": \"PRESERVED\",\r\n  \"new_math_proof_claimed\": false,\r\n  \"native_render\": \"UNVERIFIED\",\r\n  \"active_admission\": \"PENDING\",\r\n  \"full_761_math_verdict\": \"NOT_ESTABLISHED\",\r\n  \"semantic_isolation_verdict\": \"NOT_ESTABLISHED\",\r\n  \"PASS_CORE_SCOPE_issued\": false\r\n}\r\n"
+    }
+  },
+  "math_reconstruction_cli": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "10255c",
+      "wall_time_seconds": 0.0982275,
+      "exit_code": 0,
+      "original_token_count": 63,
+      "output": "{\r\n  \"result\": \"PASS_SOURCE_AND_RECORD_RECONSTRUCTION\",\r\n  \"corrected_records\": 30,\r\n  \"source_files\": 5,\r\n  \"by_group\": {\r\n    \"train\": 9,\r\n    \"eval\": 9,\r\n    \"test\": 12\r\n  },\r\n  \"new_math_proof_claimed\": false,\r\n  \"active_admission\": \"PENDING\"\r\n}\r\n"
+    }
+  },
+  "original_current_diagnostics": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "bf2faa",
+      "wall_time_seconds": 0.3846721,
+      "exit_code": 1,
+      "original_token_count": 1240,
+      "output": "{\"schema\": \"core-scope-format-diagnostics-v2\", \"total\": 761, \"counts\": {\"DIAGNOSTIC_ONLY\": 736, \"NEEDS_CORRECTION\": 25}, \"source_bindings\": [{\"path\": \"data/v2/eval/dataset_eval.jsonl\", \"raw_sha256\": \"187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866\", \"bytes\": 442378}, {\"path\": \"data/v2/test/dataset_test.jsonl\", \"raw_sha256\": \"d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a\", \"bytes\": 200390}, {\"path\": \"data/v2/train/leakage-isolated-v3-2026-10-05/dataset_calc.jsonl\", \"raw_sha256\": \"cb2416f493f769d84e036f1f6d178fe2b1036c22bb83991d4a8fec1de76ab9e1\", \"bytes\": 28056}, {\"path\": \"data/v2/train/leakage-isolated-v3-2026-10-05/dataset_geom.jsonl\", \"raw_sha256\": \"8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3\", \"bytes\": 12050}, {\"path\": \"data/v2/train/leakage-isolated-v3-2026-10-05/dataset_linalg.jsonl\", \"raw_sha256\": \"c2e36b7f45ffb461f1d909e51410155ffc07ad2badd5cd198bdb61e03413b39f\", \"bytes\": 22190}, {\"path\": \"data/v2/train/leakage-isolated-v3-2026-10-05/dataset_prob.jsonl\", \"raw_sha256\": \"8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0\", \"bytes\": 11845}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-01/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"e52c6ac7de59e7cec9f2c56ced7e6ff399d66dbf9811ec6bac2d574c7fe7d259\", \"bytes\": 68642}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-02/draft-codex-repair-v6.jsonl\", \"raw_sha256\": \"fc452babbd4d0e70583703759186527f6fc2631f1b875e4b49e13c5a3ba4168f\", \"bytes\": 63293}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-03/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"cf876d0a55020e12a3585a04513f0247b94ce192e738835d0cb31e1f22d0feac\", \"bytes\": 65034}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-04/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"49218ed2ea4db10545e5e9796224f589ed2de433dd7a0193aa814ef3645dba0a\", \"bytes\": 58319}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-05/draft-codex-repair-v6.jsonl\", \"raw_sha256\": \"fe34e9cd7dc872f85037666d1ec5a7530f9fd2f2721814a2ee34b048b1a49063\", \"bytes\": 58831}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-06/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"a1e5cdea755498453a9ff3081cb4eb5fc557816c9ab36434f214afc2be6bd04c\", \"bytes\": 57406}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-07/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"abf8c360311f485f3422b04cf43a60a64b166b9a65e9c6e24d79fafcd9978894\", \"bytes\": 55061}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-08/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"7309fa42140db57b43b38b4223b922fd04c8fa90d53138b79036bc8d15778e2f\", \"bytes\": 60914}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-09/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"9142001c7dce29061273bbf49596001de7f74defa40e7eb26aa3d262ced6f003\", \"bytes\": 56220}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-10/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"dc13b53c4401342a342854938bae6a2ffeaa64ea79dab92c4bbb8aaff601976e\", \"bytes\": 56518}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-11/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"34447f85bb99aa20aaa84d8756a977d97ca51253c62bd82366d6374e9b953dea\", \"bytes\": 54601}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-12/draft-codex-repair-v6.jsonl\", \"raw_sha256\": \"acc81053013232ca4b5653b7326696832530cde1a4d620588ddd2dd6da329e89\", \"bytes\": 55790}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-13/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"37ad744d2e28133f1449fa961a00606ef7982b32aa4969f2b360192fca2090f6\", \"bytes\": 54909}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-14/draft-codex-repair-v6.jsonl\", \"raw_sha256\": \"509ada826f1f061a3d5f51557202038197b530851e638cb3cee4ba5c1b48a9eb\", \"bytes\": 54473}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-15/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"1b30dc88733b7cf641716e24d00836d421d9b364628fdd5dea63d6b4f987ba1a\", \"bytes\": 61440}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-16/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"ffa0d6f7e9670b2daf11546c5bee6dfb2d0dd84188bb04544bc29541fbc8d60a\", \"bytes\": 55838}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-17/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"231cb8909d898bb52a9d8261eceaec30081c0017c13460bce3496a7148f0d07d\", \"bytes\": 55890}, {\"path\": \"reviews/2026-10-05-training-diversity-drafts/batch-18/draft-codex-repair-v4-final.jsonl\", \"raw_sha256\": \"1e11739f849a86beae6e173320bb8e62c153af2d88f9f6338bb591da18166aa4\", \"bytes\": 38840}], \"source_identity\": \"VERIFIED\", \"mathematical_verdict\": \"UNREVIEWED\", \"leakage_verdict\": \"UNREVIEWED\", \"scope_acceptance\": \"PENDING\", \"report_is_acceptance_certificate\": false, \"note\": \"Text agreement and absence of format flags do not prove any mathematical answer.\"}\r\n"
+    }
+  }
+}

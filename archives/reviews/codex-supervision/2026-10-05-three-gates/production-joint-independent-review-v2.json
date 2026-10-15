@@ -1,0 +1,60 @@
+{
+  "schema": "bounded-production-joint-independent-review-v1",
+  "raw_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\production-joint-raw-v2.json",
+  "raw_sha256": "93d894e654fca44ae98075add663a43804710330d1fbadf706f6e625d81c7d29",
+  "implementation_sha256": {
+    "src/animtrain/sandbox_execution.py": "27940c733c9bab82b042e221e0ecc619468a1fb5cb7c09340176d2e37552d69c",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "739b2b5baf7524442698837ae5d125c544a9b7b907869a9bf4ef63faaf3d41f9",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "5c7fa93acbc5f9c7cb489b34a664c9e8da5f03c69b51cd67e28472b0593d25bf",
+    "src/animtrain/isolation_evidence.py": "af71137c99de6ee31c4c3075fde03a0fcfcdab0d9868ec023b97fb8a2c78ed3e",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "cases": {
+    "render_formula": "PASS",
+    "render_chinese": "PASS",
+    "file_read_outside": "PASS",
+    "file_write_outside": "PASS",
+    "file_write_runtime": "PASS",
+    "cross_run_write": "PASS",
+    "cross_run_cache_write": "PASS",
+    "tcp_loopback_v4": "PASS",
+    "tcp_loopback_v6": "PASS",
+    "udp_loopback_v4": "PASS",
+    "udp_loopback_v6": "PASS",
+    "tcp_external_v4": "PASS",
+    "tcp_external_v6": "PASS",
+    "root_exit_tree": "PASS",
+    "timeout_tree": "PASS",
+    "memory_limit": "PASS"
+  },
+  "local_observed": {
+    "tcp_loopback_v4": {
+      "outcome": "error",
+      "winerror": null,
+      "error_type": "TimeoutError",
+      "error_detail": "timed out",
+      "elapsed_ms": 2007
+    },
+    "tcp_loopback_v6": {
+      "outcome": "error",
+      "winerror": null,
+      "error_type": "TimeoutError",
+      "error_detail": "timed out",
+      "elapsed_ms": 2012
+    },
+    "udp_loopback_v4": {
+      "outcome": "sent"
+    },
+    "udp_loopback_v6": {
+      "outcome": "sent"
+    }
+  },
+  "scope": "Only the 16 explicitly named file, endpoint, render, process and memory probes. TCP local timeout proves bounded no-delivery with healthy receivers, not an immediate OS error. No universal network/security acceptance.",
+  "production_gate": "CLOSED",
+  "certificate_written": false
+}

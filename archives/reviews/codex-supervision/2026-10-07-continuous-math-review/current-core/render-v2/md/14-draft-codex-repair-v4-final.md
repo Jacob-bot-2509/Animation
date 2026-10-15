@@ -1,0 +1,553 @@
+## draft-c15-01
+
+problem
+
+直线$l:(x,y,z)=(1,-2,0)+t(1,0,1)$，$t\in\mathbb R$，平面$\pi:x+y=1$。求直线与平面的锐夹角。
+
+solution
+
+直线方向 $d=(1,0,1)$,平面法向量 $n=(1,1,0)$。夹角公式 $\sin\varphi=\frac{|d\cdot n|}{|d|\,|n|}=\frac{|1\times1+0\times1+1\times0|}{\sqrt{2}\times\sqrt{2}}=\frac{1}{2}$,故 $\varphi=\arcsin\frac12=\frac{\pi}{6}$,即 $30^\circ$。
+
+answer
+
+夹角为 $\frac{\pi}{6}$(即 $30^\circ$)。
+
+scene_spec.objects[0]
+
+直线$l:(x,y,z)=(1,-2,0)+t(1,0,1)$，$t\in\mathbb R$，平面$\pi:x+y=1$。求直线与平面的锐夹角。
+
+scene_spec.objects[1]
+
+夹角为 $\frac{\pi}{6}$(即 $30^\circ$)。
+
+scene_spec.steps[0]
+
+第一步:直线方向 $d=(1,0,1)$,平面法向量 $n=(1,1,0)$。
+
+scene_spec.steps[1]
+
+第二步:夹角公式 $\sin\varphi=\frac{|d\cdot n|}{|d|\,|n|}=\frac{|1\times1+0\times1+1\times0|}{\sqrt{2}\times\sqrt{2}}=\frac{1}{2}$,故 $\varphi=\arcsin\frac12=\frac{\pi}{6}$,即 $30^\circ$。
+
+## draft-c15-02
+
+problem
+
+判断直线 $l:\frac{x-1}{1}=\frac{y-2}{2}=\frac{z-3}{-1}$ 与平面 $\pi:x+2y-z=0$ 的位置关系；再判断过点 $(1,1,2)$、方向为 $(1,-1,1)$ 的直线 $l'$ 与平面 $\pi':x+y=0$ 的位置关系。
+
+solution
+
+$l$ 的方向 $d=(1,2,-1)$ 与 $\pi$ 的法向量 $n=(1,2,-1)$ 平行($d=n$),故 $l\perp\pi$(直线垂直于平面)。$l'$ 的方向 $d'=(1,-1,1)$ 与 $\pi'$ 的法向量 $n'=(1,1,0)$ 的内积为 $1-1+0=0$,故 $d'\perp n'$,即 $l'\parallel\pi'$;又点 $(1,1,2)$ 代入 $x+y=2\neq0$,不在平面内,故 $l'$ 与 $\pi'$ 平行且不重合。
+
+answer
+
+$l\perp\pi$(方向平行于法向);$l'\parallel\pi'$ 且不重合($d'\perp n'$ 且所过点不在平面内)。
+
+scene_spec.objects[0]
+
+判断直线 $l:\frac{x-1}{1}=\frac{y-2}{2}=\frac{z-3}{-1}$ 与平面 $\pi:x+2y-z=0$ 的位置关系；再判断过点 $(1,1,2)$、方向为 $(1,-1,1)$ 的直线 $l'$ 与平面 $\pi':x+y=0$ 的位置关系。
+
+scene_spec.objects[1]
+
+$l\perp\pi$(方向平行于法向);$l'\parallel\pi'$ 且不重合($d'\perp n'$ 且所过点不在平面内)。
+
+scene_spec.steps[0]
+
+第一步:$l$ 的方向 $d=(1,2,-1)$ 与 $\pi$ 的法向量 $n=(1,2,-1)$ 平行($d=n$),故 $l\perp\pi$(直线垂直于平面)。
+
+scene_spec.steps[1]
+
+第二步:$l'$ 的方向 $d'=(1,-1,1)$ 与 $\pi'$ 的法向量 $n'=(1,1,0)$ 的内积为 $1-1+0=0$,故 $d'\perp n'$,即 $l'\parallel\pi'$;又点 $(1,1,2)$ 代入 $x+y=2\neq0$,不在平面内,故 $l'$ 与 $\pi'$ 平行且不重合。
+
+## draft-c15-03
+
+problem
+
+求过点 $P(1,2,3)$、法向量位于 $xz$ 平面内、且与方向为 $(1,1,0)$ 的直线成 $30^\circ$ 角的平面方程。
+
+solution
+
+法向量为$(a,0,c)\ne0$，直线方向为$(1,1,0)$。线面角为$\pi/6$，所以$|a|/[\sqrt2\sqrt{a^2+c^2}]=1/2$，平方得$a^2=c^2$；若$a=0$则$c=0$矛盾，故可取$a=1$，$c=\pm1$。过$P=(1,2,3)$的两个平面分别为$x+z=4$、$x-z=-2$。两者法向量均使角正弦为$1/2$，故线面锐角均为$\pi/6$。
+
+answer
+
+两个平面:$x+z=4$ 与 $x-z=-2$。
+
+scene_spec.objects[0]
+
+求过点 $P(1,2,3)$、法向量位于 $xz$ 平面内、且与方向为 $(1,1,0)$ 的直线成 $30^\circ$ 角的平面方程。
+
+scene_spec.objects[1]
+
+两个平面:$x+z=4$ 与 $x-z=-2$。
+
+scene_spec.steps[0]
+
+第一步:法向量为$(a,0,c)\ne0$，直线方向为$(1,1,0)$。
+
+scene_spec.steps[1]
+
+第二步:线面角为$\pi/6$，所以$|a|/[\sqrt2\sqrt{a^2+c^2}]=1/2$，平方得$a^2=c^2$；若$a=0$则$c=0$矛盾，故可取$a=1$，$c=\pm1$。
+
+scene_spec.steps[2]
+
+第三步:过$P=(1,2,3)$的两个平面分别为$x+z=4$、$x-z=-2$。
+
+scene_spec.steps[3]
+
+第四步:两者法向量均使角正弦为$1/2$，故线面锐角均为$\pi/6$。
+
+## draft-c15-04
+
+problem
+
+求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\pi:x+y=0$ 的夹角 $\varphi$；再求 $l$ 在 $\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\theta$，说明 $\theta$ 与 $\varphi$ 的关系。
+
+solution
+
+直线方向$d=(1,1,1)$，平面法向量$n=(1,1,0)$。正交投影方向$d_{\parallel}=d-(d\cdot n)/(n\cdot n)n=(0,0,1)$。线面角$\phi\in[0,\pi/2]$满足$\sin\phi=|d\cdot n|/(\|d\|\|n\|)=\sqrt{2/3}$；直线与其非零投影的锐角$\theta$满足$\cos\theta=(d\cdot d_{\parallel})/(\|d\|\|d_{\parallel}\|)=1/\sqrt3$。两角范围相同且$\cos\phi=1/\sqrt3$，故$\phi=\theta$。
+
+answer
+
+$\phi=\arcsin\sqrt{2/3}$，$\theta=\arccos(1/\sqrt3)$；$\phi=\theta$，方向投影为$(0,0,1)$。
+
+scene_spec.objects[0]
+
+求直线 $l$：过原点、方向为 $(1,1,1)$ 与平面 $\pi:x+y=0$ 的夹角 $\varphi$；再求 $l$ 在 $\pi$ 上的投影直线的方向，并求 $l$ 与其投影线的夹角 $\theta$，说明 $\theta$ 与 $\varphi$ 的关系。
+
+scene_spec.objects[1]
+
+$\phi=\arcsin\sqrt{2/3}$，$\theta=\arccos(1/\sqrt3)$；$\phi=\theta$，方向投影为$(0,0,1)$。
+
+scene_spec.steps[0]
+
+第一步:直线方向$d=(1,1,1)$，平面法向量$n=(1,1,0)$。
+
+scene_spec.steps[1]
+
+第二步:正交投影方向$d_{\parallel}=d-(d\cdot n)/(n\cdot n)n=(0,0,1)$。
+
+scene_spec.steps[2]
+
+第三步:线面角$\phi\in[0,\pi/2]$满足$\sin\phi=|d\cdot n|/(\|d\|\|n\|)=\sqrt{2/3}$；直线与其非零投影的锐角$\theta$满足$\cos\theta=(d\cdot d_{\parallel})/(\|d\|\|d_{\parallel}\|)=1/\sqrt3$。
+
+scene_spec.steps[3]
+
+第四步:两角范围相同且$\cos\phi=1/\sqrt3$，故$\phi=\theta$。
+
+## draft-c15-05
+
+problem
+
+证明直线与平面夹角公式 $\sin\varphi=\frac{|d\cdot n|}{|d|\,|n|}$，并讨论 $d\cdot n=0$ 与 $d\times n=0$ 两个退化分支对应的位置关系及判定方法。
+
+solution
+
+设直线为$l=p+td$，平面为$\Pi=\{x:n\cdot x=c\}$，其中$d,n\ne0$。将方向向量正交分解为$d=d_{\parallel}+d_{\perp}$，其中$d_{\perp}=\frac{d\cdot n}{\|n\|^2}n$，$d_{\parallel}=d-\frac{d\cdot n}{\|n\|^2}n$，故$n\cdot d_{\parallel}=0$、$d_{\parallel}\cdot d_{\perp}=0$。若$d_{\parallel}\ne0$，直线与平面的夹角$\varphi\in[0,\pi/2)$为$d$与其平面投影方向的锐角或零角，由直角三角形得$\sin\varphi=\frac{\|d_{\perp}\|}{\|d\|}=\frac{|d\cdot n|}{\|d\|\,\|n\|}$。若$d_{\parallel}=0$，则$d\parallel n$，直线垂直于平面，$\varphi=\pi/2$，上述公式右端为$1$，仍然成立。若$d\cdot n=0$，则$\varphi=0$，且所有$t$都有$n\cdot(p+td)=n\cdot p$；因此$n\cdot p=c$时$l\subset\Pi$，$n\cdot p\ne c$时$l\cap\Pi=\varnothing$且直线与平面平行。若$d\times n=0$，由$d,n\ne0$知$d\cdot n\ne0$；直线垂直于平面，并在唯一参数$t=\frac{c-n\cdot p}{n\cdot d}$处与平面相交。
+
+answer
+
+$\sin\varphi=\frac{|d\cdot n|}{\|d\|\,\|n\|}$，$\varphi\in[0,\pi/2]$。若$d\cdot n=0$，则$\varphi=0$：$n\cdot p=c$时$l\subset\Pi$，否则$l\cap\Pi=\varnothing$且$l\parallel\Pi$。若$d\times n=0$，则$\varphi=\pi/2$且$l\perp\Pi$，交点为$p+\frac{c-n\cdot p}{n\cdot d}d$。
+
+scene_spec.objects[0]
+
+证明直线与平面夹角公式 $\sin\varphi=\frac{|d\cdot n|}{|d|\,|n|}$，并讨论 $d\cdot n=0$ 与 $d\times n=0$ 两个退化分支对应的位置关系及判定方法。
+
+scene_spec.objects[1]
+
+$\sin\varphi=\frac{|d\cdot n|}{\|d\|\,\|n\|}$，$\varphi\in[0,\pi/2]$。若$d\cdot n=0$，则$\varphi=0$：$n\cdot p=c$时$l\subset\Pi$，否则$l\cap\Pi=\varnothing$且$l\parallel\Pi$。若$d\times n=0$，则$\varphi=\pi/2$且$l\perp\Pi$，交点为$p+\frac{c-n\cdot p}{n\cdot d}d$。
+
+scene_spec.steps[0]
+
+第一步：设$l=p+td$、$\Pi=\{x:n\cdot x=c\}$，明确$d,n\ne0$。
+
+scene_spec.steps[1]
+
+第二步：将$d$分解为正交的$d_{\parallel}$和$d_{\perp}=\frac{d\cdot n}{\|n\|^2}n$。
+
+scene_spec.steps[2]
+
+第三步：由正交分解得到$\sin\varphi=\frac{\|d_{\perp}\|}{\|d\|}=\frac{|d\cdot n|}{\|d\|\,\|n\|}$；投影为零时取$\varphi=\pi/2$。
+
+scene_spec.steps[3]
+
+第四步：当$d\cdot n=0$时，利用$n\cdot p=c$区分直线包含于平面与平行且不相交。
+
+scene_spec.steps[4]
+
+第五步：当$d\times n=0$时，证明$n\cdot d\ne0$，求唯一交点$p+\frac{c-n\cdot p}{n\cdot d}d$。
+
+## draft-c17-01
+
+problem
+
+求过点 $P(1,-2,3)$ 且以 $n=(2,1,-2)$ 为法向量的平面方程。
+
+solution
+
+点法式:$2(x-1)+1(y+2)-2(z-3)=0$,展开得 $2x+y-2z+6=0$。验证:代入 $P$:$2-2-6+6=0$ ✓。
+
+answer
+
+平面方程为 $2x+y-2z+6=0$。
+
+scene_spec.objects[0]
+
+求过点 $P(1,-2,3)$ 且以 $n=(2,1,-2)$ 为法向量的平面方程。
+
+scene_spec.objects[1]
+
+平面方程为 $2x+y-2z+6=0$。
+
+scene_spec.steps[0]
+
+第一步:点法式:$2(x-1)+1(y+2)-2(z-3)=0$,展开得 $2x+y-2z+6=0$。
+
+scene_spec.steps[1]
+
+第二步:验证:代入 $P$:$2-2-6+6=0$ ✓。
+
+## draft-c17-02
+
+problem
+
+求过点 $P(1,1,1)$ 且平行于向量 $a=(1,0,1)$ 与 $b=(0,1,1)$ 的平面方程。
+
+solution
+
+平面的法向量可取 $n=a\times b=(1,0,1)\times(0,1,1)=(0\times1-1\times1,\,1\times0-1\times1,\,1\times1-0\times0)=(-1,-1,1)$。由点法式:$-(x-1)-(y-1)+(z-1)=0$,即 $x+y-z=1$。验证:$P$ 满足 $1+1-1=1$ ✓;$a\cdot n=-1+0+1=0$,$b\cdot n=0-1+1=0$,两个方向均在平面内 ✓。
+
+answer
+
+平面方程为 $x+y-z=1$。
+
+scene_spec.objects[0]
+
+求过点 $P(1,1,1)$ 且平行于向量 $a=(1,0,1)$ 与 $b=(0,1,1)$ 的平面方程。
+
+scene_spec.objects[1]
+
+平面方程为 $x+y-z=1$。
+
+scene_spec.steps[0]
+
+第一步:平面的法向量可取 $n=a\times b=(1,0,1)\times(0,1,1)=(0\times1-1\times1,\,1\times0-1\times1,\,1\times1-0\times0)=(-1,-1,1)$。
+
+scene_spec.steps[1]
+
+第二步:由点法式:$-(x-1)-(y-1)+(z-1)=0$,即 $x+y-z=1$。
+
+scene_spec.steps[2]
+
+第三步:验证:$P$ 满足 $1+1-1=1$ ✓;$a\cdot n=-1+0+1=0$,$b\cdot n=0-1+1=0$,两个方向均在平面内 ✓。
+
+## draft-c17-03
+
+problem
+
+求过 $A(1,1,1)$、$B(2,2,2)$ 且平行于 $x$ 轴的平面方程，并说明为什么只用两个共线的点不能确定平面。
+
+solution
+
+$\overrightarrow{AB}=(1,1,1)$,$x$ 轴方向 $e=(1,0,0)$。$AB$ 与 $e$ 不平行,两者张成所求平面的方向子空间,法向量 $n=\overrightarrow{AB}\times e=(1,1,1)\times(1,0,0)=(1\times0-1\times0,\,1\times1-1\times0,\,1\times0-1\times1)=(0,1,-1)$。点法式:$0(x-1)+(y-1)-(z-1)=0$,即 $y=z$。验证:$A,B$ 均满足 $y=z$ ✓;方向 $e$ 与 $n$ 正交 ✓。说明:$A,B$ 共线时,两个点只给出一个方向,而空间中过一条定直线的平面有无穷多个(绕该直线旋转),必须再给一个与 $AB$ 不共线的方向或条件才能唯一确定平面。
+
+answer
+
+平面方程为 $y=z$;共线两点只确定一个方向,过该直线的平面有无穷多个,故不能唯一确定平面。
+
+scene_spec.objects[0]
+
+求过 $A(1,1,1)$、$B(2,2,2)$ 且平行于 $x$ 轴的平面方程，并说明为什么只用两个共线的点不能确定平面。
+
+scene_spec.objects[1]
+
+平面方程为 $y=z$;共线两点只确定一个方向,过该直线的平面有无穷多个,故不能唯一确定平面。
+
+scene_spec.steps[0]
+
+第一步:$\overrightarrow{AB}=(1,1,1)$,$x$ 轴方向 $e=(1,0,0)$。
+
+scene_spec.steps[1]
+
+第二步:$AB$ 与 $e$ 不平行,两者张成所求平面的方向子空间,法向量 $n=\overrightarrow{AB}\times e=(1,1,1)\times(1,0,0)=(1\times0-1\times0,\,1\times1-1\times0,\,1\times0-1\times1)=(0,1,-1)$。
+
+scene_spec.steps[2]
+
+第三步:点法式:$0(x-1)+(y-1)-(z-1)=0$,即 $y=z$。
+
+scene_spec.steps[3]
+
+第四步:验证:$A,B$ 均满足 $y=z$ ✓;方向 $e$ 与 $n$ 正交 ✓。
+
+scene_spec.steps[4]
+
+第五步:说明:$A,B$ 共线时,两个点只给出一个方向,而空间中过一条定直线的平面有无穷多个(绕该直线旋转),必须再给一个与 $AB$ 不共线的方向或条件才能唯一确定平面。
+
+## draft-c17-04
+
+problem
+
+设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。
+
+solution
+
+法向量$n_1=(1,1,1)$、$n_2=(1,-1,2)$线性无关。任何包含$l$的平面法向量属于$\operatorname{span}(n_1,n_2)$，在$l$上取一点比较常数项，得全部平面$s f_1+t f_2=0$，$(s,t)\ne(0,0)$，比例$(s:t)$标识同一平面。该齐次表示包含$f_2=0$，不能用$f_1+\lambda f_2$遗漏它。经过$P$需$s f_1(P)+t f_2(P)=0$：若$P\in l$，所有成员都经过$P$；否则一条非零齐次线性约束唯一确定比例。对$P=(1,1,1)$，$f_1(P)=f_2(P)=2$，故$(s:t)=(1:-1)$，平面为$2y-z=1$。
+
+answer
+
+全部$s f_1+t f_2=0$，$(s:t)\in\mathbb{RP}^1$；$P\in l$时全部，否则唯一；指定点对应$2y-z=1$。
+
+scene_spec.objects[0]
+
+设两相交平面$f_1=x+y+z-1=0$、$f_2=x-y+2z=0$交于直线$l$。给出包含$l$的全部平面，并分类经过给定点$P$的成员；最后求经过$(1,1,1)$的成员。
+
+scene_spec.objects[1]
+
+全部$s f_1+t f_2=0$，$(s:t)\in\mathbb{RP}^1$；$P\in l$时全部，否则唯一；指定点对应$2y-z=1$。
+
+scene_spec.steps[0]
+
+第一步:法向量$n_1=(1,1,1)$、$n_2=(1,-1,2)$线性无关。
+
+scene_spec.steps[1]
+
+第二步:任何包含$l$的平面法向量属于$\operatorname{span}(n_1,n_2)$，在$l$上取一点比较常数项，得全部平面$s f_1+t f_2=0$，$(s,t)\ne(0,0)$，比例$(s:t)$标识同一平面。
+
+scene_spec.steps[2]
+
+第三步:该齐次表示包含$f_2=0$，不能用$f_1+\lambda f_2$遗漏它。
+
+scene_spec.steps[3]
+
+第四步:经过$P$需$s f_1(P)+t f_2(P)=0$：若$P\in l$，所有成员都经过$P$；否则一条非零齐次线性约束唯一确定比例。
+
+scene_spec.steps[4]
+
+第五步:对$P=(1,1,1)$，$f_1(P)=f_2(P)=2$，故$(s:t)=(1:-1)$，平面为$2y-z=1$。
+
+## draft-c17-05
+
+problem
+
+推导平面的截距式方程，并求过点 $P(1,2,3)$ 且在三坐标轴上的截距都相等且不为零(即平面不过原点)的平面方程。
+
+solution
+
+若平面与三轴分别交于$(a,0,0),(0,b,0),(0,0,c)$，其中$abc\ne0$，代入$Ax+By+Cz=D$得$Aa=Bb=Cc=D$。这三个截距点不共线，且其平面不经过原点，故$D\ne0$，除以$D$得到$x/a+y/b+z/c=1$。过$(1,2,3)$且三截距相等为$h\ne0$时，$(1+2+3)/h=1$，得$h=6$，平面$x+y+z=6$。若坐标轴包含于平面或不相交，不能使用三个非零有限截距的假设。
+
+answer
+
+截距式:$\frac{x}{a}+\frac{y}{b}+\frac{z}{c}=1$($abc\neq0$);$x+y+z=6$。
+
+scene_spec.objects[0]
+
+推导平面的截距式方程，并求过点 $P(1,2,3)$ 且在三坐标轴上的截距都相等且不为零(即平面不过原点)的平面方程。
+
+scene_spec.objects[1]
+
+截距式:$\frac{x}{a}+\frac{y}{b}+\frac{z}{c}=1$($abc\neq0$);$x+y+z=6$。
+
+scene_spec.steps[0]
+
+第一步:若平面与三轴分别交于$(a,0,0),(0,b,0),(0,0,c)$，其中$abc\ne0$，代入$Ax+By+Cz=D$得$Aa=Bb=Cc=D$。
+
+scene_spec.steps[1]
+
+第二步:这三个截距点不共线，且其平面不经过原点，故$D\ne0$，除以$D$得到$x/a+y/b+z/c=1$。
+
+scene_spec.steps[2]
+
+第三步:过$(1,2,3)$且三截距相等为$h\ne0$时，$(1+2+3)/h=1$，得$h=6$，平面$x+y+z=6$。
+
+scene_spec.steps[3]
+
+第四步:若坐标轴包含于平面或不相交，不能使用三个非零有限截距的假设。
+
+## draft-c19-01
+
+problem
+
+说明方程 $y^2=2x$ 在空间直角坐标系中表示什么曲面，并指出它与 $xy$ 平面内的曲线 $y^2=2x$ 的区别。
+
+solution
+
+方程不含 $z$:若 $(x,y,z)$ 满足 $y^2=2x$,则对任意 $z'$,$(x,y,z')$ 也满足。故该方程表示母线平行于 $z$ 轴的抛物柱面——准线是 $xy$ 平面内的抛物线 $y^2=2x$,过准线上每一点作平行于 $z$ 轴的直线,这些直线的并集即曲面。区别:平面内方程 $y^2=2x$ 表示一条曲线(一维),空间同一方程表示一张曲面(二维,沿 $z$ 方向无限延伸)。
+
+answer
+
+母线平行于 $z$ 轴的抛物柱面(准线 $y^2=2x$);平面内同方程为曲线,空间中为曲面。
+
+scene_spec.objects[0]
+
+说明方程 $y^2=2x$ 在空间直角坐标系中表示什么曲面，并指出它与 $xy$ 平面内的曲线 $y^2=2x$ 的区别。
+
+scene_spec.objects[1]
+
+母线平行于 $z$ 轴的抛物柱面(准线 $y^2=2x$);平面内同方程为曲线,空间中为曲面。
+
+scene_spec.steps[0]
+
+第一步:方程不含 $z$:若 $(x,y,z)$ 满足 $y^2=2x$,则对任意 $z'$,$(x,y,z')$ 也满足。
+
+scene_spec.steps[1]
+
+第二步:故该方程表示母线平行于 $z$ 轴的抛物柱面——准线是 $xy$ 平面内的抛物线 $y^2=2x$,过准线上每一点作平行于 $z$ 轴的直线,这些直线的并集即曲面。
+
+scene_spec.steps[2]
+
+第三步:区别:平面内方程 $y^2=2x$ 表示一条曲线(一维),空间同一方程表示一张曲面(二维,沿 $z$ 方向无限延伸)。
+
+## draft-c19-02
+
+problem
+
+求以 $xy$ 平面内的圆 $x^2+y^2=1$($z=0$)为准线、母线平行于直线 $l$:方向 $(1,1,1)$ 的柱面方程。
+
+solution
+
+母线方向$(1,1,1)$，点可写为$(\cos\theta+t,\sin\theta+t,t)$，消去$t$得$(x-z)^2+(y-z)^2=1$；反过来取$t=z$即可恢复基圆与母线，故方程完整。基圆位于$z=0$，母线不垂直基圆平面，是斜圆柱。若在$x+y+z=0$中截取，令正交坐标$u=(x-y)/\sqrt2$、$v=(x+y-2z)/\sqrt6$，则$(x-z)^2+(y-z)^2=u^2+3v^2$，截面为椭圆$u^2+3v^2=1$，半轴$1,1/\sqrt3$，不能称所有正截面均为圆。
+
+answer
+
+柱面方程为 $(x-z)^2+(y-z)^2=1$。
+
+scene_spec.objects[0]
+
+求以 $xy$ 平面内的圆 $x^2+y^2=1$($z=0$)为准线、母线平行于直线 $l$:方向 $(1,1,1)$ 的柱面方程。
+
+scene_spec.objects[1]
+
+柱面方程为 $(x-z)^2+(y-z)^2=1$。
+
+scene_spec.steps[0]
+
+第一步:母线方向$(1,1,1)$，点可写为$(\cos\theta+t,\sin\theta+t,t)$，消去$t$得$(x-z)^2+(y-z)^2=1$；反过来取$t=z$即可恢复基圆与母线，故方程完整。
+
+scene_spec.steps[1]
+
+第二步:基圆位于$z=0$，母线不垂直基圆平面，是斜圆柱。
+
+scene_spec.steps[2]
+
+第三步:若在$x+y+z=0$中截取，令正交坐标$u=(x-y)/\sqrt2$、$v=(x+y-2z)/\sqrt6$，则$(x-z)^2+(y-z)^2=u^2+3v^2$，截面为椭圆$u^2+3v^2=1$，半轴$1,1/\sqrt3$，不能称所有正截面均为圆。
+
+## draft-c19-03
+
+problem
+
+求柱面 $x^2+y^2=1$ 与平面 $z=2x$ 的交线方程及其在 $xy$ 平面上的投影，并说明该交线是什么曲线。
+
+solution
+
+交线为方程组 $\begin{cases}x^2+y^2=1\\ z=2x\end{cases}$。投影到 $xy$ 平面:消去 $z$ 得 $x^2+y^2=1$ 且 $-1\le x\le1$——投影是 $xy$ 平面内的单位圆周。交线本身是圆柱面 $x^2+y^2=1$ 被平面 $z=2x$ 截出的截线,位于该平面内,是椭圆。轴长分析:参数化 $(\cos t,\sin t,2\cos t)$,在平面 $z=2x$ 内取正交基 $e_1=(0,1,0)$ 与 $e_2=\frac{(1,0,2)}{\sqrt5}$(均垂直于法向 $(2,0,-1)$ 且互相正交),明确坐标$\xi=e_1\cdot(x,y,z)=y$、$\eta=e_2\cdot(x,y,z)=(x+2z)/\sqrt5$，则$(\xi,\eta)=(\sin t,\sqrt5\cos t)$，所以$\xi^2+\frac{\eta^2}{5}=1$:沿 $y$ 方向($e_1$)为短轴,半轴长 $1$,全长 $2$;沿 $(1,0,2)$ 方向($e_2$)为长轴,半轴长 $\sqrt5$,全长 $2\sqrt5$。
+
+answer
+
+交线:$\begin{cases}x^2+y^2=1\\ z=2x\end{cases}$;$xy$ 平面投影为单位圆周;交线为平面 $z=2x$ 内的椭圆(短半轴 $1$ 沿 $y$ 方向,长半轴 $\sqrt5$ 沿 $(1,0,2)$ 方向)。
+
+scene_spec.objects[0]
+
+求柱面 $x^2+y^2=1$ 与平面 $z=2x$ 的交线方程及其在 $xy$ 平面上的投影，并说明该交线是什么曲线。
+
+scene_spec.objects[1]
+
+交线:$\begin{cases}x^2+y^2=1\\ z=2x\end{cases}$;$xy$ 平面投影为单位圆周;交线为平面 $z=2x$ 内的椭圆(短半轴 $1$ 沿 $y$ 方向,长半轴 $\sqrt5$ 沿 $(1,0,2)$ 方向)。
+
+scene_spec.steps[0]
+
+第一步:交线为方程组 $\begin{cases}x^2+y^2=1\\ z=2x\end{cases}$。
+
+scene_spec.steps[1]
+
+第二步:投影到 $xy$ 平面:消去 $z$ 得 $x^2+y^2=1$ 且 $-1\le x\le1$——投影是 $xy$ 平面内的单位圆周。
+
+scene_spec.steps[2]
+
+第三步:交线本身是圆柱面 $x^2+y^2=1$ 被平面 $z=2x$ 截出的截线,位于该平面内,是椭圆。
+
+scene_spec.steps[3]
+
+第四步:轴长分析:参数化 $(\cos t,\sin t,2\cos t)$,在平面 $z=2x$ 内取正交基 $e_1=(0,1,0)$ 与 $e_2=\frac{(1,0,2)}{\sqrt5}$(均垂直于法向 $(2,0,-1)$ 且互相正交),明确坐标$\xi=e_1\cdot(x,y,z)=y$、$\eta=e_2\cdot(x,y,z)=(x+2z)/\sqrt5$，则$(\xi,\eta)=(\sin t,\sqrt5\cos t)$，所以$\xi^2+\frac{\eta^2}{5}=1$:沿 $y$ 方向($e_1$)为短轴,半轴长 $1$,全长 $2$;沿 $(1,0,2)$ 方向($e_2$)为长轴,半轴长 $\sqrt5$,全长 $2\sqrt5$。
+
+## draft-c19-04
+
+problem
+
+分析下列实集合的几何维数，并说明“维数等于三减方程数”需要什么局部条件：$x^2+y^2+z^2=0$；$x^2+y^2=0$；$x^2+y^2=1$；系统$x^2+y^2=1,\ 2x^2+2y^2=2$。
+
+solution
+
+前两式由非负平方之和为零，分别给单点$(0,0,0)$（维数$0$）与$z$轴（维数$1$）；第三式给圆柱面（维数$2$）。最后两个方程等价，其集合仍是圆柱面（维数$2$）。单个方程在前三者的零集上梯度分别为零、零、非零；最后系统只有一个独立约束。在$\mathbb R^3$中，对$r$个$C^1$方程，只有在某解附近Jacobian行满秩$r$时，隐函数定理才保证局部维数$3-r$。方程个数不能替代独立性与正则性检查。
+
+answer
+
+维数依次$0,1,2,2$；满秩正则点才可用$3-r$。
+
+scene_spec.objects[0]
+
+分析下列实集合的几何维数，并说明“维数等于三减方程数”需要什么局部条件：$x^2+y^2+z^2=0$；$x^2+y^2=0$；$x^2+y^2=1$；系统$x^2+y^2=1,\ 2x^2+2y^2=2$。
+
+scene_spec.objects[1]
+
+维数依次$0,1,2,2$；满秩正则点才可用$3-r$。
+
+scene_spec.steps[0]
+
+第一步:前两式由非负平方之和为零，分别给单点$(0,0,0)$（维数$0$）与$z$轴（维数$1$）；第三式给圆柱面（维数$2$）。
+
+scene_spec.steps[1]
+
+第二步:最后两个方程等价，其集合仍是圆柱面（维数$2$）。
+
+scene_spec.steps[2]
+
+第三步:单个方程在前三者的零集上梯度分别为零、零、非零；最后系统只有一个独立约束。
+
+scene_spec.steps[3]
+
+第四步:在$\mathbb R^3$中，对$r$个$C^1$方程，只有在某解附近Jacobian行满秩$r$时，隐函数定理才保证局部维数$3-r$。
+
+scene_spec.steps[4]
+
+第五步:方程个数不能替代独立性与正则性检查。
+
+## draft-c19-05
+
+problem
+
+设$F\in C^1(\mathbb R^3)$，$v\ne0$。证明$F(x+tv)=F(x)$对所有$x,t$成立，当且仅当$v\cdot\nabla F(x)=0$处处成立。说明零集何时为正则柱面，为什么“不含某变量”并不自动保证二维曲面。
+
+solution
+
+若平移不变，对$t$求导并令$t=0$，得$v\cdot\nabla F(x)=0$。反之，固定$x$，函数$h(t)=F(x+tv)$的导数处处为零，所以$h$恒定。故零集沿$v$的整条直线不变；若零集非空且在零集上$\nabla F\ne0$，则由隐函数定理局部为二维正则曲面，母线为这些直线。若只知道不含$z$，例$F=x^2+y^2$的零集仅为$z$轴，$F=x^2+y^2+1$的零集为空，$F=0$的零集为全空间。必须区分平移不变集合与正则二维柱面。
+
+answer
+
+平移不变等价于$v\cdot\nabla F\equiv0$；非空且零集上梯度非零时为正则柱面。
+
+scene_spec.objects[0]
+
+设$F\in C^1(\mathbb R^3)$，$v\ne0$。证明$F(x+tv)=F(x)$对所有$x,t$成立，当且仅当$v\cdot\nabla F(x)=0$处处成立。说明零集何时为正则柱面，为什么“不含某变量”并不自动保证二维曲面。
+
+scene_spec.objects[1]
+
+平移不变等价于$v\cdot\nabla F\equiv0$；非空且零集上梯度非零时为正则柱面。
+
+scene_spec.steps[0]
+
+第一步:若平移不变，对$t$求导并令$t=0$，得$v\cdot\nabla F(x)=0$。
+
+scene_spec.steps[1]
+
+第二步:反之，固定$x$，函数$h(t)=F(x+tv)$的导数处处为零，所以$h$恒定。
+
+scene_spec.steps[2]
+
+第三步:故零集沿$v$的整条直线不变；若零集非空且在零集上$\nabla F\ne0$，则由隐函数定理局部为二维正则曲面，母线为这些直线。
+
+scene_spec.steps[3]
+
+第四步:若只知道不含$z$，例$F=x^2+y^2$的零集仅为$z$轴，$F=x^2+y^2+1$的零集为空，$F=0$的零集为全空间。
+
+scene_spec.steps[4]
+
+第五步:必须区分平移不变集合与正则二维柱面。

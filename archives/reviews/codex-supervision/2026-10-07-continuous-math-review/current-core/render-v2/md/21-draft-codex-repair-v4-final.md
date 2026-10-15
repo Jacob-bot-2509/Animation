@@ -1,0 +1,605 @@
+## draft-c47-01
+
+problem
+
+购买两组彩票，全部彩票是否中奖相互独立：第一组$1000$张，单张中奖率$1/1000$；第二组$1000$张，单张中奖率$1/500$。求总中奖次数恰为$3$的精确概率；再将两组张数均改为$n$、中奖率改为$1/n,2/n$，求对应概率的极限。
+
+solution
+
+第一组$X\sim B(1000,1/1000)$，第二组$Y\sim B(1000,1/500)$且独立。卷积给精确概率$\sum_{j=0}^3\binom{1000}{j}(1/1000)^j(999/1000)^{1000-j}\binom{1000}{3-j}(1/500)^{3-j}(499/500)^{997+j}$。极限族取$n\ge3$；对固定$j$，两组点概率分别趋于$e^{-1}/j!$与$e^{-2}2^{3-j}/(3-j)!$，有限求和可交换极限。二项式定理给极限$e^{-3}\sum_{j=0}^3 2^{3-j}/[j!(3-j)!]=(9/2)e^{-3}$。有限精确概率与极限值是不同对象，不能写成等号。
+
+answer
+
+精确概率为四项卷积和；稀有事件族的极限$(9/2)e^{-3}$。
+
+scene_spec.objects[0]
+
+购买两组彩票，全部彩票是否中奖相互独立：第一组$1000$张，单张中奖率$1/1000$；第二组$1000$张，单张中奖率$1/500$。求总中奖次数恰为$3$的精确概率；再将两组张数均改为$n$、中奖率改为$1/n,2/n$，求对应概率的极限。
+
+scene_spec.objects[1]
+
+精确概率为四项卷积和；稀有事件族的极限$(9/2)e^{-3}$。
+
+scene_spec.steps[0]
+
+第一步:第一组$X\sim B(1000,1/1000)$，第二组$Y\sim B(1000,1/500)$且独立。
+
+scene_spec.steps[1]
+
+第二步:卷积给精确概率$\sum_{j=0}^3\binom{1000}{j}(1/1000)^j(999/1000)^{1000-j}\binom{1000}{3-j}(1/500)^{3-j}(499/500)^{997+j}$。
+
+scene_spec.steps[2]
+
+第三步:极限族取$n\ge3$；对固定$j$，两组点概率分别趋于$e^{-1}/j!$与$e^{-2}2^{3-j}/(3-j)!$，有限求和可交换极限。
+
+scene_spec.steps[3]
+
+第四步:二项式定理给极限$e^{-3}\sum_{j=0}^3 2^{3-j}/[j!(3-j)!]=(9/2)e^{-3}$。
+
+scene_spec.steps[4]
+
+第五步:有限精确概率与极限值是不同对象，不能写成等号。
+
+## draft-c47-02
+
+problem
+
+设$X\sim B(100,1/100)$。给出$P(X=0)$的精确值，严格比较它与$e^{-1}$，给指数形式的精确误差上界，不作小数计算。
+
+solution
+
+$P(X=0)=(99/100)^{100}$。对$0<x<1$，积分$-\ln(1-x)=\int_0^x(1-t)^{-1}dt$，给$x<-\ln(1-x)<x/(1-x)$。代入$x=1/100$并乘$100$得$-100/99<\ln P(X=0)<-1$，所以$e^{-100/99}<P(X=0)<e^{-1}$。因此$0<e^{-1}-P(X=0)<e^{-1}(1-e^{-1/99})$。这些均为严格界，未把极限分布的点概率冒充有限样本真值。
+
+answer
+
+$(99/100)^{100}$；$e^{-100/99}<P<e^{-1}$，误差严格小于$e^{-1}(1-e^{-1/99})$。
+
+scene_spec.objects[0]
+
+设$X\sim B(100,1/100)$。给出$P(X=0)$的精确值，严格比较它与$e^{-1}$，给指数形式的精确误差上界，不作小数计算。
+
+scene_spec.objects[1]
+
+$(99/100)^{100}$；$e^{-100/99}<P<e^{-1}$，误差严格小于$e^{-1}(1-e^{-1/99})$。
+
+scene_spec.steps[0]
+
+第一步:$P(X=0)=(99/100)^{100}$。
+
+scene_spec.steps[1]
+
+第二步:对$0<x<1$，积分$-\ln(1-x)=\int_0^x(1-t)^{-1}dt$，给$x<-\ln(1-x)<x/(1-x)$。
+
+scene_spec.steps[2]
+
+第三步:代入$x=1/100$并乘$100$得$-100/99<\ln P(X=0)<-1$，所以$e^{-100/99}<P(X=0)<e^{-1}$。
+
+scene_spec.steps[3]
+
+第四步:因此$0<e^{-1}-P(X=0)<e^{-1}(1-e^{-1/99})$。
+
+scene_spec.steps[4]
+
+第五步:这些均为严格界，未把极限分布的点概率冒充有限样本真值。
+
+## draft-c47-03
+
+problem
+
+证明:当 $n\to\infty$、$p\to0$ 且 $np\to\lambda>0$ 时，对固定的 $k$，$B(n,p)$ 在 $k$ 处的概率趋于 $\frac{\lambda^k}{k!}e^{-\lambda}$。
+
+solution
+
+设$k\in\mathbb Z_{\ge0}$固定，$p_n\in[0,1]$且$np_n\to\lambda>0$。则$p_n\to0$，最终$0<p_n<1$。点概率写成$(np_n)^k/k!\cdot\prod_{j=0}^{k-1}(1-j/n)\cdot(1-p_n)^{n-k}$，空乘积为$1$。前两因子分别趋于$\lambda^k/k!$与$1$。由$-p_n/(1-p_n)\le\ln(1-p_n)\le-p_n$，乘$n$并夹逼得$n\ln(1-p_n)\to-\lambda$，又$k\ln(1-p_n)\to0$，故第三因子趋于$e^{-\lambda}$。因此固定$k$的极限为$e^{-\lambda}\lambda^k/k!$，这是极限恒等式，不是每个有限$n$的概率等式。
+
+answer
+
+证明见解法(三因子分别取极限:$\lambda^k/k!$、$1$、$e^{-\lambda}$)。
+
+scene_spec.objects[0]
+
+证明:当 $n\to\infty$、$p\to0$ 且 $np\to\lambda>0$ 时，对固定的 $k$，$B(n,p)$ 在 $k$ 处的概率趋于 $\frac{\lambda^k}{k!}e^{-\lambda}$。
+
+scene_spec.objects[1]
+
+证明见解法(三因子分别取极限:$\lambda^k/k!$、$1$、$e^{-\lambda}$)。
+
+scene_spec.steps[0]
+
+第一步:设$k\in\mathbb Z_{\ge0}$固定，$p_n\in[0,1]$且$np_n\to\lambda>0$。
+
+scene_spec.steps[1]
+
+第二步:则$p_n\to0$，最终$0<p_n<1$。
+
+scene_spec.steps[2]
+
+第三步:点概率写成$(np_n)^k/k!\cdot\prod_{j=0}^{k-1}(1-j/n)\cdot(1-p_n)^{n-k}$，空乘积为$1$。
+
+scene_spec.steps[3]
+
+第四步:前两因子分别趋于$\lambda^k/k!$与$1$。
+
+scene_spec.steps[4]
+
+第五步:由$-p_n/(1-p_n)\le\ln(1-p_n)\le-p_n$，乘$n$并夹逼得$n\ln(1-p_n)\to-\lambda$，又$k\ln(1-p_n)\to0$，故第三因子趋于$e^{-\lambda}$。
+
+scene_spec.steps[5]
+
+第六步:因此固定$k$的极限为$e^{-\lambda}\lambda^k/k!$，这是极限恒等式，不是每个有限$n$的概率等式。
+
+## draft-c47-04
+
+problem
+
+令$X\sim B(2,1/2)$、$Y\sim\operatorname{Pois}(1)$。精确求两离散分布的全变差距离$d_{TV}=\frac12\sum_{k\ge0}|P(X=k)-P(Y=k)|$，说明相同均值不足以保证同分布。
+
+solution
+
+两者均值为$1$，方差分别$1/2$与$1$。由$2<e<3$，在$k=0$有$e^{-1}>1/4$，在$k=1$有$1/2>e^{-1}$，在$k=2$有$1/4>1/(2e)$；$k\ge3$仅泊松分布有正质量。总正差等于总负差，故全变差为$[1/2-e^{-1}]+[1/4-1/(2e)]=3/4-3/(2e)>0$。$2<e<3$可由$e=\sum1/j!$与$j!\ge2^{j-1}$（$j\ge2$且部分严格）证明。均值相同不能消除分布差异；也不能把“泊松参数大”当作独立的禁用判据。
+
+answer
+
+$d_{TV}=3/4-3/(2e)>0$；同均值但方差及分布不同。
+
+scene_spec.objects[0]
+
+令$X\sim B(2,1/2)$、$Y\sim\operatorname{Pois}(1)$。精确求两离散分布的全变差距离$d_{TV}=\frac12\sum_{k\ge0}|P(X=k)-P(Y=k)|$，说明相同均值不足以保证同分布。
+
+scene_spec.objects[1]
+
+$d_{TV}=3/4-3/(2e)>0$；同均值但方差及分布不同。
+
+scene_spec.steps[0]
+
+第一步:两者均值为$1$，方差分别$1/2$与$1$。
+
+scene_spec.steps[1]
+
+第二步:由$2<e<3$，在$k=0$有$e^{-1}>1/4$，在$k=1$有$1/2>e^{-1}$，在$k=2$有$1/4>1/(2e)$；$k\ge3$仅泊松分布有正质量。
+
+scene_spec.steps[2]
+
+第三步:总正差等于总负差，故全变差为$[1/2-e^{-1}]+[1/4-1/(2e)]=3/4-3/(2e)>0$。
+
+scene_spec.steps[3]
+
+第四步:$2<e<3$可由$e=\sum1/j!$与$j!\ge2^{j-1}$（$j\ge2$且部分严格）证明。
+
+scene_spec.steps[4]
+
+第五步:均值相同不能消除分布差异；也不能把“泊松参数大”当作独立的禁用判据。
+
+## draft-c47-05
+
+problem
+
+对$X\sim B(50,1/50)$，精确求$P(X\le2)$并证明它严格大于$P(Y\le2)$，其中$Y\sim\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。
+
+solution
+
+直接相加三项得$P(X\le2)=(49/50)^{48}[(49/50)^2+49/50+49/100]=(1519/625)(49/50)^{48}$。泊松值为$5/(2e)$。两者比值为$e(49/50)^{48}(3038/3125)$。对$0<x<1$，级数或积分给$\ln(1-x)\ge-x-x^2/[2(1-x)]$；又$\ln(1-y)>-y/(1-y)$。取$x=1/50,y=87/3125$，比值的对数严格大于$1-24/25-12/1225-87/3038=17/10850>0$。故二项概率严格较大；差的精确表达式为$(1519/625)(49/50)^{48}-5/(2e)$。
+
+answer
+
+$P(X\le2)=(1519/625)(49/50)^{48}>5/(2e)$，差如上。
+
+scene_spec.objects[0]
+
+对$X\sim B(50,1/50)$，精确求$P(X\le2)$并证明它严格大于$P(Y\le2)$，其中$Y\sim\operatorname{Pois}(1)$。比较必须由不等式证明，不能查小数表。
+
+scene_spec.objects[1]
+
+$P(X\le2)=(1519/625)(49/50)^{48}>5/(2e)$，差如上。
+
+scene_spec.steps[0]
+
+第一步:直接相加三项得$P(X\le2)=(49/50)^{48}[(49/50)^2+49/50+49/100]=(1519/625)(49/50)^{48}$。
+
+scene_spec.steps[1]
+
+第二步:泊松值为$5/(2e)$。
+
+scene_spec.steps[2]
+
+第三步:两者比值为$e(49/50)^{48}(3038/3125)$。
+
+scene_spec.steps[3]
+
+第四步:对$0<x<1$，级数或积分给$\ln(1-x)\ge-x-x^2/[2(1-x)]$；又$\ln(1-y)>-y/(1-y)$。
+
+scene_spec.steps[4]
+
+第五步:取$x=1/50,y=87/3125$，比值的对数严格大于$1-24/25-12/1225-87/3038=17/10850>0$。
+
+scene_spec.steps[5]
+
+第六步:故二项概率严格较大；差的精确表达式为$(1519/625)(49/50)^{48}-5/(2e)$。
+
+## draft-c48-01
+
+problem
+
+约定$N(\mu,\sigma^2)$第二参数为方差。设$X\sim N(2,9)$，精确求$P(X>5)$与$E[X\mid X>5]$。记$\phi(t)=e^{-t^2/2}/\sqrt{2\pi}$、$\Phi(t)=\int_{-\infty}^t\phi(s)ds$。
+
+solution
+
+标准化$Z=(X-2)/3$给$P(X>5)=1-\Phi(1)>0$。因$\phi^{\prime}(z)=-z\phi(z)$，$E[Z\mathbf1_{Z>1}]=\int_1^\infty z\phi(z)dz=\phi(1)$，边界$\phi(\infty)=0$。所以条件期望为$2+3\phi(1)/(1-\Phi(1))$。这是精确函数表达，不能用查表小数代替。
+
+answer
+
+$P(X>5)=1-\Phi(1)$；条件期望$2+3\phi(1)/(1-\Phi(1))$。
+
+scene_spec.objects[0]
+
+约定$N(\mu,\sigma^2)$第二参数为方差。设$X\sim N(2,9)$，精确求$P(X>5)$与$E[X\mid X>5]$。记$\phi(t)=e^{-t^2/2}/\sqrt{2\pi}$、$\Phi(t)=\int_{-\infty}^t\phi(s)ds$。
+
+scene_spec.objects[1]
+
+$P(X>5)=1-\Phi(1)$；条件期望$2+3\phi(1)/(1-\Phi(1))$。
+
+scene_spec.steps[0]
+
+第一步:标准化$Z=(X-2)/3$给$P(X>5)=1-\Phi(1)>0$。
+
+scene_spec.steps[1]
+
+第二步:因$\phi^{\prime}(z)=-z\phi(z)$，$E[Z\mathbf1_{Z>1}]=\int_1^\infty z\phi(z)dz=\phi(1)$，边界$\phi(\infty)=0$。
+
+scene_spec.steps[2]
+
+第三步:所以条件期望为$2+3\phi(1)/(1-\Phi(1))$。
+
+scene_spec.steps[3]
+
+第四步:这是精确函数表达，不能用查表小数代替。
+
+## draft-c48-02
+
+problem
+
+设$Z\sim N(0,1)$。精确给出$P(|Z|\le k)$（$k=1,2,3$）；对任意$k>0$证明双侧尾界$2k\phi(k)/(k^2+1)<P(|Z|>k)<2\phi(k)/k$。
+
+solution
+
+对称性给$P(|Z|\le k)=2\Phi(k)-1$。记$I=\int_k^\infty\phi(t)dt$；因$t/k>1$，$I<(1/k)\int_k^\infty t\phi(t)dt=\phi(k)/k$。分部积分得$I=\phi(k)/k-\int_k^\infty\phi(t)/t^2dt$，后项严格小于$I/k^2$，故$I>k\phi(k)/(k^2+1)$。乘$2$即得双侧界。三个覆盖概率分别为$2\Phi(1)-1,2\Phi(2)-1,2\Phi(3)-1$，所有界均有证明，无小数覆盖率。
+
+answer
+
+覆盖概率$2\Phi(k)-1$；尾界$\frac{2k\phi(k)}{k^2+1}<P(|Z|>k)<\frac{2\phi(k)}k$。
+
+scene_spec.objects[0]
+
+设$Z\sim N(0,1)$。精确给出$P(|Z|\le k)$（$k=1,2,3$）；对任意$k>0$证明双侧尾界$2k\phi(k)/(k^2+1)<P(|Z|>k)<2\phi(k)/k$。
+
+scene_spec.objects[1]
+
+覆盖概率$2\Phi(k)-1$；尾界$\frac{2k\phi(k)}{k^2+1}<P(|Z|>k)<\frac{2\phi(k)}k$。
+
+scene_spec.steps[0]
+
+第一步:对称性给$P(|Z|\le k)=2\Phi(k)-1$。
+
+scene_spec.steps[1]
+
+第二步:记$I=\int_k^\infty\phi(t)dt$；因$t/k>1$，$I<(1/k)\int_k^\infty t\phi(t)dt=\phi(k)/k$。
+
+scene_spec.steps[2]
+
+第三步:分部积分得$I=\phi(k)/k-\int_k^\infty\phi(t)/t^2dt$，后项严格小于$I/k^2$，故$I>k\phi(k)/(k^2+1)$。
+
+scene_spec.steps[3]
+
+第四步:乘$2$即得双侧界。
+
+scene_spec.steps[4]
+
+第五步:三个覆盖概率分别为$2\Phi(1)-1,2\Phi(2)-1,2\Phi(3)-1$，所有界均有证明，无小数覆盖率。
+
+## draft-c48-03
+
+problem
+
+设$X\sim N(\mu,4)$（第二参数为方差）。求使$P(X\le a)=19/20$的唯一$a$，只用精确符号。
+
+solution
+
+$\Phi$连续严格递增，取值范围$(0,1)$，所以存在唯一$z=\Phi^{-1}(19/20)$。标准化给$\Phi((a-\mu)/2)=19/20$，故$a=\mu+2\Phi^{-1}(19/20)$；查表的有限小数不能作为该分位数的精确值。
+
+answer
+
+$a=\mu+2\Phi^{-1}(19/20)$。
+
+scene_spec.objects[0]
+
+设$X\sim N(\mu,4)$（第二参数为方差）。求使$P(X\le a)=19/20$的唯一$a$，只用精确符号。
+
+scene_spec.objects[1]
+
+$a=\mu+2\Phi^{-1}(19/20)$。
+
+scene_spec.steps[0]
+
+第一步:$\Phi$连续严格递增，取值范围$(0,1)$，所以存在唯一$z=\Phi^{-1}(19/20)$。
+
+scene_spec.steps[1]
+
+第二步:标准化给$\Phi((a-\mu)/2)=19/20$，故$a=\mu+2\Phi^{-1}(19/20)$；查表的有限小数不能作为该分位数的精确值。
+
+## draft-c48-04
+
+problem
+
+设独立$X\sim N(1,4),Y\sim N(2,9)$。求$S=X+Y,T=2X-Y$的分布及协方差，判断独立性；再求使$S$与$aX-Y$独立的全部实$a$。
+
+solution
+
+$S\sim N(3,13)$，$T\sim N(0,25)$，所以$P(T>0)=1/2$。但$\operatorname{Cov}(S,T)=2\operatorname{Var}X-\operatorname{Var}Y=8-9=-1$，故不独立。由于$(S,aX-Y)$联合正态，独立等价于协方差为零，即$4a-9=0$，唯一$a=9/4$。此时$aX-Y\sim N(1/4,117/4)$。联合正态是使用零协方差推出独立的关键，不能推广到任意分布。
+
+answer
+
+$S\sim N(3,13),T\sim N(0,25)$，协方差$-1$，不独立；唯一$a=9/4$。
+
+scene_spec.objects[0]
+
+设独立$X\sim N(1,4),Y\sim N(2,9)$。求$S=X+Y,T=2X-Y$的分布及协方差，判断独立性；再求使$S$与$aX-Y$独立的全部实$a$。
+
+scene_spec.objects[1]
+
+$S\sim N(3,13),T\sim N(0,25)$，协方差$-1$，不独立；唯一$a=9/4$。
+
+scene_spec.steps[0]
+
+第一步:$S\sim N(3,13)$，$T\sim N(0,25)$，所以$P(T>0)=1/2$。
+
+scene_spec.steps[1]
+
+第二步:但$\operatorname{Cov}(S,T)=2\operatorname{Var}X-\operatorname{Var}Y=8-9=-1$，故不独立。
+
+scene_spec.steps[2]
+
+第三步:由于$(S,aX-Y)$联合正态，独立等价于协方差为零，即$4a-9=0$，唯一$a=9/4$。
+
+scene_spec.steps[3]
+
+第四步:此时$aX-Y\sim N(1/4,117/4)$。
+
+scene_spec.steps[4]
+
+第五步:联合正态是使用零协方差推出独立的关键，不能推广到任意分布。
+
+## draft-c48-05
+
+problem
+
+用特征函数证明:若 $X\sim N(\mu_1,\sigma_1^2)$ 与 $Y\sim N(\mu_2,\sigma_2^2)$ 相互独立，则 $X+Y\sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$。
+
+solution
+
+正态分布的特征函数为 $\varphi_X(t)=e^{i\mu_1t-\frac{\sigma_1^2t^2}{2}}$。由独立性,和的特征函数为乘积:$\varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t)=e^{i\mu_1t-\frac{\sigma_1^2t^2}{2}}\cdot e^{i\mu_2t-\frac{\sigma_2^2t^2}{2}}=e^{i(\mu_1+\mu_2)t-\frac{(\sigma_1^2+\sigma_2^2)t^2}{2}}$。这正是 $N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$ 的特征函数,而特征函数唯一决定分布,故 $X+Y\sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$。
+
+answer
+
+证明见解法(特征函数乘积:$e^{i(\mu_1+\mu_2)t-(\sigma_1^2+\sigma_2^2)t^2/2}$)。
+
+scene_spec.objects[0]
+
+用特征函数证明:若 $X\sim N(\mu_1,\sigma_1^2)$ 与 $Y\sim N(\mu_2,\sigma_2^2)$ 相互独立，则 $X+Y\sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$。
+
+scene_spec.objects[1]
+
+证明见解法(特征函数乘积:$e^{i(\mu_1+\mu_2)t-(\sigma_1^2+\sigma_2^2)t^2/2}$)。
+
+scene_spec.steps[0]
+
+第一步:正态分布的特征函数为 $\varphi_X(t)=e^{i\mu_1t-\frac{\sigma_1^2t^2}{2}}$。
+
+scene_spec.steps[1]
+
+第二步:由独立性,和的特征函数为乘积:$\varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t)=e^{i\mu_1t-\frac{\sigma_1^2t^2}{2}}\cdot e^{i\mu_2t-\frac{\sigma_2^2t^2}{2}}=e^{i(\mu_1+\mu_2)t-\frac{(\sigma_1^2+\sigma_2^2)t^2}{2}}$。
+
+scene_spec.steps[2]
+
+第三步:这正是 $N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$ 的特征函数,而特征函数唯一决定分布,故 $X+Y\sim N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$。
+
+## draft-c49-01
+
+problem
+
+设$EX=5,\operatorname{Var}X=1$。求$P(|X-5|\ge3)$的最大可能值，构造达到该值的分布并证明其唯一性。
+
+solution
+
+点态有$(X-5)^2\ge9\mathbf1_{|X-5|\ge3}$，取期望给概率不超过$1/9$。等号要求该非负差几乎处处为零，因此$X$只能取$5,2,8$。设后两个概率为$q_-,q_+$，方差要求$9(q_-+q_+)=1$，均值要求$-3q_-+3q_+=0$，故$q_-=q_+=1/18$，$P(X=5)=8/9$。该分布确实达到$1/9$，且上述等号条件证明唯一。
+
+answer
+
+最大值$1/9$；唯一极值分布在$2,5,8$取概率$1/18,8/9,1/18$。
+
+scene_spec.objects[0]
+
+设$EX=5,\operatorname{Var}X=1$。求$P(|X-5|\ge3)$的最大可能值，构造达到该值的分布并证明其唯一性。
+
+scene_spec.objects[1]
+
+最大值$1/9$；唯一极值分布在$2,5,8$取概率$1/18,8/9,1/18$。
+
+scene_spec.steps[0]
+
+第一步:点态有$(X-5)^2\ge9\mathbf1_{|X-5|\ge3}$，取期望给概率不超过$1/9$。
+
+scene_spec.steps[1]
+
+第二步:等号要求该非负差几乎处处为零，因此$X$只能取$5,2,8$。
+
+scene_spec.steps[2]
+
+第三步:设后两个概率为$q_-,q_+$，方差要求$9(q_-+q_+)=1$，均值要求$-3q_-+3q_+=0$，故$q_-=q_+=1/18$，$P(X=5)=8/9$。
+
+scene_spec.steps[3]
+
+第四步:该分布确实达到$1/9$，且上述等号条件证明唯一。
+
+## draft-c49-02
+
+problem
+
+说明依概率收敛与几乎必然收敛的区别，并说明大数定律(频率趋于概率)属于哪一种收敛。
+
+solution
+
+几乎必然收敛指样本路径极限在概率一集合上成立；依概率收敛指每个$\varepsilon>0$有$P(|X_n-X|>\varepsilon)\to0$。前者使偏差指标逐点趋零，由有界收敛定理推出后者。反例取$\Omega=[0,1)$均匀测度，按$n=2^m+j$（$0\le j<2^m$）定义$X_n=\mathbf1_{[j/2^m,(j+1)/2^m)}$。对$0<\varepsilon<1$，偏差概率$2^{-m}\to0$；但每个样本点在每一层恰有一次取$1$，并在大层有其他取$0$，所以路径不收敛。独立同分布Bernoulli频率的弱大数定律给依概率收敛，强大数定律给几乎必然收敛，必须指明所用版本与假设。
+
+answer
+
+区别与蕴含关系见解法(几乎必然⟹依概率,反之不然);(弱)大数定律给的是依概率收敛。
+
+scene_spec.objects[0]
+
+说明依概率收敛与几乎必然收敛的区别，并说明大数定律(频率趋于概率)属于哪一种收敛。
+
+scene_spec.objects[1]
+
+区别与蕴含关系见解法(几乎必然⟹依概率,反之不然);(弱)大数定律给的是依概率收敛。
+
+scene_spec.steps[0]
+
+第一步:几乎必然收敛指样本路径极限在概率一集合上成立；依概率收敛指每个$\varepsilon>0$有$P(|X_n-X|>\varepsilon)\to0$。
+
+scene_spec.steps[1]
+
+第二步:前者使偏差指标逐点趋零，由有界收敛定理推出后者。
+
+scene_spec.steps[2]
+
+第三步:反例取$\Omega=[0,1)$均匀测度，按$n=2^m+j$（$0\le j<2^m$）定义$X_n=\mathbf1_{[j/2^m,(j+1)/2^m)}$。
+
+scene_spec.steps[3]
+
+第四步:对$0<\varepsilon<1$，偏差概率$2^{-m}\to0$；但每个样本点在每一层恰有一次取$1$，并在大层有其他取$0$，所以路径不收敛。
+
+scene_spec.steps[4]
+
+第五步:独立同分布Bernoulli频率的弱大数定律给依概率收敛，强大数定律给几乎必然收敛，必须指明所用版本与假设。
+
+## draft-c49-03
+
+problem
+
+设$X_i$独立同分布于$U(0,1)$，非负权$w_{n,i}$满足$\sum_{i=1}^nw_{n,i}=1$。证明$Y_n=\sum_iw_{n,i}X_i$在$L^2$收敛到$1/2$的充要条件，并对$w_{n,i}=2i/[n(n+1)]$求精确方差及$P(|Y_n-1/2|\ge1/10)$的上界。
+
+solution
+
+$EY_n=1/2$，$E|Y_n-1/2|^2=\operatorname{Var}Y_n=\sum_iw_{n,i}^2/12$，故$L^2$收敛当且仅当该平方和趋零。又$(\max_iw_{n,i})^2\le\sum_iw_{n,i}^2\le\max_iw_{n,i}$，所以也等价于最大权趋零。指定权用$\sum i^2=n(n+1)(2n+1)/6$得平方和$2(2n+1)/[3n(n+1)]$，方差$(2n+1)/[18n(n+1)]$。Chebyshev给上界$\min\{1,50(2n+1)/[9n(n+1)]\}$；$n=100$时为$67/606$。
+
+answer
+
+充要条件$\sum_iw_{n,i}^2\to0$，等价于最大权趋零；方差$(2n+1)/[18n(n+1)]$，上界如上。
+
+scene_spec.objects[0]
+
+设$X_i$独立同分布于$U(0,1)$，非负权$w_{n,i}$满足$\sum_{i=1}^nw_{n,i}=1$。证明$Y_n=\sum_iw_{n,i}X_i$在$L^2$收敛到$1/2$的充要条件，并对$w_{n,i}=2i/[n(n+1)]$求精确方差及$P(|Y_n-1/2|\ge1/10)$的上界。
+
+scene_spec.objects[1]
+
+充要条件$\sum_iw_{n,i}^2\to0$，等价于最大权趋零；方差$(2n+1)/[18n(n+1)]$，上界如上。
+
+scene_spec.steps[0]
+
+第一步:$EY_n=1/2$，$E|Y_n-1/2|^2=\operatorname{Var}Y_n=\sum_iw_{n,i}^2/12$，故$L^2$收敛当且仅当该平方和趋零。
+
+scene_spec.steps[1]
+
+第二步:又$(\max_iw_{n,i})^2\le\sum_iw_{n,i}^2\le\max_iw_{n,i}$，所以也等价于最大权趋零。
+
+scene_spec.steps[2]
+
+第三步:指定权用$\sum i^2=n(n+1)(2n+1)/6$得平方和$2(2n+1)/[3n(n+1)]$，方差$(2n+1)/[18n(n+1)]$。
+
+scene_spec.steps[3]
+
+第四步:Chebyshev给上界$\min\{1,50(2n+1)/[9n(n+1)]\}$；$n=100$时为$67/606$。
+
+## draft-c49-04
+
+problem
+
+证明切比雪夫大数定律:若随机变量序列 $X_1,X_2,\dots$ 两两不相关，且存在常数 $C$ 使 $Var(X_i)\le C$ 对一切 $i$ 成立，则 $\frac{1}{n}\sum_{i=1}^{n}(X_i-EX_i)\xrightarrow{P}0$。
+
+solution
+
+令 $S_n=\frac1n\sum_{i=1}^{n}(X_i-EX_i)$。$ES_n=0$。由两两不相关,$Var(S_n)=\frac{1}{n^2}\sum_{i=1}^{n}Var(X_i)\le\frac{nC}{n^2}=\frac{C}{n}$(协方差项全为零)。由切比雪夫不等式,对任意 $\varepsilon>0$,$P(|S_n|\ge\varepsilon)\le\frac{Var(S_n)}{\varepsilon^2}\le\frac{C}{n\varepsilon^2}\to0$。故 $S_n\xrightarrow{P}0$。
+
+answer
+
+证明见解法(两两不相关使方差无交叉项:$Var(S_n)\le C/n\to0$,切比雪夫得依概率收敛)。
+
+scene_spec.objects[0]
+
+证明切比雪夫大数定律:若随机变量序列 $X_1,X_2,\dots$ 两两不相关，且存在常数 $C$ 使 $Var(X_i)\le C$ 对一切 $i$ 成立，则 $\frac{1}{n}\sum_{i=1}^{n}(X_i-EX_i)\xrightarrow{P}0$。
+
+scene_spec.objects[1]
+
+证明见解法(两两不相关使方差无交叉项:$Var(S_n)\le C/n\to0$,切比雪夫得依概率收敛)。
+
+scene_spec.steps[0]
+
+第一步:令 $S_n=\frac1n\sum_{i=1}^{n}(X_i-EX_i)$。
+
+scene_spec.steps[1]
+
+第二步:$ES_n=0$。
+
+scene_spec.steps[2]
+
+第三步:由两两不相关,$Var(S_n)=\frac{1}{n^2}\sum_{i=1}^{n}Var(X_i)\le\frac{nC}{n^2}=\frac{C}{n}$(协方差项全为零)。
+
+scene_spec.steps[3]
+
+第四步:由切比雪夫不等式,对任意 $\varepsilon>0$,$P(|S_n|\ge\varepsilon)\le\frac{Var(S_n)}{\varepsilon^2}\le\frac{C}{n\varepsilon^2}\to0$。
+
+scene_spec.steps[4]
+
+第五步:故 $S_n\xrightarrow{P}0$。
+
+## draft-c49-05
+
+problem
+
+证明独立同分布且$E|X_1|<\infty$时样本均值依概率收敛到$\mu=EX_1$，无需有限方差。证明必须说明截断偏差和尾部概率怎样分别控制。
+
+solution
+
+令$Y_i^{(M)}=X_i\mathbf1_{|X_i|\le M}$，$\tau_M=E[|X_1|\mathbf1_{|X_1|>M}]\to0$。有$|EY_1^{(M)}-\mu|\le\tau_M$，$E|\overline X_n-\overline Y_n^{(M)}|\le\tau_M$，且独立性给$\operatorname{Var}(\overline Y_n^{(M)})\le M^2/n$。固定$\varepsilon>0$并取$M$使$\tau_M<\varepsilon/3$，三角不等式、Markov与Chebyshev得$P(|\overline X_n-\mu|>\varepsilon)\le3\tau_M/\varepsilon+9M^2/(n\varepsilon^2)$。先对固定$M$令$n\to\infty$，再令$M\to\infty$，上极限为零。该次序避免把随$n$变化的截断界误当一致方差界。
+
+answer
+
+$E|X_1|<\infty$的独立同分布样本满足$\overline X_n\xrightarrow P\mu$，不需要有限方差。
+
+scene_spec.objects[0]
+
+证明独立同分布且$E|X_1|<\infty$时样本均值依概率收敛到$\mu=EX_1$，无需有限方差。证明必须说明截断偏差和尾部概率怎样分别控制。
+
+scene_spec.objects[1]
+
+$E|X_1|<\infty$的独立同分布样本满足$\overline X_n\xrightarrow P\mu$，不需要有限方差。
+
+scene_spec.steps[0]
+
+第一步:令$Y_i^{(M)}=X_i\mathbf1_{|X_i|\le M}$，$\tau_M=E[|X_1|\mathbf1_{|X_1|>M}]\to0$。
+
+scene_spec.steps[1]
+
+第二步:有$|EY_1^{(M)}-\mu|\le\tau_M$，$E|\overline X_n-\overline Y_n^{(M)}|\le\tau_M$，且独立性给$\operatorname{Var}(\overline Y_n^{(M)})\le M^2/n$。
+
+scene_spec.steps[2]
+
+第三步:固定$\varepsilon>0$并取$M$使$\tau_M<\varepsilon/3$，三角不等式、Markov与Chebyshev得$P(|\overline X_n-\mu|>\varepsilon)\le3\tau_M/\varepsilon+9M^2/(n\varepsilon^2)$。
+
+scene_spec.steps[3]
+
+第四步:先对固定$M$令$n\to\infty$，再令$M\to\infty$，上极限为零。
+
+scene_spec.steps[4]
+
+第五步:该次序避免把随$n$变化的截断界误当一致方差界。

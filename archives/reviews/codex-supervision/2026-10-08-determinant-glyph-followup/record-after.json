@@ -1,0 +1,63 @@
+{
+  "answer": "$b^2(3a+b)$；$n$ 阶为 $b^{n-1}(na+b)$",
+  "category": "高等代数",
+  "efficiency_tags": [
+    "拆列法的组合枚举（全 $b$ 列、恰一 $a$ 列、两 $a$ 列为零）",
+    "多重线性的标注"
+  ],
+  "function_family": "循环结构行列式",
+  "id": "eval-linalg-004-s3",
+  "license": "Internal-Research-Use-Only",
+  "method": "拆列法，行列式线性性",
+  "problem": "计算 $n=3$ 时行列式 $D=\\begin{vmatrix}a+b&a&a\\\\a&a+b&a\\\\a&a&a+b\\end{vmatrix}$，并推广到 $n$ 阶。",
+  "problem_id": "eval-linalg-004",
+  "revision_lineage": {
+    "continuous_correction_reason": "补一般n阶拆列计数",
+    "continuous_review_parent": {
+      "parent_candidate_path": "reviews/codex-supervision/2026-10-07-math-batch-supervision/candidate-sources/data/v2/eval/dataset_eval.jsonl",
+      "parent_raw_sha256": "9d6b2732cc6fde040ee489ac374e2bf581a8732f22530c571ef22ccc57c85f92",
+      "parent_record_sha256": "5b05494eb0b937011d124c0d8bcc895e96e68b2df9b061ce000c2b6ed22d4bb0",
+      "submitted_ref": {
+        "group": "eval",
+        "id": "eval-linalg-004-s3",
+        "identity_verified": true,
+        "input_binding": "active-497-row-bindings.jsonl",
+        "input_binding_line": 254,
+        "record_version_sha256": "5b05494eb0b937011d124c0d8bcc895e96e68b2df9b061ce000c2b6ed22d4bb0",
+        "source_line": 207,
+        "source_path": "data/v2/eval/dataset_eval.jsonl",
+        "source_raw_sha256": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+        "task_sha256": "c9b3243bcca5eb7827c7043becf7e1ebf6675f0450091ba21e6468aff9429236"
+      }
+    },
+    "version": "codex-continuous-eval-v1-20261007"
+  },
+  "scene_spec": {
+    "objects": [
+      "拆列法的组合枚举（全 $b$ 列、恰一 $a$ 列、两 $a$ 列为零）",
+      "多重线性的标注"
+    ],
+    "steps": [
+      "呈现题干及适用条件：计算 $n=3$ 时行列式 $D=\\begin{vmatrix}a+b&a&a\\\\a&a+b&a\\\\a&a&a+b\\end{vmatrix}$，并推广到 $n$ 阶。",
+      "依次呈现：拆列法的组合枚举（全 $b$ 列、恰一 $a$ 列、两 $a$ 列为零）",
+      "依次呈现：多重线性的标注",
+      "核对完整证明：把每列拆成 $(a,a,a)^T+b\\,e_i$（$e_i$ 为标准基向量）。由行列式关于列的多重线性：全取 $b\\,e_i$ 的项为 $b^3\\det I=b^3$；恰有一列取 $(a,a,a)^T$ 的项有 3 个，每个为 $ab^2\\det(e_1,\\ldots,e_{j-1},\\mathbf1,e_{j+1},\\ldots,e_3)=ab^2$（$j\\in\\{1,2,3\\}$，$\\mathbf1=(1,1,1)^T$，其余列保持对应的标准基向量）；有两列以上取 $(a,a,a)^T$ 的项行列式为 0（两列相同）。故 $D=b^3+3ab^2=b^2(3a+b)$。一般$n\\ge2$同理：每列为$be_j+a\\mathbf1$。多重线性展开中，选择两个及以上$a\\mathbf1$列的项因重复列为零；全选$be_j$给$b^n$；恰选一个$a\\mathbf1$列有$n$项，每项为$ab^{n-1}$（把该列的$\\mathbf1=\\sum_j e_j$展开，只有原列位置的$e_j$能留下非零行列式）。故总和为$b^n+nab^{n-1}=(na+b)b^{n-1}$。$n=1$直接为$a+b$。",
+      "高亮结果：$b^2(3a+b)$；$n$ 阶为 $b^{n-1}(na+b)$"
+    ]
+  },
+  "solution": "把每列拆成 $(a,a,a)^T+b\\,e_i$（$e_i$ 为标准基向量）。由行列式关于列的多重线性：全取 $b\\,e_i$ 的项为 $b^3\\det I=b^3$；恰有一列取 $(a,a,a)^T$ 的项有 3 个，每个为 $ab^2\\det(e_1,\\ldots,e_{j-1},\\mathbf1,e_{j+1},\\ldots,e_3)=ab^2$（$j\\in\\{1,2,3\\}$，$\\mathbf1=(1,1,1)^T$，其余列保持对应的标准基向量）；有两列以上取 $(a,a,a)^T$ 的项行列式为 0（两列相同）。故 $D=b^3+3ab^2=b^2(3a+b)$。一般$n\\ge2$同理：每列为$be_j+a\\mathbf1$。多重线性展开中，选择两个及以上$a\\mathbf1$列的项因重复列为零；全选$be_j$给$b^n$；恰选一个$a\\mathbf1$列有$n$项，每项为$ab^{n-1}$（把该列的$\\mathbf1=\\sum_j e_j$展开，只有原列位置的$e_j$能留下非零行列式）。故总和为$b^n+nab^{n-1}=(na+b)b^{n-1}$。$n=1$直接为$a+b$。",
+  "solution_id": "eval-linalg-004-s3",
+  "source": "self-authored",
+  "strict_review": {
+    "admitted": false,
+    "core_math_verified": true,
+    "math_content_sha256": "d7b0127b744f04514ee0b04fc40e3fff01073617b4cbe5a473041d304c816466",
+    "math_review_evidence": "reviews/codex-supervision/2026-10-07-continuous-math-review/eval-review/independent-eval-review-291.jsonl",
+    "render_verified": false,
+    "scene_text_reviewed": true,
+    "verification_basis": "INDEPENDENT_ALL_PROOFS_AND_EXACT_WITNESSES"
+  },
+  "sub_category": "行列式",
+  "versioned_id": "codex-continuous-eval-v1-20261007-eval-linalg-004-s3",
+  "visual_style": "矩阵分解色块"
+}

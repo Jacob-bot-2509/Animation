@@ -1,0 +1,4189 @@
+{
+  "manifest_sha256": "c1f18378ca2b28df5629c908070cc68498dea00977c62c196d6946734954f500",
+  "source_sha256": {
+    "v2\\train\\leakage-isolated-v2-2026-10-05\\dataset_calc.jsonl": "9f0746301a1c7df71b3c3cf6c85001dd2f0cafa0e8ec7863985e0cd8be190633",
+    "v2\\train\\leakage-isolated-v2-2026-10-05\\dataset_geom.jsonl": "8f163bbb5a5199af4dbcd56a15c6010ca085abe92b8034aeae26d57917b400b3",
+    "v2\\train\\leakage-isolated-v2-2026-10-05\\dataset_linalg.jsonl": "19a57edceba530c9ee8471c53691104ae291f8b2db38d0b598f93b6cef8b01c4",
+    "v2\\train\\leakage-isolated-v2-2026-10-05\\dataset_prob.jsonl": "8c91bd17227db6f25018939d4a995cd056a5123fb2eee2754681b9a41b363fd0",
+    "v2\\eval\\dataset_eval.jsonl": "187913709744c008dd8bd18a56910845156b748a3d935f3496a047e321a18866",
+    "v2\\test\\dataset_test.jsonl": "d4de0bb6a86ff0aeeb23cfab79a013236cce742f020d980c4db31df76c94fd2a"
+  },
+  "implementation_sha256": "347e497139780913345d956ce6979d74bdc782bdf61c863684332964563dfc44",
+  "diagnostic": {
+    "rule": "structure-candidates-v1",
+    "implementation_sha256": "347e497139780913345d956ce6979d74bdc782bdf61c863684332964563dfc44",
+    "counts": {
+      "tp": 17,
+      "fp": 3,
+      "fn": 0,
+      "tn": 208
+    },
+    "recall": "1",
+    "fpr": "3/211",
+    "calibrated": false,
+    "usage": "DEVELOPMENT_DIAGNOSTIC; not independent held-out validation",
+    "records": [
+      {
+        "pair_id": "af308ca88cd0f14dd410",
+        "query_hash": "99ff4f8b1d45ffec7e1b4b46fc52416063b8e6e15389cd5b6e60c9d729bcd594",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/23",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "eb6fda5f78e09b013957",
+        "query_hash": "f9bedeee03135ef61cfd29f1e4f1384e82c9bc7bd6a725d7c33924390d50f66d",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/41",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ac76a926e66fca99005d",
+        "query_hash": "118751971c94c061c9882243c5e6c97113a484f8625b148f934761d1e54b834a",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "7/54",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "154c23a627198c6e3458",
+        "query_hash": "aa2d5fc495f758e024221b0158ee60d18dc8c6e194a03d9722ef366bb40b4604",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "7/11",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "52d9cec4b9ea4f1f5bbe",
+        "query_hash": "83499622a2133f409138dc1e6eba6307a8b0e78351badfe11147f8f8eb011089",
+        "train_hash": "395f374b70ea4a45edbbd9122e3b8573fdf8a70eb9e47a651586aa733bb6e682",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/40",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9e022ba3561a00d1697b",
+        "query_hash": "1e60091776e296867b6ef915cb6e8ff897c3d41947ec0362c5bb50c8d9dd98e3",
+        "train_hash": "395f374b70ea4a45edbbd9122e3b8573fdf8a70eb9e47a651586aa733bb6e682",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/22",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "cceb806fd12c8e805163",
+        "query_hash": "879555b14eabf37dec48c4bae88b134b338ed10dd583470c8b714566951710f5",
+        "train_hash": "395f374b70ea4a45edbbd9122e3b8573fdf8a70eb9e47a651586aa733bb6e682",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/50",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4712791ecb96f0f70303",
+        "query_hash": "74e752e576be685b4cdc64366e897cf12bfc3fcf5e9b0c2195aeb7770bfe8e75",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/47",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "446a52b43123ec3a65bc",
+        "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8cebece34fc2fe8390f0",
+        "query_hash": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "19/63",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "001bb5ec6d5a63cedbaf",
+        "query_hash": "a071369f490fb2532000278bd41a2e76ba469369cb739fd9ab079c21d7a07723",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/9",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2f0e4c3812f45483a78e",
+        "query_hash": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "12/41",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "cc3648e5713dbcdc4a48",
+        "query_hash": "1d4f0be2627862c468bd5b59374f8afd037df5f306307a2f025230b971165fc0",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "15/97",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a971197a953d4627fd62",
+        "query_hash": "14f8b0e55c16d34159961ff30763784042a90a216a873d65ed33b4a1aedc559e",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "681c70f4a24da4ae50d3",
+        "query_hash": "6f25c4b291c4ba7e232e7b5ddff9b9c1da8909c60fc6e75f5697b45ec1e988a6",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "330732f4809b672a7d74",
+        "query_hash": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+        "train_hash": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/26",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4ed4573da75d9c668ff0",
+        "query_hash": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+        "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/64",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6942b408452389f673ad",
+        "query_hash": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+        "train_hash": "7a0b942859332e92b20eaceb573b7a58454f73a35865049e8059cf6347807327",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "32/67",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "bac0544cf1727ad328d2",
+        "query_hash": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+        "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/86",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c42e7d187da5a2b97c73",
+        "query_hash": "f9377d04c417860e1b988854bd5f3192cfc5bbc615ee6b8461539e2a2f0b0e67",
+        "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "8/15",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "849e9f238fcedc968938",
+        "query_hash": "d20461e9e541de80f28d13de7faaecbf4cc2d3fbe2d2fd544f283c9e1e978f20",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/94",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0a3012c2767f40a8106a",
+        "query_hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "train_hash": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+        "label": "不泄漏",
+        "reason": "分母由 sqrt(n) 改为 ln(n)，函数类型改变，需重新证明单调性与绝对敛散，区别于仅更换系数。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "definition_revision": "按用户确认的仅数值/符号/表述替换且核心结构相同定义完成复审",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "52/79",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "fa0a87b9d895ce1f40c0",
+        "query_hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "10/29",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d4132529d343201c3c69",
+        "query_hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "train_hash": "7a0b942859332e92b20eaceb573b7a58454f73a35865049e8059cf6347807327",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "29/96",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7824505d8c9324166b7b",
+        "query_hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/108",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0c9010de035e1e17a213",
+        "query_hash": "5b39ad63f4b8584b314b2fe535efe5c3c8620bea8fd02d6f313f9a1217233a3e",
+        "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "18/41",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "efaa832de1b056084773",
+        "query_hash": "62572e2ce02c00bea462d6235ed7e90121dab0c9b96cb6f1986f8a089896632e",
+        "train_hash": "a03636bc12d3a0a5c93729316828c494afe0dce933d80db14e1e25ff2ed772ea",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/94",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "06420e051447ceebfe73",
+        "query_hash": "166a03d5727e13a672fcf7c0f8591ca033730421b6ed1cce21b9dc0a00c4c7fd",
+        "train_hash": "a03636bc12d3a0a5c93729316828c494afe0dce933d80db14e1e25ff2ed772ea",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "21/92",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "5292db04fb970912d048",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "b6c40471a7b1a01bae6f02074c3f5c3bf65b41449b82f9bf53dbcab20fda0344",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "21ed59612cb9c5f17e6c",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "dc0d870b0fd14fe0c5c39ba803c177732876894194ee1dc6243922ddba3feb6b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/21",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "413e6a70df532d3bd43c",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "c7cec50e4bafdbaecb9ce02ced9be3d198ecc8c44b82795bc2d7ded57a631476",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/86",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "31e3c79a08cbd50ce244",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "47bde9ed3223b33439d70670acc7103a4c97c08aa3f91f7e37f4292ccb6c4c84",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "08e56423741b09b7ed81",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "20abc5c3e1753ebbd729471c6bd03d1ff6bb29faaf84bad5d652746f40b3809c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1976cde2fc877a2f80fb",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "6cfc8d5667d046fef035d6878f439a1e5a65a3b0d78b98747a66510ab9c9febb",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/28",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d091b64d97bfcf47f2ad",
+        "query_hash": "96ece82a642809ba8eb3d489e09451d14f784209e75640ac935295d7f1253274",
+        "train_hash": "210ee5084e4ed179c1254cfce0d660b48affb3d7caa2c83c6986fde598945182",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/66",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ba5182d2a728f2935a46",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "b6c40471a7b1a01bae6f02074c3f5c3bf65b41449b82f9bf53dbcab20fda0344",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/77",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "fee926718130f9c30d6e",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "dc0d870b0fd14fe0c5c39ba803c177732876894194ee1dc6243922ddba3feb6b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/43",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c08e7537be2baea102b0",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "c7cec50e4bafdbaecb9ce02ced9be3d198ecc8c44b82795bc2d7ded57a631476",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "15/91",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b2d3d427a9394eda07c5",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "47bde9ed3223b33439d70670acc7103a4c97c08aa3f91f7e37f4292ccb6c4c84",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/10",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "419658aeadec6973ff97",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "20abc5c3e1753ebbd729471c6bd03d1ff6bb29faaf84bad5d652746f40b3809c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/79",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "193537b8567cac7e224c",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "6cfc8d5667d046fef035d6878f439a1e5a65a3b0d78b98747a66510ab9c9febb",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "12/41",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ce749a4d68e1bcbe43ab",
+        "query_hash": "60fedf00da8ab0b01e56987af696194816531639465e370a5a392d73be980efd",
+        "train_hash": "210ee5084e4ed179c1254cfce0d660b48affb3d7caa2c83c6986fde598945182",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/83",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f81eea9370d6e70ca514",
+        "query_hash": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "4/17",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8f975e62c32aa57493bb",
+        "query_hash": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/79",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a622f0cedfd5a701523e",
+        "query_hash": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/27",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ce90de7faa642b5ba735",
+        "query_hash": "721482c7a7cf6edcafc9fada32dd20d85be1c72405b77b4bdf2eba3d2fdbedae",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "泄漏",
+        "reason": "点到平面距离子任务相同，仅改变点/平面参数；训练题还给投影点，已包含评测核心算法。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "point-plane-distance"
+          ],
+          "score": "27/53",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "645705bef3926486efab",
+        "query_hash": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "28/73",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "923b8912f87451d5915a",
+        "query_hash": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "34/65",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e43b3367d51fadd5bcd7",
+        "query_hash": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "48b7863880ebdaa17f26",
+        "query_hash": "93232b29f9056a22bafc4c62c35b77cd5a33069a343f1fc8267cdb2a5539727f",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/96",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "84690149321e4c7713f9",
+        "query_hash": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/74",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "02eec064fc234724cf12",
+        "query_hash": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "25/78",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "91f6a39a1d9ea72f3ec3",
+        "query_hash": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/74",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c661679321c7971bb2de",
+        "query_hash": "cc0250c728af33487874f38d0123f391c37bef4298ec1e8fe045c80a0c98615c",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "8/93",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a40999c1334d99b0b0d7",
+        "query_hash": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "80ffd1aa2a9d21d8db4a",
+        "query_hash": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/39",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f09902d730c545ac4d7f",
+        "query_hash": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "048d61d992d6fb856a30",
+        "query_hash": "9ca39ca68585c1d5edbb369c330f98057af3e4e7f78bdaa318ad77979c4b1857",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/23",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ca0e0881d4d1b9822391",
+        "query_hash": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "23/71",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "84535f97dc06c18c5bab",
+        "query_hash": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/65",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ddea518b9753089daff7",
+        "query_hash": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/63",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e12f189582a2f6438ca6",
+        "query_hash": "008f5218c5bc8b94a8285c380dbcedd5e8dc249403158eb45651cc41d307669b",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/77",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0eb536bcfd2e6786856f",
+        "query_hash": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/7",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1f1c6365369ef8eca674",
+        "query_hash": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/93",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0154f4ff8b1a6edafcab",
+        "query_hash": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "375043aba095370b040a",
+        "query_hash": "8f27c795be9c0322be87db5862b5d18318431bd058b461ddab5876c351d45ec1",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/81",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9ca9c4f459daa0152efd",
+        "query_hash": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "train_hash": "d33851438983252131b83e5a8935c43d200b29feda38f985fc4b2e18958fbb3e",
+        "label": "泄漏",
+        "reason": "同为已对角形式单叶双曲面判型及截面分析，仅改系数和坐标轴排列。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "diagonal-quadric-negative-count-1"
+          ],
+          "score": "2/5",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "e010034213f55e31c11c",
+        "query_hash": "1e5007442952a21c08b1c6f7172e30ed06ecd78455338d14b00bbd549acff9f7",
+        "train_hash": "1b1b40383ee5c7d6a609b7ee075e508b8dec41f11b2d18f2d453d6cedb1a3f86",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "17/65",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0188d5ce0654de5788fe",
+        "query_hash": "923b23015cd9210b7107bff7ed7b5f7af44ff4d2d7263b30be00ea168855bdbd",
+        "train_hash": "d33851438983252131b83e5a8935c43d200b29feda38f985fc4b2e18958fbb3e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/5",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "53a8271769e9142cb409",
+        "query_hash": "923b23015cd9210b7107bff7ed7b5f7af44ff4d2d7263b30be00ea168855bdbd",
+        "train_hash": "1b1b40383ee5c7d6a609b7ee075e508b8dec41f11b2d18f2d453d6cedb1a3f86",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "429e6425ccc7ebfd8d5f",
+        "query_hash": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+        "train_hash": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/79",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2a1c9432e2308b68da48",
+        "query_hash": "4a6d9c3896f85be2e45ae57cbd3b4f8254f61d5a3efe6d8d26c01576a03f44cf",
+        "train_hash": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "10/87",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e19d86e10c1c17cf75d4",
+        "query_hash": "4cadc4e56957bab7164a8e34f49689155ecc3cef73fb5731864657a7cc8cb359",
+        "train_hash": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f427cdacaaccac60c4b0",
+        "query_hash": "4cadc4e56957bab7164a8e34f49689155ecc3cef73fb5731864657a7cc8cb359",
+        "train_hash": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a2026d0d201cd6b8595e",
+        "query_hash": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "train_hash": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/77",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "53d1a354181f9b911b2f",
+        "query_hash": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "train_hash": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "14/85",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d2afecfefb8d285a2c01",
+        "query_hash": "5ba60dccb32c121e1ac7dba8f91a6f32b6e33c478ef841733c83a54ab6bc90c0",
+        "train_hash": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/64",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f9ad79a7887080a76c65",
+        "query_hash": "5ba60dccb32c121e1ac7dba8f91a6f32b6e33c478ef841733c83a54ab6bc90c0",
+        "train_hash": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/38",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9228c6f1b4805c3803e2",
+        "query_hash": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+        "train_hash": "9e6022b47e187f9b928e34ab0277d7bc5a6f898e39fc60fe519021ea842226aa",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/59",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "010019af31a235c70cda",
+        "query_hash": "cc107888c1a5e2afc942ca7d858a0a0659a5d09ef0a77a6595db25ad71628c24",
+        "train_hash": "e4ae45c95958d6a3e6167e646091af8d33aed30670cb811be55b54fb77d38a79",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/22",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2025420dc18169b4759c",
+        "query_hash": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+        "train_hash": "b49565798753ed35d2eaa835fe6ffcb4a5e31412601e2e7d7e005de19d4a5253",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "10/73",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "34d2e9cce72fe2db433c",
+        "query_hash": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/26",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7c0c5446a3e905ba66a7",
+        "query_hash": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+        "train_hash": "8871c3df7c36e626ed8aa9e19f59136f51a93a1ec0eb8422d36c7eab67245a8c",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/56",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0196834899f41fc57dc8",
+        "query_hash": "e3c0265658955eb0af6e7343c4567aac8bd4954337c7f6803091cd3f1757c682",
+        "train_hash": "dd19efaa5fa959c1adf7999f8818bbb7fea017539ade84b1fb610e0d9cf9819d",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "8/71",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "758b91d54edb332928ae",
+        "query_hash": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+        "train_hash": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "de5639e7ce0f8b6258b6",
+        "query_hash": "4ab8ead3d752693546d636ad344f944d330d964c4fd61219819fa0cd3c0240eb",
+        "train_hash": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2d3278d52c907cbf64ef",
+        "query_hash": "52023160add43640fb6984e092a5e211243b355a3b0abb714e0e74eb4be538f0",
+        "train_hash": "1b9fe3c51cb70bb3f811c2dcc8ea76de4f37bd1467077fb656fdcd07069065db",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/4",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b9edbd060fb92359f4c7",
+        "query_hash": "2a0d1fbf74525e693ffb682e66736ed5895abd595eb2f2002750edafcae5b131",
+        "train_hash": "5db972b750fe565bc2e516e4a55c1255e45419166a9636cf107cf24ea8bdb5d1",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b21f185a19e12aa0d8f7",
+        "query_hash": "e3a510d396155d28e8bca580b6f19047cc728c9413235b808621ed7282a4fd05",
+        "train_hash": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "83ebe5113ef234199dd7",
+        "query_hash": "e3a510d396155d28e8bca580b6f19047cc728c9413235b808621ed7282a4fd05",
+        "train_hash": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/19",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "5b071c5b4a9cdf2ec428",
+        "query_hash": "a79da55dc54b5b52dd6d76c491c7278636eb018baceedde2f41df6fc9e68d31d",
+        "train_hash": "e5321d09ddec5b92ee200a160984c117e6e0da70dd6b154d929aeaf593037523",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "10/129",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "81336fb9360b1e5ba67b",
+        "query_hash": "a79da55dc54b5b52dd6d76c491c7278636eb018baceedde2f41df6fc9e68d31d",
+        "train_hash": "da237c5a4e7815e157b0fc84aaf82152d2ed85ddd68aad787ceac1b4becf7de9",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "4/133",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f08a45967a0d09213de5",
+        "query_hash": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+        "train_hash": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "22/103",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4a6c8a105a9a7d077b1c",
+        "query_hash": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+        "train_hash": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "14/45",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "eea54e755e24292ac86c",
+        "query_hash": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+        "train_hash": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/121",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "93d4b19dc7be705efaf3",
+        "query_hash": "c0cf18336674529df6e9ec07ebcc8ae5890dfb3d0cdae578b1a94162f3bbd2a2",
+        "train_hash": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/136",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c688b0c6cec9a077307e",
+        "query_hash": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+        "train_hash": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/18",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e17dc7edfda3f1b7522f",
+        "query_hash": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+        "train_hash": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/11",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "fa152eb543ca039deee1",
+        "query_hash": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+        "train_hash": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/90",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9aa48cbd1494c15581da",
+        "query_hash": "9f2b8a6aa0a17786664c3041b2908ca4fc1d39cca99276b83773eb06fe908bb5",
+        "train_hash": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/52",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ff9154fec3aaf949819d",
+        "query_hash": "17eddce7a85ba23a9214c0914209149b58e729c662402defba1cf1997fbece2f",
+        "train_hash": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/9",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4bdafe26b49be7436ea7",
+        "query_hash": "17eddce7a85ba23a9214c0914209149b58e729c662402defba1cf1997fbece2f",
+        "train_hash": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "20/83",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "55afe54bccef5b21e463",
+        "query_hash": "17eddce7a85ba23a9214c0914209149b58e729c662402defba1cf1997fbece2f",
+        "train_hash": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/108",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8fa3574900350c807942",
+        "query_hash": "17eddce7a85ba23a9214c0914209149b58e729c662402defba1cf1997fbece2f",
+        "train_hash": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d98eeea26b47de9adfa7",
+        "query_hash": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+        "label": "泄漏",
+        "reason": "均为具体可逆二阶矩阵求逆，仅改变矩阵元素；训练解释扩展不改变求逆核心。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "inverse-numeric-matrix-2"
+          ],
+          "score": "32/57",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "63e23c60900416652ce7",
+        "query_hash": "c437089dbb9dee16b9925d9bbb5304abe44057d90035331e139b5f797a85f70c",
+        "train_hash": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "28/57",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "98f87a999fa0f25b111e",
+        "query_hash": "71842fa82fa88cbf447ed1c0fd3319faae393f2409497808c0c3e2c3e1e8bf0f",
+        "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/68",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "92db54b1d2202dd0e1bc",
+        "query_hash": "71842fa82fa88cbf447ed1c0fd3319faae393f2409497808c0c3e2c3e1e8bf0f",
+        "train_hash": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/68",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3a18f998d1e8ca949bc6",
+        "query_hash": "90c1821f68e0f9e69c06d8cd18f3800de333052a7cad7ae6cd30d67eb59c6b96",
+        "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "23/84",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c9deefafa7e3a7cca2eb",
+        "query_hash": "90c1821f68e0f9e69c06d8cd18f3800de333052a7cad7ae6cd30d67eb59c6b96",
+        "train_hash": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "19/84",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d5ed5dedf59ee56a39e8",
+        "query_hash": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+        "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+        "label": "泄漏",
+        "reason": "具体可逆二阶矩阵求逆核心相同；行列式与秩可在同一计算中直接获得。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "inverse-numeric-matrix-2"
+          ],
+          "score": "31/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "3c43be8087416cee62e8",
+        "query_hash": "512e0ba875e92c2679fc661dafe7b7ccbb09273594b42f84ce9e2079659ae585",
+        "train_hash": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3e3b04df7dc185744ec4",
+        "query_hash": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+        "train_hash": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "7/41",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "262c4f8254e84c13066c",
+        "query_hash": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+        "train_hash": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "25/64",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f165a1acf1550df6c853",
+        "query_hash": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+        "train_hash": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/94",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7ab7e9d881933752cda2",
+        "query_hash": "e98b7eb0c1be5b12b1b3f60fbb0b47c7800ba82e04b98f22d94db6c6b969b35c",
+        "train_hash": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/54",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3b22376a6b2ee897d661",
+        "query_hash": "e3717dc5aea9d521f06582634a09534d94068c3508320e8ef0c32e6cae909e09",
+        "train_hash": "694cee5376e182ad8d4f543d1c90c27659aa9aa18d0986d12ddba605fd70ac01",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/57",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0aaa0b53c8301b0602ce",
+        "query_hash": "e3717dc5aea9d521f06582634a09534d94068c3508320e8ef0c32e6cae909e09",
+        "train_hash": "b4078211a46df8e16ad5054e3c1562eec8c49dae530d99f36ec6d8539eb3f9e4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/2",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ca1bc2e29c62cb134dbb",
+        "query_hash": "ffc720f969aa792b7f020d572ddd7402a2b3111d65e94724d8cb5e568506564e",
+        "train_hash": "229f7f73fa24ece645756f5c5074a95e0a3a2eb89fd1f1885100405830dfd02a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "33/80",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "91421d2596ac5fe71a82",
+        "query_hash": "ffc720f969aa792b7f020d572ddd7402a2b3111d65e94724d8cb5e568506564e",
+        "train_hash": "ad09575944b688736288386239c23307e12a6fb0546a0fe9810c3cc277fcaefe",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "25/88",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4708dbf3fe62eb5392ce",
+        "query_hash": "eca94dd328c2837df1ecc6af4e86ba64605fe51fcd2de147645a2fe21136802b",
+        "train_hash": "229f7f73fa24ece645756f5c5074a95e0a3a2eb89fd1f1885100405830dfd02a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/82",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b5e253f258eb833a0f0c",
+        "query_hash": "eca94dd328c2837df1ecc6af4e86ba64605fe51fcd2de147645a2fe21136802b",
+        "train_hash": "ad09575944b688736288386239c23307e12a6fb0546a0fe9810c3cc277fcaefe",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/86",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "621e9cad861f71fee5b2",
+        "query_hash": "3f4f762951c78c5f22745d00109f4abcdfc2ad8e5d5d633b3a24b9e06b0bbc34",
+        "train_hash": "229f7f73fa24ece645756f5c5074a95e0a3a2eb89fd1f1885100405830dfd02a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/17",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "5b5a7b329798a09c7929",
+        "query_hash": "3f4f762951c78c5f22745d00109f4abcdfc2ad8e5d5d633b3a24b9e06b0bbc34",
+        "train_hash": "ad09575944b688736288386239c23307e12a6fb0546a0fe9810c3cc277fcaefe",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "17/55",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "75cc1b9552215f6b834b",
+        "query_hash": "5c9ca9083640623ea34f6546c248e26966e1a899c736d56e52a821c296636a26",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "37/118",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "17ca7b9ef6fd9f5fa67c",
+        "query_hash": "5c9ca9083640623ea34f6546c248e26966e1a899c736d56e52a821c296636a26",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "37/118",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "bec4aa44365a12f52960",
+        "query_hash": "5c9ca9083640623ea34f6546c248e26966e1a899c736d56e52a821c296636a26",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/23",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c782e69c49f50db5244a",
+        "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "泄漏",
+        "reason": "均为二阶对称矩阵 [[u,v],[v,u]] 的谱分解，特征方向固定，仅更换系数。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "spectrum-balanced-symmetric-2"
+          ],
+          "score": "2/3",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "6610bd681678a0eddd0b",
+        "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/3",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e576ba8556c51c2e76a7",
+        "query_hash": "7cf642a667f0a5f6ba93b6f87eb75d881cbf1505b723a6c45a3f89e4447a5ace",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "泄漏",
+        "reason": "均为二阶对称矩阵 [[u,v],[v,u]] 的对角化，固定主轴与计算结构相同。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "spectrum-balanced-symmetric-2"
+          ],
+          "score": "11/19",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "e5c829ca1093460b7f75",
+        "query_hash": "d3de6839a9c89d4ccff817aea837d5ba8878713082579be4e419451acd07f9ac",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/112",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b24f50e4b41c91eebcc0",
+        "query_hash": "d3de6839a9c89d4ccff817aea837d5ba8878713082579be4e419451acd07f9ac",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/112",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "931a2c189fd008bd81aa",
+        "query_hash": "d3de6839a9c89d4ccff817aea837d5ba8878713082579be4e419451acd07f9ac",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "50744fd29aa8ece676ba",
+        "query_hash": "d5e74978274e5a0de40da591f3219cc5b5a3d519bd3b7b1749eb6e2d17b1bc8c",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/8",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "87501742808a4c0dbc35",
+        "query_hash": "d5e74978274e5a0de40da591f3219cc5b5a3d519bd3b7b1749eb6e2d17b1bc8c",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/8",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7aa6ddad605bc2436205",
+        "query_hash": "d5e74978274e5a0de40da591f3219cc5b5a3d519bd3b7b1749eb6e2d17b1bc8c",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "33/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3b91afda35f9cee3b707",
+        "query_hash": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+        "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/45",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d3705a43e739a3c1590e",
+        "query_hash": "fa464185be5b79043609ef56f0233dc0dfe8e8f688aa71e9ef07d1fc2fc55f18",
+        "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "label": "不泄漏",
+        "reason": "固定系数判正定扩展为参数范围与标准形分类，增加参数分情形证明，不只是数值替换；该训练题已因其他明确复用对隔离。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "definition_revision": "按用户确认的仅数值/符号/表述替换且核心结构相同定义完成复审",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-3"
+          ],
+          "score": "27/79",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "fp"
+      },
+      {
+        "pair_id": "8b57789ea68283230830",
+        "query_hash": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+        "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-2"
+          ],
+          "score": "17/65",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "fp"
+      },
+      {
+        "pair_id": "bee8a873d01c27ffffc0",
+        "query_hash": "04e92466f0228820b5de864b38c10960dd8c3e12f26507b698903accceae06f6",
+        "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/29",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3f02d486e6321fc59e5e",
+        "query_hash": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+        "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/29",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "5115d5bba7918a55ac52",
+        "query_hash": "789a0846a475357ac45a5406c74445c0afa4760c9c61b93fe66bae27de1132cc",
+        "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "label": "不泄漏",
+        "reason": "固定系数判正定扩展为交叉项参数全区间，增加边界分类，不只是数值替换；该训练题已因其他明确复用对隔离。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "definition_revision": "按用户确认的仅数值/符号/表述替换且核心结构相同定义完成复审",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-3"
+          ],
+          "score": "23/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "fp"
+      },
+      {
+        "pair_id": "be8557eba4988e0b084e",
+        "query_hash": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+        "train_hash": "9fba9e9b95edbfabe6a8d3b3a29e7dc31a057c55657be8eaae0541f462a1104f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "18/55",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4bc25dc0728bd5b54b2a",
+        "query_hash": "e2a0b118554e16d918d620da506306361372ee522ad5c82fb28eac58de1229ed",
+        "train_hash": "b2982137b6d440528641c506ad8ccd6cb09da9549797d2d9cb77ebc57ee88c2f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/56",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9c6769dd588166d3c81c",
+        "query_hash": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+        "train_hash": "9fba9e9b95edbfabe6a8d3b3a29e7dc31a057c55657be8eaae0541f462a1104f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e6ceea45c0f05c6d36f7",
+        "query_hash": "3c49d2b2c2302c10564874d75e50ada227f894b219c8a34c29cad360d6f9767b",
+        "train_hash": "b2982137b6d440528641c506ad8ccd6cb09da9549797d2d9cb77ebc57ee88c2f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8dfbc9f225daa73d6570",
+        "query_hash": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+        "train_hash": "9fba9e9b95edbfabe6a8d3b3a29e7dc31a057c55657be8eaae0541f462a1104f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/5",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ed6d4f946182a39e8654",
+        "query_hash": "cc13e5b4fd43ca685e08ee73a4909577668ab5ea367fdb31c03d87c05021e3d3",
+        "train_hash": "b2982137b6d440528641c506ad8ccd6cb09da9549797d2d9cb77ebc57ee88c2f",
+        "label": "泄漏",
+        "reason": "均为三次多项式在 x=1 的泰勒展开，仅改变多项式系数。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "taylor-cubic-polynomial"
+          ],
+          "score": "17/67",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "6c0f0c9e754c40b252e8",
+        "query_hash": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+        "train_hash": "9fba9e9b95edbfabe6a8d3b3a29e7dc31a057c55657be8eaae0541f462a1104f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/70",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6dee1050b98019118948",
+        "query_hash": "a91348d1b12b082dce88e13b7d5af1000b2c9a332a564c18b84c8cdf2bc92815",
+        "train_hash": "b2982137b6d440528641c506ad8ccd6cb09da9549797d2d9cb77ebc57ee88c2f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/23",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7523adacf526f0f1cc31",
+        "query_hash": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+        "train_hash": "14521070b1a093fa069ac243bd6c88bafd6696791f72ae617cdffd9f078c9b09",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "14/107",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6d04fe31c81b8765543d",
+        "query_hash": "529d3f230b2445161480a75ef1d94ce73de7438ca2bfcc9410f0ad155a6374a6",
+        "train_hash": "ab2fba37d2a1688e0f30928437c0bd081bea475c825415792470f7d6bc087b48",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "4/109",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7b8cdc5c197bac4b537b",
+        "query_hash": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+        "train_hash": "14521070b1a093fa069ac243bd6c88bafd6696791f72ae617cdffd9f078c9b09",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "2/29",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9146a901a19e61767127",
+        "query_hash": "c3a65b4a69847bd22d2ccc82460eeb9cfa6e6b6fad2600948cf5f74d1f75c2c3",
+        "train_hash": "ab2fba37d2a1688e0f30928437c0bd081bea475c825415792470f7d6bc087b48",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "19/128",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "84183de062ca0715654d",
+        "query_hash": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "train_hash": "14521070b1a093fa069ac243bd6c88bafd6696791f72ae617cdffd9f078c9b09",
+        "label": "泄漏",
+        "reason": "均给出二维新基与向量，解同一二阶坐标变换方程，仅改变基向量和待表示向量。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "coordinate-change-2"
+          ],
+          "score": "35/106",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "35feff46038e4cce04a8",
+        "query_hash": "83854effe81801e1e1e2af7a95bf4fefae7e632d4652446bcc4102307c468645",
+        "train_hash": "ab2fba37d2a1688e0f30928437c0bd081bea475c825415792470f7d6bc087b48",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "12/121",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "7dcabd77c5fb9ac62db2",
+        "query_hash": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "train_hash": "d045ac849ad785dd4fa64219bce8471ea92ede1a3ef2cb9157c0ebe652660ff2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/137",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6ca1964ef1b6663fac80",
+        "query_hash": "87ac4f06fba18e9d943d148123ecddf45a5f47b9faf310299431fb0a996ebd7c",
+        "train_hash": "646f829ce7994212ac56cce77b28e62403b6a064af9932023d462eba0b35b8c7",
+        "label": "不泄漏",
+        "reason": "三维到二维与二维到二维映射的矩阵形状、核维数结构不同，共享消元方法不足以认定仅数值变体。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "definition_revision": "按用户确认的仅数值/符号/表述替换且核心结构相同定义完成复审",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/24",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3b1325d66a241d3233b8",
+        "query_hash": "993eac2d7826c16ee6a655b8ab2ac34d16d1cd4d173c0ce35b71708efb181140",
+        "train_hash": "14521070b1a093fa069ac243bd6c88bafd6696791f72ae617cdffd9f078c9b09",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/124",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b4fed9fe2d09ad21c686",
+        "query_hash": "993eac2d7826c16ee6a655b8ab2ac34d16d1cd4d173c0ce35b71708efb181140",
+        "train_hash": "ab2fba37d2a1688e0f30928437c0bd081bea475c825415792470f7d6bc087b48",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/118",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3b328a45882514be0bb2",
+        "query_hash": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+        "train_hash": "693be5d7ba50bc04795b4cdcda3329dacc573bf62f4fd35be302c94bf10d09f7",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "11/148",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e4a511228cdc512da5e3",
+        "query_hash": "2540542f9de302c38b4b3035424b3068cbe08ef4b3002520e5d98127e81aa33a",
+        "train_hash": "6c1aa9315b152f120afa4866118cb6ed7a01fecf87f07e2645730e45923b5a20",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/22",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "65ca0cac457442ad395d",
+        "query_hash": "0106ec138785e64d52b91abc1384c5b6508eb1a81b40f06117bb29d0bd6102b2",
+        "train_hash": "693be5d7ba50bc04795b4cdcda3329dacc573bf62f4fd35be302c94bf10d09f7",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "25/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1535a65a8011cddfb01c",
+        "query_hash": "0106ec138785e64d52b91abc1384c5b6508eb1a81b40f06117bb29d0bd6102b2",
+        "train_hash": "6c1aa9315b152f120afa4866118cb6ed7a01fecf87f07e2645730e45923b5a20",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "28/139",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "77b9daab763b2ba8dee1",
+        "query_hash": "a9bb397b61d8b3d9be679849828e965e8248492e7cd1ec8dbe2f148f4be1fdfc",
+        "train_hash": "14346d6c8e3ad4c7591cc5fe58c43d67ffe5cdffa621cdf1908df1f4ed7e0584",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1fb92ebdb091585e7f36",
+        "query_hash": "d64eb331b97bdbef5bb72a6cb1975c1fab8e603e88f47d05dd2af3ee9f50ab0a",
+        "train_hash": "14346d6c8e3ad4c7591cc5fe58c43d67ffe5cdffa621cdf1908df1f4ed7e0584",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/119",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1f9e727a9535644988e8",
+        "query_hash": "e4fb1c09ae99787ce56c4f7e6308ccbbb99bdb8f3251ce47c5eba997d6ac6e27",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "16/71",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e44abba4e8f255234ccb",
+        "query_hash": "b341f7042d7204bb4b04ad1fe5a8db7704e23eb42015ae740d340d029b60d2f1",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/74",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "fa7682a766887dfe947d",
+        "query_hash": "ffaf0aab72e759d598c56ae31266c6c6803505c590fdce934ef8990e6bf9601b",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "14/85",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6f8a89eced3558f80bd0",
+        "query_hash": "ffaf0aab72e759d598c56ae31266c6c6803505c590fdce934ef8990e6bf9601b",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "8/97",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "4acdf7ae4eac432f337b",
+        "query_hash": "fd1a844d11a9969bb56ccc4f3934d173f6b853af55b9524e853b4bd80ec67f58",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "18/67",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c21e1994aa55f326c6d4",
+        "query_hash": "7199d8e4196cf9e6eab81635e58b65cf9b4312d7a340b8696a94b259dc963878",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8ebaa3cb6115bf54082e",
+        "query_hash": "7199d8e4196cf9e6eab81635e58b65cf9b4312d7a340b8696a94b259dc963878",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/93",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "684af1dff363296c9d84",
+        "query_hash": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "cd720633b5dd1b3dcdb3",
+        "query_hash": "0d75b6179aa7f666e220dbbcb03eca6e6274db7e8c364fece74321025a6efd3d",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "de6db2d2d5759e9145c1",
+        "query_hash": "0fe8077c084db3dee2a71c7dc2e2e6e746d333a856430b3c27e8553f8875125b",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/5",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "8f8f2df97cc68c4807d5",
+        "query_hash": "70bbdfba6d7c6e65e3545339b922957285d60c256ee3d8fe00d0a461d14bcb45",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "13/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c6c02d8ed26d96268eb6",
+        "query_hash": "85cdcedaa2463bb02d46ebb720c1206a201356cfec10c1c4e97510b2ed1fb086",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/20",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c4f5279b83f4ea140ab6",
+        "query_hash": "d3186498206ba8ac6ff8350e4cd90a87dee260e5f3d5f5ac56cfe01d9b51bf4e",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "21/59",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "590b6ad7ca2f0cc12aad",
+        "query_hash": "e41dc42e4d3e752f32301a7a12215c1fe8c9e729304550229e68db46ef664daf",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/8",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e17a9f2d56eaa57fb358",
+        "query_hash": "e41dc42e4d3e752f32301a7a12215c1fe8c9e729304550229e68db46ef664daf",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "4/31",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "36c829ddc00758163657",
+        "query_hash": "83055e4762d726b9bf45ea249d66c74957b3ccde8b102b0177394d3c97797900",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/34",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d1738340f8a70bd7ef66",
+        "query_hash": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+        "train_hash": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "31/77",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "dd7d76b1c446a6972aec",
+        "query_hash": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+        "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "15/32",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "1e2c4953c4c32b6ddbc3",
+        "query_hash": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+        "train_hash": "7a0b942859332e92b20eaceb573b7a58454f73a35865049e8059cf6347807327",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "29/73",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c2e744e9a4d884f3f150",
+        "query_hash": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+        "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/3",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9410c3332ab509d8d760",
+        "query_hash": "297df5d1a8d9ecf975bd3b3603d1defd5c11bf271cff21cde254059e35e98709",
+        "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "33/62",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2bd653285f5f109f369d",
+        "query_hash": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "train_hash": "243f1da90dacf553502122d3a74b197ad978c2ed77a2b38fc3cc8f53d8c09aee",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "28/97",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c5fc38553a1e3455cd62",
+        "query_hash": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "12/25",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9dfb4a492517676d0a60",
+        "query_hash": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "train_hash": "7a0b942859332e92b20eaceb573b7a58454f73a35865049e8059cf6347807327",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "32/87",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "15a32c44a5b59f0b1fd8",
+        "query_hash": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "train_hash": "54be8e3da5b2f7bb77d2f863de64d1d9f3d68eea14be36218a9087b4c8228176",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "32/101",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "f6e97e46750a06e5e8f4",
+        "query_hash": "62b75cb8b75db673f851dfaf133bd7bf4ff99533b67bae8fb188d48995895367",
+        "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "27/85",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a6df5e19dc384e2586ac",
+        "query_hash": "753b2985f69dff39492fbaf726fdfc32784fc377bb90e550eeab8b45ff4b04a0",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/19",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "75d38e8ef319d99ed249",
+        "query_hash": "54c836589af9380405e1a8b50e35c3df0fca8629a4dd1fbb12dfc9d4b597c016",
+        "train_hash": "8a1acfbe4071954a10fedaa3f7a5ecade990549936418546f5892b13e1299f7e",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2ca500a78216af9c0801",
+        "query_hash": "938915c6271dd0c2c25c8904c3d9bd17fa68b997a6b1a42b5ed64fac296a55e4",
+        "train_hash": "9f9c452b1dd391adcf5643d61f9cb07f151590c60b7fee571f2197ce26d9b4ec",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/4",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "34a9bfc7c59ff5e31909",
+        "query_hash": "938915c6271dd0c2c25c8904c3d9bd17fa68b997a6b1a42b5ed64fac296a55e4",
+        "train_hash": "09e2c753ae68e2d55f246dd8c6dbf08bd9cfa54a1c9dc9b5f782041715425868",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "15/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "596ef903edf8ad28cef5",
+        "query_hash": "853d5e0b9ac5b4e979723dd4f29c7e77cd325abedd074dad58a945a6669615ec",
+        "train_hash": "f26ea5cf437968bfbf2bf14635f642b375eba7bc8d3e43b2a9274bb9bc74f4c5",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "9/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "befe677a9fc30c967fea",
+        "query_hash": "df4cc13e95965121c637dd440d390802f1277ef7a198df65dbf435d22303191e",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/111",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2726c6e6d8c93e00f591",
+        "query_hash": "df4cc13e95965121c637dd440d390802f1277ef7a198df65dbf435d22303191e",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "5/111",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "cbfb1ed5a2257b8f989d",
+        "query_hash": "df4cc13e95965121c637dd440d390802f1277ef7a198df65dbf435d22303191e",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/105",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "9aab89f838f86c0b687f",
+        "query_hash": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "34/105",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a3172736e354367eab14",
+        "query_hash": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "34/105",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "e520eea1f14b99431d60",
+        "query_hash": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "29/100",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "cf1f9967bb4152230515",
+        "query_hash": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/19",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ef360aa6be2d354b4ea4",
+        "query_hash": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "6/19",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "a1c10ebe84ca3ec85561",
+        "query_hash": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "21/94",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0b2aa483e1b5cb342ec9",
+        "query_hash": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "37/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "0e12c5c8278954d37764",
+        "query_hash": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "37/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "c587bc09c2c649463ef3",
+        "query_hash": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "29/67",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "dbc112be1bdf06d417c0",
+        "query_hash": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "b6ee410b860040a5fe81",
+        "query_hash": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "3/76",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3e6c581456383cd09b7c",
+        "query_hash": "c5f285f107d0e62d51b1fa49dc5adc161c9e0f02c6cf2f16e9c2a450d82863c1",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "ea7eeee7898360996369",
+        "query_hash": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+        "train_hash": "eab4f53f3d5a268f6584b48a29678dd084c87f7509822bfe094ddf1aa4764b03",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/105",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "66ca2f0174c68d8b8cb1",
+        "query_hash": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+        "train_hash": "711da1f12cc4209f0e6bf7c20bd4b1d8706bae3c0c6fb903cb2b44e715fc4f6f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/98",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "d08ab23285db8d6d2db1",
+        "query_hash": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+        "train_hash": "a0be0d681e8e97340adcf694c427013a7e6583ebcc7247694eb8b7db1cce4e45",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/114",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "970037823e8b5ec52940",
+        "query_hash": "e83ba5b58fe3e201b5131ac2c00efd446c8d461d39f317787ecdb83279649289",
+        "train_hash": "ebf277af8ebb4573cd5aa289c30582b24ff8910e5ecdb9a7ba8b70a43431492b",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/119",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "3efdbd4168b951af04eb",
+        "query_hash": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+        "train_hash": "e9d5204d5e738bc808dbae4ad816a757d2295451e8df9a2ea49daae5597d2cb4",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "6167d0337ef6c4b8f181",
+        "query_hash": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+        "train_hash": "4e4b0d471f625dc97664eb13a479ea1ff8aff8de4f493c47344421cd38f4b73f",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "1/69",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "2084631477aabb3d4bc9",
+        "query_hash": "f2dccbb87c4f0859af3a818951c492cc1912584808db4952de1ee41893a34353",
+        "train_hash": "fbdeaa01d99725107adeb7fbc80ed8d5bb75e0aea6e53da11c459c83456450f2",
+        "label": "不泄漏",
+        "reason": "逐读题文：共同模块/题型之外，数学对象、条件或目标任务发生实质改变，不是仅换数字/符号/表述。该判断仅限两题的核心结构，不把共享知识点当泄漏。",
+        "reviewer": "Codex",
+        "provenance": "独立 AI 题文审阅；非旧 B5 用户标签、非用户裁决",
+        "usage": "固定规则的当前总体诊断；未用于阈值选择",
+        "prediction": {
+          "candidate": false,
+          "coverage": "UNKNOWN",
+          "reasons": [],
+          "score": "0",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tn"
+      },
+      {
+        "pair_id": "5c18d4892f83c885b3ce",
+        "query_hash": "cc8937099fb1df4329bdd203e5462d11594a56b2b4d5b1306c3d1cb6893664f0",
+        "train_hash": "3ae8dc731ffba73fb8095f2a5c5c94c8f775e29cbe976dc77629a058dfbabe63",
+        "query_id": "eval-calc-011-s1",
+        "train_id": "calc-series-016",
+        "label": "泄漏",
+        "reason": "训练已给含参数幂级数和函数；令 x=1 即覆盖评测同一求和任务。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "logarithmic-power-series-and-evaluation"
+          ],
+          "score": "38/63",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "c41cfb96416b83be580a",
+        "query_hash": "fee2b5b4df2d722acc81e5e1e7a83f0382cf9d36224e86ae58a8b7eb47b396f3",
+        "train_hash": "86943dceeda44014e15b9402fd09514189487d858ec0f5888c96f32a9f05227e",
+        "query_id": "test-calc-013",
+        "train_id": "calc-series-019",
+        "label": "泄漏",
+        "reason": "1/[n(n+1)] 改为 1/[n(n+2)]，仅常数间距改变，均为部分分式裂项求和。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "telescoping-constant-gap-series"
+          ],
+          "score": "31/63",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "dd70b0ed3ed14187f21d",
+        "query_hash": "c378aaad6213c8971508313e07e92a8111f4acc695ed120e477273561dd2e523",
+        "train_hash": "c2c92b0ef1ea5c0e6880fbf14d2769f6603685a7f3f00945240c1bc445a5ea03",
+        "query_id": "test-geom-003",
+        "train_id": "geom-021",
+        "label": "泄漏",
+        "reason": "两条异面直线距离，方向/点仅换数值及参数写法，仍为同一混合积除以叉积长度。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "skew-lines-distance"
+          ],
+          "score": "18/89",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "30f0d80d7232aa2a836c",
+        "query_hash": "23547ab58f24aa7264a5d75356135811a320fc5ebdbab66d423b8834da0e9eb4",
+        "train_hash": "c9b6325a77e2dfde5766b6a07d7fd6d0bb24b24dec4d3a9818d57bb30470087d",
+        "query_id": "eval-geom-011-s1",
+        "train_id": "geom-027",
+        "label": "泄漏",
+        "reason": "正定对角二次曲面由椭球系数改为球面系数，直线代入产生二次方程、判别式及根的结构一致。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "line-positive-quadric-intersection"
+          ],
+          "score": "11/104",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "8848ddce4ff07015d4d8",
+        "query_hash": "bf9fa1bd45bba3258f420b234cf5f7aa09953029f519c029c4b925a49798c140",
+        "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+        "query_id": "test-linalg-026",
+        "train_id": "linalg-059",
+        "label": "泄漏",
+        "reason": "同为二元正定二次型标准化，仅系数改变，完成平方并作可逆线性替换。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-2"
+          ],
+          "score": "22/61",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "9f6f2f497c77be56df75",
+        "query_hash": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0",
+        "train_hash": "2d25cb4318bfaff213cb008d5f7313089d05bdd28442c132de48a944eec42b7a",
+        "query_id": "test-x-007",
+        "train_id": "linalg-059",
+        "label": "泄漏",
+        "reason": "二元二次型谱分解/标准形核心相同，仅系数改变；惯性指数直接给双曲线类型。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-2"
+          ],
+          "score": "7/71",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "71953cd84312da4d146e",
+        "query_hash": "500d0ac9e764f36b026ffdb75246172c561f23ff685115e8bd7dd470c526b9ea",
+        "train_hash": "1efcf8354336f22a4772c897a22b5981183eef49cb85eaac848372a7478cc16a",
+        "query_id": "test-linalg-034",
+        "train_id": "linalg-060",
+        "label": "泄漏",
+        "reason": "三元常系数二次型判正定核心相同；正定直接确定等值面为椭球，矩阵元素只改数值。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "quadratic-form-reduction-3"
+          ],
+          "score": "13/50",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "38353d5a25a07f3a65fa",
+        "query_hash": "b6aca4d215988d255cd4cc1980a55d51082bc9f00c7a32c5e03b42221ec7fd49",
+        "train_hash": "ef359c8c6615596da21a6e3367becc6d19aa088a8121cff4b3081af2aab069c0",
+        "query_id": "test-prob-001",
+        "train_id": "prob-044",
+        "label": "泄漏",
+        "reason": "二元隐类别的贝叶斯后验，题干换成车间并改变先验/似然数字，计算结构相同。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "two-latent-class-bayes-posterior"
+          ],
+          "score": "1/63",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      },
+      {
+        "pair_id": "24f8de8d99627e8a9f66",
+        "query_hash": "0b638a2acb3fdf58ec8f12f479aa8c9c4eebef526dea96a82f4d53c899a94e88",
+        "train_hash": "1b9fe3c51cb70bb3f811c2dcc8ea76de4f37bd1467077fb656fdcd07069065db",
+        "query_id": "test-x-002",
+        "train_id": "prob-045",
+        "label": "泄漏",
+        "reason": "区间(0,1)均匀变量的单调幂函数变换，指数2改为1/2，密度求解结构相同；期望为由密度直接积分的扩展。",
+        "reviewer": "Codex",
+        "provenance": "跨签名独立 AI 题文审阅，按用户确认的结构定义；非原 B5 用户标签",
+        "prediction": {
+          "candidate": true,
+          "coverage": "CANDIDATE",
+          "reasons": [
+            "uniform-monotone-power-transform"
+          ],
+          "score": "1/10",
+          "rule": "structure-candidates-v1"
+        },
+        "result": "tp"
+      }
+    ]
+  },
+  "total_pairs": 12000,
+  "candidates": [],
+  "calibrated": false,
+  "policy": "Candidate screen only. Unmatched pairs remain UNKNOWN. No automatic leakage labels or restoration."
+}

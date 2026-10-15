@@ -1,0 +1,42 @@
+{"id": "eval-calc-001-s1", "verdict": "MATH_PASS", "findings": "半角公式(1/2)(sin(x/2)/(x/2))²→1/2,正确", "sympy": null}
+{"id": "eval-calc-001-s2", "verdict": "MATH_PASS", "findings": "泰勒展开1-cos=x²/2+o(x²),1/2正确", "sympy": null}
+{"id": "eval-calc-001-s3", "verdict": "MATH_PASS", "findings": "两次洛必达cos x/2→1/2,正确", "sympy": null}
+{"id": "eval-calc-002-s1", "verdict": "MATH_PASS", "findings": "x ln x=-ln t/t→0,e^0=1,正确", "sympy": null}
+{"id": "eval-calc-002-s2", "verdict": "MATH_PASS", "findings": "洛必达(1/x)/(-1/x²)=-x→0,正确", "sympy": null}
+{"id": "eval-calc-002-s3", "verdict": "MATH_PASS", "findings": "x=e^{-t}代换e^{-te^{-t}}→1,正确", "sympy": null}
+{"id": "eval-calc-003-s1", "verdict": "MATH_PASS", "findings": "二项展开项因子单调+多一项递增;上界<3;单调有界极限存在,正确", "sympy": null}
+{"id": "eval-calc-003-s2", "verdict": "MATH_PASS", "findings": "ln(1+x)/x→1验证;诚实注明默认e已定义适合验证,正确", "sympy": null}
+{"id": "eval-calc-003-s3", "verdict": "MATH_PASS", "findings": "c_k(n)双向不等式s_m≤liminf≤limsup≤lim s_n,数列与级数同极限,证明严谨", "sympy": null}
+{"id": "eval-calc-004-s1", "verdict": "MATH_PASS", "findings": "三因子1·(-1/2)·1=-1/2,正确", "sympy": null}
+{"id": "eval-calc-004-s2", "verdict": "MATH_PASS", "findings": "泰勒sin-tan=-x³/2+o(x³),正确", "sympy": null}
+{"id": "eval-calc-004-s3", "verdict": "MATH_PASS", "findings": "三次洛必达各阶导数核对(-1-2)/6=-1/2,正确", "sympy": null}
+{"id": "eval-calc-005-s1", "verdict": "MATH_PASS", "findings": "对数求导x^x(ln x+1),正确", "sympy": null}
+{"id": "eval-calc-005-s2", "verdict": "MATH_PASS", "findings": "隐函数求导公式,正确", "sympy": null}
+{"id": "eval-calc-005-s3", "verdict": "MATH_PASS", "findings": "e^{x ln x}复合求导,正确", "sympy": null}
+{"id": "eval-calc-006-s1", "verdict": "MATH_PASS", "findings": "化简1/√(x²+a²);反函数x=a sinh(y-ln a)=(e^y-a²e^{-y})/2,正确", "sympy": null}
+{"id": "eval-calc-006-s2", "verdict": "MATH_PASS", "findings": "x=a sinh t给y=t+ln a;反双曲求导一致,正确", "sympy": null}
+{"id": "eval-calc-006-s3", "verdict": "MATH_PASS", "findings": "反解x=(e^y-a²e^{-y})/2;dx/dy=√(x²+a²)取倒数,正确", "sympy": null}
+{"id": "eval-calc-007-s1", "verdict": "MATH_PASS", "findings": "dy/dx=-tan t;y''=-sec²t/(-3a cos²t sin t)=1/(3a cos⁴t sin t);尖点单独讨论,正确", "sympy": null}
+{"id": "eval-calc-007-s2", "verdict": "MATH_PASS", "findings": "隐函数y'=-(y/x)^{1/3};y''=-(1/3)cot²t(-a sin t)/(a²cos⁶t)一致;消参x^{2/3}+y^{2/3}=a^{2/3}正确", "sympy": null}
+{"id": "eval-calc-007-s3", "verdict": "MATH_PASS", "findings": "切线截距x=a cos t、y=a sin t,线段定长a;斜率-tan t一致,几何证法正确", "sympy": null}
+{"id": "eval-calc-008-s1", "verdict": "MATH_PASS", "findings": "f'=e^x-1>0严格递增,f(0)=0,正确", "sympy": null}
+{"id": "eval-calc-008-s2", "verdict": "MATH_PASS", "findings": "中值定理e^x-1=e^ξ x>x,正确", "sympy": null}
+{"id": "eval-calc-008-s3", "verdict": "MATH_PASS", "findings": "带余项展开e^x=1+x+x²e^η/2给更强估计,正确", "sympy": null}
+{"id": "eval-calc-009-s1", "verdict": "MATH_PASS", "findings": "中值定理1/(1+ξ²)<1,正确", "sympy": null}
+{"id": "eval-calc-009-s2", "verdict": "MATH_PASS", "findings": "g'=x²/(1+x²)>0严格递增,正确", "sympy": null}
+{"id": "eval-calc-009-s3", "verdict": "MATH_PASS", "findings": "割线斜率=某点导数<1,正确", "sympy": null}
+{"id": "eval-calc-010-s1", "verdict": "MATH_PASS", "findings": "中值定理e^ξ,ξ→0,极限1,正确", "sympy": null}
+{"id": "eval-calc-010-s2", "verdict": "MATH_PASS", "findings": "提e^{sin x}后(e^u-1)/u→1,正确", "sympy": null}
+{"id": "eval-calc-010-s3", "verdict": "MATH_PASS", "findings": "三次洛必达分子各阶导数核对,分子→1分母→1,正确", "sympy": null}
+{"id": "eval-calc-011-s1", "verdict": "MATH_PASS", "findings": "-ln(1-x)展开x=1/2得ln 2,正确", "sympy": null}
+{"id": "eval-calc-011-s2", "verdict": "MATH_PASS", "findings": "逐项积分,正项单调收敛保证交换,ln 2正确", "sympy": null}
+{"id": "eval-calc-011-s3", "verdict": "MATH_PASS", "findings": "逐项求导f'=1/(1-x),f(0)=0,正确", "sympy": null}
+{"id": "eval-calc-012-s1", "verdict": "MATH_PASS", "findings": "差角公式(3-√3)/(3+√3)=2-√3,正确", "sympy": null}
+{"id": "eval-calc-012-s2", "verdict": "MATH_PASS", "findings": "半角(1-cos30°)/sin30°=2-√3,正确", "sympy": null}
+{"id": "eval-calc-012-s3", "verdict": "MATH_PASS", "findings": "几何构造tanα=1/(2+√3)=2-√3,正切一一对应α=15°,兼得tan75°=2+√3,正确", "sympy": null}
+{"id": "eval-calc-013-s1", "verdict": "MATH_PASS", "findings": "两次分部积分(x²-2x+2)e^x,正确", "sympy": null}
+{"id": "eval-calc-013-s2", "verdict": "MATH_PASS", "findings": "待定系数求导比对a=1,b=-2,c=2,正确", "sympy": null}
+{"id": "eval-calc-013-s3", "verdict": "MATH_PASS", "findings": "递推I_n=x^ne^x-nI_{n-1},I2一致,正确", "sympy": null}
+{"id": "eval-calc-014-s1", "verdict": "MATH_PASS", "findings": "1/sin x=(1/2)sec²(x/2)/tan(x/2),ln|tan(x/2)|,正确", "sympy": null}
+{"id": "eval-calc-014-s2", "verdict": "MATH_PASS", "findings": "万能代换t=tan(x/2),ln|t|,正确", "sympy": null}
+{"id": "eval-calc-014-s3", "verdict": "MATH_PASS", "findings": "乘csc-cot,d(ln|csc-cot|);恒等式csc-cot=tan(x/2)说明等价,正确", "sympy": null}

@@ -1,0 +1,8 @@
+{
+  "status": "FAILED_BEFORE_FINAL_VERIFICATION",
+  "exit_code": 1,
+  "script": "finalize_repairs.py",
+  "error": "ValueError: Path outside registered root",
+  "reason": "Frozen-core loader only accepts frozen candidate-sources. New candidate requires explicit registration and independent local digest validation.",
+  "correction": "final_validate.py validates new candidate under this review root with checked_path and exact source/record/math hashes; original core guard remains unchanged."
+}

@@ -7,7 +7,7 @@
 
 ## 版本可重现性
 
-2026-10-14 独立核对：71c2d4c 仅删除两个运行时锁的 Git 跟踪记录，8b717ff 仅修改本发布说明。tools/witness_transfer_common.py、witness_pack.py、witness_consumer.py、witness_registered_adapter.py、tests/test_witness_automation.py、configs/witness_automation.example.json 六份交付文件仍未被 Git 跟踪。它们的当前字节与已验收归档一致，但当前提交单独 checkout 不能重现该工具交付；本版本说明限定工作区与冻结归档的交付范围，不能宣称源码已全部收拢入提交。
+2026-10-14 独立核对：71c2d4c 仅删除两个运行时锁的 Git 跟踪记录，8b717ff 仅修改发布说明；后续 92828490 已纳入六份自动化源码/测试/配置：五份 Python 对象与冻结交付 SHA 一致；配置的 Git 对象规范化了换行，原始 SHA 不同，但 JSON 对象相同。现役配置原字节与冻结归档一致，两个 SHA 分别记账。归档位于 archives/；固定原生输入与既有记录仍引用旧绝对路径，现保留逐文件相同的活动兼容材料，不能直接清空旧 reviews/。定时入口仍在旧活动根；这次修复没有改调度器。后续三支审查工具的入口保护修复与14项新回归属于本轮工作区修订，尚未提交。
 
 [实现与完整 SHA](archives/reviews/codex-supervision/2026-10-13-witness-automation-implementation/FIX_REPORT.md) · [接入步骤](archives/reviews/codex-supervision/2026-10-13-witness-automation-implementation/RUNBOOK.md)
 

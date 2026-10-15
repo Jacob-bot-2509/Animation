@@ -1,0 +1,1453 @@
+﻿{
+  "schema": "independent-test-exact-witness-v1",
+  "verdict": "PASS",
+  "checks": 180,
+  "records_with_witness": 137,
+  "manual_reviews": 138,
+  "review_file_sha256": "d829fc9e174d9e83031ac8fb67d51cedd13905398feddc8477438e5b7bf4e0f5",
+  "candidate_sha256": "72f3a8a8461a2ca60f8a27c285f1b99010ce52da010b0fbbaa67a8713b6dc2fd",
+  "no_decimal_approximations": true,
+  "scope": "EXACT_SYMBOLIC_IDENTITY_SUPPORT_PLUS_SEPARATELY_BOUND_MANUAL_PROOFS",
+  "witnesses": [
+    {
+      "id": "test-calc-001",
+      "candidate_record_sha256": "d8e0dd494f401ed99e8ab604181bea6f93872b2f9f560bf8f6482d8f01eef9d6",
+      "identity": "Riemann integral",
+      "lhs": "2/pi",
+      "rhs": "2/pi",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-002",
+      "candidate_record_sha256": "5fb47be3b5d0cb5c3f5db0bd58b432b38fad9600d065fa2644e3de57945cc7b4",
+      "identity": "Taylor limit",
+      "lhs": "1/2",
+      "rhs": "1/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-003",
+      "candidate_record_sha256": "6b23429644c8f9a64d47ca4e2f685ae73a1662c431172908fe9f49fdd2f5198d",
+      "identity": "first derivative",
+      "lhs": "log(x)/x",
+      "rhs": "log(x)/x",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-003",
+      "candidate_record_sha256": "6b23429644c8f9a64d47ca4e2f685ae73a1662c431172908fe9f49fdd2f5198d",
+      "identity": "second derivative",
+      "lhs": "-(log(x) - 1)/x**2",
+      "rhs": "(1 - log(x))/x**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-004",
+      "candidate_record_sha256": "7739d24513650882f73102b8c94aa6d2caece4180e8880faac512c5fb9f115d9",
+      "identity": "ODE",
+      "lhs": "exp(-x)",
+      "rhs": "exp(-x)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-005",
+      "candidate_record_sha256": "4ef1c141d430ed8258eb11a3586af4479d6319fce9015562ec52bbe1ce521301",
+      "identity": "integral-test primitive",
+      "lhs": "1/(x*log(x))",
+      "rhs": "1/(x*log(x))",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=1",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=2",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=3",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=4",
+      "lhs": "-6",
+      "rhs": "-6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=5",
+      "lhs": "24",
+      "rhs": "24",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-006",
+      "candidate_record_sha256": "43505cde56366fd2b9f748cf5da409b7eb7f655b2bf09d2732be246f0c138b5f",
+      "identity": "high derivative n=6",
+      "lhs": "-120",
+      "rhs": "-120",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-008",
+      "candidate_record_sha256": "953e9843c952a65950d72193bf1c0323ebb790d1cfee7bd01b4055380a3e837e",
+      "identity": "FTC polynomial",
+      "lhs": "x**2 - x",
+      "rhs": "x**2 - x",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-008",
+      "candidate_record_sha256": "953e9843c952a65950d72193bf1c0323ebb790d1cfee7bd01b4055380a3e837e",
+      "identity": "local minimum value",
+      "lhs": "-1/6",
+      "rhs": "-1/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-009",
+      "candidate_record_sha256": "5d08f06640c1bd0ece955c7adad6a88c2c625570084910b49e3719bdaaee68bf",
+      "identity": "arc integral",
+      "lhs": "-8/27 + 13*sqrt(13)/27",
+      "rhs": "-8/27 + 13*sqrt(13)/27",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-010",
+      "candidate_record_sha256": "7b084def871104f4037c1d6a5a05e6699d52b8178c6c33d85e9fcfcdae5ceee9",
+      "identity": "cardioid area",
+      "lhs": "3*pi/2",
+      "rhs": "3*pi/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-011",
+      "candidate_record_sha256": "26a2080c3407221d0647ff48e0c8c97b8e3bf5b24a5e1190cadecb811351e0b8",
+      "identity": "shell integral",
+      "lhs": "8*pi",
+      "rhs": "8*pi",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-012",
+      "candidate_record_sha256": "bcc99768771e0d56f29f5a44f55bf201dba3fb6800e1e9d8ff3d8600c493a063",
+      "identity": "improper rational integral",
+      "lhs": "log(2)",
+      "rhs": "log(2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-013",
+      "candidate_record_sha256": "c7c92233358cd431849850583ae18ce1c84ec1d3f06bd0ada37f3915d173f032",
+      "identity": "telescoping sum",
+      "lhs": "3/4",
+      "rhs": "3/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-014",
+      "candidate_record_sha256": "f5ece7d2c8afef493d33fa2af0ee865543ad4535ef49f0c35950bc82e5f276a4",
+      "identity": "exponential definition",
+      "lhs": "x*(exp(x)/x - 1/x) + 1",
+      "rhs": "exp(x)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-015",
+      "candidate_record_sha256": "98d4b67807d79438b9a66ba80a78f580db3282359fc0d2300a6c369d79a93027",
+      "identity": "alternating square reciprocal sum",
+      "lhs": "pi**2/12",
+      "rhs": "pi**2/12",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-016",
+      "candidate_record_sha256": "12ac2fd2faef1e71d8270ebac7c57340a24b9a8ed3a501d93af2823d78d1f81d",
+      "identity": "implicit first derivative",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-016",
+      "candidate_record_sha256": "12ac2fd2faef1e71d8270ebac7c57340a24b9a8ed3a501d93af2823d78d1f81d",
+      "identity": "implicit second derivative",
+      "lhs": "-2/3",
+      "rhs": "-2/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-017",
+      "candidate_record_sha256": "3970006a9cc8570c0123818d4909769c8f7b9e62c82d87dfb7a02d646108a7e4",
+      "identity": "global minimum square completion",
+      "lhs": "u + v + (u - 1)**2 - (u - 1)*(v - 1) + (v - 1)**2 - 2",
+      "rhs": "u**2/2 + v**2/2 + (u - v)**2/2 - 1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-018",
+      "candidate_record_sha256": "8f03f6b86bef9f645a0626d80c07bec2cf1a08731bdf21e156a984bcab53aeba",
+      "identity": "constrained maximum",
+      "lhs": "x*(4 - x)",
+      "rhs": "4 - (x - 2)**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-019",
+      "candidate_record_sha256": "bcfc0a2c42717c4227d9def4323a1180aaf13dc751304ae5c285fdfa6db0c0b0",
+      "identity": "reversed integral",
+      "lhs": "1 - pi/4",
+      "rhs": "1 - pi/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-020",
+      "candidate_record_sha256": "5d846beab2e725e5f8db4d7559e97d8127307515081c84ff41fca616828e80e4",
+      "identity": "Green ellipse area",
+      "lhs": "pi*a*b",
+      "rhs": "pi*a*b",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-021",
+      "candidate_record_sha256": "4ca0013ba50e7d05a5509c7dc20fb36b6c1b4593f0ab2d7dd96501f070aa5051",
+      "identity": "global potential dx",
+      "lhs": "2*x*y",
+      "rhs": "2*x*y",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-021",
+      "candidate_record_sha256": "4ca0013ba50e7d05a5509c7dc20fb36b6c1b4593f0ab2d7dd96501f070aa5051",
+      "identity": "global potential dy",
+      "lhs": "x**2",
+      "rhs": "x**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-022",
+      "candidate_record_sha256": "93b4f445cc270d1001b8df4bcb032d6bd10bffc8bf6b8f819fac007c7138fb0e",
+      "identity": "divergence flux",
+      "lhs": "4*pi",
+      "rhs": "4*pi",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-023",
+      "candidate_record_sha256": "7b189ff4a75b1958bcb5a46a7b0edb094cbf8ab5aeddcfdc3a2015a02525efdf",
+      "identity": "Parseval squared norm",
+      "lhs": "pi**2/6",
+      "rhs": "pi**2/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-024",
+      "candidate_record_sha256": "031d0b9f5f94a6934a3a41014441ce7c3c647c911030ffbfb12fc37c44f49f77",
+      "identity": "log endpoint integral",
+      "lhs": "-1 - log(1/n)/n + 1/n",
+      "rhs": "-1 + (log(n) + 1)/n",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-025",
+      "candidate_record_sha256": "dcb944aa69100c2f18bb6cc319d8965f901cec47c224d0327a72a147ca95ddef",
+      "identity": "recurrence fixed point",
+      "lhs": "(1/2 + sqrt(5)/2)/(sqrt(5)/2 + 3/2) + 1",
+      "rhs": "1/2 + sqrt(5)/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-026",
+      "candidate_record_sha256": "66092700e94e43ffee1a90dd292967cfdf386e51841a517bbcbf7cd92fea68e7",
+      "identity": "LHopital reduced limit",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-028",
+      "candidate_record_sha256": "d09e1a00abd294e28ccf22557e47376ca32c0d716c3a7b2948ffc299b634c96e",
+      "identity": "odd integral",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-029",
+      "candidate_record_sha256": "3f2e6e6c2e459e4f9cbb4cee7b1446f3ece1da6a5b91624a532eeddb16a66794",
+      "identity": "log improper integral",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-030",
+      "candidate_record_sha256": "4b6340510e0169e949e9bac149a91280e495bedd9443dc9833cf912f043b15e9",
+      "identity": "squeeze upper integral",
+      "lhs": "1/(n + 1)",
+      "rhs": "1/(n + 1)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-031",
+      "candidate_record_sha256": "b0cc5324c24879d90d57c85e6317e29dd2c9c548798f6e784794170127f3cdda",
+      "identity": "height derivative",
+      "lhs": "-10*t",
+      "rhs": "-10*t",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-031",
+      "candidate_record_sha256": "b0cc5324c24879d90d57c85e6317e29dd2c9c548798f6e784794170127f3cdda",
+      "identity": "landing velocity",
+      "lhs": "-20",
+      "rhs": "-20",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-032",
+      "candidate_record_sha256": "2b0bfa1a240fd7a8123b84a679191cd484263a7ec874321f1711e0fd699214e7",
+      "identity": "log curvature at one",
+      "lhs": "sqrt(2)/4",
+      "rhs": "sqrt(2)/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-033",
+      "candidate_record_sha256": "637795ec1922dd26f433c6fe295129b1ca253512ad1e11330435e29ef8e81544",
+      "identity": "nonnegative remainder third derivative",
+      "lhs": "exp(x)",
+      "rhs": "exp(x)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-034",
+      "candidate_record_sha256": "99edec6515ff13d76689441a21ea219db43414390b1ede642a70b806e56ad8ce",
+      "identity": "ratio limit",
+      "lhs": "exp(-1)",
+      "rhs": "exp(-1)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-035",
+      "candidate_record_sha256": "c52dafffd015f4850b7cb226930bf890d805272d7f41ef3da757ae927171ab88",
+      "identity": "reciprocal factorial term ratio limit",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-036",
+      "candidate_record_sha256": "ee9af23045e406b28a9748b1b16e15647dee504f7f7da698e5cde2dd55dbd670",
+      "identity": "log radial Laplacian",
+      "lhs": "(-2*x**2/(x**2 + y**2) + 1)/(x**2 + y**2) + (-2*y**2/(x**2 + y**2) + 1)/(x**2 + y**2)",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-037",
+      "candidate_record_sha256": "753025245299fed17406c972965d8be90cf2540f5e45aa1f96b115b87e53ee20",
+      "identity": "folium point slope",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-038",
+      "candidate_record_sha256": "3bb364750bc7f7394e9cc5da486be5a307160cb09af6f4cb0f61c93ffc977a10",
+      "identity": "Jensen mean",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-039",
+      "candidate_record_sha256": "3f8bd69afaa67287df7faad306f0fe59ba67af58671024f934b5c0519430cc8d",
+      "identity": "cooling10",
+      "lhs": "40",
+      "rhs": "40",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-040",
+      "candidate_record_sha256": "b5855bbc8f344b4c5189136c170601400328b1813287a92754a5a5be9656a2a5",
+      "identity": "fourth limit",
+      "lhs": "-1/24",
+      "rhs": "-1/24",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-041",
+      "candidate_record_sha256": "86893f869dcdf965b9056bd4e5cc0f577245eaf66f9ed6fdb5941c1ad2584a36",
+      "identity": "sin-square integral",
+      "lhs": "pi/2",
+      "rhs": "pi/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-041",
+      "candidate_record_sha256": "86893f869dcdf965b9056bd4e5cc0f577245eaf66f9ed6fdb5941c1ad2584a36",
+      "identity": "cos-square integral",
+      "lhs": "pi/2",
+      "rhs": "pi/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-042",
+      "candidate_record_sha256": "86c0ed2dfc2ce231634ac71cfc6404b2964c47f3422b8dbdfb31fd6b26302778",
+      "identity": "alternating harmonic",
+      "lhs": "log(2)",
+      "rhs": "log(2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-043",
+      "candidate_record_sha256": "ab30565583201bfd5fd42471c21019a99c939e8a4e3e63473b1d7427d8ededc6",
+      "identity": "finite quarter disk exact",
+      "lhs": "pi*(1/2 - exp(-R**2)/2)/2",
+      "rhs": "pi*(1 - exp(-R**2))/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-044",
+      "candidate_record_sha256": "61f8acd4265f10bfdcbf419d1ddceb5e63ca26d78ed82a1eae1378e686d2fc9a",
+      "identity": "ellipse oriented integral",
+      "lhs": "-pi*a*b",
+      "rhs": "-pi*a*b",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-calc-045",
+      "candidate_record_sha256": "2613a38d25c0c42dc6ce12e11223af7457c1e03570ecbaca58123edff68ff1a7",
+      "identity": "exponential limit",
+      "lhs": "log(2)",
+      "rhs": "log(2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-001",
+      "candidate_record_sha256": "79aebecc9f68af1f6e4f6fb5a1028dc65cd0117e5bc030c215700f6f238c9170",
+      "identity": "plane direction cross",
+      "lhs": "Matrix([\n[-3],\n[ 0],\n[ 3]])",
+      "rhs": "Matrix([\n[-3],\n[ 0],\n[ 3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-002",
+      "candidate_record_sha256": "43613eb7e94996b67eb0f5ef6a966f2b58ee125effcbe8257ab7c20a0c7f4de9",
+      "identity": "distance squared",
+      "lhs": "3/7",
+      "rhs": "3/7",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-002",
+      "candidate_record_sha256": "43613eb7e94996b67eb0f5ef6a966f2b58ee125effcbe8257ab7c20a0c7f4de9",
+      "identity": "foot perpendicular",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-003",
+      "candidate_record_sha256": "61c65b4bf9ab263b29378a2ce542e1364a235a208d4720d38e12283ccc19f37e",
+      "identity": "skew line distance",
+      "lhs": "sqrt(2)",
+      "rhs": "sqrt(2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-004",
+      "candidate_record_sha256": "26ecb025782bd9ee91ecab91e9d6cfb6150c979bb0f6502961384bb8b716d61a",
+      "identity": "tangent sphere point norm",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-005",
+      "candidate_record_sha256": "9c831dd238313eb57057f2d28dc7f000d760b6937ced940a420ddb25d886d960",
+      "identity": "gradient x",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-006",
+      "candidate_record_sha256": "af185f3b2332f6d4a61b93e1b22c9918f9bb0f986c22d453fb2b83b224e927c0",
+      "identity": "tangent",
+      "lhs": "Matrix([\n[1],\n[2],\n[3]])",
+      "rhs": "Matrix([\n[1],\n[2],\n[3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-007",
+      "candidate_record_sha256": "ca40899411bff5f9e82a47c5b58341cc206a841393153bb24d5af6dfde2677eb",
+      "identity": "tetrahedron volume",
+      "lhs": "3/2",
+      "rhs": "3/2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-008",
+      "candidate_record_sha256": "8e807f9545a3f43046c6ef9e3eac4502bf2b6d3358e72e284e5100f0454ddd73",
+      "identity": "triangle area",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-009",
+      "candidate_record_sha256": "02d0086df9a30cfbed0ee3661fdbb263b996f8da020cd7de27444112604f22d1",
+      "identity": "rotation",
+      "lhs": "Matrix([\n[-1],\n[ 2]])",
+      "rhs": "Matrix([\n[-1],\n[ 2]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-009",
+      "candidate_record_sha256": "02d0086df9a30cfbed0ee3661fdbb263b996f8da020cd7de27444112604f22d1",
+      "identity": "orthogonal projection",
+      "lhs": "Matrix([\n[7/2],\n[7/2]])",
+      "rhs": "Matrix([\n[7/2],\n[7/2]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-010",
+      "candidate_record_sha256": "797c36e57799d46e3dfb6da79305851fada183471bf6b65a1a983d5f67ec2ab4",
+      "identity": "ellipse area",
+      "lhs": "12*pi",
+      "rhs": "12*pi",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-011",
+      "candidate_record_sha256": "84e7681c6ea246b2bec0c3185c61774512cfcf8ca73562371f6ff3f1fe3ab676",
+      "identity": "coordinate-plane intersections",
+      "lhs": "Matrix([\n[5/2],\n[  0],\n[5/2]])",
+      "rhs": "Matrix([\n[5/2],\n[  0],\n[5/2]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-012",
+      "candidate_record_sha256": "2785b65d5dc395c17a0f564e7de56c1cbfeb7815b74a7c28a5fd9f905d067bd6",
+      "identity": "mixed product",
+      "lhs": "-2",
+      "rhs": "-2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-013",
+      "candidate_record_sha256": "8d7e385a188a9e0e327aca0decdc60bd7d70fe6c61bf5a941036813921094c91",
+      "identity": "cut sphere parameter",
+      "lhs": "2*sin(t)**2 + 2*cos(t)**2 + 2",
+      "rhs": "4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-014",
+      "candidate_record_sha256": "ae411b1ed87ddb9848a89244f06e85c4957b51e1bcda522ecec170223f857ee2",
+      "identity": "ruling",
+      "lhs": "-(u/2 - v/2)**2 + (u/2 + v/2)**2",
+      "rhs": "u*v",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-015",
+      "candidate_record_sha256": "b716eb372ee68aca11b7bdddbf1a5de233f1a5230747d3cb7aef7bfd9622d24b",
+      "identity": "minimum equality witness",
+      "lhs": "3",
+      "rhs": "3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-016",
+      "candidate_record_sha256": "392f3866ce1a9f981041a4ee4517464c5ed39df4cf5fd38ec53af15c777d466e",
+      "identity": "image circle equation",
+      "lhs": "v**2 + (u - v)**2",
+      "rhs": "u**2 - 2*u*v + 2*v**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-017",
+      "candidate_record_sha256": "3558448b56478f5571879cac924d9ba0cdb3f1dd0d434ca32a39f5f1a0106d59",
+      "identity": "parabola vertex curvature",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-018",
+      "candidate_record_sha256": "c91f722cd1bfb875ae9fb872d543926c728c55797f2ca867c720498f2e638fe3",
+      "identity": "pencil coefficient",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-019",
+      "candidate_record_sha256": "54c019545458daa7e700dccdc63f91c0c6d0a9f45c870e7dba47d7f1492c4a93",
+      "identity": "squared minimum",
+      "lhs": "2/3",
+      "rhs": "2/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-019",
+      "candidate_record_sha256": "54c019545458daa7e700dccdc63f91c0c6d0a9f45c870e7dba47d7f1492c4a93",
+      "identity": "squared maximum",
+      "lhs": "9",
+      "rhs": "9",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-020",
+      "candidate_record_sha256": "7d602811403fb26f93fbbe9a143ac0bc1746d8b81c3665432a169a3f06f2f1e9",
+      "identity": "mirror coordinate",
+      "lhs": "Matrix([\n[-3],\n[-2],\n[-1]])",
+      "rhs": "Matrix([\n[-3],\n[-2],\n[-1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-021",
+      "candidate_record_sha256": "73152a6a86281f2ed59d78d70caea6cc8b975f71e3b5eb837d3a3e8282526d61",
+      "identity": "orthogonality from norm sum",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-022",
+      "candidate_record_sha256": "35c66d53bc57b547edce1b9501364f72770ee70b5e85467ead890a3ad457c5ec",
+      "identity": "rotation Gram",
+      "lhs": "Matrix([\n[sin(t)**2 + cos(t)**2, 0,                     0],\n[                    0, 1,                     0],\n[                    0, 0, sin(t)**2 + cos(t)**2]])",
+      "rhs": "Matrix([\n[1, 0, 0],\n[0, 1, 0],\n[0, 0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-023",
+      "candidate_record_sha256": "93955e9f82f52cea11608a8190fcb33dcf9c881b3296cbc873786e15b3b2fa7c",
+      "identity": "unit normal length",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-024",
+      "candidate_record_sha256": "123ab6b21b539d6dc85fbf99c2aa67e1737a40773f68edfa8a1108df6d1b83de",
+      "identity": "parallel distance",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-geom-025",
+      "candidate_record_sha256": "65fe359ce0ec83d9275e2fcc7583b37b9eecc4aa469fb634756703a5e39f0eba",
+      "identity": "reverse focal squared distance",
+      "lhs": "-3*x**2/4 + (x - 1)**2 + 3",
+      "rhs": "(2 - x/2)**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-003",
+      "candidate_record_sha256": "e2e367bde625732ee7e25b98f1024b33802e65c10a82a0fe4d2a05beef441f41",
+      "identity": "Bernoulli variance",
+      "lhs": "-p**2 + p",
+      "rhs": "p*(1 - p)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-004",
+      "candidate_record_sha256": "2b467a80db8b2793f38a57c8aeb27a083f316dd66c9b54033454542d52a80f13",
+      "identity": "mean",
+      "lhs": "3/4",
+      "rhs": "3/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-004",
+      "candidate_record_sha256": "2b467a80db8b2793f38a57c8aeb27a083f316dd66c9b54033454542d52a80f13",
+      "identity": "tail",
+      "lhs": "7/8",
+      "rhs": "7/8",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-006",
+      "candidate_record_sha256": "156669020f385afd590c82be85cf17dddfc8484e04c8c9e9ba598e91f3629328",
+      "identity": "Poisson exact mass",
+      "lhs": "8*exp(-4)",
+      "rhs": "8*exp(-4)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-009",
+      "candidate_record_sha256": "aedfc2c16147d0b573b3d49f06cfbae4d2d0daf9669f969dee3db51850d9c48f",
+      "identity": "transformed variance",
+      "lhs": "12",
+      "rhs": "12",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-010",
+      "candidate_record_sha256": "fe9aa3018ba8b2dfd27d0b6178fd2bfa5f68c797c83ac327d5b12f42c2d64136",
+      "identity": "covariance",
+      "lhs": "1/12",
+      "rhs": "1/12",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-010",
+      "candidate_record_sha256": "fe9aa3018ba8b2dfd27d0b6178fd2bfa5f68c797c83ac327d5b12f42c2d64136",
+      "identity": "correlation",
+      "lhs": "sqrt(15)/4",
+      "rhs": "sqrt(15)/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-011",
+      "candidate_record_sha256": "072d7c85963cd1b902c807ecbe66e16453c3580ceb2651480ec7a145e0d6e0a9",
+      "identity": "total mean",
+      "lhs": "2/3",
+      "rhs": "2/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-012",
+      "candidate_record_sha256": "eaae5e4914314fc6522e9667c8f2a416735c8beab357619804114b456760e0f2",
+      "identity": "hypergeometric",
+      "lhs": "3/5",
+      "rhs": "3/5",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-013",
+      "candidate_record_sha256": "a2d4100a72acac6fb5e93f34d8f17ac61a9878ba34b800e4b8feee3bd14b6377",
+      "identity": "MGF second moment",
+      "lhs": "lam*(lam + 1)",
+      "rhs": "lam**2 + lam",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-014",
+      "candidate_record_sha256": "62bc6dd84c9f3e40cc03ca6be590d81753b3db829cc023933829045c65d11c6f",
+      "identity": "finite expected wait",
+      "lhs": "6",
+      "rhs": "6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-015",
+      "candidate_record_sha256": "199f7b03a11dbafed17790355d19b7338bdd677c2a188127f59be22df23d932b",
+      "identity": "same round probability",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-017",
+      "candidate_record_sha256": "6137650f761c38c176d0a690e1a34f60aecb808357dc42071d0aa3630ce8cadc",
+      "identity": "max expectation",
+      "lhs": "2/3",
+      "rhs": "2/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-018",
+      "candidate_record_sha256": "43febf868f2af31ddc909173049e748b0630ea4156f3a9fb98c9f0a1bb15a46d",
+      "identity": "MGF convergence-region integral",
+      "lhs": "lam/q",
+      "rhs": "lam/q",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-019",
+      "candidate_record_sha256": "953ae1da34328eb21bd6600be232d95fb1f5ae97753c34b7592413c7344ec68d",
+      "identity": "min mean",
+      "lhs": "1/6",
+      "rhs": "1/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-019",
+      "candidate_record_sha256": "953ae1da34328eb21bd6600be232d95fb1f5ae97753c34b7592413c7344ec68d",
+      "identity": "max mean",
+      "lhs": "5/6",
+      "rhs": "5/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-022",
+      "candidate_record_sha256": "fc67570ffaf2666bace7bb158f386d8bd6d24044590de2f41972778f285010c9",
+      "identity": "exact two-dice variance",
+      "lhs": "35/6",
+      "rhs": "35/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-023",
+      "candidate_record_sha256": "acba8cc0a314528d294002b95039c669dce4fde7f0fe8dfb8c65e70e82b082de",
+      "identity": "Buffon integral",
+      "lhs": "2*a/(pi*b)",
+      "rhs": "2*a/(pi*b)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-024",
+      "candidate_record_sha256": "f65c49ece0e9cc1f83926869e743ae1cb22139fd9958f2a9bdff6e9cffb74bc0",
+      "identity": "normalization",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-prob-025",
+      "candidate_record_sha256": "b7d2be9d0b19de62e5139f5d6b6d09d0cab9a6e7902215958dff860df11bcc44",
+      "identity": "at most two throws",
+      "lhs": "49/12",
+      "rhs": "49/12",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-001",
+      "candidate_record_sha256": "cb6588edbc010da5365843061352622f26530422e628c736b658e0297da79476",
+      "identity": "Cramer solution",
+      "lhs": "Matrix([\n[  1],\n[2/3],\n[5/3]])",
+      "rhs": "Matrix([\n[  1],\n[2/3],\n[5/3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-002",
+      "candidate_record_sha256": "88e39808b9d2ba7f47b3a6a654b08969b15495d7c49c7f308d5bc4a03299879c",
+      "identity": "matrix equation",
+      "lhs": "Matrix([\n[1],\n[1]])",
+      "rhs": "Matrix([\n[1],\n[1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-003",
+      "candidate_record_sha256": "bfaa01e8438f4b5e696b3abfb125ca9284cc163059e1acab6b777aa5c4ef3790",
+      "identity": "square root plus",
+      "lhs": "Matrix([\n[1, 2],\n[0, 1]])",
+      "rhs": "Matrix([\n[1, 2],\n[0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-003",
+      "candidate_record_sha256": "bfaa01e8438f4b5e696b3abfb125ca9284cc163059e1acab6b777aa5c4ef3790",
+      "identity": "square root minus",
+      "lhs": "Matrix([\n[1, 2],\n[0, 1]])",
+      "rhs": "Matrix([\n[1, 2],\n[0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-003",
+      "candidate_record_sha256": "bfaa01e8438f4b5e696b3abfb125ca9284cc163059e1acab6b777aa5c4ef3790",
+      "identity": "centralizer obstruction",
+      "lhs": "Matrix([\n[-2*cc, 2*aa - 2*dd],\n[    0,        2*cc]])",
+      "rhs": "Matrix([\n[-2*cc, 2*aa - 2*dd],\n[    0,        2*cc]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-004",
+      "candidate_record_sha256": "a145ad9a746115febc1ab512bf99b67232facf328e9a1b38b81230a874e53b9d",
+      "identity": "rank",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-004",
+      "candidate_record_sha256": "a145ad9a746115febc1ab512bf99b67232facf328e9a1b38b81230a874e53b9d",
+      "identity": "nullspace witnesses",
+      "lhs": "Matrix([\n[0, 0],\n[0, 0],\n[0, 0]])",
+      "rhs": "Matrix([\n[0, 0],\n[0, 0],\n[0, 0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-005",
+      "candidate_record_sha256": "7c10bb265fda217b6d2522eb3600371bc6e44fec4396b1c5dff7a05188cbe33b",
+      "identity": "trace square",
+      "lhs": "14",
+      "rhs": "14",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-006",
+      "candidate_record_sha256": "67f72bd4de34eb2b1122dcf6fdfe85ef3fc49cd2be843de6d7d2c5fb464a3477",
+      "identity": "diagonal power",
+      "lhs": "Matrix([\n[1024,     0],\n[   0, 59049]])",
+      "rhs": "Matrix([\n[1024,     0],\n[   0, 59049]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-007",
+      "candidate_record_sha256": "764d1a1791a4040396e029d321bf6555a33be2b2467d91d9af8f11dcadd04e0f",
+      "identity": "unit circle restricted form",
+      "lhs": "4 - 3*x**2",
+      "rhs": "4 - 3*x**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-008",
+      "candidate_record_sha256": "cfcd538adbfe5625fbc8a50beb067034a36e6ce133a0e4258f962207d37092a1",
+      "identity": "CH inverse",
+      "lhs": "Matrix([\n[-1/3,  2/3],\n[ 2/3, -1/3]])",
+      "rhs": "Matrix([\n[-1/3,  2/3],\n[ 2/3, -1/3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-009",
+      "candidate_record_sha256": "fa5dfb9c2cb81c523467d698f95e86cc5213aa4d67d85d3407bf2d608306f16c",
+      "identity": "projection idempotence",
+      "lhs": "Matrix([\n[1/2, 1/2],\n[1/2, 1/2]])",
+      "rhs": "Matrix([\n[1/2, 1/2],\n[1/2, 1/2]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-009",
+      "candidate_record_sha256": "fa5dfb9c2cb81c523467d698f95e86cc5213aa4d67d85d3407bf2d608306f16c",
+      "identity": "project point",
+      "lhs": "Matrix([\n[2],\n[2]])",
+      "rhs": "Matrix([\n[2],\n[2]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-010",
+      "candidate_record_sha256": "0859e7529e635ad8f4b498af496eb5d8d81fba84e757d162a9419e0ba5f3f68b",
+      "identity": "QR reconstruction",
+      "lhs": "Matrix([\n[1, 1],\n[1, 0]])",
+      "rhs": "Matrix([\n[1, 1],\n[1, 0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-010",
+      "candidate_record_sha256": "0859e7529e635ad8f4b498af496eb5d8d81fba84e757d162a9419e0ba5f3f68b",
+      "identity": "orthogonal Q",
+      "lhs": "Matrix([\n[1, 0],\n[0, 1]])",
+      "rhs": "Matrix([\n[1, 0],\n[0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-011",
+      "candidate_record_sha256": "bb2b765132b143ad3cd6818d7ff665991b68d6874770c23b4b2c135ba254e838",
+      "identity": "normal residual",
+      "lhs": "Matrix([\n[0],\n[0]])",
+      "rhs": "Matrix([\n[0],\n[0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-011",
+      "candidate_record_sha256": "bb2b765132b143ad3cd6818d7ff665991b68d6874770c23b4b2c135ba254e838",
+      "identity": "minimum residual norm squared",
+      "lhs": "1/6",
+      "rhs": "1/6",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "third recurrence power",
+      "lhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "rhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "sixth recurrence power",
+      "lhs": "Matrix([\n[1, 0],\n[0, 1]])",
+      "rhs": "Matrix([\n[1, 0],\n[0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=1",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=2",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=3",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=4",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=5",
+      "lhs": "0",
+      "rhs": "0",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-013",
+      "candidate_record_sha256": "d89a11b94c11190c3a0b204b31bc4a0849ac355ebf26ade12a43d7c21817691d",
+      "identity": "actual determinant n=6",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-014",
+      "candidate_record_sha256": "9edbb3ff19bac6116bc40b114608b7f06f503efaaa1412721350e757b676bbc5",
+      "identity": "inverse",
+      "lhs": "Matrix([\n[ 2,   0, -1],\n[ 0, 1/2,  0],\n[-1,   0,  1]])",
+      "rhs": "Matrix([\n[ 2,   0, -1],\n[ 0, 1/2,  0],\n[-1,   0,  1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-015",
+      "candidate_record_sha256": "06c4abb7f1dd40e9c4b86c39616730d45016aa620a86d0f4f1d74317d08f6f56",
+      "identity": "dependent parameter determinant",
+      "lhs": "2*t**3 - 3*t**2 + 1",
+      "rhs": "(1 - t)**2*(2*t + 1)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-016",
+      "candidate_record_sha256": "22f893ea4ab3c0c3b969cf3eebc6586e1cc981b548d0d07053c0e11d29ca3ec9",
+      "identity": "complement direction not in sum-zero plane",
+      "lhs": "3",
+      "rhs": "3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-017",
+      "candidate_record_sha256": "fc6bab44eac3c0260ac78207c374cdd3f039a588e9fa69b83c103f03973e37da",
+      "identity": "Frobenius squared norm",
+      "lhs": "30",
+      "rhs": "30",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-018",
+      "candidate_record_sha256": "f78ae0828b45f0f394faaebede0e07040e23c588ffb0e0f4608171a235778f93",
+      "identity": "idempotence",
+      "lhs": "Matrix([\n[1, 0],\n[0, 0]])",
+      "rhs": "Matrix([\n[1, 0],\n[0, 0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-019",
+      "candidate_record_sha256": "3086c5fe58be848bd8fb87c0e98e7ddc1b58189d6451a0ef8c26dbf7377aa87e",
+      "identity": "centralizer commutator",
+      "lhs": "Matrix([\n[-cc, aa - dd],\n[  0,      cc]])",
+      "rhs": "Matrix([\n[-cc, aa - dd],\n[  0,      cc]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-020",
+      "candidate_record_sha256": "46f2cf3688defbb4c6032e807e8639b030285176c236bd1dba9a5218563dc081",
+      "identity": "polynomial remainder",
+      "lhs": "3",
+      "rhs": "3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-021",
+      "candidate_record_sha256": "04d869fc6562206dcc9180c1cf16f461cbcd3178a29d44560f26ae7b1d1cf1a7",
+      "identity": "reflection Gram",
+      "lhs": "Matrix([\n[sin(t)**2 + cos(t)**2,                     0],\n[                    0, sin(t)**2 + cos(t)**2]])",
+      "rhs": "Matrix([\n[1, 0],\n[0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-021",
+      "candidate_record_sha256": "04d869fc6562206dcc9180c1cf16f461cbcd3178a29d44560f26ae7b1d1cf1a7",
+      "identity": "half-angle invariant direction",
+      "lhs": "Matrix([\n[ sin(t/2)*sin(t) + cos(t/2)*cos(t)],\n[-sin(t/2)*cos(t) + sin(t)*cos(t/2)]])",
+      "rhs": "Matrix([\n[cos(t/2)],\n[sin(t/2)]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-022",
+      "candidate_record_sha256": "16cd91f545e7fab36745ca99903d3160719004e224e6c966218db3a5b99e4704",
+      "identity": "Cholesky reconstruction",
+      "lhs": "Matrix([\n[4, 2],\n[2, 3]])",
+      "rhs": "Matrix([\n[4, 2],\n[2, 3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-023",
+      "candidate_record_sha256": "93dfe0b801e0f310e340449e1eeae46e4548ca35d3ff7cb25a11e2f2e9ae72bf",
+      "identity": "ODE solution",
+      "lhs": "Matrix([\n[4*aa*exp(4*t) + 2*bb*exp(2*t)],\n[4*aa*exp(4*t) - 2*bb*exp(2*t)]])",
+      "rhs": "Matrix([\n[4*aa*exp(4*t) + 2*bb*exp(2*t)],\n[4*aa*exp(4*t) - 2*bb*exp(2*t)]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-024",
+      "candidate_record_sha256": "28414d6c6b5dea9194cb0811db153eb76474a9e262405b32ca1a30cfed1f84e6",
+      "identity": "collinearity determinant",
+      "lhs": "6 - 2*t",
+      "rhs": "6 - 2*t",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-025",
+      "candidate_record_sha256": "c21d2e2d42d29e5276bec0a84a18cb2804d0fa40430c28eb950709c317db56fc",
+      "identity": "spectral reconstruction",
+      "lhs": "Matrix([\n[1, 2],\n[2, 1]])",
+      "rhs": "Matrix([\n[1, 2],\n[2, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-026",
+      "candidate_record_sha256": "29cb4dc1d44174240f7e2015476218cc72f690f5828d1f5fb37605a2c97b075e",
+      "identity": "congruence",
+      "lhs": "Matrix([\n[3,    0],\n[0, 14/3]])",
+      "rhs": "Matrix([\n[3,    0],\n[0, 14/3]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-027",
+      "candidate_record_sha256": "b2b0b651b09d1700483985e40fac1fa7d03ff7a466d6da555ebdee4a4c71d693",
+      "identity": "Jordan ODE",
+      "lhs": "Matrix([\n[bb*exp(2*t) + 2*(aa + bb*t)*exp(2*t)],\n[                       2*bb*exp(2*t)]])",
+      "rhs": "Matrix([\n[bb*exp(2*t) + 2*(aa + bb*t)*exp(2*t)],\n[                       2*bb*exp(2*t)]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-028",
+      "candidate_record_sha256": "821319affa52d39550784022982fc9a0294b500cd3d978022a55e378c03d9874",
+      "identity": "rotation square",
+      "lhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "rhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-029",
+      "candidate_record_sha256": "c328a8d6fe29756b51deb4c2eb71d8f2e5c65edda908ff78ca209e0fb1b25a06",
+      "identity": "nilpotent square",
+      "lhs": "Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]])",
+      "rhs": "Matrix([\n[0, 0, 0],\n[0, 0, 0],\n[0, 0, 0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-029",
+      "candidate_record_sha256": "c328a8d6fe29756b51deb4c2eb71d8f2e5c65edda908ff78ca209e0fb1b25a06",
+      "identity": "nilpotent rank",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-030",
+      "candidate_record_sha256": "03471341b040896043b6a77dd80f22560c3e6d0ff9d1ecb54c99723c33a03ea0",
+      "identity": "linear functional at defining vector",
+      "lhs": "3",
+      "rhs": "3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-031",
+      "candidate_record_sha256": "ad388bda13f592fa559c9cc96658339d7e97b714b8e0791ea2691d98ad9ad709",
+      "identity": "parameter determinant",
+      "lhs": "3 - 7*t",
+      "rhs": "3 - 7*t",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-032",
+      "candidate_record_sha256": "68791ea3288ee68efd29c3ea260baee9e03a6f7859fc295a76df5360144cd02c",
+      "identity": "rank equality example",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-033",
+      "candidate_record_sha256": "91379edee29c8882ecb7d41632a4b0bd1b0558e04df21446a868b51f3494f571",
+      "identity": "idempotent scalar equation",
+      "lhs": "t**2 - t",
+      "rhs": "t*(t - 1)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-034",
+      "candidate_record_sha256": "fe8e9288dff59c74e38984116e0904146056829b4f777959c1ba81f5c0c05a6c",
+      "identity": "quadratic diagonalization",
+      "lhs": "Matrix([\n[4, 0, 0],\n[0, 2, 0],\n[0, 0, 1]])",
+      "rhs": "Matrix([\n[4, 0, 0],\n[0, 2, 0],\n[0, 0, 1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-035",
+      "candidate_record_sha256": "d46b44f2b89bf353c794d648fae3a48102ef73592bfac4bbd246671b61c59226",
+      "identity": "Vandermonde polynomial",
+      "lhs": "x**2 - 5*x + 6",
+      "rhs": "(x - 3)*(x - 2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-036",
+      "candidate_record_sha256": "28c42c3667745e2934260f285d611a476515b90552e8e38bd94b1d647f80d234",
+      "identity": "swap determinant",
+      "lhs": "-1",
+      "rhs": "-1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-036",
+      "candidate_record_sha256": "28c42c3667745e2934260f285d611a476515b90552e8e38bd94b1d647f80d234",
+      "identity": "scale determinant",
+      "lhs": "t",
+      "rhs": "t",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-036",
+      "candidate_record_sha256": "28c42c3667745e2934260f285d611a476515b90552e8e38bd94b1d647f80d234",
+      "identity": "add determinant",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-037",
+      "candidate_record_sha256": "264d96784849355fe9369db9b8a9ac1ed3cb596aff3566eecd5c1923a8eab935",
+      "identity": "derivative coordinate",
+      "lhs": "Matrix([\n[  bb],\n[2*cc],\n[   0]])",
+      "rhs": "Matrix([\n[  bb],\n[2*cc],\n[   0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-038",
+      "candidate_record_sha256": "4ae6dc82121af9bae6deedb3b7b5ba2f0b8373ef6b3ca326f8e9c12464cf75ca",
+      "identity": "rank drop",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-039",
+      "candidate_record_sha256": "687e70f54e27469998cacf68c146d2ab0f359f26ac46ab8a400b0c683cd8c2a2",
+      "identity": "indefinite block polynomial",
+      "lhs": "t**2 - t - 10",
+      "rhs": "t**2 - t - 10",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-linalg-040",
+      "candidate_record_sha256": "5162cbdd960cae58b817ae45b16dcf3177504e5346c34d6fc92c09ebba057f20",
+      "identity": "cycle eigenbasis",
+      "lhs": "Matrix([\n[2, -2, 0, 0],\n[2,  2, 0, 0],\n[2, -2, 0, 0],\n[2,  2, 0, 0]])",
+      "rhs": "Matrix([\n[2, -2, 0, 0],\n[2,  2, 0, 0],\n[2, -2, 0, 0],\n[2,  2, 0, 0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-001",
+      "candidate_record_sha256": "72d3f46a9733a7d177d7345e7d13395a4f441531831622c978a7ce0495f832e1",
+      "identity": "geometric even probability",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-002",
+      "candidate_record_sha256": "e177fab0e816135e2f69660ba001bffa75a8574e3be44f4d72ea44555f122f90",
+      "identity": "square-root transformed mean",
+      "lhs": "2/3",
+      "rhs": "2/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-003",
+      "candidate_record_sha256": "40d0f7244bb6707557198fcc210fb365975cb514c57204af745c00cf97e35c64",
+      "identity": "factorial derivative coefficient n",
+      "lhs": "n/factorial(n)",
+      "rhs": "1/factorial(n - 1)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-005",
+      "candidate_record_sha256": "a89bcc46f2b71a1df0436ec8d4b2ebc9970d8b5ccb1559265e6a23eb067f4733",
+      "identity": "rectangle square completion",
+      "lhs": "b*x - 2*x**2",
+      "rhs": "b**2/8 - 2*(-b/4 + x)**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-006",
+      "candidate_record_sha256": "92edc3082f119f0d6ca46b9adf9bd872f79f6612bdf7ca413b7b5ffde4fae708",
+      "identity": "endpoint-angle probability",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-006",
+      "candidate_record_sha256": "92edc3082f119f0d6ca46b9adf9bd872f79f6612bdf7ca413b7b5ffde4fae708",
+      "identity": "midpoint-area probability",
+      "lhs": "1/4",
+      "rhs": "1/4",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-007",
+      "candidate_record_sha256": "2c2fa45927e3c2716ec5185ddd809972ba500c1a79279951ac29e4cd5da58f08",
+      "identity": "rotated hyperbola",
+      "lhs": "3*u**2 - v**2",
+      "rhs": "3*u**2 - v**2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-008",
+      "candidate_record_sha256": "5ea73e0d6fbc0f1f4f33a3560523286420cf39d588d21afe99eeef88c24907d0",
+      "identity": "region area",
+      "lhs": "1/3",
+      "rhs": "1/3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-009",
+      "candidate_record_sha256": "a4193a6f61bfda7edd4c9021498ecc0d7bf9f452b9f568c77b0d088fa2f75a06",
+      "identity": "exponential integer moment n=0",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-009",
+      "candidate_record_sha256": "a4193a6f61bfda7edd4c9021498ecc0d7bf9f452b9f568c77b0d088fa2f75a06",
+      "identity": "exponential integer moment n=1",
+      "lhs": "1",
+      "rhs": "1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-009",
+      "candidate_record_sha256": "a4193a6f61bfda7edd4c9021498ecc0d7bf9f452b9f568c77b0d088fa2f75a06",
+      "identity": "exponential integer moment n=2",
+      "lhs": "2",
+      "rhs": "2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-009",
+      "candidate_record_sha256": "a4193a6f61bfda7edd4c9021498ecc0d7bf9f452b9f568c77b0d088fa2f75a06",
+      "identity": "exponential integer moment n=7",
+      "lhs": "5040",
+      "rhs": "5040",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-010",
+      "candidate_record_sha256": "755c8f008c368ddffc0e35261dc4c591e6aacf8e707e2e9599d7aa2254198186",
+      "identity": "covariance determinant",
+      "lhs": "-a**2*b**2*rho**2 + a**2*b**2",
+      "rhs": "a**2*b**2*(1 - rho**2)",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-011",
+      "candidate_record_sha256": "468bb39c88a9b88554e35ef041fb886a1900c115c185391ba2f416ceb4b63d23",
+      "identity": "reflection composition",
+      "lhs": "Matrix([\n[0, -1],\n[1,  0]])",
+      "rhs": "Matrix([\n[0, -1],\n[1,  0]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-012",
+      "candidate_record_sha256": "5d3c7acc5981c47914b1e8c9e361eecee6d51597046397116e5c19266cb66e33",
+      "identity": "matrix exponential",
+      "lhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "rhs": "Matrix([\n[-1,  0],\n[ 0, -1]])",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 0",
+      "lhs": "4*n",
+      "rhs": "4*n",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 1",
+      "lhs": "4*n",
+      "rhs": "4*n",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 2",
+      "lhs": "4*n + 1",
+      "rhs": "4*n + 1",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 3",
+      "lhs": "4*n + 2",
+      "rhs": "4*n + 2",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 4",
+      "lhs": "4*n + 3",
+      "rhs": "4*n + 3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-013",
+      "candidate_record_sha256": "605e8e69b7179dfcd2b8b996762143db278868b6c12183aaadaa62cdae810807",
+      "identity": "exact residue count 5",
+      "lhs": "4*n + 3",
+      "rhs": "4*n + 3",
+      "verdict": "PASS"
+    },
+    {
+      "id": "test-x-014",
+      "candidate_record_sha256": "b25bce719f32b3dc311060a243780e51e62b28be815ec554c26fe9c121db0c51",
+      "identity": "catenary arc length",
+      "lhs": "a*sinh(b/a)",
+      "rhs": "a*sinh(b/a)",
+      "verdict": "PASS"
+    }
+  ]
+}
