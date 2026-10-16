@@ -1,0 +1,41 @@
+[
+ {
+  "split": "test",
+  "id": "test-linalg-028",
+  "problem_sha256": "cee83b4ef65ac67344bbaec2c57d8b3192a47719f0c9a3bd217e8336b62581ae",
+  "source_records": [
+   {
+    "id": "test-linalg-028",
+    "category": "高等代数",
+    "sub_category": "复特征值×旋转",
+    "problem": "求 $A=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ 的特征值，并说明它没有实特征向量的几何原因。",
+    "solution": "$|\\lambda I-A|=\\begin{vmatrix}\\lambda&1\\\\-1&\\lambda\\end{vmatrix}=\\lambda^2+1=0$，特征值 $\\lambda=\\pm i$（一对共轭虚数）。几何上 $A$ 是旋转 $90^\\circ$（逆时针），除零向量外任何实向量旋转后都不与原方向平行，故没有（一维的）实特征空间；只有把向量空间扩充到复数域，才有特征方向。",
+    "answer": "特征值 $\\pm i$；无实特征向量（旋转 $90^\\circ$）",
+    "scene_spec": {
+     "objects": [
+      "向量旋转 $90^\\circ$",
+      "无不变方向的演示"
+     ],
+     "steps": [
+      "第一步：建立高等代数·复特征值×旋转综合场景，呈现与复特征值、旋转、特征向量相关的核心图形。",
+      "第二步：向量旋转 $90^\\circ$。",
+      "第三步：无不变方向的演示。",
+      "第四步：高亮最终结果与答案。"
+     ]
+    },
+    "function_family": "复特征值旋转",
+    "visual_style": "无不变方向",
+    "efficiency_tags": [
+     "向量旋转 $90^\\circ$",
+     "无不变方向的演示"
+    ],
+    "source": "self-authored",
+    "license": "Internal-Research-Use-Only"
+   }
+  ],
+  "source_record_sha256": [
+   "821319affa52d39550784022982fc9a0294b500cd3d978022a55e378c03d9874"
+  ],
+  "status": "PENDING_ACTUAL_REVIEW"
+ }
+]

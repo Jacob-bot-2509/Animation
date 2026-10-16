@@ -1,0 +1,120 @@
+{
+  "schema": "codex-holdout-role-candidate-v1",
+  "run_id": "run-31aa5d8f2dac418b93ab692d268ba63c",
+  "source_message": "msg_1792074326457_814",
+  "status": "PENDING_REAL_ROLE_AND_ISOLATION_EVIDENCE",
+  "scope": "CURRENT_HOLDOUT_DESIGN_SUPPLEMENT_ONLY",
+  "authority_basis": "EXISTING_DIRECT_USER_REVIEW_REPAIR_AND_PLAN_SCOPE",
+  "reported_user_choice": {
+    "origin": "MAIL_CONTENT_ONLY",
+    "choice": "NEW_ISOLATED_AI_SECOND_INITIAL_REVIEWER",
+    "direct_confirmation_in_current_conversation": false,
+    "adopted_as_new_authority": false
+  },
+  "design_sha256": "33d999ff963f37dfd6931e44205e8e702a682dfdc222c6e28abc4d6d9db5c4dd",
+  "pool_raw_sha256": "39d0f1a1f16ef5ffc026ae58da887cc44ce8a8b4225bcd4f4da751e41c8e663d",
+  "pool_candidate_count": 391,
+  "eligible_count": null,
+  "roles": [
+    {
+      "role": "A_CONTEXTUAL_ELIGIBILITY_REVIEW",
+      "actual_agent": "codex",
+      "session_id": null,
+      "status": "EXISTING_USER_AUTHORIZED_CONTEXTUAL_REVIEW",
+      "exposure": "KNOWN_PROJECT_CONTEXT",
+      "independence_claim": "NOT_A_BLIND_FINAL_REVIEWER"
+    },
+    {
+      "role": "B_INDEPENDENT_INITIAL_REVIEW",
+      "candidate": "SEPARATE_ISOLATED_AI_SESSION",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_REAL_IDENTITY_AND_ISOLATION_EVIDENCE",
+      "exposure": "UNKNOWN",
+      "independence_claim": "NOT_ESTABLISHED"
+    },
+    {
+      "role": "K_FINAL_PACKAGE_CUSTODIAN",
+      "candidate": "USER_DESIGNATED_CUSTODY_ONLY_OPERATOR_CLAUDE_AS_PACKAGING_OPERATOR_CANDIDATE_ONLY",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PROPOSED_NOT_APPOINTED",
+      "exposure": "UNKNOWN",
+      "incompatible_roles": [
+        "T_RULE_TUNING",
+        "B_INDEPENDENT_INITIAL_REVIEW",
+        "D_FINAL_INDEPENDENT_VERIFICATION"
+      ]
+    },
+    {
+      "role": "C_CONFLICT_ADJUDICATION",
+      "candidate": "SEPARATE_IDENTITY_FROM_DISPUTING_A_AND_B",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_INSTANTIATION_IF_CONFLICT",
+      "exposure": "UNKNOWN",
+      "independence_claim": "NOT_ESTABLISHED"
+    },
+    {
+      "role": "D_FINAL_INDEPENDENT_VERIFICATION",
+      "candidate": "DISTINCT_CONTEXT_ISOLATED_AI_SESSION",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_REAL_IDENTITY_AND_ISOLATION_EVIDENCE",
+      "exposure": "UNKNOWN",
+      "independence_claim": "NOT_ESTABLISHED",
+      "incompatible_roles": [
+        "A_CONTEXTUAL_ELIGIBILITY_REVIEW",
+        "A_FINAL_IF_NEEDED",
+        "B_INDEPENDENT_INITIAL_REVIEW",
+        "C_CONFLICT_ADJUDICATION",
+        "K_FINAL_PACKAGE_CUSTODIAN",
+        "T_RULE_TUNING"
+      ]
+    },
+    {
+      "role": "T_RULE_TUNING",
+      "candidate": "ACTUAL_OPERATOR_TO_BE_RECORDED",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ACCESS_MATRIX",
+      "exposure": "UNKNOWN"
+    },
+    {
+      "role": "A_FINAL_IF_NEEDED",
+      "candidate": "SEPARATE_QUALIFIED_INITIAL_REVIEWER_IF_FINAL_BLIND_LABELING_IS_CLAIMED",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "CONDITIONAL_PENDING",
+      "exposure": "UNKNOWN",
+      "independence_claim": "NOT_ESTABLISHED"
+    },
+    {
+      "role": "USER_CONTEXTUAL_REVIEW",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "OPTIONAL_NOT_APPOINTED",
+      "exposure": "KNOWN_PROJECT_CONTEXT"
+    }
+  ],
+  "actual_isolation_receipts": [],
+  "sealed_sample_manifest": null,
+  "independent_labels": [],
+  "conflict_receipts": [],
+  "final_rule_lock": null,
+  "final_verification_receipt": null,
+  "new_sessions_started": 0,
+  "candidate_questions_added": 0,
+  "qualification": "NOT_GRANTED",
+  "production": "CLOSED",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "minimum_evidence": [
+    "REAL_ROLE_AND_SESSION_IDENTITIES",
+    "KNOWN_UNKNOWN_EXPOSURE_AND_ACCESS_MATRIX",
+    "ACTUAL_VISIBLE_INPUT_AND_ACCESS_CONTROLS",
+    "SEALED_INPUT_MAPPING_AND_BYTE_HASHES",
+    "SEPARATE_FROZEN_LABELS_AND_MATH_REASONS",
+    "CONFLICT_RECEIPTS_IF_NEEDED",
+    "PRE_FINAL_RULE_LOCK_AND_INDEPENDENT_EXACT_RECOMPUTATION"
+  ]
+}

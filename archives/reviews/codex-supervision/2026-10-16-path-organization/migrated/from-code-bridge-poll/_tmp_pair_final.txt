@@ -1,0 +1,9 @@
+CANDIDATE linalg-048 / 高等代数 / 线性变换 / 线性变换
+PROBLEM: 已知矩阵 $A=\begin{pmatrix}1&3\\0&1\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。
+SOLUTION: 对任意点 $(x,y)$，$T(x,y)=A\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x+3y\\y\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\vec e_1=(1,0)$ 不动，$\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\in\mathbb R$，$T(\mathbb R\times\{c\})=\mathbb R\times\{c\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\times\{c\}$ 则映为 $[3c,1+3c]\times\{c\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\in\mathbb R$，即 $X-3Y=c$，斜率为 $\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\det A=1\cdot1-3\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\|(0,1)\|=1$ 而 $\|T(0,1)\|=\sqrt{10}$。
+ANSWER: 水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\det A=1$，长度一般不保持。
+
+MATERIAL test-linalg-023 / 高等代数 / 特征值×微分方程组 / 微分方程组特征分解
+PROBLEM: 用矩阵方法解微分方程组 $\begin{cases}x'=3x+y\\y'=x+3y\end{cases}$ 的通解。
+SOLUTION: 系数矩阵 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$。特征方程 $(\lambda-3)^2-1=0$，$\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\begin{pmatrix}x\\y\end{pmatrix}=c_1e^{4t}\begin{pmatrix}1\\1\end{pmatrix}+c_2e^{2t}\begin{pmatrix}1\\-1\end{pmatrix}$，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。
+ANSWER: $x=c_1e^{4t}+c_2e^{2t}$；$y=c_1e^{4t}-c_2e^{2t}$

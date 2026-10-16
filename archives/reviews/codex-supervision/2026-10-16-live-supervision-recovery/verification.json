@@ -1,0 +1,169 @@
+{
+  "scope": "READ_ONLY_OBSERVER_REPAIR_AND_ONEDRIVE_PREPARATION_REVIEW",
+  "checks": [
+    {
+      "name": "local-only-known-consumer-path-change",
+      "passed": true,
+      "detail": {
+        "sha256": "57425199bd77aa8380323563bdd92d8d70499297bd7a47a350041d6ccc3f5e6c",
+        "unverified_user_approval": true
+      }
+    },
+    {
+      "name": "local-preserved-from-review-start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "still-inactive-and-no-experiment-authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "existing-automation-source-unchanged:tools/witness_consumer.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "existing-automation-source-unchanged:tools/witness_pack.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "existing-automation-source-unchanged:tools/witness_registered_adapter.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "existing-automation-source-unchanged:tools/witness_transfer_common.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "existing-automation-tests-unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "gitignore-repair-preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-path-doc-change-preserved:docs/项目总览/README.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-path-doc-change-preserved:docs/项目总览/环节入口.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-path-doc-change-preserved:docs/项目总览/目录地图.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "restored-baseline-exact-original-bytes",
+      "passed": true,
+      "detail": {
+        "sha256": "db1c3c46bb93b8a26f622f9c86727ba0b9a3b0c9ee94bd9c82eb84644c5a07bd"
+      }
+    },
+    {
+      "name": "watcher-source-reviewed-version",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "regression-test-reviewed-version",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "two-successive-actual-samples-same-worker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fresh-heartbeat",
+      "passed": true,
+      "detail": {
+        "sample_time": "2026-10-16T23:34:08.142925+08:00",
+        "age_seconds_raw": "2.365896"
+      }
+    },
+    {
+      "name": "live-process-query-succeeded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current-automation-inputs-observed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "new-job-receipts-observed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "historical-core-drift-not-redefined",
+      "passed": true,
+      "detail": [
+        "src/animtrain/network_isolation.py",
+        "src/animtrain/appcontainer.py",
+        "src/animtrain/render_gate.py",
+        "reviews/2026-10-04-acceptance-support/network_acceptance.py"
+      ]
+    },
+    {
+      "name": "second-instance-actually-refused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "worker-stderr-empty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "math-qualification-unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mail-scheduler-source-no-git-diff",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "final-diff-check",
+      "passed": true,
+      "detail": {
+        "stderr": "warning: in the working copy of 'reviews/codex-supervision/2026-10-04-live-watch/README.md', LF will be replaced by CRLF the next time Git touches it\n"
+      }
+    }
+  ],
+  "passed": 26,
+  "failed": 0,
+  "observer_tests_passed": 12,
+  "test_output": "observer-tests-final.stderr.txt",
+  "new_experiments": 0,
+  "onedrive_sync": "NEEDS_EVIDENCE",
+  "background_started": "READ_ONLY_OBSERVER_ONLY",
+  "worker_pid": 51704,
+  "launcher_pid": 48632,
+  "source_pins": {
+    "tools/witness_consumer.py": "2ed5a95e12d74596b2d6253ba140f0cd67e7777b2e382ad42ed25d1323197b83",
+    "tools/witness_pack.py": "2edd38c3715a867e542b54a224fa5ba902ffc81272c4df57f36d8c15054f1a7e",
+    "tools/witness_registered_adapter.py": "344de2450d7b3df93f8ff328d3fc82b7122197eb281008a2aa60545708f9339e",
+    "tools/witness_transfer_common.py": "7c36b9e60a1c1aded9b6f6e7015c6adc934d3399d218baef2aa293e64d0cd63a"
+  },
+  "config_sha256": "57425199bd77aa8380323563bdd92d8d70499297bd7a47a350041d6ccc3f5e6c",
+  "production": "CLOSED",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "native_sandbox": "UNVERIFIED"
+}

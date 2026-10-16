@@ -1,0 +1,28 @@
+# 本轮重复交付与补交文件核对
+
+运行：run-5fb89be348c642dd820133a029c4b7d0。  
+packet邮件：msg_1791473707558_770。  
+裁决：NO_ACTION，reply_id=null。
+
+packet、原始快照、journal与此前独立审查的message-original.json内容哈希一致：
+770ff0e9684d3aae7629e7179ad0e006b05b8eb8325f0943cc9dca9f08ec4a86。
+该邮件的工具审查任务已在用户“开始工作”的上一回合实际完成并交接。本轮是同封邮件的定时采集，没有新的packet任务。
+
+继承已完成结果（仅限实际版本）：
+- Codex修复tools/host_pretest_witness.py的超时误标、舍入计时、异常关闭与诊断输出；源码SHA256 7b0d1df0616222d6a73dab3cffcb81c2deb9de061f9af4184b7d7f60db6e8bc6。
+- 11项具名模拟回归通过；具名IPv4/IPv6本机协议联动各记录四项nonce和一个空TCP连接。此结果仅是本机协议验证，不认证远端沙箱。
+- ../2026-10-08-lan-b-contract-review/FIX_REPORT.md，SHA256 dddca090ad4f2164adaf7ab92e11e91f0317325bb9da84f2888e646ebc8d8ab3。
+- 该目录delivery-manifest.json，SHA256 8c288f7284f6ea9c8389d022f8241bb40b0608cd74cb81dcaed315af8dbf53ac。
+- 已实际发送修复交接msg_1791474361188_773，补交材料修订交接msg_1791474512938_775。已要求Claude按修复版本继续工作，不重复修改Codex已完成部分。
+
+本轮重新核对完整33项归档文件集、各文件字节、修复源码/测试、原注册驱动/接收器及发送/接收主材料绑定，均一致。没有重复运行测试、发起网络探针、注册对账或双端验收。
+
+上下文新增msg_1791474466678_774不属于本packet，不列入本批RESULT或ACK。它将此前msg_772已审内容落盘：
+- receiver-rc.txt，SHA256 b52c80d9a51daea3ca3c3d3d57a1138dc337c46bb77e18dbde78fb914f6a2a19，仅含echo %errorlevel%和0，仍没有对应接收器启动/完成顺序、进程及轮次绑定。
+- pretest-record.json，SHA256 fa809cd820a46bbe8a908445fd83417ba8b3f2e850dd19b6caee7b93aa14ee78，是作者整理的预测试输出与残留旧监听说明。它不能认证LAN-b新监听，保留原有舍入输出，不把它恢复成精确实测时长。
+
+上述文件提供片段的持久出处，没有解决已裁决的绑定缺项。结论沿用具名LATE_MATERIAL_REVIEW.md（SHA256 83d20fb868d12c4676a80d6ab64c7bf95c2adf3d449be02f120593049c3ae4b1）：RECEIVER_RC_REPORTED_ZERO_UNBOUND；当前仍缺四项真实健康对照。没有nonce入账不能反推出网络原因或受控监听一定未被触达；这一措辞已由msg_775纠正，不再次发送同义回信。
+
+本次NO_ACTION仅表示本封任务已经完成工具修复与交接，不把原实验改判通过。工具限定修复合格，实验仍NEEDS_EVIDENCE / UNVERIFIED，production=CLOSED、全局隔离NOT_ESTABLISHED。当前数学状态仍指向165条638页局部公式完成版，本轮不扩资格，不改调度器或任何冻结原件。
+
+本批RESULT唯一覆盖packet中的msg_770，归档后调用原mail_watch.py完成真实ACK；上下文邮件留待其自己的流程处理。

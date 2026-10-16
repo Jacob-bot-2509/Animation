@@ -1,0 +1,39 @@
+{
+ "split": "test",
+ "id": "test-linalg-029",
+ "problem_sha256": "02a94b2af7da38f5b38e4bd25d5f5bf6517328cf6ebddc1c589d5d65df495aa7",
+ "source_records": [
+  {
+   "id": "test-linalg-029",
+   "category": "高等代数",
+   "sub_category": "最小多项式×若尔当形",
+   "problem": "求 $A=\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$ 的最小多项式与若尔当标准形。",
+   "solution": "特征多项式 $(\\lambda-1)^3$。$A-I=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}=:N$，$N\\ne 0$ 且 $N^2=0$，故最小多项式 $m(\\lambda)=(\\lambda-1)^2$。秩判块结构：$\\operatorname{rank}(A-I)=1$，特征值 $1$ 的若尔当块个数 $=3-1=2$，最大块尺寸由 $m(\\lambda)$ 的因子幂给出为 2，故标准形为 $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}=A$ 本身（即 $J_2(1)\\oplus J_1(1)$）。",
+   "answer": "最小多项式 $(\\lambda-1)^2$；若尔当标准形 $\\begin{pmatrix}1&1&0\\\\0&1&0\\\\0&0&1\\end{pmatrix}$",
+   "scene_spec": {
+    "objects": [
+     "两个若尔当块的分块高亮",
+     "幂零链长度"
+    ],
+    "steps": [
+     "第一步：建立高等代数·最小多项式×若尔当形综合场景，呈现与最小多项式、若尔当块、秩序列相关的核心图形。",
+     "第二步：两个若尔当块的分块高亮。",
+     "第三步：幂零链长度。",
+     "第四步：高亮最终结果与答案。"
+    ]
+   },
+   "function_family": "最小多项式",
+   "visual_style": "幂零链长度",
+   "efficiency_tags": [
+    "两个若尔当块的分块高亮",
+    "幂零链长度"
+   ],
+   "source": "self-authored",
+   "license": "Internal-Research-Use-Only"
+  }
+ ],
+ "source_record_sha256": [
+  "c328a8d6fe29756b51deb4c2eb71d8f2e5c65edda908ff78ca209e0fb1b25a06"
+ ],
+ "status": "PENDING_ACTUAL_REVIEW"
+}

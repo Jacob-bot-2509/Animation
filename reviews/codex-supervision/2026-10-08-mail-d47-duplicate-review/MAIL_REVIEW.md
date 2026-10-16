@@ -1,0 +1,23 @@
+# 两封已审材料的定时核对
+
+运行：run-d47f0bff745c4fe0b175a96ef7301766。  
+本批邮件：msg_1791474086555_772、msg_1791474466678_774。  
+逐封裁决均为 NO_ACTION，reply_id=null。
+
+msg_772：补交的退出码片段、预测试片段、旧监听说明和completed语义疑问已在上一人工回合逐项审查。Codex形成LATE_MATERIAL_REVIEW.md并真实回信msg_1791474512938_775：退出码0未绑定接收进程与轮次；旧监听预测试不能认证LAN-b新监听；completed不能证明受控接收器已读取nonce或写日志。对照本轮packet、原始快照与该归档的late-message-original.json，内容哈希相同：
+1ed490bb6e7c02491ae8bf7110936914f15bd9be48e261e5fbf4446f9a2c324f。
+本封没有新增任务或证据版本，不重复回信。
+
+msg_774：两项文件的实际字节已在run-5fb回合按上下文独立审查，记录在../2026-10-08-mail-5fb-inheritance-review/MAIL_REVIEW.md；该回合明确未ACK本封。本次核对packet、原始快照及当时真实Bridge inbox回执，邮件哈希相同：
+f4cb287830c0ee1e09ede5e592c6603a0a81254bbd544ae464bdcea55f3cb7d8。
+当前receiver-rc.txt与pretest-record.json仍与该回合归档副本逐字节一致，分别SHA256为b52c80d9a51daea3ca3c3d3d57a1138dc337c46bb77e18dbde78fb914f6a2a19、fa809cd820a46bbe8a908445fd83417ba8b3f2e850dd19b6caee7b93aa14ee78。落盘没有增加接收进程/轮次绑定，也没有四项真实nonce入账。后续netstat材料收集安排仅为作者计划，本轮不执行或验收双端实验。原邮件“对照未到新监听”的推断仍按msg_775的修订口径处理：准确说法为尚未取得新监听的四项nonce入账证据，原因未定。没有新的修复任务，不再次发送同义回信。
+
+独立继承核验：
+- ../2026-10-08-lan-b-contract-review/完整33项产物和文件集保持一致；manifest SHA256 8c288f7284f6ea9c8389d022f8241bb40b0608cd74cb81dcaed315af8dbf53ac。
+- 该目录FIX_REPORT.md SHA256 dddca090ad4f2164adaf7ab92e11e91f0317325bb9da84f2888e646ebc8d8ab3；LATE_MATERIAL_REVIEW.md SHA256 83d20fb868d12c4676a80d6ab64c7bf95c2adf3d449be02f120593049c3ae4b1。
+- ../2026-10-08-mail-5fb-inheritance-review/完整8项产物和文件集保持一致；manifest SHA256 f3e7bd8999e7baa1e018adbfc3303ceef0d7ef35a442de0f960f9660d206543d。
+- 预测试工具与测试保持已修复版，对应SHA256 7b0d1df0616222d6a73dab3cffcb81c2deb9de061f9af4184b7d7f60db6e8bc6、3f9a9541d38f3402049c004e8ad1fee39f09a5b8403fad5dfbb60e7e164aa027。既有11项模拟回归及两组本机协议联动不重复运行。
+
+NO_ACTION仅表示本两封材料的审查、修订交接已完成，不将实验改判通过。工具/诊断措辞仅限定本地合格，实验NEEDS_EVIDENCE，接收rc为RECEIVER_RC_REPORTED_ZERO_UNBOUND。production=CLOSED、全局隔离NOT_ESTABLISHED、原生沙箱UNVERIFIED。已读取本轮流程及当前观察器/数学状态，现有165条638页局部公式资格不扩展。
+
+本轮归档含packet、原始邮件快照、真实上一回合Bridge上下文回执及版本核对。RESULT唯一完整覆盖这两封邮件，调用既有工具核验并ACK；不重装调度器，不改冻结原件或执行外部实验。

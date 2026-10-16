@@ -113,3 +113,14 @@ holdout仅修当前391条候选，不加题、不生成数值变体。v3纠正�
 ## 2026-10-08 双端实验监管恢复
 
 旧心跳停在 11:13:03，旧 worker 已不存在、原因未知。已隐藏恢复，实际 worker PID 44524，新心跳和 Claude 进程树已核实；原脚本未改，旧日志保留，空窗不补造。LAN 轮 remote-271e1c881c4f473fb027f5f28d4a3bd5 发送侧绑定独立通过，待接收端原始 JSONL、summary 与真实 rc，双端仍 UNVERIFIED、生产 CLOSED。Codex 已修操作单与发布说明，66 项本地回归通过。见 [监管报告](../2026-10-08-dual-endpoint-supervision/SUPERVISION_REPORT.md)。观察器只记录，不自动 AI 验收。
+
+
+## 2026-10-16 只读监听恢复与容错修复
+
+旧心跳停在 2026-10-14T01:44:25.818452+08:00，末条事件为 CIM 失败；旧 worker 已不在，退出原因未知，空窗不补造。Codex 从归档按原字节恢复 latest-live-file-hashes.json 兼容入口，没有重设 11 项历史基线。
+
+watch_claude.py 已修正进程查询失败连带中断文件心跳的问题：查询失败明确记 UNAVAILABLE，文件/HEAD 采样继续；失败期间不推断进程退出，恢复后先记录新进程基线。新增四个自动化工具、配置及新 job 回执监听；job 的 ZIP/partial 不作重复内容扫描，不扫描 OneDrive 云盘根。12 项针对性回归通过。
+
+已隐藏恢复单实例：launcher 48632，实际 worker 51704；2026-10-16T23:31:22.366683+08:00 有真实新心跳、进程查询 OK，Claude PID 47296，采样子作业为空。这里只证明该时点采样结果，不能根据 PID 推断正在执行哪个任务或是否卡死。四项历史 core_drift 保留，不是本次新引入或已验收的结论。
+
+详细修复与独立证据见 ../../../archives/reviews/codex-supervision/2026-10-16-live-supervision-recovery/SUPERVISION_REPORT.md。后台仍只读记录，不自动 AI 审查、批准、发射、采集、训练或发布；邮箱调度未改。停止仍使用本目录 STOP 文件。

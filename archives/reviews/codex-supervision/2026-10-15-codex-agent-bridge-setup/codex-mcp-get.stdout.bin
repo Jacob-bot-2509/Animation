@@ -1,0 +1,23 @@
+{
+  "name": "agent-bridge",
+  "enabled": true,
+  "disabled_reason": null,
+  "transport": {
+    "type": "stdio",
+    "command": "C:\\Program Files\\nodejs\\node.exe",
+    "args": [
+      "--import",
+      "tsx",
+      "C:\\Users\\Jacap\\.agent-bridge\\node_modules\\codex-agent-bridge\\src\\mcp\\server.ts"
+    ],
+    "env": {
+      "NODE_PATH": "C:\\Users\\Jacap\\.agent-bridge\\node_modules\\codex-agent-bridge\\node_modules;C:\\Users\\Jacap\\.agent-bridge\\node_modules"
+    },
+    "env_vars": [],
+    "cwd": "C:\\Users\\Jacap\\.agent-bridge\\node_modules\\codex-agent-bridge"
+  },
+  "enabled_tools": null,
+  "disabled_tools": null,
+  "startup_timeout_sec": 30.0,
+  "tool_timeout_sec": null
+}

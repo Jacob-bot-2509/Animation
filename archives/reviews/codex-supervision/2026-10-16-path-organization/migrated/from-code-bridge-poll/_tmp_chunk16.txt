@@ -1,0 +1,117 @@
+================================================================================
+CANDIDATE
+================================================================================
+
+### id
+linalg-048
+
+### category
+高等代数
+
+### sub_category
+线性变换
+
+### function_family
+线性变换
+
+### visual_style
+空间几何图形
+
+### efficiency_tags
+['几何意义', '剪切变换']
+
+### problem
+已知矩阵 $A=\begin{pmatrix}1&3\\0&1\end{pmatrix}$，求该矩阵对应的线性变换对二维平面的几何影响。
+
+### solution
+对任意点 $(x,y)$，$T(x,y)=A\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x+3y\\y\end{pmatrix}$，位移为 $(3y,0)$。故 $x$ 轴逐点固定，$\vec e_1=(1,0)$ 不动，$\vec e_2=(0,1)$ 映为 $(3,1)$。对于任意 $c\in\mathbb R$，$T(\mathbb R\times\{c\})=\mathbb R\times\{c\}$：整条水平直线作为点集保持不变，其上每个带标记点的横坐标增加 $3c$。有限线段 $[0,1]\times\{c\}$ 则映为 $[3c,1+3c]\times\{c\}$。竖直线 $x=c$ 的像可写为 $(X,Y)=(c+3t,t)$，$t\in\mathbb R$，即 $X-3Y=c$，斜率为 $\frac13$。沿边界次序，单位正方形顶点 $(0,0),(1,0),(1,1),(0,1)$ 依次映为 $(0,0),(1,0),(4,1),(3,1)$，得到底长 $1$、高 $1$ 的平行四边形。$\det A=1\cdot1-3\cdot0=1$，故面积与定向均保持。这是一种水平剪切；移动距离为 $3|y|$，纵坐标不变。长度一般不保持，例如 $\|(0,1)\|=1$ 而 $\|T(0,1)\|=\sqrt{10}$。
+
+### answer
+水平剪切 $T(x,y)=(x+3y,y)$；$x$ 轴逐点固定，水平直线作为点集不变、带标记点的位移为 $(3y,0)$；竖直线 $x=c$ 映为 $X-3Y=c$；面积和定向保持，$\det A=1$，长度一般不保持。
+
+### scene_spec
+{'objects': ['带有刻度的黑色坐标轴', '蓝色单位正方形，按边界次序连接 $(0,0),(1,0),(1,1),(0,1)$', '橙色平行四边形，按边界次序连接 $(0,0),(1,0),(4,1),(3,1)$', '青色有限线段 $[0,1]\\times\\{\\frac12\\}$ 和 $[0,1]\\times\\{1\\}$，各自标记左端点；无限水平直线仅用作不变的参考线', '白色板书 $T(x,y)=(x+3y,y)$、$\\det A=1$ 与 $X-3Y=c$'], 'steps': ['第一步：绘制坐标轴与蓝色单位正方形，按边界次序标记四个顶点。', '第二步：显示 $T(x,y)=(x+3y,y)$ 和 $\\det A=1$，说明 $x$ 轴逐点固定。', '第三步：将两条有限线段分别平移 $\\frac32$ 和 $3$，终点线段为 $[\\frac32,\\frac52]\\times\\{\\frac12\\}$ 和 $[3,4]\\times\\{1\\}$；闪烁带标记端点，说明整条无限水平直线作为集合不变。', '第四步：按原顶点对应关系变换为橙色平行四边形，依次高亮 $(0,0),(1,0),(4,1),(3,1)$，标注底 $1$、高 $1$、面积 $1$。', '第五步：展示一条竖直参考线 $x=c$ 映为 $X-3Y=c$；以 $(0,1)\\mapsto(3,1)$ 说明长度由 $1$ 变为 $\\sqrt{10}$，并重申面积保持。']}
+
+### source
+self-authored
+
+### license
+Internal-Research-Use-Only
+
+
+>>> SKIPPED pair index 0 (id=test-x-005) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 1 (id=test-x-006) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 2 (id=test-x-007) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 3 (id=test-x-008) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 4 (id=test-x-009) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 5 (id=test-x-010) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 6 (id=test-x-011) -- not the target; see pairs list below
+
+================================================================================
+TARGET PAIR index 7
+================================================================================
+
+----- PAIR ENTRY -----
+{
+  "split": "test",
+  "id": "test-x-012",
+  "problem_sha256": "9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099",
+  "verdict": null,
+  "reason": ""
+}
+
+----- MATERIAL ENTRY -----
+
+### material[split]
+test
+
+### material[id]
+test-x-012
+
+### material[problem_sha256]
+9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099
+
+### material[source_records]
+[{'id': 'test-x-012', 'category': '跨学科', 'sub_category': '线性代数×微积分', 'problem': '用级数定义计算矩阵指数 $e^{A}$，其中 $A=\\begin{pmatrix}0&\\pi\\\\-\\pi&0\\end{pmatrix}$。', 'solution': '记 $J=\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}$，则 $A=\\pi J$，且 $J^2=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$。故 $A^2=-\\pi^2I$，$A^3=-\\pi^3J$，$A^4=\\pi^4I$，一般地 $A^{2k}=(-1)^k\\pi^{2k}I$，$A^{2k+1}=(-1)^k\\pi^{2k+1}J$。$e^{A}=\\displaystyle\\sum_{k=0}^{\\infty}\\left[\\dfrac{(-1)^k\\pi^{2k}}{(2k)!}I+\\dfrac{(-1)^k\\pi^{2k+1}}{(2k+1)!}J\\right]=\\cos\\pi\\cdot I+\\sin\\pi\\cdot J=-I+0\\cdot J=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$（$\\cos\\pi=-1$，$\\sin\\pi=0$）。即 $e^{A}=-I$，对应旋转 $\\pi$ 角（欧拉公式的矩阵版 $e^{i\\pi}=-1$）。', 'answer': '$e^{A}=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-I$', 'scene_spec': {'objects': ['旋转 $\\pi$ 的动画', '矩阵版欧拉公式'], 'steps': ['第一步：建立跨学科·线性代数×微积分综合场景，呈现与矩阵指数、级数、旋转矩阵相关的核心图形。', '第二步：旋转 $\\pi$ 的动画。', '第三步：矩阵版欧拉公式。', '第四步：高亮最终结果与答案。']}, 'function_family': '矩阵指数欧拉公式', 'visual_style': '旋转 π 动画', 'efficiency_tags': ['旋转 $\\pi$ 的动画', '矩阵版欧拉公式'], 'source': 'self-authored', 'license': 'Internal-Research-Use-Only'}]
+
+### material[source_record_sha256]
+['5d3c7acc5981c47914b1e8c9e361eecee6d51597046397116e5c19266cb66e33']
+
+### material[status]
+PENDING_ACTUAL_REVIEW
+
+
+>>> SKIPPED pair index 8 (id=test-x-013) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 9 (id=test-x-014) -- not the target; see pairs list below
+
+
+>>> SKIPPED pair index 10 (id=test-x-015) -- not the target; see pairs list below
+
+================================================================================
+ALL PAIR IDS
+================================================================================
+0: {"split": "test", "id": "test-x-005", "problem_sha256": "f86cfe14862427fd7f52f66a664ac5acf4d67fed80dcb952af925ee1378908ac", "verdict": null, "reason": ""}
+1: {"split": "test", "id": "test-x-006", "problem_sha256": "2d6b9239617a8b0e04ee0a8c67bfe6055a30dde5d9b53c757c298bc6626c5e1a", "verdict": null, "reason": ""}
+2: {"split": "test", "id": "test-x-007", "problem_sha256": "49091d4f1854a405fc3f79f24d2f03249f55903409ee45518bc4fa5bf226dea0", "verdict": null, "reason": ""}
+3: {"split": "test", "id": "test-x-008", "problem_sha256": "41561f553d3dbb550a4e032fd8ae9db3a08e6d26529fbdfed7798f6b9171a3c8", "verdict": null, "reason": ""}
+4: {"split": "test", "id": "test-x-009", "problem_sha256": "129299fe92064ab0296962860db94832aeb5226b8ae6461a70ea99fe3d2bb39a", "verdict": null, "reason": ""}
+5: {"split": "test", "id": "test-x-010", "problem_sha256": "d4c2d8c0ee524969fdb3808f753eaad099c7eb2da00177a30f9ffd7edac29c3c", "verdict": null, "reason": ""}
+6: {"split": "test", "id": "test-x-011", "problem_sha256": "9cdd3ebfe6775dc5e4449f8f39b7e9f302232d13d5793200296e08d4786cc0e4", "verdict": null, "reason": ""}
+7: {"split": "test", "id": "test-x-012", "problem_sha256": "9f62b1b9bdee33a37775f7eb75a1047f0002d4eed238e2c922f8f7e5acfe2099", "verdict": null, "reason": ""}
+8: {"split": "test", "id": "test-x-013", "problem_sha256": "c18c98ea035371c2ed48f969b07a422cf3f46ebf8df2209e339704380db1a7b1", "verdict": null, "reason": ""}
+9: {"split": "test", "id": "test-x-014", "problem_sha256": "2691ab324dff745695efec03ff95ecb11afc92cb7f1bc8732fe3148796b8a203", "verdict": null, "reason": ""}
+10: {"split": "test", "id": "test-x-015", "problem_sha256": "6f102bc9723f09636976cc68dedb63edd318fb2d0856a343b6f9bbb9fa345e27", "verdict": null, "reason": ""}

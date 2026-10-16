@@ -1,0 +1,21 @@
+=== pairs key ===
+[{"split": "test", "id": "test-linalg-013", "problem_sha256": "5f6d745766985a4414c1e7a924b9cbc91348941cec97b50c265d4cfe33a385d3", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-014", "problem_sha256": "917699d279d48760d83bcd0748b4e29a6643370204f482a9042499da9b08cbe6", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-015", "problem_sha256": "aa6b6eb577a223bfe5fee2c987e4db6a43a72421c8d4534d96ba07240ab8fbf9", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-016", "problem_sha256": "109f2fabc01b5ffa5ea39da659c572e08423d3c4a24f1d1bb148794e282069bc", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-017", "problem_sha256": "48ed27b39eacc0b7fb74db266bcdaa23dd4ad3c11374e6618a4311e0a903d958", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-018", "problem_sha256": "339a7a21c34e354f276dc7ee8cfd30a9b4a7834789be446f5024d616adb24a05", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-019", "problem_sha256": "fefba401dbccebc268e49d6372fbb7cef4d5be9dcfd840158356e3236aaac9b6", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-020", "problem_sha256": "f15fb750c7ec542004cce2fb1fa2d406d208d8e4252ac6ec4c8dfa91957ee6d3", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-021", "problem_sha256": "cd20a9fc184b7b88db191ee9d580c9d1a328e426f1eb18a7b3946940ef37c627", "verdict": null, "reason": ""}, {"split": "test", "id": "test-linalg-022", "proble
+
+########## MATERIAL test-linalg-022 ##########
+problem_sha256: ba937f9a6838ce27c27b513ebf4694f57709f70022009c02427aae5817e73dd2
+--- record test-linalg-022 | family= Cholesky 分解 | sub= Cholesky 分解×正定矩阵 | method= None
+PROBLEM: 求正定矩阵 $A=\begin{pmatrix}4&2\\2&3\end{pmatrix}$ 的 Cholesky 分解 $A=LL^T$（$L$ 为下三角）。
+sha256(problem): ba937f9a6838ce27c27b513ebf4694f57709f70022009c02427aae5817e73dd2
+SOLUTION: 设 $L=\begin{pmatrix}l_{11}&0\\l_{21}&l_{22}\end{pmatrix}$。$LL^T=\begin{pmatrix}l_{11}^2&l_{11}l_{21}\\l_{11}l_{21}&l_{21}^2+l_{22}^2\end{pmatrix}=\begin{pmatrix}4&2\\2&3\end{pmatrix}$。解得 $l_{11}=2$（取正），$l_{21}=\dfrac{2}{2}=1$，$l_{22}^2=3-1=2$，$l_{22}=\sqrt2$。故 $L=\begin{pmatrix}2&0\\1&\sqrt2\end{pmatrix}$。验证：$LL^T=\begin{pmatrix}4&2\\2&3\end{pmatrix}$。
+ANSWER: $L=\begin{pmatrix}2&0\\1&\sqrt2\end{pmatrix}$
+SCENE_SPEC: {"objects": ["下三角矩阵的逐列计算", "平方和分解示意"], "steps": ["第一步：建立高等代数·Cholesky 分解×正定矩阵综合场景，呈现与Cholesky 分解、正定矩阵、三角矩阵相关的核心图形。", "第二步：下三角矩阵的逐列计算。", "第三步：平方和分解示意。", "第四步：高亮最终结果与答案。"]}
+
+########## MATERIAL test-linalg-023 ##########
+problem_sha256: 02d223a432d241bcaad40ada749c43f22287718c257f4974a3c1814bcf190e67
+--- record test-linalg-023 | family= 微分方程组特征分解 | sub= 特征值×微分方程组 | method= None
+PROBLEM: 用矩阵方法解微分方程组 $\begin{cases}x'=3x+y\\y'=x+3y\end{cases}$ 的通解。
+sha256(problem): 02d223a432d241bcaad40ada749c43f22287718c257f4974a3c1814bcf190e67
+SOLUTION: 系数矩阵 $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$。特征方程 $(\lambda-3)^2-1=0$，$\lambda=4,2$，特征向量 $(1,1)^T$、$(1,-1)^T$。通解 $\begin{pmatrix}x\\y\end{pmatrix}=c_1e^{4t}\begin{pmatrix}1\\1\end{pmatrix}+c_2e^{2t}\begin{pmatrix}1\\-1\end{pmatrix}$，即 $x=c_1e^{4t}+c_2e^{2t}$，$y=c_1e^{4t}-c_2e^{2t}$。验证：$x'=4c_1e^{4t}+2c_2e^{2t}=3x+y$，$y'=4c_1e^{4t}-2c_2e^{2t}=x+3y$。
+ANSWER: $x=c_1e^{4t}+c_2e^{2t}$；$y=c_1e^{4t}-c_2e^{2t}$
+SCENE_SPEC: {"objects": ["相图与特征方向", "解的轨道"], "steps": ["第一步：建立高等代数·特征值×微分方程组综合场景，呈现与特征值分解、线性微分方程组、矩阵指数相关的核心图形。", "第二步：相图与特征方向。", "第三步：解的轨道。", "第四步：高亮最终结果与答案。"]}
+

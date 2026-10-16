@@ -1,0 +1,45 @@
+{
+  "schema": "consumer-watch-readiness-v2",
+  "run_id": "run-140a171a9d1a4ab6b9cd8c5a6528aee2",
+  "qualification": "LOCAL_CONSUMPTION_PASS; FULL_CROSS_ENDPOINT_ORIGIN_NEEDS_EVIDENCE; WATCH_NOT_DEPLOYED_BY_CODEX",
+  "consumer_source_sha256": "5694391fa2414aa0c1fb8f9af49b450230a017602a12c796639094abd58f87a5",
+  "lifetime_lock": "consumer.runtime_root/consumer-watch/worker.lock",
+  "stop_file": "consumer.runtime_root/STOP",
+  "items": [
+    {
+      "id": "R1",
+      "status": "PASS_LOCAL",
+      "requirement": "训练机真实ZIP/READY完整快照与新冻结job、五原件、sender/native绑定、预检和注册重算一致"
+    },
+    {
+      "id": "R2",
+      "status": "PASS_LOCAL_FIX",
+      "requirement": "watch生命周期锁、等待期间第二实例拒绝、运行根漂移拒绝、退出释放、STOP与单次/PLAN行为；7新测试+28相关回归通过"
+    },
+    {
+      "id": "R3",
+      "status": "NEEDS_EVIDENCE",
+      "requirement": "WJW原始publish-receipt.json及当轮非凭据配置；核对source_capture/ready_path/五源SHA/包SHA/rc/范围flags/实际工具SHA；不能修改旧回执迎合新版本"
+    },
+    {
+      "id": "R4",
+      "status": "NEEDS_EVIDENCE",
+      "requirement": "两端专用目录共享/同步关系、WJW发布输出与真实执行结果、接收端到达对应记录；缺原始输出时明确缺失并用现存真实记录等价交叉验证，不补造"
+    },
+    {
+      "id": "R5",
+      "status": "PENDING_DEPLOYMENT",
+      "requirement": "新Python进程使用修复后sourcepins，仅一个consumer watch；隐藏窗口、独立运行日志，留启动版本/实际处理/STOP与退出回执；不增加系统调度"
+    },
+    {
+      "id": "R6",
+      "status": "VERSION_TRANSITION_NOTE",
+      "requirement": "源cohort变化后首次处理旧READY可能生成独立新版本job；保留旧job，记旧实验回放，不计新实验，后续同版本交付幂等"
+    },
+    {
+      "id": "R7",
+      "status": "BOUNDARY_UNCHANGED",
+      "requirement": "不采集/发射/开训，production=CLOSED；D2/D8延期GAP、D1/D7依赖不变；不将本地测试或watch存在当作全局准入"
+    }
+  ]
+}

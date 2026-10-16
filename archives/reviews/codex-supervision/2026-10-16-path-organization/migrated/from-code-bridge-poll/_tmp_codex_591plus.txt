@@ -1,0 +1,79 @@
+===== msg_1791288310045_593 | context | 2026-10-06T12:05:10.045Z
+收到 msg_591/592。当前只读复核：核心修复代码与原交付一致，未发现新增原生测试；43=28 PARTIAL+15 GAP、GREEN0。实际 check_certificate=False，原因 data/execution_evidence.json 不存在，生产 CLOSED。仅修正枚举文档“四支旧脚本”为“六支旧脚本”，原件/前后SHA及最新状态保存在 reviews/codex-supervision/2026-10-06-sandbox-status-followup/；旧160项交付清单保持原样，除这一处明确说明修订外其余159项均未变。
+
+资源分工要求：本机可继续设计并有限运行既存junction逃逸、自有外部文件DELETE、自有HKCU叶键、存活对象的双向pipe/mailslot/共享内存，以及curl/WinHTTP/WinINET健康对照。每个测试仍须新UUID、不覆写原始记录、前后控制、原始输出、parent/token/profile/ACL/回收证明和源码SHA。F5/F6需要干净的隔离Windows会话或VM，用合成剪贴板/自有窗口；禁止在当前用户桌面和剪贴板上试验。
+
+请协调受控临时外部节点：①另一物理/虚拟主机上可从本机正常访问的公网IPv4和原生IPv6地址，开放指定高位TCP/UDP端口及HTTP路由；接收器记录逐包完整payload、源/目的端点、时间和完整阶段nonce，保存原始日志/抓包；before/after宿主对照须确实送达，sandbox使用独立nonce，接收窗口至少20秒；IPv4与IPv6分别验证，不借用同一协议结果。②另一台真实LAN主机，提供可达LAN地址和同类接收器，不用本机接口充当远端。③可控DNS权威区/解析器及查询日志或抓包，逐阶段随机新FQDN，核验缓存与实际出站；不得向第三方公共服务乱发测试。④ICMP接收端允许echo，并抓取类型/ID/序号/完整nonce及宿主双向控制，创建raw socket或无回显都不算通过。节点部署/端口变更由你们有权限的资源方落实；提供地址、端口、协议、路由/防火墙范围及原始日志获取方式后再安排受控测试。当前不启用候选、渲染、训练，也不以“直到全绿”替代真实验收。
+===== msg_1791288570503_594 | task | 2026-10-06T12:09:30.503Z
+用户现已直接授权我修复全部43项直到达标，15 GAP和28 PARTIAL都在范围内。我接管本机代码、探针和独立复验，你继续保持这些路径不写入。请落实 msg_593 中的受控外部 IPv4/IPv6 接收节点、另一LAN主机、DNS日志/抓包和隔离Windows会话/VM资源，并回复实际可用的地址/端口/日志获取方式。请明确资源是否可取得，不要把外部缺口用本机回环或公共第三方无响应替代。当前仍CLOSED，不能为凑全绿降低标准或启用候选/训练。
+===== msg_1791289942316_596 | answer | 2026-10-06T12:32:22.316Z
+收到 msg_595。1) 独立 desktop 不隔离剪贴板：同一 window station 的 desktops 仍共享其 clipboard。依据 Microsoft 的 Window Station/SetProcessWindowStation 文档。F6 隐藏窗口可考虑独立 desktop，但全局钩子还需健康原生 DLL/线程对照；F5 至少需新建独立非交互 window station，并把专用 helper 进程/线程绑定到它，在任何 clipboard API 前用 GetProcessWindowStation+GetUserObjectInformation 确认唯一 AnimTrainCodex-UUID 名称且绝非 WinSta0；任何绑定失败都不调用剪贴板。无需因为该点直接安装VM；我会先检查这种本机自有夹具的可行性，没实证就继续UNKNOWN。
+2) 若该方案不可用，提供干净Windows隔离会话/VM：与本机相同64位Win32/AppContainer API，专用测试用户、快照可回滚、仅合成剪贴板/自有窗口、不接用户真实剪贴板或共享目录，能够运行当前绑定工具链并保留原始输出。无需现在安装系统或改用户账户权限。
+3) 外部接收器脚本正在准备：纯Python标准库，分别绑定受控IPv4/IPv6高位TCP/UDP/HTTP端口，有限接收窗口≥20秒，精确32位十六进制nonce、源/目的端点、单调时钟及原始JSONL；完整before/after宿主对照，独立sandbox nonce；每次UUID新文件、完整关停/source SHA。LAN须另一台已获使用授权的主机，ARP地址不等于资源可用，不试未知网关。DNS另需可控权威区/递归解析器的随机FQDN逐查询日志/抓包，ICMP需echo ID/seq/payload捕获。没有这些资源则D7/D8/D9/D10/D12等保持缺口，不能冒充全绿。
+当前46项回归已通过，原生收集正在跑；发现旧证书仅验16项、shim/代理未进入生产transport，均已补齐并要求43项重算，门禁CLOSED。请继续协调资源，别改我接管的源码。
+===== msg_1791291944231_598 | answer | 2026-10-06T13:05:44.231Z
+已读 msg_597。用户刚明确“暂无资源，先完成本机部分”，本轮不据邮件中的资源计划租服务器、安装VM或放宽验收。逐条回复：
+1）独立校园网设备可以作为具名受控外部 IPv6 接收节点，前提是设备受控并获使用授权、地址为该设备的全局 IPv6、路由确实跨出本机、同一协议/端口/32位十六进制 nonce 的宿主前后健康对照成立，并保存完整接收窗口、原始日志及源码 SHA。结论只覆盖该端点/路径。公共地址 ping 通不能替代接收证明。若还要用于 D9，必须另做并登记独立的 LAN 路径、网卡/地址/子网及双端对照；一次跨网段 IPv6 实验不能同时当作独立 LAN 验证。
+2）D7 必须有独立受控 IPv4 UDP 接收端及该协议的前后送达对照。IPv6、TCP 10013、DNS 或 WinHTTP 失败都不能替代 IPv4 UDP。可借用已有受控端点，不要求购买服务器；用户当前安排是先完成本机。IPv4 NAT/无入站接收资源也不能直接推导无 IPv4 出站。
+3）独立 desktop 不能隔离剪贴板，clipboard 属于 window station。F5 至少需要适当的独立非交互 window station / Windows 会话 / VM 及健康夹具；F6 的隐藏窗口与全局 hook 需分别原生验证，不能以建 desktop 成功代替。参考 https://learn.microsoft.com/en-us/windows/win32/winstation/window-stations 。本机已安全测试 CreateWindowStationW 三种访问掩码均返回 Win5，未调用任何剪贴板 API；当前令牌也无 SeCreateGlobalPrivilege，因此 F4 的 Global mapping 仍缺健康对照。不绕过托管 Job/UAC，不动用户当前桌面剪贴板。
+
+接收脚本已准备：D:/Animation-Model-Training/tools/sandbox_remote_receiver.py。默认仅输出 PLAN，需显式 --serve；示例：
+python -B tools/sandbox_remote_receiver.py --serve --bind <接收机实际拥有的IPv6地址> --protocol udp --port 39443 --seconds 300 --output <接收机自有输出目录>
+IPv4/IPv6 与 TCP/UDP/HTTP 分别登记；不自动改防火墙。6个本机回环接收器自测通过，不能充当外部证据。
+
+当前主验收：30 GREEN / 0 FAIL / 2 PARTIAL / 11 GAP，仅覆盖注册夹具；匿名管道补测通过，F2 仍缺跨用户。生产门禁 CLOSED，尚无全43证书。报告及字节绑定清单正在收尾，完成后交接。请保留旧原始证据，不重签历史证书或以未测资源标绿。
+===== msg_1791292748728_599 | task_result | 2026-10-06T13:19:08.728Z
+本机阶段交付完成，按用户“暂无资源，先完成本机部分”执行。
+报告：D:/Animation-Model-Training/reviews/codex-supervision/2026-10-06-all43-sandbox-repair/FIX_REPORT.md
+当前状态：同目录 CURRENT_STATUS.json
+交付清单：同目录 delivery-manifest.json，SHA256 34488fb25de779fce5354fb68bfc016046a30edaaabab91e90b01d5a22604854，202项SHA全部匹配。
+主原始回执：surface-raw-c0ed19b0fad644a7ae76ffc4ba28e68b.json，SHA256 f399733c5ecbda4a51b537100c131d9d4c6c5da7554cdb1e86d93148fae58f4e。
+
+独立重算：30 GREEN / 0 FAIL / 2 PARTIAL / 11 GAP。GREEN只覆盖当前15项实现/runtime SHA的注册夹具矩阵，E3是文档项，不能扩为全43或所有路径安全。46项相关单测通过；8主原生容器作业和真实宿主故障/ACE/锁夹具完成，匿名管道另1原生补测通过；6接收器普通宿主回环自测只验证脚本。
+production-appcontainer-v2要求旧16项联合证据与全部43项重算通过；生产证书不存在，门禁CLOSED，未训练、未新增资产渲染/准入，旧原始证据和清单不重签。
+
+剩余：D1/D2/D7/D8/D9/D10/D11/D12/D13/F5/F6仍GAP；F2缺跨用户管道，F4缺Global mapping健康权限。三种CreateWindowStation访问掩码均Win5，剪贴板API调用0；宿主无SeCreateGlobalPrivilege。资源方案和接收命令见REMAINING_RESOURCES.md，msg_598已逐条答复校园IPv6/LAN、IPv4UDP、desktop口径。不据资源计划自行采购或安装，不换协议、换地址族代替证据，不读取活动用户剪贴板。
+当前绑定源码变更会立即使这些GREEN证据失效；后续修改保存新版本/新原始回执，重新重算，不重签历史。请以本次新报告和当前状态作为最新检查点，旧20:05 CURRENT_STATUS.json保留历史。
+
+只读观察器正常STOP旧worker28164、隐藏启动新worker15492，纳入本轮目录及新工具，拒跟随重解析点；后台记录不代替模型独立审查。
+===== msg_1791295421192_602 | answer | 2026-10-06T14:03:41.192Z
+已读 msg_600/601，msg_598/599已给过口径，此处按新增事实明确：
+①独立受控电脑172.30.192.202及与训练机同/64的IPv6，可以作为D9具名校园LAN证人。请保存两端主机身份、接口/地址/掩码、路由与程序/EXE SHA，证明是另一台获授权设备；私网地址本身不证明主机独立。正式结果仍需同协议端口三个不同32位十六进制nonce、前后精确接收、沙箱后≥20秒完整观察。TCP“连接通”及UDP“已发送”不是nonce送达对照。D9的TCP/UDP、v4/v6分别登记实际覆盖，不能扩大。
+②同/64的IPv6属于该LAN路径，不能作为D2/D8的外部证据。D1/D2/D7/D8需要独立受控、实际路由跨出本次LAN边界的对应地址族/协议接收端；全局地址字面值不等于外部路径。可借用另一受控远端设备或现有节点，不强制买云服务器；未完成IPv4 UDP不得借IPv6/TCP/DNS替代。用户上次明确先完成本机，邮件中的准备租云不能当作我代用户采购授权。
+③CreateDesktop不能单独满足F5剪贴板隔离，因为clipboard属于window station（https://learn.microsoft.com/en-us/windows/win32/winstation/window-stations）。F6可用独立不切换的desktop作为隐藏窗口夹具组成，但仍要实际窗口消息/原生hook健康对照；创建成功不是边界通过。F5须独立非交互window station/合适的隔离会话，VM是选项而非必须VirtualBox。本机三种CreateWindowStation掩码均Win5，此事实已提供；不访问活动clipboard，不自行安装VM或绕过托管Job/UAC。ICMP防火墙禁用表示D12健康夹具缺失，不能据此标绿。
+
+我已审阅tools/sandbox_witness_receiver.py，发现TCP单次recv、线程bind失败仍可能总rc0、仅内存日志/结束覆盖文件、异常吞掉、dual-stack设置失败忽略、未绑定接收源码/EXE和完整退出等问题。由我接手修这个文件及其测试，你先不要并发修改或用当前EXE做正式验收；现有EXE和日志保留历史，修复后重新打包/部署新版本并保存新SHA。可继续只读整理受控LAN设备信息。当前202项旧交付SHA仍全部匹配，43点仍30 GREEN/2 PARTIAL/11 GAP，production CLOSED。修复就绪后我立即交接D9正式具名测试条件。
+===== msg_1791296587790_603 | task_result | 2026-10-06T14:23:07.790Z
+证人接收器修复、打包和独立验证已完成，可交接：
+报告 D:/Animation-Model-Training/reviews/codex-supervision/2026-10-06-witness-mail-review/MAIL_REVIEW.md
+启动/回传要求 同目录 DEPLOYMENT.md
+新EXE 同目录 release/witness_receiver_v2.exe
+EXE SHA256 d6887098ccd3b1c3b9bde1180746558b78d2b2882b3cbee25d791c5f792f1cad
+源码 tools/sandbox_witness_receiver.py，SHA256 571f4ce31465a84147395abd9778845194ac591371234737ccf2abeebc6be75e
+新清单同目录delivery-manifest.json，SHA256 a05796082e5aa12eacc5270b712d4eccd7023fff0b276cd9a2f09a48f0ed9c5f，76项匹配。
+
+10项针对性测试通过（包括真实v4/v6分段TCP、尾部数据、5000字节非UTF8 UDP、timeout、bind失败、提前结束及防覆盖）。新EXE默认PLAN rc3，实际EXE host-loopback自测rc0，四条TCP/UDP×v4/v6通路精确nonce及完整20秒窗口、运行EXE SHA、原始日志SHA独立核对。旧EXE/源码/日志保全，未覆写dist旧版本。
+
+按用户原全安全点修复授权，在你报告的已获授权独立校园LAN证人范围继续D9正式测试。正常结束旧证人、保留旧日志后部署新版本，验证实际SHA，以唯一新日志显式启动。IPv4命令：
+witness_receiver_v2.exe --serve --bind 172.30.192.202 --udp-port 49001 --tcp-port 49002 --seconds 300 --log <新的自有目录日志名>
+IPv6另跑具体本地IPv6地址；新程序IPv6-only，不再承诺双栈。每个协议/地址族三个不同32hex nonce，before/after精确送达、sandbox后≥20秒完整观察；TCP关闭发送端以明确EOF。零有效nonce统计不能忽略额外/无效载荷或失败记录。
+
+回传完整双端身份/接口/掩码/路由、真实代码和命令、EXE/源码/实现前后SHA、raw stdout/stderr/rc、证人JSONL+summary、训练端AppContainer父token/profile/4根ACL及当前15项实现绑定。结果回来后独立复算，尚未给D9 GREEN；工具自测不是沙箱证据。不要改当前15个绑定实现、不要重签旧证据。收到FAIL/未知/实现漂移立即保留原记录并停止宣称通过。
+
+600/601口径依602：同/64IPv6为LAN、不能填D2/D8；其他外部协议仍需实际跨出所测LAN边界的独立受控节点，不强制购买云机。CreateDesktop不单独满足clipboard，独立Windows隔离环境需要完整原生对照，VirtualBox只是选项；不碰活动用户clipboard，不安装/采购或改系统策略。ICMP禁用不证明D12。
+
+43点仍30 GREEN/0 FAIL/2 PARTIAL/11 GAP，production CLOSED，无新证书/训练/渲染。此前202项清单保持历史字节，本轮仅observer源码/README两项有快照的预期变化，余200及15项生产绑定匹配；观察器新增本轮目录和两源码，新隐藏worker35160正常心跳，只记录不自动验收。
+===== msg_1791300993752_604 | context | 2026-10-06T15:36:33.752Z
+收到用户直接新裁决（本会话23:31后的消息）：IPv4外部层级接受“受控LAN IPv4证人 + 外部IPv6实测 + 本机IPv4最强证据”联合认定，不再单独要求公网IPv4节点。该用户指令取代我598/602/603中相应公网IPv4独立证人要求；无需租IPv4云节点。
+
+我负责更新 src/animtrain/full_surface_evidence.py 的D1/D7联合判定及新测试、口径文档。按协议分开：D1=LAN IPv4 TCP + 真外部IPv6 TCP + 本机IPv4 TCP；D7=LAN IPv4 UDP + 真外部IPv6 UDP + 本机IPv4 UDP。每链仍要当前执行/source/token/profile/ACL/实现SHA、精确nonce前后健康、完整接收窗口；DNS/HTTP等其他安全点各自验收，不因联合政策自动标绿。
+同/64校园IPv6仍只计LAN，不当“外部IPv6实锤”。联合GREEN将明确标为用户授权联合证据，不声称直接测得公网IPv4零送达。
+
+修改判定器会改变15项绑定之一。我会重跑本机原生基线并提供新SHA；你不要并发改该文件/当前15项绑定，不重新签旧原始记录。若正有旧绑定作业，仅保留真实原记录为历史；待新绑定交接后提交联合链。无需修改已交付的接收器EXE。
+正在制定 envelope/schema，完成后给具体模板。production仍CLOSED；三链未齐或发现任何sandbox nonce投递均不得联合通过。
+===== msg_1791302435687_605 | task_result | 2026-10-06T16:00:35.687Z
+用户最新直接授权已完整实现：IPv4外部层级接受“LAN IPv4受控证人 + 真实外部IPv6实锤 + 当前本机IPv4最强证据”联合认定，不再独立要求公网IPv4节点。策略ID user-ipv4-joint-v1；D1=LAN IPv4 TCP+外部IPv6 TCP(D2)+本机IPv4 TCP(D3)，D7=对应UDP(D8/D5)，分别三个完整分量，不跨协议借用。43点重算、16项兼容入口、生产证书检查已改，production_isolation_acceptance.py默认--ipv4-evidence joint，--plan不执行。接口拓扑SHA绑定，发送方原生接口前缀内及同/64校园IPv6禁止充当外部证据；九个nonce不同、健康before/after、沙箱无送达、完整>=20秒观察及实际父token/profile/四根ACL/15实现绑定保持。缺项不能绿、真实送达FAIL；旧IPv4成功记录不能被新口径掩盖。82项相关回归通过（26项新策略测试为模拟，非网络验收）。更改3个BOUND源后已另采8主原生job+宿主故障/锁夹具，raw6367b72967e04ed5b36dc234764e209a，SHA e9185cd8b43fa090d4e885dc90dd7df7906a9e79d5c2e86cf486ba53f0f53464；当前独立重算30 GREEN/0 FAIL/2 PARTIAL/11 GAP。匿名管道当前绑定补测74cf1a9510ab4a13ad3c58c4320c1082通过，仍缺跨用户。具体契约/未验证envelope模板/报告在 reviews/codex-supervision/2026-10-06-ipv4-joint-policy/POLICY.md、joint-envelope.template.json、FIX_REPORT.md、CURRENT_STATUS.json。请按此新规则继续LAN受控证人正式TCP/UDP双端采集，并补真实外部IPv6对应协议证据；现有2001:da8:2019:b282:...同/64校园证人仍LAN。既有新EXE d6887098...可继续用，不需为此重建。不要改写旧raw或更换其中SHA；新增唯一回执，完整receiver JSONL/summary、原始命令/rc/stdout/stderr、两端接口路由身份回传后Codex独立验收。D1/D7当前仍GAP，无证书、生产CLOSED，未开训。当前15实现绑定见CURRENT_STATUS.json，若计划改BOUND源先发start，不能把旧30GREEN带到新源。
+===== msg_1791303226414_606 | context | 2026-10-06T16:13:46.414Z
+用户要求监督中需修复的由Codex接手，我正在复验最新HEAD223aea7及RoundA d9-lan-v4。已发现 tools/sandbox_external_test_driver.py 的真实缺陷：(1)route/interfaces/driver文件写raw+换行但SHA算raw，逐字节绑定必失败；(2)沙箱stdout.strip/stderr截断不满足transport原始流，缺BOUND_FILES运行前后SHA与driver源码绑定；(3)所有OSError标denied且err命名/connected不符合full_surface network typed outcome契约，TimeoutError不可伪称权限拒绝；(4)只有host send/connect不能证明证人收到nonce，receiver生命周期/完整JSONL及summary还未接入；(5)21秒sleep不记录真实单调ns观察和after窗口边界；(6)sender_interfaces目前存到注册REVIEW_ROOT外且路径相对。Codex现在拥有并修 tools/sandbox_external_test_driver.py、相应新回归测试与活动监管记录，请暂停修改此驱动，其他文件你不是独占，不回滚别人的修改。请保留RoundA driver/interfaces/route和执行work全部原字节，不换旧SHA、不重签；旧记录尚不能D9/GREEN。请回传证人新v2 EXE的原始JSONL+summary及真实rc、两端身份和路由（RoundA 192.168.1.83与先前172.30.192.202变化需说明）。我不会为此修改15个BOUND生产源；你可继续协调证人回执、真实外部IPv6资源及未重叠工作。生产CLOSED，不需独立公网IPv4节点。修复版/计划和验证结果随后回传，请新正式轮次用唯一输出。
+===== msg_1791304388032_608 | context | 2026-10-06T16:33:08.032Z
+收到用户新安排：现在优先holdout-v2起草/审阅，沙箱检测实验明天才做。按当前北京时间2026-10-07，明天理解为10-08；这轮停止启动新的沙箱/证人原生实验，仅完成驱动修复的代码/证据交接。sandbox_external_test_driver.py已由Codex修复，26新增+64组合回归通过，本机Get-NetIPAddress原始流SHA验证通过（不是边界实验）；15BOUND生产实现未改，30GREEN仍有效。RoundA原始记录已保全，receiver正式回执未齐，不能D9绿。请暂停新的实验启动，继续holdout-v2草案；我已收到你607邮件，正在审阅§6/§8、总体曝光、分层抽样、FPR/召回指标、角色盲性和样本量。驱动新正式轮次要求--execute-native和完整receiver回执，后续按用户时间安排再执行。

@@ -1,0 +1,112 @@
+{
+  "status": "MCP_HANDSHAKE_AND_DOCTOR_PASS",
+  "package_version": "1.1.0",
+  "server_info": {
+    "name": "agent-bridge",
+    "version": "1.0.0"
+  },
+  "tool_count": 16,
+  "tools": [
+    "bridge_run",
+    "bridge_status",
+    "bridge_wait",
+    "bridge_review_packet",
+    "bridge_diff",
+    "bridge_continue",
+    "bridge_respond",
+    "bridge_approve",
+    "bridge_reject",
+    "bridge_cancel",
+    "bridge_apply",
+    "bridge_logs",
+    "bridge_prune",
+    "bridge_doctor",
+    "bridge_agents",
+    "bridge_version"
+  ],
+  "doctor_checks": [
+    {
+      "id": "node",
+      "ok": true,
+      "detail": "v24.20.0"
+    },
+    {
+      "id": "git",
+      "ok": true,
+      "detail": "git version 2.55.0.windows.5"
+    },
+    {
+      "id": "tsx",
+      "ok": true,
+      "detail": "C:\\Users\\Jacap\\.agent-bridge\\node_modules\\tsx\\package.json"
+    },
+    {
+      "id": "job-object",
+      "ok": true,
+      "detail": "KILL_ON_JOB_CLOSE create/close succeeded"
+    },
+    {
+      "id": "codex-mcp",
+      "ok": true,
+      "detail": "config.toml has [mcp_servers.agent-bridge]"
+    },
+    {
+      "id": "codex-skill",
+      "ok": true,
+      "detail": "C:\\Users\\Jacap\\.codex\\skills\\agent-bridge\\SKILL.md"
+    },
+    {
+      "id": "worker-ready",
+      "ok": true,
+      "detail": "claude"
+    },
+    {
+      "id": "project-git",
+      "ok": true,
+      "detail": "D:\\Animation-Model-Training"
+    },
+    {
+      "id": "verify-json",
+      "ok": true,
+      "detail": ".agent-bridge/verify.json missing (verification will skip)"
+    },
+    {
+      "id": "orphan-worktrees",
+      "ok": true,
+      "detail": "none"
+    }
+  ],
+  "agents": [
+    {
+      "id": "replay",
+      "displayName": "Replay",
+      "available": true,
+      "runtime": "replay",
+      "loadSession": null,
+      "detail": "deterministic fixture driver; no LLM"
+    },
+    {
+      "id": "claude",
+      "displayName": "Claude Code",
+      "available": true,
+      "runtime": "acp",
+      "loadSession": true,
+      "detail": "adapter present; credentials file present"
+    },
+    {
+      "id": "deepseek",
+      "displayName": "DeepSeek Harness",
+      "available": false,
+      "runtime": "acp",
+      "loadSession": false,
+      "detail": "harness not found (set AGENT_BRIDGE_DEEPSEEK_ROOT; Bridge does not install DeepSeek Harness)"
+    }
+  ],
+  "calls": [
+    "initialize",
+    "tools/list",
+    "tools/call:bridge_doctor"
+  ],
+  "worker_tasks_started": 0,
+  "elapsed_ns": 390657400
+}

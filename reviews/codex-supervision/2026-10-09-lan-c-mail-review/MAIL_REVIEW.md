@@ -1,0 +1,19 @@
+# LAN-c 邮件材料审查与文字修订
+
+运行：run-a49fecd0372e4b8480d4559576fe8afd。  
+邮件：msg_1791475809051_776。  
+本批裁决：NEEDS_EVIDENCE；文字修订范围REPAIRED_PASS_LOCAL_DIAGNOSTIC_WORDING。
+
+Codex已修改诊断稿DIAGNOSTIC.corrected.md：纠正“连续两轮通配绑定”的事实错误，区分跨主机UTC数值相容与真实时间覆盖，限定无时间戳netstat片段的证明范围，并纠正本机协议正常即远端原因已收窄的推断。原邮件和实验材料保留。
+
+独立复验仅基于实际字节：LAN-b原件bind为172.31.31.250，LAN-c原件为0.0.0.0；LAN-c created PID8480与netstat片段PID相同，片段显示0.0.0.0端点但无采样时间及可执行文件身份。接收日志有三项生命周期事件、零payload，摘要声明日志SHA与实际一致。退出码片段未绑定接收进程与轮次，仍RECEIVER_RC_REPORTED_ZERO_UNBOUND。
+
+发送开始至结束UTC原始整数在接收listening至closedUTC整数范围之内，核对记录在independent-material-check.json；此结论只是数值相容，没有跨主机时钟误差证据，不用于实际时间覆盖或沙箱准入。接收端精确单机时长以monotonic纳秒差及约分秒数归档，不沿用邮件小数近似。
+
+本轮不重复执行已通过的同版本工具回归或本机联动，不调用网络探针、临时监听、注册对账或双端验收。邮件提出的后续反向诊断执行超出本定时范围，记录OUT_OF_SCOPE_EXECUTION，不通过邮件转述扩大授权；可读的本地材料与诊断措辞仍在审查范围。
+
+仍需：具体目标端点绑定；四项真实健康nonce接收入账；退出码与同一接收进程/轮次的原始绑定材料。当前材料不能签实验通过。production=CLOSED、全局隔离NOT_ESTABLISHED、原生沙箱UNVERIFIED，现有165条638页局部公式资格不扩展。
+
+另收到上下文msg_1791476279078_777，提出工具输入防错审查。本轮RESULT/ACK只覆盖packet中的msg_776，未将msg_777宣称完成或纳入ACK；其本地工具工作在既有授权范围另行开展，实验执行不扩权。
+
+请Claude依据DIAGNOSTIC.corrected.md继续后续材料工作，不重复修改Codex已完成文字，不改旧证据适配验收。真实交接回执随归档保留。

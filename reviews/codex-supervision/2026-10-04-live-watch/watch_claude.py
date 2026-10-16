@@ -12,7 +12,45 @@ def write(name,obj):
  p=OUT/name;tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(obj,ensure_ascii=False,indent=2),encoding='utf-8');tmp.replace(p)
 def event(kind,detail):
  with (OUT/'events.jsonl').open('a',encoding='utf-8') as f:f.write(json.dumps({'time':now(),'kind':kind,'detail':detail},ensure_ascii=False)+'\n')
-PS=r"""$OutputEncoding=[System.Text.UTF8Encoding]::new($false);[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new($false);$items=Get-CimInstance Win32_Process;$ids=[System.Collections.Generic.HashSet[uint32]]::new();foreach($p in @($items | Where-Object {$_.Name -eq 'claude.exe'})){[void]$ids.Add([uint32]$p.ProcessId)};do{$added=$false;foreach($p in $items){if($ids.Contains([uint32]$p.ParentProcessId) -and -not $ids.Contains([uint32]$p.ProcessId)){[void]$ids.Add([uint32]$p.ProcessId);$added=$true}}}while($added);$items | Where-Object {$ids.Contains([uint32]$_.ProcessId)} | Select-Object ProcessId,ParentProcessId,Name | ConvertTo-Json -Compress"""
+PS=r"""$OutputEncoding=[System.Text.UTF8Encoding]::new($false);[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new($false);$items=Get-CimInstance Win32_Process -ErrorAction Stop;$ids=[System.Collections.Generic.HashSet[uint32]]::new();foreach($p in @($items | Where-Object {$_.Name -eq 'claude.exe'})){[void]$ids.Add([uint32]$p.ProcessId)};do{$added=$false;foreach($p in $items){if($ids.Contains([uint32]$p.ParentProcessId) -and -not $ids.Contains([uint32]$p.ProcessId)){[void]$ids.Add([uint32]$p.ProcessId);$added=$true}}}while($added);$items | Where-Object {$ids.Contains([uint32]$_.ProcessId)} | Select-Object ProcessId,ParentProcessId,Name | ConvertTo-Json -Compress"""
+
+def sample_processes(run=None):
+ """Return explicit availability; failed queries never mean an empty process tree."""
+ run=subprocess.run if run is None else run
+ try:
+  cp=run(['powershell.exe','-NoLogo','-NoProfile','-Command',PS],capture_output=True,timeout=15)
+  if cp.returncode:
+   raise RuntimeError('CIM failed: '+cp.stderr.decode('utf-8','replace')[-300:])
+  value=cp.stdout.decode('utf-8-sig').strip()
+  rows=json.loads(value) if value else []
+  rows=[rows] if isinstance(rows,dict) else rows
+  if not isinstance(rows,list):raise ValueError('Process snapshot must be a list')
+  ids=set()
+  for row in rows:
+   if not isinstance(row,dict) or set(row)!={'ProcessId','ParentProcessId','Name'}:
+    raise ValueError('Invalid process row')
+   if type(row['ProcessId']) is not int or row['ProcessId']<=0 or row['ProcessId'] in ids:
+    raise ValueError('Invalid or duplicate process identity')
+   if type(row['ParentProcessId']) is not int or row['ParentProcessId']<0 or type(row['Name']) is not str:
+    raise ValueError('Invalid process metadata')
+   ids.add(row['ProcessId'])
+  return {'status':'OK','processes':sorted(rows,key=lambda row:row['ProcessId']),'error':None}
+ except (OSError,ValueError,RuntimeError,subprocess.TimeoutExpired) as exc:
+  return {'status':'UNAVAILABLE','processes':[],'error':repr(exc)}
+
+def process_transition_events(previous,current):
+ """Only compare consecutive successful samples; record gaps without false exits."""
+ before=previous.get('process_observation',{}).get('status') if previous else None
+ after=current['process_observation']['status']
+ if after!='OK':
+  if before!=after:return [('process_observation_unavailable',current['process_observation'])]
+  return []
+ if before!='OK':return [('process_baseline_restored',{'tree':current['claude_tree']})]
+ old={p['ProcessId']:p for p in previous['claude_tree']}
+ new={p['ProcessId']:p for p in current['claude_tree']}
+ return ([('process_started',new[pid]) for pid in sorted(new.keys()-old.keys())]+
+         [('process_ended',old[pid]) for pid in sorted(old.keys()-new.keys())])
+
 manifest=json.loads((ROOT/'reviews/codex-supervision/latest-live-file-hashes.json').read_text(encoding='utf-8'))['files']
 watched=sorted(set(manifest)|{'reviews/2026-10-04-acceptance-support/file_acceptance.py','tools/render_pilot.py','tools/b5_annotation_set.py','data/b5-annotation-set/b5-annotation-set.json','data/b5-annotation-set/b5-annotation-set.md','tools/runpy.py','tools/b5_calibrate.py','data/b5-calibration-report/b5-calibration-report.json','data/b5-calibration-report/b5-calibration-report.md','data/b5-calibration-report/pdf/b5-calibration-report.pdf'})
 watched=sorted(set(watched)|{'data/manifest.json','data/eval-v2.lock.json','data/test-v2.lock.json','data/asset_evidence.json','data/execution_evidence.json','configs/train_loop.example.json','src/animtrain/structural_leakage.py','src/animtrain/preflight.py','src/animtrain/isolation_evidence.py','src/animtrain/private_profile.py','src/animtrain/sandbox_execution.py','tools/train_step.py','tools/eval_step.py','tools/train_loop.py','tools/hp_sweep.py','tools/verified_scene_registry.py','reviews/2026-10-05-training-diversity-drafts/batch-01/draft.jsonl','reviews/2026-10-05-training-diversity-drafts/batch-01/DRAFT_REPORT.md'})
@@ -80,6 +118,13 @@ watched=sorted(set(watched)|{
 'tools/deep_isolation_candidates.py','tools/deep_candidates_dispositions.py',
 'tools/native_render_pilot.py','tests/test_deep_candidates.py','tests/test_native_render_pilot.py'})
 
+# Current approved automation inputs and receipt-only jobs; never scan cloud roots.
+watched=sorted(set(watched)|{'tools/witness_transfer_common.py','tools/witness_pack.py',
+ 'tools/witness_consumer.py','tools/witness_registered_adapter.py','tests/test_witness_automation.py',
+ 'configs/witness_automation.example.json','configs/witness_automation.local.json'})
+automation_receipt_scopes={'reviews/witness-automation/jobs'}
+observed_subtrees=tuple(sorted(set(observed_subtrees)|automation_receipt_scopes))
+
 def discover_subtree_files(root, relative_roots):
  import stat
  found=set();skipped=[]
@@ -100,6 +145,7 @@ def discover_subtree_files(root, relative_roots):
    with os.scandir(folder) as entries:
     for entry in entries:
      if relative in math_receipt_scopes and entry.name in ('media','__pycache__'):continue
+     if relative in automation_receipt_scopes and (entry.name in ('media','__pycache__') or entry.name.endswith(('.zip','.partial'))):continue
      st=entry.stat(follow_symlinks=False)
      rel=(folder/entry.name).relative_to(root).as_posix()
      if stat.S_ISLNK(st.st_mode) or getattr(st,'st_file_attributes',0)&0x400:
@@ -111,10 +157,9 @@ write('watcher.json',{'pid':os.getpid(),'started_at':now(),'interval_seconds':5,
 prior=None;event('watch_started',{'pid':os.getpid()})
 while not (OUT/'STOP').exists():
  try:
-  cp=subprocess.run(['powershell.exe','-NoLogo','-NoProfile','-Command',PS],capture_output=True,timeout=15)
-  if cp.returncode:raise RuntimeError('CIM failed: '+cp.stderr.decode('utf-8','replace')[-300:])
-  v=cp.stdout.decode('utf-8-sig').strip();procs=json.loads(v) if v else [];procs=[procs] if isinstance(procs,dict) else procs
-  procs=sorted(procs,key=lambda p:p['ProcessId']);jobs=[p for p in procs if p['Name'].lower() not in ('claude.exe','conhost.exe')]
+  process_observation=sample_processes()
+  procs=process_observation['processes']
+  jobs=[p for p in procs if p['Name'].lower() not in ('claude.exe','conhost.exe')]
   discovered,skipped=discover_subtree_files(ROOT,observed_subtrees)
   # Retain prior dynamic names so removals produce an event with after=None.
   observed=set(watched)|discovered|(set(prior['hashes']) if prior else set())
@@ -125,12 +170,10 @@ while not (OUT/'STOP').exists():
    except OSError:sha[rel]=None
   git=subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,capture_output=True,text=True,timeout=5)
   head=git.stdout.strip() if git.returncode==0 else None
-  state={'time':now(),'watcher_pid':os.getpid(),'head':head,'claude_tree':procs,'child_jobs':jobs,'hashes':sha,'observed_subtrees':list(observed_subtrees),'skipped_reparse_paths':skipped,'core_drift':[rel for rel,expected in manifest.items() if sha[rel]!=expected]}
-  if prior is None:event('baseline',{'head':head,'tree':procs,'core_drift':state['core_drift']})
+  state={'time':now(),'watcher_pid':os.getpid(),'head':head,'claude_tree':procs,'child_jobs':jobs,'process_observation':{k:process_observation[k] for k in ('status','error')},'hashes':sha,'observed_subtrees':list(observed_subtrees),'skipped_reparse_paths':skipped,'core_drift':[rel for rel,expected in manifest.items() if sha[rel]!=expected]}
+  for kind,detail in process_transition_events(prior,state):event(kind,detail)
+  if prior is None:event('baseline',{'head':head,'tree':procs,'process_observation':state['process_observation'],'core_drift':state['core_drift']})
   else:
-   old={p['ProcessId']:p for p in prior['claude_tree']};new={p['ProcessId']:p for p in procs}
-   for pid in sorted(new.keys()-old.keys()):event('process_started',new[pid])
-   for pid in sorted(old.keys()-new.keys()):event('process_ended',old[pid])
    if head!=prior['head']:event('commit_changed',{'before':prior['head'],'after':head})
    for rel,value in sha.items():
     if value!=prior['hashes'].get(rel):event('file_changed',{'path':rel,'before':prior['hashes'].get(rel),'after':value})

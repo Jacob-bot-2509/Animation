@@ -9,3 +9,7 @@
 | [环节入口.md](环节入口.md) | 每个工作环节从哪进:审阅 PDF、修复链、门禁、桥接 |
 
 > 维护约定:看板数据变化时更新日期行;事实以哈希绑定的证据文件为准,本目录只是路标。
+
+## 文件路径整理（2026-10-16）
+
+先看[目录地图](目录地图.md)定位文件，再按[迁移清单](../../archives/reviews/codex-supervision/2026-10-16-path-organization/MOVED_FILES.md)查询旧路径。可供程序读取的完整索引为 [PATH_INDEX.json](../../archives/reviews/codex-supervision/2026-10-16-path-organization/PATH_INDEX.json)。历史工具中的旧硬编码仅作映射登记，不因对应归档存在就默认允许重放生成器。

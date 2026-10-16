@@ -1,6 +1,6 @@
 """Consume approved OneDrive folder snapshots. Never start probes or training."""
 from __future__ import annotations
-import argparse, io, json, stat, time, uuid, zipfile
+import argparse, contextlib, io, json, stat, time, uuid, zipfile
 from pathlib import Path
 import witness_transfer_common as c
 import witness_registered_adapter as adapter
@@ -201,21 +201,34 @@ def main(argv=None):
     try:
         c.require(args.config is not None, "CONFIG_REQUIRED")
         retry_index = 0
-        while True:
+        watch_runtime = None
+        service_lock = contextlib.nullcontext()
+        if args.watch:
             config = c.load_config(args.config, execute=True)
-            if (Path(config["consumer"]["runtime_root"]) / "STOP").exists():
+            watch_runtime = Path(config["consumer"]["runtime_root"]).absolute()
+            if (watch_runtime / "STOP").exists():
                 return 0
-            results = scan(config)
-            print(json.dumps({"results": results, "production": "CLOSED"}), flush=True)
-            if not args.watch:
-                return 0 if all(r.get("status") == "REGISTERED_RECONCILIATION_COMPLETE" for r in results) else 2
-            delays = config.get("retry_delays_seconds", [5, 15, 45, 120])
-            c.require(type(delays) is list and len(delays) == 4 and
-                      all(type(x) is int and 1 <= x <= 120 for x in delays), "RETRY_CONFIG")
-            waiting = any(r.get("status") == "WAITING" for r in results)
-            delay = delays[retry_index] if waiting else 5
-            retry_index = min(retry_index + 1, 3) if waiting else 0
-            time.sleep(delay)
+            # Hold independently of scan's job lock, including all wait intervals.
+            service_lock = c.lock(watch_runtime / "consumer-watch")
+        with service_lock:
+            while True:
+                config = c.load_config(args.config, execute=True)
+                if args.watch:
+                    c.require(Path(config["consumer"]["runtime_root"]).absolute() == watch_runtime,
+                              "WATCH_RUNTIME_CHANGED_RESTART_REQUIRED")
+                if (Path(config["consumer"]["runtime_root"]) / "STOP").exists():
+                    return 0
+                results = scan(config)
+                print(json.dumps({"results": results, "production": "CLOSED"}), flush=True)
+                if not args.watch:
+                    return 0 if all(r.get("status") == "REGISTERED_RECONCILIATION_COMPLETE" for r in results) else 2
+                delays = config.get("retry_delays_seconds", [5, 15, 45, 120])
+                c.require(type(delays) is list and len(delays) == 4 and
+                          all(type(x) is int and 1 <= x <= 120 for x in delays), "RETRY_CONFIG")
+                waiting = any(r.get("status") == "WAITING" for r in results)
+                delay = delays[retry_index] if waiting else 5
+                retry_index = min(retry_index + 1, 3) if waiting else 0
+                time.sleep(delay)
     except (OSError, ValueError) as exc:
         print(json.dumps({"status": "NOT_ACCEPTED", "code": getattr(exc, "code", "IO_ERROR"),
                           "detail": str(exc), "production": "CLOSED"}))

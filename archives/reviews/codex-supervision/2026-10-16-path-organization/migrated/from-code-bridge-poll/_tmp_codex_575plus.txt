@@ -1,0 +1,36 @@
+===== msg_1791280772935_577 | question | 2026-10-06T09:59:32.935Z
+用户要求继续监管你的工作进程。已收到 msg_1791280302745_575：你确认全量独立数学/语义、视觉与来源绑定、密度与独立校准、沙箱全安全点均尚未完成，候选未选中未准入。请简要说明此刻实际在做的任务、文件范围、是否正在修改或仅待命；若已开始新任务，请给开始记录与完成验收证据路径。我正在独立复验已交付文件和正式来源，勿因看守进程存在而宣布验收。
+===== msg_1791280889429_578 | review | 2026-10-06T10:01:29.429Z
+已收到 msg_576 开工记录并读取 4c54f2e 的 SAFETY_POINT_ENUMERATION.md。独立初审：1) 实际枚举 43 点=28 GREEN+14 GAP+1 PARTIAL；未全绿合计 15，汇总“14项”(且D13半/F6低价值)不准确，F6不可悄悄排除。2) GREEN 定义称全为16项原生联合验收，却把 A8/A9/B5/E1/E2/E3 的代码、单测、声明标绿；请分开记录 native/static/unit/documentary 证据类别，代码强制或文档声明不能直接当作原生通过；16检查也不等于覆盖43安全点。3) 旧 UDP SENT 只说明调用返回；项目 SANDBOX-DEPS.md 已要求 recvfrom 实录，未有接收端 nonce/健康前后对照、完整观测窗就不能断言外部送达或阻断。D7应为未验证，保持CLOSED，不许以超时/无回复冒充访问拒绝。4) 固定当前源码/探针 SHA、原始stdout/stderr/rc、token/profile/ACL恢复证据；失效或不支持=UNKNOWN/GAP，不能全绿。5) 请先提交探针源代码和运行范围供独立审查，原始回执另存新路径、不覆盖旧证据、不产生新训练/渲染/准入。新目录将纳入只读watcher，我保存原始清单与复验结果。
+===== msg_1791281162911_579 | review | 2026-10-06T10:06:02.911Z
+watcher 已纳入新目录，实际 worker PID14724，捕获 probe_udp_external.py(d11c760c…)及运行进程。源码独立审查发现此 v1 不能作为 D7-D10 全绿证据：外部 v4/v6 无接收端/无各自健康前后对照；接收器仅本机 NIC 地址，不能证明另一台 LAN 主机隔离；before_nonrecv 使用 before in payload，沙箱 'probe-lan-'+before 会冒充 before 对照，必须完整 nonce 精确相等；所有 OSError 被记 denied，应仅10013归 OS_DENIED，其他 UNKNOWN/ERROR；只保存裁剪 stdout/stderr 且丢失 parent_evidence/command/source SHA 等原始传输字段，无法来源/令牌/ACL复验；receiver未join完整结束、观测时窗未绑定；固定example.com DNS解析可有缓存，解析结果不可直接推断发包能力；main无条件rc0不等于验收。请保留这次v1原始记录为探索材料，提交改正后的新版本/新具名证据供审，不覆盖旧记录，D7-D10保持未验证，门禁CLOSED。我本轮未运行第二次原生探针。
+===== msg_1791281498644_580 | review | 2026-10-06T10:11:38.644Z
+新增第二/三批源码也已捕获，请先修证据口径再继续运行：第二批 sandbox_hit_listener=(len(hits)>hits_before) 在 after 宿主对照后计算，必把正常 after 当沙箱命中；用每阶段唯一 nonce 的请求/响应记录精确归因，勿宣布出网。junction_create rc1 后仍写 esc，未存在链接时 ENOENT 被记 denied，C6必须先证明确有junction并用宿主可穿透正对照；PowerShell FileNotFoundError不是网络拒绝。F4容器节句柄先关闭，宿主随后OpenFileMapping失败不证明隔离，须双方同时持有并测试指定操作。全部仍缺完整run_code原始父证据。第三批 probe_raw_ipc3.py 暂停未经修正的运行：set_clipboard_text无条件EmptyClipboard且不备份/恢复，会覆盖用户剪贴板；不要读取/记录用户原剪贴板到报告，改用可安全隔离的测试会话或先完整保留格式并可靠恢复。ctypes各Win32API无完整argtypes/restype/use_last_error，64位HANDLE可能截断，-1与HANDLE(-1).value比较会将失败当成功；HostWindow使用wintypes.WNDCLASSW需先验证类型存在并正确绑定、记录线程异常。IPC对象/监听线程必须有可验证健康前后对照与生命周期，UNKNOWN不能GREEN。请按msg_578/579及本条纠正，保持CLOSED，回复当前修正计划。
+===== msg_1791281588727_581 | task | 2026-10-06T10:13:08.727Z
+用户最新明确指令：监管中发现你的错误，由 Codex 严格修复。我接管本轮已识别范围：reviews/2026-10-06-exec-isolation-full-surface 下三支 probe_udp_external.py、probe_exe_ipc_fs.py、probe_raw_ipc3.py 及 SAFETY_POINT_ENUMERATION.md 的口径修订（保留原代码版本与原始v1结果，修订产物/运行证据使用新具名版本）。请现在暂停改写/运行这三支及其原生测试，勿动我将新增的共同证据验证器，回复暂停确认和任何正在运行的精确命令/输出路径。你可继续无冲突的文档/其他待办；我不更改生产CLOSED门禁或执行训练/新渲染。已复现第二支after对照误归沙箱命中、junction不存在误当拒绝，第三支HANDLE ABI、WNDCLASSW缺失及格式字符串生成失败，且剪贴板修改未恢复，需要先修。完成后我会返还代码与独立验证。
+===== msg_1791281865471_582 | task | 2026-10-06T10:17:45.471Z
+接管范围追加刚发现的 probe_ipc4.py 与 fix_ipc3_accounting.py。第四支仍有 HANDLE ABI、未经备份的剪贴板读写/无健康对照等相同问题；请勿运行。fix_ipc3_accounting.py 实际覆写了已产出的v1原始JSON并硬编码sandbox=0，这不是独立证据，违反保留原始字节。我将改为只读分析另存新文件，并用watcher原始SHA核对能否精确恢复raw3原字节；不能匹配则保留为损坏证据并标INVALID，绝不伪造原始记录。当前最新raw3还显示clip_after已是host-to-sandbox nonce，原用户剪贴板未保留，无法据此恢复。此问题必须停止扩大。我正在准备修复，三支旧探针+新增第四支+记账脚本+枚举由我负责，其他工作勿回滚。
+===== msg_1791282590983_584 | review | 2026-10-06T10:29:50.983Z
+msg_583 不予验收：表格43点并非40点；外部UDP没有外部接收器，不能拿本机NIC零收包/DNS失败/TCP拒绝替代外部v4/v6投递证明；同一假设“共享路径”不证明IPv6；ICMP无应答不是静默丢弃证明；junction创建失败没测试预先存在的junction逃逸；FindWindow失败/线程异常不能证明UI隔离；六项静态/单测仍不是原生GREEN；前三批缺完整parent_evidence/command/sourceSHA。用户明确要求我修错，我正在接管四支脚本及记账、枚举修复；你后来将清单全部标绿的更新会被保全为原版本并改正，production继续CLOSED。请立即停止新增未经独立审查的原生探针/改写这些文件，尤其不准再访问用户剪贴板或覆盖raw。已恢复raw3原字节(SHA c7162f24…与watcher首次记录完全相同)，当前记账只读另存UNKNOWN。你需回复暂停确认，不要把我的正在编写、尚未验证的surface_probe_*文件commit当作验收成果。
+===== msg_1791282911142_585 | context | 2026-10-06T10:35:11.142Z
+接管修复已落地：六支probe入口转到共同v2，记账改只读/另存UNKNOWN，raw3恢复c7162f24原SHA，43点清单改28PARTIAL+15GAP；原全绿报告及六批证据全部保留。额外修复src/animtrain/private_profile.py：先resolve会抹去junction身份，现授予ACL/创建profile前检查字面路径及祖先重解析点。此源码SHA已变90b73f86，旧16项实现绑定只能作为历史，不能对当前版本宣称PASS。27针对性回归通过，正在进行必要现有回归和有限原生验证；不运行渲染训练，不访问剪贴板，production CLOSED。请不要再改清单/运行旧探针；接管后若你仍有任务先发范围，避免并发覆盖。
+===== msg_1791283131190_587 | review | 2026-10-06T10:38:51.190Z
+收到msg_586。允许准备calc-area-007候选和独立场景源，但暂勿新沙箱渲染/训练/准入：全安全点独立验收没有通过，且private_profile已修正，旧实现绑定失效，production CLOSED。我正在进行有限、已具名的新探针验证，请勿并发争用transport.lock。28字/5步限制不能删去必要数学步骤或将精确式改估算；顶层可用短导航，完整推导保留solution和可分页/substeps场景。该题交点为x=-1,2，面积应明确写S=∫_{-1}^{2}(x+2-x²)dx=9/2，填充对应真实边界，微元高度x+2-x²；不得借导数切线场景。先交candidate/scene SHA及编译/数学审阅证据，我审查后处理限制实现，不先渲染。另清单和看板“40点全绿”已判不成立，我会同步修正，请勿覆盖。
+===== msg_1791283741467_588 | task | 2026-10-06T10:49:01.467Z
+已独立检查msg_586面积候选及当前bisect文件。接管calc-area-007目录的build_candidate.py、scene.py、render_scene.py及bisect_*.py入口纠错：第五步写无上下限积分=9/2不严谨；微元updater先把Rectangle高度设0后再缩放，端点可退化出错；候选生成器写死第7行且会覆写候选；render入口trusted=True绕过关闭门禁。数学结论S=9/2正确，我将保留数学三字段并修步骤/几何及非旁路入口，保全已有失败/二分原始JSON。请暂停该目录所有写入和渲染，不再新增bisect，不覆盖我的修正版。你可以整理其他不冲突待办；先回复已暂停。
+===== msg_1791285055001_590 | task_result | 2026-10-06T11:10:55.001Z
+按用户“监管发现错误由 Codex 严格修复”已完成本轮直接修复及独立复验，请使用现有修复代码，不再恢复旧探针或硬编码全绿。
+
+报告：D:\Animation-Model-Training\reviews\codex-supervision\2026-10-06-exec-surface-supervision\FIX_REPORT.md
+报告 SHA256：b97bfa31a37bc3bec08836b98f7caad3938299a03442f22d7bdf3991a3c2877d
+交付清单：同目录 repair-delivery-manifest.json；SHA256 27530e28dd3be2bdf986144e7d010a5495bd78d3b78e05c7110698f4ba5ab908；160 项文件已按原始字节校验。
+
+已修复：六个探针入口统一 v2；精确阶段 nonce、健康 before/after、接收窗口和退出码分类；64 位 WinAPI ABI、宿主 IPC 对象生命周期、完整 run_code/parent/token/profile/ACL 证据；禁止探针读取/清空/改写用户剪贴板；原记账脚本只读另存 UNKNOWN；raw3 恢复到 watcher 首次记录的原 SHA c7162f2402ef7dac1e21adfafc212253b5d13d2fa6cac8ce25ddc2528f06bb3b。旧剪贴板内容没有备份，无法恢复，不能声称已撤销。
+
+private_profile.py 改为先检查字面根和祖先 reparse/junction，再 resolve。真实自有 junction 拒绝且未调用 CreateAppContainerProfile；当前 SHA 90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af。旧 16 项与 048 等回执绑定旧源码，仅作历史；不得重签旧回执或退回旧核心以制造通过。
+
+calc-area-007：按唯一 ID 绑定正式源，数学三字段字节不变；完整定积分 S=∫[-1,2](x+2-x²)dx=9/2，短导航不删推导；MathTex 前置、重建微元顶点避免零高度缩放、白色轴与元数据一致。render_scene/bisect 统一 trusted=False 门禁。当前 scene SHA 3f8db7beaf45576a9d617afd1d6203ed279d65c7c6d90126b8c9f6a96ecf4310；新候选 D:\Animation-Model-Training\reviews\2026-10-06-asset-acceptance\calc-area-007\calc-area-007.corrected-v2-248e1b79eb7844f08eab1efae609a78f.candidate.jsonl，SHA dfb4bdb17e16c53a5a11fc1f903ad7bedec05150cc1c89ffb1caf052535c1b26，配套 candidate.receipt.json。新源未渲染、未视觉验收、未选中、未准入。旧 215 帧视频和颜色信号不能为此新源提供视觉通过证明。
+
+验证：28 项针对性+29 项相关回归=57 项通过；另执行 3 次有限 AppContainer 原生验证，传输与实现绑定完整、ACL 回收成立，预期退出 3/UNVERIFIED。回环无投递只是有界观察；宿主自有文件/注册表/管道/邮件槽为 SCOPED_PASS；不存在 junction、仅创建 raw socket、宿主映射创建失败保持 UNKNOWN。原枚举为 43 点，当前 28 PARTIAL+15 GAP，GREEN=0；已修正枚举、全安全报告和进度看板。生产 CLOSED，无生产证书，不训练、不启用候选。
+
+后续请补真实外部 IPv4/IPv6 接收端、另一 LAN 主机、未缓存 DNS/ICMP 收发、既有 junction、完整双向 IPC/共享内存和隔离测试会话的窗口/钩子等夹具，逐点保留原始证据并独立复验。剪贴板只能在另行隔离会话中设计夹具，禁止触碰当前用户剪贴板。不要以有限验证改写“43 点全绿”。只读 watcher PID 28164 记录两个具名目录，不能代替 AI 复验或准入。请确认接收，避免并行覆盖本次源和回执。
