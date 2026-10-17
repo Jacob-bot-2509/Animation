@@ -1,103 +1,157 @@
-"""diversity 证据只读准备:行 SHA 绑定表 + 结构模板 + 待审列表。
-
-按 Codex FIX_REPORT 定序第 3 步:"Claude 可只读生成 diversity 结构模板、
-全量实际 train ID 与原始行 SHA 的绑定表及待审列表。每条数学、变体、泄漏裁决
-和 user_review 都必须来自实际审核;无审核保留待审,不能代签 APPROVED。"
-
-行 SHA 口径(协议 §3):绑定原始 JSONL 行字节,**含原始行结束字节**。
-本脚本不改任何现役文件,只写本目录新文件。
+"""Static diversity binding preparation v2. Never emits review approvals.
+One captured manifest/policy/source snapshot, exact file and raw-line bindings.
+Publishes only to a new project-owned generation; COMPLETE.json is written last.
 """
-import hashlib
-import json
-import sys
+from __future__ import annotations
+import argparse,hashlib,json,os,re,uuid
 from pathlib import Path
+ROOT=Path(__file__).absolute().parents[4]
+HERE=Path(__file__).absolute().parent
+HEX=re.compile(r"[0-9a-f]{64}")
+SID=re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}")
+DEVICES={"con","prn","aux","nul",*(f"com{i}" for i in range(1,10)),*(f"lpt{i}" for i in range(1,10))}
 
-ROOT = Path(__file__).resolve().parents[4]
-HERE = Path(__file__).resolve().parent
-MANIFEST = ROOT / "data" / "manifest.json"
-POLICY = ROOT / "configs" / "training_diversity_policy.json"
+def sha_bytes(b):return hashlib.sha256(b).hexdigest()
+def json_bytes(v):return (json.dumps(v,ensure_ascii=True,sort_keys=True,indent=2)+"\n").encode()
 
+def strict_json(raw):
+    def pairs(items):
+        out={}
+        for key,value in items:
+            if key in out:raise ValueError("duplicate_json_key")
+            out[key]=value
+        return out
+    return json.loads(raw.decode("utf-8"),object_pairs_hook=pairs)
 
-def sha_bytes(b: bytes) -> str:
-    return hashlib.sha256(b).hexdigest()
+def canonical_relative(value):
+    if type(value) is not str or not value:raise ValueError("relative_path_type")
+    # Existing manifest consistently uses Windows separators. Preserve its raw
+    # bytes as an input pin; normalize only this explicitly typed manifest field.
+    if "/" in value and "\\" in value:raise ValueError("mixed_path_separators")
+    value=value.replace("\\","/")
+    for part in value.split("/"):
+        if (not part or part in (".","..") or part.endswith(("."," "))
+            or not re.fullmatch(r"[A-Za-z0-9_.-]+",part)
+            or part.split(".")[0].casefold() in DEVICES):
+            raise ValueError("noncanonical_relative")
+    return value
 
+def project_path(path,project=ROOT,*,writing=False):
+    raw=os.fspath(path)
+    if any(x in (".","..") for x in raw.replace("\\","/").split("/")):
+        raise ValueError("dot_path")
+    p=Path(raw)
+    if not project.is_absolute() or not project.is_relative_to(ROOT):
+        raise ValueError("project_must_stay_inside_authorized_project")
+    if not p.is_absolute() or not p.is_relative_to(project):
+        raise ValueError("outside_project")
+    canonical_relative(p.relative_to(project).as_posix())
+    for q in (p,*p.parents):
+        if q.exists() or q.is_symlink():
+            st=q.lstat()
+            if q.is_symlink() or getattr(st,"st_file_attributes",0)&0x400:
+                raise ValueError("reparse_path")
+            if writing and q.is_dir() and (q/"delivery-manifest.json").exists():
+                raise ValueError("frozen_output")
+            if writing and q.is_file() and st.st_nlink>1:
+                raise ValueError("hardlink_output")
+        if q==ROOT:break
+    return p
 
-def main() -> int:
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    policy = json.loads(POLICY.read_text(encoding="utf-8"))
-
-    bindings = []
+def collect(project=ROOT):
+    manifest_path=project_path(project/"data/manifest.json",project)
+    policy_path=project_path(project/"configs/training_diversity_policy.json",project)
+    captured={manifest_path:manifest_path.read_bytes(),policy_path:policy_path.read_bytes()}
+    manifest=strict_json(captured[manifest_path]);policy=strict_json(captured[policy_path])
+    if type(manifest) is not dict or type(manifest.get("entries")) is not list:
+        raise ValueError("manifest_schema")
+    concepts=policy.get("concepts") if type(policy) is dict else None
+    if type(concepts) is not list or not concepts:raise ValueError("policy_concepts")
+    concept_ids=[c.get("id") if type(c) is dict else None for c in concepts]
+    if any(type(c) is not str or not re.fullmatch(r"C[0-9]{2}",c) for c in concept_ids) or len(set(concept_ids))!=len(concept_ids):
+        raise ValueError("duplicate_or_invalid_concept")
+    bindings=[];seen_ids=set();seen_files=set();source_files=[]
     for entry in manifest["entries"]:
-        if entry["split"] != "train":
-            continue
-        p = (MANIFEST.parent / entry["path"]).resolve()
-        data = p.read_bytes()
-        # splitlines(keepends=True):保留原始行结束字节(CRLF/LF/无)
-        for line_no, raw in enumerate(data.splitlines(keepends=True), 1):
-            if not raw.strip():
-                continue
-            try:
-                obj = json.loads(raw.decode("utf-8"))
-            except Exception as exc:  # noqa: BLE001
-                bindings.append({"sample_id": None, "source_path": str(entry["path"]),
-                                 "line_no": line_no,
-                                 "raw_line_sha256": sha_bytes(raw),
-                                 "parse_error": exc.__class__.__name__})
-                continue
-            sid = obj.get("sample_id") or obj.get("id")
-            bindings.append({"sample_id": sid, "source_path": str(entry["path"]),
-                             "line_no": line_no, "raw_line_sha256": sha_bytes(raw),
-                             "parse_error": None})
+        if type(entry) is not dict or entry.get("split") not in ("train","eval","test"):
+            raise ValueError("manifest_entry")
+        if entry["split"]!="train":continue
+        rel=canonical_relative(entry["path"])
+        if not rel.startswith("v2/train/") or not rel.endswith(".jsonl"):raise ValueError("not_training_jsonl")
+        if rel.casefold() in seen_files:raise ValueError("duplicate_source_path")
+        seen_files.add(rel.casefold())
+        p=project_path(project/"data"/rel,project);raw=p.read_bytes();captured[p]=raw
+        expected=entry.get("sha256")
+        if type(expected) is not str or not HEX.fullmatch(expected) or sha_bytes(raw)!=expected:
+            raise ValueError("manifest_source_sha_mismatch")
+        if type(entry.get("size")) is not int or entry["size"]!=len(raw):
+            raise ValueError("manifest_source_size_mismatch")
+        source_files.append({"project_source_path":p.relative_to(project).as_posix(),"sha256":expected,"bytes":len(raw)})
+        for line_no,line in enumerate(raw.splitlines(keepends=True),1):
+            if not line.strip():continue
+            obj=strict_json(line)
+            if type(obj) is not dict:raise ValueError("record_not_object")
+            sid=obj.get("sample_id",obj.get("id"))
+            if "sample_id" in obj and "id" in obj and obj["sample_id"]!=obj["id"]:
+                raise ValueError("conflicting_record_identity")
+            if type(sid) is not str or not SID.fullmatch(sid) or sid in seen_ids:
+                raise ValueError("missing_or_duplicate_record_id")
+            seen_ids.add(sid)
+            bindings.append({"sample_id":sid,"source_path":entry["path"],
+                "project_source_path":p.relative_to(project).as_posix(),
+                "source_file_sha256":expected,"line_no":line_no,
+                "raw_line_sha256":sha_bytes(line),"raw_line_includes_terminator":True,
+                "canonical_record_sha256":sha_bytes(json.dumps(obj,ensure_ascii=True,sort_keys=True,separators=(",",":")).encode()),
+                "parse_error":None})
+    if not bindings:raise ValueError("empty_train")
+    for p,raw in captured.items():
+        if p.read_bytes()!=raw:raise ValueError("inputs_changed_during_collection")
+    pending=[{**b,"concept_id":None,"variant_kind":None,"user_review":None,
+              "math_verdict":None,"diversity_verdict":None,"leakage_verdict":None,
+              "state":"PENDING_REVIEW"} for b in bindings]
+    template={"schema":1,"status":"BINDINGS_COLLECTED_REVIEWS_PENDING",
+        "manifest_sha256":sha_bytes(captured[manifest_path]),"policy_sha256":sha_bytes(captured[policy_path]),
+        "policy_concepts_total":len(concepts),"actual_train_ids_total":len(bindings),
+        "source_files":source_files,
+        "record_reviews":[{**b,"concept_id":None,"variant_kind":None,"user_review":None,
+                           "math_review":None,"diversity_review":None,"leakage_review":None,
+                           "review_state":"PENDING"} for b in bindings],
+        "qualification":"BINDINGS_ONLY_NOT_DIVERSITY_OR_TRAINING_APPROVAL"}
+    files={"row-bindings.jsonl":b"".join(json.dumps(b,ensure_ascii=True,sort_keys=True).encode()+b"\n" for b in bindings),
+           "pending-review-list.jsonl":b"".join(json.dumps(b,ensure_ascii=True,sort_keys=True).encode()+b"\n" for b in pending),
+           "template.json":json_bytes(template)}
+    return files,captured
 
-    # 绑定表:纯事实,不含任何审核字段
-    (HERE / "row-bindings.jsonl").write_text(
-        "\n".join(json.dumps(b, ensure_ascii=False) for b in bindings) + "\n",
-        encoding="utf-8")
+def write_generation(out,files,captured,*,project=ROOT,approved_parent=HERE):
+    out=project_path(out,project,writing=True)
+    if out.parent!=approved_parent or not re.fullmatch(r"generation-[0-9a-f]{32}",out.name):
+        raise ValueError("new_immediate_generation_required")
+    if set(files)!={"row-bindings.jsonl","pending-review-list.jsonl","template.json"}:
+        raise ValueError("output_set")
+    for p,raw in captured.items():
+        if project_path(p,project).read_bytes()!=raw:raise ValueError("inputs_changed_before_write")
+    out.mkdir()  # Exclusive reservation. Incomplete generations are never reused.
+    for name,data in files.items():
+        f=project_path(out/name,project,writing=True)
+        with f.open("xb") as z:z.write(data);z.flush();os.fsync(z.fileno())
+    # Recheck actual copied bytes and still-current inputs before completion.
+    for name,data in files.items():
+        if (out/name).read_bytes()!=data:raise ValueError("output_changed")
+    for p,raw in captured.items():
+        if p.read_bytes()!=raw:raise ValueError("inputs_changed_before_completion")
+    complete={"schema":"diversity-bindings-generation-v2","status":"COMPLETE_BINDINGS_ONLY",
+              "builder_sha256":sha_bytes(Path(__file__).read_bytes()),
+              "artifacts":[{"path":n,"bytes":len(b),"sha256":sha_bytes(b)} for n,b in sorted(files.items())]}
+    with project_path(out/"COMPLETE.json",project,writing=True).open("xb") as z:
+        z.write(json_bytes(complete));z.flush();os.fsync(z.fileno())
+    return complete
 
-    # 待审列表:每个 train ID 一条,审核字段全部 null(待审),不代填
-    pending = []
-    for b in bindings:
-        if b["sample_id"] is None:
-            continue
-        pending.append({
-            "sample_id": b["sample_id"],
-            "raw_line_sha256": b["raw_line_sha256"],
-            "concept_id": None, "variant_kind": None,
-            "user_review": None, "math_verdict": None,
-            "diversity_verdict": None, "leakage_verdict": None,
-            "state": "PENDING_REVIEW",
-        })
-    (HERE / "pending-review-list.jsonl").write_text(
-        "\n".join(json.dumps(x, ensure_ascii=False) for x in pending) + "\n",
-        encoding="utf-8")
-
-    # 结构模板:只给形状;status 只标事实,审核字段留 null
-    template = {
-        "schema": 1,
-        "status": "BINDINGS_COLLECTED_REVIEWS_PENDING",
-        "manifest_sha256": sha_bytes(MANIFEST.read_bytes()),
-        "policy_sha256": sha_bytes(POLICY.read_bytes()),
-        "policy_concepts_total": len(policy.get("concepts", [])),
-        "actual_train_ids_total": len(pending),
-        "record_reviews": [
-            {"sample_id": x["sample_id"], "raw_line_sha256": x["raw_line_sha256"],
-             "concept_id": None, "variant_kind": None,
-             "user_review": None, "math_review": None,
-             "diversity_review": None, "leakage_review": None,
-             "review_state": "PENDING"}
-            for x in pending
-        ],
-        "note": "每条数学、变体、泄漏裁决与 user_review 必须来自实际审核;"
-                "本模板不代签 APPROVED/VERIFIED,未审核项保持 PENDING。",
-    }
-    (HERE / "template.json").write_text(
-        json.dumps(template, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    print(f"bindings={len(bindings)} pending={len(pending)} "
-          f"policy_concepts={len(policy.get('concepts', []))}")
-    print("ids:", [b["sample_id"] for b in bindings][:12], "...")
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument("--generation-name",default="generation-"+uuid.uuid4().hex);args=parser.parse_args()
+    files,captured=collect()
+    out=HERE/args.generation_name
+    complete=write_generation(out,files,captured)
+    print(json.dumps({"generation":str(out),"status":complete["status"],
+                      "train_ids":json.loads(files["template.json"])["actual_train_ids_total"]}))
     return 0
 
-
-if __name__ == "__main__":
-    sys.exit(main())
+if __name__=="__main__":raise SystemExit(main())

@@ -1,0 +1,194 @@
+{
+  "schema_version": "sampling-design-supplement-v2",
+  "status": "DESIGN",
+  "relates_to": "source-registration/numina_cot.sampling-plan.json",
+  "revision": "9d8d210c9f6a36c8f3cd84045668c9b7800ef517",
+  "note": "补 sampling-plan 的 required_before_execution:学科/难度整数配额、计数单位、族代表规则、不足规则。数据未落地前本表为 PROPOSED_SCHEMA,不执行抽样、不下载。",
+  "execution_ready": false,
+  "subject_taxonomy": {
+    "proposed_subjects": [
+      "algebra",
+      "geometry",
+      "number_theory",
+      "combinatorics",
+      "calculus_analysis",
+      "probability_statistics",
+      "other"
+    ],
+    "mapping_procedure": "Bind actual available fields or a separately reviewed frozen rubric/classifier; label subject and difficulty per record, not by source. Audit at least ceil(N/20) records and report exact agreement counts. Resolve ambiguity/UNKNOWN independently; no classification or sampling in this review."
+  },
+  "difficulty_taxonomy": {
+    "proposed_levels": [
+      "basic",
+      "competition",
+      "olympiad"
+    ],
+    "source_prior": {
+      "cn_k12": "basic",
+      "math": "competition",
+      "amc_aime": "competition",
+      "synthetic_amc": "competition",
+      "olympiads": "olympiad",
+      "aops_forum": "olympiad"
+    },
+    "note": "source_prior 只是先验,不替代逐条标定;同 source 内难度仍有分布,标定时可上调/下调并记录理由"
+  },
+  "subject_difficulty_quotas": {
+    "unit": "1 配额单位 = 1 个核心族代表记录(族内翻译/换数值版本不占额度)",
+    "target_total": 300,
+    "proposed_table": [
+      {
+        "subject": "algebra",
+        "basic": 15,
+        "competition": 25,
+        "olympiad": 20
+      },
+      {
+        "subject": "geometry",
+        "basic": 10,
+        "competition": 25,
+        "olympiad": 25
+      },
+      {
+        "subject": "number_theory",
+        "basic": 5,
+        "competition": 15,
+        "olympiad": 20
+      },
+      {
+        "subject": "combinatorics",
+        "basic": 5,
+        "competition": 15,
+        "olympiad": 20
+      },
+      {
+        "subject": "calculus_analysis",
+        "basic": 15,
+        "competition": 15,
+        "olympiad": 10
+      },
+      {
+        "subject": "probability_statistics",
+        "basic": 15,
+        "competition": 15,
+        "olympiad": 10
+      },
+      {
+        "subject": "other",
+        "basic": 5,
+        "competition": 10,
+        "olympiad": 5
+      }
+    ],
+    "table_sum_check": {
+      "computed_sum": 300,
+      "target_total": 300,
+      "integer_arithmetic": true
+    },
+    "source_layer_caps": "See joint_constraints.source_caps and bound parent plan; full-target feasibility requires every source cap to be met exactly.",
+    "proposed_adjustments": {
+      "changes": [
+        {
+          "subject": "calculus_analysis",
+          "difficulty": "basic",
+          "before": 10,
+          "after": 15
+        },
+        {
+          "subject": "probability_statistics",
+          "difficulty": "basic",
+          "before": 10,
+          "after": 15
+        }
+      ],
+      "rationale": "Correct the 10-unit arithmetic deficit by adding 5 basic units to each of calculus/analysis and probability/statistics within the existing proposed taxonomy. Proposal only, not user-approved allocations or a claim of actual supply."
+    }
+  },
+  "family_representative_rule": {
+    "grouping": "All existing variants with the same core solution structure belong to one family, including numerical/symbolic changes, translations and low-text-similarity versions. Exact text or source is not the whole criterion.",
+    "eligibility": "Propagate known core leakage CONFLICT to the whole family; UNKNOWN membership/core/exposure stays quarantined. License/math eligibility and the frozen classification decision precede representative ranking. Preserve all original records and reasons.",
+    "representative": "Among the pre-qualified members of a CLEAR family, select the lowest frozen sort_key; tie by complete raw_record_sha256 then stable source_record_id. Freeze before capacity calculation, not after observing quota failures.",
+    "counting": "One selected representative costs one quota unit. Other members remain in the family ledger and never enter another split/use or count as extra independent training questions.",
+    "exclusivity": "A family and its fixed representative have exactly one source and one subject/difficulty cell. Resolve ambiguous attributions or keep UNKNOWN; do not silently use 'other'."
+  },
+  "shortage_rule": {
+    "automatic_transfer": false,
+    "rule": "Keep the frozen subject/difficulty table and source caps fixed. If max-flow<300, report the exact maximum and unfilled cells; keep GAP and do not execute a full-target selection.",
+    "revision": "A proposed redistribution is a new plan version with before/after integer table, reasons, source caps, feasibility receipt and review before selection. It is not a silent transfer or post-hoc retry. Never relabel difficulty/core or replace representatives to force feasibility.",
+    "no_fabrication": "No numeric variants, duplicated families, cross-subject padding, external/frozen-set borrowing, cap overrun or unrecorded re-sampling."
+  },
+  "post_sampling_bindings": [
+    "实际选中清单含:source_record_id、raw_record_sha256、学科/难度标定值与理由、族 ID、代表标志",
+    "leakage-review.jsonl 按协议 §4.1 绑定各集合 SHA 与 CLEAR/CONFLICT/UNKNOWN 处置",
+    "分类器/映射规则源码 SHA 与版本写入 records.jsonl 转换器字段"
+  ],
+  "open_items": [
+    "Actual revision/files/license/math/leakage and family eligibility still pending",
+    "Frozen rubric/classifier and actual field mapping still pending",
+    "Actual complete source-by-subject-by-difficulty capacity matrix still pending; positive cell counts alone do not prove joint feasibility",
+    "Source caps sum to full target, so source shortages cannot be hidden by inter-source transfers",
+    "This supplement is a proposed bound overlay; parent plan execution_ready remains false"
+  ],
+  "generated_by": "claude-code",
+  "generated_at": null,
+  "generated_at_note": "Author timestamp was in the future relative to this review/commit; actual generation time is unknown.",
+  "original_reported_generated_at": null,
+  "revised_at": "2026-10-17T12:06:31.942746+08:00",
+  "revised_by": "codex",
+  "parent_plan_sha256": "6b1082d8d2d2221c1521b7cc39ed847a882f3aee180d202205e452b901789c3f",
+  "proposal_status": "PROPOSED_SCHEMA_NOT_EXECUTED",
+  "joint_constraints": {
+    "source_caps": [
+      {
+        "source": "olympiads",
+        "cap": 90
+      },
+      {
+        "source": "cn_k12",
+        "cap": 60
+      },
+      {
+        "source": "amc_aime",
+        "cap": 50
+      },
+      {
+        "source": "math",
+        "cap": 50
+      },
+      {
+        "source": "synthetic_amc",
+        "cap": 30
+      },
+      {
+        "source": "aops_forum",
+        "cap": 20
+      }
+    ],
+    "variables": "x[s,u,d] are nonnegative integers counting unique eligible family representatives.",
+    "eligible_capacity": "A[s,u,d] must be computed only after frozen qualification, family grouping, representative choice and exclusive source/subject/difficulty attribution.",
+    "constraints": [
+      "For each (u,d): sum_s x[s,u,d] = q[u,d]",
+      "For each s: sum_(u,d) x[s,u,d] <= cap[s]",
+      "For every cell: 0 <= x[s,u,d] <= A[s,u,d]",
+      "sum_(s,u,d) x[s,u,d] = 300"
+    ],
+    "feasibility_method": "Integer max-flow: source -> 6 source bins (caps) -> 21 subject/difficulty bins (eligible capacities) -> sink (quotas). Require max-flow=300; this checks counts only, not individual evidence or sampling approval.",
+    "source_cap_equality_implication": "Because total caps=300=target, any feasible full selection uses every source cap exactly. One exhausted source cannot be compensated by exceeding another source cap.",
+    "capacity_status": "PENDING_REAL_ELIGIBLE_FAMILY_COUNTS",
+    "unique_attribution": "One frozen representative per core family; source is that representative's source, not any other family member's source. No family may count in multiple cells.",
+    "selection_after_feasibility": "With frozen cell counts, deterministic rank within each disjoint cell chooses representatives once. The max-flow helper neither reads nor selects any questions; no IID/uniform-random guarantee."
+  },
+  "classification_quality": {
+    "status": "PENDING_FROZEN_RUBRIC_CLASSIFIER_AND_ACTUAL_LABELS",
+    "audit_fraction": "1/20",
+    "audit_minimum_count": "ceil(N/20) = (N+19)//20, for integer N>=0",
+    "audit_interpretation": "Audit sample agreement is a diagnostic only; record its exact numerator/denominator and coverage. It does not certify all labels or authorize sampling. Independently resolve disagreements and UNKNOWN before freezing the selected representatives.",
+    "requirements": [
+      "Bind actual available source fields; do not presume problem_type exists",
+      "Freeze rubric, model/prompt/version/parameters and code SHA before classification",
+      "Record subject and difficulty decisions separately; source prior is not a label",
+      "Do not expose sealed evaluation or holdout contents to the classifier/tuner",
+      "No model or classifier invoked in this review"
+    ]
+  }
+}

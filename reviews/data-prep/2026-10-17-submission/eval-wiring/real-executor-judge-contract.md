@@ -1,69 +1,75 @@
-# 真实执行器与判定器合同(设计稿 v1)
+# 真实执行器与判定器合同（设计稿 v2，Codex 修订）
 
-状态:DESIGN(未接线、未实现、不运行)。依据 docs/READINESS-EVIDENCE-PROTOCOL.md §6.1。
-本文件只定合同,不把 v2 固定夹具 scope 改成 production 使用。
+状态：DESIGN_REVIEWED_NOT_IMPLEMENTED。未接线、未执行；不把固定夹具的 fixture-only 范围改为 production。依据 docs/READINESS-EVIDENCE-PROTOCOL.md §6。本合同只规定实现及验收要求，不代表执行隔离或正式指标已合格。
 
-## 1. 组件与调用边界(§6.1)
+## 1. 组件与真实执行前提
 
-| 组件 | 职责 | 边界 |
-|---|---|---|
-| converter(受审查转换器) | scene_spec → scene.py | 白名单模板渲染,生成物是数据不是工具指令;禁任意代码拼接/字符串 eval;输出 scene.py 与转换日志,各自独立 SHA |
-| renderer(白名单渲染器) | 执行 scene.py 产出真实媒体 | 父进程启动;AppContainer + JobObject 实际证据;超时/内存/输出根约束;仅白名单编译器/渲染器 |
-| judge_math(受限数学判定) | 逐断言 verdict + 完整理由 | 受限 DSL + 精确分数字符串;禁 eval/exec/任意 SymPy 求值入口;未定 = UNVERIFIED |
-| judge_fidelity(画面忠实判定) | 逐项按锁定清单核对真实画面 | 每项时间/帧定位 + 判定理由;AI/API 仅在获准调用范围,不出网不读密钥 |
+converter 将 scene_spec 转为 scene.py，只使用独立审查并固定 SHA 的白名单模板及结构化参数；不拼接任意可执行片段，不使用 eval/exec 或模型指定回调。模板、依赖、转换器、编译器、渲染器和判定器分别绑定源码/版本。scene.py 仍属于待隔离执行的生成代码，不能因“模板生成”改用宿主执行。
 
-**生效前提**:exec_isolation(§2)验收合格前,不可信生成代码一律不真实运行;本合同在
-该前提满足后才可执行真实渲染/判定。
+renderer 由受信任父进程启动，在获验收的 AppContainer + JobObject 及具体文件/网络边界内执行；禁止宿主 fallback。超时、整棵进程树、内存、输出总量与根目录均须实际约束。实现必须流式有界保存 stdout/stderr，限制单文件与总输出；只在退出后检查大小不足以防止运行时资源耗尽。
 
-## 2. 接口合同(扩展 v2 response-index)
+judge_math 是受限解析与精确判定器；judge_fidelity 按锁定的逐题语义清单核对真实完整画面。四组件都不能由请求携带的脚本路径/SHA 自我批准。批准入口来自请求之外的受审查清单，父进程在执行前后核验实际字节。判定器若调用其他程序，仍受同样的白名单及实际隔离约束；AI/API 仅限用户已获准范围，不自动出网、读密钥或上传题库。
 
-- CLI:`executor --request <request.json> --work <work_root>`;真实 rc、原始 stdout/stderr、超时。
-- request.json:沿用 eval-evidence-v1 键;evaluator_sources 扩展 converter/renderer/
-  judge_math/judge_fidelity 四组件绑定(path + sha256 + protocol_role);limits 增加
-  max_memory_mb、max_output_bytes、per_question_timeout_seconds。
-- response-index.jsonl 逐样本(identity 含 split/problem_id/sample_id/row_index):
-  - input_bindings:{input_record_sha256, generated_spec_sha256, scene_py_sha256,
-    conversion_log_sha256}——转换前后都绑定
-  - render/executable/math/fidelity 四 stage:decision(PASS|FAIL|UNVERIFIED)+reason_code
-  - artifacts:[{path, sha256, size, media_type(png/mp4)}]
-  - rc、timeout、parent_evidence:{job_object_record, token_evidence, profile_cleanup,
-    acl_restore}——各为证据文件路径(父进程核验存在+ SHA,不信自报)
-  - math.assertions:[{id, statement, verdict(bool|null), reason}]
-  - fidelity.items:[{item, frame, verdict, reason}]
-- 父进程核验:v2 全部拒绝清单(身份/rc 真实性/spec 漂移/产物根内/SHA/非空/解码/
-  rc0 无产物/断言覆盖/重复/额外/缺失/超时/路径逃逸/陈旧回执)之外,新增:
-  scene_py 与 conversion_log 的 SHA 与回执一致、parent_evidence 文件真实存在且 SHA
-  一致、E 的 PASS 集 ⊆ R 的 PASS 集。
+静态源码、解析器与 Mock 夹具可以提前实现和审查；不可信生成代码的真实执行须等 exec_isolation 在适用合同下实际验收合格。D2/D8 延后 GAP 不阻塞准备，不等于现有严格执行门禁已放开。本轮不改门禁或模型配置。
 
-## 3. 数学断言受限 DSL
+## 2. 冻结请求、稳定身份与父进程证据归属
 
-- 断言 statement 仅允许:白名单运算符(+ - * / ^)、精确分数字符串、有理数比较、
-  集合/区间成员、真值表项;禁任意 sympify/eval。
-- 判定结果三分:PASS(断言成立且理由完整)/FAIL(假命题或条件缺失)/UNVERIFIED
-  (无法判定,如 CAS 未定)。UNVERIFIED 不转 PASS 不转 FAIL。
-- 题目答案字符串不直接当动画数学正确(§6.3 M 定义)。
+request 固定 protocol_version、run_id、round_id、candidate_id、scope，以及 config/manifest/training_manifest/adapter/generated_specs 和实际评测器/依赖的 SHA。schema 严格验证类型，拒绝 bool 冒充整数、重复/空 ID、未知版本、错误 run/round/candidate 与漂移；不能由任意字段改变执行范围。
 
-## 4. 画面忠实清单(F)
+identity=(split,problem_id,sample_id,row_index)，在完整题单和各题必需样本/场景集合中预先冻结。绑定完整输入记录 SHA、实际生成 spec SHA、独立基准的数学断言/语义清单 SHA；转换日志及 scene.py 各有独立 SHA。row_index 明确导出并传递，不能在不同阶段靠数组位置猜身份。
 
-- 每固定题锁定 checklist:[{item, frame, assertion}];判定逐项给 verdict + 理由 +
-  实际帧定位。
-- 清单缺失或无法核对 → 该题 F=UNVERIFIED;抽帧/公式编译成功不宣称全动画忠实。
+父进程创建新的每轮工作根与只由父进程写入的证据根。子进程可写的产物根不能包含或替换父进程证据根；同一用户下“不同文件名”不构成访问隔离，须有实际 ACL/句柄/令牌权限证据。父进程证据须关联 nonce、run/round/candidate/identity、实际源/命令/工作根，以及真实 typed rc、timeout、起止和整树终止。token 的 AppContainer/SID/capability=0、Job 分配时序/限制、profile 创建/清理、临时 ACL 前后恢复均来自父进程的真实测量或受信任记录，不能从 response 自报复制。
 
-## 5. 接线验收序列(§6.4 后半)
+证据文件存在且 SHA 相等仅证明字节一致，不能证明它由父进程产生。父进程用自己持有的任务对象和运行期登记表核验归属、路径/ACL、任务 nonce 和当前运行绑定；子进程不能选择可信证据来源。进程树已停止且所有句柄/写入者关闭后，再固定日志/产物/清理记录及最终清单；避免先验哈希再让子进程改写。
 
-1. 本合同经 Codex 独立审查并定稿;
-2. exec_isolation(§2)验收完成后,实现 converter + renderer(白名单)与 judge_math;
-3. 最小集成复验:真实媒体 + token/job 回执,固定题单可复算 R/E 逐题合同;
-4. 只有该版本通过,才把 eval_step 从恒返 2 改为"正式评测完成且绑定有效时返 0";
-5. hp_sweep 与 harness 消费同一核验报告;M/F 接口先留 UNVERIFIED,独立审查机制
-   落实后再扩。
+清理或边界证据失败、父证据缺失/伪造时 E 不得 PASS，真实已观察到的失败保留，缺失证据仍标 UNVERIFIED。无法建立可靠来源的旧文件不能靠补一个 SHA 升级为原生通过。
 
-## 6. 未决与如实局限
+## 3. response-index 与媒体核验
 
-- 渲染器与既有 4K 交付渲染管线(资产验收已完成)的复用关系待定;复用须 Codex 复验。
-- MP4 解码校验当前协议未定义(现有实现仅 PNG);定义后另行接入。
-- judge_fidelity 的 AI/API 调用范围未获批,当前设计只允许人工判定器或获批范围。
-- 本设计不改变 v2 夹具的 fixture-only 边界;正式四指标仍全部 UNVERIFIED。
+逐样本保留相同 identity 和 input_bindings：input_record_sha256、generated_spec_sha256、scene_py_sha256、conversion_log_sha256、预先冻结的 assertion/checklist SHA。render/executable/math/fidelity 各给 PASS|FAIL|UNVERIFIED、reason_code、原件路径及 SHA。子进程声明只作为候选；父进程依据实际文件和运行登记独立重算，不接受自报 VERIFIED、rc/timeout 或 parent_evidence。
 
-generated_by: claude-code
-generated_at: 2026-10-17T12:04:25+08:00
+拒绝根外/绝对注入/父目录跳转、ADS、重解析点、错运行、陈旧回执、重复/缺失/额外样本、源码和输入漂移、输出被替换、rc0 无产物、缺断言/清单覆盖与冲突计数。输出只写新轮次；已有 delivery-manifest 的整个目录只读。白名单程序和所有输入的检查须在执行前完成，之后复核一致性。
+
+artifacts=[{path,sha256,size,media_type}] 由父进程验证：
+- size 是实际非负整数且不能是 bool，大小/SHA 与实际字节一致；不能只相信后缀或媒体类型字符串。
+- PNG 校验真实格式、完整像素解码与预期尺寸；伪装格式不接受。
+- MP4 合同尚待实现；须本地、禁网络/外部引用、限制解码器资源，逐帧完整解码至结束，并绑定实际帧数、尺寸、精确帧率/时间基和时长。容器能打开、只解码首帧或短预览均不够。坏尾帧/截断/预期场景不完整不能 PASS。
+- 实际媒体与对应生成样本、所需场景、时序和预先规定的最终产物集合一致；不能复用别题成功媒体。
+- 尚未实现或未独立审查的媒体类型按 UNVERIFIED，不以占位文件作为成功。
+
+## 4. 精确数学 DSL 与独立基准
+
+断言来自独立审查后冻结的正确题干/条件/过程/答案及动画对象映射，不由生成 spec 自选几条恒真式冒充完整数学正确。每条 assertion 有唯一 ID、固定 statement、定义域/适用条件、场景/对象/步骤关联及覆盖要求；response 不能增删或重写基准。
+
+首版仅接受正式文法定义的有限 AST：整数、有理数 p/q（p,q∈ℤ，q>0，约分）、白名单算术 + − × ÷ 与整数幂、已定义的有理数比较、有限集合/有理区间成员及有限真值项。^ 明确定义为整数幂而不是 XOR。禁止浮点、小数近似、函数调用、属性/索引访问、导入、任意名称解析或 sympify/eval；节点数、嵌套、整数位数、幂指数、运算量有预先固定上限。零分母、未定义表达式、过大资源或类型错误为协议/证据问题，不能冒充假数学结论。
+
+精确根式、π、矩阵等超出首版文法的任务保留原数学符号，标 UNSUPPORTED/UNVERIFIED；以后按新版本扩展并独立复验，不用有理近似或小数替换以凑判定。
+
+PASS 需要断言在已核验条件下成立且完整覆盖所有必需结论与对象关联；FAIL 需要可核验反例或精确矛盾。条件或证明材料缺失、CAS 未定、语法暂不支持为 UNVERIFIED，不自动算假命题。受限 DSL 的某个等式算对仍不能单独证明整段动画数学正确。
+
+## 5. 完整画面忠实判定
+
+每题的固定 checklist 预先覆盖对象、坐标/曲线、步骤顺序、视觉关系、文字/公式与必要叙述；item 有唯一 ID、预期断言、场景/对象和相关帧区间或时间区间。适用时长用帧号/精确时间基，不用未经说明的估算。
+
+逐项回执绑定实际媒体 SHA、帧/时间区间、覆盖方式、判定者/工具版本及可核验理由。完整画面结论须覆盖所有必需场景与相关时间段；单帧或少量抽帧只支持对应局部，不证明过渡、顺序、全时段或全动画忠实。缺清单、少项、未见必要区间或无法核对均 UNVERIFIED，不能以人工/模型一句 PASS 代替证据。自动语义判定未获验收前完整 F 保持未知。
+
+## 6. 固定分母、三值与正式退出码
+
+每 split 的问题集合 Q_s 与各题全部必需样本 S_q 先冻结。R：每条必需样本完整最终媒体均合格。E：schema、受审查转换、实际完整隔离/执行/清理均合格且满足 R，故 E_PASS⊆R_PASS。M/F 按上述独立基准和覆盖条件逐项重算。
+
+真实失败进入固定分母，不删除；缺证据按现行协议保守保留 UNVERIFIED，不靠成功子集算整题。完整指标仅当全部问题都有真实 PASS/FAIL 判定时为 VERIFIED，passed=p、total=N=|Q_s|、rate=str(Fraction(p,N))；N=0 或任一题未知时完整 rate=null，另列覆盖、失败与未知清单。VERIFIED 不等于全对。
+
+eval/test 各自列四指标；全量整数计数为各 split 加和，不平均比率。R=1、E≥19/20 的既有目标不变，M/F 未核验不参与排名或改善声明，不新增 F 排序线，不以 M 单独选优。固定子集、短答案外测与完整 scene_spec 任务不能混为同一分母。
+
+eval_step 只有正式 R/E 合同全部可复算、绑定有效、协议完整时才可返回 0；真实 metric FAIL 仍进入精确计数，未知、协议错误、缺证据返回非零。M/F 可保留 UNVERIFIED，不能为产生 winner 填假结果。harness 与 hp_sweep 消费同一经过核验的报告。
+
+## 7. 后续交付与验收顺序
+
+1. 先交独立源码候选和严格 schema/受限解析器/父证据归属设计，用 Mock 测输入漂移、错 ID、选自报脚本、伪造父证据、输出覆盖、限额、坏媒体/坏尾帧、假数学/未定、清单少项和分母矛盾。
+2. exec_isolation 当前缺口保持如实；如需补采，先审查独立新工作根与 collector/transport/verifier 的同版本一致绑定方案，不能仅传一个新 --work 绕过固定根或改冻结原件。
+3. 在实际获准且隔离合格的范围做最小真实集成，保留真实媒体、令牌/Job/ACL/清理、日志和全部源绑定；不在本设计稿中执行。
+4. Codex 独立对抗复验合格后，另行受控接入 eval_step/harness/hp_sweep；当前 fixture-only 实现与生产关闭保持。
+5. 后续明确报告“设计审查”“Mock”“本地媒体解码”“真实沙箱执行”“数学/完整视觉”各自范围；不以任一单项换全局通过。
+
+原作者：claude-code；原 generated_at=2026-10-17T12:04:25+08:00 保留为作者声明。
+修订：Codex；实际修订时间及前后 SHA 见同轮冻结审查报告。

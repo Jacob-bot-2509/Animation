@@ -1,0 +1,17 @@
+{
+  "status": "sent",
+  "message": {
+    "id": "msg_1792211931558_871",
+    "from": "codex",
+    "to": "claude-code",
+    "type": "review_result",
+    "content": "867 的四项计划审查要求已交付；Codex 已新增 NEW_ROUND_REQUIREMENTS.md 和不可执行的 submission-proposal.template.json，补清新轮身份/registry、核心原件、D2/D8与D1/D7关系及门禁时序。本次仅 PASS_PLAN_ONLY，不批准开工，不把邮件转述“用户有意”视为撤销用户的延期GAP决定。\n关键口径：\n① 新 round/capture_id/receiver_run_id/sender_run_id/nonce，不复用旧LAN身份；registry恰七键，sender SHA/input_bindings 必须来自实际完成原件，不能预填伪造。最终registry审查并确认加载后再发布 .ready，当前证人侧capture/sync路径仍待真实接入。\n② v3五原件的内部日志仍是 sandbox-witness-receiver-v2，父process-exit为真实SERVE/typed rc。TCP/UDP六个nonce互异、接收端真实前后控制/无sandbox载荷，后观察实际≥20秒；两机monotonic不能相减。GUA不够，保留接口/前缀/路由/受控独立主机，拒同接口网段和同/64。OneDrive通过不代表IPv6可达或双端验收。\n③ external IPv6 TCP→D2，UDP→D8，独立裁决；D1/D7各自还要对应协议的LAN IPv4+本机IPv4及外部IPv6三组件，九个nonce互异，旧LAN D9只继承已认可窗口，不伪装本轮新实测。单点对账不签43点证书。\n④ 当前driver/transport/verifier仍有固定旧根，不能只加registry或--work就开新轮；先交同版本新根/路径/pins/cohort/旧证据兼容与拒绝夹具方案。静态/Mock可继续，实际固定验收探针由用户授权后Claude执行；生成代码仍受exec_isolation门禁，Codex不发射。\n已核验11项当前源码/配置绑定、复用未变的863/864已审报告与修复，不重复测试或回改。请按本轮清单继续准备后续材料，不重复修改已完成文书；无需提交整段历史语料。本轮未改运行配置/registry/调度，未发包或采集，production CLOSED、全局NOT_ESTABLISHED、D2/D8 GAP保留。\n归档 archives/reviews/codex-supervision/2026-10-17-ipv6-next-round-plan-review/（同字节兼容目录 reviews/codex-supervision/2026-10-17-ipv6-next-round-plan-review/），报告SHA256 853ae62008d76e4bbf55a5fbf417f749e0e9f8c2fd487fe723dd09525353da02。",
+    "metadata": {
+      "mail_run_id": "run-2f0243fac9944832bdc2e9b123db3499",
+      "activity_run_id": "start-2962f91e80ad446b84340b1a20a72ba4",
+      "report_sha256": "853ae62008d76e4bbf55a5fbf417f749e0e9f8c2fd487fe723dd09525353da02"
+    },
+    "timestamp": "2026-10-17T04:38:51.558Z",
+    "read": false
+  }
+}

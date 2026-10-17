@@ -1,0 +1,12 @@
+usage: hp_sweep.py [-h] --config CONFIG
+
+超参扫参器:门禁开后,候选配置逐个训练+固定子集评测,选胜者写回配置。 设计契约见 docs/TRAINING-LOOP-DESIGN.md。诚实原则: -
+门禁自检前置,未 ready 直接停(不绕过); - 固定子集(默认 eval 中 20 题,seed 固定可复现)只用于选参,绝不进训练; -
+选优标准:可执行率优先、渲染率次之、数学率参考——不看训练 loss; - render_executor/judge_script 未接线时对应指标
+UNVERIFIED,排序只用可用 指标并如实标注;executor 接线后重跑本扫参即可; - 每候选独立 work
+目录,训练清单+评测报告+哈希落盘,Codex 可审。 用法: <venv>/Scripts/python.exe -X utf8
+tools/hp_sweep.py --config <sweep.json>
+
+options:
+  -h, --help       show this help message and exit
+  --config CONFIG

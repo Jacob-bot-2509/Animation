@@ -1,0 +1,4 @@
+{
+  "initial_attempt": "Reading first byte of active Windows locked file failed with PermissionError, expected mandatory-lock behavior. No bytes changed.",
+  "revised_probe": "Open existing file, seek without reading/writing, attempt LK_NBLCK, record busy; release only if unexpectedly acquired."
+}

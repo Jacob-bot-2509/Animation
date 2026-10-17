@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-10-17T11:40:39.935446+08:00",
+  "checks": {
+    "observer_single_instance_lock_held": true,
+    "consumer_single_instance_lock_held": true,
+    "observer_heartbeat_after_launch": true,
+    "observer_process_query_ok": true,
+    "consumer_no_new_jobs": true,
+    "observer_stderr_empty": true,
+    "consumer_stderr_empty": true,
+    "no_stop_controls": true
+  },
+  "observer": {
+    "time": "2026-10-17T11:40:36.884229+08:00",
+    "watcher_pid": 47080,
+    "head": "14013a7deac3f995f3d163ffae281147ea2c3f8f",
+    "process_observation": {
+      "status": "OK",
+      "error": null
+    },
+    "claude_tree": [
+      {
+        "ProcessId": 21888,
+        "ParentProcessId": 32488,
+        "Name": "claude.exe"
+      },
+      {
+        "ProcessId": 23392,
+        "ParentProcessId": 21888,
+        "Name": "conhost.exe"
+      }
+    ],
+    "child_jobs": [],
+    "core_drift": [
+      "src/animtrain/network_isolation.py",
+      "src/animtrain/appcontainer.py",
+      "src/animtrain/render_gate.py",
+      "reviews/2026-10-04-acceptance-support/network_acceptance.py"
+    ]
+  },
+  "consumer_latest": {
+    "production": "CLOSED",
+    "results": []
+  },
+  "consumer_latest_mtime_ns": 1792208437782217200,
+  "consumer_stdout_bytes": 205,
+  "consumer_stdout_tail": [
+    "{\"results\": [], \"production\": \"CLOSED\"}",
+    "{\"results\": [], \"production\": \"CLOSED\"}"
+  ]
+}

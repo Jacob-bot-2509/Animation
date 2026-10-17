@@ -1,0 +1,254 @@
+{
+  "schema": "text-fragment-plan-v2",
+  "sources": [
+    "\u8ba8\u8bba\u51fd\u6570\u9879\u7ea7\u6570 $\\sum_{n=1}^{\\infty} \\frac{x^n}{n^2}$ \u5728\u533a\u95f4 $[-1, 1]$ \u4e0a\u662f\u5426\u4e00\u81f4\u6536\u655b\u3002",
+    "\u7b2c\u4e00\u6b65\uff1a\u7ed8\u5236\u76f4\u89d2\u5750\u6807\u7cfb\uff0c\u7528\u6d45\u7070\u8272\u753b\u51fa\u4e24\u6761\u4e0a\u4e0b\u5bf9\u79f0\u7684\u754c\u76f4\u7ebf $y = \\pm \\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\pm \\frac{\\pi^2}{6}$\u3002",
+    "\u7b2c\u4e8c\u6b65\uff1a\u4f9d\u6b21\u7ed8\u5236\u524d1\u9879\u3001\u524d3\u9879\u3001\u524d5\u9879\u3001\u524d20\u9879\u7684\u90e8\u5206\u548c\u66f2\u7ebf\uff0c\u7528\u4e0d\u540c\u989c\u8272\u533a\u5206\u3002",
+    "\u7b2c\u4e09\u6b65\uff1a\u5c55\u793a\u968f\u7740\u9879\u6570 $N$ \u589e\u5927\uff0c\u90e8\u5206\u548c\u66f2\u7ebf\u7684\u201c\u6ce2\u52a8\u201d\u5b8c\u5168\u88ab\u9650\u5236\u5728\u4e0a\u4e0b\u754c\u76f4\u7ebf\u4e4b\u95f4\u3002",
+    "\u7b2c\u56db\u6b65\uff1a\u9ad8\u4eae\u5c55\u793a\u968f\u7740 $N$ \u589e\u5927\uff0c\u90e8\u5206\u548c\u66f2\u7ebf\u5728\u533a\u95f4 $[-1,1]$ \u4e0a\u4e00\u81f4\u903c\u8fd1\u6781\u9650\u51fd\u6570\uff08\u4ee5\u9ad8\u9879\u6570\u90e8\u5206\u548c $N=200$ \u4f5c\u4e3a\u6781\u9650\u51fd\u6570\u7684\u8fd1\u4f3c\u53c2\u8003\u66f2\u7ebf\uff09\u3002",
+    "\u7b2c\u4e94\u6b65\uff1a\u53f3\u4fa7\u5c55\u793a M-\u5224\u522b\u6cd5\u7684\u6570\u5b66\u63a8\u5bfc\u8fc7\u7a0b\uff0c\u5f3a\u8c03 $\\frac{1}{n^2}$ \u8d77\u5230\u7684\u201c\u63a7\u5236\u201d\u4f5c\u7528\u3002",
+    "\u4e00\u81f4\u6536\u655b"
+  ],
+  "chunk_chars": 32,
+  "per_page_lines": 5,
+  "rows": [
+    {
+      "source_index": 0,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u8ba8\u8bba\u51fd\u6570\u9879\u7ea7\u6570 ",
+          "start": 0,
+          "end": 8
+        },
+        {
+          "kind": "math",
+          "content": "\\sum_{n=1}^{\\infty} \\frac{x^n}{n^2}",
+          "start": 8,
+          "end": 45
+        },
+        {
+          "kind": "text",
+          "content": " \u5728\u533a\u95f4 ",
+          "start": 45,
+          "end": 50
+        },
+        {
+          "kind": "math",
+          "content": "[-1, 1]",
+          "start": 50,
+          "end": 59
+        },
+        {
+          "kind": "text",
+          "content": " \u4e0a\u662f\u5426\u4e00\u81f4\u6536\u655b\u3002",
+          "start": 59,
+          "end": 68
+        }
+      ]
+    },
+    {
+      "source_index": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e00\u6b65\uff1a\u7ed8\u5236\u76f4\u89d2\u5750\u6807\u7cfb\uff0c\u7528\u6d45\u7070\u8272\u753b\u51fa\u4e24\u6761\u4e0a\u4e0b\u5bf9\u79f0\u7684\u754c\u76f4\u7ebf ",
+          "start": 0,
+          "end": 29
+        },
+        {
+          "kind": "math",
+          "content": "y = \\pm \\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\pm \\frac{\\pi^2}{6}",
+          "start": 29,
+          "end": 94
+        },
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 94,
+          "end": 95
+        }
+      ]
+    },
+    {
+      "source_index": 2,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e8c\u6b65\uff1a\u4f9d\u6b21\u7ed8\u5236\u524d1\u9879\u3001\u524d3\u9879\u3001\u524d5\u9879\u3001\u524d20\u9879\u7684\u90e8\u5206\u548c\u66f2\u7ebf\uff0c\u7528",
+          "start": 0,
+          "end": 32
+        }
+      ]
+    },
+    {
+      "source_index": 2,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u4e0d\u540c\u989c\u8272\u533a\u5206\u3002",
+          "start": 32,
+          "end": 39
+        }
+      ]
+    },
+    {
+      "source_index": 3,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e09\u6b65\uff1a\u5c55\u793a\u968f\u7740\u9879\u6570 ",
+          "start": 0,
+          "end": 11
+        },
+        {
+          "kind": "math",
+          "content": "N",
+          "start": 11,
+          "end": 14
+        },
+        {
+          "kind": "text",
+          "content": " \u589e\u5927\uff0c\u90e8\u5206\u548c\u66f2\u7ebf\u7684\u201c\u6ce2\u52a8\u201d\u5b8c\u5168\u88ab\u9650\u5236\u5728",
+          "start": 14,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "source_index": 3,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u4e0a\u4e0b\u754c\u76f4\u7ebf\u4e4b\u95f4\u3002",
+          "start": 34,
+          "end": 42
+        }
+      ]
+    },
+    {
+      "source_index": 4,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u56db\u6b65\uff1a\u9ad8\u4eae\u5c55\u793a\u968f\u7740 ",
+          "start": 0,
+          "end": 11
+        },
+        {
+          "kind": "math",
+          "content": "N",
+          "start": 11,
+          "end": 14
+        },
+        {
+          "kind": "text",
+          "content": " \u589e\u5927\uff0c\u90e8\u5206\u548c\u66f2\u7ebf\u5728\u533a\u95f4 ",
+          "start": 14,
+          "end": 27
+        },
+        {
+          "kind": "math",
+          "content": "[-1,1]",
+          "start": 27,
+          "end": 35
+        },
+        {
+          "kind": "text",
+          "content": " \u4e0a\u4e00\u81f4\u903c\u8fd1",
+          "start": 35,
+          "end": 41
+        }
+      ]
+    },
+    {
+      "source_index": 4,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u6781\u9650\u51fd\u6570\uff08\u4ee5\u9ad8\u9879\u6570\u90e8\u5206\u548c ",
+          "start": 41,
+          "end": 54
+        },
+        {
+          "kind": "math",
+          "content": "N=200",
+          "start": 54,
+          "end": 61
+        },
+        {
+          "kind": "text",
+          "content": " \u4f5c\u4e3a\u6781\u9650\u51fd\u6570\u7684\u8fd1\u4f3c\u53c2\u8003\u66f2\u7ebf\uff09\u3002",
+          "start": 61,
+          "end": 77
+        }
+      ]
+    },
+    {
+      "source_index": 5,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e94\u6b65\uff1a\u53f3\u4fa7\u5c55\u793a M-\u5224\u522b\u6cd5\u7684\u6570\u5b66\u63a8\u5bfc\u8fc7\u7a0b\uff0c\u5f3a\u8c03 ",
+          "start": 0,
+          "end": 25
+        },
+        {
+          "kind": "math",
+          "content": "\\frac{1}{n^2}",
+          "start": 25,
+          "end": 40
+        },
+        {
+          "kind": "text",
+          "content": " \u8d77\u5230\u7684\u201c\u63a7",
+          "start": 40,
+          "end": 46
+        }
+      ]
+    },
+    {
+      "source_index": 5,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u5236\u201d\u4f5c\u7528\u3002",
+          "start": 46,
+          "end": 51
+        }
+      ]
+    },
+    {
+      "source_index": 6,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u4e00\u81f4\u6536\u655b",
+          "start": 0,
+          "end": 4
+        }
+      ]
+    }
+  ],
+  "provisional_pages": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      10
+    ]
+  ],
+  "layout": "UNVERIFIED_REQUIRES_NATIVE_MEASUREMENTS",
+  "source_sha256": "9c6cfed96880a7e21ff6aec62e6b16e559bebc19225d668e046e5902b6c7fd90"
+}

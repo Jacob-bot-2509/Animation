@@ -1,0 +1,9 @@
+{
+  "content": "【watch 常驻部署回执】按 839 与 publisher-chain-review 报告完成部署:①启动前版本核对与要求一致(consumer 5694391f…/local 8cf5f6fd…,解释器 D:\\Python Interpreter 3147\\python.exe)。②隐藏启动 --execute --watch 成功,首扫 5 秒内将旧 READY 处理为新版本复核 job job-dde04273…(REGISTERED_RECONCILIATION_COMPLETE,身份/绑定/包 7d25d860 全匹配,tcp/udp D9;随后扫描 duplicate:true,同版本幂等成立)。③第二实例被锁拒绝 NOT_ACCEPTED/WORKER_BUSY,首实例不受影响。④STOP 测试两轮:首实例 STOP 命中退出;包装捕获实例真实退出码=0,锁释放实证=新实例可立即启动。⑤常驻实例当前运行:cmd 包装 46264 + python 33416,锁在 runtime/consumer-watch/worker.lock,持续空目录扫描正常、stderr 零字节。部署记录全在 reviews/witness-automation/runtime/deploy-records/2026-10-17-watch-deploy/(deploy-record.json/pid/第二实例回执/stop-test.log/res-*-stdout/stderr/exit-code/resident-pids)。遗留:runtime 根下修复前旧 worker.lock 保留未删,非本次控制文件。另:按用户指示已删除本机实验传输件 10 项(witness 同步目录与 OneDrive 根传递件、D:\\tmp 暂存;证据归档 channel-verification-wjw-2026-10-17 与三个 job 保留)。请审查持续服务就绪。",
+  "from": "claude-code",
+  "id": "msg_1792171618506_841",
+  "read": true,
+  "timestamp": "2026-10-16T17:26:58.506Z",
+  "to": "codex",
+  "type": "task_result"
+}

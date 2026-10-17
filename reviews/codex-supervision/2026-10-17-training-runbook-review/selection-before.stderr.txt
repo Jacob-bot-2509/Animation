@@ -1,0 +1,224 @@
+test_all_unverified_has_no_winner (__main__.SweepSelectionTests.test_all_unverified_has_no_winner) ... FAIL
+test_boolean_counts_rejected (__main__.SweepSelectionTests.test_boolean_counts_rejected) ... ERROR
+test_cli_refuses_winner_when_simulated_eval_is_unverified (__main__.SweepSelectionTests.test_cli_refuses_winner_when_simulated_eval_is_unverified) ... FAIL
+test_count_and_fraction_mismatch_rejected (__main__.SweepSelectionTests.test_count_and_fraction_mismatch_rejected) ... ERROR
+test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) ... 
+  test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value='0.5') ... ERROR
+  test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value=0.5) ... FAIL
+  test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value=nan) ... FAIL
+  test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value='1/0') ... ERROR
+test_denominator_binds_total_questions (__main__.SweepSelectionTests.test_denominator_binds_total_questions) ... ERROR
+test_fraction_rates_sort_exactly (__main__.SweepSelectionTests.test_fraction_rates_sort_exactly) ... ERROR
+test_math_only_cannot_select_execution_winner (__main__.SweepSelectionTests.test_math_only_cannot_select_execution_winner) ... ERROR
+test_near_one_does_not_round_to_tie (__main__.SweepSelectionTests.test_near_one_does_not_round_to_tie) ... ERROR
+test_unverified_claimed_high_rate_is_ignored (__main__.SweepSelectionTests.test_unverified_claimed_high_rate_is_ignored) ... ERROR
+
+======================================================================
+ERROR: test_boolean_counts_rejected (__main__.SweepSelectionTests.test_boolean_counts_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 39, in test_boolean_counts_rejected
+    with self.assertRaises(ValueError):self.rank([candidate('bad',metric(True,1,rate='1'))])
+                                       ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_count_and_fraction_mismatch_rejected (__main__.SweepSelectionTests.test_count_and_fraction_mismatch_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 37, in test_count_and_fraction_mismatch_rejected
+    with self.assertRaises(ValueError):self.rank([candidate('bad',metric(1,2,rate='1'))])
+                                       ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value='0.5')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 43, in test_decimal_rate_is_not_accepted_as_exact_metric
+    self.rank([candidate('bad',metric(1,2,rate=value))])
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value='1/0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 43, in test_decimal_rate_is_not_accepted_as_exact_metric
+    self.rank([candidate('bad',metric(1,2,rate=value))])
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_denominator_binds_total_questions (__main__.SweepSelectionTests.test_denominator_binds_total_questions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 46, in test_denominator_binds_total_questions
+    with self.assertRaises(ValueError):self.rank([row])
+                                       ~~~~~~~~~^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_fraction_rates_sort_exactly (__main__.SweepSelectionTests.test_fraction_rates_sort_exactly)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 25, in test_fraction_rates_sort_exactly
+    self.assertEqual([x['name'] for x in self.rank([candidate('low',metric(3,4)),candidate('high',metric(4,5))])],['high','low'])
+                                         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_math_only_cannot_select_execution_winner (__main__.SweepSelectionTests.test_math_only_cannot_select_execution_winner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 35, in test_math_only_cannot_select_execution_winner
+    self.assertEqual(self.rank([candidate('math-only',m=metric())]),[])
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 60, in key
+    -(mt if mt is not None else -1))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_near_one_does_not_round_to_tie (__main__.SweepSelectionTests.test_near_one_does_not_round_to_tie)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 28, in test_near_one_does_not_round_to_tie
+    self.assertEqual(self.rank([candidate('less',metric(n-1,n)),candidate('one',metric(n,n))])[0]['name'],'one')
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+ERROR: test_unverified_claimed_high_rate_is_ignored (__main__.SweepSelectionTests.test_unverified_claimed_high_rate_is_ignored)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 33, in test_unverified_claimed_high_rate_is_ignored
+    self.assertEqual([x['name'] for x in self.rank([candidate('unknown',unknown),candidate('known',metric(1,2))])],['known'])
+                                         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 23, in rank
+    def rank(self,rows):return self.ns['rank_candidates'](rows)
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 61, in rank_candidates
+    return sorted(candidates, key=key)
+  File "D:\Animation-Model-Training\tools\hp_sweep.py", line 58, in key
+    return (-(ex if ex is not None else -1),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary -: 'str'
+
+======================================================================
+FAIL: test_all_unverified_has_no_winner (__main__.SweepSelectionTests.test_all_unverified_has_no_winner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 30, in test_all_unverified_has_no_winner
+    self.assertEqual(self.rank([candidate('a'),candidate('b')]),[])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'name': 'a', 'status': 'OK', 'metrics': [345 chars]e}}}] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+{'name': 'a', 'status': 'OK', 'metrics': {'executable': {'status': 'UNVERIFIED', 'rate': None}, 'render': {'status': 'UNVERIFIED', 'rate': None}, 'math': {'status': 'UNVERIFIED', 'rate': None}}}
+
++ []
+- [{'metrics': {'executable': {'rate': None, 'status': 'UNVERIFIED'},
+-               'math': {'rate': None, 'status': 'UNVERIFIED'},
+-               'render': {'rate': None, 'status': 'UNVERIFIED'}},
+-   'name': 'a',
+-   'status': 'OK'},
+-  {'metrics': {'executable': {'rate': None, 'status': 'UNVERIFIED'},
+-               'math': {'rate': None, 'status': 'UNVERIFIED'},
+-               'render': {'rate': None, 'status': 'UNVERIFIED'}},
+-   'name': 'b',
+-   'status': 'OK'}]
+
+======================================================================
+FAIL: test_cli_refuses_winner_when_simulated_eval_is_unverified (__main__.SweepSelectionTests.test_cli_refuses_winner_when_simulated_eval_is_unverified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 65, in test_cli_refuses_winner_when_simulated_eval_is_unverified
+    self.assertEqual(rc,2);self.assertFalse(winner.exists())
+    ~~~~~~~~~~~~~~~~^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 42, in test_decimal_rate_is_not_accepted_as_exact_metric
+    with self.subTest(value=value),self.assertRaises(ValueError):
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_decimal_rate_is_not_accepted_as_exact_metric (__main__.SweepSelectionTests.test_decimal_rate_is_not_accepted_as_exact_metric) (value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\tests\test_hp_sweep_selection.py", line 42, in test_decimal_rate_is_not_accepted_as_exact_metric
+    with self.subTest(value=value),self.assertRaises(ValueError):
+                                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.031s
+
+FAILED (failures=4, errors=9)

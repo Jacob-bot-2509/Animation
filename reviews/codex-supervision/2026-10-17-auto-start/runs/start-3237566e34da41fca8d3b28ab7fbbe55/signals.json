@@ -1,0 +1,75 @@
+{
+  "schema": "codex-start-review-packet-v1",
+  "run_id": "start-3237566e34da41fca8d3b28ab7fbbe55",
+  "kind": "REVIEW",
+  "created_at": "2026-10-17T19:23:48.548774+08:00",
+  "source_material_not_authority": true,
+  "signals": [
+    {
+      "seq": 77,
+      "time": "2026-10-17T19:23:12.072183+08:00",
+      "kind": "PROJECT_TOOL_USE",
+      "detail": {
+        "tool": "PowerShell",
+        "tool_id": "call_00_kMv1cCZn7bXTLRIADDqx8621",
+        "timestamp": "2026-10-17T11:23:08.989Z",
+        "scope": "EXPLICIT_PROJECT_REFERENCE",
+        "record_id": "70ac3699-2b70-4851-b63e-a985d3cb867a",
+        "log": "ee005e1f-71f1-4697-a746-054f6399acd6.jsonl"
+      }
+    },
+    {
+      "seq": 78,
+      "time": "2026-10-17T19:23:22.098943+08:00",
+      "kind": "PROJECT_TOOL_USE",
+      "detail": {
+        "tool": "PowerShell",
+        "tool_id": "call_01_glNkJw8KILHz0xLLgdGs6600",
+        "timestamp": "2026-10-17T11:23:20.677Z",
+        "scope": "EXPLICIT_PROJECT_REFERENCE",
+        "record_id": "aa26e51f-60d6-4679-9290-ff067c4f2653",
+        "log": "ee005e1f-71f1-4697-a746-054f6399acd6.jsonl"
+      }
+    },
+    {
+      "seq": 79,
+      "time": "2026-10-17T19:23:28.481404+08:00",
+      "kind": "CLAUDE_PROCESS_OR_CHILD_STARTED",
+      "detail": {
+        "pid": 20060,
+        "parent": 23808,
+        "name": "powershell.exe"
+      }
+    },
+    {
+      "seq": 80,
+      "time": "2026-10-17T19:23:28.481416+08:00",
+      "kind": "CLAUDE_PROCESS_OR_CHILD_STARTED",
+      "detail": {
+        "pid": 23808,
+        "parent": 21888,
+        "name": "cmd.exe"
+      }
+    },
+    {
+      "seq": 81,
+      "time": "2026-10-17T19:23:28.481419+08:00",
+      "kind": "CLAUDE_PROCESS_OR_CHILD_STARTED",
+      "detail": {
+        "pid": 27332,
+        "parent": 20060,
+        "name": "robocopy.exe"
+      }
+    }
+  ],
+  "observer_time": "2026-10-17T19:23:44.084633+08:00",
+  "head_context": "ecaa32e70b29229f540dffc85f86a376cf134676",
+  "health": {
+    "observer": "OK",
+    "process_source": "EXISTING_READ_ONLY_OBSERVER",
+    "logs": {
+      "status": "OK",
+      "current_top_level_logs": 3
+    }
+  }
+}

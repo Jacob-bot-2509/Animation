@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "D:\Animation-Model-Training\reviews\data-prep\2026-10-17-submission\asset-evidence\pick_first_batch_10.py", line 145, in <module>
+    if __name__=="__main__":raise SystemExit(main())
+                                             ~~~~^^
+  File "D:\Animation-Model-Training\reviews\data-prep\2026-10-17-submission\asset-evidence\pick_first_batch_10.py", line 138, in main
+    result=build()
+  File "D:\Animation-Model-Training\reviews\data-prep\2026-10-17-submission\asset-evidence\pick_first_batch_10.py", line 111, in build
+    cache={};rows=[bind_record(k,v,cache=cache) for k,v in sorted(records.items())]
+                   ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Animation-Model-Training\reviews\data-prep\2026-10-17-submission\asset-evidence\pick_first_batch_10.py", line 56, in bind_record
+    if source.get("sha256")!=file_sha:raise ValueError("source_file_sha_mismatch")
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: source_file_sha_mismatch

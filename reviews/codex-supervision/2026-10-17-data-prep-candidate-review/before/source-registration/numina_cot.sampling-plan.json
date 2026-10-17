@@ -1,0 +1,36 @@
+{
+  "schema_version": "sampling-plan-v1",
+  "status": "DESIGN",
+  "scope": "NuminaMath-CoT 训练候选题源抽样方案(采样前锁定;抽样后记录实际选中与每条排除理由)",
+  "revision": "9d8d210c9f6a36c8f3cd84045668c9b7800ef517",
+  "cap_total": 2000,
+  "first_batch_total": 300,
+  "seed": "20261017",
+  "algorithm": "deterministic-stratified-v1:每层内按 sort_key=SHA256(revision:source:row_index:seed) 升序取前 N;row_index 为文件内实际行序;可重放",
+  "strata": [
+    {"source": "olympiads", "first_batch_quota": 90, "note": "学科深度优先"},
+    {"source": "cn_k12", "first_batch_quota": 60, "note": "Codex 854 口径:标记不等于现成中文,语言逐条实测;若实测与分层不符则重定"},
+    {"source": "amc_aime", "first_batch_quota": 50},
+    {"source": "math", "first_batch_quota": 50},
+    {"source": "synthetic_amc", "first_batch_quota": 30},
+    {"source": "aops_forum", "first_batch_quota": 20}
+  ],
+  "group_core_rules": [
+    "相同 problem 文本跨层/重复 → 视为同核心族,整体一组分配用途,不逐行随机切开",
+    "翻译版本与原文同族(该集处理链含译英)",
+    "同核心族按组进出,不按行切开"
+  ],
+  "exclusion_rules": [
+    "无 solution 字段或空",
+    "题解不匹配(独立数学核验失败)",
+    "与 holdout 391 候选池、现有 train/eval/test、外测集语义核心冲突(泄漏审查阶段判定,CLEAR/CONFLICT/UNKNOWN 各记)",
+    "许可未决记录(上游来源许可无法核验者)"
+  ],
+  "expansion_rule": "首批各层按质量信号(独立数学核验通过率)加权扩配额,总量≤2000;任何单层不超过其首批配额的 10 倍",
+  "insufficiency_rule": "某层合格数不足配额时如实报告不足与原因,不造数值变体凑数",
+  "post_sampling": [
+    "记录实际选中清单与每条排除理由",
+    "records.jsonl:source_record_id/raw_record_sha256/problem/solution 原始来源/语言/学科难度/转换器 SHA/勘误版本/独立数学理由",
+    "leakage-review.jsonl 绑定 train/eval/test、外测与适用 holdout 各版本 SHA,独立理由与处置"
+  ]
+}

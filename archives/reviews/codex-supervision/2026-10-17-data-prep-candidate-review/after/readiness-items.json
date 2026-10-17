@@ -1,0 +1,83 @@
+{
+  "schema_version": "readiness-items-v1",
+  "status": "DESIGN",
+  "generated_at": null,
+  "generated_by": "claude-code",
+  "note": "每项状态只写 DESIGN/COLLECTED/INDEPENDENTLY_VERIFIED/GAP,未知字段 null 并说明,不填想要达到的结果",
+  "readiness_required": [
+    {
+      "name": "gpu",
+      "status": "COLLECTED",
+      "evidence": "source-registration/raw-preflight-manifest.txt(含 gpu PASS 行:NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB)",
+      "note": "只读查询,未分配训练任务;独立复核按实际调用核验"
+    },
+    {
+      "name": "model_dir",
+      "status": "COLLECTED",
+      "evidence": ".models/qwen3-4b git revision 1cfa9a7208912126459214e8b04321603b3df60c;文件 SHA 见 evidence-index.json",
+      "note": "PROVENANCE.json 为未跟踪本地新增文件;strict 模型检查输出未跑,null"
+    },
+    {
+      "name": "data_manifest",
+      "status": "GAP",
+      "evidence": null,
+      "note": "现役 data/manifest.json 不在本协议替换范围;新候选静态构建待抽样后"
+    },
+    {
+      "name": "run_snapshot",
+      "status": "GAP",
+      "evidence": null,
+      "note": "数据/源码/配置固定后由 tools/run_record.py 产生,不手写"
+    },
+    {
+      "name": "asset_evidence",
+      "status": "GAP",
+      "evidence": null,
+      "note": "calc-area-007 缺 output 对象;逐样本完整行待补;不可信代码渲染须 exec_isolation 通过后"
+    },
+    {
+      "name": "freeze_gate",
+      "status": "COLLECTED",
+      "evidence": "source-registration/raw-freeze-eval-v2.txt、raw-freeze-test-v2.txt(均 rc=0,带 --manifest 绑定)",
+      "note": "新版本冻结待切分后另存,不重写旧锁"
+    },
+    {
+      "name": "near_dup_calibrated",
+      "status": "GAP",
+      "evidence": null,
+      "note": "validate.py 固定 near_dup_calibrated=False,无已接通的正式证据消费接口;不能改 B5 calibrated 一键开门"
+    },
+    {
+      "name": "exec_isolation",
+      "status": "GAP",
+      "evidence": null,
+      "note": "按协议第 2 节执行:先交当前 transport/runtime BOUND_FILES 清单与 SHA;LAN D9 仅具名旧窗口继承,非 43 点证书;data/execution_evidence.json 缺失"
+    }
+  ],
+  "additional_required": [
+    {
+      "name": "training_diversity_evidence",
+      "status": "GAP",
+      "note": "schema=1、status=VERIFIED、record_reviews 全覆盖实际 train ID;每概念至少 5 道、至少 3 类形式、53 个概念实际核对;不能拿总量代替"
+    },
+    {
+      "name": "params_and_length",
+      "status": "GAP",
+      "note": "PROPOSED 3 项不得冒充 CONFIRMED;当前量化描述拒绝与 TBD 必须解决;tokenizer 版本/长度逐条清单与超长处置待做"
+    },
+    {
+      "name": "r_e_m_f_wiring",
+      "status": "DESIGN",
+      "note": "Codex repaired fixed-fixture v2: 20 asserted scenarios plus 18 independent adversarial tests passed; all actual R/E/M/F remain UNVERIFIED. No production wiring or real judge."
+    },
+    {
+      "name": "hp_sweep_selection",
+      "status": "INDEPENDENTLY_VERIFIED",
+      "note": "Codex 854:选胜器修复(精确分数/VERIFIED 交叉验证/无验证主指标不选 winner),10 项回归;修后 SHA ae9511694338be8891dbf1d61c39ae99c9dcd96cebe433a4a56f22826468878a",
+      "source_report": "archives/reviews/codex-supervision/2026-10-17-training-runbook-review/SUPERVISION_REPORT.md"
+    }
+  ],
+  "original_reported_generated_at": "2026-10-17 03:0x +08",
+  "generated_at_note": "Unknown original collection time; placeholder removed.",
+  "revised_at": "2026-10-17T11:57:01.920956+08:00"
+}

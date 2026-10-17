@@ -1,0 +1,79 @@
+{
+  "schema": "witness-kit-layout-review-plan-v1",
+  "status": "SOURCE_CLOSURE_INDEXED_NOT_DEPLOYED",
+  "runtime_config": false,
+  "collection_authorized": false,
+  "production": "CLOSED",
+  "kit_root": null,
+  "witness_python_environment_verified": false,
+  "capture_root": null,
+  "staging_root": null,
+  "sync_root": null,
+  "files": [
+    {
+      "layout_path": "tools/witness_consumer.py",
+      "source_path": "tools/witness_consumer.py",
+      "sha256": "5694391fa2414aa0c1fb8f9af49b450230a017602a12c796639094abd58f87a5",
+      "bytes": 12942,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/witness_pack.py",
+      "source_path": "tools/witness_pack.py",
+      "sha256": "2edd38c3715a867e542b54a224fa5ba902ffc81272c4df57f36d8c15054f1a7e",
+      "bytes": 6731,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/witness_registered_adapter.py",
+      "source_path": "tools/witness_registered_adapter.py",
+      "sha256": "344de2450d7b3df93f8ff328d3fc82b7122197eb281008a2aa60545708f9339e",
+      "bytes": 11737,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/witness_transfer_common.py",
+      "source_path": "tools/witness_transfer_common.py",
+      "sha256": "7c36b9e60a1c1aded9b6f6e7015c6adc934d3399d218baef2aa293e64d0cd63a",
+      "bytes": 13902,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/inspect_witness_evidence.py",
+      "source_path": "tools/inspect_witness_evidence.py",
+      "sha256": "87cb989fd1f538b89a53f04e764b4cd5f0eb459bde89ac3a5517846cfa199b23",
+      "bytes": 11379,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/sandbox_external_test_driver.py",
+      "source_path": "tools/sandbox_external_test_driver.py",
+      "sha256": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15",
+      "bytes": 26748,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/start_witness_capture.ps1",
+      "source_path": "tools/start_witness_capture.ps1",
+      "sha256": "39032c5e3b14d699715047cf9f6acbd2bef1c9265916d574ae9f90ca0f3e3545",
+      "bytes": 5474,
+      "witness_use": "publisher_dependency_or_pin_closure_not_all_tools_executed_on_witness"
+    },
+    {
+      "layout_path": "tools/witness_receiver_v3.exe",
+      "source_path": "reviews/codex-supervision/2026-10-09-witness-input-hardening/release/witness_receiver_v3.exe",
+      "sha256": "02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf",
+      "bytes": 8659387,
+      "witness_use": "approved_receiver_bytes_still_require_actual_witness_copy_validation"
+    }
+  ],
+  "publisher_entry": "tools/witness_pack.py",
+  "common_root_rule": "Path(__file__).resolve().parents[1]",
+  "registry_must_be_loaded_before_execute_publish": true,
+  "pack_execute_also_publishes_ready": true,
+  "standalone_receiving_minimum": [
+    "witness_receiver_v3.exe",
+    "start_witness_capture.ps1"
+  ],
+  "actual_witness_copy_and_paths": "PENDING"
+}

@@ -1,0 +1,100 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(0, 1)] = MathTex('\\lim_{x \\to 0} \\frac{\\sin x}{x}', font_size=22)
+        candidate_objects[(1, 1)] = MathTex('A(1,0)', font_size=22)
+        candidate_objects[(3, 1)] = MathTex('B', font_size=22)
+        candidate_objects[(3, 3)] = MathTex('B', font_size=22)
+        candidate_objects[(4, 1)] = MathTex('D', font_size=22)
+        candidate_objects[(4, 3)] = MathTex('OAB', font_size=22)
+        candidate_objects[(5, 1)] = MathTex('OAB', font_size=22)
+        candidate_objects[(6, 1)] = MathTex('A', font_size=22)
+        candidate_objects[(6, 3)] = MathTex('C', font_size=22)
+        candidate_objects[(7, 1)] = MathTex('OAC', font_size=22)
+        candidate_objects[(8, 1)] = MathTex('S_{\\triangle OAB}', font_size=22)
+        candidate_objects[(8, 3)] = MathTex('<', font_size=22)
+        candidate_objects[(8, 5)] = MathTex('OAB', font_size=22)
+        candidate_objects[(8, 7)] = MathTex('<', font_size=22)
+        candidate_objects[(8, 9)] = MathTex('S_{\\triangle OAC}', font_size=22)
+        candidate_objects[(10, 1)] = MathTex('x', font_size=22)
+        candidate_objects[(11, 1)] = MathTex('x \\to 0', font_size=22)
+        candidate_objects[(12, 1)] = MathTex('\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1', font_size=22)
+        candidate_objects[(0, 0)] = Text('求极限 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 2)] = Text(' 的值。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('第一步：绘制直角坐标系和单位圆。在 x 轴上标出点 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 2)] = Text('，并在原点', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('画出一条与 x 轴正方向呈约 45 度的射线。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('第二步：射线与单位圆交于点 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 2)] = Text('，从 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 4)] = Text(' 点向 x 轴作垂线，垂足', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('为 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 2)] = Text('。用黄色半透明填充三角形 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 4)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('第三步：用蓝色半透明填充由射线、x 轴与圆弧围成的扇形 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('第四步：过点 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 2)] = Text(' 作垂直于 x 轴的切线，与射线交于点 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 4)] = Text('，用红', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('色半透明填充三角形 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('第五步：画面右侧展示面积比较关系：', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 2)] = Text('M', font='Microsoft YaHei', font_size=22).set_opacity(0)
+        candidate_objects[(8, 4)] = Text(' 扇形 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 6)] = Text(' 面积 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 8)] = Text('M', font='Microsoft YaHei', font_size=22).set_opacity(0)
+        candidate_objects[(9, 0)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('第六步：拖动射线使其角度 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 2)] = Text(' 缓慢减小，趋于 0。动态显示三个区', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 0)] = Text('域的面积越来越接近，最终在 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 2)] = Text(' 时，三者的视觉边界几乎完全重合。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 0)] = Text('第七步：动画展示代数推导过程，高亮显示 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 0)] = Text('1', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)], candidate_objects[(1, 1)], candidate_objects[(1, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)], candidate_objects[(3, 3)], candidate_objects[(3, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)], candidate_objects[(6, 1)], candidate_objects[(6, 2)], candidate_objects[(6, 3)], candidate_objects[(6, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)], candidate_objects[(8, 3)], candidate_objects[(8, 4)], candidate_objects[(8, 5)], candidate_objects[(8, 6)], candidate_objects[(8, 7)], candidate_objects[(8, 8)], candidate_objects[(8, 9)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)], candidate_objects[(10, 1)], candidate_objects[(10, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(11, 0)], candidate_objects[(11, 1)], candidate_objects[(11, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(12, 0)], candidate_objects[(12, 1)], candidate_objects[(12, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(13, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

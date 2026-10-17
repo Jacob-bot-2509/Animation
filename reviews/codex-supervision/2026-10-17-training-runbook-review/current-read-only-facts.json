@@ -1,0 +1,67 @@
+{
+  "time": "2026-10-17T01:44:55.810221+08:00",
+  "full_preflight_run": false,
+  "render_smoke_run": false,
+  "training_run": false,
+  "manifest_sha256": "11b6ff941798bcdea53de08c22328b45bad1512a6773d274829f2ad7456874a7",
+  "execution_gate": [
+    false,
+    "生产隔离尚未联合验收: [Errno 2] No such file or directory: 'D:\\\\Animation-Model-Training\\\\data\\\\execution_evidence.json'"
+  ],
+  "training_diversity_gate": [
+    false,
+    "Training diversity review evidence is absent"
+  ],
+  "asset_calc_area_007_has_output": false,
+  "sweep_candidates": [
+    {
+      "name": "center-confirmed",
+      "learning_rate": "1/5000",
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "approval": "CONFIRMED",
+      "approval_error": "Unreviewed quantization"
+    },
+    {
+      "name": "pilot-r8",
+      "learning_rate": "1/5000",
+      "lora_r": 8,
+      "lora_alpha": 16,
+      "approval": "PROPOSED",
+      "approval_error": "Hyperparameters are a proposal; a confirmed parameter hash is required"
+    },
+    {
+      "name": "pilot-lr-high",
+      "learning_rate": "1/2500",
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "approval": "PROPOSED",
+      "approval_error": "Hyperparameters are a proposal; a confirmed parameter hash is required"
+    },
+    {
+      "name": "pilot-lr-low",
+      "learning_rate": "1/10000",
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "approval": "PROPOSED",
+      "approval_error": "Hyperparameters are a proposal; a confirmed parameter hash is required"
+    }
+  ],
+  "sweep_manifest": "TBD(训练启动时绑定 current-core 清单,冻结 SHA)",
+  "eval_subset_count_actual_default": 20,
+  "pilot_count_config_only": 78,
+  "freeze_cli": [
+    {
+      "lock": "data/eval-v2.lock.json",
+      "rc": 0,
+      "stdout": "冻结完好\r\n",
+      "stderr": ""
+    },
+    {
+      "lock": "data/test-v2.lock.json",
+      "rc": 0,
+      "stdout": "冻结完好\r\n",
+      "stderr": ""
+    }
+  ]
+}

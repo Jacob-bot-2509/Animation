@@ -1,58 +1,124 @@
 {
+  "schema": "presentation-pipeline-receipt-v2",
+  "run_id": "de7d09f4ddc64cdf",
+  "action": "build",
+  "status": "BUILT_PENDING_RENDER",
+  "started_at": "2026-10-17T20:08:20+08:00",
+  "finished_at": "2026-10-17T20:08:20+08:00",
+  "git": {
+    "head": "11c205398f0d9c6b34cefe890ed5c7270f1c6c1c"
+  },
+  "pipeline": {
+    "path": "D:\\Animation-Model-Training\\reviews\\data-prep\\2026-10-17-submission\\asset-evidence\\presentation-pipeline\\pipeline.py",
+    "sha256": "7d502a039d95bd964fa95ef639e27256fa89654acb900fe64df20d793bf954a5"
+  },
+  "template": {
+    "path": "D:\\Animation-Model-Training\\reviews\\data-prep\\2026-10-17-submission\\asset-evidence\\template-fix-candidate\\render_templates_v3_candidate.py",
+    "version": "text-candidate-v3",
+    "sha256": "81ddd639efb9e443a46617349869ecaf03f207bfcf8e372ff00359377a7f740b"
+  },
+  "inputs": {
+    "bindings": {
+      "path": "D:\\Animation-Model-Training\\reviews\\data-prep\\2026-10-17-submission\\asset-evidence\\presentation-candidates\\presentation-bindings.jsonl",
+      "sha256": "6d5f928ef970e0004ca19db03591df4e55beabd2c3025cfffe0f14911cc55016"
+    },
+    "records": {
+      "path": "D:\\Animation-Model-Training\\archives\\reviews\\codex-supervision\\2026-10-17-first-batch-exact-math-review\\candidate\\records.jsonl",
+      "sha256": "f45865e22398cfac50d1c5d50377a4d404941aefa79e26b125d4f8d26a71883c"
+    }
+  },
   "stages": {
     "generate": {
       "state": "PASS",
-      "records": 10
+      "samples": 10,
+      "recomputed": [
+        "record_sha",
+        "template_sha",
+        "scene_bytes",
+        "plan_sha",
+        "coverage",
+        "geometry_objects"
+      ]
     },
     "render": {
-      "state": "REFUSED_EXEC_EVIDENCE_MISSING"
+      "rendered": false,
+      "source": "src/animtrain/sandbox_execution.py::check_certificate",
+      "certificate": "D:\\Animation-Model-Training\\data\\execution_evidence.json",
+      "state": "REFUSED",
+      "message": "生产隔离尚未联合验收: [Errno 2] No such file or directory: 'D:\\\\Animation-Model-Training\\\\data\\\\execution_evidence.json'"
     },
     "review_pack": {
       "state": "PASS",
       "packs": 10
     }
   },
-  "packs": [
+  "scenes": [
     {
       "sample_id": "calc-limit-006",
-      "pack_dir": "runs\\review-packs\\calc-limit-006"
+      "scene_sha256": "ff852b57bffab84c0b7517edc1c95931d4b69ac1ff406c2a65cde59971059e71",
+      "runnable_sha256": "110e13d80ef35a0b6d154baec24662d2e9737a3b4d2a2ea742e7d6eff69d57a5",
+      "plan_sha256": "da0652131aeac6a3816e14c7721a576f92caecd1d1204235c644db90d2146b9d"
     },
     {
       "sample_id": "eval-prob-007-s1",
-      "pack_dir": "runs\\review-packs\\eval-prob-007-s1"
+      "scene_sha256": "6c9fe56faa4905939ede7e75b2b25bca5e1274f62b9c25f48f934b177468f7b3",
+      "runnable_sha256": "25c6bf81004b781332497c5d08fd18a82e74bc1cd3ca817167e94366de5d8f95",
+      "plan_sha256": "7863e4afe788def4d339eb337737af047acd7d04324e46b4d4222c77df7dfccc"
     },
     {
       "sample_id": "prob-046",
-      "pack_dir": "runs\\review-packs\\prob-046"
+      "scene_sha256": "1bfb81db37c2aad832e00672323733004d5c28ba3558abdc8da4dd6cb5fea314",
+      "runnable_sha256": "d6fb34ff2877a47225392201b1bf5554559810e972160960814c0fc13cf8ace7",
+      "plan_sha256": "258fb4a87e7c897ec44f5e6d5fce605e7ac572861cfc373e2703a5ceec855fe0"
     },
     {
       "sample_id": "prob-042",
-      "pack_dir": "runs\\review-packs\\prob-042"
+      "scene_sha256": "2cead872c80848dc45b2558f8c89dafcca05f007f43d3ae1fe2a76fffcf10d22",
+      "runnable_sha256": "698de92362ed2a35e7fbe4f1ddd5bbcb9af7a3ce43a44eb74ba134a69a356a31",
+      "plan_sha256": "faf63c24a3bf77c09f7ce9de3d94c3d8e1b5ae60cab571835d41341865fbe095"
     },
     {
       "sample_id": "prob-043",
-      "pack_dir": "runs\\review-packs\\prob-043"
+      "scene_sha256": "f8b5d64ec1959c654c0e5d3ea826953e4d06e35741f23441a9574dafbec5a18a",
+      "runnable_sha256": "b047178aee288c5f40804f683e3411ef2e5f5003bd2df90f619b2e3fc91c17cf",
+      "plan_sha256": "1d5c479e6f4521adc0d5be4cc4fd4a855073accde9792a509ba39dea6f101226"
     },
     {
       "sample_id": "calc-double-integral-004",
-      "pack_dir": "runs\\review-packs\\calc-double-integral-004"
+      "scene_sha256": "1722347fa75f610da5dfb37672a23c89e3b8a8221e1cb107819a8015f22d5824",
+      "runnable_sha256": "7f24c64051af7252477963128f1f92617d4a25ad1b16105274c78fd931b05d2b",
+      "plan_sha256": "70eaebae967341a6848290b10b4410809737baada19a18b81e7a46010e022ae6"
     },
     {
       "sample_id": "calc-green-005",
-      "pack_dir": "runs\\review-packs\\calc-green-005"
+      "scene_sha256": "3fb1b0163cbcd80f3fcc947454b12d31d63996e85bcfa7a609d977f801a74037",
+      "runnable_sha256": "6699da3f8a2c8842e3639d40eac88a02767991447fb169f2092ccb570311d501",
+      "plan_sha256": "4f5505f1b611d08e3df7df7711d6578ce7e672b777f7ae1637435a37368a8bf1"
     },
     {
       "sample_id": "calc-series-015",
-      "pack_dir": "runs\\review-packs\\calc-series-015"
+      "scene_sha256": "a650d7ab51fbd7014ad9d77b24851ee8fc06f42235fa4acfa81c0cb2719102b3",
+      "runnable_sha256": "045a7f2ce6b06eb5271d7cabd52131f8cc3b012bbf64ca45d00cff7688647d9c",
+      "plan_sha256": "85b2e92700f44a122c9d1c81eef7510c4567285201a768c1a9b0c84d8ff3b329"
     },
     {
       "sample_id": "calc-series-017",
-      "pack_dir": "runs\\review-packs\\calc-series-017"
+      "scene_sha256": "6667ab904acd5d57df83f79096b5fea260e59d50321c94658a2a48ad10fdff25",
+      "runnable_sha256": "09258260ab8149eecc24deea957462ab9edcbfb0f6de9a4dbe2f61371bbcbf97",
+      "plan_sha256": "b644e62c05d072392cfafd2fd483e391960acd8d28e182f6a78a67f802de1403"
     },
     {
       "sample_id": "calc-vol-012",
-      "pack_dir": "runs\\review-packs\\calc-vol-012"
+      "scene_sha256": "5066afe99c39e6a2e6409a2dd57627a392cd123193dd3f0519a19d348070ee44",
+      "runnable_sha256": "d9d47c84b7fe8cb12745c5fb90c2dbde532ca88e842b93b0270824047ba12d51",
+      "plan_sha256": "402ef676dcf3ab06f515fe9006a0e0fa1997581ec1bb6cf4b07db294b57995a5"
     }
   ],
-  "note": "结论单为空表待审核方填写;渲染状态如实记录,不伪造"
+  "limits": [
+    "text-only candidate: 0 geometric primitives, 画面忠实度(F) 无证据",
+    "rendered=false: R/E 指标未取证,渲染须走 check_certificate + 获准入口",
+    "layout UNVERIFIED_REQUIRES_NATIVE_MEASUREMENTS: 分页为临时预算,非原生测量",
+    "结论单待审核方填写;verify 只证明已签署,不证明审核正确"
+  ],
+  "note": "渲染被拒是本管线预期状态;本回执不构成 R/E/M/F 任一指标证据"
 }

@@ -1,0 +1,156 @@
+{
+  "status": "PENDING_REAL_ROLE_AND_ISOLATION_EVIDENCE",
+  "scope": "CURRENT_HOLDOUT_DESIGN_SUPPLEMENT_ONLY",
+  "authority_basis": "EXISTING_REVIEW_SCOPE_PLUS_DIRECT_USER_FINITE_ISOLATION_POLICY",
+  "design_sha256": "33d999ff963f37dfd6931e44205e8e702a682dfdc222c6e28abc4d6d9db5c4dd",
+  "pool_raw_sha256": "39d0f1a1f16ef5ffc026ae58da887cc44ce8a8b4225bcd4f4da751e41c8e663d",
+  "pool_candidate_count": 391,
+  "eligible_count": null,
+  "actual_isolation_receipts": [],
+  "sealed_sample_manifest": null,
+  "independent_labels": [],
+  "conflict_receipts": [],
+  "final_rule_lock": null,
+  "final_verification_receipt": null,
+  "new_sessions_started": 0,
+  "candidate_questions_added": 0,
+  "qualification": "NOT_GRANTED",
+  "production": "CLOSED",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "minimum_evidence": [
+    "REAL_ROLE_AND_SESSION_IDENTITIES",
+    "KNOWN_UNKNOWN_EXPOSURE_AND_ACCESS_MATRIX",
+    "ACTUAL_VISIBLE_INPUT_AND_ACCESS_CONTROLS",
+    "SEALED_INPUT_MAPPING_AND_BYTE_HASHES",
+    "SEPARATE_FROZEN_LABELS_AND_MATH_REASONS",
+    "CONFLICT_RECEIPTS_IF_NEEDED",
+    "PRE_FINAL_RULE_LOCK_AND_INDEPENDENT_EXACT_RECOMPUTATION"
+  ],
+  "schema": "codex-holdout-role-candidate-v3",
+  "run_id": "run-acfbf24b80b4463a983e8ccf4cf76b9b",
+  "source_message": "msg_1792173761751_848",
+  "parent_archive": "archives/reviews/codex-supervision/2026-10-15-holdout-role-followup",
+  "parent_manifest_sha256": "428543ee4420c41e9cbe9dd8dd87d9b7dcf6f66242787164c00f5015ff914529",
+  "reported_user_choices": [
+    {
+      "choice": "USER_AS_CONTEXTUAL_CONFLICT_ADJUDICATOR",
+      "origin": "MAIL_815_ONLY",
+      "direct_user_confirmation_in_current_conversation": false,
+      "adopted_as_new_authority": false
+    },
+    {
+      "choice": "NEW_ISOLATED_AI_SECOND_INITIAL_REVIEW",
+      "origin": "MAIL_814_PREVIOUSLY_REVIEWED",
+      "adopted_as_new_authority": false
+    }
+  ],
+  "roles": [
+    {
+      "role": "Q_CONTEXTUAL_REVIEW_AND_REPAIR",
+      "actual_agent": "codex",
+      "session_id": null,
+      "status": "EXISTING_USER_AUTHORIZATION_UNCHANGED",
+      "exposure": "KNOWN_PROJECT_CONTEXT",
+      "legacy_role": "A_CONTEXTUAL_ELIGIBILITY_REVIEW",
+      "blind_final_claim": false
+    },
+    {
+      "role": "A_FINAL",
+      "candidate": "ISOLATED_AI_SESSION_A",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "B_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING",
+        "D_FINAL_VERIFICATION"
+      ]
+    },
+    {
+      "role": "B_FINAL",
+      "candidate": "ISOLATED_AI_SESSION_B",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "A_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING",
+        "D_FINAL_VERIFICATION"
+      ]
+    },
+    {
+      "role": "C_CONTEXTUAL_CONFLICT",
+      "candidate": "USER",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "MAIL_REPORTED_ACCEPTANCE_REAL_ROLE_RECEIPT_PENDING",
+      "exposure": "KNOWN_PROJECT_CONTEXT",
+      "blind_claim": false,
+      "access_only_after_both_labels_sealed": true,
+      "cannot_be_disputing_A_or_B": true
+    },
+    {
+      "role": "K_CUSTODY",
+      "candidate": "HARNESS_CLAUDE_CODE_RESTRICTED_MECHANICAL_CUSTODY",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "MAIL_REPORTED_DESIGNATION_IMPLEMENTATION_RECEIPTS_PENDING",
+      "exposure": "NO_CONTENT_ACCESS_CLAIMED_NOT_VERIFIED",
+      "cannot_tune": true,
+      "reported_operator": "harness (claude-code restricted execution)",
+      "permitted_reported_operations": [
+        "SEAL",
+        "REGISTER",
+        "TRANSFER"
+      ],
+      "content_access_claim": "NONE_FOR_CLAUDE_MODEL_CONTEXT",
+      "cannot_judge": true,
+      "required_operation_receipts": [
+        "ACTUAL_EXECUTOR_AND_ACCESS_BOUNDARY",
+        "INPUT_OUTPUT_SHA_AND_OPERATION_LOG",
+        "MODEL_VISIBLE_OUTPUT_AND_CONTENT_LOG_EXCLUSION_CHECK"
+      ]
+    },
+    {
+      "role": "D_FINAL_VERIFICATION",
+      "candidate": "DISTINCT_ISOLATED_AI_SESSION_D",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "A_FINAL",
+        "B_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING"
+      ]
+    },
+    {
+      "role": "T_TUNING",
+      "candidate": "ACTUAL_OPERATOR_TO_BE_RECORDED",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ACCESS_MATRIX",
+      "exposure": "UNKNOWN",
+      "final_access_allowed": false
+    }
+  ],
+  "reported_custody_designation_origin": "MAIL_848_ONLY",
+  "custody_implementation_verified": false,
+  "direct_user_finite_isolation_policy": {
+    "confirmed": true,
+    "reference": "archives/reviews/codex-supervision/2026-10-17-isolation-policy-confirmation/POLICY_CONFIRMATION.md",
+    "global_semantic_proof_required_before_training": false,
+    "automatically_qualifies_holdout": false
+  }
+}

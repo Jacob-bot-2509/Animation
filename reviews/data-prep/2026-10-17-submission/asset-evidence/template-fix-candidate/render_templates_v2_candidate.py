@@ -1,227 +1,220 @@
-"""render_templates 修复候选 v1(独立候选,未修改现役 tools/render_templates.py)。
-
-按 Codex 修复报告(2026-10-17-real-root-handler-review FIX_REPORT 878/881 节)
-的候选验收条件实现:
-- 步骤完整(去 [:28])、全部步骤(去 [:5]);
-- 长内容分页:页面映射 + 每步覆盖证明,不缩字冒充可读;
-- 题干/答案完整混排(文本+公式保持原顺序),不拿公式段替代全文;
-- 混排处理转义 $、未配对 $ 显式失败、换行、中文 Text 与 MathTex 分体;
-- 小数→分数仅在接受"已核验为精确有理数"标记时转换,否则保留原样;
-- 固定几何不做通用声明:几何模板必须记录级绑定(候选不改此点)。
-
-范围:纯逻辑与代码生成候选;不渲染、不加载 Manim、不动现役模板与资产证据。
+"""Text-only static candidate v2. No Manim import, rendering or production wiring.
+Plans prove exact source-fragment coverage only. Physical layout needs real metrics.
+Generated code rejects oversize rows and nonempty canvas; never shrinks content.
 """
 from __future__ import annotations
-
-import re
+import hashlib,json,re
 from fractions import Fraction
 
+class TemplateError(ValueError):pass
 
-class TemplateError(ValueError):
-    """模板显式失败:不悄悄删段/吞错。"""
+def _positive(n,name):
+    if type(n) is not int or not 1<=n<=10000:raise TemplateError("invalid_"+name)
+    return n
 
+def _escaped(text,i):
+    n=0;j=i-1
+    while j>=0 and text[j]=="\\":
+        n+=1;j-=1
+    return n%2==1
 
-def split_mixed(text: str) -> list[tuple[str, str]]:
-    """把含 $...$ 的文本切成有序段 [('text'|'math', 内容)]。
-
-    - '\\$' 是字面美元符,留在文本段;
-    - 未配对的 $ 显式抛 TemplateError(不吞);
-    - 文本中的换行按行切段;
-    - 空文本段丢弃(空数学段保留为空串数学,交给调用方决定)。
-    """
-    if not isinstance(text, str):
-        raise TemplateError("non_string_input")
-    out: list[tuple[str, str]] = []
-    buf: list[str] = []
-    i = 0
-    n = len(text)
-    in_math = False
-    math_buf: list[str] = []
-
-    def flush_text():
-        nonlocal buf
-        if buf:
-            joined = "".join(buf)
-            for line in joined.split("\n"):
-                if line.strip():
-                    out.append(("text", line))
-            buf = []
-
-    while i < n:
-        ch = text[i]
-        if ch == "\\" and i + 1 < n and text[i + 1] == "$":
-            (math_buf if in_math else buf).append("$")
-            i += 2
-            continue
-        if ch == "$":
-            if in_math:
-                out.append(("math", "".join(math_buf)))
-                math_buf = []
-                in_math = False
-            else:
-                flush_text()
-                in_math = True
-            i += 1
-            continue
-        (math_buf if in_math else buf).append(ch)
-        i += 1
-    if in_math:
-        raise TemplateError("unmatched_dollar")
-    flush_text()
-    if not out:
-        raise TemplateError("empty_after_split")
+def _text_units(text,start,end):
+    out=[];i=start
+    while i<end:
+        if text[i:i+2]=="\r\n":
+            out.append({"kind":"break","content":"\r\n","start":i,"end":i+2});i+=2
+        elif text[i] in "\r\n":
+            out.append({"kind":"break","content":text[i],"start":i,"end":i+1});i+=1
+        elif text[i:i+2]==r"\$" and _escaped(text,i+1):
+            out.append({"kind":"text","content":"$","start":i,"end":i+2});i+=2
+        else:
+            out.append({"kind":"text","content":text[i],"start":i,"end":i+1});i+=1
     return out
 
+def tokenize(text):
+    if type(text) is not str or not text.strip() or len(text)>100000:
+        raise TemplateError("empty_or_invalid_text")
+    # Explicitly unsupported delimiters must not silently become plain Text.
+    if any(s in text for s in (r"\(",r"\)",r"\[",r"\]")):
+        raise TemplateError("unsupported_math_delimiter")
+    out=[];start=0;math_start=None;i=0
+    while i<len(text):
+        if text[i]=="$" and not _escaped(text,i):
+            if i+1<len(text) and text[i+1]=="$":
+                raise TemplateError("display_math_not_supported")
+            if math_start is None:
+                out.extend(_text_units(text,start,i));math_start=i
+            else:
+                content=text[math_start+1:i]
+                if not content.strip() or "\n" in content or "\r" in content:
+                    raise TemplateError("empty_or_multiline_math")
+                # Keep LaTeX escaping, e.g. \$ inside a formula.
+                out.append({"kind":"math","content":content,"start":math_start,"end":i+1})
+                math_start=None;start=i+1
+        i+=1
+    if math_start is not None:raise TemplateError("unmatched_dollar")
+    out.extend(_text_units(text,start,len(text)))
+    return out
 
-def estimate_height(lines: list[list[tuple[str, str]]], font_size: int = 22,
-                    line_gap: float = 0.6) -> float:
-    """纯启发式高度估计(仅分页用,非渲染验收)。每条线按字号+行距。"""
-    return len(lines) * (font_size / 64 + line_gap)
+def split_mixed(text):
+    """Visible ordered segments. Newlines are explicit 'break' segments."""
+    out=[]
+    for t in tokenize(text):
+        if out and t["kind"]=="text" and out[-1][0]=="text":
+            out[-1]=("text",out[-1][1]+t["content"])
+        else:out.append((t["kind"],t["content"]))
+    return out
 
+def _rows(steps,chunk_chars):
+    if type(steps) is not list or not steps or len(steps)>1000:
+        raise TemplateError("invalid_sources")
+    _positive(chunk_chars,"chunk_chars");rows=[]
+    for index,text in enumerate(steps):
+        current=[];text_run=[];budget=chunk_chars
+        def flush_text():
+            nonlocal text_run
+            if text_run:
+                current.append({"kind":"text","content":"".join(t["content"] for t in text_run),
+                                "start":text_run[0]["start"],"end":text_run[-1]["end"]})
+                text_run=[]
+        def flush_row():
+            nonlocal current,budget
+            flush_text();rows.append({"source_index":index,"fragments":current})
+            current=[];budget=chunk_chars
+        for t in tokenize(text):
+            if t["kind"]=="break":
+                flush_text();current.append(t);flush_row()
+            elif t["kind"]=="math":
+                flush_text()
+                if budget==0:flush_row()
+                current.append(t);budget-=1
+            else:
+                if budget==0:flush_row()
+                text_run.append(t);budget-=1
+        if current or text_run:flush_row()
+    return rows
 
-def paginate(step_indexes: list[int], per_page_lines: int,
-             lines_per_step: dict[int, int]) -> list[list[int]]:
-    """把步骤分页;返回每页的步骤索引列表(可重复跨页)。
+def make_plan(steps,per_page_lines=5,chunk_chars=32):
+    _positive(per_page_lines,"per_page_lines")
+    rows=_rows(steps,chunk_chars)
+    pages=[list(range(i,min(i+per_page_lines,len(rows)))) for i in range(0,len(rows),per_page_lines)]
+    return {"schema":"text-fragment-plan-v2","sources":list(steps),"chunk_chars":chunk_chars,
+            "per_page_lines":per_page_lines,"rows":rows,"provisional_pages":pages,
+            "layout":"UNVERIFIED_REQUIRES_NATIVE_MEASUREMENTS",
+            "source_sha256":hashlib.sha256(json.dumps(steps,ensure_ascii=True,separators=(",",":")).encode()).hexdigest()}
 
-    coverage 合同:每个 step_index 至少出现在一页;调用方据此出具覆盖证明。
-    """
-    pages: list[list[int]] = []
-    current: list[int] = []
-    budget = per_page_lines
-    for idx in step_indexes:
-        need = lines_per_step.get(idx, 1)
-        if budget < need and current:
-            pages.append(current)
-            current = []
-            budget = per_page_lines
-        if need > per_page_lines:
-            # 单步超一页:该步独占多页(每页记同一步)
-            while need > 0:
-                pages.append([idx])
-                need -= per_page_lines
-            continue
-        current.append(idx)
-        budget -= need
-    if current:
-        pages.append(current)
+def coverage_ok(steps,plan):
+    try:
+        if type(plan) is not dict:return False
+        expected=make_plan(steps,plan["per_page_lines"],plan["chunk_chars"])
+        return plan==expected
+    except (TemplateError,KeyError,TypeError,ValueError):return False
+
+def paginate(step_indexes,per_page_lines,lines_per_step):
+    """Legacy coarse step-only mapping removed: it cannot prove fragment coverage."""
+    raise TemplateError("use_make_plan_with_exact_fragments")
+
+def estimate_height(*args,**kwargs):
+    raise TemplateError("native_measurements_required_not_height_estimates")
+
+def exact_fraction_text(dec_str,verified_exact):
+    if type(dec_str) is not str or type(verified_exact) is not bool:
+        raise TemplateError("explicit_boolean_and_string_required")
+    if not verified_exact:return dec_str
+    if len(dec_str)>1000 or not re.fullmatch(r"-?[0-9]+\.[0-9]+",dec_str):
+        raise TemplateError("not_exact_decimal_literal")
+    f=Fraction(dec_str)
+    if f.denominator==1:return str(f.numerator)
+    sign="-" if f.numerator<0 else ""
+    return sign+"\\frac{"+str(abs(f.numerator))+"}{"+str(f.denominator)+"}"
+
+def measured_pages(sizes,width,height,gap=Fraction(1,4)):
+    """Pure algorithm on supplied dimensions. Synthetic sizes are not real evidence."""
+    if (type(sizes) is not list or not sizes or any(type(v) not in (int,Fraction) for v in (width,height,gap))
+        or width<=0 or height<=0 or gap<0):raise TemplateError("invalid_dimensions")
+    pages=[];current=[];used=0
+    for i,(w,h) in enumerate(sizes):
+        if type(w) not in (int,Fraction) or type(h) not in (int,Fraction) or w<0 or h<=0 or w>width or h>height:raise TemplateError("row_exceeds_viewport")
+        need=h+(gap if current else 0)
+        if used+need>height:
+            pages.append(current);current=[];used=0;need=h
+        current.append(i);used+=need
+    if current:pages.append(current)
     return pages
 
-
-def coverage_ok(step_indexes: list[int], pages: list[list[int]]) -> bool:
-    """覆盖证明:每步至少出现于一页,页内无重复、页间顺序不倒退。"""
-    seen: set[int] = set()
-    for p in pages:
-        if len(p) != len(set(p)):
-            return False
-        seen |= set(p)
-    if set(step_indexes) - seen:
-        return False
-    last = -1
-    for p in pages:
-        for idx in p:
-            if idx < last:
-                return False
-            last = idx
-    return True
-
-
-def exact_fraction_text(dec_str: str, verified_exact: bool) -> str:
-    """小数→分数显示。仅在 verified_exact=True(经逐条核实为精确有理数)时转换;
-    否则返回原串(不盲目转换,保留原始日志/帧/测量值)。"""
-    if not verified_exact:
-        return dec_str
-    s = dec_str.strip()
-    if not re.fullmatch(r"-?\d+\.\d+", s):
-        raise TemplateError(f"not_decimal_literal:{dec_str!r}")
-    f = Fraction(s)
-    if f.denominator == 1:
-        return str(f.numerator)
-    sign = "-" if f.numerator < 0 else ""
-    num, den = abs(f.numerator), f.denominator
-    return f"{sign}\\frac{{{num}}}{{{den}}}"
-
-
-def _code_for_line(segments: list[tuple[str, str]], var: str,
-                   font_size: int) -> list[str]:
-    """生成一行混排代码:Text/MathTex 交替,arrange(RIGHT),返回行列表。"""
-    parts = []
-    exprs = []
-    for kind, content in segments:
-        if kind == "text":
-            exprs.append(f"Text({content!r}, font='Microsoft YaHei', font_size={font_size})")
-        else:
-            exprs.append(f"MathTex({content!r})")
-    joined = ",\n                ".join(exprs)
-    return [
-        f"        {var} = VGroup({joined}).arrange(RIGHT, buff=0.15)"
-    ]
-
-
-def steps_block_v2(steps: list[str], font_size: int = 22,
-                   per_page_lines: int = 5) -> tuple[str, list[list[int]]]:
-    """生成分页混排步骤块;返回 (代码文本, 页面映射)。
-
-    不截断、不限五步;每步先 split_mixed(未配对 $ 显式失败)。
+def generate_block(plan,font_size=22):
+    """Generate only; never execute the scene. Use a dedicated empty canvas.
+    All MathTex construction precedes all Text construction in this block.
+    Runtime measured page map replaces the provisional static grouping.
     """
-    lines_per_step: dict[int, int] = {}
-    mixed_steps: dict[int, list[tuple[str, str]]] = {}
-    for i, step in enumerate(steps):
-        segs = split_mixed(step)
-        mixed_steps[i] = segs
-        text_lines = sum(1 for k, _ in segs if k == "text")
-        lines_per_step[i] = max(1, text_lines)
-    pages = paginate(list(range(len(steps))), per_page_lines, lines_per_step)
-    assert coverage_ok(list(range(len(steps))), pages), "coverage contract violated"
-    code: list[str] = []
-    for pi, page in enumerate(pages):
-        g = f"page{pi}"
-        code.append(f"        {g} = VGroup()")
-        for li, idx in enumerate(page):
-            segs = mixed_steps[idx]
-            for kind, content in segs:
-                if kind == "text":
-                    code.append(f"        {g}.add(Text({content!r}, "
-                                f"font='Microsoft YaHei', font_size={font_size}))")
-                else:
-                    code.append(f"        {g}.add(MathTex({content!r}))")
-        code.append(f"        {g}.arrange(DOWN, buff=0.25).shift(DOWN * 0.5)")
-        code.append(f"        self.play(FadeIn({g}))")
-        if pi < len(pages) - 1:
-            code.append(f"        self.play(FadeOut({g}))")
-        code.append("        self.wait(0.15)")
-    return "\n".join(code) + "\n", pages
+    if type(plan) is not dict or not coverage_ok(plan.get("sources"),plan):raise TemplateError("invalid_plan")
+    if type(font_size) is not int or not 16<=font_size<=64:raise TemplateError("font_size")
+    lines=["        from math import isfinite as candidate_isfinite",
+           "        if self.mobjects:",
+           "            raise ValueError('candidate_requires_dedicated_empty_canvas')",
+           "        candidate_width = config.frame_width - 1",
+           "        candidate_height = config.frame_height - 1",
+           "        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:",
+           "            raise ValueError('candidate_invalid_viewport')",
+           "        candidate_objects = {}"]
+    # Prebuild every formula before Pango/Text allocations.
+    for ri,row in enumerate(plan["rows"]):
+        for fi,f in enumerate(row["fragments"]):
+            if f["kind"]=="math":
+                lines.append(f"        candidate_objects[{(ri,fi)!r}] = MathTex({f['content']!r}, font_size={font_size})")
+    for ri,row in enumerate(plan["rows"]):
+        for fi,f in enumerate(row["fragments"]):
+            if f["kind"]=="text" and f["content"].strip():
+                lines.append(f"        candidate_objects[{(ri,fi)!r}] = Text({f['content']!r}, font='Microsoft YaHei', font_size={font_size})")
+            elif f["kind"]=="text":
+                # A measured invisible spacer preserves whitespace without dropping it.
+                lines.append(f"        candidate_objects[{(ri,fi)!r}] = Text({'M'*len(f['content'])!r}, font='Microsoft YaHei', font_size={font_size}).set_opacity(0)")
+    lines.append("        candidate_rows = []")
+    for ri,row in enumerate(plan["rows"]):
+        parts=[f"candidate_objects[{(ri,fi)!r}]" for fi,f in enumerate(row["fragments"]) if f["kind"]!="break"]
+        expr="VGroup("+", ".join(parts)+").arrange(RIGHT, buff=0)"
+        if not parts:
+            expr=f"Text('M', font='Microsoft YaHei', font_size={font_size}).set_opacity(0)"
+        lines.append("        candidate_rows.append("+expr+")")
+    lines.extend([
+        "        candidate_pages = []",
+        "        candidate_page = []",
+        "        candidate_used = 0",
+        "        for candidate_index, candidate_row in enumerate(candidate_rows):",
+        "            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:",
+        "                raise ValueError('candidate_row_exceeds_measured_viewport')",
+        "            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)",
+        "            if candidate_used + candidate_need > candidate_height:",
+        "                candidate_pages.append(candidate_page)",
+        "                candidate_page = []",
+        "                candidate_used = 0",
+        "                candidate_need = candidate_row.height",
+        "            candidate_page.append(candidate_index)",
+        "            candidate_used += candidate_need",
+        "        if candidate_page:",
+        "            candidate_pages.append(candidate_page)",
+        "        self.candidate_page_map = candidate_pages",
+        "        for candidate_indices in candidate_pages:",
+        "            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)",
+        "            candidate_group.move_to(ORIGIN)",
+        "            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:",
+        "                raise ValueError('candidate_page_exceeds_measured_viewport')",
+        "            self.play(FadeIn(candidate_group))",
+        "            self.wait(1)",
+        "            self.play(FadeOut(candidate_group))",
+        "            self.remove(candidate_group)",
+    ])
+    return "\n".join(lines)+"\n"
 
+def steps_block_v2(steps,font_size=22,per_page_lines=5):
+    plan=make_plan(steps,per_page_lines)
+    return generate_block(plan,font_size),plan
 
-def title_block_v2(problem: str) -> str:
-    """题干完整混排标题(不再只取公式段);未配对 $ 显式失败。"""
-    segs = split_mixed(problem)
-    parts = []
-    for kind, content in segs:
-        if kind == "text":
-            parts.append(f"Text({content!r}, font='Microsoft YaHei', font_size=24)")
-        else:
-            parts.append(f"MathTex({content!r})")
-    return (
-        "        title = VGroup(" + ",\n                ".join(parts) + ")\n"
-        "        title.arrange(RIGHT, buff=0.15).scale_to_fit_width("
-        "config.frame_width - 1.2).to_edge(UP)\n"
-        "        self.play(Write(title))\n"
-    )
+def title_block_v2(problem):return generate_block(make_plan([problem]),24)
+def answer_block_v2(answer):return generate_block(make_plan([answer]),24)
 
-
-def answer_block_v2(answer: str) -> str:
-    """答案完整混排;无公式段也用 Text 显示(不再静默 wait)。"""
-    segs = split_mixed(answer)
-    parts = []
-    for kind, content in segs:
-        if kind == "text":
-            parts.append(f"Text({content!r}, font='Microsoft YaHei', font_size=24)")
-        else:
-            parts.append(f"MathTex({content!r})")
-    return (
-        "        ans = VGroup(" + ",\n                ".join(parts) + ")\n"
-        "        ans.arrange(RIGHT, buff=0.15).scale_to_fit_width("
-        "config.frame_width - 2).to_edge(DOWN)\n"
-        "        self.play(FadeIn(ans))\n"
-        "        self.wait(0.6)\n"
-    )
+def scene_blocks_v2(problem,steps,answer,font_size=22,per_page_lines=5):
+    """Preferred combined text-only plan: formulas precede all Text allocations."""
+    if type(steps) is not list:raise TemplateError("steps_type")
+    sources=[problem,*steps,answer];plan=make_plan(sources,per_page_lines)
+    return generate_block(plan,font_size),plan

@@ -10,7 +10,7 @@
 
 ## Claude 开工监管
 
-用户要求 Claude 开始作业时即跟进监管。已启动项目内只读观察器，当前运行根为 reviews/codex-supervision/2026-10-04-live-watch/；archives 下为历史资料，不能作为当前心跳入口；监督回合先查 README.md、latest.json 心跳、events.jsonl 及 Codex 自己的 AI Bridge inbox。观察器只记录，不自动审查/执行/放行。保持源文件只读监听与独立复验的区别；进程存在不证明正在计算或卡死。后台启动须隐藏窗口，STOP 控制文件可使观察器退出。
+用户要求 Claude 开始作业时即跟进监管。已启动项目内只读观察器，当前运行根为 reviews/codex-supervision/2026-10-04-live-watch/；archives 下为历史资料，不能作为当前心跳入口；监督回合先查 README.md、latest.json 心跳、events.jsonl 及 Codex 自己的 AI Bridge inbox。原观察器只记录，不自动审查/执行/放行。用户2026-10-17追加要求：检测到Claude开工即自动监管。独立触发器位于 reviews/codex-supervision/2026-10-17-auto-start/，先查其README.md、latest.json、state.json及真实回执。它每5秒观察新进程/子作业及明确引用本项目的工具调用，去重后排入原Codex会话，由模型依既有职责审查、修复、复验、回信、冻结归档。排队不等于审查完成，查询/队列不确定状态不得标已完成；既有邮件调度保持不变。保持源文件只读监听与独立复验的区别；进程存在不证明正在计算或卡死。后台启动须隐藏窗口，STOP 控制文件可使观察器退出。
 
 ## 每十分钟Claude邮件自动审查（用户2026-10-08授权）
 

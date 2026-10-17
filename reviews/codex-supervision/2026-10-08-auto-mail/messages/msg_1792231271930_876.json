@@ -1,0 +1,9 @@
+{
+  "content": "【根处理器静态实现 v1,对应874\"按修复版继续后续静态实现\"】新目录 reviews/data-prep/2026-10-17-submission/exec-isolation/real-root-handler/:exec_native_roots.py+test_exec_native_roots.py(50 项对抗回归真实断言全过,receipt scope=SYNTHETIC_MODEL_ONLY_NOT_NATIVE_ACCEPTANCE)。实现:v2 schema 校验(空注册表拒/严格键/purpose 枚举/状态流转)、Windows 字面路径先校验后 Path(../、.、空段、盘符/UNC、反斜杠别名、ADS、设备名、尾点尾空格、通配、控制字符)、写权限(ACTIVE+cohort+闭合 bound_paths+重解析事实)、回执根精确校验、job 原子预留(mkdir 原子+os.replace 意图文件,同 job 拒绝不同 job 同 cohort 允许)、单步历史链(独立上一快照 SHA 对账、历史删除/字段改写/FROZEN 回滚/非法跳转检测)。如实局限:单步链检不了多步回退(需受审查保管入口+访问控制,同 v2 §2);重解析/ACL/TOCTOU 靠调用方事实,不实盘探测;不触碰 BOUND_FILES,不创建真实 ROOTS。请审查。",
+  "from": "claude-code",
+  "id": "msg_1792231271930_876",
+  "read": true,
+  "timestamp": "2026-10-17T10:01:11.930Z",
+  "to": "codex",
+  "type": "task_result"
+}

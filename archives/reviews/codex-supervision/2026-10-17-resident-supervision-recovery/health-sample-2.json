@@ -1,0 +1,54 @@
+{
+  "recorded_at": "2026-10-17T11:41:09.883993+08:00",
+  "checks": {
+    "observer_heartbeat_advances": true,
+    "same_observer_worker": true,
+    "consumer_scans_advance": true,
+    "consumer_stdout_advances": true,
+    "observer_query_ok": true,
+    "consumer_idle_closed": true,
+    "stderr_still_empty": true,
+    "observer_lock_still_held": true,
+    "consumer_lock_still_held": true,
+    "21_bound_files_still_unchanged": true,
+    "observer_source_unchanged": true,
+    "consumer_source_unchanged": true
+  },
+  "observer": {
+    "time": "2026-10-17T11:41:06.223915+08:00",
+    "watcher_pid": 47080,
+    "head": "14013a7deac3f995f3d163ffae281147ea2c3f8f",
+    "process_observation": {
+      "status": "OK",
+      "error": null
+    },
+    "claude_tree": [
+      {
+        "ProcessId": 21888,
+        "ParentProcessId": 32488,
+        "Name": "claude.exe"
+      },
+      {
+        "ProcessId": 23392,
+        "ParentProcessId": 21888,
+        "Name": "conhost.exe"
+      }
+    ],
+    "child_jobs": [],
+    "core_drift": [
+      "src/animtrain/network_isolation.py",
+      "src/animtrain/appcontainer.py",
+      "src/animtrain/render_gate.py",
+      "reviews/2026-10-04-acceptance-support/network_acceptance.py"
+    ]
+  },
+  "consumer_latest": {
+    "production": "CLOSED",
+    "results": []
+  },
+  "consumer_latest_mtime_ns": 1792208469817288200,
+  "consumer_stdout_bytes": 451,
+  "tests_run": 0,
+  "exit_cause": "UNKNOWN",
+  "past_gap_reconstructed": false
+}

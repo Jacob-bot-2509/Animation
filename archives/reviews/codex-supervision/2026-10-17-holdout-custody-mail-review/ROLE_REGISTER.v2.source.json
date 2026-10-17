@@ -1,0 +1,135 @@
+{
+  "status": "PENDING_REAL_ROLE_AND_ISOLATION_EVIDENCE",
+  "scope": "CURRENT_HOLDOUT_DESIGN_SUPPLEMENT_ONLY",
+  "authority_basis": "EXISTING_DIRECT_USER_REVIEW_REPAIR_AND_PLAN_SCOPE",
+  "design_sha256": "33d999ff963f37dfd6931e44205e8e702a682dfdc222c6e28abc4d6d9db5c4dd",
+  "pool_raw_sha256": "39d0f1a1f16ef5ffc026ae58da887cc44ce8a8b4225bcd4f4da751e41c8e663d",
+  "pool_candidate_count": 391,
+  "eligible_count": null,
+  "actual_isolation_receipts": [],
+  "sealed_sample_manifest": null,
+  "independent_labels": [],
+  "conflict_receipts": [],
+  "final_rule_lock": null,
+  "final_verification_receipt": null,
+  "new_sessions_started": 0,
+  "candidate_questions_added": 0,
+  "qualification": "NOT_GRANTED",
+  "production": "CLOSED",
+  "semantic_isolation": "NOT_ESTABLISHED",
+  "minimum_evidence": [
+    "REAL_ROLE_AND_SESSION_IDENTITIES",
+    "KNOWN_UNKNOWN_EXPOSURE_AND_ACCESS_MATRIX",
+    "ACTUAL_VISIBLE_INPUT_AND_ACCESS_CONTROLS",
+    "SEALED_INPUT_MAPPING_AND_BYTE_HASHES",
+    "SEPARATE_FROZEN_LABELS_AND_MATH_REASONS",
+    "CONFLICT_RECEIPTS_IF_NEEDED",
+    "PRE_FINAL_RULE_LOCK_AND_INDEPENDENT_EXACT_RECOMPUTATION"
+  ],
+  "schema": "codex-holdout-role-candidate-v2",
+  "run_id": "run-fa22ea3329fe4d58abd56fb8906f111a",
+  "source_message": "msg_1792074662112_815",
+  "parent_archive": "archives/reviews/codex-supervision/2026-10-15-holdout-role-review",
+  "parent_manifest_sha256": "be9e08b7988a94a14b1abfbcd8ed09a8ab46523bceedddd8f4e090607adbf06e",
+  "reported_user_choices": [
+    {
+      "choice": "USER_AS_CONTEXTUAL_CONFLICT_ADJUDICATOR",
+      "origin": "MAIL_815_ONLY",
+      "direct_user_confirmation_in_current_conversation": false,
+      "adopted_as_new_authority": false
+    },
+    {
+      "choice": "NEW_ISOLATED_AI_SECOND_INITIAL_REVIEW",
+      "origin": "MAIL_814_PREVIOUSLY_REVIEWED",
+      "adopted_as_new_authority": false
+    }
+  ],
+  "roles": [
+    {
+      "role": "Q_CONTEXTUAL_REVIEW_AND_REPAIR",
+      "actual_agent": "codex",
+      "session_id": null,
+      "status": "EXISTING_USER_AUTHORIZATION_UNCHANGED",
+      "exposure": "KNOWN_PROJECT_CONTEXT",
+      "legacy_role": "A_CONTEXTUAL_ELIGIBILITY_REVIEW",
+      "blind_final_claim": false
+    },
+    {
+      "role": "A_FINAL",
+      "candidate": "ISOLATED_AI_SESSION_A",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "B_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING",
+        "D_FINAL_VERIFICATION"
+      ]
+    },
+    {
+      "role": "B_FINAL",
+      "candidate": "ISOLATED_AI_SESSION_B",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "A_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING",
+        "D_FINAL_VERIFICATION"
+      ]
+    },
+    {
+      "role": "C_CONTEXTUAL_CONFLICT",
+      "candidate": "USER",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "MAIL_REPORTED_ACCEPTANCE_REAL_ROLE_RECEIPT_PENDING",
+      "exposure": "KNOWN_PROJECT_CONTEXT",
+      "blind_claim": false,
+      "access_only_after_both_labels_sealed": true,
+      "cannot_be_disputing_A_or_B": true
+    },
+    {
+      "role": "K_CUSTODY",
+      "candidate": "CLAUDE_CODE_RESTRICTED_CUSTODY_OPERATOR_IF_USER_DESIGNATED",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PROPOSED_PERMISSION_MATRIX_PENDING",
+      "exposure": "UNKNOWN",
+      "cannot_tune": true
+    },
+    {
+      "role": "D_FINAL_VERIFICATION",
+      "candidate": "DISTINCT_ISOLATED_AI_SESSION_D",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ISOLATION_RECEIPT",
+      "exposure": "UNKNOWN",
+      "independence": "NOT_ESTABLISHED",
+      "must_be_distinct_from": [
+        "A_FINAL",
+        "B_FINAL",
+        "C_CONTEXTUAL_CONFLICT",
+        "K_CUSTODY",
+        "T_TUNING"
+      ]
+    },
+    {
+      "role": "T_TUNING",
+      "candidate": "ACTUAL_OPERATOR_TO_BE_RECORDED",
+      "actual_agent": null,
+      "session_id": null,
+      "status": "PENDING_IDENTITY_AND_ACCESS_MATRIX",
+      "exposure": "UNKNOWN",
+      "final_access_allowed": false
+    }
+  ]
+}

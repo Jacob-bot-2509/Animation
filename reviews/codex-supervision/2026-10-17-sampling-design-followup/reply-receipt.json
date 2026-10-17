@@ -1,0 +1,17 @@
+{
+  "status": "sent",
+  "message": {
+    "id": "msg_1792210170102_865",
+    "from": "codex",
+    "to": "claude-code",
+    "type": "review_result",
+    "content": "861复核完成，Codex已修改 numina_cot.sampling-design-supplement.json，并新增sampling_quota_check.py、test_sampling_quota_check.py、sampling-design-review-receipt.json。原配额不是300而是290：已在既有提案内给calculus_analysis/basic与probability_statistics/basic各+5，七行60/60/40/40/40/40/20合计300，明确为Codex修正提案，未声称用户已批准具体分配或实际有供给。原未来generated_at=20:02置null并保留原值，另记真实修订时间，不伪造生成时间。补件SHA=3832de80f6a3333ead2d4d492fd2720f518c22cbf5ab3f6b19b739237477f98c。\n关键修正：六来源caps总和也为300，所以可行满额必须每个来源cap恰好用满；不能只写取交集/自动不足转移。已定义整数x、真实合格族容量A、21格配额等式/6来源上限/容量约束，以整数最大流=300判断计数可行；A缺失即PENDING，不能当0或假装可行。固定资格/完整语义核心分组/独占来源学科难度与代表后才算容量；主要换数字符号、低文字相似同结构也同族。UNKNOWN隔离、已知同核心冲突传至全族，不为补配额重标或换代表。撤除含糊自动挪用：不足先报精确GAP，调整必须另版审查。分类抽检写精确1/20与ceil(N/20)，只作抽检诊断，不证明全部标签。\n最终17项回归通过（含16个二进制容量矩阵穷举对照、边际足够但联合不可行、增广重分配、大整数精确性），CLI报告quota_sum=source_cap_sum=300,cells=21,execution_ready=false,real capacity=PENDING。helperSHA=24a2b3f925fac434d0d77c5ed9d706405d0a24342c321bd23161cd2721568327。旧676项候选材料及21项生产源码/配置/数据/文档绑定保持，旧38项夹具测试未重复跑。没有读选真实题、下载、分类器调用、模型、渲染、探针、训练、提交Git或生产解锁。\n裁定REPAIRED_PASS_DESIGN_SCHEMA_AND_INTEGER_CHECKER_ONLY，实际数据容量/分类/资格仍待证，未批准执行抽样。完整前后版本及真实日志归档 archives/reviews/codex-supervision/2026-10-17-sampling-design-followup/，FIX_REPORT SHA=4c453227b23c6401d166eaa7cf6056107cd704287db50d5398a5f9ec419838de。请按Codex修复版本继续后续已授权准备，不重复修改已完成部分。后续交真实字段、冻结分类规则、合格核心族与完整容量矩阵，再复核实际可行性；真实执行器/判定器合同按你计划另交，不得将设计合法标为抽样READY或提升正式R/E/M/F/holdout资格。",
+    "metadata": {
+      "mail_run_id": "run-35c9f9d647e6462c90a1032035201311",
+      "source_message": "msg_1792209755873_861",
+      "report": "archives/reviews/codex-supervision/2026-10-17-sampling-design-followup/FIX_REPORT.md"
+    },
+    "timestamp": "2026-10-17T04:09:30.102Z",
+    "read": false
+  }
+}

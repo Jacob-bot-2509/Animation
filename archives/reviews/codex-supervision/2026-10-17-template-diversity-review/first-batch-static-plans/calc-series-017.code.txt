@@ -1,0 +1,75 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(0, 1)] = MathTex('\\sum_{n=1}^{\\infty} \\frac{x^n}{n^2}', font_size=22)
+        candidate_objects[(0, 3)] = MathTex('[-1, 1]', font_size=22)
+        candidate_objects[(1, 1)] = MathTex('y = \\pm \\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\pm \\frac{\\pi^2}{6}', font_size=22)
+        candidate_objects[(4, 1)] = MathTex('N', font_size=22)
+        candidate_objects[(6, 1)] = MathTex('N', font_size=22)
+        candidate_objects[(6, 3)] = MathTex('[-1,1]', font_size=22)
+        candidate_objects[(7, 1)] = MathTex('N=200', font_size=22)
+        candidate_objects[(8, 1)] = MathTex('\\frac{1}{n^2}', font_size=22)
+        candidate_objects[(0, 0)] = Text('讨论函数项级数 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 2)] = Text(' 在区间 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 4)] = Text(' 上是否一致收敛。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('第一步：绘制直角坐标系，用浅灰色画出两条上下对称的界直线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第二步：依次绘制前1项、前3项、前5项、前20项的部分和曲线，用', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('不同颜色区分。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('第三步：展示随着项数 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 2)] = Text(' 增大，部分和曲线的“波动”完全被限制在', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('上下界直线之间。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('第四步：高亮展示随着 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 2)] = Text(' 增大，部分和曲线在区间 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 4)] = Text(' 上一致逼近', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('极限函数（以高项数部分和 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 2)] = Text(' 作为极限函数的近似参考曲线）。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('第五步：右侧展示 M-判别法的数学推导过程，强调 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 2)] = Text(' 起到的“控', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('制”作用。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('一致收敛', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)], candidate_objects[(0, 3)], candidate_objects[(0, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)], candidate_objects[(1, 1)], candidate_objects[(1, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)], candidate_objects[(6, 1)], candidate_objects[(6, 2)], candidate_objects[(6, 3)], candidate_objects[(6, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

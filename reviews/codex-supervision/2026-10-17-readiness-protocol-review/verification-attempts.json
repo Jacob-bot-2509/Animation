@@ -1,0 +1,32 @@
+[
+  {
+    "attempt": 1,
+    "outcome": "ASSERTION_FAILURE_IN_AUDIT_SCRIPT",
+    "reason": "Surface certificate keys are checked in full_surface_evidence.py, not sandbox_execution.py alone.",
+    "correction": "Check the combined actual source modules."
+  },
+  {
+    "attempt": 2,
+    "outcome": "ASSERTION_FAILURE_IN_AUDIT_SCRIPT",
+    "reason": "PowerShell pipeline encoding did not preserve literal math symbols in checker string comparisons.",
+    "correction": "Use ASCII Unicode escapes for the checker source."
+  },
+  {
+    "attempt": 3,
+    "outcome": "REGEX_ERROR_IN_AUDIT_SCRIPT",
+    "reason": "Overescaped link pattern had unbalanced parenthesis.",
+    "correction": "Use correct Markdown link regex; ready table rows use exact string prefix checks."
+  },
+  {
+    "attempt": 4,
+    "outcome": "STOP_ITERATION_IN_AUDIT_SCRIPT",
+    "reason": "Historical holdout manifest stores a project-relative artifact path.",
+    "correction": "Match either the exact archive-relative or exact legacy project-relative artifact path."
+  },
+  {
+    "attempt": 5,
+    "outcome": "PASS",
+    "reason": "25 actual named static checks and 10 local links passed.",
+    "project_code_or_data_changes_from_audit_attempts": false
+  }
+]

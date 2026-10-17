@@ -49,17 +49,42 @@ def build_subset(manifest: Path, count: int, seed: int) -> list[str]:
     return sorted(rng.sample(pids, min(count, len(pids))))
 
 
-def rank_candidates(candidates: list[dict]) -> list[dict]:
-    """排序:可执行率 desc → 渲染率 desc(UNVERIFIED 视为 None 排后)→ 数学率参考。"""
-    def key(c: dict) -> tuple:
-        ex = c.get("metrics", {}).get("executable", {}).get("rate")
-        rd = c.get("metrics", {}).get("render", {}).get("rate")
-        mt = c.get("metrics", {}).get("math", {}).get("rate")
-        return (-(ex if ex is not None else -1),
-                -(rd if rd is not None else -1),
-                -(mt if mt is not None else -1))
-    return sorted(candidates, key=key)
+def _verified_rate(metric, expected_total=None):
+    """Return an exact, count-bound rate; unknown metrics are never measurements."""
+    from fractions import Fraction
+    import re
+    if not isinstance(metric, dict) or metric.get("status") != "VERIFIED":
+        return None
+    passed, total, value = metric.get("passed"), metric.get("total"), metric.get("rate")
+    if type(passed) is not int or type(total) is not int or total <= 0 or not 0 <= passed <= total:
+        raise ValueError("Verified metric requires integer passed/total counts")
+    if expected_total is not None and (type(expected_total) is not int or total != expected_total):
+        raise ValueError("Metric total does not match evaluated question count")
+    if type(value) not in (str, int) or not re.fullmatch(r"[+-]?\d+(?:/\d+)?", str(value)):
+        raise ValueError("Verified metric rate must be an exact integer or fraction")
+    try:
+        rate = Fraction(str(value))
+    except (ValueError, ZeroDivisionError) as exc:
+        raise ValueError("Invalid exact metric rate") from exc
+    if not 0 <= rate <= 1 or rate != Fraction(passed, total):
+        raise ValueError("Verified metric count/rate mismatch")
+    return rate
 
+
+def rank_candidates(candidates: list[dict]) -> list[dict]:
+    """Rank measured E/R exactly; math is a tiebreaker, never a sole winner basis."""
+    eligible = []
+    for candidate in candidates:
+        if not isinstance(candidate, dict) or not isinstance(candidate.get("metrics"), dict):
+            raise ValueError("Invalid candidate metric object")
+        metrics = candidate["metrics"]
+        rates = tuple(_verified_rate(metrics.get(name), metrics.get("total_questions"))
+                      for name in ("executable", "render", "math"))
+        if rates[0] is None and rates[1] is None:
+            continue
+        eligible.append((candidate, rates))
+    eligible.sort(key=lambda row: tuple(-(rate if rate is not None else -1) for rate in row[1]))
+    return [candidate for candidate, _ in eligible]
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
@@ -134,13 +159,20 @@ def main(argv: list[str]) -> int:
         (work / "sweep-progress.json").write_text(
             json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    ranked = rank_candidates([r for r in results if r.get("status") == "OK"])
+    selection_error = None
+    try:
+        ranked = rank_candidates([r for r in results if r.get("status") == "OK"])
+    except (ValueError, TypeError) as exc:
+        ranked = []
+        selection_error = str(exc)
     winner = ranked[0] if ranked else None
     out = {"sweep_config_sha256": hashlib.sha256(
         args.config.read_bytes()).hexdigest(),
            "subset_ids": subset_ids,
            "results": results, "ranked": ranked,
            "winner": winner["name"] if winner else None,
+           "selection_status": "MEASURED_WINNER" if winner else "NO_VERIFIED_WINNER",
+           "selection_error": selection_error,
            "note": ("选优标准:可执行率 desc、渲染率 desc、数学率参考;"
                     "UNVERIFIED 指标如实不计入排序;render_executor/"
                     "judge_script 接线后应重跑本扫参")}
@@ -150,7 +182,10 @@ def main(argv: list[str]) -> int:
           f"(seed 固定,只用于选参)\n",
           "| 候选 | 可执行率 | 渲染率 | 数学率 | 总题数 | 状态 |",
           "|---|---|---|---|---|---|"]
-    for r in ranked + [x for x in results if x.get("status") != "OK"]:
+    md.append(f"\nSelection: {out['selection_status']}; winner={out['winner']}")
+    if selection_error:
+        md.append("Selection rejected: " + selection_error)
+    for r in ranked + [x for x in results if not any(x is selected for selected in ranked)]:
         mm = r.get("metrics", {})
         md.append(f"| {r['name']} | {mm.get('executable', {}).get('rate')} "
                   f"| {mm.get('render', {}).get('rate')} "
@@ -180,9 +215,9 @@ def main(argv: list[str]) -> int:
             winner_path.write_text(json.dumps(winner_cfg, ensure_ascii=False,
                                               indent=2), encoding="utf-8")
             print(f"[sweep] 胜者:{winner['name']} → {winner_path}")
-    print(json.dumps({"winner": out["winner"], "report": str(work)},
+    print(json.dumps({"winner": out["winner"], "selection_status": out["selection_status"], "report": str(work)},
                      ensure_ascii=False, indent=2))
-    return 0
+    return 0 if winner else 2
 
 
 if __name__ == "__main__":

@@ -1,0 +1,75 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(11, 1)] = MathTex('N(\\mu, \\sigma^2/n)', font_size=22)
+        candidate_objects[(13, 1)] = MathTex('\\bar{X}', font_size=22)
+        candidate_objects[(13, 3)] = MathTex('N(\\mu, \\sigma^2/n)', font_size=22)
+        candidate_objects[(13, 5)] = MathTex('n', font_size=22)
+        candidate_objects[(0, 0)] = Text('解释中心极限定理的核心内容，并说明当样本量 n 增大时，样本均值', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('的分布是如何变化的。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第一步：屏幕左侧显示一个明显非正态的总体分布（例如均匀分布），明', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('确标注其形态。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('第二步：在右侧从该总体中随机抽取 n 个样本并计算均值，重复多次', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('绘制直方图。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('第三步：初始设置 n=2，样本均值的直方图已呈现三角分布（Irw', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('in–Hall 分布），与原始均匀总体明显不同。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('第四步：动画拖动“样本量 n”滑块，将 n 逐渐增大至 5, 1', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('0, 30。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('第五步：右侧的直方图动态且平滑地变高变窄，形态逐渐转变成钟形。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 0)] = Text('第六步：叠加红色曲线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 2)] = Text('，展示当 n=30 时，样本均值直方图几', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 0)] = Text('乎与红色曲线重合。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 0)] = Text('样本均值 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 2)] = Text(' 的分布趋近于正态分布 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 4)] = Text('：随着 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 6)] = Text(' 增大，分布变高', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(14, 0)] = Text('变窄、中心不变。', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(11, 0)], candidate_objects[(11, 1)], candidate_objects[(11, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(12, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(13, 0)], candidate_objects[(13, 1)], candidate_objects[(13, 2)], candidate_objects[(13, 3)], candidate_objects[(13, 4)], candidate_objects[(13, 5)], candidate_objects[(13, 6)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(14, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

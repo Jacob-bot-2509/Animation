@@ -1,0 +1,11 @@
+usage: freeze_data.py [-h] [--files FILES [FILES ...]] [--lock LOCK]
+                      [--name NAME] [--manifest MANIFEST] [--check CHECK]
+
+options:
+  -h, --help            show this help message and exit
+  --files FILES [FILES ...]
+                        要冻结的数据文件(空格分隔)
+  --lock LOCK           锁文件路径
+  --name NAME           冻结集名称
+  --manifest MANIFEST   绑定当前 manifest(BR4-b:manifest sha256 写入锁 meta)
+  --check CHECK         校验指定锁文件

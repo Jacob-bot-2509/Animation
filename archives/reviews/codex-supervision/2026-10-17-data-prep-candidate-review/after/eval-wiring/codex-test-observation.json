@@ -1,0 +1,23 @@
+{
+  "schema": "codex-observed-test-result-v1",
+  "recorded_at": "2026-10-17T11:57:01.920956+08:00",
+  "scope": "FIXED_FIXTURE_AND_MEMORY_TESTS_ONLY",
+  "commands": [
+    {
+      "command": "python -X utf8 -B run_fixtures.py",
+      "observed_returncode": 0,
+      "asserted_scenarios": 20,
+      "receipt": "eval-wiring/fixture-runs-v2/suite-b2cbb19edc264346bcb042784c6f0642/fixture-receipt.v2.json"
+    },
+    {
+      "command": "python -X utf8 -B test_eval_protocol_v2.py",
+      "observed_returncode": 0,
+      "unittest_tests_run": 18,
+      "observed_result": "Ran 18 tests; OK",
+      "note": "Observed tool output; no second test execution performed to recreate stdout."
+    }
+  ],
+  "actual_metrics": "ALL_UNVERIFIED",
+  "model_loaded": false,
+  "native_probe_emitted": false
+}

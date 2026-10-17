@@ -1,0 +1,10 @@
+[PASS] gpu: NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB
+[PASS] data_manifest: 6 条目,问题 0,quarantine 0
+[FAIL] near_dup_calibrated: 考点签名一致 AND 5-gram Jaccard达阈值,阈值 2/5: 组合规则缺少独立标签和匹配校准证据(UNCALIBRATED);B5 模块+题型签名与执行规则不同,不能解除 ready 阻断;组合屏报告自报 calibrated 不能替代独立验收—— ready 模式必须阻断
+[PASS] render_gate: 环境诊断(固定可信 smoke,**非资产验收证据**): rendered — AppContainer 真实渲染并完整解码
+[PASS] math_gate: 环境诊断(固定数学 smoke,**非资产验收证据**): verified — 断言成立: Eq(2 + 2, 4)
+[PASS] freeze_gate: 冻结证据绑定当前 manifest, eval/test 全量覆盖
+[FAIL] asset_evidence: 样本 calc-area-007 缺产物记录(output 对象)(GS2)
+[FAIL] exec_isolation: 生产隔离尚未联合验收: [Errno 2] No such file or directory: 'D:\\Animation-Model-Training\\data\\execution_evidence.json'
+结论: **存在 FAIL —— 禁止后续动作(训练/评测一律停止),先定位修复**
+preflight rc=1

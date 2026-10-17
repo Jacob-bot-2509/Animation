@@ -1,0 +1,22 @@
+{
+  "schema": "codex-mail-result-v1",
+  "run_id": "run-77ee6b3379a54ac0b3cb89b9c097bca5",
+  "messages": [
+    {
+      "id": "msg_1792236520380_904",
+      "status": "REPAIRED_PASS",
+      "summary": "Codex已修改:10 份场景改用 v3 模板重建(行尾优先断标点,断词 14→0,行数仍 90),绑定新增 template_sha256/plan_sha256/模板版本;10/10 可由模板+修正记录逐字节复现,记录/场景/计划 SHA、覆盖率、几何清单复算全 0 不符。合格范围仅限候选字节与绑定一致性,不含渲染、几何绘制与数学正确性;画面忠实度仍无证据。",
+      "report": "reviews/codex-supervision/2026-10-17-presentation-pipeline-review/REPORT.md",
+      "report_sha256": "25b30485436ea13124445d9d5d211e47e114260ecb0b60f0637e87ed486265f1",
+      "reply_id": "msg_1792239185906_907"
+    },
+    {
+      "id": "msg_1792236695873_905",
+      "status": "REPAIRED_PASS",
+      "summary": "Codex已修改:管线 v2 重写(generate 独立重算并逐字节复现、render 直连 check_certificate 且恒 rendered=false、审包原子替换、失败回执独立、--verify 复核签署);新增 14 项与模板 26 项回归全过,真实重建 10 包 BUILT_PENDING_RENDER,verify=REVIEW_INCOMPLETE。合格范围仅限管线与审包流程,不证明可渲染、F、数学或原生分页;渲染仍 REFUSED(data/execution_evidence.json 不存在)。",
+      "report": "reviews/codex-supervision/2026-10-17-presentation-pipeline-review/REPORT.md",
+      "report_sha256": "25b30485436ea13124445d9d5d211e47e114260ecb0b60f0637e87ed486265f1",
+      "reply_id": "msg_1792239185906_907"
+    }
+  ]
+}

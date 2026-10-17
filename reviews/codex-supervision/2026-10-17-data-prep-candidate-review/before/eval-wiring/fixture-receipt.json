@@ -1,0 +1,705 @@
+{
+  "fixture_matrix": [
+    {
+      "scenario": "01-valid-all",
+      "expected": "R 6/6 E 6/6 M 6/6 F 6/6 全 VERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "02-fail-denominator",
+      "expected": "R=5/6 VERIFIED,分母保留失败题",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "03-missing-id",
+      "expected": "整指标 UNVERIFIED(一题缺回执),problems 记 MISSING_IDENTITY",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "04-duplicate-id",
+      "expected": "DUPLICATE_IDENTITY 首行一并作废,该题 UNVERIFIED,整指标 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "05-extra-id",
+      "expected": "EXTRA_OR_UNKNOWN_IDENTITY 被拒,其余题正常 5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "06-wrong-source-sha",
+      "expected": "启动前 REFUSED(evaluator source drift)",
+      "result": {
+        "status": "REFUSED",
+        "reason": "evaluator source drift: render_executor",
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": null,
+          "rate": null,
+          "passed": null,
+          "total": null
+        },
+        "E": {
+          "status": null,
+          "rate": null,
+          "passed": null,
+          "total": null
+        },
+        "M": {
+          "status": null,
+          "rate": null,
+          "passed": null,
+          "total": null
+        },
+        "F": {
+          "status": null,
+          "rate": null,
+          "passed": null,
+          "total": null
+        },
+        "e_subset_of_r": null
+      }
+    },
+    {
+      "scenario": "07-spec-drift",
+      "expected": "SPEC_DRIFT 拒绝该行,eval-003 题 UNVERIFIED,整指标 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "08-corrupted-media",
+      "expected": "该题 render FAIL(解码失败),R=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "09-empty-media",
+      "expected": "空产物 → render 强制 FAIL,R=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "10-rc0-no-artifact",
+      "expected": "RC0_NO_ARTIFACT 强制 FAIL,R=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "11-timeout",
+      "expected": "超时,全部题缺回执 → 全 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 7,
+        "problems_count": 7,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "12-path-escape",
+      "expected": "ARTIFACT_PATH_ESCAPE_OR_MISSING 完整性拒绝 → 全 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 7,
+        "problems_count": 7,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "13-math-false",
+      "expected": "该题 M=FAIL,M=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "14-math-undecided",
+      "expected": "该题 M=UNVERIFIED → M 整指标 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 5,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "15-fidelity-missing",
+      "expected": "F 全 UNVERIFIED(清单缺失)",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "16-multi-scene-one-fails",
+      "expected": "eval-003 双样本其一失败 → 该题 FAIL,R=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 1,
+        "problems_count": 1,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "17-rc-bool",
+      "expected": "RC_NOT_INT_OR_BOOL_IMPERSONATION 全行拒绝 → 全 UNVERIFIED",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 7,
+        "problems_count": 7,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "18-rc-forgery",
+      "expected": "回执自报 rc=0 但真实 rc=3 → RC_MISMATCH 全行拒绝",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 7,
+        "problems_count": 7,
+        "R": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "E": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "M": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "F": {
+          "status": "UNVERIFIED",
+          "rate": null,
+          "passed": 0,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "19-schema-bad",
+      "expected": "该题 schema 校验失败 → E 该题 FAIL,E=5/6",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    },
+    {
+      "scenario": "20-exec-fail",
+      "expected": "该题 executable FAIL → E=5/6(render 仍 PASS)",
+      "result": {
+        "status": "RAN",
+        "reason": null,
+        "rejected_receipts": 0,
+        "problems_count": 0,
+        "R": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "E": {
+          "status": "VERIFIED",
+          "rate": "5/6",
+          "passed": 5,
+          "total": 6
+        },
+        "M": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "F": {
+          "status": "VERIFIED",
+          "rate": "1",
+          "passed": 6,
+          "total": 6
+        },
+        "e_subset_of_r": true
+      }
+    }
+  ],
+  "note": "每场景期望与结果须逐行人工/Codex 对照复核,本文件不自动判 PASS"
+}

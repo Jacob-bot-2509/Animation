@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-17T19:23:44.402097+08:00",
+  "run_id": "start-fa83d4a479304fafb1e7aa9a8aff9ffa",
+  "disposition": "NO_ACTION_REUSE_VERIFIED_REVIEW",
+  "reason": "Observed mailbox polling, reading Codex ownership message901, project directory/size inventory and process presence only. No new source-edit tool in this packet; no pending own mail at capture. No backup, generated command or source log command executed by Codex.",
+  "mapped_tool_ids": 3,
+  "mapped_log_records": 4,
+  "tools": [
+    {
+      "id": "call_00_7ncp42trLt9WUji4V6zG7315",
+      "name": "Bash",
+      "input": {
+        "command": "python bridge_poll.py poll 2>/dev/null | python -c \"\nimport json,sys\nmsgs=json.load(sys.stdin)\nprint(len(msgs),'\u5c01')\nfor m in msgs:\n    print('ID:',m.get('id'),'| type:',m.get('type'),'| status:',(m.get('metadata') or {}).get('status'),'|',(m.get('content') or '')[:100].replace(chr(10),' '))\n\"; cd /d/Animation-Model-Training && ls -t archives/reviews/codex-supervision/ 2>/dev/null | head -6; ls -t reviews/codex-supervision/ 2>/dev/null | head -6",
+        "description": "Check bridge and latest Codex activity dirs"
+      },
+      "input_sha256": "f3ae3c79e4d89ea131ce9be9faa15bee50ab8e4bafd48bf1af36f3ea30b67f66"
+    },
+    {
+      "id": "call_00_7ncp42trLt9WUji4V6zG7315",
+      "name": "Bash",
+      "input": {
+        "command": "cd /d/code/.bridge-poll && python bridge_poll.py poll 2>/dev/null | python -c \"\nimport json,sys\nmsgs=json.load(sys.stdin)\nprint(len(msgs),'\u5c01')\nfor m in msgs:\n    print('ID:',m.get('id'),'| type:',m.get('type'),'| status:',(m.get('metadata') or {}).get('status'),'|',(m.get('content') or '')[:100].replace(chr(10),' '))\n\"; cd /d/Animation-Model-Training && ls -t archives/reviews/codex-supervision/ 2>/dev/null | head -6; ls -t reviews/codex-supervision/ 2>/dev/null | head -6",
+        "description": "Check bridge and latest Codex activity dirs"
+      },
+      "input_sha256": "a680668b4df70efd69b1461fec7c7122729584b9ab77c90a555217c62b227404"
+    },
+    {
+      "id": "call_00_DQ1EkWMc8C4LqbDVo5o99593",
+      "name": "Bash",
+      "input": {
+        "command": "cd /d/code/.bridge-poll && python bridge_poll.py poll > poll_out.json 2>/dev/null && python -c \"\nimport json\nmsgs=json.load(open('poll_out.json',encoding='utf-8'))\nfor m in msgs:\n    if m.get('id')=='msg_1792235426070_901':\n        print(m.get('content'))\n\"",
+        "description": "Read full 901 content"
+      },
+      "input_sha256": "1be8bbb0fe7e9eb92606e244bb8d0d8e2dd74540cfb91ae4ef2a32efe4a69ce8"
+    },
+    {
+      "id": "call_00_2kIhtGw5v1GGXg9EH6oS6855",
+      "name": "Bash",
+      "input": {
+        "command": "cd /d/Animation-Model-Training && du -sh data holdout-sources configs 2>/dev/null; echo \"---\"; ls data | head -20; echo \"--- holdout-sources:\"; ls holdout-sources 2>/dev/null; echo \"--- \u5907\u4efd\u76ee\u6807\u5019\u9009:\"; ls -d /d/backups 2>/dev/null || echo \"D:\\\\backups \u4e0d\u5b58\u5728\"",
+        "description": "Inventory training data size and scope"
+      },
+      "input_sha256": "c2b504f8191974b631245738a443f5d03feb71d6507ce4a88b0935fbde936141"
+    }
+  ],
+  "process_signals_not_execution_proof": [
+    {
+      "seq": 74,
+      "time": "2026-10-17T19:21:01.276658+08:00",
+      "kind": "CLAUDE_PROCESS_OR_CHILD_STARTED",
+      "detail": {
+        "pid": 27404,
+        "parent": 21888,
+        "name": "bash.exe"
+      }
+    },
+    {
+      "seq": 75,
+      "time": "2026-10-17T19:21:01.276669+08:00",
+      "kind": "CLAUDE_PROCESS_OR_CHILD_STARTED",
+      "detail": {
+        "pid": 49444,
+        "parent": 27404,
+        "name": "bash.exe"
+      }
+    }
+  ],
+  "verified_frozen_artifacts": 50,
+  "current_source_pins_unchanged": 12,
+  "reused_report": "archives/reviews/codex-supervision/2026-10-17-first-batch-exact-math-review/FIX_REPORT.md",
+  "report_sha256": "2c783182830d3a8fc08719fa2b30f5fcf19d80793b2cb898a518cfce01ef9337",
+  "reused_actual_reply_id": "msg_1792236122358_902",
+  "new_reply_sent": false,
+  "scheduler_reinstalled": false
+}

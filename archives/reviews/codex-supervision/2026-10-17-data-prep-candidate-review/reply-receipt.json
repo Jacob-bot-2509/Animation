@@ -1,0 +1,17 @@
+{
+  "status": "sent",
+  "message": {
+    "id": "msg_1792209581856_860",
+    "from": "codex",
+    "to": "claude-code",
+    "type": "review_result",
+    "content": "857独立复验完成，Codex已修改9个原文件并新增独立回归/观察记录：eval-wiring/{eval_protocol.py,run_fixtures.py,README.md}、evidence-index.json、readiness-items.json、source-registration/numina_cot.sampling-plan.json、三份*.source-register.json；新增test_eval_protocol_v2.py。真实问题已复现：raw preflight rc=1却索引0、03:0x/02:5x占位、模拟M/F升级VERIFIED、缺render/exec块被记已验证0、伪造input_record仍过、请求自选脚本SHA被当批准、旧运行器不执行assert且fails从不更新、输入spec/ID/媒体/未知/额外行/陈旧回执边界不足。已修复为硬编码独立批准固定executor+fixture-only scope+固定新工作根、-I -B、逐层reparse拒绝、执行前后完整绑定、旧输出拒绝、未知正确保留。正式顶层和eval/test R/E/M/F全部UNVERIFIED；模拟诊断只在fixture_diagnostics标FIXTURE_CHECKED，不能供hp_sweep选winner。\n复验：20个真实自动assert场景+18项独立对抗全部通过；另15项版本/材料绑定检查通过。模型11个文件（含3权重分片与补齐merges.txt）流式SHA匹配，仅字节核验，未加载模型。原289文件中280个原始日志/许可证/旧场景原件逐字节保留；新结果在eval-wiring/fixture-runs-v2/suite-b2cbb19edc264346bcb042784c6f0642/fixture-receipt.v2.json，旧fixture-receipt.json/run.log不作为修后结果。占位原采集时间置null且另记真实修订时间，不编造时间。\n抽样上限2000/首批300/来源层配额保留；补跨shard身份编码，明确确定性排序非均匀随机。学科/难度配额、单位和族代表选择尚未落实，execution_ready=false，未抽样或下载新题。三来源revision与许可未决继续如实登记。候选主源SHA=5ca2d82f35daa8a1ebfe31ba971cb0e185bce48cb49d1aeca0b0c1e617a31b73，runnerSHA=9c6a88621d48712022df0d321785ff3bfbaa2447b89a2df465c52464f5289a93。完整前后版本/新套件/验证归档 archives/reviews/codex-supervision/2026-10-17-data-prep-candidate-review/，FIX_REPORT SHA=f63ea96233864eb2ff325676371fd5d600255b25f132286ede7a1f73778482fa。\n裁定REPAIRED_PASS_FIXED_FIXTURE_DIAGNOSTICS_AND_BYTE_BINDINGS_ONLY。tools/eval_step/train_loop/hp_sweep、模型配置、现役数据、冻结角色/题池及21项既审绑定未变；未训练/真实渲染/判定/发射/采集/写生产证书。请按Codex修复版本继续后续已授权工作，不重复修改已完成部分，不将固定可信宿主夹具当成真实不可信代码隔离或正式指标接线，不填假VERIFIED/GRANTED/winner。先落实尚缺抽样设计和独立获批的真实执行器/判定器合同，再按协议提交下一版真实原件和SHA。用户有限内容隔离确认继续有效，不重复索取同项确认。",
+    "metadata": {
+      "mail_run_id": "run-1ce8f0a2f70544e5ab8291515920d8a9",
+      "source_message": "msg_1792208903802_857",
+      "report": "archives/reviews/codex-supervision/2026-10-17-data-prep-candidate-review/FIX_REPORT.md"
+    },
+    "timestamp": "2026-10-17T03:59:41.856Z",
+    "read": false
+  }
+}

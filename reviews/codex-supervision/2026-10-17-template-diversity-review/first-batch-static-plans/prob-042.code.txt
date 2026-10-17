@@ -1,0 +1,68 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(3, 1)] = MathTex('0.5', font_size=22)
+        candidate_objects[(7, 1)] = MathTex('n', font_size=22)
+        candidate_objects[(7, 3)] = MathTex('n=1000, 10000', font_size=22)
+        candidate_objects[(8, 1)] = MathTex('y=0.5', font_size=22)
+        candidate_objects[(10, 1)] = MathTex('0.5', font_size=22)
+        candidate_objects[(0, 0)] = Text('利用伯努利大数定律，说明抛硬币试验中正面出现的频率是如何随试验次', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('数增加而趋于其概率的。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第一步：在坐标系中画出横轴（试验次数 n）和纵轴（正面频率），并', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('画一条红色的水平虚线表示极限概率 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('第二步：模拟抛硬币过程，随着硬币不断被抛出（动态画面），折线图从', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('左向右延伸。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('第三步：折线在初始阶段（n 较小时）波动剧烈，经常上下大幅跳动。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('第四步：随着试验次数 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 2)] = Text(' 增大（如 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 4)] = Text('），折线震荡幅度越来越小。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('第五步：最终，折线几乎紧贴并收敛于红色虚线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 2)] = Text('，直观演示大数定律', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('频率依概率收敛于 ', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)], candidate_objects[(7, 3)], candidate_objects[(7, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)], candidate_objects[(10, 1)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

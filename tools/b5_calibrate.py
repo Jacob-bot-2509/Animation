@@ -21,12 +21,14 @@ import hashlib
 import json
 import re
 import sys
+import uuid
 from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from animtrain.b5_output import new_output_dir
 from animtrain.near_dup import shingles  # noqa: E402
 from animtrain.kp_rule import (  # noqa: E402
     classify_kp, kp_jaccard, kp_signature, kp_tokens)
@@ -296,7 +298,7 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--annotation", type=Path,
                     default=ROOT / "data/b5-annotation-set/b5-annotation-set.json")
-    ap.add_argument("--out", type=Path, default=ROOT / "data/b5-calibration-report")
+    ap.add_argument("--out", type=Path, default=ROOT / "reviews/b5-candidates" / ("calibration-"+uuid.uuid4().hex))
     args = ap.parse_args(argv)
     raw = args.annotation.read_bytes()
     try:
@@ -304,11 +306,15 @@ def main(argv=None) -> int:
     except (ValueError, KeyError, TypeError) as error:
         ap.error(str(error))
     report["annotation_sha256"] = hashlib.sha256(raw).hexdigest()
-    args.out.mkdir(parents=True, exist_ok=True)
-    (args.out / "b5-calibration-report.json").write_text(
-        json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    (args.out / "b5-calibration-report.md").write_text(
-        render_markdown(report), encoding="utf-8")
+    try:
+        args.out=new_output_dir(args.out)
+    except (OSError,ValueError) as error:
+        ap.error(str(error))
+    report["qualification"]="DEVELOPMENT_DIAGNOSTIC_NOT_INDEPENDENT_CALIBRATION"
+    with (args.out / "b5-calibration-report.json").open("x",encoding="utf-8") as output:
+        output.write(json.dumps(report,ensure_ascii=False,indent=2))
+    with (args.out / "b5-calibration-report.md").open("x",encoding="utf-8") as output:
+        output.write(render_markdown(report))
     print(json.dumps({"calibrated": report["calibration"]["calibrated"],
                       "note": report["calibration"]["note"],
                       "mismatches": report["mismatches"]},

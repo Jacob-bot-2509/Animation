@@ -1,0 +1,267 @@
+diff --git a/docs/TRAINING-START-RUNBOOK.md b/docs/TRAINING-START-RUNBOOK.md
+index ab9f0500..f8aaf9b8 100644
+--- a/docs/TRAINING-START-RUNBOOK.md
++++ b/docs/TRAINING-START-RUNBOOK.md
+@@ -1,76 +1,84 @@
+-# 训练开工 Runbook(2026-10-17 夜,门禁未开)
+-
+-> 状态快照来源:本机 preflight 实测(2026-10-17 01:4x)+ configs/hp_sweep.json(用户已确认)
+-> + docs/TRAINING-LOOP-DESIGN.md。设计契约不变:门禁自检前置,fail-closed,证据链完整。
+-
+-## 一、当前门禁状态(preflight --manifest data/manifest.json 实测)
+-
+-PASS:
+-- gpu:NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB
+-- data_manifest:6 条目,问题 0,quarantine 0
+-- freeze_gate:冻结证据绑定当前 manifest,eval/test 全量覆盖
+-  (注:裸跑不带 --manifest 会误报"无 eval/test 条目",正确姿势须带清单绑定)
+-- render_gate / math_gate:环境诊断 smoke 通过(非资产验收证据)
+-
+-FAIL ×3(禁止训练/评测,按顺序修复):
+-1. **near_dup_calibrated**(UNCALIBRATED):B5 考点签名+5-gram 组合规则缺少独立标签与匹配
+-   校准证据;组合屏报告自报 calibrated 不能替代独立验收——需 Codex 独立验收口径。
+-2. **asset_evidence**:样本 calc-area-007 缺产物记录(output 对象)(GS2);
+-   manifest 训练条目 notes 亦标注"资产/校准仍未通过"。
+-3. **exec_isolation**:data/execution_evidence.json 缺失——生产隔离联合验收未做
+-   (对应队列中 exec_isolation 裁决项)。
+-
+-## 二、开工顺序(门禁开后按序执行)
+-
+-0. **Codex 最终门禁裁定**(production 解锁):含 exec_isolation 联合验收口径 +
+-   B5 校准独立验收结论。当前等 Codex 对 watch 部署回执(桥 msg 841)的审查。
+-1. **数据构建**(门禁后第一步):
+-   - 绑定 current-core 训练清单到 manifest(hp_sweep.json 的 dataset_manifest 现为
+-     "TBD:训练启动时绑定 current-core 清单,冻结 SHA");
+-   - seq2048 构建期逐条 tokenize 校验、超长记录拆分(seq_guard 契约);
+-   - 资产证据补全(calc-area-007 缺产物记录——用已验收交付回填,不造数据);
+-   - 冻结锁重绑(--check 现全绿,构建后按新清单重冻)。
+-2. **preflight --ready 全绿**(gpu/model/data_manifest/run_snapshot 无 FAIL 无 UNVERIFIED)。
+-3. **试训网格**:hp_sweep.py --config configs/hp_sweep.json —— 4 组
+-   (2 LR × 2 r,pilot 78 条约 1/4 训练数据,seed 20261005),每组约 5-15 分钟;
+-   按 eval_loss + 生成动画样本双指标选胜,写回 configs/train_loop.winner.json。
+-4. **全量训练**:train_loop.py 以 harness 后台长跑(分离式隐藏进程,日志落 runs/,
+-   单进程编排全部轮次;分层目标 R=100% 且 E≥95% 停/连续 3 轮平台停/上限 8 轮;
+-   runs/loop.stop 可中止)。claude-code 盯每轮报告,异常/完成汇总给用户。
+-5. **holdout 泄漏检测**:391 条冻结真题,统计置信区间对照 eval 基线(硬门禁,
+-   过线才进入审片)。
+-6. **用户审片**:看动画样例 → 自然语言反馈 → claude-code 分诊落地
+-   (数据问题改 scene_spec/补数据;模型问题调参)→ 回到 3 迭代,点头才放量。
+-
+-## 三、命令速查
+-
+-```bash
+-# 门禁自检
+-.venv/Scripts/python.exe -X utf8 tools/preflight.py --manifest data/manifest.json \
+-    --model .models/qwen3-4b --ready --run-id <run_id>
+-# 冻结锁校验
+-.venv/Scripts/python.exe -X utf8 tools/freeze_data.py --check data/eval-v2.lock.json \
+-    --manifest data/manifest.json
+-# 试训网格
+-.venv/Scripts/python.exe -X utf8 tools/hp_sweep.py --config configs/hp_sweep.json
+-# 全量训练循环(rounds 配置由 train_loop.example.json 定案后另建)
+-.venv/Scripts/python.exe -X utf8 tools/train_loop.py --config configs/<rounds>.json
+-```
+-
+-## 四、责任划分
+-
+-| 环节 | 负责人 |
++# 训练准备 Runbook：门禁未开
++
++当前只允许准备与审查，不由本文授权开训、评测、原生探针或 production 解锁。OneDrive 传输回放与 consumer watch 部署已按具名范围验收；它们不替代校准、资产、执行隔离或运行快照门禁。
++
++本页修订依据：[只读事实快照](../archives/reviews/codex-supervision/2026-10-17-training-runbook-review/current-read-only-facts.json)、[本轮修复报告](../archives/reviews/codex-supervision/2026-10-17-training-runbook-review/SUPERVISION_REPORT.md)。本轮未运行完整 preflight、渲染 smoke、训练或真实模型评测，不能把本页当作全部门禁的实测 PASS 清单。
++
++## 当前事实与缺口
++
++| 项目 | 已核验事实及限制 |
+ |---|---|
+-| 门禁裁定 / B5 校准独立验收 / exec_isolation 联合验收 | Codex |
+-| 数据构建 / 试训网格 / 全量训练 harness 编排 / holdout 检测 | claude-code |
+-| 审片裁决 / 硬题队列批处理 | 用户 |
+-
+-## 五、诚实口径
+-
+-- render_executor / judge_script 未接线(hp_sweep.json 为 null):试训阶段四指标
+-  M/F 保持 UNVERIFIED,只以 eval_loss + 生成样本目视选优,不假绿;executor 接线后
+-  重跑扫参即可。
+-- 全局语义隔离 NOT_ESTABLISHED(用户 2026-10-09 拍板方案 A):接受现状口径开训,
+-  holdout 391 条冻结真题作硬门禁,训完先过泄漏检测才进审片;测出泄漏按实测指认
+-  定向修复对应家族后重训。
+-- IPv6 D2/D8 延期 GAP 记账,不阻塞训练准备(用户授权)。
++| 冻结锁 | eval-v2 与 test-v2 两份锁通过当前 manifest 绑定校验，退出码均为 0。仅代表具名冻结检查，不代表整体 READY。 |
++| 执行隔离 | check_exec_isolation() 返回未联合验收，当前 data/execution_evidence.json 缺失。D9 的旧 LAN 有限登记窗不能代替生产联合证书。 |
++| 数据多样性 | check_training_diversity() 返回 Training diversity review evidence is absent。必须按当前 manifest、政策与逐条审查绑定验收，不能从草稿数量推断满足。 |
++| 资产 | 当前 asset_evidence 中 calc-area-007 缺 output 对象。须有真实产物、当前完整样本行 SHA、解码及数学/语义/渲染证据；不能只补字段或改 verified 标记。 |
++| 近重复校准 | 必须核验实际执行规则、阈值、标签与输入版本的独立证据；旧 B5 自报 calibrated 不自动覆盖当前规则。UNCALIBRATED 仍阻断 READY。 |
++| GPU、模型、运行快照与环境 smoke | 本轮未完整实测，不引用无原始回执的时间占位或历史 PASS 当作当前结果。render/math 固定 smoke 仅诊断环境，不替代资产验收。 |
++| 全局隔离 | 保持 NOT_ESTABLISHED，如实记录有限已验收范围。本页不新增“必须事前证明全部全局隔离”的要求，也不擅自批准在有限证据下训练。 |
++| 生产状态 | CLOSED；当前未 READY、未开训。 |
++
++当前 [preflight 实现](../src/animtrain/preflight.py) 的 READY 必需项为：
++gpu、model_dir、data_manifest、run_snapshot、asset_evidence、freeze_gate、near_dup_calibrated、exec_isolation。
++harness 还会检查数据多样性和实际配置绑定，不能只查前四项或把未知项剔除。
++
++不带 --manifest 时无法验收当前 eval/test 冻结绑定，这是缺少输入产生的正确拒绝，不是应忽略的“误报”。
++
++## 当前扫参配置不能直接运行
++
++[configs/hp_sweep.json](../configs/hp_sweep.json) 的 dataset_manifest 仍为 TBD。四个候选的实际参数如下，不是完整的二乘二网格：
++
++| 候选 | 学习率 | LoRA r/alpha | 配置中的审批状态 |
++|---|---:|---:|---|
++| center-confirmed | 1/5000 | 16/32 | CONFIRMED，但当前执行器仍拒绝：Unreviewed quantization |
++| pilot-r8 | 1/5000 | 8/16 | PROPOSED |
++| pilot-lr-high | 1/2500 | 16/32 | PROPOSED |
++| pilot-lr-low | 1/10000 | 16/32 | PROPOSED |
++
++审批标记不等于执行器接受，参数内容、审批 SHA 与受支持合同都须一致。本轮没有修改任何超参或模型配置，也没有替用户批准其余候选。
++
++subset.pilot_count=78 是配置中的训练侧提案元数据；当前 [hp_sweep.py](../tools/hp_sweep.py) 的 build_subset 实际读取 subset.count（未配置时为 20），从 eval 的 problem_id 抽固定评测子集，不实施按 pilot_count 选取训练子集。不得把两者混为已实现的训练采样。
++
++当前自动选优按可执行率、渲染率、数学率参考排序，不按 eval_loss 排序；“eval_loss + 动画目视”若要成为新选优方法，需另行落实合同、实现与证据，不能只写说明。现有评测实现保持 R/E/M/F 为 UNVERIFIED，schema 诊断不能替代真实执行/数学/忠实度指标。
++
++Codex 本轮已修复选择器：只使用 VERIFIED 且 passed/total 与精确分数一致的指标；无可验证的执行/渲染主指标时不选胜者、不写 winner 配置，返回失败。数学率不能单独支撑执行胜者。未知指标不假绿，分数不转成小数近似。
++
++## 准备与后续执行顺序
++
++1. 核对用户实际授权的训练策略与适用范围。Claude 邮件 846 转述其侧用户确认了有限隔离策略，但这仍是邮件来源材料，不等于当前会话收到的用户直接指令；在确认前不据此扩权。即使后续确认，也不自动免除现行代码门禁。Codex 职责是独立审查、修复和限定资格，不是单独改变用户政策或自行 production 解锁。
++2. 在授权范围整理新的、独立的数据/证据候选，保留题号、数量与原件；绑定当前训练 manifest，补齐数据多样性、已知泄漏处理、资产和校准证据。不得把同核心换数当隔离，或回写冻结样本/旧锁。需要新冻结版本时另存，旧版本只读。
++3. 核对构建期 token 长度检查和超长记录处理的实际实现及回执；配置中的 seq_guard 描述不是执行证明。落实参数合同、候选审批及各自精确 SHA；解决 TBD 和当前量化描述拒绝，不能仅改审批标志。
++4. 由已审查的运行快照流程产生真实、绑定配置/manifest/源码状态的 run_record；不能手造 READY。只有 preflight --ready 的全部必需项与 harness 前置检查实际通过，且任务本身得到用户授权，才进入对应执行阶段。
++5. 训练/扫参/评测在其实际授权与门禁范围内由 Claude 执行；产物、输入、模型和配置都须绑定版本。当前操作单不能作为立即运行的许可，也不承诺试训耗时。
++6. holdout 方案必须先完成资格、隔离访问、独立标签、冲突裁决、规则锁定与独立复算等已约定材料，才能把真实最终验证结果作后续判定；不能训完才临时选规则或回看最终样本调参。
++7. 后续审片、参数或数据修订遵循用户裁定；每轮保留完整记录。当前 harness 的分层目标为 R=1 且 E≥19/20、平台窗口 3 轮、上限 8 轮；UNVERIFIED 指标不能用于宣告达标。
++
++## Holdout 的实际状态
++
++391 是冻结来源池的候选数量，不是 391 条已获资格、已独立盲标的最终 holdout。
++[当前角色登记](../archives/reviews/codex-supervision/2026-10-15-holdout-role-followup/ROLE_REGISTER.v2.pending.json) 仍为 PENDING_REAL_ROLE_AND_ISOLATION_EVIDENCE，eligible_count=null、qualification=NOT_GRANTED。独立 A/B/D 真实会话、封存输入/标签、裁决及最终规则/复算回执尚待交付。
++
++用户后续若确认采用有限隔离启动策略，须明确该策略的适用范围与真实 holdout 设计如何对应；不能据“来源池冻结”替代上述资格事实。当前不加题、不扩大历史语料、不以重写数字构造伪独立评测。
++
++## 命令速查
++
++以下帮助和冻结校验不启动训练：
++
++~~~powershell
++& .\.venv\Scripts\python.exe -X utf8 -B tools\preflight.py --help
++& .\.venv\Scripts\python.exe -X utf8 -B tools\freeze_data.py --check data\eval-v2.lock.json --manifest data\manifest.json
++& .\.venv\Scripts\python.exe -X utf8 -B tools\freeze_data.py --check data\test-v2.lock.json --manifest data\manifest.json
++~~~
++
++完整 preflight 会执行可信环境渲染/数学 smoke，并非纯文件只读检查；需要模型路径、当前 manifest 和真实 run_id。仅在相应检查范围获准并完成真实快照后使用以下模板；本轮未运行：
++
++~~~text
++.venv/Scripts/python.exe -X utf8 -B tools/preflight.py --manifest data/manifest.json --model .models/qwen3-4b --ready --run-id <真实已登记run_id>
++~~~
++
++扫参和 train_loop 命令仅在前述准备、授权与全部门禁完成后执行，不能为生成快照或试探状态而先启动训练。runs/loop.stop 是训练循环的控制文件，与证据 consumer 的 runtime/STOP 不同；不要误删其他工作者控制文件。
++
++## 职责和边界
++
++用户决定政策与授权；Codex 独立核验、直接修复发现的问题、明确合格范围并归档回 Claude；Claude 按核验版本完成已授权的构建/运行并提交真实回执。新脚本或文档中的角色、时间和结论不能自行升级为用户指令。
++
++D2/D8 外部 IPv6 延期 GAP 不阻塞训练准备；不等于已经完成训练、执行隔离或 production 解锁。其他真实缺证据、失败、准备检查分别记账。
+diff --git a/tools/hp_sweep.py b/tools/hp_sweep.py
+index 66e74e1f..7eede3ff 100644
+--- a/tools/hp_sweep.py
++++ b/tools/hp_sweep.py
+@@ -49,17 +49,42 @@ def build_subset(manifest: Path, count: int, seed: int) -> list[str]:
+     return sorted(rng.sample(pids, min(count, len(pids))))
+ 
+ 
+-def rank_candidates(candidates: list[dict]) -> list[dict]:
+-    """排序:可执行率 desc → 渲染率 desc(UNVERIFIED 视为 None 排后)→ 数学率参考。"""
+-    def key(c: dict) -> tuple:
+-        ex = c.get("metrics", {}).get("executable", {}).get("rate")
+-        rd = c.get("metrics", {}).get("render", {}).get("rate")
+-        mt = c.get("metrics", {}).get("math", {}).get("rate")
+-        return (-(ex if ex is not None else -1),
+-                -(rd if rd is not None else -1),
+-                -(mt if mt is not None else -1))
+-    return sorted(candidates, key=key)
++def _verified_rate(metric, expected_total=None):
++    """Return an exact, count-bound rate; unknown metrics are never measurements."""
++    from fractions import Fraction
++    import re
++    if not isinstance(metric, dict) or metric.get("status") != "VERIFIED":
++        return None
++    passed, total, value = metric.get("passed"), metric.get("total"), metric.get("rate")
++    if type(passed) is not int or type(total) is not int or total <= 0 or not 0 <= passed <= total:
++        raise ValueError("Verified metric requires integer passed/total counts")
++    if expected_total is not None and (type(expected_total) is not int or total != expected_total):
++        raise ValueError("Metric total does not match evaluated question count")
++    if type(value) not in (str, int) or not re.fullmatch(r"[+-]?\d+(?:/\d+)?", str(value)):
++        raise ValueError("Verified metric rate must be an exact integer or fraction")
++    try:
++        rate = Fraction(str(value))
++    except (ValueError, ZeroDivisionError) as exc:
++        raise ValueError("Invalid exact metric rate") from exc
++    if not 0 <= rate <= 1 or rate != Fraction(passed, total):
++        raise ValueError("Verified metric count/rate mismatch")
++    return rate
++
+ 
++def rank_candidates(candidates: list[dict]) -> list[dict]:
++    """Rank measured E/R exactly; math is a tiebreaker, never a sole winner basis."""
++    eligible = []
++    for candidate in candidates:
++        if not isinstance(candidate, dict) or not isinstance(candidate.get("metrics"), dict):
++            raise ValueError("Invalid candidate metric object")
++        metrics = candidate["metrics"]
++        rates = tuple(_verified_rate(metrics.get(name), metrics.get("total_questions"))
++                      for name in ("executable", "render", "math"))
++        if rates[0] is None and rates[1] is None:
++            continue
++        eligible.append((candidate, rates))
++    eligible.sort(key=lambda row: tuple(-(rate if rate is not None else -1) for rate in row[1]))
++    return [candidate for candidate, _ in eligible]
+ 
+ def main(argv: list[str]) -> int:
+     ap = argparse.ArgumentParser(description=__doc__)
+@@ -134,13 +159,20 @@ def main(argv: list[str]) -> int:
+         (work / "sweep-progress.json").write_text(
+             json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
+ 
+-    ranked = rank_candidates([r for r in results if r.get("status") == "OK"])
++    selection_error = None
++    try:
++        ranked = rank_candidates([r for r in results if r.get("status") == "OK"])
++    except (ValueError, TypeError) as exc:
++        ranked = []
++        selection_error = str(exc)
+     winner = ranked[0] if ranked else None
+     out = {"sweep_config_sha256": hashlib.sha256(
+         args.config.read_bytes()).hexdigest(),
+            "subset_ids": subset_ids,
+            "results": results, "ranked": ranked,
+            "winner": winner["name"] if winner else None,
++           "selection_status": "MEASURED_WINNER" if winner else "NO_VERIFIED_WINNER",
++           "selection_error": selection_error,
+            "note": ("选优标准:可执行率 desc、渲染率 desc、数学率参考;"
+                     "UNVERIFIED 指标如实不计入排序;render_executor/"
+                     "judge_script 接线后应重跑本扫参")}
+@@ -150,7 +182,10 @@ def main(argv: list[str]) -> int:
+           f"(seed 固定,只用于选参)\n",
+           "| 候选 | 可执行率 | 渲染率 | 数学率 | 总题数 | 状态 |",
+           "|---|---|---|---|---|---|"]
+-    for r in ranked + [x for x in results if x.get("status") != "OK"]:
++    md.append(f"\nSelection: {out['selection_status']}; winner={out['winner']}")
++    if selection_error:
++        md.append("Selection rejected: " + selection_error)
++    for r in ranked + [x for x in results if not any(x is selected for selected in ranked)]:
+         mm = r.get("metrics", {})
+         md.append(f"| {r['name']} | {mm.get('executable', {}).get('rate')} "
+                   f"| {mm.get('render', {}).get('rate')} "
+@@ -180,9 +215,9 @@ def main(argv: list[str]) -> int:
+             winner_path.write_text(json.dumps(winner_cfg, ensure_ascii=False,
+                                               indent=2), encoding="utf-8")
+             print(f"[sweep] 胜者:{winner['name']} → {winner_path}")
+-    print(json.dumps({"winner": out["winner"], "report": str(work)},
++    print(json.dumps({"winner": out["winner"], "selection_status": out["selection_status"], "report": str(work)},
+                      ensure_ascii=False, indent=2))
+-    return 0
++    return 0 if winner else 2
+ 
+ 
+ if __name__ == "__main__":

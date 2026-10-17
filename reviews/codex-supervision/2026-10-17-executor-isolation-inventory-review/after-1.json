@@ -1,0 +1,729 @@
+{
+  "schema_version": "exec-isolation-inventory-v2",
+  "status": "INDEPENDENTLY_INDEXED_NOT_NATIVE_ACCEPTED",
+  "scope": "READINESS-EVIDENCE-PROTOCOL §2.1:当前 transport/runtime BOUND_FILES 清单与 SHA、采集脚本 SHA、工作根/测试集合/计划、已有原始回执绑定索引。只读盘查,不采集、不补采、不重跑、不签发。",
+  "collected_at_local": null,
+  "collected_at_note": "以 git 提交时间为准(避免时间戳误写)",
+  "collected_by": "claude-code",
+  "bound_files_current": [
+    {
+      "path": "src/animtrain/sandbox_execution.py",
+      "sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e"
+    },
+    {
+      "path": "src/animtrain/render_gate.py",
+      "sha256": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0"
+    },
+    {
+      "path": "src/animtrain/appcontainer.py",
+      "sha256": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907"
+    },
+    {
+      "path": "src/animtrain/network_isolation.py",
+      "sha256": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167"
+    },
+    {
+      "path": "src/animtrain/win_job.py",
+      "sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c"
+    },
+    {
+      "path": "src/animtrain/private_profile.py",
+      "sha256": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af"
+    },
+    {
+      "path": "src/animtrain/isolation_evidence.py",
+      "sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a"
+    },
+    {
+      "path": "src/animtrain/full_surface_evidence.py",
+      "sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd"
+    },
+    {
+      "path": "src/animtrain/net_guard.py",
+      "sha256": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c"
+    },
+    {
+      "path": "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py",
+      "sha256": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361"
+    },
+    {
+      "path": "tools/sandbox_surface_acceptance.py",
+      "sha256": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py",
+      "sha256": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af"
+    },
+    {
+      "path": ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini",
+      "sha256": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee"
+    },
+    {
+      "path": ".sandbox-runtime/miktex-environment.json",
+      "sha256": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df"
+    },
+    {
+      "path": ".venv/Scripts/python.exe",
+      "sha256": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+    }
+  ],
+  "bound_files_note": "以上是当前实现绑定 SHA;旧运行各自的 implementation_before/after 保存在其原始回执内,不用当前 SHA 替旧运行重新签名。",
+  "collector_scripts": [
+    {
+      "path": "tools/production_isolation_acceptance.py",
+      "sha256": "227fbcf21929b47356cfddf659f4822b8c8556c2accf836088690020d978883b",
+      "role": "16 REQUIRED_CASES 联合原始采集(旧)"
+    },
+    {
+      "path": "tools/sandbox_external_test_driver.py",
+      "sha256": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15",
+      "role": "外部/LAN 用例驱动(与 witness v3_source_pins 一致)"
+    },
+    {
+      "path": "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py",
+      "sha256": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880",
+      "role": "43 点表面探测套件(旧)"
+    }
+  ],
+  "work_roots_and_test_sets": {
+    "old_transport_work_root": "reviews/codex-supervision/2026-10-05-three-gates(sandbox_execution.WORK_ROOT 与 production_isolation_acceptance OUT)",
+    "surface_43_review_root": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair(sandbox_surface_acceptance HERE,含 checkpoint 与 host_cases.py)",
+    "full_surface_contract_root": "reviews/2026-10-06-exec-isolation-full-surface(surface_probe_contract.py 在 BOUND_FILES 内)",
+    "required_cases": [
+      "render_formula",
+      "render_chinese",
+      "file_read_outside",
+      "file_write_outside",
+      "file_write_runtime",
+      "cross_run_write",
+      "cross_run_cache_write",
+      "tcp_loopback_v4",
+      "tcp_loopback_v6",
+      "udp_loopback_v4",
+      "udp_loopback_v6",
+      "tcp_external_v4",
+      "tcp_external_v6",
+      "timeout_tree",
+      "root_exit_tree",
+      "memory_limit"
+    ],
+    "surface_43": "require_complete_surface 全 GREEN 口径;IPv4 联合认定依赖 LAN IPv4 + 外部 IPv6 + 本机 IPv4;D2/D8 延期 GAP 不阻塞准备但当前 checker 仍要求全 GREEN"
+  },
+  "existing_raw_receipts_index": [
+    {
+      "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw.json",
+      "sha256": "914b1ceb41c079f3002293ed401d47c05532af20a2dc8d2933816ea056dd9526",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw.json",
+          "bytes": 43663,
+          "sha256": "914b1ceb41c079f3002293ed401d47c05532af20a2dc8d2933816ea056dd9526",
+          "declared_hash_matches": true
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw-v2.json",
+      "sha256": "93d894e654fca44ae98075add663a43804710330d1fbadf706f6e625d81c7d29",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw-v2.json",
+          "bytes": 43853,
+          "sha256": "93d894e654fca44ae98075add663a43804710330d1fbadf706f6e625d81c7d29",
+          "declared_hash_matches": true
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-independent-review-v2.json",
+      "sha256": "fa1f7261a00cba3c52d7712a194f7bbcbf39f5ba51fb3af39b6d265f91e7b476",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-independent-review-v2.json",
+          "bytes": 2777,
+          "sha256": "fa1f7261a00cba3c52d7712a194f7bbcbf39f5ba51fb3af39b6d265f91e7b476",
+          "declared_hash_matches": true
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-local-recheck.json",
+      "sha256": "9987e9b4ac5bf26167e50e6348e2eed4558f2a4377c310bfea0301677687daa6",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-local-recheck.json",
+          "bytes": 7963,
+          "sha256": "9987e9b4ac5bf26167e50e6348e2eed4558f2a4377c310bfea0301677687daa6",
+          "declared_hash_matches": true
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-*.json",
+      "sha256": null,
+      "count": 8,
+      "note": "43 点采集 checkpoint 组(run_id 6367b729…);逐文件 SHA 由 Codex 复算时核验",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-B2.json",
+          "bytes": 233354,
+          "sha256": "fbd828af6fe30b5eb963a9687f1629093f03bdd67d6e6704455a2145db9cd130"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-B3.json",
+          "bytes": 241262,
+          "sha256": "83443cb247683769513f6430ef7b65322afabcc286d53beb2fe7a5f93f71a6e9"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-fault-native.json",
+          "bytes": 164482,
+          "sha256": "ccb33cd3006c1a4fac70c879de9e60c82b861cca68e8e98cc05fb2a1c1f60a83"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-files.json",
+          "bytes": 225460,
+          "sha256": "2d788e2932227ee4deaa1897fb253bf4032bc959a1c435e91c1f32391e6c3f30"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-foundations.json",
+          "bytes": 154658,
+          "sha256": "f2f8df0e23b7eba7d8e73d1b8986b9364d12179a3b676889ab2a7c143cdc1f36"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-ipc-registry.json",
+          "bytes": 336983,
+          "sha256": "e22d49e74834233cfdd55eae0d3442c1e39331a784ad747cc1df9dc27a775a5d"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-loopback.json",
+          "bytes": 283155,
+          "sha256": "f59c8f63343ed8b66cc7f2a1a2734f23fc84bd9004306ed3e872660a067ddba5"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-memory.json",
+          "bytes": 248275,
+          "sha256": "c0e563909e5de7bc062866d42dbdf4c3709b6825c7069f926b765af09c97ff79"
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-*.json",
+      "sha256": null,
+      "count": 8,
+      "note": "第二组 checkpoint(run_id c0ed19b0…)",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-B2.json",
+          "bytes": 233309,
+          "sha256": "17b60b91074540919b1e74eeffc201e49fb00f49ad4a951b35b099332a93f5e0"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-B3.json",
+          "bytes": 241221,
+          "sha256": "a19ff7e98189dd0520c2ba8a2d8423299f4793eaf6816f93a9af7dac2900a58a"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-fault-native.json",
+          "bytes": 164442,
+          "sha256": "e73627184e92590b7c8a08a4496fc70d36390b5cdef3192799ea2c3ef753c349"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-files.json",
+          "bytes": 225408,
+          "sha256": "bb6c4ecb519f4d13c49a5dd1494acf5aad8241cb678416485b72f77933f74ca3"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-foundations.json",
+          "bytes": 154618,
+          "sha256": "a90e9101ad746ef52d6e85950a9f1232e668d41635a8740265343fb98caff98d"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-ipc-registry.json",
+          "bytes": 336961,
+          "sha256": "6ef576456a949133b1d591259f0e719ace270a6dcc480a7a367ac8df8cae90a2"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-loopback.json",
+          "bytes": 283118,
+          "sha256": "bf6c94fcd6f96e1c60e6bc7467953200f4ae20ee0680f2bacaaebfea6e6ab2df"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-memory.json",
+          "bytes": 248230,
+          "sha256": "e20a57d343a1ef4faf659c0dc8e479e66c10fbe15dd1f9ac08231f8738104d24"
+        }
+      ]
+    },
+    {
+      "path": "reviews/2026-10-06-exec-isolation-full-surface/FULL_SURFACE_REPORT.md",
+      "sha256": "7af0bf165b5446181fa31a93b5c2c15a452377a2d4cefdf6f03598b3c851e5aa",
+      "expanded_members": [
+        {
+          "path": "reviews/2026-10-06-exec-isolation-full-surface/FULL_SURFACE_REPORT.md",
+          "bytes": 1763,
+          "sha256": "7af0bf165b5446181fa31a93b5c2c15a452377a2d4cefdf6f03598b3c851e5aa",
+          "declared_hash_matches": true
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-*/",
+      "sha256": null,
+      "count": 8,
+      "note": "实际 8 个现成 sender 目录，逐文件绑定；remote-3a28dfd9 为既定 LAN D9 发送端，目录存在不构成新双端通过。",
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/interfaces-4.stdout.bin",
+              "bytes": 377,
+              "sha256": "321003e0f5190d3d94fe7e6338f24a1f92cfbaa11895c22053ce353d755dcca1"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "28a6c94111eabbed7f1aab4637cb75df26e010778697834b8314c0cbed9c9283"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/route.stdout.bin",
+              "bytes": 112,
+              "sha256": "92f477cee092960c84ae86c547d016805e9f7fe42f265b2c42af2f12d7cbcb87"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-1906c6f72cc0411086f06b2cdce14858/sender.json",
+              "bytes": 8505,
+              "sha256": "201268ccf42ffcc24bf4985cdd36b71989a3ce77482cf4c998418171f4890b5e"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/interfaces-4.stdout.bin",
+              "bytes": 381,
+              "sha256": "7013310c22c622c28fc778191cff8e560820543958d9d3af6556f6ae668fa91e"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "52837a22164bc5a325c7e8c4f0dc1331f6c23acd3f9d1ad6782aa015a686863f"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/route.stdout.bin",
+              "bytes": 239,
+              "sha256": "5b069eaf9b6846ea1010e3c5c78bffe099c17625888d32736eb00352dcc123a3"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-271e1c881c4f473fb027f5f28d4a3bd5/sender.json",
+              "bytes": 13726,
+              "sha256": "f2ca09bd06173dc48ab19ee5798a24b14bbd986985cb26f8af6d8edd40744a6c"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/interfaces-4.stdout.bin",
+              "bytes": 381,
+              "sha256": "35aad0ddb4ae64d1252ff312dce64dd57990362968f63f6b1fe1505cb62f542a"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/interfaces-6.stdout.bin",
+              "bytes": 470,
+              "sha256": "7831ba3c8a69bd1670c25dd4d7cd940dcf739bbe5be8838345a26192e8b1a0f4"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/reconciled-6b9ae9cee1e74bad816aa0cb6d53ff0d.json",
+              "bytes": 23284,
+              "sha256": "d5545a508b5ab3722d38e09dad9f1e236d2376f58668d38c1f4d1fedceea9fb7"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/route.stdout.bin",
+              "bytes": 112,
+              "sha256": "1f3c74e4723d7ef12d4e7cf567824668ed14160f908918fd3712515832708271"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-3a28dfd9dc96430a8ed0edb1989c3e76/sender.json",
+              "bytes": 13709,
+              "sha256": "5cf2ec1127e19316cdd530daf7c3b1d5534e99bf1483d2fc2805c92a25b5f179"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "52837a22164bc5a325c7e8c4f0dc1331f6c23acd3f9d1ad6782aa015a686863f"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/route.stdout.bin",
+              "bytes": 264,
+              "sha256": "691002b485fc82e91e712060f52629b7baeeb23e6169c09136e29bea6e0393a0"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-44613b0442e744f890505252d9a3b510/sender.json",
+              "bytes": 12842,
+              "sha256": "0dcce788d4ba2e2444080e45b26842f9327d96bc876c746b6e4369d37c75ffa5"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "28a6c94111eabbed7f1aab4637cb75df26e010778697834b8314c0cbed9c9283"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/route.stdout.bin",
+              "bytes": 264,
+              "sha256": "d9b41e64a6b8896aa5740cf2a86b699ae29189b055f65a6b760e274c02dbf0a9"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-9fa7f2ff88b3424fbec18c08c798f4e8/sender.json",
+              "bytes": 12482,
+              "sha256": "538e3b0b9343bb6c441d9bfa021871ba8ea377b15f3212e6cbd42d4e780bf38c"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/interfaces-4.stdout.bin",
+              "bytes": 381,
+              "sha256": "7013310c22c622c28fc778191cff8e560820543958d9d3af6556f6ae668fa91e"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "52837a22164bc5a325c7e8c4f0dc1331f6c23acd3f9d1ad6782aa015a686863f"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/route.stdout.bin",
+              "bytes": 240,
+              "sha256": "77e23e459d458931a963ae7901e1608c98fc6f5004625112a5ae1d905b0280db"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-aefc74dd86f74ab0bbbca13e1ddfc7e6/sender.json",
+              "bytes": 13732,
+              "sha256": "c90b1f19eb8ad869e1435e93a62212a9d1362196e2bf8e0bc9212657d8ee43ff"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/interfaces-4.stdout.bin",
+              "bytes": 381,
+              "sha256": "7013310c22c622c28fc778191cff8e560820543958d9d3af6556f6ae668fa91e"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "52837a22164bc5a325c7e8c4f0dc1331f6c23acd3f9d1ad6782aa015a686863f"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/route.stdout.bin",
+              "bytes": 240,
+              "sha256": "77e23e459d458931a963ae7901e1608c98fc6f5004625112a5ae1d905b0280db"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-b7a2b9b7f5d24e5297c21944e97b3dd2/sender.json",
+              "bytes": 13726,
+              "sha256": "f30896bd72e31433422f8229ae9bd824211da3ae85fad2ae3d3191b72996092a"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509",
+          "files": [
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/interfaces-4.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/interfaces-4.stdout.bin",
+              "bytes": 381,
+              "sha256": "7013310c22c622c28fc778191cff8e560820543958d9d3af6556f6ae668fa91e"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/interfaces-6.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/interfaces-6.stdout.bin",
+              "bytes": 617,
+              "sha256": "28a6c94111eabbed7f1aab4637cb75df26e010778697834b8314c0cbed9c9283"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/route.stderr.bin",
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/route.stdout.bin",
+              "bytes": 240,
+              "sha256": "77e23e459d458931a963ae7901e1608c98fc6f5004625112a5ae1d905b0280db"
+            },
+            {
+              "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-ed91584e651e45d7b48567298d4eb509/sender.json",
+              "bytes": 13371,
+              "sha256": "d80a7484885e110c2d650c295d7ef4ffa15be7aabbc9a00dd3453591fc0911f9"
+            }
+          ],
+          "sender_schema": "native-remote-sender-v2",
+          "qualification": "SENDER_BYTES_INDEXED_NOT_NEW_DOUBLE_ENDPOINT_PROOF"
+        }
+      ]
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/surface-raw-6367b72967e04ed5b36dc234764e209a.json",
+      "bytes": 342770,
+      "sha256": "e9185cd8b43fa090d4e885dc90dd7df7906a9e79d5c2e86cf486ba53f0f53464",
+      "role": "FINAL_SURFACE_RAW_NOT_CHECKPOINT"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/surface-raw-c0ed19b0fad644a7ae76ffc4ba28e68b.json",
+      "bytes": 342748,
+      "sha256": "f399733c5ecbda4a51b537100c131d9d4c6c5da7554cdb1e86d93148fae58f4e",
+      "role": "FINAL_SURFACE_RAW_NOT_CHECKPOINT"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/surface-raw-e33d5765dc4645dda6aa4a8586f60198.json",
+      "bytes": 288024,
+      "sha256": "3a677ae7446469cc928d801383a54bb53bb1d11445c809b8f941fa2b8c1ec099",
+      "role": "FINAL_SURFACE_RAW_NOT_CHECKPOINT"
+    },
+    {
+      "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-*.json",
+      "count": 7,
+      "expanded_members": [
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-B2.json",
+          "bytes": 234500,
+          "sha256": "7b780963247955192b0ff8f0b249f8b47240b62abf9329fadb52fa4ef0d5b762"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-B3.json",
+          "bytes": 242112,
+          "sha256": "9cbc1c1ace2cee09dc11cc2ff6851e6304512a4ceede9e2961c74b6ecdfe002c"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-fault-native.json",
+          "bytes": 159052,
+          "sha256": "a7c823492c1f3d4c17d73f9b4f603cbab5a1a172f6aa733db14775288df04a8e"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-files.json",
+          "bytes": 226907,
+          "sha256": "f2106a29085de7c2dabdcaeba9d1f8e77b7dd61bc30bcdec6341d486deda7c6e"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-foundations.json",
+          "bytes": 149427,
+          "sha256": "ae6e1d12e63c8c573c45216b4800dee10928698758f2518e1ebd8dc89c01a8fd"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-loopback.json",
+          "bytes": 282314,
+          "sha256": "393bf9437bcbd520f9b2fbf1cd9e4af365b0c76073f08cbdb37b8edec22bbffe"
+        },
+        {
+          "path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-e33d5765dc4645dda6aa4a8586f60198-memory.json",
+          "bytes": 248822,
+          "sha256": "39611a15f700079f45fa12e8e380decfddc685a49b99cdc4b9586431c95843c8"
+        }
+      ],
+      "role": "ADDITIONAL_HISTORICAL_PARTIAL_CHECKPOINT_GROUP"
+    }
+  ],
+  "gaps": [
+    "data/execution_evidence.json 仍不存在；未创建、未填 VERIFIED，原生执行与生产门禁不变。",
+    "现行绑定 surface-raw-6367b72967e04ed5b36dc234764e209a.json 只覆盖 30 GREEN；F2 管道命名空间/跨用户矩阵与 F4 Local/Global 映射矩阵为 PARTIAL，11 点 GAP，不能据此签 43 点全绿。",
+    "D2/D8 延后 GAP 不阻塞用户授权的训练准备；D1/D7 联合认定仍各自需要完整 LAN IPv4、外部 IPv6 和本机 IPv4 证据，不用延期政策假标通过。",
+    "该 surface 原始包 D9 为 GAP，不否定其他登记中的 LAN D9 具名窗口；不能跨不同运行/版本拼贴成同一完整实验。",
+    "旧 production-joint-raw-v2.json 的原裁决 16 项 PASS 仅限历史记录合同；10 项旧实现绑定与当前 15 项集合有 9 项差异（4 个值不同、5 项缺失），不能以当前 SHA 重签或直接继承到当前 transport。",
+    "production-joint-raw.json 的旧 TCP 失败记录不满足当前 typed denial/测时 timeout 条件；local-recheck 只有 local_network，不是完整 16 项联合实验；原始 complete=true 字段不代替实际覆盖。",
+    "两份旧 surface 最终原件有实现差异，当前 recompute 各返回 43 PARTIAL；checkpoint 是同轮增量快照，不按数量当作独立实验或完整验收。",
+    "40 个唯一 transport 的父进程记录字段一致且旧 profile storage 当前不存在，仅为只读记录核验；没有重新测量历史令牌、Job、当时树状态或 OS DACL。2 个 timeout 记录未存 source_sha256，虽能哈希现存 scene.py，也不能补造历史源绑定。",
+    "当前 collector/transport/verifier 各自固定旧工作根；旧根不一概等于整根冻结，但既有冻结子目录与旧文件不得覆盖。新补采须先审查同版本独立新根及来源/边界/路径一致绑定，不能只改 --work 绕过 verifier。",
+    "本轮没有重新核验接收端完整双端协议或扩展 LAN D9 已获准窗口，也没有运行采集器/探针。需要的新原生证据另按用户授权由 Claude 执行。"
+  ],
+  "plan_per_protocol": [
+    "§2.2:Codex 对现成原件只读复算(parent token/capability=0、Job 恢复、进程树终止、临时 ACL 恢复、私有 profile 清理、源/日志/媒体 SHA、真实媒体解码),不看 rc 或报告 PASS 字样",
+    "§2.3:需要补采时由 claude-code 在用户授权具名范围执行,Codex 不发射;先审查独立新工作根与 verifier 绑定改造,保留兼容与测试",
+    "§2.4:两组原始材料 production-joint-raw-v1(16 REQUIRED_CASES)+ sandbox-surface-native-v1(43 点、前后实现一致、error=null),每 case 关联实际源/transport/父进程证据/stdout/stderr/事件/产物;外部/LAN case 附发送端登记与接收端原始 JSONL/summary/typed rc/健康对照/同轮 nonce/端点/拓扑/观察窗/哈希",
+    "§2.5:Codex 独立复算并出范围/未决项/旧证据可继承条件;LAN D9 仅继承具名窗口",
+    "§2.6:仅当满足适用合同才另提证书候选;本清单与 claude-code 均不创建 execution_evidence.json、不把模板改为 VERIFIED"
+  ],
+  "revision_scope": "Codex 只读复算并补全当前具名原件索引；不是新实验、证书或生产准入。",
+  "reuse_policy": [
+    "保留全部旧原件字节、旧源码绑定和旧裁决；同字节具名验证可按其明确范围继承，不能改成当前全局资格。",
+    "原件存在、SHA 相等、记录父进程字段一致和完整媒体解码分别记账；都不单独等于当前沙箱联合通过。",
+    "本次补充限定于清单所在两个具名旧根中现成的 joint/surface/checkpoint/remote sender 原件，不扩展历史任务语料。"
+  ],
+  "new_work_root_plan": {
+    "status": "PROPOSAL_ONLY_NOT_CREATED_NOT_AUTHORIZED_TO_COLLECT",
+    "candidate_root_pattern": "reviews/exec-isolation/candidate-<uuid>/",
+    "required_before_collection": [
+      "独立新 run/root，受信任父证据根与子产物根隔离，不写旧 frozen 目录。",
+      "collector、transport、full-surface/legacy verifier 的统一版本化根合同、schema、允许路径与实际命令一同审查，保留旧证据兼容；生产默认仍关闭。",
+      "用纯路径/重解析点/旧证据拒绝与哈希漂移夹具先验证；不能放宽 bound_path 或新增宿主 fallback。",
+      "冻结该版本实际源码/运行时 SHA 与测试范围、授权证据，再由获授权 Claude 执行必要补采；Codex 不发射。",
+      "旧具名结果可复用与必须补采的点逐项说明依据；变更后不能只替 implementation_sha256 或复制 PASS。"
+    ]
+  },
+  "original_schema_version": "exec-isolation-inventory-v1",
+  "revised_by": "codex",
+  "revised_at": "2026-10-17T12:30:04.179082+08:00",
+  "previous_source_sha256": "bbc4b72a4fb4feb07dfa9b96718fe74ab02c4d157880eda2f140dd3a5aa60c97",
+  "independent_readonly_audit": {
+    "report": "archives/reviews/codex-supervision/2026-10-17-executor-isolation-inventory-review/FIX_REPORT.md",
+    "audit_path": "archives/reviews/codex-supervision/2026-10-17-executor-isolation-inventory-review/readonly-audit.stdout.json",
+    "audit_sha256": "e9e399d3cc9042b8170092bb2e927d54f4ce24ba7b3b4e4d318ea8e4c1ec6431",
+    "summary": {
+      "inventory_bindings_match": true,
+      "joint_raw_count": 3,
+      "surface_raw_and_checkpoints": 26,
+      "unique_recorded_transports": 40,
+      "decoded_media": 4,
+      "media_exact_matches": 4,
+      "parent_record_field_checks_pass": 40,
+      "transport_source_hash_mismatch_or_missing": 2,
+      "remote_sender_count": 8,
+      "execution_certificate_exists": false
+    },
+    "source_and_stream_observation": "38 recorded source hashes match; 2 timeout entries have no recorded source_sha256; all available recorded streams match raw files",
+    "no_fresh_os_retest": true,
+    "current_surface_counts": {
+      "GREEN": 30,
+      "PARTIAL": 2,
+      "GAP": 11,
+      "FAIL": 0
+    },
+    "historical_legacy_v2_cases": 16,
+    "historical_legacy_v2_current_binding_differences": 9,
+    "surface_checkpoint_file_count": 23,
+    "surface_final_run_count": 3,
+    "checkpoint_not_independent_experiments": true
+  }
+}

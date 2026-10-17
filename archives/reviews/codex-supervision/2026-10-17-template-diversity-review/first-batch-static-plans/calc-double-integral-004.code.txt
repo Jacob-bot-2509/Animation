@@ -1,0 +1,80 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(0, 1)] = MathTex('\\iint_D (1 - x^2 - y^2) dxdy', font_size=22)
+        candidate_objects[(0, 3)] = MathTex('D', font_size=22)
+        candidate_objects[(0, 5)] = MathTex('x^2 + y^2 \\le 1', font_size=22)
+        candidate_objects[(2, 1)] = MathTex('O-xyz', font_size=22)
+        candidate_objects[(3, 1)] = MathTex('D', font_size=22)
+        candidate_objects[(4, 1)] = MathTex('D', font_size=22)
+        candidate_objects[(4, 3)] = MathTex('z=1-x^2-y^2', font_size=22)
+        candidate_objects[(5, 1)] = MathTex('D', font_size=22)
+        candidate_objects[(11, 1)] = MathTex('V = \\frac{\\pi}{2}', font_size=22)
+        candidate_objects[(12, 0)] = MathTex('\\frac{\\pi}{2}', font_size=22)
+        candidate_objects[(0, 0)] = Text('利用二重积分的几何意义，说明 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 2)] = Text(' 的值，其中 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 4)] = Text(' 是单位圆盘 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第一步：初始化三维视角，缓慢旋转镜头，展示三维坐标系 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 2)] = Text(' 以及底', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('部平面上的单位圆盘区域 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 2)] = Text('（黄色高亮）。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('第二步：从底面区域 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 2)] = Text(' 开始，动态向上绘制蓝色的三维曲面 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 4)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('第三步：在底面区域 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 2)] = Text(' 内，生成大量细密的垂直立柱，这些立柱的顶', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('部均与蓝色曲面相交。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('第四步：镜头缓慢拉近并旋转到侧上方视角，让观众清晰看到这些由底面', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('积和曲面高度构成的曲顶柱体。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('第五步：动态展示微元叠加过程，利用动画将所有立柱的体积凝聚成一个', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('整体的体积概念。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 0)] = Text('第六步：画面右侧悬浮显示计算过程和最终结果 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)], candidate_objects[(0, 3)], candidate_objects[(0, 4)], candidate_objects[(0, 5)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(11, 0)], candidate_objects[(11, 1)], candidate_objects[(11, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(12, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

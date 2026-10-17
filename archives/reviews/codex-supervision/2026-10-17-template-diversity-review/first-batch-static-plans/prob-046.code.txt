@@ -1,0 +1,79 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(4, 1)] = MathTex('S_1 = \\frac{1}{2}', font_size=22)
+        candidate_objects[(6, 1)] = MathTex('S_2 = \\frac{1}{2} + \\frac{1}{4}', font_size=22)
+        candidate_objects[(7, 1)] = MathTex('\\frac{1}{8}, \\frac{1}{16}, \\frac{1}{32}', font_size=22)
+        candidate_objects[(9, 1)] = MathTex('0', font_size=22)
+        candidate_objects[(10, 1)] = MathTex('\\sum_{k=1}^{\\infty} \\frac{1}{2^k} = 1', font_size=22)
+        candidate_objects[(12, 1)] = MathTex('\\sum_{k=1}^{\\infty} \\frac{1}{2^k}', font_size=22)
+        candidate_objects[(12, 3)] = MathTex('1', font_size=22)
+        candidate_objects[(0, 0)] = Text('用几何图形直观展示可列可加性：把单位正方形分割成可列个互不相交的', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('小矩形。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第一步：画出一个面积为1的单位正方形。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('第二步：先分割出一半面积（1/2）的矩形，用蓝色填充，显示部分和', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('M', font='Microsoft YaHei', font_size=22).set_opacity(0)
+        candidate_objects[(4, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('第三步：在剩余的空间中再分割出 1/4 面积的矩形，用绿色填充，', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('显示部分和 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('第四步：接着不断分割出 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 2)] = Text(' 等更小的矩形，用不同颜色区分。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('第五步：随着分割次数趋向无穷，剩余未分配的面积越来越小，最终无限', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('趋近于 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('第六步：展示求和公式 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 2)] = Text('，所有矩形面积之和等于 1，直观展示可列', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(11, 0)] = Text('可加性。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 0)] = Text('可列可加性成立：各矩形面积构成几何级数 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 2)] = Text('，其和为 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(12, 4)] = Text('，恰等于单', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(13, 0)] = Text('位正方形的总面积', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)], candidate_objects[(6, 1)], candidate_objects[(6, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)], candidate_objects[(9, 1)], candidate_objects[(9, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)], candidate_objects[(10, 1)], candidate_objects[(10, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(11, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(12, 0)], candidate_objects[(12, 1)], candidate_objects[(12, 2)], candidate_objects[(12, 3)], candidate_objects[(12, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(13, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

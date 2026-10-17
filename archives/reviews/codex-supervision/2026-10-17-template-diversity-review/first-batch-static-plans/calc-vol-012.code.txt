@@ -1,0 +1,75 @@
+class Candidate:
+    def construct(self):
+        from math import isfinite as candidate_isfinite
+        if self.mobjects:
+            raise ValueError('candidate_requires_dedicated_empty_canvas')
+        candidate_width = config.frame_width - 1
+        candidate_height = config.frame_height - 1
+        if not candidate_isfinite(candidate_width) or not candidate_isfinite(candidate_height) or candidate_width <= 0 or candidate_height <= 0:
+            raise ValueError('candidate_invalid_viewport')
+        candidate_objects = {}
+        candidate_objects[(0, 1)] = MathTex('y = \\arcsin x', font_size=22)
+        candidate_objects[(0, 3)] = MathTex('0 \\le x \\le 1', font_size=22)
+        candidate_objects[(0, 5)] = MathTex('x=1', font_size=22)
+        candidate_objects[(2, 1)] = MathTex('y = \\arcsin x', font_size=22)
+        candidate_objects[(2, 3)] = MathTex('x=1', font_size=22)
+        candidate_objects[(8, 1)] = MathTex('dV = \\pi y^2 dx', font_size=22)
+        candidate_objects[(9, 1)] = MathTex('\\frac{\\pi^3}{4} - 2\\pi', font_size=22)
+        candidate_objects[(11, 0)] = MathTex('\\frac{\\pi^3}{4} - 2\\pi', font_size=22)
+        candidate_objects[(0, 0)] = Text('求曲线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 2)] = Text('（', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 4)] = Text('）与x轴、直线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(0, 6)] = Text(' 围成的图形绕x轴旋转一周所得旋', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(1, 0)] = Text('转体的体积。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 0)] = Text('第一步：在二维坐标系中绘制曲线 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 2)] = Text('，用黄色填充它与 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(2, 4)] = Text(' 及x轴围', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(3, 0)] = Text('成的区域。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(4, 0)] = Text('第二步：将场景切换至三维视角，展示该平面区域绕x轴旋转一周的动态', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(5, 0)] = Text('过程。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 0)] = Text('第三步：旋转完成后，生成一个连续的三维旋转体。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('第四步：在x轴上从0到1滑动，展示垂直于x轴的红色圆盘微元，演示', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(8, 0)] = Text('M', font='Microsoft YaHei', font_size=22).set_opacity(0)
+        candidate_objects[(8, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 0)] = Text('第五步：展示定积分的分部积分计算过程，高亮最终结果 ', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(9, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(10, 0)] = Text('第六步：配合右侧公式推导，展示圆盘微元积分过程。', font='Microsoft YaHei', font_size=22)
+        candidate_rows = []
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)], candidate_objects[(0, 3)], candidate_objects[(0, 4)], candidate_objects[(0, 5)], candidate_objects[(0, 6)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)], candidate_objects[(2, 3)], candidate_objects[(2, 4)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)], candidate_objects[(9, 1)], candidate_objects[(9, 2)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(10, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(11, 0)]).arrange(RIGHT, buff=0))
+        candidate_pages = []
+        candidate_page = []
+        candidate_used = 0
+        for candidate_index, candidate_row in enumerate(candidate_rows):
+            if not candidate_isfinite(candidate_row.width) or not candidate_isfinite(candidate_row.height) or candidate_row.width > candidate_width or candidate_row.height > candidate_height or candidate_row.height <= 0:
+                raise ValueError('candidate_row_exceeds_measured_viewport')
+            candidate_need = candidate_row.height + (1/4 if candidate_page else 0)
+            if candidate_used + candidate_need > candidate_height:
+                candidate_pages.append(candidate_page)
+                candidate_page = []
+                candidate_used = 0
+                candidate_need = candidate_row.height
+            candidate_page.append(candidate_index)
+            candidate_used += candidate_need
+        if candidate_page:
+            candidate_pages.append(candidate_page)
+        self.candidate_page_map = candidate_pages
+        for candidate_indices in candidate_pages:
+            candidate_group = VGroup(*[candidate_rows[i] for i in candidate_indices]).arrange(DOWN, aligned_edge=LEFT, buff=1/4)
+            candidate_group.move_to(ORIGIN)
+            if candidate_group.width > candidate_width or candidate_group.height > candidate_height:
+                raise ValueError('candidate_page_exceeds_measured_viewport')
+            self.play(FadeIn(candidate_group))
+            self.wait(1)
+            self.play(FadeOut(candidate_group))
+            self.remove(candidate_group)

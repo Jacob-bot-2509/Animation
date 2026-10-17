@@ -1,0 +1,52 @@
+{
+  "annotation_pairs": 50,
+  "unique_pairs": 50,
+  "labels": {
+    "\u91cd\u590d": 17,
+    "\u4e0d\u91cd\u590d": 31,
+    "\u4e0d\u786e\u5b9a": 2
+  },
+  "current_exact_text_references": 100,
+  "signature_diagnostic": {
+    "tp": 17,
+    "fp": 0,
+    "fn": 0,
+    "tn": 31,
+    "precision": "1",
+    "recall": "1",
+    "fpr": "0",
+    "fnr": "0"
+  },
+  "executed_b5_rule": "\u8003\u70b9\u7b7e\u540d\u4e00\u81f4 AND 5-gram Jaccard\u8fbe\u9608\u503c",
+  "threshold": "2/5",
+  "combined_diagnostic": {
+    "tp": 16,
+    "fp": 0,
+    "fn": 1,
+    "tn": 31,
+    "precision": "1",
+    "recall": "16/17",
+    "fpr": "0",
+    "fnr": "1/17"
+  },
+  "all_stored_report_counts_and_grids_match": true,
+  "missed_positive_pairs": [
+    {
+      "a": "eval-calc-010",
+      "b": "test-calc-007",
+      "label": "\u91cd\u590d",
+      "j5": "19/62",
+      "kp_j": "1",
+      "intersection": 19,
+      "union": 62,
+      "kp_a": "\u6570\u5b66\u5206\u6790 \u6781\u9650\u8ba1\u7b97",
+      "kp_b": "\u6570\u5b66\u5206\u6790 \u6781\u9650\u8ba1\u7b97"
+    }
+  ],
+  "recall_goal": "19/20",
+  "recall_shortfall": "3/340",
+  "formal_calibration": "NOT_ESTABLISHED",
+  "independent_label_evidence": "MISSING",
+  "near_dup_calibrated": false,
+  "production": "CLOSED"
+}

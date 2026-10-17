@@ -1,77 +1,70 @@
-# IPv6 双端实验(D2/D8)用具清单与步骤 Runbook
+# IPv6 双端实验 D2/D8：工具与分阶段操作单 v2
 
-状态:PLAN_PREPARED_NOT_EXECUTION_AUTHORIZED(依据 Codex 871 与 NEW_ROUND_REQUIREMENTS.md)。
-本文件是执行包;**开工须先过四道闸**(见二)。所有身份/地址/退出码未知时写 null/PENDING,不填希望值。
+状态：PLAN_PREPARED_NOT_EXECUTION_AUTHORIZED。本单是待实施方案，不是已可直接运行的发布包。Codex 已修正文书中的部署依赖、同步权限和身份/发布时序；本轮不启动接收采集或探针、不改变配置/登记/门禁。用户此前 D2/D8 延期 GAP 的决定继续有效；已明确覆盖具体范围的真实授权可引用，不重复索取，邮件转述不能替代新授权。
 
-## 一、实验用具清单
+## 一、两端工具和路径
 
-### A. 证人机(第一道闸,你这边)
-| 项 | 要求(Codex 口径) |
-|---|---|
-| 主机 | 与训练机**不同的物理/虚拟主机**;之前候选:WJW(OneDrive 已登录)/新电脑(成功 LAN 轮那台) |
-| 公网 IPv6 | 具体**全局单播地址(GUA)+ PrefixLength + 路由**;GUA 字样不证明外部——要保留两端接口/前缀/路由/拓扑材料;check_scope 拒绝发送端任一接口前缀内目标,IPv6 还拒绝**同 /64**;证明不了外部就记 GAP |
-| 端口 | v3 启动器 SERVE 固定 **UDP 49001、TCP 49002、300 秒**(改的话先核程序支持,不能只改手册) |
-| OneDrive | 登录同一账号(Jacapo061010@outlook.com),sync_root=OneDrive\witness |
-| kit | 拷入 kit 目录(在 OneDrive 之外),含 witness_receiver_v3.exe(预期 SHA 02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf,**现场前后核验**)、start_witness_capture.ps1、inspect_witness_evidence.py、witness_pack.py(Codex 修复版) |
+### 1. 证人端接收器：最小两文件
 
-### B. 训练机(我这边)
-- 四工具修复版(consumer SHA 5694391f…)、常驻 watch(现行)、configs/witness_automation.local.json
-- sandbox_external_test_driver.py(SHA a02105a0…)作发送端驱动
-- 发送端原始材料接口/路由/拓扑采集命令
+在操作者控制、非 OneDrive 的独立目录中，同目录放 witness_receiver_v3.exe 与 start_witness_capture.ps1。EXE 预期 SHA256 为 02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf；启动器预期 SHA256 为 39032c5e3b14d699715047cf9f6acbd2bef1c9265916d574ae9f90ca0f3e3545。这只是当前受审版本，现场副本仍要在运行前后核验。
 
-### C. 参数与 nonce(铁律)
-- 观察参数整数 21-90 秒;**post-attempt 实际窗口 ≥20 秒**(elapsed_ns≥20,000,000,000)
-- 每协议 before/sandbox/after **三个唯一 32 位十六进制 nonce**;TCP+UDP 合计六个互异(将来 D1/D7 三组件合计九个互异)
-- 两机 monotonic_ns **不能相减/排序**;跨机靠同轮身份+端点+nonce+原始接收事件关联
+该最小接收器不要求 Python；不能因此声称 Python 自动打包工具也已部署。接收器 mode=SERVE，当前启动器固定 UDP 49001、TCP 49002、300 秒；SELFTEST 仅本机自检，不当正式外部证据。
 
-## 二、四道前置闸(缺一不开工)
+### 2. 证人端自动打包：另需完整闭包
 
-1. **证人机公网 IPv6 条件**(你侧):GUA+前缀+路由+拓扑材料;非 ::、回环、链路本地、多播、发送端自己
-2. **新根/固定源码绑定审查**(Codex 侧):现行 driver 的 REGISTERED_ROOT 仍是旧 all43 根,transport/verifier 也有固定根——**不能直接把新路径传旧脚本**;须先过"新根统一边界"审查(我的方案已 REPAIRED_PASS 设计层,真实改造未做)
-3. **用户明确授权**(你):写明具名采集范围(哪台证人、哪些端点、什么探针),发给 Codex
-4. **新轮身份先审后发**:round/capture_id/receiver_run_id/sender_run_id/nonce 全部新取,不复用 lan-2026-10-13-a;registry 七键审查+加载确认后才发布 .ready
+witness_pack.py 直接 import witness_transfer_common。公共模块在导入时计算四个 automation_source_pins，load_config 执行模式还核验三个 v3 相关脚本；只带原稿所列几份文件不能满足该检查。
 
-## 三、完整步骤
+若使用现行代码，候选部署布局为 <部署根>/tools/ 下至少存在以下七份同版本原字节：
+- witness_transfer_common.py、witness_pack.py、witness_consumer.py、witness_registered_adapter.py；
+- start_witness_capture.ps1、inspect_witness_evidence.py、sandbox_external_test_driver.py。
 
-### Phase 0:准备材料(现在可做)
-1. 证人机:`ipconfig /all` 存 IPv6 地址/前缀/默认网关;`route print -6`;确认 OneDrive 登录与 sync 目录
-2. 训练机:本机 IPv6 接口/路由采集存档(两端拓扑对照)
-3. 新轮命名提案:round=`ipv6-YYYYMMDD-<x>`(1-64 ASCII 字母数字/下划线/连字符,首字符字母数字)
-4. 把两端拓扑材料 + 新轮提案 + 你的授权文本一起发 Codex 审查
-5. 同时等新根/工具版本审查结论(871 §5)
+后两类文件即使在证人端不执行，也属于当前 pin 核验闭包。ROOT 按 __file__.parents[1] 推导，因此不能把 tools 文件平铺到任意目录后仍套用旧根配置。可将 EXE 与 tools/start_witness_capture.ps1 同目录；或者保留独立两文件接收目录，capture_root 指向实际原件位置。inspect 和发送 driver 的正式调用仍在训练机受审环境，不在证人端为验证依赖而执行。
 
-### Phase 1:获授权后启动(Codex 不发射,全部我执行)
-1. 证人机:现场核验 witness_receiver_v3.exe SHA → 按获准计划启动 SERVE(监听 UDP 49001/TCP 49002/300 秒)
-2. 训练机:跑 sandbox_external_test_driver 的 IPv6 external 用例:
-   - TCP:before nonce 健康对照 → sandbox 内发 TCP nonce → after nonce 健康对照
-   - UDP:同上独立三 nonce(不能从 TCP 可达推 UDP 可达)
-   - 每协议 post-attempt 观察 ≥20 秒
-3. 采集:发送端原始接口/路由/拓扑、typed rc/原始流、源码实现前后绑定;证人侧五原件(receiver.jsonl、receiver.jsonl.summary.json、stdout.bin、stderr.bin、process-exit.json——**内部日志仍用 sandbox-witness-receiver-v2,不许手改 schema**;mode 必须 SERVE,SELFTEST 不算)
+证人端还须有实际核验可用的 Windows Python/标准库环境、witness 角色独立配置以及实际 capture_root、staging_root、sync_root。现行 load_config 要求 staging 位于该部署根的 reviews/witness-automation/ 内，三根不得相互包含。七份源码的字节清单见 WITNESS-KIT.plan.json；该清单不是运行配置，未部署、未激活、未声明证人端 Python 已验证。
 
-### Phase 2:打包回传(与昨晚 OneDrive 流程相同)
-1. 证人机:pack 只打包已完成的具名 capture(严格五原件)→ stage → OneDrive sync 目录 → **.ready 最后发**
-2. 训练机:watch 消费 → 验 SHA/限制/拒重解析点 → v3 预检 → 匹配**新 registry** → 注册对账 → 归档
-3. registry 增项七键:round/receiver_capture_id/expected_receiver_run_id/sender_run_id/sender_path/sender_sha256/input_bindings(绑发送端 IPv6 接口 stdout/stderr、transport.work 下 scene.py/stdout.txt/stderr.txt + 本轮路由/拓扑原件)
+训练机现行配置的 witness.capture_root/sync_root 为 null，不能照抄其 active=true 配置作为证人端就绪证明；证人角色要经独立路径/权限/版本核验后接入。
 
-### Phase 3:Codex 独立复核
-- 逐协议限定:D2=external IPv6 TCP、D8=external IPv6 UDP,**分别通过才报告对应点**
-- 旧 LAN D9 仅按已认可窗口继承,不冒充本轮新实测
+### 3. 训练机与同步通道
 
-### Phase 4:结果资格
-- 单点对账不签 43 点证书;新 D2/D8 不自动改其他 GAP/F2/F4 PARTIAL
-- 只有全部适用验收满足才另提证书候选
+训练机沿用已审四工具及完整本地依赖、具体新根/driver/verifier 合同和实际配置/加载版本。常驻 consumer 只说明在等待包，不证明新 receiver 可达。
 
-## 四、原物清单(交付时的最小集)
+OneDrive 使用用户已授权的同步/共享通道；不要求在不同机器登录某个硬编码个人账号。是否同一账号或经授权共享，由实际接入方式决定，不要求交出密码/令牌。两端各自的绝对 sync_root、可见性和权限必须用真实材料核验；不要假定证人端也叫 OneDrive\witness，或用训练机路径替代证人路径。只有指定证据包进入此通道，不上传整个项目。
 
-- 证人侧:五原件 + EXE 前后 SHA + 启动器记录(真实命令/身份/typed rc)
-- 发送端:新 sender.json(实际 source/transport/scene.py/stdout/stderr、父 token/Job/profile/ACL/树终止证据、接口/路由/拓扑、typed rc、nonce、观察窗)
-- 两端 before/after 健康对照:接收端逐字节看见 before→after,**且没有任何 sandbox nonce**;真实收到 sandbox nonce = FAIL
+## 二、采集前的四类检查
 
-## 五、不做的事
+1. **授权和范围**：独立受控证人主机身份、具体 IPv6/协议/端口、新 round、固定探针、执行者、原始产物范围及已有真实授权来源。Codex 不启动接收器、不发射；证人端实际操作者与获授权 Claude 负责采集/发送。
+2. **外部拓扑与端点**：两端实际 IPv6 地址、PrefixLength、路由和控制来源。GUA 本身不证明外部；非 ::、回环、链路本地、多播或发送端自己。现行 check_scope 还拒绝发送端任一接口网段及 IPv6 同 /64。TCP/UDP 的真实健康通路要在获准采集中分别实测，不能用 TCP 代 UDP 或旧 LAN 成功代公网可达。
+3. **新根与工具版本**：当前 driver/transport/verifier 固定旧根；仅设计层的 REPAIRED_PASS 不代表真实新根已接线。统一根/源码/pins/cohort 与拒绝夹具方案实施并独立复核前，不直接向旧脚本传新路径或放宽 bound_path。
+4. **部署与轮次计划**：角色工具/运行环境/配置路径真实可用，新的 round 及身份生成规则经审查；round 为 1 至 64 个允许的 ASCII 字符。此时 capture_id/receiver_run_id 和 sender SHA 等实际运行字段可仍为 null/PENDING，不能要求尚未运行的材料先有“真实 SHA”。它们在真实产生后进入最终 registry 审查，而不是作为自报执行许可。
 
-- 不复用旧轮身份/nonce;不把旧回放当新原件
-- 不编辑/重新序列化/补写原件;失败原件保留,不调参重放
-- 不改 frozen 目录、不放宽 bound_path
-- OneDrive 同步成功 ≠ 探针网络可达;REGISTERED_RECONCILIATION_COMPLETE ≠ 43 点证书
+本轮没有替用户验证公网可达、启动这些检查命令或更改系统策略、防火墙、ACL、账号设置。只读本机接口/路由材料可以由受控操作者按具名范围准备；不要为了准备材料先发射未获准的外部探针。
 
-提交时间以 git 记录为准。
+## 三、真实采集顺序（未来获准后）
+
+1. 证人端现场核验 EXE/启动器，按批准端点、新 round 和 SERVE 计划启动，取得实际 capture_id、receiver_run_id 与 listening 端点。与旧 lan-2026-10-13-a 的所有实际身份区分，不补造、不重命名旧回放。
+2. 训练机在已审入口按 external IPv6、both 协议的单个 sender 运行。现行 driver 实际顺序是：TCP/UDP 两项 before 控制 → 一个沙箱 probe 内分别尝试两协议 → 共同 post-attempt 观察窗口 → TCP/UDP 两项 after 控制。不是先做完一轮 TCP、再把另一轮 UDP 填进同一 sender/capture 身份。
+3. 两协议各有 before/sandbox/after 三个新 32 位小写十六进制 nonce，六个互异。观察参数为整数 21 至 90 秒，实际后窗口 elapsed_ns≥20,000,000,000。after 控制必须按现行核验处于窗口中并在接收器仍存活时抵达。
+4. 300 秒接收时长不自动保证覆盖接口/路由准备、原生运行、观察及控制；须依据实际起止/原件核验。若窗口或健康控制不足，保留失败/未知，不在同轮补日志或重放来伪造成功。
+5. 两机 monotonic_ns 不能直接相减/比较。各机内核对顺序/耗时，跨机以同轮身份、端点、nonce、接收事件和受控过程关联；云盘同步时刻不当观察窗口。
+
+若计划拆为独立 TCP/UDP sender/capture，必须另交对应身份、registry 匹配和完整窗口方案，不能将多个 sender 填进同一个未审绑定。
+
+## 四、完成原件→真实登记→发布→消费
+
+1. 等接收器和 sender 实际结束，保留所有失败原件。证人侧五份原件：receiver.jsonl、receiver.jsonl.summary.json、stdout.bin、stderr.bin、process-exit.json；外层 v3 的内部日志仍为 sandbox-witness-receiver-v2，父回执为 witness-process-exit-v1，不手改 schema。
+2. 新 sender.json 及 source/transport/命令、scene.py/stdout/stderr、真实父 token/Job/profile/ACL/树终止、接口/路由/拓扑、typed rc/nonce/窗口、前后实现 SHA 全部绑定。发送成功、超时、rc0 或某个 winerror 都不是单独的双端通过。
+3. 用实际完成原件构成 registry 候选七键：round、receiver_capture_id、expected_receiver_run_id、sender_run_id、sender_path、sender_sha256、input_bindings。至少绑定 IPv6 接口 stdout/stderr、transport.work 下三文件及本轮决定性路由/拓扑原件，保留旧登记，不先填期望 SHA。
+4. Codex 审查候选；确认训练机按实际加载机制采用新配置 SHA 后，才允许对本 capture 调用已审 pack 的发布执行模式。此前原件保留在非同步区，publisher 不启用、不扫描它。
+5. 当前 witness_pack.publish 会连续执行本地 staging、写同步 ZIP、最后写 .ready，没有独立的“只 stage、不发布”执行开关。不要先运行 --execute 再手工扣留 .ready；本单也不提供手写/修改 marker 的替代流程。默认 PLAN 不发布，但也不预先打包。
+6. 发布仅限已完成的具名 capture，按已授权两端路径自动写包/标记；.ready 是工具最后写入，不是操作者可伪造的成功证明。本地 LOCAL_PUBLISHED 的 remote_arrival_verified=false，仍须训练机实际接收核验。
+7. consumer 按稳定完整包→哈希/资源/路径检查→v3 预检→精确新 registry→注册对账→具名归档。包过早到达/未登记不假定会自动恢复；保留原件和失败状态，按现有策略另审，不改冻结 job。
+
+## 五、判定与交付
+
+接收原始日志应逐字节看到各协议恰当的 before→after 控制且没有 sandbox nonce，连续 seq、正确 run、端点/字节数、完整结束与原始流/summary/父回执相符。实际 sandbox 载荷收到为 FAIL；缺控制/窗口/原件为未验收，不能把它改称隔离通过。
+
+D2 是 external IPv6 TCP，D8 是 UDP，分别裁决。D1 的 TCP IPv4 联合仍需对应 LAN IPv4 TCP、外部 IPv6 TCP、本机 IPv4 TCP；D7 独立需三份 UDP。九个 nonce 是**每个协议的三个组件各三阶段**，不能理解为 TCP+UDP 合计九个。旧 LAN D9 仅按已认可具名窗口继承，不冒充本轮 LAN 实测。
+
+只交本轮核心原件、外部拓扑/授权/源码与新根说明、最终 registry 候选、发布/消费/对账回执，不索取全部历史语料。预检就绪、通道合格、注册对账、D2/D8 分项通过、43 点证书分别记账。当前其他 GAP、F2/F4 PARTIAL 和证书缺失不因本单改变；production=CLOSED、全局 NOT_ESTABLISHED、D2/D8 延后 GAP 保持。
+
+相关上位审查：archives/reviews/codex-supervision/2026-10-17-ipv6-next-round-plan-review/NEW_ROUND_REQUIREMENTS.md 及 2026-10-17-root-boundary-mock-review/FIX_REPORT.md。后者仅设计/Mock 合格，真实路径/ACL/持久预留及原生接线仍待实现。

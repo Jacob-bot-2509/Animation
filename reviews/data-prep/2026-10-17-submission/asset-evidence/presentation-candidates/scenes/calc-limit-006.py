@@ -52,8 +52,8 @@
         candidate_objects[(6, 0)] = Text('令 ', font='Microsoft YaHei', font_size=22)
         candidate_objects[(6, 2)] = Text(' 从正侧趋于 ', font='Microsoft YaHei', font_size=22)
         candidate_objects[(6, 4)] = Text('；图形只示意过程，不在 ', font='Microsoft YaHei', font_size=22)
-        candidate_objects[(6, 6)] = Text(' 计算比值，极限', font='Microsoft YaHei', font_size=22)
-        candidate_objects[(7, 0)] = Text('判断依据精确不等式。', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(6, 6)] = Text(' 计算比值，', font='Microsoft YaHei', font_size=22)
+        candidate_objects[(7, 0)] = Text('极限判断依据精确不等式。', font='Microsoft YaHei', font_size=22)
         candidate_objects[(8, 0)] = Text('显示右极限的夹逼推导、偶函数等式和左极限，得 ', font='Microsoft YaHei', font_size=22)
         candidate_objects[(8, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
         candidate_rows = []

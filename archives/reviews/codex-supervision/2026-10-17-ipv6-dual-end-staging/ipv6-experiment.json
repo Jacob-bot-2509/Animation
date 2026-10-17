@@ -1,0 +1,72 @@
+{
+  "experiment": "ipv6 dual-end capability (local side)",
+  "tool": "run_ipv6_experiment.py",
+  "started_unix": 1792210718.6054313,
+  "stages": {
+    "host_ipv6": {
+      "addresses": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Get-NetIPAddress : 拒绝访问 \r\nAt line:1 char:1\r\n+ Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,Prefix ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : PermissionDenied: (MSFT_NetIPAddress:ROOT/StandardCimv2/MSFT_NetIPAddress) [Get-NetIPAdd \r\n   ress], CimException\r\n    + FullyQualifiedErrorId : HRESULT 0x80041003,Get-NetIPAddress"
+      },
+      "default_route": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Get-NetRoute : 拒绝访问 \r\nAt line:1 char:1\r\n+ Get-NetRoute -AddressFamily IPv6 | Where-Object DestinationPrefix -eq ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : PermissionDenied: (MSFT_NetRoute:ROOT/StandardCimv2/MSFT_NetRoute) [Get-NetRoute], CimEx \r\n   ception\r\n    + FullyQualifiedErrorId : HRESULT 0x80041003,Get-NetRoute"
+      },
+      "stack_state": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Get-NetAdapterBinding : 拒绝访问 \r\nAt line:1 char:1\r\n+ Get-NetAdapterBinding -ComponentID ms_tcpip6 | Select-Object Name,Ena ...\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : PermissionDenied: (MSFT_NetAdapterBindingSettingData:ROOT/StandardCi...dingSettingData)  \r\n   [Get-NetAdapterBinding], CimException\r\n    + FullyQualifiedErrorId : HRESULT 0x80041003,Get-NetAdapterBinding"
+      },
+      "ping_public_v6": {
+        "rc": 1,
+        "stdout": "\r\nPinging 2001:4860:4860::8888 with 32 bytes of data:\r\nPING: transmit failed. �������ϡ� \r\nPING: transmit failed. �������ϡ� \r\n\r\nPing statistics for 2001:4860:4860::8888:\r\n    Packets: Sent = 2, Received = 0, Lost = 2 (100% loss),\r\n"
+      }
+    },
+    "emission_governance": {
+      "config": "D:\\Animation-Model-Training\\configs\\witness_automation.local.json",
+      "sha256": "8cf5f6fd80ca9f521694085e3eed9c7c67c8f36655828e1e1bc43827f3012d5a",
+      "allow_probe_emission": false,
+      "production": "CLOSED",
+      "active": true,
+      "sender_registry_rounds": [
+        "lan-2026-10-13-a"
+      ],
+      "v3_witness_sha256": "02d781bc22286b1e8417ddb119ec6b529e5a9101b1fad758a41a06fbc2eb44bf"
+    },
+    "offline_literal_tests": {
+      "ok": false,
+      "returncode": 1,
+      "tail": [
+        "Ran 35 tests in 0.158s",
+        "",
+        "FAILED (errors=58)"
+      ],
+      "test_source": "D:\\Animation-Model-Training\\tests\\test_sandbox_external_driver.py",
+      "test_source_sha256": "48b5a2c1de35e57691e958876e43e62755d958ff15301ab3baa8e0b0eb8d88fc",
+      "patched": "D:\\Animation-Model-Training\\archives\\reviews\\codex-supervision\\2026-10-17-ipv6-dual-end-staging\\test_sandbox_external_driver_patched.py",
+      "patched_sha256": "03996aa37dc9271b528442bf4ae982d9258c0ef434eceac272fb51ef43742cd9",
+      "redirect": {
+        "from": "reviews/codex-supervision/2026-10-09-witness-input-test-work",
+        "to": "C:/Users/Jacap/AppData/Local/Temp/dsh-8QeeqP/ipv6-dual-end-test-work"
+      }
+    }
+  },
+  "judgement": {
+    "has_ipv6_address": false,
+    "public_ipv6_reachable": false,
+    "probe_emission_allowed": false,
+    "offline_ipv6_literal_rules_pass": false
+  },
+  "verdict": "BLOCKED_NO_IPV6_PATH",
+  "blocking": [
+    "this host has no IPv6 address / no route to a public IPv6 literal",
+    "no reachable public-IPv6 witness host was provided"
+  ],
+  "not_established": [
+    "external IPv6 dual-end run (D2/D8)",
+    "sandbox IPv6 probe delivery"
+  ],
+  "finished_unix": 1792210722.0396404
+}

@@ -1,118 +1,227 @@
-"""首批 10 条内容/几何映射构建(只读;使用 Codex 修复版模板 API)。
-
-产出 content-geometry-mapping.jsonl:每条记录 = 源行绑定 + 完整片段计划
-(make_plan,coverage 重算比对)+ 几何核对清单(PENDING_REVIEW,不自判)。
-布局/数学/几何结论留待真实渲染与审核;本脚本不渲染、不改现役文件。
-"""
+"""Bound static content plans; never render, execute scenes, approve math or geometry."""
+from __future__ import annotations
+import argparse
 import hashlib
+import importlib.util
 import json
 import sys
+import uuid
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).absolute().parent
 ROOT = HERE.parents[4]
-sys.path.insert(0, str(HERE.parent / "template-fix-candidate"))
-from render_templates_v2_candidate import make_plan, coverage_ok, TemplateError  # noqa: E402
+SELECTOR = HERE.parent / "pick_first_batch_10.py"
+CANDIDATE = HERE.parent / "template-fix-candidate/render_templates_v2_candidate.py"
 
-BATCH = HERE.parent / "first-batch-10.v2.json"
-EV = ROOT / "data" / "asset_evidence.json"
+def load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
-GEO_KEYWORDS = [
-    "抛物线", "直线", "圆", "椭圆", "双曲线", "曲线", "切点", "切线", "坐标轴",
-    "点", "面积", "矩形", "区域", "积分", "微元", "极限", "平面", "向量", "三角形",
-    "正方形", "圆点", "刻度", "边界", "端点", "区间", "交点", "原点",
-]
-TPL_GEOMETRY = {
-    "derivative": ["坐标轴", "函数曲线", "切点", "切线"],
-    "integral": ["坐标轴", "上下曲线", "微元矩形", "积分区域"],
-    "area": ["坐标轴", "曲线", "边界线", "面积区域"],
+LOADED_BYTES = {CANDIDATE: CANDIDATE.read_bytes(), SELECTOR: SELECTOR.read_bytes()}
+selector = load("mapping_selector", SELECTOR)
+candidate = load("mapping_candidate", CANDIDATE)
+sha = selector.sha
+encoded = selector.encoded
+
+# Exact descriptions of the fixed legacy geometry, NOT record-specific geometry.
+# Source template SHA is pinned in every generation. Never infer correctness from keywords.
+REVIEWED_LEGACY_SHA256 = "15e625396545811ea6ab38ebf52d6bdf016215785f7477dc8061f22b6bd01577"
+INVENTORY = {
+    "unit_circle": ["circle: radius=2", "radius: (0,0) to (2,0)",
+                    "arc: radius=2, angle=pi/4",
+                    "triangle: (0,0),(2,0),(sqrt(2),sqrt(2))",
+                    "fixed formula: sin(x/2)/(x/2) -> 1"],
+    "graph_limit": ["axes", "curve: sin(x)/x, value at 0 set to 1",
+                    "vertical line and dot: (0,1)", "fixed label: x -> 0"],
+    "sequence": ["number line: 0 to 12", "dots: integers 1 through 8", "fixed label: a_n"],
+    "matrix": ["fixed matrix: [[1,2],[0,1]]", "brace", "fixed label: B^2=A", "arrow"],
+    "derivative": ["axes", "fixed curve: y=x^2", "fixed point: (1,1)",
+                   "fixed tangent: y=2x-1", "fixed label: f'(x)=2x"],
+    "geometry": ["triangle: (0,-4/5),(2,-4/5),(3/10,6/5)",
+                 "circle: radius=7/10, center=(4/5,0)",
+                 "right-angle marker at second triangle vertex: NEEDS_CONSISTENCY_REVIEW"],
+    "statistics": ["axes", "five bars: x=1,2,3,4,5; heights=1,3,2,3,1",
+                   "fixed curve: y=(11/5)*exp(-(x-5/2)^2/(6/5))"],
+    "fallback": ["no legacy geometry: text blocks only"],
 }
+GEO_KEYWORDS = ["抛物线", "直线", "圆", "椭圆", "双曲线", "曲线", "切点", "切线",
+                "坐标轴", "点", "面积", "矩形", "区域", "积分", "微元", "极限", "平面",
+                "向量", "三角形", "正方形", "刻度", "边界", "端点", "区间", "交点", "原点"]
 
+def strict_json(raw):
+    def pairs(items):
+        out = {}
+        for k, v in items:
+            if k in out:
+                raise ValueError("duplicate_json_key")
+            out[k] = v
+        return out
+    return json.loads(raw, object_pairs_hook=pairs,
+                      parse_constant=lambda x: (_ for _ in ()).throw(ValueError("nonfinite_json")))
 
-def sha_bytes(b: bytes) -> str:
-    return hashlib.sha256(b).hexdigest()
+def safe_input(path, root):
+    p = selector.checked_path(str(path), root=root)
+    if not p.is_file():
+        raise ValueError("missing_input")
+    return p
 
-
-def main() -> int:
-    batch = json.loads(BATCH.read_text(encoding="utf-8"))
-    records = batch.get("records") or batch.get("entries") or []
-    ev = json.loads(EV.read_text(encoding="utf-8"))
-    out_rows = []
-    errors = []
-
+def build(*, root=ROOT):
+    root = Path(root).absolute()
+    base = root / HERE.relative_to(ROOT)
+    paths = {
+        "batch": base.parent / "first-batch-10.v2.json",
+        "evidence": root / "data/asset_evidence.json",
+        "legacy_template": root / "tools/render_templates.py",
+        "candidate_template": root / CANDIDATE.relative_to(ROOT),
+        "selector": root / SELECTOR.relative_to(ROOT),
+        "builder": Path(__file__).absolute(),
+    }
+    if root != ROOT:
+        # Tests may supply a synthetic tree; executable dependencies remain the real reviewed modules.
+        paths["candidate_template"] = CANDIDATE
+        paths["selector"] = SELECTOR
+    captured = {}
+    for k, p in paths.items():
+        checked = safe_input(p, root if p.is_relative_to(root) else ROOT)
+        captured[k] = checked.read_bytes()
+    if captured["candidate_template"] != LOADED_BYTES[CANDIDATE] or captured["selector"] != LOADED_BYTES[SELECTOR]:
+        raise ValueError("loaded_dependency_changed")
+    batch, ev = strict_json(captured["batch"]), strict_json(captured["evidence"])
+    if type(batch) is not dict or batch.get("schema") != "asset-first-batch-v2":
+        raise ValueError("batch_schema")
+    records = batch.get("records")
+    if type(records) is not list or len(records) != 10:
+        raise ValueError("expected_ten_records")
+    if type(ev) is not dict or type(ev.get("records")) is not dict:
+        raise ValueError("evidence_shape")
+    if batch.get("evidence_sha256") != sha(captured["evidence"]):
+        raise ValueError("evidence_sha_mismatch")
+    if batch.get("template_sha256") != sha(captured["legacy_template"]) or ev.get("template_sha256") != sha(captured["legacy_template"]):
+        raise ValueError("legacy_template_sha_mismatch")
+    if sha(captured["legacy_template"]) != REVIEWED_LEGACY_SHA256:
+        raise ValueError("unreviewed_legacy_geometry_inventory")
+    if batch.get("selector_sha256") != sha(captured["selector"]):
+        raise ValueError("selector_sha_mismatch")
+    seen = set()
+    cache = {}
+    rows = []
     for rec in records:
-        sid = rec.get("sample_id") or rec.get("id")
-        if not sid:
-            errors.append({"problem": "no_sample_id", "record": rec})
-            continue
-        # 源行绑定:优先用清单里的 path/line/SHA,否则从 asset_evidence 的 source 取
-        src_path = rec.get("source_path") or (ev["records"].get(sid) or {}).get("source", {}).get("path")
-        line_no = rec.get("line_no") or (ev["records"].get(sid) or {}).get("source", {}).get("line")
-        try:
-            src = Path(str(src_path).replace("D:\\Animation-Model-Training\\", str(ROOT) + "\\"))
-            if not src.is_absolute():
-                src = ROOT / str(src_path)
-            data = src.read_bytes()
-            raw = data.splitlines(keepends=True)[line_no - 1]
-            obj = json.loads(raw.decode("utf-8"))
-        except Exception as exc:  # noqa: BLE001
-            errors.append({"problem": "source_read_failed", "sample_id": sid,
-                           "error": f"{exc.__class__.__name__}: {exc}"})
-            continue
-
-        problem = obj.get("problem", "")
-        steps = (obj.get("scene_spec") or {}).get("steps", []) or []
-        answer = obj.get("answer", "")
-        try:
-            plan = make_plan(steps)
-            cov = coverage_ok(steps, plan)
-        except TemplateError as exc:
-            errors.append({"problem": "plan_failed", "sample_id": sid, "error": str(exc)})
-            continue
-
-        # 几何核对清单:从题干/步骤中扫出的几何要素 + 模板几何,全部待审
-        text = problem + " " + " ".join(steps)
-        found = [k for k in GEO_KEYWORDS if k in text]
-        tpl = (ev["records"].get(sid) or {}).get("scene_source", {}).get("template")
-        checklist = []
-        for item in TPL_GEOMETRY.get(tpl, []):
-            checklist.append({"element": item, "found_in_text": item in text,
-                              "verdict": "PENDING_REVIEW"})
-        for item in found:
-            if item not in [c["element"] for c in checklist]:
-                checklist.append({"element": item, "found_in_text": True,
-                                  "verdict": "PENDING_REVIEW"})
-
-        out_rows.append({
-            "sample_id": sid,
-            "template": tpl,
-            "raw_line_sha256": sha_bytes(raw),
-            "plan_sha256": hashlib.sha256(json.dumps(
-                plan, ensure_ascii=True, separators=(",", ":")).encode()).hexdigest(),
-            "plan_rows": len(plan["rows"]),
-            "plan_pages_provisional": len(plan["provisional_pages"]),
-            "layout_status": plan["layout"],
-            "coverage_ok": cov,
-            "problem_chars": len(problem),
-            "steps_count": len(steps),
-            "answer_chars": len(answer),
-            "geometry_checklist": checklist,
-            "math_verdict": "PENDING_REVIEW",
-            "geometry_verdict": "PENDING_REVIEW",
+        if type(rec) is not dict:
+            raise ValueError("record_shape")
+        sid = rec.get("sample_id")
+        if type(sid) is not str or sid in seen:
+            raise ValueError("duplicate_or_missing_id")
+        seen.add(sid)
+        source = rec.get("source")
+        if type(source) is not dict or type(source.get("line")) is not int or source.get("raw_line_includes_terminator") is not True:
+            raise ValueError("batch_source_shape")
+        evidence = ev["records"].get(sid)
+        bound = selector.bind_record(sid, evidence, root=root, cache=cache)
+        if rec.get("source") != bound["source"] or rec.get("family_key") != bound["family_key"]:
+            raise ValueError("batch_source_binding_mismatch")
+        p = root / bound["source"]["path"]
+        raw = cache[p][1][bound["source"]["line"] - 1]
+        obj = strict_json(raw)
+        scene = obj.get("scene_spec")
+        if type(scene) is not dict:
+            raise ValueError("scene_shape")
+        problem, answer, steps = obj.get("problem"), obj.get("answer"), scene.get("steps")
+        if type(problem) is not str or not problem.strip() or type(answer) is not str or not answer.strip():
+            raise ValueError("problem_answer_shape")
+        if type(steps) is not list or not steps or any(type(x) is not str or not x.strip() for x in steps):
+            raise ValueError("steps_shape")
+        tpl = evidence.get("scene_source", {}).get("template")
+        if tpl not in INVENTORY:
+            raise ValueError("unknown_legacy_template")
+        step_plan = candidate.make_plan(steps)
+        full_sources = [problem, *steps, answer]
+        full_plan = candidate.make_plan(full_sources)
+        if not candidate.coverage_ok(steps, step_plan) or not candidate.coverage_ok(full_sources, full_plan):
+            raise ValueError("coverage_failed")
+        spans = []
+        for field, texts in (("problem", [problem]), ("step", steps), ("answer", [answer])):
+            for index, text in enumerate(texts):
+                for keyword in GEO_KEYWORDS:
+                    start = 0
+                    while True:
+                        offset = text.find(keyword, start)
+                        if offset < 0:
+                            break
+                        spans.append({"field": field, "index": index, "keyword": keyword,
+                                      "start": offset, "end": offset + len(keyword),
+                                      "meaning": "LEXICAL_OCCURRENCE_ONLY_NOT_GEOMETRY_PROOF"})
+                        start = offset + len(keyword)
+        rows.append({
+            "sample_id": sid, "source": bound["source"], "template": tpl,
+            "steps_plan": step_plan, "steps_plan_sha256": sha(encoded(step_plan)),
+            "full_content_plan": full_plan, "full_content_plan_sha256": sha(encoded(full_plan)),
+            "source_order": ["problem", *["step:" + str(i) for i in range(len(steps))], "answer"],
+            "coverage": {"steps": True, "problem_steps_answer": True, "kind": "EXACT_SOURCE_FRAGMENT_COVERAGE_ONLY"},
+            "provisional_step_rows": len(step_plan["rows"]),
+            "provisional_step_pages": len(step_plan["provisional_pages"]),
+            "legacy_geometry_checklist": [
+                {"element": item, "origin": "FIXED_LEGACY_TEMPLATE",
+                 "record_correspondence": "NOT_ESTABLISHED", "verdict": "PENDING_REVIEW"}
+                for item in INVENTORY[tpl]],
+            "lexical_occurrences": spans,
+            "candidate_geometry": "TEXT_ONLY_CANDIDATE_NOT_LEGACY_GEOMETRY_REPAIR",
+            "math_verdict": "PENDING_REVIEW", "geometry_verdict": "PENDING_REVIEW",
+            "native_layout_verdict": "UNVERIFIED_REQUIRES_NATIVE_MEASUREMENTS",
+            "user_review": None,
         })
+    # Reject an input mutation observed during preparation.
+    for k, p in paths.items():
+        if p.read_bytes() != captured[k]:
+            raise ValueError("input_changed")
+    for p, (raw, _, _) in cache.items():
+        if p.read_bytes() != raw:
+            raise ValueError("dataset_changed")
+    return {"schema": "bound-content-geometry-mapping-v2",
+            "qualification": "STATIC_SOURCE_COVERAGE_ONLY",
+            "input_pins": {k: {"path": p.relative_to(root if p.is_relative_to(root) else ROOT).as_posix(),
+                               "sha256": sha(captured[k]), "bytes": len(captured[k])}
+                           for k, p in paths.items()},
+            "records": rows, "production": "CLOSED", "global_isolation": "NOT_ESTABLISHED"}
 
-    out = HERE / "content-geometry-mapping.jsonl"
-    out.write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in out_rows) + "\n",
-                   encoding="utf-8")
-    print(f"mapped={len(out_rows)} errors={len(errors)}")
-    for e in errors:
-        print("ERROR", json.dumps(e, ensure_ascii=False)[:200])
-    for r in out_rows:
-        print(f"  {r['sample_id']:24s} tpl={r['template']} rows={r['plan_rows']} "
-              f"pages={r['plan_pages_provisional']} cov={r['coverage_ok']} "
-              f"geom_items={len(r['geometry_checklist'])}")
+def publish(result, *, base=HERE, root=ROOT):
+    base, root = Path(base).absolute(), Path(root).absolute()
+    selector.checked_path(str(base), root=root)
+    if not base.is_dir():
+        raise ValueError("missing_output_parent")
+    for p in (base, *base.parents):
+        if (p / "delivery-manifest.json").exists():
+            raise ValueError("frozen_output")
+        if p == root:
+            break
+    out = base / ("generation-" + uuid.uuid4().hex)
+    out.mkdir(exist_ok=False)
+    files = {}
+    payloads = {"mapping.json": encoded(result) + b"\n",
+                "content-geometry-mapping.jsonl": b"".join(encoded(x) + b"\n" for x in result["records"])}
+    for name, raw in payloads.items():
+        with (out / name).open("xb") as f:
+            f.write(raw)
+        files[name] = {"sha256": sha(raw), "bytes": len(raw)}
+    complete = {"schema": "content-mapping-generation-v2", "qualification": result["qualification"],
+                "records": len(result["records"]), "files": files, "input_pins": result["input_pins"],
+                "durability": "COMPLETION_MARKER_ONLY_NOT_POWER_LOSS_OR_HOSTILE_PEER_GUARANTEE"}
+    with (out / "COMPLETE.json").open("xb") as f:
+        f.write(encoded(complete) + b"\n")
+    return out
+
+def main():
+    argparse.ArgumentParser(description=__doc__).parse_args()
+    result = build()
+    out = publish(result)
+    print(json.dumps({"generation": str(out), "records": len(result["records"]),
+                      "qualification": result["qualification"]}))
     return 0
 
-
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        raise SystemExit(main())
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        print("ERROR: " + str(exc), file=sys.stderr)
+        raise SystemExit(2)

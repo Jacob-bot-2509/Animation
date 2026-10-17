@@ -1,0 +1,406 @@
+{
+  "schema": "text-fragment-plan-v2",
+  "sources": [
+    "\u6c42\u6781\u9650 $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ \u7684\u503c\u3002",
+    "\u7b2c\u4e00\u6b65\uff1a\u7ed8\u5236\u76f4\u89d2\u5750\u6807\u7cfb\u548c\u5355\u4f4d\u5706\u3002\u5728 x \u8f74\u4e0a\u6807\u51fa\u70b9 $A(1,0)$\uff0c\u5e76\u5728\u539f\u70b9\u753b\u51fa\u4e00\u6761\u4e0e x \u8f74\u6b63\u65b9\u5411\u5448\u7ea6 45 \u5ea6\u7684\u5c04\u7ebf\u3002",
+    "\u7b2c\u4e8c\u6b65\uff1a\u5c04\u7ebf\u4e0e\u5355\u4f4d\u5706\u4ea4\u4e8e\u70b9 $B$\uff0c\u4ece $B$ \u70b9\u5411 x \u8f74\u4f5c\u5782\u7ebf\uff0c\u5782\u8db3\u4e3a $D$\u3002\u7528\u9ec4\u8272\u534a\u900f\u660e\u586b\u5145\u4e09\u89d2\u5f62 $OAB$\u3002",
+    "\u7b2c\u4e09\u6b65\uff1a\u7528\u84dd\u8272\u534a\u900f\u660e\u586b\u5145\u7531\u5c04\u7ebf\u3001x \u8f74\u4e0e\u5706\u5f27\u56f4\u6210\u7684\u6247\u5f62 $OAB$\u3002",
+    "\u7b2c\u56db\u6b65\uff1a\u8fc7\u70b9 $A$ \u4f5c\u5782\u76f4\u4e8e x \u8f74\u7684\u5207\u7ebf\uff0c\u4e0e\u5c04\u7ebf\u4ea4\u4e8e\u70b9 $C$\uff0c\u7528\u7ea2\u8272\u534a\u900f\u660e\u586b\u5145\u4e09\u89d2\u5f62 $OAC$\u3002",
+    "\u7b2c\u4e94\u6b65\uff1a\u753b\u9762\u53f3\u4fa7\u5c55\u793a\u9762\u79ef\u6bd4\u8f83\u5173\u7cfb\uff1a$S_{\\triangle OAB}$ $<$ \u6247\u5f62 $OAB$ \u9762\u79ef $<$ $S_{\\triangle OAC}$\u3002",
+    "\u7b2c\u516d\u6b65\uff1a\u62d6\u52a8\u5c04\u7ebf\u4f7f\u5176\u89d2\u5ea6 $x$ \u7f13\u6162\u51cf\u5c0f\uff0c\u8d8b\u4e8e 0\u3002\u52a8\u6001\u663e\u793a\u4e09\u4e2a\u533a\u57df\u7684\u9762\u79ef\u8d8a\u6765\u8d8a\u63a5\u8fd1\uff0c\u6700\u7ec8\u5728 $x \\to 0$ \u65f6\uff0c\u4e09\u8005\u7684\u89c6\u89c9\u8fb9\u754c\u51e0\u4e4e\u5b8c\u5168\u91cd\u5408\u3002",
+    "\u7b2c\u4e03\u6b65\uff1a\u52a8\u753b\u5c55\u793a\u4ee3\u6570\u63a8\u5bfc\u8fc7\u7a0b\uff0c\u9ad8\u4eae\u663e\u793a $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$\u3002",
+    "1"
+  ],
+  "chunk_chars": 32,
+  "per_page_lines": 5,
+  "rows": [
+    {
+      "source_index": 0,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u6c42\u6781\u9650 ",
+          "start": 0,
+          "end": 4
+        },
+        {
+          "kind": "math",
+          "content": "\\lim_{x \\to 0} \\frac{\\sin x}{x}",
+          "start": 4,
+          "end": 37
+        },
+        {
+          "kind": "text",
+          "content": " \u7684\u503c\u3002",
+          "start": 37,
+          "end": 41
+        }
+      ]
+    },
+    {
+      "source_index": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e00\u6b65\uff1a\u7ed8\u5236\u76f4\u89d2\u5750\u6807\u7cfb\u548c\u5355\u4f4d\u5706\u3002\u5728 x \u8f74\u4e0a\u6807\u51fa\u70b9 ",
+          "start": 0,
+          "end": 26
+        },
+        {
+          "kind": "math",
+          "content": "A(1,0)",
+          "start": 26,
+          "end": 34
+        },
+        {
+          "kind": "text",
+          "content": "\uff0c\u5e76\u5728\u539f\u70b9",
+          "start": 34,
+          "end": 39
+        }
+      ]
+    },
+    {
+      "source_index": 1,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u753b\u51fa\u4e00\u6761\u4e0e x \u8f74\u6b63\u65b9\u5411\u5448\u7ea6 45 \u5ea6\u7684\u5c04\u7ebf\u3002",
+          "start": 39,
+          "end": 62
+        }
+      ]
+    },
+    {
+      "source_index": 2,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e8c\u6b65\uff1a\u5c04\u7ebf\u4e0e\u5355\u4f4d\u5706\u4ea4\u4e8e\u70b9 ",
+          "start": 0,
+          "end": 14
+        },
+        {
+          "kind": "math",
+          "content": "B",
+          "start": 14,
+          "end": 17
+        },
+        {
+          "kind": "text",
+          "content": "\uff0c\u4ece ",
+          "start": 17,
+          "end": 20
+        },
+        {
+          "kind": "math",
+          "content": "B",
+          "start": 20,
+          "end": 23
+        },
+        {
+          "kind": "text",
+          "content": " \u70b9\u5411 x \u8f74\u4f5c\u5782\u7ebf\uff0c\u5782\u8db3",
+          "start": 23,
+          "end": 36
+        }
+      ]
+    },
+    {
+      "source_index": 2,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u4e3a ",
+          "start": 36,
+          "end": 38
+        },
+        {
+          "kind": "math",
+          "content": "D",
+          "start": 38,
+          "end": 41
+        },
+        {
+          "kind": "text",
+          "content": "\u3002\u7528\u9ec4\u8272\u534a\u900f\u660e\u586b\u5145\u4e09\u89d2\u5f62 ",
+          "start": 41,
+          "end": 54
+        },
+        {
+          "kind": "math",
+          "content": "OAB",
+          "start": 54,
+          "end": 59
+        },
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 59,
+          "end": 60
+        }
+      ]
+    },
+    {
+      "source_index": 3,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e09\u6b65\uff1a\u7528\u84dd\u8272\u534a\u900f\u660e\u586b\u5145\u7531\u5c04\u7ebf\u3001x \u8f74\u4e0e\u5706\u5f27\u56f4\u6210\u7684\u6247\u5f62 ",
+          "start": 0,
+          "end": 28
+        },
+        {
+          "kind": "math",
+          "content": "OAB",
+          "start": 28,
+          "end": 33
+        },
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 33,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "source_index": 4,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u56db\u6b65\uff1a\u8fc7\u70b9 ",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "kind": "math",
+          "content": "A",
+          "start": 7,
+          "end": 10
+        },
+        {
+          "kind": "text",
+          "content": " \u4f5c\u5782\u76f4\u4e8e x \u8f74\u7684\u5207\u7ebf\uff0c\u4e0e\u5c04\u7ebf\u4ea4\u4e8e\u70b9 ",
+          "start": 10,
+          "end": 30
+        },
+        {
+          "kind": "math",
+          "content": "C",
+          "start": 30,
+          "end": 33
+        },
+        {
+          "kind": "text",
+          "content": "\uff0c\u7528\u7ea2",
+          "start": 33,
+          "end": 36
+        }
+      ]
+    },
+    {
+      "source_index": 4,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u8272\u534a\u900f\u660e\u586b\u5145\u4e09\u89d2\u5f62 ",
+          "start": 36,
+          "end": 46
+        },
+        {
+          "kind": "math",
+          "content": "OAC",
+          "start": 46,
+          "end": 51
+        },
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 51,
+          "end": 52
+        }
+      ]
+    },
+    {
+      "source_index": 5,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e94\u6b65\uff1a\u753b\u9762\u53f3\u4fa7\u5c55\u793a\u9762\u79ef\u6bd4\u8f83\u5173\u7cfb\uff1a",
+          "start": 0,
+          "end": 17
+        },
+        {
+          "kind": "math",
+          "content": "S_{\\triangle OAB}",
+          "start": 17,
+          "end": 36
+        },
+        {
+          "kind": "text",
+          "content": " ",
+          "start": 36,
+          "end": 37
+        },
+        {
+          "kind": "math",
+          "content": "<",
+          "start": 37,
+          "end": 40
+        },
+        {
+          "kind": "text",
+          "content": " \u6247\u5f62 ",
+          "start": 40,
+          "end": 44
+        },
+        {
+          "kind": "math",
+          "content": "OAB",
+          "start": 44,
+          "end": 49
+        },
+        {
+          "kind": "text",
+          "content": " \u9762\u79ef ",
+          "start": 49,
+          "end": 53
+        },
+        {
+          "kind": "math",
+          "content": "<",
+          "start": 53,
+          "end": 56
+        },
+        {
+          "kind": "text",
+          "content": " ",
+          "start": 56,
+          "end": 57
+        },
+        {
+          "kind": "math",
+          "content": "S_{\\triangle OAC}",
+          "start": 57,
+          "end": 76
+        }
+      ]
+    },
+    {
+      "source_index": 5,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 76,
+          "end": 77
+        }
+      ]
+    },
+    {
+      "source_index": 6,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u516d\u6b65\uff1a\u62d6\u52a8\u5c04\u7ebf\u4f7f\u5176\u89d2\u5ea6 ",
+          "start": 0,
+          "end": 13
+        },
+        {
+          "kind": "math",
+          "content": "x",
+          "start": 13,
+          "end": 16
+        },
+        {
+          "kind": "text",
+          "content": " \u7f13\u6162\u51cf\u5c0f\uff0c\u8d8b\u4e8e 0\u3002\u52a8\u6001\u663e\u793a\u4e09\u4e2a\u533a",
+          "start": 16,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "source_index": 6,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u57df\u7684\u9762\u79ef\u8d8a\u6765\u8d8a\u63a5\u8fd1\uff0c\u6700\u7ec8\u5728 ",
+          "start": 34,
+          "end": 48
+        },
+        {
+          "kind": "math",
+          "content": "x \\to 0",
+          "start": 48,
+          "end": 57
+        },
+        {
+          "kind": "text",
+          "content": " \u65f6\uff0c\u4e09\u8005\u7684\u89c6\u89c9\u8fb9\u754c\u51e0\u4e4e\u5b8c\u5168\u91cd\u5408\u3002",
+          "start": 57,
+          "end": 74
+        }
+      ]
+    },
+    {
+      "source_index": 7,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "\u7b2c\u4e03\u6b65\uff1a\u52a8\u753b\u5c55\u793a\u4ee3\u6570\u63a8\u5bfc\u8fc7\u7a0b\uff0c\u9ad8\u4eae\u663e\u793a ",
+          "start": 0,
+          "end": 20
+        },
+        {
+          "kind": "math",
+          "content": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1",
+          "start": 20,
+          "end": 57
+        },
+        {
+          "kind": "text",
+          "content": "\u3002",
+          "start": 57,
+          "end": 58
+        }
+      ]
+    },
+    {
+      "source_index": 8,
+      "fragments": [
+        {
+          "kind": "text",
+          "content": "1",
+          "start": 0,
+          "end": 1
+        }
+      ]
+    }
+  ],
+  "provisional_pages": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    [
+      10,
+      11,
+      12,
+      13
+    ]
+  ],
+  "layout": "UNVERIFIED_REQUIRES_NATIVE_MEASUREMENTS",
+  "source_sha256": "dea9afc8c6139e8cde1f65f83257cdd6cb2601f4c4e2394ec16e5a2d02c1629b"
+}

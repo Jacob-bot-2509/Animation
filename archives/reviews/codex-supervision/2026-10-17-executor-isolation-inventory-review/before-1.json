@@ -1,0 +1,67 @@
+{
+  "schema_version": "exec-isolation-inventory-v1",
+  "status": "DESIGN",
+  "scope": "READINESS-EVIDENCE-PROTOCOL §2.1:当前 transport/runtime BOUND_FILES 清单与 SHA、采集脚本 SHA、工作根/测试集合/计划、已有原始回执绑定索引。只读盘查,不采集、不补采、不重跑、不签发。",
+  "collected_at_local": null,
+  "collected_at_note": "以 git 提交时间为准(避免时间戳误写)",
+  "collected_by": "claude-code",
+
+  "bound_files_current": [
+    {"path": "src/animtrain/sandbox_execution.py", "sha256": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e"},
+    {"path": "src/animtrain/render_gate.py", "sha256": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0"},
+    {"path": "src/animtrain/appcontainer.py", "sha256": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907"},
+    {"path": "src/animtrain/network_isolation.py", "sha256": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167"},
+    {"path": "src/animtrain/win_job.py", "sha256": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c"},
+    {"path": "src/animtrain/private_profile.py", "sha256": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af"},
+    {"path": "src/animtrain/isolation_evidence.py", "sha256": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a"},
+    {"path": "src/animtrain/full_surface_evidence.py", "sha256": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd"},
+    {"path": "src/animtrain/net_guard.py", "sha256": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c"},
+    {"path": "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py", "sha256": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361"},
+    {"path": "tools/sandbox_surface_acceptance.py", "sha256": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b"},
+    {"path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py", "sha256": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af"},
+    {"path": ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini", "sha256": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee"},
+    {"path": ".sandbox-runtime/miktex-environment.json", "sha256": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df"},
+    {"path": ".venv/Scripts/python.exe", "sha256": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"}
+  ],
+  "bound_files_note": "以上是当前实现绑定 SHA;旧运行各自的 implementation_before/after 保存在其原始回执内,不用当前 SHA 替旧运行重新签名。",
+
+  "collector_scripts": [
+    {"path": "tools/production_isolation_acceptance.py", "sha256": "227fbcf21929b47356cfddf659f4822b8c8556c2accf836088690020d978883b", "role": "16 REQUIRED_CASES 联合原始采集(旧)"},
+    {"path": "tools/sandbox_external_test_driver.py", "sha256": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15", "role": "外部/LAN 用例驱动(与 witness v3_source_pins 一致)"},
+    {"path": "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_suite.py", "sha256": "af09f6464308f8b6b0d85cdefc164cf9fa81f293166febc6df40ca00455dd880", "role": "43 点表面探测套件(旧)"}
+  ],
+
+  "work_roots_and_test_sets": {
+    "old_transport_work_root": "reviews/codex-supervision/2026-10-05-three-gates(sandbox_execution.WORK_ROOT 与 production_isolation_acceptance OUT)",
+    "surface_43_review_root": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair(sandbox_surface_acceptance HERE,含 checkpoint 与 host_cases.py)",
+    "full_surface_contract_root": "reviews/2026-10-06-exec-isolation-full-surface(surface_probe_contract.py 在 BOUND_FILES 内)",
+    "required_cases": ["render_formula", "render_chinese", "file_read_outside", "file_write_outside", "file_write_runtime", "cross_run_write", "cross_run_cache_write", "tcp_loopback_v4", "tcp_loopback_v6", "udp_loopback_v4", "udp_loopback_v6", "tcp_external_v4", "tcp_external_v6", "timeout_tree", "root_exit_tree", "memory_limit"],
+    "surface_43": "require_complete_surface 全 GREEN 口径;IPv4 联合认定依赖 LAN IPv4 + 外部 IPv6 + 本机 IPv4;D2/D8 延期 GAP 不阻塞准备但当前 checker 仍要求全 GREEN"
+  },
+
+  "existing_raw_receipts_index": [
+    {"path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw.json", "sha256": "914b1ceb41c079f3002293ed401d47c05532af20a2dc8d2933816ea056dd9526"},
+    {"path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-raw-v2.json", "sha256": "93d894e654fca44ae98075add663a43804710330d1fbadf706f6e625d81c7d29"},
+    {"path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-independent-review-v2.json", "sha256": "fa1f7261a00cba3c52d7712a194f7bbcbf39f5ba51fb3af39b6d265f91e7b476"},
+    {"path": "reviews/codex-supervision/2026-10-05-three-gates/production-joint-local-recheck.json", "sha256": "9987e9b4ac5bf26167e50e6348e2eed4558f2a4377c310bfea0301677687daa6"},
+    {"path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-6367b72967e04ed5b36dc234764e209a-*.json", "sha256": null, "count": 8, "note": "43 点采集 checkpoint 组(run_id 6367b729…);逐文件 SHA 由 Codex 复算时核验"},
+    {"path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/checkpoint-c0ed19b0fad644a7ae76ffc4ba28e68b-*.json", "sha256": null, "count": 8, "note": "第二组 checkpoint(run_id c0ed19b0…)"},
+    {"path": "reviews/2026-10-06-exec-isolation-full-surface/FULL_SURFACE_REPORT.md", "sha256": "7af0bf165b5446181fa31a93b5c2c15a452377a2d4cefdf6f03598b3c851e5aa"},
+    {"path": "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/external-tests/remote-*/", "sha256": null, "count": 5, "note": "remote-3a28dfd9dc96430a8ed0edb1989c3e76 = LAN D9 发送端(已在 witness sender_registry 绑定 sender_sha256 5cf2ec11…)"}
+  ],
+
+  "gaps": [
+    "data/execution_evidence.json 缺失(check_certificate 入口没有证书文件)——GAP,本清单不创建它",
+    "当前 BOUND_FILES SHA 与旧运行绑定的差异须由 Codex 逐份比对,不自动继承",
+    "旧 transport WORK_ROOT / 43 点 REVIEW_ROOT / 旧 OUT 指向具名旧路径;§2.3:已有冻结目录不能直接重跑,须先审查独立新工作根及 verifier 一致绑定改造",
+    "production_isolation_acceptance.py 有两个历史备份(production_isolation_acceptance.before-*.py),未列入采集脚本索引"
+  ],
+
+  "plan_per_protocol": [
+    "§2.2:Codex 对现成原件只读复算(parent token/capability=0、Job 恢复、进程树终止、临时 ACL 恢复、私有 profile 清理、源/日志/媒体 SHA、真实媒体解码),不看 rc 或报告 PASS 字样",
+    "§2.3:需要补采时由 claude-code 在用户授权具名范围执行,Codex 不发射;先审查独立新工作根与 verifier 绑定改造,保留兼容与测试",
+    "§2.4:两组原始材料 production-joint-raw-v1(16 REQUIRED_CASES)+ sandbox-surface-native-v1(43 点、前后实现一致、error=null),每 case 关联实际源/transport/父进程证据/stdout/stderr/事件/产物;外部/LAN case 附发送端登记与接收端原始 JSONL/summary/typed rc/健康对照/同轮 nonce/端点/拓扑/观察窗/哈希",
+    "§2.5:Codex 独立复算并出范围/未决项/旧证据可继承条件;LAN D9 仅继承具名窗口",
+    "§2.6:仅当满足适用合同才另提证书候选;本清单与 claude-code 均不创建 execution_evidence.json、不把模板改为 VERIFIED"
+  ]
+}

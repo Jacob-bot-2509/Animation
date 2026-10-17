@@ -1,0 +1,238 @@
+{
+  "schema": "native-remote-sender-v2",
+  "run_id": "remote-3a28dfd9dc96430a8ed0edb1989c3e76",
+  "round": "lan-2026-10-13-a",
+  "scope": "lan",
+  "bind": "192.168.137.1",
+  "ports": {
+    "tcp": 49002,
+    "udp": 49001
+  },
+  "protocols": [
+    "tcp",
+    "udp"
+  ],
+  "sender_identity": {
+    "hostname": "Jacapo",
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "driver_source_path": "D:\\Animation-Model-Training\\tools\\sandbox_external_test_driver.py",
+  "driver_before_sha256": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15",
+  "implementation_before": {
+    "src/animtrain/sandbox_execution.py": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+    "src/animtrain/full_surface_evidence.py": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+    "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "started_utc_ns": 1791891754946919100,
+  "started_monotonic_ns": 2969970387200,
+  "nonces": {
+    "tcp": {
+      "before": "50f038c18442492b8cc3ed54be1fff74",
+      "sandbox": "44f5bad740af4ab9b82e15c83b0eb9d3",
+      "after": "0eaddb3bcc6945d893ac108aa48cd929"
+    },
+    "udp": {
+      "before": "675dfa748ca548ac9964bcf554c8428b",
+      "sandbox": "92b630867e674e95ab477b48645a8208",
+      "after": "e8075a3ea3014054a1bc13216abe30d0"
+    }
+  },
+  "phases": {
+    "before_tcp": {
+      "started_monotonic_ns": 2974355857800,
+      "finished_monotonic_ns": 2974387078700,
+      "result": {
+        "outcome": "completed",
+        "elapsed_ns": 31206300,
+        "receiver_delivery_verified": false
+      }
+    },
+    "before_udp": {
+      "started_monotonic_ns": 2974387087600,
+      "finished_monotonic_ns": 2974387566000,
+      "result": {
+        "outcome": "sent",
+        "elapsed_ns": 457100,
+        "receiver_delivery_verified": false
+      }
+    },
+    "after_tcp": {
+      "started_monotonic_ns": 3047946984700,
+      "finished_monotonic_ns": 3047953010000,
+      "result": {
+        "outcome": "completed",
+        "elapsed_ns": 5992200,
+        "receiver_delivery_verified": false
+      }
+    },
+    "after_udp": {
+      "started_monotonic_ns": 3047953017800,
+      "finished_monotonic_ns": 3047953307000,
+      "result": {
+        "outcome": "sent",
+        "elapsed_ns": 271700,
+        "receiver_delivery_verified": false
+      }
+    }
+  },
+  "complete": true,
+  "verification_status": "UNVERIFIED",
+  "production_gate": "CLOSED",
+  "certificate_written": false,
+  "route": {
+    "command_argv": [
+      "tracert",
+      "-4",
+      "-d",
+      "-h",
+      "4",
+      "-w",
+      "500",
+      "192.168.137.1"
+    ],
+    "rc": 0,
+    "timed_out": false,
+    "elapsed_ns": 61642000,
+    "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\route.stdout.bin",
+    "sha256": "1f3c74e4723d7ef12d4e7cf567824668ed14160f908918fd3712515832708271",
+    "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\route.stderr.bin",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "sender_interfaces": {
+    "command_argv": [
+      "powershell",
+      "-NoProfile",
+      "-Command",
+      "Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+    ],
+    "rc": 0,
+    "timed_out": false,
+    "elapsed_ns": 2499692400,
+    "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\interfaces-4.stdout.bin",
+    "sha256": "35aad0ddb4ae64d1252ff312dce64dd57990362968f63f6b1fe1505cb62f542a",
+    "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\interfaces-4.stderr.bin",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "command": "Get-NetIPAddress -AddressFamily IPv4 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+  },
+  "sender_ipv6_interfaces": {
+    "command_argv": [
+      "powershell",
+      "-NoProfile",
+      "-Command",
+      "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+    ],
+    "rc": 0,
+    "timed_out": false,
+    "elapsed_ns": 1819672000,
+    "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\interfaces-6.stdout.bin",
+    "sha256": "7831ba3c8a69bd1670c25dd4d7cd940dcf739bbe5be8838345a26192e8b1a0f4",
+    "stderr_path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-06-all43-sandbox-repair\\external-tests\\remote-3a28dfd9dc96430a8ed0edb1989c3e76\\interfaces-6.stderr.bin",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": "",
+    "command": "Get-NetIPAddress -AddressFamily IPv6 | Select-Object IPAddress,PrefixLength | ConvertTo-Json -Compress"
+  },
+  "source": "SPEC=[('tcp', '192.168.137.1', 49002, '44f5bad740af4ab9b82e15c83b0eb9d3'), ('udp', '192.168.137.1', 49001, '92b630867e674e95ab477b48645a8208')]\n\nimport json,_socket,time\nr={}\nfor protocol,host,port,nonce in SPEC:\n    family=_socket.AF_INET6 if \":\" in host else _socket.AF_INET\n    started=time.monotonic_ns()\n    s=None\n    try:\n        # Bare _socket.socket has no context-manager protocol.\n        s=_socket.socket(family,_socket.SOCK_DGRAM if protocol==\"udp\" else _socket.SOCK_STREAM)\n        s.settimeout(4 if protocol==\"udp\" else 6)\n        if protocol==\"udp\":s.sendto(nonce.encode(\"ascii\"),(host,port))\n        else:\n            s.connect((host,port));s.sendall(nonce.encode(\"ascii\"));s.shutdown(_socket.SHUT_WR)\n        r[protocol]={\"outcome\":\"sent\" if protocol==\"udp\" else \"completed\"}\n    except OSError as exc:\n        code=getattr(exc,\"winerror\",None)\n        outcome=\"os_denied\" if code==10013 else \"timeout\" if isinstance(exc,TimeoutError) else \"error\"\n        r[protocol]={\"outcome\":outcome,\"winerror\":code,\"error_type\":type(exc).__name__,\"detail\":str(exc)}\n    finally:\n        if s is not None:\n            try:s.close()\n            except OSError as exc:\n                # Cleanup failure is not evidence of network isolation.\n                r[protocol][\"outcome\"]=\"error\"\n                r[protocol][\"close_error\"]={\"error_type\":type(exc).__name__,\n                    \"winerror\":getattr(exc,\"winerror\",None),\"detail\":str(exc)}\n    r[protocol][\"elapsed_ns\"]=time.monotonic_ns()-started\nprint(json.dumps(r),flush=True)\n",
+  "sandbox_started_monotonic_ns": 2974390021800,
+  "transport": {
+    "rc": 0,
+    "stdout": "{\"tcp\": {\"outcome\": \"os_denied\", \"winerror\": 10013, \"error_type\": \"PermissionError\", \"detail\": \"[WinError 10013] \\u4ee5\\u4e00\\u79cd\\u8bbf\\u95ee\\u6743\\u9650\\u4e0d\\u5141\\u8bb8\\u7684\\u65b9\\u5f0f\\u505a\\u4e86\\u4e00\\u4e2a\\u8bbf\\u95ee\\u5957\\u63a5\\u5b57\\u7684\\u5c1d\\u8bd5\\u3002\", \"elapsed_ns\": 897400}, \"udp\": {\"outcome\": \"sent\", \"elapsed_ns\": 209900}}\r\n",
+    "stderr": "",
+    "work": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-54e172844f9644b6b28694d2813439d5",
+    "source_sha256": "5cddc0894b02e29012b6300c75a58623737e7a0a670402634bd90137c511bfc5",
+    "command": [
+      "D:\\Animation-Model-Training\\.venv\\Scripts\\python.exe",
+      "-I",
+      "-B",
+      "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-54e172844f9644b6b28694d2813439d5\\scene.py"
+    ],
+    "parent_evidence": {
+      "token": {
+        "api_ok": true,
+        "is_appcontainer": true,
+        "capability_count": 0,
+        "sid": "S-1-15-2-151684224-172041068-3771328513-165284722-347589596-1131107448-4127912137"
+      },
+      "memory_limit_mb": 2048,
+      "created_suspended": true,
+      "job_assigned_before_resume": true,
+      "inherited_handle_count": 3,
+      "tree_stopped": true,
+      "pid": 35588,
+      "private_profile": {
+        "profile_name": "animtrain-job-075c9d42a67e4af0aa5622353619a8bb",
+        "sid": "S-1-15-2-151684224-172041068-3771328513-165284722-347589596-1131107448-4127912137",
+        "storage": "C:\\Users\\Jacap\\AppData\\Local\\Packages\\animtrain-job-075c9d42a67e4af0aa5622353619a8bb\\AC",
+        "temporary_acl": [
+          {
+            "path": "D:\\Animation-Model-Training\\reviews\\codex-supervision\\2026-10-05-three-gates\\execution-54e172844f9644b6b28694d2813439d5",
+            "before_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "after_sha256": "e4cf5f6c38f27206afceef4eb473bc20904f236aa37dfcb0865a6b172bf2e685",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.sandbox-runtime\\miktex-real",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Animation-Model-Training\\.venv",
+            "before_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "after_sha256": "69c75f1446f7dd230fde33d44227ade38ecf9ba5c55a82e6c72880fd2c76beb0",
+            "restored": true
+          },
+          {
+            "path": "D:\\Python",
+            "before_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "after_sha256": "a2ccaa86ee0c874489cbdc52fae845d3c582daa4c20b3476a57ae2f0e9a86289",
+            "restored": true
+          }
+        ],
+        "cleanup_complete": true
+      }
+    }
+  },
+  "sandbox_finished_monotonic_ns": 3027946639500,
+  "observation": {
+    "started_monotonic_ns": 3027946640400,
+    "requested_seconds": 21,
+    "finished_monotonic_ns": 3048947118200,
+    "elapsed_ns": 21000477800
+  },
+  "finished_utc_ns": 1791891833923659000,
+  "finished_monotonic_ns": 3048947125100,
+  "implementation_after": {
+    "src/animtrain/sandbox_execution.py": "610a8584661ad5e3bfe26f96b398d66c584d9473a7c14862461e5c5343a7373e",
+    "src/animtrain/render_gate.py": "cbb452d37624c7e2f6a2fa4e8bd9118d5c827eaaaf8eecb41617c6b3661e5ce0",
+    "src/animtrain/appcontainer.py": "14d13c1b25a6db8cab84a6f9007d92538eac32328489e2720776e799f5bc9907",
+    "src/animtrain/network_isolation.py": "25a7471987fc3e1135232eca98180d0fcc66d6611aaf82b33b0850cd10510167",
+    "src/animtrain/win_job.py": "6c8c6875fd5bf7270f04347ab93fb57f4d4b13b4faeb970f0b636ced2f8ae44c",
+    "src/animtrain/private_profile.py": "90b73f8621cc508d1722af4f9916221874d3c180bfb649d4400bb53253ffd8af",
+    "src/animtrain/isolation_evidence.py": "929e45a3b5dc5518a2b76503263094b27c234413c1ba3517f0d7279144aaf35a",
+    "src/animtrain/full_surface_evidence.py": "8839506a662be826f10cf1cad6d9dd3a504379bf878012282718d9d7fe27befd",
+    "src/animtrain/net_guard.py": "4d944f4790e4d80c47f165e7a3115dfe75606d9e07916645bee2c1abc365459c",
+    "reviews/2026-10-06-exec-isolation-full-surface/surface_probe_contract.py": "4e29d76ffbd57c2fceedb6ebb109e0fa9fa353436fc45f7220abd4a27d59d361",
+    "tools/sandbox_surface_acceptance.py": "0584b4fdfb6a7c975efdfe2dd95420a37b3353f4a80fdc3239c88b6c63807c0b",
+    "reviews/codex-supervision/2026-10-06-all43-sandbox-repair/host_cases.py": "ad6e51a70a6fea58a3a72bee0e2034af544a467b5fb16f470c0435a56949e7af",
+    ".sandbox-runtime/miktex-real/miktex/config/miktexstartup.ini": "1116a7bce44aa426d9eeb8ecd86a1c8f1a153bb053e2a8cba377950b86c73dee",
+    ".sandbox-runtime/miktex-environment.json": "9ab14c1be78980f7930f0337d5831fc0e2aa92861c44f97a195e85c8edaa46df",
+    ".venv/Scripts/python.exe": "e6c07188984d41b80f822dcdaeaceeb217cdf977f18f79c421a3a53edba895c3"
+  },
+  "driver_after_sha256": "a02105a0de0d3470fed19f0bb765ce3a8c1567f469d8e30068b0ca6bc4590e15",
+  "implementation_unchanged": true
+}

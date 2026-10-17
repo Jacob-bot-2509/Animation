@@ -1,0 +1,11 @@
+usage: preflight.py [-h] [--model MODEL] [--manifest MANIFEST] [--strict]
+                    [--ready] [--run-id RUN_ID]
+
+options:
+  -h, --help           show this help message and exit
+  --model MODEL        模型目录(存在性+关键文件)
+  --manifest MANIFEST  数据 manifest(附带数据门禁)
+  --strict             严格模式:模型/数据门禁必填,缺失即 FAIL(训练前用)
+  --ready              B2 训练就绪聚合:gpu/model_dir/data_manifest/run_snapshot
+                       全部通过且无 UNVERIFIED 才 ready
+  --run-id RUN_ID      --ready 时必填:运行快照 run_id(校验 runs/<id>/run_record.json)
