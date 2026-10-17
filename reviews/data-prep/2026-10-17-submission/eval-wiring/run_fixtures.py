@@ -8,13 +8,14 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
+import uuid
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from eval_protocol import run_harness, _sha_text  # noqa: E402
+from eval_protocol import run_harness, _sha_text, _sha  # noqa: E402
 
-RUNS = HERE / "fixture-runs"
+RUNS = HERE / "fixture-runs-v2" / ("suite-" + uuid.uuid4().hex)
 SPLITS = {"eval": 3, "test": 3}  # 每 split 题数;eval-003 有两个样本
 
 
@@ -53,12 +54,14 @@ def build_cfg(scenario: str, qs: list[dict], bad_spec_identity: dict | None = No
               wrong_source_sha: bool = False) -> tuple[dict, Path]:
     import shutil
     work = RUNS / scenario
-    work.mkdir(parents=True, exist_ok=True)
+    work.mkdir(parents=True, exist_ok=False)
+    qs = json.loads(json.dumps(qs))
     specs = []
     for q in qs:
         s = dict(q["identity"])
         s["spec"] = spec(s["problem_id"],
                          bad_schema=(bad_spec_identity == q["identity"]))
+        q["generated_spec_sha256"] = _sha_text(json.dumps(s["spec"], ensure_ascii=False))
         specs.append(s)
     (work / "generated-specs.json").write_text(
         json.dumps(specs, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -81,6 +84,7 @@ def build_cfg(scenario: str, qs: list[dict], bad_spec_identity: dict | None = No
                                 "sha256": ("f" * 64 if wrong_source_sha else exe_sha),
                                 "protocol_role": "fixture-child"}},
         "fixed_questions": qs,
+        "limits": {"timeout_seconds": 1, "max_output_bytes": 1048576},
     }
     (work / "scenario.json").write_text(json.dumps(
         SCENARIOS[scenario]["child"], ensure_ascii=False, indent=2), encoding="utf-8")
@@ -140,51 +144,76 @@ SCENARIOS: dict[str, dict] = {
 }
 
 
-def main() -> int:
+def assert_report(name, report):
+    if report.get("status") == "REFUSED" and name == "06-wrong-source-sha":
+        assert "PINNED" in report.get("reason", "")
+        return
+    assert report.get("actual_execution_metrics_valid") is False
+    for metric in ("render", "executable", "math", "fidelity"):
+        assert report[metric]["status"] == "UNVERIFIED" and report[metric]["rate"] is None
+    d = report["fixture_diagnostics"]
+    assert report["total_questions"] == 6 and report["total_samples"] == 7
+    assert d["e_subset_of_r"] is True
+    cases = {
+        "01-valid-all": {"render": "1", "executable": "1", "math": "1", "fidelity": "1"},
+        "02-fail-denominator": {"render": "5/6", "executable": "5/6"},
+        "03-missing-id": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "04-duplicate-id": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "05-extra-id": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "07-spec-drift": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "08-corrupted-media": {"render": "5/6", "executable": "5/6"},
+        "09-empty-media": {"render": "5/6", "executable": "5/6"},
+        "10-rc0-no-artifact": {"render": "5/6", "executable": "5/6"},
+        "11-timeout": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "12-path-escape": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "13-math-false": {"math": "5/6"},
+        "14-math-undecided": {"math": None},
+        "15-fidelity-missing": {"fidelity": None},
+        "16-multi-scene-one-fails": {"render": "5/6", "executable": "5/6"},
+        "17-rc-bool": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "18-rc-forgery": {k: None for k in ("render", "executable", "math", "fidelity")},
+        "19-schema-bad": {"executable": "5/6"},
+        "20-exec-fail": {"render": "1", "executable": "5/6"},
+    }
+    for metric, rate in cases[name].items():
+        assert d[metric]["rate"] == rate, (name, metric, d[metric], rate)
+        assert d[metric]["total"] == 6
+        assert d[metric]["status"] == ("UNVERIFIED" if rate is None else "FIXTURE_CHECKED")
+    if name == "05-extra-id":
+        assert report["status"] == "REFUSED"
+    if name == "11-timeout":
+        assert report["timed_out"] is True
+
+def main():
     qs = make_questions()
     rows = []
-    fails = []
     for name, meta in SCENARIOS.items():
-        child = meta.get("child", {})
-        cfg, work = build_cfg(
-            name, qs,
-            bad_spec_identity=meta.get("bad_spec_identity"),
-            wrong_source_sha=meta.get("wrong_source_sha", False))
-        # 场景参数里的 child 需要在 build_cfg 之后补写(部分由运行器直控)
+        cfg, work = build_cfg(name, qs, bad_spec_identity=meta.get("bad_spec_identity"),
+                             wrong_source_sha=meta.get("wrong_source_sha", False))
         report = run_harness(cfg, work)
-        r = report.get("render") or {}
-        e = report.get("executable") or {}
-        m = report.get("math") or {}
-        f = report.get("fidelity") or {}
-        row = {
-            "scenario": name,
-            "expected": meta["expect"],
-            "result": {
-                "status": report.get("status", "RAN"),
-                "reason": report.get("reason"),
-                "rejected_receipts": report.get("rejected_receipts", 0),
-                "problems_count": len(report.get("problems", [])),
-                "R": {"status": r.get("status"), "rate": r.get("rate"),
-                      "passed": r.get("passed"), "total": r.get("total")},
-                "E": {"status": e.get("status"), "rate": e.get("rate"),
-                      "passed": e.get("passed"), "total": e.get("total")},
-                "M": {"status": m.get("status"), "rate": m.get("rate"),
-                      "passed": m.get("passed"), "total": m.get("total")},
-                "F": {"status": f.get("status"), "rate": f.get("rate"),
-                      "passed": f.get("passed"), "total": f.get("total")},
-                "e_subset_of_r": report.get("e_subset_of_r"),
-            },
-        }
+        try:
+            assert_report(name, report)
+            passed = True
+            error = None
+        except (AssertionError, KeyError, TypeError) as exc:
+            passed = False
+            error = repr(exc)
+        row = {"scenario": name, "assertion_passed": passed, "error": error,
+               "work": str(work), "status": report.get("status"),
+               "formal_metrics": {k: report.get(k) for k in ("render", "executable", "math", "fidelity")},
+               "fixture_diagnostics": report.get("fixture_diagnostics"), "reason": report.get("reason")}
         rows.append(row)
-        # 每场景断言的自动化核对:由人工对照 expected 复核,这里只记录结构
-        print(json.dumps(row, ensure_ascii=False))
-    receipt = {"fixture_matrix": rows,
-               "note": "每场景期望与结果须逐行人工/Codex 对照复核,本文件不自动判 PASS"}
-    (HERE / "fixture-receipt.json").write_text(
-        json.dumps(receipt, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n共 {len(rows)} 场景,回执写入 fixture-receipt.json")
-    return 0 if not fails else 1
-
+        print(json.dumps({"scenario": name, "assertion_passed": passed, "error": error}, ensure_ascii=False), flush=True)
+    receipt = {"scope": "FIXTURE_DIAGNOSTICS_ONLY_NOT_ACTUAL_METRICS",
+               "suite_root": str(RUNS), "tests": len(rows),
+               "passed": sum(x["assertion_passed"] for x in rows),
+               "fixture_matrix": rows, "source_sha256": _sha(HERE / "eval_protocol.py"),
+               "executor_sha256": _sha(HERE / "fixture_executor.py"),
+               "runner_sha256": _sha(Path(__file__))}
+    output = RUNS / "fixture-receipt.v2.json"
+    output.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"receipt": str(output), "passed": receipt["passed"], "tests": len(rows)}))
+    return 0 if all(x["assertion_passed"] for x in rows) else 1
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -1,0 +1,65 @@
+{
+  "schema_version": "sampling-design-supplement-v1",
+  "status": "DESIGN",
+  "relates_to": "source-registration/numina_cot.sampling-plan.json(Codex 修订版)",
+  "revision": "9d8d210c9f6a36c8f3cd84045668c9b7800ef517",
+  "note": "补 sampling-plan 的 required_before_execution:学科/难度整数配额、计数单位、族代表规则、不足规则。数据未落地前本表为 PROPOSED_SCHEMA,不执行抽样、不下载。",
+  "execution_ready": false,
+
+  "subject_taxonomy": {
+    "proposed_subjects": ["algebra", "geometry", "number_theory", "combinatorics",
+                          "calculus_analysis", "probability_statistics", "other"],
+    "mapping_procedure": "数据落地后:优先用数据集实际字段(problem_type 等,若有)做固定规则映射;无可靠字段时用固定提示词+LLM 分类器(版本冻结)逐条标定,人工抽检≥5% 并记录一致率;分类器版本/SHA 与标定日志冻结进 records.jsonl。映射前不得按本表执行配额。"
+  },
+  "difficulty_taxonomy": {
+    "proposed_levels": ["basic", "competition", "olympiad"],
+    "source_prior": {
+      "cn_k12": "basic",
+      "math": "competition",
+      "amc_aime": "competition",
+      "synthetic_amc": "competition",
+      "olympiads": "olympiad",
+      "aops_forum": "olympiad"
+    },
+    "note": "source_prior 只是先验,不替代逐条标定;同 source 内难度仍有分布,标定时可上调/下调并记录理由"
+  },
+
+  "subject_difficulty_quotas": {
+    "unit": "1 配额单位 = 1 个核心族代表记录(族内翻译/换数值版本不占额度)",
+    "target_total": 300,
+    "proposed_table": [
+      {"subject": "algebra", "basic": 15, "competition": 25, "olympiad": 20},
+      {"subject": "geometry", "basic": 10, "competition": 25, "olympiad": 25},
+      {"subject": "number_theory", "basic": 5, "competition": 15, "olympiad": 20},
+      {"subject": "combinatorics", "basic": 5, "competition": 15, "olympiad": 20},
+      {"subject": "calculus_analysis", "basic": 10, "competition": 15, "olympiad": 10},
+      {"subject": "probability_statistics", "basic": 10, "competition": 15, "olympiad": 10},
+      {"subject": "other", "basic": 5, "competition": 10, "olympiad": 5}
+    ],
+    "table_sum_check": "300(与 sampling-plan first_batch_total=300 一致)",
+    "source_layer_caps": "sampling-plan 六层首批配额作为来源上限约束,学科/难度配额与来源配额双约束,取交集;冲突时报出并人工裁决"
+  },
+
+  "family_representative_rule": {
+    "grouping": "sampling-plan group_core_rules 同族分组(相同 problem 文本跨层/重复、翻译与原文)",
+    "representative": "同族取 sort_key 最小的记录为代表;族内其他记录保留为族成员清单,不占额度",
+    "counting": "配额只计代表;上报时同时报族数与记录数"
+  },
+
+  "shortage_rule": {
+    "transfer_order": "某(学科,难度)格不足时,配额先转给同学科相邻难度格(olympiad→competition→basic 方向),再转给同学科剩余格;仍不足则如实报告该格 GAP,不跨学科挪用",
+    "no_fabrication": "不造数值变体、不重复抽样、不从外测/冻结集合补数"
+  },
+
+  "post_sampling_bindings": [
+    "实际选中清单含:source_record_id、raw_record_sha256、学科/难度标定值与理由、族 ID、代表标志",
+    "leakage-review.jsonl 按协议 §4.1 绑定各集合 SHA 与 CLEAR/CONFLICT/UNKNOWN 处置",
+    "分类器/映射规则源码 SHA 与版本写入 records.jsonl 转换器字段"
+  ],
+  "open_items": [
+    "数据落地前无法核验 problem_type 等字段是否存在;若字段缺失,分类器方案需先经 Codex 审查再标定",
+    "calculus_analysis 在竞赛源中占比可能极低,若整层不足按 shortage_rule 处理并如实报 GAP"
+  ],
+  "generated_by": "claude-code",
+  "generated_at": "2026-10-17T20:02:17+08:00"
+}

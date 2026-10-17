@@ -1,61 +1,25 @@
-# 评测接线候选实现 v1(无模型固定夹具)
+# 评测接线候选 v2：仅固定夹具诊断
 
-对应 docs/READINESS-EVIDENCE-PROTOCOL.md §6。独立候选目录,不改 eval_step.py、
-不改真实模型/超参、不训练、不接真实渲染/判定器。
+本目录已由 Codex 独立复验并修复。它尚未接入 tools/eval_step.py，不是真实生成代码执行器、数学判定器或画面判定器；不加载模型、不调用原生探针、不开放生产。
 
-## 文件与 SHA
+## 修正后的边界
 
-| 文件 | SHA256 |
-|---|---|
-| eval_protocol.py | (见 evidence-index.json) |
-| fixture_executor.py | (见 evidence-index.json) |
-| run_fixtures.py | (见 evidence-index.json) |
-| fixture-receipt.json | 20 场景 × 期望/结果矩阵 |
+- 父进程只接受 fixture-only-no-model scope、固定 fixture-runs-v2 工作根和独立硬编码批准的 fixture_executor.py SHA。请求自己提供一个 SHA 不构成执行批准；不接受其他脚本、根外路径、重解析点或已有回执。
+- 固定模拟执行器以 -I -B 隔离导入环境启动；这是已审查的可信模拟程序在宿主运行，不是 AppContainer 集成或“不可信生成代码宿主 fallback”。它不发射探针、不生成模型代码、不创建子进程树；正式执行隔离仍未接通。
+- 同时核对完整输入记录 SHA、每条生成 spec 的实际内容 SHA、生成文件 SHA、唯一身份和固定题单覆盖；输入和源码执行前后都核对。额外/畸形身份使整响应拒绝；缺失或重复保留未知。
+- 正式顶层及 eval/test 的 R/E/M/F 始终为 UNVERIFIED、rate=null、passed=null；fixture_diagnostics 只是模拟结构/分母/解码诊断，确定者标 FIXTURE_CHECKED，不能交给 hp_sweep 选 winner、不能用于真实 R/E/M/F 达标。
+- 缺 stage、未知状态、超时及完整性错误不会被当成已验证失败率或通过率。数学 PASS 搭配 false 断言、断言缺失和 F 清单缺失都会在模拟诊断中正确降格；结构检查不证明数学为真或画面忠实。
+- 路径逐层 lstat 拒绝 reparse/symlink；媒体只实际解码 PNG 并核对格式，其他媒体明确未知。固定小图只是解码夹具，不能代表动画质量。
+- 请求/回执有大小和条数限制、超时及旧输出拒绝；该受限可信模拟程序不代表正式不可信程序的进程树/内存/持续输出隔离已经实现。后者仍需 AppContainer/JobObject 集成和独立原生证据。
 
-## 实现范围(§6.1/6.2)
+## 实际复验
 
-- `build_request`:request.json 合同键(protocol_version/run_id/round_id/candidate_id/
-  scope/SHA 双向绑定/evaluator_sources/limits/fixed_questions)
-- `verify_bindings`:启动前 executor 源 SHA 与 generated-specs SHA 绑定校验,漂移即 REFUSED
-- `run_executor`:白名单绑定后真实子进程启动(非 shell=True、非任意命令串),
-  采集真实 rc/stdout/stderr,超时即停
-- `verify_response`:逐样本核对——身份(缺失/重复/额外)、rc 真实性(自报与真实
-  returncode 比对,拒绝 bool 冒充整数)、spec 漂移、产物(根内路径/SHA/非空/真实解码)、
-  rc0 无产物强制 FAIL、数学断言逐条覆盖(必需断言 id+布尔 verdict+理由,假命题 FAIL、
-  未定 UNVERIFIED)。父进程重算,不信任回执自报 VERIFIED
-- `aggregate`(§6.3):Q_s 按 split+problem_id 计题,S_q=题内全部必需样本;任一必需
-  样本失败→该题失败;缺证据→该题 UNVERIFIED 且整指标 UNVERIFIED、rate=null;
-  精确分数(Fraction);E 的 PASS 集 ⊆ R 的 PASS 集校验;by_split 双列
+原 fixture-runs/、fixture-receipt.json 和 run.log 是修复前历史原件，保持不变。原运行器只打印预期、未自动断言且 fails 列表不更新；不能用 rc0 证明 20 项通过。
 
-## 夹具矩阵(§6.4 最小清单,20 场景)
+新 run_fixtures.py 每场景有实际断言，失败返回非零。它使用新唯一目录 fixture-runs-v2/suite-<UUID>/，保存新请求/回执/产物/日志与 fixture-receipt.v2.json，不覆盖旧回执。本轮 20 场景自动断言通过；test_eval_protocol_v2.py 的 18 项独立对抗回归通过。正式四指标仍全部未知。
 
-fixture-runs/<scenario>/ 每场景独立 work 目录,含 request.json/response-index.jsonl/
-artifacts/executor.stdout/stderr/eval-report.json。场景与结果见 fixture-receipt.json:
-01 全绿基线;02 真实 FAIL 分母(5/6);03 缺 ID;04 重复 ID(首行一并作废);
-05 额外 ID 拒绝;06 executor 源 SHA 漂移 REFUSED;07 spec 漂移;08 损坏媒体;
-09 空媒体(强制 render FAIL);10 rc0 无产物(强制 FAIL);11 超时;12 路径逃逸
-(完整性拒绝);13 数学假命题(M=5/6);14 数学未定(M 整指标 UNVERIFIED);
-15 F 清单缺失(F UNVERIFIED);16 同题多场景其一失败(题 FAIL);
-17 rc=bool 冒充整数(全拒);18 rc 伪造(自报 0 实退 3,全拒);
-19 坏 schema(E 该题 FAIL);20 executable 失败(E=5/6)。全部 E⊆R 成立。
+新场景 05 明确额外身份拒绝整响应，不再接受“丢弃额外行但其余全绿”；场景 19 将坏 schema 的实际 spec SHA 正确绑定，单独验证模拟 E 失败。所有精确分数仅在 fixture_diagnostics 中使用，分母仍为 6 道/7 样本中的固定问题集合。
 
-## 如实局限(接线前须解决)
+当前源码、回执与测试记录的具体路径/bytes/SHA 见上一级 evidence-index.json 的 eval_wiring 部分。没有新增真实模型、原生渲染、独立数学或视觉证据，readiness 的接线项仍为 DESIGN/GAP。
 
-1. **默认拒绝为真**:任何未绑定进 request 的 executor/judge 一律拒绝启动;当前只有
-   fixture_executor 一个绑定对象,不是真实渲染/判定器。
-2. **重解析点检测**:仅 resolve+前缀判定;完整 reparse-point 逃逸检测须按
-   witness_transfer_common.checked 既有实现接入(§6.2 父进程拒绝清单的完整版)。
-3. **M/F 判定器未实现**:数学断言只做"覆盖+布尔裁决+理由"的结构校验,不证明数学
-   为真;F 只校验清单存在与裁决字段,不核对真实画面。真实 judge 接线另行立项。
-4. **媒体解码仅 PNG**(PIL);MP4/其他如实 UNVERIFIED。
-5. **AppContainer/JobObject 父进程证据**不在夹具内(真实执行隔离属 §2 exec_isolation,
-   未验收前不可信生成代码不得真实渲染)。
-6. **generated-specs 的 row_index 字段**:eval_step.py 现有导出不含 row_index,
-   正式接线时须补齐并重新绑定(§6.2),不在本候选改动。
-
-## 验收口径
-
-本候选只证明"协议骨架 + 父进程拒绝清单 + 分母/未知/精确分数语义"在固定夹具下
-行为正确。接线验收(把 eval_step 恒返 2 改为绑定有效时返 0)须 Codex 对本版本独立
-复验后另行执行;真实 executor/judge 接线、真实媒体与 token/job 回执按 §6.4 后续
-最小集成复验另做。
+后续正式接线须提交独立批准的实现和真实逐题 sandbox/token/job/媒体/数学/语义原件，由 Codex 复验后另行判定；不能将本候选的 fixture scope 改成 production 来运行。

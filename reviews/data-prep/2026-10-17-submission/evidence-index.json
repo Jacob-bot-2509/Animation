@@ -1,52 +1,195 @@
 {
   "schema_version": "evidence-index-v1",
   "scope": "2026-10-17 静态准备提交:来源登记/抽样方案/八项状态/环境与模型原件索引;无数据下载、无训练、无原生补采",
-  "executors": ["claude-code(采集/登记)"],
-  "status": "DESIGN",
-  "generated_at": "2026-10-17 03:0x +08",
+  "executors": [
+    "claude-code(采集/登记)"
+  ],
+  "status": "COLLECTED",
+  "generated_at": null,
   "actual_rc": {
-    "preflight --manifest data/manifest.json": 0,
+    "preflight --manifest data/manifest.json": 1,
     "freeze_data --check data/eval-v2.lock.json --manifest data/manifest.json": 0,
     "freeze_data --check data/test-v2.lock.json --manifest data/manifest.json": 0
   },
   "raw_outputs": [
-    {"path": "source-registration/raw-preflight-manifest.txt", "note": "preflight 真实输出(含 rc 行);存在 FAIL 项(near_dup_calibrated/asset_evidence/exec_isolation),如实保留"},
-    {"path": "source-registration/raw-freeze-eval-v2.txt", "note": "eval-v2 锁校验 rc=0"},
-    {"path": "source-registration/raw-freeze-test-v2.txt", "note": "test-v2 锁校验 rc=0"},
-    {"path": "source-registration/ugmathbench-LICENSE.txt", "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986", "bytes": 35149, "note": "UGMathBench GPL-3.0 许可证原文(raw.githubusercontent.com/YangLabHKUST/UGMathBench/main/LICENSE)"}
+    {
+      "path": "source-registration/raw-preflight-manifest.txt",
+      "note": "preflight 真实输出(含 rc 行);存在 FAIL 项(near_dup_calibrated/asset_evidence/exec_isolation),如实保留",
+      "bytes": 1103,
+      "sha256": "43b5509a615615d4aac157d1ab3137bb90c8b9cf5ac37378ab30fc376019f82e"
+    },
+    {
+      "path": "source-registration/raw-freeze-eval-v2.txt",
+      "note": "eval-v2 锁校验 rc=0",
+      "bytes": 31,
+      "sha256": "d53b1a0bf370a067f90a19ef6039847599f6c0e2bf21d1f069a9e02e72fc78ac"
+    },
+    {
+      "path": "source-registration/raw-freeze-test-v2.txt",
+      "note": "test-v2 锁校验 rc=0",
+      "bytes": 31,
+      "sha256": "6baa17ba06e5c0c8698dc7f15de2c2eb8a99938570751334b63feb9f5bc97de5"
+    },
+    {
+      "path": "source-registration/ugmathbench-LICENSE.txt",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149,
+      "note": "UGMathBench GPL-3.0 许可证原文(raw.githubusercontent.com/YangLabHKUST/UGMathBench/main/LICENSE)"
+    }
   ],
-  "model_binding": {    "dir": ".models/qwen3-4b",
+  "model_binding": {
+    "dir": ".models/qwen3-4b",
     "git_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
-    "git_uncommitted": ["PROVENANCE.json(未跟踪本地新增)"],
-    "files": [
-      {"path": "config.json", "sha256": "b8948ed4001797b26d89193ad0a9cd55e8388b01c676ef151517f81ace3e191c"},
-      {"path": "generation_config.json", "sha256": "90373e8a092a7abb965d3fea4671ef129bb9f4ee5a3005f0ab8a95b9716812cb"},
-      {"path": "tokenizer.json", "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"},
-      {"path": "tokenizer_config.json", "sha256": "c27ef18dae7dccaee951f6066f71a1b35ca9ec4ff3168b097dbda7905a036324"},
-      {"path": "vocab.json", "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"},
-      {"path": "model.safetensors.index.json", "sha256": "2fea8e988fb9944a75648fde5f99df19d22ad404e53531bbfdb3ae4b37eb7686"},
-      {"path": "model-00001-of-00003.safetensors", "sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223"},
-      {"path": "model-00002-of-00003.safetensors", "sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5"},
-      {"path": "model-00003-of-00003.safetensors", "sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1"},
-      {"path": "LICENSE", "sha256": "b907c8234b565e5ecefff8232dbb6f1d603fbf9a47a3176db734dcae27175d08"}
+    "git_uncommitted": [
+      "PROVENANCE.json(未跟踪本地新增)"
     ],
-    "note": "merges.txt 未列入本索引(待补 SHA 或说明用途);strict 模型检查输出未跑"
+    "files": [
+      {
+        "path": "config.json",
+        "sha256": "b8948ed4001797b26d89193ad0a9cd55e8388b01c676ef151517f81ace3e191c",
+        "bytes": 755,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "generation_config.json",
+        "sha256": "90373e8a092a7abb965d3fea4671ef129bb9f4ee5a3005f0ab8a95b9716812cb",
+        "bytes": 251,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "c27ef18dae7dccaee951f6066f71a1b35ca9ec4ff3168b097dbda7905a036324",
+        "bytes": 9971,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "vocab.json",
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "model.safetensors.index.json",
+        "sha256": "2fea8e988fb9944a75648fde5f99df19d22ad404e53531bbfdb3ae4b37eb7686",
+        "bytes": 33224,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "model-00001-of-00003.safetensors",
+        "sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223",
+        "bytes": 3957900840,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "model-00002-of-00003.safetensors",
+        "sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5",
+        "bytes": 3987450520,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "model-00003-of-00003.safetensors",
+        "sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1",
+        "bytes": 99630640,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "b907c8234b565e5ecefff8232dbb6f1d603fbf9a47a3176db734dcae27175d08",
+        "bytes": 11544,
+        "verification": "SHA256_MATCHED_BY_CODEX_FILE_READ"
+      },
+      {
+        "path": "merges.txt",
+        "sha256": "b8e04af9c950e393054010dcef499c3f005e803e9b2da1a09b96a26c33266eb1",
+        "bytes": 1823241,
+        "verification": "SHA256_BOUND_BY_CODEX_FILE_READ"
+      }
+    ],
+    "note": "11 listed file byte hashes verified; no model loaded, strict functional/model acceptance remains pending. Git revision still author-reported."
   },
   "eval_wiring_submission": {
     "note": "§6 无模型固定夹具候选实现;20 场景全跑,结果见 fixture-receipt.json(每场景期望/结果须 Codex 独立复核)",
     "files": [
-      {"path": "eval-wiring/eval_protocol.py", "sha256": "190c4d6f9f947d135429758ad53b04f25dc4414f50d568c4470fda1d1279b869"},
-      {"path": "eval-wiring/fixture_executor.py", "sha256": "b0f75a2407b5997d6e92037560d33653d43fd22ad932c194073c90e4a000038c"},
-      {"path": "eval-wiring/run_fixtures.py", "sha256": "519df9f3e3a8e3851d1ace4abe5882eb064e7d61ee4e52cdff1e493bf1dadb72"},
-      {"path": "eval-wiring/README.md", "sha256": "53fdab61d827e43e189ebc130bd2f7554bad44939711641dd993d55f0b9b19de"},
-      {"path": "eval-wiring/fixture-receipt.json", "sha256": "a22aa9273fe31f6d2cb149e31945d9a604070039abc2f33686fbd3d019dc5dc7"}
+      {
+        "path": "eval-wiring/eval_protocol.py",
+        "sha256": "190c4d6f9f947d135429758ad53b04f25dc4414f50d568c4470fda1d1279b869"
+      },
+      {
+        "path": "eval-wiring/fixture_executor.py",
+        "sha256": "b0f75a2407b5997d6e92037560d33653d43fd22ad932c194073c90e4a000038c"
+      },
+      {
+        "path": "eval-wiring/run_fixtures.py",
+        "sha256": "519df9f3e3a8e3851d1ace4abe5882eb064e7d61ee4e52cdff1e493bf1dadb72"
+      },
+      {
+        "path": "eval-wiring/README.md",
+        "sha256": "53fdab61d827e43e189ebc130bd2f7554bad44939711641dd993d55f0b9b19de"
+      },
+      {
+        "path": "eval-wiring/fixture-receipt.json",
+        "sha256": "a22aa9273fe31f6d2cb149e31945d9a604070039abc2f33686fbd3d019dc5dc7"
+      }
     ],
     "scenario_runs": "eval-wiring/fixture-runs/<01..20>/ 每场景独立 work 目录(request.json/response-index.jsonl/artifacts/executor.stdout/stderr/eval-report.json)",
     "matrix_summary": "01 全绿 6/6;02/08/09/10/16 R=E=5/6;03/04/07/11/12/17/18 全 UNVERIFIED;05/13/19/20 单项降格;06 REFUSED;14 M UNVERIFIED;15 F UNVERIFIED;E⊆R 全成立"
   },
   "problems": [
     "preflight 仍有 3 项 FAIL(near_dup_calibrated/asset_evidence/exec_isolation),见 raw-preflight-manifest.txt",
-    "merges.txt SHA 未采集",
     "NuminaMath/TheoremQA 仓库内无 LICENSE 原件文件,许可原件待补"
-  ]
+  ],
+  "original_reported_generated_at": "2026-10-17 03:0x +08",
+  "generated_at_note": "Original placeholder removed; collection time not reconstructed.",
+  "revised_at": "2026-10-17T11:57:01.920956+08:00",
+  "actual_rc_basis": "Parsed exact rc lines in preserved raw outputs; command wrappers and gates are not conflated.",
+  "eval_wiring": {
+    "scope": "FIXTURE_DIAGNOSTICS_ONLY",
+    "actual_metrics": "UNVERIFIED",
+    "source_files": [
+      {
+        "path": "eval-wiring/eval_protocol.py",
+        "bytes": 19521,
+        "sha256": "5ca2d82f35daa8a1ebfe31ba971cb0e185bce48cb49d1aeca0b0c1e617a31b73"
+      },
+      {
+        "path": "eval-wiring/fixture_executor.py",
+        "bytes": 5741,
+        "sha256": "b0f75a2407b5997d6e92037560d33653d43fd22ad932c194073c90e4a000038c"
+      },
+      {
+        "path": "eval-wiring/run_fixtures.py",
+        "bytes": 12414,
+        "sha256": "9c6a88621d48712022df0d321785ff3bfbaa2447b89a2df465c52464f5289a93"
+      },
+      {
+        "path": "eval-wiring/test_eval_protocol_v2.py",
+        "bytes": 7265,
+        "sha256": "5626169a4c6607e660caaf45945bb7e2a0255c2f317a0c0cd95c3f622b320b92"
+      },
+      {
+        "path": "eval-wiring/README.md",
+        "bytes": 3361,
+        "sha256": "5e051ac4102d9deaa68f3d3f1a4d4c64ab0fa32ec864ee338f29af91c8edf6b9"
+      },
+      {
+        "path": "eval-wiring/codex-test-observation.json",
+        "bytes": 809,
+        "sha256": "33d51f4b7eaa9bacb112ccfa4893cf96514f587c54e6509a1d5d2d522ecc9d7a"
+      }
+    ],
+    "fixture_suite_receipt": {
+      "path": "eval-wiring/fixture-runs-v2/suite-b2cbb19edc264346bcb042784c6f0642/fixture-receipt.v2.json",
+      "sha256": "628fa51805bc6317ffb57074bab8e2aec9522a8d17ea9a42255b62c5d5791bb7",
+      "bytes": 119789
+    },
+    "asserted_scenarios": 20,
+    "independent_adversarial_tests": 18,
+    "production_connected": false
+  }
 }

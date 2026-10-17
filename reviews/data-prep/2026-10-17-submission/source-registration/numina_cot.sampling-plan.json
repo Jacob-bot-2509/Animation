@@ -6,14 +6,34 @@
   "cap_total": 2000,
   "first_batch_total": 300,
   "seed": "20261017",
-  "algorithm": "deterministic-stratified-v1:每层内按 sort_key=SHA256(revision:source:row_index:seed) 升序取前 N;row_index 为文件内实际行序;可重放",
+  "algorithm": "Before ranking, freeze semantic-core families and subject/difficulty mapping. Rank stable family representatives using the fully specified sort key; groups never cross uses/splits. Selection remains DESIGN until integer subject/difficulty quotas, count unit, within-family representative rule and shortage rule are locked.",
   "strata": [
-    {"source": "olympiads", "first_batch_quota": 90, "note": "学科深度优先"},
-    {"source": "cn_k12", "first_batch_quota": 60, "note": "Codex 854 口径:标记不等于现成中文,语言逐条实测;若实测与分层不符则重定"},
-    {"source": "amc_aime", "first_batch_quota": 50},
-    {"source": "math", "first_batch_quota": 50},
-    {"source": "synthetic_amc", "first_batch_quota": 30},
-    {"source": "aops_forum", "first_batch_quota": 20}
+    {
+      "source": "olympiads",
+      "first_batch_quota": 90,
+      "note": "学科深度优先"
+    },
+    {
+      "source": "cn_k12",
+      "first_batch_quota": 60,
+      "note": "Codex 854 口径:标记不等于现成中文,语言逐条实测;若实测与分层不符则重定"
+    },
+    {
+      "source": "amc_aime",
+      "first_batch_quota": 50
+    },
+    {
+      "source": "math",
+      "first_batch_quota": 50
+    },
+    {
+      "source": "synthetic_amc",
+      "first_batch_quota": 30
+    },
+    {
+      "source": "aops_forum",
+      "first_batch_quota": 20
+    }
   ],
   "group_core_rules": [
     "相同 problem 文本跨层/重复 → 视为同核心族,整体一组分配用途,不逐行随机切开",
@@ -32,5 +52,31 @@
     "记录实际选中清单与每条排除理由",
     "records.jsonl:source_record_id/raw_record_sha256/problem/solution 原始来源/语言/学科难度/转换器 SHA/勘误版本/独立数学理由",
     "leakage-review.jsonl 绑定 train/eval/test、外测与适用 holdout 各版本 SHA,独立理由与处置"
+  ],
+  "execution_ready": false,
+  "revised_at": "2026-10-17T11:57:01.920956+08:00",
+  "selection_kind": "DETERMINISTIC_RANKING_NOT_UNIFORM_RANDOM_SAMPLING",
+  "subject_difficulty_quotas": null,
+  "quota_count_unit": null,
+  "source_quotas_status": "PROPOSED_SOURCE_LAYER_COUNTS_NOT_SUBJECT_DIFFICULTY_QUOTAS",
+  "sort_key_encoding": {
+    "algorithm": "SHA256",
+    "encoding": "UTF-8",
+    "serialization": "JSON array, ensure_ascii=False, separators=(comma,colon), no newline",
+    "fields": [
+      "fixed_revision",
+      "source",
+      "shard_relative_path",
+      "row_index_as_integer",
+      "seed_as_string"
+    ],
+    "ties": "full raw_record_sha256 then stable source_record_id"
+  },
+  "required_before_execution": [
+    "Lock subject/difficulty integer quotas summing to the approved batch target",
+    "Lock count unit and family representative/group-cost rule; source-layer quotas alone are insufficient",
+    "Include shard path so equal row_index values from different files cannot collide",
+    "Verify fixed revision and actual source file hashes",
+    "Complete license/math/leakage review and authorized candidate intake"
   ]
 }
