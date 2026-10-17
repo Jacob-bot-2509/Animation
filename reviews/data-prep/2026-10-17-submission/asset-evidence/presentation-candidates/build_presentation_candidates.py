@@ -44,10 +44,12 @@ def main() -> int:
             continue
         scene_path = SCENES / f"{sid}.py"
         scene_path.write_text(code, encoding="utf-8")
+        # 绑定磁盘真实字节 SHA(Windows write_text 会换行翻译,回读再算)
+        scene_disk_sha = sha_bytes(scene_path.read_bytes())
         rows.append({
             "sample_id": sid,
             "corrected_record_sha256": sha_bytes(raw.encode("utf-8")),
-            "scene_sha256": sha_bytes(code.encode("utf-8")),
+            "scene_sha256": scene_disk_sha,
             "plan_rows": len(plan["rows"]),
             "plan_pages_provisional": len(plan["provisional_pages"]),
             "coverage_ok": cov,
