@@ -5,7 +5,8 @@
 绑定按修正记录自身字节 SHA(新源绑定,不套旧哈希);覆盖按修复版 make_plan
 重算比对;几何清单取自修正后 objects;全部 PENDING_REVIEW,不渲染不自判。
 
-2026-10-17 改用 text-candidate-v3(行尾优先断在标点,避免中文断词;v2 字节不动)。
+2026-10-17 改用 text-candidate-v4(行内片段间距 buff=0.12;v2/v3 字节不动)。
+记录改用 candidate-v2(仅改 prob-042 公式里的 CJK:默认 LaTeX 模板无法编译 \text{正面})。
 每题额外绑定 template_sha256 / plan_sha256,供管线端独立复算场景与分页计划。
 """
 import hashlib
@@ -16,13 +17,13 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[4]
 sys.path.insert(0, str(HERE.parent / "template-fix-candidate"))
-from render_templates_v3_candidate import (  # noqa: E402
+from render_templates_v4_candidate import (  # noqa: E402
     TEMPLATE_VERSION, TemplateError, coverage_ok, scene_blocks_v2,
 )
 
-TEMPLATE_PATH = HERE.parent / "template-fix-candidate/render_templates_v3_candidate.py"
+TEMPLATE_PATH = HERE.parent / "template-fix-candidate/render_templates_v4_candidate.py"
 
-RECORDS = ROOT / "archives/reviews/codex-supervision/2026-10-17-first-batch-exact-math-review/candidate/records.jsonl"
+RECORDS = ROOT / "archives/reviews/codex-supervision/2026-10-17-first-batch-exact-math-review/candidate-v2/records.jsonl"
 SCENES = HERE / "scenes"
 
 

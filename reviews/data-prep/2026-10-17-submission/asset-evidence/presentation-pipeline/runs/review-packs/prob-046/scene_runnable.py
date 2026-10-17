@@ -59,16 +59,16 @@ class Candidate(Scene):
         candidate_objects[(9, 3)] = Text('，总面积 ', font='Microsoft YaHei', font_size=22)
         candidate_objects[(9, 5)] = Text('。', font='Microsoft YaHei', font_size=22)
         candidate_rows = []
-        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)], candidate_objects[(2, 3)], candidate_objects[(2, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)], candidate_objects[(3, 3)], candidate_objects[(3, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)], candidate_objects[(4, 5)], candidate_objects[(4, 6)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)], candidate_objects[(5, 3)], candidate_objects[(5, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)], candidate_objects[(7, 3)], candidate_objects[(7, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(9, 0)], candidate_objects[(9, 1)], candidate_objects[(9, 2)], candidate_objects[(9, 3)], candidate_objects[(9, 4)], candidate_objects[(9, 5)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)], candidate_objects[(2, 3)], candidate_objects[(2, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)], candidate_objects[(3, 3)], candidate_objects[(3, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)], candidate_objects[(4, 5)], candidate_objects[(4, 6)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)], candidate_objects[(5, 3)], candidate_objects[(5, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)], candidate_objects[(7, 1)], candidate_objects[(7, 2)], candidate_objects[(7, 3)], candidate_objects[(7, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)], candidate_objects[(9, 1)], candidate_objects[(9, 2)], candidate_objects[(9, 3)], candidate_objects[(9, 4)], candidate_objects[(9, 5)]).arrange(RIGHT, buff=0.12))
         candidate_pages = []
         candidate_page = []
         candidate_used = 0

@@ -50,9 +50,9 @@ def _default_paths() -> Paths:
         root=ROOT,
         cand=SUBMISSION / "presentation-candidates",
         bind=SUBMISSION / "presentation-candidates/presentation-bindings.jsonl",
-        template=SUBMISSION / "template-fix-candidate/render_templates_v3_candidate.py",
+        template=SUBMISSION / "template-fix-candidate/render_templates_v4_candidate.py",
         records=ROOT / "archives/reviews/codex-supervision"
-                      "/2026-10-17-first-batch-exact-math-review/candidate/records.jsonl",
+                      "/2026-10-17-first-batch-exact-math-review/candidate-v2/records.jsonl",
         out=HERE / "runs",
     )
 

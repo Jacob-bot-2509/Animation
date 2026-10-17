@@ -68,16 +68,16 @@ class Candidate(Scene):
         candidate_objects[(8, 0)] = Text('显示右极限的夹逼推导、偶函数等式和左极限，得 ', font='Microsoft YaHei', font_size=22)
         candidate_objects[(8, 2)] = Text('。', font='Microsoft YaHei', font_size=22)
         candidate_rows = []
-        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(1, 0)], candidate_objects[(1, 1)], candidate_objects[(1, 2)], candidate_objects[(1, 3)], candidate_objects[(1, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)], candidate_objects[(2, 3)], candidate_objects[(2, 4)], candidate_objects[(2, 5)], candidate_objects[(2, 6)], candidate_objects[(2, 7)], candidate_objects[(2, 8)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)], candidate_objects[(3, 3)], candidate_objects[(3, 4)], candidate_objects[(3, 5)], candidate_objects[(3, 6)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)], candidate_objects[(4, 5)], candidate_objects[(4, 6)], candidate_objects[(4, 7)], candidate_objects[(4, 8)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)], candidate_objects[(5, 3)], candidate_objects[(5, 4)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(6, 0)], candidate_objects[(6, 1)], candidate_objects[(6, 2)], candidate_objects[(6, 3)], candidate_objects[(6, 4)], candidate_objects[(6, 5)], candidate_objects[(6, 6)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(7, 0)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0))
-        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0))
+        candidate_rows.append(VGroup(candidate_objects[(0, 0)], candidate_objects[(0, 1)], candidate_objects[(0, 2)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(1, 0)], candidate_objects[(1, 1)], candidate_objects[(1, 2)], candidate_objects[(1, 3)], candidate_objects[(1, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(2, 0)], candidate_objects[(2, 1)], candidate_objects[(2, 2)], candidate_objects[(2, 3)], candidate_objects[(2, 4)], candidate_objects[(2, 5)], candidate_objects[(2, 6)], candidate_objects[(2, 7)], candidate_objects[(2, 8)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(3, 0)], candidate_objects[(3, 1)], candidate_objects[(3, 2)], candidate_objects[(3, 3)], candidate_objects[(3, 4)], candidate_objects[(3, 5)], candidate_objects[(3, 6)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(4, 0)], candidate_objects[(4, 1)], candidate_objects[(4, 2)], candidate_objects[(4, 3)], candidate_objects[(4, 4)], candidate_objects[(4, 5)], candidate_objects[(4, 6)], candidate_objects[(4, 7)], candidate_objects[(4, 8)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(5, 0)], candidate_objects[(5, 1)], candidate_objects[(5, 2)], candidate_objects[(5, 3)], candidate_objects[(5, 4)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(6, 0)], candidate_objects[(6, 1)], candidate_objects[(6, 2)], candidate_objects[(6, 3)], candidate_objects[(6, 4)], candidate_objects[(6, 5)], candidate_objects[(6, 6)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(7, 0)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(8, 0)], candidate_objects[(8, 1)], candidate_objects[(8, 2)]).arrange(RIGHT, buff=0.12))
+        candidate_rows.append(VGroup(candidate_objects[(9, 0)]).arrange(RIGHT, buff=0.12))
         candidate_pages = []
         candidate_page = []
         candidate_used = 0

@@ -11,7 +11,7 @@ from pathlib import Path
 
 PIPE_DIR = Path(__file__).resolve().parent
 SUBMISSION = PIPE_DIR.parent
-REAL_TEMPLATE = SUBMISSION / "template-fix-candidate/render_templates_v3_candidate.py"
+REAL_TEMPLATE = SUBMISSION / "template-fix-candidate/render_templates_v4_candidate.py"
 TEST_BASE = Path(os.environ.get("PP_TEST_BASE") or (PIPE_DIR.parents[4] / ".pipeline-tests"))
 
 sys.path.insert(0, str(PIPE_DIR))

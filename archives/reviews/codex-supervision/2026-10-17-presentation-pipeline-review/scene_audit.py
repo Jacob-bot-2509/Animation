@@ -1,6 +1,5 @@
-"""独立审计(修复后):复算 10 条场景与绑定,只读,不改任何产物。
-
-用法:python -B -X utf8 scene_audit.py [--json out.json]
+﻿"""鐙珛瀹¤(淇鍚?:澶嶇畻 10 鏉″満鏅笌缁戝畾,鍙,涓嶆敼浠讳綍浜х墿銆?
+鐢ㄦ硶:python -B -X utf8 scene_audit.py [--json out.json]
 """
 import argparse
 import ast
@@ -13,11 +12,11 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 CAND = ROOT / "reviews/data-prep/2026-10-17-submission/asset-evidence/presentation-candidates"
 TPL_DIR = ROOT / "reviews/data-prep/2026-10-17-submission/asset-evidence/template-fix-candidate"
-TEMPLATE = TPL_DIR / "render_templates_v3_candidate.py"
-RECORDS = ROOT / "archives/reviews/codex-supervision/2026-10-17-first-batch-exact-math-review/candidate/records.jsonl"
+TEMPLATE = TPL_DIR / "render_templates_v4_candidate.py"
+RECORDS = ROOT / "archives/reviews/codex-supervision/2026-10-17-first-batch-exact-math-review/candidate-v2/records.jsonl"
 
 sys.path.insert(0, str(TPL_DIR))
-import render_templates_v3_candidate as tpl  # noqa: E402
+import render_templates_v4_candidate as tpl  # noqa: E402
 
 WRAPPER_HEAD = (
     '"""Auto-generated runnable shell for a text-only presentation candidate.\n\n'
@@ -151,3 +150,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
